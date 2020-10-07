@@ -310,7 +310,7 @@ Partial Class frmCustomers
         '
         Me.txtAR.Location = New System.Drawing.Point(317, 186)
         Me.txtAR.Name = "txtAR"
-        Me.txtAR.Size = New System.Drawing.Size(98, 20)
+        Me.txtAR.Size = New System.Drawing.Size(74, 20)
         Me.txtAR.StyleController = Me.LayoutControl1
         Me.txtAR.TabIndex = 10
         Me.txtAR.Tag = "ar,0"
@@ -557,9 +557,9 @@ Partial Class frmCustomers
         'EmptySpaceItem4
         '
         Me.EmptySpaceItem4.AllowHotTrack = False
-        Me.EmptySpaceItem4.Location = New System.Drawing.Point(407, 174)
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(383, 174)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Size = New System.Drawing.Size(170, 26)
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(194, 26)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem8
@@ -569,7 +569,7 @@ Partial Class frmCustomers
         Me.LayoutControlItem8.CustomizationFormText = "Αριθμός"
         Me.LayoutControlItem8.Location = New System.Drawing.Point(248, 174)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(159, 26)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(135, 26)
         Me.LayoutControlItem8.Text = "Αριθμός"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(54, 13)
         '
