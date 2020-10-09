@@ -144,4 +144,12 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBCusMovs_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCusMovs.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κινήσεις Πελατών"
+        form.DataTable = "vw_CCT_M"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class

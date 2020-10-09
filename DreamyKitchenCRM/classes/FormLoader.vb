@@ -1,6 +1,8 @@
 ﻿Imports System.Data.SqlClient
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraEditors.Repository
 
 Public Class FormLoader
     Public Function LoadForm(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sSQL As String) As Boolean
@@ -89,6 +91,16 @@ Public Class FormLoader
         ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
 
         End If
+    End Sub
+    Public Sub LoadDataToGrid(ByVal GRDControl As DevExpress.XtraGrid.GridControl, ByVal GRDView As DevExpress.XtraGrid.Views.Grid.GridView, ByVal sSQL As String)
+        Dim myCmd As SqlCommand
+        Dim myReader As SqlDataReader
+        myCmd = CNDB.CreateCommand
+        myCmd.CommandText = sSQL
+        myReader = myCmd.ExecuteReader()
+        GRDControl.DataSource = myReader
+        GRDControl.ForceInitialize()
+        GRDControl.DefaultView.PopulateColumns()
     End Sub
 End Class
 

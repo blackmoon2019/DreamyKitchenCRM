@@ -43,7 +43,7 @@ Public Class frmMailSettings
             My.Settings.frmUsers = Me.Location
             My.Settings.Save()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -112,18 +112,18 @@ Public Class frmMailSettings
                 If sResult Then
                     'Καθαρισμός Controls
                     Cls.ClearCtrls(LayoutControl1)
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             End If
             '    values.Add(GridLookUpEdit1View.GetRowCellValue(rowHandle, "Realname"))
             'Next rowHandle
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
     Private Sub cmdCheckMail_Click(sender As Object, e As EventArgs) Handles cmdCheckMail.Click
-        Dim result = XtraInputBox.Show("Πληκτρολογήστε το Email που θα πάει το ΤΕΣΤ Email", "PRIAMOS .NET", "Default")
+        Dim result = XtraInputBox.Show("Πληκτρολογήστε το Email που θα πάει το ΤΕΣΤ Email", "Dreamy Kitchen CRM", "Default")
         CheckEmail(result)
     End Sub
     Private Sub CheckEmail(ByVal sTO As String)

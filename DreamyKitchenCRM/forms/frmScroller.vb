@@ -112,6 +112,7 @@ Public Class frmScroller
                     Case "vw_SOURCE" : sSQL = "DELETE FROM SCR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT" : sSQL = "DELETE FROM CCT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SALERS" : sSQL = "DELETE FROM SALERS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_CCT_M" : sSQL = "DELETE FROM CCT_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                 End Select
 
                 Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -440,6 +441,7 @@ Public Class frmScroller
         Dim form9 As frmGen = New frmGen()
         Dim form10 As frmCustomers = New frmCustomers()
         Dim form11 As frmGen = New frmGen()
+        Dim form12 As frmCusMov = New frmCusMov()
         Select Case sDataTable
             Case "vw_USR"
                 form.Text = "Διαχείριση Χρηστών"
@@ -607,6 +609,15 @@ Public Class frmScroller
                 form11.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form11), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form11.Show()
+            Case "vw_CCT_M"
+                form12.Text = "Κινήσεις Πελατών"
+                form12.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form12.MdiParent = frmMain
+                form12.Mode = FormMode.EditRecord
+                form12.Scroller = GridView1
+                form12.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form12), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form12.Show()
         End Select
     End Sub
     'Νέα Εγγραφή
@@ -623,6 +634,7 @@ Public Class frmScroller
         Dim form9 As frmGen = New frmGen()
         Dim form10 As frmCustomers = New frmCustomers()
         Dim form11 As frmGen = New frmGen()
+        Dim form12 As frmCusMov = New frmCusMov()
         Select Case sDataTable
             Case "vw_USR"
                 form.Text = "Διαχείριση Χρηστών"
@@ -779,6 +791,14 @@ Public Class frmScroller
                 form9.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form9), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form9.Show()
+            Case "vw_CCT_M"
+                form12.Text = "Κινήσεις Πελατών"
+                form12.MdiParent = frmMain
+                form12.Mode = FormMode.NewRecord
+                form12.Scroller = GridView1
+                form12.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form12), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form12.Show()
         End Select
     End Sub
     'Φορτώνω τις εγγραφές στο GRID

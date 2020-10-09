@@ -26,7 +26,10 @@
     <Setting Name="frmGen" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
-    <Setting Name="frmCCT" Type="System.Drawing.Point" Scope="User">
+    <Setting Name="frmCustomers" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="frmCusMov" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
   </Settings>

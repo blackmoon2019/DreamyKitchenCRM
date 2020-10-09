@@ -48,6 +48,7 @@ Partial Class frmMain
         Me.bbStatus = New DevExpress.XtraBars.BarButtonItem()
         Me.bbSource = New DevExpress.XtraBars.BarButtonItem()
         Me.bbSalers = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCusMovs = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -71,9 +72,9 @@ Partial Class frmMain
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbFields, Me.bbStatus, Me.bbSource, Me.bbSalers})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbFields, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.MaxItemId = 31
+        Me.RibbonControl1.MaxItemId = 32
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage2})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
@@ -301,6 +302,14 @@ Partial Class frmMain
         Me.bbSalers.Name = "bbSalers"
         Me.bbSalers.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'BBCusMovs
+        '
+        Me.BBCusMovs.Caption = "Κινήσεις Πελατών"
+        Me.BBCusMovs.Id = 31
+        Me.BBCusMovs.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_add_property_40
+        Me.BBCusMovs.Name = "BBCusMovs"
+        Me.BBCusMovs.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'RibbonPage1
         '
         Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1})
@@ -312,6 +321,7 @@ Partial Class frmMain
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbUsers)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbCCT)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbSalers)
+        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCusMovs)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.Text = "RibbonPageGroup1"
         '
@@ -439,4 +449,5 @@ Partial Class frmMain
     Friend WithEvents bbStatus As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbSource As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbSalers As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBCusMovs As DevExpress.XtraBars.BarButtonItem
 End Class

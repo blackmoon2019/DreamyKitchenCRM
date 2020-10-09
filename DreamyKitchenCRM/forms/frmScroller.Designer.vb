@@ -118,6 +118,7 @@ Partial Class frmScroller
         Me.GridView2.OptionsLayout.StoreFormatRules = True
         Me.GridView2.OptionsPrint.PrintPreview = True
         Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ColumnAutoWidth = False
         Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
         '
         'grdMain
@@ -127,10 +128,10 @@ Partial Class frmScroller
         GridLevelNode1.LevelTemplate = Me.GridView2
         GridLevelNode1.RelationName = "Level1"
         Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.grdMain.Location = New System.Drawing.Point(27, 43)
+        Me.grdMain.Location = New System.Drawing.Point(26, 40)
         Me.grdMain.MainView = Me.GridView1
         Me.grdMain.Name = "grdMain"
-        Me.grdMain.Size = New System.Drawing.Size(1008, 585)
+        Me.grdMain.Size = New System.Drawing.Size(1009, 587)
         Me.grdMain.TabIndex = 5
         Me.grdMain.UseEmbeddedNavigator = True
         Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
@@ -148,6 +149,7 @@ Partial Class frmScroller
         Me.GridView1.OptionsLayout.StoreFormatRules = True
         Me.GridView1.OptionsPrint.PrintPreview = True
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
         '
         'BarManager1
@@ -435,31 +437,31 @@ Partial Class frmScroller
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1035, 43)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1035, 40)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 628)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 627)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1035, 29)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1035, 30)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 43)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 40)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(27, 585)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(26, 587)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1035, 43)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1035, 40)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 585)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 587)
         '
         'BarStaticItem5
         '

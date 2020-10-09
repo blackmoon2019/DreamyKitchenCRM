@@ -22,6 +22,8 @@ Partial Class frmCustomers
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCustomers))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.cmdFilesSelection = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdCboManagePRF = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdCboManageCOU = New DevExpress.XtraEditors.SimpleButton()
@@ -78,6 +80,7 @@ Partial Class frmCustomers
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
@@ -85,6 +88,8 @@ Partial Class frmCustomers
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDOY.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboAREAS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,12 +138,14 @@ Partial Class frmCustomers
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.GridControl1)
         Me.LayoutControl1.Controls.Add(Me.cmdFilesSelection)
         Me.LayoutControl1.Controls.Add(Me.cmdCboManagePRF)
         Me.LayoutControl1.Controls.Add(Me.cmdCboManageCOU)
@@ -168,14 +175,31 @@ Partial Class frmCustomers
         Me.LayoutControl1.Location = New System.Drawing.Point(5, 1)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(597, 352)
+        Me.LayoutControl1.Size = New System.Drawing.Size(597, 531)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Location = New System.Drawing.Point(12, 316)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(573, 203)
+        Me.GridControl1.TabIndex = 14
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
         '
         'cmdFilesSelection
         '
         Me.cmdFilesSelection.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_form_16
-        Me.cmdFilesSelection.Location = New System.Drawing.Point(563, 238)
+        Me.cmdFilesSelection.Location = New System.Drawing.Point(563, 290)
         Me.cmdFilesSelection.Name = "cmdFilesSelection"
         Me.cmdFilesSelection.Size = New System.Drawing.Size(22, 22)
         Me.cmdFilesSelection.StyleController = Me.LayoutControl1
@@ -330,9 +354,9 @@ Partial Class frmCustomers
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(45, 264)
+        Me.txtComments.Location = New System.Drawing.Point(69, 238)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(540, 76)
+        Me.txtComments.Size = New System.Drawing.Size(516, 48)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
@@ -432,7 +456,7 @@ Partial Class frmCustomers
         '
         'txtFileNames
         '
-        Me.txtFileNames.Location = New System.Drawing.Point(69, 238)
+        Me.txtFileNames.Location = New System.Drawing.Point(69, 290)
         Me.txtFileNames.Name = "txtFileNames"
         Me.txtFileNames.Size = New System.Drawing.Size(490, 20)
         Me.txtFileNames.StyleController = Me.LayoutControl1
@@ -443,9 +467,9 @@ Partial Class frmCustomers
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem14, Me.LayoutControlItem3, Me.LayoutControlItem10, Me.EmptySpaceItem3, Me.EmptySpaceItem1, Me.EmptySpaceItem4, Me.LayoutControlItem8, Me.LayoutControlItem12, Me.LayoutControlItem1, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem18, Me.LayoutControlItem17, Me.LayoutControlItem19, Me.EmptySpaceItem5, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem2, Me.LayoutControlItem13, Me.LayoutControlItem20, Me.LayoutControlItem11, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.EmptySpaceItem6, Me.LayoutControlItem25, Me.LayoutControlItem26})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem14, Me.LayoutControlItem3, Me.LayoutControlItem10, Me.EmptySpaceItem3, Me.EmptySpaceItem1, Me.EmptySpaceItem4, Me.LayoutControlItem8, Me.LayoutControlItem12, Me.LayoutControlItem1, Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem18, Me.LayoutControlItem17, Me.LayoutControlItem19, Me.EmptySpaceItem5, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem2, Me.LayoutControlItem13, Me.LayoutControlItem20, Me.LayoutControlItem11, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.EmptySpaceItem6, Me.LayoutControlItem27, Me.LayoutControlItem25, Me.LayoutControlItem26})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(597, 352)
+        Me.Root.Size = New System.Drawing.Size(597, 531)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem4
@@ -512,13 +536,13 @@ Partial Class frmCustomers
         Me.LayoutControlItem14.Control = Me.txtComments
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 252)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 226)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(577, 80)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(577, 52)
         Me.LayoutControlItem14.Text = "Σχόλια"
         Me.LayoutControlItem14.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(32, 13)
-        Me.LayoutControlItem14.TextToControlDistance = 1
+        Me.LayoutControlItem14.TextToControlDistance = 25
         '
         'LayoutControlItem3
         '
@@ -753,10 +777,19 @@ Partial Class frmCustomers
         Me.EmptySpaceItem6.Size = New System.Drawing.Size(329, 24)
         Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
         '
+        'LayoutControlItem27
+        '
+        Me.LayoutControlItem27.Control = Me.GridControl1
+        Me.LayoutControlItem27.Location = New System.Drawing.Point(0, 304)
+        Me.LayoutControlItem27.Name = "LayoutControlItem27"
+        Me.LayoutControlItem27.Size = New System.Drawing.Size(577, 207)
+        Me.LayoutControlItem27.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem27.TextVisible = False
+        '
         'LayoutControlItem25
         '
         Me.LayoutControlItem25.Control = Me.txtFileNames
-        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 226)
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 278)
         Me.LayoutControlItem25.Name = "LayoutControlItem25"
         Me.LayoutControlItem25.Size = New System.Drawing.Size(551, 26)
         Me.LayoutControlItem25.Text = "Αρχεία"
@@ -765,7 +798,7 @@ Partial Class frmCustomers
         'LayoutControlItem26
         '
         Me.LayoutControlItem26.Control = Me.cmdFilesSelection
-        Me.LayoutControlItem26.Location = New System.Drawing.Point(551, 226)
+        Me.LayoutControlItem26.Location = New System.Drawing.Point(551, 278)
         Me.LayoutControlItem26.Name = "LayoutControlItem26"
         Me.LayoutControlItem26.Size = New System.Drawing.Size(26, 26)
         Me.LayoutControlItem26.TextSize = New System.Drawing.Size(0, 0)
@@ -775,7 +808,7 @@ Partial Class frmCustomers
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(479, 350)
+        Me.cmdExit.Location = New System.Drawing.Point(481, 533)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(110, 28)
         Me.cmdExit.TabIndex = 12
@@ -784,7 +817,7 @@ Partial Class frmCustomers
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(362, 350)
+        Me.cmdSave.Location = New System.Drawing.Point(364, 533)
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(111, 28)
         Me.cmdSave.TabIndex = 13
@@ -799,7 +832,7 @@ Partial Class frmCustomers
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(606, 384)
+        Me.ClientSize = New System.Drawing.Size(601, 573)
         Me.Controls.Add(Me.cmdExit)
         Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.LayoutControl1)
@@ -807,6 +840,8 @@ Partial Class frmCustomers
         Me.Text = "frmCustomers"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDOY.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboAREAS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -855,6 +890,7 @@ Partial Class frmCustomers
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -923,4 +959,7 @@ Partial Class frmCustomers
     Friend WithEvents cmdFilesSelection As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem26 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents XtraOpenFileDialog1 As DevExpress.XtraEditors.XtraOpenFileDialog
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents LayoutControlItem27 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
 End Class

@@ -153,12 +153,24 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
-        Public Property frmCCT() As Global.System.Drawing.Point
+        Public Property frmCustomers() As Global.System.Drawing.Point
             Get
-                Return CType(Me("frmCCT"),Global.System.Drawing.Point)
+                Return CType(Me("frmCustomers"),Global.System.Drawing.Point)
             End Get
             Set
-                Me("frmCCT") = value
+                Me("frmCustomers") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmCusMov() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmCusMov"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmCusMov") = value
             End Set
         End Property
     End Class

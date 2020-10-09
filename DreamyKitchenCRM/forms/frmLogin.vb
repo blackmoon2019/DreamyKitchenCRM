@@ -47,7 +47,7 @@ Public Class frmLogin
                     If My.Settings.UNSave = True Then My.Settings.UN = txtUN.Text : My.Settings.Save()
                 End If
                 frmMain.Show()
-                'Me.Close()
+                Me.Close()
 
             Else
                 XtraMessageBox.Show("Πληκτρολογήσατε λάθος στοιχεία. Παρακαλώ προσπαθήστε ξανά.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

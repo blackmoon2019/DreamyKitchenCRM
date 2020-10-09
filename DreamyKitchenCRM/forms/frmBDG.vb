@@ -202,12 +202,12 @@
 '                    txtCode.Text = DBQ.GetNextId("BDG")
 '                    Dim form As frmScroller = Frm
 '                    form.LoadRecords("vw_BDG")
-'                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Information)
+'                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
 '                End If
 '            End If
 
 '        Catch ex As Exception
-'            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+'            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
 '        End Try
 '    End Sub
 
