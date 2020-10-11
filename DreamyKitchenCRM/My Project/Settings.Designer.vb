@@ -173,6 +173,17 @@ Namespace My
                 Me("frmCusMov") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=BLACKMOON-LAPTO\SQL2019;Initial Catalog=DreamyKitchen;Persist Securit"& _ 
+            "y Info=True;User ID=sa")>  _
+        Public ReadOnly Property DreamyKitchenConnectionString() As String
+            Get
+                Return CType(Me("DreamyKitchenConnectionString"),String)
+            End Get
+        End Property
     End Class
 End Namespace
 

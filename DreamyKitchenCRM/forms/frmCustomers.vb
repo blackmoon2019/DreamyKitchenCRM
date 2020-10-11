@@ -222,7 +222,7 @@ Public Class frmCustomers
                         form1.MdiParent = frmMain
                         form1.Mode = FormMode.NewRecord
                         form1.FormScrollerExist = False
-                        form1.ID = sGuid
+                        form1.CusID = sGuid
                         'form1.Scroller = GridView1
                         'form1.FormScroller = Me
                         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))

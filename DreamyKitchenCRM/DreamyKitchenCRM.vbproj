@@ -124,10 +124,16 @@
     <Compile Include="classes\DBQueries.vb" />
     <Compile Include="classes\FillCombos.vb" />
     <Compile Include="classes\FormLoader.vb" />
+    <Compile Include="classes\InitializeCalendar.vb" />
     <Compile Include="classes\ProgProp.vb" />
     <Compile Include="classes\Transactions.vb" />
     <Compile Include="classes\ValidateControls.vb" />
     <Compile Include="classes\XML_Serialization.vb" />
+    <Compile Include="DreamyKitchenDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmBDG.designer.vb">
       <DependentUpon>frmBDG.vb</DependentUpon>
     </Compile>
@@ -262,6 +268,17 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DreamyKitchenDataSet.xsc">
+      <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DreamyKitchenDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DreamyKitchenDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DreamyKitchenDataSet.xss">
+      <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
+    </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
@@ -471,6 +488,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-add-property-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-calendar-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-time-limit-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-report-file-40.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

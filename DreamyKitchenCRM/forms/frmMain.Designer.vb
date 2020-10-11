@@ -49,15 +49,20 @@ Partial Class frmMain
         Me.bbSource = New DevExpress.XtraBars.BarButtonItem()
         Me.bbSalers = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCusMovs = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCalendar = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCusStatistics1 = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPage3 = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RepositoryItemHypertextLabel1 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHypertextLabel2 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.MainstatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
+        Me.SchedulerDataStorage1 = New DevExpress.XtraScheduler.SchedulerDataStorage(Me.components)
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -67,16 +72,17 @@ Partial Class frmMain
         CType(Me.RepositoryItemHypertextLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbFields, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbFields, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.MaxItemId = 32
+        Me.RibbonControl1.MaxItemId = 35
         Me.RibbonControl1.Name = "RibbonControl1"
-        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage2})
+        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage2, Me.RibbonPage3})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
         Me.RibbonControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemHypertextLabel1, Me.RepositoryItemHypertextLabel2, Me.RepositoryItemHyperLinkEdit2})
         Me.RibbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019
@@ -310,6 +316,22 @@ Partial Class frmMain
         Me.BBCusMovs.Name = "BBCusMovs"
         Me.BBCusMovs.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'BBCalendar
+        '
+        Me.BBCalendar.Caption = "Ημερολόγιο"
+        Me.BBCalendar.Id = 32
+        Me.BBCalendar.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_calendar_40
+        Me.BBCalendar.Name = "BBCalendar"
+        Me.BBCalendar.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBCusStatistics1
+        '
+        Me.BBCusStatistics1.Caption = "Στατιστικά Πελατών"
+        Me.BBCusStatistics1.Id = 34
+        Me.BBCusStatistics1.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_report_file_40
+        Me.BBCusStatistics1.Name = "BBCusStatistics1"
+        Me.BBCusStatistics1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'RibbonPage1
         '
         Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1})
@@ -322,6 +344,7 @@ Partial Class frmMain
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbCCT)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbSalers)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCusMovs)
+        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCalendar)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.Text = "RibbonPageGroup1"
         '
@@ -344,6 +367,18 @@ Partial Class frmMain
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbSource)
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
         Me.RibbonPageGroup2.Text = "RibbonPageGroup2"
+        '
+        'RibbonPage3
+        '
+        Me.RibbonPage3.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup3})
+        Me.RibbonPage3.Name = "RibbonPage3"
+        Me.RibbonPage3.Text = "Reports"
+        '
+        'RibbonPageGroup3
+        '
+        Me.RibbonPageGroup3.ItemLinks.Add(Me.BBCusStatistics1)
+        Me.RibbonPageGroup3.Name = "RibbonPageGroup3"
+        Me.RibbonPageGroup3.Text = "Στατιστικά"
         '
         'RepositoryItemHypertextLabel1
         '
@@ -385,6 +420,13 @@ Partial Class frmMain
         Me.XtraTabbedMdiManager1.ShowFloatingDropHint = DevExpress.Utils.DefaultBoolean.[True]
         Me.XtraTabbedMdiManager1.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.[True]
         '
+        'SchedulerDataStorage1
+        '
+        '
+        '
+        '
+        Me.SchedulerDataStorage1.AppointmentDependencies.AutoReload = False
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -407,6 +449,7 @@ Partial Class frmMain
         CType(Me.RepositoryItemHypertextLabel2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -450,4 +493,9 @@ Partial Class frmMain
     Friend WithEvents bbSource As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbSalers As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBCusMovs As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBCalendar As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents SchedulerDataStorage1 As DevExpress.XtraScheduler.SchedulerDataStorage
+    Friend WithEvents RibbonPage3 As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents RibbonPageGroup3 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BBCusStatistics1 As DevExpress.XtraBars.BarButtonItem
 End Class

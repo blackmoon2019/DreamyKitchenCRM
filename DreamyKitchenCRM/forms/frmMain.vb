@@ -152,4 +152,20 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBCalendar_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCalendar.ItemClick
+        Dim form As frmCalendar = New frmCalendar()
+        form.Text = "Ημερολόγιο Κινήσεων"
+        'form.DataTable = "vw_CCT_M"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBCusStatistics1_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCusStatistics1.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Στατιστικά Πελατών"
+        form.DataTable = "vw_CUS_REPORT1"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class

@@ -233,7 +233,7 @@ Public Class frmGen
                                 sResult = DBQ.UpdateData(LayoutControl1, "STATUS", sID)
                                 If CalledFromCtrl Then
                                     FillCbo.STATUS(CtrlCombo)
-                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
                                 Else
                                     Dim form As frmScroller = Frm
                                     form.LoadRecords("vw_STATUS")
@@ -242,7 +242,7 @@ Public Class frmGen
                                 sResult = DBQ.UpdateData(LayoutControl1, "SRC", sID)
                                 If CalledFromCtrl Then
                                     FillCbo.SRC(CtrlCombo)
-                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
                                 Else
                                     Dim form As frmScroller = Frm
                                     form.LoadRecords("vw_SOURCE")
@@ -251,7 +251,7 @@ Public Class frmGen
                                 sResult = DBQ.UpdateData(LayoutControl1, "SALERS", sID)
                                 If CalledFromCtrl Then
                                     FillCbo.SALERS(CtrlCombo)
-                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
                                 Else
                                     Dim form As frmScroller = Frm
                                     form.LoadRecords("vw_SALERS")

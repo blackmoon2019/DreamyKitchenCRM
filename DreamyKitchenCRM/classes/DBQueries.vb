@@ -187,7 +187,6 @@ Public Class DBQueries
                                         Else
                                             sSQL.Append("NULL")
                                         End If
-                                        sSQL.Append(toSQLValueS(CDate(dt.Text).ToString("yyyyMMdd")))
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
                                         Dim txt As DevExpress.XtraEditors.TextEdit
                                         txt = Ctrl

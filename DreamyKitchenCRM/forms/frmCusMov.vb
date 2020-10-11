@@ -11,6 +11,7 @@ Imports DevExpress.XtraGrid.Columns
 
 Public Class frmCusMov
     Private sID As String
+    Private sCusID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -26,6 +27,11 @@ Public Class frmCusMov
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
+        End Set
+    End Property
+    Public WriteOnly Property CusID As String
+        Set(value As String)
+            sCusID = value
         End Set
     End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
@@ -55,7 +61,7 @@ Public Class frmCusMov
                     Case FormMode.NewRecord
                         sResult = DBQ.InsertData(LayoutControl1, "CCT_M")
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateData(LayoutControl1, "CCT", sID)
+                        sResult = DBQ.UpdateData(LayoutControl1, "CCT_M", sID)
                 End Select
                 'dtDTS.EditValue = DateTime.Now
                 txtCode.Text = DBQ.GetNextId("CCT_M")
@@ -81,6 +87,7 @@ Public Class frmCusMov
         'πΕΛΆΤΕς
         FillCbo.CUS(cboCUS)
         FillCbo.STATUS(cboSTATUS)
+        FillCbo.REM_VALUES(cboRemValues)
 
 
         Select Case Mode
@@ -90,7 +97,7 @@ Public Class frmCusMov
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT_M where id ='" + sID + "'")
         End Select
-        If sID <> "" Then cboCUS.EditValue = System.Guid.Parse(sID)
+        If sCusID <> "" Then cboCUS.EditValue = System.Guid.Parse(sCusID)
         Me.CenterToScreen()
         My.Settings.frmCusMov = Me.Location
         My.Settings.Save()
@@ -110,6 +117,25 @@ Public Class frmCusMov
         Else
             form1.Mode = FormMode.NewRecord
         End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+
+    Private Sub cmdCboManageSTATUS_Click(sender As Object, e As EventArgs) Handles cmdCboManageSTATUS.Click
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "STATUS"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Status"
+        form1.DataTable = "STATUS"
+        form1.CallerControl = cboSTATUS
+        form1.CalledFromControl = True
+        If cboSTATUS.EditValue <> Nothing Then form1.ID = cboSTATUS.EditValue.ToString
+        form1.MdiParent = frmMain
+        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        If cboSTATUS.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
