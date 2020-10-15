@@ -62,7 +62,6 @@ Partial Class frmMain
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.MainstatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
-        Me.SchedulerDataStorage1 = New DevExpress.XtraScheduler.SchedulerDataStorage(Me.components)
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,7 +71,6 @@ Partial Class frmMain
         CType(Me.RepositoryItemHypertextLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RibbonControl1
@@ -420,13 +418,6 @@ Partial Class frmMain
         Me.XtraTabbedMdiManager1.ShowFloatingDropHint = DevExpress.Utils.DefaultBoolean.[True]
         Me.XtraTabbedMdiManager1.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.[True]
         '
-        'SchedulerDataStorage1
-        '
-        '
-        '
-        '
-        Me.SchedulerDataStorage1.AppointmentDependencies.AutoReload = False
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -449,7 +440,6 @@ Partial Class frmMain
         CType(Me.RepositoryItemHypertextLabel2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -494,7 +484,6 @@ Partial Class frmMain
     Friend WithEvents bbSalers As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBCusMovs As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBCalendar As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents SchedulerDataStorage1 As DevExpress.XtraScheduler.SchedulerDataStorage
     Friend WithEvents RibbonPage3 As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents RibbonPageGroup3 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents BBCusStatistics1 As DevExpress.XtraBars.BarButtonItem

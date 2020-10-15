@@ -30,7 +30,7 @@ Public Class InitializeCalendar
                 If sdr.IsDBNull(sdr.GetOrdinal("color")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("color")))
                 If sdr.IsDBNull(sdr.GetOrdinal("STATUS_Name")) = False Then sStatus = sdr.GetString(sdr.GetOrdinal("STATUS_Name"))
                 If sdr.IsDBNull(sdr.GetOrdinal("REM_VALUES_name")) = False Then sRemValues = sdr.GetString(sdr.GetOrdinal("REM_VALUES_name"))
-                If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then sStatus = sdr.GetString(sdr.GetOrdinal("cmt"))
+                If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SALERS_code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("SALERS_code"))
                 CreateAppointment(SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SalersCode, sCusName, sRemValues)
 
@@ -39,7 +39,7 @@ Public Class InitializeCalendar
         sdr.Close()
         sdr = Nothing
     End Sub
-    Private Sub CreateAppointment(ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage,
+    Public Sub CreateAppointment(ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage,
                                   ByVal AptDate As String, ByVal AptSubject As String, ByVal sReminder As Integer,
                                   ByVal sColor As Color, ByVal Cmt As String, ByVal sLabelID As Integer,
                                   ByVal sCusname As String, ByVal sRemValues As String

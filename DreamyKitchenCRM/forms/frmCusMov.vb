@@ -22,6 +22,8 @@ Public Class frmCusMov
     Private DBQ As New DBQueries
     Private LoadForms As New FormLoader
     Private Cls As New ClearControls
+    Private Calendar As New InitializeCalendar
+    Private sColor As Integer
 
 
     Public WriteOnly Property ID As String
@@ -69,13 +71,15 @@ Public Class frmCusMov
                     Dim form As frmScroller = Frm
                     form.LoadRecords("vw_CCT_M")
                 End If
+                If sResult = True Then
+                    Calendar.CreateAppointment(frmCalendar.SchedulerDataStorage1, dtReminder.Text.ToString, cboSTATUS.Text, txtSch.Text, Color.FromArgb(cboSaler.GetColumnValue("color")), txtComments.Text, cboSaler.GetColumnValue("code"), cboCUS.Text, cboRemValues.Text)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Mode = FormMode.EditRecord
+                End If
                 'Καθαρισμός Controls
                 If Mode = FormMode.NewRecord Then Cls.ClearCtrls(LayoutControl1)
-                    If sResult = True Then
-                        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        Mode = FormMode.EditRecord
-                    End If
-                End If
+
+            End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -88,7 +92,7 @@ Public Class frmCusMov
         FillCbo.CUS(cboCUS)
         FillCbo.STATUS(cboSTATUS)
         FillCbo.REM_VALUES(cboRemValues)
-
+        FillCbo.SALERS(cboSaler)
 
         Select Case Mode
             Case FormMode.NewRecord
@@ -97,7 +101,7 @@ Public Class frmCusMov
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT_M where id ='" + sID + "'")
         End Select
-        If sCusID <> "" Then cboCUS.EditValue = System.Guid.Parse(sCusID)
+        If sCusID <> "" Then cboCUS.EditValue = System.Guid.Parse(sCusID) Else FScrollerExist = True
         Me.CenterToScreen()
         My.Settings.frmCusMov = Me.Location
         My.Settings.Save()
@@ -138,5 +142,32 @@ Public Class frmCusMov
         If cboSTATUS.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
+    End Sub
+
+    Private Sub cmdCBOManageSaler_Click(sender As Object, e As EventArgs) Handles cmdCBOManageSaler.Click
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "Πωλητές"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Πωλητής"
+        form1.DataTable = "SALERS"
+        form1.CalledFromControl = True
+        form1.CallerControl = cboSaler
+        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
+        form1.MdiParent = frmMain
+        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L6.Text = "Χρώμα"
+        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+
+    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
+        If cboCUS.GetColumnValue("SalerID") <> Nothing Then cboSaler.EditValue = System.Guid.Parse(cboCUS.GetColumnValue("SalerID").ToString)
+    End Sub
+
+    Private Sub cboSaler_EditValueChanged(sender As Object, e As EventArgs) Handles cboSaler.EditValueChanged
+        sColor = cboSaler.GetColumnValue("color")
     End Sub
 End Class

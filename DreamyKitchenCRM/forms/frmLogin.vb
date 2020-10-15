@@ -48,6 +48,9 @@ Public Class frmLogin
                 End If
                 frmMain.Show()
                 Me.Close()
+                frmCalendar.MdiParent = frmMain
+                frmCalendar.Text = "Ημερολόγιο Κινήσεων"
+                frmCalendar.Show()
 
             Else
                 XtraMessageBox.Show("Πληκτρολογήσατε λάθος στοιχεία. Παρακαλώ προσπαθήστε ξανά.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

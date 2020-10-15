@@ -57,7 +57,7 @@ Public Class FillCombos
     End Sub
     Public Sub CUS(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname from vw_CCT order by Fullname", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname,SalerID from vw_CCT order by Fullname", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Fullname"
@@ -65,6 +65,7 @@ Public Class FillCombos
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Πελάτες"
+            CtrlCombo.Properties.Columns(2).Visible = False
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -124,7 +125,7 @@ Public Class FillCombos
     End Sub
     Public Sub SALERS(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_SALERS order by name", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Name,color,code from vw_SALERS order by name", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
 
             CtrlCombo.Properties.DataSource = sdr
@@ -133,6 +134,8 @@ Public Class FillCombos
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Πωλητές"
+            CtrlCombo.Properties.Columns(2).Visible = False
+            CtrlCombo.Properties.Columns(3).Visible = False
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

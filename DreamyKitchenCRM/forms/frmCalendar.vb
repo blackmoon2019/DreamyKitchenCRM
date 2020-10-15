@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraScheduler
+﻿Imports System.ComponentModel
+Imports DevExpress.XtraScheduler
 
 Public Class frmCalendar
     Private Calendar As New InitializeCalendar
@@ -12,6 +13,14 @@ Public Class frmCalendar
     End Sub
 
     Private Sub SchedulerDataStorage1_AppointmentsInserted(sender As Object, e As PersistentObjectsEventArgs) Handles SchedulerDataStorage1.AppointmentsInserted
+
+    End Sub
+
+    Private Sub frmCalendar_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+
+    End Sub
+
+    Private Sub SchedulerControl1_Click(sender As Object, e As EventArgs) Handles SchedulerControl1.Click
 
     End Sub
 End Class

@@ -39,6 +39,8 @@ Public Class frmMain
             Case "frmMailSettings"
                 XtraTabbedMdiManager1.ActiveFloatForm.Width = 520 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 136
                 XtraTabbedMdiManager1.ActiveFloatForm.Location = My.Settings.frmUsers
+            Case "frmCalendar"
+                XtraTabbedMdiManager1.SelectedPage.ShowCloseButton = DefaultBoolean.False
         End Select
     End Sub
 
@@ -47,15 +49,16 @@ Public Class frmMain
     End Sub
 
     Private Sub XtraTabbedMdiManager1_BeginFloating(sender As Object, e As FloatingCancelEventArgs) Handles XtraTabbedMdiManager1.BeginFloating
-        'Select Case XtraTabbedMdiManager1.SelectedPage.MdiChild.Name
-        '    Case "frmUsers"
-        '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 489 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 166
-        '    Case "frmMailSettings"
-        '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 520 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 136
-        '    Case "frmScroller"
-        '        frmScroller.Width = 1037 : frmScroller.Height = 689
+        Select Case XtraTabbedMdiManager1.SelectedPage.MdiChild.Name
+            Case "frmCalendar"
+                e.Cancel = True
+                '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 489 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 166
+                '    Case "frmMailSettings"
+                '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 520 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 136
+                '    Case "frmScroller"
+                '        frmScroller.Width = 1037 : frmScroller.Height = 689
 
-        'End Select
+        End Select
     End Sub
     Private Sub bbRights_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbRights.ItemClick
         Dim form As frmScroller = New frmScroller()
@@ -167,5 +170,12 @@ Public Class frmMain
         form.DataTable = "vw_CUS_REPORT1"
         form.MdiParent = Me
         form.Show()
+    End Sub
+
+    Private Sub XtraTabbedMdiManager1_PageAdded(sender As Object, e As MdiTabPageEventArgs) Handles XtraTabbedMdiManager1.PageAdded
+        Dim form1 As frmCalendar = New frmCalendar()
+        XtraTabbedMdiManager1.Pages(frmCalendar).ShowCloseButton = DefaultBoolean.False
+
+
     End Sub
 End Class
