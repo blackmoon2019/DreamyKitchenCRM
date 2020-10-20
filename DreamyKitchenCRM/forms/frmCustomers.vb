@@ -364,12 +364,12 @@ Public Class frmCustomers
     End Sub
 
     Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
-        Dim fs As IO.FileStream = New IO.FileStream("I:\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"), IO.FileMode.Create)
+        Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"), IO.FileMode.Create)
         Dim b() As Byte = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "files")
         Try
             fs.Write(b, 0, b.Length)
             fs.Close()
-            ShellExecute("I:\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"))
+            ShellExecute(Application.StartupPath & "\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"))
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

@@ -340,11 +340,11 @@ Partial Class frmMain
         '
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbUsers)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbCCT)
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.bbSalers)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCusMovs)
+        Me.RibbonPageGroup1.ItemLinks.Add(Me.bbSalers)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCalendar)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
-        Me.RibbonPageGroup1.Text = "RibbonPageGroup1"
+        Me.RibbonPageGroup1.Text = "Λειτουργίες"
         '
         'RibbonPage2
         '
@@ -364,7 +364,7 @@ Partial Class frmMain
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbStatus)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbSource)
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
-        Me.RibbonPageGroup2.Text = "RibbonPageGroup2"
+        Me.RibbonPageGroup2.Text = "Βοηθητικά"
         '
         'RibbonPage3
         '

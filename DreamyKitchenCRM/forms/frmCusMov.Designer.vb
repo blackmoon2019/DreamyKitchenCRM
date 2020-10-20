@@ -118,6 +118,7 @@ Partial Class frmCusMov
         '
         Me.cboRemValues.Location = New System.Drawing.Point(404, 38)
         Me.cboRemValues.Name = "cboRemValues"
+        Me.cboRemValues.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboRemValues.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboRemValues.Properties.NullText = ""
         Me.cboRemValues.Size = New System.Drawing.Size(246, 20)

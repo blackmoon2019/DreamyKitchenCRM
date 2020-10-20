@@ -74,7 +74,7 @@ Public Class FillCombos
     End Sub
     Public Sub STATUS(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_STATUS order by name", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Name,allowschedule from vw_STATUS order by name", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
 
             CtrlCombo.Properties.DataSource = sdr
@@ -83,6 +83,7 @@ Public Class FillCombos
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Status"
+            CtrlCombo.Properties.Columns(2).Visible = False
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

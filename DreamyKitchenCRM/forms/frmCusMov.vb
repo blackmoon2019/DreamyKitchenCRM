@@ -6,8 +6,7 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraExport.Xls
 Imports DevExpress.XtraGrid.Columns
-
-
+Imports DevExpress.XtraLayout.Converter
 
 Public Class frmCusMov
     Private sID As String
@@ -57,11 +56,24 @@ Public Class frmCusMov
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
+        Dim sReminder As String
+        Dim sComments As String
+        Dim sRemValues As String
+
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 Select Case Mode
                     Case FormMode.NewRecord
-                        sResult = DBQ.InsertData(LayoutControl1, "CCT_M")
+                        If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
+                            If dtReminder.Text.ToString = "" Then
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Else
+                                sResult = DBQ.InsertData(LayoutControl1, "CCT_M")
+                            End If
+                        Else
+                            sResult = DBQ.InsertData(LayoutControl1, "CCT_M")
+                        End If
+
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateData(LayoutControl1, "CCT_M", sID)
                 End Select
@@ -72,8 +84,16 @@ Public Class frmCusMov
                     form.LoadRecords("vw_CCT_M")
                 End If
                 If sResult = True Then
-                    Calendar.CreateAppointment(frmCalendar.SchedulerDataStorage1, dtReminder.Text.ToString, cboSTATUS.Text, txtSch.Text, Color.FromArgb(cboSaler.GetColumnValue("color")), txtComments.Text, cboSaler.GetColumnValue("code"), cboCUS.Text, cboRemValues.Text)
+                    If txtComments.EditValue <> Nothing Then sComments = txtComments.Text Else sComments = ""
+                    If cboRemValues.EditValue <> Nothing Then sRemValues = cboRemValues.EditValue.ToString Else sRemValues = ""
+                    If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
+                        If cboSTATUS.GetColumnValue("allowschedule") = True Then
+                            Calendar.CreateAppointment(sID, frmCalendar.SchedulerDataStorage1, dtReminder.Text.ToString, cboSTATUS.Text, txtSch.Text, Color.FromArgb(cboSaler.GetColumnValue("color")), sComments, cboSaler.GetColumnValue("code"), cboCUS.Text, sRemValues)
+                        End If
+                    End If
+
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
                     Mode = FormMode.EditRecord
                 End If
                 'Καθαρισμός Controls
@@ -93,11 +113,12 @@ Public Class frmCusMov
         FillCbo.STATUS(cboSTATUS)
         FillCbo.REM_VALUES(cboRemValues)
         FillCbo.SALERS(cboSaler)
-
+        cboRemValues.Properties.AllowNullInput = True
         Select Case Mode
             Case FormMode.NewRecord
                 'dtCompleted.EditValue = DateTime.Now
                 txtCode.Text = DBQ.GetNextId("CCT_M")
+                dtReminder.ReadOnly = True : txtSch.ReadOnly = True : cboRemValues.ReadOnly = True
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT_M where id ='" + sID + "'")
         End Select
@@ -137,7 +158,8 @@ Public Class frmCusMov
         form1.MdiParent = frmMain
         form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        'form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
         form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         If cboSTATUS.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
@@ -169,5 +191,16 @@ Public Class frmCusMov
 
     Private Sub cboSaler_EditValueChanged(sender As Object, e As EventArgs) Handles cboSaler.EditValueChanged
         sColor = cboSaler.GetColumnValue("color")
+    End Sub
+
+    Private Sub cboSTATUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboSTATUS.EditValueChanged
+        If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
+            dtReminder.ReadOnly = False : txtSch.ReadOnly = False : cboRemValues.ReadOnly = False
+        Else
+            dtReminder.EditValue = "" : dtReminder.Text = "" : dtReminder.ReadOnly = True
+            txtSch.EditValue = "" : txtSch.ReadOnly = True
+            cboRemValues.EditValue = Nothing : cboRemValues.Text = "" : cboRemValues.ReadOnly = True
+
+        End If
     End Sub
 End Class

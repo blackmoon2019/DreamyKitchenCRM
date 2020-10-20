@@ -51,7 +51,7 @@ Public Class frmMain
     Private Sub XtraTabbedMdiManager1_BeginFloating(sender As Object, e As FloatingCancelEventArgs) Handles XtraTabbedMdiManager1.BeginFloating
         Select Case XtraTabbedMdiManager1.SelectedPage.MdiChild.Name
             Case "frmCalendar"
-                e.Cancel = True
+                'e.Cancel = True
                 '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 489 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 166
                 '    Case "frmMailSettings"
                 '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 520 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 136

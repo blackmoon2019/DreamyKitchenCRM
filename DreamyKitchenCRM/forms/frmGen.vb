@@ -65,8 +65,8 @@ Public Class frmGen
 
     Private Sub cmdNew_Click(sender As Object, e As EventArgs) Handles cmdNew.Click
         Mode = FormMode.NewRecord
-        LoadGen()
         Cls.ClearCtrls(LayoutControl1)
+        LoadGen()
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click

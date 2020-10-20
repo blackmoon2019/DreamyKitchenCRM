@@ -178,7 +178,7 @@ Namespace My
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
          Global.System.Configuration.DefaultSettingValueAttribute("Data Source=BLACKMOON-LAPTO\SQL2019;Initial Catalog=DreamyKitchen;Persist Securit"& _ 
-            "y Info=True;User ID=sa")>  _
+            "y Info=True;User ID=sa;Password=mavros1!")>  _
         Public ReadOnly Property DreamyKitchenConnectionString() As String
             Get
                 Return CType(Me("DreamyKitchenConnectionString"),String)

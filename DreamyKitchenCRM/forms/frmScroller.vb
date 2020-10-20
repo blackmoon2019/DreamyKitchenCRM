@@ -432,6 +432,7 @@ Public Class frmScroller
     'Επεξεργασία Εγγραφής
     Private Sub EditRecord()
         Dim form As frmUsers = New frmUsers()
+        Dim form1 As frmPermissions = New frmPermissions()
         Dim form2 As frmMailSettings = New frmMailSettings()
         Dim form3 As frmGen = New frmGen()
         Dim form4 As frmGen = New frmGen()
@@ -444,6 +445,15 @@ Public Class frmScroller
         Dim form11 As frmGen = New frmGen()
         Dim form12 As frmCusMov = New frmCusMov()
         Select Case sDataTable
+            Case "vw_RIGHTS"
+                form1.Text = "Δικαιώματα"
+                form1.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form1.MdiParent = frmMain
+                form1.Mode = FormMode.EditRecord
+                form1.Scroller = GridView1
+                form1.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form1.Show()
             Case "vw_USR"
                 form.Text = "Διαχείριση Χρηστών"
                 form.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -624,10 +634,10 @@ Public Class frmScroller
     'Νέα Εγγραφή
     Private Sub NewRecord()
         Dim form As frmUsers = New frmUsers()
+        Dim form1 As frmPermissions = New frmPermissions()
         Dim form2 As frmMailSettings = New frmMailSettings()
         Dim form3 As frmGen = New frmGen()
         Dim form4 As frmGen = New frmGen()
-        'Dim form4 As frmBDG = New frmBDG()
         Dim form5 As frmGen = New frmGen()
         Dim form6 As frmGen = New frmGen()
         Dim form7 As frmGen = New frmGen()
@@ -637,6 +647,14 @@ Public Class frmScroller
         Dim form11 As frmGen = New frmGen()
         Dim form12 As frmCusMov = New frmCusMov()
         Select Case sDataTable
+            Case "vw_RIGHTS"
+                form1.Text = "Δικαιώματα"
+                form1.MdiParent = frmMain
+                form1.Mode = FormMode.NewRecord
+                form1.Scroller = GridView1
+                form1.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form1.Show()
             Case "vw_USR"
                 form.Text = "Διαχείριση Χρηστών"
                 form.MdiParent = frmMain
@@ -970,10 +988,13 @@ Public Class frmScroller
     End Sub
 
     Private Sub GridView1_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles GridView1.RowCellStyle
-        If e.Column.FieldName = "color" Then
-            e.Appearance.BackColor = Color.FromArgb(e.CellValue)
-        End If
-
-
+        Select Case e.Column.FieldName
+            Case "color" : e.Appearance.BackColor = Color.FromArgb(e.CellValue)
+            Case "S_CCT_M_Color"
+                'If e.CellValue <> "" Then
+                If Not IsDBNull(e.CellValue) Then
+                    e.Appearance.BackColor = Color.FromArgb(e.CellValue)
+                End If
+        End Select
     End Sub
 End Class
