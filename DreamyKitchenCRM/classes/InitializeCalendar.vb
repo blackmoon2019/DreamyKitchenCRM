@@ -16,6 +16,7 @@ Public Class InitializeCalendar
         Dim sCusName As String
         Dim sRemValues As String
         Dim sID As String
+        Dim stmReminder As String
         'Color.FromArgb(e.CellValue)
         'Αλλαγή όψης
         SCH.ActiveViewType = SchedulerViewType.FullWeek
@@ -27,6 +28,7 @@ Public Class InitializeCalendar
         If sdr.HasRows Then
             While sdr.Read()
                 If sdr.IsDBNull(sdr.GetOrdinal("dtReminderDate")) = False Then sDate = sdr.GetDateTime(sdr.GetOrdinal("dtReminderDate"))
+                If sdr.IsDBNull(sdr.GetOrdinal("tmReminder")) = False Then stmReminder = sdr.GetString(sdr.GetOrdinal("tmReminder"))
                 sCusName = sdr.GetString(sdr.GetOrdinal("Fullname"))
                 sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
                 If sdr.IsDBNull(sdr.GetOrdinal("sch")) = False Then sReminder = sdr.GetInt32(sdr.GetOrdinal("sch"))
@@ -35,8 +37,7 @@ Public Class InitializeCalendar
                 If sdr.IsDBNull(sdr.GetOrdinal("REM_VALUES_name")) = False Then sRemValues = sdr.GetString(sdr.GetOrdinal("REM_VALUES_name"))
                 If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SALERS_code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("SALERS_code"))
-                CreateAppointment(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SalersCode, sCusName, sRemValues)
-
+                CreateAppointment(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SalersCode, sCusName, sRemValues, stmReminder)
             End While
         End If
         sdr.Close()
@@ -45,21 +46,34 @@ Public Class InitializeCalendar
     Public Sub CreateAppointment(ByVal ID As String, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage,
                                   ByVal AptDate As String, ByVal AptSubject As String, ByVal sReminder As Integer,
                                   ByVal sColor As Color, ByVal Cmt As String, ByVal sLabelID As Integer,
-                                  ByVal sCusname As String, ByVal sRemValues As String
+                                  ByVal sCusname As String, ByVal sRemValues As String, ByVal AptTime As String
                                   )
         Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate), AptSubject)
         Try
+
+
             apt.Location = sCusname
             apt.Description = Cmt
-            apt.AllDay = True
+            'apt.AllDay = True
+            If AptTime <> Nothing Then
+                apt.Start = CDate(AptDate) & " " & AptTime
+                '2/29/2016 22:00:00
+                apt.End = CDate(AptDate) & " " & AptTime
+            Else
+                apt.Start = CDate(AptDate)
+                apt.End = CDate(AptDate)
+            End If
+            ' Κλειδί
             apt.SetId(ID)
+            apt.LabelKey = sLabelID
 
             'apt.RecurrenceInfo.Type = RecurrenceType.Daily
             'apt.RecurrenceInfo.Periodicity = 2
             'apt.RecurrenceInfo.Start = apt.Start
             'apt.RecurrenceInfo.Range = RecurrenceRange.OccurrenceCount
             'apt.RecurrenceInfo.OccurrenceCount = 5
-            apt.LabelKey = sLabelID
+            'apt.LabelKey = sLabelID
+
 
             Dim reminder As Reminder = apt.CreateNewReminder()
             reminder.TimeBeforeStart = New TimeSpan(0, sReminder, 0)

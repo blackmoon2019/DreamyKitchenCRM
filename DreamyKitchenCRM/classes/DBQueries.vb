@@ -99,6 +99,14 @@ Public Class DBQueries
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
                                         End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+                                        Dim tm As DevExpress.XtraEditors.TimeEdit
+                                        tm = Ctrl
+                                        If tm.Text <> "" Then
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(CDate(tm.Text).ToString("HH:mm")))
+                                        Else
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                        End If
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
                                         Dim txt As DevExpress.XtraEditors.TextEdit
                                         txt = Ctrl
@@ -184,6 +192,14 @@ Public Class DBQueries
                                         dt = Ctrl
                                         If dt.Text <> "" Then
                                             sSQL.Append(toSQLValueS(CDate(dt.Text).ToString("yyyyMMdd")))
+                                        Else
+                                            sSQL.Append("NULL")
+                                        End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+                                        Dim tm As DevExpress.XtraEditors.TimeEdit
+                                        tm = Ctrl
+                                        If tm.Text <> "" Then
+                                            sSQL.Append(toSQLValueS(CDate(tm.Text).ToString("HH:mm")))
                                         Else
                                             sSQL.Append("NULL")
                                         End If

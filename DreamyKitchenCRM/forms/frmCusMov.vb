@@ -56,7 +56,6 @@ Public Class frmCusMov
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
-        Dim sReminder As String
         Dim sComments As String
         Dim sRemValues As String
 
@@ -73,12 +72,21 @@ Public Class frmCusMov
                         Else
                             sResult = DBQ.InsertData(LayoutControl1, "CCT_M")
                         End If
-
+                        txtCode.Text = DBQ.GetNextId("CCT_M")
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateData(LayoutControl1, "CCT_M", sID)
+                        If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
+                            If dtReminder.Text.ToString = "" Then
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Else
+                                sResult = DBQ.UpdateData(LayoutControl1, "CCT_M", sID)
+                            End If
+                        Else
+                            sResult = DBQ.UpdateData(LayoutControl1, "CCT_M", sID)
+                        End If
+
                 End Select
                 'dtDTS.EditValue = DateTime.Now
-                txtCode.Text = DBQ.GetNextId("CCT_M")
+
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm
                     form.LoadRecords("vw_CCT_M")
@@ -88,7 +96,13 @@ Public Class frmCusMov
                     If cboRemValues.EditValue <> Nothing Then sRemValues = cboRemValues.EditValue.ToString Else sRemValues = ""
                     If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
                         If cboSTATUS.GetColumnValue("allowschedule") = True Then
-                            Calendar.CreateAppointment(sID, frmCalendar.SchedulerDataStorage1, dtReminder.Text.ToString, cboSTATUS.Text, txtSch.Text, Color.FromArgb(cboSaler.GetColumnValue("color")), sComments, cboSaler.GetColumnValue("code"), cboCUS.Text, sRemValues)
+                            If Mode = FormMode.EditRecord Then
+                                'ΔΙΑΓΡΑΦΗ APOINTMENT
+                                Dim apt As DevExpress.XtraScheduler.Appointment
+                                apt = frmCalendar.SchedulerDataStorage1.Appointments.GetAppointmentById(sID)
+                                frmCalendar.SchedulerDataStorage1.Appointments.Remove(apt)
+                            End If
+                            Calendar.CreateAppointment(sID, frmCalendar.SchedulerDataStorage1, dtReminder.Text.ToString, cboSTATUS.Text, txtSch.Text, Color.FromArgb(cboSaler.GetColumnValue("color")), sComments, cboSaler.GetColumnValue("code"), cboCUS.Text, sRemValues, tmReminder.Text.ToString)
                         End If
                     End If
 

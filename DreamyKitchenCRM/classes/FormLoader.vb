@@ -50,6 +50,8 @@ Public Class FormLoader
                                                 If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDecimal(sdr.GetOrdinal(TagV)))
                                             Case "datetime"
                                                 If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                            Case "date"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
                                         End Select
                                     End If
                                 End If
@@ -72,6 +74,12 @@ Public Class FormLoader
             Dim dt As DevExpress.XtraEditors.DateEdit
             dt = Ctrl
             dt.EditValue = CDate(sValue)
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+            Dim tm As DevExpress.XtraEditors.TimeEdit
+            tm = Ctrl
+
+            tm.EditValue = CDate(sValue).ToString("HH:mm")
+
         ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
             Dim txt As DevExpress.XtraEditors.TextEdit
             txt = Ctrl

@@ -19,8 +19,25 @@ Public Class frmScroller
     Private myCmd As SqlCommand
     Private myReader As SqlDataReader
     Private sDataTable As String
+    Private sWhereCondition As String
     Private sDataDetail As String
     Private CurrentView As String
+    Public WriteOnly Property DataTable As String
+        Set(value As String)
+            sDataTable = value
+        End Set
+    End Property
+    Public WriteOnly Property DataDetail As String
+        Set(value As String)
+            sDataDetail = value
+        End Set
+    End Property
+    Public WriteOnly Property DataTableWhereCondition As String
+        Set(value As String)
+            sWhereCondition = value
+        End Set
+    End Property
+
     'Private settings = System.Configuration.ConfigurationManager.AppSettings
     Private Sub frmScroller_Load(sender As Object, e As EventArgs) Handles Me.Load
         'Λίστα με τιμές για TOP RECORDS
@@ -39,6 +56,12 @@ Public Class frmScroller
         BarNewRec.Enabled = UserProps.AllowInsert
         BarDelete.Enabled = UserProps.AllowDelete
         BarEdit.Enabled = UserProps.AllowEdit
+        If sDataTable = "vw_CCT" Then
+            Dim sItem As BarButtonItem = New BarButtonItem(BarManager1, "vw_CCT")
+            sItem.Caption = "Εμφάνιση Κινήσεων Πελάτη"
+            sItem.Name = "ViewCusMov"
+            PopupMenuRows.AddItem(sItem)
+        End If
     End Sub
 
     'Λίστα με τιμές για TOP RECORDS
@@ -131,16 +154,6 @@ Public Class frmScroller
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public WriteOnly Property DataTable As String
-        Set(value As String)
-            sDataTable = value
-        End Set
-    End Property
-    Public WriteOnly Property DataDetail As String
-        Set(value As String)
-            sDataDetail = value
-        End Set
-    End Property
     'Επιλογή όψης
     Private Sub BarViews_EditValueChanged(sender As Object, e As EventArgs) Handles BarViews.EditValueChanged
         Try
@@ -821,15 +834,15 @@ Public Class frmScroller
         End Select
     End Sub
     'Φορτώνω τις εγγραφές στο GRID
-    Public Sub LoadRecords(Optional ByVal sDataTable2 As String = "")
+    Public Sub LoadRecords(Optional ByVal sDataTable2 As String = "", Optional ByVal sWhere As String = "")
         Dim sSQL As String
         Dim sSQL2 As String
 
         If BarRecords.EditValue <> "ALL" And BarRecords.EditValue <> "" Then
-            sSQL = "SELECT top " & BarRecords.EditValue & " * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable)
+            sSQL = "SELECT top " & BarRecords.EditValue & " * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
             If sDataDetail <> "" Then sSQL2 = "SELECT top " & BarRecords.EditValue & " * FROM " & sDataDetail
         Else
-            sSQL = "SELECT  * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable)
+            sSQL = "SELECT  * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
             If sDataDetail <> "" Then sSQL2 = "SELECT  * FROM " & sDataDetail
         End If
 
@@ -996,5 +1009,18 @@ Public Class frmScroller
                     e.Appearance.BackColor = Color.FromArgb(e.CellValue)
                 End If
         End Select
+    End Sub
+
+    Private Sub BarManager1_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarManager1.ItemClick
+        'MessageBox.Show("Item '" & e.Item.Caption & "' has been clicked")
+        If e.Item.Name = "ViewCusMov" Then
+            'form1.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Στατιστικά Πελατών"
+            form.DataTable = "vw_CUS_REPORT1"
+            form.DataTableWhereCondition = "Where ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
+            'form.MdiParent = Me
+            form.Show()
+        End If
     End Sub
 End Class

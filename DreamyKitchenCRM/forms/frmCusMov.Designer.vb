@@ -52,6 +52,9 @@ Partial Class frmCusMov
         Me.cmdCboManageCOU = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.tmReminder = New DevExpress.XtraEditors.TimeEdit()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.TimeSpanChartRangeControlClient1 = New DevExpress.XtraEditors.TimeSpanChartRangeControlClient()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboRemValues.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,10 +84,14 @@ Partial Class frmCusMov
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.tmReminder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TimeSpanChartRangeControlClient1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.tmReminder)
         Me.LayoutControl1.Controls.Add(Me.cmdCBOManageSaler)
         Me.LayoutControl1.Controls.Add(Me.cboRemValues)
         Me.LayoutControl1.Controls.Add(Me.dtCompleted)
@@ -116,12 +123,12 @@ Partial Class frmCusMov
         '
         'cboRemValues
         '
-        Me.cboRemValues.Location = New System.Drawing.Point(404, 38)
+        Me.cboRemValues.Location = New System.Drawing.Point(504, 38)
         Me.cboRemValues.Name = "cboRemValues"
         Me.cboRemValues.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboRemValues.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboRemValues.Properties.NullText = ""
-        Me.cboRemValues.Size = New System.Drawing.Size(246, 20)
+        Me.cboRemValues.Size = New System.Drawing.Size(146, 20)
         Me.cboRemValues.StyleController = Me.LayoutControl1
         Me.cboRemValues.TabIndex = 33
         Me.cboRemValues.Tag = "remValueID,0,1,2"
@@ -211,7 +218,7 @@ Partial Class frmCusMov
         '
         'txtSch
         '
-        Me.txtSch.Location = New System.Drawing.Point(350, 38)
+        Me.txtSch.Location = New System.Drawing.Point(450, 38)
         Me.txtSch.Name = "txtSch"
         Me.txtSch.Properties.Mask.EditMask = "n0"
         Me.txtSch.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -236,7 +243,7 @@ Partial Class frmCusMov
         Me.dtReminder.Name = "dtReminder"
         Me.dtReminder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtReminder.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dtReminder.Size = New System.Drawing.Size(139, 20)
+        Me.dtReminder.Size = New System.Drawing.Size(127, 20)
         Me.dtReminder.StyleController = Me.LayoutControl1
         Me.dtReminder.TabIndex = 32
         Me.dtReminder.Tag = "dtReminderDate,0,1,2"
@@ -258,7 +265,7 @@ Partial Class frmCusMov
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem9, Me.LayoutControlItem1, Me.LayoutControlItem5, Me.LayoutControlItem3, Me.LayoutControlItem14, Me.LayoutControlItem6, Me.LayoutControlItem20, Me.LayoutControlItem16, Me.LayoutControlItem2, Me.LayoutControlItem7, Me.LayoutControlItem17, Me.LayoutControlItem8, Me.EmptySpaceItem1})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem9, Me.LayoutControlItem1, Me.LayoutControlItem5, Me.LayoutControlItem3, Me.LayoutControlItem14, Me.LayoutControlItem6, Me.LayoutControlItem20, Me.LayoutControlItem16, Me.LayoutControlItem2, Me.LayoutControlItem7, Me.LayoutControlItem17, Me.LayoutControlItem8, Me.EmptySpaceItem1, Me.LayoutControlItem10})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(662, 345)
         Me.Root.TextVisible = False
@@ -338,7 +345,7 @@ Partial Class frmCusMov
         Me.LayoutControlItem6.CustomizationFormText = "Ημερ/νία Ειδοποίησης"
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 26)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(260, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(248, 24)
         Me.LayoutControlItem6.Text = "Ημερ/νία Ειδοποίησης"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(114, 13)
         '
@@ -347,7 +354,7 @@ Partial Class frmCusMov
         Me.LayoutControlItem20.Control = Me.txtSch
         Me.LayoutControlItem20.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem20.CustomizationFormText = "Ειδοποίηση πριν"
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(260, 26)
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(360, 26)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
         Me.LayoutControlItem20.Size = New System.Drawing.Size(132, 24)
         Me.LayoutControlItem20.Text = "Ειδοποίηση πριν"
@@ -382,9 +389,9 @@ Partial Class frmCusMov
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.cboRemValues
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(392, 26)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(492, 26)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(250, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(150, 24)
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
         '
@@ -431,7 +438,7 @@ Partial Class frmCusMov
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(555, 346)
+        Me.cmdExit.Location = New System.Drawing.Point(551, 346)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(110, 28)
         Me.cmdExit.TabIndex = 14
@@ -440,11 +447,38 @@ Partial Class frmCusMov
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(438, 346)
+        Me.cmdSave.Location = New System.Drawing.Point(434, 346)
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(111, 28)
         Me.cmdSave.TabIndex = 15
         Me.cmdSave.Text = "Αποθήκευση"
+        '
+        'tmReminder
+        '
+        Me.tmReminder.EditValue = New Date(2020, 10, 28, 0, 0, 0, 0)
+        Me.tmReminder.Location = New System.Drawing.Point(286, 38)
+        Me.tmReminder.Name = "tmReminder"
+        Me.tmReminder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.tmReminder.Properties.DisplayFormat.FormatString = "t"
+        Me.tmReminder.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.tmReminder.Properties.EditFormat.FormatString = "t"
+        Me.tmReminder.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+        Me.tmReminder.Properties.Mask.EditMask = "HH:mm"
+        Me.tmReminder.Size = New System.Drawing.Size(82, 20)
+        Me.tmReminder.StyleController = Me.LayoutControl1
+        Me.tmReminder.TabIndex = 35
+        Me.tmReminder.Tag = "tmReminder,0,1,2"
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.tmReminder
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(248, 26)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(112, 24)
+        Me.LayoutControlItem10.Text = "Ώρα"
+        Me.LayoutControlItem10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(21, 13)
+        Me.LayoutControlItem10.TextToControlDistance = 5
         '
         'frmCusMov
         '
@@ -485,6 +519,9 @@ Partial Class frmCusMov
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.tmReminder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TimeSpanChartRangeControlClient1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -521,4 +558,7 @@ Partial Class frmCusMov
     Friend WithEvents cmdCBOManageSaler As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents tmReminder As DevExpress.XtraEditors.TimeEdit
+    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TimeSpanChartRangeControlClient1 As DevExpress.XtraEditors.TimeSpanChartRangeControlClient
 End Class

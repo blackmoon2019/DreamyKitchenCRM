@@ -152,6 +152,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DreamyKitchenDataSet.vb">
+      <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="forms\frmBDG.designer.vb">
       <DependentUpon>frmBDG.vb</DependentUpon>
     </Compile>
@@ -295,6 +298,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DreamyKitchenCRM.exe.config" />
     <None Include="DreamyKitchenDataSet.xsc">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
     </None>
