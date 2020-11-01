@@ -83,8 +83,7 @@ Public Class InitializeCalendar
                 Case "Μέρες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder)
                 Case "Εβδομάδες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder * 7)
             End Select
-
-            apt.Reminders.Add(reminder)
+            If sReminder <> 0 And sRemValues <> "" Then apt.Reminders.Add(reminder)
             SCH_Storage.Appointments.Add(apt)
 
 

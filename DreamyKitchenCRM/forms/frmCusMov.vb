@@ -67,10 +67,12 @@ Public Class frmCusMov
                             If dtReminder.Text.ToString = "" Then
                                 XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Else
-                                sResult = DBQ.InsertData(LayoutControl1, "CCT_M")
+                                sID = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "CCT_M", sID)
                             End If
                         Else
-                            sResult = DBQ.InsertData(LayoutControl1, "CCT_M")
+                            sID = System.Guid.NewGuid.ToString
+                            sResult = DBQ.InsertData(LayoutControl1, "CCT_M", sID)
                         End If
                         txtCode.Text = DBQ.GetNextId("CCT_M")
                     Case FormMode.EditRecord
@@ -100,8 +102,9 @@ Public Class frmCusMov
                                 'ΔΙΑΓΡΑΦΗ APOINTMENT
                                 Dim apt As DevExpress.XtraScheduler.Appointment
                                 apt = frmCalendar.SchedulerDataStorage1.Appointments.GetAppointmentById(sID)
-                                frmCalendar.SchedulerDataStorage1.Appointments.Remove(apt)
+                                If apt IsNot Nothing Then frmCalendar.SchedulerDataStorage1.Appointments.Remove(apt)
                             End If
+                            If txtSch.Text = "" Then txtSch.Text = 0
                             Calendar.CreateAppointment(sID, frmCalendar.SchedulerDataStorage1, dtReminder.Text.ToString, cboSTATUS.Text, txtSch.Text, Color.FromArgb(cboSaler.GetColumnValue("color")), sComments, cboSaler.GetColumnValue("code"), cboCUS.Text, sRemValues, tmReminder.Text.ToString)
                         End If
                     End If
@@ -132,7 +135,7 @@ Public Class frmCusMov
             Case FormMode.NewRecord
                 'dtCompleted.EditValue = DateTime.Now
                 txtCode.Text = DBQ.GetNextId("CCT_M")
-                dtReminder.ReadOnly = True : txtSch.ReadOnly = True : cboRemValues.ReadOnly = True
+                dtReminder.ReadOnly = True : txtSch.ReadOnly = True : cboRemValues.ReadOnly = True : tmReminder.ReadOnly = True
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT_M where id ='" + sID + "'")
         End Select
@@ -210,11 +213,17 @@ Public Class frmCusMov
     Private Sub cboSTATUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboSTATUS.EditValueChanged
         If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
             dtReminder.ReadOnly = False : txtSch.ReadOnly = False : cboRemValues.ReadOnly = False
+            tmReminder.ReadOnly = False
         Else
             dtReminder.EditValue = "" : dtReminder.Text = "" : dtReminder.ReadOnly = True
+            tmReminder.EditValue = "" : tmReminder.Text = "" : tmReminder.ReadOnly = True
             txtSch.EditValue = "" : txtSch.ReadOnly = True
             cboRemValues.EditValue = Nothing : cboRemValues.Text = "" : cboRemValues.ReadOnly = True
 
         End If
+    End Sub
+
+    Private Sub frmCusMov_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
 End Class

@@ -1,6 +1,7 @@
 ﻿Imports System.CodeDom.Compiler
 Imports System.Data.SqlClient
 Imports System.IO
+Imports DevExpress.Utils
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
@@ -84,6 +85,11 @@ Public Class frmCustomers
                 GridView1.Columns.Add(C)
 
         End Select
+        'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml") = False Then
+            GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
+        End If
+        GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
         Me.CenterToScreen()
         My.Settings.frmCustomers = Me.Location
         My.Settings.Save()
@@ -381,6 +387,10 @@ Public Class frmCustomers
         myProcess.StartInfo.RedirectStandardOutput = False
         myProcess.Start()
         myProcess.Dispose()
+    End Sub
+
+    Private Sub frmCustomers_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
     End Sub
 
     'Private Sub SqlBlob2File(ByVal DocName As String)
