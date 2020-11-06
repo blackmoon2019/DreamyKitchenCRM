@@ -10,7 +10,7 @@ Public Class frmCalendar
         Dim sSQL As String
         sSQL = "SELECT * FROM vw_CCT_M order by code"
         Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
-
+        SchedulerControl1.Start = Now.Date
     End Sub
 
     Private Sub SchedulerDataStorage1_AppointmentsInserted(sender As Object, e As PersistentObjectsEventArgs) Handles SchedulerDataStorage1.AppointmentsInserted

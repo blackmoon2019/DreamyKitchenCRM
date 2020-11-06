@@ -105,7 +105,7 @@ Public Class frmCusMov
                                 If apt IsNot Nothing Then frmCalendar.SchedulerDataStorage1.Appointments.Remove(apt)
                             End If
                             If txtSch.Text = "" Then txtSch.Text = 0
-                            Calendar.CreateAppointment(sID, frmCalendar.SchedulerDataStorage1, dtReminder.Text.ToString, cboSTATUS.Text, txtSch.Text, Color.FromArgb(cboSaler.GetColumnValue("color")), sComments, cboSaler.GetColumnValue("code"), cboCUS.Text, sRemValues, tmReminder.Text.ToString)
+                            Calendar.CreateAppointment(sID, frmCalendar.SchedulerDataStorage1, dtReminder.Text.ToString, cboSTATUS.Text, txtSch.Text, Color.FromArgb(cboSaler.GetColumnValue("color")), sComments, cboSaler.GetColumnValue("code"), cboCUS.Text, sRemValues, tmReminder.Text.ToString, chkCompleted.Checked)
                         End If
                     End If
 
@@ -225,5 +225,16 @@ Public Class frmCusMov
 
     Private Sub frmCusMov_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
+    End Sub
+
+
+
+    Private Sub chkCompleted_CheckStateChanged(sender As Object, e As EventArgs) Handles chkCompleted.CheckStateChanged
+
+    End Sub
+
+    Private Sub chkCompleted_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompleted.CheckedChanged
+        Dim Edit As CheckEdit = CType(sender, CheckEdit)
+        If Edit.Checked = True Then dtCompleted.Enabled = True Else dtCompleted.Enabled = False : dtCompleted.EditValue = ""
     End Sub
 End Class

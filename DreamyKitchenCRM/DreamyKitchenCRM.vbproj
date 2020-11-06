@@ -201,6 +201,12 @@
     <Compile Include="forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmNotes.Designer.vb">
+      <DependentUpon>frmNotes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmNotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmPermissions.designer.vb">
       <DependentUpon>frmPermissions.vb</DependentUpon>
     </Compile>
@@ -273,6 +279,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmNotes.resx">
+      <DependentUpon>frmNotes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPermissions.resx">
       <DependentUpon>frmPermissions.vb</DependentUpon>

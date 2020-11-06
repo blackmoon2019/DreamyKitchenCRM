@@ -17,6 +17,7 @@ Public Class InitializeCalendar
         Dim sRemValues As String
         Dim sID As String
         Dim stmReminder As String
+        Dim sCompleted As Boolean
         'Color.FromArgb(e.CellValue)
         'Αλλαγή όψης
         SCH.ActiveViewType = SchedulerViewType.FullWeek
@@ -37,7 +38,8 @@ Public Class InitializeCalendar
                 If sdr.IsDBNull(sdr.GetOrdinal("REM_VALUES_name")) = False Then sRemValues = sdr.GetString(sdr.GetOrdinal("REM_VALUES_name"))
                 If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SALERS_code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("SALERS_code"))
-                CreateAppointment(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SalersCode, sCusName, sRemValues, stmReminder)
+                If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
+                CreateAppointment(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SalersCode, sCusName, sRemValues, stmReminder, sCompleted)
             End While
         End If
         sdr.Close()
@@ -46,9 +48,9 @@ Public Class InitializeCalendar
     Public Sub CreateAppointment(ByVal ID As String, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage,
                                   ByVal AptDate As String, ByVal AptSubject As String, ByVal sReminder As Integer,
                                   ByVal sColor As Color, ByVal Cmt As String, ByVal sLabelID As Integer,
-                                  ByVal sCusname As String, ByVal sRemValues As String, ByVal AptTime As String
+                                  ByVal sCusname As String, ByVal sRemValues As String, ByVal AptTime As String, ByVal Completed As Boolean
                                   )
-        Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate), AptSubject)
+        Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate), AptSubject & "(" & sCusname & ")")
         Try
 
 
@@ -83,7 +85,9 @@ Public Class InitializeCalendar
                 Case "Μέρες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder)
                 Case "Εβδομάδες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder * 7)
             End Select
-            If sReminder <> 0 And sRemValues <> "" Then apt.Reminders.Add(reminder)
+            If Completed = False Then
+                If sReminder <> 0 And sRemValues <> "" Then apt.Reminders.Add(reminder)
+            End If
             SCH_Storage.Appointments.Add(apt)
 
 
