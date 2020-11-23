@@ -184,6 +184,31 @@ Namespace My
                 Return CType(Me("DreamyKitchenConnectionString"),String)
             End Get
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\blackmoon-home\source\repos\DreamyKitchenCRM\DreamyKitchenCRM\bin\Debug\"& _ 
+            "files")>  _
+        Public Property CRM_PATH() As String
+            Get
+                Return CType(Me("CRM_PATH"),String)
+            End Get
+            Set
+                Me("CRM_PATH") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmNotes() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmNotes"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmNotes") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

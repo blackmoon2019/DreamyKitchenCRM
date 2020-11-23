@@ -10,16 +10,19 @@ Public Class DBQueries
         If ID >= 1 Then ID = ID + 1
         Return ID
     End Function
-    Public Function InsertDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal cctID As String) As Boolean
+    Public Function InsertDataFiles(ByVal control As System.Windows.Forms.OpenFileDialog, ByVal ID As String, ByVal sTable As String) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Dim i As Integer
         Try
-            sSQL.Clear()
-            sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdOn],files)")
             For i = 0 To control.FileNames.Count - 1
+                sSQL.Clear()
+                Select Case sTable
+                    Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdOn],files)")
+                    Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdOn],files)")
+                End Select
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
                 Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))
-                sSQL.AppendLine("Select " & toSQLValueS(cctID) & ",")
+                sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
                 sSQL.AppendLine(toSQLValueS(control.SafeFileNames(i).ToString) & ",")
                 sSQL.AppendLine(toSQLValueS(FilePath) & ",")
                 sSQL.AppendLine(toSQLValueS(extension) & ",")
@@ -82,6 +85,7 @@ Public Class DBQueries
                                     sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                     ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
                                     ' Αλλιώς το παίρνουμε όταν είναι text και αλλιώς όταν είναι LookupEdit
+                                    '*******DevExpress.XtraEditors.LookUpEdit******
                                     Dim Ctrl As Control = LItem.Control
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
@@ -91,6 +95,7 @@ Public Class DBQueries
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
                                         End If
+                                        '*******DevExpress.XtraEditors.DateEdit******
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
                                         Dim dt As DevExpress.XtraEditors.DateEdit
                                         dt = Ctrl
@@ -99,6 +104,7 @@ Public Class DBQueries
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
                                         End If
+                                        '*******DevExpress.XtraEditors.TimeEdit******
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
                                         Dim tm As DevExpress.XtraEditors.TimeEdit
                                         tm = Ctrl
@@ -107,6 +113,7 @@ Public Class DBQueries
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
                                         End If
+                                        '*******DevExpress.XtraEditors.TextEdit******
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
                                         Dim txt As DevExpress.XtraEditors.TextEdit
                                         txt = Ctrl
@@ -114,16 +121,26 @@ Public Class DBQueries
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
-                                            End If
-                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
-                                            Dim chk As DevExpress.XtraEditors.CheckEdit
-                                            chk = Ctrl
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & chk.EditValue)
-                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ColorPickEdit Then
-                                            Dim cpk As DevExpress.XtraEditors.ColorPickEdit
+                                        End If
+                                        '*******DevExpress.XtraEditors.ButtonEdit******
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ButtonEdit Then
+                                        Dim txt As DevExpress.XtraEditors.ButtonEdit
+                                        txt = Ctrl
+                                        If txt.Properties.Tag = True Then
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
+                                        Else
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
+                                        End If
+                                        '*******DevExpress.XtraEditors.CheckEdit ******
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
+                                        Dim chk As DevExpress.XtraEditors.CheckEdit
+                                        chk = Ctrl
+                                        sSQLV.Append(IIf(IsFirstField = True, "", ",") & chk.EditValue)
+                                        '*******DevExpress.XtraEditors.ColorPickEdit******
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ColorPickEdit Then
+                                        Dim cpk As DevExpress.XtraEditors.ColorPickEdit
                                         cpk = Ctrl
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & cpk.EditValue)
-
                                     End If
                                     IsFirstField = False
                                 End If

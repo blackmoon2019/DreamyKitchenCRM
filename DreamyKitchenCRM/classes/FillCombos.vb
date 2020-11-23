@@ -55,9 +55,26 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub NOTES_L(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+        Try
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_NOTES_L order by name", CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.DisplayMember = "Name"
+            CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.PopulateColumns()
+            CtrlCombo.Properties.Columns(0).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Εττικέτες"
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
     Public Sub CUS(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname,SalerID from vw_CCT order by Fullname", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname,isnull(SalerID,'00000000-0000-0000-0000-000000000000') as SalerID from vw_CCT order by Fullname", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Fullname"

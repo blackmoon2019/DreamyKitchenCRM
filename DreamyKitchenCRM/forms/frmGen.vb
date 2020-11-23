@@ -181,6 +181,19 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("SALERS")
+                            Case "NOTES_L"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "NOTES_L", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.NOTES_L(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_NOTES_L")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("NOTES_L")
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
@@ -256,6 +269,15 @@ Public Class frmGen
                                     Dim form As frmScroller = Frm
                                     form.LoadRecords("vw_SALERS")
                                 End If
+                            Case "NOTES_L"
+                                sResult = DBQ.InsertData(LayoutControl1, "NOTES_L", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.NOTES_L(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_NOTES_L")
+                                End If
                         End Select
                 End Select
                 If sResult Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -318,6 +340,12 @@ Public Class frmGen
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_SALERS where id ='" + sID + "'")
                 End If
+            Case "NOTES_L"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("NOTES_L")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_NOTES_L where id ='" + sID + "'")
+                End If
         End Select
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         cmdDelete.Enabled = IIf(Mode = FormMode.NewRecord, False, UserProps.AllowDelete)
@@ -378,6 +406,13 @@ Public Class frmGen
                         Else
                             Dim form As frmScroller = Frm
                             form.LoadRecords("vw_SALERS")
+                        End If
+                    Case "NOTES_L"
+                        If CalledFromCtrl Then
+                            FillCbo.NOTES_L(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_NOTES_L")
                         End If
                 End Select
                 Cls.ClearCtrls(LayoutControl1)

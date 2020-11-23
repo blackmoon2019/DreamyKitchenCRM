@@ -107,9 +107,11 @@ Partial Class frmCalendar
 
     End Sub
 
+
     Friend WithEvents SchedulerControl1 As DevExpress.XtraScheduler.SchedulerControl
     Friend WithEvents SchedulerDataStorage1 As DevExpress.XtraScheduler.SchedulerDataStorage
     Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
     Friend WithEvents VwSALERSBindingSource As BindingSource
     Friend WithEvents Vw_SALERSTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter
+
 End Class

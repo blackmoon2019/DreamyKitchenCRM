@@ -51,6 +51,8 @@ Partial Class frmMain
         Me.BBCusMovs = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCalendar = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCusStatistics1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBNotes = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -62,6 +64,11 @@ Partial Class frmMain
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
         Me.MainstatusBar = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
         Me.XtraTabbedMdiManager1 = New DevExpress.XtraTabbedMdi.XtraTabbedMdiManager(Me.components)
+        Me.ToastNotificationsManager1 = New DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.VwNOTESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Vw_NOTESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter()
+        Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -71,14 +78,17 @@ Partial Class frmMain
         CType(Me.RepositoryItemHypertextLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ToastNotificationsManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwNOTESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbFields, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbFields, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.BarButtonItem2})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.MaxItemId = 35
+        Me.RibbonControl1.MaxItemId = 37
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage2, Me.RibbonPage3})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
@@ -113,9 +123,9 @@ Partial Class frmMain
         '
         Me.BarClose.Caption = "Έξοδος"
         Me.BarClose.Id = 5
-        Me.BarClose.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
+        Me.BarClose.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_30
         Me.BarClose.Name = "BarClose"
-        Me.BarClose.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.SmallWithText
+        Me.BarClose.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'bbRights
         '
@@ -330,6 +340,22 @@ Partial Class frmMain
         Me.BBCusStatistics1.Name = "BBCusStatistics1"
         Me.BBCusStatistics1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'BBNotes
+        '
+        Me.BBNotes.Caption = "Σημειώματα"
+        Me.BBNotes.Id = 35
+        Me.BBNotes.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_notes_40
+        Me.BBNotes.Name = "BBNotes"
+        Me.BBNotes.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BarButtonItem2
+        '
+        Me.BarButtonItem2.Caption = "Εττικέτες"
+        Me.BarButtonItem2.Id = 36
+        Me.BarButtonItem2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_tag_40
+        Me.BarButtonItem2.Name = "BarButtonItem2"
+        Me.BarButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'RibbonPage1
         '
         Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1})
@@ -343,6 +369,7 @@ Partial Class frmMain
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCusMovs)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbSalers)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCalendar)
+        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBNotes)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.Text = "Λειτουργίες"
         '
@@ -363,6 +390,7 @@ Partial Class frmMain
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbPRF)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbStatus)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbSource)
+        Me.RibbonPageGroup2.ItemLinks.Add(Me.BarButtonItem2)
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
         Me.RibbonPageGroup2.Text = "Βοηθητικά"
         '
@@ -418,6 +446,30 @@ Partial Class frmMain
         Me.XtraTabbedMdiManager1.ShowFloatingDropHint = DevExpress.Utils.DefaultBoolean.[True]
         Me.XtraTabbedMdiManager1.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.[True]
         '
+        'ToastNotificationsManager1
+        '
+        Me.ToastNotificationsManager1.ApplicationId = "4c231646-ccf8-4221-b5b2-879675d7b9d1"
+        Me.ToastNotificationsManager1.ApplicationName = "Dreamy Kitchen CRM"
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwNOTESBindingSource
+        '
+        Me.VwNOTESBindingSource.DataMember = "vw_NOTES"
+        Me.VwNOTESBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'Vw_NOTESTableAdapter
+        '
+        Me.Vw_NOTESTableAdapter.ClearBeforeFill = True
+        '
+        'Timer1
+        '
+        Me.Timer1.Enabled = True
+        Me.Timer1.Interval = 5000
+        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -440,6 +492,9 @@ Partial Class frmMain
         CType(Me.RepositoryItemHypertextLabel2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XtraTabbedMdiManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ToastNotificationsManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwNOTESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -487,4 +542,11 @@ Partial Class frmMain
     Friend WithEvents RibbonPage3 As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents RibbonPageGroup3 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents BBCusStatistics1 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBNotes As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents ToastNotificationsManager1 As DevExpress.XtraBars.ToastNotifications.ToastNotificationsManager
+    Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
+    Friend WithEvents VwNOTESBindingSource As BindingSource
+    Friend WithEvents Vw_NOTESTableAdapter As DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter
+    Friend WithEvents Timer1 As Timer
 End Class

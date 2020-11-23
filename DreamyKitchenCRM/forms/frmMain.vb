@@ -1,10 +1,14 @@
-﻿Imports DevExpress.Utils
+﻿Imports System.Data.SqlClient
+Imports DevExpress.Utils
 Imports DevExpress.XtraBars
+Imports DevExpress.XtraBars.ToastNotifications
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraTabbedMdi
 Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_NOTES' table. You can move, or remove it, as needed.
+        Me.Vw_NOTESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_NOTES)
         XtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders
         bbDate.Caption = DateTime.Today
         bbUser.Caption = "Χρήστης: " & UserProps.RealName
@@ -177,5 +181,75 @@ Public Class frmMain
         XtraTabbedMdiManager1.Pages(frmCalendar).ShowCloseButton = DefaultBoolean.False
 
 
+    End Sub
+
+    Private Sub BBNotes_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBNotes.ItemClick
+        Dim form As New frmNotesScroller
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BarButtonItem2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarButtonItem2.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Εττικέτες"
+        form.DataTable = "vw_NOTES_L"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        GetNewMessages()
+
+    End Sub
+
+    Private Sub ToastNotificationsManager1_Activated(sender As Object, e As ToastNotificationEventArgs) Handles ToastNotificationsManager1.Activated
+        Try
+            Dim sSQL As String
+            sSQL = "update NOTES SET readed=1 where ID = '" & e.NotificationID.ToString & "'"
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Dim note As New ToastNotification
+            note.ID = e.NotificationID
+            ToastNotificationsManager1.Notifications.Remove(note)
+            Dim form10 As frmNotes = New frmNotes()
+            form10.Text = "Σημειώματα"
+            form10.ID = e.NotificationID
+            form10.MdiParent = Me
+            form10.Mode = FormMode.EditRecord
+            form10.FormScroller = Me
+            Me.XtraTabbedMdiManager1.Float(Me.XtraTabbedMdiManager1.Pages(form10), New Point(CInt(form10.Parent.ClientRectangle.Width / 2 - form10.Width / 2), CInt(form10.Parent.ClientRectangle.Height / 2 - form10.Height / 2)))
+            form10.Show()
+            Timer1.Enabled = True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Timer1.Enabled = False
+        End Try
+    End Sub
+    Private Sub GetNewMessages()
+        Try
+            Dim i As Integer = 0
+            Dim cmd As SqlCommand = New SqlCommand("SELECT ID,title,note
+                                                     FROM vw_NOTES WHERE modifiedby = '" & UserProps.ID.ToString & "' and readed=0", CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            If sdr.HasRows Then
+
+                ToastNotificationsManager1.Notifications.Clear()
+                While sdr.Read()
+                    Dim note As New ToastNotification(sdr.Item(0).ToString, Nothing, "CRM Notification", sdr.Item(1).ToString, sdr.Item(2).ToString, ToastNotificationTemplate.ImageAndText04)
+                    note.ID = sdr.Item(0).ToString
+                    ToastNotificationsManager1.Notifications.Add(note)
+                    ToastNotificationsManager1.ShowNotification(ToastNotificationsManager1.Notifications(i))
+                    i = i + 1
+
+                End While
+            End If
+            sdr.Close()
+            sdr = Nothing
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Timer1.Enabled = False
+        End Try
     End Sub
 End Class

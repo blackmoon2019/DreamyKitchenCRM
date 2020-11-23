@@ -19,134 +19,398 @@ Partial Class frmNotes
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
-        Me.DocumentManager1 = New DevExpress.XtraBars.Docking2010.DocumentManager(Me.components)
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmNotes))
+        Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
-        Me.LayoutView1 = New DevExpress.XtraGrid.Views.Layout.LayoutView()
-        Me.NoDocumentsView1 = New DevExpress.XtraBars.Docking2010.Views.NoDocuments.NoDocumentsView(Me.components)
-        Me.TabbedView1 = New DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView(Me.components)
-        Me.DockManager1 = New DevExpress.XtraBars.Docking.DockManager(Me.components)
-        Me.DockPanel1 = New DevExpress.XtraBars.Docking.DockPanel()
-        Me.DockPanel1_Container = New DevExpress.XtraBars.Docking.ControlContainer()
-        Me.NavBarControl1 = New DevExpress.XtraNavBar.NavBarControl()
-        Me.NavBarGroup1 = New DevExpress.XtraNavBar.NavBarGroup()
-        Me.LayoutViewCard1 = New DevExpress.XtraGrid.Views.Layout.LayoutViewCard()
-        CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
+        Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
+        Me.txtCode = New DevExpress.XtraEditors.TextEdit()
+        Me.txtNotes = New DevExpress.XtraEditors.MemoEdit()
+        Me.txtNam = New DevExpress.XtraEditors.TextEdit()
+        Me.cboNotesL = New DevExpress.XtraEditors.LookUpEdit()
+        Me.txtFileNames = New DevExpress.XtraEditors.ButtonEdit()
+        Me.cboSaler = New DevExpress.XtraEditors.LookUpEdit()
+        Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.cmdCboManagePRF = New DevExpress.XtraEditors.SimpleButton()
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.NoDocumentsView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.DockPanel1.SuspendLayout()
-        Me.DockPanel1_Container.SuspendLayout()
-        CType(Me.NavBarControl1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutViewCard1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboNotesL.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFileNames.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'DocumentManager1
+        'LayoutControl1
         '
-        Me.DocumentManager1.ClientControl = Me.GridControl1
-        Me.DocumentManager1.View = Me.NoDocumentsView1
-        Me.DocumentManager1.ViewCollection.AddRange(New DevExpress.XtraBars.Docking2010.Views.BaseView() {Me.NoDocumentsView1, Me.TabbedView1})
+        Me.LayoutControl1.Controls.Add(Me.GridControl1)
+        Me.LayoutControl1.Controls.Add(Me.cmdExit)
+        Me.LayoutControl1.Controls.Add(Me.cmdSave)
+        Me.LayoutControl1.Controls.Add(Me.txtCode)
+        Me.LayoutControl1.Controls.Add(Me.txtNotes)
+        Me.LayoutControl1.Controls.Add(Me.txtNam)
+        Me.LayoutControl1.Controls.Add(Me.cboNotesL)
+        Me.LayoutControl1.Controls.Add(Me.txtFileNames)
+        Me.LayoutControl1.Controls.Add(Me.cboSaler)
+        Me.LayoutControl1.Location = New System.Drawing.Point(-3, -5)
+        Me.LayoutControl1.Name = "LayoutControl1"
+        Me.LayoutControl1.Root = Me.Root
+        Me.LayoutControl1.Size = New System.Drawing.Size(701, 448)
+        Me.LayoutControl1.TabIndex = 0
+        Me.LayoutControl1.Text = "LayoutControl1"
         '
         'GridControl1
         '
-        Me.GridControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.GridControl1.Location = New System.Drawing.Point(163, 0)
-        Me.GridControl1.MainView = Me.LayoutView1
+        Me.GridControl1.Location = New System.Drawing.Point(12, 172)
+        Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1201, 771)
-        Me.GridControl1.TabIndex = 1
-        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.LayoutView1})
+        Me.GridControl1.Size = New System.Drawing.Size(677, 232)
+        Me.GridControl1.TabIndex = 31
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
-        'LayoutView1
+        'GridView1
         '
-        Me.LayoutView1.CardMinSize = New System.Drawing.Size(240, 357)
-        Me.LayoutView1.GridControl = Me.GridControl1
-        Me.LayoutView1.Name = "LayoutView1"
-        Me.LayoutView1.TemplateCard = Me.LayoutViewCard1
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
         '
-        'DockManager1
+        'cmdExit
         '
-        Me.DockManager1.Form = Me
-        Me.DockManager1.RootPanels.AddRange(New DevExpress.XtraBars.Docking.DockPanel() {Me.DockPanel1})
-        Me.DockManager1.TopZIndexControls.AddRange(New String() {"DevExpress.XtraBars.BarDockControl", "DevExpress.XtraBars.StandaloneBarDockControl", "System.Windows.Forms.MenuStrip", "System.Windows.Forms.StatusStrip", "System.Windows.Forms.StatusBar", "DevExpress.XtraBars.Ribbon.RibbonStatusBar", "DevExpress.XtraBars.Ribbon.RibbonControl", "DevExpress.XtraBars.Navigation.OfficeNavigationBar", "DevExpress.XtraBars.Navigation.TileNavPane", "DevExpress.XtraBars.TabFormControl", "DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormControl", "DevExpress.XtraBars.ToolbarForm.ToolbarFormControl"})
+        Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
+        Me.cmdExit.Location = New System.Drawing.Point(373, 408)
+        Me.cmdExit.Name = "cmdExit"
+        Me.cmdExit.Size = New System.Drawing.Size(316, 28)
+        Me.cmdExit.StyleController = Me.LayoutControl1
+        Me.cmdExit.TabIndex = 14
+        Me.cmdExit.Text = "Έξοδος"
         '
-        'DockPanel1
+        'cmdSave
         '
-        Me.DockPanel1.Controls.Add(Me.DockPanel1_Container)
-        Me.DockPanel1.Dock = DevExpress.XtraBars.Docking.DockingStyle.Left
-        Me.DockPanel1.ID = New System.Guid("8a30dab4-da98-4d1f-b2aa-39d0d368a02e")
-        Me.DockPanel1.Location = New System.Drawing.Point(0, 0)
-        Me.DockPanel1.Name = "DockPanel1"
-        Me.DockPanel1.OriginalSize = New System.Drawing.Size(163, 200)
-        Me.DockPanel1.Size = New System.Drawing.Size(163, 771)
-        Me.DockPanel1.Text = "DockPanel1"
+        Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
+        Me.cmdSave.Location = New System.Drawing.Point(275, 408)
+        Me.cmdSave.Name = "cmdSave"
+        Me.cmdSave.Size = New System.Drawing.Size(94, 28)
+        Me.cmdSave.StyleController = Me.LayoutControl1
+        Me.cmdSave.TabIndex = 15
+        Me.cmdSave.Text = "Αποθήκευση"
         '
-        'DockPanel1_Container
+        'txtCode
         '
-        Me.DockPanel1_Container.Controls.Add(Me.NavBarControl1)
-        Me.DockPanel1_Container.Location = New System.Drawing.Point(3, 26)
-        Me.DockPanel1_Container.Name = "DockPanel1_Container"
-        Me.DockPanel1_Container.Size = New System.Drawing.Size(156, 742)
-        Me.DockPanel1_Container.TabIndex = 0
+        Me.txtCode.Location = New System.Drawing.Point(109, 12)
+        Me.txtCode.Name = "txtCode"
+        Me.txtCode.Properties.Appearance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
+        Me.txtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
+        Me.txtCode.Properties.Appearance.Options.UseBackColor = True
+        Me.txtCode.Properties.Appearance.Options.UseFont = True
+        Me.txtCode.Properties.ReadOnly = True
+        Me.txtCode.Size = New System.Drawing.Size(50, 20)
+        Me.txtCode.StyleController = Me.LayoutControl1
+        Me.txtCode.TabIndex = 4
+        Me.txtCode.Tag = "code,0"
         '
-        'NavBarControl1
+        'txtNotes
         '
-        Me.NavBarControl1.ActiveGroup = Me.NavBarGroup1
-        Me.NavBarControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.NavBarControl1.Groups.AddRange(New DevExpress.XtraNavBar.NavBarGroup() {Me.NavBarGroup1})
-        Me.NavBarControl1.Location = New System.Drawing.Point(0, 0)
-        Me.NavBarControl1.Name = "NavBarControl1"
-        Me.NavBarControl1.OptionsNavPane.ExpandedWidth = 156
-        Me.NavBarControl1.Size = New System.Drawing.Size(156, 742)
-        Me.NavBarControl1.TabIndex = 0
+        Me.txtNotes.Location = New System.Drawing.Point(109, 108)
+        Me.txtNotes.Name = "txtNotes"
+        Me.txtNotes.Size = New System.Drawing.Size(580, 36)
+        Me.txtNotes.StyleController = Me.LayoutControl1
+        Me.txtNotes.TabIndex = 17
+        Me.txtNotes.Tag = "note,0,1,2"
         '
-        'NavBarGroup1
+        'txtNam
         '
-        Me.NavBarGroup1.Caption = "NavBarGroup1"
-        Me.NavBarGroup1.Name = "NavBarGroup1"
+        Me.txtNam.Location = New System.Drawing.Point(109, 36)
+        Me.txtNam.Name = "txtNam"
+        Me.txtNam.Size = New System.Drawing.Size(580, 20)
+        Me.txtNam.StyleController = Me.LayoutControl1
+        Me.txtNam.TabIndex = 9
+        Me.txtNam.Tag = "title,0,1,2"
         '
-        'LayoutViewCard1
+        'cboNotesL
         '
-        Me.LayoutViewCard1.CustomizationFormText = "TemplateCard"
-        Me.LayoutViewCard1.HeaderButtonsLocation = DevExpress.Utils.GroupElementLocation.AfterText
-        Me.LayoutViewCard1.Name = "LayoutViewCard1"
-        Me.LayoutViewCard1.OptionsItemText.TextToControlDistance = 5
-        Me.LayoutViewCard1.Text = "TemplateCard"
+        Me.cboNotesL.Location = New System.Drawing.Point(109, 60)
+        Me.cboNotesL.Name = "cboNotesL"
+        Me.cboNotesL.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboNotesL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboNotesL.Properties.NullText = ""
+        Me.cboNotesL.Properties.PopupSizeable = False
+        Me.cboNotesL.Size = New System.Drawing.Size(220, 20)
+        Me.cboNotesL.StyleController = Me.LayoutControl1
+        Me.cboNotesL.TabIndex = 5
+        Me.cboNotesL.Tag = "Notes_LID,0,1,2"
+        '
+        'txtFileNames
+        '
+        Me.txtFileNames.Location = New System.Drawing.Point(109, 148)
+        Me.txtFileNames.Name = "txtFileNames"
+        Me.txtFileNames.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.txtFileNames.Properties.Tag = True
+        Me.txtFileNames.Size = New System.Drawing.Size(580, 20)
+        Me.txtFileNames.StyleController = Me.LayoutControl1
+        Me.txtFileNames.TabIndex = 30
+        Me.txtFileNames.Tag = ""
+        '
+        'cboSaler
+        '
+        Me.cboSaler.Location = New System.Drawing.Point(109, 84)
+        Me.cboSaler.Name = "cboSaler"
+        Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboSaler.Properties.NullText = ""
+        Me.cboSaler.Properties.PopupSizeable = False
+        Me.cboSaler.Size = New System.Drawing.Size(220, 20)
+        Me.cboSaler.StyleController = Me.LayoutControl1
+        Me.cboSaler.TabIndex = 5
+        Me.cboSaler.Tag = "SalerID,0,1,2"
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem3, Me.LayoutControlItem23, Me.LayoutControlItem14, Me.LayoutControlItem25, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.EmptySpaceItem2, Me.EmptySpaceItem4, Me.EmptySpaceItem1, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.EmptySpaceItem3})
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(701, 448)
+        Me.Root.TextVisible = False
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me.txtCode
+        Me.LayoutControlItem4.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem4.CustomizationFormText = "Κωδικός"
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(151, 24)
+        Me.LayoutControlItem4.Text = "Κωδικός"
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(94, 13)
+        '
+        'LayoutControlItem3
+        '
+        Me.LayoutControlItem3.Control = Me.txtNam
+        Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem3.CustomizationFormText = "Επωνυμία"
+        Me.LayoutControlItem3.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem3.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(681, 24)
+        Me.LayoutControlItem3.Tag = "1"
+        Me.LayoutControlItem3.Text = "Τίτλος"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(94, 13)
+        '
+        'LayoutControlItem23
+        '
+        Me.LayoutControlItem23.Control = Me.cboNotesL
+        Me.LayoutControlItem23.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem23.CustomizationFormText = "Ετικέττα"
+        Me.LayoutControlItem23.Location = New System.Drawing.Point(0, 48)
+        Me.LayoutControlItem23.Name = "LayoutControlItem23"
+        Me.LayoutControlItem23.Size = New System.Drawing.Size(321, 24)
+        Me.LayoutControlItem23.Tag = ""
+        Me.LayoutControlItem23.Text = "Εττικέτα"
+        Me.LayoutControlItem23.TextSize = New System.Drawing.Size(94, 13)
+        '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me.txtNotes
+        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem14.CustomizationFormText = "Σημέιωση"
+        Me.LayoutControlItem14.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 96)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(681, 40)
+        Me.LayoutControlItem14.Tag = "1"
+        Me.LayoutControlItem14.Text = "Σημείωση"
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(94, 13)
+        '
+        'LayoutControlItem25
+        '
+        Me.LayoutControlItem25.Control = Me.txtFileNames
+        Me.LayoutControlItem25.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem25.CustomizationFormText = "Αρχεία"
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 136)
+        Me.LayoutControlItem25.Name = "LayoutControlItem25"
+        Me.LayoutControlItem25.Size = New System.Drawing.Size(681, 24)
+        Me.LayoutControlItem25.Text = "Αρχεία"
+        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(94, 13)
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.cmdExit
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(361, 396)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(320, 32)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem1.TextVisible = False
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.cmdSave
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(263, 396)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(98, 32)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem2.TextVisible = False
+        '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(151, 0)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(530, 24)
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'EmptySpaceItem4
+        '
+        Me.EmptySpaceItem4.AllowHotTrack = False
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(321, 48)
+        Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(360, 24)
+        Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 396)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(263, 32)
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.GridControl1
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 160)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(681, 236)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem5.TextVisible = False
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.cboSaler
+        Me.LayoutControlItem6.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem6.CustomizationFormText = "Αφορά τον Πωλητή"
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 72)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(321, 24)
+        Me.LayoutControlItem6.Text = "Αφορά τον Πωλητή"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(94, 13)
+        '
+        'EmptySpaceItem3
+        '
+        Me.EmptySpaceItem3.AllowHotTrack = False
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(321, 72)
+        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(360, 24)
+        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'cmdCboManagePRF
+        '
+        Me.cmdCboManagePRF.Location = New System.Drawing.Point(563, 60)
+        Me.cmdCboManagePRF.Name = "cmdCboManagePRF"
+        Me.cmdCboManagePRF.Size = New System.Drawing.Size(22, 22)
+        Me.cmdCboManagePRF.TabIndex = 29
+        '
+        'OpenFileDialog1
+        '
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        Me.OpenFileDialog1.Multiselect = True
+        Me.OpenFileDialog1.Title = "Επιλογή Αρχείων"
         '
         'frmNotes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1364, 771)
-        Me.Controls.Add(Me.GridControl1)
-        Me.Controls.Add(Me.DockPanel1)
+        Me.ClientSize = New System.Drawing.Size(693, 439)
+        Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frmNotes"
         Me.Text = "frmNotes"
-        CType(Me.DocumentManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl1.ResumeLayout(False)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.NoDocumentsView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TabbedView1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.DockPanel1.ResumeLayout(False)
-        Me.DockPanel1_Container.ResumeLayout(False)
-        CType(Me.NavBarControl1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutViewCard1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboNotesL.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFileNames.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
 
-    Friend WithEvents DocumentManager1 As DevExpress.XtraBars.Docking2010.DocumentManager
+    Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents cmdExit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents cmdSave As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtCode As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtNotes As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents txtNam As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents cboNotesL As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem23 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cmdCboManagePRF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
+    Friend WithEvents txtFileNames As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
-    Friend WithEvents LayoutView1 As DevExpress.XtraGrid.Views.Layout.LayoutView
-    Friend WithEvents NoDocumentsView1 As DevExpress.XtraBars.Docking2010.Views.NoDocuments.NoDocumentsView
-    Friend WithEvents TabbedView1 As DevExpress.XtraBars.Docking2010.Views.Tabbed.TabbedView
-    Friend WithEvents DockManager1 As DevExpress.XtraBars.Docking.DockManager
-    Friend WithEvents DockPanel1 As DevExpress.XtraBars.Docking.DockPanel
-    Friend WithEvents DockPanel1_Container As DevExpress.XtraBars.Docking.ControlContainer
-    Friend WithEvents NavBarControl1 As DevExpress.XtraNavBar.NavBarControl
-    Friend WithEvents NavBarGroup1 As DevExpress.XtraNavBar.NavBarGroup
-    Friend WithEvents LayoutViewCard1 As DevExpress.XtraGrid.Views.Layout.LayoutViewCard
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cboSaler As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

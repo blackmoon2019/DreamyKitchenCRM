@@ -40,28 +40,32 @@ Public Class frmScroller
 
     'Private settings = System.Configuration.ConfigurationManager.AppSettings
     Private Sub frmScroller_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'Λίστα με τιμές για TOP RECORDS
-        LoadComboRecordValues()
-        popSaveAsView.EditValue = BarViews.EditValue
-        If BarViews.EditValue = "" Then popSaveView.Enabled = False : popDeleteView.Enabled = False
-        'Παίρνω το όνομα της όψης για τον συγκεκριμένο χρήστη και για τον συγκεκριμένο πίνακα 
-        GetCurrentView(True)
-        'Φόρτωση Εγγραφών
-        LoadRecords()
-        'Φόρτωση Σχεδίων στην Λίστα βάση επιλογής από το μενού
-        LoadViews()
-        'Κρύψιμο Στηλών
-        'HideColumns(GridView1, "ID")
-        'Δικαιώματα
-        BarNewRec.Enabled = UserProps.AllowInsert
-        BarDelete.Enabled = UserProps.AllowDelete
-        BarEdit.Enabled = UserProps.AllowEdit
-        If sDataTable = "vw_CCT" Then
-            Dim sItem As BarButtonItem = New BarButtonItem(BarManager1, "vw_CCT")
-            sItem.Caption = "Εμφάνιση Κινήσεων Πελάτη"
-            sItem.Name = "ViewCusMov"
-            PopupMenuRows.AddItem(sItem)
-        End If
+        Try
+            'Λίστα με τιμές για TOP RECORDS
+            LoadComboRecordValues()
+            popSaveAsView.EditValue = BarViews.EditValue
+            If BarViews.EditValue = "" Then popSaveView.Enabled = False : popDeleteView.Enabled = False
+            'Παίρνω το όνομα της όψης για τον συγκεκριμένο χρήστη και για τον συγκεκριμένο πίνακα 
+            GetCurrentView(True)
+            'Φόρτωση Εγγραφών
+            LoadRecords()
+            'Φόρτωση Σχεδίων στην Λίστα βάση επιλογής από το μενού
+            LoadViews()
+            'Κρύψιμο Στηλών
+            'HideColumns(GridView1, "ID")
+            'Δικαιώματα
+            BarNewRec.Enabled = UserProps.AllowInsert
+            BarDelete.Enabled = UserProps.AllowDelete
+            BarEdit.Enabled = UserProps.AllowEdit
+            If sDataTable = "vw_CCT" Then
+                Dim sItem As BarButtonItem = New BarButtonItem(BarManager1, "vw_CCT")
+                sItem.Caption = "Εμφάνιση Κινήσεων Πελάτη"
+                sItem.Name = "ViewCusMov"
+                PopupMenuRows.AddItem(sItem)
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     'Λίστα με τιμές για TOP RECORDS
@@ -137,6 +141,7 @@ Public Class frmScroller
                     Case "vw_SALERS" : sSQL = "DELETE FROM SALERS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT_M" : sSQL = "DELETE FROM CCT_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                 End Select
 
                 Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -457,6 +462,7 @@ Public Class frmScroller
         Dim form10 As frmCustomers = New frmCustomers()
         Dim form11 As frmGen = New frmGen()
         Dim form12 As frmCusMov = New frmCusMov()
+        Dim form13 As frmGen = New frmGen()
         Select Case sDataTable
             Case "vw_RIGHTS"
                 form1.Text = "Δικαιώματα"
@@ -642,6 +648,23 @@ Public Class frmScroller
                 form12.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form12), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form12.Show()
+            Case "vw_NOTES_L"
+                form13.Text = "Εττικέτες"
+                form13.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form13.MdiParent = frmMain
+                form13.Mode = FormMode.EditRecord
+                form13.Scroller = GridView1
+                form13.DataTable = "NOTES_L"
+                form13.L1.Text = "Κωδικός"
+                form13.L2.Text = "Εττικέτα"
+                form13.FormScroller = Me
+                form13.CalledFromControl = False
+                form13.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form13.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form13.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form13.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form13), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form13.Show()
         End Select
     End Sub
     'Νέα Εγγραφή
@@ -659,6 +682,7 @@ Public Class frmScroller
         Dim form10 As frmCustomers = New frmCustomers()
         Dim form11 As frmGen = New frmGen()
         Dim form12 As frmCusMov = New frmCusMov()
+        Dim form13 As frmGen = New frmGen()
         Select Case sDataTable
             Case "vw_RIGHTS"
                 form1.Text = "Δικαιώματα"
@@ -831,60 +855,78 @@ Public Class frmScroller
                 form12.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form12), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form12.Show()
+            Case "vw_NOTES_L"
+                form13.Text = "Εττικέτες"
+                form13.MdiParent = frmMain
+                form13.Mode = FormMode.NewRecord
+                form13.Scroller = GridView1
+                form13.DataTable = "NOTES_L"
+                form13.L1.Text = "Κωδικός"
+                form13.L2.Text = "Εττικέτα"
+                form13.FormScroller = Me
+                form13.CalledFromControl = False
+                form13.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form13.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form13.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form13.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form13), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form13.Show()
         End Select
     End Sub
     'Φορτώνω τις εγγραφές στο GRID
     Public Sub LoadRecords(Optional ByVal sDataTable2 As String = "", Optional ByVal sWhere As String = "")
         Dim sSQL As String
         Dim sSQL2 As String
-
-        If BarRecords.EditValue <> "ALL" And BarRecords.EditValue <> "" Then
-            sSQL = "SELECT top " & BarRecords.EditValue & " * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
-            If sDataDetail <> "" Then sSQL2 = "SELECT top " & BarRecords.EditValue & " * FROM " & sDataDetail
-        Else
-            sSQL = "SELECT  * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
-            If sDataDetail <> "" Then sSQL2 = "SELECT  * FROM " & sDataDetail
-        End If
-
-        If sDataDetail = "" Then
-            myCmd = CNDB.CreateCommand
-            myCmd.CommandText = sSQL
-            GridView1.Columns.Clear()
-            myReader = myCmd.ExecuteReader()
-            grdMain.DataSource = myReader
-        Else
-            Select Case sDataDetail
-                Case "vw_FORM_RIGHTS"
-                    Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
-                    Dim AdapterDetail As New SqlDataAdapter(sSQL2, CNDB)
-                    Dim sdataSet As New DataSet()
-                    AdapterMaster.Fill(sdataSet, IIf(sDataTable = "", sDataTable2, sDataTable))
-                    AdapterDetail.Fill(sdataSet, sDataDetail)
-                    Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
-                    Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("RID")
-                    sdataSet.Relations.Add("Φόρμες", keyColumn, foreignKeyColumn)
-                    GridView1.Columns.Clear()
-                    GridView2.Columns.Clear()
-                    grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
-                    grdMain.ForceInitialize()
-            End Select
-        End If
-        grdMain.DefaultView.PopulateColumns()
-
-        'Εαν δεν έχει data το Dataset αναγκαστικά προσθέτω μόνος μου τις στήλες
-        If sDataDetail = "" Then
-            If myReader.HasRows = False Then
-                For i As Integer = 0 To myReader.FieldCount - 1
-                    Dim C As New GridColumn
-                    C.Name = myReader.GetName(i).ToString
-                    C.Caption = myReader.GetName(i).ToString
-                    C.Visible = True
-                    GridView1.Columns.Add(C)
-                Next i
+        Try
+            If BarRecords.EditValue <> "ALL" And BarRecords.EditValue <> "" Then
+                sSQL = "SELECT top " & BarRecords.EditValue & " * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
+                If sDataDetail <> "" Then sSQL2 = "SELECT top " & BarRecords.EditValue & " * FROM " & sDataDetail
+            Else
+                sSQL = "SELECT  * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
+                If sDataDetail <> "" Then sSQL2 = "SELECT  * FROM " & sDataDetail
             End If
-        End If
-        LoadViews()
 
+            If sDataDetail = "" Then
+                myCmd = CNDB.CreateCommand
+                myCmd.CommandText = sSQL
+                GridView1.Columns.Clear()
+                myReader = myCmd.ExecuteReader()
+                grdMain.DataSource = myReader
+            Else
+                Select Case sDataDetail
+                    Case "vw_FORM_RIGHTS"
+                        Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
+                        Dim AdapterDetail As New SqlDataAdapter(sSQL2, CNDB)
+                        Dim sdataSet As New DataSet()
+                        AdapterMaster.Fill(sdataSet, IIf(sDataTable = "", sDataTable2, sDataTable))
+                        AdapterDetail.Fill(sdataSet, sDataDetail)
+                        Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
+                        Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("RID")
+                        sdataSet.Relations.Add("Φόρμες", keyColumn, foreignKeyColumn)
+                        GridView1.Columns.Clear()
+                        GridView2.Columns.Clear()
+                        grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
+                        grdMain.ForceInitialize()
+                End Select
+            End If
+            grdMain.DefaultView.PopulateColumns()
+
+            'Εαν δεν έχει data το Dataset αναγκαστικά προσθέτω μόνος μου τις στήλες
+            If sDataDetail = "" Then
+                If myReader.HasRows = False Then
+                    For i As Integer = 0 To myReader.FieldCount - 1
+                        Dim C As New GridColumn
+                        C.Name = myReader.GetName(i).ToString
+                        C.Caption = myReader.GetName(i).ToString
+                        C.Visible = True
+                        GridView1.Columns.Add(C)
+                    Next i
+                End If
+            End If
+            LoadViews()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
         'If grdMain.DefaultView.DataRowCount <> 0 Then myReader.Close() 'myReader.Close()
     End Sub
     Private Sub grdMain_KeyDown(sender As Object, e As KeyEventArgs) Handles grdMain.KeyDown
@@ -1001,14 +1043,19 @@ Public Class frmScroller
     End Sub
 
     Private Sub GridView1_RowCellStyle(sender As Object, e As RowCellStyleEventArgs) Handles GridView1.RowCellStyle
-        Select Case e.Column.FieldName
-            Case "color" : e.Appearance.BackColor = Color.FromArgb(e.CellValue)
-            Case "S_CCT_M_Color"
-                'If e.CellValue <> "" Then
-                If Not IsDBNull(e.CellValue) Then
-                    e.Appearance.BackColor = Color.FromArgb(e.CellValue)
-                End If
-        End Select
+        Try
+            Select Case e.Column.FieldName
+                Case "color"
+                    If Not IsDBNull(e.CellValue) Then e.Appearance.BackColor = Color.FromArgb(e.CellValue)
+                Case "S_CCT_M_Color"
+                    'If e.CellValue <> "" Then
+                    If Not IsDBNull(e.CellValue) Then
+                        e.Appearance.BackColor = Color.FromArgb(e.CellValue)
+                    End If
+            End Select
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub BarManager1_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarManager1.ItemClick

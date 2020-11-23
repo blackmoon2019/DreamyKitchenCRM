@@ -19,7 +19,6 @@ Partial Class frmCustomers
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCustomers))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
@@ -85,7 +84,7 @@ Partial Class frmCustomers
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
+        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -822,10 +821,10 @@ Partial Class frmCustomers
         Me.cmdSave.TabIndex = 13
         Me.cmdSave.Text = "Αποθήκευση"
         '
-        'XtraOpenFileDialog1
+        'OpenFileDialog1
         '
-        Me.XtraOpenFileDialog1.Multiselect = True
-        Me.XtraOpenFileDialog1.Title = "Επιλογή αρχείων"
+        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
+        Me.OpenFileDialog1.Title = "Επιλογή Αρχείων"
         '
         'frmCustomers
         '
@@ -957,8 +956,8 @@ Partial Class frmCustomers
     Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cmdFilesSelection As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem26 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents XtraOpenFileDialog1 As DevExpress.XtraEditors.XtraOpenFileDialog
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents LayoutControlItem27 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents OpenFileDialog1 As OpenFileDialog
 End Class

@@ -40,5 +40,11 @@
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
       <Value Profile="(Default)">Data Source=BLACKMOON-LAPTO\SQL2019;Initial Catalog=DreamyKitchen;Persist Security Info=True;User ID=sa;Password=mavros1!</Value>
     </Setting>
+    <Setting Name="CRM_PATH" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\blackmoon-home\source\repos\DreamyKitchenCRM\DreamyKitchenCRM\bin\Debug\files</Value>
+    </Setting>
+    <Setting Name="frmNotes" Type="System.Drawing.Point" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

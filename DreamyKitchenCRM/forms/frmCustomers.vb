@@ -83,7 +83,6 @@ Public Class frmCustomers
                 GridControl1.RepositoryItems.Add(textEdit)
                 C.VisibleIndex = 0
                 GridView1.Columns.Add(C)
-
         End Select
         'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml") = False Then
@@ -113,8 +112,6 @@ Public Class frmCustomers
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-
     Private Sub frmCustomers_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
@@ -206,7 +203,7 @@ Public Class frmCustomers
                 'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
                 'dtDTS.EditValue = DateTime.Now
                 If txtFileNames.Text <> "" Then
-                    sResult = DBQ.InsertDataFiles(XtraOpenFileDialog1, sGuid)
+                    sResult = DBQ.InsertDataFiles(OpenFileDialog1, sGuid, "CCT_F")
                     LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where cctID = '" & sGuid & "'")
                 End If
                 txtCode.Text = DBQ.GetNextId("CCT")
@@ -339,19 +336,17 @@ Public Class frmCustomers
     Private Sub cmdFilesSelection_Click(sender As Object, e As EventArgs) Handles cmdFilesSelection.Click
 
         'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
-        XtraOpenFileDialog1.FilterIndex = 1
-        XtraOpenFileDialog1.InitialDirectory = "C:\"
-        XtraOpenFileDialog1.Title = "Open File"
-        XtraOpenFileDialog1.CheckFileExists = False
-        XtraOpenFileDialog1.Multiselect = True
-        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
+        OpenFileDialog1.FilterIndex = 1
+        OpenFileDialog1.InitialDirectory = "C:\"
+        OpenFileDialog1.Title = "Open File"
+        OpenFileDialog1.CheckFileExists = False
+        OpenFileDialog1.Multiselect = True
+        Dim result As DialogResult = OpenFileDialog1.ShowDialog()
         If result = DialogResult.OK Then
             txtFileNames.EditValue = ""
-            For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
-                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I)
+            For I = 0 To OpenFileDialog1.FileNames.Count - 1
+                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & OpenFileDialog1.SafeFileNames(I)
             Next I
-
-
         End If
     End Sub
 
@@ -365,17 +360,14 @@ Public Class frmCustomers
 
     End Sub
 
-    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
-
-    End Sub
-
     Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
-        Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"), IO.FileMode.Create)
+        Dim fs As IO.FileStream = New IO.FileStream(My.Settings.CRM_PATH & "\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"), IO.FileMode.Create)
         Dim b() As Byte = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "files")
         Try
             fs.Write(b, 0, b.Length)
             fs.Close()
-            ShellExecute(Application.StartupPath & "\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"))
+
+            ShellExecute(My.Settings.CRM_PATH & "\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"))
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
