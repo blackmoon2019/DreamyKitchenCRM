@@ -28,7 +28,7 @@ Public Class frmLogin
         Dim sdr As SqlDataReader
         Try
 
-            sSQL = "select Realname,code,ID from USR 
+            sSQL = "select Realname,code,ID,salerID from USR 
                 where UN= '" & txtUN.Text & "' and pwd = '" & txtPWD.Text & "'"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
@@ -37,16 +37,17 @@ Public Class frmLogin
                     UserProps.Code = sdr.GetInt32(sdr.GetOrdinal("code"))
                     UserProps.RealName = sdr.GetString(sdr.GetOrdinal("Realname"))
                     UserProps.ID = sdr.GetGuid(sdr.GetOrdinal("ID"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("salerID")) = False Then UserProps.SalerID = sdr.GetGuid(sdr.GetOrdinal("salerID"))
                     'General Permissions
                     UserPermissions.GetUserPermissions()
                     sSQL = "UPDATE USR SET dtLogin = getdate() where ID = " & toSQLValueS(UserProps.ID.ToString)
                     cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-                    'Δεκαδικά Προγράμματος
-                    Prog_Prop.GetProgDecimals()
-                    XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    If My.Settings.UNSave = True Then My.Settings.UN = txtUN.Text : My.Settings.Save()
-                End If
-                frmMain.Show()
+                        'Δεκαδικά Προγράμματος
+                        Prog_Prop.GetProgDecimals()
+                        XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        If My.Settings.UNSave = True Then My.Settings.UN = txtUN.Text : My.Settings.Save()
+                    End If
+                    frmMain.Show()
                 Me.Close()
                 frmCalendar.MdiParent = frmMain
                 frmCalendar.Text = "Ημερολόγιο Κινήσεων"

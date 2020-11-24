@@ -50,6 +50,8 @@ Public Class frmUsers
     Private Sub frmUsers_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
             FillCbo.MAIL(cboMail)
+            'Πωλητές
+            FillCbo.SALERS(cboSaler)
             Select Case Mode
                 Case FormMode.EditRecord
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_USR where id ='" + sID + "'")
@@ -87,6 +89,30 @@ Public Class frmUsers
 
     Private Sub cboMail_GotFocus(sender As Object, e As EventArgs) Handles cboMail.GotFocus
         frmMain.bbFields.Caption = "DB Field: USERS.mailid"
+    End Sub
+    Private Sub ManageSalers()
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "Πωλητές"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Πωλητής"
+        form1.DataTable = "SALERS"
+        form1.CalledFromControl = True
+        form1.CallerControl = cboSaler
+        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
+        form1.MdiParent = frmMain
+        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+
+    Private Sub cboSaler_ButtonClick(sender As Object, e As Controls.ButtonPressedEventArgs) Handles cboSaler.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageSalers()
+            Case 2 : cboSaler.EditValue = Nothing
+        End Select
     End Sub
     'Private Sub FillList()
     '    Dim ds As DataSet = New DataSet

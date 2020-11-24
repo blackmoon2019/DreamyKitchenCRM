@@ -236,4 +236,6 @@ Public Class frmNotes
             Case 2 : cboSaler.EditValue = Nothing
         End Select
     End Sub
+
+
 End Class

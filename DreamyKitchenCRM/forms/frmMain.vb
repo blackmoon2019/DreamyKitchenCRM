@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports DevExpress.Utils
 Imports DevExpress.XtraBars
+Imports DevExpress.XtraBars.Alerter
 Imports DevExpress.XtraBars.ToastNotifications
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
@@ -202,7 +203,7 @@ Public Class frmMain
 
     End Sub
 
-    Private Sub ToastNotificationsManager1_Activated(sender As Object, e As ToastNotificationEventArgs) Handles ToastNotificationsManager1.Activated
+    Private Sub ToastNotificationsManager1_Activated(sender As Object, e As ToastNotificationEventArgs)
         Try
             Dim sSQL As String
             sSQL = "update NOTES SET readed=1 where ID = '" & e.NotificationID.ToString & "'"
@@ -210,9 +211,10 @@ Public Class frmMain
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            Dim note As New ToastNotification
-            note.ID = e.NotificationID
-            ToastNotificationsManager1.Notifications.Remove(note)
+            'Dim note As New ToastNotification
+            'note.ID = e.NotificationID
+            'ToastNotificationsManager1.HideNotification(note)
+            'ToastNotificationsManager1.Notifications.Remove(note)
             Dim form10 As frmNotes = New frmNotes()
             form10.Text = "Σημειώματα"
             form10.ID = e.NotificationID
@@ -229,19 +231,22 @@ Public Class frmMain
     End Sub
     Private Sub GetNewMessages()
         Try
-            Dim i As Integer = 0
+            'Dim i As Integer = 0
             Dim cmd As SqlCommand = New SqlCommand("SELECT ID,title,note
-                                                     FROM vw_NOTES WHERE modifiedby = '" & UserProps.ID.ToString & "' and readed=0", CNDB)
+                                                     FROM vw_NOTES WHERE (salerID = '" & UserProps.SalerID.ToString & "' or salerID is null ) and readed=0", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             If sdr.HasRows Then
+                'ToastNotificationsManager1.Notifications.Clear()
 
-                ToastNotificationsManager1.Notifications.Clear()
                 While sdr.Read()
-                    Dim note As New ToastNotification(sdr.Item(0).ToString, Nothing, "CRM Notification", sdr.Item(1).ToString, sdr.Item(2).ToString, ToastNotificationTemplate.ImageAndText04)
-                    note.ID = sdr.Item(0).ToString
-                    ToastNotificationsManager1.Notifications.Add(note)
-                    ToastNotificationsManager1.ShowNotification(ToastNotificationsManager1.Notifications(i))
-                    i = i + 1
+                    'Dim note As New ToastNotification(sdr.Item(0).ToString, Nothing, "CRM Notification", sdr.Item(1).ToString, sdr.Item(2).ToString, ToastNotificationTemplate.ImageAndText04)
+                    'note.ID = sdr.Item(0).ToString
+                    'ToastNotificationsManager1.Notifications.Add(note)
+                    'ToastNotificationsManager1.ShowNotification(ToastNotificationsManager1.Notifications(i))
+                    If FindAllert(sdr.Item(0).ToString) = False Then
+                        AlertControl1.Show(Me, "CRM Notification", sdr.Item(1).ToString, sdr.Item(2).ToString, My.Resources.logo32x32, sdr.Item(0).ToString)
+                    End If
+                    'i = i + 1
 
                 End While
             End If
@@ -252,4 +257,47 @@ Public Class frmMain
             Timer1.Enabled = False
         End Try
     End Sub
+    Private Function FindAllert(ByVal ID As String) As Boolean
+        Dim i As Integer
+        For i = 0 To AlertControl1.AlertFormList.Count - 1
+            If AlertControl1.AlertFormList.Item(i).Info.Tag = ID Then Return True
+        Next
+        Return False
+    End Function
+
+
+    Private Sub AlertControl1_AlertClick(sender As Object, e As AlertClickEventArgs) Handles AlertControl1.AlertClick
+        Try
+            Dim sSQL As String
+            sSQL = "update NOTES SET readed=1 where ID = '" & e.Info.Tag & "'"
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            'Dim note As New ToastNotification
+            'note.ID = e.NotificationID
+            'ToastNotificationsManager1.HideNotification(note)
+            'ToastNotificationsManager1.Notifications.Remove(note)
+            e.AlertForm.Close()
+            Dim form10 As frmNotes = New frmNotes()
+            form10.Text = "Σημειώματα"
+            form10.ID = e.Info.Tag
+            form10.MdiParent = Me
+            form10.Mode = FormMode.EditRecord
+            form10.FormScroller = Me
+            Me.XtraTabbedMdiManager1.Float(Me.XtraTabbedMdiManager1.Pages(form10), New Point(CInt(form10.Parent.ClientRectangle.Width / 2 - form10.Width / 2), CInt(form10.Parent.ClientRectangle.Height / 2 - form10.Height / 2)))
+            form10.Show()
+            Timer1.Enabled = True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Timer1.Enabled = False
+        End Try
+    End Sub
+
+    Private Sub AlertControl1_FormLoad(sender As Object, e As AlertFormLoadEventArgs) Handles AlertControl1.FormLoad
+        e.Buttons.PinButton.SetDown(True)
+    End Sub
+
+
 End Class
+

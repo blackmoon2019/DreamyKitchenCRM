@@ -563,6 +563,9 @@
   <ItemGroup>
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\logo32x32.jpg" />
+    <None Include="Resources\logo_yhI_icon.ico" />
+    <None Include="Resources\logo_6Kl_icon.ico" />
     <None Include="Resources\icons8-attach-16.png" />
     <None Include="Resources\icons8-tag-40.png" />
     <None Include="Resources\icons8-notes-40.png" />

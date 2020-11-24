@@ -34,6 +34,9 @@ Partial Class frmUsers
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.cboSaler = New DevExpress.XtraEditors.LookUpEdit()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtPWD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -48,6 +51,9 @@ Partial Class frmUsers
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -58,11 +64,12 @@ Partial Class frmUsers
         Me.LayoutControl1.Controls.Add(Me.cmdSave)
         Me.LayoutControl1.Controls.Add(Me.txtUN)
         Me.LayoutControl1.Controls.Add(Me.cboMail)
+        Me.LayoutControl1.Controls.Add(Me.cboSaler)
         Me.LayoutControl1.Location = New System.Drawing.Point(-9, -10)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(416, 136, 650, 400)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(503, 148)
+        Me.LayoutControl1.Size = New System.Drawing.Size(503, 173)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -89,9 +96,9 @@ Partial Class frmUsers
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(255, 108)
+        Me.cmdExit.Location = New System.Drawing.Point(272, 132)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(114, 28)
+        Me.cmdExit.Size = New System.Drawing.Size(107, 28)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 6
         Me.cmdExit.Text = "Έξοδος"
@@ -99,9 +106,9 @@ Partial Class frmUsers
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(373, 108)
+        Me.cmdSave.Location = New System.Drawing.Point(383, 132)
         Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(118, 28)
+        Me.cmdSave.Size = New System.Drawing.Size(108, 28)
         Me.cmdSave.StyleController = Me.LayoutControl1
         Me.cmdSave.TabIndex = 7
         Me.cmdSave.Text = "Αποθήκευση"
@@ -118,7 +125,7 @@ Partial Class frmUsers
         '
         'cboMail
         '
-        Me.cboMail.Location = New System.Drawing.Point(95, 84)
+        Me.cboMail.Location = New System.Drawing.Point(95, 108)
         Me.cboMail.Name = "cboMail"
         Me.cboMail.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboMail.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -133,9 +140,9 @@ Partial Class frmUsers
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.EmptySpaceItem1})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.EmptySpaceItem1, Me.LayoutControlItem7, Me.EmptySpaceItem2})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(503, 148)
+        Me.Root.Size = New System.Drawing.Size(503, 173)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
@@ -174,25 +181,25 @@ Partial Class frmUsers
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.cmdExit
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(243, 96)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(260, 120)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(118, 32)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(111, 33)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.cmdSave
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(361, 96)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(371, 120)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(122, 32)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(112, 33)
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem5.TextVisible = False
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.cboMail
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 72)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(483, 24)
         Me.LayoutControlItem6.Text = "Email"
@@ -201,17 +208,49 @@ Partial Class frmUsers
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 96)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 120)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(243, 32)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(260, 33)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'cboSaler
+        '
+        Me.cboSaler.Location = New System.Drawing.Point(95, 84)
+        Me.cboSaler.Name = "cboSaler"
+        Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboSaler.Properties.NullText = ""
+        Me.cboSaler.Properties.PopupSizeable = False
+        Me.cboSaler.Size = New System.Drawing.Size(232, 20)
+        Me.cboSaler.StyleController = Me.LayoutControl1
+        Me.cboSaler.TabIndex = 5
+        Me.cboSaler.Tag = "SalerID,0,1,2"
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.cboSaler
+        Me.LayoutControlItem7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem7.CustomizationFormText = "Πωλητής"
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 72)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(319, 24)
+        Me.LayoutControlItem7.Text = "Πωλητής"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(80, 13)
+        '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(319, 72)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(164, 24)
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmUsers
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.cmdExit
-        Me.ClientSize = New System.Drawing.Size(487, 134)
+        Me.ClientSize = New System.Drawing.Size(487, 170)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Name = "frmUsers"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
@@ -230,6 +269,9 @@ Partial Class frmUsers
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -248,4 +290,7 @@ Partial Class frmUsers
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents cboMail As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents cboSaler As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
 End Class
