@@ -203,6 +203,7 @@ Partial Class frmNotes
         '
         'chkReaded
         '
+        Me.chkReaded.EditValue = CType(0, Byte)
         Me.chkReaded.Location = New System.Drawing.Point(208, 12)
         Me.chkReaded.Name = "chkReaded"
         Me.chkReaded.Properties.Caption = "Διαβάστηκε"

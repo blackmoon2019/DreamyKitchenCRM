@@ -361,13 +361,14 @@ Public Class frmCustomers
     End Sub
 
     Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
-        Dim fs As IO.FileStream = New IO.FileStream(My.Settings.CRM_PATH & "\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"), IO.FileMode.Create)
-        Dim b() As Byte = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "files")
         Try
+            Dim sFilename = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename")
+            Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
+            Dim b() As Byte = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "files")
             fs.Write(b, 0, b.Length)
             fs.Close()
-
-            ShellExecute(My.Settings.CRM_PATH & "\" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename"))
+            'My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & sFilename, My.Settings.CRM_PATH & sFilename, True)
+            ShellExecute(My.Settings.CRM_PATH & sFilename)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -384,6 +385,8 @@ Public Class frmCustomers
     Private Sub frmCustomers_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
     End Sub
+
+
 
     'Private Sub SqlBlob2File(ByVal DocName As String)
 

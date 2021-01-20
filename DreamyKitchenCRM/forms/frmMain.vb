@@ -9,7 +9,7 @@ Imports DevExpress.XtraTabbedMdi
 Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_NOTES' table. You can move, or remove it, as needed.
-        Me.Vw_NOTESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_NOTES)
+        Me.Vw_NOTESTableAdapter.FillBy1(Me.DreamyKitchenDataSet.vw_NOTES, UserProps.SalerID, UserProps.ID)
         XtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders
         bbDate.Caption = DateTime.Today
         bbUser.Caption = "Χρήστης: " & UserProps.RealName
@@ -186,6 +186,7 @@ Public Class frmMain
 
     Private Sub BBNotes_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBNotes.ItemClick
         Dim form As New frmNotesScroller
+        form.Text = "Σημειώματα"
         form.MdiParent = Me
         form.Show()
     End Sub

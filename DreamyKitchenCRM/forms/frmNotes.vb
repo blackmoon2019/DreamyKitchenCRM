@@ -237,5 +237,11 @@ Public Class frmNotes
         End Select
     End Sub
 
+    Private Sub cboSaler_EditValueChanged(sender As Object, e As EventArgs) Handles cboSaler.EditValueChanged
 
+    End Sub
+
+    Private Sub txtFileNames_EditValueChanged(sender As Object, e As EventArgs) Handles txtFileNames.EditValueChanged
+
+    End Sub
 End Class

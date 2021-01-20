@@ -66,6 +66,7 @@ Public Class frmCusMov
                         If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
                             If dtReminder.Text.ToString = "" Then
                                 XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
                             Else
                                 sID = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "CCT_M", sID)
@@ -79,6 +80,7 @@ Public Class frmCusMov
                         If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
                             If dtReminder.Text.ToString = "" Then
                                 XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
                             Else
                                 sResult = DBQ.UpdateData(LayoutControl1, "CCT_M", sID)
                             End If

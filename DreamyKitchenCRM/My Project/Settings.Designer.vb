@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.7.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -177,8 +177,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=BLACKMOON-LAPTO\SQL2019;Initial Catalog=DreamyKitchen;Persist Securit"& _ 
-            "y Info=True;User ID=sa;Password=mavros1!")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=BLACKMOON-PC;Initial Catalog=DreamyKitchen;Persist Security Info=True"& _ 
+            ";User ID=sa;Password=mavros1!")>  _
         Public ReadOnly Property DreamyKitchenConnectionString() As String
             Get
                 Return CType(Me("DreamyKitchenConnectionString"),String)
@@ -187,8 +187,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\blackmoon-home\source\repos\DreamyKitchenCRM\DreamyKitchenCRM\bin\Debug\"& _ 
-            "files")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Z:\")>  _
         Public Property CRM_PATH() As String
             Get
                 Return CType(Me("CRM_PATH"),String)
@@ -207,6 +206,42 @@ Namespace My
             End Get
             Set
                 Me("frmNotes") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\USER\Downloads\")>  _
+        Public Property SERVER_PATH() As String
+            Get
+                Return CType(Me("SERVER_PATH"),String)
+            End Get
+            Set
+                Me("SERVER_PATH") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1.0.0.5")>  _
+        Public Property ExeVer() As String
+            Get
+                Return CType(Me("ExeVer"),String)
+            End Get
+            Set
+                Me("ExeVer") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("1.0.0.5")>  _
+        Public Property DbVer() As String
+            Get
+                Return CType(Me("DbVer"),String)
+            End Get
+            Set
+                Me("DbVer") = value
             End Set
         End Property
     End Class

@@ -17,22 +17,26 @@ Public Class DBQueries
             For i = 0 To control.FileNames.Count - 1
                 sSQL.Clear()
                 Select Case sTable
-                    Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdOn],files)")
-                    Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdOn],files)")
+                    Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
+                    Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                 End Select
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
                 Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))
+                Dim FileName As String = Path.GetFileName(control.FileNames(i))
+                My.Computer.FileSystem.CopyFile(control.FileNames(i), My.Settings.SERVER_PATH & FileName, True)
+
                 sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
                 sSQL.AppendLine(toSQLValueS(control.SafeFileNames(i).ToString) & ",")
                 sSQL.AppendLine(toSQLValueS(FilePath) & ",")
                 sSQL.AppendLine(toSQLValueS(extension) & ",")
-                sSQL.Append(toSQLValueS(UserProps.ID.ToString) & ", getdate(), files.* ")
-                sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(control.FileNames(i).ToString()) & ", SINGLE_BLOB) files")
+                sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.SalerID.ToString) & ", getdate(), files.* ")
+                sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(My.Settings.SERVER_PATH & FileName) & ", SINGLE_BLOB) files")
 
                 'Εκτέλεση QUERY
                 Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
+
             Next
             'ReadBlobFile()
             Return True
@@ -149,8 +153,8 @@ Public Class DBQueries
                     End If
                 End If
             Next
-            sSQLF.Append(", [modifiedBy],[createdOn]) ")
-            sSQLV.Append("," & toSQLValueS(UserProps.ID.ToString) & ", getdate() )")
+            sSQLF.Append(", [modifiedBy],[createdOn],[createdBy]) ")
+            sSQLV.Append("," & toSQLValueS(UserProps.ID.ToString) & ", getdate(), " & toSQLValueS(UserProps.ID.ToString) & " )")
             sSQLF.AppendLine(sSQLV.ToString)
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQLF.ToString, CNDB)

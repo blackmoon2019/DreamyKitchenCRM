@@ -78,6 +78,7 @@ Partial Class frmScroller
         Me.BarCopyCell_D = New DevExpress.XtraBars.BarButtonItem()
         Me.BarCopyRow_D = New DevExpress.XtraBars.BarButtonItem()
         Me.BarCopyAll_D = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.RepositoryItemButtonEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.RepositoryItemBreadCrumbEdit1 = New DevExpress.XtraEditors.Repository.RepositoryItemBreadCrumbEdit()
         Me.RepositoryItemButtonEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -87,7 +88,7 @@ Partial Class frmScroller
         Me.XtraSaveFileDialog1 = New DevExpress.XtraEditors.XtraSaveFileDialog(Me.components)
         Me.PopupMenuRows = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.PopupMenuRowsDetail = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBUpdateViewFromDB = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -161,9 +162,9 @@ Partial Class frmScroller
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarRecords, Me.BarViews, Me.popDeleteView, Me.popRestoreView, Me.popSaveAsView, Me.popSaveView, Me.BarViewsManage, Me.BarPrintPreview, Me.BarButtonItem1, Me.BarPDFExport, Me.BarExportHTML, Me.BarExportMHT, Me.BarExportXLSX, Me.BarExportXLS, Me.BarExportDOCX, Me.BarExportRTF, Me.BarExportTEXT, Me.BarNewRec, Me.BarDelete, Me.BarEdit, Me.BarRefresh, Me.BarStaticItem1, Me.BarStaticItem2, Me.BarStaticItem3, Me.BarStaticItem4, Me.BarStaticItem5, Me.popSaveAsDefault, Me.BarCopyCell, Me.BarCopyRow, Me.BarCopyAll, Me.BarCopyCell_D, Me.BarCopyRow_D, Me.BarCopyAll_D, Me.BarButtonItem2})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarRecords, Me.BarViews, Me.popDeleteView, Me.popRestoreView, Me.popSaveAsView, Me.popSaveView, Me.BarViewsManage, Me.BarPrintPreview, Me.BarButtonItem1, Me.BarPDFExport, Me.BarExportHTML, Me.BarExportMHT, Me.BarExportXLSX, Me.BarExportXLS, Me.BarExportDOCX, Me.BarExportRTF, Me.BarExportTEXT, Me.BarNewRec, Me.BarDelete, Me.BarEdit, Me.BarRefresh, Me.BarStaticItem1, Me.BarStaticItem2, Me.BarStaticItem3, Me.BarStaticItem4, Me.BarStaticItem5, Me.popSaveAsDefault, Me.BarCopyCell, Me.BarCopyRow, Me.BarCopyAll, Me.BarCopyCell_D, Me.BarCopyRow_D, Me.BarCopyAll_D, Me.BarButtonItem2, Me.BBUpdateViewFromDB})
         Me.BarManager1.MainMenu = Me.Bar1
-        Me.BarManager1.MaxItemId = 49
+        Me.BarManager1.MaxItemId = 50
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryBarRecords, Me.RepositoryBarViews, Me.RepositoryItemButtonEdit1, Me.RepositoryItemBreadCrumbEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryPopRenameView, Me.RepositoryPopSaveAsView})
         Me.BarManager1.StatusBar = Me.Bar3
         '
@@ -203,7 +204,7 @@ Partial Class frmScroller
         '
         'PopMenuViews
         '
-        Me.PopMenuViews.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.popSaveView), New DevExpress.XtraBars.LinkPersistInfo(Me.popSaveAsView), New DevExpress.XtraBars.LinkPersistInfo(Me.popSaveAsDefault), New DevExpress.XtraBars.LinkPersistInfo(Me.popDeleteView), New DevExpress.XtraBars.LinkPersistInfo(Me.popRestoreView)})
+        Me.PopMenuViews.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.popSaveView), New DevExpress.XtraBars.LinkPersistInfo(Me.popSaveAsView), New DevExpress.XtraBars.LinkPersistInfo(Me.popSaveAsDefault), New DevExpress.XtraBars.LinkPersistInfo(Me.popDeleteView), New DevExpress.XtraBars.LinkPersistInfo(Me.popRestoreView), New DevExpress.XtraBars.LinkPersistInfo(Me.BBUpdateViewFromDB)})
         Me.PopMenuViews.Manager = Me.BarManager1
         Me.PopMenuViews.Name = "PopMenuViews"
         '
@@ -512,6 +513,12 @@ Partial Class frmScroller
         Me.BarCopyAll_D.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_copy_16
         Me.BarCopyAll_D.Name = "BarCopyAll_D"
         '
+        'BarButtonItem2
+        '
+        Me.BarButtonItem2.Caption = "Εμφάνιση Κινήσεων"
+        Me.BarButtonItem2.Id = 48
+        Me.BarButtonItem2.Name = "BarButtonItem2"
+        '
         'RepositoryItemButtonEdit1
         '
         Me.RepositoryItemButtonEdit1.AutoHeight = False
@@ -576,11 +583,11 @@ Partial Class frmScroller
         Me.PopupMenuRowsDetail.Manager = Me.BarManager1
         Me.PopupMenuRowsDetail.Name = "PopupMenuRowsDetail"
         '
-        'BarButtonItem2
+        'BBUpdateViewFromDB
         '
-        Me.BarButtonItem2.Caption = "Εμφάνιση Κινήσεων"
-        Me.BarButtonItem2.Id = 48
-        Me.BarButtonItem2.Name = "BarButtonItem2"
+        Me.BBUpdateViewFromDB.Caption = "Ενημέρωση πεδίων όψης από Βάση"
+        Me.BBUpdateViewFromDB.Id = 49
+        Me.BBUpdateViewFromDB.Name = "BBUpdateViewFromDB"
         '
         'frmScroller
         '
@@ -673,4 +680,5 @@ Partial Class frmScroller
     Friend WithEvents BarCopyAll_D As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents PopupMenuRowsDetail As DevExpress.XtraBars.PopupMenu
     Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBUpdateViewFromDB As DevExpress.XtraBars.BarButtonItem
 End Class

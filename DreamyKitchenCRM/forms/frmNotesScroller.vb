@@ -9,13 +9,24 @@ Public Class frmNotesScroller
     Private myReader As SqlDataReader
     Private myCmd As SqlCommand
     Private Sub frmNotesScroller_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Me.Vw_NOTESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_NOTES)
+        'Dim strSql As String = "SELECT *  FROM vw_NOTES where UserID = " & toSQLValueS(UserProps.ID.ToString)
+        'Dim dtb As New DataTable
+        'Using dad As New SqlDataAdapter(strSql, CNDB)
+        '    dad.Fill(dtb)
+        'End Using
+
+        Me.Vw_NOTESTableAdapter.FillBy1(Me.DreamyKitchenDataSet.vw_NOTES, UserProps.SalerID, UserProps.ID)
         'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_def.xml") = False Then
             GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_def.xml", OptionsLayoutBase.FullLayout)
         Else
             GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_def.xml", OptionsLayoutBase.FullLayout)
         End If
+        'Δικαιώματα
+        BarNewRec.Enabled = UserProps.AllowInsert
+        BarDelete.Enabled = UserProps.AllowDelete
+        BarEdit.Enabled = UserProps.AllowEdit
+
     End Sub
 
     Private Sub BarNewRec_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarNewRec.ItemClick
@@ -72,7 +83,7 @@ Public Class frmNotesScroller
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
-                LoadRecords("vw_NOTES")
+                LoadRecords("vw_NOTES", "where (salerid = '" & UserProps.SalerID.ToString & "' or createdby = '" & UserProps.ID.ToString & "')")
                 XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
@@ -96,7 +107,8 @@ Public Class frmNotesScroller
     End Sub
 
     Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarRefresh.ItemClick
-        LoadRecords("vw_NOTES")
+        'LoadRecords("vw_NOTES")
+        LoadRecords("vw_NOTES", "where (salerid = '" & UserProps.SalerID.ToString & "' or createdby = '" & UserProps.ID.ToString & "')")
     End Sub
 
     Private Sub BarEdit_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarEdit.ItemClick

@@ -5,6 +5,7 @@ Imports DevExpress.XtraEditors
 Public Class frmLogin
     Private UserPermissions As New CheckPermissions
     Private Prog_Prop As New ProgProp
+    Private CheckFUpdate As New CheckForUpdates
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim CN As New CN
 
@@ -12,13 +13,17 @@ Public Class frmLogin
         chkRememberUN.EditValue = My.Settings.UNSave
         If My.Settings.UNSave = True Then txtUN.Text = My.Settings.UN
         If CN.OpenConnection = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα κατά την σύνδεση στο Dreamy Kitchen CRM", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'Έλεγχος νέας έκδοσης
+        If CheckFUpdate.FindNewVersion Then
 
-        If Debugger.IsAttached Then
-            txtUN.Text = "blackmoon"
-            txtPWD.Text = "mavros1!"
-            cmdLogin.Select()
         Else
-            ' Assume we aren't running from the IDE
+            If Debugger.IsAttached Then
+                txtUN.Text = "blackmoon"
+                txtPWD.Text = "mavros1!"
+                cmdLogin.Select()
+            Else
+                ' Assume we aren't running from the IDE
+            End If
         End If
     End Sub
 

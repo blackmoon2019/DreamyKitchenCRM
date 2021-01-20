@@ -84,6 +84,7 @@ Public Class frmScroller
             BarViews.EditValue = ""
             'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
             If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml") = False Then
+                GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
             If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then
@@ -197,6 +198,12 @@ Public Class frmScroller
     Private Sub RepositoryPopSaveAsView_KeyDown(sender As Object, e As KeyEventArgs) Handles RepositoryPopSaveAsView.KeyDown
         Try
             If e.KeyCode = Keys.Enter Then
+                If GridView1.OptionsLayout.LayoutVersion <> "" Then
+                    Dim sVer As Integer = GridView1.OptionsLayout.LayoutVersion.Replace("v", "")
+                    GridView1.OptionsLayout.LayoutVersion = "v" & sVer + 1
+                Else
+                    GridView1.OptionsLayout.LayoutVersion = "v1"
+                End If
                 GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & sender.EditValue & "_" & UserProps.Code & ".xml", OptionsLayoutBase.FullLayout)
                 If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & sender.EditValue & "_" & UserProps.Code & ".xml", OptionsLayoutBase.FullLayout)
                 'grdMain.DefaultView.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & sender.EditValue & "_" & UserProps.Code & ".xml")
@@ -214,6 +221,12 @@ Public Class frmScroller
         If BarViews.EditValue <> "" Then
             'grdMain.DefaultView.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
             My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
+            If GridView1.OptionsLayout.LayoutVersion <> "" Then
+                Dim sVer As Integer = GridView1.OptionsLayout.LayoutVersion.Replace("v", "")
+                GridView1.OptionsLayout.LayoutVersion = "v" & sVer + 1
+            Else
+                GridView1.OptionsLayout.LayoutVersion = "v1"
+            End If
             GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             If sDataDetail <> "" Then
                 My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & BarViews.EditValue)
@@ -510,7 +523,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form3), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form3.Show()
             Case "vw_SOURCE"
-                form4.Text = "Status"
+                form4.Text = "Πηγές"
                 form4.MdiParent = frmMain
                 form4.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 form4.Mode = FormMode.EditRecord
@@ -606,7 +619,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form8), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form8.Show()
             Case "vw_PRF"
-                form9.Text = "Επαγγέματα"
+                form9.Text = "Επαγγέλματα"
                 form9.MdiParent = frmMain
                 form9.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 form9.Mode = FormMode.EditRecord
@@ -726,7 +739,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form3), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form3.Show()
             Case "vw_SOURCE"
-                form4.Text = "Status"
+                form4.Text = "Πηγές"
                 form4.MdiParent = frmMain
                 form4.Mode = FormMode.NewRecord
                 form4.Scroller = GridView1
@@ -832,7 +845,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form8), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form8.Show()
             Case "vw_PRF"
-                form9.Text = "Επαγγέματα"
+                form9.Text = "Επαγγέλματα"
                 form9.MdiParent = frmMain
                 form9.Mode = FormMode.NewRecord
                 form9.Scroller = GridView1
@@ -978,6 +991,13 @@ Public Class frmScroller
     End Sub
     'Αποθήκευση όψης ως Default
     Private Sub popSaveAsDefault_ItemClick(sender As Object, e As ItemClickEventArgs) Handles popSaveAsDefault.ItemClick
+        If GridView1.OptionsLayout.LayoutVersion <> "" Then
+            Dim sVer As Integer = GridView1.OptionsLayout.LayoutVersion.Replace("v", "")
+            GridView1.OptionsLayout.LayoutVersion = "v" & sVer + 1
+        Else
+            GridView1.OptionsLayout.LayoutVersion = "v1"
+        End If
+
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
         If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1068,6 +1088,51 @@ Public Class frmScroller
             form.DataTableWhereCondition = "Where ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
             'form.MdiParent = Me
             form.Show()
+        End If
+    End Sub
+
+    Private Sub BBUpdateViewFromDB_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdateViewFromDB.ItemClick
+        'ReadXml.UpdateXMLFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
+        'My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
+        Dim col1 As GridColumn
+        Dim grdColumns As List(Of GridColumn)
+        LoadRecords()
+        If myReader Is Nothing Then Exit Sub
+        'Εαν υπάρχουν πεδία που πρέπει να προστεθούν από την βάση
+        If myReader.FieldCount > GridView1.Columns.Count Then
+            Dim schema As DataTable = myReader.GetSchemaTable()
+            grdColumns = GridView1.Columns.ToList()
+            For i As Integer = 0 To myReader.FieldCount - 1
+                Console.WriteLine(myReader.GetName(i))
+                Dim Col2 As GridColumn = GridView1.Columns(myReader.GetName(i))
+                If Col2 Is Nothing Then
+                    col1 = GridView1.Columns.AddField(myReader.GetName(i))
+                    col1.FieldName = myReader.GetName(i)
+                    col1.Visible = True
+                    col1.VisibleIndex = 0
+                    col1.AppearanceCell.BackColor = Color.Bisque
+                End If
+
+            Next
+            'Εαν έχουν σβηστεί πεδία από την βάση τα αφαιρεί και από το grid
+        ElseIf myReader.FieldCount < GridView1.Columns.Count Then
+            Dim schema As DataTable = myReader.GetSchemaTable()
+            grdColumns = GridView1.Columns.ToList()
+
+            For i As Integer = 0 To grdColumns.Count - 1
+                Try
+                    Dim Col2 As GridColumn = grdColumns(i)
+                    Dim sOrd As String = myReader.GetOrdinal(Col2.FieldName)
+                Catch ex As Exception
+                    Dim Col2 As GridColumn = grdColumns(i)
+                    GridView1.Columns.Remove(Col2)
+                    Console.WriteLine(ex.Message)
+
+                    Continue For
+                End Try
+
+            Next
+
         End If
     End Sub
 End Class
