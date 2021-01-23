@@ -2,7 +2,7 @@
 <xs:schema id="DreamyKitchenDataSet" targetNamespace="http://tempuri.org/DreamyKitchenDataSet.xsd" xmlns:mstns="http://tempuri.org/DreamyKitchenDataSet.xsd" xmlns="http://tempuri.org/DreamyKitchenDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" GeneratorFunctionsComponentClassName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="QueriesTableAdapter" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
           <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="DreamyKitchenConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DreamyKitchenConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DreamyKitchenCRM.My.MySettings.GlobalReference.Default.DreamyKitchenConnectionString" Provider="System.Data.SqlClient" />
         </Connections>
@@ -12,7 +12,7 @@
               <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_NOTES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ID, code, title, Note, RealName, Label, HasFiles, salerID, SalerName, color, Readed
+                    <CommandText>SELECT        ID, code, title, Note, RealName, Label, HasFiles, salerID, SalerName, color, Readed, createdOn, modifiedOn
 FROM            vw_NOTES
 WHERE        (salerID = @salerID)</CommandText>
                     <Parameters>
@@ -34,12 +34,14 @@ WHERE        (salerID = @salerID)</CommandText>
               <Mapping SourceColumn="SalerName" DataSetColumn="SalerName" />
               <Mapping SourceColumn="color" DataSetColumn="color" />
               <Mapping SourceColumn="Readed" DataSetColumn="Readed" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_NOTES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT HasFiles, ID, Label, Note, Readed, RealName, SalerName, code, color, salerID, title FROM vw_NOTES</CommandText>
+                    <CommandText>SELECT HasFiles, ID, Label, Note, Readed, RealName, SalerName, code, color, createdOn, modifiedOn, salerID, title FROM vw_NOTES</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -47,10 +49,7 @@ WHERE        (salerID = @salerID)</CommandText>
               <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_NOTES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy1" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillBy1" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBy1">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ID, code, title, Note, RealName, Label, HasFiles, salerID, SalerName, color, Readed, createdBy
-FROM            vw_NOTES
-WHERE        (salerID = @salerID) OR
-                         (createdBy = @UserID)</CommandText>
+                    <CommandText>SELECT HasFiles, ID, Label, Note, Readed, RealName, SalerName, code, color, createdOn, modifiedOn, salerID, title FROM vw_NOTES WHERE (salerID = @salerID) OR (createdBy = @UserID)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="true" AutogeneratedName="salerID" ColumnName="salerID" DataSourceName="DreamyKitchen.dbo.vw_NOTES" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@salerID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="salerID" SourceColumnNullMapping="false" SourceVersion="Current" />
                       <Parameter AllowDbNull="true" AutogeneratedName="UserID" ColumnName="createdBy" DataSourceName="DreamyKitchen.dbo.vw_NOTES" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@UserID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="createdBy" SourceColumnNullMapping="false" SourceVersion="Current" />
@@ -139,6 +138,8 @@ FROM            vw_SALERS</CommandText>
               </xs:element>
               <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
               <xs:element name="Readed" msprop:Generator_ColumnVarNameInTable="columnReaded" msprop:Generator_ColumnPropNameInRow="Readed" msprop:Generator_ColumnPropNameInTable="ReadedColumn" msprop:Generator_UserColumnName="Readed" type="xs:boolean" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

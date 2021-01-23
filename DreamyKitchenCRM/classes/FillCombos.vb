@@ -261,6 +261,6 @@ Public Class FillCombos
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
+
 End Class

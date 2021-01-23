@@ -27,20 +27,62 @@ Partial Class frmCalendar
         Me.SchedulerDataStorage1 = New DevExpress.XtraScheduler.SchedulerDataStorage(Me.components)
         Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
-        Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.CommonBar1 = New DevExpress.XtraScheduler.UI.CommonBar()
+        Me.OpenScheduleItem1 = New DevExpress.XtraScheduler.UI.OpenScheduleItem()
+        Me.SaveScheduleItem1 = New DevExpress.XtraScheduler.UI.SaveScheduleItem()
+        Me.PrintBar1 = New DevExpress.XtraScheduler.UI.PrintBar()
+        Me.PrintPreviewItem1 = New DevExpress.XtraScheduler.UI.PrintPreviewItem()
+        Me.PrintItem1 = New DevExpress.XtraScheduler.UI.PrintItem()
+        Me.PrintPageSetupItem1 = New DevExpress.XtraScheduler.UI.PrintPageSetupItem()
+        Me.AppointmentBar1 = New DevExpress.XtraScheduler.UI.AppointmentBar()
+        Me.NewAppointmentItem1 = New DevExpress.XtraScheduler.UI.NewAppointmentItem()
+        Me.NewRecurringAppointmentItem1 = New DevExpress.XtraScheduler.UI.NewRecurringAppointmentItem()
+        Me.NavigatorBar1 = New DevExpress.XtraScheduler.UI.NavigatorBar()
+        Me.NavigateViewBackwardItem1 = New DevExpress.XtraScheduler.UI.NavigateViewBackwardItem()
+        Me.NavigateViewForwardItem1 = New DevExpress.XtraScheduler.UI.NavigateViewForwardItem()
+        Me.GotoTodayItem1 = New DevExpress.XtraScheduler.UI.GotoTodayItem()
+        Me.ViewZoomInItem1 = New DevExpress.XtraScheduler.UI.ViewZoomInItem()
+        Me.ViewZoomOutItem1 = New DevExpress.XtraScheduler.UI.ViewZoomOutItem()
+        Me.ArrangeBar1 = New DevExpress.XtraScheduler.UI.ArrangeBar()
+        Me.SwitchToDayViewItem1 = New DevExpress.XtraScheduler.UI.SwitchToDayViewItem()
+        Me.SwitchToWorkWeekViewItem1 = New DevExpress.XtraScheduler.UI.SwitchToWorkWeekViewItem()
+        Me.SwitchToWeekViewItem1 = New DevExpress.XtraScheduler.UI.SwitchToWeekViewItem()
+        Me.SwitchToFullWeekViewItem1 = New DevExpress.XtraScheduler.UI.SwitchToFullWeekViewItem()
+        Me.SwitchToMonthViewItem1 = New DevExpress.XtraScheduler.UI.SwitchToMonthViewItem()
+        Me.SwitchToTimelineViewItem1 = New DevExpress.XtraScheduler.UI.SwitchToTimelineViewItem()
+        Me.SwitchToGanttViewItem1 = New DevExpress.XtraScheduler.UI.SwitchToGanttViewItem()
+        Me.SwitchToAgendaViewItem1 = New DevExpress.XtraScheduler.UI.SwitchToAgendaViewItem()
+        Me.GroupByBar1 = New DevExpress.XtraScheduler.UI.GroupByBar()
+        Me.GroupByNoneItem1 = New DevExpress.XtraScheduler.UI.GroupByNoneItem()
+        Me.GroupByDateItem1 = New DevExpress.XtraScheduler.UI.GroupByDateItem()
+        Me.GroupByResourceItem1 = New DevExpress.XtraScheduler.UI.GroupByResourceItem()
+        Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
+        Me.cboStatus = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.DreamyKitchenAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
+        Me.SchedulerBarController1 = New DevExpress.XtraScheduler.UI.SchedulerBarController(Me.components)
+        Me.BarRefresh = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SchedulerControl1
         '
         Me.SchedulerControl1.DataStorage = Me.SchedulerDataStorage1
         Me.SchedulerControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SchedulerControl1.Location = New System.Drawing.Point(0, 0)
+        Me.SchedulerControl1.Location = New System.Drawing.Point(0, 24)
+        Me.SchedulerControl1.MenuManager = Me.BarManager1
         Me.SchedulerControl1.Name = "SchedulerControl1"
-        Me.SchedulerControl1.Size = New System.Drawing.Size(1160, 712)
+        Me.SchedulerControl1.Size = New System.Drawing.Size(1160, 688)
         Me.SchedulerControl1.Start = New Date(2020, 10, 5, 0, 0, 0, 0)
         Me.SchedulerControl1.TabIndex = 0
         Me.SchedulerControl1.Text = "SchedulerControl1"
@@ -87,9 +129,264 @@ Partial Class frmCalendar
         Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
         Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'Vw_SALERSTableAdapter
+        'BarManager1
         '
-        Me.Vw_SALERSTableAdapter.ClearBeforeFill = True
+        Me.BarManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.CommonBar1, Me.PrintBar1, Me.AppointmentBar1, Me.NavigatorBar1, Me.ArrangeBar1, Me.GroupByBar1})
+        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.OpenScheduleItem1, Me.SaveScheduleItem1, Me.PrintPreviewItem1, Me.PrintItem1, Me.PrintPageSetupItem1, Me.NewAppointmentItem1, Me.NewRecurringAppointmentItem1, Me.NavigateViewBackwardItem1, Me.NavigateViewForwardItem1, Me.GotoTodayItem1, Me.ViewZoomInItem1, Me.ViewZoomOutItem1, Me.SwitchToDayViewItem1, Me.SwitchToWorkWeekViewItem1, Me.SwitchToWeekViewItem1, Me.SwitchToFullWeekViewItem1, Me.SwitchToMonthViewItem1, Me.SwitchToTimelineViewItem1, Me.SwitchToGanttViewItem1, Me.SwitchToAgendaViewItem1, Me.GroupByNoneItem1, Me.GroupByDateItem1, Me.GroupByResourceItem1, Me.BarEditItem1, Me.BarRefresh})
+        Me.BarManager1.MaxItemId = 66
+        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cboStatus})
+        '
+        'CommonBar1
+        '
+        Me.CommonBar1.Control = Me.SchedulerControl1
+        Me.CommonBar1.DockCol = 0
+        Me.CommonBar1.DockRow = 0
+        Me.CommonBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.CommonBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.OpenScheduleItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.SaveScheduleItem1)})
+        '
+        'OpenScheduleItem1
+        '
+        Me.OpenScheduleItem1.Id = 41
+        Me.OpenScheduleItem1.Name = "OpenScheduleItem1"
+        '
+        'SaveScheduleItem1
+        '
+        Me.SaveScheduleItem1.Id = 42
+        Me.SaveScheduleItem1.Name = "SaveScheduleItem1"
+        '
+        'PrintBar1
+        '
+        Me.PrintBar1.Control = Me.SchedulerControl1
+        Me.PrintBar1.DockCol = 1
+        Me.PrintBar1.DockRow = 0
+        Me.PrintBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.PrintBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.PrintPreviewItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.PrintItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.PrintPageSetupItem1)})
+        '
+        'PrintPreviewItem1
+        '
+        Me.PrintPreviewItem1.Id = 43
+        Me.PrintPreviewItem1.Name = "PrintPreviewItem1"
+        '
+        'PrintItem1
+        '
+        Me.PrintItem1.Id = 44
+        Me.PrintItem1.Name = "PrintItem1"
+        '
+        'PrintPageSetupItem1
+        '
+        Me.PrintPageSetupItem1.Id = 45
+        Me.PrintPageSetupItem1.Name = "PrintPageSetupItem1"
+        '
+        'AppointmentBar1
+        '
+        Me.AppointmentBar1.Control = Me.SchedulerControl1
+        Me.AppointmentBar1.DockCol = 2
+        Me.AppointmentBar1.DockRow = 0
+        Me.AppointmentBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.AppointmentBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.NewAppointmentItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.NewRecurringAppointmentItem1)})
+        '
+        'NewAppointmentItem1
+        '
+        Me.NewAppointmentItem1.Id = 46
+        Me.NewAppointmentItem1.Name = "NewAppointmentItem1"
+        '
+        'NewRecurringAppointmentItem1
+        '
+        Me.NewRecurringAppointmentItem1.Id = 47
+        Me.NewRecurringAppointmentItem1.Name = "NewRecurringAppointmentItem1"
+        '
+        'NavigatorBar1
+        '
+        Me.NavigatorBar1.Control = Me.SchedulerControl1
+        Me.NavigatorBar1.DockCol = 3
+        Me.NavigatorBar1.DockRow = 0
+        Me.NavigatorBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.NavigatorBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.NavigateViewBackwardItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.NavigateViewForwardItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GotoTodayItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.ViewZoomInItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.ViewZoomOutItem1)})
+        '
+        'NavigateViewBackwardItem1
+        '
+        Me.NavigateViewBackwardItem1.Id = 48
+        Me.NavigateViewBackwardItem1.Name = "NavigateViewBackwardItem1"
+        '
+        'NavigateViewForwardItem1
+        '
+        Me.NavigateViewForwardItem1.Id = 49
+        Me.NavigateViewForwardItem1.Name = "NavigateViewForwardItem1"
+        '
+        'GotoTodayItem1
+        '
+        Me.GotoTodayItem1.Id = 50
+        Me.GotoTodayItem1.Name = "GotoTodayItem1"
+        '
+        'ViewZoomInItem1
+        '
+        Me.ViewZoomInItem1.Id = 51
+        Me.ViewZoomInItem1.Name = "ViewZoomInItem1"
+        '
+        'ViewZoomOutItem1
+        '
+        Me.ViewZoomOutItem1.Id = 52
+        Me.ViewZoomOutItem1.Name = "ViewZoomOutItem1"
+        '
+        'ArrangeBar1
+        '
+        Me.ArrangeBar1.Control = Me.SchedulerControl1
+        Me.ArrangeBar1.DockCol = 4
+        Me.ArrangeBar1.DockRow = 0
+        Me.ArrangeBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.ArrangeBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.SwitchToDayViewItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.SwitchToWorkWeekViewItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.SwitchToWeekViewItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.SwitchToFullWeekViewItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.SwitchToMonthViewItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.SwitchToTimelineViewItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.SwitchToGanttViewItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.SwitchToAgendaViewItem1)})
+        '
+        'SwitchToDayViewItem1
+        '
+        Me.SwitchToDayViewItem1.Id = 53
+        Me.SwitchToDayViewItem1.Name = "SwitchToDayViewItem1"
+        '
+        'SwitchToWorkWeekViewItem1
+        '
+        Me.SwitchToWorkWeekViewItem1.Id = 54
+        Me.SwitchToWorkWeekViewItem1.Name = "SwitchToWorkWeekViewItem1"
+        '
+        'SwitchToWeekViewItem1
+        '
+        Me.SwitchToWeekViewItem1.Id = 55
+        Me.SwitchToWeekViewItem1.Name = "SwitchToWeekViewItem1"
+        '
+        'SwitchToFullWeekViewItem1
+        '
+        Me.SwitchToFullWeekViewItem1.Id = 56
+        Me.SwitchToFullWeekViewItem1.Name = "SwitchToFullWeekViewItem1"
+        '
+        'SwitchToMonthViewItem1
+        '
+        Me.SwitchToMonthViewItem1.Id = 57
+        Me.SwitchToMonthViewItem1.Name = "SwitchToMonthViewItem1"
+        '
+        'SwitchToTimelineViewItem1
+        '
+        Me.SwitchToTimelineViewItem1.Id = 58
+        Me.SwitchToTimelineViewItem1.Name = "SwitchToTimelineViewItem1"
+        '
+        'SwitchToGanttViewItem1
+        '
+        Me.SwitchToGanttViewItem1.Id = 59
+        Me.SwitchToGanttViewItem1.Name = "SwitchToGanttViewItem1"
+        '
+        'SwitchToAgendaViewItem1
+        '
+        Me.SwitchToAgendaViewItem1.Id = 60
+        Me.SwitchToAgendaViewItem1.Name = "SwitchToAgendaViewItem1"
+        '
+        'GroupByBar1
+        '
+        Me.GroupByBar1.Control = Me.SchedulerControl1
+        Me.GroupByBar1.DockCol = 5
+        Me.GroupByBar1.DockRow = 0
+        Me.GroupByBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.GroupByBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByNoneItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByDateItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByResourceItem1), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem1, "", False, True, True, 152), New DevExpress.XtraBars.LinkPersistInfo(Me.BarRefresh)})
+        '
+        'GroupByNoneItem1
+        '
+        Me.GroupByNoneItem1.Id = 61
+        Me.GroupByNoneItem1.Name = "GroupByNoneItem1"
+        '
+        'GroupByDateItem1
+        '
+        Me.GroupByDateItem1.Id = 62
+        Me.GroupByDateItem1.Name = "GroupByDateItem1"
+        '
+        'GroupByResourceItem1
+        '
+        Me.GroupByResourceItem1.Id = 63
+        Me.GroupByResourceItem1.Name = "GroupByResourceItem1"
+        '
+        'BarEditItem1
+        '
+        Me.BarEditItem1.Caption = "BarEditItem1"
+        Me.BarEditItem1.Edit = Me.cboStatus
+        Me.BarEditItem1.Id = 64
+        Me.BarEditItem1.Name = "BarEditItem1"
+        '
+        'cboStatus
+        '
+        Me.cboStatus.AllowMultiSelect = True
+        Me.cboStatus.AutoHeight = False
+        Me.cboStatus.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboStatus.DisplayMember = "name"
+        Me.cboStatus.Name = "cboStatus"
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Manager = Me.BarManager1
+        Me.barDockControlTop.Size = New System.Drawing.Size(1160, 24)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 712)
+        Me.barDockControlBottom.Manager = Me.BarManager1
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1160, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 24)
+        Me.barDockControlLeft.Manager = Me.BarManager1
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 688)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1160, 24)
+        Me.barDockControlRight.Manager = Me.BarManager1
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 688)
+        '
+        'DreamyKitchenAdapter
+        '
+        Me.DreamyKitchenAdapter.ClearBeforeFill = True
+        '
+        'SchedulerBarController1
+        '
+        Me.SchedulerBarController1.BarItems.Add(Me.OpenScheduleItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.SaveScheduleItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.PrintPreviewItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.PrintItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.PrintPageSetupItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.NewAppointmentItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.NewRecurringAppointmentItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.NavigateViewBackwardItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.NavigateViewForwardItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.GotoTodayItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.ViewZoomInItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.ViewZoomOutItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.SwitchToDayViewItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.SwitchToWorkWeekViewItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.SwitchToWeekViewItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.SwitchToFullWeekViewItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.SwitchToMonthViewItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.SwitchToTimelineViewItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.SwitchToGanttViewItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.SwitchToAgendaViewItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.GroupByNoneItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.GroupByDateItem1)
+        Me.SchedulerBarController1.BarItems.Add(Me.GroupByResourceItem1)
+        Me.SchedulerBarController1.Control = Me.SchedulerControl1
+        '
+        'BarRefresh
+        '
+        Me.BarRefresh.Id = 65
+        Me.BarRefresh.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_refresh_16
+        Me.BarRefresh.Name = "BarRefresh"
         '
         'frmCalendar
         '
@@ -97,13 +394,21 @@ Partial Class frmCalendar
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1160, 712)
         Me.Controls.Add(Me.SchedulerControl1)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.Name = "frmCalendar"
         Me.Text = "frmCalendar"
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -112,6 +417,43 @@ Partial Class frmCalendar
     Friend WithEvents SchedulerDataStorage1 As DevExpress.XtraScheduler.SchedulerDataStorage
     Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
     Friend WithEvents VwSALERSBindingSource As BindingSource
-    Friend WithEvents Vw_SALERSTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter
-
+    Friend WithEvents DreamyKitchenAdapter As DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter
+    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents CommonBar1 As DevExpress.XtraScheduler.UI.CommonBar
+    Friend WithEvents OpenScheduleItem1 As DevExpress.XtraScheduler.UI.OpenScheduleItem
+    Friend WithEvents SaveScheduleItem1 As DevExpress.XtraScheduler.UI.SaveScheduleItem
+    Friend WithEvents PrintBar1 As DevExpress.XtraScheduler.UI.PrintBar
+    Friend WithEvents PrintPreviewItem1 As DevExpress.XtraScheduler.UI.PrintPreviewItem
+    Friend WithEvents PrintItem1 As DevExpress.XtraScheduler.UI.PrintItem
+    Friend WithEvents PrintPageSetupItem1 As DevExpress.XtraScheduler.UI.PrintPageSetupItem
+    Friend WithEvents AppointmentBar1 As DevExpress.XtraScheduler.UI.AppointmentBar
+    Friend WithEvents NewAppointmentItem1 As DevExpress.XtraScheduler.UI.NewAppointmentItem
+    Friend WithEvents NewRecurringAppointmentItem1 As DevExpress.XtraScheduler.UI.NewRecurringAppointmentItem
+    Friend WithEvents NavigatorBar1 As DevExpress.XtraScheduler.UI.NavigatorBar
+    Friend WithEvents NavigateViewBackwardItem1 As DevExpress.XtraScheduler.UI.NavigateViewBackwardItem
+    Friend WithEvents NavigateViewForwardItem1 As DevExpress.XtraScheduler.UI.NavigateViewForwardItem
+    Friend WithEvents GotoTodayItem1 As DevExpress.XtraScheduler.UI.GotoTodayItem
+    Friend WithEvents ViewZoomInItem1 As DevExpress.XtraScheduler.UI.ViewZoomInItem
+    Friend WithEvents ViewZoomOutItem1 As DevExpress.XtraScheduler.UI.ViewZoomOutItem
+    Friend WithEvents ArrangeBar1 As DevExpress.XtraScheduler.UI.ArrangeBar
+    Friend WithEvents SwitchToDayViewItem1 As DevExpress.XtraScheduler.UI.SwitchToDayViewItem
+    Friend WithEvents SwitchToWorkWeekViewItem1 As DevExpress.XtraScheduler.UI.SwitchToWorkWeekViewItem
+    Friend WithEvents SwitchToWeekViewItem1 As DevExpress.XtraScheduler.UI.SwitchToWeekViewItem
+    Friend WithEvents SwitchToFullWeekViewItem1 As DevExpress.XtraScheduler.UI.SwitchToFullWeekViewItem
+    Friend WithEvents SwitchToMonthViewItem1 As DevExpress.XtraScheduler.UI.SwitchToMonthViewItem
+    Friend WithEvents SwitchToTimelineViewItem1 As DevExpress.XtraScheduler.UI.SwitchToTimelineViewItem
+    Friend WithEvents SwitchToGanttViewItem1 As DevExpress.XtraScheduler.UI.SwitchToGanttViewItem
+    Friend WithEvents SwitchToAgendaViewItem1 As DevExpress.XtraScheduler.UI.SwitchToAgendaViewItem
+    Friend WithEvents GroupByBar1 As DevExpress.XtraScheduler.UI.GroupByBar
+    Friend WithEvents GroupByNoneItem1 As DevExpress.XtraScheduler.UI.GroupByNoneItem
+    Friend WithEvents GroupByDateItem1 As DevExpress.XtraScheduler.UI.GroupByDateItem
+    Friend WithEvents GroupByResourceItem1 As DevExpress.XtraScheduler.UI.GroupByResourceItem
+    Friend WithEvents SchedulerBarController1 As DevExpress.XtraScheduler.UI.SchedulerBarController
+    Friend WithEvents BarEditItem1 As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents cboStatus As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
+    Friend WithEvents BarRefresh As DevExpress.XtraBars.BarButtonItem
 End Class

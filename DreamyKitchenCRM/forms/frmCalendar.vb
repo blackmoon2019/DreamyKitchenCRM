@@ -1,16 +1,35 @@
 ﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
+Imports System.Text
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraScheduler
 Imports DevExpress.XtraScheduler.Drawing
 
 Public Class frmCalendar
     Private Calendar As New InitializeCalendar
     Private Sub frmCalendar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
-        Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
-        Dim sSQL As String
-        sSQL = "SELECT * FROM vw_CCT_M order by code"
-        Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
-        SchedulerControl1.Start = Now.Date
+        Try
+            Dim sSQL As String
+            sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 order by code"
+            Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
+            sSQL = "SELECT id,name FROM vw_status WHERE ALLOWSCHEDULE=1 order by name"
+            Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+
+            While sdr.Read()
+                cboStatus.Items.Add(sdr.Item(1).ToString, True)
+                cboStatus.Items(sdr.Item(1).ToString).Tag = sdr.Item(0).ToString
+                cboStatus.Items(sdr.Item(1).ToString).CheckState = CheckState.Checked
+
+            End While
+            Me.DreamyKitchenAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
+
+            SchedulerControl1.Start = Now.Date
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
 
     Private Sub SchedulerDataStorage1_AppointmentsInserted(sender As Object, e As PersistentObjectsEventArgs) Handles SchedulerDataStorage1.AppointmentsInserted
@@ -68,5 +87,37 @@ Public Class frmCalendar
         Else
             scheduler.Cursor = Cursors.Default
         End If
+    End Sub
+
+    Private Sub cboStatus_Popup(sender As Object, e As EventArgs) Handles cboStatus.Popup
+        Dim edit = TryCast(sender, CheckedComboBoxEdit)
+        Dim form = edit.GetPopupEditForm()
+        RemoveHandler form.OkButton.Click, AddressOf OkButton_Click
+        AddHandler form.OkButton.Click, AddressOf OkButton_Click
+    End Sub
+    Private Sub OkButton_Click(ByVal sender As Object, ByVal e As EventArgs)
+        Dim sSQL As String
+        Dim sIDS As New StringBuilder
+        SchedulerDataStorage1.Appointments.Clear()
+        For i As Integer = 0 To cboStatus.Items.Count - 1
+            If cboStatus.Items(i).CheckState = CheckState.Checked Then
+                If sIDS.Length > 0 Then sIDS.Append(",")
+                sIDS.Append(toSQLValueS(cboStatus.Items(i).Tag.ToString))
+            End If
+
+        Next
+        If sIDS.Length > 0 Then
+            sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 and statusID in (" & sIDS.ToString & ")"
+        Else
+            sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 "
+        End If
+        Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
+    End Sub
+
+    Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarRefresh.ItemClick
+        Dim sSQL As String
+        sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 order by code"
+        SchedulerDataStorage1.Appointments.Clear()
+        Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
     End Sub
 End Class

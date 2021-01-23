@@ -16,6 +16,7 @@ Public Class frmNotesScroller
         'End Using
 
         Me.Vw_NOTESTableAdapter.FillBy1(Me.DreamyKitchenDataSet.vw_NOTES, UserProps.SalerID, UserProps.ID)
+        Me.Text = "Εισερχόμενα/Εξερχόμενα Σημειώματα"
         'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_def.xml") = False Then
             GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_def.xml", OptionsLayoutBase.FullLayout)
@@ -53,13 +54,13 @@ Public Class frmNotesScroller
 
             'Εαν δεν έχει data το Dataset αναγκαστικά προσθέτω μόνος μου τις στήλες
             If myReader.HasRows = False Then
-                For i As Integer = 0 To myReader.FieldCount - 1
-                    Dim C As New GridColumn
-                    C.Name = myReader.GetName(i).ToString
-                    C.Caption = myReader.GetName(i).ToString
-                    C.Visible = True
-                    GridView1.Columns.Add(C)
-                Next i
+                'For i As Integer = 0 To myReader.FieldCount - 1
+                '    Dim C As New GridColumn
+                '    C.Name = myReader.GetName(i).ToString
+                '    C.Caption = myReader.GetName(i).ToString
+                '    C.Visible = True
+                '    GridView1.Columns.Add(C)
+                'Next i
             End If
             'LoadViews()
             GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_def.xml", OptionsLayoutBase.FullLayout)
@@ -109,9 +110,20 @@ Public Class frmNotesScroller
     Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarRefresh.ItemClick
         'LoadRecords("vw_NOTES")
         LoadRecords("vw_NOTES", "where (salerid = '" & UserProps.SalerID.ToString & "' or createdby = '" & UserProps.ID.ToString & "')")
+        Me.Text = "Εισερχόμενα/Εξερχόμενα Σημειώματα"
     End Sub
 
     Private Sub BarEdit_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarEdit.ItemClick
         EditRecord()
+    End Sub
+
+    Private Sub BarIncoming_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarIncoming.ItemClick
+        LoadRecords("vw_NOTES", "where (salerid = '" & UserProps.SalerID.ToString & "')")
+        Me.Text = "Εισερχόμενα Σημειώματα"
+    End Sub
+
+    Private Sub BarOutgoing_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarOutgoing.ItemClick
+        LoadRecords("vw_NOTES", "where (createdby = '" & UserProps.ID.ToString & "')")
+        Me.Text = "Εξερχόμενα Σημειώματα"
     End Sub
 End Class

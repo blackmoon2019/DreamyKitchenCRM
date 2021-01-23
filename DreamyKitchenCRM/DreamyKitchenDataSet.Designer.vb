@@ -340,6 +340,10 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnReaded As Global.System.Data.DataColumn
         
+        Private columncreatedOn As Global.System.Data.DataColumn
+        
+        Private columnmodifiedOn As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -464,6 +468,22 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property createdOnColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncreatedOn
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property modifiedOnColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnmodifiedOn
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -500,9 +520,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function Addvw_NOTESRow(ByVal ID As System.Guid, ByVal code As Integer, ByVal title As String, ByVal Note As String, ByVal RealName As String, ByVal Label As String, ByVal HasFiles As String, ByVal salerID As System.Guid, ByVal SalerName As String, ByVal color As Integer, ByVal Readed As Boolean) As vw_NOTESRow
+        Public Overloads Function Addvw_NOTESRow(ByVal ID As System.Guid, ByVal code As Integer, ByVal title As String, ByVal Note As String, ByVal RealName As String, ByVal Label As String, ByVal HasFiles As String, ByVal salerID As System.Guid, ByVal SalerName As String, ByVal color As Integer, ByVal Readed As Boolean, ByVal createdOn As Date, ByVal modifiedOn As Date) As vw_NOTESRow
             Dim rowvw_NOTESRow As vw_NOTESRow = CType(Me.NewRow,vw_NOTESRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, title, Note, RealName, Label, HasFiles, salerID, SalerName, color, Readed}
+            Dim columnValuesArray() As Object = New Object() {ID, code, title, Note, RealName, Label, HasFiles, salerID, SalerName, color, Readed, createdOn, modifiedOn}
             rowvw_NOTESRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_NOTESRow)
             Return rowvw_NOTESRow
@@ -542,6 +562,8 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnSalerName = MyBase.Columns("SalerName")
             Me.columncolor = MyBase.Columns("color")
             Me.columnReaded = MyBase.Columns("Readed")
+            Me.columncreatedOn = MyBase.Columns("createdOn")
+            Me.columnmodifiedOn = MyBase.Columns("modifiedOn")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -569,6 +591,10 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columncolor)
             Me.columnReaded = New Global.System.Data.DataColumn("Readed", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnReaded)
+            Me.columncreatedOn = New Global.System.Data.DataColumn("createdOn", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncreatedOn)
+            Me.columnmodifiedOn = New Global.System.Data.DataColumn("modifiedOn", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnmodifiedOn)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -1193,6 +1219,36 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property createdOn() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_NOTES.createdOnColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'createdOn' in table 'vw_NOTES' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_NOTES.createdOnColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property modifiedOn() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_NOTES.modifiedOnColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'modifiedOn' in table 'vw_NOTES' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_NOTES.modifiedOnColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IstitleNull() As Boolean
             Return Me.IsNull(Me.tablevw_NOTES.titleColumn)
         End Function
@@ -1273,6 +1329,30 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetcolorNull()
             Me(Me.tablevw_NOTES.colorColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IscreatedOnNull() As Boolean
+            Return Me.IsNull(Me.tablevw_NOTES.createdOnColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetcreatedOnNull()
+            Me(Me.tablevw_NOTES.createdOnColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsmodifiedOnNull() As Boolean
+            Return Me.IsNull(Me.tablevw_NOTES.modifiedOnColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetmodifiedOnNull()
+            Me(Me.tablevw_NOTES.modifiedOnColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -1608,6 +1688,8 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("SalerName", "SalerName")
             tableMapping.ColumnMappings.Add("color", "color")
             tableMapping.ColumnMappings.Add("Readed", "Readed")
+            tableMapping.ColumnMappings.Add("createdOn", "createdOn")
+            tableMapping.ColumnMappings.Add("modifiedOn", "modifiedOn")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -1625,19 +1707,20 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        ID, code, title, Note, RealName, Label, HasFiles, salerID, SalerNam"& _ 
-                "e, color, Readed"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_NOTES"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (salerID = @salerID)"
+                "e, color, Readed, createdOn, modifiedOn"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_NOTES"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        "& _ 
+                "(salerID = @salerID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@salerID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "salerID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT HasFiles, ID, Label, Note, Readed, RealName, SalerName, code, color, saler"& _ 
-                "ID, title FROM vw_NOTES"
+            Me._commandCollection(1).CommandText = "SELECT HasFiles, ID, Label, Note, Readed, RealName, SalerName, code, color, creat"& _ 
+                "edOn, modifiedOn, salerID, title FROM vw_NOTES"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT        ID, code, title, Note, RealName, Label, HasFiles, salerID, SalerNam"& _ 
-                "e, color, Readed, createdBy"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_NOTES"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (salerID = @"& _ 
-                "salerID) OR"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         (createdBy = @UserID)"
+            Me._commandCollection(2).CommandText = "SELECT HasFiles, ID, Label, Note, Readed, RealName, SalerName, code, color, creat"& _ 
+                "edOn, modifiedOn, salerID, title FROM vw_NOTES WHERE (salerID = @salerID) OR (cr"& _ 
+                "eatedBy = @UserID)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@salerID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "salerID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@UserID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "createdBy", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
