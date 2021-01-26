@@ -44,7 +44,7 @@ Partial Class frmMain
         Me.bbADR = New DevExpress.XtraBars.BarButtonItem()
         Me.bbDOY = New DevExpress.XtraBars.BarButtonItem()
         Me.bbPRF = New DevExpress.XtraBars.BarButtonItem()
-        Me.bbFields = New DevExpress.XtraBars.BarStaticItem()
+        Me.bbVersion = New DevExpress.XtraBars.BarStaticItem()
         Me.bbStatus = New DevExpress.XtraBars.BarButtonItem()
         Me.bbSource = New DevExpress.XtraBars.BarButtonItem()
         Me.bbSalers = New DevExpress.XtraBars.BarButtonItem()
@@ -53,6 +53,7 @@ Partial Class frmMain
         Me.BBCusStatistics1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BBNotes = New DevExpress.XtraBars.BarButtonItem()
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBChangeUsr = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -85,9 +86,9 @@ Partial Class frmMain
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbFields, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.BarButtonItem2})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.BarButtonItem2, Me.BBChangeUsr})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.MaxItemId = 37
+        Me.RibbonControl1.MaxItemId = 38
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage2, Me.RibbonPage3})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
@@ -281,15 +282,15 @@ Partial Class frmMain
         Me.bbPRF.Name = "bbPRF"
         Me.bbPRF.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
-        'bbFields
+        'bbVersion
         '
-        Me.bbFields.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
-        Me.bbFields.Id = 27
-        Me.bbFields.ItemAppearance.Normal.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
-        Me.bbFields.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.bbFields.ItemAppearance.Normal.Options.UseBackColor = True
-        Me.bbFields.ItemAppearance.Normal.Options.UseFont = True
-        Me.bbFields.Name = "bbFields"
+        Me.bbVersion.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.bbVersion.Id = 27
+        Me.bbVersion.ItemAppearance.Normal.BackColor = System.Drawing.SystemColors.ActiveCaption
+        Me.bbVersion.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.bbVersion.ItemAppearance.Normal.Options.UseBackColor = True
+        Me.bbVersion.ItemAppearance.Normal.Options.UseFont = True
+        Me.bbVersion.Name = "bbVersion"
         '
         'bbStatus
         '
@@ -355,6 +356,14 @@ Partial Class frmMain
         Me.BarButtonItem2.Name = "BarButtonItem2"
         Me.BarButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'BBChangeUsr
+        '
+        Me.BBChangeUsr.Caption = "Αλλαγή Χρήστη"
+        Me.BBChangeUsr.Id = 37
+        Me.BBChangeUsr.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_change_user_40
+        Me.BBChangeUsr.Name = "BBChangeUsr"
+        Me.BBChangeUsr.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'RibbonPage1
         '
         Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1})
@@ -369,6 +378,7 @@ Partial Class frmMain
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbSalers)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCalendar)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBNotes)
+        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBChangeUsr)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.Text = "Λειτουργίες"
         '
@@ -424,11 +434,11 @@ Partial Class frmMain
         Me.MainstatusBar.ItemLinks.Add(Me.BarMdiChildrenListItem1)
         Me.MainstatusBar.ItemLinks.Add(Me.BarEditItem1)
         Me.MainstatusBar.ItemLinks.Add(Me.BarEditItem2)
-        Me.MainstatusBar.ItemLinks.Add(Me.bbFields)
         Me.MainstatusBar.ItemLinks.Add(Me.bbUser)
         Me.MainstatusBar.ItemLinks.Add(Me.bbDate)
         Me.MainstatusBar.ItemLinks.Add(Me.bbServer)
         Me.MainstatusBar.ItemLinks.Add(Me.bbDB)
+        Me.MainstatusBar.ItemLinks.Add(Me.bbVersion)
         Me.MainstatusBar.ItemLinks.Add(Me.bbLink)
         Me.MainstatusBar.Location = New System.Drawing.Point(0, 747)
         Me.MainstatusBar.Name = "MainstatusBar"
@@ -530,7 +540,7 @@ Partial Class frmMain
     Friend WithEvents bbADR As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbDOY As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbPRF As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents bbFields As DevExpress.XtraBars.BarStaticItem
+    Friend WithEvents bbVersion As DevExpress.XtraBars.BarStaticItem
     Friend WithEvents bbStatus As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbSource As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbSalers As DevExpress.XtraBars.BarButtonItem
@@ -546,4 +556,5 @@ Partial Class frmMain
     Friend WithEvents Vw_NOTESTableAdapter As DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter
     Friend WithEvents Timer1 As Timer
     Friend WithEvents AlertControl1 As DevExpress.XtraBars.Alerter.AlertControl
+    Friend WithEvents BBChangeUsr As DevExpress.XtraBars.BarButtonItem
 End Class

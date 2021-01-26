@@ -6,20 +6,23 @@ Public Class frmLogin
     Private UserPermissions As New CheckPermissions
     Private Prog_Prop As New ProgProp
     Private CheckFUpdate As New CheckForUpdates
+    Private FillCbo As New FillCombos
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim CN As New CN
 
         'MultipleActiveResultSets=True
         chkRememberUN.EditValue = My.Settings.UNSave
-        If My.Settings.UNSave = True Then txtUN.Text = My.Settings.UN
         If CN.OpenConnection = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα κατά την σύνδεση στο Dreamy Kitchen CRM", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
         'Έλεγχος νέας έκδοσης
         If CheckFUpdate.FindNewVersion Then
 
         Else
+            FillCbo.USR(txtUN)
+            If My.Settings.UNSave = True Then txtUN.EditValue = System.Guid.Parse(My.Settings.UN.ToString)
             If Debugger.IsAttached Then
-                txtUN.Text = "blackmoon"
-                txtPWD.Text = "mavros1!"
+                txtUN.EditValue = System.Guid.Parse("3f9dc32e-be5b-4d46-a13c-ea606566cf32")
+                txtPWD.Text = "2010"
                 cmdLogin.Select()
             Else
                 ' Assume we aren't running from the IDE
@@ -33,12 +36,12 @@ Public Class frmLogin
         Dim sdr As SqlDataReader
         Try
 
-            sSQL = "select Realname,code,ID,salerID from USR 
+            sSQL = "select un,RealName,code,ID,salerID from USR 
                 where UN= '" & txtUN.Text & "' and pwd = '" & txtPWD.Text & "'"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("Realname")) = False Then
+                If sdr.IsDBNull(sdr.GetOrdinal("un")) = False Then
                     UserProps.Code = sdr.GetInt32(sdr.GetOrdinal("code"))
                     UserProps.RealName = sdr.GetString(sdr.GetOrdinal("Realname"))
                     UserProps.ID = sdr.GetGuid(sdr.GetOrdinal("ID"))
@@ -47,12 +50,12 @@ Public Class frmLogin
                     UserPermissions.GetUserPermissions()
                     sSQL = "UPDATE USR SET dtLogin = getdate() where ID = " & toSQLValueS(UserProps.ID.ToString)
                     cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-                        'Δεκαδικά Προγράμματος
-                        Prog_Prop.GetProgDecimals()
-                        XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        If My.Settings.UNSave = True Then My.Settings.UN = txtUN.Text : My.Settings.Save()
-                    End If
-                    frmMain.Show()
+                    'Δεκαδικά Προγράμματος
+                    Prog_Prop.GetProgDecimals()
+                    XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    If My.Settings.UNSave = True Then My.Settings.UN = txtUN.EditValue : My.Settings.Save()
+                End If
+                frmMain.Show()
                 Me.Close()
                 frmCalendar.MdiParent = frmMain
                 frmCalendar.Text = "Ημερολόγιο Κινήσεων"
@@ -77,7 +80,7 @@ Public Class frmLogin
     Private Sub chkRememberUN_CheckedChanged(sender As Object, e As EventArgs) Handles chkRememberUN.CheckedChanged
         My.Settings.UNSave = chkRememberUN.EditValue
         If My.Settings.UNSave = False Then
-            My.Settings.UN = ""
+            My.Settings.UN = System.Guid.Parse("00000000-0000-0000-0000-000000000000")
             My.Settings.Save()
         End If
     End Sub

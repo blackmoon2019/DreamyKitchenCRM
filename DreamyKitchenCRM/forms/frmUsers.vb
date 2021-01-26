@@ -76,19 +76,19 @@ Public Class frmUsers
     End Sub
 
     Private Sub txtPWD_GotFocus(sender As Object, e As EventArgs) Handles txtPWD.GotFocus
-        frmMain.bbFields.Caption = "DB Field: USERS.pwd"
+        frmMain.bbVersion.Caption = "DB Field: USERS.pwd"
     End Sub
 
     Private Sub txtRealName_GotFocus(sender As Object, e As EventArgs) Handles txtRealName.GotFocus
-        frmMain.bbFields.Caption = "DB Field: USERS.realname"
+        frmMain.bbVersion.Caption = "DB Field: USERS.realname"
     End Sub
 
     Private Sub txtUN_GotFocus(sender As Object, e As EventArgs) Handles txtUN.GotFocus
-        frmMain.bbFields.Caption = "DB Field: USERS.un"
+        frmMain.bbVersion.Caption = "DB Field: USERS.un"
     End Sub
 
     Private Sub cboMail_GotFocus(sender As Object, e As EventArgs) Handles cboMail.GotFocus
-        frmMain.bbFields.Caption = "DB Field: USERS.mailid"
+        frmMain.bbVersion.Caption = "DB Field: USERS.mailid"
     End Sub
     Private Sub ManageSalers()
         Dim form1 As frmGen = New frmGen()

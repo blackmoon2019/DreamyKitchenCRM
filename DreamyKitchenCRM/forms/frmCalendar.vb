@@ -10,7 +10,7 @@ Public Class frmCalendar
     Private Sub frmCalendar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim sSQL As String
-            sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 order by code"
+            sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 and  completed=0 order by code"
             Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
             sSQL = "SELECT id,name FROM vw_status WHERE ALLOWSCHEDULE=1 order by name"
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
@@ -22,6 +22,14 @@ Public Class frmCalendar
                 cboStatus.Items(sdr.Item(1).ToString).CheckState = CheckState.Checked
 
             End While
+            cboCompleted.Items.Add("Όχι", True)
+            cboCompleted.Items(0).Tag = 0
+            cboCompleted.Items(0).CheckState = CheckState.Checked
+            cboCompleted.Items.Add("Ναι", True)
+            cboCompleted.Items(1).Tag = 1
+            cboCompleted.Items(1).CheckState = CheckState.Unchecked
+
+
             Me.DreamyKitchenAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
 
             SchedulerControl1.Start = Now.Date
@@ -88,6 +96,15 @@ Public Class frmCalendar
             scheduler.Cursor = Cursors.Default
         End If
     End Sub
+    Private Sub cboCompleted_Popup(sender As Object, e As EventArgs) Handles cboCompleted.Popup
+        Dim edit = TryCast(sender, CheckedComboBoxEdit)
+        Dim form = edit.GetPopupEditForm()
+        RemoveHandler form.OkButton.Click, AddressOf OkComletedButton_Click
+        AddHandler form.OkButton.Click, AddressOf OkComletedButton_Click
+    End Sub
+    Private Sub OkComletedButton_Click(ByVal sender As Object, ByVal e As EventArgs)
+        SetCalendarFilter()
+    End Sub
 
     Private Sub cboStatus_Popup(sender As Object, e As EventArgs) Handles cboStatus.Popup
         Dim edit = TryCast(sender, CheckedComboBoxEdit)
@@ -96,9 +113,18 @@ Public Class frmCalendar
         AddHandler form.OkButton.Click, AddressOf OkButton_Click
     End Sub
     Private Sub OkButton_Click(ByVal sender As Object, ByVal e As EventArgs)
+        SetCalendarFilter()
+    End Sub
+
+    Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles Ανανέωση.ItemClick
+        SetCalendarFilter()
+    End Sub
+    Private Sub SetCalendarFilter()
         Dim sSQL As String
         Dim sIDS As New StringBuilder
         SchedulerDataStorage1.Appointments.Clear()
+        sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 "
+        ' FILTER STATUS
         For i As Integer = 0 To cboStatus.Items.Count - 1
             If cboStatus.Items(i).CheckState = CheckState.Checked Then
                 If sIDS.Length > 0 Then sIDS.Append(",")
@@ -106,18 +132,35 @@ Public Class frmCalendar
             End If
 
         Next
-        If sIDS.Length > 0 Then
-            sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 and statusID in (" & sIDS.ToString & ")"
-        Else
-            sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 "
-        End If
+
+        If sIDS.Length > 0 Then sSQL = sSQL + " and statusID in (" & sIDS.ToString & ")"
+
+        'FILTER COMPLETED
+        sIDS.Clear()
+        For i As Integer = 0 To cboCompleted.Items.Count - 1
+            If cboCompleted.Items(i).CheckState = CheckState.Checked Then
+                If sIDS.Length > 0 Then sIDS.Append(",")
+                sIDS.Append(toSQLValueS(cboCompleted.Items(i).Tag.ToString))
+            End If
+
+        Next
+        If sIDS.Length > 0 Then sSQL = sSQL + " and completed in (" & sIDS.ToString & ")"
+
         Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
+    End Sub
+    Private Sub BarNewRec_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarNewRec.ItemClick
+        Dim form1 As frmCusMov = New frmCusMov()
+        form1.Text = "Κινήσεις Πελατών"
+        form1.MdiParent = frmMain
+        form1.Mode = FormMode.NewRecord
+        form1.FormScrollerExist = False
+        form1.CusID = "00000000-0000-0000-0000-000000000000"
+        'form1.Scroller = GridView1
+        'form1.FormScroller = Me
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+
     End Sub
 
-    Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarRefresh.ItemClick
-        Dim sSQL As String
-        sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 order by code"
-        SchedulerDataStorage1.Appointments.Clear()
-        Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
-    End Sub
+
 End Class

@@ -44,6 +44,7 @@ Partial Class frmScroller
         Me.popSaveAsDefault = New DevExpress.XtraBars.BarButtonItem()
         Me.popDeleteView = New DevExpress.XtraBars.BarButtonItem()
         Me.popRestoreView = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBUpdateViewFromDB = New DevExpress.XtraBars.BarButtonItem()
         Me.BarViews = New DevExpress.XtraBars.BarEditItem()
         Me.RepositoryBarViews = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
         Me.BarPrintPreview = New DevExpress.XtraBars.BarButtonItem()
@@ -88,7 +89,6 @@ Partial Class frmScroller
         Me.XtraSaveFileDialog1 = New DevExpress.XtraEditors.XtraSaveFileDialog(Me.components)
         Me.PopupMenuRows = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.PopupMenuRowsDetail = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.BBUpdateViewFromDB = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -249,6 +249,12 @@ Partial Class frmScroller
         Me.popRestoreView.Id = 14
         Me.popRestoreView.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_advertisement_page_16
         Me.popRestoreView.Name = "popRestoreView"
+        '
+        'BBUpdateViewFromDB
+        '
+        Me.BBUpdateViewFromDB.Caption = "Ενημέρωση πεδίων όψης από Βάση"
+        Me.BBUpdateViewFromDB.Id = 49
+        Me.BBUpdateViewFromDB.Name = "BBUpdateViewFromDB"
         '
         'BarViews
         '
@@ -582,12 +588,6 @@ Partial Class frmScroller
         Me.PopupMenuRowsDetail.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarCopyCell_D), New DevExpress.XtraBars.LinkPersistInfo(Me.BarCopyRow_D), New DevExpress.XtraBars.LinkPersistInfo(Me.BarCopyAll_D)})
         Me.PopupMenuRowsDetail.Manager = Me.BarManager1
         Me.PopupMenuRowsDetail.Name = "PopupMenuRowsDetail"
-        '
-        'BBUpdateViewFromDB
-        '
-        Me.BBUpdateViewFromDB.Caption = "Ενημέρωση πεδίων όψης από Βάση"
-        Me.BBUpdateViewFromDB.Id = 49
-        Me.BBUpdateViewFromDB.Name = "BBUpdateViewFromDB"
         '
         'frmScroller
         '
