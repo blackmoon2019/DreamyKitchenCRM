@@ -486,6 +486,7 @@ Partial Class frmMain
         Me.Controls.Add(Me.MainstatusBar)
         Me.Controls.Add(Me.RibbonControl1)
         Me.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Glow
+        Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.IsMdiContainer = True
         Me.Name = "frmMain"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

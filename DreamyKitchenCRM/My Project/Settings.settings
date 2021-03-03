@@ -35,19 +35,19 @@
     <Setting Name="DreamyKitchenConnectionString" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
 &lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Data Source=BLACKMOON-PC;Initial Catalog=DreamyKitchen;Persist Security Info=True;User ID=sa;Password=mavros1!&lt;/ConnectionString&gt;
+  &lt;ConnectionString&gt;Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKitchen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
   &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Data Source=BLACKMOON-PC;Initial Catalog=DreamyKitchen;Persist Security Info=True;User ID=sa;Password=mavros1!</Value>
+      <Value Profile="(Default)">Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKitchen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True</Value>
     </Setting>
     <Setting Name="CRM_PATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Z:\</Value>
+      <Value Profile="(Default)">\\10.10.5.5\crm\</Value>
     </Setting>
     <Setting Name="frmNotes" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="SERVER_PATH" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\USER\Downloads\</Value>
+      <Value Profile="(Default)">\\10.10.5.7\TempCrm\</Value>
     </Setting>
     <Setting Name="ExeVer" Type="System.String" Scope="User">
       <Value Profile="(Default)">1.0.0.5</Value>

@@ -227,7 +227,7 @@ Public Class frmMain
             form10.Show()
             Timer1.Enabled = True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Timer1.Enabled = False
         End Try
     End Sub
@@ -255,7 +255,7 @@ Public Class frmMain
             sdr.Close()
             sdr = Nothing
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Timer1.Enabled = False
         End Try
     End Sub
@@ -291,7 +291,7 @@ Public Class frmMain
             form10.Show()
             Timer1.Enabled = True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Timer1.Enabled = False
         End Try
     End Sub

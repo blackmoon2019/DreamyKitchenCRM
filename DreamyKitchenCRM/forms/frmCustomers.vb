@@ -388,6 +388,8 @@ Public Class frmCustomers
 
 
 
+
+
     'Private Sub SqlBlob2File(ByVal DocName As String)
 
     '    Dim cn As New SqlConnection(My.Settings.DocStoreConnectionString.ToString())

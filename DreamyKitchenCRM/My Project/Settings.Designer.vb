@@ -177,8 +177,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=BLACKMOON-PC;Initial Catalog=DreamyKitchen;Persist Security Info=True"& _ 
-            ";User ID=sa;Password=mavros1!")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
+            "chen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True")>  _
         Public ReadOnly Property DreamyKitchenConnectionString() As String
             Get
                 Return CType(Me("DreamyKitchenConnectionString"),String)
@@ -187,7 +187,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Z:\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\10.10.5.5\crm\")>  _
         Public Property CRM_PATH() As String
             Get
                 Return CType(Me("CRM_PATH"),String)
@@ -211,7 +211,7 @@ Namespace My
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("C:\Users\USER\Downloads\")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\10.10.5.7\TempCrm\")>  _
         Public Property SERVER_PATH() As String
             Get
                 Return CType(Me("SERVER_PATH"),String)
