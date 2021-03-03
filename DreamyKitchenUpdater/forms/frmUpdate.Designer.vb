@@ -25,13 +25,13 @@
     ''' </summary>
     Private Sub InitializeComponent()
         Me.lblFileCounter = New DevExpress.XtraEditors.LabelControl()
-        Me.peImage = New DevExpress.XtraEditors.PictureEdit()
         Me.lblTotal = New DevExpress.XtraEditors.LabelControl()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdUpdate = New DevExpress.XtraEditors.SimpleButton()
+        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
+        Me.peImage = New DevExpress.XtraEditors.PictureEdit()
         Me.ProgressBarControl2 = New DevExpress.XtraEditors.ProgressBarControl()
         Me.ProgressBarControl1 = New DevExpress.XtraEditors.ProgressBarControl()
-        Me.BackgroundWorker1 = New System.ComponentModel.BackgroundWorker()
         CType(Me.peImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProgressBarControl2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ProgressBarControl1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,23 +45,6 @@
         Me.lblFileCounter.Size = New System.Drawing.Size(0, 13)
         Me.lblFileCounter.TabIndex = 23
         '
-        'peImage
-        '
-        Me.peImage.Cursor = System.Windows.Forms.Cursors.Default
-        Me.peImage.Dock = System.Windows.Forms.DockStyle.Top
-        Me.peImage.EditValue = Global.DreamyKitchenUpdater.My.Resources.Resources.logo
-        Me.peImage.Location = New System.Drawing.Point(0, 0)
-        Me.peImage.Name = "peImage"
-        Me.peImage.Properties.AllowFocused = False
-        Me.peImage.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
-        Me.peImage.Properties.Appearance.Options.UseBackColor = True
-        Me.peImage.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
-        Me.peImage.Properties.ShowMenu = False
-        Me.peImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
-        Me.peImage.Properties.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None
-        Me.peImage.Size = New System.Drawing.Size(632, 265)
-        Me.peImage.TabIndex = 22
-        '
         'lblTotal
         '
         Me.lblTotal.Location = New System.Drawing.Point(14, 314)
@@ -72,7 +55,7 @@
         '
         'cmdExit
         '
-        Me.cmdExit.Location = New System.Drawing.Point(470, 365)
+        Me.cmdExit.Location = New System.Drawing.Point(568, 367)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(2)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(75, 24)
@@ -81,12 +64,29 @@
         '
         'cmdUpdate
         '
-        Me.cmdUpdate.Location = New System.Drawing.Point(551, 365)
+        Me.cmdUpdate.Location = New System.Drawing.Point(649, 367)
         Me.cmdUpdate.Margin = New System.Windows.Forms.Padding(2)
         Me.cmdUpdate.Name = "cmdUpdate"
         Me.cmdUpdate.Size = New System.Drawing.Size(75, 24)
         Me.cmdUpdate.TabIndex = 19
         Me.cmdUpdate.Text = "Ενημέρωση"
+        '
+        'peImage
+        '
+        Me.peImage.Cursor = System.Windows.Forms.Cursors.Default
+        Me.peImage.Dock = System.Windows.Forms.DockStyle.Top
+        Me.peImage.EditValue = Global.DreamyKitchenUpdater.My.Resources.Resources.dreamyKitchen_logo_2
+        Me.peImage.Location = New System.Drawing.Point(0, 0)
+        Me.peImage.Name = "peImage"
+        Me.peImage.Properties.AllowFocused = False
+        Me.peImage.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
+        Me.peImage.Properties.Appearance.Options.UseBackColor = True
+        Me.peImage.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
+        Me.peImage.Properties.ShowMenu = False
+        Me.peImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
+        Me.peImage.Properties.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None
+        Me.peImage.Size = New System.Drawing.Size(735, 265)
+        Me.peImage.TabIndex = 22
         '
         'ProgressBarControl2
         '
@@ -94,7 +94,7 @@
         Me.ProgressBarControl2.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBarControl2.Name = "ProgressBarControl2"
         Me.ProgressBarControl2.Properties.ShowTitle = True
-        Me.ProgressBarControl2.Size = New System.Drawing.Size(620, 19)
+        Me.ProgressBarControl2.Size = New System.Drawing.Size(716, 19)
         Me.ProgressBarControl2.TabIndex = 18
         '
         'ProgressBarControl1
@@ -103,14 +103,14 @@
         Me.ProgressBarControl1.Margin = New System.Windows.Forms.Padding(2)
         Me.ProgressBarControl1.Name = "ProgressBarControl1"
         Me.ProgressBarControl1.Properties.ShowTitle = True
-        Me.ProgressBarControl1.Size = New System.Drawing.Size(620, 19)
+        Me.ProgressBarControl1.Size = New System.Drawing.Size(716, 19)
         Me.ProgressBarControl1.TabIndex = 17
         '
         'frmUpdate
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(632, 392)
+        Me.ClientSize = New System.Drawing.Size(735, 392)
         Me.Controls.Add(Me.lblFileCounter)
         Me.Controls.Add(Me.peImage)
         Me.Controls.Add(Me.lblTotal)

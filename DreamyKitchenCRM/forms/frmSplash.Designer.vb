@@ -22,6 +22,7 @@ Partial Class frmSplash
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSplash))
         Me.peLogo = New DevExpress.XtraEditors.PictureEdit()
         Me.labelStatus = New DevExpress.XtraEditors.LabelControl()
         Me.labelCopyright = New DevExpress.XtraEditors.LabelControl()
@@ -38,7 +39,7 @@ Partial Class frmSplash
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.peLogo.Cursor = System.Windows.Forms.Cursors.Default
         Me.peLogo.EditValue = Global.DreamyKitchenCRM.My.Resources.Resources.blackmoon_logo
-        Me.peLogo.Location = New System.Drawing.Point(279, 267)
+        Me.peLogo.Location = New System.Drawing.Point(392, 272)
         Me.peLogo.Name = "peLogo"
         Me.peLogo.Properties.AllowFocused = False
         Me.peLogo.Properties.Appearance.BackColor = System.Drawing.Color.Transparent
@@ -46,7 +47,7 @@ Partial Class frmSplash
         Me.peLogo.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder
         Me.peLogo.Properties.ShowMenu = False
         Me.peLogo.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Squeeze
-        Me.peLogo.Size = New System.Drawing.Size(158, 48)
+        Me.peLogo.Size = New System.Drawing.Size(298, 48)
         Me.peLogo.TabIndex = 13
         '
         'labelStatus
@@ -74,14 +75,14 @@ Partial Class frmSplash
         Me.progressBarControl.EditValue = 0
         Me.progressBarControl.Location = New System.Drawing.Point(24, 232)
         Me.progressBarControl.Name = "progressBarControl"
-        Me.progressBarControl.Size = New System.Drawing.Size(402, 12)
+        Me.progressBarControl.Size = New System.Drawing.Size(666, 12)
         Me.progressBarControl.TabIndex = 10
         '
         'peImage
         '
         Me.peImage.Cursor = System.Windows.Forms.Cursors.Default
         Me.peImage.Dock = System.Windows.Forms.DockStyle.Top
-        Me.peImage.EditValue = Global.DreamyKitchenCRM.My.Resources.Resources.logo1
+        Me.peImage.EditValue = Global.DreamyKitchenCRM.My.Resources.Resources.dreamyKitchen_logo_2
         Me.peImage.Location = New System.Drawing.Point(1, 1)
         Me.peImage.Name = "peImage"
         Me.peImage.Properties.AllowFocused = False
@@ -91,20 +92,21 @@ Partial Class frmSplash
         Me.peImage.Properties.ShowMenu = False
         Me.peImage.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Stretch
         Me.peImage.Properties.SvgImageColorizationMode = DevExpress.Utils.SvgImageColorizationMode.None
-        Me.peImage.Size = New System.Drawing.Size(448, 200)
+        Me.peImage.Size = New System.Drawing.Size(712, 200)
         Me.peImage.TabIndex = 14
         '
-        'SplashScreen1
+        'frmSplash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(450, 320)
+        Me.ClientSize = New System.Drawing.Size(714, 352)
         Me.Controls.Add(Me.peImage)
         Me.Controls.Add(Me.peLogo)
         Me.Controls.Add(Me.labelStatus)
         Me.Controls.Add(Me.labelCopyright)
         Me.Controls.Add(Me.progressBarControl)
-        Me.Name = "SplashScreen1"
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Name = "frmSplash"
         Me.Padding = New System.Windows.Forms.Padding(1)
         Me.Text = "SplashScreen1"
         CType(Me.peLogo.Properties, System.ComponentModel.ISupportInitialize).EndInit()

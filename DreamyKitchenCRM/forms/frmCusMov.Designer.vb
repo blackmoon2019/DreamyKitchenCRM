@@ -588,6 +588,7 @@ Partial Class frmCusMov
         Me.Controls.Add(Me.cmdExit)
         Me.Controls.Add(Me.cmdSave)
         Me.Controls.Add(Me.LayoutControl1)
+        Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmCusMov"
         Me.Text = "frmCusMov"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()

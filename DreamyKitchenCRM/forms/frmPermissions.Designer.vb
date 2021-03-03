@@ -74,12 +74,12 @@ Partial Class frmPermissions
         'chkDelete
         '
         Me.chkDelete.EditValue = CType(0, Byte)
-        Me.chkDelete.Location = New System.Drawing.Point(311, 80)
+        Me.chkDelete.Location = New System.Drawing.Point(311, 84)
         Me.chkDelete.Name = "chkDelete"
         Me.chkDelete.Properties.Caption = "Διαγραφή"
         Me.chkDelete.Properties.ValueChecked = CType(1, Byte)
         Me.chkDelete.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkDelete.Size = New System.Drawing.Size(266, 18)
+        Me.chkDelete.Size = New System.Drawing.Size(266, 20)
         Me.chkDelete.StyleController = Me.LayoutControl1
         Me.chkDelete.TabIndex = 11
         Me.chkDelete.Tag = "[delete],0,1,2"
@@ -99,12 +99,12 @@ Partial Class frmPermissions
         'chkEdit
         '
         Me.chkEdit.EditValue = CType(0, Byte)
-        Me.chkEdit.Location = New System.Drawing.Point(311, 58)
+        Me.chkEdit.Location = New System.Drawing.Point(311, 60)
         Me.chkEdit.Name = "chkEdit"
         Me.chkEdit.Properties.Caption = "Επεξεργασία"
         Me.chkEdit.Properties.ValueChecked = CType(1, Byte)
         Me.chkEdit.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkEdit.Size = New System.Drawing.Size(266, 18)
+        Me.chkEdit.Size = New System.Drawing.Size(266, 20)
         Me.chkEdit.StyleController = Me.LayoutControl1
         Me.chkEdit.TabIndex = 10
         Me.chkEdit.Tag = "[edit],0,1,2"
@@ -117,7 +117,7 @@ Partial Class frmPermissions
         Me.chkInsert.Properties.Caption = "Καταχώρηση"
         Me.chkInsert.Properties.ValueChecked = CType(1, Byte)
         Me.chkInsert.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkInsert.Size = New System.Drawing.Size(266, 18)
+        Me.chkInsert.Size = New System.Drawing.Size(266, 20)
         Me.chkInsert.StyleController = Me.LayoutControl1
         Me.chkInsert.TabIndex = 9
         Me.chkInsert.Tag = "[insert],0,1,2"
@@ -149,25 +149,25 @@ Partial Class frmPermissions
         Me.LayoutControlItem1.Control = Me.chkInsert
         Me.LayoutControlItem1.Location = New System.Drawing.Point(299, 24)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(270, 22)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(270, 24)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.chkEdit
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(299, 46)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(299, 48)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(270, 22)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(270, 24)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.chkDelete
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(299, 68)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(299, 72)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(270, 22)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(270, 24)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
@@ -183,9 +183,9 @@ Partial Class frmPermissions
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(299, 90)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(299, 96)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(270, 58)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(270, 52)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'cmdExit
@@ -245,6 +245,7 @@ Partial Class frmPermissions
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(592, 200)
         Me.Controls.Add(Me.LayoutControl1)
+        Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmPermissions"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "frmPermissions"

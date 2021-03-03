@@ -59,10 +59,10 @@ Partial Class frmCalendar
         Me.GroupByResourceItem1 = New DevExpress.XtraScheduler.UI.GroupByResourceItem()
         Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
         Me.cboStatus = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
-        Me.Ανανέωση = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarNewRec = New DevExpress.XtraBars.BarButtonItem()
         Me.Ο = New DevExpress.XtraBars.BarEditItem()
         Me.cboCompleted = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
+        Me.Ανανέωση = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarNewRec = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -325,20 +325,6 @@ Partial Class frmCalendar
         Me.cboStatus.DisplayMember = "name"
         Me.cboStatus.Name = "cboStatus"
         '
-        'Ανανέωση
-        '
-        Me.Ανανέωση.Hint = "Ανανέωση Εγγραφών"
-        Me.Ανανέωση.Id = 65
-        Me.Ανανέωση.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_refresh_16
-        Me.Ανανέωση.Name = "Ανανέωση"
-        '
-        'BarNewRec
-        '
-        Me.BarNewRec.Hint = "Νέα Κίνηση"
-        Me.BarNewRec.Id = 66
-        Me.BarNewRec.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.AddFile_16x16
-        Me.BarNewRec.Name = "BarNewRec"
-        '
         'Ο
         '
         Me.Ο.Caption = "Ολοκληρώθηκε"
@@ -354,6 +340,20 @@ Partial Class frmCalendar
         Me.cboCompleted.AutoHeight = False
         Me.cboCompleted.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboCompleted.Name = "cboCompleted"
+        '
+        'Ανανέωση
+        '
+        Me.Ανανέωση.Hint = "Ανανέωση Εγγραφών"
+        Me.Ανανέωση.Id = 65
+        Me.Ανανέωση.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_refresh_16
+        Me.Ανανέωση.Name = "Ανανέωση"
+        '
+        'BarNewRec
+        '
+        Me.BarNewRec.Hint = "Νέα Κίνηση"
+        Me.BarNewRec.Id = 66
+        Me.BarNewRec.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.AddFile_16x16
+        Me.BarNewRec.Name = "BarNewRec"
         '
         'barDockControlTop
         '
@@ -428,6 +428,7 @@ Partial Class frmCalendar
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmCalendar"
         Me.Text = "frmCalendar"
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).EndInit()

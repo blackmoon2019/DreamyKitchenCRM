@@ -95,6 +95,7 @@ Partial Class frmLogin
         Me.Controls.Add(Me.txtPWD)
         Me.Controls.Add(Me.LabelControl1)
         Me.Controls.Add(Me.txtUN)
+        Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Dreamy CRM"
