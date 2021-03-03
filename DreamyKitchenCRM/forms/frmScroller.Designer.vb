@@ -599,6 +599,7 @@ Partial Class frmScroller
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
+        Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmScroller"
         Me.Text = "frmScroller"
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()

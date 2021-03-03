@@ -169,10 +169,6 @@
     <Compile Include="DreamyKitchenDataSet.vb">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmBDG.designer.vb">
-      <DependentUpon>frmBDG.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmBDG.vb" />
     <Compile Include="forms\frmCalendar.Designer.vb">
       <DependentUpon>frmCalendar.vb</DependentUpon>
     </Compile>
@@ -276,9 +272,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="forms\frmBDG.resx">
-      <DependentUpon>frmBDG.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCalendar.resx">
       <DependentUpon>frmCalendar.vb</DependentUpon>
     </EmbeddedResource>
@@ -578,6 +571,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\dreamyKitchen_logo_2.png" />
     <None Include="Resources\favicon.ico" />
     <None Include="Resources\icons8-change-user-40.png" />
     <None Include="Resources\logo32x32.jpg" />

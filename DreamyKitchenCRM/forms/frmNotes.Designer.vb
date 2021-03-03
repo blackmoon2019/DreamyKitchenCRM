@@ -373,6 +373,7 @@ Partial Class frmNotes
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(693, 439)
         Me.Controls.Add(Me.LayoutControl1)
+        Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmNotes"
         Me.Text = "frmNotes"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
