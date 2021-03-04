@@ -244,6 +244,40 @@ Namespace My
                 Me("DbVer") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ConStringServers() As Global.System.Collections.Specialized.StringCollection
+            Get
+                Return CType(Me("ConStringServers"),Global.System.Collections.Specialized.StringCollection)
+            End Get
+            Set
+                Me("ConStringServers") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+        Public Property ConString() As Global.System.Collections.Specialized.StringCollection
+            Get
+                Return CType(Me("ConString"),Global.System.Collections.Specialized.StringCollection)
+            End Get
+            Set
+                Me("ConString") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmPriceList() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmPriceList"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmPriceList") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

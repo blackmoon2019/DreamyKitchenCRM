@@ -61,7 +61,7 @@ Partial Public Class frmUpdate
 
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -80,7 +80,7 @@ Partial Public Class frmUpdate
             proc(i).CloseMainWindow()
         Next i
         If Debugger.IsAttached Then
-            strArg = {"1.0.0.6", "\\192.168.1.2\priamos.net\Updates\", "C:\Users\USER\source\repos\PRIAMOS .NET\PRIAMOS .NET\PRIAMOS .NET\bin\Debug\", "1.0.0.8"}
+            strArg = {"1.0.0.6", "\\192.168.1.2\priamos.net\Updates\", "C:\Users\USER\source\repos\Dreamy Kitchen CRM\Dreamy Kitchen CRM\Dreamy Kitchen CRM\bin\Debug\", "1.0.0.8"}
         Else
             ' Assume we aren't running from the IDE
             strArg = Command().Split(",")

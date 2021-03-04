@@ -5,9 +5,10 @@ Imports System.IO
 
 Public Class DBQueries
     Public Function GetNextId(ByVal sTable As String) As Integer
-        Dim cmd As SqlCommand = New SqlCommand("SELECT IDENT_CURRENT('" & sTable & "')  AS ID", CNDB)
+        'Dim cmd As SqlCommand = New SqlCommand("SELECT IDENT_CURRENT('" & sTable & "')  AS ID", CNDB)
+        Dim cmd As SqlCommand = New SqlCommand("SELECT Case when (select top 1 ID from " & sTable & ") Is Not null then  IDENT_CURRENT('" & sTable & "') + 1 else 1 end   AS ID", CNDB)
         Dim ID As Integer = cmd.ExecuteScalar()
-        If ID >= 1 Then ID = ID + 1
+        'If ID > 1 Then ID = ID + 1
         Return ID
     End Function
     Public Function InsertDataFiles(ByVal control As System.Windows.Forms.OpenFileDialog, ByVal ID As String, ByVal sTable As String) As Boolean
@@ -118,10 +119,22 @@ Public Class DBQueries
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
                                         End If
                                         '*******DevExpress.XtraEditors.TextEdit******
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
+                                        Dim txt As DevExpress.XtraEditors.MemoEdit
+                                        txt = Ctrl
+                                        If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
+                                        Else
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
+                                        End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ColorPickEdit Then
+                                        Dim cpk As DevExpress.XtraEditors.ColorPickEdit
+                                        cpk = Ctrl
+                                        sSQLV.Append(IIf(IsFirstField = True, "", ",") & cpk.Text)
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
                                         Dim txt As DevExpress.XtraEditors.TextEdit
                                         txt = Ctrl
-                                        If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
+                                        If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
@@ -141,10 +154,6 @@ Public Class DBQueries
                                         chk = Ctrl
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & chk.EditValue)
                                         '*******DevExpress.XtraEditors.ColorPickEdit******
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ColorPickEdit Then
-                                        Dim cpk As DevExpress.XtraEditors.ColorPickEdit
-                                        cpk = Ctrl
-                                        sSQLV.Append(IIf(IsFirstField = True, "", ",") & cpk.EditValue)
                                     End If
                                     IsFirstField = False
                                 End If
@@ -227,7 +236,7 @@ Public Class DBQueries
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
                                         Dim txt As DevExpress.XtraEditors.TextEdit
                                         txt = Ctrl
-                                        If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
+                                        If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
                                             sSQL.Append(toSQLValueS(txt.EditValue, True))
                                         Else
                                             sSQL.Append(toSQLValueS(txt.Text))
@@ -245,7 +254,7 @@ Public Class DBQueries
                 End If
             Next
             sSQL.Append(", [modifiedBy] = " & toSQLValueS(UserProps.ID.ToString))
-            sSQL.Append("WHERE ID = " & toSQLValueS(sID))
+            sSQL.Append(" WHERE ID = " & toSQLValueS(sID))
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()

@@ -22,27 +22,27 @@ Partial Class frmGen
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.ColorPickEdit1 = New DevExpress.XtraEditors.ColorPickEdit()
         Me.chk1 = New DevExpress.XtraEditors.CheckEdit()
+        Me.cmdNew = New DevExpress.XtraEditors.SimpleButton()
         Me.cbo2 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
+        Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.txtName = New DevExpress.XtraEditors.TextEdit()
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
         Me.cbo1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cmdDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.L1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.L5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.L6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.cmdNew = New DevExpress.XtraEditors.SimpleButton()
-        Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
-        Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.cmdDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.L1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.L7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.L5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.L6 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.ColorPickEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,17 +53,17 @@ Partial Class frmGen
         CType(Me.cbo1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.L1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.L5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.L6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.L1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.L5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.L6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -89,13 +89,13 @@ Partial Class frmGen
         'ColorPickEdit1
         '
         Me.ColorPickEdit1.EditValue = System.Drawing.Color.Empty
-        Me.ColorPickEdit1.Location = New System.Drawing.Point(37, 108)
+        Me.ColorPickEdit1.Location = New System.Drawing.Point(46, 108)
         Me.ColorPickEdit1.Name = "ColorPickEdit1"
         Me.ColorPickEdit1.Properties.AutomaticColor = System.Drawing.Color.Black
         Me.ColorPickEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.ColorPickEdit1.Properties.ColorText = DevExpress.XtraEditors.Controls.ColorText.[Integer]
         Me.ColorPickEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.ColorPickEdit1.Size = New System.Drawing.Size(351, 20)
+        Me.ColorPickEdit1.Size = New System.Drawing.Size(342, 20)
         Me.ColorPickEdit1.StyleController = Me.LayoutControl1
         Me.ColorPickEdit1.TabIndex = 20
         Me.ColorPickEdit1.Tag = "color,0,1,2"
@@ -113,105 +113,6 @@ Partial Class frmGen
         Me.chk1.TabIndex = 19
         Me.chk1.Tag = "allowschedule,0,1,2"
         '
-        'cbo2
-        '
-        Me.cbo2.Location = New System.Drawing.Point(37, 60)
-        Me.cbo2.Name = "cbo2"
-        Me.cbo2.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cbo2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbo2.Properties.NullText = ""
-        Me.cbo2.Properties.PopupSizeable = False
-        Me.cbo2.Size = New System.Drawing.Size(351, 20)
-        Me.cbo2.StyleController = Me.LayoutControl1
-        Me.cbo2.TabIndex = 16
-        Me.cbo2.Tag = "areaid,0,1,2"
-        Me.cbo2.Visible = False
-        '
-        'txtName
-        '
-        Me.txtName.Location = New System.Drawing.Point(190, 12)
-        Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(198, 20)
-        Me.txtName.StyleController = Me.LayoutControl1
-        Me.txtName.TabIndex = 14
-        Me.txtName.Tag = "name,0,1,2"
-        '
-        'txtCode
-        '
-        Me.txtCode.Location = New System.Drawing.Point(37, 12)
-        Me.txtCode.Name = "txtCode"
-        Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(124, 20)
-        Me.txtCode.StyleController = Me.LayoutControl1
-        Me.txtCode.TabIndex = 14
-        Me.txtCode.Tag = "code,0"
-        '
-        'cbo1
-        '
-        Me.cbo1.Location = New System.Drawing.Point(37, 36)
-        Me.cbo1.Name = "cbo1"
-        Me.cbo1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cbo1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cbo1.Properties.NullText = ""
-        Me.cbo1.Properties.PopupSizeable = False
-        Me.cbo1.Size = New System.Drawing.Size(351, 20)
-        Me.cbo1.StyleController = Me.LayoutControl1
-        Me.cbo1.TabIndex = 15
-        Me.cbo1.Tag = "couid,0,1,2"
-        '
-        'Root
-        '
-        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.L2, Me.L3, Me.L1, Me.L4, Me.LayoutControlItem3, Me.EmptySpaceItem2, Me.L7, Me.L5, Me.L6})
-        Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(400, 295)
-        Me.Root.TextVisible = False
-        '
-        'EmptySpaceItem1
-        '
-        Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 120)
-        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(380, 123)
-        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'L1
-        '
-        Me.L1.Control = Me.txtCode
-        Me.L1.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.L1.CustomizationFormText = "LayoutControlItem3"
-        Me.L1.Location = New System.Drawing.Point(0, 0)
-        Me.L1.Name = "L1"
-        Me.L1.Size = New System.Drawing.Size(153, 24)
-        Me.L1.Tag = "1"
-        Me.L1.TextSize = New System.Drawing.Size(22, 13)
-        '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(52, 243)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(121, 32)
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'L5
-        '
-        Me.L5.Control = Me.chk1
-        Me.L5.Location = New System.Drawing.Point(0, 72)
-        Me.L5.Name = "L5"
-        Me.L5.Size = New System.Drawing.Size(380, 24)
-        Me.L5.TextSize = New System.Drawing.Size(0, 0)
-        Me.L5.TextVisible = False
-        '
-        'L6
-        '
-        Me.L6.Control = Me.ColorPickEdit1
-        Me.L6.Location = New System.Drawing.Point(0, 96)
-        Me.L6.Name = "L6"
-        Me.L6.Size = New System.Drawing.Size(380, 24)
-        Me.L6.TextSize = New System.Drawing.Size(22, 13)
-        '
         'cmdNew
         '
         Me.cmdNew.DialogResult = System.Windows.Forms.DialogResult.Cancel
@@ -224,6 +125,20 @@ Partial Class frmGen
         Me.cmdNew.TabIndex = 17
         Me.cmdNew.ToolTip = "Προσθήκη Νέας Εγγραφής"
         Me.cmdNew.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        '
+        'cbo2
+        '
+        Me.cbo2.Location = New System.Drawing.Point(46, 60)
+        Me.cbo2.Name = "cbo2"
+        Me.cbo2.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cbo2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cbo2.Properties.NullText = ""
+        Me.cbo2.Properties.PopupSizeable = False
+        Me.cbo2.Size = New System.Drawing.Size(342, 20)
+        Me.cbo2.StyleController = Me.LayoutControl1
+        Me.cbo2.TabIndex = 16
+        Me.cbo2.Tag = "areaid,0,1,2"
+        Me.cbo2.Visible = False
         '
         'cmdExit
         '
@@ -246,6 +161,38 @@ Partial Class frmGen
         Me.cmdSave.TabIndex = 13
         Me.cmdSave.Text = "Αποθήκευση"
         '
+        'txtName
+        '
+        Me.txtName.Location = New System.Drawing.Point(199, 12)
+        Me.txtName.Name = "txtName"
+        Me.txtName.Size = New System.Drawing.Size(189, 20)
+        Me.txtName.StyleController = Me.LayoutControl1
+        Me.txtName.TabIndex = 14
+        Me.txtName.Tag = "name,0,1,2"
+        '
+        'txtCode
+        '
+        Me.txtCode.Location = New System.Drawing.Point(46, 12)
+        Me.txtCode.Name = "txtCode"
+        Me.txtCode.Properties.ReadOnly = True
+        Me.txtCode.Size = New System.Drawing.Size(115, 20)
+        Me.txtCode.StyleController = Me.LayoutControl1
+        Me.txtCode.TabIndex = 14
+        Me.txtCode.Tag = "code,0"
+        '
+        'cbo1
+        '
+        Me.cbo1.Location = New System.Drawing.Point(46, 36)
+        Me.cbo1.Name = "cbo1"
+        Me.cbo1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cbo1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cbo1.Properties.NullText = ""
+        Me.cbo1.Properties.PopupSizeable = False
+        Me.cbo1.Size = New System.Drawing.Size(342, 20)
+        Me.cbo1.StyleController = Me.LayoutControl1
+        Me.cbo1.TabIndex = 15
+        Me.cbo1.Tag = "couid,0,1,2"
+        '
         'cmdDelete
         '
         Me.cmdDelete.DialogResult = System.Windows.Forms.DialogResult.Cancel
@@ -258,6 +205,23 @@ Partial Class frmGen
         Me.cmdDelete.TabIndex = 17
         Me.cmdDelete.ToolTip = "Διαγραφή Εγγραφής"
         Me.cmdDelete.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        '
+        'Root
+        '
+        Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Root.GroupBordersVisible = False
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.L2, Me.L3, Me.L1, Me.L4, Me.LayoutControlItem3, Me.EmptySpaceItem2, Me.L7, Me.L5, Me.L6})
+        Me.Root.Name = "Root"
+        Me.Root.Size = New System.Drawing.Size(400, 295)
+        Me.Root.TextVisible = False
+        '
+        'EmptySpaceItem1
+        '
+        Me.EmptySpaceItem1.AllowHotTrack = False
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 120)
+        Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(380, 123)
+        Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
         '
@@ -297,6 +261,17 @@ Partial Class frmGen
         Me.L3.Tag = "1"
         Me.L3.TextSize = New System.Drawing.Size(22, 13)
         '
+        'L1
+        '
+        Me.L1.Control = Me.txtCode
+        Me.L1.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.L1.CustomizationFormText = "LayoutControlItem3"
+        Me.L1.Location = New System.Drawing.Point(0, 0)
+        Me.L1.Name = "L1"
+        Me.L1.Size = New System.Drawing.Size(153, 24)
+        Me.L1.Tag = "1"
+        Me.L1.TextSize = New System.Drawing.Size(22, 13)
+        '
         'L4
         '
         Me.L4.Control = Me.cbo2
@@ -317,6 +292,14 @@ Partial Class frmGen
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
+        'EmptySpaceItem2
+        '
+        Me.EmptySpaceItem2.AllowHotTrack = False
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(52, 243)
+        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(121, 32)
+        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
+        '
         'L7
         '
         Me.L7.Control = Me.cmdDelete
@@ -329,6 +312,23 @@ Partial Class frmGen
         Me.L7.Text = "LayoutControlItem3"
         Me.L7.TextSize = New System.Drawing.Size(0, 0)
         Me.L7.TextVisible = False
+        '
+        'L5
+        '
+        Me.L5.Control = Me.chk1
+        Me.L5.Location = New System.Drawing.Point(0, 72)
+        Me.L5.Name = "L5"
+        Me.L5.Size = New System.Drawing.Size(380, 24)
+        Me.L5.TextSize = New System.Drawing.Size(0, 0)
+        Me.L5.TextVisible = False
+        '
+        'L6
+        '
+        Me.L6.Control = Me.ColorPickEdit1
+        Me.L6.Location = New System.Drawing.Point(0, 96)
+        Me.L6.Name = "L6"
+        Me.L6.Size = New System.Drawing.Size(380, 24)
+        Me.L6.TextSize = New System.Drawing.Size(22, 13)
         '
         'frmGen
         '
@@ -349,17 +349,17 @@ Partial Class frmGen
         CType(Me.cbo1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.L1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.L5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.L6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.L1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.L5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.L6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

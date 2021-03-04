@@ -12,21 +12,22 @@ Public Class frmLogin
 
         'MultipleActiveResultSets=True
         chkRememberUN.EditValue = My.Settings.UNSave
-        If CN.OpenConnection = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα κατά την σύνδεση στο Dreamy Kitchen CRM", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        If CNDB.ConnectionString.ToString = "" Then
+            If CN.OpenConnection = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα κατά την σύνδεση στο Dreamy Kitchen CRM", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
-        'Έλεγχος νέας έκδοσης
-        If CheckFUpdate.FindNewVersion Then
+            'Έλεγχος νέας έκδοσης
+            If CheckFUpdate.FindNewVersion Then
 
-        Else
-            FillCbo.USR(txtUN)
-            If My.Settings.UNSave = True Then txtUN.EditValue = System.Guid.Parse(My.Settings.UN.ToString)
-            If Debugger.IsAttached Then
-                txtUN.EditValue = System.Guid.Parse("3f9dc32e-be5b-4d46-a13c-ea606566cf32")
-                txtPWD.Text = "2010"
-                cmdLogin.Select()
-            Else
-                ' Assume we aren't running from the IDE
             End If
+        End If
+        FillCbo.USR(txtUN)
+        If My.Settings.UNSave = True Then txtUN.EditValue = System.Guid.Parse(My.Settings.UN.ToString)
+        If Debugger.IsAttached Then
+            txtUN.EditValue = System.Guid.Parse("3f9dc32e-be5b-4d46-a13c-ea606566cf32")
+            txtPWD.Text = "2010"
+            cmdLogin.Select()
+        Else
+            ' Assume we aren't running from the IDE
         End If
     End Sub
 
@@ -85,4 +86,8 @@ Public Class frmLogin
         End If
     End Sub
 
+    Private Sub cmdConnect_Click(sender As Object, e As EventArgs) Handles cmdConnect.Click
+        frmDBConnection.Show()
+        Me.Close()
+    End Sub
 End Class

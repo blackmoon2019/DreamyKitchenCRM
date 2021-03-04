@@ -282,71 +282,71 @@ Partial Class frmCustomers
         '
         'txtCode
         '
-        Me.txtCode.Location = New System.Drawing.Point(68, 12)
+        Me.txtCode.Location = New System.Drawing.Point(77, 12)
         Me.txtCode.Name = "txtCode"
         Me.txtCode.Properties.Appearance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.txtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(99, 20)
+        Me.txtCode.Size = New System.Drawing.Size(90, 20)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
         '
         'cboAREAS
         '
-        Me.cboAREAS.Location = New System.Drawing.Point(68, 134)
+        Me.cboAREAS.Location = New System.Drawing.Point(77, 134)
         Me.cboAREAS.Name = "cboAREAS"
         Me.cboAREAS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboAREAS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboAREAS.Properties.NullText = ""
         Me.cboAREAS.Properties.PopupSizeable = False
-        Me.cboAREAS.Size = New System.Drawing.Size(162, 20)
+        Me.cboAREAS.Size = New System.Drawing.Size(153, 20)
         Me.cboAREAS.StyleController = Me.LayoutControl1
         Me.cboAREAS.TabIndex = 6
         Me.cboAREAS.Tag = "AreaId,0,1,2"
         '
         'txtTK
         '
-        Me.txtTK.Location = New System.Drawing.Point(68, 162)
+        Me.txtTK.Location = New System.Drawing.Point(77, 162)
         Me.txtTK.Name = "txtTK"
-        Me.txtTK.Size = New System.Drawing.Size(99, 20)
+        Me.txtTK.Size = New System.Drawing.Size(90, 20)
         Me.txtTK.StyleController = Me.LayoutControl1
         Me.txtTK.TabIndex = 8
         Me.txtTK.Tag = "tk,0"
         '
         'cboADR
         '
-        Me.cboADR.Location = New System.Drawing.Point(68, 186)
+        Me.cboADR.Location = New System.Drawing.Point(77, 186)
         Me.cboADR.Name = "cboADR"
         Me.cboADR.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboADR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboADR.Properties.NullText = ""
         Me.cboADR.Properties.PopupSizeable = False
-        Me.cboADR.Size = New System.Drawing.Size(162, 20)
+        Me.cboADR.Size = New System.Drawing.Size(153, 20)
         Me.cboADR.StyleController = Me.LayoutControl1
         Me.cboADR.TabIndex = 7
         Me.cboADR.Tag = "adrid,0,1,2"
         '
         'txtAR
         '
-        Me.txtAR.Location = New System.Drawing.Point(316, 186)
+        Me.txtAR.Location = New System.Drawing.Point(325, 186)
         Me.txtAR.Name = "txtAR"
-        Me.txtAR.Size = New System.Drawing.Size(75, 20)
+        Me.txtAR.Size = New System.Drawing.Size(66, 20)
         Me.txtAR.StyleController = Me.LayoutControl1
         Me.txtAR.TabIndex = 10
         Me.txtAR.Tag = "ar,0"
         '
         'cboCOU
         '
-        Me.cboCOU.Location = New System.Drawing.Point(68, 110)
+        Me.cboCOU.Location = New System.Drawing.Point(77, 110)
         Me.cboCOU.Name = "cboCOU"
         Me.cboCOU.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCOU.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboCOU.Properties.NullText = ""
         Me.cboCOU.Properties.PopupSizeable = False
-        Me.cboCOU.Size = New System.Drawing.Size(162, 20)
+        Me.cboCOU.Size = New System.Drawing.Size(153, 20)
         Me.cboCOU.StyleController = Me.LayoutControl1
         Me.cboCOU.TabIndex = 5
         Me.cboCOU.Tag = "couid,0,1,2"
@@ -389,9 +389,9 @@ Partial Class frmCustomers
         '
         'TextEdit3
         '
-        Me.TextEdit3.Location = New System.Drawing.Point(68, 36)
+        Me.TextEdit3.Location = New System.Drawing.Point(77, 36)
         Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Size = New System.Drawing.Size(107, 20)
+        Me.TextEdit3.Size = New System.Drawing.Size(98, 20)
         Me.TextEdit3.StyleController = Me.LayoutControl1
         Me.TextEdit3.TabIndex = 23
         Me.TextEdit3.Tag = "phn,0,1,2"
@@ -407,57 +407,57 @@ Partial Class frmCustomers
         '
         'cboSRC
         '
-        Me.cboSRC.Location = New System.Drawing.Point(68, 212)
+        Me.cboSRC.Location = New System.Drawing.Point(77, 212)
         Me.cboSRC.Name = "cboSRC"
         Me.cboSRC.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboSRC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboSRC.Properties.NullText = ""
         Me.cboSRC.Properties.PopupSizeable = False
-        Me.cboSRC.Size = New System.Drawing.Size(162, 20)
+        Me.cboSRC.Size = New System.Drawing.Size(153, 20)
         Me.cboSRC.StyleController = Me.LayoutControl1
         Me.cboSRC.TabIndex = 5
         Me.cboSRC.Tag = "sourceid,0,1,2"
         '
         'cboSaler
         '
-        Me.cboSaler.Location = New System.Drawing.Point(316, 212)
+        Me.cboSaler.Location = New System.Drawing.Point(325, 212)
         Me.cboSaler.Name = "cboSaler"
         Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboSaler.Properties.NullText = ""
         Me.cboSaler.Properties.PopupSizeable = False
-        Me.cboSaler.Size = New System.Drawing.Size(154, 20)
+        Me.cboSaler.Size = New System.Drawing.Size(145, 20)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 5
         Me.cboSaler.Tag = "salerid,0,1,2"
         '
         'txtNam1
         '
-        Me.txtNam1.Location = New System.Drawing.Point(68, 60)
+        Me.txtNam1.Location = New System.Drawing.Point(77, 60)
         Me.txtNam1.Name = "txtNam1"
-        Me.txtNam1.Size = New System.Drawing.Size(105, 20)
+        Me.txtNam1.Size = New System.Drawing.Size(96, 20)
         Me.txtNam1.StyleController = Me.LayoutControl1
         Me.txtNam1.TabIndex = 9
         Me.txtNam1.Tag = "afm,0,1,2"
         '
         'cboPRF
         '
-        Me.cboPRF.Location = New System.Drawing.Point(409, 60)
+        Me.cboPRF.Location = New System.Drawing.Point(418, 60)
         Me.cboPRF.Name = "cboPRF"
         Me.cboPRF.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboPRF.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboPRF.Properties.NullText = ""
         Me.cboPRF.Properties.PopupSizeable = False
-        Me.cboPRF.Size = New System.Drawing.Size(150, 20)
+        Me.cboPRF.Size = New System.Drawing.Size(141, 20)
         Me.cboPRF.StyleController = Me.LayoutControl1
         Me.cboPRF.TabIndex = 5
         Me.cboPRF.Tag = "prfid,0,1,2"
         '
         'txtFileNames
         '
-        Me.txtFileNames.Location = New System.Drawing.Point(68, 290)
+        Me.txtFileNames.Location = New System.Drawing.Point(77, 290)
         Me.txtFileNames.Name = "txtFileNames"
-        Me.txtFileNames.Size = New System.Drawing.Size(491, 20)
+        Me.txtFileNames.Size = New System.Drawing.Size(482, 20)
         Me.txtFileNames.StyleController = Me.LayoutControl1
         Me.txtFileNames.TabIndex = 30
         Me.txtFileNames.Tag = ""

@@ -25,6 +25,7 @@ Partial Class frmLogin
         Me.cmdLogin = New DevExpress.XtraEditors.SimpleButton()
         Me.chkRememberUN = New DevExpress.XtraEditors.CheckEdit()
         Me.txtUN = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cmdConnect = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.txtPWD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkRememberUN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtUN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,7 +61,7 @@ Partial Class frmLogin
         '
         Me.cmdLogin.Location = New System.Drawing.Point(14, 172)
         Me.cmdLogin.Name = "cmdLogin"
-        Me.cmdLogin.Size = New System.Drawing.Size(214, 23)
+        Me.cmdLogin.Size = New System.Drawing.Size(203, 23)
         Me.cmdLogin.TabIndex = 4
         Me.cmdLogin.Text = "Είσοδος"
         '
@@ -84,11 +85,20 @@ Partial Class frmLogin
         Me.txtUN.Size = New System.Drawing.Size(216, 20)
         Me.txtUN.TabIndex = 0
         '
+        'cmdConnect
+        '
+        Me.cmdConnect.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_database_administrator_24
+        Me.cmdConnect.Location = New System.Drawing.Point(223, 170)
+        Me.cmdConnect.Name = "cmdConnect"
+        Me.cmdConnect.Size = New System.Drawing.Size(30, 27)
+        Me.cmdConnect.TabIndex = 7
+        '
         'frmLogin
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(262, 211)
+        Me.Controls.Add(Me.cmdConnect)
         Me.Controls.Add(Me.chkRememberUN)
         Me.Controls.Add(Me.cmdLogin)
         Me.Controls.Add(Me.LabelControl2)
@@ -112,4 +122,5 @@ Partial Class frmLogin
     Friend WithEvents cmdLogin As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents chkRememberUN As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents txtUN As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents cmdConnect As DevExpress.XtraEditors.SimpleButton
 End Class

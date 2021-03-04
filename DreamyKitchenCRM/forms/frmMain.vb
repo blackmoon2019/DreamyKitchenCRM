@@ -304,5 +304,13 @@ Public Class frmMain
         frmLogin.Show()
         Me.Close()
     End Sub
+
+    Private Sub ΒΒPriceList_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒPriceList.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τιμοκαταλόγοι"
+        form.DataTable = "vw_PRICELIST"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

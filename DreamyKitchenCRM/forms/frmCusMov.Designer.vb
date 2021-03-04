@@ -174,11 +174,11 @@ Partial Class frmCusMov
         '
         Me.dtCompleted.EditValue = Nothing
         Me.dtCompleted.Enabled = False
-        Me.dtCompleted.Location = New System.Drawing.Point(376, 136)
+        Me.dtCompleted.Location = New System.Drawing.Point(385, 136)
         Me.dtCompleted.Name = "dtCompleted"
         Me.dtCompleted.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtCompleted.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dtCompleted.Size = New System.Drawing.Size(123, 20)
+        Me.dtCompleted.Size = New System.Drawing.Size(114, 20)
         Me.dtCompleted.StyleController = Me.LayoutControl1
         Me.dtCompleted.TabIndex = 32
         Me.dtCompleted.Tag = "dtCompleted,0,1,2"
@@ -277,11 +277,11 @@ Partial Class frmCusMov
         'dtReminder
         '
         Me.dtReminder.EditValue = Nothing
-        Me.dtReminder.Location = New System.Drawing.Point(129, 88)
+        Me.dtReminder.Location = New System.Drawing.Point(138, 88)
         Me.dtReminder.Name = "dtReminder"
         Me.dtReminder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtReminder.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dtReminder.Size = New System.Drawing.Size(126, 20)
+        Me.dtReminder.Size = New System.Drawing.Size(117, 20)
         Me.dtReminder.StyleController = Me.LayoutControl1
         Me.dtReminder.TabIndex = 32
         Me.dtReminder.Tag = "dtReminderDate,0,1,2"
@@ -302,11 +302,11 @@ Partial Class frmCusMov
         'dtReceiveDate
         '
         Me.dtReceiveDate.EditValue = Nothing
-        Me.dtReceiveDate.Location = New System.Drawing.Point(129, 112)
+        Me.dtReceiveDate.Location = New System.Drawing.Point(138, 112)
         Me.dtReceiveDate.Name = "dtReceiveDate"
         Me.dtReceiveDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtReceiveDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dtReceiveDate.Size = New System.Drawing.Size(126, 20)
+        Me.dtReceiveDate.Size = New System.Drawing.Size(117, 20)
         Me.dtReceiveDate.StyleController = Me.LayoutControl1
         Me.dtReceiveDate.TabIndex = 32
         Me.dtReceiveDate.Tag = "dtReceiveDate,0,1,2"
@@ -314,11 +314,11 @@ Partial Class frmCusMov
         'dtDeliverDate
         '
         Me.dtDeliverDate.EditValue = Nothing
-        Me.dtDeliverDate.Location = New System.Drawing.Point(376, 112)
+        Me.dtDeliverDate.Location = New System.Drawing.Point(385, 112)
         Me.dtDeliverDate.Name = "dtDeliverDate"
         Me.dtDeliverDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtDeliverDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dtDeliverDate.Size = New System.Drawing.Size(123, 20)
+        Me.dtDeliverDate.Size = New System.Drawing.Size(114, 20)
         Me.dtDeliverDate.StyleController = Me.LayoutControl1
         Me.dtDeliverDate.TabIndex = 32
         Me.dtDeliverDate.Tag = "dtDeliverDate,0,1,2"
