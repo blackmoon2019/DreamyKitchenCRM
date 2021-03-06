@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
-Partial Class frmPriceList
+Partial Class frmDoorType
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -19,7 +19,7 @@ Partial Class frmPriceList
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmPriceList))
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDoorType))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
@@ -29,17 +29,17 @@ Partial Class frmPriceList
         Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
         Me.txtOInvTotalPrice = New DevExpress.XtraEditors.TextEdit()
         Me.txtOInvNumber = New DevExpress.XtraEditors.TextEdit()
+        Me.txtNam = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem56 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem52 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.color = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.txtNam = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem56 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.color = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -49,17 +49,17 @@ Partial Class frmPriceList
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOInvTotalPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOInvNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.color, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.color, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -185,6 +185,15 @@ Partial Class frmPriceList
         Me.txtOInvNumber.TabIndex = 37
         Me.txtOInvNumber.Tag = "cat,0,1,2"
         '
+        'txtNam
+        '
+        Me.txtNam.Location = New System.Drawing.Point(123, 36)
+        Me.txtNam.Name = "txtNam"
+        Me.txtNam.Size = New System.Drawing.Size(286, 20)
+        Me.txtNam.StyleController = Me.LayoutControl1
+        Me.txtNam.TabIndex = 9
+        Me.txtNam.Tag = "name,0,1,2"
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -234,20 +243,6 @@ Partial Class frmPriceList
         Me.LayoutControlItem14.Text = "Παρατηρήσεις"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(99, 13)
         '
-        'LayoutControlItem56
-        '
-        Me.LayoutControlItem56.Control = Me.txtOInvTotalPrice
-        Me.LayoutControlItem56.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem56.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem56.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem56.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem56.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem56.Location = New System.Drawing.Point(165, 48)
-        Me.LayoutControlItem56.Name = "LayoutControlItem56"
-        Me.LayoutControlItem56.Size = New System.Drawing.Size(236, 24)
-        Me.LayoutControlItem56.Tag = "1"
-        Me.LayoutControlItem56.Text = "Τιμή Τετρ. Μ."
-        Me.LayoutControlItem56.TextSize = New System.Drawing.Size(99, 13)
-        '
         'LayoutControlItem52
         '
         Me.LayoutControlItem52.Control = Me.txtOInvNumber
@@ -262,16 +257,27 @@ Partial Class frmPriceList
         Me.LayoutControlItem52.Text = "Κατηγορία"
         Me.LayoutControlItem52.TextSize = New System.Drawing.Size(99, 13)
         '
-        'LayoutControlItem3
+        'EmptySpaceItem3
         '
-        Me.LayoutControlItem3.Control = Me.txtCustomCode
-        Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem3.CustomizationFormText = "Κωδικός"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(179, 0)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(222, 24)
-        Me.LayoutControlItem3.Text = "Κωδικός Αναζήτησης"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(99, 13)
+        Me.EmptySpaceItem3.AllowHotTrack = False
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(0, 195)
+        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(200, 32)
+        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem56
+        '
+        Me.LayoutControlItem56.Control = Me.txtOInvTotalPrice
+        Me.LayoutControlItem56.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem56.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem56.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem56.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem56.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem56.Location = New System.Drawing.Point(165, 48)
+        Me.LayoutControlItem56.Name = "LayoutControlItem56"
+        Me.LayoutControlItem56.Size = New System.Drawing.Size(236, 24)
+        Me.LayoutControlItem56.Tag = "1"
+        Me.LayoutControlItem56.Text = "Τιμή Τετρ. Μ."
+        Me.LayoutControlItem56.TextSize = New System.Drawing.Size(99, 13)
         '
         'color
         '
@@ -284,22 +290,16 @@ Partial Class frmPriceList
         Me.color.Text = "Χρώμα"
         Me.color.TextSize = New System.Drawing.Size(99, 13)
         '
-        'EmptySpaceItem3
+        'LayoutControlItem3
         '
-        Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(0, 195)
-        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(200, 32)
-        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'txtNam
-        '
-        Me.txtNam.Location = New System.Drawing.Point(123, 36)
-        Me.txtNam.Name = "txtNam"
-        Me.txtNam.Size = New System.Drawing.Size(286, 20)
-        Me.txtNam.StyleController = Me.LayoutControl1
-        Me.txtNam.TabIndex = 9
-        Me.txtNam.Tag = "name,0,1,2"
+        Me.LayoutControlItem3.Control = Me.txtCustomCode
+        Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem3.CustomizationFormText = "Κωδικός"
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(179, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(222, 24)
+        Me.LayoutControlItem3.Text = "Κωδικός Αναζήτησης"
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(99, 13)
         '
         'LayoutControlItem5
         '
@@ -314,16 +314,17 @@ Partial Class frmPriceList
         Me.LayoutControlItem5.Text = "Περιγραφή"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(99, 13)
         '
-        'frmPriceList
+        'frmDoorType
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.CancelButton = Me.cmdExit
         Me.ClientSize = New System.Drawing.Size(417, 235)
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
-        Me.Name = "frmPriceList"
+        Me.Name = "frmDoorType"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "frmPriceList"
+        Me.Text = "frmDoorType"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.ColorPickEdit11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -332,17 +333,17 @@ Partial Class frmPriceList
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOInvTotalPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOInvNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.color, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.color, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

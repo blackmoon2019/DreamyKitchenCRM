@@ -52,9 +52,17 @@ Partial Class frmMain
         Me.BBCalendar = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCusStatistics1 = New DevExpress.XtraBars.BarButtonItem()
         Me.BBNotes = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbLabels = New DevExpress.XtraBars.BarButtonItem()
         Me.BBChangeUsr = New DevExpress.XtraBars.BarButtonItem()
-        Me.ΒΒPriceList = New DevExpress.XtraBars.BarButtonItem()
+        Me.ΒΒDoorType = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbCatErm = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbERM = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbBench = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbMech = New DevExpress.XtraBars.BarButtonItem()
+        Me.bboffer = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbTechnicalSupport = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbTechCateg = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -63,6 +71,8 @@ Partial Class frmMain
         Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage4 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup4 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPage5 = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibbonPageGroup5 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RepositoryItemHypertextLabel1 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHypertextLabel2 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
@@ -89,11 +99,11 @@ Partial Class frmMain
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.BarButtonItem2, Me.BBChangeUsr, Me.ΒΒPriceList})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.MaxItemId = 39
+        Me.RibbonControl1.MaxItemId = 47
         Me.RibbonControl1.Name = "RibbonControl1"
-        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage2, Me.RibbonPage3, Me.RibbonPage4})
+        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage2, Me.RibbonPage3, Me.RibbonPage4, Me.RibbonPage5})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
         Me.RibbonControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemHypertextLabel1, Me.RepositoryItemHypertextLabel2, Me.RepositoryItemHyperLinkEdit2})
         Me.RibbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019
@@ -351,13 +361,13 @@ Partial Class frmMain
         Me.BBNotes.Name = "BBNotes"
         Me.BBNotes.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
-        'BarButtonItem2
+        'bbLabels
         '
-        Me.BarButtonItem2.Caption = "Εττικέτες"
-        Me.BarButtonItem2.Id = 36
-        Me.BarButtonItem2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_tag_40
-        Me.BarButtonItem2.Name = "BarButtonItem2"
-        Me.BarButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        Me.bbLabels.Caption = "Εττικέτες"
+        Me.bbLabels.Id = 36
+        Me.bbLabels.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_tag_40
+        Me.bbLabels.Name = "bbLabels"
+        Me.bbLabels.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'BBChangeUsr
         '
@@ -367,12 +377,75 @@ Partial Class frmMain
         Me.BBChangeUsr.Name = "BBChangeUsr"
         Me.BBChangeUsr.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
-        'ΒΒPriceList
+        'ΒΒDoorType
         '
-        Me.ΒΒPriceList.Caption = "BarButtonItem3"
-        Me.ΒΒPriceList.Id = 38
-        Me.ΒΒPriceList.Name = "ΒΒPriceList"
-        Me.ΒΒPriceList.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        Me.ΒΒDoorType.Caption = "Κατηγορία Πόρτας"
+        Me.ΒΒDoorType.Id = 38
+        Me.ΒΒDoorType.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_door_40
+        Me.ΒΒDoorType.Name = "ΒΒDoorType"
+        Me.ΒΒDoorType.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbCatErm
+        '
+        Me.bbCatErm.Caption = "Κατηγορίες Ερμαρίων"
+        Me.bbCatErm.Id = 39
+        Me.bbCatErm.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_elective_40
+        Me.bbCatErm.Name = "bbCatErm"
+        Me.bbCatErm.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbERM
+        '
+        Me.bbERM.Caption = "Ερμάρια"
+        Me.bbERM.Id = 40
+        Me.bbERM.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_sliding_door_closet_401
+        Me.bbERM.Name = "bbERM"
+        Me.bbERM.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbBench
+        '
+        Me.bbBench.Caption = "Πάγκοι"
+        Me.bbBench.Id = 41
+        Me.bbBench.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_wooden_box_40
+        Me.bbBench.Name = "bbBench"
+        Me.bbBench.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbMech
+        '
+        Me.bbMech.Caption = "Μηχανισμοί"
+        Me.bbMech.Id = 42
+        Me.bbMech.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_level_tool_40
+        Me.bbMech.Name = "bbMech"
+        Me.bbMech.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bboffer
+        '
+        Me.bboffer.Caption = "Προσφορά"
+        Me.bboffer.Id = 43
+        Me.bboffer.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_paste_special_40
+        Me.bboffer.Name = "bboffer"
+        Me.bboffer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BarButtonItem2
+        '
+        Me.BarButtonItem2.Caption = "Περί"
+        Me.BarButtonItem2.Id = 44
+        Me.BarButtonItem2.Name = "BarButtonItem2"
+        Me.BarButtonItem2.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbTechnicalSupport
+        '
+        Me.bbTechnicalSupport.Caption = "Τεχνική Υποστήριξη"
+        Me.bbTechnicalSupport.Id = 45
+        Me.bbTechnicalSupport.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_technical_support_40
+        Me.bbTechnicalSupport.Name = "bbTechnicalSupport"
+        Me.bbTechnicalSupport.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbTechCateg
+        '
+        Me.bbTechCateg.Caption = "Κατηγορίες Τεχνικής Υποστήριξης"
+        Me.bbTechCateg.Id = 46
+        Me.bbTechCateg.Name = "bbTechCateg"
+        Me.bbTechCateg.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'RibbonPage1
         '
@@ -409,7 +482,7 @@ Partial Class frmMain
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbPRF)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbStatus)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbSource)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.BarButtonItem2)
+        Me.RibbonPageGroup2.ItemLinks.Add(Me.bbLabels)
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
         Me.RibbonPageGroup2.Text = "Βοηθητικά"
         '
@@ -433,9 +506,28 @@ Partial Class frmMain
         '
         'RibbonPageGroup4
         '
-        Me.RibbonPageGroup4.ItemLinks.Add(Me.ΒΒPriceList)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.ΒΒDoorType)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.bbCatErm)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.bbERM)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.bbBench)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.bbMech)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.bboffer)
         Me.RibbonPageGroup4.Name = "RibbonPageGroup4"
         Me.RibbonPageGroup4.Text = "Τιμοκατάλογοι"
+        '
+        'RibbonPage5
+        '
+        Me.RibbonPage5.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup5})
+        Me.RibbonPage5.Name = "RibbonPage5"
+        Me.RibbonPage5.Text = "Βοήθεια"
+        '
+        'RibbonPageGroup5
+        '
+        Me.RibbonPageGroup5.ItemLinks.Add(Me.BarButtonItem2)
+        Me.RibbonPageGroup5.ItemLinks.Add(Me.bbTechCateg)
+        Me.RibbonPageGroup5.ItemLinks.Add(Me.bbTechnicalSupport)
+        Me.RibbonPageGroup5.Name = "RibbonPageGroup5"
+        Me.RibbonPageGroup5.Text = "RibbonPageGroup5"
         '
         'RepositoryItemHypertextLabel1
         '
@@ -573,14 +665,24 @@ Partial Class frmMain
     Friend WithEvents RibbonPageGroup3 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents BBCusStatistics1 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBNotes As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbLabels As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
     Friend WithEvents VwNOTESBindingSource As BindingSource
     Friend WithEvents Vw_NOTESTableAdapter As DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter
     Friend WithEvents Timer1 As Timer
     Friend WithEvents AlertControl1 As DevExpress.XtraBars.Alerter.AlertControl
     Friend WithEvents BBChangeUsr As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents ΒΒPriceList As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents ΒΒDoorType As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RibbonPage4 As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents RibbonPageGroup4 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents bbCatErm As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbERM As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbBench As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbMech As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bboffer As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbTechnicalSupport As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonPage5 As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents RibbonPageGroup5 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents bbTechCateg As DevExpress.XtraBars.BarButtonItem
 End Class

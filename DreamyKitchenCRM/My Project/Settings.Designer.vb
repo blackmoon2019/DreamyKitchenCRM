@@ -270,12 +270,35 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
-        Public Property frmPriceList() As Global.System.Drawing.Point
+        Public Property frmDoorType() As Global.System.Drawing.Point
             Get
-                Return CType(Me("frmPriceList"),Global.System.Drawing.Point)
+                Return CType(Me("frmDoorType"),Global.System.Drawing.Point)
             End Get
             Set
-                Me("frmPriceList") = value
+                Me("frmDoorType") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Password=mavros1!;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
+            "chen;Data Source=BLACKMOON-PC;MultipleActiveResultSets=True")>  _
+        Public ReadOnly Property DreamyKitchenConnectionStringLocal() As String
+            Get
+                Return CType(Me("DreamyKitchenConnectionStringLocal"),String)
+            End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmTecnicalSupport() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmTecnicalSupport"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmTecnicalSupport") = value
             End Set
         End Property
     End Class

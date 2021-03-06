@@ -52,6 +52,14 @@ Public Class FormLoader
                                                 If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
                                             Case "date"
                                                 If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                            Case "varbinary"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
+                                                    Dim pic As DevExpress.XtraEditors.PictureEdit
+                                                    Dim bytes As Byte()
+                                                    pic = LItem.Control
+                                                    bytes = DirectCast(sdr(TagV), Byte())
+                                                    pic.EditValue = bytes
+                                                End If
                                         End Select
                                     End If
                                 End If
@@ -109,6 +117,46 @@ Public Class FormLoader
         GRDControl.DataSource = myReader
         GRDControl.ForceInitialize()
         GRDControl.DefaultView.PopulateColumns()
+    End Sub
+    Public Sub LoadColumnDescriptionNames(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
+                                         Optional ByVal sTable As String = "", Optional ByVal sView As String = "")
+        Dim myCmd As SqlCommand
+        Dim myReader As SqlDataReader
+        Dim sSQL As String
+        Dim dt As New DataTable("sTable")
+        Try
+            If sView.Length > 0 Then
+                sSQL = "Select  VIEW_COLUMN_NAME = c.name,VIEW_CATALOG,VIEW_SCHEMA,VIEW_NAME,TABLE_CATALOG,TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME, ep.value As 'COLUMN_DESCRIPTION'
+                        From sys.columns c
+                        INNER Join sys.views vw on c.OBJECT_ID = vw.OBJECT_ID
+                        INNER Join sys.schemas s ON s.schema_id = vw.schema_id
+                        Left Join INFORMATION_SCHEMA.VIEW_COLUMN_USAGE vcu on vw.name = vcu.VIEW_NAME And s.name = vcu.VIEW_SCHEMA And c.name = vcu.COLUMN_NAME
+                        Left Join(
+                            SELECT distinct SCM_Name=SCM.Name, TBL_Name = TBL.name, COLName = COL.name, COL_Object_id = COL.object_id, COL_column_id = COL.column_id
+                            FROM
+                            SYS.COLUMNS COL
+                            INNER Join SYS.TABLES TBL on COL.object_id = TBL.object_id
+                            INNER Join SYS.SCHEMAS SCM ON TBL.schema_id = SCM.schema_id) tempTBL on tempTBL.TBL_Name=vcu.TABLE_NAME And tempTBL.SCM_Name=TABLE_SCHEMA And tempTBL.COLName = vcu.COLUMN_NAME
+                        Left Join sys.extended_properties ep on tempTBL.COL_Object_id = ep.major_id And tempTBL.COL_column_id = ep.minor_id
+                        where vw.NAME = '" & sView & "'"
+            ElseIf sTable.Length > 0 Then
+                sSQL = "Select   objname, [value] FROM fn_listextendedproperty(NULL, 'SCHEMA', 'dbo', 'TABLE', '" & sTable & "','COLUMN', NULL)"
+            Else
+                Exit Sub
+            End If
+
+            myCmd = CNDB.CreateCommand
+            myCmd.CommandText = sSQL
+            myReader = myCmd.ExecuteReader()
+            dt.Load(myReader)
+            For Each row As DataRow In dt.Rows
+                Dim columnName As String = row.Item("COLUMN_NAME").ToString
+                Dim columnNameValue As String = row.Item("COLUMN_DESCRIPTION").ToString
+                If columnName.Length > 0 And GRDView.Columns.Item(columnName) IsNot Nothing Then GRDView.Columns.Item(columnName).Caption = columnNameValue
+            Next
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class
 

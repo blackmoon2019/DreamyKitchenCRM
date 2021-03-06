@@ -168,6 +168,7 @@
     <Compile Include="classes\FillCombos.vb" />
     <Compile Include="classes\FormLoader.vb" />
     <Compile Include="classes\InitializeCalendar.vb" />
+    <Compile Include="classes\Localization.vb" />
     <Compile Include="classes\ProgProp.vb" />
     <Compile Include="classes\Transactions.vb" />
     <Compile Include="classes\ValidateControls.vb" />
@@ -179,6 +180,12 @@
     </Compile>
     <Compile Include="DreamyKitchenDataSet.vb">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmBench.Designer.vb">
+      <DependentUpon>frmBench.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmBench.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmCalendar.Designer.vb">
       <DependentUpon>frmCalendar.vb</DependentUpon>
@@ -202,6 +209,12 @@
       <DependentUpon>frmDBConnection.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmDBConnection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmErmaria.Designer.vb">
+      <DependentUpon>frmErmaria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmErmaria.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmGen.Designer.vb">
@@ -228,6 +241,12 @@
     <Compile Include="forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmMech.Designer.vb">
+      <DependentUpon>frmMech.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmMech.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmNotes.Designer.vb">
       <DependentUpon>frmNotes.vb</DependentUpon>
     </Compile>
@@ -246,10 +265,10 @@
     <Compile Include="forms\frmPermissions.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmPriceList.Designer.vb">
-      <DependentUpon>frmPriceList.vb</DependentUpon>
+    <Compile Include="forms\frmDoorType.Designer.vb">
+      <DependentUpon>frmDoorType.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmPriceList.vb">
+    <Compile Include="forms\frmDoorType.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmScroller.Designer.vb">
@@ -262,6 +281,12 @@
       <DependentUpon>frmSplash.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmTecnicalSupport.designer.vb">
+      <DependentUpon>frmTecnicalSupport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmTecnicalSupport.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmUsers.Designer.vb">
@@ -295,6 +320,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="forms\frmBench.resx">
+      <DependentUpon>frmBench.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCalendar.resx">
       <DependentUpon>frmCalendar.vb</DependentUpon>
     </EmbeddedResource>
@@ -306,6 +334,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmDBConnection.resx">
       <DependentUpon>frmDBConnection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmErmaria.resx">
+      <DependentUpon>frmErmaria.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmGen.resx">
       <DependentUpon>frmGen.vb</DependentUpon>
@@ -319,6 +350,9 @@
     <EmbeddedResource Include="forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmMech.resx">
+      <DependentUpon>frmMech.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmNotes.resx">
       <DependentUpon>frmNotes.vb</DependentUpon>
     </EmbeddedResource>
@@ -328,14 +362,17 @@
     <EmbeddedResource Include="forms\frmPermissions.resx">
       <DependentUpon>frmPermissions.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmPriceList.resx">
-      <DependentUpon>frmPriceList.vb</DependentUpon>
+    <EmbeddedResource Include="forms\frmDoorType.resx">
+      <DependentUpon>frmDoorType.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmScroller.resx">
       <DependentUpon>frmScroller.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSplash.resx">
       <DependentUpon>frmSplash.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTecnicalSupport.resx">
+      <DependentUpon>frmTecnicalSupport.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUsers.resx">
       <DependentUpon>frmUsers.vb</DependentUpon>
@@ -600,6 +637,14 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-technical-support-40.png" />
+    <None Include="Resources\icons8-paste-special-40.png" />
+    <None Include="Resources\icons8-level-tool-40.png" />
+    <None Include="Resources\icons8-wooden-box-40.png" />
+    <None Include="Resources\icons8-elective-40.png" />
+    <None Include="Resources\icons8-sliding-door-closet-401.png" />
+    <None Include="Resources\icons8-sliding-door-closet-40.png" />
+    <None Include="Resources\icons8-door-40.png" />
     <None Include="Resources\icons8-database-administrator-24.png" />
     <None Include="Resources\dreamyKitchen_logo_2.png" />
     <None Include="Resources\favicon.ico" />

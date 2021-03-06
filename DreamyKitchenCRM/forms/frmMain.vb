@@ -192,7 +192,7 @@ Public Class frmMain
         form.Show()
     End Sub
 
-    Private Sub BarButtonItem2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarButtonItem2.ItemClick
+    Private Sub BarButtonItem2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbLabels.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Εττικέτες"
         form.DataTable = "vw_NOTES_L"
@@ -305,10 +305,59 @@ Public Class frmMain
         Me.Close()
     End Sub
 
-    Private Sub ΒΒPriceList_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒPriceList.ItemClick
+    Private Sub ΒΒDoorType_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒDoorType.ItemClick
         Dim form As frmScroller = New frmScroller()
-        form.Text = "Τιμοκαταλόγοι"
-        form.DataTable = "vw_PRICELIST"
+        form.Text = "Κατηγορία Πόρτας"
+        form.DataTable = "vw_DOOR_TYPE"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbCatErm_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCatErm.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κατηγορίες Ερμαρίων"
+        form.DataTable = "vw_CAT_ERM"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbERM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbERM.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Ερμάρια"
+        form.DataTable = "vw_ERM"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbBench_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbBench.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Πάγκοι"
+        form.DataTable = "vw_BENCH"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbMech_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbMech.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Μηχανισμοί"
+        form.DataTable = "vw_MECH"
+        form.MdiParent = Me
+        form.Show()
+
+    End Sub
+
+    Private Sub bbTechCateg_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbTechCateg.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κατηγορίες Τεχνικής Υποστήριξης"
+        form.DataTable = "vw_TECH_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbTechnicalSupport_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbTechnicalSupport.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τεχνική Υποστήριξη"
+        form.DataTable = "vw_TECH_SUP"
         form.MdiParent = Me
         form.Show()
     End Sub

@@ -1,6 +1,5 @@
 ﻿Imports DevExpress.XtraEditors
-
-Public Class frmPriceList
+Public Class frmBench
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
@@ -44,21 +43,24 @@ Public Class frmPriceList
         Me.Close()
     End Sub
 
-    Private Sub frmPriceList_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+    Private Sub frmBench_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
 
-    Private Sub frmPriceList_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub frmBench_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'Πάγκοι
         Select Case Mode
             Case FormMode.NewRecord
-                txtCode.Text = DBQ.GetNextId("PRICELIST")
+                txtCode.Text = DBQ.GetNextId("BENCH")
             Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from vw_PRICELIST where id ='" + sID + "'")
+                LoadForms.LoadForm(LayoutControl1, "Select * from vw_BENCH where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
-        My.Settings.frmPriceList = Me.Location
+        My.Settings.frmDoorType = Me.Location
         My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        txtCustomCode.Select()
+
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -69,23 +71,23 @@ Public Class frmPriceList
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertData(LayoutControl1, "PRICELIST", sGuid)
+                        sResult = DBQ.InsertData(LayoutControl1, "BENCH", sGuid)
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateData(LayoutControl1, "PRICELIST", sID)
+                        sResult = DBQ.UpdateData(LayoutControl1, "BENCH", sID)
                         sGuid = sID
                 End Select
                 If CalledFromCtrl Then
-                    FillCbo.PRICELIST(CtrlCombo)
+                    FillCbo.BENCH(CtrlCombo)
                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                 Else
                     Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_PRICELIST")
+                    form.LoadRecords("vw_BENCH")
                 End If
-                txtCode.Text = DBQ.GetNextId("PRICELIST")
                 txtCustomCode.Select()
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Cls.ClearCtrls(LayoutControl1)
+                    txtCode.Text = DBQ.GetNextId("BENCH")
                 End If
             End If
 
