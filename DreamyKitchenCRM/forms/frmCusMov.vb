@@ -229,12 +229,6 @@ Public Class frmCusMov
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
 
-
-
-    Private Sub chkCompleted_CheckStateChanged(sender As Object, e As EventArgs) Handles chkCompleted.CheckStateChanged
-
-    End Sub
-
     Private Sub chkCompleted_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompleted.CheckedChanged
         Dim Edit As CheckEdit = CType(sender, CheckEdit)
         If Edit.Checked = True Then dtCompleted.EditValue = Date.Now Else dtCompleted.Enabled = False : dtCompleted.EditValue = ""

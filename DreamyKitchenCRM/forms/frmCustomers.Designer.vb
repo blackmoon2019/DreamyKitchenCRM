@@ -282,71 +282,71 @@ Partial Class frmCustomers
         '
         'txtCode
         '
-        Me.txtCode.Location = New System.Drawing.Point(77, 12)
+        Me.txtCode.Location = New System.Drawing.Point(70, 12)
         Me.txtCode.Name = "txtCode"
         Me.txtCode.Properties.Appearance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.txtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(90, 20)
+        Me.txtCode.Size = New System.Drawing.Size(97, 20)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
         '
         'cboAREAS
         '
-        Me.cboAREAS.Location = New System.Drawing.Point(77, 134)
+        Me.cboAREAS.Location = New System.Drawing.Point(70, 134)
         Me.cboAREAS.Name = "cboAREAS"
         Me.cboAREAS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboAREAS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboAREAS.Properties.NullText = ""
         Me.cboAREAS.Properties.PopupSizeable = False
-        Me.cboAREAS.Size = New System.Drawing.Size(153, 20)
+        Me.cboAREAS.Size = New System.Drawing.Size(160, 20)
         Me.cboAREAS.StyleController = Me.LayoutControl1
         Me.cboAREAS.TabIndex = 6
         Me.cboAREAS.Tag = "AreaId,0,1,2"
         '
         'txtTK
         '
-        Me.txtTK.Location = New System.Drawing.Point(77, 162)
+        Me.txtTK.Location = New System.Drawing.Point(70, 162)
         Me.txtTK.Name = "txtTK"
-        Me.txtTK.Size = New System.Drawing.Size(90, 20)
+        Me.txtTK.Size = New System.Drawing.Size(97, 20)
         Me.txtTK.StyleController = Me.LayoutControl1
         Me.txtTK.TabIndex = 8
         Me.txtTK.Tag = "tk,0"
         '
         'cboADR
         '
-        Me.cboADR.Location = New System.Drawing.Point(77, 186)
+        Me.cboADR.Location = New System.Drawing.Point(70, 186)
         Me.cboADR.Name = "cboADR"
         Me.cboADR.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboADR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboADR.Properties.NullText = ""
         Me.cboADR.Properties.PopupSizeable = False
-        Me.cboADR.Size = New System.Drawing.Size(153, 20)
+        Me.cboADR.Size = New System.Drawing.Size(160, 20)
         Me.cboADR.StyleController = Me.LayoutControl1
         Me.cboADR.TabIndex = 7
         Me.cboADR.Tag = "adrid,0,1,2"
         '
         'txtAR
         '
-        Me.txtAR.Location = New System.Drawing.Point(325, 186)
+        Me.txtAR.Location = New System.Drawing.Point(318, 186)
         Me.txtAR.Name = "txtAR"
-        Me.txtAR.Size = New System.Drawing.Size(66, 20)
+        Me.txtAR.Size = New System.Drawing.Size(73, 20)
         Me.txtAR.StyleController = Me.LayoutControl1
         Me.txtAR.TabIndex = 10
         Me.txtAR.Tag = "ar,0"
         '
         'cboCOU
         '
-        Me.cboCOU.Location = New System.Drawing.Point(77, 110)
+        Me.cboCOU.Location = New System.Drawing.Point(70, 110)
         Me.cboCOU.Name = "cboCOU"
         Me.cboCOU.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCOU.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboCOU.Properties.NullText = ""
         Me.cboCOU.Properties.PopupSizeable = False
-        Me.cboCOU.Size = New System.Drawing.Size(153, 20)
+        Me.cboCOU.Size = New System.Drawing.Size(160, 20)
         Me.cboCOU.StyleController = Me.LayoutControl1
         Me.cboCOU.TabIndex = 5
         Me.cboCOU.Tag = "couid,0,1,2"
@@ -389,9 +389,9 @@ Partial Class frmCustomers
         '
         'TextEdit3
         '
-        Me.TextEdit3.Location = New System.Drawing.Point(77, 36)
+        Me.TextEdit3.Location = New System.Drawing.Point(70, 36)
         Me.TextEdit3.Name = "TextEdit3"
-        Me.TextEdit3.Size = New System.Drawing.Size(98, 20)
+        Me.TextEdit3.Size = New System.Drawing.Size(105, 20)
         Me.TextEdit3.StyleController = Me.LayoutControl1
         Me.TextEdit3.TabIndex = 23
         Me.TextEdit3.Tag = "phn,0,1,2"
@@ -407,57 +407,57 @@ Partial Class frmCustomers
         '
         'cboSRC
         '
-        Me.cboSRC.Location = New System.Drawing.Point(77, 212)
+        Me.cboSRC.Location = New System.Drawing.Point(70, 212)
         Me.cboSRC.Name = "cboSRC"
         Me.cboSRC.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboSRC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboSRC.Properties.NullText = ""
         Me.cboSRC.Properties.PopupSizeable = False
-        Me.cboSRC.Size = New System.Drawing.Size(153, 20)
+        Me.cboSRC.Size = New System.Drawing.Size(160, 20)
         Me.cboSRC.StyleController = Me.LayoutControl1
         Me.cboSRC.TabIndex = 5
         Me.cboSRC.Tag = "sourceid,0,1,2"
         '
         'cboSaler
         '
-        Me.cboSaler.Location = New System.Drawing.Point(325, 212)
+        Me.cboSaler.Location = New System.Drawing.Point(318, 212)
         Me.cboSaler.Name = "cboSaler"
         Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboSaler.Properties.NullText = ""
         Me.cboSaler.Properties.PopupSizeable = False
-        Me.cboSaler.Size = New System.Drawing.Size(145, 20)
+        Me.cboSaler.Size = New System.Drawing.Size(152, 20)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 5
         Me.cboSaler.Tag = "salerid,0,1,2"
         '
         'txtNam1
         '
-        Me.txtNam1.Location = New System.Drawing.Point(77, 60)
+        Me.txtNam1.Location = New System.Drawing.Point(70, 60)
         Me.txtNam1.Name = "txtNam1"
-        Me.txtNam1.Size = New System.Drawing.Size(96, 20)
+        Me.txtNam1.Size = New System.Drawing.Size(103, 20)
         Me.txtNam1.StyleController = Me.LayoutControl1
         Me.txtNam1.TabIndex = 9
         Me.txtNam1.Tag = "afm,0,1,2"
         '
         'cboPRF
         '
-        Me.cboPRF.Location = New System.Drawing.Point(418, 60)
+        Me.cboPRF.Location = New System.Drawing.Point(411, 60)
         Me.cboPRF.Name = "cboPRF"
         Me.cboPRF.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboPRF.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboPRF.Properties.NullText = ""
         Me.cboPRF.Properties.PopupSizeable = False
-        Me.cboPRF.Size = New System.Drawing.Size(141, 20)
+        Me.cboPRF.Size = New System.Drawing.Size(148, 20)
         Me.cboPRF.StyleController = Me.LayoutControl1
         Me.cboPRF.TabIndex = 5
         Me.cboPRF.Tag = "prfid,0,1,2"
         '
         'txtFileNames
         '
-        Me.txtFileNames.Location = New System.Drawing.Point(77, 290)
+        Me.txtFileNames.Location = New System.Drawing.Point(56, 290)
         Me.txtFileNames.Name = "txtFileNames"
-        Me.txtFileNames.Size = New System.Drawing.Size(482, 20)
+        Me.txtFileNames.Size = New System.Drawing.Size(503, 20)
         Me.txtFileNames.StyleController = Me.LayoutControl1
         Me.txtFileNames.TabIndex = 30
         Me.txtFileNames.Tag = ""
@@ -480,7 +480,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(159, 24)
         Me.LayoutControlItem4.Text = "Κωδικός"
+        Me.LayoutControlItem4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem4.TextToControlDistance = 5
         '
         'LayoutControlItem5
         '
@@ -493,7 +495,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem5.Size = New System.Drawing.Size(222, 28)
         Me.LayoutControlItem5.Tag = "1"
         Me.LayoutControlItem5.Text = "Περιοχή"
+        Me.LayoutControlItem5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem5.TextToControlDistance = 5
         '
         'LayoutControlItem6
         '
@@ -504,7 +508,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(159, 24)
         Me.LayoutControlItem6.Text = "Τ.Κ"
+        Me.LayoutControlItem6.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem6.TextToControlDistance = 5
         '
         'LayoutControlItem7
         '
@@ -515,7 +521,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(222, 26)
         Me.LayoutControlItem7.Text = "Διεύθυνση"
+        Me.LayoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem7.TextToControlDistance = 5
         '
         'LayoutControlItem9
         '
@@ -528,7 +536,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem9.Size = New System.Drawing.Size(222, 24)
         Me.LayoutControlItem9.Tag = "1"
         Me.LayoutControlItem9.Text = "Νομός"
+        Me.LayoutControlItem9.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem9.TextToControlDistance = 5
         '
         'LayoutControlItem14
         '
@@ -539,7 +549,7 @@ Partial Class frmCustomers
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
         Me.LayoutControlItem14.Size = New System.Drawing.Size(577, 52)
         Me.LayoutControlItem14.Text = "Σχόλια"
-        Me.LayoutControlItem14.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem14.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(32, 13)
         Me.LayoutControlItem14.TextToControlDistance = 25
         '
@@ -594,7 +604,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
         Me.LayoutControlItem8.Size = New System.Drawing.Size(135, 26)
         Me.LayoutControlItem8.Text = "Αριθμός"
+        Me.LayoutControlItem8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem8.TextToControlDistance = 5
         '
         'LayoutControlItem12
         '
@@ -603,7 +615,7 @@ Partial Class frmCustomers
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Size = New System.Drawing.Size(148, 24)
         Me.LayoutControlItem12.Text = "Τηλέφωνο"
-        Me.LayoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem12.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(51, 13)
         Me.LayoutControlItem12.TextToControlDistance = 5
         '
@@ -618,7 +630,7 @@ Partial Class frmCustomers
         Me.LayoutControlItem1.Size = New System.Drawing.Size(418, 24)
         Me.LayoutControlItem1.Tag = "1"
         Me.LayoutControlItem1.Text = "Επωνυμία"
-        Me.LayoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(57, 13)
         Me.LayoutControlItem1.TextToControlDistance = 3
         '
@@ -629,7 +641,7 @@ Partial Class frmCustomers
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
         Me.LayoutControlItem15.Size = New System.Drawing.Size(262, 24)
         Me.LayoutControlItem15.Text = "Φάξ"
-        Me.LayoutControlItem15.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem15.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(19, 13)
         Me.LayoutControlItem15.TextToControlDistance = 5
         '
@@ -644,7 +656,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem16.Size = New System.Drawing.Size(222, 26)
         Me.LayoutControlItem16.Tag = "1"
         Me.LayoutControlItem16.Text = "Πηγή"
+        Me.LayoutControlItem16.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem16.TextToControlDistance = 5
         '
         'LayoutControlItem18
         '
@@ -665,7 +679,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem17.Size = New System.Drawing.Size(214, 26)
         Me.LayoutControlItem17.Tag = ""
         Me.LayoutControlItem17.Text = "Πωλητής"
+        Me.LayoutControlItem17.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem17.TextToControlDistance = 5
         '
         'LayoutControlItem19
         '
@@ -691,7 +707,7 @@ Partial Class frmCustomers
         Me.LayoutControlItem21.Name = "LayoutControlItem21"
         Me.LayoutControlItem21.Size = New System.Drawing.Size(150, 26)
         Me.LayoutControlItem21.Text = "ΔΟΥ"
-        Me.LayoutControlItem21.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem21.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem21.TextSize = New System.Drawing.Size(21, 13)
         Me.LayoutControlItem21.TextToControlDistance = 5
         '
@@ -722,8 +738,10 @@ Partial Class frmCustomers
         Me.LayoutControlItem13.Size = New System.Drawing.Size(167, 24)
         Me.LayoutControlItem13.Tag = "1"
         Me.LayoutControlItem13.Text = "Κινητό"
+        Me.LayoutControlItem13.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem13.TextLocation = DevExpress.Utils.Locations.Left
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem13.TextToControlDistance = 5
         '
         'LayoutControlItem20
         '
@@ -734,7 +752,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
         Me.LayoutControlItem20.Size = New System.Drawing.Size(165, 26)
         Me.LayoutControlItem20.Text = "ΑΦΜ"
+        Me.LayoutControlItem20.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem20.TextToControlDistance = 5
         '
         'LayoutControlItem11
         '
@@ -756,7 +776,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem23.Name = "LayoutControlItem23"
         Me.LayoutControlItem23.Size = New System.Drawing.Size(210, 26)
         Me.LayoutControlItem23.Text = "Επάγγελμα"
+        Me.LayoutControlItem23.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem23.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem23.TextToControlDistance = 5
         '
         'LayoutControlItem24
         '
@@ -791,7 +813,7 @@ Partial Class frmCustomers
         Me.LayoutControlItem25.Name = "LayoutControlItem25"
         Me.LayoutControlItem25.Size = New System.Drawing.Size(551, 26)
         Me.LayoutControlItem25.Text = "Αρχεία"
-        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(53, 13)
+        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(32, 13)
         '
         'LayoutControlItem26
         '

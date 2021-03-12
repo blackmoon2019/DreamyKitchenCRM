@@ -221,6 +221,35 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("TECH_CAT")
+                            Case "COLORS_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "COLORS_CAT", LayoutControl1,,, sGuid, True)
+                                If CalledFromCtrl Then
+                                    FillCbo.COLORS_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As New frmScroller
+                                    form = Frm
+                                    form.LoadRecords("vw_COLORS_CAT")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("COLORS_CAT")
+                            Case "DIM"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "DIM", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.DIMENSION(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_DIM")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("DIM")
+
+
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
@@ -297,7 +326,7 @@ Public Class frmGen
                                     form.LoadRecords("vw_SALERS")
                                 End If
                             Case "NOTES_L"
-                                sResult = DBQ.InsertData(LayoutControl1, "NOTES_L", sID)
+                                sResult = DBQ.UpdateData(LayoutControl1, "NOTES_L", sID)
                                 If CalledFromCtrl Then
                                     FillCbo.NOTES_L(CtrlCombo)
                                     CtrlCombo.EditValue = System.Guid.Parse(sID)
@@ -306,7 +335,7 @@ Public Class frmGen
                                     form.LoadRecords("vw_NOTES_L")
                                 End If
                             Case "CAT_ERM"
-                                sResult = DBQ.InsertData(LayoutControl1, "CAT_ERM", sGuid)
+                                sResult = DBQ.UpdateData(LayoutControl1, "CAT_ERM", sID)
                                 If CalledFromCtrl Then
                                     FillCbo.CAT_ERM(CtrlCombo)
                                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
@@ -323,6 +352,26 @@ Public Class frmGen
                                     Dim form As New frmScroller
                                     form = Frm
                                     form.LoadRecords("vw_TECH_CAT")
+                                End If
+                            Case "COLORS_CAT"
+                                sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "COLORS_CAT", LayoutControl1,,, sID, True)
+                                If CalledFromCtrl Then
+                                    FillCbo.COLORS_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As New frmScroller
+                                    form = Frm
+                                    form.LoadRecords("vw_COLORS_CAT")
+                                End If
+                            Case "DIM"
+                                sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "DIM", LayoutControl1,,, sID, True)
+                                If CalledFromCtrl Then
+                                    FillCbo.DIMENSION(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As New frmScroller
+                                    form = Frm
+                                    form.LoadRecords("vw_DIM")
                                 End If
                         End Select
                 End Select
@@ -404,7 +453,18 @@ Public Class frmGen
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_TECH_CAT where id ='" + sID + "'")
                 End If
-
+            Case "COLORS_CAT"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("COLORS_CAT")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_COLORS_CAT where id ='" + sID + "'")
+                End If
+            Case "DIM"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("DIM")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DIM where id ='" + sID + "'")
+                End If
         End Select
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         cmdDelete.Enabled = IIf(Mode = FormMode.NewRecord, False, UserProps.AllowDelete)
@@ -479,6 +539,20 @@ Public Class frmGen
                         Else
                             Dim form As New frmScroller
                             form.LoadRecords("vw_TECH_CAT")
+                        End If
+                    Case "COLORS_CAT"
+                        If CalledFromCtrl Then
+                            FillCbo.COLORS_CAT(CtrlCombo)
+                        Else
+                            Dim form As New frmScroller
+                            form.LoadRecords("vw_COLORS_CAT")
+                        End If
+                    Case "DIM"
+                        If CalledFromCtrl Then
+                            FillCbo.DIMENSION(CtrlCombo)
+                        Else
+                            Dim form As New frmScroller
+                            form.LoadRecords("vw_DIM")
                         End If
                 End Select
                 Cls.ClearCtrls(LayoutControl1)

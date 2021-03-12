@@ -177,8 +177,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
-            "chen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Password=mavros1!;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
+            "chen;Data Source=BLACKMOON-PC;MultipleActiveResultSets=True")>  _
         Public ReadOnly Property DreamyKitchenConnectionString() As String
             Get
                 Return CType(Me("DreamyKitchenConnectionString"),String)
@@ -299,6 +299,18 @@ Namespace My
             End Get
             Set
                 Me("frmTecnicalSupport") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmEpendisis() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmEpendisis"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmEpendisis") = value
             End Set
         End Property
     End Class

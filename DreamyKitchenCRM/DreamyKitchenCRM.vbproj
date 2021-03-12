@@ -193,6 +193,12 @@
     <Compile Include="forms\frmCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmColors.Designer.vb">
+      <DependentUpon>frmColors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmColors.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCusMov.Designer.vb">
       <DependentUpon>frmCusMov.vb</DependentUpon>
     </Compile>
@@ -209,6 +215,12 @@
       <DependentUpon>frmDBConnection.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmDBConnection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEpendisis.Designer.vb">
+      <DependentUpon>frmEpendisis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEpendisis.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmErmaria.Designer.vb">
@@ -257,6 +269,12 @@
       <DependentUpon>frmNotesScroller.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmNotesScroller.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmOffer.Designer.vb">
+      <DependentUpon>frmOffer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmOffer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmPermissions.designer.vb">
@@ -326,6 +344,9 @@
     <EmbeddedResource Include="forms\frmCalendar.resx">
       <DependentUpon>frmCalendar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmColors.resx">
+      <DependentUpon>frmColors.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCusMov.resx">
       <DependentUpon>frmCusMov.vb</DependentUpon>
     </EmbeddedResource>
@@ -334,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmDBConnection.resx">
       <DependentUpon>frmDBConnection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEpendisis.resx">
+      <DependentUpon>frmEpendisis.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmErmaria.resx">
       <DependentUpon>frmErmaria.vb</DependentUpon>
@@ -358,6 +382,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmNotesScroller.resx">
       <DependentUpon>frmNotesScroller.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmOffer.resx">
+      <DependentUpon>frmOffer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPermissions.resx">
       <DependentUpon>frmPermissions.vb</DependentUpon>

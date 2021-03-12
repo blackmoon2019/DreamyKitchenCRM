@@ -361,5 +361,45 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub bbColors_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbColors.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Χρώματα"
+        form.DataTable = "vw_COLORS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbColorCAT_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbColorCAT.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κατηγορίες Χρωμάτων"
+        form.DataTable = "vw_COLORS_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bboffer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bboffer.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Προσφορές"
+        form.DataTable = "vw_OFFERS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbEpendisis_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEpendisis.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Επενδύσης - Καταφραγές"
+        form.DataTable = "vw_SIDES"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbDimensions_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDimensions.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Διαστάσεις"
+        form.DataTable = "vw_DIM"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

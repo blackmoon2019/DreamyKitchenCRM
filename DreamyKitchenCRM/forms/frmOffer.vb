@@ -1,0 +1,352 @@
+﻿Imports System.Data.SqlClient
+Imports DevExpress.Utils
+Imports DevExpress.Utils.Menu
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraGrid.Menu
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraLayout
+
+Public Class frmOffer
+    Private sID As String
+    Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
+    Private Frm As DevExpress.XtraEditors.XtraForm
+    Public Mode As Byte
+    Private Valid As New ValidateControls
+    Private Log As New Transactions
+    Private FillCbo As New FillCombos
+    Private DBQ As New DBQueries
+    Private LoadForms As New FormLoader
+    Private Cls As New ClearControls
+    Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
+    Private CalledFromCtrl As Boolean
+
+
+    Public WriteOnly Property ID As String
+        Set(value As String)
+            sID = value
+        End Set
+    End Property
+    Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
+        Set(value As DevExpress.XtraGrid.Views.Grid.GridView)
+            Ctrl = value
+        End Set
+    End Property
+    Public WriteOnly Property FormScroller As DevExpress.XtraEditors.XtraForm
+        Set(value As DevExpress.XtraEditors.XtraForm)
+            Frm = value
+        End Set
+    End Property
+    Public WriteOnly Property CallerControl As DevExpress.XtraEditors.LookUpEdit
+        Set(value As DevExpress.XtraEditors.LookUpEdit)
+            CtrlCombo = value
+        End Set
+    End Property
+    Public WriteOnly Property CalledFromControl As Boolean
+        Set(value As Boolean)
+            CalledFromCtrl = value
+        End Set
+    End Property
+    Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
+        Me.Close()
+    End Sub
+
+    Private Sub frmOffer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSPVC' table. You can move, or remove it, as needed.
+        Me.Vw_COLORSPVCTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSPVC)
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
+        Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_ERM' table. You can move, or remove it, as needed.
+        FillCbo.CUS(cboCUS)
+        FillCbo.CAT_ERM(cboCategory)
+        FillCbo.ERM(cboERM)
+        FillCbo.BENCH(cboBENCH)
+        FillCbo.DIMENSION(cboDim)
+        cboSides.Properties.Items.Add("Δεξί")
+        cboSides.Properties.Items.Add("Αριστερό")
+
+
+
+        If cboCategory.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByAll(Me.DreamyKitchenDataSet.vw_ERM)
+        Else
+            Me.Vw_ERMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
+        End If
+
+        Select Case Mode
+            Case FormMode.NewRecord
+                FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
+                txtCode.Text = DBQ.GetNextId("OFFERS")
+                txtHeight.ReadOnly = True
+                txtWidth.ReadOnly = True
+                txtDepth.ReadOnly = True
+            Case FormMode.EditRecord
+                FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sID)
+                LoadForms.LoadForm(LayoutControl1, "Select * from vw_OFFERS where id ='" + sID + "'")
+
+        End Select
+        Me.CenterToScreen()
+        My.Settings.frmDoorType = Me.Location
+        My.Settings.Save()
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\APT_offer_erm.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\APT_offer_erm.xml", OptionsLayoutBase.FullLayout)
+        'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
+        LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , "ERM")
+
+        cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        txtCustomCode.Select()
+
+    End Sub
+
+    Private Sub frmOffer_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
+    End Sub
+
+    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
+        If cboCUS.EditValue Is Nothing Then Exit Sub
+        Dim cmd As SqlCommand = New SqlCommand("Select * from vw_CCT where ID = '" & cboCUS.EditValue.ToString & "'", CNDB)
+        Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("mob")) = False Then txtMob.EditValue = sdr.GetString(sdr.GetOrdinal("mob"))
+            If sdr.IsDBNull(sdr.GetOrdinal("phn")) = False Then txtPhn.EditValue = sdr.GetString(sdr.GetOrdinal("phn"))
+            If sdr.IsDBNull(sdr.GetOrdinal("COU_Name")) = False Then txtCou.EditValue = sdr.GetString(sdr.GetOrdinal("COU_Name"))
+            If sdr.IsDBNull(sdr.GetOrdinal("AREAS_Name")) = False Then txtArea.EditValue = sdr.GetString(sdr.GetOrdinal("AREAS_Name"))
+            If sdr.IsDBNull(sdr.GetOrdinal("ADR_Name")) = False Then txtADR.EditValue = sdr.GetString(sdr.GetOrdinal("ADR_Name"))
+            If sdr.IsDBNull(sdr.GetOrdinal("Ar")) = False Then txtAR.EditValue = sdr.GetString(sdr.GetOrdinal("Ar"))
+            If sdr.IsDBNull(sdr.GetOrdinal("Tk")) = False Then txtTK.EditValue = sdr.GetString(sdr.GetOrdinal("Tk"))
+        End If
+        sdr.Close()
+    End Sub
+
+    Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCus()
+            Case 2 : cboCUS.EditValue = Nothing : Cls.ClearCtrlsGRP(LayoutControlGroup1)
+        End Select
+    End Sub
+    Private Sub ManageCus()
+        Dim form1 As frmCustomers = New frmCustomers()
+        form1.Text = "Πελάτες"
+        form1.CallerControl = cboCUS
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If cboCUS.EditValue <> Nothing Then
+            form1.ID = cboCUS.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+
+    Private Sub cboCategory_EditValueChanged(sender As Object, e As EventArgs) Handles cboCategory.EditValueChanged
+        If cboCategory.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByAll(Me.DreamyKitchenDataSet.vw_ERM)
+        Else
+            Me.Vw_ERMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
+        End If
+    End Sub
+
+
+    Private Sub grdMain_DoubleClick(sender As Object, e As EventArgs) Handles grdMain.DoubleClick
+
+        LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_ERM where id ='" + GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString() + "'")
+        cboERM.EditValue = System.Guid.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString())
+    End Sub
+
+    Private Sub cboCategory_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCategory.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCAT()
+            Case 2 : cboCategory.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageCAT()
+        Dim frmGen As frmGen = New frmGen
+        frmGen.Text = "Κατηγορίες Ερμαρίων"
+        frmGen.L1.Text = "Κωδικός"
+        frmGen.L2.Text = "Κατηγορία"
+        frmGen.DataTable = "CAT_ERM"
+        frmGen.CallerControl = cboCategory
+        frmGen.CalledFromControl = True
+        If cboCategory.EditValue <> Nothing Then frmGen.ID = cboCategory.EditValue.ToString
+        frmGen.MdiParent = frmMain
+        frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        If cboCategory.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
+        frmGen.Show()
+    End Sub
+
+    Private Sub chkDimChanged_CheckedChanged(sender As Object, e As EventArgs) Handles chkDimChanged.CheckedChanged
+        Dim Edit As CheckEdit = CType(sender, CheckEdit)
+        If Edit.Checked = True Then
+            txtHeight.ReadOnly = False : txtWidth.ReadOnly = False : txtDepth.ReadOnly = False
+        Else
+            txtHeight.ReadOnly = True : txtWidth.ReadOnly = True : txtDepth.ReadOnly = True
+            txtHeight.EditValue = "0,00" : txtWidth.EditValue = "0,00" : txtDepth.EditValue = "0,00"
+        End If
+    End Sub
+
+    Private Sub cboDim_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDim.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageDIM()
+            Case 2 : cboDim.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageDIM()
+        Dim frmGen As frmGen = New frmGen
+        frmGen.Text = "Διαστάσεις"
+        frmGen.L1.Text = "Κωδικός"
+        frmGen.L2.Text = "Διάσταση"
+        frmGen.DataTable = "DIM"
+        frmGen.CallerControl = cboDim
+        frmGen.CalledFromControl = True
+        If cboDim.EditValue <> Nothing Then frmGen.ID = cboDim.EditValue.ToString
+        frmGen.MdiParent = frmMain
+        frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        If cboDim.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
+        frmGen.Show()
+    End Sub
+
+    Private Sub cboPVCColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPVCColors.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManagePVCColors()
+            Case 2 : cboPVCColors.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManagePVCColors()
+        Dim frmColors As frmColors = New frmColors
+        frmColors.CallerForm = Me.Name
+        frmColors.CallerControl = cboPVCColors
+        frmColors.CalledFromControl = True
+        If cboPVCColors.EditValue <> Nothing Then frmColors.ID = cboPVCColors.EditValue.ToString
+        frmColors.MdiParent = frmMain
+        If cboPVCColors.EditValue <> Nothing Then frmColors.Mode = FormMode.EditRecord Else frmColors.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
+        frmColors.Show()
+    End Sub
+
+    Private Sub cboBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageBOXColors()
+            Case 2 : cboBOXColors.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageBOXColors()
+        Dim frmColors As frmColors = New frmColors
+        frmColors.CallerForm = Me.Name
+        frmColors.CallerControl = cboBOXColors
+        frmColors.CalledFromControl = True
+        If cboBOXColors.EditValue <> Nothing Then frmColors.ID = cboBOXColors.EditValue.ToString
+        frmColors.MdiParent = frmMain
+        If cboBOXColors.EditValue <> Nothing Then frmColors.Mode = FormMode.EditRecord Else frmColors.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
+        frmColors.Show()
+    End Sub
+
+    Private Sub cboBENCH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBENCH.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageBENCH()
+            Case 2 : cboBENCH.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageBENCH()
+        Dim frmBench As frmBench = New frmBench
+        frmBench.CallerForm = Me.Name
+        frmBench.CallerControl = cboBENCH
+        frmBench.CalledFromControl = True
+        If cboBENCH.EditValue <> Nothing Then frmBench.ID = cboBENCH.EditValue.ToString
+        frmBench.MdiParent = frmMain
+        If cboBENCH.EditValue <> Nothing Then frmBench.Mode = FormMode.EditRecord Else frmBench.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
+        frmBench.Show()
+    End Sub
+
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then
+            Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = TryCast(e.Menu, GridViewColumnMenu)
+            Dim item As New DXEditMenuItem()
+            Dim itemColor As New DXEditMenuItem()
+
+            'menu.Items.Clear()
+            If menu.Column IsNot Nothing Then
+                'Για να προσθέσουμε menu item στο Default menu πρέπει πρώτα να προσθέσουμε ένα Repository Item 
+                'Υπάρχουν πολλών ειδών Repositorys
+                '1st Custom Menu Item
+                Dim popRenameColumn As New RepositoryItemTextEdit
+                popRenameColumn.Name = "RenameColumn"
+                menu.Items.Add(New DXEditMenuItem("Μετονομασία Στήλης", popRenameColumn, AddressOf OnEditValueChanged, Nothing, Nothing, 100, 0))
+                item = menu.Items.Item("Μετονομασία Στήλης")
+                item.EditValue = menu.Column.GetTextCaption
+                item.Tag = menu.Column.AbsoluteIndex
+                '2nd Custom Menu Item
+                menu.Items.Add(CreateCheckItem("Κλείδωμα Στήλης", menu.Column, Nothing))
+
+                '3rd Custom Menu Item
+                Dim popColorsColumn As New RepositoryItemColorEdit
+                popColorsColumn.Name = "ColorsColumn"
+                menu.Items.Add(New DXEditMenuItem("Χρώμα Στήλης", popColorsColumn, AddressOf OnColumnsColorChanged, Nothing, Nothing, 100, 0))
+                itemColor = menu.Items.Item("Χρώμα Στήλης")
+                itemColor.EditValue = menu.Column.AppearanceCell.BackColor
+                itemColor.Tag = menu.Column.AbsoluteIndex
+
+                '4nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveViewErm, Nothing, Nothing, Nothing, Nothing))
+
+            End If
+        End If
+    End Sub
+    'Αποθήκευση όψης Ερμάριων
+    Private Sub OnSaveViewErm(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
+        GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\APT_offer_erm.xml", OptionsLayoutBase.FullLayout)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+    'Μετονομασία Στήλης Master
+    Private Sub OnEditValueChanged(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As New DXEditMenuItem()
+        item = sender
+        If item.Tag Is Nothing Then Exit Sub
+        GridView1.Columns(item.Tag).Caption = item.EditValue
+        'MessageBox.Show(item.EditValue.ToString())
+    End Sub
+    Private Function CreateCheckItem(ByVal caption As String, ByVal column As GridColumn, ByVal image As Image) As DXMenuCheckItem
+        Dim item As New DXMenuCheckItem(caption, (Not column.OptionsColumn.AllowMove), image, New EventHandler(AddressOf OnCanMoveItemClick))
+        item.Tag = New MenuColumnInfo(column)
+        Return item
+    End Function
+    'Αλλαγή Χρώματος Στήλης Master
+    Private Sub OnColumnsColorChanged(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXEditMenuItem = TryCast(sender, DXEditMenuItem)
+        item = sender
+        If item.Tag Is Nothing Then Exit Sub
+        GridView1.Columns(item.Tag).AppearanceCell.BackColor = item.EditValue
+    End Sub
+    'Κλείδωμα Στήλης Master
+    Private Sub OnCanMoveItemClick(ByVal sender As Object, ByVal e As EventArgs)
+        Dim item As DXMenuCheckItem = TryCast(sender, DXMenuCheckItem)
+        Dim info As MenuColumnInfo = TryCast(item.Tag, MenuColumnInfo)
+        If info Is Nothing Then
+            Return
+        End If
+        info.Column.OptionsColumn.AllowMove = Not item.Checked
+    End Sub
+
+    Friend Class MenuColumnInfo
+        Public Sub New(ByVal column As GridColumn)
+            Me.Column = column
+        End Sub
+        Public Column As GridColumn
+    End Class
+
+End Class

@@ -157,6 +157,9 @@ Public Class frmScroller
                     Case "vw_MECH" : sSQL = "DELETE FROM MECH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TECH_CAT" : sSQL = "DELETE FROM TECH_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TECH_SUP" : sSQL = "DELETE FROM TECH_SUP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
 
                 End Select
 
@@ -498,7 +501,57 @@ Public Class frmScroller
         Dim form18 As frmMech = New frmMech()
         Dim form19 As frmGen = New frmGen()
         Dim fTechicalSupport As frmTecnicalSupport = New frmTecnicalSupport()
+        Dim frmColors As frmColors = New frmColors
+        Dim form20 As frmGen = New frmGen()
+        Dim frmoffer As frmOffer = New frmOffer
+        Dim frmEpendisis As frmEpendisis = New frmEpendisis
+        Dim form21 As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_DIM"
+                form21.Text = "Διαστάσεις"
+                form21.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form21.MdiParent = frmMain
+                form21.Mode = FormMode.EditRecord
+                form21.Scroller = GridView1
+                form21.FormScroller = Me
+                form21.DataTable = "DIM"
+                form21.L1.Text = "Κωδικός"
+                form21.L2.Text = "Διάσταση"
+                form21.FormScroller = Me
+                form21.CalledFromControl = False
+                form21.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form21.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form21.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form21.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form21), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form21.Show()
+            Case "vw_SIDES"
+                frmEpendisis.Text = "Επενδύσης - Καταφραγές"
+                frmEpendisis.MdiParent = frmMain
+                frmEpendisis.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmEpendisis.Mode = FormMode.EditRecord
+                frmEpendisis.Scroller = GridView1
+                frmEpendisis.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEpendisis), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmEpendisis.Show()
+            Case "vw_OFFERS"
+                frmoffer.Text = "Προσφορές"
+                frmoffer.MdiParent = frmMain
+                frmoffer.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmoffer.Mode = FormMode.EditRecord
+                frmoffer.Scroller = GridView1
+                frmoffer.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmoffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmoffer.Show()
+            Case "vw_COLORS"
+                frmColors.Text = "Χρώματα"
+                frmColors.MdiParent = frmMain
+                frmColors.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmColors.Mode = FormMode.EditRecord
+                frmColors.Scroller = GridView1
+                frmColors.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmColors.Show()
             Case "vw_TECH_SUP"
                 fTechicalSupport.Text = "Διαχείριση Τεχνικής Υποστήριξης"
                 fTechicalSupport.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -779,6 +832,24 @@ Public Class frmScroller
                 form19.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form19), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form19.Show()
+            Case "vw_COLORS_CAT"
+                form20.Text = "Κατηγορίες Χρωμάτων"
+                form20.MdiParent = frmMain
+                form20.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form20.Mode = FormMode.EditRecord
+                form20.Scroller = GridView1
+                form20.DataTable = "COLORS_CAT"
+                form20.L1.Text = "Κωδικός"
+                form20.L2.Text = "Κατηγορίες Χρωμάτων"
+                form20.FormScroller = Me
+                form20.CalledFromControl = False
+                form20.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form20.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form20.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form20.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form20), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form20.Show()
+
         End Select
     End Sub
     'Νέα Εγγραφή
@@ -804,7 +875,53 @@ Public Class frmScroller
         Dim form18 As frmMech = New frmMech
         Dim form19 As frmGen = New frmGen()
         Dim fTechicalSupport As frmTecnicalSupport = New frmTecnicalSupport()
+        Dim frmColors As frmColors = New frmColors
+        Dim form20 As frmGen = New frmGen()
+        Dim frmOffer As frmOffer = New frmOffer
+        Dim frmEpendisis As frmEpendisis = New frmEpendisis
+        Dim form21 As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_DIM"
+                form21.Text = "Διαστάσεις"
+                form21.MdiParent = frmMain
+                form21.Mode = FormMode.NewRecord
+                form21.Scroller = GridView1
+                form21.FormScroller = Me
+                form21.DataTable = "DIM"
+                form21.L1.Text = "Κωδικός"
+                form21.L2.Text = "Διάσταση"
+                form21.FormScroller = Me
+                form21.CalledFromControl = False
+                form21.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form21.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form21.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form21.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form21), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form21.Show()
+            Case "vw_SIDES"
+                frmEpendisis.Text = "Επενδύσης - Καταφραγές"
+                frmEpendisis.MdiParent = frmMain
+                frmEpendisis.Mode = FormMode.NewRecord
+                frmEpendisis.Scroller = GridView1
+                frmEpendisis.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEpendisis), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmEpendisis.Show()
+            Case "vw_OFFERS"
+                frmOffer.Text = "Προσφορές"
+                frmOffer.MdiParent = frmMain
+                frmOffer.Mode = FormMode.NewRecord
+                frmOffer.Scroller = GridView1
+                frmOffer.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmOffer.Show()
+            Case "vw_COLORS"
+                frmColors.Text = "Χρώματα"
+                frmColors.MdiParent = frmMain
+                frmColors.Mode = FormMode.NewRecord
+                frmColors.Scroller = GridView1
+                frmColors.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmColors.Show()
             Case "vw_TECH_SUP"
                 fTechicalSupport.Text = "Διαχείριση Τεχνικής Υποστήριξης"
                 fTechicalSupport.MdiParent = frmMain
@@ -813,22 +930,6 @@ Public Class frmScroller
                 fTechicalSupport.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(fTechicalSupport), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 fTechicalSupport.Show()
-            Case "vw_TECH_CAT"
-                form19.Text = "Κατηγορίες Τεχνικής Υποστήριξης"
-                form19.MdiParent = frmMain
-                form19.Mode = FormMode.NewRecord
-                form19.Scroller = GridView1
-                form19.DataTable = "TECH_CAT"
-                form19.L1.Text = "Κωδικός"
-                form19.L2.Text = "Κατηγορία"
-                form19.FormScroller = Me
-                form19.CalledFromControl = False
-                form19.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form19), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                form19.Show()
             Case "vw_RIGHTS"
                 form1.Text = "Δικαιώματα"
                 form1.MdiParent = frmMain
@@ -1064,6 +1165,39 @@ Public Class frmScroller
                 form18.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form18), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form18.Show()
+            Case "vw_TECH_CAT"
+                form19.Text = "Κατηγορίες Τεχνικής Υποστήριξης"
+                form19.MdiParent = frmMain
+                form19.Mode = FormMode.NewRecord
+                form19.Scroller = GridView1
+                form19.DataTable = "TECH_CAT"
+                form19.L1.Text = "Κωδικός"
+                form19.L2.Text = "Κατηγορία"
+                form19.FormScroller = Me
+                form19.CalledFromControl = False
+                form19.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form19.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form19.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form19.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form19), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form19.Show()
+            Case "vw_COLORS_CAT"
+                form20.Text = "Κατηγορίες Χρωμάτων"
+                form20.MdiParent = frmMain
+                form20.Mode = FormMode.NewRecord
+                form20.Scroller = GridView1
+                form20.DataTable = "COLORS_CAT"
+                form20.L1.Text = "Κωδικός"
+                form20.L2.Text = "Κατηγορίες Χρωμάτων"
+                form20.FormScroller = Me
+                form20.CalledFromControl = False
+                form20.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form20.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form20.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form20.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form20), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form20.Show()
+
         End Select
     End Sub
     'Φορτώνω τις εγγραφές στο GRID
@@ -1109,7 +1243,7 @@ Public Class frmScroller
                 If myReader.HasRows = False Then
                     For i As Integer = 0 To myReader.FieldCount - 1
                         Dim C As New GridColumn
-                        C.Name = myReader.GetName(i).ToString
+                        C.Name = "col" & myReader.GetName(i).ToString
                         C.Caption = myReader.GetName(i).ToString
                         C.Visible = True
                         GridView1.Columns.Add(C)
@@ -1316,5 +1450,7 @@ Public Class frmScroller
         End If
     End Sub
 
+    Private Sub grdMain_Click(sender As Object, e As EventArgs) Handles grdMain.Click
 
+    End Sub
 End Class

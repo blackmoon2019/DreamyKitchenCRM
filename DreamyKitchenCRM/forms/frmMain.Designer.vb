@@ -63,6 +63,9 @@ Partial Class frmMain
         Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
         Me.bbTechnicalSupport = New DevExpress.XtraBars.BarButtonItem()
         Me.bbTechCateg = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbColors = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbColorCAT = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbEpendisis = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -83,6 +86,7 @@ Partial Class frmMain
         Me.Vw_NOTESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.AlertControl1 = New DevExpress.XtraBars.Alerter.AlertControl(Me.components)
+        Me.bbDimensions = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,9 +103,9 @@ Partial Class frmMain
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.MaxItemId = 47
+        Me.RibbonControl1.MaxItemId = 51
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage2, Me.RibbonPage3, Me.RibbonPage4, Me.RibbonPage5})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
@@ -447,6 +451,27 @@ Partial Class frmMain
         Me.bbTechCateg.Name = "bbTechCateg"
         Me.bbTechCateg.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'bbColors
+        '
+        Me.bbColors.Caption = "Χρώματα"
+        Me.bbColors.Id = 47
+        Me.bbColors.Name = "bbColors"
+        Me.bbColors.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbColorCAT
+        '
+        Me.bbColorCAT.Caption = "Κατηγορίες Χρωμάτων"
+        Me.bbColorCAT.Id = 48
+        Me.bbColorCAT.Name = "bbColorCAT"
+        Me.bbColorCAT.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbEpendisis
+        '
+        Me.bbEpendisis.Caption = "Επενδύσης - Καταφραγές"
+        Me.bbEpendisis.Id = 49
+        Me.bbEpendisis.Name = "bbEpendisis"
+        Me.bbEpendisis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'RibbonPage1
         '
         Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1})
@@ -509,9 +534,13 @@ Partial Class frmMain
         Me.RibbonPageGroup4.ItemLinks.Add(Me.ΒΒDoorType)
         Me.RibbonPageGroup4.ItemLinks.Add(Me.bbCatErm)
         Me.RibbonPageGroup4.ItemLinks.Add(Me.bbERM)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.bbEpendisis)
         Me.RibbonPageGroup4.ItemLinks.Add(Me.bbBench)
         Me.RibbonPageGroup4.ItemLinks.Add(Me.bbMech)
         Me.RibbonPageGroup4.ItemLinks.Add(Me.bboffer)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.bbColors)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.bbColorCAT)
+        Me.RibbonPageGroup4.ItemLinks.Add(Me.bbDimensions)
         Me.RibbonPageGroup4.Name = "RibbonPageGroup4"
         Me.RibbonPageGroup4.Text = "Τιμοκατάλογοι"
         '
@@ -591,6 +620,13 @@ Partial Class frmMain
         'AlertControl1
         '
         Me.AlertControl1.ShowCloseButton = False
+        '
+        'bbDimensions
+        '
+        Me.bbDimensions.Caption = "Διαστάσεις"
+        Me.bbDimensions.Id = 50
+        Me.bbDimensions.Name = "bbDimensions"
+        Me.bbDimensions.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'frmMain
         '
@@ -685,4 +721,8 @@ Partial Class frmMain
     Friend WithEvents RibbonPage5 As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents RibbonPageGroup5 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents bbTechCateg As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbColors As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbColorCAT As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbEpendisis As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbDimensions As DevExpress.XtraBars.BarButtonItem
 End Class

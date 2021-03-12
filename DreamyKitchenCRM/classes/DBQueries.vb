@@ -208,7 +208,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -257,65 +257,82 @@ NextItem:
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
                                         End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+                                        Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
+                                        cbo = Ctrl
+                                        If cbo.EditValue <> Nothing Then
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & cbo.SelectedIndex)
+                                        Else
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                        End If
+
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
+                                        Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
+                                        cbo = Ctrl
+                                        If cbo.EditValue <> Nothing Then
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
+                                        Else
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                        End If
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.PictureEdit Then
                                         pic = Ctrl
-                                        FormHasPic = True
-                                        If pic.Text <> "" Then
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & "@Photo")
-                                        Else
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
-                                        End If
-                                        '*******DevExpress.XtraEditors.DateEdit******
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
-                                        Dim dt As DevExpress.XtraEditors.DateEdit
-                                        dt = Ctrl
-                                        If dt.Text <> "" Then
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(CDate(dt.Text).ToString("yyyyMMdd")))
-                                        Else
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
-                                        End If
-                                        '*******DevExpress.XtraEditors.TimeEdit******
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
-                                        Dim tm As DevExpress.XtraEditors.TimeEdit
-                                        tm = Ctrl
-                                        If tm.Text <> "" Then
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(CDate(tm.Text).ToString("HH:mm")))
-                                        Else
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
-                                        End If
-                                        '*******DevExpress.XtraEditors.TextEdit******
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
-                                        Dim txt As DevExpress.XtraEditors.MemoEdit
-                                        txt = Ctrl
-                                        If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
-                                        Else
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
-                                        End If
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ColorPickEdit Then
-                                        Dim cpk As DevExpress.XtraEditors.ColorPickEdit
-                                        cpk = Ctrl
-                                        sSQLV.Append(IIf(IsFirstField = True, "", ",") & cpk.Text)
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
-                                        Dim txt As DevExpress.XtraEditors.TextEdit
-                                        txt = Ctrl
-                                        If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
-                                        Else
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
-                                        End If
-                                        '*******DevExpress.XtraEditors.ButtonEdit******
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ButtonEdit Then
-                                        Dim txt As DevExpress.XtraEditors.ButtonEdit
-                                        txt = Ctrl
-                                        If txt.Properties.Tag = True Then
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
-                                        Else
-                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
-                                        End If
-                                        '*******DevExpress.XtraEditors.CheckEdit ******
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
-                                        Dim chk As DevExpress.XtraEditors.CheckEdit
+                                            FormHasPic = True
+                                            If pic.Text <> "" Then
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & "@Photo")
+                                            Else
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                            End If
+                                            '*******DevExpress.XtraEditors.DateEdit******
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
+                                            Dim dt As DevExpress.XtraEditors.DateEdit
+                                            dt = Ctrl
+                                            If dt.Text <> "" Then
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(CDate(dt.Text).ToString("yyyyMMdd")))
+                                            Else
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                            End If
+                                            '*******DevExpress.XtraEditors.TimeEdit******
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+                                            Dim tm As DevExpress.XtraEditors.TimeEdit
+                                            tm = Ctrl
+                                            If tm.Text <> "" Then
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(CDate(tm.Text).ToString("HH:mm")))
+                                            Else
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                            End If
+                                            '*******DevExpress.XtraEditors.TextEdit******
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
+                                            Dim txt As DevExpress.XtraEditors.MemoEdit
+                                            txt = Ctrl
+                                            If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
+                                            Else
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
+                                            End If
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ColorPickEdit Then
+                                            Dim cpk As DevExpress.XtraEditors.ColorPickEdit
+                                            cpk = Ctrl
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & cpk.Text)
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
+                                            Dim txt As DevExpress.XtraEditors.TextEdit
+                                            txt = Ctrl
+                                            If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
+                                            Else
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
+                                            End If
+                                            '*******DevExpress.XtraEditors.ButtonEdit******
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ButtonEdit Then
+                                            Dim txt As DevExpress.XtraEditors.ButtonEdit
+                                            txt = Ctrl
+                                            If txt.Properties.Tag = True Then
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
+                                            Else
+                                                sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
+                                            End If
+                                            '*******DevExpress.XtraEditors.CheckEdit ******
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
+                                            Dim chk As DevExpress.XtraEditors.CheckEdit
                                         chk = Ctrl
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & chk.EditValue)
                                         '*******DevExpress.XtraEditors.ColorPickEdit******
@@ -332,7 +349,14 @@ NextItem:
             sSQLF.AppendLine(sSQLV.ToString)
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQLF.ToString, CNDB)
-                If FormHasPic Then oCmd.Parameters.AddWithValue("@Photo", pic.EditValue)
+                If FormHasPic Then
+                    If pic.Text = "" Then
+                        oCmd.Parameters.AddWithValue("@Photo", "NULL")
+                    Else
+                        oCmd.Parameters.AddWithValue("@Photo", pic.EditValue)
+                    End If
+
+                End If
                 oCmd.ExecuteNonQuery()
             End Using
             Return True
@@ -375,6 +399,22 @@ NextItem:
                                     Dim Ctrl As Control = LItem.Control
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
+                                        cbo = Ctrl
+                                        If cbo.EditValue <> Nothing Then
+                                            sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
+                                        Else
+                                            sSQL.Append("NULL")
+                                        End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+                                        Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
+                                        cbo = Ctrl
+                                        If cbo.EditValue <> Nothing Then
+                                            sSQL.Append(cbo.SelectedIndex)
+                                        Else
+                                            sSQL.Append("NULL")
+                                        End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
+                                        Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
                                         cbo = Ctrl
                                         If cbo.EditValue <> Nothing Then
                                             sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
@@ -434,7 +474,14 @@ NextItem:
 
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                If FormHasPic Then oCmd.Parameters.AddWithValue("@photo", pic.EditValue)
+                If FormHasPic Then
+                    If pic.Text = "" Then
+                        oCmd.Parameters.AddWithValue("@Photo", "NULL")
+                    Else
+                        oCmd.Parameters.AddWithValue("@Photo", pic.EditValue)
+                    End If
+
+                End If
                 oCmd.ExecuteNonQuery()
             End Using
             Return True
@@ -586,7 +633,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -725,7 +772,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -866,7 +913,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -984,7 +1031,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -1097,7 +1144,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -1136,7 +1183,7 @@ NextItem:
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function

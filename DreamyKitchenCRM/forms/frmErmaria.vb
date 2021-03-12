@@ -50,10 +50,18 @@ Public Class frmErmaria
     End Sub
 
     Private Sub frmErmaria_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSPVC' table. You can move, or remove it, as needed.
+        Me.Vw_COLORSPVCTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSPVC)
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
+        Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
         'Κατηγορίες Ερμαρίων
         FillCbo.CAT_ERM(cboCategory)
         'Ερμάρια
         FillCbo.DOOR_TYPE(cboDoorType)
+        'Διαστάσεις
+        FillCbo.DIMENSION(cboDim)
+        cboSides.Properties.Items.Add("Δεξί")
+        cboSides.Properties.Items.Add("Αριστερό")
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("ERM")
@@ -142,5 +150,68 @@ Public Class frmErmaria
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(frmDoorType.Parent.ClientRectangle.Width / 2 - frmDoorType.Width / 2), CInt(frmDoorType.Parent.ClientRectangle.Height / 2 - frmDoorType.Height / 2)))
         frmDoorType.Show()
     End Sub
+    Private Sub cboPVCColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPVCColors.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManagePVCColors()
+            Case 2 : cboPVCColors.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManagePVCColors()
+        Dim frmColors As frmColors = New frmColors
+        frmColors.CallerForm = Me.Name
+        frmColors.CallerControl = cboPVCColors
+        frmColors.CalledFromControl = True
+        If cboPVCColors.EditValue <> Nothing Then frmColors.ID = cboPVCColors.EditValue.ToString
+        frmColors.MdiParent = frmMain
+        If cboPVCColors.EditValue <> Nothing Then frmColors.Mode = FormMode.EditRecord Else frmColors.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
+        frmColors.Show()
+    End Sub
 
+    Private Sub cboBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageBOXColors()
+            Case 2 : cboBOXColors.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageBOXColors()
+        Dim frmColors As frmColors = New frmColors
+        frmColors.CallerForm = Me.Name
+        frmColors.CallerControl = cboBOXColors
+        frmColors.CalledFromControl = True
+        If cboBOXColors.EditValue <> Nothing Then frmColors.ID = cboBOXColors.EditValue.ToString
+        frmColors.MdiParent = frmMain
+        If cboBOXColors.EditValue <> Nothing Then frmColors.Mode = FormMode.EditRecord Else frmColors.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
+        frmColors.Show()
+    End Sub
+    Private Sub cboDimID_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDim.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageDIM()
+            Case 2 : cboDim.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageDIM()
+        Dim frmGen As frmGen = New frmGen
+        frmGen.Text = "Διαστάσεις"
+        frmGen.L1.Text = "Κωδικός"
+        frmGen.L2.Text = "Διάσταση"
+        frmGen.DataTable = "DIM"
+        frmGen.CallerControl = cboDim
+        frmGen.CalledFromControl = True
+        If cboDim.EditValue <> Nothing Then frmGen.ID = cboDim.EditValue.ToString
+        frmGen.MdiParent = frmMain
+        frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        If cboDim.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
+        frmGen.Show()
+    End Sub
+
+    Private Sub cboCategory_EditValueChanged(sender As Object, e As EventArgs) Handles cboCategory.EditValueChanged
+
+    End Sub
 End Class

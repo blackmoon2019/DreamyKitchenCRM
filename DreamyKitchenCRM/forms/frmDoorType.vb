@@ -81,11 +81,11 @@ Public Class frmDoorType
                     Dim form As frmScroller = Frm
                     form.LoadRecords("vw_DOOR_TYPE")
                 End If
-                txtCode.Text = DBQ.GetNextId("DOOR_TYPE")
-                txtCustomCode.Select()
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Cls.ClearCtrls(LayoutControl1)
+                    txtCode.Text = DBQ.GetNextId("DOOR_TYPE")
+                    txtCustomCode.Select()
                 End If
             End If
 
