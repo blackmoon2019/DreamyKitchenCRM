@@ -160,6 +160,7 @@ Public Class frmScroller
                     Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_OFF" : sSQL = "DELETE FROM OFF WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
 
                 End Select
 
@@ -534,7 +535,7 @@ Public Class frmScroller
                 frmEpendisis.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEpendisis), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmEpendisis.Show()
-            Case "vw_OFFERS"
+            Case "vw_OFF"
                 frmoffer.Text = "Προσφορές"
                 frmoffer.MdiParent = frmMain
                 frmoffer.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -906,7 +907,7 @@ Public Class frmScroller
                 frmEpendisis.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEpendisis), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmEpendisis.Show()
-            Case "vw_OFFERS"
+            Case "vw_OFF"
                 frmOffer.Text = "Προσφορές"
                 frmOffer.MdiParent = frmMain
                 frmOffer.Mode = FormMode.NewRecord

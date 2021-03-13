@@ -10,6 +10,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraLayout
 
 Public Class frmOffer
+
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
@@ -58,7 +59,6 @@ Public Class frmOffer
         Me.Vw_COLORSPVCTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSPVC)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
         Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_ERM' table. You can move, or remove it, as needed.
         FillCbo.CUS(cboCUS)
         FillCbo.CAT_ERM(cboCategory)
         FillCbo.ERM(cboERM)
@@ -78,19 +78,20 @@ Public Class frmOffer
         Select Case Mode
             Case FormMode.NewRecord
                 FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
-                txtCode.Text = DBQ.GetNextId("OFFERS")
+                txtCode.Text = DBQ.GetNextId("[OFF]")
                 txtHeight.ReadOnly = True
                 txtWidth.ReadOnly = True
                 txtDepth.ReadOnly = True
             Case FormMode.EditRecord
                 FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sID)
-                LoadForms.LoadForm(LayoutControl1, "Select * from vw_OFFERS where id ='" + sID + "'")
+                Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.OFFERS, System.Guid.Parse(sID))
+                LoadForms.LoadFormGRP(LayoutControlGroup1, "Select * from vw_OFF where id ='" + sID + "'")
 
         End Select
         Me.CenterToScreen()
         My.Settings.frmDoorType = Me.Location
         My.Settings.Save()
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\APT_offer_erm.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\APT_offer_erm.xml", OptionsLayoutBase.FullLayout)
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFF.xml", OptionsLayoutBase.FullLayout)
         'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
         LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , "ERM")
 
@@ -148,8 +149,6 @@ Public Class frmOffer
             Me.Vw_ERMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
         End If
     End Sub
-
-
     Private Sub grdMain_DoubleClick(sender As Object, e As EventArgs) Handles grdMain.DoubleClick
 
         LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_ERM where id ='" + GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString() + "'")
@@ -309,7 +308,7 @@ Public Class frmOffer
     'Αποθήκευση όψης Ερμάριων
     Private Sub OnSaveViewErm(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
-        GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\APT_offer_erm.xml", OptionsLayoutBase.FullLayout)
+        GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
     'Μετονομασία Στήλης Master
@@ -349,4 +348,43 @@ Public Class frmOffer
         Public Column As GridColumn
     End Class
 
+    Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+        Dim sResult As Boolean
+        Dim sGuid As String, sGuid2 As String
+        Try
+            If Valid.ValidateForm(LayoutControl1) Then
+                Select Case Mode
+                    Case FormMode.NewRecord
+                        sGuid = System.Guid.NewGuid.ToString
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sGuid)
+                        If sResult = True Then
+                            sGuid2 = System.Guid.NewGuid.ToString
+                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid2,, "offID", toSQLValueS(sGuid))
+                        End If
+                    Case FormMode.EditRecord
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID)
+                        If sResult = True Then
+                            sGuid2 = System.Guid.NewGuid.ToString
+                            sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, toSQLValueS(sID))
+                        End If
+                End Select
+                'If CalledFromCtrl Then
+                '    FillCbo.ERM(CtrlCombo)
+                '    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                'Else
+                Dim form As frmScroller = Frm
+                form.LoadRecords("vw_OFF")
+                'End If
+                txtCustomCode.Select()
+                If sResult = True Then
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Cls.ClearCtrls(LayoutControl1)
+                    txtCode.Text = DBQ.GetNextId("[OFF]")
+                End If
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class

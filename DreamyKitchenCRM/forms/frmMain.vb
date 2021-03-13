@@ -381,7 +381,7 @@ Public Class frmMain
     Private Sub bboffer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bboffer.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Προσφορές"
-        form.DataTable = "vw_OFFERS"
+        form.DataTable = "vw_OFF"
         form.MdiParent = Me
         form.Show()
     End Sub
