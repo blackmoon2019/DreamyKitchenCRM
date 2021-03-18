@@ -60,6 +60,8 @@ Public Class frmErmaria
         FillCbo.DOOR_TYPE(cboDoorType)
         'Διαστάσεις
         FillCbo.DIMENSION(cboDim)
+        'Τύποι Υπολογισμών
+        FillCbo.CALC(cboCalc)
         cboSides.Properties.Items.Add("Δεξί")
         cboSides.Properties.Items.Add("Αριστερό")
         Select Case Mode
@@ -211,7 +213,21 @@ Public Class frmErmaria
         frmGen.Show()
     End Sub
 
-    Private Sub cboCategory_EditValueChanged(sender As Object, e As EventArgs) Handles cboCategory.EditValueChanged
 
+    Private Sub cboCalc_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCalc.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCALC()
+            Case 2 : cboCalc.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageCALC()
+        Dim frmCalculations As frmCalculations = New frmCalculations
+        frmCalculations.CallerControl = cboCalc
+        frmCalculations.CalledFromControl = True
+        If cboCalc.EditValue <> Nothing Then frmCalculations.ID = cboCalc.EditValue.ToString
+        frmCalculations.MdiParent = frmMain
+        If cboCalc.EditValue <> Nothing Then frmCalculations.Mode = FormMode.EditRecord Else frmCalculations.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCalculations), New Point(CInt(frmCalculations.Parent.ClientRectangle.Width / 2 - frmCalculations.Width / 2), CInt(frmCalculations.Parent.ClientRectangle.Height / 2 - frmCalculations.Height / 2)))
+        frmCalculations.Show()
     End Sub
 End Class

@@ -160,7 +160,8 @@ Public Class frmScroller
                     Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_OFF" : sSQL = "DELETE FROM OFF WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_OFF" : sSQL = "DELETE FROM [OFF] WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_CALC" : sSQL = "DELETE FROM CALC WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
 
                 End Select
 
@@ -507,7 +508,17 @@ Public Class frmScroller
         Dim frmoffer As frmOffer = New frmOffer
         Dim frmEpendisis As frmEpendisis = New frmEpendisis
         Dim form21 As frmGen = New frmGen()
+        Dim frmCalculations As frmCalculations = New frmCalculations()
         Select Case sDataTable
+            Case "vw_CALC"
+                frmCalculations.Text = "Υπολογισμοί"
+                frmCalculations.MdiParent = frmMain
+                frmCalculations.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmCalculations.Mode = FormMode.EditRecord
+                frmCalculations.Scroller = GridView1
+                frmCalculations.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCalculations), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCalculations.Show()
             Case "vw_DIM"
                 form21.Text = "Διαστάσεις"
                 form21.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -881,7 +892,16 @@ Public Class frmScroller
         Dim frmOffer As frmOffer = New frmOffer
         Dim frmEpendisis As frmEpendisis = New frmEpendisis
         Dim form21 As frmGen = New frmGen()
+        Dim frmCalculations As frmCalculations = New frmCalculations()
         Select Case sDataTable
+            Case "vw_CALC"
+                frmCalculations.Text = "Υπολογισμοί"
+                frmCalculations.MdiParent = frmMain
+                frmCalculations.Mode = FormMode.NewRecord
+                frmCalculations.Scroller = GridView1
+                frmCalculations.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCalculations), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCalculations.Show()
             Case "vw_DIM"
                 form21.Text = "Διαστάσεις"
                 form21.MdiParent = frmMain

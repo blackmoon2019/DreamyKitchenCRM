@@ -401,5 +401,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub bbCalculations_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCalculations.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Υπολογισμοί"
+        form.DataTable = "vw_CALC"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

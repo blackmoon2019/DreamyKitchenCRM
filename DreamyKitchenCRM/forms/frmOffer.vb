@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.Text.RegularExpressions
+Imports System.Data.SqlClient
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
@@ -7,11 +8,13 @@ Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraLayout
 
 Public Class frmOffer
 
     Private sID As String
+    Private sOffersID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -23,6 +26,11 @@ Public Class frmOffer
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
+    Private DoorTypeID As String
+    Private DoorPrice As Double
+    Private CatErmID As String
+    Private ErmName As String
+    Private Calculations As String
 
 
     Public WriteOnly Property ID As String
@@ -55,6 +63,8 @@ Public Class frmOffer
     End Sub
 
     Private Sub frmOffer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPETableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_TYPE)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSPVC' table. You can move, or remove it, as needed.
         Me.Vw_COLORSPVCTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSPVC)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
@@ -64,10 +74,10 @@ Public Class frmOffer
         FillCbo.ERM(cboERM)
         FillCbo.BENCH(cboBENCH)
         FillCbo.DIMENSION(cboDim)
+        FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
+        'FillCbo.FillCheckedListDoorTypes(chkDoorTypes, FormMode.NewRecord)
         cboSides.Properties.Items.Add("Δεξί")
         cboSides.Properties.Items.Add("Αριστερό")
-
-
 
         If cboCategory.EditValue Is Nothing Then
             Me.Vw_ERMTableAdapter.FillByAll(Me.DreamyKitchenDataSet.vw_ERM)
@@ -77,25 +87,27 @@ Public Class frmOffer
 
         Select Case Mode
             Case FormMode.NewRecord
+                LayoutControlGroup2.Enabled = False
+                LayoutControl2.Enabled = False
                 FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
                 txtCode.Text = DBQ.GetNextId("[OFF]")
-                txtHeight.ReadOnly = True
-                txtWidth.ReadOnly = True
-                txtDepth.ReadOnly = True
             Case FormMode.EditRecord
-                FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sID)
-                Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.OFFERS, System.Guid.Parse(sID))
+                'FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sID)
+                Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
                 LoadForms.LoadFormGRP(LayoutControlGroup1, "Select * from vw_OFF where id ='" + sID + "'")
-
+                cmdSave.Enabled = False
         End Select
         Me.CenterToScreen()
         My.Settings.frmDoorType = Me.Location
         My.Settings.Save()
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFF.xml", OptionsLayoutBase.FullLayout)
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml", OptionsLayoutBase.FullLayout)
         'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
         LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , "ERM")
-
-        cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        GridView3.OptionsBehavior.AutoExpandAllGroups = True
+        cmdSaveOff.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        txtHeight.ReadOnly = True
+        txtWidth.ReadOnly = True
+        txtDepth.ReadOnly = True
         txtCustomCode.Select()
 
     End Sub
@@ -138,7 +150,7 @@ Public Class frmOffer
         Else
             form1.Mode = FormMode.NewRecord
         End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New POINT(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
 
@@ -150,9 +162,16 @@ Public Class frmOffer
         End If
     End Sub
     Private Sub grdMain_DoubleClick(sender As Object, e As EventArgs) Handles grdMain.DoubleClick
-
+        chkDimChanged.Checked = False
         LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_ERM where id ='" + GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString() + "'")
+        DoorTypeID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DoorTypeID").ToString()
+        ErmName = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "name").ToString()
         cboERM.EditValue = System.Guid.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString())
+        CatErmID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "catErmID").ToString()
+        Calculations = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "calculations").ToString()
+        DoorPrice = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DoorPrice").ToString()
+        txtCalc.EditValue = Calculations
+        cmdSave.Enabled = True
     End Sub
 
     Private Sub cboCategory_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCategory.ButtonClick
@@ -177,7 +196,7 @@ Public Class frmOffer
         frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         If cboCategory.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New POINT(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
         frmGen.Show()
     End Sub
 
@@ -213,7 +232,7 @@ Public Class frmOffer
         frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         If cboDim.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New POINT(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
         frmGen.Show()
     End Sub
 
@@ -231,7 +250,7 @@ Public Class frmOffer
         If cboPVCColors.EditValue <> Nothing Then frmColors.ID = cboPVCColors.EditValue.ToString
         frmColors.MdiParent = frmMain
         If cboPVCColors.EditValue <> Nothing Then frmColors.Mode = FormMode.EditRecord Else frmColors.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New POINT(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
         frmColors.Show()
     End Sub
 
@@ -249,7 +268,7 @@ Public Class frmOffer
         If cboBOXColors.EditValue <> Nothing Then frmColors.ID = cboBOXColors.EditValue.ToString
         frmColors.MdiParent = frmMain
         If cboBOXColors.EditValue <> Nothing Then frmColors.Mode = FormMode.EditRecord Else frmColors.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New POINT(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
         frmColors.Show()
     End Sub
 
@@ -267,7 +286,7 @@ Public Class frmOffer
         If cboBENCH.EditValue <> Nothing Then frmBench.ID = cboBENCH.EditValue.ToString
         frmBench.MdiParent = frmMain
         If cboBENCH.EditValue <> Nothing Then frmBench.Mode = FormMode.EditRecord Else frmBench.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New POINT(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
         frmBench.Show()
     End Sub
 
@@ -349,24 +368,70 @@ Public Class frmOffer
     End Class
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
+        Dim sResult As Boolean, sResult2 As Boolean
+        Dim sGuid As String, sSQL As String, ExceptFields As New List(Of String)
+        Try
+            If Valid.ValidateForm(LayoutControl1) Then
+                If chkDimChanged.Checked = True Then
+                    XtraMessageBox.Show("Έχετε επιλέξει αλλαγή διάστασης. Θα ενημερωθεί η βιβλιοθήκη με την νέα διάσταση.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ExceptFields.Add(cboERM.Properties.Tag)
+                    ExceptFields.Add(txtQTY.Properties.Tag)
+                    ExceptFields.Add(cboBENCH.Properties.Tag)
+                    ExceptFields.Add(chkDimChanged.Properties.Tag)
+                    sGuid = System.Guid.NewGuid.ToString
+                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,name,catErmID", toSQLValueS(DoorTypeID) & "," & toSQLValueS(ErmName) & "," & toSQLValueS(CatErmID), ExceptFields)
+                End If
+                If sOffersID = "" Then
+                    sGuid = System.Guid.NewGuid.ToString
+                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid,, "offID", toSQLValueS(sID))
+                Else
+                    sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sOffersID)
+                    '  FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sID)
+                End If
+                If sResult = True Then
+
+                    'Όταν είναι σε EditMode διαγραφουμε όλους τους μηχανισμούς
+                    If sOffersID <> "" Then
+                        sSQL = "DELETE FROM OFFER_MECH where OFFERID = '" & sOffersID & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    End If
+
+                    ' Καταχώρηση Μηχανισμών
+                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkMech.CheckedItems
+                        sSQL = "INSERT INTO OFFER_MECH ([OFFID],[OFFERID],[MECHID],[modifiedBy],[createdOn])  
+                        values (" & toSQLValueS(sID) & "," & toSQLValueS(sOffersID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                                            toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    Next
+                    sResult2 = True
+
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Cls.ClearCtrlsGRP(LayoutControlGroup2)
+                    sOffersID = ""
+                    FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
+                    Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
+                    cmdSave.Enabled = False
+                End If
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub cmdSaveOff_Click(sender As Object, e As EventArgs) Handles cmdSaveOff.Click
         Dim sResult As Boolean
-        Dim sGuid As String, sGuid2 As String
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 Select Case Mode
                     Case FormMode.NewRecord
-                        sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sGuid)
-                        If sResult = True Then
-                            sGuid2 = System.Guid.NewGuid.ToString
-                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid2,, "offID", toSQLValueS(sGuid))
-                        End If
+                        sID = System.Guid.NewGuid.ToString
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID)
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID)
-                        If sResult = True Then
-                            sGuid2 = System.Guid.NewGuid.ToString
-                            sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, toSQLValueS(sID))
-                        End If
                 End Select
                 'If CalledFromCtrl Then
                 '    FillCbo.ERM(CtrlCombo)
@@ -378,13 +443,130 @@ Public Class frmOffer
                 txtCustomCode.Select()
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Cls.ClearCtrls(LayoutControl1)
-                    txtCode.Text = DBQ.GetNextId("[OFF]")
+                    LayoutControlGroup2.Enabled = True : LayoutControl2.Enabled = True
+                    'Cls.ClearCtrls(LayoutControl1)
+                    'txtCode.Text = DBQ.GetNextId("[OFF]")
                 End If
             End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'Όταν είναι νέα εγγραφή και κάτι δεν έχει πάει κάλά στην προσπάθεια των καταχωρήσεων κάνει ολική διαγραφή όλων 
         End Try
+    End Sub
+    Private Sub cmdOffersNew_Click(sender As Object, e As EventArgs) Handles cmdOffersNew.Click
+        Cls.ClearCtrlsGRP(LayoutControlGroup2)
+        txtHeight.ReadOnly = True
+        txtWidth.ReadOnly = True
+        txtDepth.ReadOnly = True
+        cmdSave.Enabled = True
+    End Sub
+
+    Private Sub GridView3_DoubleClick(sender As Object, e As EventArgs) Handles GridView3.DoubleClick
+        If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+        LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_OFFERS where id ='" + GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString() + "'")
+        sOffersID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString()
+        FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sOffersID)
+        cmdSave.Enabled = True
+        cboERM.EditValue = System.Guid.Parse(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ermID").ToString())
+    End Sub
+
+    Private Sub cmdOffersEdit_Click(sender As Object, e As EventArgs) Handles cmdOffersEdit.Click
+        sOffersID = ""
+        cmdSave.Enabled = True
+    End Sub
+    Private Sub cmdSameOffer_Click(sender As Object, e As EventArgs) Handles cmdSameOffer.Click
+        Dim sSQL As String
+        If XtraMessageBox.Show("Θέλετε να δημιουργήσω προσφορά για τα επιλεγμένα πορτάκια?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            ' Καταχώρηση Μηχανισμών
+            For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkMech.CheckedItems
+                sSQL = "INSERT INTO OFFERS ([ID],[OFFID],[DIMCHANGED],[QTY],[createdOn])  
+                        values (" & toSQLValueS(sID) & "," & toSQLValueS(sOffersID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                                    toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            Next
+
+        End If
+
+    End Sub
+
+    Private Sub cmdOffersDel_Click(sender As Object, e As EventArgs) Handles cmdOffersDel.Click
+        If UserProps.AllowDelete = True Then DeleteOffers() : Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
+    End Sub
+    Private Sub DeleteOffers()
+        Try
+            Dim sSQL As String
+            If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                sSQL = "DELETE FROM [OFFER_MECH] WHERE OFFERID = '" & GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString & "'"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                sSQL = "DELETE FROM [OFFERS] WHERE ID = '" & GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString & "'"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
+                Cls.ClearCtrlsGRP(LayoutControlGroup2)
+                cmdSave.Enabled = False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+    Private Sub GridControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridControl1.KeyDown
+        Select Case e.KeyCode
+            Case Keys.F2  'If UserProps.AllowInsert = True Then NewRecord()
+            Case Keys.F3 'If UserProps.AllowEdit = True Then EditRecord()
+            Case Keys.F5  'DeleteOffers()
+            Case Keys.Delete : If UserProps.AllowDelete = True Then DeleteOffers()
+        End Select
+    End Sub
+
+    Private Sub cmdOffersRefresh_Click(sender As Object, e As EventArgs) Handles cmdOffersRefresh.Click
+        Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
+    End Sub
+
+    Private Sub cmdCalc_Click(sender As Object, e As EventArgs) Handles cmdCalc.Click
+        Try
+            Dim sCalc As Decimal, W As Decimal, P As Decimal, TransformationCalc As String
+            W = txtWidth.EditValue / 100
+            TransformationCalc = txtCalc.EditValue
+            TransformationCalc = TransformationCalc.Replace("W", W)
+            TransformationCalc = TransformationCalc.Replace("P", DoorPrice).Replace(",", ".")
+            Dim cmd As SqlCommand = New SqlCommand("Select " & TransformationCalc, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub chkMech_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles chkMech.ItemCheck
+        Dim Total As String, MechItem As String, sCalc As Decimal
+        Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
+        Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
+        Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
+        MechItem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
+        If e.State = CheckState.Checked Then
+            If LItem.Items(e.Index).CheckState = CheckState.Checked Then
+                Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " + " + Total, CNDB)
+                Dim sdr As SqlDataReader = cmd.ExecuteReader()
+                If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+                sdr.Close()
+            End If
+        Else
+            Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " - " + Total, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+            sdr.Close()
+
+        End If
+        'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
     End Sub
 End Class

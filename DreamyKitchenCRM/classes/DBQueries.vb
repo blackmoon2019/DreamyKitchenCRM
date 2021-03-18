@@ -493,14 +493,14 @@ NextItem:
     Public Function InsertNewData(ByVal Mode As InsertMode, ByVal sTable As String, Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing,
                                  Optional ByVal controls As List(Of Control) = Nothing, Optional ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup = Nothing,
                                  Optional ByVal sGuid As String = "", Optional ByVal IgnoreVisibility As Boolean = False,
-                                 Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "") As Boolean
+                                 Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "", Optional ExceptFields As List(Of String) = Nothing) As Boolean
         Select Case Mode
             Case 1
                 Return InsertData2(control, sTable, sGuid, IgnoreVisibility, ExtraFields, ExtraValues)
             Case 2
                 Return InsertDataNew(controls, sTable, sGuid, IgnoreVisibility, ExtraFields, ExtraValues)
             Case 3
-                Return InsertDataGRP(GRP, sTable, sGuid, IgnoreVisibility, ExtraFields, ExtraValues)
+                Return InsertDataGRP(GRP, sTable, sGuid, IgnoreVisibility, ExtraFields, ExtraValues, ExceptFields)
 
         End Select
     End Function
@@ -641,13 +641,14 @@ NextItem:
     'Του στέλνεις 1 LayoutGroupContol και κάνει Loop τα LayoutItems
     Private Function InsertDataGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sTable As String, Optional ByVal sGuid As String = "",
                                    Optional ByVal IgnoreVisibility As Boolean = False,
-                                   Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "") As Boolean
+                                   Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "", Optional ExceptFields As List(Of String) = Nothing) As Boolean
         Dim sSQLF As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim sSQLV As New System.Text.StringBuilder ' Το 2ο StringField αφορά τις τιμές
         Dim IsFirstField As Boolean = True
         Dim TagValue As String()
         Dim FormHasPic As Boolean = False
         Dim pic As DevExpress.XtraEditors.PictureEdit
+        'Dim transaction As SqlTransaction
         'Tag Value = 0 For Load
         'Tag Value = 1 For Insert
         'Tag Value = 2 For Update
@@ -668,6 +669,9 @@ NextItem:
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
                     If LItem.ControlName <> Nothing Then
+                        If ExceptFields IsNot Nothing Then
+                            If IsExceptedField(LItem, ExceptFields) Then GoTo NextItem
+                        End If
                         'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                         If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                             Dim RDG As DevExpress.XtraEditors.RadioGroup
@@ -763,6 +767,7 @@ NextItem:
                                     Dim txt As DevExpress.XtraEditors.TextEdit
                                     txt = Ctrl
                                     If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                        If txt.EditValue = "" Then txt.EditValue = txt.Text
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
@@ -794,6 +799,8 @@ NextItem:
             sSQLF.AppendLine(sSQLV.ToString)
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQLF.ToString, CNDB)
+                'transaction = CNDB.BeginTransaction("SampleTransaction")
+                'oCmd.Transaction = transaction
                 If FormHasPic Then
                     If pic.Text = "" Then
                         oCmd.Parameters.AddWithValue("@Photo", "NULL")
@@ -803,12 +810,67 @@ NextItem:
 
                 End If
                 oCmd.ExecuteNonQuery()
+                'transaction.Commit()
             End Using
             Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'Try
+            '    transaction.Rollback()
+            'Catch ex2 As Exception
+            '    ' This catch block will handle any errors that may have occurred 
+            '    ' on the server that would cause the rollback to fail, such as 
+            '    ' a closed connection.
+            '    Console.WriteLine("Rollback Exception Type: {0}", ex2.GetType())
+            '    Console.WriteLine("  Message: {0}", ex2.Message)
+            'End Try
+
             Return False
         End Try
+    End Function
+    Private Function IsExceptedField(ByVal Litem As LayoutControlItem, ExceptFields As List(Of String)) As Boolean
+        Dim Ctrl As Control = Litem.Control
+        If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
+            Dim cbo As DevExpress.XtraEditors.LookUpEdit
+            cbo = Ctrl
+            If ExceptFields.Contains(cbo.Properties.Tag) Then Return True
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+            Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
+            cbo = Ctrl
+            If ExceptFields.Contains(cbo.Properties.Tag) Then Return True
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
+            Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
+            cbo = Ctrl
+
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.PictureEdit Then
+
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
+            Dim dt As DevExpress.XtraEditors.DateEdit
+            dt = Ctrl
+
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.SpinEdit Then
+            Dim spn As DevExpress.XtraEditors.SpinEdit
+            spn = Ctrl
+
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
+            Dim txt As DevExpress.XtraEditors.MemoEdit
+            txt = Ctrl
+
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
+            Dim txt As DevExpress.XtraEditors.TextEdit
+            txt = Ctrl
+            If ExceptFields.Contains(txt.Properties.Tag) Then Return True
+            '*******DevExpress.XtraEditors.ButtonEdit******
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ButtonEdit Then
+            Dim txt As DevExpress.XtraEditors.ButtonEdit
+            txt = Ctrl
+
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
+            Dim chk As DevExpress.XtraEditors.CheckEdit
+            chk = Ctrl
+            If ExceptFields.Contains(chk.Properties.Tag) Then Return True
+        End If
+        Return False
     End Function
     Public Function UpdateNewData(ByVal Mode As InsertMode, ByVal sTable As String, Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing,
                                   Optional ByVal controls As List(Of Control) = Nothing, Optional ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup = Nothing,

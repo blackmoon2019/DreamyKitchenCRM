@@ -30,6 +30,10 @@ Public Class ClearControls
                                 Dim chk As DevExpress.XtraEditors.CheckEdit
                                 chk = Ctrl
                                 chk.Checked = False
+                            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.PictureEdit Then
+                                Dim pic As DevExpress.XtraEditors.PictureEdit
+                                pic = Ctrl
+                                pic.EditValue = ""
                             End If
                         End If
                     End If
@@ -65,6 +69,10 @@ Public Class ClearControls
                                 Dim chk As DevExpress.XtraEditors.CheckEdit
                                 chk = Ctrl
                                 chk.Checked = False
+                            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.PictureEdit Then
+                                Dim pic As DevExpress.XtraEditors.PictureEdit
+                                pic = Ctrl
+                                pic.EditValue = ""
                             End If
                         End If
                     End If
