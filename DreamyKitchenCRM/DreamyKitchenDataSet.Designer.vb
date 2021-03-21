@@ -39,6 +39,10 @@ Partial Public Class DreamyKitchenDataSet
     
     Private tablevw_DOOR_TYPE As vw_DOOR_TYPEDataTable
     
+    Private tablevw_CAT_SUB_ERM As vw_CAT_SUB_ERMDataTable
+    
+    Private tablevw_SIDES As vw_SIDESDataTable
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -88,6 +92,12 @@ Partial Public Class DreamyKitchenDataSet
             End If
             If (Not (ds.Tables("vw_DOOR_TYPE")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_DOOR_TYPEDataTable(ds.Tables("vw_DOOR_TYPE")))
+            End If
+            If (Not (ds.Tables("vw_CAT_SUB_ERM")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_CAT_SUB_ERMDataTable(ds.Tables("vw_CAT_SUB_ERM")))
+            End If
+            If (Not (ds.Tables("vw_SIDES")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_SIDESDataTable(ds.Tables("vw_SIDES")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -173,6 +183,26 @@ Partial Public Class DreamyKitchenDataSet
     Public ReadOnly Property vw_DOOR_TYPE() As vw_DOOR_TYPEDataTable
         Get
             Return Me.tablevw_DOOR_TYPE
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property vw_CAT_SUB_ERM() As vw_CAT_SUB_ERMDataTable
+        Get
+            Return Me.tablevw_CAT_SUB_ERM
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property vw_SIDES() As vw_SIDESDataTable
+        Get
+            Return Me.tablevw_SIDES
         End Get
     End Property
     
@@ -264,6 +294,12 @@ Partial Public Class DreamyKitchenDataSet
             If (Not (ds.Tables("vw_DOOR_TYPE")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_DOOR_TYPEDataTable(ds.Tables("vw_DOOR_TYPE")))
             End If
+            If (Not (ds.Tables("vw_CAT_SUB_ERM")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_CAT_SUB_ERMDataTable(ds.Tables("vw_CAT_SUB_ERM")))
+            End If
+            If (Not (ds.Tables("vw_SIDES")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_SIDESDataTable(ds.Tables("vw_SIDES")))
+            End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
             Me.Namespace = ds.Namespace
@@ -338,6 +374,18 @@ Partial Public Class DreamyKitchenDataSet
                 Me.tablevw_DOOR_TYPE.InitVars
             End If
         End If
+        Me.tablevw_CAT_SUB_ERM = CType(MyBase.Tables("vw_CAT_SUB_ERM"),vw_CAT_SUB_ERMDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tablevw_CAT_SUB_ERM) Is Nothing) Then
+                Me.tablevw_CAT_SUB_ERM.InitVars
+            End If
+        End If
+        Me.tablevw_SIDES = CType(MyBase.Tables("vw_SIDES"),vw_SIDESDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tablevw_SIDES) Is Nothing) Then
+                Me.tablevw_SIDES.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -362,6 +410,10 @@ Partial Public Class DreamyKitchenDataSet
         MyBase.Tables.Add(Me.tablevw_OFFERS)
         Me.tablevw_DOOR_TYPE = New vw_DOOR_TYPEDataTable()
         MyBase.Tables.Add(Me.tablevw_DOOR_TYPE)
+        Me.tablevw_CAT_SUB_ERM = New vw_CAT_SUB_ERMDataTable()
+        MyBase.Tables.Add(Me.tablevw_CAT_SUB_ERM)
+        Me.tablevw_SIDES = New vw_SIDESDataTable()
+        MyBase.Tables.Add(Me.tablevw_SIDES)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -403,6 +455,18 @@ Partial Public Class DreamyKitchenDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Private Function ShouldSerializevw_DOOR_TYPE() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Private Function ShouldSerializevw_CAT_SUB_ERM() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Private Function ShouldSerializevw_SIDES() As Boolean
         Return false
     End Function
     
@@ -484,6 +548,12 @@ Partial Public Class DreamyKitchenDataSet
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Delegate Sub vw_DOOR_TYPERowChangeEventHandler(ByVal sender As Object, ByVal e As vw_DOOR_TYPERowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Delegate Sub vw_CAT_SUB_ERMRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_CAT_SUB_ERMRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Delegate Sub vw_SIDESRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_SIDESRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -1820,8 +1890,6 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnCustomCode As Global.System.Data.DataColumn
         
-        Private columnname As Global.System.Data.DataColumn
-        
         Private columncatErmName As Global.System.Data.DataColumn
         
         Private columnheight As Global.System.Data.DataColumn
@@ -1837,8 +1905,6 @@ Partial Public Class DreamyKitchenDataSet
         Private columndoor As Global.System.Data.DataColumn
         
         Private columnPrice As Global.System.Data.DataColumn
-        
-        Private columnphoto As Global.System.Data.DataColumn
         
         Private columnPVCcolorName As Global.System.Data.DataColumn
         
@@ -1857,6 +1923,16 @@ Partial Public Class DreamyKitchenDataSet
         Private columncalculations As Global.System.Data.DataColumn
         
         Private columnDoorPrice As Global.System.Data.DataColumn
+        
+        Private columncatSubErmName As Global.System.Data.DataColumn
+        
+        Private columncatSubErmID As Global.System.Data.DataColumn
+        
+        Private columnphoto2 As Global.System.Data.DataColumn
+        
+        Private columnphoto3 As Global.System.Data.DataColumn
+        
+        Private columnphoto1 As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -1914,14 +1990,6 @@ Partial Public Class DreamyKitchenDataSet
         Public ReadOnly Property CustomCodeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnCustomCode
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property nameColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnname
             End Get
         End Property
         
@@ -1986,14 +2054,6 @@ Partial Public Class DreamyKitchenDataSet
         Public ReadOnly Property PriceColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnPrice
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property photoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnphoto
             End Get
         End Property
         
@@ -2070,6 +2130,46 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property catSubErmNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncatSubErmName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property catSubErmIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncatSubErmID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property photo2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnphoto2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property photo3Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnphoto3
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property photo1Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnphoto1
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2110,7 +2210,6 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal ID As System.Guid,  _
                     ByVal code As Integer,  _
                     ByVal CustomCode As String,  _
-                    ByVal name As String,  _
                     ByVal catErmName As String,  _
                     ByVal height As Decimal,  _
                     ByVal doorName As String,  _
@@ -2119,7 +2218,6 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal depth As Decimal,  _
                     ByVal door As Integer,  _
                     ByVal Price As Decimal,  _
-                    ByVal photo() As Byte,  _
                     ByVal PVCcolorName As String,  _
                     ByVal BoxColorName As String,  _
                     ByVal BoxColorPhoto() As Byte,  _
@@ -2128,9 +2226,14 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal calcID As System.Guid,  _
                     ByVal calcName As String,  _
                     ByVal calculations As String,  _
-                    ByVal DoorPrice As Decimal) As vw_ERMRow
+                    ByVal DoorPrice As Decimal,  _
+                    ByVal catSubErmName As String,  _
+                    ByVal catSubErmID As System.Guid,  _
+                    ByVal photo2() As Byte,  _
+                    ByVal photo3() As Byte,  _
+                    ByVal photo1() As Byte) As vw_ERMRow
             Dim rowvw_ERMRow As vw_ERMRow = CType(Me.NewRow,vw_ERMRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, CustomCode, name, catErmName, height, doorName, cat, width, depth, door, Price, photo, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, DoorTypeID, calcID, calcName, calculations, DoorPrice}
+            Dim columnValuesArray() As Object = New Object() {ID, code, CustomCode, catErmName, height, doorName, cat, width, depth, door, Price, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, DoorTypeID, calcID, calcName, calculations, DoorPrice, catSubErmName, catSubErmID, photo2, photo3, photo1}
             rowvw_ERMRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_ERMRow)
             Return rowvw_ERMRow
@@ -2162,7 +2265,6 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnID = MyBase.Columns("ID")
             Me.columncode = MyBase.Columns("code")
             Me.columnCustomCode = MyBase.Columns("CustomCode")
-            Me.columnname = MyBase.Columns("name")
             Me.columncatErmName = MyBase.Columns("catErmName")
             Me.columnheight = MyBase.Columns("height")
             Me.columndoorName = MyBase.Columns("doorName")
@@ -2171,7 +2273,6 @@ Partial Public Class DreamyKitchenDataSet
             Me.columndepth = MyBase.Columns("depth")
             Me.columndoor = MyBase.Columns("door")
             Me.columnPrice = MyBase.Columns("Price")
-            Me.columnphoto = MyBase.Columns("photo")
             Me.columnPVCcolorName = MyBase.Columns("PVCcolorName")
             Me.columnBoxColorName = MyBase.Columns("BoxColorName")
             Me.columnBoxColorPhoto = MyBase.Columns("BoxColorPhoto")
@@ -2181,6 +2282,11 @@ Partial Public Class DreamyKitchenDataSet
             Me.columncalcName = MyBase.Columns("calcName")
             Me.columncalculations = MyBase.Columns("calculations")
             Me.columnDoorPrice = MyBase.Columns("DoorPrice")
+            Me.columncatSubErmName = MyBase.Columns("catSubErmName")
+            Me.columncatSubErmID = MyBase.Columns("catSubErmID")
+            Me.columnphoto2 = MyBase.Columns("photo2")
+            Me.columnphoto3 = MyBase.Columns("photo3")
+            Me.columnphoto1 = MyBase.Columns("photo1")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2192,8 +2298,6 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columncode)
             Me.columnCustomCode = New Global.System.Data.DataColumn("CustomCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnCustomCode)
-            Me.columnname = New Global.System.Data.DataColumn("name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnname)
             Me.columncatErmName = New Global.System.Data.DataColumn("catErmName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncatErmName)
             Me.columnheight = New Global.System.Data.DataColumn("height", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
@@ -2210,8 +2314,6 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columndoor)
             Me.columnPrice = New Global.System.Data.DataColumn("Price", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPrice)
-            Me.columnphoto = New Global.System.Data.DataColumn("photo", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnphoto)
             Me.columnPVCcolorName = New Global.System.Data.DataColumn("PVCcolorName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPVCcolorName)
             Me.columnBoxColorName = New Global.System.Data.DataColumn("BoxColorName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -2230,13 +2332,21 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columncalculations)
             Me.columnDoorPrice = New Global.System.Data.DataColumn("DoorPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDoorPrice)
+            Me.columncatSubErmName = New Global.System.Data.DataColumn("catSubErmName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncatSubErmName)
+            Me.columncatSubErmID = New Global.System.Data.DataColumn("catSubErmID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncatSubErmID)
+            Me.columnphoto2 = New Global.System.Data.DataColumn("photo2", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnphoto2)
+            Me.columnphoto3 = New Global.System.Data.DataColumn("photo3", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnphoto3)
+            Me.columnphoto1 = New Global.System.Data.DataColumn("photo1", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnphoto1)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
             Me.columncode.AllowDBNull = false
             Me.columnCustomCode.MaxLength = 10
-            Me.columnname.AllowDBNull = false
-            Me.columnname.MaxLength = 250
             Me.columncatErmName.AllowDBNull = false
             Me.columncatErmName.MaxLength = 250
             Me.columndoorName.AllowDBNull = false
@@ -2247,6 +2357,8 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnDoorTypeID.AllowDBNull = false
             Me.columncalcName.MaxLength = 50
             Me.columncalculations.MaxLength = 100
+            Me.columncatSubErmName.MaxLength = 250
+            Me.columncatSubErmID.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2396,11 +2508,7 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columndoor As Global.System.Data.DataColumn
         
-        Private columnphoto As Global.System.Data.DataColumn
-        
         Private columnlegs As Global.System.Data.DataColumn
-        
-        Private columnPrice As Global.System.Data.DataColumn
         
         Private columnDoorTypeName As Global.System.Data.DataColumn
         
@@ -2409,6 +2517,10 @@ Partial Public Class DreamyKitchenDataSet
         Private columncatErmID As Global.System.Data.DataColumn
         
         Private columnermID As Global.System.Data.DataColumn
+        
+        Private columnOfferPrice As Global.System.Data.DataColumn
+        
+        Private columnPhoto As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
@@ -2495,25 +2607,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property photoColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnphoto
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property legsColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnlegs
-            End Get
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public ReadOnly Property PriceColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnPrice
             End Get
         End Property
         
@@ -2546,6 +2642,22 @@ Partial Public Class DreamyKitchenDataSet
         Public ReadOnly Property ermIDColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnermID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property OfferPriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnOfferPrice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PhotoColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPhoto
             End Get
         End Property
         
@@ -2586,9 +2698,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function Addvw_OFFERSRow(ByVal ID As System.Guid, ByVal qty As Integer, ByVal height As Decimal, ByVal width As Decimal, ByVal depth As Decimal, ByVal door As Integer, ByVal photo() As Byte, ByVal legs As Integer, ByVal Price As Decimal, ByVal DoorTypeName As String, ByVal offID As System.Guid, ByVal catErmID As System.Guid, ByVal ermID As System.Guid) As vw_OFFERSRow
+        Public Overloads Function Addvw_OFFERSRow(ByVal ID As System.Guid, ByVal qty As Integer, ByVal height As Decimal, ByVal width As Decimal, ByVal depth As Decimal, ByVal door As Integer, ByVal legs As Integer, ByVal DoorTypeName As String, ByVal offID As System.Guid, ByVal catErmID As System.Guid, ByVal ermID As System.Guid, ByVal OfferPrice As Decimal, ByVal Photo() As Byte) As vw_OFFERSRow
             Dim rowvw_OFFERSRow As vw_OFFERSRow = CType(Me.NewRow,vw_OFFERSRow)
-            Dim columnValuesArray() As Object = New Object() {ID, qty, height, width, depth, door, photo, legs, Price, DoorTypeName, offID, catErmID, ermID}
+            Dim columnValuesArray() As Object = New Object() {ID, qty, height, width, depth, door, legs, DoorTypeName, offID, catErmID, ermID, OfferPrice, Photo}
             rowvw_OFFERSRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_OFFERSRow)
             Return rowvw_OFFERSRow
@@ -2623,13 +2735,13 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnwidth = MyBase.Columns("width")
             Me.columndepth = MyBase.Columns("depth")
             Me.columndoor = MyBase.Columns("door")
-            Me.columnphoto = MyBase.Columns("photo")
             Me.columnlegs = MyBase.Columns("legs")
-            Me.columnPrice = MyBase.Columns("Price")
             Me.columnDoorTypeName = MyBase.Columns("DoorTypeName")
             Me.columnoffID = MyBase.Columns("offID")
             Me.columncatErmID = MyBase.Columns("catErmID")
             Me.columnermID = MyBase.Columns("ermID")
+            Me.columnOfferPrice = MyBase.Columns("OfferPrice")
+            Me.columnPhoto = MyBase.Columns("Photo")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2647,12 +2759,8 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columndepth)
             Me.columndoor = New Global.System.Data.DataColumn("door", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndoor)
-            Me.columnphoto = New Global.System.Data.DataColumn("photo", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnphoto)
             Me.columnlegs = New Global.System.Data.DataColumn("legs", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnlegs)
-            Me.columnPrice = New Global.System.Data.DataColumn("Price", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnPrice)
             Me.columnDoorTypeName = New Global.System.Data.DataColumn("DoorTypeName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDoorTypeName)
             Me.columnoffID = New Global.System.Data.DataColumn("offID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
@@ -2661,12 +2769,17 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columncatErmID)
             Me.columnermID = New Global.System.Data.DataColumn("ermID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnermID)
+            Me.columnOfferPrice = New Global.System.Data.DataColumn("OfferPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnOfferPrice)
+            Me.columnPhoto = New Global.System.Data.DataColumn("Photo", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPhoto)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
             Me.columnqty.AllowDBNull = false
             Me.columnDoorTypeName.MaxLength = 250
             Me.columnoffID.AllowDBNull = false
+            Me.columnermID.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -3042,6 +3155,610 @@ Partial Public Class DreamyKitchenDataSet
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "vw_DOOR_TYPEDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class vw_CAT_SUB_ERMDataTable
+        Inherits Global.System.Data.TypedTableBase(Of vw_CAT_SUB_ERMRow)
+        
+        Private columnID As Global.System.Data.DataColumn
+        
+        Private columnname As Global.System.Data.DataColumn
+        
+        Private columncatERMID As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "vw_CAT_SUB_ERM"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property nameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnname
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property catERMIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncatERMID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As vw_CAT_SUB_ERMRow
+            Get
+                Return CType(Me.Rows(index),vw_CAT_SUB_ERMRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event vw_CAT_SUB_ERMRowChanging As vw_CAT_SUB_ERMRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event vw_CAT_SUB_ERMRowChanged As vw_CAT_SUB_ERMRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event vw_CAT_SUB_ERMRowDeleting As vw_CAT_SUB_ERMRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event vw_CAT_SUB_ERMRowDeleted As vw_CAT_SUB_ERMRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Sub Addvw_CAT_SUB_ERMRow(ByVal row As vw_CAT_SUB_ERMRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Function Addvw_CAT_SUB_ERMRow(ByVal ID As System.Guid, ByVal name As String, ByVal catERMID As System.Guid) As vw_CAT_SUB_ERMRow
+            Dim rowvw_CAT_SUB_ERMRow As vw_CAT_SUB_ERMRow = CType(Me.NewRow,vw_CAT_SUB_ERMRow)
+            Dim columnValuesArray() As Object = New Object() {ID, name, catERMID}
+            rowvw_CAT_SUB_ERMRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowvw_CAT_SUB_ERMRow)
+            Return rowvw_CAT_SUB_ERMRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function FindByID(ByVal ID As System.Guid) As vw_CAT_SUB_ERMRow
+            Return CType(Me.Rows.Find(New Object() {ID}),vw_CAT_SUB_ERMRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As vw_CAT_SUB_ERMDataTable = CType(MyBase.Clone,vw_CAT_SUB_ERMDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New vw_CAT_SUB_ERMDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnID = MyBase.Columns("ID")
+            Me.columnname = MyBase.Columns("name")
+            Me.columncatERMID = MyBase.Columns("catERMID")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
+            Me.columnname = New Global.System.Data.DataColumn("name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnname)
+            Me.columncatERMID = New Global.System.Data.DataColumn("catERMID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncatERMID)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
+            Me.columnID.AllowDBNull = false
+            Me.columnID.Unique = true
+            Me.columnname.AllowDBNull = false
+            Me.columnname.MaxLength = 250
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Newvw_CAT_SUB_ERMRow() As vw_CAT_SUB_ERMRow
+            Return CType(Me.NewRow,vw_CAT_SUB_ERMRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New vw_CAT_SUB_ERMRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(vw_CAT_SUB_ERMRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.vw_CAT_SUB_ERMRowChangedEvent) Is Nothing) Then
+                RaiseEvent vw_CAT_SUB_ERMRowChanged(Me, New vw_CAT_SUB_ERMRowChangeEvent(CType(e.Row,vw_CAT_SUB_ERMRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.vw_CAT_SUB_ERMRowChangingEvent) Is Nothing) Then
+                RaiseEvent vw_CAT_SUB_ERMRowChanging(Me, New vw_CAT_SUB_ERMRowChangeEvent(CType(e.Row,vw_CAT_SUB_ERMRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.vw_CAT_SUB_ERMRowDeletedEvent) Is Nothing) Then
+                RaiseEvent vw_CAT_SUB_ERMRowDeleted(Me, New vw_CAT_SUB_ERMRowChangeEvent(CType(e.Row,vw_CAT_SUB_ERMRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.vw_CAT_SUB_ERMRowDeletingEvent) Is Nothing) Then
+                RaiseEvent vw_CAT_SUB_ERMRowDeleting(Me, New vw_CAT_SUB_ERMRowChangeEvent(CType(e.Row,vw_CAT_SUB_ERMRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Removevw_CAT_SUB_ERMRow(ByVal row As vw_CAT_SUB_ERMRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As DreamyKitchenDataSet = New DreamyKitchenDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "vw_CAT_SUB_ERMDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class vw_SIDESDataTable
+        Inherits Global.System.Data.TypedTableBase(Of vw_SIDESRow)
+        
+        Private columnname As Global.System.Data.DataColumn
+        
+        Private columnheight As Global.System.Data.DataColumn
+        
+        Private columnwidth As Global.System.Data.DataColumn
+        
+        Private columnPrice As Global.System.Data.DataColumn
+        
+        Private columnID As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "vw_SIDES"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property nameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnname
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property heightColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnheight
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property widthColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnwidth
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPrice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As vw_SIDESRow
+            Get
+                Return CType(Me.Rows(index),vw_SIDESRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event vw_SIDESRowChanging As vw_SIDESRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event vw_SIDESRowChanged As vw_SIDESRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event vw_SIDESRowDeleting As vw_SIDESRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event vw_SIDESRowDeleted As vw_SIDESRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Sub Addvw_SIDESRow(ByVal row As vw_SIDESRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Function Addvw_SIDESRow(ByVal name As String, ByVal height As Decimal, ByVal width As Decimal, ByVal Price As Decimal, ByVal ID As System.Guid) As vw_SIDESRow
+            Dim rowvw_SIDESRow As vw_SIDESRow = CType(Me.NewRow,vw_SIDESRow)
+            Dim columnValuesArray() As Object = New Object() {name, height, width, Price, ID}
+            rowvw_SIDESRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowvw_SIDESRow)
+            Return rowvw_SIDESRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function FindByID(ByVal ID As System.Guid) As vw_SIDESRow
+            Return CType(Me.Rows.Find(New Object() {ID}),vw_SIDESRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As vw_SIDESDataTable = CType(MyBase.Clone,vw_SIDESDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New vw_SIDESDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnname = MyBase.Columns("name")
+            Me.columnheight = MyBase.Columns("height")
+            Me.columnwidth = MyBase.Columns("width")
+            Me.columnPrice = MyBase.Columns("Price")
+            Me.columnID = MyBase.Columns("ID")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnname = New Global.System.Data.DataColumn("name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnname)
+            Me.columnheight = New Global.System.Data.DataColumn("height", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnheight)
+            Me.columnwidth = New Global.System.Data.DataColumn("width", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnwidth)
+            Me.columnPrice = New Global.System.Data.DataColumn("Price", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPrice)
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
+            Me.columnname.AllowDBNull = false
+            Me.columnname.MaxLength = 250
+            Me.columnID.AllowDBNull = false
+            Me.columnID.Unique = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Newvw_SIDESRow() As vw_SIDESRow
+            Return CType(Me.NewRow,vw_SIDESRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New vw_SIDESRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(vw_SIDESRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.vw_SIDESRowChangedEvent) Is Nothing) Then
+                RaiseEvent vw_SIDESRowChanged(Me, New vw_SIDESRowChangeEvent(CType(e.Row,vw_SIDESRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.vw_SIDESRowChangingEvent) Is Nothing) Then
+                RaiseEvent vw_SIDESRowChanging(Me, New vw_SIDESRowChangeEvent(CType(e.Row,vw_SIDESRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.vw_SIDESRowDeletedEvent) Is Nothing) Then
+                RaiseEvent vw_SIDESRowDeleted(Me, New vw_SIDESRowChangeEvent(CType(e.Row,vw_SIDESRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.vw_SIDESRowDeletingEvent) Is Nothing) Then
+                RaiseEvent vw_SIDESRowDeleting(Me, New vw_SIDESRowChangeEvent(CType(e.Row,vw_SIDESRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Removevw_SIDESRow(ByVal row As vw_SIDESRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As DreamyKitchenDataSet = New DreamyKitchenDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "vw_SIDESDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -3691,17 +4408,6 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property name() As String
-            Get
-                Return CType(Me(Me.tablevw_ERM.nameColumn),String)
-            End Get
-            Set
-                Me(Me.tablevw_ERM.nameColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property catErmName() As String
             Get
                 Return CType(Me(Me.tablevw_ERM.catErmNameColumn),String)
@@ -3809,21 +4515,6 @@ Partial Public Class DreamyKitchenDataSet
             End Get
             Set
                 Me(Me.tablevw_ERM.PriceColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property photo() As Byte()
-            Get
-                Try 
-                    Return CType(Me(Me.tablevw_ERM.photoColumn),Byte())
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'photo' in table 'vw_ERM' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablevw_ERM.photoColumn) = value
             End Set
         End Property
         
@@ -3956,6 +4647,77 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property catSubErmName() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_ERM.catSubErmNameColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'catSubErmName' in table 'vw_ERM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_ERM.catSubErmNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property catSubErmID() As System.Guid
+            Get
+                Return CType(Me(Me.tablevw_ERM.catSubErmIDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tablevw_ERM.catSubErmIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property photo2() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_ERM.photo2Column),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'photo2' in table 'vw_ERM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_ERM.photo2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property photo3() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_ERM.photo3Column),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'photo3' in table 'vw_ERM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_ERM.photo3Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property photo1() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_ERM.photo1Column),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'photo1' in table 'vw_ERM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_ERM.photo1Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsCustomCodeNull() As Boolean
             Return Me.IsNull(Me.tablevw_ERM.CustomCodeColumn)
         End Function
@@ -4040,18 +4802,6 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsphotoNull() As Boolean
-            Return Me.IsNull(Me.tablevw_ERM.photoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetphotoNull()
-            Me(Me.tablevw_ERM.photoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsPVCcolorNameNull() As Boolean
             Return Me.IsNull(Me.tablevw_ERM.PVCcolorNameColumn)
         End Function
@@ -4132,6 +4882,54 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetDoorPriceNull()
             Me(Me.tablevw_ERM.DoorPriceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IscatSubErmNameNull() As Boolean
+            Return Me.IsNull(Me.tablevw_ERM.catSubErmNameColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetcatSubErmNameNull()
+            Me(Me.tablevw_ERM.catSubErmNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isphoto2Null() As Boolean
+            Return Me.IsNull(Me.tablevw_ERM.photo2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setphoto2Null()
+            Me(Me.tablevw_ERM.photo2Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isphoto3Null() As Boolean
+            Return Me.IsNull(Me.tablevw_ERM.photo3Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setphoto3Null()
+            Me(Me.tablevw_ERM.photo3Column) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function Isphoto1Null() As Boolean
+            Return Me.IsNull(Me.tablevw_ERM.photo1Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub Setphoto1Null()
+            Me(Me.tablevw_ERM.photo1Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -4234,21 +5032,6 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property photo() As Byte()
-            Get
-                Try 
-                    Return CType(Me(Me.tablevw_OFFERS.photoColumn),Byte())
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'photo' in table 'vw_OFFERS' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablevw_OFFERS.photoColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property legs() As Integer
             Get
                 Try 
@@ -4259,21 +5042,6 @@ Partial Public Class DreamyKitchenDataSet
             End Get
             Set
                 Me(Me.tablevw_OFFERS.legsColumn) = value
-            End Set
-        End Property
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Property Price() As Decimal
-            Get
-                Try 
-                    Return CType(Me(Me.tablevw_OFFERS.PriceColumn),Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Price' in table 'vw_OFFERS' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablevw_OFFERS.PriceColumn) = value
             End Set
         End Property
         
@@ -4322,14 +5090,40 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property ermID() As System.Guid
             Get
-                Try 
-                    Return CType(Me(Me.tablevw_OFFERS.ermIDColumn),Global.System.Guid)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'ermID' in table 'vw_OFFERS' is DBNull.", e)
-                End Try
+                Return CType(Me(Me.tablevw_OFFERS.ermIDColumn),Global.System.Guid)
             End Get
             Set
                 Me(Me.tablevw_OFFERS.ermIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property OfferPrice() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_OFFERS.OfferPriceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'OfferPrice' in table 'vw_OFFERS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_OFFERS.OfferPriceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Photo() As Byte()
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_OFFERS.PhotoColumn),Byte())
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Photo' in table 'vw_OFFERS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_OFFERS.PhotoColumn) = value
             End Set
         End Property
         
@@ -4383,18 +5177,6 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsphotoNull() As Boolean
-            Return Me.IsNull(Me.tablevw_OFFERS.photoColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetphotoNull()
-            Me(Me.tablevw_OFFERS.photoColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IslegsNull() As Boolean
             Return Me.IsNull(Me.tablevw_OFFERS.legsColumn)
         End Function
@@ -4403,18 +5185,6 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetlegsNull()
             Me(Me.tablevw_OFFERS.legsColumn) = Global.System.Convert.DBNull
-        End Sub
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsPriceNull() As Boolean
-            Return Me.IsNull(Me.tablevw_OFFERS.PriceColumn)
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetPriceNull()
-            Me(Me.tablevw_OFFERS.PriceColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4443,14 +5213,26 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Function IsermIDNull() As Boolean
-            Return Me.IsNull(Me.tablevw_OFFERS.ermIDColumn)
+        Public Function IsOfferPriceNull() As Boolean
+            Return Me.IsNull(Me.tablevw_OFFERS.OfferPriceColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Sub SetermIDNull()
-            Me(Me.tablevw_OFFERS.ermIDColumn) = Global.System.Convert.DBNull
+        Public Sub SetOfferPriceNull()
+            Me(Me.tablevw_OFFERS.OfferPriceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPhotoNull() As Boolean
+            Return Me.IsNull(Me.tablevw_OFFERS.PhotoColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPhotoNull()
+            Me(Me.tablevw_OFFERS.PhotoColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -4516,6 +5298,190 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetPriceNull()
             Me(Me.tablevw_DOOR_TYPE.PriceColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class vw_CAT_SUB_ERMRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablevw_CAT_SUB_ERM As vw_CAT_SUB_ERMDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablevw_CAT_SUB_ERM = CType(Me.Table,vw_CAT_SUB_ERMDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ID() As System.Guid
+            Get
+                Return CType(Me(Me.tablevw_CAT_SUB_ERM.IDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tablevw_CAT_SUB_ERM.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property name() As String
+            Get
+                Return CType(Me(Me.tablevw_CAT_SUB_ERM.nameColumn),String)
+            End Get
+            Set
+                Me(Me.tablevw_CAT_SUB_ERM.nameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property catERMID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_CAT_SUB_ERM.catERMIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'catERMID' in table 'vw_CAT_SUB_ERM' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_CAT_SUB_ERM.catERMIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IscatERMIDNull() As Boolean
+            Return Me.IsNull(Me.tablevw_CAT_SUB_ERM.catERMIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetcatERMIDNull()
+            Me(Me.tablevw_CAT_SUB_ERM.catERMIDColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class vw_SIDESRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tablevw_SIDES As vw_SIDESDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tablevw_SIDES = CType(Me.Table,vw_SIDESDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property name() As String
+            Get
+                Return CType(Me(Me.tablevw_SIDES.nameColumn),String)
+            End Get
+            Set
+                Me(Me.tablevw_SIDES.nameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property height() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SIDES.heightColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'height' in table 'vw_SIDES' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SIDES.heightColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property width() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SIDES.widthColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'width' in table 'vw_SIDES' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SIDES.widthColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Price() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SIDES.PriceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Price' in table 'vw_SIDES' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SIDES.PriceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ID() As System.Guid
+            Get
+                Return CType(Me(Me.tablevw_SIDES.IDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tablevw_SIDES.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsheightNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SIDES.heightColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetheightNull()
+            Me(Me.tablevw_SIDES.heightColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IswidthNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SIDES.widthColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetwidthNull()
+            Me(Me.tablevw_SIDES.widthColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPriceNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SIDES.PriceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPriceNull()
+            Me(Me.tablevw_SIDES.PriceColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -4757,6 +5723,78 @@ Partial Public Class DreamyKitchenDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property Row() As vw_DOOR_TYPERow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Class vw_CAT_SUB_ERMRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As vw_CAT_SUB_ERMRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New(ByVal row As vw_CAT_SUB_ERMRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Row() As vw_CAT_SUB_ERMRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Class vw_SIDESRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As vw_SIDESRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New(ByVal row As vw_SIDESRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Row() As vw_SIDESRow
             Get
                 Return Me.eventRow
             End Get
@@ -5701,7 +6739,6 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("ID", "ID")
             tableMapping.ColumnMappings.Add("code", "code")
             tableMapping.ColumnMappings.Add("CustomCode", "CustomCode")
-            tableMapping.ColumnMappings.Add("name", "name")
             tableMapping.ColumnMappings.Add("catErmName", "catErmName")
             tableMapping.ColumnMappings.Add("height", "height")
             tableMapping.ColumnMappings.Add("doorName", "doorName")
@@ -5710,7 +6747,6 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("depth", "depth")
             tableMapping.ColumnMappings.Add("door", "door")
             tableMapping.ColumnMappings.Add("Price", "Price")
-            tableMapping.ColumnMappings.Add("photo", "photo")
             tableMapping.ColumnMappings.Add("PVCcolorName", "PVCcolorName")
             tableMapping.ColumnMappings.Add("BoxColorName", "BoxColorName")
             tableMapping.ColumnMappings.Add("BoxColorPhoto", "BoxColorPhoto")
@@ -5720,6 +6756,11 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("calcName", "calcName")
             tableMapping.ColumnMappings.Add("calculations", "calculations")
             tableMapping.ColumnMappings.Add("DoorPrice", "DoorPrice")
+            tableMapping.ColumnMappings.Add("catSubErmName", "catSubErmName")
+            tableMapping.ColumnMappings.Add("catSubErmID", "catSubErmID")
+            tableMapping.ColumnMappings.Add("photo2", "photo2")
+            tableMapping.ColumnMappings.Add("photo3", "photo3")
+            tableMapping.ColumnMappings.Add("photo1", "photo1")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -5733,28 +6774,69 @@ Namespace DreamyKitchenDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(5) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, code, CustomCode, name, catErmName, height, doorName, cat, widt"& _ 
-                "h, depth, door, Price, photo, PVCcolorName, BoxColorName, BoxColorPhoto, catErmI"& _ 
-                "D, DoorTypeID, calcID, calcName, calculations, DoorPrice"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_ERM"& _ 
-                ""&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (catErmID = @catErmID)"
+            Me._commandCollection(0).CommandText = "SELECT        ID, code, CustomCode, catErmName, height, doorName, cat, width, dep"& _ 
+                "th, door, Price, photo1, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, Do"& _ 
+                "orTypeID, calcID, calcName, calculations, DoorPrice, catSubErmName, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
+                "               catSubErmID, photo2, photo3"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_ERM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
+                " (catErmID = @catErmID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
             Me._commandCollection(1).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
-                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, code, "& _ 
-                "depth, door, doorName, height, name, photo, width FROM vw_ERM"
+                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
+                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
+                "3, width FROM vw_ERM"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
+                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
+                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
+                "3, width FROM vw_ERM WHERE (DoorTypeID = @DoorTypeID)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DoorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "DoorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(3).Connection = Me.Connection
+            Me._commandCollection(3).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
+                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
+                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
+                "3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID)"& _ 
+                ""
+            Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DoorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "DoorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(4).Connection = Me.Connection
+            Me._commandCollection(4).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
+                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
+                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
+                "3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (catSubErmID = @catSubErmI"& _ 
+                "D)"
+            Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catSubErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catSubErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(5).Connection = Me.Connection
+            Me._commandCollection(5).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
+                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
+                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
+                "3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID)"& _ 
+                " AND (catSubErmID = @catSubErmID)"
+            Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DoorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "DoorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catSubErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catSubErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid) As Integer
+        Public Overloads Overridable Function FillErmCategory(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
             If (Me.ClearBeforeFill = true) Then
@@ -5768,7 +6850,7 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal catErmID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
+        Public Overloads Overridable Function GetDataErmCategory(ByVal catErmID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
             Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
@@ -5795,6 +6877,118 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByAll() As DreamyKitchenDataSet.vw_ERMDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByDoorType(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal DoorTypeID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(DoorTypeID,System.Guid)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByDoorType(ByVal DoorTypeID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(DoorTypeID,System.Guid)
+            Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByErmAndDoor(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid, ByVal DoorTypeID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(DoorTypeID,System.Guid)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByErmAndDoor(ByVal catErmID As System.Guid, ByVal DoorTypeID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(DoorTypeID,System.Guid)
+            Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByErmAndSubCat(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid, ByVal catSubErmID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(catSubErmID,System.Guid)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByErmAndSubCat(ByVal catErmID As System.Guid, ByVal catSubErmID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(catSubErmID,System.Guid)
+            Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByErmDoorAndSubCat(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal catSubErmID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(DoorTypeID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(2).Value = CType(catSubErmID,System.Guid)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByErmDoorAndSubCat(ByVal catErmID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal catSubErmID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(DoorTypeID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(2).Value = CType(catSubErmID,System.Guid)
             Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -5934,13 +7128,13 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("width", "width")
             tableMapping.ColumnMappings.Add("depth", "depth")
             tableMapping.ColumnMappings.Add("door", "door")
-            tableMapping.ColumnMappings.Add("photo", "photo")
             tableMapping.ColumnMappings.Add("legs", "legs")
-            tableMapping.ColumnMappings.Add("Price", "Price")
             tableMapping.ColumnMappings.Add("DoorTypeName", "DoorTypeName")
             tableMapping.ColumnMappings.Add("offID", "offID")
             tableMapping.ColumnMappings.Add("catErmID", "catErmID")
             tableMapping.ColumnMappings.Add("ermID", "ermID")
+            tableMapping.ColumnMappings.Add("OfferPrice", "OfferPrice")
+            tableMapping.ColumnMappings.Add("Photo", "Photo")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -5957,9 +7151,9 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, qty, height, width, depth, door, photo, legs, Price, DoorTypeNa"& _ 
-                "me, offID, catErmID, ermID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_OFFERS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (offID = @Of"& _ 
-                "ferID)"
+            Me._commandCollection(0).CommandText = "SELECT        ID, qty, height, width, depth, door, Photo, legs, DoorTypeName, off"& _ 
+                "ID, catErmID, ermID, OfferPrice"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_OFFERS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (offID "& _ 
+                "= @OfferID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OfferID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "offID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -6161,6 +7355,410 @@ Namespace DreamyKitchenDataSetTableAdapters
         Public Overloads Overridable Function GetData() As DreamyKitchenDataSet.vw_DOOR_TYPEDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Dim dataTable As DreamyKitchenDataSet.vw_DOOR_TYPEDataTable = New DreamyKitchenDataSet.vw_DOOR_TYPEDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class vw_CAT_SUB_ERMTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "vw_CAT_SUB_ERM"
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.ColumnMappings.Add("name", "name")
+            tableMapping.ColumnMappings.Add("catERMID", "catERMID")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.DreamyKitchenCRM.My.MySettings.Default.DreamyKitchenConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT        ID, name, catERMID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_CAT_SUB_ERM"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT        ID, name, catERMID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_CAT_SUB_ERM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (c"& _ 
+                "atERMID = @catERMID)"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catERMID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catERMID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function FillCatSubErmAll(ByVal dataTable As DreamyKitchenDataSet.vw_CAT_SUB_ERMDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetDataCatSubErmAll() As DreamyKitchenDataSet.vw_CAT_SUB_ERMDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            Dim dataTable As DreamyKitchenDataSet.vw_CAT_SUB_ERMDataTable = New DreamyKitchenDataSet.vw_CAT_SUB_ERMDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByCatSubErmByCatErmID(ByVal dataTable As DreamyKitchenDataSet.vw_CAT_SUB_ERMDataTable, ByVal catERMID As Global.System.Nullable(Of Global.System.Guid)) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (catERMID.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(catERMID.Value,System.Guid)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByCatSubErmByCatErmID(ByVal catERMID As Global.System.Nullable(Of Global.System.Guid)) As DreamyKitchenDataSet.vw_CAT_SUB_ERMDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (catERMID.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(catERMID.Value,System.Guid)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            Dim dataTable As DreamyKitchenDataSet.vw_CAT_SUB_ERMDataTable = New DreamyKitchenDataSet.vw_CAT_SUB_ERMDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class vw_SIDESTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "vw_SIDES"
+            tableMapping.ColumnMappings.Add("name", "name")
+            tableMapping.ColumnMappings.Add("height", "height")
+            tableMapping.ColumnMappings.Add("width", "width")
+            tableMapping.ColumnMappings.Add("Price", "Price")
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.DreamyKitchenCRM.My.MySettings.Default.DreamyKitchenConnectionString
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT        name, height, width, Price, ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_SIDES"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE    "& _ 
+                "    (doorTypeID = @doorTypeID)"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@doorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "doorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function FillSidesBydoorTypeID(ByVal dataTable As DreamyKitchenDataSet.vw_SIDESDataTable, ByVal doorTypeID As Global.System.Nullable(Of Global.System.Guid)) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (doorTypeID.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(doorTypeID.Value,System.Guid)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
+        Public Overloads Overridable Function GetDataSidesBydoorTypeID(ByVal doorTypeID As Global.System.Nullable(Of Global.System.Guid)) As DreamyKitchenDataSet.vw_SIDESDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (doorTypeID.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(doorTypeID.Value,System.Guid)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            Dim dataTable As DreamyKitchenDataSet.vw_SIDESDataTable = New DreamyKitchenDataSet.vw_SIDESDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function

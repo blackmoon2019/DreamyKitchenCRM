@@ -122,10 +122,11 @@ WHERE        (colorsCatID = 'EB54661A-1EB2-4E25-A696-C3C644D6723D')</CommandText
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_ERMTableAdapter" GeneratorDataComponentClassName="vw_ERMTableAdapter" Name="vw_ERM" UserDataComponentName="vw_ERMTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillErmCategory" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataErmCategory" GeneratorSourceName="FillErmCategory" GetMethodModifier="Public" GetMethodName="GetDataErmCategory" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataErmCategory" UserSourceName="FillErmCategory">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ID, code, CustomCode, name, catErmName, height, doorName, cat, width, depth, door, Price, photo, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, DoorTypeID, calcID, calcName, calculations, DoorPrice
+                    <CommandText>SELECT        ID, code, CustomCode, catErmName, height, doorName, cat, width, depth, door, Price, photo1, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, DoorTypeID, calcID, calcName, calculations, DoorPrice, catSubErmName, 
+                         catSubErmID, photo2, photo3
 FROM            vw_ERM
 WHERE        (catErmID = @catErmID)</CommandText>
                     <Parameters>
@@ -139,7 +140,6 @@ WHERE        (catErmID = @catErmID)</CommandText>
               <Mapping SourceColumn="ID" DataSetColumn="ID" />
               <Mapping SourceColumn="code" DataSetColumn="code" />
               <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
-              <Mapping SourceColumn="name" DataSetColumn="name" />
               <Mapping SourceColumn="catErmName" DataSetColumn="catErmName" />
               <Mapping SourceColumn="height" DataSetColumn="height" />
               <Mapping SourceColumn="doorName" DataSetColumn="doorName" />
@@ -148,7 +148,6 @@ WHERE        (catErmID = @catErmID)</CommandText>
               <Mapping SourceColumn="depth" DataSetColumn="depth" />
               <Mapping SourceColumn="door" DataSetColumn="door" />
               <Mapping SourceColumn="Price" DataSetColumn="Price" />
-              <Mapping SourceColumn="photo" DataSetColumn="photo" />
               <Mapping SourceColumn="PVCcolorName" DataSetColumn="PVCcolorName" />
               <Mapping SourceColumn="BoxColorName" DataSetColumn="BoxColorName" />
               <Mapping SourceColumn="BoxColorPhoto" DataSetColumn="BoxColorPhoto" />
@@ -158,13 +157,62 @@ WHERE        (catErmID = @catErmID)</CommandText>
               <Mapping SourceColumn="calcName" DataSetColumn="calcName" />
               <Mapping SourceColumn="calculations" DataSetColumn="calculations" />
               <Mapping SourceColumn="DoorPrice" DataSetColumn="DoorPrice" />
+              <Mapping SourceColumn="catSubErmName" DataSetColumn="catSubErmName" />
+              <Mapping SourceColumn="catSubErmID" DataSetColumn="catSubErmID" />
+              <Mapping SourceColumn="photo2" DataSetColumn="photo2" />
+              <Mapping SourceColumn="photo3" DataSetColumn="photo3" />
+              <Mapping SourceColumn="photo1" DataSetColumn="photo1" />
             </Mappings>
             <Sources>
               <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByAll" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByAll" GeneratorSourceName="FillByAll" GetMethodModifier="Public" GetMethodName="GetDataByAll" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByAll" UserSourceName="FillByAll">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, code, depth, door, doorName, height, name, photo, width FROM vw_ERM</CommandText>
+                    <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM</CommandText>
                     <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByDoorType" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByDoorType" GeneratorSourceName="FillByDoorType" GetMethodModifier="Public" GetMethodName="GetDataByDoorType" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByDoorType" UserSourceName="FillByDoorType">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM WHERE (DoorTypeID = @DoorTypeID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="DoorTypeID" ColumnName="DoorTypeID" DataSourceName="DreamyKitchen.dbo.vw_ERM" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@DoorTypeID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="DoorTypeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByErmAndDoor" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByErmAndDoor" GeneratorSourceName="FillByErmAndDoor" GetMethodModifier="Public" GetMethodName="GetDataByErmAndDoor" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByErmAndDoor" UserSourceName="FillByErmAndDoor">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="catErmID" ColumnName="catErmID" DataSourceName="DreamyKitchen.dbo.vw_ERM" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@catErmID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="catErmID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="DoorTypeID" ColumnName="DoorTypeID" DataSourceName="DreamyKitchen.dbo.vw_ERM" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@DoorTypeID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="DoorTypeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByErmAndSubCat" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByErmAndSubCat" GeneratorSourceName="FillByErmAndSubCat" GetMethodModifier="Public" GetMethodName="GetDataByErmAndSubCat" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByErmAndSubCat" UserSourceName="FillByErmAndSubCat">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (catSubErmID = @catSubErmID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="catErmID" ColumnName="catErmID" DataSourceName="DreamyKitchen.dbo.vw_ERM" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@catErmID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="catErmID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="catSubErmID" ColumnName="catSubErmID" DataSourceName="DreamyKitchen.dbo.vw_ERM" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@catSubErmID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="catSubErmID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByErmDoorAndSubCat" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByErmDoorAndSubCat" GeneratorSourceName="FillByErmDoorAndSubCat" GetMethodModifier="Public" GetMethodName="GetDataByErmDoorAndSubCat" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByErmDoorAndSubCat" UserSourceName="FillByErmDoorAndSubCat">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID) AND (catSubErmID = @catSubErmID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="catErmID" ColumnName="catErmID" DataSourceName="DreamyKitchen.dbo.vw_ERM" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@catErmID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="catErmID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="DoorTypeID" ColumnName="DoorTypeID" DataSourceName="DreamyKitchen.dbo.vw_ERM" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@DoorTypeID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="DoorTypeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="catSubErmID" ColumnName="catSubErmID" DataSourceName="DreamyKitchen.dbo.vw_ERM" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@catSubErmID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="catSubErmID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
@@ -175,7 +223,7 @@ WHERE        (catErmID = @catErmID)</CommandText>
               <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFFERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ID, qty, height, width, depth, door, photo, legs, Price, DoorTypeName, offID, catErmID, ermID
+                    <CommandText>SELECT        ID, qty, height, width, depth, door, Photo, legs, DoorTypeName, offID, catErmID, ermID, OfferPrice
 FROM            vw_OFFERS
 WHERE        (offID = @OfferID)</CommandText>
                     <Parameters>
@@ -192,13 +240,13 @@ WHERE        (offID = @OfferID)</CommandText>
               <Mapping SourceColumn="width" DataSetColumn="width" />
               <Mapping SourceColumn="depth" DataSetColumn="depth" />
               <Mapping SourceColumn="door" DataSetColumn="door" />
-              <Mapping SourceColumn="photo" DataSetColumn="photo" />
               <Mapping SourceColumn="legs" DataSetColumn="legs" />
-              <Mapping SourceColumn="Price" DataSetColumn="Price" />
               <Mapping SourceColumn="DoorTypeName" DataSetColumn="DoorTypeName" />
               <Mapping SourceColumn="offID" DataSetColumn="offID" />
               <Mapping SourceColumn="catErmID" DataSetColumn="catErmID" />
               <Mapping SourceColumn="ermID" DataSetColumn="ermID" />
+              <Mapping SourceColumn="OfferPrice" DataSetColumn="OfferPrice" />
+              <Mapping SourceColumn="Photo" DataSetColumn="Photo" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -221,6 +269,62 @@ FROM            vw_DOOR_TYPE</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_CAT_SUB_ERMTableAdapter" GeneratorDataComponentClassName="vw_CAT_SUB_ERMTableAdapter" Name="vw_CAT_SUB_ERM" UserDataComponentName="vw_CAT_SUB_ERMTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CAT_SUB_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillCatSubErmAll" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataCatSubErmAll" GeneratorSourceName="FillCatSubErmAll" GetMethodModifier="Public" GetMethodName="GetDataCatSubErmAll" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataCatSubErmAll" UserSourceName="FillCatSubErmAll">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID, name, catERMID
+FROM            vw_CAT_SUB_ERM</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="catERMID" DataSetColumn="catERMID" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CAT_SUB_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByCatSubErmByCatErmID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCatSubErmByCatErmID" GeneratorSourceName="FillByCatSubErmByCatErmID" GetMethodModifier="Public" GetMethodName="GetDataByCatSubErmByCatErmID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCatSubErmByCatErmID" UserSourceName="FillByCatSubErmByCatErmID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID, name, catERMID
+FROM            vw_CAT_SUB_ERM
+WHERE        (catERMID = @catERMID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="catERMID" ColumnName="catERMID" DataSourceName="DreamyKitchen.dbo.vw_CAT_SUB_ERM" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@catERMID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="catERMID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SIDESTableAdapter" GeneratorDataComponentClassName="vw_SIDESTableAdapter" Name="vw_SIDES" UserDataComponentName="vw_SIDESTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SIDES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillSidesBydoorTypeID" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataSidesBydoorTypeID" GeneratorSourceName="FillSidesBydoorTypeID" GetMethodModifier="Public" GetMethodName="GetDataSidesBydoorTypeID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataSidesBydoorTypeID" UserSourceName="FillSidesBydoorTypeID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        name, height, width, Price, ID
+FROM            vw_SIDES
+WHERE        (doorTypeID = @doorTypeID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="doorTypeID" ColumnName="doorTypeID" DataSourceName="DreamyKitchen.dbo.vw_SIDES" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@doorTypeID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="doorTypeID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="height" DataSetColumn="height" />
+              <Mapping SourceColumn="width" DataSetColumn="width" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -229,7 +333,7 @@ FROM            vw_DOOR_TYPE</CommandText>
   <xs:element name="DreamyKitchenDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DreamyKitchenDataSet" msprop:Generator_UserDSName="DreamyKitchenDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="vw_NOTES" msprop:Generator_TableClassName="vw_NOTESDataTable" msprop:Generator_TableVarName="tablevw_NOTES" msprop:Generator_RowChangedName="vw_NOTESRowChanged" msprop:Generator_TablePropName="vw_NOTES" msprop:Generator_RowDeletingName="vw_NOTESRowDeleting" msprop:Generator_RowChangingName="vw_NOTESRowChanging" msprop:Generator_RowEvHandlerName="vw_NOTESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_NOTESRowDeleted" msprop:Generator_RowClassName="vw_NOTESRow" msprop:Generator_UserTableName="vw_NOTES" msprop:Generator_RowEvArgName="vw_NOTESRowChangeEvent">
+        <xs:element name="vw_NOTES" msprop:Generator_TableClassName="vw_NOTESDataTable" msprop:Generator_TableVarName="tablevw_NOTES" msprop:Generator_TablePropName="vw_NOTES" msprop:Generator_RowDeletingName="vw_NOTESRowDeleting" msprop:Generator_RowChangingName="vw_NOTESRowChanging" msprop:Generator_RowEvHandlerName="vw_NOTESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_NOTESRowDeleted" msprop:Generator_UserTableName="vw_NOTES" msprop:Generator_RowChangedName="vw_NOTESRowChanged" msprop:Generator_RowEvArgName="vw_NOTESRowChangeEvent" msprop:Generator_RowClassName="vw_NOTESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -284,7 +388,7 @@ FROM            vw_DOOR_TYPE</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_SALERS" msprop:Generator_TableClassName="vw_SALERSDataTable" msprop:Generator_TableVarName="tablevw_SALERS" msprop:Generator_TablePropName="vw_SALERS" msprop:Generator_RowDeletingName="vw_SALERSRowDeleting" msprop:Generator_RowChangingName="vw_SALERSRowChanging" msprop:Generator_RowEvHandlerName="vw_SALERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SALERSRowDeleted" msprop:Generator_UserTableName="vw_SALERS" msprop:Generator_RowChangedName="vw_SALERSRowChanged" msprop:Generator_RowEvArgName="vw_SALERSRowChangeEvent" msprop:Generator_RowClassName="vw_SALERSRow">
+        <xs:element name="vw_SALERS" msprop:Generator_TableClassName="vw_SALERSDataTable" msprop:Generator_TableVarName="tablevw_SALERS" msprop:Generator_RowChangedName="vw_SALERSRowChanged" msprop:Generator_TablePropName="vw_SALERS" msprop:Generator_RowDeletingName="vw_SALERSRowDeleting" msprop:Generator_RowChangingName="vw_SALERSRowChanging" msprop:Generator_RowEvHandlerName="vw_SALERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SALERSRowDeleted" msprop:Generator_RowClassName="vw_SALERSRow" msprop:Generator_UserTableName="vw_SALERS" msprop:Generator_RowEvArgName="vw_SALERSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -307,7 +411,7 @@ FROM            vw_DOOR_TYPE</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_COLORSPVC" msprop:Generator_TableClassName="vw_COLORSPVCDataTable" msprop:Generator_TableVarName="tablevw_COLORSPVC" msprop:Generator_TablePropName="vw_COLORSPVC" msprop:Generator_RowDeletingName="vw_COLORSPVCRowDeleting" msprop:Generator_RowChangingName="vw_COLORSPVCRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSPVCRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSPVCRowDeleted" msprop:Generator_UserTableName="vw_COLORSPVC" msprop:Generator_RowChangedName="vw_COLORSPVCRowChanged" msprop:Generator_RowEvArgName="vw_COLORSPVCRowChangeEvent" msprop:Generator_RowClassName="vw_COLORSPVCRow">
+        <xs:element name="vw_COLORSPVC" msprop:Generator_TableClassName="vw_COLORSPVCDataTable" msprop:Generator_TableVarName="tablevw_COLORSPVC" msprop:Generator_RowChangedName="vw_COLORSPVCRowChanged" msprop:Generator_TablePropName="vw_COLORSPVC" msprop:Generator_RowDeletingName="vw_COLORSPVCRowDeleting" msprop:Generator_RowChangingName="vw_COLORSPVCRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSPVCRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSPVCRowDeleted" msprop:Generator_RowClassName="vw_COLORSPVCRow" msprop:Generator_UserTableName="vw_COLORSPVC" msprop:Generator_RowEvArgName="vw_COLORSPVCRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -322,7 +426,7 @@ FROM            vw_DOOR_TYPE</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_COLORSBOX" msprop:Generator_TableClassName="vw_COLORSBOXDataTable" msprop:Generator_TableVarName="tablevw_COLORSBOX" msprop:Generator_TablePropName="vw_COLORSBOX" msprop:Generator_RowDeletingName="vw_COLORSBOXRowDeleting" msprop:Generator_RowChangingName="vw_COLORSBOXRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSBOXRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSBOXRowDeleted" msprop:Generator_UserTableName="vw_COLORSBOX" msprop:Generator_RowChangedName="vw_COLORSBOXRowChanged" msprop:Generator_RowEvArgName="vw_COLORSBOXRowChangeEvent" msprop:Generator_RowClassName="vw_COLORSBOXRow">
+        <xs:element name="vw_COLORSBOX" msprop:Generator_TableClassName="vw_COLORSBOXDataTable" msprop:Generator_TableVarName="tablevw_COLORSBOX" msprop:Generator_RowChangedName="vw_COLORSBOXRowChanged" msprop:Generator_TablePropName="vw_COLORSBOX" msprop:Generator_RowDeletingName="vw_COLORSBOXRowDeleting" msprop:Generator_RowChangingName="vw_COLORSBOXRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSBOXRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSBOXRowDeleted" msprop:Generator_RowClassName="vw_COLORSBOXRow" msprop:Generator_UserTableName="vw_COLORSBOX" msprop:Generator_RowEvArgName="vw_COLORSBOXRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -337,7 +441,7 @@ FROM            vw_DOOR_TYPE</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_ERM" msprop:Generator_TableClassName="vw_ERMDataTable" msprop:Generator_TableVarName="tablevw_ERM" msprop:Generator_RowChangedName="vw_ERMRowChanged" msprop:Generator_TablePropName="vw_ERM" msprop:Generator_RowDeletingName="vw_ERMRowDeleting" msprop:Generator_RowChangingName="vw_ERMRowChanging" msprop:Generator_RowEvHandlerName="vw_ERMRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_ERMRowDeleted" msprop:Generator_RowClassName="vw_ERMRow" msprop:Generator_UserTableName="vw_ERM" msprop:Generator_RowEvArgName="vw_ERMRowChangeEvent">
+        <xs:element name="vw_ERM" msprop:Generator_TableClassName="vw_ERMDataTable" msprop:Generator_TableVarName="tablevw_ERM" msprop:Generator_TablePropName="vw_ERM" msprop:Generator_RowDeletingName="vw_ERMRowDeleting" msprop:Generator_RowChangingName="vw_ERMRowChanging" msprop:Generator_RowEvHandlerName="vw_ERMRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_ERMRowDeleted" msprop:Generator_UserTableName="vw_ERM" msprop:Generator_RowChangedName="vw_ERMRowChanged" msprop:Generator_RowEvArgName="vw_ERMRowChangeEvent" msprop:Generator_RowClassName="vw_ERMRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -346,13 +450,6 @@ FROM            vw_DOOR_TYPE</CommandText>
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="10" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="250" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
@@ -376,7 +473,6 @@ FROM            vw_DOOR_TYPE</CommandText>
               <xs:element name="depth" msprop:Generator_ColumnVarNameInTable="columndepth" msprop:Generator_ColumnPropNameInRow="depth" msprop:Generator_ColumnPropNameInTable="depthColumn" msprop:Generator_UserColumnName="depth" type="xs:decimal" minOccurs="0" />
               <xs:element name="door" msprop:Generator_ColumnVarNameInTable="columndoor" msprop:Generator_ColumnPropNameInRow="door" msprop:Generator_ColumnPropNameInTable="doorColumn" msprop:Generator_UserColumnName="door" type="xs:int" minOccurs="0" />
               <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
-              <xs:element name="photo" msprop:Generator_ColumnVarNameInTable="columnphoto" msprop:Generator_ColumnPropNameInRow="photo" msprop:Generator_ColumnPropNameInTable="photoColumn" msprop:Generator_UserColumnName="photo" type="xs:base64Binary" minOccurs="0" />
               <xs:element name="PVCcolorName" msprop:Generator_ColumnVarNameInTable="columnPVCcolorName" msprop:Generator_ColumnPropNameInRow="PVCcolorName" msprop:Generator_ColumnPropNameInTable="PVCcolorNameColumn" msprop:Generator_UserColumnName="PVCcolorName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -410,10 +506,21 @@ FROM            vw_DOOR_TYPE</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="DoorPrice" msprop:Generator_ColumnVarNameInTable="columnDoorPrice" msprop:Generator_ColumnPropNameInRow="DoorPrice" msprop:Generator_ColumnPropNameInTable="DoorPriceColumn" msprop:Generator_UserColumnName="DoorPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="catSubErmName" msprop:Generator_ColumnVarNameInTable="columncatSubErmName" msprop:Generator_ColumnPropNameInRow="catSubErmName" msprop:Generator_ColumnPropNameInTable="catSubErmNameColumn" msprop:Generator_UserColumnName="catSubErmName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="catSubErmID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncatSubErmID" msprop:Generator_ColumnPropNameInRow="catSubErmID" msprop:Generator_ColumnPropNameInTable="catSubErmIDColumn" msprop:Generator_UserColumnName="catSubErmID" type="xs:string" />
+              <xs:element name="photo2" msprop:Generator_ColumnVarNameInTable="columnphoto2" msprop:Generator_ColumnPropNameInRow="photo2" msprop:Generator_ColumnPropNameInTable="photo2Column" msprop:Generator_UserColumnName="photo2" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="photo3" msprop:Generator_ColumnVarNameInTable="columnphoto3" msprop:Generator_ColumnPropNameInRow="photo3" msprop:Generator_ColumnPropNameInTable="photo3Column" msprop:Generator_UserColumnName="photo3" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="photo1" msprop:Generator_ColumnVarNameInTable="columnphoto1" msprop:Generator_ColumnPropNameInRow="photo1" msprop:Generator_ColumnPropNameInTable="photo1Column" msprop:Generator_UserColumnName="photo1" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_OFFERS" msprop:Generator_TableClassName="vw_OFFERSDataTable" msprop:Generator_TableVarName="tablevw_OFFERS" msprop:Generator_RowChangedName="vw_OFFERSRowChanged" msprop:Generator_TablePropName="vw_OFFERS" msprop:Generator_RowDeletingName="vw_OFFERSRowDeleting" msprop:Generator_RowChangingName="vw_OFFERSRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFERSRowDeleted" msprop:Generator_RowClassName="vw_OFFERSRow" msprop:Generator_UserTableName="vw_OFFERS" msprop:Generator_RowEvArgName="vw_OFFERSRowChangeEvent">
+        <xs:element name="vw_OFFERS" msprop:Generator_TableClassName="vw_OFFERSDataTable" msprop:Generator_TableVarName="tablevw_OFFERS" msprop:Generator_TablePropName="vw_OFFERS" msprop:Generator_RowDeletingName="vw_OFFERSRowDeleting" msprop:Generator_RowChangingName="vw_OFFERSRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFERSRowDeleted" msprop:Generator_UserTableName="vw_OFFERS" msprop:Generator_RowChangedName="vw_OFFERSRowChanged" msprop:Generator_RowEvArgName="vw_OFFERSRowChangeEvent" msprop:Generator_RowClassName="vw_OFFERSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -422,9 +529,7 @@ FROM            vw_DOOR_TYPE</CommandText>
               <xs:element name="width" msprop:Generator_ColumnVarNameInTable="columnwidth" msprop:Generator_ColumnPropNameInRow="width" msprop:Generator_ColumnPropNameInTable="widthColumn" msprop:Generator_UserColumnName="width" type="xs:decimal" minOccurs="0" />
               <xs:element name="depth" msprop:Generator_ColumnVarNameInTable="columndepth" msprop:Generator_ColumnPropNameInRow="depth" msprop:Generator_ColumnPropNameInTable="depthColumn" msprop:Generator_UserColumnName="depth" type="xs:decimal" minOccurs="0" />
               <xs:element name="door" msprop:Generator_ColumnVarNameInTable="columndoor" msprop:Generator_ColumnPropNameInRow="door" msprop:Generator_ColumnPropNameInTable="doorColumn" msprop:Generator_UserColumnName="door" type="xs:int" minOccurs="0" />
-              <xs:element name="photo" msprop:Generator_ColumnVarNameInTable="columnphoto" msprop:Generator_ColumnPropNameInRow="photo" msprop:Generator_ColumnPropNameInTable="photoColumn" msprop:Generator_UserColumnName="photo" type="xs:base64Binary" minOccurs="0" />
               <xs:element name="legs" msprop:Generator_ColumnVarNameInTable="columnlegs" msprop:Generator_ColumnPropNameInRow="legs" msprop:Generator_ColumnPropNameInTable="legsColumn" msprop:Generator_UserColumnName="legs" type="xs:int" minOccurs="0" />
-              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
               <xs:element name="DoorTypeName" msprop:Generator_ColumnVarNameInTable="columnDoorTypeName" msprop:Generator_ColumnPropNameInRow="DoorTypeName" msprop:Generator_ColumnPropNameInTable="DoorTypeNameColumn" msprop:Generator_UserColumnName="DoorTypeName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -434,11 +539,13 @@ FROM            vw_DOOR_TYPE</CommandText>
               </xs:element>
               <xs:element name="offID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnoffID" msprop:Generator_ColumnPropNameInRow="offID" msprop:Generator_ColumnPropNameInTable="offIDColumn" msprop:Generator_UserColumnName="offID" type="xs:string" />
               <xs:element name="catErmID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncatErmID" msprop:Generator_ColumnPropNameInRow="catErmID" msprop:Generator_ColumnPropNameInTable="catErmIDColumn" msprop:Generator_UserColumnName="catErmID" type="xs:string" minOccurs="0" />
-              <xs:element name="ermID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnermID" msprop:Generator_ColumnPropNameInRow="ermID" msprop:Generator_ColumnPropNameInTable="ermIDColumn" msprop:Generator_UserColumnName="ermID" type="xs:string" minOccurs="0" />
+              <xs:element name="ermID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnermID" msprop:Generator_ColumnPropNameInRow="ermID" msprop:Generator_ColumnPropNameInTable="ermIDColumn" msprop:Generator_UserColumnName="ermID" type="xs:string" />
+              <xs:element name="OfferPrice" msprop:Generator_ColumnVarNameInTable="columnOfferPrice" msprop:Generator_ColumnPropNameInRow="OfferPrice" msprop:Generator_ColumnPropNameInTable="OfferPriceColumn" msprop:Generator_UserColumnName="OfferPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Photo" msprop:Generator_ColumnVarNameInTable="columnPhoto" msprop:Generator_ColumnPropNameInRow="Photo" msprop:Generator_ColumnPropNameInTable="PhotoColumn" msprop:Generator_UserColumnName="Photo" type="xs:base64Binary" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPE" msprop:Generator_TableClassName="vw_DOOR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE" msprop:Generator_TablePropName="vw_DOOR_TYPE" msprop:Generator_RowDeletingName="vw_DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPE" msprop:Generator_RowChangedName="vw_DOOR_TYPERowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERow">
+        <xs:element name="vw_DOOR_TYPE" msprop:Generator_TableClassName="vw_DOOR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE" msprop:Generator_RowChangedName="vw_DOOR_TYPERowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPE" msprop:Generator_RowDeletingName="vw_DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPERow" msprop:Generator_UserTableName="vw_DOOR_TYPE" msprop:Generator_RowEvArgName="vw_DOOR_TYPERowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -450,6 +557,38 @@ FROM            vw_DOOR_TYPE</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_CAT_SUB_ERM" msprop:Generator_TableClassName="vw_CAT_SUB_ERMDataTable" msprop:Generator_TableVarName="tablevw_CAT_SUB_ERM" msprop:Generator_RowChangedName="vw_CAT_SUB_ERMRowChanged" msprop:Generator_TablePropName="vw_CAT_SUB_ERM" msprop:Generator_RowDeletingName="vw_CAT_SUB_ERMRowDeleting" msprop:Generator_RowChangingName="vw_CAT_SUB_ERMRowChanging" msprop:Generator_RowEvHandlerName="vw_CAT_SUB_ERMRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CAT_SUB_ERMRowDeleted" msprop:Generator_RowClassName="vw_CAT_SUB_ERMRow" msprop:Generator_UserTableName="vw_CAT_SUB_ERM" msprop:Generator_RowEvArgName="vw_CAT_SUB_ERMRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="catERMID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncatERMID" msprop:Generator_ColumnPropNameInRow="catERMID" msprop:Generator_ColumnPropNameInTable="catERMIDColumn" msprop:Generator_UserColumnName="catERMID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_SIDES" msprop:Generator_TableClassName="vw_SIDESDataTable" msprop:Generator_TableVarName="tablevw_SIDES" msprop:Generator_TablePropName="vw_SIDES" msprop:Generator_RowDeletingName="vw_SIDESRowDeleting" msprop:Generator_RowChangingName="vw_SIDESRowChanging" msprop:Generator_RowEvHandlerName="vw_SIDESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SIDESRowDeleted" msprop:Generator_UserTableName="vw_SIDES" msprop:Generator_RowChangedName="vw_SIDESRowChanged" msprop:Generator_RowEvArgName="vw_SIDESRowChangeEvent" msprop:Generator_RowClassName="vw_SIDESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="height" msprop:Generator_ColumnVarNameInTable="columnheight" msprop:Generator_ColumnPropNameInRow="height" msprop:Generator_ColumnPropNameInTable="heightColumn" msprop:Generator_UserColumnName="height" type="xs:decimal" minOccurs="0" />
+              <xs:element name="width" msprop:Generator_ColumnVarNameInTable="columnwidth" msprop:Generator_ColumnPropNameInRow="width" msprop:Generator_ColumnPropNameInTable="widthColumn" msprop:Generator_UserColumnName="width" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -481,6 +620,14 @@ FROM            vw_DOOR_TYPE</CommandText>
     </xs:unique>
     <xs:unique name="vw_DOOR_TYPE_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:vw_DOOR_TYPE" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_CAT_SUB_ERM_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_CAT_SUB_ERM" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_SIDES_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_SIDES" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
   </xs:element>

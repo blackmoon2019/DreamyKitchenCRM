@@ -116,7 +116,10 @@ Public Class frmCusMov
                     Mode = FormMode.EditRecord
                 End If
                 'Καθαρισμός Controls
-                If Mode = FormMode.NewRecord Then Cls.ClearCtrls(LayoutControl1)
+                If Mode = FormMode.NewRecord Then
+                    Cls.ClearCtrls(LayoutControl1)
+                    txtCode.Text = DBQ.GetNextId("CCT_M")
+                End If
 
             End If
 

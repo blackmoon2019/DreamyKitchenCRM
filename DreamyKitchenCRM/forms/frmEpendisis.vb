@@ -13,6 +13,7 @@ Public Class frmEpendisis
     Private LoadForms As New FormLoader
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
+    Private CtrlCombo2 As DevExpress.XtraEditors.CheckedComboBoxEdit
     Private CalledFromCtrl As Boolean
 
 
@@ -36,6 +37,12 @@ Public Class frmEpendisis
             CtrlCombo = value
         End Set
     End Property
+    Public WriteOnly Property CallerControlCombo As DevExpress.XtraEditors.CheckedComboBoxEdit
+        Set(value As DevExpress.XtraEditors.CheckedComboBoxEdit)
+            CtrlCombo2 = value
+        End Set
+    End Property
+
     Public WriteOnly Property CalledFromControl As Boolean
         Set(value As Boolean)
             CalledFromCtrl = value
@@ -47,7 +54,8 @@ Public Class frmEpendisis
 
     Private Sub frmEpendisis_Load(sender As Object, e As EventArgs) Handles Me.Load
         'Κατηγορίες Ερμαρίων
-        FillCbo.CAT_ERM(cboCategory)
+
+        FillCbo.DOOR_TYPE(cboDoorType)
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("SIDES")
@@ -88,8 +96,10 @@ Public Class frmEpendisis
                 txtCustomCode.Select()
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Cls.ClearCtrls(LayoutControl1)
-                    txtCode.Text = DBQ.GetNextId("SIDES")
+                    If Mode = FormMode.NewRecord Then
+                        Cls.ClearCtrls(LayoutControl1)
+                        txtCode.Text = DBQ.GetNextId("SIDES")
+                    End If
                 End If
             End If
 
@@ -98,33 +108,21 @@ Public Class frmEpendisis
         End Try
     End Sub
 
-    Private Sub cboCategory_EditValueChanged(sender As Object, e As EventArgs) Handles cboCategory.EditValueChanged
 
-    End Sub
-
-    Private Sub cboCategory_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCategory.ButtonClick
+    Private Sub cboDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCAT()
-            Case 2 : cboCategory.EditValue = Nothing
+            Case 1 : ManageDoorType()
+            Case 2 : cboDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageCAT()
-        Dim frmGen As frmGen = New frmGen
-        frmGen.Text = "Κατηγορίες Ερμαρίων"
-        frmGen.L1.Text = "Κωδικός"
-        frmGen.L2.Text = "Κατηγορία"
-        frmGen.DataTable = "CAT_ERM"
-        frmGen.CallerControl = cboCategory
-        frmGen.CalledFromControl = True
-        If cboCategory.EditValue <> Nothing Then frmGen.ID = cboCategory.EditValue.ToString
-        frmGen.MdiParent = frmMain
-        frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        If cboCategory.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
-        frmGen.Show()
+    Private Sub ManageDoorType()
+        Dim frmDoorType As frmDoorType = New frmDoorType
+        frmDoorType.CallerControl = cboDoorType
+        frmDoorType.CalledFromControl = True
+        If cboDoorType.EditValue <> Nothing Then frmDoorType.ID = cboDoorType.EditValue.ToString
+        frmDoorType.MdiParent = frmMain
+        If cboDoorType.EditValue <> Nothing Then frmDoorType.Mode = FormMode.EditRecord Else frmDoorType.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(frmDoorType.Parent.ClientRectangle.Width / 2 - frmDoorType.Width / 2), CInt(frmDoorType.Parent.ClientRectangle.Height / 2 - frmDoorType.Height / 2)))
+        frmDoorType.Show()
     End Sub
 End Class

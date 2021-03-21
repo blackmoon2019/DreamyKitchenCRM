@@ -212,14 +212,40 @@ Public Class FillCombos
     End Sub
     Public Sub ERM(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,name from vw_ERM order by name", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,catErmName,catSubErmName from vw_ERM order by catErmName,catSubErmName ", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = sdr
-            CtrlCombo.Properties.DisplayMember = "name"
+            CtrlCombo.Properties.DisplayMember = "catErmName"
             CtrlCombo.Properties.ValueMember = "id"
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
-            CtrlCombo.Properties.Columns(1).Caption = "Ερμάρια"
+            CtrlCombo.Properties.Columns(1).Caption = "Κατηγορία"
+            CtrlCombo.Properties.Columns(1).Width = 150
+            CtrlCombo.Properties.Columns(2).Visible = True
+            CtrlCombo.Properties.Columns(2).Caption = "Υποκατηγορία"
+            CtrlCombo.Properties.Columns(2).Width = 150
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+    Public Sub SIDES(Optional CtrlCombo As DevExpress.XtraEditors.LookUpEdit = Nothing, Optional CtrlCheckedCombo As DevExpress.XtraEditors.CheckedComboBoxEdit = Nothing)
+        Try
+            Dim cmd As SqlCommand = New SqlCommand("Select id,name from vw_SIDES order by name", CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            If CtrlCombo IsNot Nothing Then
+                CtrlCombo.Properties.DataSource = sdr
+                CtrlCombo.Properties.DisplayMember = "name"
+                CtrlCombo.Properties.ValueMember = "id"
+                CtrlCombo.Properties.PopulateColumns()
+                CtrlCombo.Properties.Columns(0).Visible = False
+                CtrlCombo.Properties.Columns(1).Caption = "Επενδύσης - Καταφραγές"
+            ElseIf CtrlCheckedCombo IsNot Nothing Then
+                CtrlCheckedCombo.Properties.DataSource = sdr
+                CtrlCheckedCombo.Properties.DisplayMember = "name"
+                CtrlCheckedCombo.Properties.ValueMember = "id"
+            End If
             'CtrlCombo.Properties.Columns(2).Visible = False
             sdr.Close()
         Catch ex As Exception
@@ -227,26 +253,31 @@ Public Class FillCombos
         End Try
 
     End Sub
-    Public Sub SIDES(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+    Public Sub CAT_SUB_ERM(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,name from vw_SIDES order by name", CNDB)
+            If sSQL Is Nothing Then
+                sSQL = New System.Text.StringBuilder
+                sSQL.AppendLine("Select id,name from vw_CAT_SUB_ERM order by name")
+            End If
+            Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "name"
             CtrlCombo.Properties.ValueMember = "id"
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
-            CtrlCombo.Properties.Columns(1).Caption = "Επενδύσης - Καταφραγές"
-            CtrlCombo.Properties.Columns(2).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Υποκατηγορίες Ερμαρίων"
+            'CtrlCombo.Properties.Columns(2).Visible = False
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
+
     Public Sub BENCH(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,name from vw_BENCH order by name", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,name,pricePerMeter from vw_BENCH order by name", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "name"
@@ -254,7 +285,7 @@ Public Class FillCombos
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Πάγκοι"
-            'CtrlCombo.Properties.Columns(2).Visible = False
+            CtrlCombo.Properties.Columns(2).Visible = False
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -498,6 +529,36 @@ Public Class FillCombos
                        isnull((select case when OM.id is not null then 1 else 0 end as checked
 		               from vw_OFFER_MECH OM where offerid = '" & sID & "' and OM.mechID = M.ID),0) as checked
                        from vw_MECH M"
+            End If
+            Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            'chkLstUsers.DataSource = sdr
+            CtrlList.Items.Clear()
+            CtrlList.DisplayMember = "name"
+            CtrlList.ValueMember = "id"
+            While sdr.Read()
+                Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+                chkLstItem.Value = sdr.Item(1).ToString
+                chkLstItem.Tag = sdr.Item(0).ToString
+                If mode = FormMode.EditRecord Then chkLstItem.CheckState = sdr.Item("checked").ToString
+                CtrlList.Items.Add(chkLstItem)
+            End While
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+    Public Sub FillCheckedListSides(CtrlList As DevExpress.XtraEditors.CheckedListBoxControl, ByVal mode As Byte, Optional ByVal sID As String = "")
+        Try
+            Dim sSQL As String
+            If mode = FormMode.NewRecord Then
+                sSQL = "Select id,name + '(' + cast(isnull(price,'0') as nvarchar(10)) + '€)' as name ,price from vw_SIDES"
+            Else
+                sSQL = "Select id,name + '(' + cast(isnull(price,'0') as nvarchar(10)) + '€)' as name,price,
+                       isnull((select case when OM.id is not null then 1 else 0 end as checked
+		               from vw_OFFER_SIDES OM where offerid = '" & sID & "' and OM.sideID = S.ID),0) as checked
+                       from vw_SIDES s"
             End If
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()

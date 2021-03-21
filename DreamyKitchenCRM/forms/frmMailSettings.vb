@@ -110,9 +110,12 @@ Public Class frmMailSettings
                 Dim form As frmScroller = Frm
                 form.LoadRecords("vw_MAILS")
                 If sResult Then
-                    'Καθαρισμός Controls
-                    Cls.ClearCtrls(LayoutControl1)
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    If Mode = FormMode.NewRecord Then
+                        'Καθαρισμός Controls
+                        Cls.ClearCtrls(LayoutControl1)
+                    End If
+
                 End If
             End If
             '    values.Add(GridLookUpEdit1View.GetRowCellValue(rowHandle, "Realname"))

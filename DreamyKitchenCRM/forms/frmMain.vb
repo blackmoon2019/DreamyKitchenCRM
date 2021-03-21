@@ -409,5 +409,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub bbCatSubErm_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCatSubErm.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Υποκατηγορίες Ερμαρίων"
+        form.DataTable = "vw_CAT_SUB_ERM"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

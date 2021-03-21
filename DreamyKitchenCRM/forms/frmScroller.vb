@@ -162,6 +162,7 @@ Public Class frmScroller
                     Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_OFF" : sSQL = "DELETE FROM [OFF] WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CALC" : sSQL = "DELETE FROM CALC WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_CAT_SUB_ERM" : sSQL = "DELETE FROM CAT_SUB_ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
 
                 End Select
 
@@ -509,7 +510,17 @@ Public Class frmScroller
         Dim frmEpendisis As frmEpendisis = New frmEpendisis
         Dim form21 As frmGen = New frmGen()
         Dim frmCalculations As frmCalculations = New frmCalculations()
+        Dim frmCatSubErm As New frmCatSubErm
         Select Case sDataTable
+            Case "vw_CAT_SUB_ERM"
+                frmCatSubErm.Text = "Υποκατηγορίες Ερμαρίων"
+                frmCatSubErm.MdiParent = frmMain
+                frmCatSubErm.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmCatSubErm.Mode = FormMode.EditRecord
+                frmCatSubErm.Scroller = GridView1
+                frmCatSubErm.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCatSubErm.Show()
             Case "vw_CALC"
                 frmCalculations.Text = "Υπολογισμοί"
                 frmCalculations.MdiParent = frmMain
@@ -893,7 +904,16 @@ Public Class frmScroller
         Dim frmEpendisis As frmEpendisis = New frmEpendisis
         Dim form21 As frmGen = New frmGen()
         Dim frmCalculations As frmCalculations = New frmCalculations()
+        Dim frmCatSubErm As New frmCatSubErm
         Select Case sDataTable
+            Case "vw_CAT_SUB_ERM"
+                frmCatSubErm.Text = "Υποκατηγορίες Ερμαρίων"
+                frmCatSubErm.MdiParent = frmMain
+                frmCatSubErm.Mode = FormMode.NewRecord
+                frmCatSubErm.Scroller = GridView1
+                frmCatSubErm.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCatSubErm.Show()
             Case "vw_CALC"
                 frmCalculations.Text = "Υπολογισμοί"
                 frmCalculations.MdiParent = frmMain

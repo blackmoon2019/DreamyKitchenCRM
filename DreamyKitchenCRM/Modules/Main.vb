@@ -57,7 +57,13 @@ Module Main
                 If t.Length = 0 Then
                     Return "NULL" 'this will pass through any SQL statement without notice  
                 Else 'Lets suppose our textbox is checked to contain only numbers, so we count on it  
-                    If Not isnum Then Return "'" + t + "'" Else Return t.Replace(",", ".")
+                    If Not isnum Then
+                        Return "'" + t + "'"
+                    Else
+                        t = t.Replace(",", ".")
+                        t = t.Replace(" €", "")
+                        Return t
+                    End If
                 End If
             Else
                 Return "NULL" 'this will pass through any SQL statement without notice  

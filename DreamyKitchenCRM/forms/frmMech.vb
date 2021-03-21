@@ -84,8 +84,11 @@ Public Class frmMech
                 txtCustomCode.Select()
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Cls.ClearCtrls(LayoutControl1)
-                    txtCode.Text = DBQ.GetNextId("MECH")
+                    If Mode = FormMode.NewRecord Then
+                        Cls.ClearCtrls(LayoutControl1)
+                        txtCode.Text = DBQ.GetNextId("MECH")
+                        txtNam.Select()
+                    End If
                 End If
             End If
 

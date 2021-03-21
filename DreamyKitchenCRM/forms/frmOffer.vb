@@ -29,8 +29,9 @@ Public Class frmOffer
     Private DoorTypeID As String
     Private DoorPrice As Double
     Private CatErmID As String
-    Private ErmName As String
+    Private CatSubErmID As String
     Private Calculations As String
+    Private CalcID As String
 
 
     Public WriteOnly Property ID As String
@@ -72,17 +73,30 @@ Public Class frmOffer
         FillCbo.CUS(cboCUS)
         FillCbo.CAT_ERM(cboCategory)
         FillCbo.ERM(cboERM)
+        FillCbo.DOOR_TYPE(cboDoorType)
         FillCbo.BENCH(cboBENCH)
+        FillCbo.BENCH(cboExtraBENCH)
         FillCbo.DIMENSION(cboDim)
         FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
+        FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
+        FillCbo.CAT_SUB_ERM(cboCatSubErm)
+        FillCbo.SIDES()
         'FillCbo.FillCheckedListDoorTypes(chkDoorTypes, FormMode.NewRecord)
         cboSides.Properties.Items.Add("Δεξί")
         cboSides.Properties.Items.Add("Αριστερό")
-
-        If cboCategory.EditValue Is Nothing Then
+        cboSides.Properties.Items.Add("Δεξί/Αριστερό")
+        If cboCategory.EditValue Is Nothing And cboCatSubErm.EditValue Is Nothing And cboDoorType.EditValue <> Nothing Then
+            Me.Vw_ERMTableAdapter.FillByDoorType(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboDoorType.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue Is Nothing And cboDoorType.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillErmCategory(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
+        ElseIf cboCategory.EditValue Is Nothing And cboDoorType.EditValue Is Nothing And cboCatSubErm.EditValue Is Nothing Then
             Me.Vw_ERMTableAdapter.FillByAll(Me.DreamyKitchenDataSet.vw_ERM)
-        Else
-            Me.Vw_ERMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboDoorType.EditValue <> Nothing And cboCatSubErm.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmAndDoor(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing And cboDoorType.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmAndSubCat(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboCatSubErm.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing And cboDoorType.EditValue <> Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmDoorAndSubCat(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString), System.Guid.Parse(cboCatSubErm.EditValue.ToString))
         End If
 
         Select Case Mode
@@ -90,6 +104,7 @@ Public Class frmOffer
                 LayoutControlGroup2.Enabled = False
                 LayoutControl2.Enabled = False
                 FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
+                FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
                 txtCode.Text = DBQ.GetNextId("[OFF]")
             Case FormMode.EditRecord
                 'FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sID)
@@ -155,22 +170,38 @@ Public Class frmOffer
     End Sub
 
     Private Sub cboCategory_EditValueChanged(sender As Object, e As EventArgs) Handles cboCategory.EditValueChanged
-        If cboCategory.EditValue Is Nothing Then
+        If cboCategory.EditValue Is Nothing Then Exit Sub
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select id,name from vw_CAT_SUB_ERM where CatErmID = " & toSQLValueS(cboCategory.EditValue.ToString) & "order by name")
+        FillCbo.CAT_SUB_ERM(cboCatSubErm, sSQL)
+
+        If cboCategory.EditValue Is Nothing And cboDoorType.EditValue <> Nothing Then
+            Me.Vw_ERMTableAdapter.FillByDoorType(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboDoorType.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboDoorType.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillErmCategory(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
+        ElseIf cboCategory.EditValue Is Nothing And cboDoorType.EditValue Is Nothing Then
             Me.Vw_ERMTableAdapter.FillByAll(Me.DreamyKitchenDataSet.vw_ERM)
-        Else
-            Me.Vw_ERMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboDoorType.EditValue <> Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmAndDoor(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboDoorType.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmDoorAndSubCat(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString), System.Guid.Parse(cboCatSubErm.EditValue.ToString))
         End If
     End Sub
     Private Sub grdMain_DoubleClick(sender As Object, e As EventArgs) Handles grdMain.DoubleClick
         chkDimChanged.Checked = False
         LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_ERM where id ='" + GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString() + "'")
         DoorTypeID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DoorTypeID").ToString()
-        ErmName = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "name").ToString()
         cboERM.EditValue = System.Guid.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString())
         CatErmID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "catErmID").ToString()
+        CatSubErmID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "catSubErmID").ToString()
         Calculations = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "calculations").ToString()
+        CalcID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "calcID").ToString()
         DoorPrice = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DoorPrice").ToString()
+        cboCategory.EditValue = System.Guid.Parse(CatErmID)
+        cboDoorType.EditValue = System.Guid.Parse(DoorTypeID)
+        cboCatSubErm.EditValue = System.Guid.Parse(CatSubErmID)
         txtCalc.EditValue = Calculations
+        txtQTY.EditValue = "1"
         cmdSave.Enabled = True
     End Sub
 
@@ -289,6 +320,17 @@ Public Class frmOffer
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New POINT(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
         frmBench.Show()
     End Sub
+    Private Sub ManageBENCHExtra()
+        Dim frmBench As frmBench = New frmBench
+        frmBench.CallerForm = Me.Name
+        frmBench.CallerControl = cboExtraBENCH
+        frmBench.CalledFromControl = True
+        If cboExtraBENCH.EditValue <> Nothing Then frmBench.ID = cboExtraBENCH.EditValue.ToString
+        frmBench.MdiParent = frmMain
+        If cboExtraBENCH.EditValue <> Nothing Then frmBench.Mode = FormMode.EditRecord Else frmBench.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
+        frmBench.Show()
+    End Sub
 
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then
@@ -368,27 +410,68 @@ Public Class frmOffer
     End Class
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
-        Dim sResult As Boolean, sResult2 As Boolean
+        Dim sResult As Boolean
         Dim sGuid As String, sSQL As String, ExceptFields As New List(Of String)
+        Dim SelectedPics As Byte,WhichPictureHaseSelected As Byte 
         Try
             If Valid.ValidateForm(LayoutControl1) Then
+                If Pic1.BackColor = Color.Gray Then SelectedPics = 1 : WhichPictureHaseSelected = 1
+                If Pic2.BackColor = Color.Gray Then SelectedPics = SelectedPics + 1 : WhichPictureHaseSelected = 2
+                If Pic3.BackColor = Color.Gray Then SelectedPics = SelectedPics + 1 : WhichPictureHaseSelected = 3
+                If SelectedPics > 1 Then
+                    XtraMessageBox.Show("Μόνο μια φωτογραφία μπορείτε να επιλέξετε.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
                 If chkDimChanged.Checked = True Then
                     XtraMessageBox.Show("Έχετε επιλέξει αλλαγή διάστασης. Θα ενημερωθεί η βιβλιοθήκη με την νέα διάσταση.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ExceptFields.Add(cboERM.Properties.Tag)
                     ExceptFields.Add(txtQTY.Properties.Tag)
                     ExceptFields.Add(cboBENCH.Properties.Tag)
                     ExceptFields.Add(chkDimChanged.Properties.Tag)
+                    ExceptFields.Add(cboExtraBENCH.Properties.Tag)
+                    ExceptFields.Add(txtbenchExtraDim.Properties.Tag)
+                    ExceptFields.Add(txtBenchExtraPrice.Properties.Tag)
+                    ExceptFields.Add(txtTotalPrice.Properties.Tag)
                     sGuid = System.Guid.NewGuid.ToString
-                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,name,catErmID", toSQLValueS(DoorTypeID) & "," & toSQLValueS(ErmName) & "," & toSQLValueS(CatErmID), ExceptFields)
+                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,CatSubErmID,CatErmID,CalcID", toSQLValueS(DoorTypeID) & "," & toSQLValueS(CatSubErmID) & "," & toSQLValueS(CatErmID) & "," & toSQLValueS(CalcID), ExceptFields)
+                    ExceptFields.Clear()
+                    If sResult = False Then Exit Sub
                 End If
+                ExceptFields.Add(Pic1.Properties.Tag)
+                ExceptFields.Add(Pic2.Properties.Tag)
+                ExceptFields.Add(Pic3.Properties.Tag)
                 If sOffersID = "" Then
                     sGuid = System.Guid.NewGuid.ToString
-                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid,, "offID", toSQLValueS(sID))
+                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid,, "offID,SelectedErmPicture", toSQLValueS(sID) & "," & WhichPictureHaseSelected, ExceptFields)
+                    If sResult = True Then
+                        If SelectedPics > 0 Then
+                            'Οταν φτάσει εδώ ο κώδικας πάντα μια φωτογραφία ειναι επιλεγμένη
+                            sSQL = "UPDATE OFFERS SET SelectedErmPicture = " & WhichPictureHaseSelected & ", Photo = @Photo WHERE ID = " & toSQLValueS(sOffersID)
+                            Using oCmd As New SqlCommand(sSQL, CNDB)
+                                If Pic1.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic1.EditValue)
+                                If Pic2.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic2.EditValue)
+                                If Pic3.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic3.EditValue)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                        End If
+                    End If
                 Else
-                    sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sOffersID)
-                    '  FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sID)
+                    ExceptFields.Add(Pic1.Properties.Tag)
+                    ExceptFields.Add(Pic2.Properties.Tag)
+                    ExceptFields.Add(Pic3.Properties.Tag)
+                    sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sOffersID,,,, ExceptFields)
                 End If
                 If sResult = True Then
+                    If SelectedPics > 0 Then
+                        'Οταν φτάσει εδώ ο κώδικας πάντα μια φωτογραφία ειναι επιλεγμένη
+                        sSQL = "UPDATE OFFERS SET SelectedErmPicture = " & WhichPictureHaseSelected & ", Photo = @Photo WHERE ID = " & toSQLValueS(sOffersID)
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            If Pic1.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic1.EditValue)
+                            If Pic2.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic2.EditValue)
+                            If Pic3.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic3.EditValue)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    End If
 
                     'Όταν είναι σε EditMode διαγραφουμε όλους τους μηχανισμούς
                     If sOffersID <> "" Then
@@ -407,17 +490,36 @@ Public Class frmOffer
                             oCmd.ExecuteNonQuery()
                         End Using
                     Next
-                    sResult2 = True
+
+                    'Όταν είναι σε EditMode διαγραφουμε όλους τα πλαϊνά - καταφραγές
+                    If sOffersID <> "" Then
+                        sSQL = "DELETE FROM OFFER_SIDES where OFFERID = '" & sOffersID & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    End If
+
+                    ' Καταχώρηση πλαϊνά - καταφραγές
+                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkSides.CheckedItems
+                        sSQL = "INSERT INTO OFFER_SIDES ([OFFID],[OFFERID],[SIDEID],[modifiedBy],[createdOn])  
+                        values (" & toSQLValueS(sID) & "," & toSQLValueS(sOffersID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                                            toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    Next
 
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
+                    Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
+                    Pic1.BorderStyle = BorderStyles.Default : Pic2.BorderStyle = BorderStyles.Default : Pic3.BorderStyle = BorderStyles.Default
                     sOffersID = ""
                     FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
+                    FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
                     Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
                     cmdSave.Enabled = False
                 End If
             End If
-
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -465,8 +567,22 @@ Public Class frmOffer
     Private Sub GridView3_DoubleClick(sender As Object, e As EventArgs) Handles GridView3.DoubleClick
         If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID") = Nothing Then Exit Sub
         LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_OFFERS where id ='" + GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString() + "'")
+        Dim cmd As SqlCommand = New SqlCommand("Select SelectedErmPicture from vw_OFFERS where id ='" + GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString() + "'", CNDB)
+        Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("SelectedErmPicture")) = False Then
+                Select Case sdr.GetByte(sdr.GetOrdinal("SelectedErmPicture"))
+                    Case 1 : Pic1.BackColor = Color.Gray
+                    Case 2 : Pic2.BackColor = Color.Gray
+                    Case 3 : Pic3.BackColor = Color.Gray
+                End Select
+            End If
+        End If
+        sdr.Close()
+
         sOffersID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString()
         FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sOffersID)
+        FillCbo.FillCheckedListSides(chkSides, FormMode.EditRecord, sOffersID)
         cmdSave.Enabled = True
         cboERM.EditValue = System.Guid.Parse(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ermID").ToString())
     End Sub
@@ -504,6 +620,10 @@ Public Class frmOffer
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
+                sSQL = "DELETE FROM [OFFER_SIDES] WHERE OFFERID = '" & GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString & "'"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
                 sSQL = "DELETE FROM [OFFERS] WHERE ID = '" & GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString & "'"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
@@ -531,13 +651,20 @@ Public Class frmOffer
         Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
     End Sub
 
-    Private Sub cmdCalc_Click(sender As Object, e As EventArgs) Handles cmdCalc.Click
+    Private Sub Calculate()
         Try
             Dim sCalc As Decimal, W As Decimal, P As Decimal, TransformationCalc As String
+            Dim BenchExtraPrice As String
+            If txtCalc.EditValue = Nothing Then Exit Sub
             W = txtWidth.EditValue / 100
+            If W = 0 Then Exit Sub
+            BenchExtraPrice = txtBenchExtraPrice.EditValue
             TransformationCalc = txtCalc.EditValue
             TransformationCalc = TransformationCalc.Replace("W", W)
             TransformationCalc = TransformationCalc.Replace("P", DoorPrice).Replace(",", ".")
+            If BenchExtraPrice <> "0,00" And BenchExtraPrice <> "0,00 €" And BenchExtraPrice.Length <> 0 Then TransformationCalc = TransformationCalc + " + " + BenchExtraPrice
+            If txtQTY.EditValue.ToString = "" Then txtQTY.EditValue = "1"
+            TransformationCalc = "(" + TransformationCalc + ") *" + txtQTY.EditValue.ToString
             Dim cmd As SqlCommand = New SqlCommand("Select " & TransformationCalc, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
@@ -565,8 +692,169 @@ Public Class frmOffer
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
             sdr.Close()
-
         End If
         'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
+    End Sub
+
+    Private Sub cboExtraBENCH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboExtraBENCH.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageBENCHExtra()
+            Case 2 : cboExtraBENCH.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboExtraBENCH_EditValueChanged(sender As Object, e As EventArgs) Handles cboExtraBENCH.EditValueChanged
+        If cboExtraBENCH.EditValue <> Nothing Then
+            txtbenchExtraDim.Enabled = True
+            txtBenchExtraPrice.Enabled = True
+        Else
+            txtbenchExtraDim.Enabled = False
+            txtBenchExtraPrice.Enabled = False
+            txtbenchExtraDim.EditValue = "0,00"
+            txtBenchExtraPrice.EditValue = "0,00"
+        End If
+    End Sub
+
+    Private Sub txtbenchExtraDim_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchExtraDim.EditValueChanged
+        If cboExtraBENCH.GetColumnValue("pricePerMeter") = Nothing Or txtbenchExtraDim.EditValue = Nothing Then Exit Sub
+        txtBenchExtraPrice.EditValue = cboExtraBENCH.GetColumnValue("pricePerMeter") * txtbenchExtraDim.EditValue.ToString.Replace(".", ",")
+        Calculate()
+    End Sub
+
+    Private Sub cboDoorType_EditValueChanged(sender As Object, e As EventArgs) Handles cboDoorType.EditValueChanged
+        If cboCategory.EditValue Is Nothing And cboCatSubErm.EditValue Is Nothing And cboDoorType.EditValue <> Nothing Then
+            Me.Vw_ERMTableAdapter.FillByDoorType(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboDoorType.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue Is Nothing And cboDoorType.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillErmCategory(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
+        ElseIf cboCategory.EditValue Is Nothing And cboDoorType.EditValue Is Nothing And cboCatSubErm.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByAll(Me.DreamyKitchenDataSet.vw_ERM)
+        ElseIf cboCategory.EditValue <> Nothing And cboDoorType.EditValue <> Nothing And cboCatSubErm.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmAndDoor(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing And cboDoorType.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmAndSubCat(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboCatSubErm.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing And cboDoorType.EditValue <> Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmDoorAndSubCat(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString), System.Guid.Parse(cboCatSubErm.EditValue.ToString))
+        End If
+        txtDoorPrice.EditValue = cboDoorType.GetColumnValue("price")
+    End Sub
+
+    Private Sub cboDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageDoorType()
+            Case 2 : cboDoorType.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageDoorType()
+        Dim frmDoorType As frmDoorType = New frmDoorType
+        frmDoorType.CallerControl = cboDoorType
+        frmDoorType.CalledFromControl = True
+        If cboDoorType.EditValue <> Nothing Then frmDoorType.ID = cboDoorType.EditValue.ToString
+        frmDoorType.MdiParent = frmMain
+        If cboDoorType.EditValue <> Nothing Then frmDoorType.Mode = FormMode.EditRecord Else frmDoorType.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(frmDoorType.Parent.ClientRectangle.Width / 2 - frmDoorType.Width / 2), CInt(frmDoorType.Parent.ClientRectangle.Height / 2 - frmDoorType.Height / 2)))
+        frmDoorType.Show()
+    End Sub
+
+    Private Sub txtWidth_EditValueChanged(sender As Object, e As EventArgs) Handles txtWidth.EditValueChanged
+        Calculate()
+    End Sub
+
+    Private Sub txtQTY_EditValueChanged(sender As Object, e As EventArgs) Handles txtQTY.EditValueChanged
+        Calculate()
+    End Sub
+
+    Private Sub cboCatSubErm_EditValueChanged(sender As Object, e As EventArgs) Handles cboCatSubErm.EditValueChanged
+        If cboCategory.EditValue Is Nothing And cboCatSubErm.EditValue Is Nothing And cboDoorType.EditValue <> Nothing Then
+            Me.Vw_ERMTableAdapter.FillByDoorType(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboDoorType.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue Is Nothing And cboDoorType.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillErmCategory(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
+        ElseIf cboCategory.EditValue Is Nothing And cboDoorType.EditValue Is Nothing And cboCatSubErm.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByAll(Me.DreamyKitchenDataSet.vw_ERM)
+        ElseIf cboCategory.EditValue <> Nothing And cboDoorType.EditValue <> Nothing And cboCatSubErm.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmAndDoor(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing And cboDoorType.EditValue Is Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmAndSubCat(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboCatSubErm.EditValue.ToString))
+        ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing And cboDoorType.EditValue <> Nothing Then
+            Me.Vw_ERMTableAdapter.FillByErmDoorAndSubCat(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString), System.Guid.Parse(cboCatSubErm.EditValue.ToString))
+        End If
+        txtDoorPrice.EditValue = cboDoorType.GetColumnValue("price")
+    End Sub
+
+    Private Sub cboCatSubErm_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCatSubErm.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCATSUBERM()
+            Case 2 : cboCatSubErm.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageCATSUBERM()
+        Dim frmCatSubErm As frmCatSubErm = New frmCatSubErm
+        frmCatSubErm.CallerControl = cboCatSubErm
+        frmCatSubErm.CalledFromControl = True
+        If cboCatSubErm.EditValue <> Nothing Then frmCatSubErm.ID = cboCatSubErm.EditValue.ToString
+        frmCatSubErm.MdiParent = frmMain
+        If cboCatSubErm.EditValue <> Nothing Then frmCatSubErm.Mode = FormMode.EditRecord Else frmCatSubErm.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(frmCatSubErm.Parent.ClientRectangle.Width / 2 - frmCatSubErm.Width / 2), CInt(frmCatSubErm.Parent.ClientRectangle.Height / 2 - frmCatSubErm.Height / 2)))
+        frmCatSubErm.Show()
+    End Sub
+
+
+    Private Sub PictureEdit2_Click(sender As Object, e As EventArgs) Handles Pic1.Click
+        If Pic1.BackColor = Color.White And Pic1.EditValue IsNot Nothing Then
+            Pic1.BackColor = Color.Gray
+            Pic1.BorderStyle = BorderStyles.Style3D
+        Else
+            Pic1.BackColor = Color.White
+            Pic1.BorderStyle = BorderStyles.Default
+        End If
+    End Sub
+
+    Private Sub PictureEdit21_Click(sender As Object, e As EventArgs) Handles Pic3.Click
+        If Pic3.BackColor = Color.White And Pic3.EditValue IsNot Nothing Then
+            Pic3.BackColor = Color.Gray
+            Pic3.BorderStyle = BorderStyles.Style3D
+        Else
+            Pic3.BackColor = Color.White
+            Pic3.BorderStyle = BorderStyles.Default
+        End If
+    End Sub
+
+    Private Sub PictureEdit22_Click(sender As Object, e As EventArgs) Handles Pic2.Click
+        If Pic2.BackColor = Color.White And Pic2.EditValue IsNot Nothing Then
+            Pic2.BackColor = Color.Gray
+            Pic2.BorderStyle = BorderStyles.Style3D
+        Else
+            Pic2.BackColor = Color.White
+            Pic2.BorderStyle = BorderStyles.Default
+        End If
+    End Sub
+
+    Private Sub chkSides_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles chkSides.ItemCheck
+        Dim Total As String, Sidetem As String, sCalc As Decimal
+        Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
+        Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
+        Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
+        Sidetem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
+        If e.State = CheckState.Checked Then
+            If LItem.Items(e.Index).CheckState = CheckState.Checked Then
+                Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " + " + Total, CNDB)
+                Dim sdr As SqlDataReader = cmd.ExecuteReader()
+                If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+                sdr.Close()
+            End If
+        Else
+            Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " - " + Total, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+            sdr.Close()
+        End If
+        'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
+    End Sub
+
+    Private Sub cmdSave_GotFocus(sender As Object, e As EventArgs) Handles cmdSave.GotFocus
+
+    End Sub
+
+    Private Sub cmdSave_HandleCreated(sender As Object, e As EventArgs) Handles cmdSave.HandleCreated
+
     End Sub
 End Class
