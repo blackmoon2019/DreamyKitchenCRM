@@ -830,7 +830,14 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Console.WriteLine(Err.Number)
+            If Err.Number = 5 Then
+                XtraMessageBox.Show("Προσπαθήσατε να περάσετε εγγραφή που υπάρχει ήδη στο σύστημα", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Else
+                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+
+
             'Try
             '    transaction.Rollback()
             'Catch ex2 As Exception

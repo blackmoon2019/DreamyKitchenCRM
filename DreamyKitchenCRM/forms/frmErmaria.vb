@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports System.Data.SqlClient
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 
 Public Class frmErmaria
@@ -240,7 +241,14 @@ Public Class frmErmaria
     End Sub
 
     Private Sub cboCatSubErm_EditValueChanged(sender As Object, e As EventArgs) Handles cboCatSubErm.EditValueChanged
+        If cboCatSubErm.EditValue Is Nothing Then Exit Sub
+        Dim sSQL As String
 
+        sSQL = "Select id from vw_CALC where CatErmID = " & toSQLValueS(cboCategory.EditValue.ToString) & " AND CatSubErmID = " & toSQLValueS(cboCatSubErm.EditValue.ToString)
+        Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
+        Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        If (sdr.Read() = True) Then cboCalc.EditValue = System.Guid.Parse(sdr.GetGuid(sdr.GetOrdinal("id")).ToString)
+        sdr.Close()
     End Sub
 
     Private Sub cboCatSubErm_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCatSubErm.ButtonClick

@@ -125,4 +125,31 @@ Public Class frmEpendisis
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(frmDoorType.Parent.ClientRectangle.Width / 2 - frmDoorType.Width / 2), CInt(frmDoorType.Parent.ClientRectangle.Height / 2 - frmDoorType.Height / 2)))
         frmDoorType.Show()
     End Sub
+
+    Private Sub txtPricePerMeter_EditValueChanged(sender As Object, e As EventArgs) Handles txtPricePerMeter.EditValueChanged
+        Dim H As Decimal, W As Decimal, P As Decimal
+        If txtHeight.EditValue Is Nothing Or txtWidth.EditValue Is Nothing Or txtPricePerMeter.EditValue Is Nothing Then Exit Sub
+        H = txtHeight.EditValue.ToString.Replace(".", ",") : H = H / 100
+        W = txtWidth.EditValue.ToString.Replace(".", ",") : W = W / 100
+        P = txtPricePerMeter.EditValue.ToString.Replace(".", ",")
+        txtTotPrice.EditValue = (H * W) * P
+    End Sub
+    
+    Private Sub txtHeight_EditValueChanged(sender As Object, e As EventArgs) Handles txtHeight.EditValueChanged
+        Dim H As Decimal, W As Decimal, P As Decimal
+        If txtHeight.EditValue Is Nothing Or txtWidth.EditValue Is Nothing Or txtPricePerMeter.EditValue Is Nothing Then Exit Sub
+        H = txtHeight.EditValue.ToString.Replace(".", ",") : H = H / 100
+        W = txtWidth.EditValue.ToString.Replace(".", ",") : W = W / 100
+        P = txtPricePerMeter.EditValue.ToString.Replace(".", ",")
+        txtTotPrice.EditValue = (H * W) * P
+    End Sub
+
+    Private Sub txtWidth_EditValueChanged(sender As Object, e As EventArgs) Handles txtWidth.EditValueChanged
+        Dim H As Decimal, W As Decimal, P As Decimal
+        If txtHeight.EditValue Is Nothing Or txtWidth.EditValue Is Nothing Or txtPricePerMeter.EditValue Is Nothing Then Exit Sub
+        H = txtHeight.EditValue.ToString.Replace(".", ",") : H = H / 100
+        W = txtWidth.EditValue.ToString.Replace(".", ",") : W = W / 100
+        P = txtPricePerMeter.EditValue.ToString.Replace(".", ",")
+        txtTotPrice.EditValue = (H * W) * P
+    End Sub
 End Class

@@ -28,6 +28,8 @@ Public Class frmOffer
     Private CalledFromCtrl As Boolean
     Private DoorTypeID As String
     Private DoorPrice As Double
+    Private MechPrice As Double
+    Private SidePrice As Double
     Private CatErmID As String
     Private CatSubErmID As String
     Private Calculations As String
@@ -65,7 +67,7 @@ Public Class frmOffer
 
     Private Sub frmOffer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPETableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_TYPE)
+        ' Me.Vw_DOOR_TYPETableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_TYPE)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSPVC' table. You can move, or remove it, as needed.
         Me.Vw_COLORSPVCTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSPVC)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
@@ -81,7 +83,7 @@ Public Class frmOffer
         FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
         FillCbo.CAT_SUB_ERM(cboCatSubErm)
         FillCbo.SIDES()
-        'FillCbo.FillCheckedListDoorTypes(chkDoorTypes, FormMode.NewRecord)
+        FillCbo.FillCheckedListDoorTypes(chkDoorTypes, FormMode.NewRecord)
         cboSides.Properties.Items.Add("Δεξί")
         cboSides.Properties.Items.Add("Αριστερό")
         cboSides.Properties.Items.Add("Δεξί/Αριστερό")
@@ -201,6 +203,7 @@ Public Class frmOffer
         cboDoorType.EditValue = System.Guid.Parse(DoorTypeID)
         cboCatSubErm.EditValue = System.Guid.Parse(CatSubErmID)
         txtCalc.EditValue = Calculations
+        If Calculations.Length > 0 Then Calculate() Else txtTotalPrice.EditValue = "0,00"
         txtQTY.EditValue = "1"
         cmdSave.Enabled = True
     End Sub
@@ -513,7 +516,7 @@ Public Class frmOffer
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
                     Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
                     Pic1.BorderStyle = BorderStyles.Default : Pic2.BorderStyle = BorderStyles.Default : Pic3.BorderStyle = BorderStyles.Default
-                    sOffersID = ""
+                    sOffersID = "" : SidePrice = 0 : MechPrice = 0
                     FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
                     FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
                     Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
@@ -579,12 +582,17 @@ Public Class frmOffer
             End If
         End If
         sdr.Close()
-
+        DoorTypeID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "DoorTypeID").ToString()
+        CatSubErmID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "catSubErmID").ToString()
+        CatErmID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "catErmID").ToString()
         sOffersID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString()
+        DoorPrice = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "DoorPrice").ToString()
+        txtCalc.EditValue = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "calculations").ToString()
         FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sOffersID)
         FillCbo.FillCheckedListSides(chkSides, FormMode.EditRecord, sOffersID)
         cmdSave.Enabled = True
         cboERM.EditValue = System.Guid.Parse(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ermID").ToString())
+
     End Sub
 
     Private Sub cmdOffersEdit_Click(sender As Object, e As EventArgs) Handles cmdOffersEdit.Click
@@ -592,17 +600,22 @@ Public Class frmOffer
         cmdSave.Enabled = True
     End Sub
     Private Sub cmdSameOffer_Click(sender As Object, e As EventArgs) Handles cmdSameOffer.Click
-        Dim sSQL As String
+
         If XtraMessageBox.Show("Θέλετε να δημιουργήσω προσφορά για τα επιλεγμένα πορτάκια?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Καταχώρηση Μηχανισμών
-            For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkMech.CheckedItems
-                sSQL = "INSERT INTO OFFERS ([ID],[OFFID],[DIMCHANGED],[QTY],[createdOn])  
-                        values (" & toSQLValueS(sID) & "," & toSQLValueS(sOffersID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
-                                    toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
-                Using oCmd As New SqlCommand(sSQL, CNDB)
+
+
+            For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkDoorTypes.CheckedItems
+                Using oCmd As New SqlCommand("CloneOffers", CNDB)
+                    oCmd.CommandType = CommandType.StoredProcedure
+                    oCmd.Parameters.AddWithValue("@Offer", sID)
+                    oCmd.Parameters.AddWithValue("@DoorTypeID ", item.Tag)
+                    oCmd.Parameters.AddWithValue("@modifiedBy", UserProps.ID.ToString)
                     oCmd.ExecuteNonQuery()
                 End Using
             Next
+            Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
+            cmdSave.Enabled = False
 
         End If
 
@@ -659,6 +672,7 @@ Public Class frmOffer
             W = txtWidth.EditValue / 100
             If W = 0 Then Exit Sub
             BenchExtraPrice = txtBenchExtraPrice.EditValue
+            BenchExtraPrice = BenchExtraPrice.Replace(",", ".")
             TransformationCalc = txtCalc.EditValue
             TransformationCalc = TransformationCalc.Replace("W", W)
             TransformationCalc = TransformationCalc.Replace("P", DoorPrice).Replace(",", ".")
@@ -670,6 +684,7 @@ Public Class frmOffer
             If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
             sdr.Close()
         Catch ex As Exception
+
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
@@ -682,12 +697,14 @@ Public Class frmOffer
         MechItem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
         If e.State = CheckState.Checked Then
             If LItem.Items(e.Index).CheckState = CheckState.Checked Then
+                MechPrice = MechPrice + MechItem
                 Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " + " + Total, CNDB)
                 Dim sdr As SqlDataReader = cmd.ExecuteReader()
                 If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
                 sdr.Close()
             End If
         Else
+            MechPrice = MechPrice - MechItem
             Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " - " + Total, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
@@ -836,12 +853,14 @@ Public Class frmOffer
         Sidetem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
         If e.State = CheckState.Checked Then
             If LItem.Items(e.Index).CheckState = CheckState.Checked Then
+                SidePrice = SidePrice + SidePrice
                 Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " + " + Total, CNDB)
                 Dim sdr As SqlDataReader = cmd.ExecuteReader()
                 If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
                 sdr.Close()
             End If
         Else
+            SidePrice = SidePrice - SidePrice
             Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " - " + Total, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
@@ -856,5 +875,34 @@ Public Class frmOffer
 
     Private Sub cmdSave_HandleCreated(sender As Object, e As EventArgs) Handles cmdSave.HandleCreated
 
+    End Sub
+
+    Private Sub GridView3_CustomScrollAnnotation(sender As Object, e As GridCustomScrollAnnotationsEventArgs) Handles GridView3.CustomScrollAnnotation
+
+    End Sub
+
+    Private Sub chkMech_SelectedIndexChanged(sender As Object, e As EventArgs) Handles chkMech.SelectedIndexChanged
+        Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+        Try
+            If chkMech.SelectedIndex = -1 Then Exit Sub
+            chkLstItem = chkMech.Items.Item(chkMech.SelectedIndex)
+            If chkLstItem.Tag = "" Then Exit Sub
+            Dim cmd As SqlCommand = New SqlCommand("Select Photo from vw_MECH where id ='" + chkLstItem.Tag + "'", CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("Photo")) = False Then
+                    Dim bytes As Byte()
+                    bytes = DirectCast(sdr(sdr.GetOrdinal("Photo")), Byte())
+                    PicMech.EditValue = bytes
+                Else
+                    PicMech.EditValue = Nothing
+                End If
+            Else
+                PicMech.EditValue = Nothing
+            End If
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class

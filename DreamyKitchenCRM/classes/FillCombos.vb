@@ -553,9 +553,9 @@ Public Class FillCombos
         Try
             Dim sSQL As String
             If mode = FormMode.NewRecord Then
-                sSQL = "Select id,name + '(' + cast(isnull(price,'0') as nvarchar(10)) + '€)' as name ,price from vw_SIDES"
+                sSQL = "Select id,name + '(' + cast(isnull(TotPrice,'0') as nvarchar(10)) + '€)' as name ,TotPrice from vw_SIDES"
             Else
-                sSQL = "Select id,name + '(' + cast(isnull(price,'0') as nvarchar(10)) + '€)' as name,price,
+                sSQL = "Select id,name + '(' + cast(isnull(TotPrice,'0') as nvarchar(10)) + '€)' as name,TotPrice,
                        isnull((select case when OM.id is not null then 1 else 0 end as checked
 		               from vw_OFFER_SIDES OM where offerid = '" & sID & "' and OM.sideID = S.ID),0) as checked
                        from vw_SIDES s"

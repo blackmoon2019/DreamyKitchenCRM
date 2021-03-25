@@ -22,6 +22,8 @@ Partial Class frmErmaria
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmErmaria))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.PictureEdit3 = New DevExpress.XtraEditors.PictureEdit()
+        Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         Me.PictureEdit2 = New DevExpress.XtraEditors.PictureEdit()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
@@ -52,39 +54,39 @@ Partial Class frmErmaria
         Me.cboCatSubErm = New DevExpress.XtraEditors.LookUpEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem56 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem52 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.PictureEdit3 = New DevExpress.XtraEditors.PictureEdit()
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem56 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem52 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.VwCOLORSPVCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
         Me.Vw_COLORSPVCTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSPVCTableAdapter()
-        Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.PictureEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,35 +109,33 @@ Partial Class frmErmaria
         CType(Me.cboCatSubErm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PictureEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -168,6 +168,34 @@ Partial Class frmErmaria
         Me.LayoutControl1.Size = New System.Drawing.Size(1570, 587)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'PictureEdit3
+        '
+        Me.PictureEdit3.Location = New System.Drawing.Point(1075, 220)
+        Me.PictureEdit3.Name = "PictureEdit3"
+        Me.PictureEdit3.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray
+        Me.PictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Always
+        Me.PictureEdit3.Properties.ShowEditMenuItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.PictureEdit3.Properties.ShowScrollBars = True
+        Me.PictureEdit3.Properties.ShowZoomSubMenu = DevExpress.Utils.DefaultBoolean.[True]
+        Me.PictureEdit3.Size = New System.Drawing.Size(483, 323)
+        Me.PictureEdit3.StyleController = Me.LayoutControl1
+        Me.PictureEdit3.TabIndex = 49
+        Me.PictureEdit3.Tag = "photo3,0,1,2"
+        '
+        'PictureEdit1
+        '
+        Me.PictureEdit1.Location = New System.Drawing.Point(533, 220)
+        Me.PictureEdit1.Name = "PictureEdit1"
+        Me.PictureEdit1.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray
+        Me.PictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Always
+        Me.PictureEdit1.Properties.ShowEditMenuItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.PictureEdit1.Properties.ShowScrollBars = True
+        Me.PictureEdit1.Properties.ShowZoomSubMenu = DevExpress.Utils.DefaultBoolean.[True]
+        Me.PictureEdit1.Size = New System.Drawing.Size(538, 323)
+        Me.PictureEdit1.StyleController = Me.LayoutControl1
+        Me.PictureEdit1.TabIndex = 48
+        Me.PictureEdit1.Tag = "photo2,0,1,2"
         '
         'PictureEdit2
         '
@@ -492,6 +520,7 @@ Partial Class frmErmaria
         Me.cboCalc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCalc.Properties.NullText = ""
         Me.cboCalc.Properties.PopupSizeable = False
+        Me.cboCalc.Properties.ReadOnly = True
         Me.cboCalc.Size = New System.Drawing.Size(280, 20)
         Me.cboCalc.StyleController = Me.LayoutControl1
         Me.cboCalc.TabIndex = 21
@@ -530,35 +559,6 @@ Partial Class frmErmaria
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(105, 13)
         '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.txtComments
-        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(862, 0)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(688, 168)
-        Me.LayoutControlItem14.Text = "Παρατηρήσεις"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(105, 13)
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me.cmdExit
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(1426, 535)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(124, 32)
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem2.TextVisible = False
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.cmdSave
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(1297, 535)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(129, 32)
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem1.TextVisible = False
-        '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.cboCategory
@@ -583,61 +583,6 @@ Partial Class frmErmaria
         Me.LayoutControlItem3.Text = "Κωδικός Αναζήτησης"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(105, 13)
         '
-        'LayoutControlItem56
-        '
-        Me.LayoutControlItem56.Control = Me.txtHeight
-        Me.LayoutControlItem56.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem56.CustomizationFormText = "Ύψος"
-        Me.LayoutControlItem56.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem56.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem56.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem56.Location = New System.Drawing.Point(401, 24)
-        Me.LayoutControlItem56.Name = "LayoutControlItem56"
-        Me.LayoutControlItem56.Size = New System.Drawing.Size(461, 24)
-        Me.LayoutControlItem56.Tag = "1"
-        Me.LayoutControlItem56.Text = "Ύψος"
-        Me.LayoutControlItem56.TextSize = New System.Drawing.Size(105, 13)
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.txtDepth
-        Me.LayoutControlItem7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem7.CustomizationFormText = "Βάθος"
-        Me.LayoutControlItem7.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem7.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem7.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(401, 72)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(461, 24)
-        Me.LayoutControlItem7.Tag = "1"
-        Me.LayoutControlItem7.Text = "Βάθος"
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(105, 13)
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.txtWidth
-        Me.LayoutControlItem6.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem6.CustomizationFormText = "Ύψος"
-        Me.LayoutControlItem6.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem6.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem6.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(401, 48)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(461, 24)
-        Me.LayoutControlItem6.Tag = "1"
-        Me.LayoutControlItem6.Text = "Πλάτος"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(105, 13)
-        '
-        'LayoutControlItem52
-        '
-        Me.LayoutControlItem52.Control = Me.txtDoor
-        Me.LayoutControlItem52.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem52.CustomizationFormText = "Κατηγορία"
-        Me.LayoutControlItem52.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem52.Location = New System.Drawing.Point(401, 120)
-        Me.LayoutControlItem52.Name = "LayoutControlItem52"
-        Me.LayoutControlItem52.Size = New System.Drawing.Size(461, 24)
-        Me.LayoutControlItem52.Tag = ""
-        Me.LayoutControlItem52.Text = "Πόρτα"
-        Me.LayoutControlItem52.TextSize = New System.Drawing.Size(105, 13)
-        '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.cboDoorType
@@ -650,37 +595,6 @@ Partial Class frmErmaria
         Me.LayoutControlItem8.Tag = "1"
         Me.LayoutControlItem8.Text = "Πορτάκι"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(105, 13)
-        '
-        'LayoutControlItem9
-        '
-        Me.LayoutControlItem9.Control = Me.txtOInvTotalPrice
-        Me.LayoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem9.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem9.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 168)
-        Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(401, 24)
-        Me.LayoutControlItem9.Tag = ""
-        Me.LayoutControlItem9.Text = "Τιμή"
-        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(105, 13)
-        Me.LayoutControlItem9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.AppearanceItemCaption.BackColor = System.Drawing.Color.LightSlateGray
-        Me.LayoutControlItem12.AppearanceItemCaption.BackColor2 = System.Drawing.Color.White
-        Me.LayoutControlItem12.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.LayoutControlItem12.AppearanceItemCaption.ForeColor = System.Drawing.Color.White
-        Me.LayoutControlItem12.AppearanceItemCaption.Options.UseBackColor = True
-        Me.LayoutControlItem12.AppearanceItemCaption.Options.UseFont = True
-        Me.LayoutControlItem12.AppearanceItemCaption.Options.UseForeColor = True
-        Me.LayoutControlItem12.Control = Me.PictureEdit2
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 192)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(521, 343)
-        Me.LayoutControlItem12.Text = "Φωτογραφία 1"
-        Me.LayoutControlItem12.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(105, 13)
         '
         'LayoutControlItem15
         '
@@ -703,41 +617,6 @@ Partial Class frmErmaria
         Me.LayoutControlItem13.Tag = ""
         Me.LayoutControlItem13.Text = "Χρώμα Κουτιού"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(105, 13)
-        '
-        'LayoutControlItem11
-        '
-        Me.LayoutControlItem11.Control = Me.txtDoor1
-        Me.LayoutControlItem11.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem11.CustomizationFormText = "Κατηγορία"
-        Me.LayoutControlItem11.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(401, 144)
-        Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(461, 24)
-        Me.LayoutControlItem11.Text = "Πόδια"
-        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(105, 13)
-        '
-        'LayoutControlItem18
-        '
-        Me.LayoutControlItem18.Control = Me.cboSides
-        Me.LayoutControlItem18.CustomizationFormText = "Εμφανές Πλαϊνο"
-        Me.LayoutControlItem18.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(401, 0)
-        Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(461, 24)
-        Me.LayoutControlItem18.Tag = "1"
-        Me.LayoutControlItem18.Text = "Εμφανές Πλαϊνο"
-        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(105, 13)
-        '
-        'LayoutControlItem16
-        '
-        Me.LayoutControlItem16.Control = Me.cboDim
-        Me.LayoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem16.CustomizationFormText = "Επωνυμία"
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(401, 96)
-        Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(461, 24)
-        Me.LayoutControlItem16.Text = "Διάσταση"
-        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(105, 13)
         '
         'LayoutControlItem17
         '
@@ -765,19 +644,22 @@ Partial Class frmErmaria
         Me.LayoutControlItem19.Text = "Υποκατηγορία"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(105, 13)
         '
-        'PictureEdit1
+        'LayoutControlItem12
         '
-        Me.PictureEdit1.Location = New System.Drawing.Point(533, 220)
-        Me.PictureEdit1.Name = "PictureEdit1"
-        Me.PictureEdit1.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray
-        Me.PictureEdit1.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Always
-        Me.PictureEdit1.Properties.ShowEditMenuItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.PictureEdit1.Properties.ShowScrollBars = True
-        Me.PictureEdit1.Properties.ShowZoomSubMenu = DevExpress.Utils.DefaultBoolean.[True]
-        Me.PictureEdit1.Size = New System.Drawing.Size(538, 323)
-        Me.PictureEdit1.StyleController = Me.LayoutControl1
-        Me.PictureEdit1.TabIndex = 48
-        Me.PictureEdit1.Tag = "photo2,0,1,2"
+        Me.LayoutControlItem12.AppearanceItemCaption.BackColor = System.Drawing.Color.LightSlateGray
+        Me.LayoutControlItem12.AppearanceItemCaption.BackColor2 = System.Drawing.Color.White
+        Me.LayoutControlItem12.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.LayoutControlItem12.AppearanceItemCaption.ForeColor = System.Drawing.Color.White
+        Me.LayoutControlItem12.AppearanceItemCaption.Options.UseBackColor = True
+        Me.LayoutControlItem12.AppearanceItemCaption.Options.UseFont = True
+        Me.LayoutControlItem12.AppearanceItemCaption.Options.UseForeColor = True
+        Me.LayoutControlItem12.Control = Me.PictureEdit2
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 192)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(521, 343)
+        Me.LayoutControlItem12.Text = "Φωτογραφία 1"
+        Me.LayoutControlItem12.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(105, 13)
         '
         'LayoutControlItem5
         '
@@ -796,20 +678,6 @@ Partial Class frmErmaria
         Me.LayoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(105, 13)
         '
-        'PictureEdit3
-        '
-        Me.PictureEdit3.Location = New System.Drawing.Point(1075, 220)
-        Me.PictureEdit3.Name = "PictureEdit3"
-        Me.PictureEdit3.Properties.PictureStoreMode = DevExpress.XtraEditors.Controls.PictureStoreMode.ByteArray
-        Me.PictureEdit3.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Always
-        Me.PictureEdit3.Properties.ShowEditMenuItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.PictureEdit3.Properties.ShowScrollBars = True
-        Me.PictureEdit3.Properties.ShowZoomSubMenu = DevExpress.Utils.DefaultBoolean.[True]
-        Me.PictureEdit3.Size = New System.Drawing.Size(483, 323)
-        Me.PictureEdit3.StyleController = Me.LayoutControl1
-        Me.PictureEdit3.TabIndex = 49
-        Me.PictureEdit3.Tag = "photo3,0,1,2"
-        '
         'LayoutControlItem20
         '
         Me.LayoutControlItem20.AppearanceItemCaption.BackColor = System.Drawing.Color.LightSlateGray
@@ -827,6 +695,120 @@ Partial Class frmErmaria
         Me.LayoutControlItem20.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(105, 13)
         '
+        'LayoutControlItem18
+        '
+        Me.LayoutControlItem18.Control = Me.cboSides
+        Me.LayoutControlItem18.CustomizationFormText = "Εμφανές Πλαϊνο"
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(401, 0)
+        Me.LayoutControlItem18.Name = "LayoutControlItem18"
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem18.Tag = ""
+        Me.LayoutControlItem18.Text = "Εμφανές Πλαϊνο"
+        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(105, 13)
+        '
+        'LayoutControlItem56
+        '
+        Me.LayoutControlItem56.Control = Me.txtHeight
+        Me.LayoutControlItem56.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem56.CustomizationFormText = "Ύψος"
+        Me.LayoutControlItem56.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem56.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem56.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem56.Location = New System.Drawing.Point(401, 24)
+        Me.LayoutControlItem56.Name = "LayoutControlItem56"
+        Me.LayoutControlItem56.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem56.Tag = "1"
+        Me.LayoutControlItem56.Text = "Ύψος (cm)"
+        Me.LayoutControlItem56.TextSize = New System.Drawing.Size(105, 13)
+        '
+        'LayoutControlItem6
+        '
+        Me.LayoutControlItem6.Control = Me.txtWidth
+        Me.LayoutControlItem6.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem6.CustomizationFormText = "Ύψος"
+        Me.LayoutControlItem6.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem6.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem6.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(401, 48)
+        Me.LayoutControlItem6.Name = "LayoutControlItem6"
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem6.Tag = "1"
+        Me.LayoutControlItem6.Text = "Πλάτος (cm)"
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(105, 13)
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.txtDepth
+        Me.LayoutControlItem7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem7.CustomizationFormText = "Βάθος"
+        Me.LayoutControlItem7.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem7.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem7.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(401, 72)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem7.Tag = "1"
+        Me.LayoutControlItem7.Text = "Βάθος (cm)"
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(105, 13)
+        '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.cboDim
+        Me.LayoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem16.CustomizationFormText = "Επωνυμία"
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(401, 96)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem16.Text = "Διάσταση"
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(105, 13)
+        '
+        'LayoutControlItem52
+        '
+        Me.LayoutControlItem52.Control = Me.txtDoor
+        Me.LayoutControlItem52.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem52.CustomizationFormText = "Κατηγορία"
+        Me.LayoutControlItem52.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem52.Location = New System.Drawing.Point(401, 120)
+        Me.LayoutControlItem52.Name = "LayoutControlItem52"
+        Me.LayoutControlItem52.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem52.Tag = ""
+        Me.LayoutControlItem52.Text = "Πόρτα"
+        Me.LayoutControlItem52.TextSize = New System.Drawing.Size(105, 13)
+        '
+        'LayoutControlItem11
+        '
+        Me.LayoutControlItem11.Control = Me.txtDoor1
+        Me.LayoutControlItem11.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem11.CustomizationFormText = "Κατηγορία"
+        Me.LayoutControlItem11.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(401, 144)
+        Me.LayoutControlItem11.Name = "LayoutControlItem11"
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem11.Text = "Πόδια"
+        Me.LayoutControlItem11.TextSize = New System.Drawing.Size(105, 13)
+        '
+        'LayoutControlItem9
+        '
+        Me.LayoutControlItem9.Control = Me.txtOInvTotalPrice
+        Me.LayoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem9.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem9.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 168)
+        Me.LayoutControlItem9.Name = "LayoutControlItem9"
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(401, 24)
+        Me.LayoutControlItem9.Tag = ""
+        Me.LayoutControlItem9.Text = "Τιμή"
+        Me.LayoutControlItem9.TextSize = New System.Drawing.Size(105, 13)
+        Me.LayoutControlItem9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me.txtComments
+        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(862, 0)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(688, 168)
+        Me.LayoutControlItem14.Text = "Παρατηρήσεις"
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(105, 13)
+        '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
@@ -835,6 +817,24 @@ Partial Class frmErmaria
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(461, 24)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.cmdSave
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(1297, 535)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(129, 32)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem1.TextVisible = False
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.cmdExit
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(1426, 535)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(124, 32)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem2.TextVisible = False
+        '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
@@ -842,6 +842,14 @@ Partial Class frmErmaria
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(1297, 32)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'EmptySpaceItem3
+        '
+        Me.EmptySpaceItem3.AllowHotTrack = False
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(862, 168)
+        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(688, 24)
+        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
         'VwCOLORSPVCBindingSource
         '
@@ -866,14 +874,6 @@ Partial Class frmErmaria
         '
         Me.Vw_COLORSPVCTableAdapter.ClearBeforeFill = True
         '
-        'EmptySpaceItem3
-        '
-        Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(862, 168)
-        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(688, 24)
-        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
-        '
         'frmErmaria
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -886,6 +886,8 @@ Partial Class frmErmaria
         Me.Text = "frmErmaria"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.PictureEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -908,35 +910,33 @@ Partial Class frmErmaria
         CType(Me.cboCatSubErm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PictureEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

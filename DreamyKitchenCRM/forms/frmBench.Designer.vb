@@ -228,7 +228,7 @@ Partial Class frmBench
         Me.LayoutControlItem1.Location = New System.Drawing.Point(194, 48)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(195, 24)
-        Me.LayoutControlItem1.Text = "Πλάτος"
+        Me.LayoutControlItem1.Text = "Πλάτος (cm)"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(99, 13)
         '
         'LayoutControlItem6
