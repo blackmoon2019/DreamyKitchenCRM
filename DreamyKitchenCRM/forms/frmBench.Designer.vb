@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmBench
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,7 +17,7 @@ Partial Class frmBench
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBench))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -37,6 +37,8 @@ Partial Class frmBench
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.txtHeight1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -53,6 +55,8 @@ Partial Class frmBench
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtHeight1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -64,19 +68,20 @@ Partial Class frmBench
         Me.LayoutControl1.Controls.Add(Me.txtCustomCode)
         Me.LayoutControl1.Controls.Add(Me.txtNam)
         Me.LayoutControl1.Controls.Add(Me.txtHeight)
+        Me.LayoutControl1.Controls.Add(Me.txtHeight1)
         Me.LayoutControl1.Location = New System.Drawing.Point(-1, -6)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(409, 127)
+        Me.LayoutControl1.Size = New System.Drawing.Size(409, 130)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(206, 84)
+        Me.cmdSave.Location = New System.Drawing.Point(185, 84)
         Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(95, 28)
+        Me.cmdSave.Size = New System.Drawing.Size(98, 28)
         Me.cmdSave.StyleController = Me.LayoutControl1
         Me.cmdSave.TabIndex = 44
         Me.cmdSave.Text = "Αποθήκευση"
@@ -85,9 +90,9 @@ Partial Class frmBench
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(305, 84)
+        Me.cmdExit.Location = New System.Drawing.Point(287, 84)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(92, 28)
+        Me.cmdExit.Size = New System.Drawing.Size(110, 28)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 43
         Me.cmdExit.Text = "Έξοδος"
@@ -101,7 +106,7 @@ Partial Class frmBench
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(65, 20)
+        Me.txtCode.Size = New System.Drawing.Size(58, 20)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
@@ -118,20 +123,20 @@ Partial Class frmBench
         Me.txtPricePerMeter.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtPricePerMeter.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtPricePerMeter.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPricePerMeter.Size = New System.Drawing.Size(79, 20)
+        Me.txtPricePerMeter.Size = New System.Drawing.Size(58, 20)
         Me.txtPricePerMeter.StyleController = Me.LayoutControl1
         Me.txtPricePerMeter.TabIndex = 42
         Me.txtPricePerMeter.Tag = "PricePerMeter,0,1,2"
         '
         'txtCustomCode
         '
-        Me.txtCustomCode.Location = New System.Drawing.Point(303, 12)
+        Me.txtCustomCode.Location = New System.Drawing.Point(296, 12)
         Me.txtCustomCode.Name = "txtCustomCode"
         Me.txtCustomCode.Properties.Appearance.BackColor = System.Drawing.SystemColors.Info
         Me.txtCustomCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.txtCustomCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCustomCode.Properties.Appearance.Options.UseFont = True
-        Me.txtCustomCode.Size = New System.Drawing.Size(94, 20)
+        Me.txtCustomCode.Size = New System.Drawing.Size(101, 20)
         Me.txtCustomCode.StyleController = Me.LayoutControl1
         Me.txtCustomCode.TabIndex = 4
         Me.txtCustomCode.Tag = "CustomCode,0,1,2"
@@ -140,7 +145,7 @@ Partial Class frmBench
         '
         Me.txtNam.Location = New System.Drawing.Point(123, 36)
         Me.txtNam.Name = "txtNam"
-        Me.txtNam.Size = New System.Drawing.Size(274, 20)
+        Me.txtNam.Size = New System.Drawing.Size(136, 20)
         Me.txtNam.StyleController = Me.LayoutControl1
         Me.txtNam.TabIndex = 9
         Me.txtNam.Tag = "name,0,1,2"
@@ -148,7 +153,7 @@ Partial Class frmBench
         'txtHeight
         '
         Me.txtHeight.EditValue = "0,00 €"
-        Me.txtHeight.Location = New System.Drawing.Point(317, 60)
+        Me.txtHeight.Location = New System.Drawing.Point(296, 60)
         Me.txtHeight.Name = "txtHeight"
         Me.txtHeight.Properties.DisplayFormat.FormatString = "n"
         Me.txtHeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -157,7 +162,7 @@ Partial Class frmBench
         Me.txtHeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtHeight.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtHeight.Properties.MaskSettings.Set("mask", "n2")
-        Me.txtHeight.Size = New System.Drawing.Size(80, 20)
+        Me.txtHeight.Size = New System.Drawing.Size(101, 20)
         Me.txtHeight.StyleController = Me.LayoutControl1
         Me.txtHeight.TabIndex = 42
         Me.txtHeight.Tag = "width,0,1,2"
@@ -166,9 +171,9 @@ Partial Class frmBench
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem56, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem2, Me.EmptySpaceItem1})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem56, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.LayoutControlItem7})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(409, 127)
+        Me.Root.Size = New System.Drawing.Size(409, 130)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem4
@@ -178,7 +183,7 @@ Partial Class frmBench
         Me.LayoutControlItem4.CustomizationFormText = "Κωδικός"
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(180, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(173, 24)
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(99, 13)
         '
@@ -191,7 +196,8 @@ Partial Class frmBench
         Me.LayoutControlItem56.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem56.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem56.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem56.Name = "LayoutControlItem56"
-        Me.LayoutControlItem56.Size = New System.Drawing.Size(194, 24)
+        Me.LayoutControlItem56.Size = New System.Drawing.Size(173, 24)
+        Me.LayoutControlItem56.Tag = "1"
         Me.LayoutControlItem56.Text = "Τιμή Τετρ. Μ."
         Me.LayoutControlItem56.TextSize = New System.Drawing.Size(99, 13)
         '
@@ -200,9 +206,9 @@ Partial Class frmBench
         Me.LayoutControlItem3.Control = Me.txtCustomCode
         Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem3.CustomizationFormText = "Κωδικός"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(180, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(173, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(209, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(216, 24)
         Me.LayoutControlItem3.Text = "Κωδικός Αναζήτησης"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(99, 13)
         '
@@ -214,7 +220,8 @@ Partial Class frmBench
         Me.LayoutControlItem5.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem5.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(389, 24)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(251, 24)
+        Me.LayoutControlItem5.Tag = "1"
         Me.LayoutControlItem5.Text = "Περιγραφή"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(99, 13)
         '
@@ -225,27 +232,28 @@ Partial Class frmBench
         Me.LayoutControlItem1.CustomizationFormText = "Πλάτος"
         Me.LayoutControlItem1.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem1.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem1.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(194, 48)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(173, 48)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(195, 24)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(216, 24)
+        Me.LayoutControlItem1.Tag = "1"
         Me.LayoutControlItem1.Text = "Πλάτος (cm)"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(99, 13)
         '
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.cmdExit
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(293, 72)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(275, 72)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(96, 35)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(114, 38)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.cmdSave
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(194, 72)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(173, 72)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(99, 35)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(102, 38)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
@@ -254,14 +262,45 @@ Partial Class frmBench
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 72)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(194, 35)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(173, 38)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'txtHeight1
+        '
+        Me.txtHeight1.EditValue = "0,00 €"
+        Me.txtHeight1.Location = New System.Drawing.Point(334, 36)
+        Me.txtHeight1.Name = "txtHeight1"
+        Me.txtHeight1.Properties.DisplayFormat.FormatString = "n"
+        Me.txtHeight1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtHeight1.Properties.EditFormat.FormatString = "n2"
+        Me.txtHeight1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtHeight1.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtHeight1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtHeight1.Properties.MaskSettings.Set("mask", "n2")
+        Me.txtHeight1.Size = New System.Drawing.Size(63, 20)
+        Me.txtHeight1.StyleController = Me.LayoutControl1
+        Me.txtHeight1.TabIndex = 42
+        Me.txtHeight1.Tag = "tbl,0,1,2"
+        '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.txtHeight1
+        Me.LayoutControlItem7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem7.CustomizationFormText = "Πλάτος"
+        Me.LayoutControlItem7.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(251, 24)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(138, 24)
+        Me.LayoutControlItem7.Text = "Τραπέζι (cm)"
+        Me.LayoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(59, 13)
+        Me.LayoutControlItem7.TextToControlDistance = 12
         '
         'frmBench
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(413, 113)
+        Me.ClientSize = New System.Drawing.Size(413, 123)
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmBench"
@@ -282,6 +321,8 @@ Partial Class frmBench
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtHeight1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -303,4 +344,6 @@ Partial Class frmBench
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents txtHeight1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
 End Class

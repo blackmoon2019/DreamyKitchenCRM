@@ -354,6 +354,12 @@
     <Compile Include="forms\WaitForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\Rep_offer.Designer.vb">
+      <DependentUpon>Rep_offer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\Rep_offer.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Modules\Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -450,6 +456,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\Rep_offer.resx">
+      <DependentUpon>Rep_offer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">

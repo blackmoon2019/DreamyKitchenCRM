@@ -10,6 +10,9 @@ Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraLayout
+Imports DevExpress.XtraReports.Parameters
+Imports DevExpress.XtraReports.UI
+Imports DevExpress.LookAndFeel
 
 Public Class frmOffer
 
@@ -167,7 +170,7 @@ Public Class frmOffer
         Else
             form1.Mode = FormMode.NewRecord
         End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New POINT(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
 
@@ -191,7 +194,7 @@ Public Class frmOffer
     End Sub
     Private Sub grdMain_DoubleClick(sender As Object, e As EventArgs) Handles grdMain.DoubleClick
         chkDimChanged.Checked = False
-        LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_ERM where id ='" + GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString() + "'")
+        LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_ERM where id = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString()))
         DoorTypeID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DoorTypeID").ToString()
         cboERM.EditValue = System.Guid.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString())
         CatErmID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "catErmID").ToString()
@@ -230,7 +233,7 @@ Public Class frmOffer
         frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         If cboCategory.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New POINT(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
         frmGen.Show()
     End Sub
 
@@ -266,7 +269,7 @@ Public Class frmOffer
         frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         If cboDim.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New POINT(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
         frmGen.Show()
     End Sub
 
@@ -284,7 +287,7 @@ Public Class frmOffer
         If cboPVCColors.EditValue <> Nothing Then frmColors.ID = cboPVCColors.EditValue.ToString
         frmColors.MdiParent = frmMain
         If cboPVCColors.EditValue <> Nothing Then frmColors.Mode = FormMode.EditRecord Else frmColors.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New POINT(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
         frmColors.Show()
     End Sub
 
@@ -302,7 +305,7 @@ Public Class frmOffer
         If cboBOXColors.EditValue <> Nothing Then frmColors.ID = cboBOXColors.EditValue.ToString
         frmColors.MdiParent = frmMain
         If cboBOXColors.EditValue <> Nothing Then frmColors.Mode = FormMode.EditRecord Else frmColors.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New POINT(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
         frmColors.Show()
     End Sub
 
@@ -320,7 +323,7 @@ Public Class frmOffer
         If cboBENCH.EditValue <> Nothing Then frmBench.ID = cboBENCH.EditValue.ToString
         frmBench.MdiParent = frmMain
         If cboBENCH.EditValue <> Nothing Then frmBench.Mode = FormMode.EditRecord Else frmBench.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New POINT(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
         frmBench.Show()
     End Sub
     Private Sub ManageBENCHExtra()
@@ -415,7 +418,7 @@ Public Class frmOffer
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
         Dim sGuid As String, sSQL As String, ExceptFields As New List(Of String)
-        Dim SelectedPics As Byte,WhichPictureHaseSelected As Byte 
+        Dim SelectedPics As Byte, WhichPictureHaseSelected As Byte
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 If Pic1.BackColor = Color.Gray Then SelectedPics = 1 : WhichPictureHaseSelected = 1
@@ -672,7 +675,7 @@ Public Class frmOffer
             W = txtWidth.EditValue / 100
             If W = 0 Then Exit Sub
             BenchExtraPrice = txtBenchExtraPrice.EditValue
-            BenchExtraPrice = BenchExtraPrice.Replace(",", ".")
+            BenchExtraPrice = BenchExtraPrice.Replace(",", ".").Replace(" €", "")
             TransformationCalc = txtCalc.EditValue
             TransformationCalc = TransformationCalc.Replace("W", W)
             TransformationCalc = TransformationCalc.Replace("P", DoorPrice).Replace(",", ".")
@@ -904,5 +907,32 @@ Public Class frmOffer
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
+        Dim report As New Rep_offer()
+        'Dim myParameter As New Parameter()
+        'myParameter.Type = GetType(String)
+        'myParameter.Name = "OfferID"
+        'myParameter.Value = sID
+        'myParameter.Visible = False
+        report.Parameters.Item(0).Value = sID
+        'report.Parameters.Add(myParameter)
+        'report.RequestParameters = False
+        Dim printTool As New ReportPrintTool(report)
+        printTool.ShowRibbonPreview()
+
+        ' Invoke the Ribbon Print Preview form modally 
+        ' with the specified look and feel settings. 
+        'printTool.ShowRibbonPreviewDialog(UserLookAndFeel.Default)
+
+        ' Invoke the Print Preview form  
+        ' and load the report document into it. 
+        'printTool.ShowPreview()
+
+        ' Invoke the Print Preview form modally 
+        ' with the specified look and feel settings. 
+        'printTool.ShowPreviewDialog(UserLookAndFeel.Default)
+
     End Sub
 End Class
