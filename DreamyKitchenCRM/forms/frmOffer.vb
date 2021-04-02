@@ -37,6 +37,7 @@ Public Class frmOffer
     Private CatSubErmID As String
     Private Calculations As String
     Private CalcID As String
+    Private DoCalculations As Boolean = True
 
 
     Public WriteOnly Property ID As String
@@ -95,7 +96,7 @@ Public Class frmOffer
         ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue Is Nothing And cboDoorType.EditValue Is Nothing Then
             Me.Vw_ERMTableAdapter.FillErmCategory(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString))
         ElseIf cboCategory.EditValue Is Nothing And cboDoorType.EditValue Is Nothing And cboCatSubErm.EditValue Is Nothing Then
-            Me.Vw_ERMTableAdapter.FillByAll(Me.DreamyKitchenDataSet.vw_ERM)
+            'Me.Vw_ERMTableAdapter.FillByAll(Me.DreamyKitchenDataSet.vw_ERM)
         ElseIf cboCategory.EditValue <> Nothing And cboDoorType.EditValue <> Nothing And cboCatSubErm.EditValue Is Nothing Then
             Me.Vw_ERMTableAdapter.FillByErmAndDoor(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString))
         ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing And cboDoorType.EditValue Is Nothing Then
@@ -106,7 +107,6 @@ Public Class frmOffer
 
         Select Case Mode
             Case FormMode.NewRecord
-                LayoutControlGroup2.Enabled = False
                 LayoutControl2.Enabled = False
                 FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
                 FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
@@ -120,6 +120,7 @@ Public Class frmOffer
         Me.CenterToScreen()
         My.Settings.frmDoorType = Me.Location
         My.Settings.Save()
+        LayoutControlGroup2.Enabled = False
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml", OptionsLayoutBase.FullLayout)
         'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
         LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , "ERM")
@@ -129,6 +130,7 @@ Public Class frmOffer
         txtWidth.ReadOnly = True
         txtDepth.ReadOnly = True
         txtCustomCode.Select()
+
 
     End Sub
 
@@ -194,6 +196,7 @@ Public Class frmOffer
     End Sub
     Private Sub grdMain_DoubleClick(sender As Object, e As EventArgs) Handles grdMain.DoubleClick
         chkDimChanged.Checked = False
+        LayoutControlGroup2.Enabled = True
         LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_ERM where id = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString()))
         DoorTypeID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "DoorTypeID").ToString()
         cboERM.EditValue = System.Guid.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString())
@@ -438,6 +441,7 @@ Public Class frmOffer
                     ExceptFields.Add(txtbenchExtraDim.Properties.Tag)
                     ExceptFields.Add(txtBenchExtraPrice.Properties.Tag)
                     ExceptFields.Add(txtTotalPrice.Properties.Tag)
+                    ExceptFields.Add(txtHeight1.Properties.Tag)
                     sGuid = System.Guid.NewGuid.ToString
                     sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,CatSubErmID,CatErmID,CalcID", toSQLValueS(DoorTypeID) & "," & toSQLValueS(CatSubErmID) & "," & toSQLValueS(CatErmID) & "," & toSQLValueS(CalcID), ExceptFields)
                     ExceptFields.Clear()
@@ -446,6 +450,7 @@ Public Class frmOffer
                 ExceptFields.Add(Pic1.Properties.Tag)
                 ExceptFields.Add(Pic2.Properties.Tag)
                 ExceptFields.Add(Pic3.Properties.Tag)
+                ExceptFields.Add(txtHeight1.Properties.Tag)
                 If sOffersID = "" Then
                     sGuid = System.Guid.NewGuid.ToString
                     sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid,, "offID,SelectedErmPicture", toSQLValueS(sID) & "," & WhichPictureHaseSelected, ExceptFields)
@@ -465,6 +470,7 @@ Public Class frmOffer
                     ExceptFields.Add(Pic1.Properties.Tag)
                     ExceptFields.Add(Pic2.Properties.Tag)
                     ExceptFields.Add(Pic3.Properties.Tag)
+                    ExceptFields.Add(txtHeight1.Properties.Tag)
                     sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sOffersID,,,, ExceptFields)
                 End If
                 If sResult = True Then
@@ -519,6 +525,7 @@ Public Class frmOffer
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
                     Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
                     Pic1.BorderStyle = BorderStyles.Default : Pic2.BorderStyle = BorderStyles.Default : Pic3.BorderStyle = BorderStyles.Default
+                    LayoutControlGroup2.Enabled = False
                     sOffersID = "" : SidePrice = 0 : MechPrice = 0
                     FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
                     FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
@@ -537,7 +544,7 @@ Public Class frmOffer
                 Select Case Mode
                     Case FormMode.NewRecord
                         sID = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID,, "finalHeightKitchen", toSQLValueS(txtHeight1.EditValue.ToString, True))
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID)
                 End Select
@@ -562,16 +569,13 @@ Public Class frmOffer
             'Όταν είναι νέα εγγραφή και κάτι δεν έχει πάει κάλά στην προσπάθεια των καταχωρήσεων κάνει ολική διαγραφή όλων 
         End Try
     End Sub
-    Private Sub cmdOffersNew_Click(sender As Object, e As EventArgs) Handles cmdOffersNew.Click
-        Cls.ClearCtrlsGRP(LayoutControlGroup2)
-        txtHeight.ReadOnly = True
-        txtWidth.ReadOnly = True
-        txtDepth.ReadOnly = True
-        cmdSave.Enabled = True
-    End Sub
 
     Private Sub GridView3_DoubleClick(sender As Object, e As EventArgs) Handles GridView3.DoubleClick
+        DoCalculations = False
         If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+        Cls.ClearCtrlsGRP(LayoutControlGroup2)
+        Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
+        Pic1.BorderStyle = BorderStyles.Default : Pic2.BorderStyle = BorderStyles.Default : Pic3.BorderStyle = BorderStyles.Default
         LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_OFFERS where id ='" + GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString() + "'")
         Dim cmd As SqlCommand = New SqlCommand("Select SelectedErmPicture from vw_OFFERS where id ='" + GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString() + "'", CNDB)
         Dim sdr As SqlDataReader = cmd.ExecuteReader()
@@ -595,7 +599,9 @@ Public Class frmOffer
         FillCbo.FillCheckedListSides(chkSides, FormMode.EditRecord, sOffersID)
         cmdSave.Enabled = True
         cboERM.EditValue = System.Guid.Parse(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ermID").ToString())
-
+        cboCatSubErm.EditValue = Nothing : cboCategory.EditValue = Nothing : cboDoorType.EditValue = Nothing
+        LayoutControlGroup2.Enabled = True
+        DoCalculations = True
     End Sub
 
     Private Sub cmdOffersEdit_Click(sender As Object, e As EventArgs) Handles cmdOffersEdit.Click
@@ -603,25 +609,27 @@ Public Class frmOffer
         cmdSave.Enabled = True
     End Sub
     Private Sub cmdSameOffer_Click(sender As Object, e As EventArgs) Handles cmdSameOffer.Click
+        Try
+            If XtraMessageBox.Show("Θέλετε να δημιουργήσω προσφορά για τα επιλεγμένα πορτάκια?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                ' Καταχώρηση Μηχανισμών
 
-        If XtraMessageBox.Show("Θέλετε να δημιουργήσω προσφορά για τα επιλεγμένα πορτάκια?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-            ' Καταχώρηση Μηχανισμών
+                For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkDoorTypes.CheckedItems
+                    Using oCmd As New SqlCommand("CloneOffers", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@Offer", sID)
+                        oCmd.Parameters.AddWithValue("@DoorTypeID ", item.Tag)
+                        oCmd.Parameters.AddWithValue("@BasedOnDoorTypeID ", GridView3.GetRowCellValue(0, "DoorTypeID").ToString())
+                        oCmd.Parameters.AddWithValue("@modifiedBy", UserProps.ID.ToString)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Next
+                Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
+                cmdSave.Enabled = False
 
-
-            For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkDoorTypes.CheckedItems
-                Using oCmd As New SqlCommand("CloneOffers", CNDB)
-                    oCmd.CommandType = CommandType.StoredProcedure
-                    oCmd.Parameters.AddWithValue("@Offer", sID)
-                    oCmd.Parameters.AddWithValue("@DoorTypeID ", item.Tag)
-                    oCmd.Parameters.AddWithValue("@modifiedBy", UserProps.ID.ToString)
-                    oCmd.ExecuteNonQuery()
-                End Using
-            Next
-            Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
-            cmdSave.Enabled = False
-
-        End If
-
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
     Private Sub cmdOffersDel_Click(sender As Object, e As EventArgs) Handles cmdOffersDel.Click
@@ -669,6 +677,7 @@ Public Class frmOffer
 
     Private Sub Calculate()
         Try
+            If DoCalculations = False Then Exit Sub
             Dim sCalc As Decimal, W As Decimal, P As Decimal, TransformationCalc As String
             Dim BenchExtraPrice As String
             If txtCalc.EditValue = Nothing Then Exit Sub
@@ -692,29 +701,6 @@ Public Class frmOffer
         End Try
     End Sub
 
-    Private Sub chkMech_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles chkMech.ItemCheck
-        Dim Total As String, MechItem As String, sCalc As Decimal
-        Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
-        Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
-        Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
-        MechItem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
-        If e.State = CheckState.Checked Then
-            If LItem.Items(e.Index).CheckState = CheckState.Checked Then
-                MechPrice = MechPrice + MechItem
-                Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " + " + Total, CNDB)
-                Dim sdr As SqlDataReader = cmd.ExecuteReader()
-                If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
-                sdr.Close()
-            End If
-        Else
-            MechPrice = MechPrice - MechItem
-            Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " - " + Total, CNDB)
-            Dim sdr As SqlDataReader = cmd.ExecuteReader()
-            If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
-            sdr.Close()
-        End If
-        'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
-    End Sub
 
     Private Sub cboExtraBENCH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboExtraBENCH.ButtonClick
         Select Case e.Button.Index
@@ -848,43 +834,8 @@ Public Class frmOffer
         End If
     End Sub
 
-    Private Sub chkSides_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles chkSides.ItemCheck
-        Dim Total As String, Sidetem As String, sCalc As Decimal
-        Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
-        Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
-        Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
-        Sidetem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
-        If e.State = CheckState.Checked Then
-            If LItem.Items(e.Index).CheckState = CheckState.Checked Then
-                SidePrice = SidePrice + SidePrice
-                Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " + " + Total, CNDB)
-                Dim sdr As SqlDataReader = cmd.ExecuteReader()
-                If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
-                sdr.Close()
-            End If
-        Else
-            SidePrice = SidePrice - SidePrice
-            Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " - " + Total, CNDB)
-            Dim sdr As SqlDataReader = cmd.ExecuteReader()
-            If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
-            sdr.Close()
-        End If
-        'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
-    End Sub
 
-    Private Sub cmdSave_GotFocus(sender As Object, e As EventArgs) Handles cmdSave.GotFocus
-
-    End Sub
-
-    Private Sub cmdSave_HandleCreated(sender As Object, e As EventArgs) Handles cmdSave.HandleCreated
-
-    End Sub
-
-    Private Sub GridView3_CustomScrollAnnotation(sender As Object, e As GridCustomScrollAnnotationsEventArgs) Handles GridView3.CustomScrollAnnotation
-
-    End Sub
-
-    Private Sub chkMech_SelectedIndexChanged(sender As Object, e As EventArgs) Handles chkMech.SelectedIndexChanged
+    Private Sub chkMech_SelectedIndexChanged(sender As Object, e As EventArgs)
         Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
         Try
             If chkMech.SelectedIndex = -1 Then Exit Sub
@@ -934,5 +885,72 @@ Public Class frmOffer
         ' with the specified look and feel settings. 
         'printTool.ShowPreviewDialog(UserLookAndFeel.Default)
 
+    End Sub
+
+    Private Sub chkMech_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles chkMech.ItemCheck
+        Try
+            Dim Total As String, MechItem As String, sCalc As Decimal
+            Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
+            Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
+            Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
+            MechItem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
+            If e.State = CheckState.Checked Then
+                If LItem.Items(e.Index).CheckState = CheckState.Checked Then
+                    MechPrice = MechPrice + MechItem
+                    Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " + " + Total, CNDB)
+                    Dim sdr As SqlDataReader = cmd.ExecuteReader()
+                    If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+                    sdr.Close()
+                End If
+            Else
+                MechPrice = MechPrice - MechItem
+                Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " - " + Total, CNDB)
+                Dim sdr As SqlDataReader = cmd.ExecuteReader()
+                If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+                sdr.Close()
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
+    End Sub
+
+    Private Sub chkSides_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles chkSides.ItemCheck
+        Try
+            Dim Total As String, Sidetem As String, sCalc As Decimal
+            Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
+            Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
+            Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
+            Sidetem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
+            If e.State = CheckState.Checked Then
+                If LItem.Items(e.Index).CheckState = CheckState.Checked Then
+                    SidePrice = SidePrice + SidePrice
+                    Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " + " + Total, CNDB)
+                    Dim sdr As SqlDataReader = cmd.ExecuteReader()
+                    If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+                    sdr.Close()
+                End If
+            Else
+                SidePrice = SidePrice - SidePrice
+                Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " - " + Total, CNDB)
+                Dim sdr As SqlDataReader = cmd.ExecuteReader()
+                If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+                sdr.Close()
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+        'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
+    End Sub
+
+    Private Sub cmdOffersNew_Click(sender As Object, e As EventArgs) Handles cmdOffersNew.Click
+        Cls.ClearCtrlsGRP(LayoutControlGroup2)
+        txtHeight.ReadOnly = True
+        txtWidth.ReadOnly = True
+        txtDepth.ReadOnly = True
+        cmdSave.Enabled = True
+        chkDimChanged.Checked = False
+        LayoutControlGroup2.Enabled = True
+        Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
     End Sub
 End Class

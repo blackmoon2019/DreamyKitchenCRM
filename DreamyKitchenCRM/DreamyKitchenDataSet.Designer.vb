@@ -2565,6 +2565,10 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnDoorPrice As Global.System.Data.DataColumn
         
+        Private columnCatSubErmName As Global.System.Data.DataColumn
+        
+        Private columnCatErmName As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -2737,6 +2741,22 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property CatSubErmNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCatSubErmName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property CatErmNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnCatErmName
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2790,9 +2810,11 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal DoorTypeID As System.Guid,  _
                     ByVal catSubErmID As System.Guid,  _
                     ByVal calculations As String,  _
-                    ByVal DoorPrice As Decimal) As vw_OFFERSRow
+                    ByVal DoorPrice As Decimal,  _
+                    ByVal CatSubErmName As String,  _
+                    ByVal CatErmName As String) As vw_OFFERSRow
             Dim rowvw_OFFERSRow As vw_OFFERSRow = CType(Me.NewRow,vw_OFFERSRow)
-            Dim columnValuesArray() As Object = New Object() {ID, qty, height, width, depth, door, legs, DoorTypeName, offID, catErmID, ermID, OfferPrice, Photo, DoorTypeID, catSubErmID, calculations, DoorPrice}
+            Dim columnValuesArray() As Object = New Object() {ID, qty, height, width, depth, door, legs, DoorTypeName, offID, catErmID, ermID, OfferPrice, Photo, DoorTypeID, catSubErmID, calculations, DoorPrice, CatSubErmName, CatErmName}
             rowvw_OFFERSRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_OFFERSRow)
             Return rowvw_OFFERSRow
@@ -2838,6 +2860,8 @@ Partial Public Class DreamyKitchenDataSet
             Me.columncatSubErmID = MyBase.Columns("catSubErmID")
             Me.columncalculations = MyBase.Columns("calculations")
             Me.columnDoorPrice = MyBase.Columns("DoorPrice")
+            Me.columnCatSubErmName = MyBase.Columns("CatSubErmName")
+            Me.columnCatErmName = MyBase.Columns("CatErmName")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2877,6 +2901,10 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columncalculations)
             Me.columnDoorPrice = New Global.System.Data.DataColumn("DoorPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDoorPrice)
+            Me.columnCatSubErmName = New Global.System.Data.DataColumn("CatSubErmName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCatSubErmName)
+            Me.columnCatErmName = New Global.System.Data.DataColumn("CatErmName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnCatErmName)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -2886,6 +2914,10 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnermID.AllowDBNull = false
             Me.columncalculations.AllowDBNull = false
             Me.columncalculations.MaxLength = 100
+            Me.columnCatSubErmName.AllowDBNull = false
+            Me.columnCatSubErmName.MaxLength = 250
+            Me.columnCatErmName.AllowDBNull = false
+            Me.columnCatErmName.MaxLength = 250
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5746,6 +5778,28 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property CatSubErmName() As String
+            Get
+                Return CType(Me(Me.tablevw_OFFERS.CatSubErmNameColumn),String)
+            End Get
+            Set
+                Me(Me.tablevw_OFFERS.CatSubErmNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property CatErmName() As String
+            Get
+                Return CType(Me(Me.tablevw_OFFERS.CatErmNameColumn),String)
+            End Get
+            Set
+                Me(Me.tablevw_OFFERS.CatErmNameColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsheightNull() As Boolean
             Return Me.IsNull(Me.tablevw_OFFERS.heightColumn)
         End Function
@@ -8153,6 +8207,8 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("catSubErmID", "catSubErmID")
             tableMapping.ColumnMappings.Add("calculations", "calculations")
             tableMapping.ColumnMappings.Add("DoorPrice", "DoorPrice")
+            tableMapping.ColumnMappings.Add("CatSubErmName", "CatSubErmName")
+            tableMapping.ColumnMappings.Add("CatErmName", "CatErmName")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -8171,7 +8227,8 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        ID, qty, height, width, depth, door, Photo, legs, DoorTypeName, off"& _ 
                 "ID, catErmID, ermID, OfferPrice, DoorTypeID, catSubErmID, calculations, DoorPric"& _ 
-                "e"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_OFFERS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (offID = @OfferID)"
+                "e, CatSubErmName, CatErmName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_OFFERS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (offID = @"& _ 
+                "OfferID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OfferID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "offID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

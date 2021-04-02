@@ -223,7 +223,7 @@ WHERE        (catErmID = @catErmID)</CommandText>
               <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFFERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ID, qty, height, width, depth, door, Photo, legs, DoorTypeName, offID, catErmID, ermID, OfferPrice, DoorTypeID, catSubErmID, calculations, DoorPrice
+                    <CommandText>SELECT        ID, qty, height, width, depth, door, Photo, legs, DoorTypeName, offID, catErmID, ermID, OfferPrice, DoorTypeID, catSubErmID, calculations, DoorPrice, CatSubErmName, CatErmName
 FROM            vw_OFFERS
 WHERE        (offID = @OfferID)</CommandText>
                     <Parameters>
@@ -251,6 +251,8 @@ WHERE        (offID = @OfferID)</CommandText>
               <Mapping SourceColumn="catSubErmID" DataSetColumn="catSubErmID" />
               <Mapping SourceColumn="calculations" DataSetColumn="calculations" />
               <Mapping SourceColumn="DoorPrice" DataSetColumn="DoorPrice" />
+              <Mapping SourceColumn="CatSubErmName" DataSetColumn="CatSubErmName" />
+              <Mapping SourceColumn="CatErmName" DataSetColumn="CatErmName" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -587,6 +589,20 @@ FROM            vw_OFF</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="DoorPrice" msprop:Generator_ColumnVarNameInTable="columnDoorPrice" msprop:Generator_ColumnPropNameInRow="DoorPrice" msprop:Generator_ColumnPropNameInTable="DoorPriceColumn" msprop:Generator_UserColumnName="DoorPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="CatSubErmName" msprop:Generator_ColumnVarNameInTable="columnCatSubErmName" msprop:Generator_ColumnPropNameInRow="CatSubErmName" msprop:Generator_ColumnPropNameInTable="CatSubErmNameColumn" msprop:Generator_UserColumnName="CatSubErmName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CatErmName" msprop:Generator_ColumnVarNameInTable="columnCatErmName" msprop:Generator_ColumnPropNameInRow="CatErmName" msprop:Generator_ColumnPropNameInTable="CatErmNameColumn" msprop:Generator_UserColumnName="CatErmName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
