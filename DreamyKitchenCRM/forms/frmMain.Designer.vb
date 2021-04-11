@@ -390,7 +390,7 @@ Partial Class frmMain
         '
         Me.ΒΒDoorType.Caption = "Κατηγορία Πόρτας"
         Me.ΒΒDoorType.Id = 38
-        Me.ΒΒDoorType.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_door_40
+        Me.ΒΒDoorType.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.κατηγορια_πορτας
         Me.ΒΒDoorType.Name = "ΒΒDoorType"
         Me.ΒΒDoorType.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -398,7 +398,7 @@ Partial Class frmMain
         '
         Me.bbCatErm.Caption = "Κατηγορίες Ερμαρίων"
         Me.bbCatErm.Id = 39
-        Me.bbCatErm.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_elective_40
+        Me.bbCatErm.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.κατηγοριες_ερμαριων
         Me.bbCatErm.Name = "bbCatErm"
         Me.bbCatErm.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -406,7 +406,7 @@ Partial Class frmMain
         '
         Me.bbERM.Caption = "Ερμάρια"
         Me.bbERM.Id = 40
-        Me.bbERM.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_sliding_door_closet_401
+        Me.bbERM.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.kitchen
         Me.bbERM.Name = "bbERM"
         Me.bbERM.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -414,7 +414,7 @@ Partial Class frmMain
         '
         Me.bbBench.Caption = "Πάγκοι"
         Me.bbBench.Id = 41
-        Me.bbBench.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_wooden_box_40
+        Me.bbBench.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.παγκοι
         Me.bbBench.Name = "bbBench"
         Me.bbBench.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -422,7 +422,7 @@ Partial Class frmMain
         '
         Me.bbMech.Caption = "Μηχανισμοί"
         Me.bbMech.Id = 42
-        Me.bbMech.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_level_tool_40
+        Me.bbMech.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.μηχανισμοι
         Me.bbMech.Name = "bbMech"
         Me.bbMech.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -430,7 +430,7 @@ Partial Class frmMain
         '
         Me.bboffer.Caption = "Προσφορά"
         Me.bboffer.Id = 43
-        Me.bboffer.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_paste_special_40
+        Me.bboffer.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.προσφορα
         Me.bboffer.Name = "bboffer"
         Me.bboffer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -460,6 +460,7 @@ Partial Class frmMain
         '
         Me.bbColors.Caption = "Χρώματα"
         Me.bbColors.Id = 47
+        Me.bbColors.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.χρωματα
         Me.bbColors.Name = "bbColors"
         Me.bbColors.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -467,6 +468,7 @@ Partial Class frmMain
         '
         Me.bbColorCAT.Caption = "Κατηγορίες Χρωμάτων"
         Me.bbColorCAT.Id = 48
+        Me.bbColorCAT.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.κατηγορια_χρωματων
         Me.bbColorCAT.Name = "bbColorCAT"
         Me.bbColorCAT.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -474,6 +476,7 @@ Partial Class frmMain
         '
         Me.bbEpendisis.Caption = "Επενδύσης - Καταφραγές"
         Me.bbEpendisis.Id = 49
+        Me.bbEpendisis.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.επενδυσεις__καταφραγες
         Me.bbEpendisis.Name = "bbEpendisis"
         Me.bbEpendisis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -481,6 +484,7 @@ Partial Class frmMain
         '
         Me.bbDimensions.Caption = "Διαστάσεις"
         Me.bbDimensions.Id = 50
+        Me.bbDimensions.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.διαστασεις
         Me.bbDimensions.Name = "bbDimensions"
         Me.bbDimensions.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -488,6 +492,7 @@ Partial Class frmMain
         '
         Me.bbCalculations.Caption = "Υπολογισμοί"
         Me.bbCalculations.Id = 51
+        Me.bbCalculations.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.ΥΠΟΛΟΓΙΣΜΟΙ
         Me.bbCalculations.Name = "bbCalculations"
         Me.bbCalculations.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -495,6 +500,7 @@ Partial Class frmMain
         '
         Me.bbCatSubErm.Caption = "Υποκατηγορίες Ερμαρίων"
         Me.bbCatSubErm.Id = 52
+        Me.bbCatSubErm.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.υποκατηγοριες_ερμαριων
         Me.bbCatSubErm.Name = "bbCatSubErm"
         Me.bbCatSubErm.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -580,6 +586,7 @@ Partial Class frmMain
         '
         'RibbonPageGroup4
         '
+        Me.RibbonPageGroup4.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.ΥΠΟΛΟΓΙΣΜΟΙ
         Me.RibbonPageGroup4.ItemLinks.Add(Me.ΒΒDoorType)
         Me.RibbonPageGroup4.ItemLinks.Add(Me.bboffer)
         Me.RibbonPageGroup4.ItemLinks.Add(Me.bbDimensions)

@@ -30,7 +30,10 @@ Public Class ClearControls
                                 Else
                                     txt.Text = ""
                                 End If
-
+                            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedListBoxControl Then
+                                Dim chklst As DevExpress.XtraEditors.CheckedListBoxControl
+                                chklst = Ctrl
+                                chklst.UnCheckAll()
                             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
                                 Dim chk As DevExpress.XtraEditors.CheckEdit
                                 chk = Ctrl
@@ -75,7 +78,10 @@ Public Class ClearControls
                                     Else
                                         txt.Text = ""
                                     End If
-
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedListBoxControl Then
+                                    Dim chklst As DevExpress.XtraEditors.CheckedListBoxControl
+                                    chklst = Ctrl
+                                    chklst.UnCheckAll()
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
                                     Dim chk As DevExpress.XtraEditors.CheckEdit
                                     chk = Ctrl

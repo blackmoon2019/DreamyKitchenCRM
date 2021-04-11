@@ -540,7 +540,7 @@ Public Class FillCombos
                 Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
                 chkLstItem.Value = sdr.Item(1).ToString
                 chkLstItem.Tag = sdr.Item(0).ToString
-                If mode = FormMode.EditRecord Then chkLstItem.CheckState = sdr.Item("checked").ToString
+                If mode = FormMode.EditRecord Then chkLstItem.CheckState = sdr.Item("checked").ToString Else chkLstItem.CheckState = CheckState.Unchecked
                 CtrlList.Items.Add(chkLstItem)
             End While
             sdr.Close()

@@ -17,7 +17,7 @@ Imports DevExpress.LookAndFeel
 Public Class frmOffer
 
     Private sID As String
-    Private sOffersID As String
+    Private sOffersID As String = ""
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -111,6 +111,7 @@ Public Class frmOffer
                 FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
                 FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
                 txtCode.Text = DBQ.GetNextId("[OFF]")
+
             Case FormMode.EditRecord
                 'FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sID)
                 Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
@@ -121,9 +122,14 @@ Public Class frmOffer
         My.Settings.frmDoorType = Me.Location
         My.Settings.Save()
         LayoutControlGroup2.Enabled = False
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml", OptionsLayoutBase.FullLayout)
         'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
         LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , "ERM")
+        'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
+        LoadForms.LoadColumnDescriptionNames(grdMain, GridView3, , "OFFERS")
+
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml", OptionsLayoutBase.FullLayout)
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFFERS.xml") Then GridView3.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFFERS.xml", OptionsLayoutBase.FullLayout)
+
         GridView3.OptionsBehavior.AutoExpandAllGroups = True
         cmdSaveOff.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         txtHeight.ReadOnly = True
@@ -341,40 +347,29 @@ Public Class frmOffer
         frmBench.Show()
     End Sub
 
-    Private Sub GridView1_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then
-            Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = TryCast(e.Menu, GridViewColumnMenu)
-            Dim item As New DXEditMenuItem()
-            Dim itemColor As New DXEditMenuItem()
-
-            'menu.Items.Clear()
-            If menu.Column IsNot Nothing Then
-                'Για να προσθέσουμε menu item στο Default menu πρέπει πρώτα να προσθέσουμε ένα Repository Item 
-                'Υπάρχουν πολλών ειδών Repositorys
-                '1st Custom Menu Item
-                Dim popRenameColumn As New RepositoryItemTextEdit
-                popRenameColumn.Name = "RenameColumn"
-                menu.Items.Add(New DXEditMenuItem("Μετονομασία Στήλης", popRenameColumn, AddressOf OnEditValueChanged, Nothing, Nothing, 100, 0))
-                item = menu.Items.Item("Μετονομασία Στήλης")
-                item.EditValue = menu.Column.GetTextCaption
-                item.Tag = menu.Column.AbsoluteIndex
-                '2nd Custom Menu Item
-                menu.Items.Add(CreateCheckItem("Κλείδωμα Στήλης", menu.Column, Nothing))
-
-                '3rd Custom Menu Item
-                Dim popColorsColumn As New RepositoryItemColorEdit
-                popColorsColumn.Name = "ColorsColumn"
-                menu.Items.Add(New DXEditMenuItem("Χρώμα Στήλης", popColorsColumn, AddressOf OnColumnsColorChanged, Nothing, Nothing, 100, 0))
-                itemColor = menu.Items.Item("Χρώμα Στήλης")
-                itemColor.EditValue = menu.Column.AppearanceCell.BackColor
-                itemColor.Tag = menu.Column.AbsoluteIndex
-
-                '4nd Custom Menu Item
-                menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveViewErm, Nothing, Nothing, Nothing, Nothing))
-
-            End If
-        End If
+    'Αποθήκευση όψης Προσφορών
+    Private Sub OnSaveViewOff(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
+        GridView3.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\OFFERS.xml", OptionsLayoutBase.FullLayout)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
+    'Μετονομασία Στήλης Master
+    Private Sub OnEditValueChangedOff(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As New DXEditMenuItem()
+        item = sender
+        If item.Tag Is Nothing Then Exit Sub
+        GridView3.Columns(item.Tag).Caption = item.EditValue
+        'MessageBox.Show(item.EditValue.ToString())
+    End Sub
+    'Αλλαγή Χρώματος Στήλης Master
+    Private Sub OnColumnsColorChangedOff(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXEditMenuItem = TryCast(sender, DXEditMenuItem)
+        item = sender
+        If item.Tag Is Nothing Then Exit Sub
+        GridView3.Columns(item.Tag).AppearanceCell.BackColor = item.EditValue
+    End Sub
+
+
     'Αποθήκευση όψης Ερμάριων
     Private Sub OnSaveViewErm(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
@@ -420,7 +415,7 @@ Public Class frmOffer
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
-        Dim sGuid As String, sSQL As String, ExceptFields As New List(Of String)
+        Dim sGuid As String = "", sSQL As String, ExceptFields As New List(Of String)
         Dim SelectedPics As Byte, WhichPictureHaseSelected As Byte
         Try
             If Valid.ValidateForm(LayoutControl1) Then
@@ -457,7 +452,7 @@ Public Class frmOffer
                     If sResult = True Then
                         If SelectedPics > 0 Then
                             'Οταν φτάσει εδώ ο κώδικας πάντα μια φωτογραφία ειναι επιλεγμένη
-                            sSQL = "UPDATE OFFERS SET SelectedErmPicture = " & WhichPictureHaseSelected & ", Photo = @Photo WHERE ID = " & toSQLValueS(sOffersID)
+                            sSQL = "UPDATE OFFERS SET SelectedErmPicture = " & WhichPictureHaseSelected & ", Photo = @Photo WHERE ID = " & toSQLValueS(sGuid)
                             Using oCmd As New SqlCommand(sSQL, CNDB)
                                 If Pic1.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic1.EditValue)
                                 If Pic2.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic2.EditValue)
@@ -487,7 +482,7 @@ Public Class frmOffer
 
                     'Όταν είναι σε EditMode διαγραφουμε όλους τους μηχανισμούς
                     If sOffersID <> "" Then
-                        sSQL = "DELETE FROM OFFER_MECH where OFFERID = '" & sOffersID & "'"
+                        sSQL = "DELETE FROM OFFER_MECH where OFFERID = '" & IIf(sOffersID <> "", sOffersID, sGuid) & "'"
                         Using oCmd As New SqlCommand(sSQL, CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
@@ -496,7 +491,7 @@ Public Class frmOffer
                     ' Καταχώρηση Μηχανισμών
                     For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkMech.CheckedItems
                         sSQL = "INSERT INTO OFFER_MECH ([OFFID],[OFFERID],[MECHID],[modifiedBy],[createdOn])  
-                        values (" & toSQLValueS(sID) & "," & toSQLValueS(sOffersID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                        values (" & toSQLValueS(sID) & "," & toSQLValueS(IIf(sOffersID <> "", sOffersID, sGuid)) & "," & toSQLValueS(item.Tag.ToString()) & "," &
                                             toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
                         Using oCmd As New SqlCommand(sSQL, CNDB)
                             oCmd.ExecuteNonQuery()
@@ -505,7 +500,7 @@ Public Class frmOffer
 
                     'Όταν είναι σε EditMode διαγραφουμε όλους τα πλαϊνά - καταφραγές
                     If sOffersID <> "" Then
-                        sSQL = "DELETE FROM OFFER_SIDES where OFFERID = '" & sOffersID & "'"
+                        sSQL = "DELETE FROM OFFER_SIDES where OFFERID = '" & IIf(sOffersID <> "", sOffersID, sGuid) & "'"
                         Using oCmd As New SqlCommand(sSQL, CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
@@ -514,7 +509,7 @@ Public Class frmOffer
                     ' Καταχώρηση πλαϊνά - καταφραγές
                     For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkSides.CheckedItems
                         sSQL = "INSERT INTO OFFER_SIDES ([OFFID],[OFFERID],[SIDEID],[modifiedBy],[createdOn])  
-                        values (" & toSQLValueS(sID) & "," & toSQLValueS(sOffersID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                        values (" & toSQLValueS(sID) & "," & toSQLValueS(IIf(sOffersID <> "", sOffersID, sGuid)) & "," & toSQLValueS(item.Tag.ToString()) & "," &
                                             toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
                         Using oCmd As New SqlCommand(sSQL, CNDB)
                             oCmd.ExecuteNonQuery()
@@ -525,6 +520,7 @@ Public Class frmOffer
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
                     Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
                     Pic1.BorderStyle = BorderStyles.Default : Pic2.BorderStyle = BorderStyles.Default : Pic3.BorderStyle = BorderStyles.Default
+                    PicMech.EditValue = Nothing
                     LayoutControlGroup2.Enabled = False
                     sOffersID = "" : SidePrice = 0 : MechPrice = 0
                     FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
@@ -577,6 +573,7 @@ Public Class frmOffer
         Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
         Pic1.BorderStyle = BorderStyles.Default : Pic2.BorderStyle = BorderStyles.Default : Pic3.BorderStyle = BorderStyles.Default
         LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_OFFERS where id ='" + GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString() + "'")
+        'Φωτογραφία επιλεγμένου ερμαρίου
         Dim cmd As SqlCommand = New SqlCommand("Select SelectedErmPicture from vw_OFFERS where id ='" + GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString() + "'", CNDB)
         Dim sdr As SqlDataReader = cmd.ExecuteReader()
         If (sdr.Read() = True) Then
@@ -678,16 +675,19 @@ Public Class frmOffer
     Private Sub Calculate()
         Try
             If DoCalculations = False Then Exit Sub
-            Dim sCalc As Decimal, W As Decimal, P As Decimal, TransformationCalc As String
+            Dim sCalc As Decimal, W As Decimal, P As Decimal, TransformationCalc As String, H As Decimal
             Dim BenchExtraPrice As String
             If txtCalc.EditValue = Nothing Then Exit Sub
             W = txtWidth.EditValue / 100
+            H = txtHeight.EditValue / 100
             If W = 0 Then Exit Sub
             BenchExtraPrice = txtBenchExtraPrice.EditValue
             BenchExtraPrice = BenchExtraPrice.Replace(",", ".").Replace(" €", "")
             TransformationCalc = txtCalc.EditValue
             TransformationCalc = TransformationCalc.Replace("W", W)
+            TransformationCalc = TransformationCalc.Replace("H", H)
             TransformationCalc = TransformationCalc.Replace("P", DoorPrice).Replace(",", ".")
+            'TransformationCalc = TransformationCalc.Replace("Η", DoorPrice).Replace(",", ".")
             If BenchExtraPrice <> "0,00" And BenchExtraPrice <> "0,00 €" And BenchExtraPrice.Length <> 0 Then TransformationCalc = TransformationCalc + " + " + BenchExtraPrice
             If txtQTY.EditValue.ToString = "" Then txtQTY.EditValue = "1"
             TransformationCalc = "(" + TransformationCalc + ") *" + txtQTY.EditValue.ToString
@@ -741,7 +741,7 @@ Public Class frmOffer
         ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing And cboDoorType.EditValue <> Nothing Then
             Me.Vw_ERMTableAdapter.FillByErmDoorAndSubCat(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString), System.Guid.Parse(cboCatSubErm.EditValue.ToString))
         End If
-        txtDoorPrice.EditValue = cboDoorType.GetColumnValue("price")
+        ' txtDoorPrice.EditValue = cboDoorType.GetColumnValue("price")
     End Sub
 
     Private Sub cboDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType.ButtonClick
@@ -783,7 +783,7 @@ Public Class frmOffer
         ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue <> Nothing And cboDoorType.EditValue <> Nothing Then
             Me.Vw_ERMTableAdapter.FillByErmDoorAndSubCat(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboCategory.EditValue.ToString), System.Guid.Parse(cboDoorType.EditValue.ToString), System.Guid.Parse(cboCatSubErm.EditValue.ToString))
         End If
-        txtDoorPrice.EditValue = cboDoorType.GetColumnValue("price")
+        'txtDoorPrice.EditValue = cboDoorType.GetColumnValue("price")
     End Sub
 
     Private Sub cboCatSubErm_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCatSubErm.ButtonClick
@@ -835,39 +835,22 @@ Public Class frmOffer
     End Sub
 
 
-    Private Sub chkMech_SelectedIndexChanged(sender As Object, e As EventArgs)
-        Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
-        Try
-            If chkMech.SelectedIndex = -1 Then Exit Sub
-            chkLstItem = chkMech.Items.Item(chkMech.SelectedIndex)
-            If chkLstItem.Tag = "" Then Exit Sub
-            Dim cmd As SqlCommand = New SqlCommand("Select Photo from vw_MECH where id ='" + chkLstItem.Tag + "'", CNDB)
-            Dim sdr As SqlDataReader = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("Photo")) = False Then
-                    Dim bytes As Byte()
-                    bytes = DirectCast(sdr(sdr.GetOrdinal("Photo")), Byte())
-                    PicMech.EditValue = bytes
-                Else
-                    PicMech.EditValue = Nothing
-                End If
-            Else
-                PicMech.EditValue = Nothing
-            End If
-            sdr.Close()
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
+        Dim frmOffTotal As New frmOFFTotal
+        frmOffTotal.Text = "Τελικά Σύνολα Προσφοράς"
+        'frmOffTotal.MdiParent = frmMain
+        frmOffTotal.ID = sID
+        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+        frmOffTotal.ShowDialog()
+
         Dim report As New Rep_offer()
         'Dim myParameter As New Parameter()
         'myParameter.Type = GetType(String)
         'myParameter.Name = "OfferID"
         'myParameter.Value = sID
         'myParameter.Visible = False
-        report.Parameters.Item(0).Value = sID
+        'report.Parameters.Item(0).Value = sID
         'report.Parameters.Add(myParameter)
         'report.RequestParameters = False
         Dim printTool As New ReportPrintTool(report)
@@ -891,19 +874,37 @@ Public Class frmOffer
         Try
             Dim Total As String, MechItem As String, sCalc As Decimal
             Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
-            Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
-            Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
-            MechItem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
+            Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+            Dim bytes As Byte()
+            chkLstItem = chkMech.Items.Item(chkMech.SelectedIndex)
+            If chkLstItem.Tag = "" Then Exit Sub
+            Dim cmd2 As SqlCommand = New SqlCommand("Select Photo,Price from vw_MECH where id ='" + chkLstItem.Tag + "'", CNDB)
+            Dim sdr2 As SqlDataReader = cmd2.ExecuteReader()
+            If (sdr2.Read() = True) Then
+                Total = sdr2.GetDecimal(sdr2.GetOrdinal("Price"))
+                Total = toSQLValueS(Total, True)
+                If sdr2.IsDBNull(sdr2.GetOrdinal("Photo")) = False Then bytes = DirectCast(sdr2(sdr2.GetOrdinal("Photo")), Byte())
+                sdr2.Close()
+            End If
             If e.State = CheckState.Checked Then
                 If LItem.Items(e.Index).CheckState = CheckState.Checked Then
+                    MechItem = toSQLValueS(txtTotalPrice.EditValue.ToString, True)
                     MechPrice = MechPrice + MechItem
                     Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " + " + Total, CNDB)
                     Dim sdr As SqlDataReader = cmd.ExecuteReader()
                     If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
                     sdr.Close()
+                    If bytes.Length >= 0 Then
+                        PicMech.EditValue = bytes
+                    Else
+                        PicMech.EditValue = Nothing
+                    End If
+                Else
+                    PicMech.EditValue = Nothing
                 End If
             Else
-                MechPrice = MechPrice - MechItem
+                PicMech.EditValue = Nothing
+                MechItem = toSQLValueS(txtTotalPrice.EditValue.ToString, True)
                 Dim cmd As SqlCommand = New SqlCommand("Select " & MechItem + " - " + Total, CNDB)
                 Dim sdr As SqlDataReader = cmd.ExecuteReader()
                 If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
@@ -919,19 +920,27 @@ Public Class frmOffer
         Try
             Dim Total As String, Sidetem As String, sCalc As Decimal
             Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
-            Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
-            Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
-            Sidetem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
+            Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+            chkLstItem = chkSides.Items.Item(chkSides.SelectedIndex)
+            If chkLstItem.Tag = "" Then Exit Sub
+            Dim cmd2 As SqlCommand = New SqlCommand("Select TotPrice from vw_SIDES where id ='" + chkLstItem.Tag + "'", CNDB)
+            Dim sdr2 As SqlDataReader = cmd2.ExecuteReader()
+            If (sdr2.Read() = True) Then
+                Total = sdr2.GetDecimal(sdr2.GetOrdinal("TotPrice"))
+                Total = toSQLValueS(Total, True)
+                sdr2.Close()
+            End If
             If e.State = CheckState.Checked Then
                 If LItem.Items(e.Index).CheckState = CheckState.Checked Then
-                    SidePrice = SidePrice + SidePrice
+                    Sidetem = toSQLValueS(txtTotalPrice.EditValue.ToString, True)
+                    SidePrice = SidePrice + Sidetem
                     Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " + " + Total, CNDB)
                     Dim sdr As SqlDataReader = cmd.ExecuteReader()
                     If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
                     sdr.Close()
                 End If
             Else
-                SidePrice = SidePrice - SidePrice
+                Sidetem = toSQLValueS(txtTotalPrice.EditValue.ToString, True)
                 Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " - " + Total, CNDB)
                 Dim sdr As SqlDataReader = cmd.ExecuteReader()
                 If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
@@ -940,6 +949,32 @@ Public Class frmOffer
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+        'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
+
+        'Try
+        '    Dim Total As String, Sidetem As String, sCalc As Decimal
+        '    Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
+        '    Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
+        '    Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
+        '    Sidetem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
+        '    If e.State = CheckState.Checked Then
+        '        If LItem.Items(e.Index).CheckState = CheckState.Checked Then
+        '            SidePrice = SidePrice + SidePrice
+        '            Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " + " + Total, CNDB)
+        '            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        '            If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+        '            sdr.Close()
+        '        End If
+        '    Else
+        '        SidePrice = SidePrice - SidePrice
+        '        Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " - " + Total, CNDB)
+        '        Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        '        If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
+        '        sdr.Close()
+        '    End If
+        'Catch ex As Exception
+        '    XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        'End Try
         'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
     End Sub
 
@@ -952,5 +987,87 @@ Public Class frmOffer
         chkDimChanged.Checked = False
         LayoutControlGroup2.Enabled = True
         Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
+        PicMech.EditValue = Nothing
+        cboBENCH.EditValue = System.Guid.Parse("9B4F8F7D-115F-4A2D-9DD3-603A5DD19C52")
+    End Sub
+
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then
+            Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = TryCast(e.Menu, GridViewColumnMenu)
+            Dim item As New DXEditMenuItem()
+            Dim itemColor As New DXEditMenuItem()
+
+            'menu.Items.Clear()
+            If menu.Column IsNot Nothing Then
+                'Για να προσθέσουμε menu item στο Default menu πρέπει πρώτα να προσθέσουμε ένα Repository Item 
+                'Υπάρχουν πολλών ειδών Repositorys
+                '1st Custom Menu Item
+                Dim popRenameColumn As New RepositoryItemTextEdit
+                popRenameColumn.Name = "RenameColumn"
+                menu.Items.Add(New DXEditMenuItem("Μετονομασία Στήλης", popRenameColumn, AddressOf OnEditValueChanged, Nothing, Nothing, 100, 0))
+                item = menu.Items.Item("Μετονομασία Στήλης")
+                item.EditValue = menu.Column.GetTextCaption
+                item.Tag = menu.Column.AbsoluteIndex
+
+                '2nd Custom Menu Item
+                menu.Items.Add(CreateCheckItem("Κλείδωμα Στήλης", menu.Column, Nothing))
+
+                '3rd Custom Menu Item
+                Dim popColorsColumn As New RepositoryItemColorEdit
+                popColorsColumn.Name = "ColorsColumn"
+                menu.Items.Add(New DXEditMenuItem("Χρώμα Στήλης", popColorsColumn, AddressOf OnColumnsColorChanged, Nothing, Nothing, 100, 0))
+                itemColor = menu.Items.Item("Χρώμα Στήλης")
+                itemColor.EditValue = menu.Column.AppearanceCell.BackColor
+                itemColor.Tag = menu.Column.AbsoluteIndex
+
+                '4nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveViewErm, Nothing, Nothing, Nothing, Nothing))
+
+            End If
+        End If
+    End Sub
+
+    Private Sub GridView3_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then
+            Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = TryCast(e.Menu, GridViewColumnMenu)
+            Dim item As New DXEditMenuItem()
+            Dim itemColor As New DXEditMenuItem()
+
+            'menu.Items.Clear()
+            If menu.Column IsNot Nothing Then
+                'Για να προσθέσουμε menu item στο Default menu πρέπει πρώτα να προσθέσουμε ένα Repository Item 
+                'Υπάρχουν πολλών ειδών Repositorys
+                '1st Custom Menu Item
+                Dim popRenameColumn As New RepositoryItemTextEdit
+                popRenameColumn.Name = "RenameColumn"
+                menu.Items.Add(New DXEditMenuItem("Μετονομασία Στήλης", popRenameColumn, AddressOf OnEditValueChangedOff, Nothing, Nothing, 100, 0))
+                item = menu.Items.Item("Μετονομασία Στήλης")
+                item.EditValue = menu.Column.GetTextCaption
+                item.Tag = menu.Column.AbsoluteIndex
+
+                '2nd Custom Menu Item
+                menu.Items.Add(CreateCheckItem("Κλείδωμα Στήλης", menu.Column, Nothing))
+
+                '3rd Custom Menu Item
+                Dim popColorsColumn As New RepositoryItemColorEdit
+                popColorsColumn.Name = "ColorsColumn"
+                menu.Items.Add(New DXEditMenuItem("Χρώμα Στήλης", popColorsColumn, AddressOf OnColumnsColorChangedOff, Nothing, Nothing, 100, 0))
+                itemColor = menu.Items.Item("Χρώμα Στήλης")
+                itemColor.EditValue = menu.Column.AppearanceCell.BackColor
+                itemColor.Tag = menu.Column.AbsoluteIndex
+
+                '4nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveViewOff, Nothing, Nothing, Nothing, Nothing))
+
+            End If
+        End If
+    End Sub
+    Private Sub cmdTotalOffPrice_Click(sender As Object, e As EventArgs) Handles cmdTotalOffPrice.Click
+        Dim frmOffTotal As New frmOFFTotal
+        frmOffTotal.Text = "Τελικά Σύνολα Προσφοράς"
+        'frmOffTotal.MdiParent = frmMain
+        frmOffTotal.ID = sID
+        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+        frmOffTotal.ShowDialog()
     End Sub
 End Class

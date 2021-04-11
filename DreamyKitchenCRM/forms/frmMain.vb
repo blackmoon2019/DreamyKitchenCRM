@@ -6,6 +6,9 @@ Imports DevExpress.XtraBars.ToastNotifications
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraTabbedMdi
+Imports DevExpress.LookAndFeel
+Imports System.ComponentModel
+
 Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_NOTES' table. You can move, or remove it, as needed.
@@ -16,6 +19,9 @@ Public Class frmMain
         bbServer.Caption = "SQL Server: " & CNDB.DataSource.ToString
         bbDB.Caption = "Database: " & CNDB.Database.ToString
         bbVersion.Caption = "Ver:" + My.Application.Info.Version.ToString
+
+        UserLookAndFeel.Default.SetSkinStyle(My.Settings.CurrentSkin)
+
     End Sub
 
     Private Sub MdiManager_PageAdded(sender As Object, e As MdiTabPageEventArgs)
@@ -51,6 +57,8 @@ Public Class frmMain
     End Sub
 
     Private Sub BarClose_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarClose.ItemClick
+        My.Settings.CurrentSkin = UserLookAndFeel.Default.SkinName
+        My.Settings.Save()
         Application.Exit()
     End Sub
 
@@ -417,5 +425,16 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub frmMain_Closed(sender As Object, e As EventArgs) Handles Me.Closed
+        My.Settings.CurrentSkin = UserLookAndFeel.Default.SkinName
+        My.Settings.Save()
+    End Sub
+
+
+    Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+
+    End Sub
+
 End Class
 

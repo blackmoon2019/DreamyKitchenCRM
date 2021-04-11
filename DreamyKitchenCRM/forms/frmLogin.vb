@@ -24,7 +24,7 @@ Public Class frmLogin
         If My.Settings.UNSave = True Then txtUN.EditValue = System.Guid.Parse(My.Settings.UN.ToString)
         If Debugger.IsAttached Then
             txtUN.EditValue = System.Guid.Parse("3f9dc32e-be5b-4d46-a13c-ea606566cf32")
-            txtPWD.Text = "2010"
+            txtPWD.Text = "2017"
             cmdLogin.Select()
         Else
             ' Assume we aren't running from the IDE

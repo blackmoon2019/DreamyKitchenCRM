@@ -181,15 +181,47 @@ Public Class FormLoader
 
         End If
     End Sub
-    Public Sub LoadDataToGrid(ByVal GRDControl As DevExpress.XtraGrid.GridControl, ByVal GRDView As DevExpress.XtraGrid.Views.Grid.GridView, ByVal sSQL As String)
+    Public Sub LoadDataToGrid(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
+                              ByVal sSQL As String, Optional ByVal AddColumnButton As Boolean = False)
         Dim myCmd As SqlCommand
         Dim myReader As SqlDataReader
-        myCmd = CNDB.CreateCommand
-        myCmd.CommandText = sSQL
-        myReader = myCmd.ExecuteReader()
-        GRDControl.DataSource = myReader
-        GRDControl.ForceInitialize()
-        GRDControl.DefaultView.PopulateColumns()
+        Dim dt As New DataTable("sTable")
+        Dim sTable As DataTable
+        Try
+            myCmd = CNDB.CreateCommand
+            myCmd.CommandText = sSQL
+            GRDView.Columns.Clear()
+            myReader = myCmd.ExecuteReader()
+            dt.Load(myReader)
+            GRDControl.DataSource = dt
+            GRDControl.ForceInitialize()
+            GRDControl.DefaultView.PopulateColumns()
+            'Προσθήκη Στήλης BUTTON(Θα πρέπει στον Designer να έχω προσθέσει ενα repositoryitem τύπου Button)
+            If AddColumnButton Then
+                Dim C2 As New GridColumn
+                Dim Btn As New RepositoryItemButtonEdit()
+                Btn = GRDControl.RepositoryItems.Item(0)
+                'Btn.ContextImageOptions.Image = My.Resources.icons8_upload_link_document_16
+                C2.ColumnEdit = Btn
+                C2.VisibleIndex = 0
+                GRDView.Columns.Add(C2)
+            End If
+            If dt.Rows.Count = 0 And GRDView.Columns.Count = 0 Then
+                For Each myField As DataColumn In dt.Columns
+                    Dim columnNameValue As String = myField.ColumnName
+                    Dim C As New GridColumn
+                    C.Name = columnNameValue
+                    C.Caption = columnNameValue
+                    C.Visible = True
+                    C.OptionsColumn.ReadOnly = True
+                    C.OptionsColumn.AllowEdit = False
+                    GRDView.Columns.Add(C)
+                Next
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Public Sub LoadColumnDescriptionNames(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
                                          Optional ByVal sTable As String = "", Optional ByVal sView As String = "")

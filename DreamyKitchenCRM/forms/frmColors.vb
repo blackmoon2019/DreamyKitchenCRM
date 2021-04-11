@@ -95,9 +95,19 @@ Public Class frmColors
                                     frmErmaria.Vw_COLORSBOXTableAdapter.Fill(frmErmaria.DreamyKitchenDataSet.vw_COLORSBOX)
                                     CtrlCombo.Properties.DataSource = frmErmaria.VwCOLORSBOXBindingSource
                             End Select
+                        Case "frmOffer"
+                            Select Case CtrlCombo.Name
+                                Case "cboPVCColors"
+                                    frmOffer.Vw_COLORSPVCTableAdapter.Fill(frmOffer.DreamyKitchenDataSet.vw_COLORSPVC)
+                                    CtrlCombo.Properties.DataSource = frmOffer.VwCOLORSPVCBindingSource
+                                Case "cboBOXColors"
+                                    'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
+                                    frmOffer.Vw_COLORSBOXTableAdapter.Fill(frmOffer.DreamyKitchenDataSet.vw_COLORSBOX)
+                                    CtrlCombo.Properties.DataSource = frmOffer.VwCOLORSBOXBindingSource
+                            End Select
                     End Select
 
-                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                            CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                 Else
                     Dim form As frmScroller = Frm
                     form.LoadRecords("vw_COLORS")

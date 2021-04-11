@@ -28,6 +28,7 @@ Partial Class frmCalculations
         Me.txtNam = New DevExpress.XtraEditors.TextEdit()
         Me.txtCalc = New DevExpress.XtraEditors.TextEdit()
         Me.cboCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cboCatSubErm = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -38,7 +39,6 @@ Partial Class frmCalculations
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.cboCatSubErm = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -47,6 +47,7 @@ Partial Class frmCalculations
         CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCalc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboCatSubErm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -57,7 +58,6 @@ Partial Class frmCalculations
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboCatSubErm.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -153,6 +153,19 @@ Partial Class frmCalculations
         Me.cboCategory.StyleController = Me.LayoutControl1
         Me.cboCategory.TabIndex = 21
         Me.cboCategory.Tag = "catErmID,0,1,2"
+        '
+        'cboCatSubErm
+        '
+        Me.cboCatSubErm.Location = New System.Drawing.Point(131, 84)
+        Me.cboCatSubErm.Name = "cboCatSubErm"
+        Me.cboCatSubErm.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboCatSubErm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboCatSubErm.Properties.NullText = ""
+        Me.cboCatSubErm.Properties.PopupSizeable = False
+        Me.cboCatSubErm.Size = New System.Drawing.Size(278, 20)
+        Me.cboCatSubErm.StyleController = Me.LayoutControl1
+        Me.cboCatSubErm.TabIndex = 21
+        Me.cboCatSubErm.Tag = "catSubErmID,0,1,2"
         '
         'LayoutControlGroup1
         '
@@ -255,19 +268,6 @@ Partial Class frmCalculations
         Me.LayoutControlItem5.Text = "Περιγραφή"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(107, 13)
         '
-        'cboCatSubErm
-        '
-        Me.cboCatSubErm.Location = New System.Drawing.Point(131, 84)
-        Me.cboCatSubErm.Name = "cboCatSubErm"
-        Me.cboCatSubErm.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboCatSubErm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboCatSubErm.Properties.NullText = ""
-        Me.cboCatSubErm.Properties.PopupSizeable = False
-        Me.cboCatSubErm.Size = New System.Drawing.Size(278, 20)
-        Me.cboCatSubErm.StyleController = Me.LayoutControl1
-        Me.cboCatSubErm.TabIndex = 21
-        Me.cboCatSubErm.Tag = "catSubErmID,0,1,2"
-        '
         'LayoutControlItem19
         '
         Me.LayoutControlItem19.Control = Me.cboCatSubErm
@@ -296,6 +296,7 @@ Partial Class frmCalculations
         CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCalc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboCatSubErm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -306,7 +307,6 @@ Partial Class frmCalculations
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboCatSubErm.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

@@ -47,6 +47,9 @@ Public Class frmScroller
             LoadComboRecordValues()
             popSaveAsView.EditValue = BarViews.EditValue
             If BarViews.EditValue = "" Then popSaveView.Enabled = False : popDeleteView.Enabled = False
+            'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
+            LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
+
             'Παίρνω το όνομα της όψης για τον συγκεκριμένο χρήστη και για τον συγκεκριμένο πίνακα 
             GetCurrentView(True)
             'Φόρτωση Εγγραφών
@@ -54,8 +57,6 @@ Public Class frmScroller
             'Φόρτωση Σχεδίων στην Λίστα βάση επιλογής από το μενού
             LoadViews()
 
-            'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
-            LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
 
             GridLocalizer.Active = New GreekGridLocalizer()
             'Κρύψιμο Στηλών

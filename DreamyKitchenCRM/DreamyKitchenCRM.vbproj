@@ -306,6 +306,12 @@
     <Compile Include="forms\frmOffer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmOFFTotal.Designer.vb">
+      <DependentUpon>frmOFFTotal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmOFFTotal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmPermissions.designer.vb">
       <DependentUpon>frmPermissions.vb</DependentUpon>
     </Compile>
@@ -432,6 +438,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmOffer.resx">
       <DependentUpon>frmOffer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmOFFTotal.resx">
+      <DependentUpon>frmOFFTotal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPermissions.resx">
       <DependentUpon>frmPermissions.vb</DependentUpon>
@@ -717,6 +726,19 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\προσφορα.jpg" />
+    <None Include="Resources\kitchen.png" />
+    <None Include="Resources\ΥΠΟΛΟΓΙΣΜΟΙ1.png" />
+    <None Include="Resources\ΥΠΟΛΟΓΙΣΜΟΙ.png" />
+    <None Include="Resources\διαστασεις.png" />
+    <None Include="Resources\κατηγορια πορτας.png" />
+    <None Include="Resources\παγκοι.png" />
+    <None Include="Resources\μηχανισμοι.png" />
+    <None Include="Resources\κατηγορια χρωματων.png" />
+    <None Include="Resources\χρωματα.png" />
+    <None Include="Resources\επενδυσεις -καταφραγες.png" />
+    <None Include="Resources\υποκατηγοριες ερμαριων.png" />
+    <None Include="Resources\κατηγοριες ερμαριων.png" />
     <None Include="Resources\icons8-technical-support-40.png" />
     <None Include="Resources\icons8-paste-special-40.png" />
     <None Include="Resources\icons8-level-tool-40.png" />
