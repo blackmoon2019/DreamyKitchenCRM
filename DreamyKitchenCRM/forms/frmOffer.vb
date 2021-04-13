@@ -84,7 +84,6 @@ Public Class frmOffer
         FillCbo.BENCH(cboExtraBENCH)
         FillCbo.DIMENSION(cboDim)
         FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
-        FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
         FillCbo.CAT_SUB_ERM(cboCatSubErm)
         FillCbo.SIDES()
         FillCbo.FillCheckedListDoorTypes(chkDoorTypes, FormMode.NewRecord)
@@ -109,7 +108,6 @@ Public Class frmOffer
             Case FormMode.NewRecord
                 LayoutControl2.Enabled = False
                 FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
-                FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
                 txtCode.Text = DBQ.GetNextId("[OFF]")
 
             Case FormMode.EditRecord
@@ -503,16 +501,6 @@ Public Class frmOffer
                         End Using
                     End If
 
-                    ' Καταχώρηση πλαϊνά - καταφραγές
-                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkSides.CheckedItems
-                        sSQL = "INSERT INTO OFFER_SIDES ([OFFID],[OFFERID],[SIDEID],[modifiedBy],[createdOn])  
-                        values (" & toSQLValueS(sID) & "," & toSQLValueS(IIf(sOffersID <> "", sOffersID, sGuid)) & "," & toSQLValueS(item.Tag.ToString()) & "," &
-                                            toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                    Next
-
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
                     Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
@@ -521,7 +509,6 @@ Public Class frmOffer
                     LayoutControlGroup2.Enabled = False
                     sOffersID = "" : SidePrice = 0 : MechPrice = 0
                     FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
-                    FillCbo.FillCheckedListSides(chkSides, FormMode.NewRecord)
                     Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
                     cmdSave.Enabled = False
                 End If
@@ -604,7 +591,6 @@ Public Class frmOffer
         DoorPrice = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "DoorPrice").ToString()
         txtCalc.EditValue = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "calculations").ToString()
         FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sOffersID)
-        FillCbo.FillCheckedListSides(chkSides, FormMode.EditRecord, sOffersID)
         cmdSave.Enabled = True
         cboERM.EditValue = System.Guid.Parse(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ermID").ToString())
         cboCatSubErm.EditValue = Nothing : cboCategory.EditValue = Nothing : cboDoorType.EditValue = Nothing
@@ -897,7 +883,7 @@ Public Class frmOffer
         'myParameter.Name = "OfferID"
         'myParameter.Value = sID
         'myParameter.Visible = False
-        'report.Parameters.Item(0).Value = sID
+        report.Parameters.Item(0).Value = sID
         'report.Parameters.Add(myParameter)
         'report.RequestParameters = False
         Dim printTool As New ReportPrintTool(report)
@@ -963,67 +949,6 @@ Public Class frmOffer
         'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
     End Sub
 
-    Private Sub chkSides_ItemCheck(sender As Object, e As ItemCheckEventArgs) Handles chkSides.ItemCheck
-        Try
-            Dim Total As String, Sidetem As String, sCalc As Decimal
-            Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
-            Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
-            chkLstItem = chkSides.Items.Item(chkSides.SelectedIndex)
-            If chkLstItem.Tag = "" Then Exit Sub
-            Dim cmd2 As SqlCommand = New SqlCommand("Select TotPrice from vw_SIDES where id ='" + chkLstItem.Tag + "'", CNDB)
-            Dim sdr2 As SqlDataReader = cmd2.ExecuteReader()
-            If (sdr2.Read() = True) Then
-                Total = sdr2.GetDecimal(sdr2.GetOrdinal("TotPrice"))
-                Total = toSQLValueS(Total, True)
-                sdr2.Close()
-            End If
-            If e.State = CheckState.Checked Then
-                If LItem.Items(e.Index).CheckState = CheckState.Checked Then
-                    Sidetem = toSQLValueS(txtTotalPrice.EditValue.ToString, True)
-                    SidePrice = SidePrice + Sidetem
-                    Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " + " + Total, CNDB)
-                    Dim sdr As SqlDataReader = cmd.ExecuteReader()
-                    If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
-                    sdr.Close()
-                End If
-            Else
-                Sidetem = toSQLValueS(txtTotalPrice.EditValue.ToString, True)
-                Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " - " + Total, CNDB)
-                Dim sdr As SqlDataReader = cmd.ExecuteReader()
-                If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
-                sdr.Close()
-            End If
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-        'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
-
-        'Try
-        '    Dim Total As String, Sidetem As String, sCalc As Decimal
-        '    Dim LItem As DevExpress.XtraEditors.CheckedListBoxControl = CType(sender, DevExpress.XtraEditors.CheckedListBoxControl)
-        '    Dim m As Match = Regex.Match(LItem.Items(e.Index).Value.ToString, "[\d.,]+")
-        '    Dim m2 As Match = Regex.Match(txtTotalPrice.EditValue, "[\d.,]+")
-        '    Sidetem = m2.Value.Replace(",", ".") : Total = m.Value.Replace(",", ".")
-        '    If e.State = CheckState.Checked Then
-        '        If LItem.Items(e.Index).CheckState = CheckState.Checked Then
-        '            SidePrice = SidePrice + SidePrice
-        '            Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " + " + Total, CNDB)
-        '            Dim sdr As SqlDataReader = cmd.ExecuteReader()
-        '            If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
-        '            sdr.Close()
-        '        End If
-        '    Else
-        '        SidePrice = SidePrice - SidePrice
-        '        Dim cmd As SqlCommand = New SqlCommand("Select " & Sidetem + " - " + Total, CNDB)
-        '        Dim sdr As SqlDataReader = cmd.ExecuteReader()
-        '        If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
-        '        sdr.Close()
-        '    End If
-        'Catch ex As Exception
-        '    XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        'End Try
-        'MsgBox(Decimal.Parse(Regex.Replace(x, "[^\d]", "")))
-    End Sub
 
     Private Sub cmdOffersNew_Click(sender As Object, e As EventArgs) Handles cmdOffersNew.Click
         Cls.ClearCtrlsGRP(LayoutControlGroup2)
