@@ -20,7 +20,6 @@ Partial Public Class Rep_offer
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Rep_offer))
         Dim SelectQuery1 As DevExpress.DataAccess.Sql.SelectQuery = New DevExpress.DataAccess.Sql.SelectQuery()
         Dim Column1 As DevExpress.DataAccess.Sql.Column = New DevExpress.DataAccess.Sql.Column()
         Dim ColumnExpression1 As DevExpress.DataAccess.Sql.ColumnExpression = New DevExpress.DataAccess.Sql.ColumnExpression()
@@ -271,20 +270,26 @@ Partial Public Class Rep_offer
         Dim RelationColumnInfo8 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
         Dim MasterDetailInfo9 As DevExpress.DataAccess.Sql.MasterDetailInfo = New DevExpress.DataAccess.Sql.MasterDetailInfo()
         Dim RelationColumnInfo9 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Rep_offer))
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
+        Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource(Me.components)
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrLabel62 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrPanel5 = New DevExpress.XtraReports.UI.XRPanel()
         Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrLabel37 = New DevExpress.XtraReports.UI.XRLabel()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
@@ -345,7 +350,6 @@ Partial Public Class Rep_offer
         Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource(Me.components)
         Me.XrLabel39 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel40 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
@@ -357,21 +361,566 @@ Partial Public Class Rep_offer
         Me.XrPictureBox2 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel56 = New DevExpress.XtraReports.UI.XRLabel()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
-        Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.Vw_NOTESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter()
-        Me.Vw_OFFTableAdapter1 = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFFTableAdapter()
         Me.OfferID = New DevExpress.XtraReports.Parameters.Parameter()
         Me.DetailReport1 = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail2 = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrLabel62 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel61 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel38 = New DevExpress.XtraReports.UI.XRLabel()
         Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.XrLabel63 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.Vw_NOTESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter()
+        Me.Vw_OFFTableAdapter1 = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFFTableAdapter()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
+        '
+        'SqlDataSource1
+        '
+        Me.SqlDataSource1.ConnectionName = "myConnectionString"
+        Me.SqlDataSource1.Name = "SqlDataSource1"
+        ColumnExpression1.ColumnName = "ID"
+        Table1.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""403"" />"
+        Table1.Name = "vw_OFF"
+        ColumnExpression1.Table = Table1
+        Column1.Expression = ColumnExpression1
+        ColumnExpression2.ColumnName = "code"
+        ColumnExpression2.Table = Table1
+        Column2.Expression = ColumnExpression2
+        ColumnExpression3.ColumnName = "CustomCode"
+        ColumnExpression3.Table = Table1
+        Column3.Expression = ColumnExpression3
+        ColumnExpression4.ColumnName = "cusID"
+        ColumnExpression4.Table = Table1
+        Column4.Expression = ColumnExpression4
+        ColumnExpression5.ColumnName = "dtpresentation"
+        ColumnExpression5.Table = Table1
+        Column5.Expression = ColumnExpression5
+        ColumnExpression6.ColumnName = "delivery"
+        ColumnExpression6.Table = Table1
+        Column6.Expression = ColumnExpression6
+        ColumnExpression7.ColumnName = "modifiedBy"
+        ColumnExpression7.Table = Table1
+        Column7.Expression = ColumnExpression7
+        ColumnExpression8.ColumnName = "modifiedOn"
+        ColumnExpression8.Table = Table1
+        Column8.Expression = ColumnExpression8
+        ColumnExpression9.ColumnName = "createdOn"
+        ColumnExpression9.Table = Table1
+        Column9.Expression = ColumnExpression9
+        ColumnExpression10.ColumnName = "createdBy"
+        ColumnExpression10.Table = Table1
+        Column10.Expression = ColumnExpression10
+        ColumnExpression11.ColumnName = "Fullname"
+        ColumnExpression11.Table = Table1
+        Column11.Expression = ColumnExpression11
+        ColumnExpression12.ColumnName = "RealName"
+        ColumnExpression12.Table = Table1
+        Column12.Expression = ColumnExpression12
+        ColumnExpression13.ColumnName = "mob"
+        ColumnExpression13.Table = Table1
+        Column13.Expression = ColumnExpression13
+        ColumnExpression14.ColumnName = "AdrName"
+        ColumnExpression14.Table = Table1
+        Column14.Expression = ColumnExpression14
+        ColumnExpression15.ColumnName = "AreaName"
+        ColumnExpression15.Table = Table1
+        Column15.Expression = ColumnExpression15
+        ColumnExpression16.ColumnName = "phn"
+        ColumnExpression16.Table = Table1
+        Column16.Expression = ColumnExpression16
+        ColumnExpression17.ColumnName = "finalHeightKitchen"
+        ColumnExpression17.Table = Table1
+        Column17.Expression = ColumnExpression17
+        SelectQuery1.Columns.Add(Column1)
+        SelectQuery1.Columns.Add(Column2)
+        SelectQuery1.Columns.Add(Column3)
+        SelectQuery1.Columns.Add(Column4)
+        SelectQuery1.Columns.Add(Column5)
+        SelectQuery1.Columns.Add(Column6)
+        SelectQuery1.Columns.Add(Column7)
+        SelectQuery1.Columns.Add(Column8)
+        SelectQuery1.Columns.Add(Column9)
+        SelectQuery1.Columns.Add(Column10)
+        SelectQuery1.Columns.Add(Column11)
+        SelectQuery1.Columns.Add(Column12)
+        SelectQuery1.Columns.Add(Column13)
+        SelectQuery1.Columns.Add(Column14)
+        SelectQuery1.Columns.Add(Column15)
+        SelectQuery1.Columns.Add(Column16)
+        SelectQuery1.Columns.Add(Column17)
+        SelectQuery1.FilterString = "[vw_OFF.ID] = ?OfferID"
+        SelectQuery1.MetaSerializable = "<Meta X=""20"" Y=""20"" Width=""108"" Height=""381"" />"
+        SelectQuery1.Name = "vw_OFF"
+        QueryParameter1.Name = "OfferID"
+        QueryParameter1.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter1.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
+        SelectQuery1.Parameters.Add(QueryParameter1)
+        SelectQuery1.Tables.Add(Table1)
+        ColumnExpression18.ColumnName = "ID"
+        Table2.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""323"" />"
+        Table2.Name = "vw_OFFER_MECH"
+        ColumnExpression18.Table = Table2
+        Column18.Expression = ColumnExpression18
+        ColumnExpression19.ColumnName = "code"
+        ColumnExpression19.Table = Table2
+        Column19.Expression = ColumnExpression19
+        ColumnExpression20.ColumnName = "offerID"
+        ColumnExpression20.Table = Table2
+        Column20.Expression = ColumnExpression20
+        ColumnExpression21.ColumnName = "mechID"
+        ColumnExpression21.Table = Table2
+        Column21.Expression = ColumnExpression21
+        ColumnExpression22.ColumnName = "modifiedBy"
+        ColumnExpression22.Table = Table2
+        Column22.Expression = ColumnExpression22
+        ColumnExpression23.ColumnName = "modifiedOn"
+        ColumnExpression23.Table = Table2
+        Column23.Expression = ColumnExpression23
+        ColumnExpression24.ColumnName = "createdOn"
+        ColumnExpression24.Table = Table2
+        Column24.Expression = ColumnExpression24
+        ColumnExpression25.ColumnName = "createdBy"
+        ColumnExpression25.Table = Table2
+        Column25.Expression = ColumnExpression25
+        ColumnExpression26.ColumnName = "RealName"
+        ColumnExpression26.Table = Table2
+        Column26.Expression = ColumnExpression26
+        ColumnExpression27.ColumnName = "name"
+        ColumnExpression27.Table = Table2
+        Column27.Expression = ColumnExpression27
+        ColumnExpression28.ColumnName = "Price"
+        ColumnExpression28.Table = Table2
+        Column28.Expression = ColumnExpression28
+        ColumnExpression29.ColumnName = "offID"
+        ColumnExpression29.Table = Table2
+        Column29.Expression = ColumnExpression29
+        ColumnExpression30.ColumnName = "Photo"
+        ColumnExpression30.Table = Table2
+        Column30.Expression = ColumnExpression30
+        SelectQuery2.Columns.Add(Column18)
+        SelectQuery2.Columns.Add(Column19)
+        SelectQuery2.Columns.Add(Column20)
+        SelectQuery2.Columns.Add(Column21)
+        SelectQuery2.Columns.Add(Column22)
+        SelectQuery2.Columns.Add(Column23)
+        SelectQuery2.Columns.Add(Column24)
+        SelectQuery2.Columns.Add(Column25)
+        SelectQuery2.Columns.Add(Column26)
+        SelectQuery2.Columns.Add(Column27)
+        SelectQuery2.Columns.Add(Column28)
+        SelectQuery2.Columns.Add(Column29)
+        SelectQuery2.Columns.Add(Column30)
+        SelectQuery2.FilterString = "[vw_OFFER_MECH.offID] = ?OfferID"
+        SelectQuery2.MetaSerializable = "<Meta X=""150"" Y=""40"" Width=""118"" Height=""301"" />"
+        SelectQuery2.Name = "vw_OFFER_MECH"
+        QueryParameter2.Name = "OfferID"
+        QueryParameter2.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter2.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
+        SelectQuery2.Parameters.Add(QueryParameter2)
+        SelectQuery2.Tables.Add(Table2)
+        ColumnExpression31.ColumnName = "ID"
+        Table3.Name = "vw_OFFER_SIDES"
+        ColumnExpression31.Table = Table3
+        Column31.Expression = ColumnExpression31
+        ColumnExpression32.ColumnName = "code"
+        ColumnExpression32.Table = Table3
+        Column32.Expression = ColumnExpression32
+        ColumnExpression33.ColumnName = "offID"
+        ColumnExpression33.Table = Table3
+        Column33.Expression = ColumnExpression33
+        ColumnExpression34.ColumnName = "offerID"
+        ColumnExpression34.Table = Table3
+        Column34.Expression = ColumnExpression34
+        ColumnExpression35.ColumnName = "sideID"
+        ColumnExpression35.Table = Table3
+        Column35.Expression = ColumnExpression35
+        ColumnExpression36.ColumnName = "modifiedBy"
+        ColumnExpression36.Table = Table3
+        Column36.Expression = ColumnExpression36
+        ColumnExpression37.ColumnName = "modifiedOn"
+        ColumnExpression37.Table = Table3
+        Column37.Expression = ColumnExpression37
+        ColumnExpression38.ColumnName = "createdOn"
+        ColumnExpression38.Table = Table3
+        Column38.Expression = ColumnExpression38
+        ColumnExpression39.ColumnName = "createdBy"
+        ColumnExpression39.Table = Table3
+        Column39.Expression = ColumnExpression39
+        ColumnExpression40.ColumnName = "name"
+        ColumnExpression40.Table = Table3
+        Column40.Expression = ColumnExpression40
+        ColumnExpression41.ColumnName = "RealName"
+        ColumnExpression41.Table = Table3
+        Column41.Expression = ColumnExpression41
+        ColumnExpression42.ColumnName = "Price"
+        ColumnExpression42.Table = Table3
+        Column42.Expression = ColumnExpression42
+        ColumnExpression43.ColumnName = "TotPrice"
+        ColumnExpression43.Table = Table3
+        Column43.Expression = ColumnExpression43
+        SelectQuery3.Columns.Add(Column31)
+        SelectQuery3.Columns.Add(Column32)
+        SelectQuery3.Columns.Add(Column33)
+        SelectQuery3.Columns.Add(Column34)
+        SelectQuery3.Columns.Add(Column35)
+        SelectQuery3.Columns.Add(Column36)
+        SelectQuery3.Columns.Add(Column37)
+        SelectQuery3.Columns.Add(Column38)
+        SelectQuery3.Columns.Add(Column39)
+        SelectQuery3.Columns.Add(Column40)
+        SelectQuery3.Columns.Add(Column41)
+        SelectQuery3.Columns.Add(Column42)
+        SelectQuery3.Columns.Add(Column43)
+        SelectQuery3.MetaSerializable = "<Meta X=""286"" Y=""20"" Width=""120"" Height=""301"" />"
+        SelectQuery3.Name = "vw_OFFER_SIDES"
+        SelectQuery3.Tables.Add(Table3)
+        ColumnExpression44.ColumnName = "ID"
+        Table4.Name = "vw_OFFERS"
+        ColumnExpression44.Table = Table4
+        Column44.Expression = ColumnExpression44
+        ColumnExpression45.ColumnName = "code"
+        ColumnExpression45.Table = Table4
+        Column45.Expression = ColumnExpression45
+        ColumnExpression46.ColumnName = "CustomCode"
+        ColumnExpression46.Table = Table4
+        Column46.Expression = ColumnExpression46
+        ColumnExpression47.ColumnName = "ermID"
+        ColumnExpression47.Table = Table4
+        Column47.Expression = ColumnExpression47
+        ColumnExpression48.ColumnName = "modifiedBy"
+        ColumnExpression48.Table = Table4
+        Column48.Expression = ColumnExpression48
+        ColumnExpression49.ColumnName = "modifiedOn"
+        ColumnExpression49.Table = Table4
+        Column49.Expression = ColumnExpression49
+        ColumnExpression50.ColumnName = "createdOn"
+        ColumnExpression50.Table = Table4
+        Column50.Expression = ColumnExpression50
+        ColumnExpression51.ColumnName = "createdBy"
+        ColumnExpression51.Table = Table4
+        Column51.Expression = ColumnExpression51
+        ColumnExpression52.ColumnName = "qty"
+        ColumnExpression52.Table = Table4
+        Column52.Expression = ColumnExpression52
+        ColumnExpression53.ColumnName = "offID"
+        ColumnExpression53.Table = Table4
+        Column53.Expression = ColumnExpression53
+        ColumnExpression54.ColumnName = "benchID"
+        ColumnExpression54.Table = Table4
+        Column54.Expression = ColumnExpression54
+        ColumnExpression55.ColumnName = "height"
+        ColumnExpression55.Table = Table4
+        Column55.Expression = ColumnExpression55
+        ColumnExpression56.ColumnName = "width"
+        ColumnExpression56.Table = Table4
+        Column56.Expression = ColumnExpression56
+        ColumnExpression57.ColumnName = "depth"
+        ColumnExpression57.Table = Table4
+        Column57.Expression = ColumnExpression57
+        ColumnExpression58.ColumnName = "door"
+        ColumnExpression58.Table = Table4
+        Column58.Expression = ColumnExpression58
+        ColumnExpression59.ColumnName = "legs"
+        ColumnExpression59.Table = Table4
+        Column59.Expression = ColumnExpression59
+        ColumnExpression60.ColumnName = "pvcColorID"
+        ColumnExpression60.Table = Table4
+        Column60.Expression = ColumnExpression60
+        ColumnExpression61.ColumnName = "boxColorID"
+        ColumnExpression61.Table = Table4
+        Column61.Expression = ColumnExpression61
+        ColumnExpression62.ColumnName = "dimID"
+        ColumnExpression62.Table = Table4
+        Column62.Expression = ColumnExpression62
+        ColumnExpression63.ColumnName = "side"
+        ColumnExpression63.Table = Table4
+        Column63.Expression = ColumnExpression63
+        ColumnExpression64.ColumnName = "comments"
+        ColumnExpression64.Table = Table4
+        Column64.Expression = ColumnExpression64
+        ColumnExpression65.ColumnName = "catErmID"
+        ColumnExpression65.Table = Table4
+        Column65.Expression = ColumnExpression65
+        ColumnExpression66.ColumnName = "DoorTypeName"
+        ColumnExpression66.Table = Table4
+        Column66.Expression = ColumnExpression66
+        ColumnExpression67.ColumnName = "benchExtraID"
+        ColumnExpression67.Table = Table4
+        Column67.Expression = ColumnExpression67
+        ColumnExpression68.ColumnName = "benchExtraDim"
+        ColumnExpression68.Table = Table4
+        Column68.Expression = ColumnExpression68
+        ColumnExpression69.ColumnName = "benchExtraPrice"
+        ColumnExpression69.Table = Table4
+        Column69.Expression = ColumnExpression69
+        ColumnExpression70.ColumnName = "OfferPrice"
+        ColumnExpression70.Table = Table4
+        Column70.Expression = ColumnExpression70
+        ColumnExpression71.ColumnName = "catSubErmID"
+        ColumnExpression71.Table = Table4
+        Column71.Expression = ColumnExpression71
+        ColumnExpression72.ColumnName = "Photo"
+        ColumnExpression72.Table = Table4
+        Column72.Expression = ColumnExpression72
+        ColumnExpression73.ColumnName = "photo1"
+        ColumnExpression73.Table = Table4
+        Column73.Expression = ColumnExpression73
+        ColumnExpression74.ColumnName = "photo2"
+        ColumnExpression74.Table = Table4
+        Column74.Expression = ColumnExpression74
+        ColumnExpression75.ColumnName = "photo3"
+        ColumnExpression75.Table = Table4
+        Column75.Expression = ColumnExpression75
+        ColumnExpression76.ColumnName = "SelectedErmPicture"
+        ColumnExpression76.Table = Table4
+        Column76.Expression = ColumnExpression76
+        ColumnExpression77.ColumnName = "DoorTypeID"
+        ColumnExpression77.Table = Table4
+        Column77.Expression = ColumnExpression77
+        ColumnExpression78.ColumnName = "calculations"
+        ColumnExpression78.Table = Table4
+        Column78.Expression = ColumnExpression78
+        ColumnExpression79.ColumnName = "DoorPrice"
+        ColumnExpression79.Table = Table4
+        Column79.Expression = ColumnExpression79
+        SelectQuery4.Columns.Add(Column44)
+        SelectQuery4.Columns.Add(Column45)
+        SelectQuery4.Columns.Add(Column46)
+        SelectQuery4.Columns.Add(Column47)
+        SelectQuery4.Columns.Add(Column48)
+        SelectQuery4.Columns.Add(Column49)
+        SelectQuery4.Columns.Add(Column50)
+        SelectQuery4.Columns.Add(Column51)
+        SelectQuery4.Columns.Add(Column52)
+        SelectQuery4.Columns.Add(Column53)
+        SelectQuery4.Columns.Add(Column54)
+        SelectQuery4.Columns.Add(Column55)
+        SelectQuery4.Columns.Add(Column56)
+        SelectQuery4.Columns.Add(Column57)
+        SelectQuery4.Columns.Add(Column58)
+        SelectQuery4.Columns.Add(Column59)
+        SelectQuery4.Columns.Add(Column60)
+        SelectQuery4.Columns.Add(Column61)
+        SelectQuery4.Columns.Add(Column62)
+        SelectQuery4.Columns.Add(Column63)
+        SelectQuery4.Columns.Add(Column64)
+        SelectQuery4.Columns.Add(Column65)
+        SelectQuery4.Columns.Add(Column66)
+        SelectQuery4.Columns.Add(Column67)
+        SelectQuery4.Columns.Add(Column68)
+        SelectQuery4.Columns.Add(Column69)
+        SelectQuery4.Columns.Add(Column70)
+        SelectQuery4.Columns.Add(Column71)
+        SelectQuery4.Columns.Add(Column72)
+        SelectQuery4.Columns.Add(Column73)
+        SelectQuery4.Columns.Add(Column74)
+        SelectQuery4.Columns.Add(Column75)
+        SelectQuery4.Columns.Add(Column76)
+        SelectQuery4.Columns.Add(Column77)
+        SelectQuery4.Columns.Add(Column78)
+        SelectQuery4.Columns.Add(Column79)
+        SelectQuery4.FilterString = "[vw_OFFERS.offID] = ?OfferID"
+        SelectQuery4.MetaSerializable = "<Meta X=""426"" Y=""20"" Width=""134"" Height=""761"" />"
+        SelectQuery4.Name = "vw_OFFERS"
+        QueryParameter3.Name = "OfferID"
+        QueryParameter3.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter3.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
+        SelectQuery4.Parameters.Add(QueryParameter3)
+        SelectQuery4.Tables.Add(Table4)
+        ColumnExpression80.ColumnName = "PvcColorNam"
+        Table5.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""203"" />"
+        Table5.Name = "vw_OFF_REP_BASEOS"
+        ColumnExpression80.Table = Table5
+        Column80.Expression = ColumnExpression80
+        ColumnExpression81.ColumnName = "BoxColorNam"
+        ColumnExpression81.Table = Table5
+        Column81.Expression = ColumnExpression81
+        ColumnExpression82.ColumnName = "legs"
+        ColumnExpression82.Table = Table5
+        Column82.Expression = ColumnExpression82
+        ColumnExpression83.ColumnName = "height"
+        ColumnExpression83.Table = Table5
+        Column83.Expression = ColumnExpression83
+        ColumnExpression84.ColumnName = "offID"
+        ColumnExpression84.Table = Table5
+        Column84.Expression = ColumnExpression84
+        SelectQuery5.Columns.Add(Column80)
+        SelectQuery5.Columns.Add(Column81)
+        SelectQuery5.Columns.Add(Column82)
+        SelectQuery5.Columns.Add(Column83)
+        SelectQuery5.Columns.Add(Column84)
+        SelectQuery5.FilterString = "[vw_OFF_REP_BASEOS.offID] = ?OfferID"
+        SelectQuery5.MetaSerializable = "<Meta X=""580"" Y=""20"" Width=""144"" Height=""141"" />"
+        SelectQuery5.Name = "vw_OFF_REP_BASEOS"
+        QueryParameter4.Name = "OfferID"
+        QueryParameter4.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter4.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
+        SelectQuery5.Parameters.Add(QueryParameter4)
+        SelectQuery5.Tables.Add(Table5)
+        ColumnExpression85.ColumnName = "PvcColorNam"
+        Table6.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""203"" />"
+        Table6.Name = "vw_OFF_REP_KREMASTA"
+        ColumnExpression85.Table = Table6
+        Column85.Expression = ColumnExpression85
+        ColumnExpression86.ColumnName = "BoxColorNam"
+        ColumnExpression86.Table = Table6
+        Column86.Expression = ColumnExpression86
+        ColumnExpression87.ColumnName = "legs"
+        ColumnExpression87.Table = Table6
+        Column87.Expression = ColumnExpression87
+        ColumnExpression88.ColumnName = "height"
+        ColumnExpression88.Table = Table6
+        Column88.Expression = ColumnExpression88
+        ColumnExpression89.ColumnName = "offID"
+        ColumnExpression89.Table = Table6
+        Column89.Expression = ColumnExpression89
+        SelectQuery6.Columns.Add(Column85)
+        SelectQuery6.Columns.Add(Column86)
+        SelectQuery6.Columns.Add(Column87)
+        SelectQuery6.Columns.Add(Column88)
+        SelectQuery6.Columns.Add(Column89)
+        SelectQuery6.FilterString = "[vw_OFF_REP_KREMASTA.offID] = ?OfferID"
+        SelectQuery6.MetaSerializable = "<Meta X=""744"" Y=""20"" Width=""162"" Height=""141"" />"
+        SelectQuery6.Name = "vw_OFF_REP_KREMASTA"
+        QueryParameter5.Name = "OfferID"
+        QueryParameter5.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter5.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
+        SelectQuery6.Parameters.Add(QueryParameter5)
+        SelectQuery6.Tables.Add(Table6)
+        ColumnExpression90.ColumnName = "PvcColorNam"
+        Table7.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""203"" />"
+        Table7.Name = "vw_OFF_REP_YPSILA"
+        ColumnExpression90.Table = Table7
+        Column90.Expression = ColumnExpression90
+        ColumnExpression91.ColumnName = "BoxColorNam"
+        ColumnExpression91.Table = Table7
+        Column91.Expression = ColumnExpression91
+        ColumnExpression92.ColumnName = "legs"
+        ColumnExpression92.Table = Table7
+        Column92.Expression = ColumnExpression92
+        ColumnExpression93.ColumnName = "height"
+        ColumnExpression93.Table = Table7
+        Column93.Expression = ColumnExpression93
+        ColumnExpression94.ColumnName = "offID"
+        ColumnExpression94.Table = Table7
+        Column94.Expression = ColumnExpression94
+        SelectQuery7.Columns.Add(Column90)
+        SelectQuery7.Columns.Add(Column91)
+        SelectQuery7.Columns.Add(Column92)
+        SelectQuery7.Columns.Add(Column93)
+        SelectQuery7.Columns.Add(Column94)
+        SelectQuery7.FilterString = "[vw_OFF_REP_YPSILA.offID] = ?OfferID"
+        SelectQuery7.MetaSerializable = "<Meta X=""926"" Y=""20"" Width=""141"" Height=""141"" />"
+        SelectQuery7.Name = "vw_OFF_REP_YPSILA"
+        QueryParameter6.Name = "OfferID"
+        QueryParameter6.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter6.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
+        SelectQuery7.Parameters.Add(QueryParameter6)
+        SelectQuery7.Tables.Add(Table7)
+        ColumnExpression95.ColumnName = "name"
+        Table8.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""103"" />"
+        Table8.Name = "vw_OFF_REP_BENCH"
+        ColumnExpression95.Table = Table8
+        Column95.Expression = ColumnExpression95
+        ColumnExpression96.ColumnName = "ID"
+        ColumnExpression96.Table = Table8
+        Column96.Expression = ColumnExpression96
+        SelectQuery8.Columns.Add(Column95)
+        SelectQuery8.Columns.Add(Column96)
+        SelectQuery8.FilterString = "[vw_OFF_REP_BENCH.offID] = ?OfferID"
+        SelectQuery8.MetaSerializable = "<Meta X=""1087"" Y=""20"" Width=""136"" Height=""81"" />"
+        SelectQuery8.Name = "vw_OFF_REP_BENCH"
+        QueryParameter7.Name = "OfferID"
+        QueryParameter7.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter7.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
+        SelectQuery8.Parameters.Add(QueryParameter7)
+        SelectQuery8.Tables.Add(Table8)
+        ColumnExpression97.ColumnName = "name"
+        Table9.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""123"" />"
+        Table9.Name = "vw_OFF_REP_EXTRA_BENCH"
+        ColumnExpression97.Table = Table9
+        Column97.Expression = ColumnExpression97
+        ColumnExpression98.ColumnName = "ID"
+        ColumnExpression98.Table = Table9
+        Column98.Expression = ColumnExpression98
+        ColumnExpression99.ColumnName = "tbl"
+        ColumnExpression99.Table = Table9
+        Column99.Expression = ColumnExpression99
+        SelectQuery9.Columns.Add(Column97)
+        SelectQuery9.Columns.Add(Column98)
+        SelectQuery9.Columns.Add(Column99)
+        SelectQuery9.FilterString = "[vw_OFF_REP_EXTRA_BENCH.offID] = ?OfferID"
+        SelectQuery9.MetaSerializable = "<Meta X=""1243"" Y=""20"" Width=""179"" Height=""101"" />"
+        SelectQuery9.Name = "vw_OFF_REP_EXTRA_BENCH"
+        QueryParameter8.Name = "OfferID"
+        QueryParameter8.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter8.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
+        SelectQuery9.Parameters.Add(QueryParameter8)
+        SelectQuery9.Tables.Add(Table9)
+        ColumnExpression100.ColumnName = "DoorTypeName"
+        Table10.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""123"" />"
+        Table10.Name = "vw_OFF_REP_TOTALPERDOOR"
+        ColumnExpression100.Table = Table10
+        Column100.Expression = ColumnExpression100
+        ColumnExpression101.ColumnName = "OfferPrice"
+        ColumnExpression101.Table = Table10
+        Column101.Expression = ColumnExpression101
+        ColumnExpression102.ColumnName = "offID"
+        ColumnExpression102.Table = Table10
+        Column102.Expression = ColumnExpression102
+        SelectQuery10.Columns.Add(Column100)
+        SelectQuery10.Columns.Add(Column101)
+        SelectQuery10.Columns.Add(Column102)
+        SelectQuery10.MetaSerializable = "<Meta X=""1442"" Y=""20"" Width=""190"" Height=""101"" />"
+        SelectQuery10.Name = "vw_OFF_REP_TOTALPERDOOR"
+        SelectQuery10.Tables.Add(Table10)
+        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {SelectQuery1, SelectQuery2, SelectQuery3, SelectQuery4, SelectQuery5, SelectQuery6, SelectQuery7, SelectQuery8, SelectQuery9, SelectQuery10})
+        MasterDetailInfo1.DetailQueryName = "vw_OFF"
+        RelationColumnInfo1.NestedKeyColumn = "ID"
+        RelationColumnInfo1.ParentKeyColumn = "offID"
+        MasterDetailInfo1.KeyColumns.Add(RelationColumnInfo1)
+        MasterDetailInfo1.MasterQueryName = "vw_OFF_REP_BASEOS"
+        MasterDetailInfo2.DetailQueryName = "vw_OFF"
+        RelationColumnInfo2.NestedKeyColumn = "ID"
+        RelationColumnInfo2.ParentKeyColumn = "offID"
+        MasterDetailInfo2.KeyColumns.Add(RelationColumnInfo2)
+        MasterDetailInfo2.MasterQueryName = "vw_OFF_REP_KREMASTA"
+        MasterDetailInfo3.DetailQueryName = "vw_OFF"
+        RelationColumnInfo3.NestedKeyColumn = "ID"
+        RelationColumnInfo3.ParentKeyColumn = "offID"
+        MasterDetailInfo3.KeyColumns.Add(RelationColumnInfo3)
+        MasterDetailInfo3.MasterQueryName = "vw_OFF_REP_YPSILA"
+        MasterDetailInfo4.DetailQueryName = "vw_OFF"
+        RelationColumnInfo4.NestedKeyColumn = "ID"
+        RelationColumnInfo4.ParentKeyColumn = "offID"
+        MasterDetailInfo4.KeyColumns.Add(RelationColumnInfo4)
+        MasterDetailInfo4.MasterQueryName = "vw_OFFERS"
+        MasterDetailInfo5.DetailQueryName = "vw_OFF"
+        RelationColumnInfo5.NestedKeyColumn = "ID"
+        RelationColumnInfo5.ParentKeyColumn = "offID"
+        MasterDetailInfo5.KeyColumns.Add(RelationColumnInfo5)
+        MasterDetailInfo5.MasterQueryName = "vw_OFFER_SIDES"
+        MasterDetailInfo6.DetailQueryName = "vw_OFFERS"
+        RelationColumnInfo6.NestedKeyColumn = "ID"
+        RelationColumnInfo6.ParentKeyColumn = "ID"
+        MasterDetailInfo6.KeyColumns.Add(RelationColumnInfo6)
+        MasterDetailInfo6.MasterQueryName = "vw_OFF_REP_BENCH"
+        MasterDetailInfo7.DetailQueryName = "vw_OFFERS"
+        RelationColumnInfo7.NestedKeyColumn = "ID"
+        RelationColumnInfo7.ParentKeyColumn = "ID"
+        MasterDetailInfo7.KeyColumns.Add(RelationColumnInfo7)
+        MasterDetailInfo7.MasterQueryName = "vw_OFF_REP_EXTRA_BENCH"
+        MasterDetailInfo8.DetailQueryName = "vw_OFF"
+        RelationColumnInfo8.NestedKeyColumn = "ID"
+        RelationColumnInfo8.ParentKeyColumn = "offID"
+        MasterDetailInfo8.KeyColumns.Add(RelationColumnInfo8)
+        MasterDetailInfo8.MasterQueryName = "vw_OFFER_MECH"
+        MasterDetailInfo9.DetailQueryName = "vw_OFF"
+        RelationColumnInfo9.NestedKeyColumn = "ID"
+        RelationColumnInfo9.ParentKeyColumn = "offID"
+        MasterDetailInfo9.KeyColumns.Add(RelationColumnInfo9)
+        MasterDetailInfo9.MasterQueryName = "vw_OFF_REP_TOTALPERDOOR"
+        Me.SqlDataSource1.Relations.AddRange(New DevExpress.DataAccess.Sql.MasterDetailInfo() {MasterDetailInfo1, MasterDetailInfo2, MasterDetailInfo3, MasterDetailInfo4, MasterDetailInfo5, MasterDetailInfo6, MasterDetailInfo7, MasterDetailInfo8, MasterDetailInfo9})
+        Me.SqlDataSource1.ResultSchemaSerializable = resources.GetString("SqlDataSource1.ResultSchemaSerializable")
         '
         'Detail
         '
@@ -382,6 +931,23 @@ Partial Public Class Rep_offer
         Me.Detail.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.Detail.StyleName = "baseControlStyle"
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        '
+        'XrLabel62
+        '
+        Me.XrLabel62.BackColor = System.Drawing.SystemColors.ControlLight
+        Me.XrLabel62.Font = New System.Drawing.Font("Zona Pro Regular", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel62.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrLabel62.LocationFloat = New DevExpress.Utils.PointFloat(1.791565!, 99.2356!)
+        Me.XrLabel62.Name = "XrLabel62"
+        Me.XrLabel62.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
+        Me.XrLabel62.SizeF = New System.Drawing.SizeF(652.2084!, 20.83334!)
+        Me.XrLabel62.StylePriority.UseBackColor = False
+        Me.XrLabel62.StylePriority.UseFont = False
+        Me.XrLabel62.StylePriority.UseForeColor = False
+        Me.XrLabel62.StylePriority.UsePadding = False
+        Me.XrLabel62.StylePriority.UseTextAlignment = False
+        Me.XrLabel62.Text = "Μηχανισμοί που περιλαμβάνονται"
+        Me.XrLabel62.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel7
         '
@@ -450,6 +1016,19 @@ Partial Public Class Rep_offer
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell6.Weight = 1.0686917556039832R
         '
+        'XrTableCell11
+        '
+        Me.XrTableCell11.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrTableCell11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrTableCell11.Multiline = True
+        Me.XrTableCell11.Name = "XrTableCell11"
+        Me.XrTableCell11.StylePriority.UseFont = False
+        Me.XrTableCell11.StylePriority.UseForeColor = False
+        Me.XrTableCell11.StylePriority.UseTextAlignment = False
+        Me.XrTableCell11.Text = "Συρτάρια Blum"
+        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell11.Weight = 1.0686917556039832R
+        '
         'XrTableRow2
         '
         Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell2, Me.XrTableCell7, Me.XrTableCell12})
@@ -482,6 +1061,19 @@ Partial Public Class Rep_offer
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell7.Weight = 1.0686917556039832R
         '
+        'XrTableCell12
+        '
+        Me.XrTableCell12.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrTableCell12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrTableCell12.Multiline = True
+        Me.XrTableCell12.Name = "XrTableCell12"
+        Me.XrTableCell12.StylePriority.UseFont = False
+        Me.XrTableCell12.StylePriority.UseForeColor = False
+        Me.XrTableCell12.StylePriority.UseTextAlignment = False
+        Me.XrTableCell12.Text = "Κάδος απορ/των"
+        Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell12.Weight = 1.0686917556039832R
+        '
         'XrTableRow3
         '
         Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell3, Me.XrTableCell8, Me.XrTableCell13})
@@ -513,6 +1105,19 @@ Partial Public Class Rep_offer
         Me.XrTableCell8.Text = "Γωνίες στήριξης"
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell8.Weight = 1.0686917556039832R
+        '
+        'XrTableCell13
+        '
+        Me.XrTableCell13.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrTableCell13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrTableCell13.Multiline = True
+        Me.XrTableCell13.Name = "XrTableCell13"
+        Me.XrTableCell13.StylePriority.UseFont = False
+        Me.XrTableCell13.StylePriority.UseForeColor = False
+        Me.XrTableCell13.StylePriority.UseTextAlignment = False
+        Me.XrTableCell13.Text = "Τακάκια μεταλ/κα"
+        Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        Me.XrTableCell13.Weight = 1.0686917556039832R
         '
         'XrLabel37
         '
@@ -1336,555 +1941,6 @@ Partial Public Class Rep_offer
         Me.XrLabel23.StylePriority.UseForeColor = False
         Me.XrLabel23.Text = "XrLabel23"
         '
-        'SqlDataSource1
-        '
-        Me.SqlDataSource1.ConnectionName = "myConnectionString"
-        Me.SqlDataSource1.Name = "SqlDataSource1"
-        ColumnExpression1.ColumnName = "ID"
-        Table1.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""403"" />"
-        Table1.Name = "vw_OFF"
-        ColumnExpression1.Table = Table1
-        Column1.Expression = ColumnExpression1
-        ColumnExpression2.ColumnName = "code"
-        ColumnExpression2.Table = Table1
-        Column2.Expression = ColumnExpression2
-        ColumnExpression3.ColumnName = "CustomCode"
-        ColumnExpression3.Table = Table1
-        Column3.Expression = ColumnExpression3
-        ColumnExpression4.ColumnName = "cusID"
-        ColumnExpression4.Table = Table1
-        Column4.Expression = ColumnExpression4
-        ColumnExpression5.ColumnName = "dtpresentation"
-        ColumnExpression5.Table = Table1
-        Column5.Expression = ColumnExpression5
-        ColumnExpression6.ColumnName = "delivery"
-        ColumnExpression6.Table = Table1
-        Column6.Expression = ColumnExpression6
-        ColumnExpression7.ColumnName = "modifiedBy"
-        ColumnExpression7.Table = Table1
-        Column7.Expression = ColumnExpression7
-        ColumnExpression8.ColumnName = "modifiedOn"
-        ColumnExpression8.Table = Table1
-        Column8.Expression = ColumnExpression8
-        ColumnExpression9.ColumnName = "createdOn"
-        ColumnExpression9.Table = Table1
-        Column9.Expression = ColumnExpression9
-        ColumnExpression10.ColumnName = "createdBy"
-        ColumnExpression10.Table = Table1
-        Column10.Expression = ColumnExpression10
-        ColumnExpression11.ColumnName = "Fullname"
-        ColumnExpression11.Table = Table1
-        Column11.Expression = ColumnExpression11
-        ColumnExpression12.ColumnName = "RealName"
-        ColumnExpression12.Table = Table1
-        Column12.Expression = ColumnExpression12
-        ColumnExpression13.ColumnName = "mob"
-        ColumnExpression13.Table = Table1
-        Column13.Expression = ColumnExpression13
-        ColumnExpression14.ColumnName = "AdrName"
-        ColumnExpression14.Table = Table1
-        Column14.Expression = ColumnExpression14
-        ColumnExpression15.ColumnName = "AreaName"
-        ColumnExpression15.Table = Table1
-        Column15.Expression = ColumnExpression15
-        ColumnExpression16.ColumnName = "phn"
-        ColumnExpression16.Table = Table1
-        Column16.Expression = ColumnExpression16
-        ColumnExpression17.ColumnName = "finalHeightKitchen"
-        ColumnExpression17.Table = Table1
-        Column17.Expression = ColumnExpression17
-        SelectQuery1.Columns.Add(Column1)
-        SelectQuery1.Columns.Add(Column2)
-        SelectQuery1.Columns.Add(Column3)
-        SelectQuery1.Columns.Add(Column4)
-        SelectQuery1.Columns.Add(Column5)
-        SelectQuery1.Columns.Add(Column6)
-        SelectQuery1.Columns.Add(Column7)
-        SelectQuery1.Columns.Add(Column8)
-        SelectQuery1.Columns.Add(Column9)
-        SelectQuery1.Columns.Add(Column10)
-        SelectQuery1.Columns.Add(Column11)
-        SelectQuery1.Columns.Add(Column12)
-        SelectQuery1.Columns.Add(Column13)
-        SelectQuery1.Columns.Add(Column14)
-        SelectQuery1.Columns.Add(Column15)
-        SelectQuery1.Columns.Add(Column16)
-        SelectQuery1.Columns.Add(Column17)
-        SelectQuery1.FilterString = "[vw_OFF.ID] = ?OfferID"
-        SelectQuery1.MetaSerializable = "<Meta X=""20"" Y=""20"" Width=""108"" Height=""381"" />"
-        SelectQuery1.Name = "vw_OFF"
-        QueryParameter1.Name = "OfferID"
-        QueryParameter1.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter1.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery1.Parameters.Add(QueryParameter1)
-        SelectQuery1.Tables.Add(Table1)
-        ColumnExpression18.ColumnName = "ID"
-        Table2.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""323"" />"
-        Table2.Name = "vw_OFFER_MECH"
-        ColumnExpression18.Table = Table2
-        Column18.Expression = ColumnExpression18
-        ColumnExpression19.ColumnName = "code"
-        ColumnExpression19.Table = Table2
-        Column19.Expression = ColumnExpression19
-        ColumnExpression20.ColumnName = "offerID"
-        ColumnExpression20.Table = Table2
-        Column20.Expression = ColumnExpression20
-        ColumnExpression21.ColumnName = "mechID"
-        ColumnExpression21.Table = Table2
-        Column21.Expression = ColumnExpression21
-        ColumnExpression22.ColumnName = "modifiedBy"
-        ColumnExpression22.Table = Table2
-        Column22.Expression = ColumnExpression22
-        ColumnExpression23.ColumnName = "modifiedOn"
-        ColumnExpression23.Table = Table2
-        Column23.Expression = ColumnExpression23
-        ColumnExpression24.ColumnName = "createdOn"
-        ColumnExpression24.Table = Table2
-        Column24.Expression = ColumnExpression24
-        ColumnExpression25.ColumnName = "createdBy"
-        ColumnExpression25.Table = Table2
-        Column25.Expression = ColumnExpression25
-        ColumnExpression26.ColumnName = "RealName"
-        ColumnExpression26.Table = Table2
-        Column26.Expression = ColumnExpression26
-        ColumnExpression27.ColumnName = "name"
-        ColumnExpression27.Table = Table2
-        Column27.Expression = ColumnExpression27
-        ColumnExpression28.ColumnName = "Price"
-        ColumnExpression28.Table = Table2
-        Column28.Expression = ColumnExpression28
-        ColumnExpression29.ColumnName = "offID"
-        ColumnExpression29.Table = Table2
-        Column29.Expression = ColumnExpression29
-        ColumnExpression30.ColumnName = "Photo"
-        ColumnExpression30.Table = Table2
-        Column30.Expression = ColumnExpression30
-        SelectQuery2.Columns.Add(Column18)
-        SelectQuery2.Columns.Add(Column19)
-        SelectQuery2.Columns.Add(Column20)
-        SelectQuery2.Columns.Add(Column21)
-        SelectQuery2.Columns.Add(Column22)
-        SelectQuery2.Columns.Add(Column23)
-        SelectQuery2.Columns.Add(Column24)
-        SelectQuery2.Columns.Add(Column25)
-        SelectQuery2.Columns.Add(Column26)
-        SelectQuery2.Columns.Add(Column27)
-        SelectQuery2.Columns.Add(Column28)
-        SelectQuery2.Columns.Add(Column29)
-        SelectQuery2.Columns.Add(Column30)
-        SelectQuery2.FilterString = "[vw_OFFER_MECH.offID] = ?OfferID"
-        SelectQuery2.MetaSerializable = "<Meta X=""150"" Y=""40"" Width=""118"" Height=""301"" />"
-        SelectQuery2.Name = "vw_OFFER_MECH"
-        QueryParameter2.Name = "OfferID"
-        QueryParameter2.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter2.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery2.Parameters.Add(QueryParameter2)
-        SelectQuery2.Tables.Add(Table2)
-        ColumnExpression31.ColumnName = "ID"
-        Table3.Name = "vw_OFFER_SIDES"
-        ColumnExpression31.Table = Table3
-        Column31.Expression = ColumnExpression31
-        ColumnExpression32.ColumnName = "code"
-        ColumnExpression32.Table = Table3
-        Column32.Expression = ColumnExpression32
-        ColumnExpression33.ColumnName = "offID"
-        ColumnExpression33.Table = Table3
-        Column33.Expression = ColumnExpression33
-        ColumnExpression34.ColumnName = "offerID"
-        ColumnExpression34.Table = Table3
-        Column34.Expression = ColumnExpression34
-        ColumnExpression35.ColumnName = "sideID"
-        ColumnExpression35.Table = Table3
-        Column35.Expression = ColumnExpression35
-        ColumnExpression36.ColumnName = "modifiedBy"
-        ColumnExpression36.Table = Table3
-        Column36.Expression = ColumnExpression36
-        ColumnExpression37.ColumnName = "modifiedOn"
-        ColumnExpression37.Table = Table3
-        Column37.Expression = ColumnExpression37
-        ColumnExpression38.ColumnName = "createdOn"
-        ColumnExpression38.Table = Table3
-        Column38.Expression = ColumnExpression38
-        ColumnExpression39.ColumnName = "createdBy"
-        ColumnExpression39.Table = Table3
-        Column39.Expression = ColumnExpression39
-        ColumnExpression40.ColumnName = "name"
-        ColumnExpression40.Table = Table3
-        Column40.Expression = ColumnExpression40
-        ColumnExpression41.ColumnName = "RealName"
-        ColumnExpression41.Table = Table3
-        Column41.Expression = ColumnExpression41
-        ColumnExpression42.ColumnName = "Price"
-        ColumnExpression42.Table = Table3
-        Column42.Expression = ColumnExpression42
-        ColumnExpression43.ColumnName = "TotPrice"
-        ColumnExpression43.Table = Table3
-        Column43.Expression = ColumnExpression43
-        SelectQuery3.Columns.Add(Column31)
-        SelectQuery3.Columns.Add(Column32)
-        SelectQuery3.Columns.Add(Column33)
-        SelectQuery3.Columns.Add(Column34)
-        SelectQuery3.Columns.Add(Column35)
-        SelectQuery3.Columns.Add(Column36)
-        SelectQuery3.Columns.Add(Column37)
-        SelectQuery3.Columns.Add(Column38)
-        SelectQuery3.Columns.Add(Column39)
-        SelectQuery3.Columns.Add(Column40)
-        SelectQuery3.Columns.Add(Column41)
-        SelectQuery3.Columns.Add(Column42)
-        SelectQuery3.Columns.Add(Column43)
-        SelectQuery3.MetaSerializable = "<Meta X=""286"" Y=""20"" Width=""120"" Height=""301"" />"
-        SelectQuery3.Name = "vw_OFFER_SIDES"
-        SelectQuery3.Tables.Add(Table3)
-        ColumnExpression44.ColumnName = "ID"
-        Table4.Name = "vw_OFFERS"
-        ColumnExpression44.Table = Table4
-        Column44.Expression = ColumnExpression44
-        ColumnExpression45.ColumnName = "code"
-        ColumnExpression45.Table = Table4
-        Column45.Expression = ColumnExpression45
-        ColumnExpression46.ColumnName = "CustomCode"
-        ColumnExpression46.Table = Table4
-        Column46.Expression = ColumnExpression46
-        ColumnExpression47.ColumnName = "ermID"
-        ColumnExpression47.Table = Table4
-        Column47.Expression = ColumnExpression47
-        ColumnExpression48.ColumnName = "modifiedBy"
-        ColumnExpression48.Table = Table4
-        Column48.Expression = ColumnExpression48
-        ColumnExpression49.ColumnName = "modifiedOn"
-        ColumnExpression49.Table = Table4
-        Column49.Expression = ColumnExpression49
-        ColumnExpression50.ColumnName = "createdOn"
-        ColumnExpression50.Table = Table4
-        Column50.Expression = ColumnExpression50
-        ColumnExpression51.ColumnName = "createdBy"
-        ColumnExpression51.Table = Table4
-        Column51.Expression = ColumnExpression51
-        ColumnExpression52.ColumnName = "qty"
-        ColumnExpression52.Table = Table4
-        Column52.Expression = ColumnExpression52
-        ColumnExpression53.ColumnName = "offID"
-        ColumnExpression53.Table = Table4
-        Column53.Expression = ColumnExpression53
-        ColumnExpression54.ColumnName = "benchID"
-        ColumnExpression54.Table = Table4
-        Column54.Expression = ColumnExpression54
-        ColumnExpression55.ColumnName = "height"
-        ColumnExpression55.Table = Table4
-        Column55.Expression = ColumnExpression55
-        ColumnExpression56.ColumnName = "width"
-        ColumnExpression56.Table = Table4
-        Column56.Expression = ColumnExpression56
-        ColumnExpression57.ColumnName = "depth"
-        ColumnExpression57.Table = Table4
-        Column57.Expression = ColumnExpression57
-        ColumnExpression58.ColumnName = "door"
-        ColumnExpression58.Table = Table4
-        Column58.Expression = ColumnExpression58
-        ColumnExpression59.ColumnName = "legs"
-        ColumnExpression59.Table = Table4
-        Column59.Expression = ColumnExpression59
-        ColumnExpression60.ColumnName = "pvcColorID"
-        ColumnExpression60.Table = Table4
-        Column60.Expression = ColumnExpression60
-        ColumnExpression61.ColumnName = "boxColorID"
-        ColumnExpression61.Table = Table4
-        Column61.Expression = ColumnExpression61
-        ColumnExpression62.ColumnName = "dimID"
-        ColumnExpression62.Table = Table4
-        Column62.Expression = ColumnExpression62
-        ColumnExpression63.ColumnName = "side"
-        ColumnExpression63.Table = Table4
-        Column63.Expression = ColumnExpression63
-        ColumnExpression64.ColumnName = "comments"
-        ColumnExpression64.Table = Table4
-        Column64.Expression = ColumnExpression64
-        ColumnExpression65.ColumnName = "catErmID"
-        ColumnExpression65.Table = Table4
-        Column65.Expression = ColumnExpression65
-        ColumnExpression66.ColumnName = "DoorTypeName"
-        ColumnExpression66.Table = Table4
-        Column66.Expression = ColumnExpression66
-        ColumnExpression67.ColumnName = "benchExtraID"
-        ColumnExpression67.Table = Table4
-        Column67.Expression = ColumnExpression67
-        ColumnExpression68.ColumnName = "benchExtraDim"
-        ColumnExpression68.Table = Table4
-        Column68.Expression = ColumnExpression68
-        ColumnExpression69.ColumnName = "benchExtraPrice"
-        ColumnExpression69.Table = Table4
-        Column69.Expression = ColumnExpression69
-        ColumnExpression70.ColumnName = "OfferPrice"
-        ColumnExpression70.Table = Table4
-        Column70.Expression = ColumnExpression70
-        ColumnExpression71.ColumnName = "catSubErmID"
-        ColumnExpression71.Table = Table4
-        Column71.Expression = ColumnExpression71
-        ColumnExpression72.ColumnName = "Photo"
-        ColumnExpression72.Table = Table4
-        Column72.Expression = ColumnExpression72
-        ColumnExpression73.ColumnName = "photo1"
-        ColumnExpression73.Table = Table4
-        Column73.Expression = ColumnExpression73
-        ColumnExpression74.ColumnName = "photo2"
-        ColumnExpression74.Table = Table4
-        Column74.Expression = ColumnExpression74
-        ColumnExpression75.ColumnName = "photo3"
-        ColumnExpression75.Table = Table4
-        Column75.Expression = ColumnExpression75
-        ColumnExpression76.ColumnName = "SelectedErmPicture"
-        ColumnExpression76.Table = Table4
-        Column76.Expression = ColumnExpression76
-        ColumnExpression77.ColumnName = "DoorTypeID"
-        ColumnExpression77.Table = Table4
-        Column77.Expression = ColumnExpression77
-        ColumnExpression78.ColumnName = "calculations"
-        ColumnExpression78.Table = Table4
-        Column78.Expression = ColumnExpression78
-        ColumnExpression79.ColumnName = "DoorPrice"
-        ColumnExpression79.Table = Table4
-        Column79.Expression = ColumnExpression79
-        SelectQuery4.Columns.Add(Column44)
-        SelectQuery4.Columns.Add(Column45)
-        SelectQuery4.Columns.Add(Column46)
-        SelectQuery4.Columns.Add(Column47)
-        SelectQuery4.Columns.Add(Column48)
-        SelectQuery4.Columns.Add(Column49)
-        SelectQuery4.Columns.Add(Column50)
-        SelectQuery4.Columns.Add(Column51)
-        SelectQuery4.Columns.Add(Column52)
-        SelectQuery4.Columns.Add(Column53)
-        SelectQuery4.Columns.Add(Column54)
-        SelectQuery4.Columns.Add(Column55)
-        SelectQuery4.Columns.Add(Column56)
-        SelectQuery4.Columns.Add(Column57)
-        SelectQuery4.Columns.Add(Column58)
-        SelectQuery4.Columns.Add(Column59)
-        SelectQuery4.Columns.Add(Column60)
-        SelectQuery4.Columns.Add(Column61)
-        SelectQuery4.Columns.Add(Column62)
-        SelectQuery4.Columns.Add(Column63)
-        SelectQuery4.Columns.Add(Column64)
-        SelectQuery4.Columns.Add(Column65)
-        SelectQuery4.Columns.Add(Column66)
-        SelectQuery4.Columns.Add(Column67)
-        SelectQuery4.Columns.Add(Column68)
-        SelectQuery4.Columns.Add(Column69)
-        SelectQuery4.Columns.Add(Column70)
-        SelectQuery4.Columns.Add(Column71)
-        SelectQuery4.Columns.Add(Column72)
-        SelectQuery4.Columns.Add(Column73)
-        SelectQuery4.Columns.Add(Column74)
-        SelectQuery4.Columns.Add(Column75)
-        SelectQuery4.Columns.Add(Column76)
-        SelectQuery4.Columns.Add(Column77)
-        SelectQuery4.Columns.Add(Column78)
-        SelectQuery4.Columns.Add(Column79)
-        SelectQuery4.FilterString = "[vw_OFFERS.offID] = ?OfferID"
-        SelectQuery4.MetaSerializable = "<Meta X=""426"" Y=""20"" Width=""134"" Height=""761"" />"
-        SelectQuery4.Name = "vw_OFFERS"
-        QueryParameter3.Name = "OfferID"
-        QueryParameter3.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter3.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery4.Parameters.Add(QueryParameter3)
-        SelectQuery4.Tables.Add(Table4)
-        ColumnExpression80.ColumnName = "PvcColorNam"
-        Table5.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""203"" />"
-        Table5.Name = "vw_OFF_REP_BASEOS"
-        ColumnExpression80.Table = Table5
-        Column80.Expression = ColumnExpression80
-        ColumnExpression81.ColumnName = "BoxColorNam"
-        ColumnExpression81.Table = Table5
-        Column81.Expression = ColumnExpression81
-        ColumnExpression82.ColumnName = "legs"
-        ColumnExpression82.Table = Table5
-        Column82.Expression = ColumnExpression82
-        ColumnExpression83.ColumnName = "height"
-        ColumnExpression83.Table = Table5
-        Column83.Expression = ColumnExpression83
-        ColumnExpression84.ColumnName = "offID"
-        ColumnExpression84.Table = Table5
-        Column84.Expression = ColumnExpression84
-        SelectQuery5.Columns.Add(Column80)
-        SelectQuery5.Columns.Add(Column81)
-        SelectQuery5.Columns.Add(Column82)
-        SelectQuery5.Columns.Add(Column83)
-        SelectQuery5.Columns.Add(Column84)
-        SelectQuery5.FilterString = "[vw_OFF_REP_BASEOS.offID] = ?OfferID"
-        SelectQuery5.MetaSerializable = "<Meta X=""580"" Y=""20"" Width=""144"" Height=""141"" />"
-        SelectQuery5.Name = "vw_OFF_REP_BASEOS"
-        QueryParameter4.Name = "OfferID"
-        QueryParameter4.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter4.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery5.Parameters.Add(QueryParameter4)
-        SelectQuery5.Tables.Add(Table5)
-        ColumnExpression85.ColumnName = "PvcColorNam"
-        Table6.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""203"" />"
-        Table6.Name = "vw_OFF_REP_KREMASTA"
-        ColumnExpression85.Table = Table6
-        Column85.Expression = ColumnExpression85
-        ColumnExpression86.ColumnName = "BoxColorNam"
-        ColumnExpression86.Table = Table6
-        Column86.Expression = ColumnExpression86
-        ColumnExpression87.ColumnName = "legs"
-        ColumnExpression87.Table = Table6
-        Column87.Expression = ColumnExpression87
-        ColumnExpression88.ColumnName = "height"
-        ColumnExpression88.Table = Table6
-        Column88.Expression = ColumnExpression88
-        ColumnExpression89.ColumnName = "offID"
-        ColumnExpression89.Table = Table6
-        Column89.Expression = ColumnExpression89
-        SelectQuery6.Columns.Add(Column85)
-        SelectQuery6.Columns.Add(Column86)
-        SelectQuery6.Columns.Add(Column87)
-        SelectQuery6.Columns.Add(Column88)
-        SelectQuery6.Columns.Add(Column89)
-        SelectQuery6.FilterString = "[vw_OFF_REP_KREMASTA.offID] = ?OfferID"
-        SelectQuery6.MetaSerializable = "<Meta X=""744"" Y=""20"" Width=""162"" Height=""141"" />"
-        SelectQuery6.Name = "vw_OFF_REP_KREMASTA"
-        QueryParameter5.Name = "OfferID"
-        QueryParameter5.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter5.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery6.Parameters.Add(QueryParameter5)
-        SelectQuery6.Tables.Add(Table6)
-        ColumnExpression90.ColumnName = "PvcColorNam"
-        Table7.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""203"" />"
-        Table7.Name = "vw_OFF_REP_YPSILA"
-        ColumnExpression90.Table = Table7
-        Column90.Expression = ColumnExpression90
-        ColumnExpression91.ColumnName = "BoxColorNam"
-        ColumnExpression91.Table = Table7
-        Column91.Expression = ColumnExpression91
-        ColumnExpression92.ColumnName = "legs"
-        ColumnExpression92.Table = Table7
-        Column92.Expression = ColumnExpression92
-        ColumnExpression93.ColumnName = "height"
-        ColumnExpression93.Table = Table7
-        Column93.Expression = ColumnExpression93
-        ColumnExpression94.ColumnName = "offID"
-        ColumnExpression94.Table = Table7
-        Column94.Expression = ColumnExpression94
-        SelectQuery7.Columns.Add(Column90)
-        SelectQuery7.Columns.Add(Column91)
-        SelectQuery7.Columns.Add(Column92)
-        SelectQuery7.Columns.Add(Column93)
-        SelectQuery7.Columns.Add(Column94)
-        SelectQuery7.FilterString = "[vw_OFF_REP_YPSILA.offID] = ?OfferID"
-        SelectQuery7.MetaSerializable = "<Meta X=""926"" Y=""20"" Width=""141"" Height=""141"" />"
-        SelectQuery7.Name = "vw_OFF_REP_YPSILA"
-        QueryParameter6.Name = "OfferID"
-        QueryParameter6.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter6.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery7.Parameters.Add(QueryParameter6)
-        SelectQuery7.Tables.Add(Table7)
-        ColumnExpression95.ColumnName = "name"
-        Table8.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""103"" />"
-        Table8.Name = "vw_OFF_REP_BENCH"
-        ColumnExpression95.Table = Table8
-        Column95.Expression = ColumnExpression95
-        ColumnExpression96.ColumnName = "ID"
-        ColumnExpression96.Table = Table8
-        Column96.Expression = ColumnExpression96
-        SelectQuery8.Columns.Add(Column95)
-        SelectQuery8.Columns.Add(Column96)
-        SelectQuery8.FilterString = "[vw_OFF_REP_BENCH.offID] = ?OfferID"
-        SelectQuery8.MetaSerializable = "<Meta X=""1087"" Y=""20"" Width=""136"" Height=""81"" />"
-        SelectQuery8.Name = "vw_OFF_REP_BENCH"
-        QueryParameter7.Name = "OfferID"
-        QueryParameter7.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter7.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery8.Parameters.Add(QueryParameter7)
-        SelectQuery8.Tables.Add(Table8)
-        ColumnExpression97.ColumnName = "name"
-        Table9.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""123"" />"
-        Table9.Name = "vw_OFF_REP_EXTRA_BENCH"
-        ColumnExpression97.Table = Table9
-        Column97.Expression = ColumnExpression97
-        ColumnExpression98.ColumnName = "ID"
-        ColumnExpression98.Table = Table9
-        Column98.Expression = ColumnExpression98
-        ColumnExpression99.ColumnName = "tbl"
-        ColumnExpression99.Table = Table9
-        Column99.Expression = ColumnExpression99
-        SelectQuery9.Columns.Add(Column97)
-        SelectQuery9.Columns.Add(Column98)
-        SelectQuery9.Columns.Add(Column99)
-        SelectQuery9.FilterString = "[vw_OFF_REP_EXTRA_BENCH.offID] = ?OfferID"
-        SelectQuery9.MetaSerializable = "<Meta X=""1243"" Y=""20"" Width=""179"" Height=""101"" />"
-        SelectQuery9.Name = "vw_OFF_REP_EXTRA_BENCH"
-        QueryParameter8.Name = "OfferID"
-        QueryParameter8.Type = GetType(DevExpress.DataAccess.Expression)
-        QueryParameter8.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery9.Parameters.Add(QueryParameter8)
-        SelectQuery9.Tables.Add(Table9)
-        ColumnExpression100.ColumnName = "DoorTypeName"
-        Table10.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""123"" />"
-        Table10.Name = "vw_OFF_REP_TOTALPERDOOR"
-        ColumnExpression100.Table = Table10
-        Column100.Expression = ColumnExpression100
-        ColumnExpression101.ColumnName = "OfferPrice"
-        ColumnExpression101.Table = Table10
-        Column101.Expression = ColumnExpression101
-        ColumnExpression102.ColumnName = "offID"
-        ColumnExpression102.Table = Table10
-        Column102.Expression = ColumnExpression102
-        SelectQuery10.Columns.Add(Column100)
-        SelectQuery10.Columns.Add(Column101)
-        SelectQuery10.Columns.Add(Column102)
-        SelectQuery10.MetaSerializable = "<Meta X=""1442"" Y=""20"" Width=""190"" Height=""101"" />"
-        SelectQuery10.Name = "vw_OFF_REP_TOTALPERDOOR"
-        SelectQuery10.Tables.Add(Table10)
-        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {SelectQuery1, SelectQuery2, SelectQuery3, SelectQuery4, SelectQuery5, SelectQuery6, SelectQuery7, SelectQuery8, SelectQuery9, SelectQuery10})
-        MasterDetailInfo1.DetailQueryName = "vw_OFF"
-        RelationColumnInfo1.NestedKeyColumn = "ID"
-        RelationColumnInfo1.ParentKeyColumn = "offID"
-        MasterDetailInfo1.KeyColumns.Add(RelationColumnInfo1)
-        MasterDetailInfo1.MasterQueryName = "vw_OFF_REP_BASEOS"
-        MasterDetailInfo2.DetailQueryName = "vw_OFF"
-        RelationColumnInfo2.NestedKeyColumn = "ID"
-        RelationColumnInfo2.ParentKeyColumn = "offID"
-        MasterDetailInfo2.KeyColumns.Add(RelationColumnInfo2)
-        MasterDetailInfo2.MasterQueryName = "vw_OFF_REP_KREMASTA"
-        MasterDetailInfo3.DetailQueryName = "vw_OFF"
-        RelationColumnInfo3.NestedKeyColumn = "ID"
-        RelationColumnInfo3.ParentKeyColumn = "offID"
-        MasterDetailInfo3.KeyColumns.Add(RelationColumnInfo3)
-        MasterDetailInfo3.MasterQueryName = "vw_OFF_REP_YPSILA"
-        MasterDetailInfo4.DetailQueryName = "vw_OFF"
-        RelationColumnInfo4.NestedKeyColumn = "ID"
-        RelationColumnInfo4.ParentKeyColumn = "offID"
-        MasterDetailInfo4.KeyColumns.Add(RelationColumnInfo4)
-        MasterDetailInfo4.MasterQueryName = "vw_OFFERS"
-        MasterDetailInfo5.DetailQueryName = "vw_OFF"
-        RelationColumnInfo5.NestedKeyColumn = "ID"
-        RelationColumnInfo5.ParentKeyColumn = "offID"
-        MasterDetailInfo5.KeyColumns.Add(RelationColumnInfo5)
-        MasterDetailInfo5.MasterQueryName = "vw_OFFER_SIDES"
-        MasterDetailInfo6.DetailQueryName = "vw_OFFERS"
-        RelationColumnInfo6.NestedKeyColumn = "ID"
-        RelationColumnInfo6.ParentKeyColumn = "ID"
-        MasterDetailInfo6.KeyColumns.Add(RelationColumnInfo6)
-        MasterDetailInfo6.MasterQueryName = "vw_OFF_REP_BENCH"
-        MasterDetailInfo7.DetailQueryName = "vw_OFFERS"
-        RelationColumnInfo7.NestedKeyColumn = "ID"
-        RelationColumnInfo7.ParentKeyColumn = "ID"
-        MasterDetailInfo7.KeyColumns.Add(RelationColumnInfo7)
-        MasterDetailInfo7.MasterQueryName = "vw_OFF_REP_EXTRA_BENCH"
-        MasterDetailInfo8.DetailQueryName = "vw_OFF"
-        RelationColumnInfo8.NestedKeyColumn = "ID"
-        RelationColumnInfo8.ParentKeyColumn = "offID"
-        MasterDetailInfo8.KeyColumns.Add(RelationColumnInfo8)
-        MasterDetailInfo8.MasterQueryName = "vw_OFFER_MECH"
-        MasterDetailInfo9.DetailQueryName = "vw_OFF"
-        RelationColumnInfo9.NestedKeyColumn = "ID"
-        RelationColumnInfo9.ParentKeyColumn = "offID"
-        MasterDetailInfo9.KeyColumns.Add(RelationColumnInfo9)
-        MasterDetailInfo9.MasterQueryName = "vw_OFF_REP_TOTALPERDOOR"
-        Me.SqlDataSource1.Relations.AddRange(New DevExpress.DataAccess.Sql.MasterDetailInfo() {MasterDetailInfo1, MasterDetailInfo2, MasterDetailInfo3, MasterDetailInfo4, MasterDetailInfo5, MasterDetailInfo6, MasterDetailInfo7, MasterDetailInfo8, MasterDetailInfo9})
-        Me.SqlDataSource1.ResultSchemaSerializable = resources.GetString("SqlDataSource1.ResultSchemaSerializable")
-        '
         'XrLabel39
         '
         Me.XrLabel39.Font = New System.Drawing.Font("Zona Pro", 9.75!, System.Drawing.FontStyle.Bold)
@@ -2010,53 +2066,6 @@ Partial Public Class Rep_offer
         Me.PageFooter.HeightF = 241.0832!
         Me.PageFooter.Name = "PageFooter"
         '
-        'XrTableCell11
-        '
-        Me.XrTableCell11.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
-        Me.XrTableCell11.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrTableCell11.Multiline = True
-        Me.XrTableCell11.Name = "XrTableCell11"
-        Me.XrTableCell11.StylePriority.UseFont = False
-        Me.XrTableCell11.StylePriority.UseForeColor = False
-        Me.XrTableCell11.StylePriority.UseTextAlignment = False
-        Me.XrTableCell11.Text = "Συρτάρια Blum"
-        Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell11.Weight = 1.0686917556039832R
-        '
-        'XrTableCell12
-        '
-        Me.XrTableCell12.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
-        Me.XrTableCell12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrTableCell12.Multiline = True
-        Me.XrTableCell12.Name = "XrTableCell12"
-        Me.XrTableCell12.StylePriority.UseFont = False
-        Me.XrTableCell12.StylePriority.UseForeColor = False
-        Me.XrTableCell12.StylePriority.UseTextAlignment = False
-        Me.XrTableCell12.Text = "Κάδος απορ/των"
-        Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell12.Weight = 1.0686917556039832R
-        '
-        'XrTableCell13
-        '
-        Me.XrTableCell13.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
-        Me.XrTableCell13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrTableCell13.Multiline = True
-        Me.XrTableCell13.Name = "XrTableCell13"
-        Me.XrTableCell13.StylePriority.UseFont = False
-        Me.XrTableCell13.StylePriority.UseForeColor = False
-        Me.XrTableCell13.StylePriority.UseTextAlignment = False
-        Me.XrTableCell13.Text = "Τακάκια μεταλ/κα"
-        Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        Me.XrTableCell13.Weight = 1.0686917556039832R
-        '
-        'Vw_NOTESTableAdapter
-        '
-        Me.Vw_NOTESTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_OFFTableAdapter1
-        '
-        Me.Vw_OFFTableAdapter1.ClearBeforeFill = True
-        '
         'OfferID
         '
         Me.OfferID.Description = "OfferID"
@@ -2086,23 +2095,6 @@ Partial Public Class Rep_offer
         Me.Detail2.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel61, Me.XrLabel38})
         Me.Detail2.HeightF = 23.0!
         Me.Detail2.Name = "Detail2"
-        '
-        'XrLabel62
-        '
-        Me.XrLabel62.BackColor = System.Drawing.SystemColors.ControlLight
-        Me.XrLabel62.Font = New System.Drawing.Font("Zona Pro Regular", 12.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel62.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel62.LocationFloat = New DevExpress.Utils.PointFloat(1.791565!, 99.2356!)
-        Me.XrLabel62.Name = "XrLabel62"
-        Me.XrLabel62.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.XrLabel62.SizeF = New System.Drawing.SizeF(652.2084!, 20.83334!)
-        Me.XrLabel62.StylePriority.UseBackColor = False
-        Me.XrLabel62.StylePriority.UseFont = False
-        Me.XrLabel62.StylePriority.UseForeColor = False
-        Me.XrLabel62.StylePriority.UsePadding = False
-        Me.XrLabel62.StylePriority.UseTextAlignment = False
-        Me.XrLabel62.Text = "Μηχανισμοί που περιλαμβάνονται"
-        Me.XrLabel62.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrLabel61
         '
@@ -2148,13 +2140,21 @@ Partial Public Class Rep_offer
         Me.XrLabel63.Text = "Συνολικό Κόστος"
         Me.XrLabel63.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
+        'Vw_NOTESTableAdapter
+        '
+        Me.Vw_NOTESTableAdapter.ClearBeforeFill = True
+        '
+        'Vw_OFFTableAdapter1
+        '
+        Me.Vw_OFFTableAdapter1.ClearBeforeFill = True
+        '
         'Rep_offer
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.DetailReport, Me.PageFooter, Me.DetailReport1})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataMember = "vw_OFF"
         Me.DataSource = Me.SqlDataSource1
-        Me.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.Font = New System.Drawing.Font("Zona Pro Regular", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.Margins = New System.Drawing.Printing.Margins(90, 83, 85, 0)
         Me.PageHeight = 1169
         Me.PageWidth = 827

@@ -21,28 +21,28 @@ Partial Class frmOFFTotal
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.grdOffTotal = New DevExpress.XtraGrid.GridControl()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.RepositoryItemButtonOil = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.VwOFFERSTOTALBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Vw_OFFERS_TOTALTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFFERS_TOTALTableAdapter()
-        Me.grdOffTotal = New DevExpress.XtraGrid.GridControl()
-        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.RepositoryItemButtonOil = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwOFFERSTOTALBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdOffTotal, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemButtonOil, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwOFFERSTOTALBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -55,6 +55,32 @@ Partial Class frmOFFTotal
         Me.LayoutControl1.Size = New System.Drawing.Size(938, 484)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'grdOffTotal
+        '
+        Me.grdOffTotal.Location = New System.Drawing.Point(12, 12)
+        Me.grdOffTotal.MainView = Me.GridView3
+        Me.grdOffTotal.Name = "grdOffTotal"
+        Me.grdOffTotal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonOil})
+        Me.grdOffTotal.Size = New System.Drawing.Size(914, 428)
+        Me.grdOffTotal.TabIndex = 37
+        Me.grdOffTotal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
+        '
+        'GridView3
+        '
+        Me.GridView3.GridControl = Me.grdOffTotal
+        Me.GridView3.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
+        Me.GridView3.LevelIndent = 0
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsBehavior.Editable = False
+        Me.GridView3.OptionsView.ColumnAutoWidth = False
+        Me.GridView3.PreviewIndent = 0
+        '
+        'RepositoryItemButtonOil
+        '
+        Me.RepositoryItemButtonOil.AutoHeight = False
+        Me.RepositoryItemButtonOil.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
+        Me.RepositoryItemButtonOil.Name = "RepositoryItemButtonOil"
         '
         'cmdExit
         '
@@ -93,6 +119,15 @@ Partial Class frmOFFTotal
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(804, 32)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.grdOffTotal
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(918, 432)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem1.TextVisible = False
+        '
         'VwOFFERSTOTALBindingSource
         '
         Me.VwOFFERSTOTALBindingSource.DataMember = "vw_OFFERS_TOTAL"
@@ -107,41 +142,6 @@ Partial Class frmOFFTotal
         '
         Me.Vw_OFFERS_TOTALTableAdapter.ClearBeforeFill = True
         '
-        'grdOffTotal
-        '
-        Me.grdOffTotal.Location = New System.Drawing.Point(12, 12)
-        Me.grdOffTotal.MainView = Me.GridView3
-        Me.grdOffTotal.Name = "grdOffTotal"
-        Me.grdOffTotal.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonOil})
-        Me.grdOffTotal.Size = New System.Drawing.Size(914, 428)
-        Me.grdOffTotal.TabIndex = 37
-        Me.grdOffTotal.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
-        '
-        'GridView3
-        '
-        Me.GridView3.GridControl = Me.grdOffTotal
-        Me.GridView3.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
-        Me.GridView3.LevelIndent = 0
-        Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsBehavior.Editable = False
-        Me.GridView3.OptionsView.ColumnAutoWidth = False
-        Me.GridView3.PreviewIndent = 0
-        '
-        'RepositoryItemButtonOil
-        '
-        Me.RepositoryItemButtonOil.AutoHeight = False
-        Me.RepositoryItemButtonOil.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton()})
-        Me.RepositoryItemButtonOil.Name = "RepositoryItemButtonOil"
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.grdOffTotal
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(918, 432)
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem1.TextVisible = False
-        '
         'frmOFFTotal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -150,18 +150,19 @@ Partial Class frmOFFTotal
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmOFFTotal"
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmOFFTotal"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwOFFERSTOTALBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdOffTotal, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemButtonOil, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwOFFERSTOTALBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

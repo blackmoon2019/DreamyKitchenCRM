@@ -653,7 +653,8 @@ NextItem:
     'Του στέλνεις 1 LayoutGroupContol και κάνει Loop τα LayoutItems
     Private Function InsertDataGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sTable As String, Optional ByVal sGuid As String = "",
                                    Optional ByVal IgnoreVisibility As Boolean = False,
-                                   Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "", Optional ExceptFields As List(Of String) = Nothing) As Boolean
+                                   Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "",
+                                   Optional ExceptFields As List(Of String) = Nothing) As Boolean
         Dim sSQLF As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim sSQLV As New System.Text.StringBuilder ' Το 2ο StringField αφορά τις τιμές
         Dim IsFirstField As Boolean = True
@@ -901,14 +902,17 @@ NextItem:
     Public Function UpdateNewData(ByVal Mode As InsertMode, ByVal sTable As String, Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing,
                                   Optional ByVal controls As List(Of Control) = Nothing, Optional ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup = Nothing,
                                   Optional ByVal sGuid As String = "", Optional ByVal IgnoreVisibility As Boolean = False,
-                                  Optional GRD As DevExpress.XtraGrid.Views.Grid.GridView = Nothing, Optional ByVal FieldsToBeUpdate As List(Of String) = Nothing, Optional ExceptFields As List(Of String) = Nothing) As Boolean
+                                  Optional GRD As DevExpress.XtraGrid.Views.Grid.GridView = Nothing,
+                                  Optional ByVal FieldsToBeUpdate As List(Of String) = Nothing,
+                                  Optional ExceptFields As List(Of String) = Nothing,
+                                  Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
         Select Case Mode
             Case 1
                 Return UpdateData2(control, sTable, sGuid, IgnoreVisibility)
             Case 2
                 Return UpdateDataNew(controls, sTable, sGuid, IgnoreVisibility)
             Case 3
-                Return UpdateDataGRP(GRP, sTable, sGuid, IgnoreVisibility, ExceptFields)
+                Return UpdateDataGRP(GRP, sTable, sGuid, IgnoreVisibility, ExceptFields, ExtraFieldsAndValues)
             Case 4
                 Return UpdateDataGRD(GRD, sTable, sGuid, FieldsToBeUpdate, IgnoreVisibility)
         End Select
@@ -1157,7 +1161,9 @@ NextItem:
             Return False
         End Try
     End Function
-    Private Function UpdateDataGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sTable As String, ByVal sID As String, Optional ByVal IgnoreVisibility As Boolean = False, Optional ExceptFields As List(Of String) = Nothing) As Boolean
+    Private Function UpdateDataGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sTable As String, ByVal sID As String,
+                                   Optional ByVal IgnoreVisibility As Boolean = False, Optional ExceptFields As List(Of String) = Nothing,
+                                   Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
         Dim sSQL As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim IsFirstField As Boolean = True
         Dim TagValue As String()
@@ -1171,6 +1177,7 @@ NextItem:
             'Εαν η function καλεστεί με sGuid σημαίνει ότι θα πρε΄πει να καταχωρίσουμε εμείς το ID
             'FIELDS
             sSQL.AppendLine("UPDATE " & sTable & " SET ")
+            If ExtraFieldsAndValues.Length > 0 Then sSQL.AppendLine(ExtraFieldsAndValues) : IsFirstField = False
             For Each item As BaseLayoutItem In GRP.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)

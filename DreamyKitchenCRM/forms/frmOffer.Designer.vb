@@ -104,7 +104,6 @@ Partial Class frmOffer
         Me.Pic3 = New DevExpress.XtraEditors.PictureEdit()
         Me.Pic2 = New DevExpress.XtraEditors.PictureEdit()
         Me.PicMech = New DevExpress.XtraEditors.PictureEdit()
-        Me.txtHeight1 = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -158,7 +157,6 @@ Partial Class frmOffer
         Me.LayoutControlItem41 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem40 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem53 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem35 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.VwSIDESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_ERMTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_ERMTableAdapter()
@@ -167,6 +165,8 @@ Partial Class frmOffer
         Me.OFFERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.OFFERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFFERSTableAdapter()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cmdRecalc = New DevExpress.XtraEditors.SimpleButton()
+        Me.cmdTotalOffPrice = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdPrintOffer = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdOffersRefresh = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdOffersEdit = New DevExpress.XtraEditors.SimpleButton()
@@ -208,11 +208,11 @@ Partial Class frmOffer
         Me.LayoutControlItem38 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem51 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem47 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem54 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.VwDOORTYPEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_DOOR_TYPETableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_TYPETableAdapter()
         Me.Vw_SIDESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SIDESTableAdapter()
-        Me.cmdTotalOffPrice = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem47 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwERMBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -265,7 +265,6 @@ Partial Class frmOffer
         CType(Me.Pic3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Pic2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PicMech.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtHeight1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -319,7 +318,6 @@ Partial Class frmOffer
         CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem53, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSIDESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OFFERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -340,8 +338,9 @@ Partial Class frmOffer
         CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem51, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem54, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'grdMain
@@ -586,7 +585,6 @@ Partial Class frmOffer
         Me.LayoutControl1.Controls.Add(Me.Pic3)
         Me.LayoutControl1.Controls.Add(Me.Pic2)
         Me.LayoutControl1.Controls.Add(Me.PicMech)
-        Me.LayoutControl1.Controls.Add(Me.txtHeight1)
         Me.LayoutControl1.Location = New System.Drawing.Point(1, -7)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1090, 555, 650, 400)
@@ -856,7 +854,7 @@ Partial Class frmOffer
         Me.cboCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCategory.Properties.NullText = ""
         Me.cboCategory.Properties.PopupSizeable = False
-        Me.cboCategory.Size = New System.Drawing.Size(252, 20)
+        Me.cboCategory.Size = New System.Drawing.Size(280, 20)
         Me.cboCategory.StyleController = Me.LayoutControl1
         Me.cboCategory.TabIndex = 21
         Me.cboCategory.Tag = ""
@@ -1200,26 +1198,26 @@ Partial Class frmOffer
         '
         'cboDoorType
         '
-        Me.cboDoorType.Location = New System.Drawing.Point(603, 180)
+        Me.cboDoorType.Location = New System.Drawing.Point(635, 180)
         Me.cboDoorType.Name = "cboDoorType"
         Me.cboDoorType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboDoorType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboDoorType.Properties.NullText = ""
         Me.cboDoorType.Properties.PopupSizeable = False
-        Me.cboDoorType.Size = New System.Drawing.Size(353, 20)
+        Me.cboDoorType.Size = New System.Drawing.Size(455, 20)
         Me.cboDoorType.StyleController = Me.LayoutControl1
         Me.cboDoorType.TabIndex = 21
         Me.cboDoorType.Tag = ""
         '
         'cboCatSubErm
         '
-        Me.cboCatSubErm.Location = New System.Drawing.Point(280, 180)
+        Me.cboCatSubErm.Location = New System.Drawing.Point(308, 180)
         Me.cboCatSubErm.Name = "cboCatSubErm"
         Me.cboCatSubErm.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCatSubErm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCatSubErm.Properties.NullText = ""
         Me.cboCatSubErm.Properties.PopupSizeable = False
-        Me.cboCatSubErm.Size = New System.Drawing.Size(319, 20)
+        Me.cboCatSubErm.Size = New System.Drawing.Size(323, 20)
         Me.cboCatSubErm.StyleController = Me.LayoutControl1
         Me.cboCatSubErm.TabIndex = 21
         Me.cboCatSubErm.Tag = ""
@@ -1271,24 +1269,6 @@ Partial Class frmOffer
         Me.PicMech.StyleController = Me.LayoutControl1
         Me.PicMech.TabIndex = 44
         Me.PicMech.Tag = ""
-        '
-        'txtHeight1
-        '
-        Me.txtHeight1.EditValue = "0,00 €"
-        Me.txtHeight1.Location = New System.Drawing.Point(960, 180)
-        Me.txtHeight1.Name = "txtHeight1"
-        Me.txtHeight1.Properties.DisplayFormat.FormatString = "n"
-        Me.txtHeight1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtHeight1.Properties.EditFormat.FormatString = "n2"
-        Me.txtHeight1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtHeight1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtHeight1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtHeight1.Properties.MaskSettings.Set("mask", "n2")
-        Me.txtHeight1.Properties.Tag = "finalHeightKitchen"
-        Me.txtHeight1.Size = New System.Drawing.Size(130, 20)
-        Me.txtHeight1.StyleController = Me.LayoutControl1
-        Me.txtHeight1.TabIndex = 42
-        Me.txtHeight1.Tag = "finalHeightKitchen,0,1,2"
         '
         'Root
         '
@@ -1528,7 +1508,7 @@ Partial Class frmOffer
         'LayoutControlGroup2
         '
         Me.LayoutControlGroup2.CustomizationFormText = "Υλικά"
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem11, Me.LayoutControlItem15, Me.LayoutControlItem52, Me.LayoutControlItem22, Me.LayoutControlItem21, Me.LayoutControlItem26, Me.LayoutControlItem25, Me.LayoutControlItem29, Me.LayoutControlItem20, Me.LayoutControlItem44, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.EmptySpaceItem14, Me.LayoutControlItem43, Me.LayoutControlItem6, Me.LayoutControlItem3, Me.LayoutControlItem45, Me.LayoutControlItem46, Me.LayoutControlItem48, Me.LayoutControlItem14, Me.LayoutControlItem56, Me.LayoutControlItem27, Me.SimpleLabelItem1, Me.SimpleLabelItem3, Me.LayoutControlItem42, Me.LayoutControlItem16, Me.LayoutControlItem5, Me.LayoutControlItem50, Me.LayoutControlItem49, Me.LayoutControlItem41, Me.LayoutControlItem28, Me.LayoutControlItem40, Me.LayoutControlItem53})
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem11, Me.LayoutControlItem15, Me.LayoutControlItem52, Me.LayoutControlItem22, Me.LayoutControlItem21, Me.LayoutControlItem26, Me.LayoutControlItem25, Me.LayoutControlItem29, Me.LayoutControlItem20, Me.LayoutControlItem44, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.EmptySpaceItem14, Me.LayoutControlItem43, Me.LayoutControlItem6, Me.LayoutControlItem3, Me.LayoutControlItem45, Me.LayoutControlItem46, Me.LayoutControlItem48, Me.LayoutControlItem14, Me.LayoutControlItem56, Me.LayoutControlItem27, Me.SimpleLabelItem1, Me.SimpleLabelItem3, Me.LayoutControlItem42, Me.LayoutControlItem16, Me.LayoutControlItem5, Me.LayoutControlItem50, Me.LayoutControlItem49, Me.LayoutControlItem41, Me.LayoutControlItem28, Me.LayoutControlItem40})
         Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 117)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(1094, 655)
@@ -1542,7 +1522,7 @@ Partial Class frmOffer
         Me.LayoutControlItem11.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem11.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(256, 42)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(284, 42)
         Me.LayoutControlItem11.Text = "Κατηγορία"
         Me.LayoutControlItem11.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem11.TextLocation = DevExpress.Utils.Locations.Top
@@ -1737,9 +1717,9 @@ Partial Class frmOffer
         Me.LayoutControlItem46.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem46.CustomizationFormText = "Κατηγορία"
         Me.LayoutControlItem46.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem46.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem46.Location = New System.Drawing.Point(579, 0)
+        Me.LayoutControlItem46.Location = New System.Drawing.Point(611, 0)
         Me.LayoutControlItem46.Name = "LayoutControlItem46"
-        Me.LayoutControlItem46.Size = New System.Drawing.Size(357, 42)
+        Me.LayoutControlItem46.Size = New System.Drawing.Size(459, 42)
         Me.LayoutControlItem46.Text = "Πορτάκι"
         Me.LayoutControlItem46.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem46.TextLocation = DevExpress.Utils.Locations.Top
@@ -1752,9 +1732,9 @@ Partial Class frmOffer
         Me.LayoutControlItem48.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem48.CustomizationFormText = "Υποκατηγορία"
         Me.LayoutControlItem48.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem48.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem48.Location = New System.Drawing.Point(256, 0)
+        Me.LayoutControlItem48.Location = New System.Drawing.Point(284, 0)
         Me.LayoutControlItem48.Name = "LayoutControlItem48"
-        Me.LayoutControlItem48.Size = New System.Drawing.Size(323, 42)
+        Me.LayoutControlItem48.Size = New System.Drawing.Size(327, 42)
         Me.LayoutControlItem48.Text = "Υποκατηγορία "
         Me.LayoutControlItem48.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem48.TextLocation = DevExpress.Utils.Locations.Top
@@ -1927,21 +1907,6 @@ Partial Class frmOffer
         Me.LayoutControlItem40.TextSize = New System.Drawing.Size(61, 13)
         Me.LayoutControlItem40.TextToControlDistance = 5
         '
-        'LayoutControlItem53
-        '
-        Me.LayoutControlItem53.Control = Me.txtHeight1
-        Me.LayoutControlItem53.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem53.CustomizationFormText = "Ύψος"
-        Me.LayoutControlItem53.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem53.Location = New System.Drawing.Point(936, 0)
-        Me.LayoutControlItem53.Name = "LayoutControlItem53"
-        Me.LayoutControlItem53.Size = New System.Drawing.Size(134, 42)
-        Me.LayoutControlItem53.Text = "Τελικό Ύψος Κουζίνας (cm)"
-        Me.LayoutControlItem53.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem53.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem53.TextSize = New System.Drawing.Size(129, 13)
-        Me.LayoutControlItem53.TextToControlDistance = 5
-        '
         'LayoutControlItem35
         '
         Me.LayoutControlItem35.Control = Me.cmdOffersNew
@@ -1980,6 +1945,7 @@ Partial Class frmOffer
         '
         'LayoutControl2
         '
+        Me.LayoutControl2.Controls.Add(Me.cmdRecalc)
         Me.LayoutControl2.Controls.Add(Me.cmdTotalOffPrice)
         Me.LayoutControl2.Controls.Add(Me.cmdPrintOffer)
         Me.LayoutControl2.Controls.Add(Me.cmdOffersRefresh)
@@ -1996,11 +1962,29 @@ Partial Class frmOffer
         Me.LayoutControl2.TabIndex = 2
         Me.LayoutControl2.Text = "LayoutControl2"
         '
+        'cmdRecalc
+        '
+        Me.cmdRecalc.Location = New System.Drawing.Point(501, 789)
+        Me.cmdRecalc.Name = "cmdRecalc"
+        Me.cmdRecalc.Size = New System.Drawing.Size(98, 22)
+        Me.cmdRecalc.StyleController = Me.LayoutControl2
+        Me.cmdRecalc.TabIndex = 57
+        Me.cmdRecalc.Text = "Επαναυπολογισμός"
+        '
+        'cmdTotalOffPrice
+        '
+        Me.cmdTotalOffPrice.Location = New System.Drawing.Point(603, 789)
+        Me.cmdTotalOffPrice.Name = "cmdTotalOffPrice"
+        Me.cmdTotalOffPrice.Size = New System.Drawing.Size(89, 22)
+        Me.cmdTotalOffPrice.StyleController = Me.LayoutControl2
+        Me.cmdTotalOffPrice.TabIndex = 56
+        Me.cmdTotalOffPrice.Text = "Συνολική Τιμή"
+        '
         'cmdPrintOffer
         '
-        Me.cmdPrintOffer.Location = New System.Drawing.Point(690, 789)
+        Me.cmdPrintOffer.Location = New System.Drawing.Point(696, 789)
         Me.cmdPrintOffer.Name = "cmdPrintOffer"
-        Me.cmdPrintOffer.Size = New System.Drawing.Size(63, 22)
+        Me.cmdPrintOffer.Size = New System.Drawing.Size(57, 22)
         Me.cmdPrintOffer.StyleController = Me.LayoutControl2
         Me.cmdPrintOffer.TabIndex = 55
         Me.cmdPrintOffer.Text = "Εκτύπωση"
@@ -2008,7 +1992,7 @@ Partial Class frmOffer
         'cmdOffersRefresh
         '
         Me.cmdOffersRefresh.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_refresh_16
-        Me.cmdOffersRefresh.Location = New System.Drawing.Point(12, 326)
+        Me.cmdOffersRefresh.Location = New System.Drawing.Point(12, 318)
         Me.cmdOffersRefresh.Name = "cmdOffersRefresh"
         Me.cmdOffersRefresh.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.cmdOffersRefresh.Size = New System.Drawing.Size(33, 22)
@@ -2018,7 +2002,7 @@ Partial Class frmOffer
         'cmdOffersEdit
         '
         Me.cmdOffersEdit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.Edit_16x16
-        Me.cmdOffersEdit.Location = New System.Drawing.Point(12, 300)
+        Me.cmdOffersEdit.Location = New System.Drawing.Point(12, 292)
         Me.cmdOffersEdit.Name = "cmdOffersEdit"
         Me.cmdOffersEdit.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.cmdOffersEdit.Size = New System.Drawing.Size(33, 22)
@@ -2028,7 +2012,7 @@ Partial Class frmOffer
         'cmdOffersDel
         '
         Me.cmdOffersDel.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.Remove_16x16
-        Me.cmdOffersDel.Location = New System.Drawing.Point(12, 274)
+        Me.cmdOffersDel.Location = New System.Drawing.Point(12, 266)
         Me.cmdOffersDel.Name = "cmdOffersDel"
         Me.cmdOffersDel.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.cmdOffersDel.Size = New System.Drawing.Size(33, 22)
@@ -2038,10 +2022,10 @@ Partial Class frmOffer
         'GridControl1
         '
         Me.GridControl1.DataSource = Me.OFFERSBindingSource
-        Me.GridControl1.Location = New System.Drawing.Point(49, 274)
+        Me.GridControl1.Location = New System.Drawing.Point(49, 266)
         Me.GridControl1.MainView = Me.GridView3
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(704, 511)
+        Me.GridControl1.Size = New System.Drawing.Size(704, 519)
         Me.GridControl1.TabIndex = 3
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
@@ -2050,7 +2034,7 @@ Partial Class frmOffer
         Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID3, Me.colqty, Me.colheight1, Me.colwidth1, Me.coldepth1, Me.coldoor1, Me.colPhoto4, Me.collegs, Me.colDoorTypeName, Me.coloffID, Me.colcatErmID1, Me.colermID, Me.colDoorTypeID1, Me.colcatSubErmID1, Me.colcalculations1, Me.colDoorPrice1, Me.colCatErmName1, Me.colCatSubErmName1, Me.colOfferPrice, Me.colHasMech, Me.colHasSides})
         Me.GridView3.GridControl = Me.GridControl1
         Me.GridView3.GroupCount = 1
-        Me.GridView3.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "DoorTypeName", Nothing, "")})
+        Me.GridView3.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "DoorTypeName", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OfferPrice", Nothing, " (Σύνολο {0:n2}€)")})
         Me.GridView3.Name = "GridView3"
         Me.GridView3.OptionsBehavior.Editable = False
         Me.GridView3.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colDoorTypeName, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colHasSides, DevExpress.Data.ColumnSortOrder.Ascending)})
@@ -2180,6 +2164,7 @@ Partial Class frmOffer
         Me.colOfferPrice.Caption = "Τιμή"
         Me.colOfferPrice.FieldName = "OfferPrice"
         Me.colOfferPrice.Name = "colOfferPrice"
+        Me.colOfferPrice.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OfferPrice", "SUM={0:0.##}")})
         Me.colOfferPrice.Visible = True
         Me.colOfferPrice.VisibleIndex = 9
         '
@@ -2201,7 +2186,7 @@ Partial Class frmOffer
         '
         'cmdSameOffer
         '
-        Me.cmdSameOffer.Location = New System.Drawing.Point(49, 248)
+        Me.cmdSameOffer.Location = New System.Drawing.Point(49, 240)
         Me.cmdSameOffer.Name = "cmdSameOffer"
         Me.cmdSameOffer.Size = New System.Drawing.Size(704, 22)
         Me.cmdSameOffer.StyleController = Me.LayoutControl2
@@ -2215,7 +2200,7 @@ Partial Class frmOffer
         Me.chkDoorTypes.Location = New System.Drawing.Point(49, 29)
         Me.chkDoorTypes.MultiColumn = True
         Me.chkDoorTypes.Name = "chkDoorTypes"
-        Me.chkDoorTypes.Size = New System.Drawing.Size(704, 215)
+        Me.chkDoorTypes.Size = New System.Drawing.Size(704, 207)
         Me.chkDoorTypes.SortOrder = System.Windows.Forms.SortOrder.Ascending
         Me.chkDoorTypes.StyleController = Me.LayoutControl2
         Me.chkDoorTypes.TabIndex = 49
@@ -2225,7 +2210,7 @@ Partial Class frmOffer
         '
         Me.LayoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup3.GroupBordersVisible = False
-        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem32, Me.SimpleLabelItem2, Me.LayoutControlItem33, Me.LayoutControlItem34, Me.EmptySpaceItem9, Me.EmptySpaceItem10, Me.LayoutControlItem36, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.LayoutControlItem51, Me.EmptySpaceItem1, Me.LayoutControlItem47})
+        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem32, Me.SimpleLabelItem2, Me.LayoutControlItem33, Me.LayoutControlItem34, Me.EmptySpaceItem9, Me.EmptySpaceItem10, Me.LayoutControlItem36, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.LayoutControlItem51, Me.EmptySpaceItem1, Me.LayoutControlItem47, Me.LayoutControlItem54})
         Me.LayoutControlGroup3.Name = "Root"
         Me.LayoutControlGroup3.Size = New System.Drawing.Size(765, 823)
         Me.LayoutControlGroup3.TextVisible = False
@@ -2235,7 +2220,7 @@ Partial Class frmOffer
         Me.LayoutControlItem32.Control = Me.chkDoorTypes
         Me.LayoutControlItem32.Location = New System.Drawing.Point(37, 17)
         Me.LayoutControlItem32.Name = "LayoutControlItem32"
-        Me.LayoutControlItem32.Size = New System.Drawing.Size(708, 219)
+        Me.LayoutControlItem32.Size = New System.Drawing.Size(708, 211)
         Me.LayoutControlItem32.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem32.TextVisible = False
         '
@@ -2258,7 +2243,7 @@ Partial Class frmOffer
         'LayoutControlItem33
         '
         Me.LayoutControlItem33.Control = Me.cmdSameOffer
-        Me.LayoutControlItem33.Location = New System.Drawing.Point(37, 236)
+        Me.LayoutControlItem33.Location = New System.Drawing.Point(37, 228)
         Me.LayoutControlItem33.Name = "LayoutControlItem33"
         Me.LayoutControlItem33.Size = New System.Drawing.Size(708, 26)
         Me.LayoutControlItem33.TextSize = New System.Drawing.Size(0, 0)
@@ -2267,18 +2252,18 @@ Partial Class frmOffer
         'LayoutControlItem34
         '
         Me.LayoutControlItem34.Control = Me.GridControl1
-        Me.LayoutControlItem34.Location = New System.Drawing.Point(37, 262)
+        Me.LayoutControlItem34.Location = New System.Drawing.Point(37, 254)
         Me.LayoutControlItem34.Name = "LayoutControlItem34"
-        Me.LayoutControlItem34.Size = New System.Drawing.Size(708, 515)
+        Me.LayoutControlItem34.Size = New System.Drawing.Size(708, 523)
         Me.LayoutControlItem34.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem34.TextVisible = False
         '
         'EmptySpaceItem9
         '
         Me.EmptySpaceItem9.AllowHotTrack = False
-        Me.EmptySpaceItem9.Location = New System.Drawing.Point(0, 340)
+        Me.EmptySpaceItem9.Location = New System.Drawing.Point(0, 332)
         Me.EmptySpaceItem9.Name = "EmptySpaceItem9"
-        Me.EmptySpaceItem9.Size = New System.Drawing.Size(37, 437)
+        Me.EmptySpaceItem9.Size = New System.Drawing.Size(37, 445)
         Me.EmptySpaceItem9.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem10
@@ -2286,13 +2271,13 @@ Partial Class frmOffer
         Me.EmptySpaceItem10.AllowHotTrack = False
         Me.EmptySpaceItem10.Location = New System.Drawing.Point(0, 0)
         Me.EmptySpaceItem10.Name = "EmptySpaceItem10"
-        Me.EmptySpaceItem10.Size = New System.Drawing.Size(37, 262)
+        Me.EmptySpaceItem10.Size = New System.Drawing.Size(37, 254)
         Me.EmptySpaceItem10.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem36
         '
         Me.LayoutControlItem36.Control = Me.cmdOffersDel
-        Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 262)
+        Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 254)
         Me.LayoutControlItem36.Name = "LayoutControlItem36"
         Me.LayoutControlItem36.Size = New System.Drawing.Size(37, 26)
         Me.LayoutControlItem36.TextSize = New System.Drawing.Size(0, 0)
@@ -2301,7 +2286,7 @@ Partial Class frmOffer
         'LayoutControlItem37
         '
         Me.LayoutControlItem37.Control = Me.cmdOffersEdit
-        Me.LayoutControlItem37.Location = New System.Drawing.Point(0, 288)
+        Me.LayoutControlItem37.Location = New System.Drawing.Point(0, 280)
         Me.LayoutControlItem37.Name = "LayoutControlItem37"
         Me.LayoutControlItem37.Size = New System.Drawing.Size(37, 26)
         Me.LayoutControlItem37.TextSize = New System.Drawing.Size(0, 0)
@@ -2310,7 +2295,7 @@ Partial Class frmOffer
         'LayoutControlItem38
         '
         Me.LayoutControlItem38.Control = Me.cmdOffersRefresh
-        Me.LayoutControlItem38.Location = New System.Drawing.Point(0, 314)
+        Me.LayoutControlItem38.Location = New System.Drawing.Point(0, 306)
         Me.LayoutControlItem38.Name = "LayoutControlItem38"
         Me.LayoutControlItem38.Size = New System.Drawing.Size(37, 26)
         Me.LayoutControlItem38.TextSize = New System.Drawing.Size(0, 0)
@@ -2319,9 +2304,9 @@ Partial Class frmOffer
         'LayoutControlItem51
         '
         Me.LayoutControlItem51.Control = Me.cmdPrintOffer
-        Me.LayoutControlItem51.Location = New System.Drawing.Point(678, 777)
+        Me.LayoutControlItem51.Location = New System.Drawing.Point(684, 777)
         Me.LayoutControlItem51.Name = "LayoutControlItem51"
-        Me.LayoutControlItem51.Size = New System.Drawing.Size(67, 26)
+        Me.LayoutControlItem51.Size = New System.Drawing.Size(61, 26)
         Me.LayoutControlItem51.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem51.TextVisible = False
         '
@@ -2330,8 +2315,26 @@ Partial Class frmOffer
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 777)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(577, 26)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(489, 26)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem47
+        '
+        Me.LayoutControlItem47.Control = Me.cmdTotalOffPrice
+        Me.LayoutControlItem47.Location = New System.Drawing.Point(591, 777)
+        Me.LayoutControlItem47.Name = "LayoutControlItem47"
+        Me.LayoutControlItem47.Size = New System.Drawing.Size(93, 26)
+        Me.LayoutControlItem47.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem47.TextVisible = False
+        '
+        'LayoutControlItem54
+        '
+        Me.LayoutControlItem54.Control = Me.cmdRecalc
+        Me.LayoutControlItem54.Location = New System.Drawing.Point(489, 777)
+        Me.LayoutControlItem54.Name = "LayoutControlItem54"
+        Me.LayoutControlItem54.Size = New System.Drawing.Size(102, 26)
+        Me.LayoutControlItem54.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem54.TextVisible = False
         '
         'VwDOORTYPEBindingSource
         '
@@ -2345,24 +2348,6 @@ Partial Class frmOffer
         'Vw_SIDESTableAdapter
         '
         Me.Vw_SIDESTableAdapter.ClearBeforeFill = True
-        '
-        'cmdTotalOffPrice
-        '
-        Me.cmdTotalOffPrice.Location = New System.Drawing.Point(589, 789)
-        Me.cmdTotalOffPrice.Name = "cmdTotalOffPrice"
-        Me.cmdTotalOffPrice.Size = New System.Drawing.Size(97, 22)
-        Me.cmdTotalOffPrice.StyleController = Me.LayoutControl2
-        Me.cmdTotalOffPrice.TabIndex = 56
-        Me.cmdTotalOffPrice.Text = "Συνολική Τιμή"
-        '
-        'LayoutControlItem47
-        '
-        Me.LayoutControlItem47.Control = Me.cmdTotalOffPrice
-        Me.LayoutControlItem47.Location = New System.Drawing.Point(577, 777)
-        Me.LayoutControlItem47.Name = "LayoutControlItem47"
-        Me.LayoutControlItem47.Size = New System.Drawing.Size(101, 26)
-        Me.LayoutControlItem47.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem47.TextVisible = False
         '
         'frmOffer
         '
@@ -2427,7 +2412,6 @@ Partial Class frmOffer
         CType(Me.Pic3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Pic2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PicMech.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtHeight1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2481,7 +2465,6 @@ Partial Class frmOffer
         CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem53, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSIDESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OFFERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2502,8 +2485,9 @@ Partial Class frmOffer
         CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem51, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem54, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -2660,8 +2644,6 @@ Partial Class frmOffer
     Friend WithEvents LayoutControlItem51 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents txtHeight1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LayoutControlItem53 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cmdOffersNew As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem35 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
@@ -2701,4 +2683,6 @@ Partial Class frmOffer
     Friend WithEvents colHasSides As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmdTotalOffPrice As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem47 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cmdRecalc As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem54 As DevExpress.XtraLayout.LayoutControlItem
 End Class

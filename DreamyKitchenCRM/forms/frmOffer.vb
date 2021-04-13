@@ -436,7 +436,6 @@ Public Class frmOffer
                     ExceptFields.Add(txtbenchExtraDim.Properties.Tag)
                     ExceptFields.Add(txtBenchExtraPrice.Properties.Tag)
                     ExceptFields.Add(txtTotalPrice.Properties.Tag)
-                    ExceptFields.Add(txtHeight1.Properties.Tag)
                     sGuid = System.Guid.NewGuid.ToString
                     sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,CatSubErmID,CatErmID,CalcID", toSQLValueS(DoorTypeID) & "," & toSQLValueS(CatSubErmID) & "," & toSQLValueS(CatErmID) & "," & toSQLValueS(CalcID), ExceptFields)
                     ExceptFields.Clear()
@@ -445,7 +444,6 @@ Public Class frmOffer
                 ExceptFields.Add(Pic1.Properties.Tag)
                 ExceptFields.Add(Pic2.Properties.Tag)
                 ExceptFields.Add(Pic3.Properties.Tag)
-                ExceptFields.Add(txtHeight1.Properties.Tag)
                 If sOffersID = "" Then
                     sGuid = System.Guid.NewGuid.ToString
                     sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid,, "offID,SelectedErmPicture", toSQLValueS(sID) & "," & WhichPictureHaseSelected, ExceptFields)
@@ -465,7 +463,6 @@ Public Class frmOffer
                     ExceptFields.Add(Pic1.Properties.Tag)
                     ExceptFields.Add(Pic2.Properties.Tag)
                     ExceptFields.Add(Pic3.Properties.Tag)
-                    ExceptFields.Add(txtHeight1.Properties.Tag)
                     sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sOffersID,,,, ExceptFields)
                 End If
                 If sResult = True Then
@@ -537,28 +534,42 @@ Public Class frmOffer
         Dim sResult As Boolean
         Try
             If Valid.ValidateForm(LayoutControl1) Then
+                Dim txt As New DevExpress.XtraEditors.TextEdit
+                txt.Properties.Mask.MaskType = Mask.MaskType.Numeric
+                txt.Properties.Mask.EditMask = "n2"
+                Dim args = New XtraInputBoxArgs()
+                args.Caption = "Τελικό Ύψος Κουζίνας (cm)"
+                args.Prompt = "Πληκτρολογήστε το Τελικό Ύψος Κουζίνας (cm)"
+                args.DefaultButtonIndex = 0
+                args.DefaultResponse = "Test"
+                args.Editor = txt
+                Dim Result = XtraInputBox.Show(args)
+                If result Is Nothing Then
+                    XtraMessageBox.Show("Πρέπει υποχρεωτικά να περάσετε τελικό ύψος κουζινας για να προχωρήσετε.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
                 Select Case Mode
                     Case FormMode.NewRecord
                         sID = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID,, "finalHeightKitchen", toSQLValueS(txtHeight1.EditValue.ToString, True))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID,, "finalHeightKitchen", toSQLValueS(result, True))
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID,,,,, "finalHeightKitchen= " & toSQLValueS(Result, True))
                 End Select
                 'If CalledFromCtrl Then
                 '    FillCbo.ERM(CtrlCombo)
                 '    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                 'Else
                 Dim form As frmScroller = Frm
-                form.LoadRecords("vw_OFF")
-                'End If
-                txtCustomCode.Select()
-                If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    LayoutControlGroup2.Enabled = True : LayoutControl2.Enabled = True
-                    'Cls.ClearCtrls(LayoutControl1)
-                    'txtCode.Text = DBQ.GetNextId("[OFF]")
+                    form.LoadRecords("vw_OFF")
+                    'End If
+                    txtCustomCode.Select()
+                    If sResult = True Then
+                        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        LayoutControlGroup2.Enabled = True : LayoutControl2.Enabled = True
+                        'Cls.ClearCtrls(LayoutControl1)
+                        'txtCode.Text = DBQ.GetNextId("[OFF]")
+                    End If
                 End If
-            End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -658,13 +669,49 @@ Public Class frmOffer
         End Try
 
     End Sub
+    Private Sub DeleteGroupOffers(ByVal SelectedOfferID As String)
+        Try
+            Dim sSQL As String
+            sSQL = "DELETE FROM [OFFER_MECH] WHERE OFFERID = '" & SelectedOfferID & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "DELETE FROM [OFFER_SIDES] WHERE OFFERID = '" & SelectedOfferID & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "DELETE FROM [OFFERS] WHERE ID = '" & SelectedOfferID & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 
     Private Sub GridControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridControl1.KeyDown
+        Dim i As Integer
         Select Case e.KeyCode
             Case Keys.F2  'If UserProps.AllowInsert = True Then NewRecord()
             Case Keys.F3 'If UserProps.AllowEdit = True Then EditRecord()
             Case Keys.F5  'DeleteOffers()
-            Case Keys.Delete : If UserProps.AllowDelete = True Then DeleteOffers()
+            Case Keys.Delete
+                If UserProps.AllowDelete = True Then
+                    If GridView3.IsGroupRow(GridView3.FocusedRowHandle) Then
+                        If XtraMessageBox.Show("Θέλετε να διαγραφούν τα ερμάρια?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                            For i = 0 To GridView3.GetChildRowCount(GridView3.FocusedRowHandle)
+                                If GridView3.GetRowCellValue(i, "ID") = Nothing Then Exit For
+                                DeleteGroupOffers(GridView3.GetRowCellValue(i, "ID").ToString)
+                            Next
+                            Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
+                            Cls.ClearCtrlsGRP(LayoutControlGroup2)
+                            cmdSave.Enabled = False
+                        End If
+                    Else
+                        DeleteOffers()
+                    End If
+                End If
         End Select
     End Sub
 
@@ -691,7 +738,7 @@ Public Class frmOffer
             If BenchExtraPrice <> "0,00" And BenchExtraPrice <> "0,00 €" And BenchExtraPrice.Length <> 0 Then TransformationCalc = TransformationCalc + " + " + BenchExtraPrice
             If txtQTY.EditValue.ToString = "" Then txtQTY.EditValue = "1"
             TransformationCalc = "(" + TransformationCalc + ") *" + txtQTY.EditValue.ToString
-            Dim cmd As SqlCommand = New SqlCommand("Select " & TransformationCalc, CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select cast(" & TransformationCalc & " as decimal(18,2))", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             If sdr.Read() = True Then sCalc = sdr.GetDecimal(0) : txtTotalPrice.EditValue = sCalc
             sdr.Close()
@@ -1070,4 +1117,31 @@ Public Class frmOffer
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
         frmOffTotal.ShowDialog()
     End Sub
+
+    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+
+    End Sub
+
+    Private Sub cmdRecalc_Click(sender As Object, e As EventArgs) Handles cmdRecalc.Click
+        Dim sSQL As String
+        Try
+            sSQL = "DELETE FROM OFF_TOTAL  WHERE offID = " & toSQLValueS(sID)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+            sSQL = "INSERT INTO OFF_TOTAL (offID, DoorTypeID, price, NewPrice,createdBy ,createdOn)
+                    SELECT offID, DoorTypeID, OfferPrice, OfferPrice," & toSQLValueS(UserProps.ID.ToString) & " ,getdate()
+                    FROM   vw_OFF_TOTALPERDOOR S
+                     WHERE offID = " & toSQLValueS(sID) & " and  NOT EXISTS (SELECT T.offid FROM   OFF_TOTAL  T WHERE  T.offid= " & toSQLValueS(sID) & " and t.DoorTypeID=s.DoorTypeID )"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+        Catch ex As Exception
+
+        End Try
+    End Sub
+
+
 End Class
