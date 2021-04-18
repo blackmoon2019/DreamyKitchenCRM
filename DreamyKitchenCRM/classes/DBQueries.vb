@@ -17,6 +17,11 @@ Public Class DBQueries
         'If ID > 1 Then ID = ID + 1
         Return ID
     End Function
+    Public Function GetNextCODE(ByVal sTable As String, ByVal sCriteria As String) As Integer
+        Dim cmd As SqlCommand = New SqlCommand("SELECT max(code)+1 AS Code from " & sTable & Space(1) & sCriteria, CNDB)
+        Dim Code As Integer = cmd.ExecuteScalar()
+        Return Code
+    End Function
     Public Function InsertDataFiles(ByVal control As System.Windows.Forms.OpenFileDialog, ByVal ID As String, ByVal sTable As String) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Dim i As Integer

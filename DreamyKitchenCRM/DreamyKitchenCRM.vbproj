@@ -222,6 +222,12 @@
     <Compile Include="forms\frmCatSubErm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmCloneOffer.Designer.vb">
+      <DependentUpon>frmCloneOffer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCloneOffer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmColors.Designer.vb">
       <DependentUpon>frmColors.vb</DependentUpon>
     </Compile>
@@ -396,6 +402,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCatSubErm.resx">
       <DependentUpon>frmCatSubErm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCloneOffer.resx">
+      <DependentUpon>frmCloneOffer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmColors.resx">
       <DependentUpon>frmColors.vb</DependentUpon>

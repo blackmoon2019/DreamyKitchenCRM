@@ -147,13 +147,13 @@ Partial Class frmOffer
         Me.LayoutControlItem56 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.SimpleLabelItem1 = New DevExpress.XtraLayout.SimpleLabelItem()
-        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem50 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem49 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem41 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem40 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem50 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem49 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem35 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.VwSIDESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_ERMTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_ERMTableAdapter()
@@ -162,6 +162,7 @@ Partial Class frmOffer
         Me.OFFERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.OFFERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFFERSTableAdapter()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cmdCloseOffer = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdRecalc = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdTotalOffPrice = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdPrintOffer = New DevExpress.XtraEditors.SimpleButton()
@@ -190,16 +191,12 @@ Partial Class frmOffer
         Me.colCatSubErmName1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colOfferPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colHasMech = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colHasSides = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colside = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colSubOFFName1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdSameOffer = New DevExpress.XtraEditors.SimpleButton()
-        Me.chkDoorTypes = New DevExpress.XtraEditors.CheckedListBoxControl()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem32 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.SimpleLabelItem2 = New DevExpress.XtraLayout.SimpleLabelItem()
-        Me.LayoutControlItem33 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem34 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem9 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.EmptySpaceItem10 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem36 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem38 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -207,6 +204,9 @@ Partial Class frmOffer
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem47 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem54 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem33 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem42 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.VwDOORTYPEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_DOOR_TYPETableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_TYPETableAdapter()
         Me.Vw_SIDESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SIDESTableAdapter()
@@ -305,13 +305,13 @@ Partial Class frmOffer
         CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SimpleLabelItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem50, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem49, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem50, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem49, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSIDESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.OFFERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -319,14 +319,9 @@ Partial Class frmOffer
         Me.LayoutControl2.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkDoorTypes, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SimpleLabelItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem34, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem9, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -334,6 +329,9 @@ Partial Class frmOffer
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem54, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem42, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -366,171 +364,158 @@ Partial Class frmOffer
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colcode, Me.colCustomCode, Me.colcatSubErmName, Me.colcatErmName, Me.colheight, Me.coldoorName, Me.colcat, Me.colcatSubErmID, Me.colwidth, Me.coldepth, Me.coldoor, Me.colphoto, Me.colphoto21, Me.colphoto31, Me.colPVCcolorName, Me.colBoxColorName, Me.colBoxColorPhoto, Me.colDoorTypeID, Me.colcatErmID, Me.colcalculations, Me.colDoorPrice, Me.colcalcID})
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
         Me.GridView1.GridControl = Me.grdMain
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsBehavior.ReadOnly = True
+        Me.GridView1.OptionsPrint.PrintPreview = True
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'colID
         '
         Me.colID.FieldName = "ID"
         Me.colID.Name = "colID"
-        Me.colID.Visible = True
-        Me.colID.VisibleIndex = 0
         '
         'colcode
         '
         Me.colcode.FieldName = "code"
         Me.colcode.Name = "colcode"
-        Me.colcode.Visible = True
-        Me.colcode.VisibleIndex = 1
         '
         'colCustomCode
         '
         Me.colCustomCode.FieldName = "CustomCode"
         Me.colCustomCode.Name = "colCustomCode"
-        Me.colCustomCode.Visible = True
-        Me.colCustomCode.VisibleIndex = 2
         '
         'colcatSubErmName
         '
+        Me.colcatSubErmName.Caption = "ΥΠΟΚΑΤΗΓΟΡΙΑ"
         Me.colcatSubErmName.FieldName = "catSubErmName"
         Me.colcatSubErmName.Name = "colcatSubErmName"
         Me.colcatSubErmName.Visible = True
-        Me.colcatSubErmName.VisibleIndex = 3
+        Me.colcatSubErmName.VisibleIndex = 1
+        Me.colcatSubErmName.Width = 136
         '
         'colcatErmName
         '
+        Me.colcatErmName.Caption = "ΚΑΤΗΓΟΡΙΑ"
         Me.colcatErmName.FieldName = "catErmName"
         Me.colcatErmName.Name = "colcatErmName"
         Me.colcatErmName.Visible = True
-        Me.colcatErmName.VisibleIndex = 4
+        Me.colcatErmName.VisibleIndex = 0
+        Me.colcatErmName.Width = 142
         '
         'colheight
         '
+        Me.colheight.Caption = "ΥΨΟΣ"
         Me.colheight.FieldName = "height"
         Me.colheight.Name = "colheight"
         Me.colheight.Visible = True
-        Me.colheight.VisibleIndex = 5
+        Me.colheight.VisibleIndex = 4
         '
         'coldoorName
         '
+        Me.coldoorName.Caption = "ΠΟΡΤΑΚΙ"
         Me.coldoorName.FieldName = "doorName"
         Me.coldoorName.Name = "coldoorName"
         Me.coldoorName.Visible = True
-        Me.coldoorName.VisibleIndex = 6
+        Me.coldoorName.VisibleIndex = 2
+        Me.coldoorName.Width = 107
         '
         'colcat
         '
         Me.colcat.FieldName = "cat"
         Me.colcat.Name = "colcat"
-        Me.colcat.Visible = True
-        Me.colcat.VisibleIndex = 7
         '
         'colcatSubErmID
         '
         Me.colcatSubErmID.FieldName = "catSubErmID"
         Me.colcatSubErmID.Name = "colcatSubErmID"
-        Me.colcatSubErmID.Visible = True
-        Me.colcatSubErmID.VisibleIndex = 8
         '
         'colwidth
         '
+        Me.colwidth.Caption = "ΠΛΑΤΟΣ"
         Me.colwidth.FieldName = "width"
         Me.colwidth.Name = "colwidth"
         Me.colwidth.Visible = True
-        Me.colwidth.VisibleIndex = 9
+        Me.colwidth.VisibleIndex = 5
         '
         'coldepth
         '
+        Me.coldepth.Caption = "ΒΑΘΟΣ"
         Me.coldepth.FieldName = "depth"
         Me.coldepth.Name = "coldepth"
         Me.coldepth.Visible = True
-        Me.coldepth.VisibleIndex = 10
+        Me.coldepth.VisibleIndex = 6
         '
         'coldoor
         '
         Me.coldoor.FieldName = "door"
         Me.coldoor.Name = "coldoor"
-        Me.coldoor.Visible = True
-        Me.coldoor.VisibleIndex = 11
         '
         'colphoto
         '
         Me.colphoto.FieldName = "photo1"
         Me.colphoto.Name = "colphoto"
-        Me.colphoto.Visible = True
-        Me.colphoto.VisibleIndex = 12
         '
         'colphoto21
         '
         Me.colphoto21.FieldName = "photo2"
         Me.colphoto21.Name = "colphoto21"
-        Me.colphoto21.Visible = True
-        Me.colphoto21.VisibleIndex = 13
         '
         'colphoto31
         '
         Me.colphoto31.FieldName = "photo3"
         Me.colphoto31.Name = "colphoto31"
-        Me.colphoto31.Visible = True
-        Me.colphoto31.VisibleIndex = 14
         '
         'colPVCcolorName
         '
         Me.colPVCcolorName.FieldName = "PVCcolorName"
         Me.colPVCcolorName.Name = "colPVCcolorName"
-        Me.colPVCcolorName.Visible = True
-        Me.colPVCcolorName.VisibleIndex = 15
         '
         'colBoxColorName
         '
         Me.colBoxColorName.FieldName = "BoxColorName"
         Me.colBoxColorName.Name = "colBoxColorName"
-        Me.colBoxColorName.Visible = True
-        Me.colBoxColorName.VisibleIndex = 16
         '
         'colBoxColorPhoto
         '
         Me.colBoxColorPhoto.FieldName = "BoxColorPhoto"
         Me.colBoxColorPhoto.Name = "colBoxColorPhoto"
-        Me.colBoxColorPhoto.Visible = True
-        Me.colBoxColorPhoto.VisibleIndex = 17
         '
         'colDoorTypeID
         '
         Me.colDoorTypeID.FieldName = "DoorTypeID"
         Me.colDoorTypeID.Name = "colDoorTypeID"
-        Me.colDoorTypeID.Visible = True
-        Me.colDoorTypeID.VisibleIndex = 18
         '
         'colcatErmID
         '
         Me.colcatErmID.FieldName = "catErmID"
         Me.colcatErmID.Name = "colcatErmID"
-        Me.colcatErmID.Visible = True
-        Me.colcatErmID.VisibleIndex = 19
         '
         'colcalculations
         '
         Me.colcalculations.FieldName = "calculations"
         Me.colcalculations.Name = "colcalculations"
-        Me.colcalculations.Visible = True
-        Me.colcalculations.VisibleIndex = 20
         '
         'colDoorPrice
         '
+        Me.colDoorPrice.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.colDoorPrice.AppearanceCell.Options.UseBackColor = True
+        Me.colDoorPrice.Caption = "ΤΙΜΗ ΠΟΡΤΑΣ"
         Me.colDoorPrice.FieldName = "DoorPrice"
         Me.colDoorPrice.Name = "colDoorPrice"
         Me.colDoorPrice.Visible = True
-        Me.colDoorPrice.VisibleIndex = 21
+        Me.colDoorPrice.VisibleIndex = 3
+        Me.colDoorPrice.Width = 113
         '
         'colcalcID
         '
         Me.colcalcID.FieldName = "calcID"
         Me.colcalcID.Name = "colcalcID"
-        Me.colcalcID.Visible = True
-        Me.colcalcID.VisibleIndex = 22
         '
         'LayoutControl1
         '
@@ -600,7 +585,7 @@ Partial Class frmOffer
         '
         'cmdOffersNew
         '
-        Me.cmdOffersNew.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.AddFile_16x16
+        Me.cmdOffersNew.ImageOptions.Image = CType(resources.GetObject("cmdOffersNew.ImageOptions.Image"), System.Drawing.Image)
         Me.cmdOffersNew.Location = New System.Drawing.Point(12, 784)
         Me.cmdOffersNew.Name = "cmdOffersNew"
         Me.cmdOffersNew.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
@@ -611,7 +596,7 @@ Partial Class frmOffer
         '
         'cmdSaveOff
         '
-        Me.cmdSaveOff.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
+        Me.cmdSaveOff.ImageOptions.Image = CType(resources.GetObject("cmdSaveOff.ImageOptions.Image"), System.Drawing.Image)
         Me.cmdSaveOff.Location = New System.Drawing.Point(917, 85)
         Me.cmdSaveOff.Name = "cmdSaveOff"
         Me.cmdSaveOff.Size = New System.Drawing.Size(173, 28)
@@ -659,7 +644,7 @@ Partial Class frmOffer
         '
         'cmdSave
         '
-        Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
+        Me.cmdSave.ImageOptions.Image = CType(resources.GetObject("cmdSave.ImageOptions.Image"), System.Drawing.Image)
         Me.cmdSave.Location = New System.Drawing.Point(848, 784)
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(106, 28)
@@ -670,7 +655,7 @@ Partial Class frmOffer
         'cmdExit
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
+        Me.cmdExit.ImageOptions.Image = CType(resources.GetObject("cmdExit.ImageOptions.Image"), System.Drawing.Image)
         Me.cmdExit.Location = New System.Drawing.Point(958, 784)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(144, 28)
@@ -1398,7 +1383,7 @@ Partial Class frmOffer
         Me.LayoutControlItem30.Control = Me.dtpresentation
         Me.LayoutControlItem30.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem30.CustomizationFormText = "Ημερ/νία Προσφοράς"
-        Me.LayoutControlItem30.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Me.LayoutControlItem30.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem30.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem30.Location = New System.Drawing.Point(284, 0)
         Me.LayoutControlItem30.Name = "LayoutControlItem30"
         Me.LayoutControlItem30.Size = New System.Drawing.Size(256, 24)
@@ -1774,54 +1759,6 @@ Partial Class frmOffer
         Me.SimpleLabelItem1.Text = "Μηχανισμοί"
         Me.SimpleLabelItem1.TextSize = New System.Drawing.Size(124, 13)
         '
-        'LayoutControlItem16
-        '
-        Me.LayoutControlItem16.Control = Me.Pic1
-        Me.LayoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem16.CustomizationFormText = "Φωτογραφία"
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(649, 262)
-        Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(146, 298)
-        Me.LayoutControlItem16.Text = "Φωτογραφία Ερμάριου 1"
-        Me.LayoutControlItem16.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(124, 13)
-        '
-        'LayoutControlItem5
-        '
-        Me.LayoutControlItem5.Control = Me.PicMech
-        Me.LayoutControlItem5.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem5.CustomizationFormText = "Φωτογραφία"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(380, 419)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(269, 141)
-        Me.LayoutControlItem5.Text = "Φωτογραφία Μηχανισμών"
-        Me.LayoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(124, 13)
-        '
-        'LayoutControlItem50
-        '
-        Me.LayoutControlItem50.Control = Me.Pic2
-        Me.LayoutControlItem50.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem50.CustomizationFormText = "Φωτογραφία Ερμάριου 1"
-        Me.LayoutControlItem50.Location = New System.Drawing.Point(795, 262)
-        Me.LayoutControlItem50.Name = "LayoutControlItem50"
-        Me.LayoutControlItem50.Size = New System.Drawing.Size(147, 298)
-        Me.LayoutControlItem50.Text = "Φωτογραφία Ερμάριου 2"
-        Me.LayoutControlItem50.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem50.TextSize = New System.Drawing.Size(124, 13)
-        '
-        'LayoutControlItem49
-        '
-        Me.LayoutControlItem49.Control = Me.Pic3
-        Me.LayoutControlItem49.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem49.CustomizationFormText = "Φωτογραφία"
-        Me.LayoutControlItem49.Location = New System.Drawing.Point(942, 262)
-        Me.LayoutControlItem49.Name = "LayoutControlItem49"
-        Me.LayoutControlItem49.Size = New System.Drawing.Size(128, 298)
-        Me.LayoutControlItem49.Text = "Φωτογραφία Ερμάριου 3"
-        Me.LayoutControlItem49.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem49.TextSize = New System.Drawing.Size(124, 13)
-        '
         'LayoutControlItem41
         '
         Me.LayoutControlItem41.Control = Me.txtTotalPrice
@@ -1863,6 +1800,54 @@ Partial Class frmOffer
         Me.LayoutControlItem40.TextSize = New System.Drawing.Size(61, 13)
         Me.LayoutControlItem40.TextToControlDistance = 5
         '
+        'LayoutControlItem16
+        '
+        Me.LayoutControlItem16.Control = Me.Pic1
+        Me.LayoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem16.CustomizationFormText = "Φωτογραφία"
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(649, 262)
+        Me.LayoutControlItem16.Name = "LayoutControlItem16"
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(146, 298)
+        Me.LayoutControlItem16.Text = "Φωτογραφία Ερμάριου 1"
+        Me.LayoutControlItem16.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(124, 13)
+        '
+        'LayoutControlItem50
+        '
+        Me.LayoutControlItem50.Control = Me.Pic2
+        Me.LayoutControlItem50.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem50.CustomizationFormText = "Φωτογραφία Ερμάριου 1"
+        Me.LayoutControlItem50.Location = New System.Drawing.Point(795, 262)
+        Me.LayoutControlItem50.Name = "LayoutControlItem50"
+        Me.LayoutControlItem50.Size = New System.Drawing.Size(147, 298)
+        Me.LayoutControlItem50.Text = "Φωτογραφία Ερμάριου 2"
+        Me.LayoutControlItem50.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem50.TextSize = New System.Drawing.Size(124, 13)
+        '
+        'LayoutControlItem49
+        '
+        Me.LayoutControlItem49.Control = Me.Pic3
+        Me.LayoutControlItem49.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem49.CustomizationFormText = "Φωτογραφία"
+        Me.LayoutControlItem49.Location = New System.Drawing.Point(942, 262)
+        Me.LayoutControlItem49.Name = "LayoutControlItem49"
+        Me.LayoutControlItem49.Size = New System.Drawing.Size(128, 298)
+        Me.LayoutControlItem49.Text = "Φωτογραφία Ερμάριου 3"
+        Me.LayoutControlItem49.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem49.TextSize = New System.Drawing.Size(124, 13)
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.PicMech
+        Me.LayoutControlItem5.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem5.CustomizationFormText = "Φωτογραφία"
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(380, 419)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(269, 141)
+        Me.LayoutControlItem5.Text = "Φωτογραφία Μηχανισμών"
+        Me.LayoutControlItem5.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(124, 13)
+        '
         'LayoutControlItem35
         '
         Me.LayoutControlItem35.Control = Me.cmdOffersNew
@@ -1901,6 +1886,7 @@ Partial Class frmOffer
         '
         'LayoutControl2
         '
+        Me.LayoutControl2.Controls.Add(Me.cmdCloseOffer)
         Me.LayoutControl2.Controls.Add(Me.cmdRecalc)
         Me.LayoutControl2.Controls.Add(Me.cmdTotalOffPrice)
         Me.LayoutControl2.Controls.Add(Me.cmdPrintOffer)
@@ -1909,7 +1895,6 @@ Partial Class frmOffer
         Me.LayoutControl2.Controls.Add(Me.cmdOffersDel)
         Me.LayoutControl2.Controls.Add(Me.GridControl1)
         Me.LayoutControl2.Controls.Add(Me.cmdSameOffer)
-        Me.LayoutControl2.Controls.Add(Me.chkDoorTypes)
         Me.LayoutControl2.Location = New System.Drawing.Point(1105, -7)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1398, 544, 650, 400)
@@ -1917,6 +1902,15 @@ Partial Class frmOffer
         Me.LayoutControl2.Size = New System.Drawing.Size(765, 823)
         Me.LayoutControl2.TabIndex = 2
         Me.LayoutControl2.Text = "LayoutControl2"
+        '
+        'cmdCloseOffer
+        '
+        Me.cmdCloseOffer.Location = New System.Drawing.Point(49, 789)
+        Me.cmdCloseOffer.Name = "cmdCloseOffer"
+        Me.cmdCloseOffer.Size = New System.Drawing.Size(129, 22)
+        Me.cmdCloseOffer.StyleController = Me.LayoutControl2
+        Me.cmdCloseOffer.TabIndex = 58
+        Me.cmdCloseOffer.Text = "Κλείσιμο Προσφοράς"
         '
         'cmdRecalc
         '
@@ -1947,8 +1941,8 @@ Partial Class frmOffer
         '
         'cmdOffersRefresh
         '
-        Me.cmdOffersRefresh.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_refresh_16
-        Me.cmdOffersRefresh.Location = New System.Drawing.Point(12, 318)
+        Me.cmdOffersRefresh.ImageOptions.Image = CType(resources.GetObject("cmdOffersRefresh.ImageOptions.Image"), System.Drawing.Image)
+        Me.cmdOffersRefresh.Location = New System.Drawing.Point(12, 64)
         Me.cmdOffersRefresh.Name = "cmdOffersRefresh"
         Me.cmdOffersRefresh.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.cmdOffersRefresh.Size = New System.Drawing.Size(33, 22)
@@ -1957,8 +1951,8 @@ Partial Class frmOffer
         '
         'cmdOffersEdit
         '
-        Me.cmdOffersEdit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.Edit_16x16
-        Me.cmdOffersEdit.Location = New System.Drawing.Point(12, 292)
+        Me.cmdOffersEdit.ImageOptions.Image = CType(resources.GetObject("cmdOffersEdit.ImageOptions.Image"), System.Drawing.Image)
+        Me.cmdOffersEdit.Location = New System.Drawing.Point(12, 38)
         Me.cmdOffersEdit.Name = "cmdOffersEdit"
         Me.cmdOffersEdit.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.cmdOffersEdit.Size = New System.Drawing.Size(33, 22)
@@ -1967,8 +1961,8 @@ Partial Class frmOffer
         '
         'cmdOffersDel
         '
-        Me.cmdOffersDel.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.Remove_16x16
-        Me.cmdOffersDel.Location = New System.Drawing.Point(12, 266)
+        Me.cmdOffersDel.ImageOptions.Image = CType(resources.GetObject("cmdOffersDel.ImageOptions.Image"), System.Drawing.Image)
+        Me.cmdOffersDel.Location = New System.Drawing.Point(12, 12)
         Me.cmdOffersDel.Name = "cmdOffersDel"
         Me.cmdOffersDel.PaintStyle = DevExpress.XtraEditors.Controls.PaintStyles.Light
         Me.cmdOffersDel.Size = New System.Drawing.Size(33, 22)
@@ -1978,22 +1972,26 @@ Partial Class frmOffer
         'GridControl1
         '
         Me.GridControl1.DataSource = Me.OFFERSBindingSource
-        Me.GridControl1.Location = New System.Drawing.Point(49, 266)
+        Me.GridControl1.Location = New System.Drawing.Point(49, 12)
         Me.GridControl1.MainView = Me.GridView3
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(704, 519)
+        Me.GridControl1.Size = New System.Drawing.Size(704, 773)
         Me.GridControl1.TabIndex = 3
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID3, Me.colqty, Me.colheight1, Me.colwidth1, Me.coldepth1, Me.coldoor1, Me.colPhoto4, Me.collegs, Me.colDoorTypeName, Me.coloffID, Me.colcatErmID1, Me.colermID, Me.colDoorTypeID1, Me.colcatSubErmID1, Me.colcalculations1, Me.colDoorPrice1, Me.colCatErmName1, Me.colCatSubErmName1, Me.colOfferPrice, Me.colHasMech, Me.colHasSides})
+        Me.GridView3.Appearance.GroupFooter.FontStyleDelta = System.Drawing.FontStyle.Bold
+        Me.GridView3.Appearance.GroupFooter.Options.UseFont = True
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID3, Me.colqty, Me.colheight1, Me.colwidth1, Me.coldepth1, Me.coldoor1, Me.colPhoto4, Me.collegs, Me.colDoorTypeName, Me.coloffID, Me.colcatErmID1, Me.colermID, Me.colDoorTypeID1, Me.colcatSubErmID1, Me.colcalculations1, Me.colDoorPrice1, Me.colCatErmName1, Me.colCatSubErmName1, Me.colOfferPrice, Me.colHasMech, Me.colside, Me.colSubOFFName1})
         Me.GridView3.GridControl = Me.GridControl1
-        Me.GridView3.GroupCount = 1
-        Me.GridView3.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "DoorTypeName", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OfferPrice", Nothing, " (Σύνολο {0:n2}€)")})
+        Me.GridView3.GroupCount = 3
+        Me.GridView3.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "SubOFFName1", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.None, "DoorTypeName", Nothing, ""), New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OfferPrice", Me.colOfferPrice, " Σύνολο {0:n2}€")})
         Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsBehavior.AutoExpandAllGroups = True
         Me.GridView3.OptionsBehavior.Editable = False
-        Me.GridView3.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colDoorTypeName, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colHasSides, DevExpress.Data.ColumnSortOrder.Ascending)})
+        Me.GridView3.OptionsView.GroupFooterShowMode = DevExpress.XtraGrid.Views.Grid.GroupFooterShowMode.VisibleAlways
+        Me.GridView3.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colSubOFFName1, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colDoorTypeName, DevExpress.Data.ColumnSortOrder.Ascending), New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colCatErmName1, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'colID3
         '
@@ -2006,7 +2004,8 @@ Partial Class frmOffer
         Me.colqty.FieldName = "qty"
         Me.colqty.Name = "colqty"
         Me.colqty.Visible = True
-        Me.colqty.VisibleIndex = 2
+        Me.colqty.VisibleIndex = 1
+        Me.colqty.Width = 52
         '
         'colheight1
         '
@@ -2014,7 +2013,8 @@ Partial Class frmOffer
         Me.colheight1.FieldName = "height"
         Me.colheight1.Name = "colheight1"
         Me.colheight1.Visible = True
-        Me.colheight1.VisibleIndex = 3
+        Me.colheight1.VisibleIndex = 2
+        Me.colheight1.Width = 44
         '
         'colwidth1
         '
@@ -2022,7 +2022,8 @@ Partial Class frmOffer
         Me.colwidth1.FieldName = "width"
         Me.colwidth1.Name = "colwidth1"
         Me.colwidth1.Visible = True
-        Me.colwidth1.VisibleIndex = 4
+        Me.colwidth1.VisibleIndex = 3
+        Me.colwidth1.Width = 48
         '
         'coldepth1
         '
@@ -2030,15 +2031,15 @@ Partial Class frmOffer
         Me.coldepth1.FieldName = "depth"
         Me.coldepth1.Name = "coldepth1"
         Me.coldepth1.Visible = True
-        Me.coldepth1.VisibleIndex = 5
+        Me.coldepth1.VisibleIndex = 4
+        Me.coldepth1.Width = 40
         '
         'coldoor1
         '
         Me.coldoor1.Caption = "Πόρτα"
         Me.coldoor1.FieldName = "door"
         Me.coldoor1.Name = "coldoor1"
-        Me.coldoor1.Visible = True
-        Me.coldoor1.VisibleIndex = 6
+        Me.coldoor1.Width = 59
         '
         'colPhoto4
         '
@@ -2046,7 +2047,8 @@ Partial Class frmOffer
         Me.colPhoto4.FieldName = "Photo"
         Me.colPhoto4.Name = "colPhoto4"
         Me.colPhoto4.Visible = True
-        Me.colPhoto4.VisibleIndex = 8
+        Me.colPhoto4.VisibleIndex = 6
+        Me.colPhoto4.Width = 44
         '
         'collegs
         '
@@ -2054,13 +2056,16 @@ Partial Class frmOffer
         Me.collegs.FieldName = "legs"
         Me.collegs.Name = "collegs"
         Me.collegs.Visible = True
-        Me.collegs.VisibleIndex = 7
+        Me.collegs.VisibleIndex = 5
+        Me.collegs.Width = 40
         '
         'colDoorTypeName
         '
         Me.colDoorTypeName.Caption = "Πορτάκι"
         Me.colDoorTypeName.FieldName = "DoorTypeName"
+        Me.colDoorTypeName.FieldNameSortGroup = "DoorTypeID"
         Me.colDoorTypeName.Name = "colDoorTypeName"
+        Me.colDoorTypeName.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom
         Me.colDoorTypeName.Visible = True
         Me.colDoorTypeName.VisibleIndex = 8
         '
@@ -2072,7 +2077,9 @@ Partial Class frmOffer
         'colcatErmID1
         '
         Me.colcatErmID1.FieldName = "catErmID"
+        Me.colcatErmID1.FieldNameSortGroup = "catErmID"
         Me.colcatErmID1.Name = "colcatErmID1"
+        Me.colcatErmID1.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom
         '
         'colermID
         '
@@ -2103,9 +2110,11 @@ Partial Class frmOffer
         '
         Me.colCatErmName1.Caption = "Κατηγορία"
         Me.colCatErmName1.FieldName = "CatErmName"
+        Me.colCatErmName1.FieldNameSortGroup = "catErmID"
         Me.colCatErmName1.Name = "colCatErmName1"
         Me.colCatErmName1.Visible = True
         Me.colCatErmName1.VisibleIndex = 0
+        Me.colCatErmName1.Width = 113
         '
         'colCatSubErmName1
         '
@@ -2113,7 +2122,8 @@ Partial Class frmOffer
         Me.colCatSubErmName1.FieldName = "CatSubErmName"
         Me.colCatSubErmName1.Name = "colCatSubErmName1"
         Me.colCatSubErmName1.Visible = True
-        Me.colCatSubErmName1.VisibleIndex = 1
+        Me.colCatSubErmName1.VisibleIndex = 0
+        Me.colCatSubErmName1.Width = 179
         '
         'colOfferPrice
         '
@@ -2122,7 +2132,8 @@ Partial Class frmOffer
         Me.colOfferPrice.Name = "colOfferPrice"
         Me.colOfferPrice.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "OfferPrice", "SUM={0:0.##}")})
         Me.colOfferPrice.Visible = True
-        Me.colOfferPrice.VisibleIndex = 9
+        Me.colOfferPrice.VisibleIndex = 7
+        Me.colOfferPrice.Width = 47
         '
         'colHasMech
         '
@@ -2130,110 +2141,66 @@ Partial Class frmOffer
         Me.colHasMech.FieldName = "HasMech"
         Me.colHasMech.Name = "colHasMech"
         Me.colHasMech.Visible = True
-        Me.colHasMech.VisibleIndex = 10
+        Me.colHasMech.VisibleIndex = 8
+        Me.colHasMech.Width = 79
         '
-        'colHasSides
+        'colside
         '
-        Me.colHasSides.Caption = "Πλαϊνά-Καταφραγές"
-        Me.colHasSides.FieldName = "HasSides"
-        Me.colHasSides.Name = "colHasSides"
-        Me.colHasSides.Visible = True
-        Me.colHasSides.VisibleIndex = 11
+        Me.colside.Caption = "Πλαϊνά-Καταφραγές"
+        Me.colside.FieldName = "side"
+        Me.colside.Name = "colside"
+        Me.colside.Visible = True
+        Me.colside.VisibleIndex = 9
+        '
+        'colSubOFFName1
+        '
+        Me.colSubOFFName1.Caption = "Τίτλος Προσφοράς"
+        Me.colSubOFFName1.FieldName = "SubOFFName1"
+        Me.colSubOFFName1.FieldNameSortGroup = "subOffID"
+        Me.colSubOFFName1.Name = "colSubOFFName1"
+        Me.colSubOFFName1.SortMode = DevExpress.XtraGrid.ColumnSortMode.Custom
+        Me.colSubOFFName1.Visible = True
+        Me.colSubOFFName1.VisibleIndex = 10
         '
         'cmdSameOffer
         '
-        Me.cmdSameOffer.Location = New System.Drawing.Point(49, 240)
+        Me.cmdSameOffer.Location = New System.Drawing.Point(182, 789)
         Me.cmdSameOffer.Name = "cmdSameOffer"
-        Me.cmdSameOffer.Size = New System.Drawing.Size(704, 22)
+        Me.cmdSameOffer.Size = New System.Drawing.Size(200, 22)
         Me.cmdSameOffer.StyleController = Me.LayoutControl2
         Me.cmdSameOffer.TabIndex = 4
         Me.cmdSameOffer.Text = "Ίδια Προσφορά για επιλεγμένα πορτάκια"
-        '
-        'chkDoorTypes
-        '
-        Me.chkDoorTypes.CheckOnClick = True
-        Me.chkDoorTypes.HorizontalScrollbar = True
-        Me.chkDoorTypes.Location = New System.Drawing.Point(49, 29)
-        Me.chkDoorTypes.MultiColumn = True
-        Me.chkDoorTypes.Name = "chkDoorTypes"
-        Me.chkDoorTypes.Size = New System.Drawing.Size(704, 207)
-        Me.chkDoorTypes.SortOrder = System.Windows.Forms.SortOrder.Ascending
-        Me.chkDoorTypes.StyleController = Me.LayoutControl2
-        Me.chkDoorTypes.TabIndex = 49
-        Me.chkDoorTypes.Tag = ""
         '
         'LayoutControlGroup3
         '
         Me.LayoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup3.GroupBordersVisible = False
-        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem32, Me.SimpleLabelItem2, Me.LayoutControlItem33, Me.LayoutControlItem34, Me.EmptySpaceItem9, Me.EmptySpaceItem10, Me.LayoutControlItem36, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.LayoutControlItem51, Me.EmptySpaceItem1, Me.LayoutControlItem47, Me.LayoutControlItem54})
+        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem34, Me.EmptySpaceItem9, Me.LayoutControlItem36, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.LayoutControlItem51, Me.EmptySpaceItem1, Me.LayoutControlItem47, Me.LayoutControlItem54, Me.LayoutControlItem33, Me.LayoutControlItem42, Me.EmptySpaceItem6})
         Me.LayoutControlGroup3.Name = "Root"
         Me.LayoutControlGroup3.Size = New System.Drawing.Size(765, 823)
         Me.LayoutControlGroup3.TextVisible = False
         '
-        'LayoutControlItem32
-        '
-        Me.LayoutControlItem32.Control = Me.chkDoorTypes
-        Me.LayoutControlItem32.Location = New System.Drawing.Point(37, 17)
-        Me.LayoutControlItem32.Name = "LayoutControlItem32"
-        Me.LayoutControlItem32.Size = New System.Drawing.Size(708, 211)
-        Me.LayoutControlItem32.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem32.TextVisible = False
-        '
-        'SimpleLabelItem2
-        '
-        Me.SimpleLabelItem2.AllowHotTrack = False
-        Me.SimpleLabelItem2.AppearanceItemCaption.BackColor = System.Drawing.Color.LightSlateGray
-        Me.SimpleLabelItem2.AppearanceItemCaption.BackColor2 = System.Drawing.Color.FromArgb(CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer), CType(CType(224, Byte), Integer))
-        Me.SimpleLabelItem2.AppearanceItemCaption.FontStyleDelta = System.Drawing.FontStyle.Bold
-        Me.SimpleLabelItem2.AppearanceItemCaption.ForeColor = System.Drawing.Color.White
-        Me.SimpleLabelItem2.AppearanceItemCaption.Options.UseBackColor = True
-        Me.SimpleLabelItem2.AppearanceItemCaption.Options.UseFont = True
-        Me.SimpleLabelItem2.AppearanceItemCaption.Options.UseForeColor = True
-        Me.SimpleLabelItem2.Location = New System.Drawing.Point(37, 0)
-        Me.SimpleLabelItem2.Name = "SimpleLabelItem2"
-        Me.SimpleLabelItem2.Size = New System.Drawing.Size(708, 17)
-        Me.SimpleLabelItem2.Text = "Πορτάκια"
-        Me.SimpleLabelItem2.TextSize = New System.Drawing.Size(53, 13)
-        '
-        'LayoutControlItem33
-        '
-        Me.LayoutControlItem33.Control = Me.cmdSameOffer
-        Me.LayoutControlItem33.Location = New System.Drawing.Point(37, 228)
-        Me.LayoutControlItem33.Name = "LayoutControlItem33"
-        Me.LayoutControlItem33.Size = New System.Drawing.Size(708, 26)
-        Me.LayoutControlItem33.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem33.TextVisible = False
-        '
         'LayoutControlItem34
         '
         Me.LayoutControlItem34.Control = Me.GridControl1
-        Me.LayoutControlItem34.Location = New System.Drawing.Point(37, 254)
+        Me.LayoutControlItem34.Location = New System.Drawing.Point(37, 0)
         Me.LayoutControlItem34.Name = "LayoutControlItem34"
-        Me.LayoutControlItem34.Size = New System.Drawing.Size(708, 523)
+        Me.LayoutControlItem34.Size = New System.Drawing.Size(708, 777)
         Me.LayoutControlItem34.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem34.TextVisible = False
         '
         'EmptySpaceItem9
         '
         Me.EmptySpaceItem9.AllowHotTrack = False
-        Me.EmptySpaceItem9.Location = New System.Drawing.Point(0, 332)
+        Me.EmptySpaceItem9.Location = New System.Drawing.Point(0, 78)
         Me.EmptySpaceItem9.Name = "EmptySpaceItem9"
-        Me.EmptySpaceItem9.Size = New System.Drawing.Size(37, 445)
+        Me.EmptySpaceItem9.Size = New System.Drawing.Size(37, 699)
         Me.EmptySpaceItem9.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'EmptySpaceItem10
-        '
-        Me.EmptySpaceItem10.AllowHotTrack = False
-        Me.EmptySpaceItem10.Location = New System.Drawing.Point(0, 0)
-        Me.EmptySpaceItem10.Name = "EmptySpaceItem10"
-        Me.EmptySpaceItem10.Size = New System.Drawing.Size(37, 254)
-        Me.EmptySpaceItem10.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem36
         '
         Me.LayoutControlItem36.Control = Me.cmdOffersDel
-        Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 254)
+        Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem36.Name = "LayoutControlItem36"
         Me.LayoutControlItem36.Size = New System.Drawing.Size(37, 26)
         Me.LayoutControlItem36.TextSize = New System.Drawing.Size(0, 0)
@@ -2242,7 +2209,7 @@ Partial Class frmOffer
         'LayoutControlItem37
         '
         Me.LayoutControlItem37.Control = Me.cmdOffersEdit
-        Me.LayoutControlItem37.Location = New System.Drawing.Point(0, 280)
+        Me.LayoutControlItem37.Location = New System.Drawing.Point(0, 26)
         Me.LayoutControlItem37.Name = "LayoutControlItem37"
         Me.LayoutControlItem37.Size = New System.Drawing.Size(37, 26)
         Me.LayoutControlItem37.TextSize = New System.Drawing.Size(0, 0)
@@ -2251,7 +2218,7 @@ Partial Class frmOffer
         'LayoutControlItem38
         '
         Me.LayoutControlItem38.Control = Me.cmdOffersRefresh
-        Me.LayoutControlItem38.Location = New System.Drawing.Point(0, 306)
+        Me.LayoutControlItem38.Location = New System.Drawing.Point(0, 52)
         Me.LayoutControlItem38.Name = "LayoutControlItem38"
         Me.LayoutControlItem38.Size = New System.Drawing.Size(37, 26)
         Me.LayoutControlItem38.TextSize = New System.Drawing.Size(0, 0)
@@ -2269,9 +2236,9 @@ Partial Class frmOffer
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 777)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(374, 777)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(489, 26)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(115, 26)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem47
@@ -2291,6 +2258,32 @@ Partial Class frmOffer
         Me.LayoutControlItem54.Size = New System.Drawing.Size(102, 26)
         Me.LayoutControlItem54.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem54.TextVisible = False
+        '
+        'LayoutControlItem33
+        '
+        Me.LayoutControlItem33.Control = Me.cmdSameOffer
+        Me.LayoutControlItem33.Location = New System.Drawing.Point(170, 777)
+        Me.LayoutControlItem33.Name = "LayoutControlItem33"
+        Me.LayoutControlItem33.Size = New System.Drawing.Size(204, 26)
+        Me.LayoutControlItem33.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem33.TextVisible = False
+        '
+        'LayoutControlItem42
+        '
+        Me.LayoutControlItem42.Control = Me.cmdCloseOffer
+        Me.LayoutControlItem42.Location = New System.Drawing.Point(37, 777)
+        Me.LayoutControlItem42.Name = "LayoutControlItem42"
+        Me.LayoutControlItem42.Size = New System.Drawing.Size(133, 26)
+        Me.LayoutControlItem42.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem42.TextVisible = False
+        '
+        'EmptySpaceItem6
+        '
+        Me.EmptySpaceItem6.AllowHotTrack = False
+        Me.EmptySpaceItem6.Location = New System.Drawing.Point(0, 777)
+        Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
+        Me.EmptySpaceItem6.Size = New System.Drawing.Size(37, 26)
+        Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
         '
         'VwDOORTYPEBindingSource
         '
@@ -2313,7 +2306,7 @@ Partial Class frmOffer
         Me.ClientSize = New System.Drawing.Size(1869, 810)
         Me.Controls.Add(Me.LayoutControl1)
         Me.Controls.Add(Me.LayoutControl2)
-        Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
+        Me.IconOptions.Image = CType(resources.GetObject("frmOffer.IconOptions.Image"), System.Drawing.Image)
         Me.Name = "frmOffer"
         Me.Text = "frmOffer"
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2411,13 +2404,13 @@ Partial Class frmOffer
         CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SimpleLabelItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem50, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem49, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem50, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem49, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSIDESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.OFFERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2425,14 +2418,9 @@ Partial Class frmOffer
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkDoorTypes, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SimpleLabelItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem34, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem9, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2440,6 +2428,9 @@ Partial Class frmOffer
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem54, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem42, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -2533,37 +2524,22 @@ Partial Class frmOffer
     Friend WithEvents OFFERSTableAdapter As DreamyKitchenDataSetTableAdapters.vw_OFFERSTableAdapter
     Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup3 As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents chkDoorTypes As DevExpress.XtraEditors.CheckedListBoxControl
-    Friend WithEvents LayoutControlItem32 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents SimpleLabelItem2 As DevExpress.XtraLayout.SimpleLabelItem
     Friend WithEvents VwDOORTYPEBindingSource As BindingSource
     Friend WithEvents Vw_DOOR_TYPETableAdapter As DreamyKitchenDataSetTableAdapters.vw_DOOR_TYPETableAdapter
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents cmdSameOffer As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents colID3 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colqty As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colheight1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colwidth1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coldepth1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coldoor1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents collegs As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colDoorTypeName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LayoutControlItem33 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem34 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cmdOffersRefresh As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents cmdOffersEdit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents cmdOffersDel As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents EmptySpaceItem9 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents EmptySpaceItem10 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem36 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem37 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem38 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents coloffID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmdSaveOff As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem39 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents colcatErmID1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colermID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents txtCalc As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem40 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtTotalPrice As DevExpress.XtraEditors.TextEdit
@@ -2585,13 +2561,8 @@ Partial Class frmOffer
     Friend WithEvents LayoutControlItem50 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents VwSIDESBindingSource As BindingSource
     Friend WithEvents Vw_SIDESTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SIDESTableAdapter
-    Friend WithEvents colPhoto4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colDoorTypeID1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colcatSubErmID1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents PicMech As DevExpress.XtraEditors.PictureEdit
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents colcalculations1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colDoorPrice1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmdPrintOffer As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem51 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
@@ -2602,8 +2573,6 @@ Partial Class frmOffer
     Friend WithEvents chkMech As DevExpress.XtraEditors.CheckedListBoxControl
     Friend WithEvents LayoutControlItem27 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem5 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents colCatSubErmName1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colCatErmName1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents colID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcode As DevExpress.XtraGrid.Columns.GridColumn
@@ -2628,11 +2597,33 @@ Partial Class frmOffer
     Friend WithEvents colcalculations As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colDoorPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcalcID As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colOfferPrice As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colHasMech As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colHasSides As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmdTotalOffPrice As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem47 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cmdRecalc As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem54 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents colID3 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colqty As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colheight1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colwidth1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldepth1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldoor1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents collegs As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colDoorTypeName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coloffID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcatErmID1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colermID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colOfferPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colDoorTypeID1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcatSubErmID1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcalculations1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colDoorPrice1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colCatSubErmName1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colCatErmName1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colHasMech As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colPhoto4 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents cmdCloseOffer As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem42 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents colside As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colSubOFFName1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents EmptySpaceItem6 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

@@ -174,17 +174,6 @@ Namespace My
             End Set
         End Property
         
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Password=mavros1!;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
-            "chen;Data Source=BLACKMOON-PC;MultipleActiveResultSets=True")>  _
-        Public ReadOnly Property DreamyKitchenConnectionString() As String
-            Get
-                Return CType(Me("DreamyKitchenConnectionString"),String)
-            End Get
-        End Property
-        
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("\\10.10.5.5\crm\")>  _
@@ -324,6 +313,17 @@ Namespace My
             Set
                 Me("CurrentSkin") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Password=mavros1!;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
+            "chen;Data Source=BLACKMOON-PC;MultipleActiveResultSets=True")>  _
+        Public ReadOnly Property DreamyKitchenConnectionString() As String
+            Get
+                Return CType(Me("DreamyKitchenConnectionString"),String)
+            End Get
         End Property
     End Class
 End Namespace

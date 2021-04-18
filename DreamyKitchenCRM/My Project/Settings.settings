@@ -32,14 +32,6 @@
     <Setting Name="frmCusMov" Type="System.Drawing.Point" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
-    <Setting Name="DreamyKitchenConnectionString" Type="(Connection string)" Scope="Application">
-      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Password=mavros1!;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKitchen;Data Source=BLACKMOON-PC;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
-  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
-&lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Password=mavros1!;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKitchen;Data Source=BLACKMOON-PC;MultipleActiveResultSets=True</Value>
-    </Setting>
     <Setting Name="CRM_PATH" Type="System.String" Scope="User">
       <Value Profile="(Default)">\\10.10.5.5\crm\</Value>
     </Setting>
@@ -79,6 +71,14 @@
     </Setting>
     <Setting Name="CurrentSkin" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="DreamyKitchenConnectionString" Type="(Connection string)" Scope="Application">
+      <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
+&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
+  &lt;ConnectionString&gt;Password=mavros1!;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKitchen;Data Source=BLACKMOON-PC;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
+&lt;/SerializableConnectionString&gt;</DesignTimeValue>
+      <Value Profile="(Default)">Password=mavros1!;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKitchen;Data Source=BLACKMOON-PC;MultipleActiveResultSets=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

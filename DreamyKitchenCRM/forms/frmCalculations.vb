@@ -50,8 +50,6 @@ Public Class frmCalculations
     End Sub
 
     Private Sub frmCalculations_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'Κατηγορίες Ερμαρίων
-        FillCbo.CAT_ERM(cboCategory)
 
         Select Case Mode
             Case FormMode.NewRecord
@@ -99,53 +97,5 @@ Public Class frmCalculations
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Sub ManageCAT()
-        Dim frmGen As frmGen = New frmGen
-        frmGen.Text = "Κατηγορίες Ερμαρίων"
-        frmGen.L1.Text = "Κωδικός"
-        frmGen.L2.Text = "Κατηγορία"
-        frmGen.DataTable = "CAT_ERM"
-        frmGen.CallerControl = cboCategory
-        frmGen.CalledFromControl = True
-        If cboCategory.EditValue <> Nothing Then frmGen.ID = cboCategory.EditValue.ToString
-        frmGen.MdiParent = frmMain
-        frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        If cboCategory.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
-        frmGen.Show()
-    End Sub
 
-    Private Sub cboCategory_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCategory.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : ManageCAT()
-            Case 2 : cboCategory.EditValue = Nothing
-        End Select
-    End Sub
-
-    Private Sub cboCategory_EditValueChanged(sender As Object, e As EventArgs) Handles cboCategory.EditValueChanged
-        If cboCategory.EditValue Is Nothing Then Exit Sub
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select id,name from vw_CAT_SUB_ERM where CatErmID = " & toSQLValueS(cboCategory.EditValue.ToString) & "order by name")
-        FillCbo.CAT_SUB_ERM(cboCatSubErm, sSQL)
-    End Sub
-    Private Sub cboCatSubErm_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCatSubErm.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : ManageCATSUBERM()
-            Case 2 : cboCatSubErm.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub ManageCATSUBERM()
-        Dim frmCatSubErm As frmCatSubErm = New frmCatSubErm
-        frmCatSubErm.CallerControl = cboCatSubErm
-        frmCatSubErm.CalledFromControl = True
-        If cboCatSubErm.EditValue <> Nothing Then frmCatSubErm.ID = cboCatSubErm.EditValue.ToString
-        frmCatSubErm.MdiParent = frmMain
-        If cboCatSubErm.EditValue <> Nothing Then frmCatSubErm.Mode = FormMode.EditRecord Else frmCatSubErm.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(frmCatSubErm.Parent.ClientRectangle.Width / 2 - frmCatSubErm.Width / 2), CInt(frmCatSubErm.Parent.ClientRectangle.Height / 2 - frmCatSubErm.Height / 2)))
-        frmCatSubErm.Show()
-    End Sub
 End Class

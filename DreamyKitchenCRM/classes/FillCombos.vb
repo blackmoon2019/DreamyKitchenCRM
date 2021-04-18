@@ -78,6 +78,34 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub SUBOFF(ByRef CtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal sSQL As String)
+        Try
+
+            Dim cmd As SqlCommand = New SqlCommand("Select id,SubOFFName from vw_OFF_SUBOFF " & sSQL & " order by SubOFFName", CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            CtrlCombo.Properties.DataSource = ""
+            CtrlCombo.Properties.Columns.Clear()
+            Dim col As New Controls.LookUpColumnInfo
+            col.Visible = False : col.FieldName = "id"
+            CtrlCombo.Properties.Columns.Add(col)
+            col = Nothing
+            col = New Controls.LookUpColumnInfo
+            col.Visible = True : col.FieldName = "SubOFFName" : col.Caption = "Τίτλοι Προσφοράς"
+            CtrlCombo.Properties.Columns.Add(col)
+            col = Nothing
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.DisplayMember = "SubOFFName"
+            CtrlCombo.Properties.ValueMember = "id"
+            'CtrlCombo.Properties.PopulateColumns()
+            'CtrlCombo.Properties.Columns(0).Visible = False
+            'CtrlCombo.Properties.Columns(1).Caption = "Τίτλοι Προσφοράς"
+
+            'sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
     Public Sub ADR(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal sSQL As System.Text.StringBuilder)
         Try
             If sSQL.Length = 0 Then sSQL.AppendLine("Select id,Name from vw_ADR ")
