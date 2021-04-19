@@ -638,4 +638,26 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub FillCheckedListSubOff(CtrlList As DevExpress.XtraEditors.CheckedListBoxControl, ByVal sWhere As String)
+        Try
+            Dim sSQL As String
+            sSQL = "Select id,SubOFFName from vw_OFF_SUBOFF " & sWhere & " order by SubOFFName"
+            Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            'chkLstUsers.DataSource = sdr
+            CtrlList.Items.Clear()
+            CtrlList.DisplayMember = "SubOFFName"
+            CtrlList.ValueMember = "id"
+            While sdr.Read()
+                Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+                chkLstItem.Value = sdr.Item(1).ToString
+                chkLstItem.Tag = sdr.Item(0).ToString
+                CtrlList.Items.Add(chkLstItem)
+            End While
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 End Class

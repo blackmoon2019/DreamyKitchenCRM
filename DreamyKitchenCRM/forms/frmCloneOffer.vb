@@ -6,6 +6,7 @@ Public Class frmCloneOffer
     Private sOfferCode As Integer
     Private DBQ As New DBQueries
     Private SubOffCode As Integer
+    Private sOffers As New List(Of String)
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
@@ -16,7 +17,16 @@ Public Class frmCloneOffer
             sOfferCode = value
         End Set
     End Property
-
+    Public ReadOnly Property GetSubOffers() As List(Of String)
+        Get
+            Return sOffers
+        End Get
+    End Property
+    Public WriteOnly Property SetSubOffers() As List(Of String)
+        Set(value As List(Of String))
+            sOffers = value
+        End Set
+    End Property
 
     Private Sub frmCloneOffer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         txtCode.EditValue = sOfferCode
@@ -44,6 +54,7 @@ Public Class frmCloneOffer
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
+                    sOffers.Add(SubOffID)
                 End If
 
                 Using oCmd As New SqlCommand("CloneOffers", CNDB)
@@ -56,11 +67,17 @@ Public Class frmCloneOffer
                     oCmd.Parameters.AddWithValue("@modifiedBy", UserProps.ID.ToString)
                     oCmd.ExecuteNonQuery()
                 End Using
-                frmOffer.OFFERSTableAdapter.Fill(frmOffer.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
+                frmOffer.cmdOffersRefresh.AllowFocus = True
+                frmOffer.cmdOffersRefresh.Select()
+                frmOffer.cmdOffersRefresh.PerformClick()
 
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
+        Me.Close()
     End Sub
 End Class

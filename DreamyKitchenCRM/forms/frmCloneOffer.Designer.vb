@@ -25,13 +25,9 @@ Partial Class frmCloneOffer
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cboSubOffName = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwOFFSUBOFFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
         Me.cboDoorType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwOFFERDOORTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboDoorType1 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwDOORTYPEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -42,19 +38,19 @@ Partial Class frmCloneOffer
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.VwOFFSUBOFFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.VwOFFERDOORTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwDOORTYPEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_OFF_SUBOFFTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFF_SUBOFFTableAdapter()
         Me.Vw_DOOR_TYPETableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_TYPETableAdapter()
         Me.Vw_OFFER_DOORTYPES = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFFER_DOORTYPES()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboSubOffName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwOFFSUBOFFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwOFFERDOORTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -65,6 +61,10 @@ Partial Class frmCloneOffer
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwOFFSUBOFFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwOFFERDOORTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -120,16 +120,6 @@ Partial Class frmCloneOffer
         Me.cboSubOffName.TabIndex = 21
         Me.cboSubOffName.Tag = ""
         '
-        'VwOFFSUBOFFBindingSource
-        '
-        Me.VwOFFSUBOFFBindingSource.DataMember = "vw_OFF_SUBOFF"
-        Me.VwOFFSUBOFFBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'txtCode
         '
         Me.txtCode.Location = New System.Drawing.Point(64, 12)
@@ -161,11 +151,6 @@ Partial Class frmCloneOffer
         Me.cboDoorType.TabIndex = 21
         Me.cboDoorType.Tag = ""
         '
-        'VwOFFERDOORTYPESBindingSource
-        '
-        Me.VwOFFERDOORTYPESBindingSource.DataMember = "vw_OFFER_DOORTYPES"
-        Me.VwOFFERDOORTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'cboDoorType1
         '
         Me.cboDoorType1.Location = New System.Drawing.Point(12, 138)
@@ -182,11 +167,6 @@ Partial Class frmCloneOffer
         Me.cboDoorType1.StyleController = Me.LayoutControl1
         Me.cboDoorType1.TabIndex = 21
         Me.cboDoorType1.Tag = ""
-        '
-        'VwDOORTYPEBindingSource
-        '
-        Me.VwDOORTYPEBindingSource.DataMember = "vw_DOOR_TYPE"
-        Me.VwDOORTYPEBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'Root
         '
@@ -298,6 +278,26 @@ Partial Class frmCloneOffer
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(188, 24)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
+        'VwOFFSUBOFFBindingSource
+        '
+        Me.VwOFFSUBOFFBindingSource.DataMember = "vw_OFF_SUBOFF"
+        Me.VwOFFSUBOFFBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwOFFERDOORTYPESBindingSource
+        '
+        Me.VwOFFERDOORTYPESBindingSource.DataMember = "vw_OFFER_DOORTYPES"
+        Me.VwOFFERDOORTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'VwDOORTYPEBindingSource
+        '
+        Me.VwDOORTYPEBindingSource.DataMember = "vw_DOOR_TYPE"
+        Me.VwDOORTYPEBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
         'Vw_OFF_SUBOFFTableAdapter
         '
         Me.Vw_OFF_SUBOFFTableAdapter.ClearBeforeFill = True
@@ -323,13 +323,9 @@ Partial Class frmCloneOffer
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.cboSubOffName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwOFFSUBOFFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwOFFERDOORTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -340,6 +336,10 @@ Partial Class frmCloneOffer
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwOFFSUBOFFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwOFFERDOORTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

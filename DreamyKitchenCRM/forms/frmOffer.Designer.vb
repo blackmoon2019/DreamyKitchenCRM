@@ -162,7 +162,6 @@ Partial Class frmOffer
         Me.OFFERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.OFFERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFFERSTableAdapter()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
-        Me.cmdCloseOffer = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdRecalc = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdTotalOffPrice = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdPrintOffer = New DevExpress.XtraEditors.SimpleButton()
@@ -205,7 +204,6 @@ Partial Class frmOffer
         Me.LayoutControlItem47 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem54 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem33 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem42 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.VwDOORTYPEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_DOOR_TYPETableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_TYPETableAdapter()
@@ -330,7 +328,6 @@ Partial Class frmOffer
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem54, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem42, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -1886,7 +1883,6 @@ Partial Class frmOffer
         '
         'LayoutControl2
         '
-        Me.LayoutControl2.Controls.Add(Me.cmdCloseOffer)
         Me.LayoutControl2.Controls.Add(Me.cmdRecalc)
         Me.LayoutControl2.Controls.Add(Me.cmdTotalOffPrice)
         Me.LayoutControl2.Controls.Add(Me.cmdPrintOffer)
@@ -1902,15 +1898,6 @@ Partial Class frmOffer
         Me.LayoutControl2.Size = New System.Drawing.Size(765, 823)
         Me.LayoutControl2.TabIndex = 2
         Me.LayoutControl2.Text = "LayoutControl2"
-        '
-        'cmdCloseOffer
-        '
-        Me.cmdCloseOffer.Location = New System.Drawing.Point(49, 789)
-        Me.cmdCloseOffer.Name = "cmdCloseOffer"
-        Me.cmdCloseOffer.Size = New System.Drawing.Size(129, 22)
-        Me.cmdCloseOffer.StyleController = Me.LayoutControl2
-        Me.cmdCloseOffer.TabIndex = 58
-        Me.cmdCloseOffer.Text = "Κλείσιμο Προσφοράς"
         '
         'cmdRecalc
         '
@@ -2164,9 +2151,9 @@ Partial Class frmOffer
         '
         'cmdSameOffer
         '
-        Me.cmdSameOffer.Location = New System.Drawing.Point(182, 789)
+        Me.cmdSameOffer.Location = New System.Drawing.Point(49, 789)
         Me.cmdSameOffer.Name = "cmdSameOffer"
-        Me.cmdSameOffer.Size = New System.Drawing.Size(200, 22)
+        Me.cmdSameOffer.Size = New System.Drawing.Size(246, 22)
         Me.cmdSameOffer.StyleController = Me.LayoutControl2
         Me.cmdSameOffer.TabIndex = 4
         Me.cmdSameOffer.Text = "Ίδια Προσφορά για επιλεγμένα πορτάκια"
@@ -2175,7 +2162,7 @@ Partial Class frmOffer
         '
         Me.LayoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup3.GroupBordersVisible = False
-        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem34, Me.EmptySpaceItem9, Me.LayoutControlItem36, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.LayoutControlItem51, Me.EmptySpaceItem1, Me.LayoutControlItem47, Me.LayoutControlItem54, Me.LayoutControlItem33, Me.LayoutControlItem42, Me.EmptySpaceItem6})
+        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem34, Me.EmptySpaceItem9, Me.LayoutControlItem36, Me.LayoutControlItem37, Me.LayoutControlItem38, Me.LayoutControlItem51, Me.EmptySpaceItem1, Me.LayoutControlItem47, Me.LayoutControlItem54, Me.LayoutControlItem33, Me.EmptySpaceItem6})
         Me.LayoutControlGroup3.Name = "Root"
         Me.LayoutControlGroup3.Size = New System.Drawing.Size(765, 823)
         Me.LayoutControlGroup3.TextVisible = False
@@ -2236,9 +2223,9 @@ Partial Class frmOffer
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(374, 777)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(287, 777)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(115, 26)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(202, 26)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem47
@@ -2262,20 +2249,11 @@ Partial Class frmOffer
         'LayoutControlItem33
         '
         Me.LayoutControlItem33.Control = Me.cmdSameOffer
-        Me.LayoutControlItem33.Location = New System.Drawing.Point(170, 777)
+        Me.LayoutControlItem33.Location = New System.Drawing.Point(37, 777)
         Me.LayoutControlItem33.Name = "LayoutControlItem33"
-        Me.LayoutControlItem33.Size = New System.Drawing.Size(204, 26)
+        Me.LayoutControlItem33.Size = New System.Drawing.Size(250, 26)
         Me.LayoutControlItem33.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem33.TextVisible = False
-        '
-        'LayoutControlItem42
-        '
-        Me.LayoutControlItem42.Control = Me.cmdCloseOffer
-        Me.LayoutControlItem42.Location = New System.Drawing.Point(37, 777)
-        Me.LayoutControlItem42.Name = "LayoutControlItem42"
-        Me.LayoutControlItem42.Size = New System.Drawing.Size(133, 26)
-        Me.LayoutControlItem42.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem42.TextVisible = False
         '
         'EmptySpaceItem6
         '
@@ -2429,7 +2407,6 @@ Partial Class frmOffer
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem54, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem42, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
@@ -2621,8 +2598,6 @@ Partial Class frmOffer
     Friend WithEvents colCatErmName1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colHasMech As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colPhoto4 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents cmdCloseOffer As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents LayoutControlItem42 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents colside As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colSubOFFName1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents EmptySpaceItem6 As DevExpress.XtraLayout.EmptySpaceItem

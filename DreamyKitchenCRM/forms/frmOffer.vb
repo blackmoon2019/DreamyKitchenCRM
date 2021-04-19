@@ -41,6 +41,7 @@ Public Class frmOffer
     Private Calculations As String
     Private CalcID As String
     Private DoCalculations As Boolean = True
+    Private selectedOffesID As List(Of String)
 
 
     Public WriteOnly Property ID As String
@@ -112,7 +113,8 @@ Public Class frmOffer
                 LayoutControl2.Enabled = False
                 FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
                 txtCode.Text = DBQ.GetNextId("[OFF]")
-
+                cmdOffersNew.Enabled = False
+                cmdSave.Enabled = False
             Case FormMode.EditRecord
                 'FillCbo.FillCheckedListMech(chkMech, FormMode.EditRecord, sID)
                 Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
@@ -419,27 +421,16 @@ Public Class frmOffer
         Dim sGuid As String = "", sSQL As String, ExceptFields As New List(Of String)
         Dim SelectedPics As Byte, WhichPictureHaseSelected As Byte
         Dim cbo As New DevExpress.XtraEditors.LookUpEdit
+        Dim SubOffCode As Integer
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 'Εδω θα μπεί όταν πάμε να προσθέσουμε ενα νέο ερμάριο σε μια υπάρχουσα προσφορά
-                If Mode = FormMode.EditRecord And sOffersID = "" Then
-                    Dim args = New XtraInputBoxArgs()
-                    args.Caption = "Επιλογή τίτλου προσφοράς"
-                    args.Prompt = "Επιλέξτε τον τίτλο της προσφοράς"
-                    args.DefaultButtonIndex = 0
-                    cbo.Properties.NullText = ""
-                    FillCbo.SUBOFF(cbo, " where offid = " & toSQLValueS(sID))
-
-                    args.Editor = cbo
-                    Dim Result = XtraInputBox.Show(args)
-                    If Result Is Nothing Then
-                        XtraMessageBox.Show("Πρέπει υποχρεωτικά να επιλέξετε τίτλο προσφοράς για να προχωρήσετε.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        cbo = Nothing
-                        Exit Sub
-                    Else
-                        SubOffID = cbo.EditValue.ToString
-                    End If
-                    cbo = Nothing
+                If (Mode = FormMode.EditRecord And sOffersID = "") Or (selectedOffesID IsNot Nothing And sOffersID = "") Then
+                    Dim frmInputBox As New frmInputBox
+                    frmInputBox.Text = "Επιλογή τίτλου προσφοράς"
+                    frmInputBox.ID = sID
+                    selectedOffesID = frmInputBox.SubOffers
+                    frmInputBox.ShowDialog()
                 End If
                 'Επιλογή εικόνας ερμαρίου
                 If Pic1.BackColor = Color.Gray Then SelectedPics = 1 : WhichPictureHaseSelected = 1
@@ -471,19 +462,49 @@ Public Class frmOffer
                 ExceptFields.Add(Pic2.Properties.Tag)
                 ExceptFields.Add(Pic3.Properties.Tag)
                 If sOffersID = "" Then
-                    sGuid = System.Guid.NewGuid.ToString
-                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid,, "offID,SelectedErmPicture,subOffID", toSQLValueS(sID) & "," & WhichPictureHaseSelected & "," & toSQLValueS(SubOffID), ExceptFields)
-                    If sResult = True Then
-                        If SelectedPics > 0 Then
-                            'Οταν φτάσει εδώ ο κώδικας πάντα μια φωτογραφία ειναι επιλεγμένη
-                            sSQL = "UPDATE OFFERS SET SelectedErmPicture = " & WhichPictureHaseSelected & ", Photo = @Photo WHERE ID = " & toSQLValueS(sGuid)
+                    If selectedOffesID Is Nothing Then
+                        sGuid = System.Guid.NewGuid.ToString
+                        selectedOffesID = New List(Of String)
+                        If SubOffID = "" Then
+                            SubOffID = System.Guid.NewGuid.ToString
+                            SubOffCode = DBQ.GetNextCODE("OFF_SUBOFF", "where offid= " & toSQLValueS(sID))
+                            sSQL = "INSERT INTO OFF_SUBOFF (ID,offID, code,createdBy ,createdOn) SELECT " & toSQLValueS(SubOffID) & "," & toSQLValueS(sID) & "," & toSQLValueS(SubOffCode.ToString, True) & "," & toSQLValueS(UserProps.ID.ToString) & ",GETDATE()"
                             Using oCmd As New SqlCommand(sSQL, CNDB)
-                                If Pic1.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic1.EditValue)
-                                If Pic2.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic2.EditValue)
-                                If Pic3.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic3.EditValue)
                                 oCmd.ExecuteNonQuery()
                             End Using
                         End If
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid,, "offID,SelectedErmPicture,subOffID", toSQLValueS(sID) & "," & WhichPictureHaseSelected & "," & toSQLValueS(SubOffID), ExceptFields)
+                        If sResult = True Then
+                            If SelectedPics > 0 Then
+                                'Οταν φτάσει εδώ ο κώδικας πάντα μια φωτογραφία ειναι επιλεγμένη
+                                sSQL = "UPDATE OFFERS SET SelectedErmPicture = " & WhichPictureHaseSelected & ", Photo = @Photo WHERE ID = " & toSQLValueS(sGuid)
+                                Using oCmd As New SqlCommand(sSQL, CNDB)
+                                    If Pic1.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic1.EditValue)
+                                    If Pic2.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic2.EditValue)
+                                    If Pic3.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic3.EditValue)
+                                    oCmd.ExecuteNonQuery()
+                                End Using
+                            End If
+                            selectedOffesID.Add(SubOffID)
+                        End If
+                    Else
+                        For i As Integer = 0 To selectedOffesID.Count - 1
+                            sGuid = System.Guid.NewGuid.ToString
+                            SubOffID = selectedOffesID(i)
+                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sGuid,, "offID,SelectedErmPicture,subOffID", toSQLValueS(sID) & "," & WhichPictureHaseSelected & "," & toSQLValueS(SubOffID), ExceptFields)
+                            If sResult = True Then
+                                If SelectedPics > 0 Then
+                                    'Οταν φτάσει εδώ ο κώδικας πάντα μια φωτογραφία ειναι επιλεγμένη
+                                    sSQL = "UPDATE OFFERS SET SelectedErmPicture = " & WhichPictureHaseSelected & ", Photo = @Photo WHERE ID = " & toSQLValueS(sGuid)
+                                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                                        If Pic1.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic1.EditValue)
+                                        If Pic2.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic2.EditValue)
+                                        If Pic3.BackColor = Color.Gray Then oCmd.Parameters.AddWithValue("@Photo", Pic3.EditValue)
+                                        oCmd.ExecuteNonQuery()
+                                    End Using
+                                End If
+                            End If
+                        Next i
                     End If
                 Else
                     ExceptFields.Add(Pic1.Properties.Tag)
@@ -593,6 +614,8 @@ Public Class frmOffer
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     LayoutControlGroup2.Enabled = True : LayoutControl2.Enabled = True
+                    cmdOffersNew.Enabled = True
+                    cmdSave.Enabled = True
                     'Cls.ClearCtrls(LayoutControl1)
                     'txtCode.Text = DBQ.GetNextId("[OFF]")
                 End If
@@ -649,6 +672,8 @@ Public Class frmOffer
             'frmOffTotal.MdiParent = frmMain
             frmCloneOffer.ID = sID
             frmCloneOffer.OfferCode = txtCode.EditValue
+            frmCloneOffer.SetSubOffers = selectedOffesID
+            frmCloneOffer.GetSubOffers.AddRange(selectedOffesID.GetRange(0, selectedOffesID.Count))
             'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
             frmCloneOffer.ShowDialog()
 
@@ -1153,11 +1178,6 @@ Public Class frmOffer
         Catch ex As Exception
 
         End Try
-    End Sub
-
-    Private Sub cmdCloseOffer_Click(sender As Object, e As EventArgs) Handles cmdCloseOffer.Click
-        SubOffID = System.Guid.NewGuid.ToString
-        SubOffCode = SubOffCode + 1
     End Sub
 
     Private Sub GridView3_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView3.KeyDown
