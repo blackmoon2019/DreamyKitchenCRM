@@ -7,6 +7,7 @@ Public Class frmCloneOffer
     Private DBQ As New DBQueries
     Private SubOffCode As Integer
     Private sOffers As New List(Of String)
+    Private Frm As DevExpress.XtraEditors.XtraForm
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
@@ -25,6 +26,11 @@ Public Class frmCloneOffer
     Public WriteOnly Property SetSubOffers() As List(Of String)
         Set(value As List(Of String))
             sOffers = value
+        End Set
+    End Property
+    Public WriteOnly Property FormScroller As DevExpress.XtraEditors.XtraForm
+        Set(value As DevExpress.XtraEditors.XtraForm)
+            Frm = value
         End Set
     End Property
 
@@ -54,6 +60,7 @@ Public Class frmCloneOffer
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
+                    If sOffers Is Nothing Then sOffers = New List(Of String)
                     sOffers.Add(SubOffID)
                 End If
 
@@ -67,9 +74,8 @@ Public Class frmCloneOffer
                     oCmd.Parameters.AddWithValue("@modifiedBy", UserProps.ID.ToString)
                     oCmd.ExecuteNonQuery()
                 End Using
-                frmOffer.cmdOffersRefresh.AllowFocus = True
-                frmOffer.cmdOffersRefresh.Select()
-                frmOffer.cmdOffersRefresh.PerformClick()
+                SubOffCode = 0
+
 
             End If
         Catch ex As Exception

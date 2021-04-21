@@ -182,7 +182,7 @@ Public Class FormLoader
         End If
     End Sub
     Public Sub LoadDataToGrid(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
-                              ByVal sSQL As String, Optional ByVal AddColumnButton As Boolean = False)
+                              ByVal sSQL As String, Optional ByVal AddColumnButton As Boolean = False, Optional ByVal AddColumnInteger As Boolean = False)
         Dim myCmd As SqlCommand
         Dim myReader As SqlDataReader
         Dim dt As New DataTable("sTable")
@@ -193,6 +193,13 @@ Public Class FormLoader
             GRDView.Columns.Clear()
             myReader = myCmd.ExecuteReader()
             dt.Load(myReader)
+            If AddColumnInteger = True Then
+                dt.Columns.Add("QTY", GetType(Int32))
+                'dt.Columns.Item("QTY").AllowDBNull = False
+                dt.Columns.Item("QTY").DefaultValue = 0
+                dt.Columns.Add("TOTALPRICE", GetType(Decimal))
+                dt.Columns.Item("TOTALPRICE").DefaultValue = 0
+            End If
             GRDControl.DataSource = dt
             GRDControl.ForceInitialize()
             GRDControl.DefaultView.PopulateColumns()

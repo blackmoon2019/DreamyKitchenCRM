@@ -1,6 +1,8 @@
 ﻿
 
 Partial Public Class DreamyKitchenDataSet
+    Partial Public Class vw_COLORSBAZADataTable
+    End Class
 End Class
 
 Namespace DreamyKitchenDataSetTableAdapters

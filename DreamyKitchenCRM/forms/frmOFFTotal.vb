@@ -49,8 +49,8 @@ Public Class frmOFFTotal
     Private Sub frmOFFTotal_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As String
         Try
-            sSQL = "INSERT INTO OFF_TOTAL (offID, DoorTypeID, price, NewPrice,createdBy ,createdOn)
-                    SELECT offID, DoorTypeID, OfferPrice, OfferPrice," & toSQLValueS(UserProps.ID.ToString) & " ,getdate()
+            sSQL = "INSERT INTO OFF_TOTAL (offID,subOffID, DoorTypeID, price, NewPrice,createdBy ,createdOn)
+                    SELECT offID,subOffID, DoorTypeID, OfferPrice, OfferPrice," & toSQLValueS(UserProps.ID.ToString) & " ,getdate()
                     FROM   vw_OFF_TOTALPERDOOR S
                      WHERE offID = " & toSQLValueS(sID) & " and  NOT EXISTS (SELECT T.offid FROM   OFF_TOTAL  T WHERE  T.offid= " & toSQLValueS(sID) & " and t.DoorTypeID=s.DoorTypeID )"
             Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -60,9 +60,16 @@ Public Class frmOFFTotal
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-        sSQL = "Select d.name,O.* from OFF_TOTAL O INNER  JOIN DOOR_TYPE D ON O.DoorTypeID = D.ID where offid =  " & toSQLValueS(sID)
+        sSQL = "Select CAST(dbo.[OFF].code AS nvarchar(10)) + ' - ' + CAST(S.code AS nvarchar(10)) AS SubOFFName, d.name,O.* 
+               from OFF_TOTAL O 
+               INNER  JOIN DOOR_TYPE D ON O.DoorTypeID = D.ID 
+               INNER  JOIN OFF_SUBOFF S ON O.subOffID= S.ID 
+               INNER  JOIN [OFF]  ON O.OffID= [OFF].ID 
+               where O.offid =  " & toSQLValueS(sID)
         LoadForms.LoadDataToGrid(grdOffTotal, GridView3, sSQL)
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFFTOTAL.xml") Then GridView3.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFFTOTAL.xml", OptionsLayoutBase.FullLayout)
+        GridView3.Columns("SubOFFName").OptionsColumn.ReadOnly = True
+        GridView3.Columns("SubOFFName").OptionsColumn.AllowEdit = False
         GridView3.Columns("NewPrice").OptionsColumn.ReadOnly = False
         GridView3.Columns("NewPrice").OptionsColumn.AllowEdit = True
         GridView3.Columns("Price").OptionsColumn.AllowEdit = False
