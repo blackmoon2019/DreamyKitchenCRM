@@ -3,6 +3,7 @@ Imports DevExpress.XtraLayout
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraVerticalGrid.Rows
 
 Public Class FormLoader
     Public Function LoadForm(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sSQL As String) As Boolean
@@ -225,6 +226,181 @@ Public Class FormLoader
                     GRDView.Columns.Add(C)
                 Next
             End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub LoadDataToVGrid(ByRef GRDControl As DevExpress.XtraVerticalGrid.VGridControl,
+                              ByVal sSQL As String, ByRef HasRows As Boolean)
+        Dim myCmd As SqlCommand
+        Dim myReader As SqlDataReader
+        Dim dt As New DataTable("sTable")
+        Try
+            myCmd = CNDB.CreateCommand
+            myCmd.CommandText = sSQL
+            myReader = myCmd.ExecuteReader()
+            If myReader.HasRows = False Then HasRows = False Else HasRows = True
+            dt.Load(myReader)
+            GRDControl.Rows.Clear()
+            Dim columnName As String
+
+            Dim Crow As New CategoryRow("Στοιχεία Προσφοράς")
+            Crow.Name = "OFFER"
+            GRDControl.Rows.Add(Crow)
+            Dim Roffer As CategoryRow = GRDControl.Rows("OFFER")
+
+            Dim Crow2 As New CategoryRow("ΒΑΣΕΩΣ")
+            Crow2.Name = "VASEOS"
+            Crow.ChildRows.Add(Crow2)
+            Dim RVaseos As CategoryRow = GRDControl.Rows("VASEOS")
+
+            Crow2 = New CategoryRow("ΚΡΕΜΑΣΤΑ")
+            Crow2.Name = "KREMASTA"
+            Crow.ChildRows.Add(Crow2)
+            Dim RKremasta As CategoryRow = GRDControl.Rows("KREMASTA")
+
+            Crow2 = New CategoryRow("ΥΨΗΛΑ")
+            Crow2.Name = "YPSILA"
+            Crow.ChildRows.Add(Crow2)
+            Dim RYpsila As CategoryRow = GRDControl.Rows("YPSILA")
+
+            Crow2 = New CategoryRow("ΠΑΓΚΟΙ")
+            Crow2.Name = "BENCH"
+            Crow.ChildRows.Add(Crow2)
+            Dim RBench As CategoryRow = GRDControl.Rows("BENCH")
+
+            Crow = New CategoryRow("Στοιχεία Παραγγελίας")
+            Crow.Name = "ORDER"
+            GRDControl.Rows.Add(Crow)
+            Dim ROrder As CategoryRow = GRDControl.Rows("ORDER")
+
+            Crow2 = New CategoryRow("ΣΥΣΚΕΥΕΣ")
+            Crow2.Name = "MECHS"
+            Crow.ChildRows.Add(Crow2)
+            Dim RMech As CategoryRow = GRDControl.Rows("MECHS")
+
+
+            'Γεμίζω τις τιμές από την Βάση
+            For Each myField As DataColumn In dt.Columns
+                Dim columnNameValue As String = myField.ColumnName
+
+                Dim C As New EditorRow(columnNameValue)
+                C.Name = columnNameValue
+                For Each row As DataRow In dt.Rows
+                    If columnNameValue = "gola" Then
+                        C.Properties.Value = row.Item(columnNameValue)
+                    Else
+                        columnName = row.Item(columnNameValue).ToString
+                        C.Properties.Value = columnName
+                    End If
+                Next
+                C.Visible = True
+                'Τίτλοι Στηλών
+                Select Case columnNameValue
+                    Case "ID", "code", "offID", "modifiedBy", "modifiedOn", "createdOn", "createdBy", "RealName" : C.Visible = False
+                    Case "benchID" : C.Properties.Caption = "Πάγκος"
+                    Case "extraBench" : C.Properties.Caption = "Extra Πάγκος"
+                    Case "boxVColorID", "boxKColorID", "boxYColorID" : C.Properties.Caption = "Χρώμα κασώμ/τος"
+                    Case "pvcVColorID", "pvcKColorID", "pvcYColorID" : C.Properties.Caption = "Χρώμα PVC"
+                    Case "finalHeightKitchen" : C.Properties.Caption = "Τελικό Ύψος"
+                    Case "bazaColorID" : C.Properties.Caption = "Χρώμα μπάζας"
+                    Case "backColorID" : C.Properties.Caption = "Χρώμα πλάτης"
+                    Case "legsV", "legsY" : C.Properties.Caption = "Πόδια"
+                    Case "rafia" : C.Properties.Caption = "Ραφιέρα-Ράφια"
+                    Case "pomola" : C.Properties.Caption = "Πόμολα"
+                    Case "doorThickness" : C.Properties.Caption = "Πάχος Κασώματος"
+                    Case "backThickness" : C.Properties.Caption = "Πάχος Πλάτης"
+                    Case "doorVaseos" : C.Properties.Caption = "Πορτάκι Βάσεως"
+                    Case "doorVaseosH" : C.Properties.Caption = "Ύψος Ερμαρίων"
+                    Case "doorKremasta" : C.Properties.Caption = "Πορτάκι κρεμαστών"
+                    Case "doorKremastaH" : C.Properties.Caption = "Ύψος Ερμαρίων"
+                    Case "doorYpsila" : C.Properties.Caption = "Πορτάκι Υψηλών"
+                    Case "doorYpsilaH" : C.Properties.Caption = "Ύψος Ερμαρίων"
+                    Case "bench" : C.Properties.Caption = "Πάγκος Εργασίας"
+                    Case "gola" : C.Properties.Caption = "Gola"
+                    Case "table_back" : C.Properties.Caption = "Τραπέζι/Πλάτη"
+                    Case "sink" : C.Properties.Caption = "Νεροχύτης"
+                    Case "sink_P" : C.Properties.Caption = "Τιμή"
+                    Case "battery" : C.Properties.Caption = "Μπαταρία"
+                    Case "battery_P" : C.Properties.Caption = "Τιμή"
+                    Case "absorber" : C.Properties.Caption = "Αποροφητήρας"
+                    Case "absorber_P" : C.Properties.Caption = "Τιμή"
+                    Case "dishwasher" : C.Properties.Caption = "Πλυντήριο Πιάτων"
+                    Case "dishwasher_P" : C.Properties.Caption = "Τιμή"
+                    Case "oven" : C.Properties.Caption = "Φούρνος"
+                    Case "oven_P" : C.Properties.Caption = "Τιμή"
+                    Case "furnace" : C.Properties.Caption = "Εστία"
+                    Case "furnace_P" : C.Properties.Caption = "Τιμή"
+                    Case "fridge" : C.Properties.Caption = "Ψυγείο"
+                    Case "fridge_P" : C.Properties.Caption = "Τιμή"
+                    Case "Dispenser" : C.Properties.Caption = "Dispenser"
+                    Case "Dispenser_P" : C.Properties.Caption = "Τιμή"
+                End Select
+
+                Select Case columnNameValue
+                    Case "boxVColorID", "boxKColorID", "boxYColorID"
+                        C.Properties.RowEdit = GRDControl.RepositoryItems.Item("boxColorID")
+                        Dim GRDlookup As New RepositoryItemGridLookUpEdit
+                        GRDlookup = GRDControl.RepositoryItems.Item("boxColorID")
+                        GRDlookup.View.PopulateColumns(GRDlookup.DataSource)
+                        GRDlookup.View.Columns("ID").Visible = False
+                        GRDlookup.View.Columns("name").Caption = "Όνομα"
+                        GRDlookup.View.Columns("photo").Caption = "Φωτο"
+                    Case "pvcVColorID", "pvcKColorID", "pvcYColorID"
+                        C.Properties.RowEdit = GRDControl.RepositoryItems.Item("pvcColorID")
+                        Dim GRDlookup As New RepositoryItemGridLookUpEdit
+                        GRDlookup = GRDControl.RepositoryItems.Item("pvcColorID")
+                        GRDlookup.View.PopulateColumns(GRDlookup.DataSource)
+                        GRDlookup.View.Columns("ID").Visible = False
+                        GRDlookup.View.Columns("name").Caption = "Όνομα"
+                        GRDlookup.View.Columns("photo").Caption = "Φωτο"
+                    Case "bazaColorID", "backColorID"
+                        C.Properties.RowEdit = GRDControl.RepositoryItems.Item(columnNameValue)
+                        Dim GRDlookup As New RepositoryItemGridLookUpEdit
+                        GRDlookup = GRDControl.RepositoryItems.Item(columnNameValue)
+                        GRDlookup.View.PopulateColumns(GRDlookup.DataSource)
+                        GRDlookup.View.Columns("ID").Visible = False
+                        GRDlookup.View.Columns("name").Caption = "Όνομα"
+                        GRDlookup.View.Columns("photo").Caption = "Φωτο"
+
+                    Case "benchID"
+                        C.Properties.RowEdit = GRDControl.RepositoryItems.Item(columnNameValue)
+                        Dim GRDlookup As New RepositoryItemGridLookUpEdit
+                        GRDlookup = GRDControl.RepositoryItems.Item(columnNameValue)
+                        GRDlookup.View.PopulateColumns(GRDlookup.DataSource)
+                        GRDlookup.View.Columns("ID").Visible = False
+                        'GRDlookup.View.Columns("name").Caption = "Όνομα"
+                        'GRDlookup.View.Columns("photo").Caption = "Φωτο"
+
+                    Case "legsV", "legsY", "doorThickness", "backThickness"
+                        C.Properties.RowEdit = GRDControl.RepositoryItems.Item("numericINT")
+                    Case "doorVaseosH", "doorKremastaH", "doorYpsilaH", "finalHeightKitchen"
+                        C.Properties.RowEdit = GRDControl.RepositoryItems.Item("numericDEC")
+                    Case "sink_P", "battery_P", "absorber_P", "dishwasher_P", "oven_P", "furnace_P", "fridge_P", "Dispenser_P"
+                        C.Properties.RowEdit = GRDControl.RepositoryItems.Item("numericCUR")
+                    Case "gola"
+                        C.Properties.RowEdit = GRDControl.RepositoryItems.Item("CheckEdit")
+                    Case Else : C.Properties.RowEdit = GRDControl.RepositoryItems.Item("textEdit")
+                End Select
+                C.Properties.ReadOnly = False
+                C.Properties.AllowEdit = True
+                Select Case columnNameValue
+                    Case "ID", "code", "offID", "modifiedBy", "modifiedOn", "createdOn", "createdBy", "RealName"
+                    Case "boxVColorID", "pvcVColorID", "doorVaseosH", "legsV" : RVaseos.ChildRows.Add(C)
+                    Case "boxKColorID", "pvcKColorID", "doorKremastaH" : RKremasta.ChildRows.Add(C)
+                    Case "boxYColorID", "pvcYColorID", "doorYpsilaH", "legsY" : RYpsila.ChildRows.Add(C)
+                    Case "benchID", "extraBench" : RBench.ChildRows.Add(C)
+                    Case "gola", "finalHeightKitchen" : Roffer.ChildRows.Add(C)
+                    Case "sink", "sink_P", "battery", "battery_P", "absorber", "absorber_P", "dishwasher", "dishwasher_P", "oven", "oven_P", "furnace", "furnace_P", "fridge", "fridge_P", "Dispenser", "Dispenser_P"
+                        RMech.ChildRows.Add(C)
+                    Case Else : ROrder.ChildRows.Add(C)
+                End Select
+
+
+            Next
+            GRDControl.Refresh()
+            'End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)

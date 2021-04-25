@@ -318,6 +318,12 @@
     <Compile Include="forms\frmOffer.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmOfferDet.Designer.vb">
+      <DependentUpon>frmOfferDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmOfferDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmOFFTotal.Designer.vb">
       <DependentUpon>frmOFFTotal.vb</DependentUpon>
     </Compile>
@@ -372,10 +378,16 @@
     <Compile Include="forms\WaitForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\Rep_offer.Designer.vb">
+    <Compile Include="Reports\RepOfferMech.Designer.vb">
+      <DependentUpon>RepOfferMech.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepOfferMech.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Rep_offer.Designer.vb">
       <DependentUpon>Rep_offer.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\Rep_offer.vb">
+    <Compile Include="Reports\Rep_offer.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Modules\Main.vb" />
@@ -394,6 +406,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Reports\Rep_Offer2ndPage.Designer.vb">
+      <DependentUpon>Rep_Offer2ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Rep_Offer2ndPage.vb">
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -457,6 +475,9 @@
     <EmbeddedResource Include="forms\frmOffer.resx">
       <DependentUpon>frmOffer.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmOfferDet.resx">
+      <DependentUpon>frmOfferDet.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmOFFTotal.resx">
       <DependentUpon>frmOFFTotal.vb</DependentUpon>
     </EmbeddedResource>
@@ -484,7 +505,10 @@
     <EmbeddedResource Include="forms\WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\Rep_offer.resx">
+    <EmbeddedResource Include="Reports\RepOfferMech.resx">
+      <DependentUpon>RepOfferMech.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_offer.resx">
       <DependentUpon>Rep_offer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
@@ -493,6 +517,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_Offer2ndPage.resx">
+      <DependentUpon>Rep_Offer2ndPage.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

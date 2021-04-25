@@ -837,11 +837,11 @@ NextItem:
             Return True
         Catch ex As Exception
             Console.WriteLine(Err.Number)
-            If Err.Number = 5 Then
-                XtraMessageBox.Show("Προσπαθήσατε να περάσετε εγγραφή που υπάρχει ήδη στο σύστημα", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Else
-                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-            End If
+            'If Err.Number = 5 Then
+            '    XtraMessageBox.Show("Προσπαθήσατε να περάσετε εγγραφή που υπάρχει ήδη στο σύστημα", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'Else
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'End If
 
 
             'Try
@@ -870,7 +870,7 @@ NextItem:
         ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
             Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
             cbo = Ctrl
-
+            If ExceptFields.Contains(cbo.Properties.Tag) Then Return True
         ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.PictureEdit Then
             Dim pic As DevExpress.XtraEditors.PictureEdit
             pic = Ctrl

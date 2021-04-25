@@ -15,8 +15,13 @@ Public Class frmErmaria
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
+    Private CallerFormName As String
 
-
+    Public WriteOnly Property CallerForm As String
+        Set(value As String)
+            CallerFormName = value
+        End Set
+    End Property
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value

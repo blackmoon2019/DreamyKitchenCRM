@@ -462,6 +462,47 @@ WHERE        (colorsCatID = '9F373F04-198E-4588-A94C-80483F70A022')</CommandText
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_COLORSBACKTableAdapter" GeneratorDataComponentClassName="vw_COLORSBACKTableAdapter" Name="vw_COLORSBACK" UserDataComponentName="vw_COLORSBACKTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID, name, photo
+FROM            vw_COLORS AS BOXCOLORS
+WHERE        (colorsCatID = 'CF437CC3-62BF-477F-B983-ABC24D686BBD')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="photo" DataSetColumn="photo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_BENCHTableAdapter" GeneratorDataComponentClassName="vw_BENCHTableAdapter" Name="vw_BENCH" UserDataComponentName="vw_BENCHTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BENCH" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID, name, pricePerMeter, width, tbl
+FROM            vw_BENCH</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="pricePerMeter" DataSetColumn="pricePerMeter" />
+              <Mapping SourceColumn="width" DataSetColumn="width" />
+              <Mapping SourceColumn="tbl" DataSetColumn="tbl" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -894,6 +935,38 @@ WHERE        (colorsCatID = '9F373F04-198E-4588-A94C-80483F70A022')</CommandText
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="vw_COLORSBACK" msprop:Generator_TableClassName="vw_COLORSBACKDataTable" msprop:Generator_TableVarName="tablevw_COLORSBACK" msprop:Generator_RowChangedName="vw_COLORSBACKRowChanged" msprop:Generator_TablePropName="vw_COLORSBACK" msprop:Generator_RowDeletingName="vw_COLORSBACKRowDeleting" msprop:Generator_RowChangingName="vw_COLORSBACKRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSBACKRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSBACKRowDeleted" msprop:Generator_RowClassName="vw_COLORSBACKRow" msprop:Generator_UserTableName="vw_COLORSBACK" msprop:Generator_RowEvArgName="vw_COLORSBACKRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="photo" msprop:Generator_ColumnVarNameInTable="columnphoto" msprop:Generator_ColumnPropNameInRow="photo" msprop:Generator_ColumnPropNameInTable="photoColumn" msprop:Generator_UserColumnName="photo" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_BENCH" msprop:Generator_TableClassName="vw_BENCHDataTable" msprop:Generator_TableVarName="tablevw_BENCH" msprop:Generator_TablePropName="vw_BENCH" msprop:Generator_RowDeletingName="vw_BENCHRowDeleting" msprop:Generator_RowChangingName="vw_BENCHRowChanging" msprop:Generator_RowEvHandlerName="vw_BENCHRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_BENCHRowDeleted" msprop:Generator_UserTableName="vw_BENCH" msprop:Generator_RowChangedName="vw_BENCHRowChanged" msprop:Generator_RowEvArgName="vw_BENCHRowChangeEvent" msprop:Generator_RowClassName="vw_BENCHRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pricePerMeter" msprop:Generator_ColumnVarNameInTable="columnpricePerMeter" msprop:Generator_ColumnPropNameInRow="pricePerMeter" msprop:Generator_ColumnPropNameInTable="pricePerMeterColumn" msprop:Generator_UserColumnName="pricePerMeter" type="xs:decimal" minOccurs="0" />
+              <xs:element name="width" msprop:Generator_ColumnVarNameInTable="columnwidth" msprop:Generator_ColumnPropNameInRow="width" msprop:Generator_ColumnPropNameInTable="widthColumn" msprop:Generator_UserColumnName="width" type="xs:int" minOccurs="0" />
+              <xs:element name="tbl" msprop:Generator_ColumnVarNameInTable="columntbl" msprop:Generator_ColumnPropNameInRow="tbl" msprop:Generator_ColumnPropNameInTable="tblColumn" msprop:Generator_UserColumnName="tbl" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -946,6 +1019,14 @@ WHERE        (colorsCatID = '9F373F04-198E-4588-A94C-80483F70A022')</CommandText
     </xs:unique>
     <xs:unique name="vw_COLORSBAZA_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:vw_COLORSBAZA" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_COLORSBACK_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_COLORSBACK" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_BENCH_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_BENCH" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
   </xs:element>

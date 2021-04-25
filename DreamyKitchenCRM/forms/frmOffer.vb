@@ -49,6 +49,7 @@ Public Class frmOffer
             sID = value
         End Set
     End Property
+
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
         Set(value As DevExpress.XtraGrid.Views.Grid.GridView)
             Ctrl = value
@@ -92,7 +93,7 @@ Public Class frmOffer
         FillCbo.DOOR_TYPE(cboDoorType)
         FillCbo.BENCH(cboBENCH)
         FillCbo.BENCH(cboExtraBENCH)
-        FillCbo.DIMENSION(cboDim)
+        'FillCbo.DIMENSION(cboDim)
         'FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
         LoadMech()
 
@@ -523,6 +524,7 @@ Public Class frmOffer
                     ExceptFields.Add(txtQTY.Properties.Tag)
                     ExceptFields.Add(cboBENCH.Properties.Tag)
                     ExceptFields.Add(chkDimChanged.Properties.Tag)
+                    ExceptFields.Add(cboBazaColors.Properties.Tag)
                     ExceptFields.Add(cboExtraBENCH.Properties.Tag)
                     ExceptFields.Add(txtbenchExtraDim.Properties.Tag)
                     ExceptFields.Add(txtBenchExtraPrice.Properties.Tag)
@@ -653,24 +655,24 @@ Public Class frmOffer
         Dim sResult As Boolean
         Try
             If Valid.ValidateForm(LayoutControl1) Then
-                Dim txt As New DevExpress.XtraEditors.TextEdit
-                txt.Properties.Mask.MaskType = Mask.MaskType.Numeric
-                txt.Properties.Mask.EditMask = "n2"
-                Dim args = New XtraInputBoxArgs()
-                args.Caption = "Τελικό Ύψος Κουζίνας (cm)"
-                args.Prompt = "Πληκτρολογήστε το Τελικό Ύψος Κουζίνας (cm)"
-                args.DefaultButtonIndex = 0
-                args.DefaultResponse = "Test"
-                args.Editor = txt
-                Dim Result = XtraInputBox.Show(args)
-                If Result Is Nothing Then
-                    XtraMessageBox.Show("Πρέπει υποχρεωτικά να περάσετε τελικό ύψος κουζινας για να προχωρήσετε.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                End If
+                'Dim txt As New DevExpress.XtraEditors.TextEdit
+                'txt.Properties.Mask.MaskType = Mask.MaskType.Numeric
+                'txt.Properties.Mask.EditMask = "n2"
+                'Dim args = New XtraInputBoxArgs()
+                'args.Caption = "Τελικό Ύψος Κουζίνας (cm)"
+                'args.Prompt = "Πληκτρολογήστε το Τελικό Ύψος Κουζίνας (cm)"
+                'args.DefaultButtonIndex = 0
+                'args.DefaultResponse = "Test"
+                'args.Editor = txt
+                'Dim Result = XtraInputBox.Show(args)
+                'If Result Is Nothing Then
+                '    XtraMessageBox.Show("Πρέπει υποχρεωτικά να περάσετε τελικό ύψος κουζινας για να προχωρήσετε.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                '    Exit Sub
+                'End If
                 Select Case Mode
                     Case FormMode.NewRecord
                         sID = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID,, "finalHeightKitchen", toSQLValueS(Result, True))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID)
                         If sResult = True Then
                             ' Καταχώρηση υποπροσφοράς
                             Dim sSQL As String
@@ -680,10 +682,15 @@ Public Class frmOffer
                             Using oCmd As New SqlCommand(sSQL, CNDB)
                                 oCmd.ExecuteNonQuery()
                             End Using
+                            'Εαν δεν υπάρχουν στοιχεία προσφοράς καταχωρώ την γραμμή ώστε μετα να γίνεται update στο data entry
+                            sSQL = "INSERT INTO OFF_DET (offID ,createdBy ,createdOn,gola) SELECT " & toSQLValueS(sID) & "," & toSQLValueS(UserProps.ID.ToString) & ",GETDATE(),0"
+                            Using oCmd As New SqlCommand(sSQL, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
 
                         End If
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID,,,,, "finalHeightKitchen= " & toSQLValueS(Result, True))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID)
                 End Select
                 'If CalledFromCtrl Then
                 '    FillCbo.ERM(CtrlCombo)
@@ -695,7 +702,8 @@ Public Class frmOffer
                 txtCustomCode.Select()
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    'LayoutControlGroup2.Enabled = True : LayoutControl2.Enabled = True
+                    'LayoutControlGroup2.Enabled = True :
+                    LayoutControl2.Enabled = True
                     cmdOffersNew.Enabled = True
                     cmdSave.Enabled = True
                     'Cls.ClearCtrls(LayoutControl1)
@@ -1081,12 +1089,21 @@ Public Class frmOffer
         frmOffTotal.ShowDialog()
 
         Dim report As New Rep_offer()
+        'Dim report3 As New RepOfferMech()
         'Dim myParameter As New Parameter()
         'myParameter.Type = GetType(String)
         'myParameter.Name = "OfferID"
         'myParameter.Value = sID
         'myParameter.Visible = False
         report.Parameters.Item(0).Value = sID
+        report.CreateDocument()
+        Dim report2 As New Rep_Offer2ndPage
+        'report3.Parameters.Item(0).Value = sID
+        report2.CreateDocument()
+        report.ModifyDocument(Sub(x)
+                                  x.AddPages(report2.Pages)
+                              End Sub)
+        'report2.Parameters.Item(0).Value = sID
         'report.Parameters.Add(myParameter)
         'report.RequestParameters = False
         Dim printTool As New ReportPrintTool(report)
@@ -1378,5 +1395,36 @@ Public Class frmOffer
             Case 1 : ManageBazaColors()
             Case 2 : cboBazaColors.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub cboERM_EditValueChanged(sender As Object, e As EventArgs) Handles cboERM.EditValueChanged
+
+    End Sub
+
+    Private Sub cboERM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboERM.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageErm()
+            Case 2 : cboERM.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageErm()
+        Dim frmErmaria As frmErmaria = New frmErmaria
+        frmErmaria.CallerForm = "frmOffer"
+        frmErmaria.CallerControl = cboERM
+        frmErmaria.CalledFromControl = True
+        If cboERM.EditValue <> Nothing Then frmErmaria.ID = cboERM.EditValue.ToString
+        frmErmaria.MdiParent = frmMain
+        If cboERM.EditValue <> Nothing Then frmErmaria.Mode = FormMode.EditRecord Else frmErmaria.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmErmaria), New Point(CInt(frmErmaria.Parent.ClientRectangle.Width / 2 - frmErmaria.Width / 2), CInt(frmErmaria.Parent.ClientRectangle.Height / 2 - frmErmaria.Height / 2)))
+        frmErmaria.Show()
+    End Sub
+
+    Private Sub cboOfferDetails_Click(sender As Object, e As EventArgs) Handles cboOfferDetails.Click
+        Dim frmOfferDet As New frmOfferDet
+        frmOfferDet.Text = "Στοιχεία Προσφοράς"
+        'frmOffTotal.MdiParent = frmMain
+        frmOfferDet.ID = sID
+        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+        frmOfferDet.ShowDialog()
     End Sub
 End Class
