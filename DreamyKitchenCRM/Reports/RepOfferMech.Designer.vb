@@ -22,21 +22,16 @@ Partial Public Class RepOfferMech
         Me.components = New System.ComponentModel.Container()
         Dim CustomSqlQuery1 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
         Dim QueryParameter1 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RepOfferMech))
         Dim DynamicListLookUpSettings1 As DevExpress.XtraReports.Parameters.DynamicListLookUpSettings = New DevExpress.XtraReports.Parameters.DynamicListLookUpSettings()
-        Me.Vw_NOTESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter()
         Me.SqlDataSource1 = New DevExpress.DataAccess.Sql.SqlDataSource(Me.components)
+        Me.Vw_NOTESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter()
         Me.TopMargin = New DevExpress.XtraReports.UI.TopMarginBand()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.offerID = New DevExpress.XtraReports.Parameters.Parameter()
-        Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
-        '
-        'Vw_NOTESTableAdapter
-        '
-        Me.Vw_NOTESTableAdapter.ClearBeforeFill = True
         '
         'SqlDataSource1
         '
@@ -47,9 +42,15 @@ Partial Public Class RepOfferMech
         QueryParameter1.Type = GetType(DevExpress.DataAccess.Expression)
         QueryParameter1.Value = New DevExpress.DataAccess.Expression("?offerID", GetType(System.Guid))
         CustomSqlQuery1.Parameters.Add(QueryParameter1)
-        CustomSqlQuery1.Sql = resources.GetString("CustomSqlQuery1.Sql")
+        CustomSqlQuery1.Sql = "select distinct  ""vw_OFFER_MECH"".""name""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "  from ""dbo"".""vw_OFFER_MECH"" ""vw_OFFER_M" &
+    "ECH""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " where (""vw_OFFER_MECH"".""offID"" = @OfferID)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "and ""vw_OFFER_MECH"".""qty"">0"
         Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1})
-        Me.SqlDataSource1.ResultSchemaSerializable = resources.GetString("SqlDataSource1.ResultSchemaSerializable")
+        Me.SqlDataSource1.ResultSchemaSerializable = "PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9InZ3X09GRkVSX01FQ0giPjxGa" &
+    "WVsZCBOYW1lPSJuYW1lIiBUeXBlPSJTdHJpbmciIC8+PC9WaWV3PjwvRGF0YVNldD4="
+        '
+        'Vw_NOTESTableAdapter
+        '
+        Me.Vw_NOTESTableAdapter.ClearBeforeFill = True
         '
         'TopMargin
         '
@@ -67,6 +68,17 @@ Partial Public Class RepOfferMech
         Me.Detail.HeightF = 16.04166!
         Me.Detail.Name = "Detail"
         '
+        'XrLabel2
+        '
+        Me.XrLabel2.ForeColor = System.Drawing.Color.Gray
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel2.Multiline = True
+        Me.XrLabel2.Name = "XrLabel2"
+        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel2.SizeF = New System.Drawing.SizeF(14.58333!, 16.04166!)
+        Me.XrLabel2.StylePriority.UseForeColor = False
+        Me.XrLabel2.Text = "*"
+        '
         'XrLabel1
         '
         Me.XrLabel1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[name]")})
@@ -75,7 +87,7 @@ Partial Public Class RepOfferMech
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(14.58333!, 0!)
         Me.XrLabel1.Multiline = True
         Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(279.125!, 16.04166!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseForeColor = False
@@ -94,17 +106,6 @@ Partial Public Class RepOfferMech
         DynamicListLookUpSettings1.SortMember = Nothing
         DynamicListLookUpSettings1.ValueMember = "offerID"
         Me.offerID.ValueSourceSettings = DynamicListLookUpSettings1
-        '
-        'XrLabel2
-        '
-        Me.XrLabel2.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
-        Me.XrLabel2.Multiline = True
-        Me.XrLabel2.Name = "XrLabel2"
-        Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel2.SizeF = New System.Drawing.SizeF(14.58333!, 16.04166!)
-        Me.XrLabel2.StylePriority.UseForeColor = False
-        Me.XrLabel2.Text = "*"
         '
         'RepOfferMech
         '

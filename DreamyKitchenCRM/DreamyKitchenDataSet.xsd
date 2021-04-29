@@ -224,7 +224,7 @@ WHERE        (catErmID = @catErmID)</CommandText>
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, qty, height, width, depth, door, Photo, legs, DoorTypeName, offID, catErmID, ermID, OfferPrice, DoorTypeID, catSubErmID, calculations, DoorPrice, CatSubErmName, CatErmName, HasMech, side, subOffID, SubOFFName, 
-                         ErmPrice
+                         ErmPrice, opening
 FROM            vw_OFFERS
 WHERE        (offID = @OfferID)</CommandText>
                     <Parameters>
@@ -256,10 +256,11 @@ WHERE        (offID = @OfferID)</CommandText>
               <Mapping SourceColumn="CatErmName" DataSetColumn="CatErmName" />
               <Mapping SourceColumn="HasMech" DataSetColumn="HasMech" />
               <Mapping SourceColumn="HasSides" DataSetColumn="HasSides" />
-              <Mapping SourceColumn="side" DataSetColumn="side" />
               <Mapping SourceColumn="subOffID" DataSetColumn="subOffID" />
               <Mapping SourceColumn="SubOFFName" DataSetColumn="SubOFFName1" />
               <Mapping SourceColumn="ErmPrice" DataSetColumn="ErmPrice" />
+              <Mapping SourceColumn="opening" DataSetColumn="opening" />
+              <Mapping SourceColumn="side" DataSetColumn="side1" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -757,6 +758,20 @@ FROM            vw_BENCH</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="ErmPrice" msprop:Generator_ColumnVarNameInTable="columnErmPrice" msprop:Generator_ColumnPropNameInRow="ErmPrice" msprop:Generator_ColumnPropNameInTable="ErmPriceColumn" msprop:Generator_UserColumnName="ErmPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="opening" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnopening" msprop:Generator_ColumnPropNameInRow="opening" msprop:Generator_ColumnPropNameInTable="openingColumn" msprop:Generator_UserColumnName="opening" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="side1" msdata:ReadOnly="true" msdata:Caption="side" msprop:Generator_ColumnVarNameInTable="columnside1" msprop:Generator_ColumnPropNameInRow="side1" msprop:Generator_ColumnPropNameInTable="side1Column" msprop:Generator_UserColumnName="side1" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="13" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>

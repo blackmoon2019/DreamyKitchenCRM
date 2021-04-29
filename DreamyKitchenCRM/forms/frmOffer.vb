@@ -14,6 +14,8 @@ Imports DevExpress.XtraReports.Parameters
 Imports DevExpress.XtraReports.UI
 Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraPrinting
+Imports DevExpress.Export
 
 Public Class frmOffer
 
@@ -105,6 +107,9 @@ Public Class frmOffer
         cboSides.Properties.Items.Add("Δεξί")
         cboSides.Properties.Items.Add("Αριστερό")
         cboSides.Properties.Items.Add("Δεξί/Αριστερό")
+        cboOpening.Properties.Items.Add("Δεξί")
+        cboOpening.Properties.Items.Add("Αριστερό")
+        cboOpening.Properties.Items.Add("Ανάκληση")
         If cboCategory.EditValue Is Nothing And cboCatSubErm.EditValue Is Nothing And cboDoorType.EditValue <> Nothing Then
             Me.Vw_ERMTableAdapter.FillByDoorType(Me.DreamyKitchenDataSet.vw_ERM, System.Guid.Parse(cboDoorType.EditValue.ToString))
         ElseIf cboCategory.EditValue <> Nothing And cboCatSubErm.EditValue Is Nothing And cboDoorType.EditValue Is Nothing Then
@@ -131,6 +136,8 @@ Public Class frmOffer
                 Me.OFFERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_OFFERS, System.Guid.Parse(sID))
                 LoadForms.LoadFormGRP(LayoutControlGroup1, "Select * from vw_OFF where id ='" + sID + "'")
                 cmdSave.Enabled = False
+                cmdCancelOff.Enabled = True
+                cmdOfferDetails.Enabled = True
         End Select
         Me.CenterToScreen()
         My.Settings.frmDoorType = Me.Location
@@ -154,7 +161,7 @@ Public Class frmOffer
 
     End Sub
     Private Sub LoadMech()
-        If Mode = FormMode.NewRecord Then
+        If Mode = FormMode.NewRecord And sOffersID = "" Then
             LoadForms.LoadDataToGrid(grdMech, GridView2, "select ID,NAME,PRICE,PHOTO from vw_MECH",, True)
         Else
             LoadForms.LoadDataToGrid(grdMech, GridView2, "Select M.ID,M.NAME ,isnull(OM.PRICE,M.PRICE) AS PRICE,M.PHOTO,QTY, TOTALPRICE 
@@ -529,8 +536,17 @@ Public Class frmOffer
                     ExceptFields.Add(txtbenchExtraDim.Properties.Tag)
                     ExceptFields.Add(txtBenchExtraPrice.Properties.Tag)
                     ExceptFields.Add(txtTotalPrice.Properties.Tag)
+                    ExceptFields.Add(cboOpening.Properties.Tag)
                     sGuid = System.Guid.NewGuid.ToString
-                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,CatSubErmID,CatErmID,CalcID", toSQLValueS(DoorTypeID) & "," & toSQLValueS(CatSubErmID) & "," & toSQLValueS("DF0C5343-2422-4340-9157-27427098ABD7") & "," & toSQLValueS(CalcID), ExceptFields)
+                    Dim ctErmID As String
+                    Select Case CatErmID
+                        'Εξτρα Πλαινα
+                        Case "DF0C5343-2422-4340-9157-27427098ABD7" : ctErmID = CatErmID
+                        'Πάγκοι
+                        Case "117CF8ED-77C9-4763-8BE0-9896BCCCAA06" : ctErmID = CatErmID
+                        Case Else : ctErmID = "DF0C5343-2422-4340-9157-27427098ABD7"
+                    End Select
+                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,CatSubErmID,CatErmID,CalcID", toSQLValueS(DoorTypeID) & "," & toSQLValueS(CatSubErmID) & "," & toSQLValueS(ctErmID) & "," & toSQLValueS(CalcID), ExceptFields)
                     ExceptFields.Clear()
                     FillCbo.ERM(cboERM)
                     cboERM.EditValue = System.Guid.Parse(sGuid)
@@ -585,9 +601,6 @@ Public Class frmOffer
                         Next i
                     End If
                 Else
-                    ExceptFields.Add(Pic1.Properties.Tag)
-                    ExceptFields.Add(Pic2.Properties.Tag)
-                    ExceptFields.Add(Pic3.Properties.Tag)
                     sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "OFFERS",,, LayoutControlGroup2, sOffersID,,,, ExceptFields)
                 End If
                 If sResult = True Then
@@ -683,11 +696,15 @@ Public Class frmOffer
                                 oCmd.ExecuteNonQuery()
                             End Using
                             'Εαν δεν υπάρχουν στοιχεία προσφοράς καταχωρώ την γραμμή ώστε μετα να γίνεται update στο data entry
-                            sSQL = "INSERT INTO OFF_DET (offID ,createdBy ,createdOn,gola) SELECT " & toSQLValueS(sID) & "," & toSQLValueS(UserProps.ID.ToString) & ",GETDATE(),0"
+                            sSQL = "INSERT INTO OFF_DET (offID, createdBy ,createdOn,gola,legsV,legsY,boxVColorID, boxKColorID, boxYColorID, pvcVColorID, pvcKColorID, pvcYColorID,benchID,
+                                    doorThickness,backThickness) 
+                                    SELECT " & toSQLValueS(sID) & "," & toSQLValueS(UserProps.ID.ToString) & ",GETDATE(),0,10,10,'AAED2CAA-2FFB-4A00-98F7-3720B0C29D0A',
+                                    'AAED2CAA-2FFB-4A00-98F7-3720B0C29D0A','AAED2CAA-2FFB-4A00-98F7-3720B0C29D0A','C8115C86-BE50-4B14-8A4E-9BF0AAA250E5','C8115C86-BE50-4B14-8A4E-9BF0AAA250E5'
+                                    ,'C8115C86-BE50-4B14-8A4E-9BF0AAA250E5','96A2CECA-74D3-4FE2-BE1E-09F9BD35B13D',18,8"
                             Using oCmd As New SqlCommand(sSQL, CNDB)
                                 oCmd.ExecuteNonQuery()
                             End Using
-
+                            cmdOfferDetails.Enabled = True
                         End If
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "[OFF]",,, LayoutControlGroup1, sID)
@@ -706,6 +723,7 @@ Public Class frmOffer
                     LayoutControl2.Enabled = True
                     cmdOffersNew.Enabled = True
                     cmdSave.Enabled = True
+                    cmdCancelOff.Enabled = True
                     'Cls.ClearCtrls(LayoutControl1)
                     'txtCode.Text = DBQ.GetNextId("[OFF]")
                 End If
@@ -724,6 +742,10 @@ Public Class frmOffer
         Pic1.BackColor = Color.White : Pic2.BackColor = Color.White : Pic3.BackColor = Color.White
         Pic1.BorderStyle = BorderStyles.Default : Pic2.BorderStyle = BorderStyles.Default : Pic3.BorderStyle = BorderStyles.Default
         LoadForms.LoadFormGRP(LayoutControlGroup2, "Select * from vw_OFFERS where id ='" + GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString() + "'")
+        'Άνοιγμα
+        cboOpening.EditValue = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "opening").ToString()
+        'Πλαϊνα
+        cboSides.EditValue = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "side1").ToString()
         'Φωτογραφία επιλεγμένου ερμαρίου
         Dim cmd As SqlCommand = New SqlCommand("Select SelectedErmPicture from vw_OFFERS where id ='" + GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString() + "'", CNDB)
         Dim sdr As SqlDataReader = cmd.ExecuteReader()
@@ -1419,12 +1441,52 @@ Public Class frmOffer
         frmErmaria.Show()
     End Sub
 
-    Private Sub cboOfferDetails_Click(sender As Object, e As EventArgs) Handles cboOfferDetails.Click
+    Private Sub cboOfferDetails_Click(sender As Object, e As EventArgs) Handles cmdOfferDetails.Click
         Dim frmOfferDet As New frmOfferDet
         frmOfferDet.Text = "Στοιχεία Προσφοράς"
         'frmOffTotal.MdiParent = frmMain
         frmOfferDet.ID = sID
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCatSubErm), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
         frmOfferDet.ShowDialog()
+    End Sub
+
+    Private Sub cmdOfferExport_Click(sender As Object, e As EventArgs) Handles cmdOfferExport.Click
+        Dim options = New XlsxExportOptionsEx()
+        options.UnboundExpressionExportMode = UnboundExpressionExportMode.AsFormula
+        options.ExportType = ExportType.WYSIWYG
+        XtraSaveFileDialog1.Filter = "XLSX Files (*.xlsx*)|*.xlsx"
+        If XtraSaveFileDialog1.ShowDialog() = DialogResult.OK Then
+            GridView3.GridControl.ExportToXlsx(XtraSaveFileDialog1.FileName, options)
+            Process.Start(XtraSaveFileDialog1.FileName)
+        End If
+    End Sub
+
+    Private Sub cmdCancelOff_Click(sender As Object, e As EventArgs) Handles cmdCancelOff.Click
+        Try
+            Dim sSQL As String
+            If sID <> "" Then
+                If XtraMessageBox.Show("Θέλετε να ακυρωθεί η προσφορά?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    sSQL = "UPDATE [OFF] SET cancelOFF = 1 WHERE ID = " & toSQLValueS(sID)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub cboSides_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSides.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboSides.EditValue = Nothing
+        End Select
+
+    End Sub
+
+    Private Sub cboOpening_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboOpening.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboOpening.EditValue = Nothing
+        End Select
     End Sub
 End Class

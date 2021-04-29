@@ -43,6 +43,8 @@ Partial Class frmGen
         Me.L7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.txtNum = New DevExpress.XtraEditors.TextEdit()
+        Me.L8 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.ColorPickEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -64,6 +66,8 @@ Partial Class frmGen
         CType(Me.L7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.L8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -78,6 +82,7 @@ Partial Class frmGen
         Me.LayoutControl1.Controls.Add(Me.txtCode)
         Me.LayoutControl1.Controls.Add(Me.cbo1)
         Me.LayoutControl1.Controls.Add(Me.cmdDelete)
+        Me.LayoutControl1.Controls.Add(Me.txtNum)
         Me.LayoutControl1.Location = New System.Drawing.Point(-8, -10)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(342, 0, 650, 400)
@@ -144,9 +149,9 @@ Partial Class frmGen
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(185, 255)
+        Me.cmdExit.Location = New System.Drawing.Point(130, 255)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(101, 28)
+        Me.cmdExit.Size = New System.Drawing.Size(70, 28)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 12
         Me.cmdExit.Text = "Έξοδος"
@@ -154,18 +159,18 @@ Partial Class frmGen
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(290, 255)
+        Me.cmdSave.Location = New System.Drawing.Point(204, 255)
         Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(98, 28)
+        Me.cmdSave.Size = New System.Drawing.Size(184, 28)
         Me.cmdSave.StyleController = Me.LayoutControl1
         Me.cmdSave.TabIndex = 13
         Me.cmdSave.Text = "Αποθήκευση"
         '
         'txtName
         '
-        Me.txtName.Location = New System.Drawing.Point(199, 12)
+        Me.txtName.Location = New System.Drawing.Point(135, 12)
         Me.txtName.Name = "txtName"
-        Me.txtName.Size = New System.Drawing.Size(189, 20)
+        Me.txtName.Size = New System.Drawing.Size(253, 20)
         Me.txtName.StyleController = Me.LayoutControl1
         Me.txtName.TabIndex = 14
         Me.txtName.Tag = "name,0,1,2"
@@ -175,7 +180,7 @@ Partial Class frmGen
         Me.txtCode.Location = New System.Drawing.Point(46, 12)
         Me.txtCode.Name = "txtCode"
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(115, 20)
+        Me.txtCode.Size = New System.Drawing.Size(51, 20)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 14
         Me.txtCode.Tag = "code,0"
@@ -210,7 +215,7 @@ Partial Class frmGen
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.L2, Me.L3, Me.L1, Me.L4, Me.LayoutControlItem3, Me.EmptySpaceItem2, Me.L7, Me.L5, Me.L6})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.L2, Me.L3, Me.L1, Me.L4, Me.LayoutControlItem3, Me.EmptySpaceItem2, Me.L7, Me.L5, Me.L6, Me.L8})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(400, 295)
         Me.Root.TextVisible = False
@@ -218,26 +223,26 @@ Partial Class frmGen
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 120)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 144)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(380, 123)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(380, 99)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.cmdExit
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(173, 243)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(118, 243)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(105, 32)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(74, 32)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.cmdSave
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(278, 243)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(192, 243)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(102, 32)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(188, 32)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -245,9 +250,9 @@ Partial Class frmGen
         '
         Me.L2.Control = Me.txtName
         Me.L2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.L2.Location = New System.Drawing.Point(153, 0)
+        Me.L2.Location = New System.Drawing.Point(89, 0)
         Me.L2.Name = "L2"
-        Me.L2.Size = New System.Drawing.Size(227, 24)
+        Me.L2.Size = New System.Drawing.Size(291, 24)
         Me.L2.Tag = "1"
         Me.L2.TextSize = New System.Drawing.Size(22, 13)
         '
@@ -268,7 +273,7 @@ Partial Class frmGen
         Me.L1.CustomizationFormText = "LayoutControlItem3"
         Me.L1.Location = New System.Drawing.Point(0, 0)
         Me.L1.Name = "L1"
-        Me.L1.Size = New System.Drawing.Size(153, 24)
+        Me.L1.Size = New System.Drawing.Size(89, 24)
         Me.L1.Tag = "1"
         Me.L1.TextSize = New System.Drawing.Size(22, 13)
         '
@@ -297,7 +302,7 @@ Partial Class frmGen
         Me.EmptySpaceItem2.AllowHotTrack = False
         Me.EmptySpaceItem2.Location = New System.Drawing.Point(52, 243)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(121, 32)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(66, 32)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'L7
@@ -330,6 +335,37 @@ Partial Class frmGen
         Me.L6.Size = New System.Drawing.Size(380, 24)
         Me.L6.TextSize = New System.Drawing.Size(22, 13)
         '
+        'txtNum
+        '
+        Me.txtNum.EditValue = "0"
+        Me.txtNum.Location = New System.Drawing.Point(28, 132)
+        Me.txtNum.Name = "txtNum"
+        Me.txtNum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtNum.Properties.EditFormat.FormatString = "n0"
+        Me.txtNum.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtNum.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtNum.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtNum.Properties.MaskSettings.Set("mask", "n0")
+        Me.txtNum.Size = New System.Drawing.Size(360, 20)
+        Me.txtNum.StyleController = Me.LayoutControl1
+        Me.txtNum.TabIndex = 37
+        Me.txtNum.Tag = "arProt,0,1,2"
+        '
+        'L8
+        '
+        Me.L8.Control = Me.txtNum
+        Me.L8.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.L8.CustomizationFormText = "Κατηγορία"
+        Me.L8.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.L8.Location = New System.Drawing.Point(0, 120)
+        Me.L8.Name = "L8"
+        Me.L8.Size = New System.Drawing.Size(380, 24)
+        Me.L8.Text = "L8"
+        Me.L8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.L8.TextSize = New System.Drawing.Size(11, 13)
+        Me.L8.TextToControlDistance = 5
+        Me.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        '
         'frmGen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -360,6 +396,8 @@ Partial Class frmGen
         CType(Me.L7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.L8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -388,4 +426,6 @@ Partial Class frmGen
     Friend WithEvents L5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents ColorPickEdit1 As DevExpress.XtraEditors.ColorPickEdit
     Friend WithEvents L6 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtNum As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents L8 As DevExpress.XtraLayout.LayoutControlItem
 End Class

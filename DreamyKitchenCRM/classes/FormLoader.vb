@@ -245,7 +245,7 @@ Public Class FormLoader
             GRDControl.Rows.Clear()
             Dim columnName As String
 
-            Dim Crow As New CategoryRow("Στοιχεία Προσφοράς")
+            Dim Crow As New CategoryRow("ΓΙΑ ΠΡΟΣΦΟΡΑ")
             Crow.Name = "OFFER"
             GRDControl.Rows.Add(Crow)
             Dim Roffer As CategoryRow = GRDControl.Rows("OFFER")
@@ -270,10 +270,15 @@ Public Class FormLoader
             Crow.ChildRows.Add(Crow2)
             Dim RBench As CategoryRow = GRDControl.Rows("BENCH")
 
-            Crow = New CategoryRow("Στοιχεία Παραγγελίας")
+            Crow = New CategoryRow("ΓΙΑ ΠΑΡΑΓΓΕΛΙΑ")
             Crow.Name = "ORDER"
             GRDControl.Rows.Add(Crow)
             Dim ROrder As CategoryRow = GRDControl.Rows("ORDER")
+
+            Crow2 = New CategoryRow("ΣΤΟΙΧΕΙΑ ΠΑΡΑΓΓΕΛΙΑΣ")
+            Crow2.Name = "DETORDERS"
+            Crow.ChildRows.Add(Crow2)
+            Dim RDet As CategoryRow = GRDControl.Rows("DETORDERS")
 
             Crow2 = New CategoryRow("ΣΥΣΚΕΥΕΣ")
             Crow2.Name = "MECHS"
@@ -394,7 +399,7 @@ Public Class FormLoader
                     Case "gola", "finalHeightKitchen" : Roffer.ChildRows.Add(C)
                     Case "sink", "sink_P", "battery", "battery_P", "absorber", "absorber_P", "dishwasher", "dishwasher_P", "oven", "oven_P", "furnace", "furnace_P", "fridge", "fridge_P", "Dispenser", "Dispenser_P"
                         RMech.ChildRows.Add(C)
-                    Case Else : ROrder.ChildRows.Add(C)
+                    Case Else : RDet.ChildRows.Add(C)
                 End Select
 
 

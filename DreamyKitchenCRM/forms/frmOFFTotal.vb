@@ -50,9 +50,11 @@ Public Class frmOFFTotal
         Dim sSQL As String
         Try
             sSQL = "INSERT INTO OFF_TOTAL (offID,subOffID, DoorTypeID, price, NewPrice,createdBy ,createdOn)
-                    SELECT offID,subOffID, DoorTypeID, OfferPrice, OfferPrice," & toSQLValueS(UserProps.ID.ToString) & " ,getdate()
-                    FROM   vw_OFF_TOTALPERDOOR S
-                     WHERE offID = " & toSQLValueS(sID) & " and  NOT EXISTS (SELECT T.offid FROM   OFF_TOTAL  T WHERE  T.offid= " & toSQLValueS(sID) & " and t.DoorTypeID=s.DoorTypeID )"
+                    SELECT offID,subOffID,DoorTypeID,SUM(ISNULL(OfferPrice, 0)),SUM(ISNULL(OfferPrice, 0)) ," & toSQLValueS(UserProps.ID.ToString) & " ,getdate()
+            FROM    dbo.vw_OFFERS S
+                    WHERE offID = " & toSQLValueS(sID) & " and  NOT EXISTS (SELECT T.offid FROM   OFF_TOTAL  T WHERE  T.offid= " & toSQLValueS(sID) & " and t.DoorTypeID=s.DoorTypeID )
+            GROUP BY DoorTypeName, offID, DoorTypeID, subOffID, SubOFFName                 "
+
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using

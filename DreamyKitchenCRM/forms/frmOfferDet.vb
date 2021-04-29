@@ -60,7 +60,11 @@ Public Class frmOfferDet
         LoadForms.LoadDataToVGrid(VGridControl1, sSQL, HasRows)
         'Εαν δεν υπάρχουν στοιχεία προσφοράς καταχωρώ την γραμμή ώστε μετα να γίνεται update στο data entry
         If HasRows = False Then
-            sSQL = "INSERT INTO OFF_DET (offID, createdBy ,createdOn,gola) SELECT " & toSQLValueS(sID) & "," & toSQLValueS(UserProps.ID.ToString) & ",GETDATE(),0"
+            sSQL = "INSERT INTO OFF_DET (offID, createdBy ,createdOn,gola,legsV,legsY,boxVColorID, boxKColorID, boxYColorID, pvcVColorID, pvcKColorID, pvcYColorID,benchID,
+                    doorThickness,backThickness) 
+                    SELECT " & toSQLValueS(sID) & "," & toSQLValueS(UserProps.ID.ToString) & ",GETDATE(),0,10,10,'AAED2CAA-2FFB-4A00-98F7-3720B0C29D0A',
+                    'AAED2CAA-2FFB-4A00-98F7-3720B0C29D0A','AAED2CAA-2FFB-4A00-98F7-3720B0C29D0A','C8115C86-BE50-4B14-8A4E-9BF0AAA250E5','C8115C86-BE50-4B14-8A4E-9BF0AAA250E5'
+                    ,'C8115C86-BE50-4B14-8A4E-9BF0AAA250E5','96A2CECA-74D3-4FE2-BE1E-09F9BD35B13D',18,8"
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
