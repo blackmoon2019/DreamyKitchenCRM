@@ -261,7 +261,6 @@ Partial Public Class Rep_offer
         Me.XrTableRow3 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrLabel36 = New DevExpress.XtraReports.UI.XRLabel()
         Me.OfferID = New DevExpress.XtraReports.Parameters.Parameter()
         Me.DetailReport1 = New DevExpress.XtraReports.UI.DetailReportBand()
@@ -697,7 +696,8 @@ Partial Public Class Rep_offer
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 0!
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel36})
+        Me.BottomMargin.HeightF = 67.90759!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
         Me.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
@@ -718,7 +718,7 @@ Partial Public Class Rep_offer
         '
         Me.XrLabel59.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel59.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel59.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_OFF_DET].[legsY]")})
+        Me.XrLabel59.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_OFF_DET].[legsY] + ' CM'")})
         Me.XrLabel59.LocationFloat = New DevExpress.Utils.PointFloat(397.3141!, 362.1538!)
         Me.XrLabel59.Multiline = True
         Me.XrLabel59.Name = "XrLabel59"
@@ -734,7 +734,7 @@ Partial Public Class Rep_offer
         '
         Me.XrLabel58.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel58.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel58.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_OFF_DET].[finalHeightKitchen]")})
+        Me.XrLabel58.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_OFF_DET].[finalHeightKitchen] + ' CM'")})
         Me.XrLabel58.LocationFloat = New DevExpress.Utils.PointFloat(233.875!, 362.1537!)
         Me.XrLabel58.Multiline = True
         Me.XrLabel58.Name = "XrLabel58"
@@ -750,7 +750,7 @@ Partial Public Class Rep_offer
         '
         Me.XrLabel46.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel46.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel46.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_OFF_DET].[legsV]")})
+        Me.XrLabel46.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_OFF_DET].[legsV] + ' CM'")})
         Me.XrLabel46.LocationFloat = New DevExpress.Utils.PointFloat(64.89471!, 362.1538!)
         Me.XrLabel46.Multiline = True
         Me.XrLabel46.Name = "XrLabel46"
@@ -1616,20 +1616,14 @@ Partial Public Class Rep_offer
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell8.Weight = 1.0834394138373282R
         '
-        'PageFooter
-        '
-        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel36})
-        Me.PageFooter.HeightF = 32.94907!
-        Me.PageFooter.Name = "PageFooter"
-        '
         'XrLabel36
         '
         Me.XrLabel36.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrLabel36.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(1.000023!, 9.999974!)
         Me.XrLabel36.Multiline = True
         Me.XrLabel36.Name = "XrLabel36"
-        Me.XrLabel36.SizeF = New System.Drawing.SizeF(653.9999!, 32.94907!)
+        Me.XrLabel36.SizeF = New System.Drawing.SizeF(653.0!, 32.94907!)
         Me.XrLabel36.StylePriority.UseFont = False
         Me.XrLabel36.StylePriority.UseForeColor = False
         Me.XrLabel36.StylePriority.UseTextAlignment = False
@@ -1766,7 +1760,7 @@ Partial Public Class Rep_offer
         'ReportFooter
         '
         Me.ReportFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel41, Me.XrLabel42, Me.XrLabel43, Me.XrLabel39, Me.XrLabel40})
-        Me.ReportFooter.HeightF = 207.0924!
+        Me.ReportFooter.HeightF = 192.9844!
         Me.ReportFooter.Name = "ReportFooter"
         Me.ReportFooter.SubBands.AddRange(New DevExpress.XtraReports.UI.SubBand() {Me.SubBand1})
         '
@@ -1857,6 +1851,7 @@ Partial Public Class Rep_offer
         'SubBand1
         '
         Me.SubBand1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox2, Me.XrLabel56})
+        Me.SubBand1.HeightF = 111.699!
         Me.SubBand1.Name = "SubBand1"
         '
         'Vw_NOTESTableAdapter
@@ -1877,13 +1872,13 @@ Partial Public Class Rep_offer
         '
         'Rep_offer
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.DetailReport, Me.PageFooter, Me.DetailReport1, Me.ReportFooter})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.DetailReport, Me.DetailReport1, Me.ReportFooter})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataMember = "vw_OFF"
         Me.DataSource = Me.SqlDataSource1
         Me.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.Margins = New System.Drawing.Printing.Margins(90, 83, 96, 0)
+        Me.Margins = New System.Drawing.Printing.Margins(90, 83, 96, 68)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
@@ -1922,7 +1917,6 @@ Partial Public Class Rep_offer
     Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents DetailReport As DevExpress.XtraReports.UI.DetailReportBand
-    Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
     Friend WithEvents OfferID As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents DetailReport1 As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents Detail2 As DevExpress.XtraReports.UI.DetailBand

@@ -37,16 +37,25 @@ Public Class frmLogin
         Dim sdr As SqlDataReader
         Try
 
-            sSQL = "select un,RealName,code,ID,salerID from USR 
+            sSQL = "select Realname,code,ID,M_UN,M_pwd,server,port,ssl,salerID from vw_USR 
                 where UN= '" & txtUN.Text & "' and pwd = '" & txtPWD.Text & "'"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("un")) = False Then
+                If sdr.IsDBNull(sdr.GetOrdinal("Realname")) = False Then
                     UserProps.Code = sdr.GetInt32(sdr.GetOrdinal("code"))
                     UserProps.RealName = sdr.GetString(sdr.GetOrdinal("Realname"))
                     UserProps.ID = sdr.GetGuid(sdr.GetOrdinal("ID"))
                     If sdr.IsDBNull(sdr.GetOrdinal("salerID")) = False Then UserProps.SalerID = sdr.GetGuid(sdr.GetOrdinal("salerID"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then UserProps.ID = sdr.GetGuid(sdr.GetOrdinal("ID"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("M_un")) = False Then UserProps.Email = sdr.GetString(sdr.GetOrdinal("M_un"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("server")) = False Then UserProps.EmailServer = sdr.GetString(sdr.GetOrdinal("server"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("M_pwd")) = False Then UserProps.EmailPassword = sdr.GetString(sdr.GetOrdinal("M_pwd"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("port")) = False Then UserProps.EmailPort = sdr.GetInt32(sdr.GetOrdinal("port"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("ssl")) = False Then UserProps.EmailSSL = sdr.GetBoolean(sdr.GetOrdinal("ssl"))
+                    'Support Email
+                    ProgProps.SupportEmail = "johnmavroselinos@gmail.com" 'Prog_Prop.GetProgTechSupportEmail
+
                     'General Permissions
                     UserPermissions.GetUserPermissions()
                     sSQL = "UPDATE USR SET dtLogin = getdate() where ID = " & toSQLValueS(UserProps.ID.ToString)

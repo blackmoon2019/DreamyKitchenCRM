@@ -38,7 +38,7 @@ Partial Public Class Rep_Offer2ndPage
         'TopMargin
         '
         Me.TopMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox2, Me.XrRichText2, Me.XrRichText1, Me.XrLabel2, Me.XrLabel3, Me.XrLabel1, Me.XrPictureBox1})
-        Me.TopMargin.HeightF = 1132.292!
+        Me.TopMargin.HeightF = 1063.958!
         Me.TopMargin.Name = "TopMargin"
         '
         'XrPictureBox2
@@ -99,10 +99,12 @@ Partial Public Class Rep_Offer2ndPage
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(327.8494!, 15.0!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(299.1506!, 62.60684!)
         Me.XrLabel1.StylePriority.UseFont = False
+        Me.XrLabel1.StylePriority.UseForeColor = False
         Me.XrLabel1.Text = "Δημιουργούμε το χώρο των ονείρων σας.                                            " &
     "                           'Επιπλα Κουζίνας, Ντουλάπες Υπνοδωματίων, Πόρτες."
         '
@@ -115,20 +117,20 @@ Partial Public Class Rep_Offer2ndPage
         '
         'BottomMargin
         '
-        Me.BottomMargin.HeightF = 1.041412!
+        Me.BottomMargin.HeightF = 14.9587!
         Me.BottomMargin.Name = "BottomMargin"
         '
         'Detail
         '
         Me.Detail.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel36})
-        Me.Detail.HeightF = 35.41616!
+        Me.Detail.HeightF = 91.16624!
         Me.Detail.Name = "Detail"
         '
         'XrLabel36
         '
         Me.XrLabel36.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrLabel36.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(1.0!, 38.16634!)
         Me.XrLabel36.Multiline = True
         Me.XrLabel36.Name = "XrLabel36"
         Me.XrLabel36.SizeF = New System.Drawing.SizeF(626.9999!, 31.9999!)
@@ -143,7 +145,7 @@ Partial Public Class Rep_Offer2ndPage
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail})
         Me.Font = New System.Drawing.Font("Zona Pro Regular", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 1132, 1)
+        Me.Margins = New System.Drawing.Printing.Margins(90, 83, 1064, 15)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4

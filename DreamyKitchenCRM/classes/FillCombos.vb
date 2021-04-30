@@ -498,15 +498,16 @@ Public Class FillCombos
     Public Sub MAIL(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
             Dim ds As DataSet = New DataSet
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Server from vw_MAILS", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,un,Server from vw_MAILS", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
 
             CtrlCombo.Properties.DataSource = sdr
-            CtrlCombo.Properties.DisplayMember = "Server"
+            CtrlCombo.Properties.DisplayMember = "un"
             CtrlCombo.Properties.ValueMember = "id"
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Email Account"
+            CtrlCombo.Properties.Columns(2).Caption = "Server"
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
