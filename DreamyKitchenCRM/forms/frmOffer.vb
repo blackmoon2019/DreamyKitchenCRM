@@ -506,6 +506,7 @@ Public Class frmOffer
         Dim SelectedPics As Byte, WhichPictureHaseSelected As Byte
         Dim cbo As New DevExpress.XtraEditors.LookUpEdit
         Dim SubOffCode As Integer
+        Dim NewCatSubErmID As String
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 'Εδω θα μπεί όταν πάμε να προσθέσουμε ενα νέο ερμάριο σε μια υπάρχουσα προσφορά
@@ -545,6 +546,12 @@ Public Class frmOffer
                         'Πάγκοι
                         Case "117CF8ED-77C9-4763-8BE0-9896BCCCAA06" : ctErmID = CatErmID
                         Case Else : ctErmID = "DF0C5343-2422-4340-9157-27427098ABD7"
+                            NewCatSubErmID = System.Guid.NewGuid.ToString
+                            sSQL = "INSERT INTO CAT_SUB_ERM (ID,NAME,CATERMID,CREATEDON,CREATEDBY) VALUES ( " & toSQLValueS(NewCatSubErmID) & "," & toSQLValueS(cboCatSubErm.Properties.GetDisplayText(cboCatSubErm.EditValue)) & "," & toSQLValueS(ctErmID) & ",GETDATE()," & toSQLValueS(UserProps.ID.ToString) & " )"
+                            Using oCmd As New SqlCommand(sSQL, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                            CatSubErmID = NewCatSubErmID
                     End Select
                     sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,CatSubErmID,CatErmID,CalcID", toSQLValueS(DoorTypeID) & "," & toSQLValueS(CatSubErmID) & "," & toSQLValueS(ctErmID) & "," & toSQLValueS(CalcID), ExceptFields)
                     ExceptFields.Clear()

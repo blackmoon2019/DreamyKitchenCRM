@@ -52,6 +52,17 @@ Partial Friend NotInheritable Class Settings
             Return defaultInstance
         End Get
     End Property
+    
+    <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+     Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
+     Global.System.Configuration.DefaultSettingValueAttribute("Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
+        "chen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True")>  _
+    Public ReadOnly Property DreamyKitchenConnectionString() As String
+        Get
+            Return CType(Me("DreamyKitchenConnectionString"),String)
+        End Get
+    End Property
 End Class
 
 Namespace My

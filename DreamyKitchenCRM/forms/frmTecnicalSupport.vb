@@ -48,6 +48,9 @@ Public Class frmTecnicalSupport
                 cmdEmail.Enabled = False
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_TECH_SUP where id ='" + sID + "'")
+                If UserProps.ID = System.Guid.Parse("E9CEFD11-47C0-4796-A46B-BC41C4C3606B") Then
+                    chkFixed.Enabled = True : txtAnswer.Enabled = True : PictureEdit11.Enabled = True
+                End If
         End Select
         Me.CenterToScreen()
         My.Settings.frmTecnicalSupport = Me.Location
