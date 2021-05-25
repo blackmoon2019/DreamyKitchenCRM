@@ -56,6 +56,8 @@ Public Class frmErmaria
     End Sub
 
     Private Sub frmErmaria_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPETableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_TYPE)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSPVC' table. You can move, or remove it, as needed.
         Me.Vw_COLORSPVCTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSPVC)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
@@ -68,14 +70,15 @@ Public Class frmErmaria
         FillCbo.DIMENSION(cboDim)
         'Τύποι Υπολογισμών
         FillCbo.CALC(cboCalc)
-
         cboSides.Properties.Items.Add("Δεξί")
         cboSides.Properties.Items.Add("Αριστερό")
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("ERM")
+
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_ERM where id ='" + sID + "'")
+
         End Select
         Me.CenterToScreen()
         My.Settings.frmDoorType = Me.Location
@@ -107,6 +110,21 @@ Public Class frmErmaria
                 txtCustomCode.Select()
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    If Mode = FormMode.NewRecord Then
+                        If XtraMessageBox.Show("Θέλετε να καταχωρήσετε το Ερμάριο και σε όλα τα πορτάκια?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                            'Dim frmErmDoorTypes As New frmErmDoorTypes
+                            'frmErmDoorTypes.ID = sID
+                            'frmErmDoorTypes.ShowDialog()
+                            ' Καταχώρηση Ερμαρίου σε όλα τα πορτάκια
+                            Using oCmd As New SqlCommand("CloneERM", CNDB)
+                                oCmd.CommandType = CommandType.StoredProcedure
+                                oCmd.Parameters.AddWithValue("@ErmID", sGuid)
+                                oCmd.Parameters.AddWithValue("@DoorTypeID", cboDoorType.EditValue.ToString)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                            XtraMessageBox.Show("Το ερμάριο δημιουργήθηκε σε όλα τα πορτάκια", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        End If
+                    End If
                     If Mode = FormMode.NewRecord Then Cls.ClearCtrls(LayoutControl1) : txtCode.Text = DBQ.GetNextId("ERM")
                 End If
             End If

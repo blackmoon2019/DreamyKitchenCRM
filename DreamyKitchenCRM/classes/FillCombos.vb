@@ -217,7 +217,7 @@ Public Class FillCombos
 
     Public Sub DOOR_TYPE(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,name,price from vw_DOOR_TYPE order by name", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,name,price from vw_DOOR_TYPE order by code", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "name"
@@ -617,7 +617,7 @@ Public Class FillCombos
             Else
                 sSQL = "Select id,name,price,
                        isnull((select case when OM.id is not null then 1 else 0 end as checked
-		               from vw_DOOR_TYPE OM where offerid = '" & sID & "' and OM.mechID = M.ID),0) as checked
+		               from vw_DOOR_TYPE DT where offerid = '" & sID & "' and OM.mechID = M.ID),0) as checked
                        from vw_MECH M"
             End If
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)

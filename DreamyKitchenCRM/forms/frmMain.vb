@@ -12,6 +12,7 @@ Imports System.ComponentModel
 Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_NOTES' table. You can move, or remove it, as needed.
+
         Me.Vw_NOTESTableAdapter.FillBy1(Me.DreamyKitchenDataSet.vw_NOTES, UserProps.SalerID, UserProps.ID)
         XtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders
         bbDate.Caption = DateTime.Today
@@ -57,6 +58,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BarClose_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarClose.ItemClick
+
         My.Settings.CurrentSkin = UserLookAndFeel.Default.SkinName
         My.Settings.Save()
         Application.Exit()

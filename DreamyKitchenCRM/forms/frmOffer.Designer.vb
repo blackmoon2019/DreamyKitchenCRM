@@ -1175,6 +1175,7 @@ Partial Class frmOffer
         Me.cboBENCH.StyleController = Me.LayoutControl1
         Me.cboBENCH.TabIndex = 21
         Me.cboBENCH.Tag = "benchID,0,1,2"
+        Me.cboBENCH.Visible = False
         '
         'cboSides
         '
@@ -1254,6 +1255,7 @@ Partial Class frmOffer
         Me.cboExtraBENCH.StyleController = Me.LayoutControl1
         Me.cboExtraBENCH.TabIndex = 21
         Me.cboExtraBENCH.Tag = "benchExtraID,0,1,2"
+        Me.cboExtraBENCH.Visible = False
         '
         'txtbenchExtraDim
         '
@@ -1273,6 +1275,7 @@ Partial Class frmOffer
         Me.txtbenchExtraDim.StyleController = Me.LayoutControl1
         Me.txtbenchExtraDim.TabIndex = 42
         Me.txtbenchExtraDim.Tag = "benchExtraDim,0,1,2"
+        Me.txtbenchExtraDim.Visible = False
         '
         'txtBenchExtraPrice
         '
@@ -1292,6 +1295,7 @@ Partial Class frmOffer
         Me.txtBenchExtraPrice.StyleController = Me.LayoutControl1
         Me.txtBenchExtraPrice.TabIndex = 42
         Me.txtBenchExtraPrice.Tag = "BenchExtraPrice,0,1,2"
+        Me.txtBenchExtraPrice.Visible = False
         '
         'cboDoorType
         '
@@ -1995,6 +1999,7 @@ Partial Class frmOffer
         Me.LayoutControlItem25.Size = New System.Drawing.Size(434, 24)
         Me.LayoutControlItem25.Text = "Πάγκος"
         Me.LayoutControlItem25.TextSize = New System.Drawing.Size(117, 13)
+        Me.LayoutControlItem25.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem44
         '
@@ -2006,6 +2011,7 @@ Partial Class frmOffer
         Me.LayoutControlItem44.Size = New System.Drawing.Size(251, 24)
         Me.LayoutControlItem44.Text = "Extra Πάγκος"
         Me.LayoutControlItem44.TextSize = New System.Drawing.Size(117, 13)
+        Me.LayoutControlItem44.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem43
         '
@@ -2018,6 +2024,7 @@ Partial Class frmOffer
         Me.LayoutControlItem43.Size = New System.Drawing.Size(434, 24)
         Me.LayoutControlItem43.Text = "Διάσταση (m)"
         Me.LayoutControlItem43.TextSize = New System.Drawing.Size(117, 13)
+        Me.LayoutControlItem43.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem45
         '
@@ -2030,6 +2037,7 @@ Partial Class frmOffer
         Me.LayoutControlItem45.Size = New System.Drawing.Size(183, 24)
         Me.LayoutControlItem45.Text = "Τιμή Extra Πάγκου"
         Me.LayoutControlItem45.TextSize = New System.Drawing.Size(117, 13)
+        Me.LayoutControlItem45.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem14
         '

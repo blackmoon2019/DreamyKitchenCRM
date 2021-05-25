@@ -5411,6 +5411,8 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnDoorTypeName As Global.System.Data.DataColumn
         
+        Private columnDoorTypeID2 As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -5463,6 +5465,14 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property DoorTypeID2Column() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDoorTypeID2
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -5499,9 +5509,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function Addvw_OFFER_DOORTYPESRow(ByVal DoorTypeID As System.Guid, ByVal DoorTypeName As String) As vw_OFFER_DOORTYPESRow
+        Public Overloads Function Addvw_OFFER_DOORTYPESRow(ByVal DoorTypeID As System.Guid, ByVal DoorTypeName As String, ByVal DoorTypeID2 As System.Guid) As vw_OFFER_DOORTYPESRow
             Dim rowvw_OFFER_DOORTYPESRow As vw_OFFER_DOORTYPESRow = CType(Me.NewRow,vw_OFFER_DOORTYPESRow)
-            Dim columnValuesArray() As Object = New Object() {DoorTypeID, DoorTypeName}
+            Dim columnValuesArray() As Object = New Object() {DoorTypeID, DoorTypeName, DoorTypeID2}
             rowvw_OFFER_DOORTYPESRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_OFFER_DOORTYPESRow)
             Return rowvw_OFFER_DOORTYPESRow
@@ -5526,6 +5536,7 @@ Partial Public Class DreamyKitchenDataSet
         Friend Sub InitVars()
             Me.columnDoorTypeID = MyBase.Columns("DoorTypeID")
             Me.columnDoorTypeName = MyBase.Columns("DoorTypeName")
+            Me.columnDoorTypeID2 = MyBase.Columns("DoorTypeID2")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -5535,6 +5546,8 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columnDoorTypeID)
             Me.columnDoorTypeName = New Global.System.Data.DataColumn("DoorTypeName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDoorTypeName)
+            Me.columnDoorTypeID2 = New Global.System.Data.DataColumn("DoorTypeID2", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDoorTypeID2)
             Me.columnDoorTypeName.MaxLength = 250
         End Sub
         
@@ -9278,6 +9291,21 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property DoorTypeID2() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeID2Column),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DoorTypeID2' in table 'vw_OFFER_DOORTYPES' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeID2Column) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsDoorTypeIDNull() As Boolean
             Return Me.IsNull(Me.tablevw_OFFER_DOORTYPES.DoorTypeIDColumn)
         End Function
@@ -9298,6 +9326,18 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetDoorTypeNameNull()
             Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsDoorTypeID2Null() As Boolean
+            Return Me.IsNull(Me.tablevw_OFFER_DOORTYPES.DoorTypeID2Column)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetDoorTypeID2Null()
+            Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeID2Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -11098,7 +11138,7 @@ Namespace DreamyKitchenDataSetTableAdapters
                 "th, door, Price, photo1, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, Do"& _ 
                 "orTypeID, calcID, calcName, calculations, DoorPrice, catSubErmName, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
                 "               catSubErmID, photo2, photo3"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_ERM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
-                " (catErmID = @catErmID)"
+                " (catErmID = @catErmID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and visible=1"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
@@ -11106,14 +11146,14 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection(1).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
                 "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
                 "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
-                "3, width FROM vw_ERM"
+                "3, width FROM vw_ERM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where visible=1"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
             Me._commandCollection(2).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
                 "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
                 "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
-                "3, width FROM vw_ERM WHERE (DoorTypeID = @DoorTypeID)"
+                "3, width FROM vw_ERM WHERE (DoorTypeID = @DoorTypeID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and visible=1"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DoorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "DoorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
@@ -11122,7 +11162,7 @@ Namespace DreamyKitchenDataSetTableAdapters
                 "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
                 "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
                 "3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID)"& _ 
-                ""
+                " and visible=1"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DoorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "DoorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -11132,7 +11172,7 @@ Namespace DreamyKitchenDataSetTableAdapters
                 "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
                 "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
                 "3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (catSubErmID = @catSubErmI"& _ 
-                "D)"
+                "D) and visible=1"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catSubErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catSubErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -11142,7 +11182,7 @@ Namespace DreamyKitchenDataSetTableAdapters
                 "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
                 "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
                 "3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID)"& _ 
-                " AND (catSubErmID = @catSubErmID)"
+                " AND (catSubErmID = @catSubErmID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and visible=1"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DoorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "DoorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -11660,11 +11700,15 @@ Namespace DreamyKitchenDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, name, Price"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_DOOR_TYPE"
+            Me._commandCollection(0).CommandText = "SELECT        ID, name, Price"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_DOOR_TYPE ORDER BY NAME"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT ID, Price, name FROM vw_DOOR_TYPE"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11689,6 +11733,19 @@ Namespace DreamyKitchenDataSetTableAdapters
             Dim dataTable As DreamyKitchenDataSet.vw_DOOR_TYPEDataTable = New DreamyKitchenDataSet.vw_DOOR_TYPEDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBy(ByVal dataTable As DreamyKitchenDataSet.vw_DOOR_TYPEDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
         End Function
     End Class
     
@@ -12795,6 +12852,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.DataSetTable = "vw_OFFER_DOORTYPES"
             tableMapping.ColumnMappings.Add("DoorTypeID", "DoorTypeID")
             tableMapping.ColumnMappings.Add("DoorTypeName", "DoorTypeName")
+            tableMapping.ColumnMappings.Add("DoorTypeID2", "DoorTypeID2")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -12811,8 +12869,8 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "select distinct DoorTypeID,DoorTypeName   from vw_OFFERS where offID=@OffID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and "& _ 
-                "subOffID=@subOffID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._commandCollection(0).CommandText = "SELECT DISTINCT DoorTypeID, DoorTypeID AS DoorTypeID2, DoorTypeName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM        "& _ 
+                "    vw_OFFERS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (offID = @OffID) AND (subOffID = @subOffID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OffID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "offID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@subOffID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "subOffID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))

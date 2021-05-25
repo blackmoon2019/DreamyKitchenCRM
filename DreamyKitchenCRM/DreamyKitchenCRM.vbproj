@@ -385,6 +385,12 @@
     <Compile Include="forms\WaitForm.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="frmErmDoorTypes.Designer.vb">
+      <DependentUpon>frmErmDoorTypes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="frmErmDoorTypes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Reports\RepOfferMech.Designer.vb">
       <DependentUpon>RepOfferMech.vb</DependentUpon>
     </Compile>
@@ -511,6 +517,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmErmDoorTypes.resx">
+      <DependentUpon>frmErmDoorTypes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepOfferMech.resx">
       <DependentUpon>RepOfferMech.vb</DependentUpon>

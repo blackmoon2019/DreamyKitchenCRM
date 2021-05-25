@@ -16,6 +16,7 @@ Imports DevExpress.LookAndFeel
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraPrinting
 Imports DevExpress.Export
+Imports DevExpress.XtraEditors.Popup
 
 Public Class frmOffer
 
@@ -93,8 +94,8 @@ Public Class frmOffer
         FillCbo.CAT_ERM(cboCategory)
         FillCbo.ERM(cboERM)
         FillCbo.DOOR_TYPE(cboDoorType)
-        FillCbo.BENCH(cboBENCH)
-        FillCbo.BENCH(cboExtraBENCH)
+        'FillCbo.BENCH(cboBENCH)
+        'FillCbo.BENCH(cboExtraBENCH)
         'FillCbo.DIMENSION(cboDim)
         'FillCbo.FillCheckedListMech(chkMech, FormMode.NewRecord)
         LoadMech()
@@ -526,38 +527,59 @@ Public Class frmOffer
                     Exit Sub
                 End If
                 'Καταχώρηση Ερμαρίου
-                If chkDimChanged.Checked = True Then
-                    XtraMessageBox.Show("Έχετε επιλέξει αλλαγή διάστασης. Θα ενημερωθεί η βιβλιοθήκη με την νέα διάσταση.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    ExceptFields.Add(cboERM.Properties.Tag)
-                    ExceptFields.Add(txtQTY.Properties.Tag)
-                    ExceptFields.Add(cboBENCH.Properties.Tag)
-                    ExceptFields.Add(chkDimChanged.Properties.Tag)
-                    ExceptFields.Add(cboBazaColors.Properties.Tag)
-                    ExceptFields.Add(cboExtraBENCH.Properties.Tag)
-                    ExceptFields.Add(txtbenchExtraDim.Properties.Tag)
-                    ExceptFields.Add(txtBenchExtraPrice.Properties.Tag)
-                    ExceptFields.Add(txtTotalPrice.Properties.Tag)
-                    ExceptFields.Add(cboOpening.Properties.Tag)
-                    sGuid = System.Guid.NewGuid.ToString
-                    Dim ctErmID As String
-                    Select Case CatErmID
+                If chkDimChanged.Checked = True And CatErmID <> "117cf8ed-77c9-4763-8be0-9896bcccaa06" Then
+                    'Ελεγχος αν υπάρχει ήδη το Ερμάριο στην βιβλιοθήκη
+                    sSQL = "select count(E.id) as id from vw_erm  E " &
+                            "where	catErmID=  " & toSQLValueS(CatErmID) & "and " &
+                            "catSubErmID = " & toSQLValueS(CatSubErmID) & " and  " &
+                            "DoorTypeID= " & toSQLValueS(DoorTypeID) & " and  " &
+                            "Width = " & toSQLValueS(txtWidth.EditValue.ToString, True) & " And " &
+                            "Height = " & toSQLValueS(txtHeight.EditValue.ToString, True) & " And " &
+                            "depth =  " & toSQLValueS(txtDepth.EditValue.ToString, True)
+                    Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
+                    Dim ExistsDim As Integer = cmd.ExecuteScalar
+                    If ExistsDim = 0 Then
+                        XtraMessageBox.Show("Έχετε επιλέξει αλλαγή διάστασης. Θα ενημερωθεί η βιβλιοθήκη με την νέα διάσταση.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        ExceptFields.Add(cboERM.Properties.Tag)
+                        ExceptFields.Add(txtQTY.Properties.Tag)
+                        ExceptFields.Add(cboBENCH.Properties.Tag)
+                        ExceptFields.Add(chkDimChanged.Properties.Tag)
+                        ExceptFields.Add(cboBazaColors.Properties.Tag)
+                        ExceptFields.Add(cboExtraBENCH.Properties.Tag)
+                        ExceptFields.Add(txtbenchExtraDim.Properties.Tag)
+                        ExceptFields.Add(txtBenchExtraPrice.Properties.Tag)
+                        ExceptFields.Add(txtTotalPrice.Properties.Tag)
+                        ExceptFields.Add(cboOpening.Properties.Tag)
+                        sGuid = System.Guid.NewGuid.ToString
+                        Dim ctErmID As String
+                        Select Case CatErmID
                         'Εξτρα Πλαινα
-                        Case "DF0C5343-2422-4340-9157-27427098ABD7" : ctErmID = CatErmID
+                            Case "DF0C5343-2422-4340-9157-27427098ABD7" : ctErmID = CatErmID
                         'Πάγκοι
-                        Case "117CF8ED-77C9-4763-8BE0-9896BCCCAA06" : ctErmID = CatErmID
-                        Case Else : ctErmID = "DF0C5343-2422-4340-9157-27427098ABD7"
-                            NewCatSubErmID = System.Guid.NewGuid.ToString
-                            sSQL = "INSERT INTO CAT_SUB_ERM (ID,NAME,CATERMID,CREATEDON,CREATEDBY) VALUES ( " & toSQLValueS(NewCatSubErmID) & "," & toSQLValueS(cboCatSubErm.Properties.GetDisplayText(cboCatSubErm.EditValue)) & "," & toSQLValueS(ctErmID) & ",GETDATE()," & toSQLValueS(UserProps.ID.ToString) & " )"
-                            Using oCmd As New SqlCommand(sSQL, CNDB)
-                                oCmd.ExecuteNonQuery()
-                            End Using
-                            CatSubErmID = NewCatSubErmID
-                    End Select
-                    sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,CatSubErmID,CatErmID,CalcID", toSQLValueS(DoorTypeID) & "," & toSQLValueS(CatSubErmID) & "," & toSQLValueS(ctErmID) & "," & toSQLValueS(CalcID), ExceptFields)
-                    ExceptFields.Clear()
-                    FillCbo.ERM(cboERM)
-                    cboERM.EditValue = System.Guid.Parse(sGuid)
-                    If sResult = False Then Exit Sub
+                            Case "117CF8ED-77C9-4763-8BE0-9896BCCCAA06" : ctErmID = CatErmID
+                            Case Else
+                                'ctErmID = "DF0C5343-2422-4340-9157-27427098ABD7"
+                                'NewCatSubErmID = System.Guid.NewGuid.ToString
+                                'sSQL = "INSERT INTO CAT_SUB_ERM (ID,NAME,CATERMID,CREATEDON,CREATEDBY) VALUES ( " & toSQLValueS(NewCatSubErmID) & "," & toSQLValueS(cboCatSubErm.Properties.GetDisplayText(cboCatSubErm.EditValue)) & "," & toSQLValueS(ctErmID) & ",GETDATE()," & toSQLValueS(UserProps.ID.ToString) & " )"
+                                'Using oCmd As New SqlCommand(sSQL, CNDB)
+                                '    oCmd.ExecuteNonQuery()
+                                'End Using
+                                'CatSubErmID = NewCatSubErmID
+                                ctErmID = CatErmID
+                        End Select
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "ERM",,, LayoutControlGroup2, sGuid,, "DoorTypeID,CatSubErmID,CatErmID,CalcID,visible", toSQLValueS(DoorTypeID) & "," & toSQLValueS(CatSubErmID) & "," & toSQLValueS(ctErmID) & "," & toSQLValueS(CalcID) & ",0", ExceptFields)
+                        ' Καταχώρηση Ερμαρίου σε όλα τα πορτάκια
+                        Using oCmd As New SqlCommand("CloneERM", CNDB)
+                            oCmd.CommandType = CommandType.StoredProcedure
+                            oCmd.Parameters.AddWithValue("@ErmID", sGuid)
+                            oCmd.Parameters.AddWithValue("@DoorTypeID", DoorTypeID)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        ExceptFields.Clear()
+                        FillCbo.ERM(cboERM)
+                        cboERM.EditValue = System.Guid.Parse(sGuid)
+                        If sResult = False Then Exit Sub
+                    End If
                 End If
                 ExceptFields.Add(Pic1.Properties.Tag)
                 ExceptFields.Add(Pic2.Properties.Tag)
@@ -1496,4 +1518,5 @@ Public Class frmOffer
             Case 1 : cboOpening.EditValue = Nothing
         End Select
     End Sub
+
 End Class

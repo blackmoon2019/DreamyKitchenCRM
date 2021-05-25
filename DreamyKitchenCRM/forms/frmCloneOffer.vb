@@ -35,6 +35,7 @@ Public Class frmCloneOffer
     End Property
 
     Private Sub frmCloneOffer_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_TYPE1' table. You can move, or remove it, as needed.
         txtCode.EditValue = sOfferCode
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
         Me.Vw_DOOR_TYPETableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_TYPE)
@@ -48,7 +49,8 @@ Public Class frmCloneOffer
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sSQL As String, SubOffID As String
-
+        Dim sCurrentDoor As String
+        Dim sSelectedDoor As String
         Try
 
             If XtraMessageBox.Show("Θέλετε να δημιουργήσω προσφορά για τα επιλεγμένα πορτάκια?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
@@ -63,17 +65,21 @@ Public Class frmCloneOffer
                     If sOffers Is Nothing Then sOffers = New List(Of String)
                     sOffers.Add(SubOffID)
                 End If
+                For i As Integer = 0 To GridView1.DataRowCount - 1
+                    sCurrentDoor = GridView1.GetRowCellValue(i, "DoorTypeID").ToString
+                    sSelectedDoor = GridView1.GetRowCellValue(i, "DoorTypeID2").ToString
 
-                Using oCmd As New SqlCommand("CloneOffers", CNDB)
-                    oCmd.CommandType = CommandType.StoredProcedure
-                    oCmd.Parameters.AddWithValue("@OffID", sID)
-                    oCmd.Parameters.AddWithValue("@DoorTypeID", cboDoorType1.EditValue)
-                    oCmd.Parameters.AddWithValue("@BasedOnDoorTypeID", cboDoorType.EditValue)
-                    oCmd.Parameters.AddWithValue("@CurrsubOFFID", cboSubOffName.EditValue)
-                    oCmd.Parameters.AddWithValue("@NewsubOFFID ", SubOffID)
-                    oCmd.Parameters.AddWithValue("@modifiedBy", UserProps.ID.ToString)
-                    oCmd.ExecuteNonQuery()
-                End Using
+                    Using oCmd As New SqlCommand("CloneOffers", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@OffID", sID)
+                        oCmd.Parameters.AddWithValue("@DoorTypeID", sSelectedDoor)
+                        oCmd.Parameters.AddWithValue("@BasedOnDoorTypeID", sCurrentDoor)
+                        oCmd.Parameters.AddWithValue("@CurrsubOFFID", cboSubOffName.EditValue)
+                        oCmd.Parameters.AddWithValue("@NewsubOFFID ", SubOffID)
+                        oCmd.Parameters.AddWithValue("@modifiedBy", UserProps.ID.ToString)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Next
                 SubOffCode = 0
 
 
@@ -85,5 +91,14 @@ Public Class frmCloneOffer
 
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
+    End Sub
+
+    Private Sub FillByToolStripButton_Click(sender As Object, e As EventArgs)
+        Try
+            Me.Vw_DOOR_TYPETableAdapter.FillBy(Me.DreamyKitchenDataSet.vw_DOOR_TYPE)
+        Catch ex As System.Exception
+            System.Windows.Forms.MessageBox.Show(ex.Message)
+        End Try
+
     End Sub
 End Class

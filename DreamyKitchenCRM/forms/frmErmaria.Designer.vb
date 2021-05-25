@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmErmaria
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         If disposing AndAlso components IsNot Nothing Then
             components.Dispose()
@@ -17,11 +17,12 @@ Partial Class frmErmaria
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmErmaria))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.chkVisible = New DevExpress.XtraEditors.CheckEdit()
         Me.PictureEdit3 = New DevExpress.XtraEditors.PictureEdit()
         Me.PictureEdit1 = New DevExpress.XtraEditors.PictureEdit()
         Me.PictureEdit2 = New DevExpress.XtraEditors.PictureEdit()
@@ -38,11 +39,14 @@ Partial Class frmErmaria
         Me.cboDoorType = New DevExpress.XtraEditors.LookUpEdit()
         Me.txtOInvTotalPrice = New DevExpress.XtraEditors.TextEdit()
         Me.cboPVCColors = New DevExpress.XtraEditors.GridLookUpEdit()
+        Me.VwCOLORSPVCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.GridLookUpEdit2View = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colphoto = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cboBOXColors = New DevExpress.XtraEditors.GridLookUpEdit()
+        Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridLookUpEdit2View1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colname1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -78,13 +82,14 @@ Partial Class frmErmaria
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.VwCOLORSPVCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
-        Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.VwDOORTYPEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
         Me.Vw_COLORSPVCTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSPVCTableAdapter()
+        Me.Vw_DOOR_TYPETableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_TYPETableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.chkVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -99,8 +104,11 @@ Partial Class frmErmaria
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOInvTotalPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboPVCColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridLookUpEdit2View, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridLookUpEdit2View1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDoor1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSides.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,13 +141,13 @@ Partial Class frmErmaria
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.chkVisible)
         Me.LayoutControl1.Controls.Add(Me.PictureEdit3)
         Me.LayoutControl1.Controls.Add(Me.PictureEdit1)
         Me.LayoutControl1.Controls.Add(Me.PictureEdit2)
@@ -168,6 +176,24 @@ Partial Class frmErmaria
         Me.LayoutControl1.Size = New System.Drawing.Size(1570, 587)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'chkVisible
+        '
+        Me.chkVisible.EditValue = CType(0, Byte)
+        Me.chkVisible.Location = New System.Drawing.Point(388, 180)
+        Me.chkVisible.Name = "chkVisible"
+        Me.chkVisible.Properties.Appearance.BackColor = System.Drawing.Color.LightSlateGray
+        Me.chkVisible.Properties.Appearance.ForeColor = System.Drawing.Color.White
+        Me.chkVisible.Properties.Appearance.Options.UseBackColor = True
+        Me.chkVisible.Properties.Appearance.Options.UseForeColor = True
+        Me.chkVisible.Properties.Caption = "Ορατό στην προσφορά"
+        Me.chkVisible.Properties.Tag = "dimChanged"
+        Me.chkVisible.Properties.ValueChecked = CType(1, Byte)
+        Me.chkVisible.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chkVisible.Size = New System.Drawing.Size(145, 20)
+        Me.chkVisible.StyleController = Me.LayoutControl1
+        Me.chkVisible.TabIndex = 50
+        Me.chkVisible.Tag = "visible,0,1,2"
         '
         'PictureEdit3
         '
@@ -241,29 +267,29 @@ Partial Class frmErmaria
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(82, 20)
+        Me.txtCode.Size = New System.Drawing.Size(56, 20)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(991, 12)
+        Me.txtComments.Location = New System.Drawing.Point(885, 12)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(567, 164)
+        Me.txtComments.Size = New System.Drawing.Size(673, 164)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "comments,0,1,2"
         '
         'txtCustomCode
         '
-        Me.txtCustomCode.Location = New System.Drawing.Point(332, 12)
+        Me.txtCustomCode.Location = New System.Drawing.Point(306, 12)
         Me.txtCustomCode.Name = "txtCustomCode"
         Me.txtCustomCode.Properties.Appearance.BackColor = System.Drawing.SystemColors.Info
         Me.txtCustomCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.txtCustomCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCustomCode.Properties.Appearance.Options.UseFont = True
-        Me.txtCustomCode.Size = New System.Drawing.Size(77, 20)
+        Me.txtCustomCode.Size = New System.Drawing.Size(53, 20)
         Me.txtCustomCode.StyleController = Me.LayoutControl1
         Me.txtCustomCode.TabIndex = 4
         Me.txtCustomCode.Tag = "CustomCode,0,1,2"
@@ -276,7 +302,7 @@ Partial Class frmErmaria
         Me.cboCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCategory.Properties.NullText = ""
         Me.cboCategory.Properties.PopupSizeable = False
-        Me.cboCategory.Size = New System.Drawing.Size(280, 20)
+        Me.cboCategory.Size = New System.Drawing.Size(230, 20)
         Me.cboCategory.StyleController = Me.LayoutControl1
         Me.cboCategory.TabIndex = 21
         Me.cboCategory.Tag = "catErmID,0,1,2"
@@ -284,7 +310,7 @@ Partial Class frmErmaria
         'txtHeight
         '
         Me.txtHeight.EditValue = "0,00 €"
-        Me.txtHeight.Location = New System.Drawing.Point(530, 36)
+        Me.txtHeight.Location = New System.Drawing.Point(480, 36)
         Me.txtHeight.Name = "txtHeight"
         Me.txtHeight.Properties.DisplayFormat.FormatString = "n"
         Me.txtHeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -293,7 +319,7 @@ Partial Class frmErmaria
         Me.txtHeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtHeight.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtHeight.Properties.MaskSettings.Set("mask", "n2")
-        Me.txtHeight.Size = New System.Drawing.Size(340, 20)
+        Me.txtHeight.Size = New System.Drawing.Size(284, 20)
         Me.txtHeight.StyleController = Me.LayoutControl1
         Me.txtHeight.TabIndex = 42
         Me.txtHeight.Tag = "height,0,1,2"
@@ -301,7 +327,7 @@ Partial Class frmErmaria
         'txtWidth
         '
         Me.txtWidth.EditValue = "0,00"
-        Me.txtWidth.Location = New System.Drawing.Point(530, 60)
+        Me.txtWidth.Location = New System.Drawing.Point(480, 60)
         Me.txtWidth.Name = "txtWidth"
         Me.txtWidth.Properties.DisplayFormat.FormatString = "n"
         Me.txtWidth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -310,7 +336,7 @@ Partial Class frmErmaria
         Me.txtWidth.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtWidth.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtWidth.Properties.MaskSettings.Set("mask", "n2")
-        Me.txtWidth.Size = New System.Drawing.Size(340, 20)
+        Me.txtWidth.Size = New System.Drawing.Size(284, 20)
         Me.txtWidth.StyleController = Me.LayoutControl1
         Me.txtWidth.TabIndex = 42
         Me.txtWidth.Tag = "width,0,1,2"
@@ -318,7 +344,7 @@ Partial Class frmErmaria
         'txtDepth
         '
         Me.txtDepth.EditValue = "0,00 €"
-        Me.txtDepth.Location = New System.Drawing.Point(530, 84)
+        Me.txtDepth.Location = New System.Drawing.Point(480, 84)
         Me.txtDepth.Name = "txtDepth"
         Me.txtDepth.Properties.DisplayFormat.FormatString = "n"
         Me.txtDepth.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -327,7 +353,7 @@ Partial Class frmErmaria
         Me.txtDepth.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtDepth.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtDepth.Properties.MaskSettings.Set("mask", "n2")
-        Me.txtDepth.Size = New System.Drawing.Size(340, 20)
+        Me.txtDepth.Size = New System.Drawing.Size(284, 20)
         Me.txtDepth.StyleController = Me.LayoutControl1
         Me.txtDepth.TabIndex = 42
         Me.txtDepth.Tag = "depth,0,1,2"
@@ -335,7 +361,7 @@ Partial Class frmErmaria
         'txtDoor
         '
         Me.txtDoor.EditValue = "0"
-        Me.txtDoor.Location = New System.Drawing.Point(530, 132)
+        Me.txtDoor.Location = New System.Drawing.Point(480, 132)
         Me.txtDoor.Name = "txtDoor"
         Me.txtDoor.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtDoor.Properties.EditFormat.FormatString = "n0"
@@ -343,7 +369,7 @@ Partial Class frmErmaria
         Me.txtDoor.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtDoor.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtDoor.Properties.MaskSettings.Set("mask", "n0")
-        Me.txtDoor.Size = New System.Drawing.Size(340, 20)
+        Me.txtDoor.Size = New System.Drawing.Size(284, 20)
         Me.txtDoor.StyleController = Me.LayoutControl1
         Me.txtDoor.TabIndex = 37
         Me.txtDoor.Tag = "door,0,1,2"
@@ -356,7 +382,7 @@ Partial Class frmErmaria
         Me.cboDoorType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboDoorType.Properties.NullText = ""
         Me.cboDoorType.Properties.PopupSizeable = False
-        Me.cboDoorType.Size = New System.Drawing.Size(280, 20)
+        Me.cboDoorType.Size = New System.Drawing.Size(230, 20)
         Me.cboDoorType.StyleController = Me.LayoutControl1
         Me.cboDoorType.TabIndex = 21
         Me.cboDoorType.Tag = "DoorTypeID,0,1,2"
@@ -373,7 +399,7 @@ Partial Class frmErmaria
         Me.txtOInvTotalPrice.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtOInvTotalPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtOInvTotalPrice.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtOInvTotalPrice.Size = New System.Drawing.Size(280, 20)
+        Me.txtOInvTotalPrice.Size = New System.Drawing.Size(255, 20)
         Me.txtOInvTotalPrice.StyleController = Me.LayoutControl1
         Me.txtOInvTotalPrice.TabIndex = 42
         Me.txtOInvTotalPrice.Tag = "price,0,1,2"
@@ -389,10 +415,20 @@ Partial Class frmErmaria
         Me.cboPVCColors.Properties.NullText = ""
         Me.cboPVCColors.Properties.PopupView = Me.GridLookUpEdit2View
         Me.cboPVCColors.Properties.ValueMember = "ID"
-        Me.cboPVCColors.Size = New System.Drawing.Size(280, 20)
+        Me.cboPVCColors.Size = New System.Drawing.Size(230, 20)
         Me.cboPVCColors.StyleController = Me.LayoutControl1
         Me.cboPVCColors.TabIndex = 45
         Me.cboPVCColors.Tag = "pvcColorID,0,1,2"
+        '
+        'VwCOLORSPVCBindingSource
+        '
+        Me.VwCOLORSPVCBindingSource.DataMember = "vw_COLORSPVC"
+        Me.VwCOLORSPVCBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'GridLookUpEdit2View
         '
@@ -437,10 +473,15 @@ Partial Class frmErmaria
         Me.cboBOXColors.Properties.NullText = ""
         Me.cboBOXColors.Properties.PopupView = Me.GridLookUpEdit2View1
         Me.cboBOXColors.Properties.ValueMember = "ID"
-        Me.cboBOXColors.Size = New System.Drawing.Size(280, 20)
+        Me.cboBOXColors.Size = New System.Drawing.Size(230, 20)
         Me.cboBOXColors.StyleController = Me.LayoutControl1
         Me.cboBOXColors.TabIndex = 45
         Me.cboBOXColors.Tag = "boxColorID,0,1,2"
+        '
+        'VwCOLORSBOXBindingSource
+        '
+        Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
+        Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'GridLookUpEdit2View1
         '
@@ -477,7 +518,7 @@ Partial Class frmErmaria
         'txtDoor1
         '
         Me.txtDoor1.EditValue = "0"
-        Me.txtDoor1.Location = New System.Drawing.Point(530, 156)
+        Me.txtDoor1.Location = New System.Drawing.Point(480, 156)
         Me.txtDoor1.Name = "txtDoor1"
         Me.txtDoor1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtDoor1.Properties.EditFormat.FormatString = "n0"
@@ -485,29 +526,29 @@ Partial Class frmErmaria
         Me.txtDoor1.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtDoor1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtDoor1.Properties.MaskSettings.Set("mask", "n0")
-        Me.txtDoor1.Size = New System.Drawing.Size(340, 20)
+        Me.txtDoor1.Size = New System.Drawing.Size(284, 20)
         Me.txtDoor1.StyleController = Me.LayoutControl1
         Me.txtDoor1.TabIndex = 37
         Me.txtDoor1.Tag = "legs,0,1,2"
         '
         'cboSides
         '
-        Me.cboSides.Location = New System.Drawing.Point(530, 12)
+        Me.cboSides.Location = New System.Drawing.Point(480, 12)
         Me.cboSides.Name = "cboSides"
         Me.cboSides.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboSides.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cboSides.Size = New System.Drawing.Size(340, 20)
+        Me.cboSides.Size = New System.Drawing.Size(284, 20)
         Me.cboSides.StyleController = Me.LayoutControl1
         Me.cboSides.TabIndex = 47
         Me.cboSides.Tag = "side,0,1,2"
         '
         'cboDim
         '
-        Me.cboDim.Location = New System.Drawing.Point(530, 108)
+        Me.cboDim.Location = New System.Drawing.Point(480, 108)
         Me.cboDim.Name = "cboDim"
         Me.cboDim.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboDim.Properties.NullText = ""
-        Me.cboDim.Size = New System.Drawing.Size(340, 20)
+        Me.cboDim.Size = New System.Drawing.Size(284, 20)
         Me.cboDim.StyleController = Me.LayoutControl1
         Me.cboDim.TabIndex = 9
         Me.cboDim.Tag = "dimID,0,1,2"
@@ -520,7 +561,7 @@ Partial Class frmErmaria
         Me.cboCalc.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCalc.Properties.NullText = ""
         Me.cboCalc.Properties.PopupSizeable = False
-        Me.cboCalc.Size = New System.Drawing.Size(280, 20)
+        Me.cboCalc.Size = New System.Drawing.Size(230, 20)
         Me.cboCalc.StyleController = Me.LayoutControl1
         Me.cboCalc.TabIndex = 21
         Me.cboCalc.Tag = "calcID,0,1,2"
@@ -533,7 +574,7 @@ Partial Class frmErmaria
         Me.cboCatSubErm.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCatSubErm.Properties.NullText = ""
         Me.cboCatSubErm.Properties.PopupSizeable = False
-        Me.cboCatSubErm.Size = New System.Drawing.Size(280, 20)
+        Me.cboCatSubErm.Size = New System.Drawing.Size(230, 20)
         Me.cboCatSubErm.StyleController = Me.LayoutControl1
         Me.cboCatSubErm.TabIndex = 21
         Me.cboCatSubErm.Tag = "catSubErmID,0,1,2"
@@ -542,7 +583,7 @@ Partial Class frmErmaria
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem10, Me.LayoutControlItem3, Me.LayoutControlItem8, Me.LayoutControlItem15, Me.LayoutControlItem13, Me.LayoutControlItem17, Me.LayoutControlItem19, Me.LayoutControlItem12, Me.LayoutControlItem5, Me.LayoutControlItem20, Me.LayoutControlItem18, Me.LayoutControlItem56, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem16, Me.LayoutControlItem52, Me.LayoutControlItem11, Me.LayoutControlItem9, Me.LayoutControlItem14, Me.EmptySpaceItem2, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.EmptySpaceItem3})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem10, Me.LayoutControlItem3, Me.LayoutControlItem8, Me.LayoutControlItem15, Me.LayoutControlItem13, Me.LayoutControlItem17, Me.LayoutControlItem19, Me.LayoutControlItem12, Me.LayoutControlItem5, Me.LayoutControlItem20, Me.LayoutControlItem18, Me.LayoutControlItem56, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem16, Me.LayoutControlItem52, Me.LayoutControlItem11, Me.LayoutControlItem9, Me.LayoutControlItem14, Me.EmptySpaceItem2, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.EmptySpaceItem3, Me.LayoutControlItem21})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(1570, 587)
         Me.Root.TextVisible = False
@@ -554,7 +595,7 @@ Partial Class frmErmaria
         Me.LayoutControlItem4.CustomizationFormText = "Κωδικός"
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(203, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(177, 24)
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(105, 13)
         '
@@ -566,7 +607,7 @@ Partial Class frmErmaria
         Me.LayoutControlItem10.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(401, 24)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(351, 24)
         Me.LayoutControlItem10.Tag = "1"
         Me.LayoutControlItem10.Text = "Κατηγορία"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(105, 13)
@@ -576,9 +617,9 @@ Partial Class frmErmaria
         Me.LayoutControlItem3.Control = Me.txtCustomCode
         Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem3.CustomizationFormText = "Κωδικός"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(203, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(177, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(198, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(174, 24)
         Me.LayoutControlItem3.Text = "Κωδικός Αναζήτησης"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(105, 13)
         '
@@ -590,7 +631,7 @@ Partial Class frmErmaria
         Me.LayoutControlItem8.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem8.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(401, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(351, 24)
         Me.LayoutControlItem8.Tag = "1"
         Me.LayoutControlItem8.Text = "Πορτάκι"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(105, 13)
@@ -600,7 +641,7 @@ Partial Class frmErmaria
         Me.LayoutControlItem15.Control = Me.cboPVCColors
         Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 144)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(401, 24)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(351, 24)
         Me.LayoutControlItem15.Tag = ""
         Me.LayoutControlItem15.Text = "Χρώμα PVC"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(105, 13)
@@ -612,7 +653,7 @@ Partial Class frmErmaria
         Me.LayoutControlItem13.CustomizationFormText = "Χρώμα PVC"
         Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 120)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(401, 24)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(351, 24)
         Me.LayoutControlItem13.Tag = ""
         Me.LayoutControlItem13.Text = "Χρώμα Κουτιού"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(105, 13)
@@ -625,7 +666,7 @@ Partial Class frmErmaria
         Me.LayoutControlItem17.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem17.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(401, 24)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(351, 24)
         Me.LayoutControlItem17.Tag = "1"
         Me.LayoutControlItem17.Text = "Τύπος Υπολογισμού"
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(105, 13)
@@ -638,7 +679,7 @@ Partial Class frmErmaria
         Me.LayoutControlItem19.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem19.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(401, 24)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(351, 24)
         Me.LayoutControlItem19.Tag = "1"
         Me.LayoutControlItem19.Text = "Υποκατηγορία"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(105, 13)
@@ -698,9 +739,9 @@ Partial Class frmErmaria
         '
         Me.LayoutControlItem18.Control = Me.cboSides
         Me.LayoutControlItem18.CustomizationFormText = "Εμφανές Πλαϊνο"
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(401, 0)
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(351, 0)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(405, 24)
         Me.LayoutControlItem18.Tag = ""
         Me.LayoutControlItem18.Text = "Εμφανές Πλαϊνο"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(105, 13)
@@ -712,9 +753,9 @@ Partial Class frmErmaria
         Me.LayoutControlItem56.CustomizationFormText = "Ύψος"
         Me.LayoutControlItem56.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem56.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem56.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem56.Location = New System.Drawing.Point(401, 24)
+        Me.LayoutControlItem56.Location = New System.Drawing.Point(351, 24)
         Me.LayoutControlItem56.Name = "LayoutControlItem56"
-        Me.LayoutControlItem56.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem56.Size = New System.Drawing.Size(405, 24)
         Me.LayoutControlItem56.Tag = "1"
         Me.LayoutControlItem56.Text = "Ύψος (cm)"
         Me.LayoutControlItem56.TextSize = New System.Drawing.Size(105, 13)
@@ -726,9 +767,9 @@ Partial Class frmErmaria
         Me.LayoutControlItem6.CustomizationFormText = "Ύψος"
         Me.LayoutControlItem6.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem6.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem6.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(401, 48)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(351, 48)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(405, 24)
         Me.LayoutControlItem6.Tag = "1"
         Me.LayoutControlItem6.Text = "Πλάτος (cm)"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(105, 13)
@@ -740,9 +781,9 @@ Partial Class frmErmaria
         Me.LayoutControlItem7.CustomizationFormText = "Βάθος"
         Me.LayoutControlItem7.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem7.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem7.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(401, 72)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(351, 72)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(405, 24)
         Me.LayoutControlItem7.Tag = "1"
         Me.LayoutControlItem7.Text = "Βάθος (cm)"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(105, 13)
@@ -752,9 +793,9 @@ Partial Class frmErmaria
         Me.LayoutControlItem16.Control = Me.cboDim
         Me.LayoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem16.CustomizationFormText = "Επωνυμία"
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(401, 96)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(351, 96)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(405, 24)
         Me.LayoutControlItem16.Text = "Διάσταση"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(105, 13)
         '
@@ -764,9 +805,9 @@ Partial Class frmErmaria
         Me.LayoutControlItem52.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem52.CustomizationFormText = "Κατηγορία"
         Me.LayoutControlItem52.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem52.Location = New System.Drawing.Point(401, 120)
+        Me.LayoutControlItem52.Location = New System.Drawing.Point(351, 120)
         Me.LayoutControlItem52.Name = "LayoutControlItem52"
-        Me.LayoutControlItem52.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem52.Size = New System.Drawing.Size(405, 24)
         Me.LayoutControlItem52.Tag = ""
         Me.LayoutControlItem52.Text = "Πόρτα"
         Me.LayoutControlItem52.TextSize = New System.Drawing.Size(105, 13)
@@ -777,9 +818,9 @@ Partial Class frmErmaria
         Me.LayoutControlItem11.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem11.CustomizationFormText = "Κατηγορία"
         Me.LayoutControlItem11.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(401, 144)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(351, 144)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(461, 24)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(405, 24)
         Me.LayoutControlItem11.Text = "Πόδια"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(105, 13)
         '
@@ -791,7 +832,7 @@ Partial Class frmErmaria
         Me.LayoutControlItem9.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(401, 24)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(376, 24)
         Me.LayoutControlItem9.Tag = ""
         Me.LayoutControlItem9.Text = "Τιμή"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(105, 13)
@@ -802,18 +843,18 @@ Partial Class frmErmaria
         Me.LayoutControlItem14.Control = Me.txtComments
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(862, 0)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(756, 0)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(688, 168)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(794, 168)
         Me.LayoutControlItem14.Text = "Παρατηρήσεις"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(105, 13)
         '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(401, 168)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(525, 168)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(461, 24)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(411, 24)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem1
@@ -845,25 +886,24 @@ Partial Class frmErmaria
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(862, 168)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(936, 168)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(688, 24)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(614, 24)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
-        'VwCOLORSPVCBindingSource
+        'LayoutControlItem21
         '
-        Me.VwCOLORSPVCBindingSource.DataMember = "vw_COLORSPVC"
-        Me.VwCOLORSPVCBindingSource.DataSource = Me.DreamyKitchenDataSet
+        Me.LayoutControlItem21.Control = Me.chkVisible
+        Me.LayoutControlItem21.Location = New System.Drawing.Point(376, 168)
+        Me.LayoutControlItem21.Name = "LayoutControlItem21"
+        Me.LayoutControlItem21.Size = New System.Drawing.Size(149, 24)
+        Me.LayoutControlItem21.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem21.TextVisible = False
         '
-        'DreamyKitchenDataSet
+        'VwDOORTYPEBindingSource
         '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'VwCOLORSBOXBindingSource
-        '
-        Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
-        Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
+        Me.VwDOORTYPEBindingSource.DataMember = "vw_DOOR_TYPE"
+        Me.VwDOORTYPEBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'Vw_COLORSBOXTableAdapter
         '
@@ -872,6 +912,10 @@ Partial Class frmErmaria
         'Vw_COLORSPVCTableAdapter
         '
         Me.Vw_COLORSPVCTableAdapter.ClearBeforeFill = True
+        '
+        'Vw_DOOR_TYPETableAdapter
+        '
+        Me.Vw_DOOR_TYPETableAdapter.ClearBeforeFill = True
         '
         'frmErmaria
         '
@@ -885,6 +929,7 @@ Partial Class frmErmaria
         Me.Text = "frmErmaria"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.chkVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -899,8 +944,11 @@ Partial Class frmErmaria
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOInvTotalPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboPVCColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridLookUpEdit2View, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridLookUpEdit2View1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDoor1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSides.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -933,9 +981,8 @@ Partial Class frmErmaria
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1002,4 +1049,8 @@ Partial Class frmErmaria
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents VwDOORTYPEBindingSource As BindingSource
+    Friend WithEvents Vw_DOOR_TYPETableAdapter As DreamyKitchenDataSetTableAdapters.vw_DOOR_TYPETableAdapter
+    Friend WithEvents chkVisible As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LayoutControlItem21 As DevExpress.XtraLayout.LayoutControlItem
 End Class

@@ -100,7 +100,7 @@ Partial Public Class Rep_Offer2ndPage
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
         Me.XrLabel1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(327.8494!, 15.0!)
+        Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(327.8494!, 42.39!)
         Me.XrLabel1.Name = "XrLabel1"
         Me.XrLabel1.SizeF = New System.Drawing.SizeF(299.1506!, 62.60684!)
         Me.XrLabel1.StylePriority.UseFont = False
@@ -111,9 +111,9 @@ Partial Public Class Rep_Offer2ndPage
         'XrPictureBox1
         '
         Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 15.0!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 42.39!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(275.8548!, 77.60683!)
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(275.8548!, 62.60683!)
         '
         'BottomMargin
         '
