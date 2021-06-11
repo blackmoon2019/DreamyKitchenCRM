@@ -11,6 +11,7 @@ Public Class InitializeCalendar
         Dim sStatus As String
         Dim sReminder As Integer
         Dim sColor As Color
+        Dim sStatusColor As Color
         Dim Cmt As String
         Dim SalersCode As Integer
         Dim sCusName As String
@@ -34,6 +35,11 @@ Public Class InitializeCalendar
                 sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
                 If sdr.IsDBNull(sdr.GetOrdinal("sch")) = False Then sReminder = sdr.GetInt32(sdr.GetOrdinal("sch"))
                 If sdr.IsDBNull(sdr.GetOrdinal("color")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("color")))
+                'Εαν το Status έχει χρώμα τότε υπερτερεί αυτό το χρώμα έναντι του πωλητή
+                If sdr.IsDBNull(sdr.GetOrdinal("StatusColor")) = False Then
+                    sStatusColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("StatusColor")))
+                    sColor = sStatusColor
+                End If
                 If sdr.IsDBNull(sdr.GetOrdinal("STATUS_Name")) = False Then sStatus = sdr.GetString(sdr.GetOrdinal("STATUS_Name"))
                 If sdr.IsDBNull(sdr.GetOrdinal("REM_VALUES_name")) = False Then sRemValues = sdr.GetString(sdr.GetOrdinal("REM_VALUES_name"))
                 If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
@@ -53,7 +59,8 @@ Public Class InitializeCalendar
         Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate), AptSubject & "(" & sCusname & ")")
         Try
 
-
+            Dim Field As New DevExpress.XtraScheduler.Native.CustomField("StatusColor", sColor)
+            apt.CustomFields.Add(Field)
             apt.Location = sCusname
             apt.Description = Cmt
             'apt.AllDay = True
@@ -88,6 +95,7 @@ Public Class InitializeCalendar
             If Completed = False Then
                 If sReminder <> 0 And sRemValues <> "" Then apt.Reminders.Add(reminder)
             End If
+
             SCH_Storage.Appointments.Add(apt)
 
 

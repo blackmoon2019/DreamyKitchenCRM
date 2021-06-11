@@ -114,15 +114,20 @@ Public Class frmTecnicalSupport
             e_mail.Body = txtBody.Text
             Dim myMailHTMLBody = "<html><head></head><body>" & txtBody.Text & " <img src=cid:ThePictureID></body></html>"
             Dim myAltView As AlternateView = AlternateView.CreateAlternateViewFromString(myMailHTMLBody, New System.Net.Mime.ContentType("text/html"))
-            Dim myImageData() As Byte = PictureEdit1.EditValue
-            'CREATE LINKED RESOURCE FOR ALT VIEW
-            Dim myStream As New MemoryStream(myImageData)
-            Dim myLinkedResouce = New LinkedResource(myStream, "image/jpeg")
-            'SET CONTENTID SO HTML CAN REFERENCE CORRECTLY
-            myLinkedResouce.ContentId = "ThePictureID" 'this must match in the HTML of the message body
-            'ADD LINKED RESOURCE TO ALT VIEW, AND ADD ALT VIEW TO MESSAGE
-            myAltView.LinkedResources.Add(myLinkedResouce)
-            e_mail.AlternateViews.Add(myAltView)
+            If PictureEdit1.EditValue <> Nothing Then
+
+                Dim myImageData() As Byte = PictureEdit1.EditValue
+                'CREATE LINKED RESOURCE FOR ALT VIEW
+                Dim myStream As New MemoryStream(myImageData)
+                Dim myLinkedResouce = New LinkedResource(myStream, "image/jpeg")
+                'SET CONTENTID SO HTML CAN REFERENCE CORRECTLY
+                myLinkedResouce.ContentId = "ThePictureID" 'this must match in the HTML of the message body
+
+                'ADD LINKED RESOURCE TO ALT VIEW, AND ADD ALT VIEW TO MESSAGE
+                myAltView.LinkedResources.Add(myLinkedResouce)
+                e_mail.AlternateViews.Add(myAltView)
+            End If
+
             Smtp_Server.Send(e_mail)
             XtraMessageBox.Show("Το email στάλθηκε με επιτυχία!!", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
             sSQL = "UPDATE TECH_SUP SET EmailSent = 1 where ID = " & toSQLValueS(IIf(Mode = FormMode.NewRecord, sGuid, sID))

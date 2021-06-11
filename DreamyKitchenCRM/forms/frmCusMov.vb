@@ -173,6 +173,7 @@ Public Class frmCusMov
         form1.Text = "STATUS"
         form1.L1.Text = "Κωδικός"
         form1.L2.Text = "Status"
+        form1.L6.Text = "Χρώμα"
         form1.DataTable = "STATUS"
         form1.CallerControl = cboSTATUS
         form1.CalledFromControl = True
@@ -182,7 +183,7 @@ Public Class frmCusMov
         form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         'form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         form1.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
-        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         If cboSTATUS.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()

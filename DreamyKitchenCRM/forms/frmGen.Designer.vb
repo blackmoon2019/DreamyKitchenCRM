@@ -30,6 +30,7 @@ Partial Class frmGen
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
         Me.cbo1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cmdDelete = New DevExpress.XtraEditors.SimpleButton()
+        Me.txtNum = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -43,7 +44,6 @@ Partial Class frmGen
         Me.L7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtNum = New DevExpress.XtraEditors.TextEdit()
         Me.L8 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -53,6 +53,7 @@ Partial Class frmGen
         CType(Me.txtName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbo1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtNum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,7 +67,6 @@ Partial Class frmGen
         CType(Me.L7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtNum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -97,7 +97,7 @@ Partial Class frmGen
         Me.ColorPickEdit1.Location = New System.Drawing.Point(46, 108)
         Me.ColorPickEdit1.Name = "ColorPickEdit1"
         Me.ColorPickEdit1.Properties.AutomaticColor = System.Drawing.Color.Black
-        Me.ColorPickEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.ColorPickEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.ColorPickEdit1.Properties.ColorText = DevExpress.XtraEditors.Controls.ColorText.[Integer]
         Me.ColorPickEdit1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.ColorPickEdit1.Size = New System.Drawing.Size(342, 20)
@@ -210,6 +210,22 @@ Partial Class frmGen
         Me.cmdDelete.TabIndex = 17
         Me.cmdDelete.ToolTip = "Διαγραφή Εγγραφής"
         Me.cmdDelete.ToolTipIconType = DevExpress.Utils.ToolTipIconType.Information
+        '
+        'txtNum
+        '
+        Me.txtNum.EditValue = "0"
+        Me.txtNum.Location = New System.Drawing.Point(28, 132)
+        Me.txtNum.Name = "txtNum"
+        Me.txtNum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtNum.Properties.EditFormat.FormatString = "n0"
+        Me.txtNum.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtNum.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtNum.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtNum.Properties.MaskSettings.Set("mask", "n0")
+        Me.txtNum.Size = New System.Drawing.Size(360, 20)
+        Me.txtNum.StyleController = Me.LayoutControl1
+        Me.txtNum.TabIndex = 37
+        Me.txtNum.Tag = "arProt,0,1,2"
         '
         'Root
         '
@@ -335,22 +351,6 @@ Partial Class frmGen
         Me.L6.Size = New System.Drawing.Size(380, 24)
         Me.L6.TextSize = New System.Drawing.Size(22, 13)
         '
-        'txtNum
-        '
-        Me.txtNum.EditValue = "0"
-        Me.txtNum.Location = New System.Drawing.Point(28, 132)
-        Me.txtNum.Name = "txtNum"
-        Me.txtNum.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtNum.Properties.EditFormat.FormatString = "n0"
-        Me.txtNum.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtNum.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtNum.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtNum.Properties.MaskSettings.Set("mask", "n0")
-        Me.txtNum.Size = New System.Drawing.Size(360, 20)
-        Me.txtNum.StyleController = Me.LayoutControl1
-        Me.txtNum.TabIndex = 37
-        Me.txtNum.Tag = "arProt,0,1,2"
-        '
         'L8
         '
         Me.L8.Control = Me.txtNum
@@ -360,7 +360,6 @@ Partial Class frmGen
         Me.L8.Location = New System.Drawing.Point(0, 120)
         Me.L8.Name = "L8"
         Me.L8.Size = New System.Drawing.Size(380, 24)
-        Me.L8.Text = "L8"
         Me.L8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.L8.TextSize = New System.Drawing.Size(11, 13)
         Me.L8.TextToControlDistance = 5
@@ -383,6 +382,7 @@ Partial Class frmGen
         CType(Me.txtName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbo1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtNum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -396,7 +396,6 @@ Partial Class frmGen
         CType(Me.L7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtNum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

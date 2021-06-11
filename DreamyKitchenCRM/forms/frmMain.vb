@@ -8,6 +8,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraTabbedMdi
 Imports DevExpress.LookAndFeel
 Imports System.ComponentModel
+Imports System.Configuration
 
 Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -21,7 +22,8 @@ Public Class frmMain
         bbDB.Caption = "Database: " & CNDB.Database.ToString
         bbVersion.Caption = "Ver:" + My.Application.Info.Version.ToString
 
-        UserLookAndFeel.Default.SetSkinStyle(My.Settings.CurrentSkin)
+        LoadCurrentSkin()
+
 
     End Sub
 
@@ -58,9 +60,8 @@ Public Class frmMain
     End Sub
 
     Private Sub BarClose_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarClose.ItemClick
+        SaveCurrentSkin()
 
-        My.Settings.CurrentSkin = UserLookAndFeel.Default.SkinName
-        My.Settings.Save()
         Application.Exit()
     End Sub
 
@@ -429,8 +430,7 @@ Public Class frmMain
     End Sub
 
     Private Sub frmMain_Closed(sender As Object, e As EventArgs) Handles Me.Closed
-        My.Settings.CurrentSkin = UserLookAndFeel.Default.SkinName
-        My.Settings.Save()
+        SaveCurrentSkin()
     End Sub
 
 
@@ -438,5 +438,22 @@ Public Class frmMain
 
     End Sub
 
+    Sub SaveCurrentSkin()
+        Dim config As Configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None)
+        If config.AppSettings.Settings("Skin") Is Nothing Then
+            config.AppSettings.Settings.Add("Skin", UserLookAndFeel.Default.ActiveSkinName)
+        Else
+            config.AppSettings.Settings("Skin").Value = UserLookAndFeel.Default.ActiveSkinName
+        End If
+        config.Save()
+    End Sub
+    Sub LoadCurrentSkin()
+        Dim config As Configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None)
+        If config.AppSettings.Settings("Skin") Is Nothing Then
+            Return
+        Else
+            UserLookAndFeel.Default.ActiveLookAndFeel.SkinName = config.AppSettings.Settings("Skin").Value
+        End If
+    End Sub
 End Class
 

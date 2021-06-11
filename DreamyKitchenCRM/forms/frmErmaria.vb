@@ -104,14 +104,14 @@ Public Class frmErmaria
                     FillCbo.ERM(CtrlCombo)
                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                 Else
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_ERM")
+                    'Dim form As frmScroller = Frm
+                    'form.LoadRecords("vw_ERM")
                 End If
                 txtCustomCode.Select()
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    If Mode = FormMode.NewRecord Then
-                        If XtraMessageBox.Show("Θέλετε να καταχωρήσετε το Ερμάριο και σε όλα τα πορτάκια?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    'If Mode = FormMode.NewRecord Then
+                    If XtraMessageBox.Show("Θέλετε να καταχωρήσετε το Ερμάριο και σε όλα τα πορτάκια?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                             'Dim frmErmDoorTypes As New frmErmDoorTypes
                             'frmErmDoorTypes.ID = sID
                             'frmErmDoorTypes.ShowDialog()
@@ -123,7 +123,7 @@ Public Class frmErmaria
                                 oCmd.ExecuteNonQuery()
                             End Using
                             XtraMessageBox.Show("Το ερμάριο δημιουργήθηκε σε όλα τα πορτάκια", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        End If
+                        'End If
                     End If
                     If Mode = FormMode.NewRecord Then Cls.ClearCtrls(LayoutControl1) : txtCode.Text = DBQ.GetNextId("ERM")
                 End If

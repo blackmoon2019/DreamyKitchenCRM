@@ -3,6 +3,7 @@ Imports System.IO
 Imports System.Threading
 Imports DevExpress.CodeParser
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraExport.Xls
 Public Class frmGen
     Private sID As String
@@ -564,6 +565,16 @@ Public Class frmGen
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub ColorPickEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles ColorPickEdit1.EditValueChanged
+
+    End Sub
+
+    Private Sub ColorPickEdit1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles ColorPickEdit1.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ColorPickEdit1.EditValue = Nothing
+        End Select
     End Sub
 
     'Private Sub cbo1_GotFocus(sender As Object, e As EventArgs) Handles cbo1.GotFocus

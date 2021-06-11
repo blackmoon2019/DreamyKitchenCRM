@@ -662,12 +662,13 @@ Public Class frmScroller
                 form3.DataTable = "STATUS"
                 form3.L1.Text = "Κωδικός"
                 form3.L2.Text = "Status"
+                form3.L6.Text = "Χρώμα"
                 form3.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
                 form3.FormScroller = Me
                 form3.CalledFromControl = False
                 form3.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form3.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form3.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form3), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form3.Show()
@@ -1059,12 +1060,13 @@ Public Class frmScroller
                 form3.DataTable = "STATUS"
                 form3.L1.Text = "Κωδικός"
                 form3.L2.Text = "Status"
+                form3.L6.Text = "Χρώμα"
                 form3.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
                 form3.FormScroller = Me
                 form3.CalledFromControl = False
                 form3.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form3.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form3.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form3), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form3.Show()

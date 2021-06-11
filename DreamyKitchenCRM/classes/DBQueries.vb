@@ -461,7 +461,11 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ColorPickEdit Then
                                         Dim cpk As DevExpress.XtraEditors.ColorPickEdit
                                         cpk = Ctrl
-                                        sSQL.Append(cpk.Text)
+                                        If cpk.Text = "0" Then
+                                            sSQL.Append("NULL")
+                                        Else
+                                            sSQL.Append(cpk.Text)
+                                        End If
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
                                         Dim dt As DevExpress.XtraEditors.DateEdit
                                         dt = Ctrl
@@ -469,25 +473,25 @@ NextItem:
                                             sSQL.Append(toSQLValueS(CDate(dt.Text).ToString("yyyyMMdd")))
                                         Else
                                             sSQL.Append("NULL")
-                                        End If
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
-                                        Dim tm As DevExpress.XtraEditors.TimeEdit
-                                        tm = Ctrl
-                                        If tm.Text <> "" Then
-                                            sSQL.Append(toSQLValueS(CDate(tm.Text).ToString("HH:mm")))
-                                        Else
-                                            sSQL.Append("NULL")
-                                        End If
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
-                                        Dim txt As DevExpress.XtraEditors.TextEdit
-                                        txt = Ctrl
-                                        If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
-                                            sSQL.Append(toSQLValueS(txt.EditValue, True))
-                                        Else
-                                            sSQL.Append(toSQLValueS(txt.Text))
-                                        End If
-                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
-                                        Dim chk As DevExpress.XtraEditors.CheckEdit
+                                            End If
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+                                            Dim tm As DevExpress.XtraEditors.TimeEdit
+                                            tm = Ctrl
+                                            If tm.Text <> "" Then
+                                                sSQL.Append(toSQLValueS(CDate(tm.Text).ToString("HH:mm")))
+                                            Else
+                                                sSQL.Append("NULL")
+                                            End If
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
+                                            Dim txt As DevExpress.XtraEditors.TextEdit
+                                            txt = Ctrl
+                                            If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                                sSQL.Append(toSQLValueS(txt.EditValue, True))
+                                            Else
+                                                sSQL.Append(toSQLValueS(txt.Text))
+                                            End If
+                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
+                                            Dim chk As DevExpress.XtraEditors.CheckEdit
                                         chk = Ctrl
                                         sSQL.Append(chk.EditValue)
                                     End If

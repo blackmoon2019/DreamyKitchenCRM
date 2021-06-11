@@ -2,6 +2,7 @@
 Imports System.Data.SqlClient
 Imports System.Text
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraScheduler
 Imports DevExpress.XtraScheduler.Drawing
 
@@ -11,6 +12,7 @@ Public Class frmCalendar
         Try
             Dim sSQL As String
             sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 and  completed=0 order by code"
+            'Δημιουργία Appointments
             Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
             sSQL = "SELECT id,name FROM vw_status WHERE ALLOWSCHEDULE=1 order by name"
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
@@ -119,11 +121,12 @@ Public Class frmCalendar
     Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles Ανανέωση.ItemClick
         SetCalendarFilter()
     End Sub
-    Private Sub SetCalendarFilter()
+    Private Sub SetCalendarFilter(Optional ByVal sWhere As String = "")
         Dim sSQL As String
         Dim sIDS As New StringBuilder
         SchedulerDataStorage1.Appointments.Clear()
         sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 "
+        If sWhere.Length > 0 Then sSQL = sSQL & " AND fullname like " & toSQLValueS("%" & sWhere & "%")
         ' FILTER STATUS
         For i As Integer = 0 To cboStatus.Items.Count - 1
             If cboStatus.Items(i).CheckState = CheckState.Checked Then
@@ -162,5 +165,17 @@ Public Class frmCalendar
 
     End Sub
 
+    Private Sub txtSearch_EditValueChanging(sender As Object, e As ChangingEventArgs) Handles txtSearch.EditValueChanging
 
+    End Sub
+
+    Private Sub txtSearch_EditValueChanged(sender As Object, e As EventArgs) Handles txtSearch.EditValueChanged
+        Dim value As Object = (TryCast(sender, TextEdit)).EditValue
+        Dim teText As String = If(value Is Nothing, String.Empty, value.ToString())
+        SetCalendarFilter(teText)
+    End Sub
+
+    Private Sub SchedulerControl1_AppointmentViewInfoCustomizing(sender As Object, e As AppointmentViewInfoCustomizingEventArgs) Handles SchedulerControl1.AppointmentViewInfoCustomizing
+        e.ViewInfo.Appearance.BackColor = e.ViewInfo.Appointment.CustomFields("StatusColor")
+    End Sub
 End Class
