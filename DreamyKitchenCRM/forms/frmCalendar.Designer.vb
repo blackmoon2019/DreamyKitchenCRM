@@ -61,8 +61,8 @@ Partial Class frmCalendar
         Me.cboStatus = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         Me.Ο = New DevExpress.XtraBars.BarEditItem()
         Me.cboCompleted = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
-        Me.BarEditItem2 = New DevExpress.XtraBars.BarEditItem()
-        Me.txtSearch = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.BarEditItem3 = New DevExpress.XtraBars.BarEditItem()
+        Me.txtSearch2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.Ανανέωση = New DevExpress.XtraBars.BarButtonItem()
         Me.BarNewRec = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
@@ -70,8 +70,53 @@ Partial Class frmCalendar
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BarHeaderItem1 = New DevExpress.XtraBars.BarHeaderItem()
+        Me.txtSearch = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.DreamyKitchenAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.SchedulerBarController1 = New DevExpress.XtraScheduler.UI.SchedulerBarController(Me.components)
+        Me.VwCCTMBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Vw_CCT_MTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCT_MTableAdapter()
+        Me.PanelResults = New DevExpress.XtraEditors.PanelControl()
+        Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colFullname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colmob = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colemail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcct_cmt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colSTATUS_Name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colallowschedule = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colSALERS_Name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcolor = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colADR_Name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colAr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coltk = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colRealName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colAREAS_Name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colstatusID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcusID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colsch = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcompleted = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldtcompleted = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcmt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcreatedOn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colmodifiedOn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colsalersID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colSALERS_Code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldtReminderDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colREM_VALUES_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colremValueID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colReminder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colS_CCT_M_Code = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colS_CCT_M_Color = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colS_CCT_M_name = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coltmReminder = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldtReceiveDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldtDeliverDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colCusSaler = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcreatedby_Realname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colphn = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,8 +124,14 @@ Partial Class frmCalendar
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtSearch2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSearch, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCCTMBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PanelResults, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.PanelResults.SuspendLayout()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'SchedulerControl1
@@ -90,7 +141,7 @@ Partial Class frmCalendar
         Me.SchedulerControl1.Location = New System.Drawing.Point(0, 24)
         Me.SchedulerControl1.MenuManager = Me.BarManager1
         Me.SchedulerControl1.Name = "SchedulerControl1"
-        Me.SchedulerControl1.Size = New System.Drawing.Size(1495, 688)
+        Me.SchedulerControl1.Size = New System.Drawing.Size(1574, 688)
         Me.SchedulerControl1.Start = New Date(2020, 10, 5, 0, 0, 0, 0)
         Me.SchedulerControl1.TabIndex = 0
         Me.SchedulerControl1.Text = "SchedulerControl1"
@@ -146,9 +197,9 @@ Partial Class frmCalendar
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.OpenScheduleItem1, Me.SaveScheduleItem1, Me.PrintPreviewItem1, Me.PrintItem1, Me.PrintPageSetupItem1, Me.NewAppointmentItem1, Me.NewRecurringAppointmentItem1, Me.NavigateViewBackwardItem1, Me.NavigateViewForwardItem1, Me.GotoTodayItem1, Me.ViewZoomInItem1, Me.ViewZoomOutItem1, Me.SwitchToDayViewItem1, Me.SwitchToWorkWeekViewItem1, Me.SwitchToWeekViewItem1, Me.SwitchToFullWeekViewItem1, Me.SwitchToMonthViewItem1, Me.SwitchToTimelineViewItem1, Me.SwitchToGanttViewItem1, Me.SwitchToAgendaViewItem1, Me.GroupByNoneItem1, Me.GroupByDateItem1, Me.GroupByResourceItem1, Me.BarEditItem1, Me.Ανανέωση, Me.BarNewRec, Me.Ο, Me.BarHeaderItem1, Me.BarEditItem2})
-        Me.BarManager1.MaxItemId = 70
-        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cboStatus, Me.cboCompleted, Me.txtSearch})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.OpenScheduleItem1, Me.SaveScheduleItem1, Me.PrintPreviewItem1, Me.PrintItem1, Me.PrintPageSetupItem1, Me.NewAppointmentItem1, Me.NewRecurringAppointmentItem1, Me.NavigateViewBackwardItem1, Me.NavigateViewForwardItem1, Me.GotoTodayItem1, Me.ViewZoomInItem1, Me.ViewZoomOutItem1, Me.SwitchToDayViewItem1, Me.SwitchToWorkWeekViewItem1, Me.SwitchToWeekViewItem1, Me.SwitchToFullWeekViewItem1, Me.SwitchToMonthViewItem1, Me.SwitchToTimelineViewItem1, Me.SwitchToGanttViewItem1, Me.SwitchToAgendaViewItem1, Me.GroupByNoneItem1, Me.GroupByDateItem1, Me.GroupByResourceItem1, Me.BarEditItem1, Me.Ανανέωση, Me.BarNewRec, Me.Ο, Me.BarHeaderItem1, Me.BarEditItem3})
+        Me.BarManager1.MaxItemId = 71
+        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cboStatus, Me.cboCompleted, Me.txtSearch, Me.txtSearch2})
         '
         'CommonBar1
         '
@@ -296,7 +347,7 @@ Partial Class frmCalendar
         Me.GroupByBar1.DockCol = 5
         Me.GroupByBar1.DockRow = 0
         Me.GroupByBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.GroupByBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByNoneItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByDateItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByResourceItem1), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem1, "", False, True, True, 152), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.Ο, "", False, True, True, 68), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem2, "", False, True, True, 193), New DevExpress.XtraBars.LinkPersistInfo(Me.Ανανέωση), New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec)})
+        Me.GroupByBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByNoneItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByDateItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByResourceItem1), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem1, "", False, True, True, 152), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.Ο, "", False, True, True, 68), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem3, "", False, True, True, 157), New DevExpress.XtraBars.LinkPersistInfo(Me.Ανανέωση), New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec)})
         '
         'GroupByNoneItem1
         '
@@ -346,19 +397,20 @@ Partial Class frmCalendar
         Me.cboCompleted.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.cboCompleted.Name = "cboCompleted"
         '
-        'BarEditItem2
+        'BarEditItem3
         '
-        Me.BarEditItem2.Caption = "Πελάτης"
-        Me.BarEditItem2.Edit = Me.txtSearch
-        Me.BarEditItem2.Hint = "Αναζήτηση Πελάτη"
-        Me.BarEditItem2.Id = 69
-        Me.BarEditItem2.Name = "BarEditItem2"
-        Me.BarEditItem2.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
+        Me.BarEditItem3.Caption = "Πελάτης"
+        Me.BarEditItem3.Edit = Me.txtSearch2
+        Me.BarEditItem3.Hint = "Αναζήτηση Πελάτη"
+        Me.BarEditItem3.Id = 70
+        Me.BarEditItem3.Name = "BarEditItem3"
+        Me.BarEditItem3.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.CaptionGlyph
         '
-        'txtSearch
+        'txtSearch2
         '
-        Me.txtSearch.AutoHeight = False
-        Me.txtSearch.Name = "txtSearch"
+        Me.txtSearch2.AutoHeight = False
+        Me.txtSearch2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)})
+        Me.txtSearch2.Name = "txtSearch2"
         '
         'Ανανέωση
         '
@@ -380,7 +432,7 @@ Partial Class frmCalendar
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1495, 24)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1574, 24)
         '
         'barDockControlBottom
         '
@@ -388,7 +440,7 @@ Partial Class frmCalendar
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 712)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1495, 0)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1574, 0)
         '
         'barDockControlLeft
         '
@@ -402,7 +454,7 @@ Partial Class frmCalendar
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1495, 24)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1574, 24)
         Me.barDockControlRight.Manager = Me.BarManager1
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 688)
         '
@@ -411,6 +463,11 @@ Partial Class frmCalendar
         Me.BarHeaderItem1.Caption = "BarHeaderItem1"
         Me.BarHeaderItem1.Id = 68
         Me.BarHeaderItem1.Name = "BarHeaderItem1"
+        '
+        'txtSearch
+        '
+        Me.txtSearch.AutoHeight = False
+        Me.txtSearch.Name = "txtSearch"
         '
         'DreamyKitchenAdapter
         '
@@ -443,11 +500,267 @@ Partial Class frmCalendar
         Me.SchedulerBarController1.BarItems.Add(Me.GroupByResourceItem1)
         Me.SchedulerBarController1.Control = Me.SchedulerControl1
         '
+        'VwCCTMBindingSource
+        '
+        Me.VwCCTMBindingSource.DataMember = "vw_CCT_M"
+        Me.VwCCTMBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'Vw_CCT_MTableAdapter
+        '
+        Me.Vw_CCT_MTableAdapter.ClearBeforeFill = True
+        '
+        'PanelResults
+        '
+        Me.PanelResults.Controls.Add(Me.cmdExit)
+        Me.PanelResults.Controls.Add(Me.GridControl1)
+        Me.PanelResults.Location = New System.Drawing.Point(377, 99)
+        Me.PanelResults.Name = "PanelResults"
+        Me.PanelResults.Size = New System.Drawing.Size(951, 438)
+        Me.PanelResults.TabIndex = 10
+        '
+        'cmdExit
+        '
+        Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
+        Me.cmdExit.Location = New System.Drawing.Point(857, 401)
+        Me.cmdExit.Name = "cmdExit"
+        Me.cmdExit.Size = New System.Drawing.Size(89, 28)
+        Me.cmdExit.TabIndex = 13
+        Me.cmdExit.Text = "Έξοδος"
+        '
+        'GridControl1
+        '
+        Me.GridControl1.DataSource = Me.VwCCTMBindingSource
+        Me.GridControl1.Location = New System.Drawing.Point(5, 3)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.MenuManager = Me.BarManager1
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(941, 392)
+        Me.GridControl1.TabIndex = 7
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
+        '
+        'GridView1
+        '
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colFullname, Me.colmob, Me.colemail, Me.colcct_cmt, Me.colcode, Me.colSTATUS_Name, Me.colallowschedule, Me.colSALERS_Name, Me.colcolor, Me.colADR_Name, Me.colAr, Me.coltk, Me.colRealName, Me.colAREAS_Name, Me.colstatusID, Me.colcusID, Me.colsch, Me.colcompleted, Me.coldtcompleted, Me.colcmt, Me.colcreatedOn, Me.colmodifiedOn, Me.colsalersID, Me.colSALERS_Code, Me.coldtReminderDate, Me.colREM_VALUES_name, Me.colremValueID, Me.colReminder, Me.colS_CCT_M_Code, Me.colS_CCT_M_Color, Me.colS_CCT_M_name, Me.coltmReminder, Me.coldtReceiveDate, Me.coldtDeliverDate, Me.colCusSaler, Me.colcreatedby_Realname, Me.colphn})
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsBehavior.ReadOnly = True
+        '
+        'colID
+        '
+        Me.colID.FieldName = "ID"
+        Me.colID.Name = "colID"
+        '
+        'colFullname
+        '
+        Me.colFullname.Caption = "ΠΕΛΑΤΗΣ"
+        Me.colFullname.FieldName = "Fullname"
+        Me.colFullname.Name = "colFullname"
+        Me.colFullname.Visible = True
+        Me.colFullname.VisibleIndex = 2
+        '
+        'colmob
+        '
+        Me.colmob.Caption = "ΚΙΝΗΤΟ"
+        Me.colmob.FieldName = "mob"
+        Me.colmob.Name = "colmob"
+        '
+        'colemail
+        '
+        Me.colemail.Caption = "EMAIL"
+        Me.colemail.FieldName = "email"
+        Me.colemail.Name = "colemail"
+        '
+        'colcct_cmt
+        '
+        Me.colcct_cmt.FieldName = "cct_cmt"
+        Me.colcct_cmt.Name = "colcct_cmt"
+        '
+        'colcode
+        '
+        Me.colcode.FieldName = "code"
+        Me.colcode.Name = "colcode"
+        '
+        'colSTATUS_Name
+        '
+        Me.colSTATUS_Name.Caption = "STATUS"
+        Me.colSTATUS_Name.FieldName = "STATUS_Name"
+        Me.colSTATUS_Name.Name = "colSTATUS_Name"
+        Me.colSTATUS_Name.Visible = True
+        Me.colSTATUS_Name.VisibleIndex = 0
+        '
+        'colallowschedule
+        '
+        Me.colallowschedule.FieldName = "allowschedule"
+        Me.colallowschedule.Name = "colallowschedule"
+        '
+        'colSALERS_Name
+        '
+        Me.colSALERS_Name.FieldName = "SALERS_Name"
+        Me.colSALERS_Name.Name = "colSALERS_Name"
+        '
+        'colcolor
+        '
+        Me.colcolor.FieldName = "color"
+        Me.colcolor.Name = "colcolor"
+        '
+        'colADR_Name
+        '
+        Me.colADR_Name.FieldName = "ADR_Name"
+        Me.colADR_Name.Name = "colADR_Name"
+        '
+        'colAr
+        '
+        Me.colAr.FieldName = "Ar"
+        Me.colAr.Name = "colAr"
+        '
+        'coltk
+        '
+        Me.coltk.FieldName = "tk"
+        Me.coltk.Name = "coltk"
+        '
+        'colRealName
+        '
+        Me.colRealName.FieldName = "RealName"
+        Me.colRealName.Name = "colRealName"
+        '
+        'colAREAS_Name
+        '
+        Me.colAREAS_Name.FieldName = "AREAS_Name"
+        Me.colAREAS_Name.Name = "colAREAS_Name"
+        '
+        'colstatusID
+        '
+        Me.colstatusID.FieldName = "statusID"
+        Me.colstatusID.Name = "colstatusID"
+        '
+        'colcusID
+        '
+        Me.colcusID.FieldName = "cusID"
+        Me.colcusID.Name = "colcusID"
+        '
+        'colsch
+        '
+        Me.colsch.FieldName = "sch"
+        Me.colsch.Name = "colsch"
+        '
+        'colcompleted
+        '
+        Me.colcompleted.FieldName = "completed"
+        Me.colcompleted.Name = "colcompleted"
+        '
+        'coldtcompleted
+        '
+        Me.coldtcompleted.FieldName = "dtcompleted"
+        Me.coldtcompleted.Name = "coldtcompleted"
+        '
+        'colcmt
+        '
+        Me.colcmt.FieldName = "cmt"
+        Me.colcmt.Name = "colcmt"
+        '
+        'colcreatedOn
+        '
+        Me.colcreatedOn.FieldName = "createdOn"
+        Me.colcreatedOn.Name = "colcreatedOn"
+        '
+        'colmodifiedOn
+        '
+        Me.colmodifiedOn.FieldName = "modifiedOn"
+        Me.colmodifiedOn.Name = "colmodifiedOn"
+        '
+        'colsalersID
+        '
+        Me.colsalersID.FieldName = "salersID"
+        Me.colsalersID.Name = "colsalersID"
+        '
+        'colSALERS_Code
+        '
+        Me.colSALERS_Code.FieldName = "SALERS_Code"
+        Me.colSALERS_Code.Name = "colSALERS_Code"
+        '
+        'coldtReminderDate
+        '
+        Me.coldtReminderDate.Caption = "ΗΜΕΡΟΜΗΝΙΑ ΕΙΔΟΠΟΙΗΣΗΣ"
+        Me.coldtReminderDate.FieldName = "dtReminderDate"
+        Me.coldtReminderDate.Name = "coldtReminderDate"
+        Me.coldtReminderDate.Visible = True
+        Me.coldtReminderDate.VisibleIndex = 3
+        '
+        'colREM_VALUES_name
+        '
+        Me.colREM_VALUES_name.FieldName = "REM_VALUES_name"
+        Me.colREM_VALUES_name.Name = "colREM_VALUES_name"
+        '
+        'colremValueID
+        '
+        Me.colremValueID.FieldName = "remValueID"
+        Me.colremValueID.Name = "colremValueID"
+        '
+        'colReminder
+        '
+        Me.colReminder.FieldName = "Reminder"
+        Me.colReminder.Name = "colReminder"
+        '
+        'colS_CCT_M_Code
+        '
+        Me.colS_CCT_M_Code.FieldName = "S_CCT_M_Code"
+        Me.colS_CCT_M_Code.Name = "colS_CCT_M_Code"
+        '
+        'colS_CCT_M_Color
+        '
+        Me.colS_CCT_M_Color.Caption = "ΧΡΩΜΑ"
+        Me.colS_CCT_M_Color.FieldName = "S_CCT_M_Color"
+        Me.colS_CCT_M_Color.Name = "colS_CCT_M_Color"
+        '
+        'colS_CCT_M_name
+        '
+        Me.colS_CCT_M_name.Caption = "ΠΩΛΗΤΗΣ"
+        Me.colS_CCT_M_name.FieldName = "S_CCT_M_name"
+        Me.colS_CCT_M_name.Name = "colS_CCT_M_name"
+        Me.colS_CCT_M_name.Visible = True
+        Me.colS_CCT_M_name.VisibleIndex = 1
+        '
+        'coltmReminder
+        '
+        Me.coltmReminder.FieldName = "tmReminder"
+        Me.coltmReminder.Name = "coltmReminder"
+        '
+        'coldtReceiveDate
+        '
+        Me.coldtReceiveDate.FieldName = "dtReceiveDate"
+        Me.coldtReceiveDate.Name = "coldtReceiveDate"
+        '
+        'coldtDeliverDate
+        '
+        Me.coldtDeliverDate.FieldName = "dtDeliverDate"
+        Me.coldtDeliverDate.Name = "coldtDeliverDate"
+        '
+        'colCusSaler
+        '
+        Me.colCusSaler.FieldName = "CusSaler"
+        Me.colCusSaler.Name = "colCusSaler"
+        '
+        'colcreatedby_Realname
+        '
+        Me.colcreatedby_Realname.FieldName = "createdby_Realname"
+        Me.colcreatedby_Realname.Name = "colcreatedby_Realname"
+        '
+        'colphn
+        '
+        Me.colphn.Caption = "ΤΗΛΕΦΩΝΟ"
+        Me.colphn.FieldName = "phn"
+        Me.colphn.Name = "colphn"
+        Me.colphn.Visible = True
+        Me.colphn.VisibleIndex = 4
+        '
         'frmCalendar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1495, 712)
+        Me.ClientSize = New System.Drawing.Size(1574, 712)
+        Me.Controls.Add(Me.PanelResults)
         Me.Controls.Add(Me.SchedulerControl1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
@@ -463,8 +776,14 @@ Partial Class frmCalendar
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCompleted, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtSearch2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSearch, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCCTMBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PanelResults, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.PanelResults.ResumeLayout(False)
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -517,7 +836,52 @@ Partial Class frmCalendar
     Friend WithEvents BarNewRec As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents Ο As DevExpress.XtraBars.BarEditItem
     Friend WithEvents cboCompleted As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
-    Friend WithEvents BarEditItem2 As DevExpress.XtraBars.BarEditItem
     Friend WithEvents txtSearch As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents BarHeaderItem1 As DevExpress.XtraBars.BarHeaderItem
+    Friend WithEvents VwCCTMBindingSource As BindingSource
+    Friend WithEvents Vw_CCT_MTableAdapter As DreamyKitchenDataSetTableAdapters.vw_CCT_MTableAdapter
+    Friend WithEvents PanelResults As DevExpress.XtraEditors.PanelControl
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents colID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colFullname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colmob As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colemail As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcct_cmt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colSTATUS_Name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colallowschedule As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colSALERS_Name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcolor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colADR_Name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colAr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coltk As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colRealName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colAREAS_Name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colstatusID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcusID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colsch As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcompleted As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldtcompleted As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcmt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcreatedOn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colmodifiedOn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colsalersID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colSALERS_Code As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldtReminderDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colREM_VALUES_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colremValueID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colReminder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colS_CCT_M_Code As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colS_CCT_M_Color As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colS_CCT_M_name As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coltmReminder As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldtReceiveDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldtDeliverDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colCusSaler As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcreatedby_Realname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colphn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents cmdExit As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents BarEditItem3 As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents txtSearch2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
 End Class

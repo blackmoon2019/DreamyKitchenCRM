@@ -6,7 +6,7 @@ Imports DevExpress.XtraScheduler
 
 
 Public Class InitializeCalendar
-    Public Sub Initialize(ByVal SCH As DevExpress.XtraScheduler.SchedulerControl, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage, ByVal sSQL As String)
+    Public Sub Initialize(ByVal SCH As DevExpress.XtraScheduler.SchedulerControl, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage, ByVal sSQL As String, ByVal Reminder As Boolean)
         Dim sDate As String
         Dim sStatus As String
         Dim sReminder As Integer
@@ -45,7 +45,7 @@ Public Class InitializeCalendar
                 If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SALERS_code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("SALERS_code"))
                 If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
-                CreateAppointment(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SalersCode, sCusName, sRemValues, stmReminder, sCompleted)
+                CreateAppointment(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SalersCode, sCusName, sRemValues, stmReminder, sCompleted, Reminder)
             End While
         End If
         sdr.Close()
@@ -54,7 +54,8 @@ Public Class InitializeCalendar
     Public Sub CreateAppointment(ByVal ID As String, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage,
                                   ByVal AptDate As String, ByVal AptSubject As String, ByVal sReminder As Integer,
                                   ByVal sColor As Color, ByVal Cmt As String, ByVal sLabelID As Integer,
-                                  ByVal sCusname As String, ByVal sRemValues As String, ByVal AptTime As String, ByVal Completed As Boolean
+                                  ByVal sCusname As String, ByVal sRemValues As String, ByVal AptTime As String, ByVal Completed As Boolean,
+                                   Optional ByVal EnableReminder As Boolean = False
                                   )
         Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate), AptSubject & "(" & sCusname & ")")
         Try
@@ -83,19 +84,19 @@ Public Class InitializeCalendar
             'apt.RecurrenceInfo.OccurrenceCount = 5
             'apt.LabelKey = sLabelID
 
-
-            Dim reminder As Reminder = apt.CreateNewReminder()
-            reminder.TimeBeforeStart = New TimeSpan(0, sReminder, 0)
-            Select Case sRemValues
-                Case "Λεπτά" : reminder.TimeBeforeStart = TimeSpan.FromMinutes(sReminder)
-                Case "Ώρες" : reminder.TimeBeforeStart = TimeSpan.FromHours(sReminder)
-                Case "Μέρες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder)
-                Case "Εβδομάδες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder * 7)
-            End Select
-            If Completed = False Then
-                If sReminder <> 0 And sRemValues <> "" Then apt.Reminders.Add(reminder)
+            If EnableReminder Then
+                Dim reminder As Reminder = apt.CreateNewReminder()
+                reminder.TimeBeforeStart = New TimeSpan(0, sReminder, 0)
+                Select Case sRemValues
+                    Case "Λεπτά" : reminder.TimeBeforeStart = TimeSpan.FromMinutes(sReminder)
+                    Case "Ώρες" : reminder.TimeBeforeStart = TimeSpan.FromHours(sReminder)
+                    Case "Μέρες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder)
+                    Case "Εβδομάδες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder * 7)
+                End Select
+                If Completed = False Then
+                    If sReminder <> 0 And sRemValues <> "" Then apt.Reminders.Add(reminder)
+                End If
             End If
-
             SCH_Storage.Appointments.Add(apt)
 
 

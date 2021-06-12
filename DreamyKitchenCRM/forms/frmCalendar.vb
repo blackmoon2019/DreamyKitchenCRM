@@ -11,9 +11,11 @@ Public Class frmCalendar
     Private Sub frmCalendar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim sSQL As String
+            PanelResults.Visible = False
             sSQL = "SELECT * FROM vw_CCT_M WHERE ALLOWSCHEDULE=1 and  completed=0 order by code"
             'Δημιουργία Appointments
-            Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
+            Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL, True)
+            Me.Vw_CCT_MTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_M, "")
             sSQL = "SELECT id,name FROM vw_status WHERE ALLOWSCHEDULE=1 order by name"
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
@@ -31,6 +33,10 @@ Public Class frmCalendar
             cboCompleted.Items(1).Tag = 1
             cboCompleted.Items(1).CheckState = CheckState.Unchecked
 
+            'Κεντράρισμα Panel
+            PanelResults.Parent = frmMain
+            PanelResults.Left = (PanelResults.Parent.Width - PanelResults.Width) / 2
+            PanelResults.Top = (PanelResults.Parent.Height - PanelResults.Height) / 2
 
             Me.DreamyKitchenAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
 
@@ -149,7 +155,7 @@ Public Class frmCalendar
         Next
         If sIDS.Length > 0 Then sSQL = sSQL + " and completed in (" & sIDS.ToString & ")"
 
-        Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL)
+        Calendar.Initialize(SchedulerControl1, SchedulerDataStorage1, sSQL, False)
     End Sub
     Private Sub BarNewRec_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarNewRec.ItemClick
         Dim form1 As frmCusMov = New frmCusMov()
@@ -165,17 +171,43 @@ Public Class frmCalendar
 
     End Sub
 
-    Private Sub txtSearch_EditValueChanging(sender As Object, e As ChangingEventArgs) Handles txtSearch.EditValueChanging
-
-    End Sub
-
-    Private Sub txtSearch_EditValueChanged(sender As Object, e As EventArgs) Handles txtSearch.EditValueChanged
-        Dim value As Object = (TryCast(sender, TextEdit)).EditValue
-        Dim teText As String = If(value Is Nothing, String.Empty, value.ToString())
-        SetCalendarFilter(teText)
-    End Sub
 
     Private Sub SchedulerControl1_AppointmentViewInfoCustomizing(sender As Object, e As AppointmentViewInfoCustomizingEventArgs) Handles SchedulerControl1.AppointmentViewInfoCustomizing
         e.ViewInfo.Appearance.BackColor = e.ViewInfo.Appointment.CustomFields("StatusColor")
+    End Sub
+
+    Private Sub BarEditItem2_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs)
+
+    End Sub
+
+    Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
+        PanelResults.Visible = False
+    End Sub
+
+    Private Sub txtSearch2_EditValueChanged(sender As Object, e As EventArgs) Handles txtSearch2.EditValueChanged
+        Dim value As Object = (TryCast(sender, TextEdit)).EditValue
+        Dim teText As String = If(value Is Nothing, String.Empty, value.ToString())
+        SetCalendarFilter(teText)
+        Me.Vw_CCT_MTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_M, teText)
+    End Sub
+
+    Private Sub BarEditItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarEditItem3.ItemClick
+
+    End Sub
+
+    Private Sub txtSearch2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtSearch2.ButtonClick
+        PanelResults.Visible = True
+    End Sub
+
+    Private Sub GridView1_DoubleClick(sender As Object, e As EventArgs) Handles GridView1.DoubleClick
+        Dim form12 As frmCusMov = New frmCusMov()
+        form12.Text = "Κινήσεις Πελατών"
+        form12.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+        form12.MdiParent = frmMain
+        form12.Mode = FormMode.EditRecord
+        form12.Scroller = GridView1
+        form12.FormScroller = Me
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form12), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+        form12.Show()
     End Sub
 End Class

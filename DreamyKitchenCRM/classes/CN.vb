@@ -7,8 +7,8 @@ Public Class CN
     'Private connStr As String = "Server = tcp:blackmoon.database.windows.net,1433;Initial Catalog=DreamyKitchen;Persist Security Info=False;User ID=blmoon;Password=mavros1!;MultipleActiveResultSets=True;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"
     'Private connStr As String = ConfigurationManager.ConnectionStrings("myConnectionString").ConnectionString
     'Private connStr As String = ConfigurationManager.ConnectionStrings("myConnectionString").ConnectionString
-    'Private connStr As String = My.Settings.DreamyKitchenConnectionStringRemotely.ToString
-    Private connStr As String = My.Settings.DreamyKitchenConnectionStringLocal.ToString
+    Private connStr As String = My.Settings.DreamyKitchenConnectionStringRemotely.ToString
+    'Private connStr As String = My.Settings.DreamyKitchenConnectionStringLocal.ToString
 
     Public Function OpenConnection() As Boolean
         Dim DBConnection As New SqlConnection()
