@@ -48,17 +48,6 @@ Public Class frmCalendar
 
     End Sub
 
-    Private Sub SchedulerDataStorage1_AppointmentsInserted(sender As Object, e As PersistentObjectsEventArgs) Handles SchedulerDataStorage1.AppointmentsInserted
-
-    End Sub
-
-    Private Sub frmCalendar_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-
-    End Sub
-
-    Private Sub SchedulerControl1_Click(sender As Object, e As EventArgs) Handles SchedulerControl1.Click
-
-    End Sub
 
     Private Sub SchedulerDataStorage1_ReminderAlert(sender As Object, e As ReminderEventArgs) Handles SchedulerDataStorage1.ReminderAlert
         'e.AlertNotifications(1).Ignore = True
@@ -85,9 +74,6 @@ Public Class frmCalendar
 
     End Sub
 
-    Private Sub SchedulerControl1_MouseHover(sender As Object, e As EventArgs) Handles SchedulerControl1.MouseHover
-
-    End Sub
 
     Private Sub SchedulerControl1_MouseMove(sender As Object, e As MouseEventArgs) Handles SchedulerControl1.MouseMove
         Dim scheduler As DevExpress.XtraScheduler.SchedulerControl = sender
@@ -190,11 +176,6 @@ Public Class frmCalendar
         SetCalendarFilter(teText)
         Me.Vw_CCT_MTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_M, teText)
     End Sub
-
-    Private Sub BarEditItem3_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarEditItem3.ItemClick
-
-    End Sub
-
     Private Sub txtSearch2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtSearch2.ButtonClick
         PanelResults.Visible = True
     End Sub
@@ -210,4 +191,6 @@ Public Class frmCalendar
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form12), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
         form12.Show()
     End Sub
+
+
 End Class

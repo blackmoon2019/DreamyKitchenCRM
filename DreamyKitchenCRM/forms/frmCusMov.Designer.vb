@@ -319,7 +319,6 @@ Partial Class frmCusMov
         Me.dtDeliverDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtDeliverDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtDeliverDate.Size = New System.Drawing.Size(114, 20)
-        Me.dtDeliverDate.StyleController = Me.LayoutControl1
         Me.dtDeliverDate.TabIndex = 32
         Me.dtDeliverDate.Tag = "dtDeliverDate,0,1,2"
         '

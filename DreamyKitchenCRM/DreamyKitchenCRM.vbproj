@@ -223,6 +223,12 @@
     <Compile Include="forms\frmCalendar.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmCalendarInst.Designer.vb">
+      <DependentUpon>frmCalendarInst.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCalendarInst.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCatSubErm.Designer.vb">
       <DependentUpon>frmCatSubErm.vb</DependentUpon>
     </Compile>
@@ -281,6 +287,12 @@
       <DependentUpon>frmInputBox.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmInputBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmInstallationsvb.Designer.vb">
+      <DependentUpon>frmInstallationsvb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmInstallationsvb.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmLogin.Designer.vb">
@@ -373,6 +385,12 @@
     <Compile Include="forms\frmTecnicalSupport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmTransactions.Designer.vb">
+      <DependentUpon>frmTransactions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmTransactions.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmUsers.Designer.vb">
       <DependentUpon>frmUsers.vb</DependentUpon>
     </Compile>
@@ -385,10 +403,16 @@
     <Compile Include="forms\WaitForm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmErmDoorTypes.Designer.vb">
+    <Compile Include="forms\frmErmDoorTypes.Designer.vb">
       <DependentUpon>frmErmDoorTypes.vb</DependentUpon>
     </Compile>
-    <Compile Include="frmErmDoorTypes.vb">
+    <Compile Include="forms\frmErmDoorTypes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmServices.Designer.vb">
+      <DependentUpon>frmServices.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmServices.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Reports\RepOfferMech.Designer.vb">
@@ -437,6 +461,9 @@
     <EmbeddedResource Include="forms\frmCalendar.resx">
       <DependentUpon>frmCalendar.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCalendarInst.resx">
+      <DependentUpon>frmCalendarInst.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCatSubErm.resx">
       <DependentUpon>frmCatSubErm.vb</DependentUpon>
     </EmbeddedResource>
@@ -466,6 +493,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmInputBox.resx">
       <DependentUpon>frmInputBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmInstallationsvb.resx">
+      <DependentUpon>frmInstallationsvb.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>
@@ -512,14 +542,20 @@
     <EmbeddedResource Include="forms\frmTecnicalSupport.resx">
       <DependentUpon>frmTecnicalSupport.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTransactions.resx">
+      <DependentUpon>frmTransactions.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUsers.resx">
       <DependentUpon>frmUsers.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmErmDoorTypes.resx">
+    <EmbeddedResource Include="forms\frmErmDoorTypes.resx">
       <DependentUpon>frmErmDoorTypes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmServices.resx">
+      <DependentUpon>frmServices.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepOfferMech.resx">
       <DependentUpon>RepOfferMech.vb</DependentUpon>
@@ -787,6 +823,10 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-bank-building-40.png" />
+    <None Include="Resources\icons8-cash-counter-80.png" />
+    <None Include="Resources\icons8-maintenance-40.png" />
+    <None Include="Resources\icons9-workers-40.png" />
     <None Include="Resources\προσφορα.jpg" />
     <None Include="Resources\kitchen.png" />
     <None Include="Resources\ΥΠΟΛΟΓΙΣΜΟΙ1.png" />

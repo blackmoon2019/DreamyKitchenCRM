@@ -78,6 +78,32 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "BANKS"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "BANKS", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.BANKS(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_BANKS")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("BANKS")
+                            Case "SER"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "SER", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.SER(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_SER")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("SER")
                             Case "COU"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "COU", sGuid)
@@ -254,6 +280,24 @@ Public Class frmGen
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "BANKS"
+                                sResult = DBQ.UpdateData(LayoutControl1, "BANKS", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.BANKS(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_BANKS")
+                                End If
+                            Case "SER"
+                                sResult = DBQ.UpdateData(LayoutControl1, "SER", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.SER(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_SER")
+                                End If
                             Case "COU"
                                 sResult = DBQ.UpdateData(LayoutControl1, "COU", sID)
                                 If CalledFromCtrl Then
@@ -384,6 +428,19 @@ Public Class frmGen
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "BANKS"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("BANKS")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BANKS where id ='" + sID + "'")
+                End If
+
+            Case "SER"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("SER")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SER where id ='" + sID + "'")
+                End If
             Case "COU"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("COU")
@@ -485,6 +542,20 @@ Public Class frmGen
                     oCmd.ExecuteNonQuery()
                 End Using
                 Select Case sDataTable
+                    Case "BANKS"
+                        If CalledFromCtrl Then
+                            FillCbo.BANKS(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_BANKS")
+                        End If
+                    Case "SER"
+                        If CalledFromCtrl Then
+                            FillCbo.SER(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_SER")
+                        End If
                     Case "COU"
                         If CalledFromCtrl Then
                             FillCbo.COU(CtrlCombo)

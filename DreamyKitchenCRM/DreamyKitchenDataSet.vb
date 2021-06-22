@@ -25,3 +25,8 @@ Namespace DreamyKitchenDataSetTableAdapters
     Partial Public Class vw_ERMTableAdapter
     End Class
 End Namespace
+
+Namespace DreamyKitchenDataSetTableAdapters
+    Partial Public Class vw_INSTTableAdapter
+    End Class
+End Namespace

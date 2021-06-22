@@ -295,8 +295,8 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Password=mavros1!;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
-            "chen;Data Source=BLACKMOON-PC;MultipleActiveResultSets=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
+            "chen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True")>  _
         Public ReadOnly Property DreamyKitchenConnectionString() As String
             Get
                 Return CType(Me("DreamyKitchenConnectionString"),String)
@@ -323,6 +323,42 @@ Namespace My
             Get
                 Return CType(Me("DreamyKitchenConnectionStringLocal"),String)
             End Get
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmServices() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmServices"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmServices") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmInstallations() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmInstallations"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmInstallations") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmTransactions() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmTransactions"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmTransactions") = value
+            End Set
         End Property
     End Class
 End Namespace

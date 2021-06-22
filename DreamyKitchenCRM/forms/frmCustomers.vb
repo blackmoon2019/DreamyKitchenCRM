@@ -204,7 +204,7 @@ Public Class frmCustomers
                 'dtDTS.EditValue = DateTime.Now
                 If txtFileNames.Text <> "" Then
                     sResult = DBQ.InsertDataFiles(OpenFileDialog1, sGuid, "CCT_F")
-                    LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where cctID = '" & sGuid & "'")
+                    LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where INVOICE = 0 AND cctID = '" & sGuid & "'")
                 End If
                 txtCode.Text = DBQ.GetNextId("CCT")
                 If CalledFromCtrl Then

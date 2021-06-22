@@ -91,8 +91,6 @@ Public Class frmMain
         Process.Start(bbLink.EditValue)
     End Sub
 
-
-
     Private Sub bbCOU_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCOU.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Νομοί"
@@ -433,11 +431,6 @@ Public Class frmMain
         SaveCurrentSkin()
     End Sub
 
-
-    Private Sub frmMain_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-
-    End Sub
-
     Sub SaveCurrentSkin()
         Dim config As Configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None)
         If config.AppSettings.Settings("Skin") Is Nothing Then
@@ -454,6 +447,45 @@ Public Class frmMain
         Else
             UserLookAndFeel.Default.ActiveLookAndFeel.SkinName = config.AppSettings.Settings("Skin").Value
         End If
+    End Sub
+
+    Private Sub BBSer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSer.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Συνεργεία"
+        form.DataTable = "vw_SER"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BarButtonItem3_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInst.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τοποθετήσεις"
+        form.DataTable = "vw_INST"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBCalendarInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCalendarInst.ItemClick
+        Dim form As frmCalendarInst = New frmCalendarInst()
+        form.Text = "Ημερολόγιο Τοποθετήσεων"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbBanks_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbBanks.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τράπεζες"
+        form.DataTable = "vw_BANKS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbCreditDebit_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCreditDebit.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Χρεωπιστώσεις"
+        form.DataTable = "vw_TRANSH"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 End Class
 

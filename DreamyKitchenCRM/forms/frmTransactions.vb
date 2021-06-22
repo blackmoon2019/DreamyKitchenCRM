@@ -1,0 +1,377 @@
+﻿Imports System.Data.SqlClient
+Imports DevExpress.Utils
+Imports DevExpress.Utils.Menu
+Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraGrid.Menu
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
+
+Public Class frmTransactions
+    Private sID As String
+    Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
+    Private Frm As DevExpress.XtraEditors.XtraForm
+    Public Mode As Byte
+    Private Valid As New ValidateControls
+    Private Log As New Transactions
+    Private FillCbo As New FillCombos
+    Private DBQ As New DBQueries
+    Private LoadForms As New FormLoader
+    Private Cls As New ClearControls
+    Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
+    Private CalledFromCtrl As Boolean
+
+
+    Public WriteOnly Property ID As String
+        Set(value As String)
+            sID = value
+        End Set
+    End Property
+    Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
+        Set(value As DevExpress.XtraGrid.Views.Grid.GridView)
+            Ctrl = value
+        End Set
+    End Property
+    Public WriteOnly Property FormScroller As DevExpress.XtraEditors.XtraForm
+        Set(value As DevExpress.XtraEditors.XtraForm)
+            Frm = value
+        End Set
+    End Property
+    Public WriteOnly Property CallerControl As DevExpress.XtraEditors.LookUpEdit
+        Set(value As DevExpress.XtraEditors.LookUpEdit)
+            CtrlCombo = value
+        End Set
+    End Property
+    Public WriteOnly Property CalledFromControl As Boolean
+        Set(value As Boolean)
+            CalledFromCtrl = value
+        End Set
+    End Property
+    Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
+        Me.Close()
+    End Sub
+    Private Sub ShellExecute(ByVal File As String)
+        Dim myProcess As New Process
+        myProcess.StartInfo.FileName = File
+        myProcess.StartInfo.UseShellExecute = True
+        myProcess.StartInfo.RedirectStandardOutput = False
+        myProcess.Start()
+        myProcess.Dispose()
+    End Sub
+
+    Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BANKS' table. You can move, or remove it, as needed.
+        Me.Vw_BANKSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BANKS)
+        Dim sSQL As New System.Text.StringBuilder
+        'Τράπεζες
+        FillCbo.BANKS(cboBANK)
+        'Πελάτες
+        FillCbo.CUS(cboCUS)
+
+        Select Case Mode
+            Case FormMode.NewRecord
+                dtCharge.EditValue = DateTime.Now
+                dtPay.EditValue = DateTime.Now
+                txtCode.Text = DBQ.GetNextId("TRANSH")
+                LayoutControlGroup2.Enabled = False
+            Case FormMode.EditRecord
+                LoadForms.LoadFormGRP(LayoutControlGroup1, "Select * from vw_TRANSH where id ='" + sID + "'")
+                Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
+                Me.Vw_TRANSDTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSD, System.Guid.Parse(sID))
+                txtCode1.Text = DBQ.GetNextId("TRANSD")
+                dtPay.EditValue = DateTime.Now
+        End Select
+        'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml") = False Then
+            GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
+        End If
+        GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
+        Me.CenterToScreen()
+        My.Settings.frmTransactions = Me.Location
+        My.Settings.Save()
+        cmdSaveTransH.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        cmdSaveTransD.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+    End Sub
+
+    Private Sub cmdSaveTransH_Click(sender As Object, e As EventArgs) Handles cmdSaveTransH.Click
+        Dim sResult As Boolean, sResultF As Boolean
+        Dim sGuid As String
+        Try
+            If Valid.ValidateFormGRP(LayoutControlGroup1) Then
+                Select Case Mode
+                    Case FormMode.NewRecord
+                        sGuid = System.Guid.NewGuid.ToString
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sGuid)
+                    Case FormMode.EditRecord
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sID)
+                        sGuid = sID
+                End Select
+                'Καθαρισμός Controls
+                'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
+                'dtDTS.EditValue = DateTime.Now
+                If txtInvoiceFilename.Text <> "" Then
+                    sResultF = DBQ.InsertDataFiles(OpenFileDialog1, cboCUS.EditValue.ToString, "TRANSH")
+                    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
+                    'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where ISINVOICE = 1 AND cctID = " & toSQLValueS(cboCUS.EditValue.ToString))
+                End If
+                txtCode.Text = DBQ.GetNextId("TRANSH")
+                'If CalledFromCtrl Then
+                '    FillCbo.CUS(CtrlCombo)
+                '    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                'Else
+                Dim form As frmScroller = Frm
+                form.LoadRecords("vw_TRANSH")
+                'Cls.ClearCtrls(LayoutControl1)
+                If sResult = True Then
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    LayoutControlGroup2.Enabled = True
+                    Mode = FormMode.EditRecord
+                    txtInvoiceFilename.Text = ""
+                End If
+                If txtInvoiceFilename.Text <> "" Then
+                    If sResultF = False Then XtraMessageBox.Show("To Παραστατικό δεν αποθηκέυτηκε.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+    Private Sub frmTransactions_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
+    End Sub
+
+    Private Sub txtInvoiceFilename_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtInvoiceFilename.ButtonClick
+        Select Case e.Button.Index
+            Case 0 : FileSelect()
+            Case 1 : txtInvoiceFilename.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub FileSelect()
+        OpenFileDialog1.FilterIndex = 1
+        OpenFileDialog1.InitialDirectory = "C:\"
+        OpenFileDialog1.Title = "Open File"
+        OpenFileDialog1.CheckFileExists = False
+        OpenFileDialog1.Multiselect = True
+        Dim result As DialogResult = OpenFileDialog1.ShowDialog()
+        If result = DialogResult.OK Then
+            txtInvoiceFilename.EditValue = ""
+            For I = 0 To OpenFileDialog1.FileNames.Count - 1
+                txtInvoiceFilename.EditValue = txtInvoiceFilename.EditValue & IIf(txtInvoiceFilename.EditValue <> "", ";", "") & OpenFileDialog1.SafeFileNames(I)
+            Next I
+        End If
+    End Sub
+
+    Private Sub GridView2_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView2.KeyDown
+        Select Case e.KeyCode
+            'Case Keys.F2 : If UserProps.AllowInsert = True Then NewRecord()
+            'Case Keys.F3 : If UserProps.AllowEdit = True Then EditRecord()
+            'Case Keys.F5 : LoadRecords()
+            Case Keys.Delete : DeleteRecord() 'If UserProps.AllowDelete = True Then DeleteRecord()
+        End Select
+    End Sub
+    Private Sub DeleteRecord()
+        Dim sSQL As String
+        Try
+            If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                sSQL = "DELETE FROM CCT_F WHERE ID = '" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString & "'"
+
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(sID))
+                'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,filename,comefrom,createdon,realname From vw_CCT_F where isinvoice=1 and cctID = '" & sID & "'")
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
+        Try
+            Dim sFilename = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "filename")
+            Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
+            Dim b() As Byte = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "files")
+            fs.Write(b, 0, b.Length)
+            fs.Close()
+            My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & sFilename, My.Settings.CRM_PATH & sFilename, True)
+            ShellExecute(My.Settings.CRM_PATH & sFilename)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboCUS.EditValue = Nothing : ManageCus()
+            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 3 : cboCUS.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageCus()
+        Dim form1 As frmCustomers = New frmCustomers()
+        form1.Text = "Πελάτες"
+        form1.CallerControl = cboCUS
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If cboCUS.EditValue <> Nothing Then
+            form1.ID = cboCUS.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+    Private Sub ManageBank()
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "Τράπεζες"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Τράπεζα"
+        form1.DataTable = "BANKS"
+        form1.CalledFromControl = True
+        form1.CallerControl = cboBANK
+        If cboBANK.EditValue <> Nothing Then form1.ID = cboBANK.EditValue.ToString
+        form1.MdiParent = frmMain
+        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        If cboBANK.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+
+    Private Sub cboBANK_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBANK.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboBANK.EditValue = Nothing : ManageBank()
+            Case 2 : If cboBANK.EditValue <> Nothing Then ManageBank()
+            Case 3 : cboBANK.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboBANK_EditValueChanged(sender As Object, e As EventArgs) Handles cboBANK.EditValueChanged
+        If cboBANK.EditValue IsNot Nothing Then chkCash.Enabled = False : chkCash.Checked = False Else chkCash.Enabled = True
+    End Sub
+
+    Private Sub cmdSaveTransD_Click(sender As Object, e As EventArgs) Handles cmdSaveTransD.Click
+        Dim sResult As Boolean
+        Dim sGuid As String
+        Try
+            If Valid.ValidateFormGRP(LayoutControlGroup2) Then
+                sGuid = System.Guid.NewGuid.ToString
+                sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSD",,, LayoutControlGroup2, sGuid,, "transhID", toSQLValueS(sID))
+                If sResult = True Then
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Me.Vw_TRANSDTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSD, System.Guid.Parse(sID))
+                    'Καθαρισμός Controls
+                    Cls.ClearCtrlsGRP(LayoutControlGroup2)
+                    dtPay.EditValue = DateTime.Now
+                    txtCode1.Text = DBQ.GetNextId("TRANSD")
+                End If
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub GridView1CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+
+        Try
+            Dim sSQL As String
+            sSQL = "UPDATE [TRANSD] SET dtPay  = " & toSQLValueS(CDate(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "dtPay")).ToString("yyyyMMdd")) &
+                ",bankID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "bankID").ToString) &
+                ",cash = " & IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cash") = True, 1, 0) &
+                ",cmt = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt")) &
+                ",amt = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "amt"), True) &
+        " WHERE ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then
+            Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = TryCast(e.Menu, GridViewColumnMenu)
+            Dim item As New DXEditMenuItem()
+            Dim itemColor As New DXEditMenuItem()
+
+            'menu.Items.Clear()
+            If menu.Column IsNot Nothing Then
+                'Για να προσθέσουμε menu item στο Default menu πρέπει πρώτα να προσθέσουμε ένα Repository Item 
+                'Υπάρχουν πολλών ειδών Repositorys
+                '1st Custom Menu Item
+                Dim popRenameColumn As New RepositoryItemTextEdit
+                popRenameColumn.Name = "RenameColumn"
+                menu.Items.Add(New DXEditMenuItem("Μετονομασία Στήλης", popRenameColumn, AddressOf OnEditValueChanged, Nothing, Nothing, 100, 0))
+                item = menu.Items.Item("Μετονομασία Στήλης")
+                item.EditValue = menu.Column.GetTextCaption
+                item.Tag = menu.Column.AbsoluteIndex
+
+                '2nd Custom Menu Item
+                menu.Items.Add(CreateCheckItem("Κλείδωμα Στήλης", menu.Column, Nothing))
+
+                '3rd Custom Menu Item
+                Dim popColorsColumn As New RepositoryItemColorEdit
+                popColorsColumn.Name = "ColorsColumn"
+                menu.Items.Add(New DXEditMenuItem("Χρώμα Στήλης", popColorsColumn, AddressOf OnColumnsColorChanged, Nothing, Nothing, 100, 0))
+                itemColor = menu.Items.Item("Χρώμα Στήλης")
+                itemColor.EditValue = menu.Column.AppearanceCell.BackColor
+                itemColor.Tag = menu.Column.AbsoluteIndex
+
+                '4nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveView, Nothing, Nothing, Nothing, Nothing))
+
+            End If
+        End If
+    End Sub
+    'Μετονομασία Στήλης Master
+    Private Sub OnEditValueChanged(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As New DXEditMenuItem()
+        item = sender
+        If item.Tag Is Nothing Then Exit Sub
+        GridView1.Columns(item.Tag).Caption = item.EditValue
+        'MessageBox.Show(item.EditValue.ToString())
+    End Sub
+    Private Function CreateCheckItem(ByVal caption As String, ByVal column As GridColumn, ByVal image As Image) As DXMenuCheckItem
+        Dim item As New DXMenuCheckItem(caption, (Not column.OptionsColumn.AllowMove), image, New EventHandler(AddressOf OnCanMoveItemClick))
+        item.Tag = New MenuColumnInfo(column)
+        Return item
+    End Function
+    'Αλλαγή Χρώματος Στήλης Master
+    Private Sub OnColumnsColorChanged(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXEditMenuItem = TryCast(sender, DXEditMenuItem)
+        item = sender
+        If item.Tag Is Nothing Then Exit Sub
+        GridView1.Columns(item.Tag).AppearanceCell.BackColor = item.EditValue
+    End Sub
+    'Κλείδωμα Στήλης Master
+    Private Sub OnCanMoveItemClick(ByVal sender As Object, ByVal e As EventArgs)
+        Dim item As DXMenuCheckItem = TryCast(sender, DXMenuCheckItem)
+        Dim info As MenuColumnInfo = TryCast(item.Tag, MenuColumnInfo)
+        If info Is Nothing Then
+            Return
+        End If
+        info.Column.OptionsColumn.AllowMove = Not item.Checked
+    End Sub
+    'Αποθήκευση όψης 
+    Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
+        GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+    Friend Class MenuColumnInfo
+        Public Sub New(ByVal column As GridColumn)
+            Me.Column = column
+        End Sub
+        Public Column As GridColumn
+    End Class
+End Class
