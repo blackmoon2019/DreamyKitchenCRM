@@ -76,6 +76,7 @@ Public Class frmScroller
                 sItem.Name = "ViewCusMov"
                 PopupMenuRows.AddItem(sItem)
             End If
+            GridView1.OptionsBehavior.AutoExpandAllGroups = True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -1445,11 +1446,11 @@ Public Class frmScroller
                 If sDataDetail <> "" Then sSQL2 = "SELECT  * FROM " & sDataDetail
             End If
 
+            myCmd = CNDB.CreateCommand
+            myCmd.CommandText = sSQL
+            GridView1.Columns.Clear()
+            myReader = myCmd.ExecuteReader()
             If sDataDetail = "" Then
-                myCmd = CNDB.CreateCommand
-                myCmd.CommandText = sSQL
-                GridView1.Columns.Clear()
-                myReader = myCmd.ExecuteReader()
                 grdMain.DataSource = myReader
             Else
                 Select Case sDataDetail
@@ -1466,6 +1467,32 @@ Public Class frmScroller
                         GridView2.Columns.Clear()
                         grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
                         grdMain.ForceInitialize()
+                        If grdMain.LevelTree.Nodes.Count = 1 Then
+                            Dim GrdView As New GridView(grdMain)
+                            grdMain.LevelTree.Nodes.Add("Φόρμες", GridView2)
+                            'Specify text to be displayed within detail tabs.
+                            GrdView.ViewCaption = "Φόρμες"
+                        End If
+                    Case "vw_TRANSD"
+                        Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
+                        Dim AdapterDetail As New SqlDataAdapter(sSQL2, CNDB)
+                        Dim sdataSet As New DataSet()
+                        AdapterMaster.Fill(sdataSet, IIf(sDataTable = "", sDataTable2, sDataTable))
+                        AdapterDetail.Fill(sdataSet, sDataDetail)
+                        Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
+                        Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("transhID")
+                        sdataSet.Relations.Add("Χρεωπιστώσεις", keyColumn, foreignKeyColumn)
+                        GridView1.Columns.Clear()
+                        GridView2.Columns.Clear()
+                        grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
+                        grdMain.ForceInitialize()
+                        If grdMain.LevelTree.Nodes.Count = 1 Then
+                            Dim GrdView As New GridView(grdMain)
+                            grdMain.LevelTree.Nodes.Add("Χρεωπιστώσεις", GridView2)
+                            'Specify text to be displayed within detail tabs.
+                            GrdView.ViewCaption = "Χρεωπιστώσεις"
+                        End If
+
                 End Select
             End If
             grdMain.DefaultView.PopulateColumns()
@@ -1533,9 +1560,15 @@ Public Class frmScroller
         GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
         GridView2.OptionsView.EnableAppearanceEvenRow = True
         If CurrentView = "" Then
-            If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+            If sDataDetail <> "" Then
+                If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then
+                    If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+                End If
+            End If
         Else
-            If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
+            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "\" & BarViews.EditValue) = False Then
+                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
+            End If
         End If
     End Sub
     'Αποθήκευση όψης ως Default

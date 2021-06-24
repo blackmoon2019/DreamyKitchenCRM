@@ -104,9 +104,10 @@ Public Class frmTransactions
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sGuid)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sGuid,, "bal", toSQLValueS(txtBal.EditValue.ToString, True))
+                        sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sID)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sID,,,,, "bal=" & toSQLValueS(txtBal.EditValue.ToString, True))
                         sGuid = sID
                 End Select
                 'Καθαρισμός Controls
@@ -118,12 +119,14 @@ Public Class frmTransactions
                     'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where ISINVOICE = 1 AND cctID = " & toSQLValueS(cboCUS.EditValue.ToString))
                 End If
                 txtCode.Text = DBQ.GetNextId("TRANSH")
+                txtCode1.Text = DBQ.GetNextId("TRANSD")
                 'If CalledFromCtrl Then
                 '    FillCbo.CUS(CtrlCombo)
                 '    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                 'Else
                 Dim form As frmScroller = Frm
-                form.LoadRecords("vw_TRANSH")
+                form.DataTable = "vw_TRANSH"
+                form.LoadRecords("vw_TRANSD")
                 'Cls.ClearCtrls(LayoutControl1)
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -171,22 +174,35 @@ Public Class frmTransactions
             'Case Keys.F2 : If UserProps.AllowInsert = True Then NewRecord()
             'Case Keys.F3 : If UserProps.AllowEdit = True Then EditRecord()
             'Case Keys.F5 : LoadRecords()
-            Case Keys.Delete : DeleteRecord() 'If UserProps.AllowDelete = True Then DeleteRecord()
+            Case Keys.Delete : DeleteRecord("CCT_F") 'If UserProps.AllowDelete = True Then DeleteRecord()
         End Select
     End Sub
-    Private Sub DeleteRecord()
+    Private Sub DeleteRecord(ByVal sTable As String)
         Dim sSQL As String
         Try
-            If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID") = Nothing Then Exit Sub
-            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                sSQL = "DELETE FROM CCT_F WHERE ID = '" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString & "'"
+            If sTable = "CCT_F" Then
+                If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+                If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    sSQL = "DELETE FROM CCT_F WHERE ID = '" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString & "'"
 
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
-                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(sID))
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(sID))
+                End If
                 'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,filename,comefrom,createdon,realname From vw_CCT_F where isinvoice=1 and cctID = '" & sID & "'")
+            Else
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+                If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    sSQL = "DELETE FROM TRANSD WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Me.Vw_TRANSDTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSD, System.Guid.Parse(sID))
+                End If
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -261,7 +277,7 @@ Public Class frmTransactions
 
     Private Sub cmdSaveTransD_Click(sender As Object, e As EventArgs) Handles cmdSaveTransD.Click
         Dim sResult As Boolean
-        Dim sGuid As String
+        Dim sGuid As String, sSQL As String
         Try
             If Valid.ValidateFormGRP(LayoutControlGroup2) Then
                 sGuid = System.Guid.NewGuid.ToString
@@ -273,6 +289,9 @@ Public Class frmTransactions
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
                     dtPay.EditValue = DateTime.Now
                     txtCode1.Text = DBQ.GetNextId("TRANSD")
+                    Dim form As frmScroller = Frm
+                    form.DataTable = "vw_TRANSH"
+                    form.LoadRecords("vw_TRANSD")
                 End If
             End If
         Catch ex As Exception
@@ -281,13 +300,21 @@ Public Class frmTransactions
     End Sub
 
     Private Sub GridView1CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
-
+        Dim cash As Byte, cmt As String
         Try
             Dim sSQL As String
+            If Not IsDBNull(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cash")) Then
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cash") = True Then cash = 1 Else cash = 0
+            End If
+            If Not IsDBNull(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt")) Then
+                cmt = toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt"))
+            Else
+                cmt = "NULL"
+            End If
             sSQL = "UPDATE [TRANSD] SET dtPay  = " & toSQLValueS(CDate(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "dtPay")).ToString("yyyyMMdd")) &
                 ",bankID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "bankID").ToString) &
-                ",cash = " & IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cash") = True, 1, 0) &
-                ",cmt = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt")) &
+                ",cash = " & cash &
+                ",cmt = " & cmt &
                 ",amt = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "amt"), True) &
         " WHERE ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
             Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -368,6 +395,44 @@ Public Class frmTransactions
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
+
+    Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
+        Select Case e.KeyCode
+            'Case Keys.F2 : If UserProps.AllowInsert = True Then NewRecord()
+            'Case Keys.F3 : If UserProps.AllowEdit = True Then EditRecord()
+            'Case Keys.F5 : LoadRecords()
+            Case Keys.Delete : DeleteRecord("TRANSD") 'If UserProps.AllowDelete = True Then DeleteRecord()
+        End Select
+    End Sub
+
+    Private Sub RepositoryItemLookUpEdit1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemLookUpEdit1.ButtonClick
+        Select Case e.Button.Index
+            Case 0
+            Case 1 : sender.EditValue = Nothing
+        End Select
+
+    End Sub
+
+    Private Sub GridView1_CustomDrawFooterCell(sender As Object, e As FooterCellCustomDrawEventArgs) Handles GridView1.CustomDrawFooterCell
+        Dim sSQL As String
+        txtBal.EditValue = GridView1.Columns("amt").SummaryItem.SummaryValue
+        If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
+        txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
+        sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(txtBal.EditValue.ToString, True) &
+                           " WHERE ID = " & toSQLValueS(sID)
+        Using oCmd As New SqlCommand(sSQL, CNDB)
+            oCmd.ExecuteNonQuery()
+        End Using
+
+    End Sub
+
+    Private Sub txtTotAmt_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotAmt.EditValueChanged
+        txtBal.EditValue = GridView1.Columns("amt").SummaryItem.SummaryValue
+        If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
+        txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
+
+    End Sub
+
     Friend Class MenuColumnInfo
         Public Sub New(ByVal column As GridColumn)
             Me.Column = column

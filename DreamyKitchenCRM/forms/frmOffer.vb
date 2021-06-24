@@ -1519,4 +1519,5 @@ Public Class frmOffer
         End Select
     End Sub
 
+
 End Class

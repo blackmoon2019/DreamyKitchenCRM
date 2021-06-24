@@ -484,6 +484,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Χρεωπιστώσεις"
         form.DataTable = "vw_TRANSH"
+        form.DataDetail = "vw_TRANSD"
         form.MdiParent = Me
         form.Show()
     End Sub
