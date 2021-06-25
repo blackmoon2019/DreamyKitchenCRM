@@ -8,11 +8,11 @@ Public Class CheckPermissions
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            sSQL = "select [DELETE],[INSERT],[EDIT] from RIGHTS  where UID= '" & UserProps.ID.ToString & "'"
+            sSQL = "select [DELETE],[INSERT],[EDIT],[VIEW] from RIGHTS  where UID= '" & UserProps.ID.ToString & "'"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
-
+                UserProps.AllowView = sdr.GetBoolean(sdr.GetOrdinal("VIEW"))
                 UserProps.AllowDelete = sdr.GetBoolean(sdr.GetOrdinal("DELETE"))
                 UserProps.AllowEdit = sdr.GetBoolean(sdr.GetOrdinal("EDIT"))
                 UserProps.AllowInsert = sdr.GetBoolean(sdr.GetOrdinal("INSERT"))

@@ -77,6 +77,22 @@ Public Class frmScroller
                 PopupMenuRows.AddItem(sItem)
             End If
             GridView1.OptionsBehavior.AutoExpandAllGroups = True
+            GridView1.OptionsMenu.ShowFooterItem = True
+            GridView1.OptionsMenu.EnableFooterMenu = True
+            GridView1.OptionsMenu.EnableGroupPanelMenu = True
+            GridView1.OptionsMenu.EnableGroupRowMenu = True
+            GridView1.OptionsView.ShowFooter = True
+            GridView1.OptionsMenu.ShowGroupSummaryEditorItem = True
+            GridView1.OptionsMenu.ShowGroupSortSummaryItems = True
+
+            GridView2.OptionsBehavior.AutoExpandAllGroups = True
+            GridView2.OptionsMenu.ShowFooterItem = True
+            GridView2.OptionsMenu.EnableFooterMenu = True
+            GridView2.OptionsMenu.EnableGroupPanelMenu = True
+            GridView2.OptionsMenu.EnableGroupRowMenu = True
+            GridView2.OptionsView.ShowFooter = True
+            GridView2.OptionsMenu.ShowGroupSummaryEditorItem = True
+            GridView2.OptionsMenu.ShowGroupSortSummaryItems = True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

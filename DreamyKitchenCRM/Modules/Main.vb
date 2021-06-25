@@ -24,6 +24,7 @@ Module Main
         Public AllowInsert As Boolean
         Public AllowEdit As Boolean
         Public AllowDelete As Boolean
+        Public AllowView As Boolean
         Public Email As String
         Public EmailServer As String
         Public EmailPassword As String

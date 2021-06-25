@@ -151,10 +151,12 @@ Partial Class frmScroller
         Me.GridView1.OptionsLayout.StoreAppearance = True
         Me.GridView1.OptionsLayout.StoreFormatRules = True
         Me.GridView1.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.GridView1.OptionsMenu.ShowFooterItem = True
         Me.GridView1.OptionsPrint.PrintPreview = True
         Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
         Me.GridView1.OptionsView.ColumnAutoWidth = False
         Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView1.OptionsView.ShowFooter = True
         '
         'BarManager1
         '

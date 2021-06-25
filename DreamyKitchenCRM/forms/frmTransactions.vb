@@ -289,9 +289,6 @@ Public Class frmTransactions
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
                     dtPay.EditValue = DateTime.Now
                     txtCode1.Text = DBQ.GetNextId("TRANSD")
-                    Dim form As frmScroller = Frm
-                    form.DataTable = "vw_TRANSH"
-                    form.LoadRecords("vw_TRANSD")
                 End If
             End If
         Catch ex As Exception
@@ -423,6 +420,9 @@ Public Class frmTransactions
         Using oCmd As New SqlCommand(sSQL, CNDB)
             oCmd.ExecuteNonQuery()
         End Using
+        Dim form As frmScroller = Frm
+        form.DataTable = "vw_TRANSH"
+        form.LoadRecords("vw_TRANSD")
 
     End Sub
 
