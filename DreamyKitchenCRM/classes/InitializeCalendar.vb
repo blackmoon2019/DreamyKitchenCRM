@@ -68,7 +68,7 @@ Public Class InitializeCalendar
         If sdr.HasRows Then
             While sdr.Read()
                 If sdr.IsDBNull(sdr.GetOrdinal("dtDeliverDate")) = False Then sDate = sdr.GetDateTime(sdr.GetOrdinal("dtDeliverDate"))
-                sCusName = sdr.GetString(sdr.GetOrdinal("cctName"))
+                If sdr.IsDBNull(sdr.GetOrdinal("cctName")) = False Then sCusName = sdr.GetString(sdr.GetOrdinal("cctName"))
                 sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
                 If sdr.IsDBNull(sdr.GetOrdinal("color")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("color")))
                 If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
@@ -79,6 +79,7 @@ Public Class InitializeCalendar
                 If sdr.IsDBNull(sdr.GetOrdinal("SerCode")) = False Then SerCode = sdr.GetInt32(sdr.GetOrdinal("SerCode"))
                 If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
                 CreateAppointmentInst(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, stmReminder, sCompleted, sSalerName, Reminder)
+                sCusName = ""
             End While
         End If
         sdr.Close()
@@ -154,13 +155,15 @@ Public Class InitializeCalendar
                                       ByVal sCusname As String, ByVal sRemValues As String, ByVal AptTime As String, ByVal Completed As Boolean,
                                        ByVal SalerName As String, Optional ByVal EnableReminder As Boolean = False
                                       )
-        Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate), AptSubject & "(" & sCusname & ")")
+        Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate), AptSubject & "(Πελάτης: " & sCusname & ")")
         Try
 
             Dim Field As New DevExpress.XtraScheduler.Native.CustomField("StatusColor", sColor)
+
             apt.CustomFields.Add(Field)
-            apt.Location = SalerName
+            'apt.Location = SalerName
             apt.Description = Cmt
+
             'apt.AllDay = True
             If AptTime <> Nothing Then
                 apt.Start = CDate(AptDate) & " " & AptTime

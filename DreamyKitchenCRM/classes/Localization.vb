@@ -1,5 +1,6 @@
 ﻿Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Localization
+Imports DevExpress.XtraScheduler.Localization
 
 
 Public Class GreekGridLocalizer
@@ -130,7 +131,7 @@ Public Class GreekGridLocalizer
         End Function
     End Class
 
-    Public Class GermanEditorsLocalizer
+Public Class GermanEditorsLocalizer
         Inherits Localizer
         Public Overrides ReadOnly Property Language() As String
             Get
@@ -147,9 +148,10 @@ Public Class GreekGridLocalizer
                 Case StringId.PictureEditMenuPaste : Return "Einfugen"
                 Case StringId.PictureEditMenuDelete : Return "Loschen"
                 Case StringId.PictureEditMenuLoad : Return "Laden"
-                Case StringId.PictureEditMenuSave : Return "Speichern"
-                    ' ...
-            End Select
+            Case StringId.PictureEditMenuSave : Return "Speichern"
+            Case SchedulerStringId.FlyoutCaption_Location : Return "Πωλητής"
+                ' ...
+        End Select
             Return ""
         End Function
     End Class

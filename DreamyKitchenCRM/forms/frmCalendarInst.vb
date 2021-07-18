@@ -12,7 +12,7 @@ Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraScheduler
 Imports DevExpress.XtraScheduler.Drawing
-
+Imports DevExpress.XtraScheduler.Localization
 Public Class frmCalendarInst
     Private Calendar As New InitializeCalendar
     Private Sub frmCalendarInst_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -22,6 +22,7 @@ Public Class frmCalendarInst
         Try
             Dim sSQL As String
             PanelResults.Visible = False
+            SchedulerLocalizer.Active = New MySchedulerLocalizer()
             sSQL = "SELECT * FROM vw_INST where completed = 0 order by code"
             'Δημιουργία Appointments
             Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, True)
@@ -42,6 +43,9 @@ Public Class frmCalendarInst
             Me.DreamyKitchenAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
 
             SchedulerControl1.Start = Now.Date
+            SchedulerControl1.ActiveViewType = SchedulerViewType.Month
+            SchedulerControl1.Views.MonthView.AppointmentDisplayOptions.AppointmentAutoHeight = True
+
             If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\Inst.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\Inst.xml", OptionsLayoutBase.FullLayout)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -109,11 +113,15 @@ Public Class frmCalendarInst
             sSQL = sSQL + " where completed in (" & sIDS.ToString & ")"
         End If
         Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, False)
+        SchedulerControl1.Start = Now.Date
+        SchedulerControl1.ActiveViewType = SchedulerViewType.Month
+        SchedulerControl1.Views.MonthView.AppointmentDisplayOptions.AppointmentAutoHeight = True
+
     End Sub
     Private Sub OkButton_Click(ByVal sender As Object, ByVal e As EventArgs)
         SetCalendarFilter()
     End Sub
-    Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles Ανανέωση.ItemClick
+    Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBrefresh.ItemClick
         SetCalendarFilter()
     End Sub
     Private Sub OkComletedButton_Click(ByVal sender As Object, ByVal e As EventArgs)
@@ -214,10 +222,31 @@ Public Class frmCalendarInst
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\Inst.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
+
+    Private Sub SchedulerControl1_AppointmentFlyoutShowing(sender As Object, e As AppointmentFlyoutShowingEventArgs) Handles SchedulerControl1.AppointmentFlyoutShowing
+
+    End Sub
+
+    Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText
+        e.Text = e.Text & vbCrLf + "Σχόλια: " + e.Description
+    End Sub
+
     Friend Class MenuColumnInfo
         Public Sub New(ByVal column As GridColumn)
             Me.Column = column
         End Sub
         Public Column As GridColumn
     End Class
+    Public Class MySchedulerLocalizer
+        Inherits SchedulerLocalizer
+        Public Overrides Function GetLocalizedString(ByVal id As SchedulerStringId) As String
+            Select Case id
+                Case SchedulerStringId.FlyoutCaption_Location : Return "Πωλητής:"
+                    'Case SchedulerStringId.FlyoutCaption_Reminder : Return "Σχόλια:"
+            End Select
+            Return MyBase.GetLocalizedString(id)
+        End Function
+    End Class
+
 End Class
+

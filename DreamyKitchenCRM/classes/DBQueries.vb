@@ -22,13 +22,14 @@ Public Class DBQueries
         Dim Code As Integer = cmd.ExecuteScalar()
         Return Code
     End Function
-    Public Function InsertDataFiles(ByVal control As System.Windows.Forms.OpenFileDialog, ByVal ID As String, ByVal sTable As String) As Boolean
+    Public Function InsertDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal ID As String, ByVal sTable As String) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Dim i As Integer
         Try
             For i = 0 To control.FileNames.Count - 1
                 sSQL.Clear()
                 Select Case sTable
+                    Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                     Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
                     Case "TRANSH" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
                     Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")

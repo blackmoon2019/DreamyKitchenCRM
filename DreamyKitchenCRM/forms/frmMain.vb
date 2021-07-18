@@ -11,6 +11,7 @@ Imports System.ComponentModel
 Imports System.Configuration
 
 Public Class frmMain
+    Private UserPermissions As New CheckPermissions
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_NOTES' table. You can move, or remove it, as needed.
 
@@ -30,20 +31,28 @@ Public Class frmMain
     Private Sub MdiManager_PageAdded(sender As Object, e As MdiTabPageEventArgs)
     End Sub
     Private Sub bbUsers_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbUsers.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Χρήστες"
-        form.DataTable = "vw_USR"
-        form.MdiParent = Me
-        form.Show()
+        If UserPermissions.CheckViewPermission("Χρήστες") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Χρήστες"
+            form.DataTable = "vw_USR"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
     End Sub
 
     Private Sub bbMailSettings_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbMailSettings.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Email Settings"
-        form.DataTable = "vw_MAILS"
-        form.MdiParent = Me
-        form.Show()
-
+        If UserPermissions.CheckViewPermission("Email Settings") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Email Settings"
+            form.DataTable = "vw_MAILS"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 
     Private Sub XtraTabbedMdiManager1_EndFloating(sender As Object, e As FloatingEventArgs) Handles XtraTabbedMdiManager1.EndFloating
@@ -78,12 +87,16 @@ Public Class frmMain
         End Select
     End Sub
     Private Sub bbRights_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbRights.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Δικαιώματα"
-        form.DataTable = "vw_RIGHTS"
-        form.DataDetail = "vw_FORM_RIGHTS"
-        form.MdiParent = Me
-        form.Show()
+        If UserPermissions.CheckViewPermission("Δικαιώματα") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Δικαιώματα"
+            form.DataTable = "vw_RIGHTS"
+            form.DataDetail = "vw_FORM_RIGHTS"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 
 
@@ -439,6 +452,7 @@ Public Class frmMain
             config.AppSettings.Settings("Skin").Value = UserLookAndFeel.Default.ActiveSkinName
         End If
         config.Save()
+
     End Sub
     Sub LoadCurrentSkin()
         Dim config As Configuration = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None)
@@ -481,10 +495,45 @@ Public Class frmMain
     End Sub
 
     Private Sub bbCreditDebit_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCreditDebit.ItemClick
+        If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Χρεωπιστώσεις"
+            form.DataTable = "vw_TRANSH"
+            form.DataDetail = "vw_TRANSD"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub bbEmploye_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEmploye.ItemClick
         Dim form As frmScroller = New frmScroller()
-        form.Text = "Χρεωπιστώσεις"
-        form.DataTable = "vw_TRANSH"
-        form.DataDetail = "vw_TRANSD"
+        form.Text = "Διαχείριση Προσωπικού"
+        form.DataTable = "vw_EMP"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbDep_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDep.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τμήματα Εταιρίας"
+        form.DataTable = "vw_DEP"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbEmpMov_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEmpMov.ItemClick
+        Dim form As frmEmpPresenation = New frmEmpPresenation()
+        form.Text = "Παρουσιολόγιο Έκθεσης"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbStatusPre_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbStatusPre.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Statuses Παρουσιολογίου"
+        form.DataTable = "vw_EMP_S"
         form.MdiParent = Me
         form.Show()
     End Sub

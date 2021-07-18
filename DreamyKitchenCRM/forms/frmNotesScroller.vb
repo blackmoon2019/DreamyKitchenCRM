@@ -126,4 +126,9 @@ Public Class frmNotesScroller
         LoadRecords("vw_NOTES", "where (createdby = '" & UserProps.ID.ToString & "')")
         Me.Text = "Εξερχόμενα Σημειώματα"
     End Sub
+
+    Private Sub BBSaveView_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSaveView.ItemClick
+        GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_def.xml", OptionsLayoutBase.FullLayout)
+        XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
 End Class

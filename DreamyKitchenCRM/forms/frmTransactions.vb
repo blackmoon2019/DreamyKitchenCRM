@@ -114,7 +114,7 @@ Public Class frmTransactions
                 'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
                 'dtDTS.EditValue = DateTime.Now
                 If txtInvoiceFilename.Text <> "" Then
-                    sResultF = DBQ.InsertDataFiles(OpenFileDialog1, cboCUS.EditValue.ToString, "TRANSH")
+                    sResultF = DBQ.InsertDataFiles(XtraOpenFileDialog1, cboCUS.EditValue.ToString, "TRANSH")
                     Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
                     'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where ISINVOICE = 1 AND cctID = " & toSQLValueS(cboCUS.EditValue.ToString))
                 End If
@@ -154,21 +154,25 @@ Public Class frmTransactions
             Case 1 : txtInvoiceFilename.EditValue = Nothing
         End Select
     End Sub
+
     Private Sub FileSelect()
-        OpenFileDialog1.FilterIndex = 1
-        OpenFileDialog1.InitialDirectory = "C:\"
-        OpenFileDialog1.Title = "Open File"
-        OpenFileDialog1.CheckFileExists = False
-        OpenFileDialog1.Multiselect = True
-        Dim result As DialogResult = OpenFileDialog1.ShowDialog()
+
+        'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+        XtraOpenFileDialog1.FilterIndex = 1
+        XtraOpenFileDialog1.InitialDirectory = "C:\"
+        XtraOpenFileDialog1.Title = "Open File"
+        XtraOpenFileDialog1.CheckFileExists = False
+        XtraOpenFileDialog1.Multiselect = True
+        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
         If result = DialogResult.OK Then
             txtInvoiceFilename.EditValue = ""
-            For I = 0 To OpenFileDialog1.FileNames.Count - 1
-                txtInvoiceFilename.EditValue = txtInvoiceFilename.EditValue & IIf(txtInvoiceFilename.EditValue <> "", ";", "") & OpenFileDialog1.SafeFileNames(I)
+            For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
+                txtInvoiceFilename.EditValue = txtInvoiceFilename.EditValue & IIf(txtInvoiceFilename.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I)
             Next I
+
+
         End If
     End Sub
-
     Private Sub GridView2_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView2.KeyDown
         Select Case e.KeyCode
             'Case Keys.F2 : If UserProps.AllowInsert = True Then NewRecord()

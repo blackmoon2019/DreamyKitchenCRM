@@ -2,7 +2,7 @@
     Sub New
         InitializeComponent()
         Me.labelCopyright.Text = "Copyright © 2020-" & DateTime.Now.Year.ToString()
-
+        Me.lblVer.Text = "V " & My.Application.Info.Version.ToString
     End Sub
 
     Public Overrides Sub ProcessCommand(ByVal cmd As System.Enum, ByVal arg As Object)

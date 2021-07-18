@@ -19,7 +19,7 @@ Partial Public Class frmUpdate
             'Παίρνω όλες τις εκδόσεις από την τρέχουσα και μετά ώστε να πάω να τραβήξω όλα τα μοναδικά αρχεία τα οποία θα αναβαθμιστούν
             'Αναφέρω την λέξη μοναδικά γιατί δεν θέλω το EXE για παράδειγμα να το τραβήξω πολλές φορές αν υπάρχει σε όλες τις εκδόσεις 
             'αλλά μόνο την τελευταία
-
+            KillProcess()
             sSQL = "Select *, (select count(*) FROM VER_HIST where ExeVer > '" & strArg(0) & "') as Rows FROM VER_HIST where ExeVer > '" & strArg(0) & "' order by ExeVer asc"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
@@ -64,7 +64,26 @@ Partial Public Class frmUpdate
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub KillProcess()
+        Dim myProcesses() As Process
+        Dim myProcess As Process
 
+        myProcesses = Process.GetProcessesByName("DreamyKitchenCRM")
+
+        Try
+
+            If myProcesses.Length > 0 Then
+                For Each myProcess In myProcesses
+                    If myProcess IsNot Nothing Then
+                        myProcess.Kill()
+                    End If
+
+                Next
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         End
     End Sub
@@ -91,4 +110,5 @@ Partial Public Class frmUpdate
 
         End If
     End Sub
+
 End Class

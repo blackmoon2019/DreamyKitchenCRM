@@ -10,7 +10,7 @@ Public Class frmLogin
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim CN As New CN
         My.Settings.Upgrade()
-        My.Settings.Save()
+        'My.Settings.Save()
         'MultipleActiveResultSets=True
         chkRememberUN.EditValue = My.Settings.UNSave
         If CNDB.ConnectionString.ToString = "" Then

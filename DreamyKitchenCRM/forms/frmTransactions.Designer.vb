@@ -98,11 +98,11 @@ Partial Class frmTransactions
         Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.Vw_CCT_FTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCT_FTableAdapter()
         Me.Vw_TRANSDTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSDTableAdapter()
         Me.Vw_BANKSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BANKSTableAdapter()
+        Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkCash.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -961,11 +961,6 @@ Partial Class frmTransactions
         Me.EmptySpaceItem5.Size = New System.Drawing.Size(920, 26)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
-        'OpenFileDialog1
-        '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        Me.OpenFileDialog1.Title = "Επιλογή Αρχείων"
-        '
         'cmdExit
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
@@ -987,6 +982,11 @@ Partial Class frmTransactions
         'Vw_BANKSTableAdapter
         '
         Me.Vw_BANKSTableAdapter.ClearBeforeFill = True
+        '
+        'XtraOpenFileDialog1
+        '
+        Me.XtraOpenFileDialog1.Multiselect = True
+        Me.XtraOpenFileDialog1.Title = "Επιλογή αρχείων"
         '
         'frmTransactions
         '
@@ -1094,7 +1094,6 @@ Partial Class frmTransactions
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents txtInvoiceFilename As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents cmdExit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents txtTotAmt As DevExpress.XtraEditors.TextEdit
@@ -1140,4 +1139,5 @@ Partial Class frmTransactions
     Friend WithEvents txtBal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem27 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem5 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents XtraOpenFileDialog1 As DevExpress.XtraEditors.XtraOpenFileDialog
 End Class

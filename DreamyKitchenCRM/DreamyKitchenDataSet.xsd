@@ -716,6 +716,25 @@ where transhID=@transhID</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_EMP_STableAdapter" GeneratorDataComponentClassName="vw_EMP_STableAdapter" Name="vw_EMP_S" UserDataComponentName="vw_EMP_STableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EMP_S" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT        ID, name, shortName
+FROM            vw_EMP_S</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="shortName" DataSetColumn="shortName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -1526,6 +1545,27 @@ where transhID=@transhID</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="vw_EMP_S" msprop:Generator_TableClassName="vw_EMP_SDataTable" msprop:Generator_TableVarName="tablevw_EMP_S" msprop:Generator_RowChangedName="vw_EMP_SRowChanged" msprop:Generator_TablePropName="vw_EMP_S" msprop:Generator_RowDeletingName="vw_EMP_SRowDeleting" msprop:Generator_RowChangingName="vw_EMP_SRowChanging" msprop:Generator_RowEvHandlerName="vw_EMP_SRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_EMP_SRowDeleted" msprop:Generator_RowClassName="vw_EMP_SRow" msprop:Generator_UserTableName="vw_EMP_S" msprop:Generator_RowEvArgName="vw_EMP_SRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="shortName" msprop:Generator_ColumnVarNameInTable="columnshortName" msprop:Generator_ColumnPropNameInRow="shortName" msprop:Generator_ColumnPropNameInTable="shortNameColumn" msprop:Generator_UserColumnName="shortName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
@@ -1610,6 +1650,10 @@ where transhID=@transhID</CommandText>
     </xs:unique>
     <xs:unique name="vw_BANKS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:vw_BANKS" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_EMP_S_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_EMP_S" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
   </xs:element>

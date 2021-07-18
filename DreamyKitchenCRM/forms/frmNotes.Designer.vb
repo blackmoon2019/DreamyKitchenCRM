@@ -19,6 +19,7 @@ Partial Class frmNotes
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmNotes))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
@@ -47,7 +48,7 @@ Partial Class frmNotes
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.cmdCboManagePRF = New DevExpress.XtraEditors.SimpleButton()
-        Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
+        Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,69 +135,69 @@ Partial Class frmNotes
         '
         'txtCode
         '
-        Me.txtCode.Location = New System.Drawing.Point(109, 12)
+        Me.txtCode.Location = New System.Drawing.Point(118, 12)
         Me.txtCode.Name = "txtCode"
         Me.txtCode.Properties.Appearance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.txtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(95, 20)
+        Me.txtCode.Size = New System.Drawing.Size(86, 20)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(109, 108)
+        Me.txtNotes.Location = New System.Drawing.Point(118, 108)
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(580, 68)
+        Me.txtNotes.Size = New System.Drawing.Size(571, 68)
         Me.txtNotes.StyleController = Me.LayoutControl1
         Me.txtNotes.TabIndex = 17
         Me.txtNotes.Tag = "note,0,1,2"
         '
         'txtNam
         '
-        Me.txtNam.Location = New System.Drawing.Point(109, 36)
+        Me.txtNam.Location = New System.Drawing.Point(118, 36)
         Me.txtNam.Name = "txtNam"
-        Me.txtNam.Size = New System.Drawing.Size(580, 20)
+        Me.txtNam.Size = New System.Drawing.Size(571, 20)
         Me.txtNam.StyleController = Me.LayoutControl1
         Me.txtNam.TabIndex = 9
         Me.txtNam.Tag = "title,0,1,2"
         '
         'cboNotesL
         '
-        Me.cboNotesL.Location = New System.Drawing.Point(109, 84)
+        Me.cboNotesL.Location = New System.Drawing.Point(118, 84)
         Me.cboNotesL.Name = "cboNotesL"
         Me.cboNotesL.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboNotesL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboNotesL.Properties.NullText = ""
         Me.cboNotesL.Properties.PopupSizeable = False
-        Me.cboNotesL.Size = New System.Drawing.Size(220, 20)
+        Me.cboNotesL.Size = New System.Drawing.Size(211, 20)
         Me.cboNotesL.StyleController = Me.LayoutControl1
         Me.cboNotesL.TabIndex = 5
         Me.cboNotesL.Tag = "Notes_LID,0,1,2"
         '
         'txtFileNames
         '
-        Me.txtFileNames.Location = New System.Drawing.Point(109, 180)
+        Me.txtFileNames.Location = New System.Drawing.Point(118, 180)
         Me.txtFileNames.Name = "txtFileNames"
         Me.txtFileNames.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.txtFileNames.Properties.Tag = True
-        Me.txtFileNames.Size = New System.Drawing.Size(580, 20)
+        Me.txtFileNames.Size = New System.Drawing.Size(571, 20)
         Me.txtFileNames.StyleController = Me.LayoutControl1
         Me.txtFileNames.TabIndex = 30
         Me.txtFileNames.Tag = ""
         '
         'cboSaler
         '
-        Me.cboSaler.Location = New System.Drawing.Point(109, 60)
+        Me.cboSaler.Location = New System.Drawing.Point(118, 60)
         Me.cboSaler.Name = "cboSaler"
         Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboSaler.Properties.NullText = ""
         Me.cboSaler.Properties.PopupSizeable = False
-        Me.cboSaler.Size = New System.Drawing.Size(220, 20)
+        Me.cboSaler.Size = New System.Drawing.Size(211, 20)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 5
         Me.cboSaler.Tag = "SalerID,0,1,2"
@@ -361,11 +362,10 @@ Partial Class frmNotes
         Me.cmdCboManagePRF.Size = New System.Drawing.Size(22, 22)
         Me.cmdCboManagePRF.TabIndex = 29
         '
-        'OpenFileDialog1
+        'XtraOpenFileDialog1
         '
-        Me.OpenFileDialog1.FileName = "OpenFileDialog1"
-        Me.OpenFileDialog1.Multiselect = True
-        Me.OpenFileDialog1.Title = "Επιλογή Αρχείων"
+        Me.XtraOpenFileDialog1.Multiselect = True
+        Me.XtraOpenFileDialog1.Title = "Επιλογή αρχείων"
         '
         'frmNotes
         '
@@ -422,7 +422,6 @@ Partial Class frmNotes
     Friend WithEvents cmdCboManagePRF As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents OpenFileDialog1 As OpenFileDialog
     Friend WithEvents txtFileNames As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
@@ -433,4 +432,5 @@ Partial Class frmNotes
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents chkReaded As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents XtraOpenFileDialog1 As DevExpress.XtraEditors.XtraOpenFileDialog
 End Class

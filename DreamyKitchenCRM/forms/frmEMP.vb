@@ -8,8 +8,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraExport.Xls
 Imports DevExpress.XtraGrid.Columns
-
-Public Class frmCustomers
+Public Class frmEMP
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
@@ -22,7 +21,6 @@ Public Class frmCustomers
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
-
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -50,28 +48,23 @@ Public Class frmCustomers
         End Set
     End Property
 
-
-    Private Sub frmCustomers_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub frmEMP_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
         'Νομοί
         FillCbo.COU(cboCOU)
-        'FillCbo.ADR(cboADR, sSQL)
-        'FillCbo.AREAS(cboAREAS, sSQL)
-        FillCbo.SRC(cboSRC)
-        FillCbo.SALERS(cboSaler)
         FillCbo.PRF(cboPRF)
         FillCbo.DOY(cboDOY)
-
+        FillCbo.DEP(cboDEP)
 
         Select Case Mode
             Case FormMode.NewRecord
                 'dtDTS.EditValue = DateTime.Now
-                txtCode.Text = DBQ.GetNextId("CCT")
+                txtCode.Text = DBQ.GetNextId("EMP")
             Case FormMode.EditRecord
                 If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
                 FillCbo.AREAS(cboAREAS, sSQL)
-                LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT where id ='" + sID + "'")
-                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where cctID = '" & sID & "'")
+                LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP where id ='" + sID + "'")
+                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,empID,files,filename,comefrom,createdon,realname From vw_EMP_F where empID = '" & sID & "'")
                 Dim C As New GridColumn
                 C.Name = "ICO"
                 C.Caption = ""
@@ -84,10 +77,10 @@ Public Class frmCustomers
                 GridView1.Columns.Add(C)
         End Select
         'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml") = False Then
-            GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml") = False Then
+            GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml", OptionsLayoutBase.FullLayout)
         End If
-        'GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
+        'GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml", OptionsLayoutBase.FullLayout)
         Me.CenterToScreen()
         My.Settings.frmCustomers = Me.Location
         My.Settings.Save()
@@ -99,22 +92,22 @@ Public Class frmCustomers
         Try
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
             If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                sSQL = "DELETE FROM CCT_F WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                sSQL = "DELETE FROM EMP_F WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
 
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,filename,comefrom,createdon,realname From vw_CCT_F where cctID = '" & sID & "'")
+                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,empID,filename,comefrom,createdon,realname From vw_EMP_F where empID = '" & sID & "'")
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Sub frmCustomers_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+
+    Private Sub frmEMP_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
-
     Private Sub ManageAREAS()
         Dim form1 As frmGen = New frmGen()
         form1.Text = "Περιοχές"
@@ -229,43 +222,24 @@ Public Class frmCustomers
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
-    Private Sub ManageSaler()
+    Private Sub ManageDEP()
         Dim form1 As frmGen = New frmGen()
-        form1.Text = "Πωλητές"
+        form1.Text = "Τμήματα"
         form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Πωλητής"
-        form1.L6.Text = "Χρώμα"
-        form1.DataTable = "SALERS"
+        form1.L2.Text = "Τμήμα"
+        form1.DataTable = "DEP"
         form1.CalledFromControl = True
-        form1.CallerControl = cboSaler
-        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
-        form1.MdiParent = frmMain
-        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
-    Private Sub ManageSRC()
-        Dim form1 As frmGen = New frmGen()
-        form1.Text = "Πηγές"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Πηγή"
-        form1.DataTable = "SRC"
-        form1.CalledFromControl = True
-        form1.CallerControl = cboSRC
-        If cboSRC.EditValue <> Nothing Then form1.ID = cboSRC.EditValue.ToString
+        form1.CallerControl = cboDEP
+        If cboDEP.EditValue <> Nothing Then form1.ID = cboDEP.EditValue.ToString
         form1.MdiParent = frmMain
         form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        If cboSRC.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboDEP.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
-
     Private Sub FilesSelection()
 
         'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
@@ -338,10 +312,9 @@ Public Class frmCustomers
         myProcess.Dispose()
     End Sub
 
-    Private Sub frmCustomers_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
-        GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
+    Private Sub frmEMP_FormClosed(sender As Object, e As FormClosedEventArgs) Handles Me.FormClosed
+        GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml", OptionsLayoutBase.FullLayout)
     End Sub
-
     Private Sub txtTK_LostFocus(sender As Object, e As EventArgs) Handles txtTK.LostFocus
         FillCbo.ADR(cboADR, ADRsSQL)
     End Sub
@@ -379,43 +352,31 @@ Public Class frmCustomers
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertData(LayoutControl1, "CCT", sGuid)
+                        sResult = DBQ.InsertData(LayoutControl1, "EMP", sGuid)
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateData(LayoutControl1, "CCT", sID)
+                        sResult = DBQ.UpdateData(LayoutControl1, "EMP", sID)
                         sGuid = sID
                 End Select
                 'Καθαρισμός Controls
                 'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
                 'dtDTS.EditValue = DateTime.Now
                 If txtFileNames.Text <> "" Then
-                    sResult = DBQ.InsertDataFiles(XtraOpenFileDialog1, sGuid, "CCT_F")
-                    LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where isINVOICE = 0 AND cctID = '" & sGuid & "'")
+                    sResult = DBQ.InsertDataFiles(XtraOpenFileDialog1, sGuid, "EMP_F")
+                    LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,EMPID,files,filename,comefrom,createdon,realname From vw_EMP_F where     EMPID = '" & sGuid & "'")
                 End If
-                txtCode.Text = DBQ.GetNextId("CCT")
+                txtCode.Text = DBQ.GetNextId("EMP")
                 If CalledFromCtrl Then
-                    FillCbo.CUS(CtrlCombo)
+                    FillCbo.EMP(CtrlCombo)
                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                 Else
                     Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_CCT")
+                    form.LoadRecords("vw_EMP")
                 End If
-                'Cls.ClearCtrls(LayoutControl1)
+                Cls.ClearCtrls(LayoutControl1)
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Mode = FormMode.EditRecord
                     txtFileNames.Text = ""
-                    If XtraMessageBox.Show("Θέλετε να καταχωρήσετε κίνηση στον πελάτη?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                        Dim form1 As frmCusMov = New frmCusMov()
-                        form1.Text = "Κινήσεις Πελατών"
-                        form1.MdiParent = frmMain
-                        form1.Mode = FormMode.NewRecord
-                        form1.FormScrollerExist = False
-                        form1.CusID = sGuid
-                        'form1.Scroller = GridView1
-                        'form1.FormScroller = Me
-                        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-                        form1.Show()
-                    End If
                 End If
             End If
 
@@ -434,49 +395,15 @@ Public Class frmCustomers
 
     End Sub
 
-    Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
+    Private Sub cboDEP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDEP.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
-            Case 3 : cboSaler.EditValue = Nothing
+            Case 1 : cboDEP.EditValue = Nothing : ManageDEP()
+            Case 2 : If cboDEP.EditValue <> Nothing Then ManageDEP()
+            Case 3 : cboDEP.EditValue = Nothing
         End Select
     End Sub
-
-    Private Sub cboSRC_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSRC.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboSRC.EditValue = Nothing : ManageSRC()
-            Case 2 : If cboSRC.EditValue <> Nothing Then ManageSRC()
-            Case 3 : cboSRC.EditValue = Nothing
-        End Select
-    End Sub
-
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
     End Sub
 
-
-
-
-
-
-    'Private Sub SqlBlob2File(ByVal DocName As String)
-
-    '    Dim cn As New SqlConnection(My.Settings.DocStoreConnectionString.ToString())
-    '    Dim cmd As New SqlCommand("Select DocData From Documents WHERE DocName = @DocName", cn)
-
-    '    cmd.Parameters.AddWithValue("@DocName", DocName)
-
-    '    cn.Open()
-
-    '    Using dr As SqlDataReader = cmd.ExecuteReader(CommandBehavior.CloseConnection)
-    '        If dr.Read() Then
-    '            Dim fs As IO.FileStream = New IO.FileStream(IO.Path.Combine(Me.FolderBrowserDial og1.SelectedPath, DocName), IO.FileMode.Create)
-    '            Dim b() As Byte = dr.Item("DocData")
-    '            fs.Write(b, 0, b.Length)
-    '            fs.Close()
-    '        End If
-    '    End Using 'dr
-
-    '    cn.Close()
-    'End Sub
 End Class

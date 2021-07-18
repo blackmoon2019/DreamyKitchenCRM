@@ -79,6 +79,7 @@
     <Reference Include="DevExpress.Data.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.DataAccess.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v20.2.UI, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataVisualization.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Diagram.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dialogs.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Images.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -90,6 +91,8 @@
     <Reference Include="DevExpress.RichEdit.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v20.2.Export, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Sparkline.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Spreadsheet.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.TreeMap.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v20.2.UI, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpo.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -123,7 +126,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 20.2\Components\Bin\Framework\DevExpress.XtraScheduler.v20.2.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="DevExpress.XtraSpreadsheet.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraTreeList.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeMap.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeMap.v20.2.UI, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
@@ -263,6 +269,18 @@
       <DependentUpon>frmDBConnection.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmDBConnection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEMP.Designer.vb">
+      <DependentUpon>frmEMP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEMP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEmpPresenation.Designer.vb">
+      <DependentUpon>frmEmpPresenation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEmpPresenation.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmEpendisis.Designer.vb">
@@ -481,6 +499,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmDBConnection.resx">
       <DependentUpon>frmDBConnection.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEMP.resx">
+      <DependentUpon>frmEMP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEmpPresenation.resx">
+      <DependentUpon>frmEmpPresenation.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEpendisis.resx">
       <DependentUpon>frmEpendisis.vb</DependentUpon>
@@ -823,6 +847,11 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-department-40.png" />
+    <None Include="Resources\icons8-employee-40.png" />
+    <None Include="Resources\icons8-email-send-24.png" />
+    <None Include="Resources\icons8-e-mail-24.png" />
+    <None Include="Resources\icons8-e-mail-40.png" />
     <None Include="Resources\icons8-bank-building-40.png" />
     <None Include="Resources\icons8-cash-counter-80.png" />
     <None Include="Resources\icons8-maintenance-40.png" />

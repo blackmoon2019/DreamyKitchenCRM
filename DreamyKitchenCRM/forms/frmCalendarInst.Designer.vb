@@ -87,7 +87,7 @@ Partial Class frmCalendarInst
         Me.cboCompleted = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         Me.BarEditItem3 = New DevExpress.XtraBars.BarEditItem()
         Me.txtSearch2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
-        Me.Ανανέωση = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBrefresh = New DevExpress.XtraBars.BarButtonItem()
         Me.BarNewRec = New DevExpress.XtraBars.BarButtonItem()
         Me.BarDockControl1 = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -281,7 +281,7 @@ Partial Class frmCalendarInst
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.OpenScheduleItem1, Me.SaveScheduleItem1, Me.PrintPreviewItem1, Me.PrintItem1, Me.PrintPageSetupItem1, Me.NewAppointmentItem1, Me.NewRecurringAppointmentItem1, Me.NavigateViewBackwardItem1, Me.NavigateViewForwardItem1, Me.GotoTodayItem1, Me.ViewZoomInItem1, Me.ViewZoomOutItem1, Me.SwitchToDayViewItem1, Me.SwitchToWorkWeekViewItem1, Me.SwitchToWeekViewItem1, Me.SwitchToFullWeekViewItem1, Me.SwitchToMonthViewItem1, Me.SwitchToTimelineViewItem1, Me.SwitchToGanttViewItem1, Me.SwitchToAgendaViewItem1, Me.GroupByNoneItem1, Me.GroupByDateItem1, Me.GroupByResourceItem1, Me.Ανανέωση, Me.BarNewRec, Me.Ο, Me.BarHeaderItem1, Me.BarEditItem3})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.OpenScheduleItem1, Me.SaveScheduleItem1, Me.PrintPreviewItem1, Me.PrintItem1, Me.PrintPageSetupItem1, Me.NewAppointmentItem1, Me.NewRecurringAppointmentItem1, Me.NavigateViewBackwardItem1, Me.NavigateViewForwardItem1, Me.GotoTodayItem1, Me.ViewZoomInItem1, Me.ViewZoomOutItem1, Me.SwitchToDayViewItem1, Me.SwitchToWorkWeekViewItem1, Me.SwitchToWeekViewItem1, Me.SwitchToFullWeekViewItem1, Me.SwitchToMonthViewItem1, Me.SwitchToTimelineViewItem1, Me.SwitchToGanttViewItem1, Me.SwitchToAgendaViewItem1, Me.GroupByNoneItem1, Me.GroupByDateItem1, Me.GroupByResourceItem1, Me.BBrefresh, Me.BarNewRec, Me.Ο, Me.BarHeaderItem1, Me.BarEditItem3})
         Me.BarManager1.MaxItemId = 71
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cboStatus, Me.cboCompleted, Me.txtSearch, Me.txtSearch2})
         '
@@ -481,7 +481,7 @@ Partial Class frmCalendarInst
         Me.GroupByBar1.DockCol = 5
         Me.GroupByBar1.DockRow = 0
         Me.GroupByBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.GroupByBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByNoneItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByDateItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByResourceItem1), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.Ο, "", False, True, True, 68), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem3, "", False, True, True, 157), New DevExpress.XtraBars.LinkPersistInfo(Me.Ανανέωση), New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec)})
+        Me.GroupByBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByNoneItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByDateItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByResourceItem1), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.Ο, "", False, True, True, 68), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem3, "", False, True, True, 157), New DevExpress.XtraBars.LinkPersistInfo(Me.BBrefresh), New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec)})
         '
         'GroupByNoneItem1
         '
@@ -529,12 +529,12 @@ Partial Class frmCalendarInst
         Me.txtSearch2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search)})
         Me.txtSearch2.Name = "txtSearch2"
         '
-        'Ανανέωση
+        'BBrefresh
         '
-        Me.Ανανέωση.Hint = "Ανανέωση Εγγραφών"
-        Me.Ανανέωση.Id = 65
-        Me.Ανανέωση.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_refresh_16
-        Me.Ανανέωση.Name = "Ανανέωση"
+        Me.BBrefresh.Hint = "Ανανέωση Εγγραφών"
+        Me.BBrefresh.Id = 65
+        Me.BBrefresh.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_refresh_16
+        Me.BBrefresh.Name = "BBrefresh"
         '
         'BarNewRec
         '
@@ -745,7 +745,7 @@ Partial Class frmCalendarInst
     Friend WithEvents cboCompleted As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
     Friend WithEvents BarEditItem3 As DevExpress.XtraBars.BarEditItem
     Friend WithEvents txtSearch2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
-    Friend WithEvents Ανανέωση As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBrefresh As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarNewRec As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarDockControl1 As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl

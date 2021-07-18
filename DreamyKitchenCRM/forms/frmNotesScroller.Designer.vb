@@ -66,6 +66,7 @@ Partial Class frmNotesScroller
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.Bar2 = New DevExpress.XtraBars.Bar()
         Me.Bar4 = New DevExpress.XtraBars.Bar()
+        Me.BBSaveView = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwNOTESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -341,8 +342,8 @@ Partial Class frmNotesScroller
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarNewRec, Me.BarDelete, Me.BarEdit, Me.BarRefresh, Me.BarIncoming, Me.BarOutgoing})
-        Me.BarManager1.MaxItemId = 51
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarNewRec, Me.BarDelete, Me.BarEdit, Me.BarRefresh, Me.BarIncoming, Me.BarOutgoing, Me.BBSaveView})
+        Me.BarManager1.MaxItemId = 52
         '
         'Bar5
         '
@@ -351,7 +352,7 @@ Partial Class frmNotesScroller
         Me.Bar5.DockRow = 0
         Me.Bar5.DockStyle = DevExpress.XtraBars.BarDockStyle.Left
         Me.Bar5.FloatLocation = New System.Drawing.Point(49, 225)
-        Me.Bar5.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec), New DevExpress.XtraBars.LinkPersistInfo(Me.BarDelete), New DevExpress.XtraBars.LinkPersistInfo(Me.BarEdit), New DevExpress.XtraBars.LinkPersistInfo(Me.BarRefresh), New DevExpress.XtraBars.LinkPersistInfo(Me.BarIncoming), New DevExpress.XtraBars.LinkPersistInfo(Me.BarOutgoing)})
+        Me.Bar5.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec), New DevExpress.XtraBars.LinkPersistInfo(Me.BarDelete), New DevExpress.XtraBars.LinkPersistInfo(Me.BarEdit), New DevExpress.XtraBars.LinkPersistInfo(Me.BarRefresh), New DevExpress.XtraBars.LinkPersistInfo(Me.BBSaveView), New DevExpress.XtraBars.LinkPersistInfo(Me.BarIncoming), New DevExpress.XtraBars.LinkPersistInfo(Me.BarOutgoing)})
         Me.Bar5.Offset = 1
         Me.Bar5.Text = "Custom 4"
         '
@@ -449,6 +450,12 @@ Partial Class frmNotesScroller
         Me.Bar4.OptionsBar.UseWholeRow = True
         Me.Bar4.Text = "StatusBar"
         '
+        'BBSaveView
+        '
+        Me.BBSaveView.Caption = "Αποθήκευση Όψης"
+        Me.BBSaveView.Id = 51
+        Me.BBSaveView.Name = "BBSaveView"
+        '
         'frmNotesScroller
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -530,4 +537,5 @@ Partial Class frmNotesScroller
     Friend WithEvents BarOutgoing As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents LayoutViewColumn1 As DevExpress.XtraGrid.Columns.LayoutViewColumn
     Friend WithEvents layoutViewField_LayoutViewColumn1 As DevExpress.XtraGrid.Views.Layout.LayoutViewField
+    Friend WithEvents BBSaveView As DevExpress.XtraBars.BarButtonItem
 End Class

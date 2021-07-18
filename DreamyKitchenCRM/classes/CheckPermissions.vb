@@ -23,4 +23,27 @@ Public Class CheckPermissions
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Function CheckViewPermission(ByVal FormName As String) As Boolean
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "select [view] from vw_FORMS F
+                    inner join vw_FORM_RIGHTS  FR on F.ID = FR.F_ID 
+                    inner join vw_RIGHTS R on R.ID=FR.Rid 
+                    where f.name= " & toSQLValueS(FormName) &
+                    " and uid = " & toSQLValueS(UserProps.ID.ToString)
+
+            cmd = New SqlCommand(sSQL, CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then Return sdr.GetBoolean(sdr.GetOrdinal("VIEW")) Else Return False
+
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Function
+
+
 End Class

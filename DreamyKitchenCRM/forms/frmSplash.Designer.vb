@@ -28,6 +28,7 @@ Partial Class frmSplash
         Me.labelCopyright = New DevExpress.XtraEditors.LabelControl()
         Me.progressBarControl = New DevExpress.XtraEditors.MarqueeProgressBarControl()
         Me.peImage = New DevExpress.XtraEditors.PictureEdit()
+        Me.lblVer = New DevExpress.XtraEditors.LabelControl()
         CType(Me.peLogo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.progressBarControl.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.peImage.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -95,11 +96,24 @@ Partial Class frmSplash
         Me.peImage.Size = New System.Drawing.Size(625, 200)
         Me.peImage.TabIndex = 14
         '
+        'lblVer
+        '
+        Me.lblVer.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.lblVer.Appearance.ForeColor = System.Drawing.Color.Firebrick
+        Me.lblVer.Appearance.Options.UseFont = True
+        Me.lblVer.Appearance.Options.UseForeColor = True
+        Me.lblVer.Location = New System.Drawing.Point(24, 272)
+        Me.lblVer.Name = "lblVer"
+        Me.lblVer.Size = New System.Drawing.Size(86, 14)
+        Me.lblVer.TabIndex = 16
+        Me.lblVer.Text = "LabelControl1"
+        '
         'frmSplash
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(627, 354)
+        Me.Controls.Add(Me.lblVer)
         Me.Controls.Add(Me.peImage)
         Me.Controls.Add(Me.peLogo)
         Me.Controls.Add(Me.labelStatus)
@@ -121,4 +135,5 @@ Partial Class frmSplash
     Private WithEvents labelStatus As DevExpress.XtraEditors.LabelControl
     Private WithEvents labelCopyright As DevExpress.XtraEditors.LabelControl
     Private WithEvents progressBarControl As DevExpress.XtraEditors.MarqueeProgressBarControl
+    Friend WithEvents lblVer As DevExpress.XtraEditors.LabelControl
 End Class

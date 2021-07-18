@@ -10,6 +10,7 @@ Public Class frmGen
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private Frm As DevExpress.XtraEditors.XtraForm
+    Private FrmCaller As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
     Private CalledFromCtrl As Boolean
     Private Valid As New ValidateControls
@@ -24,6 +25,11 @@ Public Class frmGen
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
+        End Set
+    End Property
+    Public WriteOnly Property CallerForm As DevExpress.XtraEditors.XtraForm
+        Set(value As DevExpress.XtraEditors.XtraForm)
+            FrmCaller = value
         End Set
     End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
@@ -78,6 +84,32 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "EMP_S"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "EMP_S", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.EMP_S(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_EMP_S")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("EMP_S")
+                            Case "DEP"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "DEP", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.DEP(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_DEP")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("DEP")
                             Case "BANKS"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "BANKS", sGuid)
@@ -280,6 +312,24 @@ Public Class frmGen
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "EMP_S"
+                                sResult = DBQ.UpdateData(LayoutControl1, "EMP_S", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.EMP_S(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_EMP_S")
+                                End If
+                            Case "DEP"
+                                sResult = DBQ.UpdateData(LayoutControl1, "DEP", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.DEP(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_DEP")
+                                End If
                             Case "BANKS"
                                 sResult = DBQ.UpdateData(LayoutControl1, "BANKS", sID)
                                 If CalledFromCtrl Then
@@ -428,6 +478,20 @@ Public Class frmGen
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "EMP_S"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("EMP_S")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP_S where id ='" + sID + "'")
+                End If
+
+            Case "DEP"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("DEP")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DEP where id ='" + sID + "'")
+                End If
+
             Case "BANKS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("BANKS")
@@ -542,6 +606,20 @@ Public Class frmGen
                     oCmd.ExecuteNonQuery()
                 End Using
                 Select Case sDataTable
+                    Case "EMP_S"
+                        If CalledFromCtrl Then
+                            FillCbo.EMP_S(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_EMP_S")
+                        End If
+                    Case "DEP"
+                        If CalledFromCtrl Then
+                            FillCbo.DEP(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_DEP")
+                        End If
                     Case "BANKS"
                         If CalledFromCtrl Then
                             FillCbo.BANKS(CtrlCombo)

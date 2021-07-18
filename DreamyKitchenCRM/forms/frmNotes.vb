@@ -58,17 +58,21 @@ Public Class frmNotes
         End If
     End Sub
     Private Sub FilesSelection()
-        OpenFileDialog1.FilterIndex = 1
-        OpenFileDialog1.InitialDirectory = "C:\"
-        OpenFileDialog1.Title = "Open File"
-        OpenFileDialog1.CheckFileExists = False
-        OpenFileDialog1.Multiselect = True
-        Dim result As DialogResult = OpenFileDialog1.ShowDialog()
+
+        'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+        XtraOpenFileDialog1.FilterIndex = 1
+        XtraOpenFileDialog1.InitialDirectory = "C:\"
+        XtraOpenFileDialog1.Title = "Open File"
+        XtraOpenFileDialog1.CheckFileExists = False
+        XtraOpenFileDialog1.Multiselect = True
+        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
         If result = DialogResult.OK Then
             txtFileNames.EditValue = ""
-            For I = 0 To OpenFileDialog1.FileNames.Count - 1
-                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & OpenFileDialog1.SafeFileNames(I)
+            For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
+                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I)
             Next I
+
+
         End If
     End Sub
     Private Sub frmNotes_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -179,7 +183,7 @@ Public Class frmNotes
                 'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
                 'dtDTS.EditValue = DateTime.Now
                 If txtFileNames.Text <> "" Then
-                    sResult = DBQ.InsertDataFiles(OpenFileDialog1, sGuid, "NOTES_F")
+                    sResult = DBQ.InsertDataFiles(XtraOpenFileDialog1, sGuid, "NOTES_F")
                     LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,NOTESID,files,filename,comefrom,createdon,realname From vw_NOTES_F where NOTESID = '" & sGuid & "'")
                 End If
                 txtCode.Text = DBQ.GetNextId("NOTES")
