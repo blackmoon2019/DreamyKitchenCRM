@@ -10,21 +10,22 @@ Public Class frmEmpPresenation
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_EMP_S' table. You can move, or remove it, as needed.
         Me.Vw_EMP_STableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EMP_S)
         Dim worksheet As Worksheet = SPR.ActiveWorksheet
-        SPR.WorksheetDisplayArea.SetSize(SPR.ActiveWorksheet.Name, 33, 2)
+        SPR.WorksheetDisplayArea.SetSize(SPR.ActiveWorksheet.Name, 32, 2)
         worksheet.Columns.Item(0).Width = 700
         worksheet.ActiveView.ShowHeadings = False
         Dim currentDate As Date = DateTime.Now
         lstMonths.SelectedIndex = currentDate.Month - 1
         dtFDate.EditValue = DateTime.Now
+        SPR.BeginUpdate()
         FillDays()
-
+        SPR.EndUpdate()
 
     End Sub
     Private Sub FillEMP()
         Try
             Dim sSQL As String
             Dim i As Integer = 3
-            sSQL = "Select ID,FullName from vw_EMP"
+            sSQL = "Select ID,FullName from vw_EMP where depid='9812E975-2FD4-4653-B043-3D6CAF440888' order by 2"
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             Dim worksheet As Worksheet = SPR.ActiveWorksheet
@@ -32,9 +33,10 @@ Public Class frmEmpPresenation
                 worksheet.Rows.Insert(i)
                 worksheet.Cells("A" & i).Value = sdr.Item(1).ToString
                 worksheet.Cells("A" & i).Tag = sdr.Item(0).ToString
+                FillEmp_P(sdr.Item(0).ToString, i - 1)
                 i = i + 1
             End While
-            SPR.WorksheetDisplayArea.SetSize(SPR.ActiveWorksheet.Name, 33, i - 1)
+            SPR.WorksheetDisplayArea.SetSize(SPR.ActiveWorksheet.Name, 32, i - 1)
             worksheet.Range("A1:AK" & i - 1).Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center
             worksheet.Range("A1:AK" & i - 1).Alignment.Vertical = SpreadsheetVerticalAlignment.Center
             worksheet.Range("A1:A2").Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center
@@ -43,7 +45,20 @@ Public Class frmEmpPresenation
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
+    Private Sub FillEmp_P(ByVal EmpID As String, Row As Integer)
+        Dim sSQL As String
+        sSQL = "Select ID,EmpStatusShort,day(dtpresent) as dtpresent,color 
+                from vw_EMP_P where month(dtpresent)= " & toSQLValueS(lstMonths.SelectedIndex + 1) &
+                "and year(dtPresent)= " & toSQLValueS(dtFDate.Text) & " and  empid= " & toSQLValueS(EmpID) & "  order by dtPresent"
+        Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
+        Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        Dim worksheet As Worksheet = SPR.ActiveWorksheet
+        While sdr.Read()
+            worksheet.Cells.Item(Row, sdr.Item(2).ToString).Value = sdr.Item(1).ToString
+            worksheet.Cells.Item(Row, sdr.Item(2).ToString).Tag = sdr.Item(0).ToString
+            worksheet.Cells.Item(Row, sdr.Item(2).ToString).FillColor = Color.FromArgb(sdr.Item(3).ToString)
+        End While
+    End Sub
     Private Sub SPR_CellBeginEdit(sender As Object, e As SpreadsheetCellCancelEventArgs) Handles SPR.CellBeginEdit
         If e.ColumnIndex = 0 Then e.Cancel = True
     End Sub
@@ -53,6 +68,7 @@ Public Class frmEmpPresenation
         Dim days As Integer = System.DateTime.DaysInMonth(CDate(dtFDate.EditValue).Year, lstMonths.SelectedIndex + 1)
         Dim myCulture As System.Globalization.CultureInfo = Globalization.CultureInfo.CurrentCulture
         Dim worksheet As Worksheet = SPR.ActiveWorksheet
+        worksheet.Cells.Clear
         For i = 1 To days
             Dim sDate As Date = i.ToString & "-" & lstMonths.SelectedIndex + 1 & "-" & dtFDate.Text
             Dim dayOfWeek As DayOfWeek = myCulture.Calendar.GetDayOfWeek(sDate)
@@ -75,11 +91,17 @@ Public Class frmEmpPresenation
     End Sub
 
     Private Sub lstMonths_SelectedValueChanged(sender As Object, e As EventArgs) Handles lstMonths.SelectedValueChanged
+        SPR.BeginUpdate()
         FillDays()
+        SPR.EndUpdate()
+
     End Sub
 
     Private Sub dtFDate_EditValueChanged(sender As Object, e As EventArgs) Handles dtFDate.EditValueChanged
+        SPR.BeginUpdate()
         FillDays()
+        SPR.EndUpdate()
+
     End Sub
 
     Private Sub SPR_CustomCellEdit(sender As Object, e As SpreadsheetCustomCellEditEventArgs) Handles SPR.CustomCellEdit
@@ -100,6 +122,7 @@ Public Class frmEmpPresenation
         Try
             Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
             Dim value As Object = editor.GetColumnValue("ID")
+            Dim valueColor As Object = editor.GetColumnValue("color")
             Dim sDate As Date
             Dim recID As String
             sDate = SPR.ActiveWorksheet.Cells.Item(1, SPR.ActiveCell.ColumnIndex).Value.ToString & "-" & lstMonths.SelectedIndex + 1 & "-" & dtFDate.Text
@@ -119,6 +142,7 @@ Public Class frmEmpPresenation
                 oCmd.Parameters.AddWithValue("@user", UserProps.ID.ToString)
                 oCmd.ExecuteNonQuery()
             End Using
+            SPR.ActiveWorksheet.Cells.Item(SPR.ActiveCell.RowIndex, SPR.ActiveCell.ColumnIndex).FillColor = Color.FromArgb(valueColor)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -127,4 +151,32 @@ Public Class frmEmpPresenation
     Private Sub frmEmpPresenation_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
+
+    Private Sub SPR_KeyDown(sender As Object, e As KeyEventArgs) Handles SPR.KeyDown
+        If e.KeyCode = Keys.Delete Then
+            Dim sSQL As String = "DELETE FROM EMP_P WHERE ID = " & toSQLValueS(SPR.ActiveWorksheet.Cells.Item(SPR.ActiveCell.RowIndex, SPR.ActiveCell.ColumnIndex).Tag)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        End If
+    End Sub
+
+    Private Sub SPR_RangeCopied(sender As Object, e As RangeCopiedEventArgs) Handles SPR.RangeCopied
+
+    End Sub
+
+    Private Sub SPR_AfterFillRange(sender As Object, e As AfterFillRangeEventArgs) Handles SPR.AfterFillRange
+        'Dim rangeCellsTarget As CellRange
+        'Dim rangeCellsSource As CellRange
+        'rangeCellsTarget = e.TargetRange
+        'rangeCellsSource = e.SourceRange
+
+        'Dim i As Integer
+        'Dim s As String
+        'For i = SPR.ActiveCell.ColumnIndex To rangeCellsTarget.ColumnCount
+
+        '    s = SPR.ActiveWorksheet.Cells.Item(SPR.ActiveCell.RowIndex, SPR.ActiveCell.ColumnIndex + i).Value.ToString
+        'Next i
+    End Sub
+
 End Class

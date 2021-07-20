@@ -54,7 +54,7 @@ Partial Class frmEmpPresenation
         Me.LayoutControl1.Location = New System.Drawing.Point(9, 12)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1502, 797)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1582, 797)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -71,7 +71,7 @@ Partial Class frmEmpPresenation
         Me.dtFDate.Properties.UseMaskAsDisplayFormat = True
         Me.dtFDate.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
         Me.dtFDate.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
-        Me.dtFDate.Size = New System.Drawing.Size(122, 20)
+        Me.dtFDate.Size = New System.Drawing.Size(80, 20)
         Me.dtFDate.StyleController = Me.LayoutControl1
         Me.dtFDate.TabIndex = 39
         Me.dtFDate.Tag = "fDate,0,1,2"
@@ -81,15 +81,23 @@ Partial Class frmEmpPresenation
         Me.lstMonths.Items.AddRange(New Object() {"ΙΑΝΟΥΑΡΙΟΣ", "ΦΕΒΡΟΥΑΡΙΟΣ", "ΜΑΡΤΙΟΣ", "ΑΠΡΙΛΙΟΣ", "ΜΑΪΟΣ", "ΙΟΥΝΙΟΣ", "ΙΟΥΛΙΟΣ", "ΑΥΓΟΥΣΤΟΣ", "ΣΕΠΤΕΜΒΡΙΟΣ", "ΟΚΤΩΒΡΙΟΣ", "ΝΟΕΜΒΡΙΟΣ", "ΔΕΚΕΜΒΡΙΟΣ"})
         Me.lstMonths.Location = New System.Drawing.Point(12, 36)
         Me.lstMonths.Name = "lstMonths"
-        Me.lstMonths.Size = New System.Drawing.Size(160, 749)
+        Me.lstMonths.Size = New System.Drawing.Size(118, 749)
         Me.lstMonths.StyleController = Me.LayoutControl1
         Me.lstMonths.TabIndex = 5
         '
         'SPR
         '
-        Me.SPR.Location = New System.Drawing.Point(176, 12)
+        Me.SPR.Location = New System.Drawing.Point(134, 12)
         Me.SPR.Name = "SPR"
-        Me.SPR.Size = New System.Drawing.Size(1314, 773)
+        Me.SPR.Options.Behavior.Drag = DevExpress.XtraSpreadsheet.DocumentCapability.Enabled
+        Me.SPR.Options.Behavior.Drawing.Move = DevExpress.XtraSpreadsheet.DocumentCapability.Disabled
+        Me.SPR.Options.Behavior.Worksheet.Delete = DevExpress.XtraSpreadsheet.DocumentCapability.Disabled
+        Me.SPR.Options.Behavior.Worksheet.Hide = DevExpress.XtraSpreadsheet.DocumentCapability.Disabled
+        Me.SPR.Options.Behavior.Worksheet.Insert = DevExpress.XtraSpreadsheet.DocumentCapability.Disabled
+        Me.SPR.Options.Behavior.Worksheet.Unhide = DevExpress.XtraSpreadsheet.DocumentCapability.Disabled
+        Me.SPR.Options.HorizontalScrollbar.Visibility = DevExpress.XtraSpreadsheet.SpreadsheetScrollbarVisibility.Hidden
+        Me.SPR.Options.VerticalScrollbar.Visibility = DevExpress.XtraSpreadsheet.SpreadsheetScrollbarVisibility.Hidden
+        Me.SPR.Size = New System.Drawing.Size(1436, 773)
         Me.SPR.TabIndex = 4
         Me.SPR.Text = "SpreadsheetControl1"
         '
@@ -99,15 +107,15 @@ Partial Class frmEmpPresenation
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1502, 797)
+        Me.Root.Size = New System.Drawing.Size(1582, 797)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.SPR
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(164, 0)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(122, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(1318, 777)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(1440, 777)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -116,7 +124,7 @@ Partial Class frmEmpPresenation
         Me.LayoutControlItem2.Control = Me.lstMonths
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(164, 753)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(122, 753)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
@@ -125,7 +133,7 @@ Partial Class frmEmpPresenation
         Me.LayoutControlItem3.Control = Me.dtFDate
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(164, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(122, 24)
         Me.LayoutControlItem3.Text = "ΕΤΟΣ"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(26, 13)
         '
@@ -147,7 +155,7 @@ Partial Class frmEmpPresenation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1513, 1038)
+        Me.ClientSize = New System.Drawing.Size(1593, 1038)
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmEmpPresenation"

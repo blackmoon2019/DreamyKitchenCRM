@@ -633,12 +633,13 @@ Public Class frmScroller
                 form24.L2.Text = "Status"
                 form24.L9.Control.Tag = "shortName,0,1,2"
                 form24.L9.Text = "Συντομογραφία"
+                form24.L6.Text = "Χρώμα"
                 form24.FormScroller = Me
                 form24.CalledFromControl = False
                 form24.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form24.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form24.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form24.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form24), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
@@ -1182,12 +1183,13 @@ Public Class frmScroller
                 form24.L2.Text = "Status"
                 form24.L9.Control.Tag = "shortName,0,1,2"
                 form24.L9.Text = "Συντομογραφία"
+                form24.L6.Text = "Χρώμα"
                 form24.FormScroller = Me
                 form24.CalledFromControl = False
                 form24.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form24.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form24.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form24.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form24), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))

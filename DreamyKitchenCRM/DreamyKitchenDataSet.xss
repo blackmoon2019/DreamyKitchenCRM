@@ -28,7 +28,7 @@
     <Shape ID="DesignTable:vw_CCT_F" ZOrder="4" X="348" Y="318" Height="286" Width="179" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="235" />
     <Shape ID="DesignTable:vw_TRANSD" ZOrder="3" X="419" Y="772" Height="286" Width="216" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="235" />
     <Shape ID="DesignTable:vw_BANKS" ZOrder="2" X="405" Y="187" Height="229" Width="207" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="178" />
-    <Shape ID="DesignTable:vw_EMP_S" ZOrder="1" X="106" Y="340" Height="134" Width="204" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="83" />
+    <Shape ID="DesignTable:vw_EMP_S" ZOrder="1" X="106" Y="340" Height="153" Width="204" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="102" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

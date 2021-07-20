@@ -9621,6 +9621,8 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnshortName As Global.System.Data.DataColumn
         
+        Private columncolor As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -9681,6 +9683,14 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property colorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncolor
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -9717,9 +9727,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function Addvw_EMP_SRow(ByVal ID As System.Guid, ByVal name As String, ByVal shortName As String) As vw_EMP_SRow
+        Public Overloads Function Addvw_EMP_SRow(ByVal ID As System.Guid, ByVal name As String, ByVal shortName As String, ByVal color As Integer) As vw_EMP_SRow
             Dim rowvw_EMP_SRow As vw_EMP_SRow = CType(Me.NewRow,vw_EMP_SRow)
-            Dim columnValuesArray() As Object = New Object() {ID, name, shortName}
+            Dim columnValuesArray() As Object = New Object() {ID, name, shortName, color}
             rowvw_EMP_SRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_EMP_SRow)
             Return rowvw_EMP_SRow
@@ -9751,6 +9761,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnID = MyBase.Columns("ID")
             Me.columnname = MyBase.Columns("name")
             Me.columnshortName = MyBase.Columns("shortName")
+            Me.columncolor = MyBase.Columns("color")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9762,6 +9773,8 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columnname)
             Me.columnshortName = New Global.System.Data.DataColumn("shortName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnshortName)
+            Me.columncolor = New Global.System.Data.DataColumn("color", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncolor)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -15078,6 +15091,21 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property color() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_EMP_S.colorColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'color' in table 'vw_EMP_S' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_EMP_S.colorColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsnameNull() As Boolean
             Return Me.IsNull(Me.tablevw_EMP_S.nameColumn)
         End Function
@@ -15098,6 +15126,18 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetshortNameNull()
             Me(Me.tablevw_EMP_S.shortNameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IscolorNull() As Boolean
+            Return Me.IsNull(Me.tablevw_EMP_S.colorColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetcolorNull()
+            Me(Me.tablevw_EMP_S.colorColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -20507,6 +20547,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("ID", "ID")
             tableMapping.ColumnMappings.Add("name", "name")
             tableMapping.ColumnMappings.Add("shortName", "shortName")
+            tableMapping.ColumnMappings.Add("color", "color")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -20523,7 +20564,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, name, shortName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_EMP_S"
+            Me._commandCollection(0).CommandText = "SELECT        ID, name, shortName, color"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_EMP_S"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
