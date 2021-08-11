@@ -235,6 +235,12 @@
     <Compile Include="forms\frmCalendarInst.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmCalendarPersonal.Designer.vb">
+      <DependentUpon>frmCalendarPersonal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCalendarPersonal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCatSubErm.Designer.vb">
       <DependentUpon>frmCatSubErm.vb</DependentUpon>
     </Compile>
@@ -307,10 +313,10 @@
     <Compile Include="forms\frmInputBox.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmInstallationsvb.Designer.vb">
-      <DependentUpon>frmInstallationsvb.vb</DependentUpon>
+    <Compile Include="forms\frmInstallations.Designer.vb">
+      <DependentUpon>frmInstallations.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmInstallationsvb.vb">
+    <Compile Include="forms\frmInstallations.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmLogin.Designer.vb">
@@ -377,6 +383,12 @@
       <DependentUpon>frmDoorType.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmDoorType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmPersonalNote.Designer.vb">
+      <DependentUpon>frmPersonalNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmPersonalNote.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmReport.Designer.vb">
@@ -482,6 +494,9 @@
     <EmbeddedResource Include="forms\frmCalendarInst.resx">
       <DependentUpon>frmCalendarInst.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCalendarPersonal.resx">
+      <DependentUpon>frmCalendarPersonal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCatSubErm.resx">
       <DependentUpon>frmCatSubErm.vb</DependentUpon>
     </EmbeddedResource>
@@ -518,8 +533,8 @@
     <EmbeddedResource Include="forms\frmInputBox.resx">
       <DependentUpon>frmInputBox.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmInstallationsvb.resx">
-      <DependentUpon>frmInstallationsvb.vb</DependentUpon>
+    <EmbeddedResource Include="forms\frmInstallations.resx">
+      <DependentUpon>frmInstallations.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>
@@ -553,6 +568,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmDoorType.resx">
       <DependentUpon>frmDoorType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmPersonalNote.resx">
+      <DependentUpon>frmPersonalNote.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmReport.resx">
       <DependentUpon>frmReport.vb</DependentUpon>
@@ -847,6 +865,11 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-calendar-401.png" />
+    <None Include="Resources\icons8-calendar.gif" />
+    <None Include="Resources\icons8-about-40.png" />
+    <None Include="Resources\icons8-category-40.png" />
+    <None Include="Resources\icons8-presentation-40.png" />
     <None Include="Resources\icons8-department-40.png" />
     <None Include="Resources\icons8-employee-40.png" />
     <None Include="Resources\icons8-email-send-24.png" />

@@ -272,6 +272,7 @@ Partial Public Class Rep_offer
         Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel37 = New DevExpress.XtraReports.UI.XRLabel()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrPanel5 = New DevExpress.XtraReports.UI.XRPanel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
@@ -284,7 +285,6 @@ Partial Public Class Rep_offer
         Me.XrLabel56 = New DevExpress.XtraReports.UI.XRLabel()
         Me.Vw_NOTESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter()
         Me.Vw_OFFTableAdapter1 = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFFTableAdapter()
-        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -1749,6 +1749,14 @@ Partial Public Class Rep_offer
         Me.Detail.StyleName = "baseControlStyle"
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
+        'XrSubreport1
+        '
+        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(337.9808!, 39.04129!)
+        Me.XrSubreport1.Name = "XrSubreport1"
+        Me.XrSubreport1.ParameterBindings.Add(New DevExpress.XtraReports.UI.ParameterBinding("offerID", Me.OfferID))
+        Me.XrSubreport1.ReportSource = New DreamyKitchenCRM.RepOfferMech()
+        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(299.0192!, 23.0!)
+        '
         'XrPanel5
         '
         Me.XrPanel5.Borders = DevExpress.XtraPrinting.BorderSide.None
@@ -1861,14 +1869,6 @@ Partial Public Class Rep_offer
         'Vw_OFFTableAdapter1
         '
         Me.Vw_OFFTableAdapter1.ClearBeforeFill = True
-        '
-        'XrSubreport1
-        '
-        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(337.9808!, 39.04129!)
-        Me.XrSubreport1.Name = "XrSubreport1"
-        Me.XrSubreport1.ParameterBindings.Add(New DevExpress.XtraReports.UI.ParameterBinding("offerID", Me.OfferID))
-        Me.XrSubreport1.ReportSource = New DreamyKitchenCRM.RepOfferMech()
-        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(299.0192!, 23.0!)
         '
         'Rep_offer
         '

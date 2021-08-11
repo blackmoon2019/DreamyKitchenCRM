@@ -107,6 +107,11 @@ Public Class frmMailSettings
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateData(LayoutControl1, "MAILS", sID)
                 End Select
+                UserProps.EmailServer = txtServer.EditValue
+                UserProps.EmailPassword = txtPWD.EditValue
+                UserProps.EmailPort = txtPort.EditValue
+                UserProps.EmailSSL = chkSSL.EditValue
+
                 Dim form As frmScroller = Frm
                 form.LoadRecords("vw_MAILS")
                 If sResult Then

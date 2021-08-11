@@ -508,32 +508,63 @@ Public Class frmMain
     End Sub
 
     Private Sub bbEmploye_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEmploye.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Διαχείριση Προσωπικού"
-        form.DataTable = "vw_EMP"
-        form.MdiParent = Me
-        form.Show()
+        If UserPermissions.CheckViewPermission("Διαχείριση Προσωπικού") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Διαχείριση Προσωπικού"
+            form.DataTable = "vw_EMP"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 
     Private Sub bbDep_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDep.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τμήματα Εταιρίας"
-        form.DataTable = "vw_DEP"
-        form.MdiParent = Me
-        form.Show()
+        If UserPermissions.CheckViewPermission("Τμήματα Εταιρίας") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Τμήματα Εταιρίας"
+            form.DataTable = "vw_DEP"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 
     Private Sub bbEmpMov_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEmpMov.ItemClick
-        Dim form As frmEmpPresenation = New frmEmpPresenation()
-        form.Text = "Παρουσιολόγιο Έκθεσης"
+        If UserPermissions.CheckViewPermission("Παρουσιολόγιο Έκθεσης") Then
+            Dim form As frmEmpPresenation = New frmEmpPresenation()
+            form.Text = "Παρουσιολόγιο Έκθεσης"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub bbStatusPre_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbStatusPre.ItemClick
+        If UserPermissions.CheckViewPermission("Statuses Παρουσιολογίου") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Statuses Παρουσιολογίου"
+            form.DataTable = "vw_EMP_S"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub BBPersonalCalendar_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPersonalCalendar.ItemClick
+        Dim form As frmCalendarPersonal = New frmCalendarPersonal()
+        form.Text = "Προσωπικό Ημερολόγιο"
         form.MdiParent = Me
         form.Show()
     End Sub
 
-    Private Sub bbStatusPre_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbStatusPre.ItemClick
+    Private Sub BBPersonalCalendarStatus_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPersonalCalendarStatus.ItemClick
         Dim form As frmScroller = New frmScroller()
-        form.Text = "Statuses Παρουσιολογίου"
-        form.DataTable = "vw_EMP_S"
+        form.Text = "Status Προσωπικού Ημερολογίου"
+        form.DataTable = "vw_SALER_CAL_STATUS"
         form.MdiParent = Me
         form.Show()
     End Sub

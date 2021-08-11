@@ -9,7 +9,7 @@ Public Class frmLogin
     Private FillCbo As New FillCombos
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim CN As New CN
-        My.Settings.Upgrade()
+        'My.Settings.Upgrade()
         'My.Settings.Save()
         'MultipleActiveResultSets=True
         chkRememberUN.EditValue = My.Settings.UNSave
@@ -59,12 +59,17 @@ Public Class frmLogin
 
                     'General Permissions
                     UserPermissions.GetUserPermissions()
-                    sSQL = "UPDATE USR SET dtLogin = getdate() where ID = " & toSQLValueS(UserProps.ID.ToString)
+                    sSQL = "UPDATE USR SET dtLogin = getdate()  where ID = " & toSQLValueS(UserProps.ID.ToString)
                     cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
                     'Δεκαδικά Προγράμματος
                     Prog_Prop.GetProgDecimals()
                     XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    If My.Settings.UNSave = True Then My.Settings.UN = txtUN.EditValue : My.Settings.Save()
+                    If chkRememberUN.EditValue = True Then
+                        My.Settings.UNSave = True
+                        My.Settings.UN = txtUN.EditValue
+                        My.Settings.UN = txtUN.EditValue
+                        My.Settings.Save()
+                    End If
                 End If
                 frmMain.Show()
                 Me.Close()

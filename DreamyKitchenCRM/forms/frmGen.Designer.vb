@@ -31,6 +31,7 @@ Partial Class frmGen
         Me.cbo1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cmdDelete = New DevExpress.XtraEditors.SimpleButton()
         Me.txtNum = New DevExpress.XtraEditors.TextEdit()
+        Me.txtName1 = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -45,7 +46,6 @@ Partial Class frmGen
         Me.L5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtName1 = New DevExpress.XtraEditors.TextEdit()
         Me.L9 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -56,6 +56,7 @@ Partial Class frmGen
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbo1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNum.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtName1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -70,7 +71,6 @@ Partial Class frmGen
         CType(Me.L5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtName1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -122,6 +122,7 @@ Partial Class frmGen
         Me.chk1.StyleController = Me.LayoutControl1
         Me.chk1.TabIndex = 19
         Me.chk1.Tag = "allowschedule,0,1,2"
+        Me.chk1.Visible = False
         '
         'cmdNew
         '
@@ -232,6 +233,16 @@ Partial Class frmGen
         Me.txtNum.TabIndex = 37
         Me.txtNum.Tag = "arProt,0,1,2"
         '
+        'txtName1
+        '
+        Me.txtName1.Location = New System.Drawing.Point(46, 156)
+        Me.txtName1.Name = "txtName1"
+        Me.txtName1.Size = New System.Drawing.Size(342, 20)
+        Me.txtName1.StyleController = Me.LayoutControl1
+        Me.txtName1.TabIndex = 14
+        Me.txtName1.Tag = ""
+        Me.txtName1.Visible = False
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -286,6 +297,7 @@ Partial Class frmGen
         Me.L3.Size = New System.Drawing.Size(380, 24)
         Me.L3.Tag = "1"
         Me.L3.TextSize = New System.Drawing.Size(22, 13)
+        Me.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'L1
         '
@@ -307,6 +319,7 @@ Partial Class frmGen
         Me.L4.Size = New System.Drawing.Size(380, 24)
         Me.L4.Tag = "1"
         Me.L4.TextSize = New System.Drawing.Size(22, 13)
+        Me.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem3
         '
@@ -347,6 +360,7 @@ Partial Class frmGen
         Me.L5.Size = New System.Drawing.Size(380, 24)
         Me.L5.TextSize = New System.Drawing.Size(0, 0)
         Me.L5.TextVisible = False
+        Me.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'L6
         '
@@ -355,6 +369,7 @@ Partial Class frmGen
         Me.L6.Name = "L6"
         Me.L6.Size = New System.Drawing.Size(380, 24)
         Me.L6.TextSize = New System.Drawing.Size(22, 13)
+        Me.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'L8
         '
@@ -370,16 +385,6 @@ Partial Class frmGen
         Me.L8.TextToControlDistance = 5
         Me.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
-        'txtName1
-        '
-        Me.txtName1.Location = New System.Drawing.Point(46, 156)
-        Me.txtName1.Name = "txtName1"
-        Me.txtName1.Size = New System.Drawing.Size(342, 20)
-        Me.txtName1.StyleController = Me.LayoutControl1
-        Me.txtName1.TabIndex = 14
-        Me.txtName1.Tag = ""
-        Me.txtName1.Visible = False
-        '
         'L9
         '
         Me.L9.Control = Me.txtName1
@@ -388,8 +393,8 @@ Partial Class frmGen
         Me.L9.Location = New System.Drawing.Point(0, 144)
         Me.L9.Name = "L9"
         Me.L9.Size = New System.Drawing.Size(380, 24)
-        Me.L9.Text = "L9"
         Me.L9.TextSize = New System.Drawing.Size(22, 13)
+        Me.L9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'frmGen
         '
@@ -409,6 +414,7 @@ Partial Class frmGen
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbo1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNum.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtName1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -423,7 +429,6 @@ Partial Class frmGen
         CType(Me.L5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtName1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

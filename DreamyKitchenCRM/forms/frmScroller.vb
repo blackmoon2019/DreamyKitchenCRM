@@ -54,13 +54,15 @@ Public Class frmScroller
 
             'Παίρνω το όνομα της όψης για τον συγκεκριμένο χρήστη και για τον συγκεκριμένο πίνακα 
             GetCurrentView(True)
-            'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
-            LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
 
             'Φόρτωση Εγγραφών
             LoadRecords()
+
             'Φόρτωση Σχεδίων στην Λίστα βάση επιλογής από το μενού
             'LoadViews()
+            'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
+            'LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
+
 
             LoadConditionalFormatting()
 
@@ -205,6 +207,7 @@ Public Class frmScroller
                     Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DEP" : sSQL = "DELETE FROM DEP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_SALER_CAL_STATUS" : sSQL = "DELETE FROM SALER_CAL_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH"
                         sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
                                 WHERE TRANSH.ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -589,6 +592,7 @@ Public Class frmScroller
         Dim form22 As frmGen = New frmGen()
         Dim form23 As frmGen = New frmGen()
         Dim form24 As frmGen = New frmGen()
+        Dim form25 As frmGen = New frmGen()
         Dim fTechicalSupport As frmTecnicalSupport = New frmTecnicalSupport()
         Dim frmColors As frmColors = New frmColors
         Dim frmoffer As frmOffer = New frmOffer
@@ -621,6 +625,22 @@ Public Class frmScroller
                 frmTransactions.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmTransactions), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmTransactions.Show()
+            Case "vw_SALER_CAL_STATUS"
+                form25.Text = "Status Προσωπικού Ημερολογίου"
+                form25.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form25.MdiParent = frmMain
+                form25.Mode = FormMode.EditRecord
+                form25.Scroller = GridView1
+                form25.FormScroller = Me
+                form25.DataTable = "SALER_CAL_STATUS"
+                form25.L1.Text = "Κωδικός"
+                form25.L2.Text = "Status"
+                form25.L6.Text = "Χρώμα"
+                form25.FormScroller = Me
+                form25.CalledFromControl = False
+                form25.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form25), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form25.Show()
             Case "vw_EMP_S"
                 form24.Text = "Statuses Παρουσιολογίου"
                 form24.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -636,11 +656,7 @@ Public Class frmScroller
                 form24.L6.Text = "Χρώμα"
                 form24.FormScroller = Me
                 form24.CalledFromControl = False
-                form24.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form24.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form24.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                form24.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form24), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form24.Show()
@@ -656,11 +672,6 @@ Public Class frmScroller
                 form23.L2.Text = "Τμήμα"
                 form23.FormScroller = Me
                 form23.CalledFromControl = False
-                form23.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form23.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form23.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form23.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form23.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form23), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form23.Show()
             Case "vw_BANKS"
@@ -675,11 +686,6 @@ Public Class frmScroller
                 form22.L2.Text = "Τράπεζα"
                 form22.FormScroller = Me
                 form22.CalledFromControl = False
-                form22.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form22.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form22.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form22.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form22.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form22), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form22.Show()
             Case "vw_INST"
@@ -732,11 +738,6 @@ Public Class frmScroller
                 form21.L2.Text = "Διάσταση"
                 form21.FormScroller = Me
                 form21.CalledFromControl = False
-                form21.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form21.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form21.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form21.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form21.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form21), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form21.Show()
             Case "vw_SIDES"
@@ -814,12 +815,11 @@ Public Class frmScroller
                 form3.L2.Text = "Status"
                 form3.L6.Text = "Χρώμα"
                 form3.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
+                form3.chk1.Visible = True
+                form3.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form3.FormScroller = Me
                 form3.CalledFromControl = False
-                form3.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form3.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                form3.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form3), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form3.Show()
             Case "vw_SOURCE"
@@ -834,11 +834,6 @@ Public Class frmScroller
                 form4.L2.Text = "Πηγή"
                 form4.FormScroller = Me
                 form4.CalledFromControl = False
-                form4.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form4.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form4.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form4.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form4.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form4), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form4.Show()
             Case "vw_CCT"
@@ -862,11 +857,6 @@ Public Class frmScroller
                 form5.L2.Text = "Νομός"
                 form5.FormScroller = Me
                 form5.CalledFromControl = False
-                form5.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form5.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form5.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form5.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form5.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form5), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form5.Show()
             Case "vw_AREAS"
@@ -881,10 +871,7 @@ Public Class frmScroller
                 form6.L3.Text = "Νομός"
                 form6.FormScroller = Me
                 form6.CalledFromControl = False
-                form6.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form6.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form6.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form6.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form6.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form6), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form6.Show()
             Case "vw_ADR"
@@ -900,9 +887,8 @@ Public Class frmScroller
                 form7.L4.Text = "Περιοχές"
                 form7.FormScroller = Me
                 form7.CalledFromControl = False
-                form7.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form7.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form7.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form7.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                form7.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form7), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form7.Show()
             Case "vw_DOY"
@@ -916,11 +902,6 @@ Public Class frmScroller
                 form8.L2.Text = "ΔΟΥ"
                 form8.FormScroller = Me
                 form8.CalledFromControl = False
-                form8.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form8.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form8.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form8.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form8.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form8), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form8.Show()
             Case "vw_PRF"
@@ -934,11 +915,6 @@ Public Class frmScroller
                 form9.L2.Text = "Επάγγελμα"
                 form9.FormScroller = Me
                 form9.CalledFromControl = False
-                form9.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form9.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form9.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form9.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form9.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form9), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form9.Show()
             Case "vw_SALERS"
@@ -954,10 +930,8 @@ Public Class frmScroller
                 form11.L8.Text = "Αρ. Πρωτοκόλου"
                 form11.FormScroller = Me
                 form11.CalledFromControl = False
-                form11.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form11.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form11.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form11.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                form11.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form11), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form11.Show()
             Case "vw_CCT_M"
@@ -980,11 +954,6 @@ Public Class frmScroller
                 form13.L2.Text = "Εττικέτα"
                 form13.FormScroller = Me
                 form13.CalledFromControl = False
-                form13.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form13.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form13.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form13.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form13.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form13), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form13.Show()
             Case "vw_DOOR_TYPE"
@@ -1007,11 +976,6 @@ Public Class frmScroller
                 form15.L2.Text = "Κατηγορίες Ερμαρίων"
                 form15.FormScroller = Me
                 form15.CalledFromControl = False
-                form15.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form15.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form15.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form15.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form15.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form15), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form15.Show()
             Case "vw_ERM"
@@ -1052,11 +1016,6 @@ Public Class frmScroller
                 form19.L2.Text = "Κατηγορία"
                 form19.FormScroller = Me
                 form19.CalledFromControl = False
-                form19.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form19), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form19.Show()
             Case "vw_COLORS_CAT"
@@ -1070,11 +1029,6 @@ Public Class frmScroller
                 form20.L2.Text = "Κατηγορίες Χρωμάτων"
                 form20.FormScroller = Me
                 form20.CalledFromControl = False
-                form20.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form20.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form20.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form20.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form20.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form20), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form20.Show()
 
@@ -1109,6 +1063,7 @@ Public Class frmScroller
         Dim form22 As frmGen = New frmGen()
         Dim form23 As frmGen = New frmGen()
         Dim form24 As frmGen = New frmGen()
+        Dim form25 As frmGen = New frmGen()
         Dim frmOffer As frmOffer = New frmOffer
         Dim frmEpendisis As frmEpendisis = New frmEpendisis
         Dim frmServices As frmServices = New frmServices()
@@ -1147,11 +1102,6 @@ Public Class frmScroller
                 form22.L2.Text = "Τράπεζα"
                 form22.FormScroller = Me
                 form22.CalledFromControl = False
-                form22.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form22.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form22.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form22.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form22.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form22), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form22.Show()
             Case "vw_DEP"
@@ -1165,11 +1115,6 @@ Public Class frmScroller
                 form23.L2.Text = "Τμήμα"
                 form23.FormScroller = Me
                 form23.CalledFromControl = False
-                form23.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form23.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form23.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form23.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form23.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form23), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form23.Show()
             Case "vw_EMP_S"
@@ -1186,14 +1131,25 @@ Public Class frmScroller
                 form24.L6.Text = "Χρώμα"
                 form24.FormScroller = Me
                 form24.CalledFromControl = False
-                form24.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form24.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form24.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                form24.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form24.L9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form24), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form24.Show()
+            Case "vw_SALER_CAL_STATUS"
+                form25.Text = "Status Προσωπικού Ημερολογίου"
+                form25.MdiParent = frmMain
+                form25.Mode = FormMode.NewRecord
+                form25.Scroller = GridView1
+                form25.FormScroller = Me
+                form25.DataTable = "SALER_CAL_STATUS"
+                form25.L1.Text = "Κωδικός"
+                form25.L2.Text = "Status"
+                form25.L6.Text = "Χρώμα"
+                form25.FormScroller = Me
+                form25.CalledFromControl = False
+                form25.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form25), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form25.Show()
             Case "vw_INST"
                 frmInstallations.Text = "Τοποθετήσεις"
                 frmInstallations.MdiParent = frmMain
@@ -1239,11 +1195,6 @@ Public Class frmScroller
                 form21.L2.Text = "Διάσταση"
                 form21.FormScroller = Me
                 form21.CalledFromControl = False
-                form21.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form21.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form21.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form21.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form21.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form21), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form21.Show()
             Case "vw_SIDES"
@@ -1313,12 +1264,11 @@ Public Class frmScroller
                 form3.L2.Text = "Status"
                 form3.L6.Text = "Χρώμα"
                 form3.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
+                form3.chk1.Visible = True
+                form3.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form3.FormScroller = Me
                 form3.CalledFromControl = False
-                form3.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form3.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                form3.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form3), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form3.Show()
             Case "vw_SOURCE"
@@ -1332,11 +1282,6 @@ Public Class frmScroller
                 form4.L2.Text = "Πηγή"
                 form4.FormScroller = Me
                 form4.CalledFromControl = False
-                form4.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form4.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form4.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form4.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form4.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form4), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form4.Show()
             Case "vw_CCT"
@@ -1357,12 +1302,6 @@ Public Class frmScroller
                 form5.L2.Text = "Νομός"
                 form5.FormScroller = Me
                 form5.CalledFromControl = False
-                form5.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form5.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form5.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form5.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form5.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form5.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form5), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form5.Show()
             Case "vw_SALERS"
@@ -1377,10 +1316,8 @@ Public Class frmScroller
                 form11.L8.Text = "Αρ. Πρωτοκόλου"
                 form11.FormScroller = Me
                 form11.CalledFromControl = False
-                form11.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form11.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form11.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 form11.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                form11.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form11), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form11.Show()
             Case "vw_AREAS"
@@ -1394,10 +1331,7 @@ Public Class frmScroller
                 form6.L3.Text = "Νομός"
                 form6.FormScroller = Me
                 form6.CalledFromControl = False
-                form6.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form6.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form6.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form6.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form6.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form6), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form6.Show()
             Case "vw_ADR"
@@ -1412,9 +1346,8 @@ Public Class frmScroller
                 form7.L4.Text = "Περιοχές"
                 form7.FormScroller = Me
                 form7.CalledFromControl = False
-                form7.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form7.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form7.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                form7.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                form7.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form7), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form7.Show()
             Case "vw_DOY"
@@ -1427,11 +1360,6 @@ Public Class frmScroller
                 form8.L2.Text = "ΔΟΥ"
                 form8.FormScroller = Me
                 form8.CalledFromControl = False
-                form8.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form8.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form8.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form8.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form8.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form8), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form8.Show()
             Case "vw_PRF"
@@ -1444,11 +1372,6 @@ Public Class frmScroller
                 form9.L2.Text = "Επάγγελμα"
                 form9.FormScroller = Me
                 form9.CalledFromControl = False
-                form9.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form9.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form9.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form9.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form9.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form9), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form9.Show()
             Case "vw_CCT_M"
@@ -1469,11 +1392,6 @@ Public Class frmScroller
                 form13.L2.Text = "Εττικέτα"
                 form13.FormScroller = Me
                 form13.CalledFromControl = False
-                form13.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form13.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form13.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form13.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form13.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form13), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form13.Show()
             Case "vw_DOOR_TYPE"
@@ -1494,11 +1412,6 @@ Public Class frmScroller
                 form15.L2.Text = "Κατηγορία"
                 form15.FormScroller = Me
                 form15.CalledFromControl = False
-                form15.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form15.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form15.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form15.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form15.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form15), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form15.Show()
             Case "vw_ERM"
@@ -1535,11 +1448,6 @@ Public Class frmScroller
                 form19.L2.Text = "Κατηγορία"
                 form19.FormScroller = Me
                 form19.CalledFromControl = False
-                form19.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form19.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form19), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form19.Show()
             Case "vw_COLORS_CAT"
@@ -1552,14 +1460,8 @@ Public Class frmScroller
                 form20.L2.Text = "Κατηγορίες Χρωμάτων"
                 form20.FormScroller = Me
                 form20.CalledFromControl = False
-                form20.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form20.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form20.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form20.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                form20.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form20), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form20.Show()
-
         End Select
     End Sub
     'Φορτώνω τις εγγραφές στο GRID
@@ -1625,6 +1527,7 @@ Public Class frmScroller
             'Εαν δεν έχει data το Dataset αναγκαστικά προσθέτω μόνος μου τις στήλες
             If sDataDetail = "" Then
                 If myReader.HasRows = False Then
+                    GridView1.Columns.Clear()
                     For i As Integer = 0 To myReader.FieldCount - 1
                         Dim C As New GridColumn
                         C.Name = "col" & myReader.GetName(i).ToString
@@ -1811,7 +1714,7 @@ Public Class frmScroller
             grdColumns = GridView1.Columns.ToList()
             For i As Integer = 0 To myReader.FieldCount - 1
                 Console.WriteLine(myReader.GetName(i))
-                Dim Col2 As GridColumn = GridView1.Columns(myReader.GetName(i))
+                Dim Col2 As GridColumn = GridView1.Columns.Item(i)
                 If Col2 Is Nothing Then
                     col1 = GridView1.Columns.AddField(myReader.GetName(i))
                     col1.FieldName = myReader.GetName(i)
@@ -1841,6 +1744,7 @@ Public Class frmScroller
             Next
 
         End If
+        LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
     End Sub
 
 

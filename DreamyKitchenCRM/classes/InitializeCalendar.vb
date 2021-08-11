@@ -85,6 +85,41 @@ Public Class InitializeCalendar
         sdr.Close()
         sdr = Nothing
     End Sub
+    Public Sub InitializePersonal(ByVal SCH As DevExpress.XtraScheduler.SchedulerControl, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage, ByVal sSQL As String, ByVal Reminder As Boolean)
+        Dim sDate As String, sStatus As String, Cmt As String
+        Dim sTitle As String, sRemValues As String, sID As String, stmReminder As String, sSalerName As String
+        Dim sReminder As Integer, SalersCode As Integer, status_Code As Integer
+        Dim sColor As Color, sStatusColor As Color
+        Dim sCompleted As Boolean
+        Try
+            'Color.FromArgb(e.CellValue)
+            'Αλλαγή όψης
+            'SCH.ActiveViewType = SchedulerViewType.FullWeek
+            SCH.OptionsCustomization.AllowAppointmentCreate = UsedAppointmentType.None
+            SCH.OptionsCustomization.AllowAppointmentDelete = UsedAppointmentType.None
+            SCH.OptionsCustomization.AllowAppointmentEdit = UsedAppointmentType.None
+            Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            If sdr.HasRows Then
+                While sdr.Read()
+                    If sdr.IsDBNull(sdr.GetOrdinal("dtInsertedDate")) = False Then sDate = sdr.GetDateTime(sdr.GetOrdinal("dtInsertedDate"))
+                    sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                    If sdr.IsDBNull(sdr.GetOrdinal("color")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("color")))
+                    sRemValues = ""
+                    If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("title")) = False Then sTitle = sdr.GetString(sdr.GetOrdinal("title"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("status_Code")) = False Then status_Code = sdr.GetInt32(sdr.GetOrdinal("status_Code"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
+                    CreateAppointmentPersonal(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, status_Code, sTitle, sRemValues, stmReminder, sCompleted, sSalerName, Reminder)
+                End While
+            End If
+            sdr.Close()
+            sdr = Nothing
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 
     Public Sub CreateAppointment(ByVal ID As String, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage,
                                   ByVal AptDate As String, ByVal AptSubject As String, ByVal sReminder As Integer,
@@ -214,4 +249,53 @@ Public Class InitializeCalendar
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Sub CreateAppointmentPersonal(ByVal ID As String, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage,
+                                      ByVal AptDate As String, ByVal AptSubject As String, ByVal sReminder As Integer,
+                                      ByVal sColor As Color, ByVal Cmt As String, ByVal sLabelID As Integer,
+                                      ByVal sTitle As String, ByVal sRemValues As String, ByVal AptTime As String, ByVal Completed As Boolean,
+                                       ByVal SalerName As String, Optional ByVal EnableReminder As Boolean = False
+                                      )
+        Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate), AptSubject & "(Θέμα: " & sTitle & ")")
+        Try
+
+            'Dim Field As New DevExpress.XtraScheduler.Native.CustomField("StatusColor", sColor)
+
+            'apt.CustomFields.Add(Field)
+            'apt.Location = sTitle
+            apt.Description = Cmt
+
+            apt.AllDay = True
+            'If AptTime <> Nothing Then
+            '    apt.Start = CDate(AptDate) & " " & AptTime
+            '    '2/29/2016 22:00:00
+            '    apt.End = CDate(AptDate) & " " & AptTime
+            'Else
+            '    apt.Start = CDate(AptDate)
+            '    apt.End = CDate(AptDate)
+            'End If
+            ' Κλειδί
+            apt.SetId(ID)
+            apt.LabelKey = sLabelID
+
+            'If EnableReminder Then
+            '    Dim reminder As Reminder = apt.CreateNewReminder()
+            '    reminder.TimeBeforeStart = New TimeSpan(0, sReminder, 0)
+            '    Select Case sRemValues
+            '        Case "Λεπτά" : reminder.TimeBeforeStart = TimeSpan.FromMinutes(sReminder)
+            '        Case "Ώρες" : reminder.TimeBeforeStart = TimeSpan.FromHours(sReminder)
+            '        Case "Μέρες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder)
+            '        Case "Εβδομάδες" : reminder.TimeBeforeStart = TimeSpan.FromDays(sReminder * 7)
+            '    End Select
+            '    If Completed = False Then
+            '        If sReminder <> 0 And sRemValues <> "" Then apt.Reminders.Add(reminder)
+            '    End If
+            'End If
+            SCH_Storage.Appointments.Add(apt)
+
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
 End Class

@@ -43,8 +43,6 @@ Public Class frmCalendarInst
             Me.DreamyKitchenAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
 
             SchedulerControl1.Start = Now.Date
-            SchedulerControl1.ActiveViewType = SchedulerViewType.Month
-            SchedulerControl1.Views.MonthView.AppointmentDisplayOptions.AppointmentAutoHeight = True
 
             If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\Inst.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\Inst.xml", OptionsLayoutBase.FullLayout)
         Catch ex As Exception
@@ -56,10 +54,12 @@ Public Class frmCalendarInst
     Private Sub BarNewRec_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarNewRec.ItemClick
         Dim form1 As frmInstallations = New frmInstallations()
         form1.Text = "Τοποθετήσεις"
-        form1.MdiParent = frmMain
+        'form1.MdiParent = frmMain
         form1.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
+        form1.dtDeliverDate.EditValue = SchedulerControl1.SelectedInterval.Start
+        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.ShowDialog()
+        SetCalendarFilter()
     End Sub
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         PanelResults.Visible = False
@@ -80,19 +80,25 @@ Public Class frmCalendarInst
         End If
     End Sub
     Private Sub SchedulerControl1_DoubleClick(sender As Object, e As EventArgs) Handles SchedulerControl1.DoubleClick
-        For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
-            Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
-            Dim form1 As frmInstallations = New frmInstallations()
-            form1.Text = "Τοποθετήσεις"
-            form1.ID = apt.Id
-            form1.MdiParent = frmMain
-            form1.Mode = FormMode.EditRecord
-            form1.Scroller = frmScroller.GridView1
-            form1.FormScroller = frmScroller
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-            form1.Show()
-        Next i
 
+        Dim form1 As frmInstallations = New frmInstallations()
+        form1.Text = "Τοποθετήσεις"
+        form1.Scroller = frmScroller.GridView1
+        form1.FormScroller = frmScroller
+        'form1.MdiParent = frmMain
+        If SchedulerControl1.SelectedAppointments.Count = 0 Then
+            form1.Mode = FormMode.NewRecord
+            form1.dtDeliverDate.EditValue = SchedulerControl1.SelectedInterval.Start
+        Else
+            For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
+                Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
+                form1.ID = apt.Id
+                form1.Mode = FormMode.EditRecord
+            Next i
+        End If
+        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.ShowDialog()
+        SetCalendarFilter()
     End Sub
     Private Sub SetCalendarFilter(Optional ByVal sWhere As String = "")
         Dim sSQL As String
@@ -114,9 +120,6 @@ Public Class frmCalendarInst
         End If
         Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, False)
         SchedulerControl1.Start = Now.Date
-        SchedulerControl1.ActiveViewType = SchedulerViewType.Month
-        SchedulerControl1.Views.MonthView.AppointmentDisplayOptions.AppointmentAutoHeight = True
-
     End Sub
     Private Sub OkButton_Click(ByVal sender As Object, ByVal e As EventArgs)
         SetCalendarFilter()
@@ -229,6 +232,21 @@ Public Class frmCalendarInst
 
     Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText
         e.Text = e.Text & vbCrLf + "Σχόλια: " + e.Description
+    End Sub
+
+    Private Sub SchedulerControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles SchedulerControl1.KeyDown
+        Dim sSQL As String
+        If e.KeyCode = Keys.Delete Then
+            For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
+
+                Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
+                sSQL = "DELETE FROM inst WHERE ID = " & toSQLValueS(apt.Id)
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            Next i
+            SetCalendarFilter()
+        End If
     End Sub
 
     Friend Class MenuColumnInfo

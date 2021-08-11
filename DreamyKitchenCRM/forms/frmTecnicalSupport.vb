@@ -103,21 +103,21 @@ Public Class frmTecnicalSupport
             Dim e_mail As New MailMessage()
             Smtp_Server.UseDefaultCredentials = False
             Smtp_Server.Credentials = New System.Net.NetworkCredential(UserProps.Email, UserProps.EmailPassword)
-
             Smtp_Server.Port = UserProps.EmailPort
             Smtp_Server.EnableSsl = UserProps.EmailSSL
             Smtp_Server.Host = UserProps.EmailServer
 
+
             e_mail = New MailMessage()
-            e_mail.From = New MailAddress(txtFrom.Text)
-            If txtEmailTo.Text <> "" Then e_mail.To.Add(txtEmailTo.Text)
-            If txtCC.Text <> "" Then e_mail.CC.Add(txtCC.Text)
+            e_mail.From = New MailAddress(txtFrom.EditValue)
+            If txtEmailTo.Text <> "" Then e_mail.To.Add(txtEmailTo.EditValue)
+            If txtCC.Text <> "" Then e_mail.CC.Add(txtCC.EditValue)
             e_mail.Subject = txtSubject.Text
             e_mail.IsBodyHtml = True
             e_mail.Body = txtBody.Text
             Dim myMailHTMLBody = "<html><head></head><body>" & txtBody.Text & " <img src=cid:ThePictureID></body></html>"
             Dim myAltView As AlternateView = AlternateView.CreateAlternateViewFromString(myMailHTMLBody, New System.Net.Mime.ContentType("text/html"))
-            If PictureEdit1.EditValue <> Nothing Then
+            If PictureEdit1.EditValue IsNot Nothing Then
 
                 Dim myImageData() As Byte = PictureEdit1.EditValue
                 'CREATE LINKED RESOURCE FOR ALT VIEW
@@ -162,7 +162,7 @@ Public Class frmTecnicalSupport
             e_mail.Body = txtAnswer.Text
             Dim myMailHTMLBody = "<html><head></head><body>" & txtAnswer.Text & " <img src=cid:ThePictureID></body></html>"
             Dim myAltView As AlternateView = AlternateView.CreateAlternateViewFromString(myMailHTMLBody, New System.Net.Mime.ContentType("text/html"))
-            If PictureEdit11.EditValue <> Nothing Then
+            If PictureEdit11.EditValue IsNot Nothing Then
 
                 Dim myImageData() As Byte = PictureEdit11.EditValue
                 'CREATE LINKED RESOURCE FOR ALT VIEW
@@ -192,11 +192,6 @@ Public Class frmTecnicalSupport
         form1.CallerControl = cboCategory
         form1.CallerForm = Me
         form1.MdiParent = frmMain
-        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        form1.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         If cboCategory.EditValue <> Nothing Then
             form1.Mode = FormMode.EditRecord
             form1.ID = cboCategory.EditValue.ToString

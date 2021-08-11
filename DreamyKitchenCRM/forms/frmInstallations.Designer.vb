@@ -193,6 +193,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(441, 24)
+        Me.LayoutControlItem9.Tag = "1"
         Me.LayoutControlItem9.Text = "Συνεργείο"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(119, 13)
         '
@@ -217,6 +218,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(441, 24)
+        Me.LayoutControlItem2.Tag = "1"
         Me.LayoutControlItem2.Text = "Ημερ/νία Τοποθέτησης"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(119, 13)
         '

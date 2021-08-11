@@ -150,11 +150,6 @@ Public Class frmColors
         frmGen.CalledFromControl = True
         If cboColorsCat.EditValue <> Nothing Then frmGen.ID = cboColorsCat.EditValue.ToString
         frmGen.MdiParent = frmMain
-        frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        frmGen.L7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         If cboColorsCat.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
         frmGen.Show()

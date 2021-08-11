@@ -445,7 +445,15 @@ Public Class FormLoader
             For Each row As DataRow In dt.Rows
                 Dim columnName As String = row.Item("COLUMN_NAME").ToString
                 Dim columnNameValue As String = row.Item("COLUMN_DESCRIPTION").ToString
-                If columnName.Length > 0 And GRDView.Columns.Item(columnName) IsNot Nothing Then GRDView.Columns.Item(columnName).Caption = columnNameValue
+                If columnName.Length > 0 And columnNameValue.Length > 0 Then
+                    Dim C As New GridColumn
+                    C = GRDView.Columns.ColumnByName("col" & columnName)
+                    If C IsNot Nothing Then
+                        C.Caption = columnNameValue
+                        C = Nothing
+                    End If
+                End If
+                'If columnName.Length > 0 And GRDView.Columns.Item(columnName) IsNot Nothing Then GRDView.Columns.Item(columnName).Caption = columnNameValue
             Next
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
