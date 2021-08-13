@@ -6,9 +6,11 @@ Imports DevExpress.XtraSpreadsheet
 
 Public Class frmEmpPresenation
     Private repository As RepositoryItemLookUpEdit
+    Private LastDetailRow As Integer
     Private Sub frmEmpMov_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_EMP_S' table. You can move, or remove it, as needed.
         Me.Vw_EMP_STableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EMP_S)
+        Me.Vw_EMPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EMP, System.Guid.Parse("9812E975-2FD4-4653-B043-3D6CAF440888"))
         Dim worksheet As Worksheet = SPR.ActiveWorksheet
         SPR.WorksheetDisplayArea.SetSize(SPR.ActiveWorksheet.Name, 32, 2)
         worksheet.Columns.Item(0).Width = 700
@@ -25,6 +27,8 @@ Public Class frmEmpPresenation
         Try
             Dim sSQL As String
             Dim i As Integer = 3
+            Dim emp_s As Int16
+            Dim StatusCols As New List(Of String)
             sSQL = "Select ID,FullName from vw_EMP where depid='9812E975-2FD4-4653-B043-3D6CAF440888' order by 2"
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
@@ -36,15 +40,90 @@ Public Class frmEmpPresenation
                 FillEmp_P(sdr.Item(0).ToString, i - 1)
                 i = i + 1
             End While
-            SPR.WorksheetDisplayArea.SetSize(SPR.ActiveWorksheet.Name, 32, i - 1)
+            LastDetailRow = i
+
             worksheet.Range("A1:AK" & i - 1).Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center
             worksheet.Range("A1:AK" & i - 1).Alignment.Vertical = SpreadsheetVerticalAlignment.Center
             worksheet.Range("A1:A2").Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center
             sdr.Close()
+            '*****************ΣΥΓΚΕΝΤΡΩΤΙΚΑ ΑΠΟΤΕΛΕΣΜΑΤΑ*******************
+            'i + 3= Πάμε 3 γραμμές παρακάτω από εκεί που τελείωσε για να γράψουμε τον τίτλο
+            Dim Row As Integer
+            Row = i + 3
+            worksheet.Rows.Insert(Row)
+            worksheet.Range("A" & Row).Value = "ΣΥΓΚΕΝΤΡΩΤΙΚΑ ΑΝΑ STATUS"
+            ' Παίρνω το πλήθος των Status ώστε να κάνω το merge της στήλης
+            cmd = New SqlCommand("SELECT COUNT(*) AS CountS FROM EMP_S", CNDB)
+            emp_s = Convert.ToInt16(cmd.ExecuteScalar())
+            Dim CellRange As CellRange = worksheet.Range.FromLTRB(0, Row - 1, emp_s, Row - 1)
+            worksheet.MergeCells(CellRange)
+            CellRange.Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center
+            CellRange.Alignment.Vertical = SpreadsheetHorizontalAlignment.Center
+            CellRange.Borders.SetAllBorders(Color.Black, 2)
+            CellRange.Font.Color = Color.Red
+            worksheet.Rows.Insert(Row)
+
+            ' Παίρνουμε τα Status από την βάση ώστε να φτιάξω τις στήλες των Headers των συγκεντρωτικών
+            cmd = New SqlCommand("SELECT shortName,color  FROM vw_EMP_S order by shortName ", CNDB)
+            sdr = cmd.ExecuteReader()
+            Dim Col As Integer
+            Col = 1
+            While sdr.Read()
+                worksheet.Cells.Item(Row, Col).Value = sdr.Item(0).ToString
+                'Βαζω τα Status σε μια λίστα με την γραμμή και την στήλη ώστε να μπορέσω να το βρίσκω ευκολα
+                'StatusCols.Add(Row.ToString & ":" & Col.ToString & ":" & sdr.Item(0).ToString)
+                StatusCols.Add(sdr.Item(0).ToString)
+                worksheet.Cells.Item(Row, Col).Font.Bold = True
+                If Not IsDBNull(sdr.Item(1)) Then worksheet.Cells.Item(Row, Col).FillColor = Color.FromArgb(sdr.Item(1).ToString)
+                worksheet.Cells.Item(Row, Col).Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center
+                worksheet.Cells.Item(Row, Col).Alignment.Vertical = SpreadsheetHorizontalAlignment.Center
+                Col = Col + 1
+            End While
+            sdr.Close()
+            ' Προσθήκη νέας γραμμής
+            worksheet.Rows.Insert(Row)
+            Row = Row + 1
+            ' Για να μην τα ξαναφέρνω από την βάση κάνω Copy paste τους υπαλλήλους
+            ' CellRange = worksheet.Range("A" & 2 & ":A" & LastDetailRow)
+            'worksheet.Range("A" & Row).CopyFrom(CellRange, PasteSpecial.Values)
+
+            ' Πάιρνω ανα υπάλληλο το πλήθος των Status
+            cmd = New SqlCommand("SELECT COUNT(p.id),shortName ,P.fullname
+                                    FROM vw_EMP_P P
+                                    inner join vw_EMP_S S on P.statusID = S.ID 
+                                    inner join vw_EMP E on e.id = P.empID 
+                                    where depid='9812E975-2FD4-4653-B043-3D6CAF440888' and 
+                                    month(dtpresent)= " & toSQLValueS(lstMonths.SelectedIndex + 1) & "and year(dtPresent)= " & toSQLValueS(dtFDate.Text) &
+                                    " group by P.fullname,shortName 
+                                    order by P.fullname,shortName  ", CNDB)
+            sdr = cmd.ExecuteReader()
+            Dim tmpFullname As String
+            Dim TotRow As Integer = Row
+            Dim ListVal() As String
+            While sdr.Read()
+                If tmpFullname <> sdr.Item(2).ToString Then
+                    TotRow = TotRow + 1
+                    worksheet.Cells.Item(TotRow, 0).Value = sdr.Item(2).ToString
+                    worksheet.Cells.Item(TotRow, StatusCols.IndexOf(sdr.Item(1).ToString) + 1).Value = sdr.Item(0).ToString
+                    worksheet.Cells.Item(TotRow, StatusCols.IndexOf(sdr.Item(1).ToString) + 1).Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center
+                    worksheet.Cells.Item(TotRow, StatusCols.IndexOf(sdr.Item(1).ToString) + 1).Alignment.Vertical = SpreadsheetHorizontalAlignment.Center
+                    tmpFullname = sdr.Item(2).ToString
+                Else
+                    worksheet.Cells.Item(TotRow, 0).Value = sdr.Item(2).ToString
+                    worksheet.Cells.Item(TotRow, StatusCols.IndexOf(sdr.Item(1).ToString) + 1).Value = sdr.Item(0).ToString
+                    worksheet.Cells.Item(TotRow, StatusCols.IndexOf(sdr.Item(1).ToString) + 1).Alignment.Horizontal = SpreadsheetHorizontalAlignment.Center
+                    worksheet.Cells.Item(TotRow, StatusCols.IndexOf(sdr.Item(1).ToString) + 1).Alignment.Vertical = SpreadsheetHorizontalAlignment.Center
+                    tmpFullname = sdr.Item(2).ToString
+                End If
+            End While
+            Row = Row + LastDetailRow
+            SPR.WorksheetDisplayArea.SetSize(SPR.ActiveWorksheet.Name, 32, Row)
+
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub FillEmp_P(ByVal EmpID As String, Row As Integer)
         Dim sSQL As String
         sSQL = "Select ID,EmpStatusShort,day(dtpresent) as dtpresent,color 
@@ -105,6 +184,7 @@ Public Class frmEmpPresenation
     End Sub
 
     Private Sub SPR_CustomCellEdit(sender As Object, e As SpreadsheetCustomCellEditEventArgs) Handles SPR.CustomCellEdit
+        If e.RowIndex > LastDetailRow Then Exit Sub
         repository = New RepositoryItemLookUpEdit
         repository.DataSource = Vw_EMP_SBindingSource
         Repository.DisplayMember = "shortName"
