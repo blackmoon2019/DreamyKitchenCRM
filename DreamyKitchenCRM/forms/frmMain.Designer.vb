@@ -79,6 +79,8 @@ Partial Class frmMain
         Me.bbEmpMov = New DevExpress.XtraBars.BarButtonItem()
         Me.bbStatusPre = New DevExpress.XtraBars.BarButtonItem()
         Me.BBPersonalCalendar = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBPersonalCalendarStatus = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBInstM = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage6 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -106,7 +108,6 @@ Partial Class frmMain
         Me.Vw_NOTESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.AlertControl1 = New DevExpress.XtraBars.Alerter.AlertControl(Me.components)
-        Me.BBPersonalCalendarStatus = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -123,9 +124,9 @@ Partial Class frmMain
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbCreditDebit, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbCreditDebit, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.MaxItemId = 64
+        Me.RibbonControl1.MaxItemId = 65
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage6, Me.RibbonPage7, Me.RibbonPage2, Me.RibbonPage3, Me.RibbonPage4, Me.RibbonPage5})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
@@ -575,7 +576,7 @@ Partial Class frmMain
         '
         'bbEmpMov
         '
-        Me.bbEmpMov.Caption = "Παρουσιολόγιο"
+        Me.bbEmpMov.Caption = "Παρουσιολόγιο Έκθεσης"
         Me.bbEmpMov.Id = 60
         Me.bbEmpMov.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_presentation_40
         Me.bbEmpMov.Name = "bbEmpMov"
@@ -596,6 +597,22 @@ Partial Class frmMain
         Me.BBPersonalCalendar.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_calendar_40
         Me.BBPersonalCalendar.Name = "BBPersonalCalendar"
         Me.BBPersonalCalendar.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBPersonalCalendarStatus
+        '
+        Me.BBPersonalCalendarStatus.Caption = "Status Προσωπικού Ημερολογίου"
+        Me.BBPersonalCalendarStatus.Id = 63
+        Me.BBPersonalCalendarStatus.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_unknown_status_40
+        Me.BBPersonalCalendarStatus.Name = "BBPersonalCalendarStatus"
+        Me.BBPersonalCalendarStatus.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBInstM
+        '
+        Me.BBInstM.Caption = "Χρεωπιστώσεις Συνεργείων"
+        Me.BBInstM.Id = 64
+        Me.BBInstM.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_money_prize_40
+        Me.BBInstM.Name = "BBInstM"
+        Me.BBInstM.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'RibbonPage1
         '
@@ -626,7 +643,7 @@ Partial Class frmMain
         'RibbonPageGroup9
         '
         Me.RibbonPageGroup9.ItemLinks.Add(Me.bbCreditDebit)
-        Me.RibbonPageGroup9.ItemLinks.Add(Me.bbBanks)
+        Me.RibbonPageGroup9.ItemLinks.Add(Me.BBInstM)
         Me.RibbonPageGroup9.Name = "RibbonPageGroup9"
         Me.RibbonPageGroup9.Text = "Συναλλαγές"
         '
@@ -666,6 +683,7 @@ Partial Class frmMain
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbLabels)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.BBSer)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbSalers)
+        Me.RibbonPageGroup2.ItemLinks.Add(Me.bbBanks)
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
         Me.RibbonPageGroup2.Text = "Βοηθητικά"
         '
@@ -797,14 +815,6 @@ Partial Class frmMain
         '
         Me.AlertControl1.ShowCloseButton = False
         '
-        'BBPersonalCalendarStatus
-        '
-        Me.BBPersonalCalendarStatus.Caption = "Status Προσωπικού Ημερολογίου"
-        Me.BBPersonalCalendarStatus.Id = 63
-        Me.BBPersonalCalendarStatus.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_unknown_status_40
-        Me.BBPersonalCalendarStatus.Name = "BBPersonalCalendarStatus"
-        Me.BBPersonalCalendarStatus.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
-        '
         'frmMain
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -922,4 +932,5 @@ Partial Class frmMain
     Friend WithEvents RibbonPageGroup11 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents BBPersonalCalendar As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBPersonalCalendarStatus As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBInstM As DevExpress.XtraBars.BarButtonItem
 End Class

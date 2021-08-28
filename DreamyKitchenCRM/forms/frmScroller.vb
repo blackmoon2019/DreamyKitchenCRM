@@ -15,6 +15,7 @@ Imports DevExpress.Utils
 Imports DevExpress.XtraGrid.Views.Card
 Imports DevExpress.XtraGrid.Localization
 Imports DevExpress.XtraGrid
+Imports System.IO
 
 Public Class frmScroller
 
@@ -155,6 +156,15 @@ Public Class frmScroller
             Next
             BarViews.EditValue = CurrentView
             If CurrentView = "" Then
+                ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
+                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = True Then
+                    Dim SfileCreatedDate As DateTime = File.GetLastWriteTime(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml")
+                    Dim LfileCreatedDate As DateTime = File.GetLastWriteTime(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
+                    'Aν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server την αντιγράφουμε τοπικά ώστε να έχουμε την ίδια
+                    If SfileCreatedDate > LfileCreatedDate Then
+                        My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml", Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", True)
+                    End If
+                End If
                 'grdMain.DefaultView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
                 If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
@@ -203,6 +213,7 @@ Public Class frmScroller
                     Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -547,7 +558,7 @@ Public Class frmScroller
 
     End Sub
     Private Sub GridView1_DoubleClick(sender As Object, e As EventArgs) Handles GridView1.DoubleClick
-        EditRecord()
+        If GridView1.IsGroupRow(GridView1.FocusedRowHandle) Then Exit Sub Else EditRecord()
     End Sub
     'Νέα Εγγραφή
     Private Sub BarNewRec_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarNewRec.ItemClick
@@ -555,11 +566,12 @@ Public Class frmScroller
     End Sub
     'Επεξεργασία Εγγραφής
     Private Sub BarEdit_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarEdit.ItemClick
-        EditRecord()
+
+        If GridView1.IsGroupRow(GridView1.FocusedRowHandle) Then Exit Sub Else EditRecord()
     End Sub
     'Διαγραφή Εγγραφής
     Private Sub BarDelete_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarDelete.ItemClick
-        DeleteRecord()
+        If GridView1.IsGroupRow(GridView1.FocusedRowHandle) Then Exit Sub Else DeleteRecord()
     End Sub
     'Ανανέωση εγγραφών
     Private Sub BarRefresh_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarRefresh.ItemClick
@@ -603,7 +615,19 @@ Public Class frmScroller
         Dim frmInstallations As New frmInstallations
         Dim frmTransactions As New frmTransactions
         Dim frmEMP As New frmEMP
+        Dim frmInstM As New frmInstM
         Select Case sDataTable
+            Case "vw_INST_M"
+                frmInstM.Text = "Χρεωπιστώσεις Συνεργείων"
+                frmInstM.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmInstM.InstID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString
+                frmInstM.MdiParent = frmMain
+                frmInstM.Mode = FormMode.EditRecord
+                frmInstM.Scroller = GridView1
+                frmInstM.FormScroller = Me
+                frmInstM.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstM), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmInstM.Show()
             Case "vw_EMP"
                 frmEMP.Text = "Διαχείριση Προσωπικού"
                 frmEMP.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -1072,7 +1096,17 @@ Public Class frmScroller
         Dim frmInstallations As New frmInstallations
         Dim frmTransactions As New frmTransactions
         Dim frmEMP As New frmEMP
+        Dim frmInstM As New frmInstM
         Select Case sDataTable
+            Case "vw_INST_M"
+                frmInstM.Text = "Χρεωπιστώσεις Συνεργείων"
+                frmInstM.MdiParent = frmMain
+                frmInstM.Mode = FormMode.NewRecord
+                frmInstM.Scroller = GridView1
+                frmInstM.FormScroller = Me
+                frmInstM.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstM), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmInstM.Show()
             Case "vw_EMP"
                 frmEMP.Text = "Διαχείριση Προσωπικού"
                 frmEMP.MdiParent = frmMain
@@ -1520,6 +1554,25 @@ Public Class frmScroller
                             'Specify text to be displayed within detail tabs.
                             GrdView.ViewCaption = "Χρεωπιστώσεις"
                         End If
+                    Case "vw_INST_M"
+                        Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
+                        Dim AdapterDetail As New SqlDataAdapter(sSQL2, CNDB)
+                        Dim sdataSet As New DataSet()
+                        AdapterMaster.Fill(sdataSet, IIf(sDataTable = "", sDataTable2, sDataTable))
+                        AdapterDetail.Fill(sdataSet, sDataDetail)
+                        Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
+                        Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("instID")
+                        sdataSet.Relations.Add("Χρεωπιστώσεις Συνεργείων", keyColumn, foreignKeyColumn, False)
+                        GridView1.Columns.Clear() : GridView2.Columns.Clear()
+                        grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
+                        grdMain.ForceInitialize()
+                        If grdMain.LevelTree.Nodes.Count = 1 Then
+                            Dim GrdView As New GridView(grdMain)
+                            grdMain.LevelTree.Nodes.Add("Χρεωπιστώσεις Συνεργείων", GridView2)
+                            'Specify text to be displayed within detail tabs.
+                            GrdView.ViewCaption = "Χρεωπιστώσεις Συνεργείων"
+                        End If
+
                 End Select
             End If
             grdMain.DefaultView.PopulateColumns()
@@ -1569,6 +1622,8 @@ Public Class frmScroller
         If e.Control AndAlso e.KeyCode = Keys.C Then
             If view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn) IsNot Nothing AndAlso view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString() <> [String].Empty Then
                 Clipboard.SetText(view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString())
+            ElseIf e.KeyCode = Keys.Enter Then
+                If GridView1.IsGroupRow(GridView1.FocusedRowHandle) Then Exit Sub Else EditRecord()
             End If
             e.Handled = True
         End If
@@ -1611,6 +1666,13 @@ Public Class frmScroller
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
         If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
+                GridView1.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
+            End If
+        End If
 
     End Sub
     ' Copy Cell
@@ -1704,47 +1766,52 @@ Public Class frmScroller
     Private Sub BBUpdateViewFromDB_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdateViewFromDB.ItemClick
         'ReadXml.UpdateXMLFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
         'My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
-        Dim col1 As GridColumn
-        Dim grdColumns As List(Of GridColumn)
-        LoadRecords()
-        If myReader Is Nothing Then Exit Sub
-        'Εαν υπάρχουν πεδία που πρέπει να προστεθούν από την βάση
-        If myReader.FieldCount >= GridView1.Columns.Count Then
-            Dim schema As DataTable = myReader.GetSchemaTable()
-            grdColumns = GridView1.Columns.ToList()
-            For i As Integer = 0 To myReader.FieldCount - 1
-                Console.WriteLine(myReader.GetName(i))
-                Dim Col2 As GridColumn = GridView1.Columns.Item(i)
-                If Col2 Is Nothing Then
-                    col1 = GridView1.Columns.AddField(myReader.GetName(i))
-                    col1.FieldName = myReader.GetName(i)
-                    col1.Visible = True
-                    col1.VisibleIndex = 0
-                    col1.AppearanceCell.BackColor = Color.Bisque
-                End If
+        Try
+            Dim col1 As GridColumn
+            Dim Col2 As GridColumn
+            Dim grdColumns As List(Of GridColumn)
+            LoadRecords()
+            If myReader Is Nothing Then Exit Sub
+            'Εαν υπάρχουν πεδία που πρέπει να προστεθούν από την βάση
+            If myReader.FieldCount >= GridView1.Columns.Count Then
+                Dim schema As DataTable = myReader.GetSchemaTable()
+                grdColumns = GridView1.Columns.ToList()
+                For i As Integer = 0 To myReader.FieldCount - 1
+                    Console.WriteLine(myReader.GetName(i))
+                    If i < GridView1.Columns.Count Then Col2 = GridView1.Columns.Item(i) Else Col2 = Nothing
+                    If Col2 Is Nothing Then
+                        col1 = GridView1.Columns.AddField(myReader.GetName(i))
+                        col1.FieldName = myReader.GetName(i)
+                        col1.Visible = True
+                        col1.VisibleIndex = 0
+                        col1.AppearanceCell.BackColor = Color.Bisque
+                    End If
 
-            Next
-            'Εαν έχουν σβηστεί πεδία από την βάση τα αφαιρεί και από το grid
-        ElseIf myReader.FieldCount < GridView1.Columns.Count Then
-            Dim schema As DataTable = myReader.GetSchemaTable()
-            grdColumns = GridView1.Columns.ToList()
+                Next
+                'Εαν έχουν σβηστεί πεδία από την βάση τα αφαιρεί και από το grid
+            ElseIf myReader.FieldCount < GridView1.Columns.Count Then
+                Dim schema As DataTable = myReader.GetSchemaTable()
+                grdColumns = GridView1.Columns.ToList()
 
-            For i As Integer = 0 To grdColumns.Count - 1
-                Try
-                    Dim Col2 As GridColumn = grdColumns(i)
-                    Dim sOrd As String = myReader.GetOrdinal(Col2.FieldName)
-                Catch ex As Exception
-                    Dim Col2 As GridColumn = grdColumns(i)
-                    GridView1.Columns.Remove(Col2)
-                    Console.WriteLine(ex.Message)
+                For i As Integer = 0 To grdColumns.Count - 1
+                    Try
+                        Col2 = grdColumns(i)
+                        Dim sOrd As String = myReader.GetOrdinal(Col2.FieldName)
+                    Catch ex As Exception
+                        Col2 = grdColumns(i)
+                        GridView1.Columns.Remove(Col2)
+                        Console.WriteLine(ex.Message)
 
-                    Continue For
-                End Try
+                        Continue For
+                    End Try
 
-            Next
+                Next
 
-        End If
-        LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
+            End If
+            LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
 

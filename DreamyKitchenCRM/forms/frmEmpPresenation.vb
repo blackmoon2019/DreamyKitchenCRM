@@ -1,12 +1,15 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports DevExpress.Spreadsheet
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraSpreadsheet
 
 Public Class frmEmpPresenation
     Private repository As RepositoryItemLookUpEdit
     Private LastDetailRow As Integer
+
     Private Sub frmEmpMov_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_EMP_S' table. You can move, or remove it, as needed.
         Me.Vw_EMP_STableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EMP_S)
@@ -18,9 +21,10 @@ Public Class frmEmpPresenation
         Dim currentDate As Date = DateTime.Now
         lstMonths.SelectedIndex = currentDate.Month - 1
         dtFDate.EditValue = DateTime.Now
-        SPR.BeginUpdate()
-        FillDays()
-        SPR.EndUpdate()
+        'dtFDate.Text = DateTime.Now.Year.ToString
+        'SPR.BeginUpdate()
+        'FillDays()
+        'SPR.EndUpdate()
 
     End Sub
     Private Sub FillEMP()
@@ -125,18 +129,22 @@ Public Class frmEmpPresenation
     End Sub
 
     Private Sub FillEmp_P(ByVal EmpID As String, Row As Integer)
-        Dim sSQL As String
-        sSQL = "Select ID,EmpStatusShort,day(dtpresent) as dtpresent,color 
+        Try
+            Dim sSQL As String
+            sSQL = "Select ID,EmpStatusShort,day(dtpresent) as dtpresent,color 
                 from vw_EMP_P where month(dtpresent)= " & toSQLValueS(lstMonths.SelectedIndex + 1) &
                 "and year(dtPresent)= " & toSQLValueS(dtFDate.Text) & " and  empid= " & toSQLValueS(EmpID) & "  order by dtPresent"
-        Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
-        Dim sdr As SqlDataReader = cmd.ExecuteReader()
-        Dim worksheet As Worksheet = SPR.ActiveWorksheet
-        While sdr.Read()
-            worksheet.Cells.Item(Row, sdr.Item(2).ToString).Value = sdr.Item(1).ToString
-            worksheet.Cells.Item(Row, sdr.Item(2).ToString).Tag = sdr.Item(0).ToString
-            worksheet.Cells.Item(Row, sdr.Item(2).ToString).FillColor = Color.FromArgb(sdr.Item(3).ToString)
-        End While
+            Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            Dim worksheet As Worksheet = SPR.ActiveWorksheet
+            While sdr.Read()
+                worksheet.Cells.Item(Row, sdr.Item(2).ToString).Value = sdr.Item(1).ToString
+                worksheet.Cells.Item(Row, sdr.Item(2).ToString).Tag = sdr.Item(0).ToString
+                If Not sdr.IsDBNull(3) Then worksheet.Cells.Item(Row, sdr.Item(2).ToString).FillColor = Color.FromArgb(sdr.Item(3).ToString)
+            End While
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Private Sub SPR_CellBeginEdit(sender As Object, e As SpreadsheetCellCancelEventArgs) Handles SPR.CellBeginEdit
         If e.ColumnIndex = 0 Then e.Cancel = True
@@ -144,12 +152,24 @@ Public Class frmEmpPresenation
     Private Sub FillDays()
         If dtFDate.EditValue Is Nothing Then Exit Sub
         Dim i As Integer
-        Dim days As Integer = System.DateTime.DaysInMonth(CDate(dtFDate.EditValue).Year, lstMonths.SelectedIndex + 1)
+        Dim days As Integer
+        Dim sDate As Date
+        If dtFDate.EditValue.ToString.Length = 4 Then
+            days = System.DateTime.DaysInMonth(dtFDate.EditValue, lstMonths.SelectedIndex + 1)
+        Else
+            days = System.DateTime.DaysInMonth(CDate(dtFDate.EditValue).Year, lstMonths.SelectedIndex + 1)
+        End If
+
         Dim myCulture As System.Globalization.CultureInfo = Globalization.CultureInfo.CurrentCulture
         Dim worksheet As Worksheet = SPR.ActiveWorksheet
         worksheet.Cells.Clear
         For i = 1 To days
-            Dim sDate As Date = i.ToString & "-" & lstMonths.SelectedIndex + 1 & "-" & dtFDate.Text
+            If dtFDate.EditValue.ToString.Length = 4 Then
+                sDate = i.ToString & "-" & lstMonths.SelectedIndex + 1 & "-" & dtFDate.EditValue
+            Else
+                sDate = i.ToString & "-" & lstMonths.SelectedIndex + 1 & "-" & CDate(dtFDate.EditValue).Year
+            End If
+
             Dim dayOfWeek As DayOfWeek = myCulture.Calendar.GetDayOfWeek(sDate)
             Dim dayName As String = myCulture.DateTimeFormat.GetDayName(dayOfWeek).Substring(0, 3)
             worksheet.Cells.Item(0, i).Value = dayName
@@ -177,6 +197,7 @@ Public Class frmEmpPresenation
     End Sub
 
     Private Sub dtFDate_EditValueChanged(sender As Object, e As EventArgs) Handles dtFDate.EditValueChanged
+        If dtFDate.EditValue Is Nothing Then Exit Sub
         SPR.BeginUpdate()
         FillDays()
         SPR.EndUpdate()
@@ -187,12 +208,12 @@ Public Class frmEmpPresenation
         If e.RowIndex > LastDetailRow Then Exit Sub
         repository = New RepositoryItemLookUpEdit
         repository.DataSource = Vw_EMP_SBindingSource
-        Repository.DisplayMember = "shortName"
-        Repository.ValueMember = "shortName"
-        Repository.PopulateColumns()
-        Repository.Columns.Item(0).Visible = False
-        Repository.Columns.Item(1).Visible = False
-        Repository.Columns.Item(2).Visible = True
+        repository.DisplayMember = "shortName"
+        repository.ValueMember = "shortName"
+        repository.PopulateColumns()
+        repository.Columns.Item(0).Visible = False
+        repository.Columns.Item(1).Visible = False
+        repository.Columns.Item(2).Visible = True
         If e.ColumnIndex >= 1 AndAlso e.RowIndex > 1 Then
             e.RepositoryItem = repository
             AddHandler repository.EditValueChanged, AddressOf Repository_Changed
@@ -237,6 +258,7 @@ Public Class frmEmpPresenation
             Dim sSQL As String = "DELETE FROM EMP_P WHERE ID = " & toSQLValueS(SPR.ActiveWorksheet.Cells.Item(SPR.ActiveCell.RowIndex, SPR.ActiveCell.ColumnIndex).Tag)
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
+                SPR.ActiveWorksheet.Cells.Item(SPR.ActiveCell.RowIndex, SPR.ActiveCell.ColumnIndex).FillColor = Color.Empty
             End Using
         End If
     End Sub
@@ -259,4 +281,25 @@ Public Class frmEmpPresenation
         'Next i
     End Sub
 
+    Private Sub cmdExportToPDF_Click(sender As Object, e As EventArgs) Handles cmdExportToPDF.Click
+        FilesSelection()
+    End Sub
+    Private Sub FilesSelection()
+
+        XtraSaveFileDialog1.Filter = "PDF files (*.PDF)|*.pdf"
+        XtraSaveFileDialog1.FilterIndex = 1
+        XtraSaveFileDialog1.InitialDirectory = "C:\"
+        XtraSaveFileDialog1.Title = "Save File"
+        XtraSaveFileDialog1.FileName = "Παρουσιολόγιο_" & lstMonths.SelectedIndex + 1 & "-" & dtFDate.Text
+        XtraSaveFileDialog1.CheckFileExists = False
+
+        Dim result As DialogResult = XtraSaveFileDialog1.ShowDialog()
+        If result = DialogResult.OK Then
+            SPR.Document.Worksheets.ActiveWorksheet.PrintOptions.FitToPage = True
+            SPR.Document.Worksheets.ActiveWorksheet.PrintOptions.FitToWidth = 1
+            SPR.Document.Worksheets.ActiveWorksheet.PrintOptions.FitToHeight = 0
+            SPR.ExportToPdf(XtraSaveFileDialog1.FileName)
+
+        End If
+    End Sub
 End Class

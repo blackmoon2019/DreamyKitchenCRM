@@ -71,6 +71,7 @@ Public Class frmLogin
                         My.Settings.Save()
                     End If
                 End If
+                UserProps.ServerViewsPath = My.Settings.SERVERVIEWS
                 frmMain.Show()
                 Me.Close()
                 frmCalendar.MdiParent = frmMain

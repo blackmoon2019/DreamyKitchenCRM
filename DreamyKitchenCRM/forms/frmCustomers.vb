@@ -258,8 +258,6 @@ Public Class frmCustomers
             For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
                 txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I)
             Next I
-
-
         End If
     End Sub
     Private Sub txtFileNames_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtFileNames.ButtonClick

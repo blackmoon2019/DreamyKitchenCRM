@@ -372,6 +372,18 @@ Namespace My
                 Me("frmPersonalNote") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("\\10.10.5.7\CrmViews\")>  _
+        Public Property SERVERVIEWS() As String
+            Get
+                Return CType(Me("SERVERVIEWS"),String)
+            End Get
+            Set
+                Me("SERVERVIEWS") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

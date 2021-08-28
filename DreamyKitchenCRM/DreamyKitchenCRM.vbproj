@@ -326,6 +326,12 @@
     <Compile Include="forms\frmInstallations.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmInstM.Designer.vb">
+      <DependentUpon>frmInstM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmInstM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmLogin.Designer.vb">
       <DependentUpon>frmLogin.vb</DependentUpon>
     </Compile>
@@ -542,6 +548,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmInstallations.resx">
       <DependentUpon>frmInstallations.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmInstM.resx">
+      <DependentUpon>frmInstM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>
@@ -872,6 +881,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-insert-money-euro-24.png" />
+    <None Include="Resources\icons8-money-prize-40.png" />
     <None Include="Resources\icons8-calendar-401.png" />
     <None Include="Resources\icons8-calendar.gif" />
     <None Include="Resources\icons8-about-40.png" />

@@ -191,6 +191,19 @@ Public Class frmCalendar
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form12), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
         form12.Show()
     End Sub
+    Private Sub SchedulerControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles SchedulerControl1.KeyDown
+        Dim sSQL As String
+        If e.KeyCode = Keys.Delete Then
+            For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
 
+                Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
+                sSQL = "DELETE FROM CCT_M WHERE ID = " & toSQLValueS(apt.Id)
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            Next i
+            SetCalendarFilter()
+        End If
+    End Sub
 
 End Class

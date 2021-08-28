@@ -1,4 +1,5 @@
 ﻿
+Imports System.Data.SqlClient
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 
@@ -55,7 +56,9 @@ Public Class frmInstallations
         Dim sSQL As New System.Text.StringBuilder
         FillCbo.SER(cboSER)
         FillCbo.CUS(cboCUS)
-
+        FillCbo.SALERS(cboSaler)
+        ' Μόνο αν ο Χρήστης ΔΕΝ είναι ο Παναγόπουλος
+        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then Lcost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never : LExtracost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("INST")
@@ -111,12 +114,14 @@ Public Class frmInstallations
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
         Dim sGuid As String
+        Dim sSQL As New System.Text.StringBuilder
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST", LayoutControl1,,, sGuid,, "salersID", toSQLValueS(System.Guid.Parse(UserProps.SalerID.ToString).ToString))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST", LayoutControl1,,, sGuid, True)
+
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST", LayoutControl1,,, sID, True)
                         sGuid = sID
@@ -128,14 +133,43 @@ Public Class frmInstallations
                 End If
 
                 If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                If Mode = FormMode.NewRecord Then Cls.ClearCtrls(LayoutControl1)
+                If Mode = FormMode.NewRecord Then
+                    'XtraMessageBox.Show("Θα δημιουργηθεί αυτόματη κίνηση εξόφλησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    'If chkPaid.Checked = True Then
+                    '    sSQL.AppendLine("INSERT INTO INST_M (instID,amt,dtpay,createdby,createdOn")
+                    '    sSQL.AppendLine("Select " & toSQLValueS(sGuid) & ",")
+                    '    sSQL.AppendLine(toSQLValueS(txtCost.EditValue, True) & ",")
+                    '    sSQL.AppendLine(toSQLValueS(dtDeliverDate.EditValue.ToString) & ",")
+                    '    sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & "," & " getdate()")
+                    'End If
+                    ''Εκτέλεση QUERY
+                    'Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    '    oCmd.ExecuteNonQuery()
+                    'End Using
+                    Cls.ClearCtrls(LayoutControl1)
+                End If
             End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
+    Private Sub ManageSaler()
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "Πωλητές"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Πωλητής"
+        form1.L6.Text = "Χρώμα"
+        form1.DataTable = "SALERS"
+        form1.CalledFromControl = True
+        form1.CallerControl = cboSaler
+        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
+        form1.MdiParent = frmMain
+        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
     Private Sub cboSER_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSER.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboSER.EditValue = Nothing : ManageSer()
@@ -151,4 +185,12 @@ Public Class frmInstallations
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
+    Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 3 : cboSaler.EditValue = Nothing
+        End Select
+    End Sub
+
 End Class

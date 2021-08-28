@@ -475,6 +475,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Τοποθετήσεις"
         form.DataTable = "vw_INST"
+        form.DataDetail = "vw_INST_M"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -567,6 +568,18 @@ Public Class frmMain
         form.DataTable = "vw_SALER_CAL_STATUS"
         form.MdiParent = Me
         form.Show()
+    End Sub
+
+    Private Sub BBInstM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInstM.ItemClick
+        If UserPermissions.CheckViewPermission("Χρεωπιστώσεις Συνεργείων") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Χρεωπιστώσεις Συνεργείων"
+            form.DataTable = "vw_INST_M"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 End Class
 

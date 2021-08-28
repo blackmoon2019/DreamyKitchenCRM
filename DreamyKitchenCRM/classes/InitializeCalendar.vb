@@ -59,7 +59,7 @@ Public Class InitializeCalendar
         Dim sCompleted As Boolean
         'Color.FromArgb(e.CellValue)
         'Αλλαγή όψης
-        SCH.ActiveViewType = SchedulerViewType.FullWeek
+        SCH.ActiveViewType = SchedulerViewType.Month
         SCH.OptionsCustomization.AllowAppointmentCreate = UsedAppointmentType.None
         SCH.OptionsCustomization.AllowAppointmentDelete = UsedAppointmentType.None
         SCH.OptionsCustomization.AllowAppointmentEdit = UsedAppointmentType.None
@@ -72,12 +72,13 @@ Public Class InitializeCalendar
                 sID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
                 If sdr.IsDBNull(sdr.GetOrdinal("color")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("color")))
                 If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
-                If sdr.IsDBNull(sdr.GetOrdinal("SerName")) = False Then sStatus = sdr.GetString(sdr.GetOrdinal("SerName"))
+                If sdr.IsDBNull(sdr.GetOrdinal("SerName")) = False Then sStatus = "Συνεργίο: " & sdr.GetString(sdr.GetOrdinal("SerName"))
                 sRemValues = ""
                 If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
                 If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SerCode")) = False Then SerCode = sdr.GetInt32(sdr.GetOrdinal("SerCode"))
                 If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
+                If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
                 CreateAppointmentInst(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, stmReminder, sCompleted, sSalerName, Reminder)
                 sCusName = ""
             End While
@@ -190,7 +191,8 @@ Public Class InitializeCalendar
                                       ByVal sCusname As String, ByVal sRemValues As String, ByVal AptTime As String, ByVal Completed As Boolean,
                                        ByVal SalerName As String, Optional ByVal EnableReminder As Boolean = False
                                       )
-        Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate), AptSubject & "(Πελάτης: " & sCusname & ")")
+        Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate),
+                                                               AptSubject & vbCrLf & "Πελάτης: " & sCusname & vbCrLf & "Πωλητής: " & SalerName)
         Try
 
             Dim Field As New DevExpress.XtraScheduler.Native.CustomField("StatusColor", sColor)

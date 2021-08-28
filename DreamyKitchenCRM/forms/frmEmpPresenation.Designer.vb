@@ -33,6 +33,9 @@ Partial Class frmEmpPresenation
         Me.TableAdapterManager = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.TableAdapterManager()
         Me.Vw_EMP_STableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_EMP_STableAdapter()
         Me.Vw_EMP_SBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.cmdExportToPDF = New DevExpress.XtraEditors.SimpleButton()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.XtraSaveFileDialog1 = New DevExpress.XtraEditors.XtraSaveFileDialog(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.dtFDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -44,12 +47,15 @@ Partial Class frmEmpPresenation
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Vw_EMP_SBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
-        Me.LayoutControl1.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
+        Me.LayoutControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
+            Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LayoutControl1.Controls.Add(Me.cmdExportToPDF)
         Me.LayoutControl1.Controls.Add(Me.dtFDate)
         Me.LayoutControl1.Controls.Add(Me.lstMonths)
         Me.LayoutControl1.Controls.Add(Me.SPR)
@@ -83,7 +89,7 @@ Partial Class frmEmpPresenation
         Me.lstMonths.Items.AddRange(New Object() {"ΙΑΝΟΥΑΡΙΟΣ", "ΦΕΒΡΟΥΑΡΙΟΣ", "ΜΑΡΤΙΟΣ", "ΑΠΡΙΛΙΟΣ", "ΜΑΪΟΣ", "ΙΟΥΝΙΟΣ", "ΙΟΥΛΙΟΣ", "ΑΥΓΟΥΣΤΟΣ", "ΣΕΠΤΕΜΒΡΙΟΣ", "ΟΚΤΩΒΡΙΟΣ", "ΝΟΕΜΒΡΙΟΣ", "ΔΕΚΕΜΒΡΙΟΣ"})
         Me.lstMonths.Location = New System.Drawing.Point(12, 36)
         Me.lstMonths.Name = "lstMonths"
-        Me.lstMonths.Size = New System.Drawing.Size(120, 634)
+        Me.lstMonths.Size = New System.Drawing.Size(120, 608)
         Me.lstMonths.StyleController = Me.LayoutControl1
         Me.lstMonths.TabIndex = 5
         '
@@ -105,7 +111,7 @@ Partial Class frmEmpPresenation
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(1608, 682)
         Me.Root.TextVisible = False
@@ -124,7 +130,7 @@ Partial Class frmEmpPresenation
         Me.LayoutControlItem2.Control = Me.lstMonths
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(124, 638)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(124, 612)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
@@ -161,6 +167,28 @@ Partial Class frmEmpPresenation
         Me.Vw_EMP_SBindingSource.DataMember = "vw_EMP_S"
         Me.Vw_EMP_SBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
+        'cmdExportToPDF
+        '
+        Me.cmdExportToPDF.Location = New System.Drawing.Point(12, 648)
+        Me.cmdExportToPDF.Name = "cmdExportToPDF"
+        Me.cmdExportToPDF.Size = New System.Drawing.Size(120, 22)
+        Me.cmdExportToPDF.StyleController = Me.LayoutControl1
+        Me.cmdExportToPDF.TabIndex = 40
+        Me.cmdExportToPDF.Text = "Export To PDF"
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me.cmdExportToPDF
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 636)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(124, 26)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem4.TextVisible = False
+        '
+        'XtraSaveFileDialog1
+        '
+        Me.XtraSaveFileDialog1.FileName = "XtraSaveFileDialog1"
+        '
         'frmEmpPresenation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -181,6 +209,7 @@ Partial Class frmEmpPresenation
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Vw_EMP_SBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -198,4 +227,7 @@ Partial Class frmEmpPresenation
     Friend WithEvents Vw_EMP_STableAdapter As DreamyKitchenDataSetTableAdapters.vw_EMP_STableAdapter
     Friend WithEvents Vw_EMPTableAdapter As DreamyKitchenDataSetTableAdapters.vw_EMPTableAdapter
     Friend WithEvents TableAdapterManager As DreamyKitchenDataSetTableAdapters.TableAdapterManager
+    Friend WithEvents cmdExportToPDF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents XtraSaveFileDialog1 As DevExpress.XtraEditors.XtraSaveFileDialog
 End Class
