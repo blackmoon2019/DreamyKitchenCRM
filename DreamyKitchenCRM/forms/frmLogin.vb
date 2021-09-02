@@ -56,11 +56,13 @@ Public Class frmLogin
                     If sdr.IsDBNull(sdr.GetOrdinal("ssl")) = False Then UserProps.EmailSSL = sdr.GetBoolean(sdr.GetOrdinal("ssl"))
                     'Support Email
                     ProgProps.SupportEmail = "johnmavroselinos@gmail.com" 'Prog_Prop.GetProgTechSupportEmail
-
+                    sdr.Close()
+                    cmd.Dispose()
                     'General Permissions
                     UserPermissions.GetUserPermissions()
                     sSQL = "UPDATE USR SET dtLogin = getdate()  where ID = " & toSQLValueS(UserProps.ID.ToString)
                     cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+                    cmd.Dispose()
                     'Δεκαδικά Προγράμματος
                     Prog_Prop.GetProgDecimals()
                     XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)

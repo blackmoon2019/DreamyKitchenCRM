@@ -50,6 +50,7 @@ Public Class frmServices
         FillCbo.COU(cboCOU)
         FillCbo.PRF(cboPRF)
         FillCbo.DOY(cboDOY)
+        FillCbo.DEP(cboDEP)
 
 
         Select Case Mode
@@ -214,6 +215,20 @@ Public Class frmServices
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
+    Private Sub ManageDEP()
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "Τμήματα"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Τμήμα"
+        form1.DataTable = "DEP"
+        form1.CallerControl = cboDEP
+        form1.CalledFromControl = True
+        If cboDEP.EditValue <> Nothing Then form1.ID = cboDEP.EditValue.ToString
+        form1.MdiParent = frmMain
+        If cboDEP.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
     Private Sub cboDOY_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDOY.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDOY.EditValue = Nothing : ManageDOY()
@@ -251,5 +266,11 @@ Public Class frmServices
         End Select
     End Sub
 
-
+    Private Sub cboDEP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDEP.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboDEP.EditValue = Nothing : ManageDEP()
+            Case 2 : If cboDEP.EditValue <> Nothing Then ManageDEP()
+            Case 3 : cboDEP.EditValue = Nothing
+        End Select
+    End Sub
 End Class

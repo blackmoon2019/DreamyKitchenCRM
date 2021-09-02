@@ -197,6 +197,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="classes\CheckForUpdates.vb" />
     <Compile Include="classes\CheckPermissions.vb" />
     <Compile Include="classes\ClearControls.vb" />
@@ -288,6 +289,12 @@
       <DependentUpon>frmEMP.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmEMP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEmpPayroll.Designer.vb">
+      <DependentUpon>frmEmpPayroll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEmpPayroll.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmEmpPresenation.Designer.vb">
@@ -530,6 +537,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEMP.resx">
       <DependentUpon>frmEMP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEmpPayroll.resx">
+      <DependentUpon>frmEmpPayroll.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmEmpPresenation.resx">
       <DependentUpon>frmEmpPresenation.vb</DependentUpon>
@@ -881,6 +891,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-paper-money-40.png" />
     <None Include="Resources\icons8-insert-money-euro-24.png" />
     <None Include="Resources\icons8-money-prize-40.png" />
     <None Include="Resources\icons8-calendar-401.png" />

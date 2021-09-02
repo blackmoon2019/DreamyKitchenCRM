@@ -384,6 +384,18 @@ Namespace My
                 Me("SERVERVIEWS") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmEmpPayroll() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmEmpPayroll"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmEmpPayroll") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

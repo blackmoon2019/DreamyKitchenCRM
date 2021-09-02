@@ -217,6 +217,8 @@ Public Class frmScroller
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_EMP_M_S" : sSQL = "DELETE FROM EMP_M_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_EMP_M" : sSQL = "DELETE FROM EMP_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DEP" : sSQL = "DELETE FROM DEP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SALER_CAL_STATUS" : sSQL = "DELETE FROM SALER_CAL_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH"
@@ -605,6 +607,7 @@ Public Class frmScroller
         Dim form23 As frmGen = New frmGen()
         Dim form24 As frmGen = New frmGen()
         Dim form25 As frmGen = New frmGen()
+        Dim form26 As frmGen = New frmGen()
         Dim fTechicalSupport As frmTecnicalSupport = New frmTecnicalSupport()
         Dim frmColors As frmColors = New frmColors
         Dim frmoffer As frmOffer = New frmOffer
@@ -616,7 +619,33 @@ Public Class frmScroller
         Dim frmTransactions As New frmTransactions
         Dim frmEMP As New frmEMP
         Dim frmInstM As New frmInstM
+        Dim frmEmpPayroll As New frmEmpPayroll
         Select Case sDataTable
+            Case "vw_EMP_M"
+                frmEmpPayroll.Text = "Μισθοθοσία"
+                frmEmpPayroll.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmEmpPayroll.MdiParent = frmMain
+                frmEmpPayroll.Mode = FormMode.EditRecord
+                frmEmpPayroll.Scroller = GridView1
+                frmEmpPayroll.FormScroller = Me
+                frmEmpPayroll.FormScrollerExist = True
+                frmEmpPayroll.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEmpPayroll), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmEmpPayroll.Show()
+            Case "vw_EMP_M_S"
+                form26.Text = "Status Μισθοδοσίας"
+                form26.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form26.MdiParent = frmMain
+                form26.Mode = FormMode.EditRecord
+                form26.Scroller = GridView1
+                form26.FormScroller = Me
+                form26.DataTable = "EMP_M_S"
+                form26.L1.Text = "Κωδικός"
+                form26.L2.Text = "Status"
+                form26.FormScroller = Me
+                form26.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form26), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form26.Show()
             Case "vw_INST_M"
                 frmInstM.Text = "Χρεωπιστώσεις Συνεργείων"
                 frmInstM.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -638,7 +667,6 @@ Public Class frmScroller
                 frmEMP.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEMP), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmEMP.Show()
-
             Case "vw_TRANSH"
                 frmTransactions.Text = "Χρεωπιστώσεις"
                 frmTransactions.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -1088,6 +1116,7 @@ Public Class frmScroller
         Dim form23 As frmGen = New frmGen()
         Dim form24 As frmGen = New frmGen()
         Dim form25 As frmGen = New frmGen()
+        Dim form26 As frmGen = New frmGen()
         Dim frmOffer As frmOffer = New frmOffer
         Dim frmEpendisis As frmEpendisis = New frmEpendisis
         Dim frmServices As frmServices = New frmServices()
@@ -1097,7 +1126,31 @@ Public Class frmScroller
         Dim frmTransactions As New frmTransactions
         Dim frmEMP As New frmEMP
         Dim frmInstM As New frmInstM
+        Dim frmEmpPayroll As New frmEmpPayroll
         Select Case sDataTable
+            Case "vw_EMP_M"
+                frmEmpPayroll.Text = "Μισθοθοσία"
+                frmEmpPayroll.MdiParent = frmMain
+                frmEmpPayroll.Mode = FormMode.NewRecord
+                frmEmpPayroll.Scroller = GridView1
+                frmEmpPayroll.FormScroller = Me
+                frmEmpPayroll.FormScrollerExist = True
+                frmEmpPayroll.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEmpPayroll), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmEmpPayroll.Show()
+            Case "vw_EMP_M_S"
+                form26.Text = "Status Μισθοδοσίας"
+                form26.MdiParent = frmMain
+                form26.Mode = FormMode.NewRecord
+                form26.Scroller = GridView1
+                form26.FormScroller = Me
+                form26.DataTable = "EMP_M_S"
+                form26.L1.Text = "Κωδικός"
+                form26.L2.Text = "Status"
+                form26.FormScroller = Me
+                form26.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form26), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form26.Show()
             Case "vw_INST_M"
                 frmInstM.Text = "Χρεωπιστώσεις Συνεργείων"
                 frmInstM.MdiParent = frmMain
@@ -1499,11 +1552,15 @@ Public Class frmScroller
         End Select
     End Sub
     'Φορτώνω τις εγγραφές στο GRID
-    Public Sub LoadRecords(Optional ByVal sDataTable2 As String = "", Optional ByVal sWhere As String = "")
-        Dim sSQL As String
-        Dim sSQL2 As String
+    Public Sub LoadRecords(Optional ByVal sDataTable2 As String = "", Optional ByVal sWhere As String = "", Optional ByVal CloseReader As Boolean = True)
         Try
-            If BarRecords.EditValue <> "ALL" And BarRecords.EditValue <> "" Then
+            Dim sSQL As String
+            Dim sSQL2 As String
+            Dim sVal As Integer
+
+            sVal = RepositoryBarRecords.Items.IndexOf(BarRecords.EditValue)
+
+            If sVal <> 4 Then
                 sSQL = "SELECT top " & BarRecords.EditValue & " * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
             Else
                 sSQL = "SELECT  * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
@@ -1513,6 +1570,7 @@ Public Class frmScroller
             myCmd.CommandText = sSQL
             GridView1.Columns.Clear()
             myReader = myCmd.ExecuteReader()
+
             If sDataDetail = "" Then
                 grdMain.DataSource = myReader
             Else
@@ -1594,6 +1652,8 @@ Public Class frmScroller
             Else
                 LoadViews()
             End If
+            myCmd.Dispose()
+            If CloseReader = True Then myReader.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -1770,7 +1830,7 @@ Public Class frmScroller
             Dim col1 As GridColumn
             Dim Col2 As GridColumn
             Dim grdColumns As List(Of GridColumn)
-            LoadRecords()
+            LoadRecords(,, False)
             If myReader Is Nothing Then Exit Sub
             'Εαν υπάρχουν πεδία που πρέπει να προστεθούν από την βάση
             If myReader.FieldCount >= GridView1.Columns.Count Then
@@ -1809,6 +1869,7 @@ Public Class frmScroller
 
             End If
             LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
+            myReader.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

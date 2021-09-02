@@ -472,12 +472,17 @@ Public Class frmMain
     End Sub
 
     Private Sub BarButtonItem3_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInst.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τοποθετήσεις"
-        form.DataTable = "vw_INST"
-        form.DataDetail = "vw_INST_M"
-        form.MdiParent = Me
-        form.Show()
+        If UserPermissions.CheckViewPermission("Τοποθετήσεις") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Τοποθετήσεις"
+            form.DataTable = "vw_INST"
+            form.DataDetail = "vw_INST_M"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+
     End Sub
 
     Private Sub BBCalendarInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCalendarInst.ItemClick
@@ -575,6 +580,30 @@ Public Class frmMain
             Dim form As frmScroller = New frmScroller()
             form.Text = "Χρεωπιστώσεις Συνεργείων"
             form.DataTable = "vw_INST_M"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub BBPayrolStatus_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayrolStatus.ItemClick
+        If UserPermissions.CheckViewPermission("Statuses Μισθοδοσίας") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Statuses Μισθοδοσίας"
+            form.DataTable = "vw_EMP_M_S"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub BBPayroll_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayroll.ItemClick
+        If UserPermissions.CheckViewPermission("Μισθοδοσία") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Μισθοδοσία"
+            form.DataTable = "vw_EMP_M"
             form.MdiParent = Me
             form.Show()
         Else

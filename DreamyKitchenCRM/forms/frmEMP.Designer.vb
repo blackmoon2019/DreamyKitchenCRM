@@ -354,7 +354,6 @@ Partial Class frmEMP
         Me.cboDEP.Properties.NullText = ""
         Me.cboDEP.Properties.PopupSizeable = False
         Me.cboDEP.Size = New System.Drawing.Size(306, 20)
-        Me.cboDEP.StyleController = Me.LayoutControl1
         Me.cboDEP.TabIndex = 6
         Me.cboDEP.Tag = "depId,0,1,2"
         '

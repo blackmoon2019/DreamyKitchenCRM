@@ -126,7 +126,7 @@ Public Class frmInstallations
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST", LayoutControl1,,, sID, True)
                         sGuid = sID
                 End Select
-                txtCode.Text = DBQ.GetNextId("INST")
+
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm
                     form.LoadRecords("vw_INST")
@@ -147,6 +147,7 @@ Public Class frmInstallations
                     '    oCmd.ExecuteNonQuery()
                     'End Using
                     Cls.ClearCtrls(LayoutControl1)
+                    txtCode.Text = DBQ.GetNextId("INST")
                 End If
             End If
 
