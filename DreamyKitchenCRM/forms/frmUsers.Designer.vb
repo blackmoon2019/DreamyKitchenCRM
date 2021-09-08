@@ -27,6 +27,7 @@ Partial Class frmUsers
         Me.txtUN = New DevExpress.XtraEditors.TextEdit()
         Me.cboMail = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboSaler = New DevExpress.XtraEditors.LookUpEdit()
+        Me.chkActive = New DevExpress.XtraEditors.CheckEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -37,7 +38,6 @@ Partial Class frmUsers
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.chkActive = New DevExpress.XtraEditors.CheckEdit()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -46,6 +46,7 @@ Partial Class frmUsers
         CType(Me.txtUN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboMail.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -56,7 +57,6 @@ Partial Class frmUsers
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkActive.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -146,13 +146,25 @@ Partial Class frmUsers
         Me.cboSaler.Location = New System.Drawing.Point(104, 84)
         Me.cboSaler.Name = "cboSaler"
         Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboSaler.Properties.NullText = ""
         Me.cboSaler.Properties.PopupSizeable = False
         Me.cboSaler.Size = New System.Drawing.Size(245, 20)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 5
         Me.cboSaler.Tag = "SalerID,0,1,2"
+        '
+        'chkActive
+        '
+        Me.chkActive.Location = New System.Drawing.Point(12, 108)
+        Me.chkActive.Name = "chkActive"
+        Me.chkActive.Properties.Caption = "Ενεργός"
+        Me.chkActive.Properties.ValueChecked = CType(1, Byte)
+        Me.chkActive.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chkActive.Size = New System.Drawing.Size(337, 20)
+        Me.chkActive.StyleController = Me.LayoutControl1
+        Me.chkActive.TabIndex = 9
+        Me.chkActive.Tag = "isActive,0,1,2"
         '
         'Root
         '
@@ -250,18 +262,6 @@ Partial Class frmUsers
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(142, 48)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
-        'chkActive
-        '
-        Me.chkActive.Location = New System.Drawing.Point(12, 108)
-        Me.chkActive.Name = "chkActive"
-        Me.chkActive.Properties.Caption = "Ενεργός"
-        Me.chkActive.Properties.ValueChecked = CType(1, Byte)
-        Me.chkActive.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkActive.Size = New System.Drawing.Size(337, 20)
-        Me.chkActive.StyleController = Me.LayoutControl1
-        Me.chkActive.TabIndex = 9
-        Me.chkActive.Tag = "isActive,0,1,2"
-        '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.chkActive
@@ -289,6 +289,7 @@ Partial Class frmUsers
         CType(Me.txtUN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboMail.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -299,7 +300,6 @@ Partial Class frmUsers
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkActive.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

@@ -396,6 +396,18 @@ Namespace My
                 Me("frmEmpPayroll") = value
             End Set
         End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0, 0")>  _
+        Public Property frmSalerTziroi() As Global.System.Drawing.Point
+            Get
+                Return CType(Me("frmSalerTziroi"),Global.System.Drawing.Point)
+            End Get
+            Set
+                Me("frmSalerTziroi") = value
+            End Set
+        End Property
     End Class
 End Namespace
 

@@ -83,6 +83,7 @@ Partial Class frmMain
         Me.BBInstM = New DevExpress.XtraBars.BarButtonItem()
         Me.BBPayroll = New DevExpress.XtraBars.BarButtonItem()
         Me.BBPayrolStatus = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbEMP_T = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage6 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -126,9 +127,9 @@ Partial Class frmMain
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbCreditDebit, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbCreditDebit, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.MaxItemId = 67
+        Me.RibbonControl1.MaxItemId = 68
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage6, Me.RibbonPage7, Me.RibbonPage2, Me.RibbonPage3, Me.RibbonPage4, Me.RibbonPage5})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
@@ -530,7 +531,7 @@ Partial Class frmMain
         '
         'BBInst
         '
-        Me.BBInst.Caption = "Ανάλυση Τοποθετήσεων"
+        Me.BBInst.Caption = "Μισθοδοσία Τοποθέτων"
         Me.BBInst.Id = 54
         Me.BBInst.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_maintenance_40
         Me.BBInst.Name = "BBInst"
@@ -618,7 +619,7 @@ Partial Class frmMain
         '
         'BBPayroll
         '
-        Me.BBPayroll.Caption = "Μισθοδοσίες"
+        Me.BBPayroll.Caption = "Μισθοδοσία Έκθεσης"
         Me.BBPayroll.Id = 65
         Me.BBPayroll.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_paper_money_40
         Me.BBPayroll.Name = "BBPayroll"
@@ -631,6 +632,14 @@ Partial Class frmMain
         Me.BBPayrolStatus.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_unknown_status_40
         Me.BBPayrolStatus.Name = "BBPayrolStatus"
         Me.BBPayrolStatus.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbEMP_T
+        '
+        Me.bbEMP_T.Caption = "Τζίροι-Ποσοστά Έκθεσης"
+        Me.bbEMP_T.Id = 67
+        Me.bbEMP_T.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_businessman_40
+        Me.bbEMP_T.Name = "bbEMP_T"
+        Me.bbEMP_T.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'RibbonPage1
         '
@@ -663,6 +672,7 @@ Partial Class frmMain
         Me.RibbonPageGroup9.ItemLinks.Add(Me.BBInstM)
         Me.RibbonPageGroup9.ItemLinks.Add(Me.BBInst)
         Me.RibbonPageGroup9.ItemLinks.Add(Me.BBPayroll)
+        Me.RibbonPageGroup9.ItemLinks.Add(Me.bbEMP_T)
         Me.RibbonPageGroup9.Name = "RibbonPageGroup9"
         Me.RibbonPageGroup9.Text = "Συναλλαγές"
         '
@@ -955,4 +965,5 @@ Partial Class frmMain
     Friend WithEvents BBInstM As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBPayroll As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBPayrolStatus As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbEMP_T As DevExpress.XtraBars.BarButtonItem
 End Class

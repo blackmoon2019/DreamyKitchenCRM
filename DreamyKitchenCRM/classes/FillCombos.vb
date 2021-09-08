@@ -535,7 +535,7 @@ Public Class FillCombos
     End Sub
     Public Sub SALERS(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Name,color,code from vw_SALERS order by name", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Name,color,code,profitPerc from vw_SALERS order by name", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
 
             CtrlCombo.Properties.DataSource = sdr
@@ -546,6 +546,7 @@ Public Class FillCombos
             CtrlCombo.Properties.Columns(1).Caption = "Πωλητές"
             CtrlCombo.Properties.Columns(2).Visible = False
             CtrlCombo.Properties.Columns(3).Visible = False
+            CtrlCombo.Properties.Columns(4).Visible = False
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -417,6 +417,12 @@
     <Compile Include="forms\frmReport.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmSalerTziroi.Designer.vb">
+      <DependentUpon>frmSalerTziroi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmSalerTziroi.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmScroller.Designer.vb">
       <DependentUpon>frmScroller.vb</DependentUpon>
     </Compile>
@@ -600,6 +606,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmReport.resx">
       <DependentUpon>frmReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSalerTziroi.resx">
+      <DependentUpon>frmSalerTziroi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmScroller.resx">
       <DependentUpon>frmScroller.vb</DependentUpon>
@@ -891,6 +900,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-businessman-40.png" />
     <None Include="Resources\icons8-paper-money-40.png" />
     <None Include="Resources\icons8-insert-money-euro-24.png" />
     <None Include="Resources\icons8-money-prize-40.png" />

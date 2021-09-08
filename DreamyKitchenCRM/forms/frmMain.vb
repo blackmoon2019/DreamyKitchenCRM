@@ -610,5 +610,17 @@ Public Class frmMain
             XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
+
+    Private Sub bbEMP_T_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEMP_T.ItemClick
+        If UserPermissions.CheckViewPermission("Τζίροι-Ποσοστά έκθεσης") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Τζίροι-Ποσοστά έκθεσης"
+            form.DataTable = "vw_EMP_T"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
 End Class
 

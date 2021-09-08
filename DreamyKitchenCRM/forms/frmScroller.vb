@@ -16,6 +16,7 @@ Imports DevExpress.XtraGrid.Views.Card
 Imports DevExpress.XtraGrid.Localization
 Imports DevExpress.XtraGrid
 Imports System.IO
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class frmScroller
 
@@ -219,6 +220,7 @@ Public Class frmScroller
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_M_S" : sSQL = "DELETE FROM EMP_M_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_M" : sSQL = "DELETE FROM EMP_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_EMP_T" : sSQL = "DELETE FROM EMP_T WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DEP" : sSQL = "DELETE FROM DEP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SALER_CAL_STATUS" : sSQL = "DELETE FROM SALER_CAL_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH"
@@ -620,9 +622,21 @@ Public Class frmScroller
         Dim frmEMP As New frmEMP
         Dim frmInstM As New frmInstM
         Dim frmEmpPayroll As New frmEmpPayroll
+        Dim frmSalerTziroi As New frmSalerTziroi
         Select Case sDataTable
+            Case "vw_EMP_T"
+                frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
+                frmSalerTziroi.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmSalerTziroi.MdiParent = frmMain
+                frmSalerTziroi.Mode = FormMode.EditRecord
+                frmSalerTziroi.Scroller = GridView1
+                frmSalerTziroi.FormScroller = Me
+                frmSalerTziroi.FormScrollerExist = True
+                frmSalerTziroi.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSalerTziroi), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmSalerTziroi.Show()
             Case "vw_EMP_M"
-                frmEmpPayroll.Text = "Μισθοθοσία"
+                frmEmpPayroll.Text = "Μισθοδοσία"
                 frmEmpPayroll.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmEmpPayroll.MdiParent = frmMain
                 frmEmpPayroll.Mode = FormMode.EditRecord
@@ -980,8 +994,18 @@ Public Class frmScroller
                 form11.L2.Text = "Πωλητής"
                 form11.L6.Text = "Χρώμα"
                 form11.L8.Text = "Αρ. Πρωτοκόλου"
+                form11.L9.Text = "Ποσοστό κέρδους"
+                form11.L9.Control.Tag = "profitPerc,0,1,2"
+                Dim profitPerc As DevExpress.XtraEditors.TextEdit = TryCast(form11.L9.Control, DevExpress.XtraEditors.TextEdit)
+                profitPerc.Properties.EditFormat.FormatString = "n0"
+                profitPerc.Properties.EditFormat.FormatType = FormatType.Numeric
+                profitPerc.Properties.MaskSettings.MaskExpression = "n0"
+                profitPerc.Properties.Mask.MaskType = Mask.MaskType.Numeric
+                profitPerc.Properties.UseMaskAsDisplayFormat = True
+
                 form11.FormScroller = Me
                 form11.CalledFromControl = False
+                form11.L9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form11.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form11.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form11), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
@@ -1127,7 +1151,18 @@ Public Class frmScroller
         Dim frmEMP As New frmEMP
         Dim frmInstM As New frmInstM
         Dim frmEmpPayroll As New frmEmpPayroll
+        Dim frmSalerTziroi As New frmSalerTziroi
         Select Case sDataTable
+            Case "vw_EMP_T"
+                frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
+                frmSalerTziroi.MdiParent = frmMain
+                frmSalerTziroi.Mode = FormMode.NewRecord
+                frmSalerTziroi.Scroller = GridView1
+                frmSalerTziroi.FormScroller = Me
+                frmSalerTziroi.FormScrollerExist = True
+                frmSalerTziroi.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSalerTziroi), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmSalerTziroi.Show()
             Case "vw_EMP_M"
                 frmEmpPayroll.Text = "Μισθοθοσία"
                 frmEmpPayroll.MdiParent = frmMain
@@ -1401,8 +1436,17 @@ Public Class frmScroller
                 form11.L2.Text = "Πωλητής"
                 form11.L6.Text = "Χρώμα"
                 form11.L8.Text = "Αρ. Πρωτοκόλου"
+                form11.L9.Text = "Ποσοστό κέρδους"
+                form11.L9.Control.Tag = "profitPerc,0,1,2"
+                Dim profitPerc As DevExpress.XtraEditors.TextEdit = TryCast(form11.L9.Control, DevExpress.XtraEditors.TextEdit)
+                profitPerc.Properties.EditFormat.FormatString = "n0"
+                profitPerc.Properties.EditFormat.FormatType = FormatType.Numeric
+                profitPerc.Properties.MaskSettings.MaskExpression = "n0"
+                profitPerc.Properties.Mask.MaskType = Mask.MaskType.Numeric
+                profitPerc.Properties.UseMaskAsDisplayFormat = True
                 form11.FormScroller = Me
                 form11.CalledFromControl = False
+                form11.L9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form11.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form11.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form11), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
@@ -1874,6 +1918,14 @@ Public Class frmScroller
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-
+    Private Sub GridView1_CustomDrawGroupRow(sender As Object, e As RowObjectCustomDrawEventArgs) Handles GridView1.CustomDrawGroupRow
+        Select Case sDataTable
+            Case "vw_EMP_M"
+                If GridView1.GetRowLevel(e.RowHandle) = 1 Then e.Appearance.BackColor = Color.DarkGray
+                Dim info As GridGroupRowInfo = TryCast(e.Info, GridGroupRowInfo)
+                info.GroupText = info.GroupText.Replace("Μέσος Όρος", "")
+            Case "vw_INST"
+                If GridView1.GetRowLevel(e.RowHandle) = 1 Then e.Appearance.BackColor = Color.DarkGray
+        End Select
+    End Sub
 End Class
