@@ -1,10 +1,12 @@
 ﻿
+Imports System.ComponentModel
 Imports System.Data.SqlClient
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 
 Public Class frmInstallations
     Private sID As String
+    Private sEMP_T_ID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -21,6 +23,11 @@ Public Class frmInstallations
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
+        End Set
+    End Property
+    Public WriteOnly Property EMP_T_ID As String
+        Set(value As String)
+            sEMP_T_ID = value
         End Set
     End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
@@ -54,7 +61,9 @@ Public Class frmInstallations
 
     Private Sub frmInstallations_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
-        FillCbo.SER(cboSER)
+        'sSQL.AppendLine("Select id,Fullname from vw_SER where depID='BFD7EBD9-B0B2-4FCB-B1FF-341EC37A6A11' order by Fullname")
+        sSQL = Nothing
+        FillCbo.SER(cboSER, sSQL)
         FillCbo.CUS(cboCUS)
         FillCbo.SALERS(cboSaler)
         ' Μόνο αν ο Χρήστης ΔΕΝ είναι ο Παναγόπουλος
@@ -64,6 +73,7 @@ Public Class frmInstallations
                 txtCode.Text = DBQ.GetNextId("INST")
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_INST where id ='" + sID + "'")
+                cmdInstEllipse.Enabled = True
         End Select
         Me.CenterToScreen()
         My.Settings.frmServices = Me.Location
@@ -121,10 +131,10 @@ Public Class frmInstallations
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST", LayoutControl1,,, sGuid, True)
-
+                        sID = sGuid
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST", LayoutControl1,,, sID, True)
-                        sGuid = sID
+                        'sGuid = sID
                 End Select
 
                 If FScrollerExist = True Then
@@ -194,4 +204,29 @@ Public Class frmInstallations
         End Select
     End Sub
 
+    Private Sub frmInstallations_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If Mode <> FormMode.NewRecord Then Exit Sub
+        If sEMP_T_ID Is Nothing Then Exit Sub
+        If XtraMessageBox.Show("Θέλετε να ενημερώσετε τους Τζίρους-Ποσοστά Έκθεσης?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
+            frmSalerTziroi.ID = sEMP_T_ID
+            frmSalerTziroi.MdiParent = frmMain
+            frmSalerTziroi.Mode = FormMode.EditRecord
+
+            frmSalerTziroi.FormScrollerExist = False
+            frmSalerTziroi.CalledFromControl = False
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSalerTziroi), New Point(CInt(frmSalerTziroi.Parent.ClientRectangle.Width / 2 - frmSalerTziroi.Width / 2), CInt(frmSalerTziroi.Parent.ClientRectangle.Height / 2 - frmSalerTziroi.Height / 2)))
+            frmSalerTziroi.Show()
+        End If
+    End Sub
+
+    Private Sub cmdInstEllipse_Click(sender As Object, e As EventArgs) Handles cmdInstEllipse.Click
+        Dim frmInstEllipse As New frmInstEllipse
+        frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
+        frmInstEllipse.Mode = FormMode.NewRecord
+        frmInstEllipse.INST_ID = sID
+        frmInstEllipse.CalledFromControl = False
+        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(frmInstEllipse.Parent.ClientRectangle.Width / 2 - frmInstEllipse.Width / 2), CInt(frmInstEllipse.Parent.ClientRectangle.Height / 2 - frmInstEllipse.Height / 2)))
+        frmInstEllipse.Show()
+    End Sub
 End Class

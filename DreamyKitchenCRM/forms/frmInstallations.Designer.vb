@@ -21,6 +21,7 @@ Partial Class frmInstallations
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstallations))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cmdInstEllipse = New DevExpress.XtraEditors.SimpleButton()
         Me.chkPaid = New DevExpress.XtraEditors.CheckEdit()
         Me.chkCompleted = New DevExpress.XtraEditors.CheckEdit()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
@@ -48,6 +49,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkPaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,10 +78,12 @@ Partial Class frmInstallations
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.cmdInstEllipse)
         Me.LayoutControl1.Controls.Add(Me.chkPaid)
         Me.LayoutControl1.Controls.Add(Me.chkCompleted)
         Me.LayoutControl1.Controls.Add(Me.cmdExit)
@@ -99,6 +103,17 @@ Partial Class frmInstallations
         Me.LayoutControl1.Size = New System.Drawing.Size(461, 365)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'cmdInstEllipse
+        '
+        Me.cmdInstEllipse.Enabled = False
+        Me.cmdInstEllipse.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_bank_card_missing_24
+        Me.cmdInstEllipse.Location = New System.Drawing.Point(12, 325)
+        Me.cmdInstEllipse.Name = "cmdInstEllipse"
+        Me.cmdInstEllipse.Size = New System.Drawing.Size(152, 28)
+        Me.cmdInstEllipse.StyleController = Me.LayoutControl1
+        Me.cmdInstEllipse.TabIndex = 44
+        Me.cmdInstEllipse.Text = "Δημιουργία Έλλειψης"
         '
         'chkPaid
         '
@@ -130,9 +145,9 @@ Partial Class frmInstallations
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(310, 325)
+        Me.cmdExit.Location = New System.Drawing.Point(327, 325)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(139, 28)
+        Me.cmdExit.Size = New System.Drawing.Size(122, 28)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 33
         Me.cmdExit.Text = "Έξοδος"
@@ -140,9 +155,9 @@ Partial Class frmInstallations
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(188, 325)
+        Me.cmdSave.Location = New System.Drawing.Point(220, 325)
         Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(118, 28)
+        Me.cmdSave.Size = New System.Drawing.Size(103, 28)
         Me.cmdSave.StyleController = Me.LayoutControl1
         Me.cmdSave.TabIndex = 34
         Me.cmdSave.Text = "Αποθήκευση"
@@ -264,7 +279,7 @@ Partial Class frmInstallations
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.Lcost, Me.LExtracost, Me.EmptySpaceItem2, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem14})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.Lcost, Me.LExtracost, Me.EmptySpaceItem2, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem14, Me.LayoutControlItem10})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(461, 365)
         Me.Root.TextVisible = False
@@ -323,18 +338,18 @@ Partial Class frmInstallations
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.cmdSave
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(176, 313)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(208, 313)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(122, 32)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(107, 32)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.cmdExit
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(298, 313)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(315, 313)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(143, 32)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(126, 32)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -382,9 +397,9 @@ Partial Class frmInstallations
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 313)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(156, 313)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(176, 32)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(52, 32)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem7
@@ -422,6 +437,15 @@ Partial Class frmInstallations
         Me.LayoutControlItem14.Text = "Σχόλια"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(119, 13)
         '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.cmdInstEllipse
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 313)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(156, 32)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem10.TextVisible = False
+        '
         'frmInstallations
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -430,7 +454,7 @@ Partial Class frmInstallations
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmInstallations"
-        Me.Text = "Τοποθετήσεις"
+        Me.Text = "Μισθοδοσία Τοποθετών"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.chkPaid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -459,6 +483,7 @@ Partial Class frmInstallations
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -491,4 +516,6 @@ Partial Class frmInstallations
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents chkPaid As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cmdInstEllipse As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
 End Class

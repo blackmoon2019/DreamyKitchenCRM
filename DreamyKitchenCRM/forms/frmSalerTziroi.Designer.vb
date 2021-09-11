@@ -126,35 +126,35 @@ Partial Class frmSalerTziroi
         'dtPay
         '
         Me.dtPay.EditValue = Nothing
-        Me.dtPay.Location = New System.Drawing.Point(130, 84)
+        Me.dtPay.Location = New System.Drawing.Point(119, 84)
         Me.dtPay.Name = "dtPay"
         Me.dtPay.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtPay.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtPay.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtPay.Size = New System.Drawing.Size(222, 20)
+        Me.dtPay.Size = New System.Drawing.Size(233, 20)
         Me.dtPay.StyleController = Me.LayoutControl1
         Me.dtPay.TabIndex = 32
         Me.dtPay.Tag = "dtPay,0,1,2"
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(130, 156)
+        Me.txtComments.Location = New System.Drawing.Point(119, 156)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(460, 178)
+        Me.txtComments.Size = New System.Drawing.Size(471, 178)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
         '
         'txtCode
         '
-        Me.txtCode.Location = New System.Drawing.Point(130, 12)
+        Me.txtCode.Location = New System.Drawing.Point(119, 12)
         Me.txtCode.Name = "txtCode"
         Me.txtCode.Properties.Appearance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.txtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(63, 20)
+        Me.txtCode.Size = New System.Drawing.Size(74, 20)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
@@ -162,7 +162,7 @@ Partial Class frmSalerTziroi
         'txtsalePrice
         '
         Me.txtsalePrice.EditValue = "0,00 €"
-        Me.txtsalePrice.Location = New System.Drawing.Point(130, 108)
+        Me.txtsalePrice.Location = New System.Drawing.Point(119, 108)
         Me.txtsalePrice.Name = "txtsalePrice"
         Me.txtsalePrice.Properties.DisplayFormat.FormatString = "c"
         Me.txtsalePrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -172,7 +172,7 @@ Partial Class frmSalerTziroi
         Me.txtsalePrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtsalePrice.Properties.MaskSettings.Set("mask", "c2")
         Me.txtsalePrice.Properties.Tag = "BenchExtraPrice"
-        Me.txtsalePrice.Size = New System.Drawing.Size(79, 20)
+        Me.txtsalePrice.Size = New System.Drawing.Size(90, 20)
         Me.txtsalePrice.StyleController = Me.LayoutControl1
         Me.txtsalePrice.TabIndex = 42
         Me.txtsalePrice.Tag = "salePrice,0,1,2"
@@ -180,26 +180,26 @@ Partial Class frmSalerTziroi
         '
         'cboCUS
         '
-        Me.cboCUS.Location = New System.Drawing.Point(130, 60)
+        Me.cboCUS.Location = New System.Drawing.Point(119, 60)
         Me.cboCUS.Name = "cboCUS"
         Me.cboCUS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCUS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCUS.Properties.NullText = ""
         Me.cboCUS.Properties.PopupSizeable = False
-        Me.cboCUS.Size = New System.Drawing.Size(460, 20)
+        Me.cboCUS.Size = New System.Drawing.Size(471, 20)
         Me.cboCUS.StyleController = Me.LayoutControl1
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
         '
         'cboSaler
         '
-        Me.cboSaler.Location = New System.Drawing.Point(130, 36)
+        Me.cboSaler.Location = New System.Drawing.Point(119, 36)
         Me.cboSaler.Name = "cboSaler"
         Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboSaler.Properties.NullText = ""
         Me.cboSaler.Properties.PopupSizeable = False
-        Me.cboSaler.Size = New System.Drawing.Size(460, 20)
+        Me.cboSaler.Size = New System.Drawing.Size(471, 20)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 6
         Me.cboSaler.Tag = "SalerId,0,1,2"
@@ -207,7 +207,7 @@ Partial Class frmSalerTziroi
         'txtnormalPrice
         '
         Me.txtnormalPrice.EditValue = "0,00 €"
-        Me.txtnormalPrice.Location = New System.Drawing.Point(331, 108)
+        Me.txtnormalPrice.Location = New System.Drawing.Point(320, 108)
         Me.txtnormalPrice.Name = "txtnormalPrice"
         Me.txtnormalPrice.Properties.DisplayFormat.FormatString = "c"
         Me.txtnormalPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -217,7 +217,7 @@ Partial Class frmSalerTziroi
         Me.txtnormalPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtnormalPrice.Properties.MaskSettings.Set("mask", "c2")
         Me.txtnormalPrice.Properties.Tag = "BenchExtraPrice"
-        Me.txtnormalPrice.Size = New System.Drawing.Size(72, 20)
+        Me.txtnormalPrice.Size = New System.Drawing.Size(83, 20)
         Me.txtnormalPrice.StyleController = Me.LayoutControl1
         Me.txtnormalPrice.TabIndex = 42
         Me.txtnormalPrice.Tag = "normalPrice,0,1,2"
@@ -245,7 +245,7 @@ Partial Class frmSalerTziroi
         'txtsalerProfit
         '
         Me.txtsalerProfit.EditValue = "0,00 €"
-        Me.txtsalerProfit.Location = New System.Drawing.Point(130, 132)
+        Me.txtsalerProfit.Location = New System.Drawing.Point(119, 132)
         Me.txtsalerProfit.Name = "txtsalerProfit"
         Me.txtsalerProfit.Properties.DisplayFormat.FormatString = "c"
         Me.txtsalerProfit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -255,7 +255,7 @@ Partial Class frmSalerTziroi
         Me.txtsalerProfit.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtsalerProfit.Properties.MaskSettings.Set("mask", "c2")
         Me.txtsalerProfit.Properties.Tag = "BenchExtraPrice"
-        Me.txtsalerProfit.Size = New System.Drawing.Size(460, 20)
+        Me.txtsalerProfit.Size = New System.Drawing.Size(471, 20)
         Me.txtsalerProfit.StyleController = Me.LayoutControl1
         Me.txtsalerProfit.TabIndex = 42
         Me.txtsalerProfit.Tag = "salerProfit,0,1,2"
@@ -280,7 +280,7 @@ Partial Class frmSalerTziroi
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
         Me.LayoutControlItem14.Size = New System.Drawing.Size(582, 182)
         Me.LayoutControlItem14.Text = "Σχόλια"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(106, 13)
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(95, 13)
         '
         'LayoutControlItem3
         '
@@ -326,7 +326,7 @@ Partial Class frmSalerTziroi
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(185, 24)
         Me.LayoutControlItem4.Text = "Κωδικός"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(106, 13)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(95, 13)
         '
         'EmptySpaceItem3
         '
@@ -354,7 +354,7 @@ Partial Class frmSalerTziroi
         Me.LayoutControlItem7.Size = New System.Drawing.Size(582, 24)
         Me.LayoutControlItem7.Text = "Πελάτης"
         Me.LayoutControlItem7.TextLocation = DevExpress.Utils.Locations.Left
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(106, 13)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(95, 13)
         '
         'LayoutControlItem10
         '
@@ -367,20 +367,19 @@ Partial Class frmSalerTziroi
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Size = New System.Drawing.Size(582, 24)
         Me.LayoutControlItem10.Text = "Πωλητής"
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(106, 13)
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(95, 13)
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.dtPay
         Me.LayoutControlItem2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem2.CustomizationFormText = "Ημερ/νία Ολοκλήρωσης"
-        Me.LayoutControlItem2.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem2.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(344, 24)
-        Me.LayoutControlItem2.Tag = "1"
+        Me.LayoutControlItem2.Tag = ""
         Me.LayoutControlItem2.Text = "Ημερ/νία Πληρωμής"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(106, 13)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(95, 13)
         '
         'Lcost
         '
@@ -394,7 +393,7 @@ Partial Class frmSalerTziroi
         Me.Lcost.Size = New System.Drawing.Size(201, 24)
         Me.Lcost.Tag = "1"
         Me.Lcost.Text = "Τιμή Πώλησης"
-        Me.Lcost.TextSize = New System.Drawing.Size(106, 13)
+        Me.Lcost.TextSize = New System.Drawing.Size(95, 13)
         '
         'Lcost1
         '
@@ -406,7 +405,7 @@ Partial Class frmSalerTziroi
         Me.Lcost1.Name = "Lcost1"
         Me.Lcost1.Size = New System.Drawing.Size(194, 24)
         Me.Lcost1.Text = "Τιμή Κανονική"
-        Me.Lcost1.TextSize = New System.Drawing.Size(106, 13)
+        Me.Lcost1.TextSize = New System.Drawing.Size(95, 13)
         '
         'Lcost2
         '
@@ -431,7 +430,7 @@ Partial Class frmSalerTziroi
         Me.Lcost3.Name = "Lcost3"
         Me.Lcost3.Size = New System.Drawing.Size(582, 24)
         Me.Lcost3.Text = "Ποσοστό Πωλητή"
-        Me.Lcost3.TextSize = New System.Drawing.Size(106, 13)
+        Me.Lcost3.TextSize = New System.Drawing.Size(95, 13)
         '
         'frmSalerTziroi
         '

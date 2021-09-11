@@ -474,7 +474,7 @@ Public Class frmMain
     Private Sub BarButtonItem3_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInst.ItemClick
         If UserPermissions.CheckViewPermission("Τοποθετήσεις") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Τοποθετήσεις"
+            form.Text = "Μισθοδοσία Τοποθετών"
             form.DataTable = "vw_INST"
             form.DataDetail = "vw_INST_M"
             form.MdiParent = Me
@@ -487,7 +487,7 @@ Public Class frmMain
 
     Private Sub BBCalendarInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCalendarInst.ItemClick
         Dim form As frmCalendarInst = New frmCalendarInst()
-        form.Text = "Ημερολόγιο Τοποθετήσεων"
+        form.Text = "Πρόγραμμα Τοποθετήσεων"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -602,7 +602,7 @@ Public Class frmMain
     Private Sub BBPayroll_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayroll.ItemClick
         If UserPermissions.CheckViewPermission("Μισθοδοσία") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Μισθοδοσία"
+            form.Text = "Μισθοδοσία Έκθεσης"
             form.DataTable = "vw_EMP_M"
             form.MdiParent = Me
             form.Show()
@@ -621,6 +621,14 @@ Public Class frmMain
         Else
             XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
+    End Sub
+
+    Private Sub BBEllipse_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEllipse.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Ελλείψεις Τοποθετήσεων"
+        form.DataTable = "vw_INST_ELLIPSE"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 End Class
 

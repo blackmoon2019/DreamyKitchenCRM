@@ -91,6 +91,7 @@ Public Class frmScroller
             GridView1.OptionsMenu.ShowGroupSortSummaryItems = True
             GridView1.OptionsMenu.ShowConditionalFormattingItem = True
 
+
             GridView2.OptionsBehavior.AutoExpandAllGroups = True
             GridView2.OptionsMenu.ShowFooterItem = True
             GridView2.OptionsMenu.EnableFooterMenu = True
@@ -215,6 +216,7 @@ Public Class frmScroller
                     Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_INST_ELLIPSE" : sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -621,9 +623,20 @@ Public Class frmScroller
         Dim frmTransactions As New frmTransactions
         Dim frmEMP As New frmEMP
         Dim frmInstM As New frmInstM
+        Dim frmInstEllipse As New frmInstEllipse
         Dim frmEmpPayroll As New frmEmpPayroll
         Dim frmSalerTziroi As New frmSalerTziroi
         Select Case sDataTable
+            Case "vw_INST_ELLIPSE"
+                frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
+                frmInstEllipse.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmInstEllipse.MdiParent = frmMain
+                frmInstEllipse.Mode = FormMode.EditRecord
+                frmInstEllipse.Scroller = GridView1
+                frmInstEllipse.FormScroller = Me
+                frmInstEllipse.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmInstEllipse.Show()
             Case "vw_EMP_T"
                 frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
                 frmSalerTziroi.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -755,7 +768,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form22), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form22.Show()
             Case "vw_INST"
-                frmInstallations.Text = "Τοποθετήσεις"
+                frmInstallations.Text = "Μισθοδοσία Τοποθετών"
                 frmInstallations.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmInstallations.MdiParent = frmMain
                 frmInstallations.Mode = FormMode.EditRecord
@@ -1147,12 +1160,22 @@ Public Class frmScroller
         Dim frmCalculations As frmCalculations = New frmCalculations()
         Dim frmCatSubErm As New frmCatSubErm
         Dim frmInstallations As New frmInstallations
+        Dim frmInstEllipse As New frmInstEllipse
         Dim frmTransactions As New frmTransactions
         Dim frmEMP As New frmEMP
         Dim frmInstM As New frmInstM
         Dim frmEmpPayroll As New frmEmpPayroll
         Dim frmSalerTziroi As New frmSalerTziroi
         Select Case sDataTable
+            Case "vw_INST_ELLIPSE"
+                frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
+                frmInstEllipse.MdiParent = frmMain
+                frmInstEllipse.Mode = FormMode.NewRecord
+                frmInstEllipse.Scroller = GridView1
+                frmInstEllipse.FormScroller = Me
+                frmInstEllipse.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmInstEllipse.Show()
             Case "vw_EMP_T"
                 frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
                 frmSalerTziroi.MdiParent = frmMain
@@ -1273,7 +1296,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form25), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form25.Show()
             Case "vw_INST"
-                frmInstallations.Text = "Τοποθετήσεις"
+                frmInstallations.Text = "Μισθοδοσία Τοποθετών"
                 frmInstallations.MdiParent = frmMain
                 frmInstallations.Mode = FormMode.NewRecord
                 frmInstallations.Scroller = GridView1
@@ -1924,8 +1947,24 @@ Public Class frmScroller
                 If GridView1.GetRowLevel(e.RowHandle) = 1 Then e.Appearance.BackColor = Color.DarkGray
                 Dim info As GridGroupRowInfo = TryCast(e.Info, GridGroupRowInfo)
                 info.GroupText = info.GroupText.Replace("Μέσος Όρος", "")
+            Case "vw_EMP_T"
+                'If GridView1.GetRowLevel(e.RowHandle) = 1 Then
+                'e.Appearance.BackColor = Color.FromArgb(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "color"))
+                'If GridView1.IsGroupRow(e.RowHandle) Then
+                '    e.Appearance.ForeColor = Color.FromArgb(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "color"))
+
+                '    GridView1.RefreshRow(e.RowHandle)
+                'End If
+
+                'End If
+
+
             Case "vw_INST"
                 If GridView1.GetRowLevel(e.RowHandle) = 1 Then e.Appearance.BackColor = Color.DarkGray
         End Select
+    End Sub
+
+    Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
+
     End Sub
 End Class

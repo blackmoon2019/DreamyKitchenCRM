@@ -11,8 +11,11 @@ Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraScheduler
+Imports DevExpress.XtraScheduler.Commands
 Imports DevExpress.XtraScheduler.Drawing
 Imports DevExpress.XtraScheduler.Localization
+Imports DevExpress.XtraScheduler.Services
+
 Public Class frmCalendarInst
     Private Calendar As New InitializeCalendar
     Private Sub frmCalendarInst_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -247,6 +250,37 @@ Public Class frmCalendarInst
             Next i
             SetCalendarFilter()
         End If
+    End Sub
+
+    Private Sub SchedulerControl1_PopupMenuShowing(sender As Object, e As DevExpress.XtraScheduler.PopupMenuShowingEventArgs) Handles SchedulerControl1.PopupMenuShowing
+        If e.Menu.Id = DevExpress.XtraScheduler.SchedulerMenuItemId.AppointmentMenu Then
+            ' Hide the "Change View To" menu item.
+            Dim itemChangeViewTo As SchedulerPopupMenu = e.Menu.GetPopupMenuById(SchedulerMenuItemId.LabelSubMenu)
+            itemChangeViewTo.Visible = False
+
+            ' Create a menu item for the Scheduler command.
+            Dim service As ISchedulerCommandFactoryService = SchedulerControl1.GetService(Of ISchedulerCommandFactoryService)()
+            Dim cmd As SchedulerCommand = service.CreateCommand(SchedulerCommandId.SwitchToGroupByResource)
+            Dim menuItemCommandAdapter As New SchedulerMenuItemCommandWinAdapter(cmd)
+            Dim menuItem As DXMenuItem = CType(menuItemCommandAdapter.CreateMenuItem(DXMenuItemPriority.Normal), DXMenuItem)
+            menuItem.BeginGroup = True
+            e.Menu.Items.Add(menuItem)
+
+            ' Insert a new item into the Scheduler popup menu and handle its click event.
+            e.Menu.Items.Add(New SchedulerMenuItem("Δημιουργία Έλλειψης", AddressOf MyClickHandler))
+        End If
+    End Sub
+    Public Sub MyClickHandler(ByVal sender As Object, ByVal e As EventArgs)
+        For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
+            Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
+            Dim frmInstEllipse As New frmInstEllipse
+            frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
+            frmInstEllipse.Mode = FormMode.NewRecord
+            frmInstEllipse.INST_ID = apt.Id
+            frmInstEllipse.CalledFromControl = False
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+            frmInstEllipse.Show()
+        Next i
     End Sub
 
     Friend Class MenuColumnInfo

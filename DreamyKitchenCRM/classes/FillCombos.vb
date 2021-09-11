@@ -246,9 +246,14 @@ Public Class FillCombos
 
     End Sub
 
-    Public Sub SER(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+    Public Sub SER(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname from vw_SER order by Fullname", CNDB)
+            If sSQL Is Nothing Then
+                sSQL = New System.Text.StringBuilder
+                sSQL.AppendLine("Select id,Fullname from vw_SER order by Fullname")
+            End If
+
+            Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
 
             CtrlCombo.Properties.DataSource = sdr
@@ -533,6 +538,40 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub INST(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+        Try
+            Dim cmd As SqlCommand = New SqlCommand("Select id,grmonth,cctName,SerName ,SalerName,cmt from vw_INST where completed=0 order by grmonth,Sername", CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.DisplayMember = "cctName"
+            CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.PopulateColumns()
+            CtrlCombo.Properties.Columns(0).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Μήνας"
+            CtrlCombo.Properties.Columns(1).Width = 200
+            CtrlCombo.Properties.Columns(2).Visible = True
+            CtrlCombo.Properties.Columns(2).Caption = "Πελάτης"
+            CtrlCombo.Properties.Columns(2).Width = 300
+            CtrlCombo.Properties.Columns(3).Visible = True
+            CtrlCombo.Properties.Columns(3).Caption = "Πωλητής"
+            CtrlCombo.Properties.Columns(3).Width = 300
+            CtrlCombo.Properties.Columns(4).Visible = True
+            CtrlCombo.Properties.Columns(4).Caption = "Συνεργείο"
+            CtrlCombo.Properties.Columns(4).Width = 300
+            CtrlCombo.Properties.Columns(5).Visible = True
+            CtrlCombo.Properties.Columns(5).Caption = "Σχόλια"
+            CtrlCombo.Properties.Columns(5).Width = 400
+            Dim s As Size
+            s.Width = 1000 : s.Height = 300
+            CtrlCombo.Properties.PopupFormMinSize = s
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
     Public Sub SALERS(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
             Dim cmd As SqlCommand = New SqlCommand("Select id,Name,color,code,profitPerc from vw_SALERS order by name", CNDB)

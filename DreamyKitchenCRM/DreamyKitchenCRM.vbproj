@@ -333,6 +333,12 @@
     <Compile Include="forms\frmInstallations.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmInstEllipse.Designer.vb">
+      <DependentUpon>frmInstEllipse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmInstEllipse.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmInstM.Designer.vb">
       <DependentUpon>frmInstM.vb</DependentUpon>
     </Compile>
@@ -564,6 +570,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmInstallations.resx">
       <DependentUpon>frmInstallations.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmInstEllipse.resx">
+      <DependentUpon>frmInstEllipse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmInstM.resx">
       <DependentUpon>frmInstM.vb</DependentUpon>
@@ -900,6 +909,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-bank-card-missing-24.png" />
+    <None Include="Resources\icons8-bank-card-missing-40.png" />
     <None Include="Resources\icons8-businessman-40.png" />
     <None Include="Resources\icons8-paper-money-40.png" />
     <None Include="Resources\icons8-insert-money-euro-24.png" />

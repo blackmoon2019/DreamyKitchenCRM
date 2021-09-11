@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
@@ -11,6 +12,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class frmTransactions
     Private sID As String
+    Private sEMP_T_ID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -108,65 +110,67 @@ Public Class frmTransactions
                     Exit Sub
                 End If
                 Select Case Mode
-                        Case FormMode.NewRecord
-                            sGuid = System.Guid.NewGuid.ToString
-                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sGuid,, "bal", toSQLValueS(txtBal.EditValue.ToString, True))
-                            sID = sGuid
-                            sSQL.Clear()
-                            sSQL.AppendLine("INSERT INTO EMP_T (CUSID,SALERID,SALEPRICE,CREATEDBY,CREATEDON,TRANSHID)")
-                            sSQL.AppendLine("Select " & toSQLValueS(cboCUS.EditValue.ToString) & ",")
-                            sSQL.AppendLine(toSQLValueS(cboCUS.GetColumnValue("SalerID").ToString) & ",")
-                            sSQL.AppendLine(toSQLValueS(txtTotAmt.EditValue, True) & ",")
-                            sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ",")
-                            sSQL.AppendLine("getdate(),")
-                            sSQL.AppendLine(toSQLValueS(sID))
-                            'Εκτέλεση QUERY
-                            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                                oCmd.ExecuteNonQuery()
-                            End Using
-                        Case FormMode.EditRecord
-                            sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sID,,,,, "bal=" & toSQLValueS(txtBal.EditValue.ToString, True))
-                            sGuid = sID
-                            sSQL.Clear()
-                            sSQL.AppendLine("UPDATE EMP_T SET CUSID = " & toSQLValueS(cboCUS.EditValue.ToString) & ",")
-                            sSQL.AppendLine("SALERID = " & toSQLValueS(cboCUS.GetColumnValue("SalerID").ToString) & ",")
-                            sSQL.AppendLine("SALEPRICE = " & toSQLValueS(txtTotAmt.EditValue, True) & ",")
-                            sSQL.AppendLine("MODIFIEDBY= " & toSQLValueS(UserProps.ID.ToString) & ",")
-                            sSQL.AppendLine("MODIFIEDON= GETDATE()")
-                            sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(sID))
-                            'Εκτέλεση QUERY
-                            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                                oCmd.ExecuteNonQuery()
-                            End Using
-                    End Select
-                    'Καθαρισμός Controls
-                    'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
-                    'dtDTS.EditValue = DateTime.Now
-                    If txtInvoiceFilename.Text <> "" Then
-                        sResultF = DBQ.InsertDataFiles(XtraOpenFileDialog1, cboCUS.EditValue.ToString, "TRANSH")
-                        Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
-                        'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where ISINVOICE = 1 AND cctID = " & toSQLValueS(cboCUS.EditValue.ToString))
-                    End If
-                    txtCode.Text = DBQ.GetNextId("TRANSH")
-                    txtCode1.Text = DBQ.GetNextId("TRANSD")
-                    'If CalledFromCtrl Then
-                    '    FillCbo.CUS(CtrlCombo)
-                    '    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
-                    'Else
-                    Dim form As frmScroller = Frm
-                    form.DataTable = "vw_TRANSH"
-                    form.LoadRecords("vw_TRANSD")
-                    'Cls.ClearCtrls(LayoutControl1)
-                    If sResult = True Then
-                        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        LayoutControlGroup2.Enabled = True
-                        Mode = FormMode.EditRecord
-                        txtInvoiceFilename.Text = ""
-                    End If
-                    If txtInvoiceFilename.Text <> "" Then
-                        If sResultF = False Then XtraMessageBox.Show("To Παραστατικό δεν αποθηκέυτηκε.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    End If
+                    Case FormMode.NewRecord
+                        sGuid = System.Guid.NewGuid.ToString
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sGuid,, "bal", toSQLValueS(txtBal.EditValue.ToString, True))
+                        sID = sGuid
+                        sSQL.Clear()
+                        sEMP_T_ID = System.Guid.NewGuid.ToString
+                        sSQL.AppendLine("INSERT INTO EMP_T (ID,CUSID,SALERID,SALEPRICE,CREATEDBY,CREATEDON,TRANSHID)")
+                        sSQL.AppendLine("Select " & toSQLValueS(sEMP_T_ID.ToString) & ",")
+                        sSQL.AppendLine(toSQLValueS(cboCUS.EditValue.ToString) & ",")
+                        sSQL.AppendLine(toSQLValueS(cboCUS.GetColumnValue("SalerID").ToString) & ",")
+                        sSQL.AppendLine(toSQLValueS(txtTotAmt.EditValue, True) & ",")
+                        sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ",")
+                        sSQL.AppendLine("getdate(),")
+                        sSQL.AppendLine(toSQLValueS(sID))
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    Case FormMode.EditRecord
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sID,,,,, "bal=" & toSQLValueS(txtBal.EditValue.ToString, True))
+                        sGuid = sID
+                        sSQL.Clear()
+                        sSQL.AppendLine("UPDATE EMP_T SET CUSID = " & toSQLValueS(cboCUS.EditValue.ToString) & ",")
+                        sSQL.AppendLine("SALERID = " & toSQLValueS(cboCUS.GetColumnValue("SalerID").ToString) & ",")
+                        sSQL.AppendLine("SALEPRICE = " & toSQLValueS(txtTotAmt.EditValue, True) & ",")
+                        sSQL.AppendLine("MODIFIEDBY= " & toSQLValueS(UserProps.ID.ToString) & ",")
+                        sSQL.AppendLine("MODIFIEDON= GETDATE()")
+                        sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(sID))
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                End Select
+                'Καθαρισμός Controls
+                'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
+                'dtDTS.EditValue = DateTime.Now
+                If txtInvoiceFilename.Text <> "" Then
+                    sResultF = DBQ.InsertDataFiles(XtraOpenFileDialog1, cboCUS.EditValue.ToString, "TRANSH")
+                    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
+                    'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where ISINVOICE = 1 AND cctID = " & toSQLValueS(cboCUS.EditValue.ToString))
                 End If
+                txtCode.Text = DBQ.GetNextId("TRANSH")
+                txtCode1.Text = DBQ.GetNextId("TRANSD")
+                'If CalledFromCtrl Then
+                '    FillCbo.CUS(CtrlCombo)
+                '    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                'Else
+                Dim form As frmScroller = Frm
+                form.DataTable = "vw_TRANSH"
+                form.LoadRecords("vw_TRANSD")
+                'Cls.ClearCtrls(LayoutControl1)
+                If sResult = True Then
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    LayoutControlGroup2.Enabled = True
+                    Mode = FormMode.EditRecord
+                    txtInvoiceFilename.Text = ""
+                End If
+                If txtInvoiceFilename.Text <> "" Then
+                    If sResultF = False Then XtraMessageBox.Show("To Παραστατικό δεν αποθηκέυτηκε.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+            End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -460,6 +464,24 @@ Public Class frmTransactions
         If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
         txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
 
+    End Sub
+
+    Private Sub frmTransactions_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If XtraMessageBox.Show("Θέλετε να περάσετε εγγραφή στην Μισθοδοσία Τοποθετών?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            Dim frmInstallations As New frmInstallations
+            frmInstallations.Text = "Μισθοδοσία Τοποθετών"
+            frmInstallations.MdiParent = frmMain
+            frmInstallations.Mode = FormMode.NewRecord
+            frmInstallations.Scroller = GridView1
+            frmInstallations.FormScroller = Me
+            frmInstallations.EMP_T_ID = sEMP_T_ID
+            frmInstallations.CalledFromControl = False
+            frmInstallations.cboSaler.EditValue = cboCUS.GetColumnValue("SalerID")
+            frmInstallations.cboCUS.EditValue = cboCUS.EditValue
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstallations), New Point(CInt(frmInstallations.Parent.ClientRectangle.Width / 2 - frmInstallations.Width / 2), CInt(frmInstallations.Parent.ClientRectangle.Height / 2 - frmInstallations.Height / 2)))
+            frmInstallations.Show()
+
+        End If
     End Sub
 
     Friend Class MenuColumnInfo
