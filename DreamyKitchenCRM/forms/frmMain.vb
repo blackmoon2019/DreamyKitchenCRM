@@ -603,6 +603,8 @@ Public Class frmMain
         If UserPermissions.CheckViewPermission("Μισθοδοσία") Then
             Dim form As frmScroller = New frmScroller()
             form.Text = "Μισθοδοσία Έκθεσης"
+            form.DataTableWhereCondition = " WHERE DEPID = '9812E975-2FD4-4653-B043-3D6CAF440888'"
+            form.IsConstr = False
             form.DataTable = "vw_EMP_M"
             form.MdiParent = Me
             form.Show()
@@ -629,6 +631,40 @@ Public Class frmMain
         form.DataTable = "vw_INST_ELLIPSE"
         form.MdiParent = Me
         form.Show()
+    End Sub
+
+    Private Sub bbConstrCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbConstrCat.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κατηγορίες Εργασιών"
+        form.DataTable = "vw_CONSTR_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbConstr.ItemClick
+        If UserPermissions.CheckViewPermission("Μισθοδοσία Κατασκευαστικού") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Μισθοδοσία Κατασκευαστικού"
+            form.DataTable = "vw_CONSTR"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub BBPayrollConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayrollConstr.ItemClick
+        If UserPermissions.CheckViewPermission("Μισθοδοσία") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Χρεωπιστώσεις Κατασκευαστικου"
+            form.IsConstr = True
+            form.DataTableWhereCondition = " WHERE DEPID = '16228C6D-FAE6-4CFD-82D1-A9910D909952'"
+            form.DataTable = "vw_EMP_M"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 End Class
 

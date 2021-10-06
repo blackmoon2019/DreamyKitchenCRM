@@ -176,7 +176,7 @@ Partial Class frmEmpPayroll
         Me.dtPay.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtPay.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtPay.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtPay.Size = New System.Drawing.Size(103, 20)
+        Me.dtPay.Size = New System.Drawing.Size(172, 20)
         Me.dtPay.StyleController = Me.LayoutControl1
         Me.dtPay.TabIndex = 32
         Me.dtPay.Tag = "dtPay,0,1,2"
@@ -337,7 +337,7 @@ Partial Class frmEmpPayroll
         Me.LayoutControlItem2.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem2.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(225, 24)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(294, 24)
         Me.LayoutControlItem2.Tag = "1"
         Me.LayoutControlItem2.Text = "Ημερ/νία Πληρωμής"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(106, 13)
@@ -345,14 +345,14 @@ Partial Class frmEmpPayroll
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(225, 48)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(294, 48)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(357, 24)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(288, 24)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
         'Lcost4
         '
-        Me.Lcost4.AppearanceItemCaptionDisabled.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Information
+        Me.Lcost4.AppearanceItemCaptionDisabled.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.WindowText
         Me.Lcost4.AppearanceItemCaptionDisabled.Options.UseForeColor = True
         Me.Lcost4.Control = Me.txtSalary
         Me.Lcost4.ControlAlignment = System.Drawing.ContentAlignment.TopLeft

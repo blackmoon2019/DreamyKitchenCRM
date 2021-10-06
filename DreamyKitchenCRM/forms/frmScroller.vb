@@ -28,6 +28,14 @@ Public Class frmScroller
     Private sDataDetail As String
     Private CurrentView As String
     Private LoadForms As New FormLoader
+    Private bIsConstr As Boolean
+
+    Public WriteOnly Property IsConstr As Boolean
+        Set(value As Boolean)
+            bIsConstr = value
+        End Set
+    End Property
+
     Public WriteOnly Property DataTable As String
         Set(value As String)
             sDataTable = value
@@ -132,13 +140,15 @@ Public Class frmScroller
     'Φόρτωση όψεων Per User στο Combo
     Private Sub LoadViews()
         Try
+            Dim SfileCreatedDate As DateTime
+            Dim LfileCreatedDate As DateTime
             BarViews.EditValue = ""
             'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
-            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml") = False Then
+            If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml") = False Then
                 GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
-            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then
+            If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then
                 If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
 
@@ -159,9 +169,9 @@ Public Class frmScroller
             BarViews.EditValue = CurrentView
             If CurrentView = "" Then
                 ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = True Then
-                    Dim SfileCreatedDate As DateTime = File.GetLastWriteTime(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml")
-                    Dim LfileCreatedDate As DateTime = File.GetLastWriteTime(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
+                If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = True Then
+                    SfileCreatedDate = System.IO.File.GetLastWriteTime(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml")
+                    LfileCreatedDate = System.IO.File.GetLastWriteTime(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
                     'Aν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server την αντιγράφουμε τοπικά ώστε να έχουμε την ίδια
                     If SfileCreatedDate > LfileCreatedDate Then
                         My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml", Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", True)
@@ -225,6 +235,8 @@ Public Class frmScroller
                     Case "vw_EMP_T" : sSQL = "DELETE FROM EMP_T WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DEP" : sSQL = "DELETE FROM DEP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SALER_CAL_STATUS" : sSQL = "DELETE FROM SALER_CAL_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_CONSTR_CAT" : sSQL = "DELETE FROM CONSTR_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_CONSTR" : sSQL = "DELETE FROM CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH"
                         sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
                                 WHERE TRANSH.ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -612,6 +624,7 @@ Public Class frmScroller
         Dim form24 As frmGen = New frmGen()
         Dim form25 As frmGen = New frmGen()
         Dim form26 As frmGen = New frmGen()
+        Dim form27 As frmGen = New frmGen()
         Dim fTechicalSupport As frmTecnicalSupport = New frmTecnicalSupport()
         Dim frmColors As frmColors = New frmColors
         Dim frmoffer As frmOffer = New frmOffer
@@ -626,7 +639,18 @@ Public Class frmScroller
         Dim frmInstEllipse As New frmInstEllipse
         Dim frmEmpPayroll As New frmEmpPayroll
         Dim frmSalerTziroi As New frmSalerTziroi
+        Dim frmConstrunction As New frmConstrunction
         Select Case sDataTable
+            Case "vw_CONSTR"
+                frmConstrunction.Text = "Μισθοδοσία Κατασκευαστικού"
+                frmConstrunction.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmConstrunction.MdiParent = frmMain
+                frmConstrunction.Mode = FormMode.EditRecord
+                frmConstrunction.Scroller = GridView1
+                frmConstrunction.FormScroller = Me
+                frmConstrunction.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmConstrunction), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmConstrunction.Show()
             Case "vw_INST_ELLIPSE"
                 frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
                 frmInstEllipse.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -651,6 +675,7 @@ Public Class frmScroller
             Case "vw_EMP_M"
                 frmEmpPayroll.Text = "Μισθοδοσία"
                 frmEmpPayroll.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmEmpPayroll.IsConstr = bIsConstr
                 frmEmpPayroll.MdiParent = frmMain
                 frmEmpPayroll.Mode = FormMode.EditRecord
                 frmEmpPayroll.Scroller = GridView1
@@ -673,6 +698,20 @@ Public Class frmScroller
                 form26.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form26), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form26.Show()
+            Case "vw_CONSTR_CAT"
+                form27.Text = "Κατηγορίες Εργασιών"
+                form27.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form27.MdiParent = frmMain
+                form27.Mode = FormMode.EditRecord
+                form27.Scroller = GridView1
+                form27.FormScroller = Me
+                form27.DataTable = "CONSTR_CAT"
+                form27.L1.Text = "Κωδικός"
+                form27.L2.Text = "Κατηγορία"
+                form27.FormScroller = Me
+                form27.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form27), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form27.Show()
             Case "vw_INST_M"
                 frmInstM.Text = "Χρεωπιστώσεις Συνεργείων"
                 frmInstM.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -1154,6 +1193,7 @@ Public Class frmScroller
         Dim form24 As frmGen = New frmGen()
         Dim form25 As frmGen = New frmGen()
         Dim form26 As frmGen = New frmGen()
+        Dim form27 As frmGen = New frmGen()
         Dim frmOffer As frmOffer = New frmOffer
         Dim frmEpendisis As frmEpendisis = New frmEpendisis
         Dim frmServices As frmServices = New frmServices()
@@ -1166,7 +1206,18 @@ Public Class frmScroller
         Dim frmInstM As New frmInstM
         Dim frmEmpPayroll As New frmEmpPayroll
         Dim frmSalerTziroi As New frmSalerTziroi
+        Dim frmConstrunction As New frmConstrunction
+
         Select Case sDataTable
+            Case "vw_CONSTR"
+                frmConstrunction.Text = "Μισθοδοσία Κατασκευαστικού"
+                frmConstrunction.MdiParent = frmMain
+                frmConstrunction.Mode = FormMode.NewRecord
+                frmConstrunction.Scroller = GridView1
+                frmConstrunction.FormScroller = Me
+                frmConstrunction.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmConstrunction), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmConstrunction.Show()
             Case "vw_INST_ELLIPSE"
                 frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
                 frmInstEllipse.MdiParent = frmMain
@@ -1188,6 +1239,7 @@ Public Class frmScroller
                 frmSalerTziroi.Show()
             Case "vw_EMP_M"
                 frmEmpPayroll.Text = "Μισθοθοσία"
+                frmEmpPayroll.IsConstr = bIsConstr
                 frmEmpPayroll.MdiParent = frmMain
                 frmEmpPayroll.Mode = FormMode.NewRecord
                 frmEmpPayroll.Scroller = GridView1
@@ -1209,6 +1261,19 @@ Public Class frmScroller
                 form26.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form26), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form26.Show()
+            Case "vw_CONSTR_CAT"
+                form27.Text = "Κατηγορίες Εργασιών"
+                form27.MdiParent = frmMain
+                form27.Mode = FormMode.NewRecord
+                form27.Scroller = GridView1
+                form27.FormScroller = Me
+                form27.DataTable = "CONSTR_CAT"
+                form27.L1.Text = "Κωδικός"
+                form27.L2.Text = "Κατηγορία"
+                form27.FormScroller = Me
+                form27.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form27), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form27.Show()
             Case "vw_INST_M"
                 frmInstM.Text = "Χρεωπιστώσεις Συνεργείων"
                 frmInstM.MdiParent = frmMain
@@ -1713,12 +1778,14 @@ Public Class frmScroller
                         C.Visible = True
                         GridView1.Columns.Add(C)
                     Next i
+                    'LoadViews()
                 Else
-                    LoadViews()
+                    'LoadViews()
                 End If
             Else
-                LoadViews()
+                'LoadViews()
             End If
+            LoadViews()
             myCmd.Dispose()
             If CloseReader = True Then myReader.Close()
         Catch ex As Exception
@@ -1905,7 +1972,12 @@ Public Class frmScroller
                 grdColumns = GridView1.Columns.ToList()
                 For i As Integer = 0 To myReader.FieldCount - 1
                     Console.WriteLine(myReader.GetName(i))
-                    If i < GridView1.Columns.Count Then Col2 = GridView1.Columns.Item(i) Else Col2 = Nothing
+                    If i < GridView1.Columns.Count Then
+                        'Col2 = GridView1.Columns.Item(i)
+                        Col2 = GridView1.Columns.ColumnByFieldName(myReader.GetName(i))
+                    Else
+                        Col2 = Nothing
+                    End If
                     If Col2 Is Nothing Then
                         col1 = GridView1.Columns.AddField(myReader.GetName(i))
                         col1.FieldName = myReader.GetName(i)

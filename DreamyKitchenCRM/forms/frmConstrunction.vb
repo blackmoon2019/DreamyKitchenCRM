@@ -4,9 +4,8 @@ Imports System.Data.SqlClient
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 
-Public Class frmInstallations
+Public Class frmConstrunction
     Private sID As String
-    Private sEMP_T_ID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -23,11 +22,6 @@ Public Class frmInstallations
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
-        End Set
-    End Property
-    Public WriteOnly Property EMP_T_ID As String
-        Set(value As String)
-            sEMP_T_ID = value
         End Set
     End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
@@ -59,30 +53,27 @@ Public Class frmInstallations
         Me.Close()
     End Sub
 
-    Private Sub frmInstallations_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub frmConstrunction_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
-        'sSQL.AppendLine("Select id,Fullname from vw_SER where depID='BFD7EBD9-B0B2-4FCB-B1FF-341EC37A6A11' order by Fullname")
-        sSQL = Nothing
+        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_SER where depID='16228C6D-FAE6-4CFD-82D1-A9910D909952' order by Fullname")
         FillCbo.SER(cboSER, sSQL)
         FillCbo.CUS(cboCUS)
-        FillCbo.SALERS(cboSaler)
-        ' Μόνο αν ο Χρήστης ΔΕΝ είναι ο Παναγόπουλος
-        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then Lcost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never : LExtracost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        FillCbo.CONSTR_CAT(cboConstrCat)
+
         Select Case Mode
             Case FormMode.NewRecord
-                txtCode.Text = DBQ.GetNextId("INST")
+                txtCode.Text = DBQ.GetNextId("CONSTR")
+                dtDeliverDate.EditValue = Now.Date
             Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from vw_INST where id ='" + sID + "'")
-                cmdInstEllipse.Enabled = True
+                LoadForms.LoadForm(LayoutControl1, "Select * from vw_CONSTR where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
         My.Settings.frmServices = Me.Location
         My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
-
     End Sub
 
-    Private Sub frmInstallations_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+    Private Sub frmConstrunction_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
     Private Sub ManageCus()
@@ -119,7 +110,21 @@ Public Class frmInstallations
         form1.Show()
 
     End Sub
+    Private Sub ManageConstrCat()
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "Κατηγορίες Εργασιών"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Κατηγορία"
+        form1.DataTable = "CONSTR_CAT"
+        form1.CalledFromControl = True
+        form1.CallerControl = cboConstrCat
+        If cboConstrCat.EditValue <> Nothing Then form1.ID = cboConstrCat.EditValue.ToString
+        form1.MdiParent = frmMain
+        If cboConstrCat.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
 
+    End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
@@ -130,34 +135,22 @@ Public Class frmInstallations
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST", LayoutControl1,,, sGuid, True)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CONSTR", LayoutControl1,,, sGuid, True)
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST", LayoutControl1,,, sID, True)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CONSTR", LayoutControl1,,, sID, True)
                         'sGuid = sID
                 End Select
 
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_INST")
+                    form.LoadRecords("vw_CONSTR")
                 End If
 
                 If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 If Mode = FormMode.NewRecord Then
-                    'XtraMessageBox.Show("Θα δημιουργηθεί αυτόματη κίνηση εξόφλησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    'If chkPaid.Checked = True Then
-                    '    sSQL.AppendLine("INSERT INTO INST_M (instID,amt,dtpay,createdby,createdOn")
-                    '    sSQL.AppendLine("Select " & toSQLValueS(sGuid) & ",")
-                    '    sSQL.AppendLine(toSQLValueS(txtCost.EditValue, True) & ",")
-                    '    sSQL.AppendLine(toSQLValueS(dtDeliverDate.EditValue.ToString) & ",")
-                    '    sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & "," & " getdate()")
-                    'End If
-                    ''Εκτέλεση QUERY
-                    'Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                    '    oCmd.ExecuteNonQuery()
-                    'End Using
                     Cls.ClearCtrls(LayoutControl1)
-                    txtCode.Text = DBQ.GetNextId("INST")
+                    txtCode.Text = DBQ.GetNextId("CONSTR")
                 End If
             End If
 
@@ -165,27 +158,11 @@ Public Class frmInstallations
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Sub ManageSaler()
-        Dim form1 As frmGen = New frmGen()
-        form1.Text = "Πωλητές"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Πωλητής"
-        form1.L6.Text = "Χρώμα"
-        form1.DataTable = "SALERS"
-        form1.CalledFromControl = True
-        form1.CallerControl = cboSaler
-        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
-        form1.MdiParent = frmMain
-        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
     Private Sub cboSER_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSER.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboSER.EditValue = Nothing : ManageSer()
             Case 2 : If cboSER.EditValue <> Nothing Then ManageSer()
-            Case 3 : cboSER.EditValue = Nothing
+            Case 3 : cboSER.EditValue = Nothing : txtSalary.Text = "0.00"
         End Select
     End Sub
 
@@ -196,37 +173,75 @@ Public Class frmInstallations
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
+
+    Private Sub cboConstrCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboConstrCat.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
-            Case 3 : cboSaler.EditValue = Nothing
+            Case 1 : cboConstrCat.EditValue = Nothing : ManageConstrCat()
+            Case 2 : If cboConstrCat.EditValue <> Nothing Then ManageConstrCat()
+            Case 3 : cboConstrCat.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub frmInstallations_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        'If Mode <> FormMode.NewRecord Then Exit Sub
-        If sEMP_T_ID Is Nothing Then Exit Sub
-        If XtraMessageBox.Show("Θέλετε να ενημερώσετε τους Τζίρους-Ποσοστά Έκθεσης?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-            frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
-            frmSalerTziroi.ID = sEMP_T_ID
-            frmSalerTziroi.MdiParent = frmMain
-            frmSalerTziroi.Mode = FormMode.EditRecord
+    Private Sub cboSER_EditValueChanged(sender As Object, e As EventArgs) Handles cboSER.EditValueChanged
+        txtSalary.EditValue = cboSER.GetColumnValue("salary")
+        tmIN.EditValue = cboSER.GetColumnValue("tmIN")
+        tmOUT.EditValue = cboSER.GetColumnValue("tmOUT")
+    End Sub
+    Private Function OvereWorkCalculate() As Integer
+        Try
+            Dim startTime As New DateTime(Now.Year, Now.Month, Now.Day, tmIN.Text.ToString.Substring(0, 2), tmIN.Text.ToString.Substring(3, 2), 0)     ' 10:30 AM today
+            Dim endTime As New DateTime(Now.Year, Now.Month, Now.Day, tmOUT.Text.ToString.Substring(0, 2), tmOUT.Text.ToString.Substring(3, 2), 0)     ' 10:30 AM today
 
-            frmSalerTziroi.FormScrollerExist = False
-            frmSalerTziroi.CalledFromControl = False
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSalerTziroi), New Point(CInt(frmSalerTziroi.Parent.ClientRectangle.Width / 2 - frmSalerTziroi.Width / 2), CInt(frmSalerTziroi.Parent.ClientRectangle.Height / 2 - frmSalerTziroi.Height / 2)))
-            frmSalerTziroi.Show()
+            Dim duration As TimeSpan = endTime - startTime        'Subtract start time from end time
+            Return duration.TotalMinutes
+            Console.WriteLine(duration.TotalMinutes)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
+
+    Private Sub tmIN_Validated(sender As Object, e As EventArgs) Handles tmIN.Validated
+        ' 480 ΛΕΠΤΑ ΕΙΝΑΙ ΤΟ 8ΑΩΡΟ
+        Dim TotalWork As Integer
+        Dim OverWork As Integer
+        Dim SalaryPerMinute As Double
+        Dim ExtraCost As Double
+        If tmIN.Text = "" Or txtSalary.EditValue <> Nothing Then Exit Sub
+        SalaryPerMinute = txtSalary.EditValue / 480
+        TotalWork = OvereWorkCalculate()
+        If TotalWork > 480 Then
+            OverWork = TotalWork - 480
+            txtOverWork.EditValue = OverWork
+            ExtraCost = TotalWork * SalaryPerMinute
+            ExtraCost = ExtraCost - txtSalary.EditValue
+        Else
+            OverWork = 0
+            txtExtraCost.EditValue = "0"
         End If
+        txtOverWork.EditValue = OverWork
+        txtExtraCost.EditValue = ExtraCost
+
     End Sub
 
-    Private Sub cmdInstEllipse_Click(sender As Object, e As EventArgs) Handles cmdInstEllipse.Click
-        Dim frmInstEllipse As New frmInstEllipse
-        frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
-        frmInstEllipse.Mode = FormMode.NewRecord
-        frmInstEllipse.INST_ID = sID
-        frmInstEllipse.CalledFromControl = False
-        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(frmInstEllipse.Parent.ClientRectangle.Width / 2 - frmInstEllipse.Width / 2), CInt(frmInstEllipse.Parent.ClientRectangle.Height / 2 - frmInstEllipse.Height / 2)))
-        frmInstEllipse.Show()
+    Private Sub tmOUT_Validated(sender As Object, e As EventArgs) Handles tmOUT.Validated
+        ' 480 ΛΕΠΤΑ ΕΙΝΑΙ ΤΟ 8ΑΩΡΟ
+        Dim TotalWork As Integer
+        Dim OverWork As Integer
+        Dim SalaryPerMinute As Double
+        Dim ExtraCost As Double
+        If tmOUT.Text = "" Or txtSalary.EditValue <> Nothing Then Exit Sub
+        SalaryPerMinute = txtSalary.EditValue / 480
+        TotalWork = OvereWorkCalculate()
+        If TotalWork > 480 Then
+            OverWork = TotalWork - 480
+            txtOverWork.EditValue = OverWork
+            ExtraCost = TotalWork * SalaryPerMinute
+            ExtraCost = ExtraCost - txtSalary.EditValue
+        Else
+            OverWork = 0
+            txtExtraCost.EditValue = "0"
+        End If
+        txtOverWork.EditValue = OverWork
+        txtExtraCost.EditValue = ExtraCost
     End Sub
 End Class

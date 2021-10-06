@@ -85,12 +85,19 @@ Partial Class frmMain
         Me.BBPayrolStatus = New DevExpress.XtraBars.BarButtonItem()
         Me.bbEMP_T = New DevExpress.XtraBars.BarButtonItem()
         Me.BBEllipse = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbConstrCat = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbConstr = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBPayrollConstr = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
-        Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPage6 = New DevExpress.XtraBars.Ribbon.RibbonPage()
-        Me.RibbonPageGroup9 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPage7 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup11 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup15 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup14 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPage6 = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibbonPageGroup13 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup9 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup10 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup12 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage3 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -128,11 +135,11 @@ Partial Class frmMain
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbCreditDebit, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbCreditDebit, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse, Me.bbConstrCat, Me.bbConstr, Me.BBPayrollConstr})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.MaxItemId = 69
+        Me.RibbonControl1.MaxItemId = 72
         Me.RibbonControl1.Name = "RibbonControl1"
-        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage6, Me.RibbonPage7, Me.RibbonPage2, Me.RibbonPage3, Me.RibbonPage4, Me.RibbonPage5})
+        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage6, Me.RibbonPage2, Me.RibbonPage3, Me.RibbonPage4, Me.RibbonPage5})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
         Me.RibbonControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemHypertextLabel1, Me.RepositoryItemHypertextLabel2, Me.RepositoryItemHyperLinkEdit2})
         Me.RibbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019
@@ -534,7 +541,7 @@ Partial Class frmMain
         '
         Me.BBInst.Caption = "Μισθοδοσία Τοποθετών"
         Me.BBInst.Id = 54
-        Me.BBInst.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_maintenance_40
+        Me.BBInst.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_paper_money_40
         Me.BBInst.Name = "BBInst"
         Me.BBInst.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -612,7 +619,7 @@ Partial Class frmMain
         '
         'BBInstM
         '
-        Me.BBInstM.Caption = "Χρεωπιστώσεις Συνεργείων"
+        Me.BBInstM.Caption = "Χρεωπιστώσεις Τοποθετών"
         Me.BBInstM.Id = 64
         Me.BBInstM.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_money_prize_40
         Me.BBInstM.Name = "BBInstM"
@@ -650,56 +657,104 @@ Partial Class frmMain
         Me.BBEllipse.Name = "BBEllipse"
         Me.BBEllipse.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'bbConstrCat
+        '
+        Me.bbConstrCat.Caption = "Τεχνικές Εργασίες"
+        Me.bbConstrCat.Id = 69
+        Me.bbConstrCat.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_construction_40
+        Me.bbConstrCat.Name = "bbConstrCat"
+        Me.bbConstrCat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbConstr
+        '
+        Me.bbConstr.Caption = "Μισθοδοσία Κατασκευαστικού"
+        Me.bbConstr.Id = 70
+        Me.bbConstr.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_paper_money_40
+        Me.bbConstr.Name = "bbConstr"
+        Me.bbConstr.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBPayrollConstr
+        '
+        Me.BBPayrollConstr.Caption = "Χρεωπιστώσεις Κατασκευαστικού"
+        Me.BBPayrollConstr.Id = 71
+        Me.BBPayrollConstr.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_money_prize_40
+        Me.BBPayrollConstr.Name = "BBPayrollConstr"
+        Me.BBPayrollConstr.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'RibbonPage1
         '
-        Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1})
+        Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup11, Me.RibbonPageGroup15, Me.RibbonPageGroup1, Me.RibbonPageGroup14})
         Me.RibbonPage1.Name = "RibbonPage1"
         Me.RibbonPage1.Text = "Κεντρικές Λειτουργίες"
         '
+        'RibbonPageGroup11
+        '
+        Me.RibbonPageGroup11.ItemLinks.Add(Me.bbCCT)
+        Me.RibbonPageGroup11.ItemLinks.Add(Me.BBCusMovs)
+        Me.RibbonPageGroup11.ItemLinks.Add(Me.bbCreditDebit)
+        Me.RibbonPageGroup11.Name = "RibbonPageGroup11"
+        Me.RibbonPageGroup11.Text = "Διαχείριση Πελατών"
+        '
+        'RibbonPageGroup15
+        '
+        Me.RibbonPageGroup15.ItemLinks.Add(Me.BBCalendarInst)
+        Me.RibbonPageGroup15.ItemLinks.Add(Me.BBEllipse)
+        Me.RibbonPageGroup15.Name = "RibbonPageGroup15"
+        Me.RibbonPageGroup15.Text = "Τοποθστήσεις Εκκρεμότητες"
+        '
         'RibbonPageGroup1
         '
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.bbUsers)
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.bbCCT)
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCusMovs)
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCalendarInst)
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBEllipse)
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBCalendar)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBPersonalCalendar)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBNotes)
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBChangeUsr)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.Text = "Λειτουργίες"
         '
+        'RibbonPageGroup14
+        '
+        Me.RibbonPageGroup14.ItemLinks.Add(Me.bbUsers)
+        Me.RibbonPageGroup14.ItemLinks.Add(Me.BBChangeUsr)
+        Me.RibbonPageGroup14.Name = "RibbonPageGroup14"
+        Me.RibbonPageGroup14.Text = "Διαχείριση Χρηστών"
+        '
         'RibbonPage6
         '
-        Me.RibbonPage6.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup9})
+        Me.RibbonPage6.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup13, Me.RibbonPageGroup9, Me.RibbonPageGroup10, Me.RibbonPageGroup12})
         Me.RibbonPage6.Name = "RibbonPage6"
-        Me.RibbonPage6.Text = "Ταμείο"
+        Me.RibbonPage6.Text = "Διαχείριση Προσωπικού"
+        '
+        'RibbonPageGroup13
+        '
+        Me.RibbonPageGroup13.ItemLinks.Add(Me.bbEmploye, True)
+        Me.RibbonPageGroup13.ItemLinks.Add(Me.bbSalers)
+        Me.RibbonPageGroup13.ItemLinks.Add(Me.BBSer)
+        Me.RibbonPageGroup13.ItemLinks.Add(Me.bbDep)
+        Me.RibbonPageGroup13.ItemLinks.Add(Me.BBPayrolStatus)
+        Me.RibbonPageGroup13.Name = "RibbonPageGroup13"
+        Me.RibbonPageGroup13.Text = "Προσωπικό"
         '
         'RibbonPageGroup9
         '
-        Me.RibbonPageGroup9.ItemLinks.Add(Me.bbCreditDebit)
         Me.RibbonPageGroup9.ItemLinks.Add(Me.BBInstM)
         Me.RibbonPageGroup9.ItemLinks.Add(Me.BBInst)
-        Me.RibbonPageGroup9.ItemLinks.Add(Me.BBPayroll)
-        Me.RibbonPageGroup9.ItemLinks.Add(Me.bbEMP_T)
         Me.RibbonPageGroup9.Name = "RibbonPageGroup9"
-        Me.RibbonPageGroup9.Text = "Συναλλαγές"
+        Me.RibbonPageGroup9.Text = "Τοποθέτηση"
         '
-        'RibbonPage7
+        'RibbonPageGroup10
         '
-        Me.RibbonPage7.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup11})
-        Me.RibbonPage7.Name = "RibbonPage7"
-        Me.RibbonPage7.Text = "Διαχείριση Προσωπικού"
+        Me.RibbonPageGroup10.ItemLinks.Add(Me.BBPayroll)
+        Me.RibbonPageGroup10.ItemLinks.Add(Me.bbEMP_T)
+        Me.RibbonPageGroup10.ItemLinks.Add(Me.bbEmpMov)
+        Me.RibbonPageGroup10.ItemLinks.Add(Me.bbStatusPre)
+        Me.RibbonPageGroup10.Name = "RibbonPageGroup10"
+        Me.RibbonPageGroup10.Text = "Έκθεση"
         '
-        'RibbonPageGroup11
+        'RibbonPageGroup12
         '
-        Me.RibbonPageGroup11.ItemLinks.Add(Me.bbEmploye)
-        Me.RibbonPageGroup11.ItemLinks.Add(Me.bbEmpMov)
-        Me.RibbonPageGroup11.ItemLinks.Add(Me.bbStatusPre)
-        Me.RibbonPageGroup11.ItemLinks.Add(Me.bbDep)
-        Me.RibbonPageGroup11.Name = "RibbonPageGroup11"
-        Me.RibbonPageGroup11.Text = "Διαχείριση"
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.BBPayrollConstr)
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.bbConstr)
+        Me.RibbonPageGroup12.ItemLinks.Add(Me.bbConstrCat)
+        Me.RibbonPageGroup12.Name = "RibbonPageGroup12"
+        Me.RibbonPageGroup12.Text = "Κατασκευαστικό"
         '
         'RibbonPage2
         '
@@ -718,11 +773,8 @@ Partial Class frmMain
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbPRF)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbStatus)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.BBPersonalCalendarStatus)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.BBPayrolStatus)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbSource)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbLabels)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.BBSer)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.bbSalers)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbBanks)
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
         Me.RibbonPageGroup2.Text = "Βοηθητικά"
@@ -962,14 +1014,11 @@ Partial Class frmMain
     Friend WithEvents BBCalendarInst As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbCreditDebit As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RibbonPage6 As DevExpress.XtraBars.Ribbon.RibbonPage
-    Friend WithEvents RibbonPageGroup9 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents bbBanks As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbEmploye As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbDep As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbEmpMov As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbStatusPre As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents RibbonPage7 As DevExpress.XtraBars.Ribbon.RibbonPage
-    Friend WithEvents RibbonPageGroup11 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents BBPersonalCalendar As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBPersonalCalendarStatus As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBInstM As DevExpress.XtraBars.BarButtonItem
@@ -977,4 +1026,14 @@ Partial Class frmMain
     Friend WithEvents BBPayrolStatus As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents bbEMP_T As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBEllipse As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbConstrCat As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents bbConstr As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonPageGroup9 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents RibbonPageGroup10 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents RibbonPageGroup12 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BBPayrollConstr As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonPageGroup13 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents RibbonPageGroup11 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents RibbonPageGroup15 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents RibbonPageGroup14 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
 End Class

@@ -37,6 +37,8 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.chkCompleted = New DevExpress.XtraEditors.CheckEdit()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboINST.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -54,6 +56,8 @@ Partial Class frmInstEllipse
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -61,6 +65,7 @@ Partial Class frmInstEllipse
         Me.LayoutControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LayoutControl1.Controls.Add(Me.chkCompleted)
         Me.LayoutControl1.Controls.Add(Me.cmdExit)
         Me.LayoutControl1.Controls.Add(Me.cmdSave)
         Me.LayoutControl1.Controls.Add(Me.cboINST)
@@ -149,7 +154,7 @@ Partial Class frmInstEllipse
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem14, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.EmptySpaceItem3})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem14, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.LayoutControlItem4, Me.LayoutControlItem2, Me.EmptySpaceItem3, Me.LayoutControlItem5})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(599, 381)
         Me.Root.TextVisible = False
@@ -243,10 +248,32 @@ Partial Class frmInstEllipse
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(369, 48)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(474, 48)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(210, 24)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(105, 24)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'chkCompleted
+        '
+        Me.chkCompleted.EditValue = CType(0, Byte)
+        Me.chkCompleted.Location = New System.Drawing.Point(381, 60)
+        Me.chkCompleted.Name = "chkCompleted"
+        Me.chkCompleted.Properties.Caption = "Ολοκληρώθηκε"
+        Me.chkCompleted.Properties.ValueChecked = CType(1, Byte)
+        Me.chkCompleted.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chkCompleted.Size = New System.Drawing.Size(101, 20)
+        Me.chkCompleted.StyleController = Me.LayoutControl1
+        Me.chkCompleted.TabIndex = 36
+        Me.chkCompleted.Tag = "completed,0,1,2"
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.chkCompleted
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(369, 48)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(105, 24)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem5.TextVisible = False
         '
         'frmInstEllipse
         '
@@ -274,6 +301,8 @@ Partial Class frmInstEllipse
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -295,4 +324,6 @@ Partial Class frmInstEllipse
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents chkCompleted As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
 End Class

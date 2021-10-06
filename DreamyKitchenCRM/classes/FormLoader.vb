@@ -419,7 +419,7 @@ Public Class FormLoader
         Dim dt As New DataTable("sTable")
         Try
             If sView.Length > 0 Then
-                sSQL = "Select  VIEW_COLUMN_NAME = c.name,VIEW_CATALOG,VIEW_SCHEMA,VIEW_NAME,TABLE_CATALOG,TABLE_SCHEMA,TABLE_NAME,COLUMN_NAME, ep.value As 'COLUMN_DESCRIPTION'
+                sSQL = "Select  VIEW_COLUMN_NAME = c.name,VIEW_CATALOG,VIEW_SCHEMA,VIEW_NAME,TABLE_CATALOG,TABLE_SCHEMA,TABLE_NAME,ISNULL(c.name,COLUMN_NAME) AS COLUMN_NAME, ISNULL(ep.value,ISNULL(c.name,COLUMN_NAME)) As 'COLUMN_DESCRIPTION'
                         From sys.columns c
                         INNER Join sys.views vw on c.OBJECT_ID = vw.OBJECT_ID
                         INNER Join sys.schemas s ON s.schema_id = vw.schema_id
@@ -445,11 +445,12 @@ Public Class FormLoader
             For Each row As DataRow In dt.Rows
                 Dim columnName As String = row.Item("COLUMN_NAME").ToString
                 Dim columnNameValue As String = row.Item("COLUMN_DESCRIPTION").ToString
+
                 If columnName.Length > 0 And columnNameValue.Length > 0 Then
                     Dim C As New GridColumn
                     C = GRDView.Columns.ColumnByName("col" & columnName)
                     If C IsNot Nothing Then
-                        C.Caption = columnNameValue
+                        If C.Caption = "" Then C.Caption = columnNameValue
                         C = Nothing
                     End If
                 End If

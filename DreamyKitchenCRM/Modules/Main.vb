@@ -81,6 +81,7 @@ Module Main
     'End Function
 
 End Module
+
 'Private Sub SetUserSettings()
 '    Dim cf As New XML_Serialization.User_Settings
 '    cf.user = New XML_Serialization.User() With {.ID = sUserCode}

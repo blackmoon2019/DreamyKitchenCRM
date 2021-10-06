@@ -5,6 +5,7 @@ Imports DevExpress.XtraEditors.Controls
 
 Public Class frmEmpPayroll
     Private sID As String
+    Private bIsConstr As Boolean
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -48,20 +49,31 @@ Public Class frmEmpPayroll
             FScrollerExist = value
         End Set
     End Property
+    Public WriteOnly Property IsConstr As Boolean
+        Set(value As Boolean)
+            bIsConstr = value
+        End Set
+    End Property
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
     End Sub
 
     Private Sub frmEmpPayroll_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
-        FillCbo.EMP(cboEMP)
+        If bIsConstr = True Then
+            sSQL.AppendLine("Select id,Fullname,salary  from vw_EMP where depID='16228C6D-FAE6-4CFD-82D1-A9910D909952' order by Fullname")
+        Else
+            sSQL.AppendLine("Select id,Fullname,salary  from vw_EMP where depID='9812E975-2FD4-4653-B043-3D6CAF440888' order by Fullname")
+        End If
+
+        FillCbo.EMP(cboEMP, sSQL)
         FillCbo.EMP_M_S(cboEMP_M_S)
         FillCbo.BANKS(cboBANK)
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("EMP_M")
             Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP_M where id ='" + sID + "'")
+                LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP_M   where id ='" + sID & "'")
         End Select
         Me.CenterToScreen()
         My.Settings.frmEmpPayroll = Me.Location
@@ -132,13 +144,14 @@ Public Class frmEmpPayroll
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "EMP_M", LayoutControl1,,, sGuid, True)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "EMP_M", LayoutControl1,,, sGuid, True, "isConstr", IIf(bIsConstr = False, 0, 1))
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "EMP_M", LayoutControl1,,, sID, True)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "EMP_M", LayoutControl1,,, sID, True,,,, "isConstr = " & IIf(bIsConstr = False, 0, 1))
                         sGuid = sID
                 End Select
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm
+                    form.DataTableWhereCondition = IIf(bIsConstr = True, "where depid='16228C6D-FAE6-4CFD-82D1-A9910D909952'", "where depid='9812E975-2FD4-4653-B043-3D6CAF440888'")
                     form.LoadRecords("vw_EMP_M")
                 End If
 

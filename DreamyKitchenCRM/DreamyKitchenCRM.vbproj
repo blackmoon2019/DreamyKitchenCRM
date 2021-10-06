@@ -44,13 +44,14 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>full</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>DreamyKitchenCRM.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -265,6 +266,12 @@
       <DependentUpon>frmColors.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmColors.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmConstrunction.Designer.vb">
+      <DependentUpon>frmConstrunction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmConstrunction.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmCusMov.Designer.vb">
@@ -537,6 +544,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmColors.resx">
       <DependentUpon>frmColors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmConstrunction.resx">
+      <DependentUpon>frmConstrunction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCusMov.resx">
       <DependentUpon>frmCusMov.vb</DependentUpon>
@@ -909,6 +919,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-construction2-40.png" />
+    <None Include="Resources\icons8-construction-40.png" />
     <None Include="Resources\icons8-bank-card-missing-24.png" />
     <None Include="Resources\icons8-bank-card-missing-40.png" />
     <None Include="Resources\icons8-businessman-40.png" />

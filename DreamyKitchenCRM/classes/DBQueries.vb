@@ -171,6 +171,14 @@ Public Class DBQueries
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
                                     End If
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+                                    Dim tm As DevExpress.XtraEditors.TimeEdit
+                                    tm = Ctrl
+                                    If tm.Text <> "" Then
+                                        sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(tm.Text))
+                                    Else
+                                        sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                    End If
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.SpinEdit Then
                                     Dim spn As DevExpress.XtraEditors.SpinEdit
                                     spn = Ctrl

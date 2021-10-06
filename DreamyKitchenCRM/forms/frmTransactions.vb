@@ -116,14 +116,15 @@ Public Class frmTransactions
                         sID = sGuid
                         sSQL.Clear()
                         sEMP_T_ID = System.Guid.NewGuid.ToString
-                        sSQL.AppendLine("INSERT INTO EMP_T (ID,CUSID,SALERID,SALEPRICE,CREATEDBY,CREATEDON,TRANSHID)")
+                        sSQL.AppendLine("INSERT INTO EMP_T (ID,CUSID,SALERID,SALEPRICE,CREATEDBY,CREATEDON,TRANSHID,dtPay)")
                         sSQL.AppendLine("Select " & toSQLValueS(sEMP_T_ID.ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(cboCUS.EditValue.ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(cboCUS.GetColumnValue("SalerID").ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(txtTotAmt.EditValue, True) & ",")
                         sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ",")
                         sSQL.AppendLine("getdate(),")
-                        sSQL.AppendLine(toSQLValueS(sID))
+                        sSQL.AppendLine(toSQLValueS(sID) & ",")
+                        sSQL.AppendLine(toSQLValueS(CDate(dtPay.Text).ToString("yyyyMMdd")))
                         'Εκτέλεση QUERY
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                             oCmd.ExecuteNonQuery()
@@ -136,7 +137,10 @@ Public Class frmTransactions
                         sSQL.AppendLine("SALERID = " & toSQLValueS(cboCUS.GetColumnValue("SalerID").ToString) & ",")
                         sSQL.AppendLine("SALEPRICE = " & toSQLValueS(txtTotAmt.EditValue, True) & ",")
                         sSQL.AppendLine("MODIFIEDBY= " & toSQLValueS(UserProps.ID.ToString) & ",")
-                        sSQL.AppendLine("MODIFIEDON= GETDATE()")
+                        sSQL.AppendLine("MODIFIEDON= GETDATE(), ")
+                        sSQL.AppendLine("DTPAY = " & toSQLValueS(CDate(dtPay.Text).ToString("yyyyMMdd")))
+
+
                         sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(sID))
                         'Εκτέλεση QUERY
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
@@ -474,13 +478,16 @@ Public Class frmTransactions
             frmInstallations.Mode = FormMode.NewRecord
             frmInstallations.Scroller = GridView1
             frmInstallations.FormScroller = Me
-            frmInstallations.EMP_T_ID = sEMP_T_ID
+            If sEMP_T_ID <> Nothing Then
+                frmInstallations.EMP_T_ID = sEMP_T_ID
+            ElseIf txtEMP_T_ID.EditValue <> Nothing Then
+                frmInstallations.EMP_T_ID = txtEMP_T_ID.EditValue.ToString
+            End If
             frmInstallations.CalledFromControl = False
             frmInstallations.cboSaler.EditValue = cboCUS.GetColumnValue("SalerID")
             frmInstallations.cboCUS.EditValue = cboCUS.EditValue
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstallations), New Point(CInt(frmInstallations.Parent.ClientRectangle.Width / 2 - frmInstallations.Width / 2), CInt(frmInstallations.Parent.ClientRectangle.Height / 2 - frmInstallations.Height / 2)))
             frmInstallations.Show()
-
         End If
     End Sub
 

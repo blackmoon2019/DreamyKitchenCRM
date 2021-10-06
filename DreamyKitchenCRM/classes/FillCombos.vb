@@ -192,6 +192,24 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub CONSTR_CAT(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+        Try
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_CONSTR_CAT order by name", CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.DisplayMember = "Name"
+            CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.PopulateColumns()
+            CtrlCombo.Properties.Columns(0).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Κατηγορίες Εργασίας"
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
     Public Sub EMP_M_S(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
             Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_EMP_M_S order by name", CNDB)
@@ -250,7 +268,7 @@ Public Class FillCombos
         Try
             If sSQL Is Nothing Then
                 sSQL = New System.Text.StringBuilder
-                sSQL.AppendLine("Select id,Fullname from vw_SER order by Fullname")
+                sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_SER order by Fullname")
             End If
 
             Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
@@ -262,6 +280,12 @@ Public Class FillCombos
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Συνεργεία"
+            CtrlCombo.Properties.Columns(2).Caption = "Μισθός"
+            CtrlCombo.Properties.Columns(2).Visible = False
+            CtrlCombo.Properties.Columns(3).Caption = "Ώρα Εισόδου"
+            CtrlCombo.Properties.Columns(3).Visible = False
+            CtrlCombo.Properties.Columns(4).Caption = "Ώρα Εξόδου"
+            CtrlCombo.Properties.Columns(4).Visible = False
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -287,9 +311,14 @@ Public Class FillCombos
         End Try
 
     End Sub
-    Public Sub EMP(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+    Public Sub EMP(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname,salary  from vw_EMP order by Fullname", CNDB)
+            If sSQL Is Nothing Then
+                sSQL = New System.Text.StringBuilder
+                sSQL.AppendLine("Select id,Fullname,salary  from vw_EMP order by Fullname")
+            End If
+
+            Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Fullname"

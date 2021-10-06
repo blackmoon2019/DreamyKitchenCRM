@@ -84,6 +84,19 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "CONSTR_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "CONSTR_CAT", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.CONSTR_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_CONSTR_CAT")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("CONSTR_CAT")
                             Case "EMP_M_S"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "EMP_M_S", sGuid)
@@ -338,6 +351,15 @@ Public Class frmGen
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "CONSTR_CAT"
+                                sResult = DBQ.UpdateData(LayoutControl1, "CONSTR_CAT", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.CONSTR_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_CONSTR_CAT")
+                                End If
                             Case "EMP_M_S"
                                 sResult = DBQ.UpdateData(LayoutControl1, "EMP_M_S", sID)
                                 If CalledFromCtrl Then
@@ -522,6 +544,12 @@ Public Class frmGen
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "CONSTR_CAT"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("CONSTR_CAT")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_CONSTR_CAT where id ='" + sID + "'")
+                End If
             Case "EMP_M_S"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("EMP_M_S")
@@ -663,6 +691,14 @@ Public Class frmGen
                     oCmd.ExecuteNonQuery()
                 End Using
                 Select Case sDataTable
+                    Case "CONSTR_CAT"
+                        If CalledFromCtrl Then
+                            FillCbo.CONSTR_CAT(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_CONSTR_CAT")
+                        End If
+
                     Case "EMP_M_S "
                         If CalledFromCtrl Then
                             FillCbo.EMP_M_S(CtrlCombo)
