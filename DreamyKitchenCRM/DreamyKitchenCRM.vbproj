@@ -919,6 +919,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-oracle-pl-sql-16.png" />
+    <None Include="Resources\icons8-server-16.png" />
     <None Include="Resources\icons8-construction2-40.png" />
     <None Include="Resources\icons8-construction-40.png" />
     <None Include="Resources\icons8-bank-card-missing-24.png" />

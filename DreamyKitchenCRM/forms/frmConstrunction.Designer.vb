@@ -115,7 +115,7 @@ Partial Class frmConstrunction
         Me.tmIN.Properties.MaskSettings.Set("mask", "HH:mm")
         Me.tmIN.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
         Me.tmIN.Properties.UseMaskAsDisplayFormat = True
-        Me.tmIN.Size = New System.Drawing.Size(97, 20)
+        Me.tmIN.Size = New System.Drawing.Size(115, 20)
         Me.tmIN.StyleController = Me.LayoutControl1
         Me.tmIN.TabIndex = 44
         Me.tmIN.Tag = "tmIN,0,1,2"
@@ -227,14 +227,14 @@ Partial Class frmConstrunction
         'tmOUT
         '
         Me.tmOUT.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.tmOUT.Location = New System.Drawing.Point(306, 84)
+        Me.tmOUT.Location = New System.Drawing.Point(324, 84)
         Me.tmOUT.Name = "tmOUT"
         Me.tmOUT.Properties.BeepOnError = True
         Me.tmOUT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.tmOUT.Properties.MaskSettings.Set("mask", "HH:mm")
         Me.tmOUT.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
         Me.tmOUT.Properties.UseMaskAsDisplayFormat = True
-        Me.tmOUT.Size = New System.Drawing.Size(143, 20)
+        Me.tmOUT.Size = New System.Drawing.Size(125, 20)
         Me.tmOUT.StyleController = Me.LayoutControl1
         Me.tmOUT.TabIndex = 44
         Me.tmOUT.Tag = "tmOUT,0,1,2"
@@ -401,7 +401,7 @@ Partial Class frmConstrunction
         Me.LayoutControlItem7.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(212, 24)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(230, 24)
         Me.LayoutControlItem7.Tag = "1"
         Me.LayoutControlItem7.Text = "Ώρα Εισόδου"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(99, 13)
@@ -412,9 +412,9 @@ Partial Class frmConstrunction
         Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem10.CustomizationFormText = "Ώρα Εισόδου"
         Me.LayoutControlItem10.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(212, 72)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(230, 72)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(229, 24)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(211, 24)
         Me.LayoutControlItem10.Tag = "1"
         Me.LayoutControlItem10.Text = "Ώρα Εξόδου"
         Me.LayoutControlItem10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize

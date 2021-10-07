@@ -803,6 +803,7 @@ Partial Class frmOffer
         Me.cboCUS.Properties.NullText = ""
         Me.cboCUS.Properties.PopupSizeable = False
         Me.cboCUS.Size = New System.Drawing.Size(229, 20)
+        Me.cboCUS.StyleController = Me.LayoutControl1
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
         '

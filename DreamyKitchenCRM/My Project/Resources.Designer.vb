@@ -823,6 +823,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property icons8_oracle_pl_sql_16() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("icons8-oracle-pl-sql-16", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property icons8_organization_40() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icons8-organization-40", resourceCulture)
@@ -916,6 +926,16 @@ Namespace My.Resources
         Friend ReadOnly Property icons8_save_to_grid_30() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icons8-save-to-grid-30", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property icons8_server_16() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("icons8-server-16", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

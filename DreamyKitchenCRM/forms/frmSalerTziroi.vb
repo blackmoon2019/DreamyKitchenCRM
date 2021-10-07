@@ -164,6 +164,16 @@ Public Class frmSalerTziroi
     End Sub
 
     Private Sub txtbusisnessProfit_LostFocus(sender As Object, e As EventArgs) Handles txtbusisnessProfit.LostFocus
+        If cboSaler.GetColumnValue("profitPerc") = Nothing Then Exit Sub
         txtsalerProfit.EditValue = (txtbusisnessProfit.EditValue / 100) * cboSaler.GetColumnValue("profitPerc")
+    End Sub
+
+    Private Sub txtnormalPrice_Validated(sender As Object, e As EventArgs) Handles txtnormalPrice.Validated
+        txtbusisnessProfit.EditValue = txtsalePrice.EditValue - txtnormalPrice.EditValue
+    End Sub
+
+    Private Sub txtsalePrice_Validated(sender As Object, e As EventArgs) Handles txtsalePrice.Validated
+        txtbusisnessProfit.EditValue = txtsalePrice.EditValue - txtnormalPrice.EditValue
+
     End Sub
 End Class

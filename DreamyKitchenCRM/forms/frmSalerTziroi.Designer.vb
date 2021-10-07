@@ -21,6 +21,7 @@ Partial Class frmSalerTziroi
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSalerTziroi))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.chkPaid = New DevExpress.XtraEditors.CheckEdit()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.dtPay = New DevExpress.XtraEditors.DateEdit()
@@ -40,7 +41,6 @@ Partial Class frmSalerTziroi
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -48,8 +48,10 @@ Partial Class frmSalerTziroi
         Me.Lcost1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Lcost2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Lcost3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.chkPaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtPay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtPay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -68,7 +70,6 @@ Partial Class frmSalerTziroi
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,6 +77,7 @@ Partial Class frmSalerTziroi
         CType(Me.Lcost1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Lcost2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Lcost3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -83,6 +85,7 @@ Partial Class frmSalerTziroi
         Me.LayoutControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LayoutControl1.Controls.Add(Me.chkPaid)
         Me.LayoutControl1.Controls.Add(Me.cmdExit)
         Me.LayoutControl1.Controls.Add(Me.cmdSave)
         Me.LayoutControl1.Controls.Add(Me.dtPay)
@@ -101,6 +104,19 @@ Partial Class frmSalerTziroi
         Me.LayoutControl1.Size = New System.Drawing.Size(602, 378)
         Me.LayoutControl1.TabIndex = 5
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'chkPaid
+        '
+        Me.chkPaid.EditValue = CType(0, Byte)
+        Me.chkPaid.Location = New System.Drawing.Point(356, 84)
+        Me.chkPaid.Name = "chkPaid"
+        Me.chkPaid.Properties.Caption = "Πληρωθηκε"
+        Me.chkPaid.Properties.ValueChecked = CType(1, Byte)
+        Me.chkPaid.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chkPaid.Size = New System.Drawing.Size(234, 20)
+        Me.chkPaid.StyleController = Me.LayoutControl1
+        Me.chkPaid.TabIndex = 43
+        Me.chkPaid.Tag = "paid,0,1,2"
         '
         'cmdExit
         '
@@ -265,7 +281,7 @@ Partial Class frmSalerTziroi
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem14, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.LayoutControlItem4, Me.EmptySpaceItem3, Me.EmptySpaceItem5, Me.LayoutControlItem7, Me.LayoutControlItem10, Me.LayoutControlItem2, Me.Lcost, Me.Lcost1, Me.Lcost2, Me.Lcost3})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem14, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.EmptySpaceItem2, Me.LayoutControlItem4, Me.EmptySpaceItem3, Me.LayoutControlItem7, Me.LayoutControlItem10, Me.LayoutControlItem2, Me.Lcost, Me.Lcost1, Me.Lcost2, Me.Lcost3, Me.LayoutControlItem5})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(602, 378)
         Me.Root.TextVisible = False
@@ -335,14 +351,6 @@ Partial Class frmSalerTziroi
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(10, 24)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
-        '
-        'EmptySpaceItem5
-        '
-        Me.EmptySpaceItem5.AllowHotTrack = False
-        Me.EmptySpaceItem5.Location = New System.Drawing.Point(344, 72)
-        Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(238, 24)
-        Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem7
         '
@@ -432,6 +440,15 @@ Partial Class frmSalerTziroi
         Me.Lcost3.Text = "Ποσοστό Πωλητή"
         Me.Lcost3.TextSize = New System.Drawing.Size(95, 13)
         '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.chkPaid
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(344, 72)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(238, 24)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem5.TextVisible = False
+        '
         'frmSalerTziroi
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -443,6 +460,7 @@ Partial Class frmSalerTziroi
         Me.Text = "Τζίροι-Ποσοστά Έκθεσης"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.chkPaid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtPay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtPay.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -461,7 +479,6 @@ Partial Class frmSalerTziroi
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -469,6 +486,7 @@ Partial Class frmSalerTziroi
         CType(Me.Lcost1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Lcost2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Lcost3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -489,7 +507,6 @@ Partial Class frmSalerTziroi
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents EmptySpaceItem5 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents Lcost As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cboCUS As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
@@ -501,4 +518,6 @@ Partial Class frmSalerTziroi
     Friend WithEvents txtsalerProfit As DevExpress.XtraEditors.TextEdit
     Friend WithEvents Lcost2 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents Lcost3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents chkPaid As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
 End Class

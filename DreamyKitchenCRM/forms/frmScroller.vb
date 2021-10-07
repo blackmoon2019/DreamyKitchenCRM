@@ -140,8 +140,6 @@ Public Class frmScroller
     'Φόρτωση όψεων Per User στο Combo
     Private Sub LoadViews()
         Try
-            Dim SfileCreatedDate As DateTime
-            Dim LfileCreatedDate As DateTime
             BarViews.EditValue = ""
             'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
             If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml") = False Then
@@ -168,15 +166,6 @@ Public Class frmScroller
             Next
             BarViews.EditValue = CurrentView
             If CurrentView = "" Then
-                ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-                If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = True Then
-                    SfileCreatedDate = System.IO.File.GetLastWriteTime(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml")
-                    LfileCreatedDate = System.IO.File.GetLastWriteTime(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
-                    'Aν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server την αντιγράφουμε τοπικά ώστε να έχουμε την ίδια
-                    If SfileCreatedDate > LfileCreatedDate Then
-                        My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml", Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", True)
-                    End If
-                End If
                 'grdMain.DefaultView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
                 If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
@@ -1692,7 +1681,7 @@ Public Class frmScroller
 
             sVal = RepositoryBarRecords.Items.IndexOf(BarRecords.EditValue)
 
-            If sVal <> 4 Then
+            If sVal <> 4 And BarRecords.EditValue <> Nothing Then
                 sSQL = "SELECT top " & BarRecords.EditValue & " * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
             Else
                 sSQL = "SELECT  * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
@@ -2038,5 +2027,16 @@ Public Class frmScroller
 
     Private Sub GridView1_RowStyle(sender As Object, e As RowStyleEventArgs) Handles GridView1.RowStyle
 
+    End Sub
+
+    Private Sub BBUpdateViewFileFromServer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdateViewFileFromServer.ItemClick
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
+            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml", Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", True)
+                GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
+
+            End If
+        End If
     End Sub
 End Class
