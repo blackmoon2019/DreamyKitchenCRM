@@ -64,6 +64,8 @@ Public Class frmTransactions
     End Sub
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INVTYPES' table. You can move, or remove it, as needed.
+        Me.Vw_INVTYPESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_INVTYPES)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BANKS' table. You can move, or remove it, as needed.
         Me.Vw_BANKSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BANKS)
         Dim sSQL As New System.Text.StringBuilder
@@ -109,6 +111,7 @@ Public Class frmTransactions
                     XtraMessageBox.Show("Παρακαλώ ορίστε πωλητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
+                ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
@@ -161,9 +164,15 @@ Public Class frmTransactions
                 '    FillCbo.CUS(CtrlCombo)
                 '    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                 'Else
-                Dim form As frmScroller = Frm
-                form.DataTable = "vw_TRANSH"
-                form.LoadRecords("vw_TRANSD")
+                If CalledFromCtrl = False Then
+                    Dim form As frmScroller = Frm
+                    form.DataTable = "vw_TRANSH"
+                    form.LoadRecords("vw_TRANSD")
+                Else
+                    FillCbo.TRANSH(CtrlCombo)
+                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+
+                End If
                 'Cls.ClearCtrls(LayoutControl1)
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -457,9 +466,11 @@ Public Class frmTransactions
         Using oCmd As New SqlCommand(sSQL, CNDB)
             oCmd.ExecuteNonQuery()
         End Using
-        Dim form As frmScroller = Frm
-        form.DataTable = "vw_TRANSH"
-        form.LoadRecords("vw_TRANSD")
+        If CalledFromCtrl = False Then
+            Dim form As frmScroller = Frm
+            form.DataTable = "vw_TRANSH"
+            form.LoadRecords("vw_TRANSD")
+        End If
 
     End Sub
 

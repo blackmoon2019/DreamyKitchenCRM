@@ -147,7 +147,14 @@ Public Class FormLoader
         Dim Ctrl As Control = LItem.Control
         If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
             Dim cbo As DevExpress.XtraEditors.LookUpEdit
-            cbo = Ctrl : cbo.EditValue = System.Guid.Parse(sValue)
+            Dim stestGuid As Guid
+            Dim isValid As Boolean = Guid.TryParse(sValue, stestGuid)
+            cbo = Ctrl
+            If isValid = True Then
+                cbo.EditValue = System.Guid.Parse(sValue)
+            Else
+                cbo.EditValue = Convert.ToInt32(sValue)
+            End If
         ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
             Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
             cbo = Ctrl
@@ -162,25 +169,25 @@ Public Class FormLoader
 
             tm.EditValue = CDate(sValue).ToString("HH:mm")
 
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
-            Dim txt As DevExpress.XtraEditors.TextEdit
-            txt = Ctrl
-            If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
-                txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
-            ElseIf txt.Properties.Mask.EditMask = "d" Then ' Αφορά το DateEditControl
-                'sSQL.Append(toSQLValueS(CDate(txt.Text).ToString("yyyyMMdd")))
-                txt.Text = sValue
-            Else
-                txt.Text = sValue
-            End If
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
-            Dim chk As DevExpress.XtraEditors.CheckEdit
-            chk = Ctrl
-            chk.EditValue = sValue
-            chk.Checked = sValue
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
+                Dim txt As DevExpress.XtraEditors.TextEdit
+                txt = Ctrl
+                If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
+                    txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
+                ElseIf txt.Properties.Mask.EditMask = "d" Then ' Αφορά το DateEditControl
+                    'sSQL.Append(toSQLValueS(CDate(txt.Text).ToString("yyyyMMdd")))
+                    txt.Text = sValue
+                Else
+                    txt.Text = sValue
+                End If
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
+                Dim chk As DevExpress.XtraEditors.CheckEdit
+                chk = Ctrl
+                chk.EditValue = sValue
+                chk.Checked = sValue
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
 
-        End If
+            End If
     End Sub
     Public Sub LoadDataToGrid(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
                               ByVal sSQL As String, Optional ByVal AddColumnButton As Boolean = False, Optional ByVal AddColumnInteger As Boolean = False)

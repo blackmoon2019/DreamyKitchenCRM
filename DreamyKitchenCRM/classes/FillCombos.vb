@@ -11,6 +11,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Περιοχές"
@@ -30,6 +31,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Κατηγορίες Τεχνικής Υποστήριξης"
@@ -49,6 +51,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Κατηγορίες Χρωμάτων"
@@ -69,6 +72,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Χρώματα"
@@ -116,6 +120,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Διευθύνσεις"
@@ -132,6 +137,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "un"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Visible = False
@@ -149,6 +155,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Νομοί"
@@ -166,6 +173,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Statuses Παρουσιολογίου"
@@ -183,6 +191,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Statuses Προσ. Ημερολογίου"
@@ -200,6 +209,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Κατηγορίες Εργασίας"
@@ -218,6 +228,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Statuses Μισθοδοσίας"
@@ -236,6 +247,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Τμήματα"
@@ -254,6 +266,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Τράπεζες"
@@ -277,6 +290,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Fullname"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Συνεργεία"
@@ -302,6 +316,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Εττικέτες"
@@ -323,6 +338,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Fullname"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Προσωπικό"
@@ -341,6 +357,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Fullname"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Πελάτες"
@@ -351,6 +368,30 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub TRANSH(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
+        Try
+            If sSQL Is Nothing Then
+                sSQL = New System.Text.StringBuilder
+                sSQL.AppendLine("Select id,Description,Totamt  from vw_TRANSH order by Description")
+            End If
+            Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.DisplayMember = "Description"
+            CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
+            CtrlCombo.Properties.Columns.Clear()
+            CtrlCombo.Properties.PopulateColumns()
+            CtrlCombo.Properties.Columns(0).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Έργα"
+            CtrlCombo.Properties.Columns(2).Visible = False
+            sdr.Close()
+        Catch ex As Exception
+                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
     Public Sub CALC(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
             Dim cmd As SqlCommand = New SqlCommand("Select id,name,calculations from vw_CALC order by name", CNDB)
@@ -358,6 +399,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Περιγραφή"
@@ -381,6 +423,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Κατηγορία Πόρτας"
@@ -404,6 +447,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "catErmName"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Κατηγορία"
@@ -425,6 +469,7 @@ Public Class FillCombos
                 CtrlCombo.Properties.DataSource = sdr
                 CtrlCombo.Properties.DisplayMember = "name"
                 CtrlCombo.Properties.ValueMember = "id"
+                CtrlCombo.Properties.Columns.Clear()
                 CtrlCombo.Properties.PopulateColumns()
                 CtrlCombo.Properties.Columns(0).Visible = False
                 CtrlCombo.Properties.Columns(1).Caption = "Επενδύσης - Καταφραγές"
@@ -451,6 +496,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Υποκατηγορίες Ερμαρίων"
@@ -469,6 +515,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Πάγκοι"
@@ -486,6 +533,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Μηχανισμοί"
@@ -505,6 +553,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Status"
@@ -523,6 +572,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Διάσταση"
@@ -541,6 +591,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = ""
@@ -558,6 +609,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Πηγές"
@@ -575,6 +627,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "cctName"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Μήνας"
@@ -609,6 +662,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Πωλητές"
@@ -629,6 +683,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "RealName"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Χρήστης"
@@ -646,6 +701,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "ΔΟΥ"
@@ -663,6 +719,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Επαγγέλματα"
@@ -680,6 +737,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Name"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Κατηγορίες Ερμαρίων"
@@ -698,6 +756,7 @@ Public Class FillCombos
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "un"
             CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Email Account"

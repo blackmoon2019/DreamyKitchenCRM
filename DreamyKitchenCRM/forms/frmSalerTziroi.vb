@@ -57,6 +57,9 @@ Public Class frmSalerTziroi
         Dim sSQL As New System.Text.StringBuilder
         FillCbo.SALERS(cboSaler)
         FillCbo.CUS(cboCUS)
+        FillCbo.TRANSH(cboTransH)
+
+
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("EMP_T")
@@ -72,6 +75,19 @@ Public Class frmSalerTziroi
 
     Private Sub frmSalerTziroi_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
+    End Sub
+    Private Sub ManageTRANSH()
+        Dim form1 As frmTransactions = New frmTransactions()
+        form1.Text = "Χρεωπιστώσεις Πελατών"
+        form1.CallerControl = cboTransH
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If cboTransH.EditValue <> Nothing Then
+            form1.ID = cboTransH.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
     End Sub
     Private Sub ManageCus()
         Dim form1 As frmCustomers = New frmCustomers()
@@ -175,5 +191,19 @@ Public Class frmSalerTziroi
     Private Sub txtsalePrice_Validated(sender As Object, e As EventArgs) Handles txtsalePrice.Validated
         txtbusisnessProfit.EditValue = txtsalePrice.EditValue - txtnormalPrice.EditValue
 
+    End Sub
+
+    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
+        If cboCUS.EditValue Is Nothing Then Exit Sub
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select id,Description,Totamt from vw_TRANSH where cusid = " & toSQLValueS(cboCUS.EditValue.ToString) & "order by description")
+        FillCbo.TRANSH(cboTransH, sSQL)
+    End Sub
+
+    Private Sub cboTransH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTransH.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : If cboTransH.EditValue <> Nothing Then ManageTRANSH()
+            Case 2 : cboTransH.EditValue = Nothing
+        End Select
     End Sub
 End Class

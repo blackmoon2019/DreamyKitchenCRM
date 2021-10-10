@@ -16,7 +16,7 @@ Public Class frmMain
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_NOTES' table. You can move, or remove it, as needed.
 
         Me.Vw_NOTESTableAdapter.FillBy1(Me.DreamyKitchenDataSet.vw_NOTES, UserProps.SalerID, UserProps.ID)
-        XtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders
+        'XtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders
         bbDate.Caption = DateTime.Today
         bbUser.Caption = "Χρήστης: " & UserProps.RealName
         bbServer.Caption = "SQL Server: " & CNDB.DataSource.ToString

@@ -18,6 +18,8 @@ Public Class frmConstrunction
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
+    Private WorkingTime As Integer
+    Private AgreementSalary As Double
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -186,8 +188,10 @@ Public Class frmConstrunction
         txtSalary.EditValue = cboSER.GetColumnValue("salary")
         tmIN.EditValue = cboSER.GetColumnValue("tmIN")
         tmOUT.EditValue = cboSER.GetColumnValue("tmOUT")
+        AgreementSalary = txtSalary.EditValue
+        WorkingTime = TimeWorkCalculate()
     End Sub
-    Private Function OvereWorkCalculate() As Integer
+    Private Function TimeWorkCalculate() As Integer
         Try
             Dim startTime As New DateTime(Now.Year, Now.Month, Now.Day, tmIN.Text.ToString.Substring(0, 2), tmIN.Text.ToString.Substring(3, 2), 0)     ' 10:30 AM today
             Dim endTime As New DateTime(Now.Year, Now.Month, Now.Day, tmOUT.Text.ToString.Substring(0, 2), tmOUT.Text.ToString.Substring(3, 2), 0)     ' 10:30 AM today
@@ -206,14 +210,15 @@ Public Class frmConstrunction
         Dim OverWork As Integer
         Dim SalaryPerMinute As Double
         Dim ExtraCost As Double
-        If tmIN.Text = "" Or txtSalary.EditValue <> Nothing Then Exit Sub
-        SalaryPerMinute = txtSalary.EditValue / 480
-        TotalWork = OvereWorkCalculate()
+        If tmIN.Text = "" Or txtSalary.EditValue = Nothing Then Exit Sub
+        TotalWork = TimeWorkCalculate()
+        SalaryPerMinute = AgreementSalary / WorkingTime
+        txtSalary.EditValue = TotalWork * SalaryPerMinute
         If TotalWork > 480 Then
             OverWork = TotalWork - 480
             txtOverWork.EditValue = OverWork
             ExtraCost = TotalWork * SalaryPerMinute
-            ExtraCost = ExtraCost - txtSalary.EditValue
+            ExtraCost = ExtraCost - AgreementSalary
         Else
             OverWork = 0
             txtExtraCost.EditValue = "0"
@@ -222,21 +227,21 @@ Public Class frmConstrunction
         txtExtraCost.EditValue = ExtraCost
 
     End Sub
-
     Private Sub tmOUT_Validated(sender As Object, e As EventArgs) Handles tmOUT.Validated
         ' 480 ΛΕΠΤΑ ΕΙΝΑΙ ΤΟ 8ΑΩΡΟ
         Dim TotalWork As Integer
         Dim OverWork As Integer
         Dim SalaryPerMinute As Double
         Dim ExtraCost As Double
-        If tmOUT.Text = "" Or txtSalary.EditValue <> Nothing Then Exit Sub
-        SalaryPerMinute = txtSalary.EditValue / 480
-        TotalWork = OvereWorkCalculate()
+        If tmIN.Text = "" Or txtSalary.EditValue = Nothing Then Exit Sub
+        TotalWork = TimeWorkCalculate()
+        SalaryPerMinute = AgreementSalary / WorkingTime
+        txtSalary.EditValue = TotalWork * SalaryPerMinute
         If TotalWork > 480 Then
             OverWork = TotalWork - 480
             txtOverWork.EditValue = OverWork
             ExtraCost = TotalWork * SalaryPerMinute
-            ExtraCost = ExtraCost - txtSalary.EditValue
+            ExtraCost = ExtraCost - AgreementSalary
         Else
             OverWork = 0
             txtExtraCost.EditValue = "0"
