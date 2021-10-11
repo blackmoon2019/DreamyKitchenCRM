@@ -20,9 +20,9 @@ Partial Class frmCalendarPersonal
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TimeRuler1 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
-        Dim TimeRuler2 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
-        Dim TimeRuler3 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler4 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler5 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler6 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.CommonBar1 = New DevExpress.XtraScheduler.UI.CommonBar()
@@ -74,6 +74,7 @@ Partial Class frmCalendarPersonal
         Me.SchedulerBarController1 = New DevExpress.XtraScheduler.UI.SchedulerBarController(Me.components)
         Me.DreamyKitchenAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_SALER_CAL_STATUSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALER_CAL_STATUSTableAdapter()
+        Me.Vw_EMPTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_EMPTableAdapter()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,12 +125,12 @@ Partial Class frmCalendarPersonal
         Me.SchedulerControl1.Start = New Date(2020, 10, 5, 0, 0, 0, 0)
         Me.SchedulerControl1.TabIndex = 11
         Me.SchedulerControl1.Text = "SchedulerControl1"
-        Me.SchedulerControl1.Views.DayView.TimeRulers.Add(TimeRuler1)
+        Me.SchedulerControl1.Views.DayView.TimeRulers.Add(TimeRuler4)
         Me.SchedulerControl1.Views.FullWeekView.Enabled = True
-        Me.SchedulerControl1.Views.FullWeekView.TimeRulers.Add(TimeRuler2)
+        Me.SchedulerControl1.Views.FullWeekView.TimeRulers.Add(TimeRuler5)
         Me.SchedulerControl1.Views.MonthView.AppointmentDisplayOptions.AppointmentAutoHeight = True
         Me.SchedulerControl1.Views.WeekView.Enabled = False
-        Me.SchedulerControl1.Views.WorkWeekView.TimeRulers.Add(TimeRuler3)
+        Me.SchedulerControl1.Views.WorkWeekView.TimeRulers.Add(TimeRuler6)
         Me.SchedulerControl1.Views.YearView.UseOptimizedScrolling = False
         '
         'SchedulerDataStorage1
@@ -455,6 +456,10 @@ Partial Class frmCalendarPersonal
         '
         Me.Vw_SALER_CAL_STATUSTableAdapter.ClearBeforeFill = True
         '
+        'Vw_EMPTableAdapter
+        '
+        Me.Vw_EMPTableAdapter.ClearBeforeFill = True
+        '
         'frmCalendarPersonal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -533,4 +538,5 @@ Partial Class frmCalendarPersonal
     Friend WithEvents VwSALERCALSTATUSBindingSource As BindingSource
     Friend WithEvents Vw_SALER_CAL_STATUSTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SALER_CAL_STATUSTableAdapter
     Friend WithEvents SchedulerControl1 As DevExpress.XtraScheduler.SchedulerControl
+    Friend WithEvents Vw_EMPTableAdapter As DreamyKitchenDataSetTableAdapters.vw_EMPTableAdapter
 End Class

@@ -58,7 +58,7 @@ Public Class frmCustomers
         'FillCbo.ADR(cboADR, sSQL)
         'FillCbo.AREAS(cboAREAS, sSQL)
         FillCbo.SRC(cboSRC)
-        FillCbo.SALERS(cboSaler)
+        'FillCbo.SALERS(cboSaler)
         FillCbo.PRF(cboPRF)
         FillCbo.DOY(cboDOY)
 
@@ -213,22 +213,22 @@ Public Class frmCustomers
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
-    Private Sub ManageSaler()
-        Dim form1 As frmGen = New frmGen()
-        form1.Text = "Πωλητές"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Πωλητής"
-        form1.L6.Text = "Χρώμα"
-        form1.DataTable = "SALERS"
-        form1.CalledFromControl = True
-        form1.CallerControl = cboSaler
-        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
-        form1.MdiParent = frmMain
-        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
+    'Private Sub ManageSaler()
+    '    Dim form1 As frmGen = New frmGen()
+    '    form1.Text = "Πωλητές"
+    '    form1.L1.Text = "Κωδικός"
+    '    form1.L2.Text = "Πωλητής"
+    '    form1.L6.Text = "Χρώμα"
+    '    form1.DataTable = "SALERS"
+    '    form1.CalledFromControl = True
+    '    form1.CallerControl = cboSaler
+    '    If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
+    '    form1.MdiParent = frmMain
+    '    form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+    '    If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+    '    frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+    '    form1.Show()
+    'End Sub
     Private Sub ManageSRC()
         Dim form1 As frmGen = New frmGen()
         form1.Text = "Πηγές"
@@ -410,13 +410,13 @@ Public Class frmCustomers
 
     End Sub
 
-    Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
-            Case 3 : cboSaler.EditValue = Nothing
-        End Select
-    End Sub
+    'Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    '    Select Case e.Button.Index
+    '        Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
+    '        Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
+    '        Case 3 : cboSaler.EditValue = Nothing
+    '    End Select
+    'End Sub
 
     Private Sub cboSRC_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSRC.ButtonClick
         Select Case e.Button.Index

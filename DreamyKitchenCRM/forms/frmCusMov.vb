@@ -3,6 +3,7 @@ Imports System.Data.SqlClient
 Imports System.IO
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraExport.Xls
 Imports DevExpress.XtraGrid.Columns
@@ -152,7 +153,7 @@ Public Class frmCusMov
 
     End Sub
 
-    Private Sub cmdCboManageCUS_Click(sender As Object, e As EventArgs) Handles cmdCboManageCUS.Click
+    Private Sub cmdCboManageCUS_Click(sender As Object, e As EventArgs)
         Dim form1 As frmCustomers = New frmCustomers()
         form1.Text = "Πελάτες"
         form1.CallerControl = cboCUS
@@ -168,7 +169,7 @@ Public Class frmCusMov
         form1.Show()
     End Sub
 
-    Private Sub cmdCboManageSTATUS_Click(sender As Object, e As EventArgs) Handles cmdCboManageSTATUS.Click
+    Private Sub cmdCboManageSTATUS_Click(sender As Object, e As EventArgs)
         Dim form1 As frmGen = New frmGen()
         form1.Text = "STATUS"
         form1.L1.Text = "Κωδικός"
@@ -188,21 +189,89 @@ Public Class frmCusMov
         form1.Show()
     End Sub
 
-    Private Sub cmdCBOManageSaler_Click(sender As Object, e As EventArgs) Handles cmdCBOManageSaler.Click
-        Dim form1 As frmGen = New frmGen()
-        form1.Text = "Πωλητές"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Πωλητής"
-        form1.DataTable = "SALERS"
+    Private Sub frmCusMov_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+        If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
+    End Sub
+
+    Private Sub chkCompleted_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompleted.CheckedChanged
+        Dim Edit As CheckEdit = CType(sender, CheckEdit)
+        If Edit.Checked = True Then dtCompleted.EditValue = Date.Now Else dtCompleted.Enabled = False : dtCompleted.EditValue = ""
+    End Sub
+    Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboCUS.EditValue = Nothing : ManageCus()
+            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 3 : cboCUS.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 3 : cboSaler.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageStatus()
+        Dim form3 As frmGen = New frmGen()
+        form3.Text = "Status"
+        form3.MdiParent = frmMain
+        If cboSTATUS.EditValue <> Nothing Then
+            form3.ID = cboSTATUS.EditValue.ToString
+            form3.Mode = FormMode.EditRecord
+        Else
+            form3.Mode = FormMode.NewRecord
+        End If
+        form3.DataTable = "STATUS"
+        form3.L1.Text = "Κωδικός"
+        form3.L2.Text = "Status"
+        form3.L6.Text = "Χρώμα"
+        form3.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
+        form3.chk1.Visible = True
+        form3.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form3.FormScroller = Me
+        form3.CalledFromControl = False
+        form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form3), New Point(CInt(form3.Parent.ClientRectangle.Width / 2 - form3.Width / 2), CInt(form3.Parent.ClientRectangle.Height / 2 - form3.Height / 2)))
+        form3.Show()
+    End Sub
+    Private Sub ManageCus()
+        Dim form1 As frmCustomers = New frmCustomers()
+        form1.Text = "Πελάτες"
+        form1.CallerControl = cboCUS
         form1.CalledFromControl = True
-        form1.CallerControl = cboSaler
-        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
         form1.MdiParent = frmMain
-        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L6.Text = "Χρώμα"
-        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboCUS.EditValue <> Nothing Then
+            form1.ID = cboCUS.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
+    End Sub
+    Private Sub ManageSaler()
+        Dim form1 As frmEMP = New frmEMP()
+        form1.Text = "Πωλητές"
+        form1.CallerControl = cboSaler
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If cboSaler.EditValue <> Nothing Then
+            form1.ID = cboSaler.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+
+    Private Sub cboSTATUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSTATUS.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboSTATUS.EditValue = Nothing : ManageStatus()
+            Case 2 : If cboSTATUS.EditValue <> Nothing Then ManageStatus()
+            Case 3 : cboSTATUS.EditValue = Nothing
+        End Select
+
     End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
@@ -224,14 +293,5 @@ Public Class frmCusMov
             cboRemValues.EditValue = Nothing : cboRemValues.Text = "" : cboRemValues.ReadOnly = True
 
         End If
-    End Sub
-
-    Private Sub frmCusMov_Resize(sender As Object, e As EventArgs) Handles Me.Resize
-        If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
-    End Sub
-
-    Private Sub chkCompleted_CheckedChanged(sender As Object, e As EventArgs) Handles chkCompleted.CheckedChanged
-        Dim Edit As CheckEdit = CType(sender, CheckEdit)
-        If Edit.Checked = True Then dtCompleted.EditValue = Date.Now Else dtCompleted.Enabled = False : dtCompleted.EditValue = ""
     End Sub
 End Class

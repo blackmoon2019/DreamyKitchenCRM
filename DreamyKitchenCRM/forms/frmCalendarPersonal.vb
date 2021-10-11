@@ -15,7 +15,7 @@ Public Class frmCalendarPersonal
     Private Sub frmCalendarPersonal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Try
             Dim sSQL As String
-            sSQL = "SELECT * FROM vw_SALER_CALENDAR WHERE salersID = " & toSQLValueS(UserProps.SalerID.ToString) & " order by code"
+            sSQL = "SELECT * FROM vw_SALER_CALENDAR WHERE empID = " & toSQLValueS(UserProps.SalerID.ToString) & " order by code"
             'Δημιουργία Appointments
             Calendar.InitializePersonal(SchedulerControl1, SchedulerDataStorage1, sSQL, True)
             Me.Vw_SALER_CAL_STATUSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALER_CAL_STATUS)
@@ -85,7 +85,7 @@ Public Class frmCalendarPersonal
         Dim sSQL As String
         Dim sIDS As New StringBuilder
         SchedulerDataStorage1.Appointments.Clear()
-        sSQL = "SELECT * FROM vw_SALER_CALENDAR WHERE salersID = " & toSQLValueS(UserProps.SalerID.ToString)
+        sSQL = "SELECT * FROM vw_SALER_CALENDAR WHERE empID = " & toSQLValueS(UserProps.SalerID.ToString)
 
         ' FILTER STATUS
         For i As Integer = 0 To cboStatus.Items.Count - 1

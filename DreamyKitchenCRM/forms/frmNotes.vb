@@ -76,10 +76,13 @@ Public Class frmNotes
         End If
     End Sub
     Private Sub frmNotes_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select id,Fullname,salary from vw_EMP where jobID not in ( '475CBAD0-555B-4945-92EF-7D5A611D8D46','E0C1789F-713C-45C1-8339-41950701F146','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
+        FillCbo.EMP(cboSaler, sSQL)
+
         'Εττικέτες
         FillCbo.NOTES_L(cboNotesL)
-        'Πωλητές
-        FillCbo.SALERS(cboSaler)
+
         Select Case Mode
             Case FormMode.NewRecord
                 'dtDTS.EditValue = DateTime.Now
@@ -145,17 +148,18 @@ Public Class frmNotes
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
-    Private Sub ManageSalers()
-        Dim form1 As frmGen = New frmGen()
+    Private Sub ManageSaler()
+        Dim form1 As frmEMP = New frmEMP()
         form1.Text = "Πωλητές"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Πωλητής"
-        form1.DataTable = "SALERS"
-        form1.CalledFromControl = True
         form1.CallerControl = cboSaler
-        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
+        form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboSaler.EditValue <> Nothing Then
+            form1.ID = cboSaler.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -229,16 +233,10 @@ Public Class frmNotes
     End Sub
     Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageSalers()
+            Case 1 : ManageSaler()
             Case 2 : cboSaler.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub cboSaler_EditValueChanged(sender As Object, e As EventArgs) Handles cboSaler.EditValueChanged
 
-    End Sub
-
-    Private Sub txtFileNames_EditValueChanged(sender As Object, e As EventArgs) Handles txtFileNames.EditValueChanged
-
-    End Sub
 End Class

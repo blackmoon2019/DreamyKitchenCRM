@@ -57,6 +57,7 @@ Public Class frmEMP
         FillCbo.DEP(cboDEP)
         FillCbo.SER(cboSER)
         FillCbo.SALERS(cboSaler)
+        FillCbo.JOBS(cboJobs)
 
         Select Case Mode
             Case FormMode.NewRecord
@@ -109,6 +110,19 @@ Public Class frmEMP
 
     Private Sub frmEMP_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
+    End Sub
+    Private Sub ManageJOBS()
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "Θέσεις Εργασίας"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Θέση"
+        form1.DataTable = "JOBS"
+        form1.CallerControl = cboJobs
+        If cboJobs.EditValue <> Nothing Then form1.ID = cboJobs.EditValue.ToString
+        form1.MdiParent = frmMain
+        If cboJobs.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
     End Sub
     Private Sub ManageAREAS()
         Dim form1 As frmGen = New frmGen()
@@ -432,5 +446,14 @@ Public Class frmEMP
         If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
+    End Sub
+
+    Private Sub cboJobs_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboJobs.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboJobs.EditValue = Nothing : ManageJOBS()
+            Case 2 : If cboJobs.EditValue <> Nothing Then ManageJOBS()
+            Case 3 : cboJobs.EditValue = Nothing
+        End Select
+
     End Sub
 End Class

@@ -152,7 +152,7 @@ Partial Class frmUsers
         Me.cboSaler.Size = New System.Drawing.Size(245, 20)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 5
-        Me.cboSaler.Tag = "SalerID,0,1,2"
+        Me.cboSaler.Tag = "empID,0,1,2"
         '
         'chkActive
         '
@@ -251,7 +251,7 @@ Partial Class frmUsers
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 72)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(341, 24)
-        Me.LayoutControlItem7.Text = "Πωλητής"
+        Me.LayoutControlItem7.Text = "Υπάλληλος"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(80, 13)
         '
         'EmptySpaceItem2

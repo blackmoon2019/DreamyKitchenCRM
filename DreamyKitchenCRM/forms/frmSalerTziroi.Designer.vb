@@ -221,7 +221,7 @@ Partial Class frmSalerTziroi
         Me.cboSaler.Size = New System.Drawing.Size(471, 20)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 6
-        Me.cboSaler.Tag = "SalerId,0,1,2"
+        Me.cboSaler.Tag = "empID,0,1,2"
         '
         'txtnormalPrice
         '

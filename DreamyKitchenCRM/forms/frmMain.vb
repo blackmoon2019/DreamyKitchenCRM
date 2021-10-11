@@ -666,5 +666,13 @@ Public Class frmMain
             XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
+
+    Private Sub bbJobs_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbJobs.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Θέσεις Εργασίας"
+        form.DataTable = "vw_JOBS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

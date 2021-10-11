@@ -188,6 +188,7 @@ Public Class frmConstrunction
         txtSalary.EditValue = cboSER.GetColumnValue("salary")
         tmIN.EditValue = cboSER.GetColumnValue("tmIN")
         tmOUT.EditValue = cboSER.GetColumnValue("tmOUT")
+        If txtSalary.EditValue Is Nothing Then Exit Sub
         AgreementSalary = txtSalary.EditValue
         WorkingTime = TimeWorkCalculate()
     End Sub

@@ -109,7 +109,7 @@ Public Class frmNotesScroller
 
     Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarRefresh.ItemClick
         'LoadRecords("vw_NOTES")
-        LoadRecords("vw_NOTES", "where (salerid = '" & UserProps.SalerID.ToString & "' or createdby = '" & UserProps.ID.ToString & "')")
+        LoadRecords("vw_NOTES", "where (empid = '" & UserProps.SalerID.ToString & "' or createdby = '" & UserProps.ID.ToString & "')")
         Me.Text = "Εισερχόμενα/Εξερχόμενα Σημειώματα"
     End Sub
 
@@ -118,7 +118,7 @@ Public Class frmNotesScroller
     End Sub
 
     Private Sub BarIncoming_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarIncoming.ItemClick
-        LoadRecords("vw_NOTES", "where (salerid = '" & UserProps.SalerID.ToString & "')")
+        LoadRecords("vw_NOTES", "where (empid = '" & UserProps.SalerID.ToString & "')")
         Me.Text = "Εισερχόμενα Σημειώματα"
     End Sub
 

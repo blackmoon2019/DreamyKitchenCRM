@@ -40,7 +40,6 @@ Partial Class frmCustomers
         Me.cboPRF = New DevExpress.XtraEditors.LookUpEdit()
         Me.txtFileNames = New DevExpress.XtraEditors.ButtonEdit()
         Me.cboSRC = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cboSaler = New DevExpress.XtraEditors.LookUpEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -63,7 +62,6 @@ Partial Class frmCustomers
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
@@ -87,7 +85,6 @@ Partial Class frmCustomers
         CType(Me.cboPRF.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFileNames.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSRC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -110,7 +107,6 @@ Partial Class frmCustomers
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -132,7 +128,6 @@ Partial Class frmCustomers
         Me.LayoutControl1.Controls.Add(Me.cboPRF)
         Me.LayoutControl1.Controls.Add(Me.txtFileNames)
         Me.LayoutControl1.Controls.Add(Me.cboSRC)
-        Me.LayoutControl1.Controls.Add(Me.cboSaler)
         Me.LayoutControl1.Location = New System.Drawing.Point(-6, -8)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
@@ -236,9 +231,9 @@ Partial Class frmCustomers
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(470, 225)
+        Me.txtComments.Location = New System.Drawing.Point(470, 201)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(295, 89)
+        Me.txtComments.Size = New System.Drawing.Size(295, 113)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
@@ -333,24 +328,11 @@ Partial Class frmCustomers
         Me.cboSRC.TabIndex = 6
         Me.cboSRC.Tag = "SourceId,0,1,2"
         '
-        'cboSaler
-        '
-        Me.cboSaler.Location = New System.Drawing.Point(470, 201)
-        Me.cboSaler.Name = "cboSaler"
-        Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboSaler.Properties.NullText = ""
-        Me.cboSaler.Properties.PopupSizeable = False
-        Me.cboSaler.Size = New System.Drawing.Size(295, 20)
-        Me.cboSaler.StyleController = Me.LayoutControl1
-        Me.cboSaler.TabIndex = 6
-        Me.cboSaler.Tag = "SalerId,0,1,2"
-        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem27, Me.LayoutControlItem25, Me.LayoutControlGroup1, Me.LayoutControlGroup2, Me.LayoutControlGroup3, Me.LayoutControlItem14, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem3})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem27, Me.LayoutControlItem25, Me.LayoutControlGroup1, Me.LayoutControlGroup2, Me.LayoutControlGroup3, Me.LayoutControlItem14, Me.EmptySpaceItem1, Me.LayoutControlItem2})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(777, 543)
         Me.Root.TextVisible = False
@@ -559,9 +541,9 @@ Partial Class frmCustomers
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
         Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(389, 213)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(389, 189)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(368, 93)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(368, 117)
         Me.LayoutControlItem14.Text = "Σχόλια"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(57, 13)
         '
@@ -586,18 +568,6 @@ Partial Class frmCustomers
         Me.LayoutControlItem2.Tag = "1"
         Me.LayoutControlItem2.Text = "Πηγή"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(57, 13)
-        '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me.cboSaler
-        Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem3.CustomizationFormText = "Περιοχή"
-        Me.LayoutControlItem3.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(389, 189)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(368, 24)
-        Me.LayoutControlItem3.Text = "Πωλητής"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(57, 13)
         '
         'cmdExit
         '
@@ -654,7 +624,6 @@ Partial Class frmCustomers
         CType(Me.cboPRF.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFileNames.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSRC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
@@ -677,7 +646,6 @@ Partial Class frmCustomers
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -724,8 +692,6 @@ Partial Class frmCustomers
     Friend WithEvents cmdExit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents cmdSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents cboSRC As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents cboSaler As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents XtraOpenFileDialog1 As DevExpress.XtraEditors.XtraOpenFileDialog
 End Class

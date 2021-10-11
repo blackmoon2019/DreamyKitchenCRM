@@ -226,6 +226,7 @@ Public Class frmScroller
                     Case "vw_SALER_CAL_STATUS" : sSQL = "DELETE FROM SALER_CAL_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CONSTR_CAT" : sSQL = "DELETE FROM CONSTR_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CONSTR" : sSQL = "DELETE FROM CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_JOBS" : sSQL = "DELETE FROM JOBS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH"
                         sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
                                 WHERE TRANSH.ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -614,6 +615,7 @@ Public Class frmScroller
         Dim form25 As frmGen = New frmGen()
         Dim form26 As frmGen = New frmGen()
         Dim form27 As frmGen = New frmGen()
+        Dim form28 As frmGen = New frmGen()
         Dim fTechicalSupport As frmTecnicalSupport = New frmTecnicalSupport()
         Dim frmColors As frmColors = New frmColors
         Dim frmoffer As frmOffer = New frmOffer
@@ -630,6 +632,20 @@ Public Class frmScroller
         Dim frmSalerTziroi As New frmSalerTziroi
         Dim frmConstrunction As New frmConstrunction
         Select Case sDataTable
+            Case "vw_JOBS"
+                form28.Text = "Θέσεις Εργασίας"
+                form28.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form28.MdiParent = frmMain
+                form28.Mode = FormMode.EditRecord
+                form28.Scroller = GridView1
+                form28.FormScroller = Me
+                form28.DataTable = "JOBS"
+                form28.L1.Text = "Κωδικός"
+                form28.L2.Text = "Θέση"
+                form28.FormScroller = Me
+                form28.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form28), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form28.Show()
             Case "vw_CONSTR"
                 frmConstrunction.Text = "Μισθοδοσία Κατασκευαστικού"
                 frmConstrunction.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -1183,6 +1199,7 @@ Public Class frmScroller
         Dim form25 As frmGen = New frmGen()
         Dim form26 As frmGen = New frmGen()
         Dim form27 As frmGen = New frmGen()
+        Dim form28 As frmGen = New frmGen()
         Dim frmOffer As frmOffer = New frmOffer
         Dim frmEpendisis As frmEpendisis = New frmEpendisis
         Dim frmServices As frmServices = New frmServices()
@@ -1198,6 +1215,20 @@ Public Class frmScroller
         Dim frmConstrunction As New frmConstrunction
 
         Select Case sDataTable
+            Case "vw_JOBS"
+                form28.Text = "Θέσεις Εργασίας"
+                form28.MdiParent = frmMain
+                form28.Mode = FormMode.NewRecord
+                form28.Scroller = GridView1
+                form28.FormScroller = Me
+                form28.DataTable = "JOBS"
+                form28.L1.Text = "Κωδικός"
+                form28.L2.Text = "Θέση"
+                form28.FormScroller = Me
+                form28.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form28), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form28.Show()
+
             Case "vw_CONSTR"
                 frmConstrunction.Text = "Μισθοδοσία Κατασκευαστικού"
                 frmConstrunction.MdiParent = frmMain

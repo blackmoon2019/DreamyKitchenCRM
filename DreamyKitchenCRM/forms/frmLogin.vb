@@ -38,7 +38,7 @@ Public Class frmLogin
         Dim sdr As SqlDataReader
         Try
 
-            sSQL = "select Realname,code,ID,M_UN,M_pwd,server,port,ssl,salerID from vw_USR 
+            sSQL = "select Realname,code,ID,M_UN,M_pwd,server,port,ssl,empID from vw_USR 
                 where UN= '" & txtUN.Text & "' and pwd = '" & txtPWD.Text & "'"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
@@ -47,7 +47,7 @@ Public Class frmLogin
                     UserProps.Code = sdr.GetInt32(sdr.GetOrdinal("code"))
                     UserProps.RealName = sdr.GetString(sdr.GetOrdinal("Realname"))
                     UserProps.ID = sdr.GetGuid(sdr.GetOrdinal("ID"))
-                    If sdr.IsDBNull(sdr.GetOrdinal("salerID")) = False Then UserProps.SalerID = sdr.GetGuid(sdr.GetOrdinal("salerID"))
+                    If sdr.IsDBNull(sdr.GetOrdinal("empID")) = False Then UserProps.SalerID = sdr.GetGuid(sdr.GetOrdinal("empID"))
                     If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then UserProps.ID = sdr.GetGuid(sdr.GetOrdinal("ID"))
                     If sdr.IsDBNull(sdr.GetOrdinal("M_un")) = False Then UserProps.Email = sdr.GetString(sdr.GetOrdinal("M_un"))
                     If sdr.IsDBNull(sdr.GetOrdinal("server")) = False Then UserProps.EmailServer = sdr.GetString(sdr.GetOrdinal("server"))

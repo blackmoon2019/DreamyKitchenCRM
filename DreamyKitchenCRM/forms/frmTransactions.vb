@@ -73,6 +73,8 @@ Public Class frmTransactions
         FillCbo.BANKS(cboBANK)
         'Πελάτες
         FillCbo.CUS(cboCUS)
+        'Πωλητές
+        FillCbo.SALERS(cboSaler)
 
         Select Case Mode
             Case FormMode.NewRecord
@@ -107,10 +109,10 @@ Public Class frmTransactions
 
         Try
             If Valid.ValidateFormGRP(LayoutControlGroup1) Then
-                If cboCUS.GetColumnValue("SalerID").ToString() = "00000000-0000-0000-0000-000000000000" Then
-                    XtraMessageBox.Show("Παρακαλώ ορίστε πωλητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                End If
+                'If cboCUS.GetColumnValue("SalerID").ToString() = "00000000-0000-0000-0000-000000000000" Then
+                '    XtraMessageBox.Show("Παρακαλώ ορίστε πωλητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                '    Exit Sub
+                'End If
                 ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
                 Select Case Mode
                     Case FormMode.NewRecord
@@ -119,10 +121,10 @@ Public Class frmTransactions
                         sID = sGuid
                         sSQL.Clear()
                         sEMP_T_ID = System.Guid.NewGuid.ToString
-                        sSQL.AppendLine("INSERT INTO EMP_T (ID,CUSID,SALERID,SALEPRICE,CREATEDBY,CREATEDON,TRANSHID,dtPay)")
+                        sSQL.AppendLine("INSERT INTO EMP_T (ID,CUSID,EMPID,SALEPRICE,CREATEDBY,CREATEDON,TRANSHID,dtPay)")
                         sSQL.AppendLine("Select " & toSQLValueS(sEMP_T_ID.ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(cboCUS.EditValue.ToString) & ",")
-                        sSQL.AppendLine(toSQLValueS(cboCUS.GetColumnValue("SalerID").ToString) & ",")
+                        sSQL.AppendLine(toSQLValueS(cboSaler.EditValue.ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(txtTotAmt.EditValue, True) & ",")
                         sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ",")
                         sSQL.AppendLine("getdate(),")
@@ -137,7 +139,7 @@ Public Class frmTransactions
                         sGuid = sID
                         sSQL.Clear()
                         sSQL.AppendLine("UPDATE EMP_T SET CUSID = " & toSQLValueS(cboCUS.EditValue.ToString) & ",")
-                        sSQL.AppendLine("SALERID = " & toSQLValueS(cboCUS.GetColumnValue("SalerID").ToString) & ",")
+                        sSQL.AppendLine("EMPID = " & toSQLValueS(cboSaler.EditValue.ToString) & ",")
                         sSQL.AppendLine("SALEPRICE = " & toSQLValueS(txtTotAmt.EditValue, True) & ",")
                         sSQL.AppendLine("MODIFIEDBY= " & toSQLValueS(UserProps.ID.ToString) & ",")
                         sSQL.AppendLine("MODIFIEDON= GETDATE(), ")
@@ -495,13 +497,35 @@ Public Class frmTransactions
                 frmInstallations.EMP_T_ID = txtEMP_T_ID.EditValue.ToString
             End If
             frmInstallations.CalledFromControl = False
-            frmInstallations.cboSaler.EditValue = cboCUS.GetColumnValue("SalerID")
+            'frmInstallations.cboSaler.EditValue = cboCUS.GetColumnValue("SalerID")
+            frmInstallations.cboSaler.EditValue = cboSaler.EditValue
             frmInstallations.cboCUS.EditValue = cboCUS.EditValue
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstallations), New Point(CInt(frmInstallations.Parent.ClientRectangle.Width / 2 - frmInstallations.Width / 2), CInt(frmInstallations.Parent.ClientRectangle.Height / 2 - frmInstallations.Height / 2)))
             frmInstallations.Show()
         End If
     End Sub
-
+    Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 3 : cboSaler.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageSaler()
+        Dim form1 As frmEMP = New frmEMP()
+        form1.Text = "Πωλητές"
+        form1.CallerControl = cboSaler
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If cboSaler.EditValue <> Nothing Then
+            form1.ID = cboSaler.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
     Friend Class MenuColumnInfo
         Public Sub New(ByVal column As GridColumn)
             Me.Column = column

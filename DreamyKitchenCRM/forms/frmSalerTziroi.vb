@@ -105,29 +105,17 @@ Public Class frmSalerTziroi
         form1.Show()
     End Sub
     Private Sub ManageSaler()
-        Dim form1 As frmGen = New frmGen()
+        Dim form1 As frmEMP = New frmEMP()
         form1.Text = "Πωλητές"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Πωλητής"
-        form1.L6.Text = "Χρώμα"
-        form1.DataTable = "SALERS"
-        form1.L9.Text = "Ποσοστό κέρδους"
-        form1.L9.Control.Tag = "profitPerc,0,1,2"
-        Dim profitPerc As DevExpress.XtraEditors.TextEdit = TryCast(form1.L9.Control, DevExpress.XtraEditors.TextEdit)
-        profitPerc.Properties.EditFormat.FormatString = "n0"
-        profitPerc.Properties.EditFormat.FormatType = FormatType.Numeric
-        profitPerc.Properties.MaskSettings.MaskExpression = "n0"
-        profitPerc.Properties.Mask.MaskType = Mask.MaskType.Numeric
-        profitPerc.Properties.UseMaskAsDisplayFormat = True
-        form1.CalledFromControl = True
         form1.CallerControl = cboSaler
-        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
+        form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboSaler.EditValue <> Nothing Then
+            form1.ID = cboSaler.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub

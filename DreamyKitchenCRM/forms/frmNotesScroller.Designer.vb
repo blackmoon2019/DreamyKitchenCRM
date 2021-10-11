@@ -58,6 +58,7 @@ Partial Class frmNotesScroller
         Me.BarDelete = New DevExpress.XtraBars.BarButtonItem()
         Me.BarEdit = New DevExpress.XtraBars.BarButtonItem()
         Me.BarRefresh = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBSaveView = New DevExpress.XtraBars.BarButtonItem()
         Me.BarIncoming = New DevExpress.XtraBars.BarButtonItem()
         Me.BarOutgoing = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
@@ -66,7 +67,6 @@ Partial Class frmNotesScroller
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.Bar2 = New DevExpress.XtraBars.Bar()
         Me.Bar4 = New DevExpress.XtraBars.Bar()
-        Me.BBSaveView = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RepositoryItemMemoEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwNOTESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -236,8 +236,8 @@ Partial Class frmNotesScroller
         '
         'colSalerName
         '
-        Me.colSalerName.Caption = "Αφορά τον Πωλητή"
-        Me.colSalerName.CustomizationCaption = "Αφορά τον Πωλητή"
+        Me.colSalerName.Caption = "Αφορά τον"
+        Me.colSalerName.CustomizationCaption = "Αφορά τον"
         Me.colSalerName.FieldName = "SalerName"
         Me.colSalerName.LayoutViewField = Me.layoutViewField_colSalerName
         Me.colSalerName.Name = "colSalerName"
@@ -295,7 +295,7 @@ Partial Class frmNotesScroller
         Me.layoutViewField_LayoutViewColumn1.EditorPreferredWidth = 10
         Me.layoutViewField_LayoutViewColumn1.Location = New System.Drawing.Point(0, 165)
         Me.layoutViewField_LayoutViewColumn1.Name = "layoutViewField_LayoutViewColumn1"
-        Me.layoutViewField_LayoutViewColumn1.Size = New System.Drawing.Size(367, 20)
+        Me.layoutViewField_LayoutViewColumn1.Size = New System.Drawing.Size(367, 24)
         Me.layoutViewField_LayoutViewColumn1.TextSize = New System.Drawing.Size(115, 13)
         '
         'LayoutViewCard1
@@ -384,6 +384,12 @@ Partial Class frmNotesScroller
         Me.BarRefresh.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_refresh_16
         Me.BarRefresh.Name = "BarRefresh"
         '
+        'BBSaveView
+        '
+        Me.BBSaveView.Caption = "Αποθήκευση Όψης"
+        Me.BBSaveView.Id = 51
+        Me.BBSaveView.Name = "BBSaveView"
+        '
         'BarIncoming
         '
         Me.BarIncoming.Caption = "Εισερχόμενα"
@@ -449,12 +455,6 @@ Partial Class frmNotesScroller
         Me.Bar4.OptionsBar.DrawDragBorder = False
         Me.Bar4.OptionsBar.UseWholeRow = True
         Me.Bar4.Text = "StatusBar"
-        '
-        'BBSaveView
-        '
-        Me.BBSaveView.Caption = "Αποθήκευση Όψης"
-        Me.BBSaveView.Id = 51
-        Me.BBSaveView.Name = "BBSaveView"
         '
         'frmNotesScroller
         '

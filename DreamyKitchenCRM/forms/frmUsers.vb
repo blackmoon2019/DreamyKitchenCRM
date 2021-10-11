@@ -50,8 +50,9 @@ Public Class frmUsers
     Private Sub frmUsers_Load(sender As Object, e As EventArgs) Handles Me.Load
         Try
             FillCbo.MAIL(cboMail)
-            'Πωλητές
-            FillCbo.SALERS(cboSaler)
+            Dim sSQL As New System.Text.StringBuilder
+            sSQL.AppendLine("Select id,Fullname,salary from vw_EMP where jobID not in ( '475CBAD0-555B-4945-92EF-7D5A611D8D46','E0C1789F-713C-45C1-8339-41950701F146','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
+            FillCbo.EMP(cboSaler, sSQL)
             Select Case Mode
                 Case FormMode.EditRecord
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_USR where id ='" + sID + "'")
@@ -91,20 +92,17 @@ Public Class frmUsers
         frmMain.bbVersion.Caption = "DB Field: USERS.mailid"
     End Sub
     Private Sub ManageSalers()
-        Dim form1 As frmGen = New frmGen()
+        Dim form1 As frmEMP = New frmEMP()
         form1.Text = "Πωλητές"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Πωλητής"
-        form1.L6.Text = "Χρώμα"
-        form1.L8.Text = "Αρ. Πρωτοκόλου"
-        form1.DataTable = "SALERS"
-        form1.CalledFromControl = True
         form1.CallerControl = cboSaler
-        If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
+        form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboSaler.EditValue <> Nothing Then
+            form1.ID = cboSaler.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub

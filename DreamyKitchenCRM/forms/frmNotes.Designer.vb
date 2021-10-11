@@ -135,72 +135,72 @@ Partial Class frmNotes
         '
         'txtCode
         '
-        Me.txtCode.Location = New System.Drawing.Point(118, 12)
+        Me.txtCode.Location = New System.Drawing.Point(80, 12)
         Me.txtCode.Name = "txtCode"
         Me.txtCode.Properties.Appearance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
         Me.txtCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(86, 20)
+        Me.txtCode.Size = New System.Drawing.Size(124, 20)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
         '
         'txtNotes
         '
-        Me.txtNotes.Location = New System.Drawing.Point(118, 108)
+        Me.txtNotes.Location = New System.Drawing.Point(80, 108)
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(571, 68)
+        Me.txtNotes.Size = New System.Drawing.Size(609, 68)
         Me.txtNotes.StyleController = Me.LayoutControl1
         Me.txtNotes.TabIndex = 17
         Me.txtNotes.Tag = "note,0,1,2"
         '
         'txtNam
         '
-        Me.txtNam.Location = New System.Drawing.Point(118, 36)
+        Me.txtNam.Location = New System.Drawing.Point(80, 36)
         Me.txtNam.Name = "txtNam"
-        Me.txtNam.Size = New System.Drawing.Size(571, 20)
+        Me.txtNam.Size = New System.Drawing.Size(609, 20)
         Me.txtNam.StyleController = Me.LayoutControl1
         Me.txtNam.TabIndex = 9
         Me.txtNam.Tag = "title,0,1,2"
         '
         'cboNotesL
         '
-        Me.cboNotesL.Location = New System.Drawing.Point(118, 84)
+        Me.cboNotesL.Location = New System.Drawing.Point(80, 84)
         Me.cboNotesL.Name = "cboNotesL"
         Me.cboNotesL.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboNotesL.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboNotesL.Properties.NullText = ""
         Me.cboNotesL.Properties.PopupSizeable = False
-        Me.cboNotesL.Size = New System.Drawing.Size(211, 20)
+        Me.cboNotesL.Size = New System.Drawing.Size(249, 20)
         Me.cboNotesL.StyleController = Me.LayoutControl1
         Me.cboNotesL.TabIndex = 5
         Me.cboNotesL.Tag = "Notes_LID,0,1,2"
         '
         'txtFileNames
         '
-        Me.txtFileNames.Location = New System.Drawing.Point(118, 180)
+        Me.txtFileNames.Location = New System.Drawing.Point(80, 180)
         Me.txtFileNames.Name = "txtFileNames"
         Me.txtFileNames.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.txtFileNames.Properties.Tag = True
-        Me.txtFileNames.Size = New System.Drawing.Size(571, 20)
+        Me.txtFileNames.Size = New System.Drawing.Size(609, 20)
         Me.txtFileNames.StyleController = Me.LayoutControl1
         Me.txtFileNames.TabIndex = 30
         Me.txtFileNames.Tag = ""
         '
         'cboSaler
         '
-        Me.cboSaler.Location = New System.Drawing.Point(118, 60)
+        Me.cboSaler.Location = New System.Drawing.Point(80, 60)
         Me.cboSaler.Name = "cboSaler"
         Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboSaler.Properties.NullText = ""
         Me.cboSaler.Properties.PopupSizeable = False
-        Me.cboSaler.Size = New System.Drawing.Size(211, 20)
+        Me.cboSaler.Size = New System.Drawing.Size(249, 20)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 5
-        Me.cboSaler.Tag = "SalerID,0,1,2"
+        Me.cboSaler.Tag = "empID,0,1,2"
         '
         'chkReaded
         '
@@ -233,7 +233,7 @@ Partial Class frmNotes
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(196, 24)
         Me.LayoutControlItem4.Text = "Κωδικός"
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(94, 13)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(56, 13)
         '
         'LayoutControlItem3
         '
@@ -246,7 +246,7 @@ Partial Class frmNotes
         Me.LayoutControlItem3.Size = New System.Drawing.Size(681, 24)
         Me.LayoutControlItem3.Tag = "1"
         Me.LayoutControlItem3.Text = "Τίτλος"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(94, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(56, 13)
         '
         'LayoutControlItem14
         '
@@ -259,7 +259,7 @@ Partial Class frmNotes
         Me.LayoutControlItem14.Size = New System.Drawing.Size(681, 72)
         Me.LayoutControlItem14.Tag = "1"
         Me.LayoutControlItem14.Text = "Σημείωση"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(94, 13)
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(56, 13)
         '
         'LayoutControlItem25
         '
@@ -270,7 +270,7 @@ Partial Class frmNotes
         Me.LayoutControlItem25.Name = "LayoutControlItem25"
         Me.LayoutControlItem25.Size = New System.Drawing.Size(681, 24)
         Me.LayoutControlItem25.Text = "Αρχεία"
-        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(94, 13)
+        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(56, 13)
         '
         'LayoutControlItem1
         '
@@ -319,12 +319,12 @@ Partial Class frmNotes
         '
         Me.LayoutControlItem6.Control = Me.cboSaler
         Me.LayoutControlItem6.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem6.CustomizationFormText = "Αφορά τον Πωλητή"
+        Me.LayoutControlItem6.CustomizationFormText = "Αφορά τον "
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 48)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(321, 24)
-        Me.LayoutControlItem6.Text = "Αφορά τον Πωλητή"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(94, 13)
+        Me.LayoutControlItem6.Text = "Αφορά τον "
+        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(56, 13)
         '
         'EmptySpaceItem3
         '
@@ -344,7 +344,7 @@ Partial Class frmNotes
         Me.LayoutControlItem23.Size = New System.Drawing.Size(321, 24)
         Me.LayoutControlItem23.Tag = ""
         Me.LayoutControlItem23.Text = "Εττικέτα"
-        Me.LayoutControlItem23.TextSize = New System.Drawing.Size(94, 13)
+        Me.LayoutControlItem23.TextSize = New System.Drawing.Size(56, 13)
         '
         'LayoutControlItem7
         '
