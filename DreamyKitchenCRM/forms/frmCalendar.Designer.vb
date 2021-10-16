@@ -25,7 +25,7 @@ Partial Class frmCalendar
         Dim TimeRuler3 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
         Me.SchedulerControl1 = New DevExpress.XtraScheduler.SchedulerControl()
         Me.SchedulerDataStorage1 = New DevExpress.XtraScheduler.SchedulerDataStorage(Me.components)
-        Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwSALERSANDCOUNTERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.CommonBar1 = New DevExpress.XtraScheduler.UI.CommonBar()
@@ -71,6 +71,7 @@ Partial Class frmCalendar
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.BarHeaderItem1 = New DevExpress.XtraBars.BarHeaderItem()
         Me.txtSearch = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.SchedulerBarController1 = New DevExpress.XtraScheduler.UI.SchedulerBarController(Me.components)
         Me.VwCCTMBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -117,15 +118,18 @@ Partial Class frmCalendar
         Me.colCusSaler = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedby_Realname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colphn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.Vw_SALERS_AND_COUNTERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERS_AND_COUNTERSTableAdapter()
+        Me.TableAdapterManager = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.TableAdapterManager()
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSALERSANDCOUNTERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSearch2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSearch, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCCTMBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PanelResults, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,7 +170,7 @@ Partial Class frmCalendar
         '
         '
         Me.SchedulerDataStorage1.Labels.ColorSaving = DevExpress.XtraScheduler.DXColorSavingType.ArgbColor
-        Me.SchedulerDataStorage1.Labels.DataSource = Me.VwSALERSBindingSource
+        Me.SchedulerDataStorage1.Labels.DataSource = Me.VwSALERSANDCOUNTERSBindingSource
         Me.SchedulerDataStorage1.Labels.Mappings.Color = "color"
         Me.SchedulerDataStorage1.Labels.Mappings.DisplayName = "name"
         Me.SchedulerDataStorage1.Labels.Mappings.Id = "code"
@@ -179,10 +183,10 @@ Partial Class frmCalendar
         Me.SchedulerDataStorage1.Resources.Mappings.Color = "color"
         Me.SchedulerDataStorage1.Resources.Mappings.Id = "ID"
         '
-        'VwSALERSBindingSource
+        'VwSALERSANDCOUNTERSBindingSource
         '
-        Me.VwSALERSBindingSource.DataMember = "vw_SALERS"
-        Me.VwSALERSBindingSource.DataSource = Me.DreamyKitchenDataSet
+        Me.VwSALERSANDCOUNTERSBindingSource.DataMember = "vw_SALERS_AND_COUNTERS"
+        Me.VwSALERSANDCOUNTERSBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'DreamyKitchenDataSet
         '
@@ -468,6 +472,11 @@ Partial Class frmCalendar
         '
         Me.txtSearch.AutoHeight = False
         Me.txtSearch.Name = "txtSearch"
+        '
+        'VwSALERSBindingSource
+        '
+        Me.VwSALERSBindingSource.DataMember = "vw_SALERS"
+        Me.VwSALERSBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'DreamyKitchenAdapter
         '
@@ -755,6 +764,16 @@ Partial Class frmCalendar
         Me.colphn.Visible = True
         Me.colphn.VisibleIndex = 4
         '
+        'Vw_SALERS_AND_COUNTERSTableAdapter
+        '
+        Me.Vw_SALERS_AND_COUNTERSTableAdapter.ClearBeforeFill = True
+        '
+        'TableAdapterManager
+        '
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.Connection = Nothing
+        Me.TableAdapterManager.UpdateOrder = DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        '
         'frmCalendar
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -771,13 +790,14 @@ Partial Class frmCalendar
         Me.Text = "frmCalendar"
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSALERSANDCOUNTERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCompleted, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSearch2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSearch, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCCTMBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PanelResults, System.ComponentModel.ISupportInitialize).EndInit()
@@ -884,4 +904,7 @@ Partial Class frmCalendar
     Friend WithEvents cmdExit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents BarEditItem3 As DevExpress.XtraBars.BarEditItem
     Friend WithEvents txtSearch2 As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents VwSALERSANDCOUNTERSBindingSource As BindingSource
+    Friend WithEvents Vw_SALERS_AND_COUNTERSTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SALERS_AND_COUNTERSTableAdapter
+    Friend WithEvents TableAdapterManager As DreamyKitchenDataSetTableAdapters.TableAdapterManager
 End Class

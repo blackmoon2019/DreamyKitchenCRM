@@ -152,7 +152,7 @@ Partial Class frmConstrunction
         Me.cboSER.Size = New System.Drawing.Size(326, 20)
         Me.cboSER.StyleController = Me.LayoutControl1
         Me.cboSER.TabIndex = 5
-        Me.cboSER.Tag = "serid,0,1,2"
+        Me.cboSER.Tag = "empid,0,1,2"
         '
         'cboCUS
         '

@@ -168,8 +168,7 @@ Public Class frmSalerTziroi
     End Sub
 
     Private Sub txtbusisnessProfit_LostFocus(sender As Object, e As EventArgs) Handles txtbusisnessProfit.LostFocus
-        If cboSaler.GetColumnValue("profitPerc") = Nothing Then Exit Sub
-        txtsalerProfit.EditValue = (txtbusisnessProfit.EditValue / 100) * cboSaler.GetColumnValue("profitPerc")
+
     End Sub
 
     Private Sub txtnormalPrice_Validated(sender As Object, e As EventArgs) Handles txtnormalPrice.Validated
@@ -193,5 +192,14 @@ Public Class frmSalerTziroi
             Case 1 : If cboTransH.EditValue <> Nothing Then ManageTRANSH()
             Case 2 : cboTransH.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub txtbusisnessProfit_Validated(sender As Object, e As EventArgs) Handles txtbusisnessProfit.Validated
+
+    End Sub
+
+    Private Sub txtbusisnessProfit_EditValueChanged(sender As Object, e As EventArgs) Handles txtbusisnessProfit.EditValueChanged
+        If cboSaler.GetColumnValue("profitPerc") = Nothing Then Exit Sub
+        txtsalerProfit.EditValue = (txtbusisnessProfit.EditValue / 100) * cboSaler.GetColumnValue("profitPerc")
     End Sub
 End Class

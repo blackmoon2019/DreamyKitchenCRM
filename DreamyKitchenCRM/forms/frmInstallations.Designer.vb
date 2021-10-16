@@ -273,7 +273,7 @@ Partial Class frmInstallations
         Me.cboSaler.Size = New System.Drawing.Size(306, 20)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 6
-        Me.cboSaler.Tag = "empID,0,1,2"
+        Me.cboSaler.Tag = "salerID,0,1,2"
         '
         'Root
         '

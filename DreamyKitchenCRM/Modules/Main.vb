@@ -14,7 +14,7 @@ Module Main
 
     Public Structure USER_PROPS
         Public ID As Guid
-        Public SalerID As Guid
+        Public EmpID As Guid
         Public Code As String
         Public RealName As String
         Public UN As String

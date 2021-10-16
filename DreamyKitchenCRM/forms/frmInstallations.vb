@@ -61,8 +61,7 @@ Public Class frmInstallations
 
     Private Sub frmInstallations_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
-        'sSQL.AppendLine("Select id,Fullname from vw_SER where depID='BFD7EBD9-B0B2-4FCB-B1FF-341EC37A6A11' order by Fullname")
-        sSQL = Nothing
+        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
         FillCbo.SER(cboSER, sSQL)
         FillCbo.CUS(cboCUS)
         FillCbo.SALERS(cboSaler)
@@ -101,10 +100,8 @@ Public Class frmInstallations
         form1.Show()
 
     End Sub
-
-
     Private Sub ManageSer()
-        Dim form1 As frmServices = New frmServices()
+        Dim form1 As frmEMP = New frmEMP()
         form1.Text = "Συνεργεία"
         form1.CallerControl = cboSER
         form1.CalledFromControl = True

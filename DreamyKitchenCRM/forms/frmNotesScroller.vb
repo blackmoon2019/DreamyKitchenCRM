@@ -15,7 +15,7 @@ Public Class frmNotesScroller
         '    dad.Fill(dtb)
         'End Using
 
-        Me.Vw_NOTESTableAdapter.FillBy1(Me.DreamyKitchenDataSet.vw_NOTES, UserProps.SalerID, UserProps.ID)
+        Me.Vw_NOTESTableAdapter.FillBy1(Me.DreamyKitchenDataSet.vw_NOTES, UserProps.EmpID, UserProps.ID)
         Me.Text = "Εισερχόμενα/Εξερχόμενα Σημειώματα"
         'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_def.xml") = False Then
@@ -84,7 +84,7 @@ Public Class frmNotesScroller
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
-                LoadRecords("vw_NOTES", "where (salerid = '" & UserProps.SalerID.ToString & "' or createdby = '" & UserProps.ID.ToString & "')")
+                LoadRecords("vw_NOTES", "where (empID = '" & UserProps.EmpID.ToString & "' or createdby = '" & UserProps.ID.ToString & "')")
                 XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
@@ -109,7 +109,7 @@ Public Class frmNotesScroller
 
     Private Sub BarRefresh_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BarRefresh.ItemClick
         'LoadRecords("vw_NOTES")
-        LoadRecords("vw_NOTES", "where (empid = '" & UserProps.SalerID.ToString & "' or createdby = '" & UserProps.ID.ToString & "')")
+        LoadRecords("vw_NOTES", "where (empid = '" & UserProps.EmpID.ToString & "' or createdby = '" & UserProps.ID.ToString & "')")
         Me.Text = "Εισερχόμενα/Εξερχόμενα Σημειώματα"
     End Sub
 
@@ -118,7 +118,7 @@ Public Class frmNotesScroller
     End Sub
 
     Private Sub BarIncoming_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarIncoming.ItemClick
-        LoadRecords("vw_NOTES", "where (empid = '" & UserProps.SalerID.ToString & "')")
+        LoadRecords("vw_NOTES", "where (empid = '" & UserProps.EmpID.ToString & "')")
         Me.Text = "Εισερχόμενα Σημειώματα"
     End Sub
 

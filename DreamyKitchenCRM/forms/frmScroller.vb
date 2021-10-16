@@ -304,7 +304,10 @@ Public Class frmScroller
     Private Sub frmScroller_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         'Παίρνω το όνομα της όψης για τον συγκεκριμένο χρήστη και για τον συγκεκριμένο πίνακα και το αποθηκεύω στην βάση
         GetCurrentView(False)
-        If sDataDetail = "" Then myReader.Close()
+        If sDataDetail = "" Then
+            If myReader Is Nothing Then Exit Sub
+            myReader.Close()
+        End If
     End Sub
     'Διαγραφή όψης
     Private Sub popDeleteView_ItemClick(sender As Object, e As ItemClickEventArgs) Handles popDeleteView.ItemClick
@@ -939,7 +942,15 @@ Public Class frmScroller
                 form3.L6.Text = "Χρώμα"
                 form3.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
                 form3.chk1.Visible = True
+                form3.chk2.Text = "Υποχρεωτικότητα Πωλητή"
+                form3.chk2.Visible = True
+                form3.L10.Control.Tag = "RequiredSaler,0,1,2"
+                form3.chk3.Text = "Υποχρεωτικότητα Επιμετρητή"
+                form3.chk3.Visible = True
+                form3.L11.Control.Tag = "RequiredCounter,0,1,2"
+                form3.L11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form3.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                form3.L10.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form3.FormScroller = Me
                 form3.CalledFromControl = False
                 form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -1495,7 +1506,15 @@ Public Class frmScroller
                 form3.L6.Text = "Χρώμα"
                 form3.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
                 form3.chk1.Visible = True
+                form3.chk2.Text = "Υποχρεωτικότητα Πωλητή"
+                form3.chk2.Visible = True
+                form3.L10.Control.Tag = "RequiredSaler,0,1,2"
+                form3.chk3.Text = "Υποχρεωτικότητα Επιμετρητή"
+                form3.chk3.Visible = True
+                form3.L11.Control.Tag = "RequiredCounter,0,1,2"
+                form3.L11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form3.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                form3.L10.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 form3.FormScroller = Me
                 form3.CalledFromControl = False
                 form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always

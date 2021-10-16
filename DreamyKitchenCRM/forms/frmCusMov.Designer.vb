@@ -19,7 +19,6 @@ Partial Class frmCusMov
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCusMov))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.tmReminder = New DevExpress.XtraEditors.TimeEdit()
         Me.cboRemValues = New DevExpress.XtraEditors.LookUpEdit()
@@ -44,15 +43,17 @@ Partial Class frmCusMov
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.lSaler = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.cmdCboManageCOU = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.TimeSpanChartRangeControlClient1 = New DevExpress.XtraEditors.TimeSpanChartRangeControlClient()
+        Me.cboCounter = New DevExpress.XtraEditors.LookUpEdit()
+        Me.lCounter = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.tmReminder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -82,12 +83,14 @@ Partial Class frmCusMov
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lSaler, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TimeSpanChartRangeControlClient1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboCounter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.lCounter, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -105,6 +108,7 @@ Partial Class frmCusMov
         Me.LayoutControl1.Controls.Add(Me.cboCUS)
         Me.LayoutControl1.Controls.Add(Me.cboSaler)
         Me.LayoutControl1.Controls.Add(Me.cboSTATUS)
+        Me.LayoutControl1.Controls.Add(Me.cboCounter)
         Me.LayoutControl1.Location = New System.Drawing.Point(9, 2)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(719, 86, 650, 400)
@@ -116,7 +120,7 @@ Partial Class frmCusMov
         'tmReminder
         '
         Me.tmReminder.EditValue = New Date(2020, 10, 28, 0, 0, 0, 0)
-        Me.tmReminder.Location = New System.Drawing.Point(138, 132)
+        Me.tmReminder.Location = New System.Drawing.Point(138, 156)
         Me.tmReminder.Name = "tmReminder"
         Me.tmReminder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.tmReminder.Properties.DisplayFormat.FormatString = "t"
@@ -131,7 +135,7 @@ Partial Class frmCusMov
         '
         'cboRemValues
         '
-        Me.cboRemValues.Location = New System.Drawing.Point(482, 132)
+        Me.cboRemValues.Location = New System.Drawing.Point(482, 156)
         Me.cboRemValues.Name = "cboRemValues"
         Me.cboRemValues.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboRemValues.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -145,7 +149,7 @@ Partial Class frmCusMov
         '
         Me.dtCompleted.EditValue = Nothing
         Me.dtCompleted.Enabled = False
-        Me.dtCompleted.Location = New System.Drawing.Point(404, 180)
+        Me.dtCompleted.Location = New System.Drawing.Point(404, 204)
         Me.dtCompleted.Name = "dtCompleted"
         Me.dtCompleted.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtCompleted.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -157,7 +161,7 @@ Partial Class frmCusMov
         'chkCompleted
         '
         Me.chkCompleted.EditValue = CType(0, Byte)
-        Me.chkCompleted.Location = New System.Drawing.Point(12, 180)
+        Me.chkCompleted.Location = New System.Drawing.Point(12, 204)
         Me.chkCompleted.Name = "chkCompleted"
         Me.chkCompleted.Properties.Caption = "Ολοκληρώθηκε"
         Me.chkCompleted.Properties.ValueChecked = CType(1, Byte)
@@ -183,7 +187,7 @@ Partial Class frmCusMov
         '
         'txtSch
         '
-        Me.txtSch.Location = New System.Drawing.Point(404, 132)
+        Me.txtSch.Location = New System.Drawing.Point(404, 156)
         Me.txtSch.Name = "txtSch"
         Me.txtSch.Properties.Mask.EditMask = "n0"
         Me.txtSch.Properties.Mask.MaskType = DevExpress.XtraEditors.Mask.MaskType.Numeric
@@ -194,9 +198,9 @@ Partial Class frmCusMov
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(138, 204)
+        Me.txtComments.Location = New System.Drawing.Point(138, 228)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(512, 129)
+        Me.txtComments.Size = New System.Drawing.Size(512, 105)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
@@ -204,7 +208,7 @@ Partial Class frmCusMov
         'dtReminder
         '
         Me.dtReminder.EditValue = Nothing
-        Me.dtReminder.Location = New System.Drawing.Point(138, 108)
+        Me.dtReminder.Location = New System.Drawing.Point(138, 132)
         Me.dtReminder.Name = "dtReminder"
         Me.dtReminder.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtReminder.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -216,7 +220,7 @@ Partial Class frmCusMov
         'dtReceiveDate
         '
         Me.dtReceiveDate.EditValue = Nothing
-        Me.dtReceiveDate.Location = New System.Drawing.Point(138, 156)
+        Me.dtReceiveDate.Location = New System.Drawing.Point(138, 180)
         Me.dtReceiveDate.Name = "dtReceiveDate"
         Me.dtReceiveDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtReceiveDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -228,7 +232,7 @@ Partial Class frmCusMov
         'dtDeliverDate
         '
         Me.dtDeliverDate.EditValue = Nothing
-        Me.dtDeliverDate.Location = New System.Drawing.Point(404, 156)
+        Me.dtDeliverDate.Location = New System.Drawing.Point(404, 180)
         Me.dtDeliverDate.Name = "dtDeliverDate"
         Me.dtDeliverDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtDeliverDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -252,7 +256,7 @@ Partial Class frmCusMov
         '
         'cboSaler
         '
-        Me.cboSaler.Location = New System.Drawing.Point(138, 60)
+        Me.cboSaler.Location = New System.Drawing.Point(138, 84)
         Me.cboSaler.Name = "cboSaler"
         Me.cboSaler.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -265,7 +269,7 @@ Partial Class frmCusMov
         '
         'cboSTATUS
         '
-        Me.cboSTATUS.Location = New System.Drawing.Point(138, 84)
+        Me.cboSTATUS.Location = New System.Drawing.Point(138, 60)
         Me.cboSTATUS.Name = "cboSTATUS"
         Me.cboSTATUS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboSTATUS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -280,7 +284,7 @@ Partial Class frmCusMov
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem14, Me.LayoutControlItem6, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem5, Me.LayoutControlItem3, Me.EmptySpaceItem4, Me.LayoutControlItem13, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.LayoutControlItem10, Me.LayoutControlItem20, Me.LayoutControlItem7})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem14, Me.LayoutControlItem6, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LayoutControlItem5, Me.LayoutControlItem3, Me.EmptySpaceItem4, Me.LayoutControlItem13, Me.lSaler, Me.LayoutControlItem10, Me.LayoutControlItem20, Me.LayoutControlItem7, Me.LayoutControlItem2, Me.lCounter})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(662, 345)
         Me.Root.TextVisible = False
@@ -301,9 +305,9 @@ Partial Class frmCusMov
         Me.LayoutControlItem14.Control = Me.txtComments
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 192)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 216)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(642, 133)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(642, 109)
         Me.LayoutControlItem14.Text = "Σχόλια"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(114, 13)
         '
@@ -312,7 +316,7 @@ Partial Class frmCusMov
         Me.LayoutControlItem6.Control = Me.dtReminder
         Me.LayoutControlItem6.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem6.CustomizationFormText = "Ημερ/νία Ειδοποίησης"
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 96)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 120)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(642, 24)
         Me.LayoutControlItem6.Text = "Ημερ/νία Ειδοποίησης"
@@ -323,7 +327,7 @@ Partial Class frmCusMov
         Me.LayoutControlItem11.Control = Me.dtReceiveDate
         Me.LayoutControlItem11.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem11.CustomizationFormText = "Ημερ/νία Ολοκλήρωσης"
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 144)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(266, 24)
         Me.LayoutControlItem11.Text = "Ημερ/νία Παραλαβής"
@@ -334,7 +338,7 @@ Partial Class frmCusMov
         Me.LayoutControlItem12.Control = Me.dtDeliverDate
         Me.LayoutControlItem12.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem12.CustomizationFormText = "Ημερ/νία Ολοκλήρωσης"
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(266, 144)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(266, 168)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Size = New System.Drawing.Size(376, 24)
         Me.LayoutControlItem12.Text = "Ημερ/νία Παράδοσης"
@@ -343,7 +347,7 @@ Partial Class frmCusMov
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.dtCompleted
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(266, 168)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(266, 192)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(376, 24)
         Me.LayoutControlItem5.Text = "Ημερ/νία Ολοκλήρωσης"
@@ -352,7 +356,7 @@ Partial Class frmCusMov
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.chkCompleted
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 168)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 192)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(266, 24)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
@@ -380,38 +384,24 @@ Partial Class frmCusMov
         Me.LayoutControlItem13.Text = "Πελάτης"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(114, 13)
         '
-        'LayoutControlItem2
+        'lSaler
         '
-        Me.LayoutControlItem2.Control = Me.cboSTATUS
-        Me.LayoutControlItem2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem2.CustomizationFormText = "Περιοχή"
-        Me.LayoutControlItem2.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 72)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(642, 24)
-        Me.LayoutControlItem2.Tag = "1"
-        Me.LayoutControlItem2.Text = "Status"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(114, 13)
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.cboSaler
-        Me.LayoutControlItem1.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem1.CustomizationFormText = "Περιοχή"
-        Me.LayoutControlItem1.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem1.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem1.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 48)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(642, 24)
-        Me.LayoutControlItem1.Tag = "1"
-        Me.LayoutControlItem1.Text = "Πωλητής"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(114, 13)
+        Me.lSaler.Control = Me.cboSaler
+        Me.lSaler.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.lSaler.CustomizationFormText = "Περιοχή"
+        Me.lSaler.Enabled = False
+        Me.lSaler.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.lSaler.Location = New System.Drawing.Point(0, 72)
+        Me.lSaler.Name = "lSaler"
+        Me.lSaler.Size = New System.Drawing.Size(642, 24)
+        Me.lSaler.Tag = ""
+        Me.lSaler.Text = "Πωλητής"
+        Me.lSaler.TextSize = New System.Drawing.Size(114, 13)
         '
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.tmReminder
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 120)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 144)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Size = New System.Drawing.Size(266, 24)
         Me.LayoutControlItem10.Text = "Ώρα"
@@ -422,7 +412,7 @@ Partial Class frmCusMov
         Me.LayoutControlItem20.Control = Me.txtSch
         Me.LayoutControlItem20.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem20.CustomizationFormText = "Ειδοποίηση πριν"
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(266, 120)
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(266, 144)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
         Me.LayoutControlItem20.Size = New System.Drawing.Size(204, 24)
         Me.LayoutControlItem20.Text = "Ειδοποίηση πριν"
@@ -431,11 +421,25 @@ Partial Class frmCusMov
         'LayoutControlItem7
         '
         Me.LayoutControlItem7.Control = Me.cboRemValues
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(470, 120)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(470, 144)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(172, 24)
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.cboSTATUS
+        Me.LayoutControlItem2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem2.CustomizationFormText = "Περιοχή"
+        Me.LayoutControlItem2.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 48)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(642, 24)
+        Me.LayoutControlItem2.Tag = "1"
+        Me.LayoutControlItem2.Text = "Status"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(114, 13)
         '
         'cmdCboManageCOU
         '
@@ -462,6 +466,32 @@ Partial Class frmCusMov
         Me.cmdSave.Size = New System.Drawing.Size(111, 28)
         Me.cmdSave.TabIndex = 15
         Me.cmdSave.Text = "Αποθήκευση"
+        '
+        'cboCounter
+        '
+        Me.cboCounter.Location = New System.Drawing.Point(138, 108)
+        Me.cboCounter.Name = "cboCounter"
+        Me.cboCounter.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboCounter.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboCounter.Properties.NullText = ""
+        Me.cboCounter.Properties.PopupSizeable = False
+        Me.cboCounter.Size = New System.Drawing.Size(512, 20)
+        Me.cboCounter.StyleController = Me.LayoutControl1
+        Me.cboCounter.TabIndex = 6
+        Me.cboCounter.Tag = "counterID,0,1,2"
+        '
+        'lCounter
+        '
+        Me.lCounter.Control = Me.cboCounter
+        Me.lCounter.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.lCounter.CustomizationFormText = "Περιοχή"
+        Me.lCounter.Enabled = False
+        Me.lCounter.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.lCounter.Location = New System.Drawing.Point(0, 96)
+        Me.lCounter.Name = "lCounter"
+        Me.lCounter.Size = New System.Drawing.Size(642, 24)
+        Me.lCounter.Text = "Επιμετρητής"
+        Me.lCounter.TextSize = New System.Drawing.Size(114, 13)
         '
         'frmCusMov
         '
@@ -503,12 +533,14 @@ Partial Class frmCusMov
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lSaler, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TimeSpanChartRangeControlClient1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboCounter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.lCounter, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -544,7 +576,9 @@ Partial Class frmCusMov
     Friend WithEvents cboCUS As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cboSaler As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents lSaler As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cboSTATUS As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cboCounter As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents lCounter As DevExpress.XtraLayout.LayoutControlItem
 End Class

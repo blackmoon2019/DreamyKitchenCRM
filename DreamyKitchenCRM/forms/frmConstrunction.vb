@@ -57,7 +57,7 @@ Public Class frmConstrunction
 
     Private Sub frmConstrunction_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_SER where depID='16228C6D-FAE6-4CFD-82D1-A9910D909952' order by Fullname")
+        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where jobID='F1A60661-D448-41B7-8CF0-CE6B9FF6E518' order by Fullname")
         FillCbo.SER(cboSER, sSQL)
         FillCbo.CUS(cboCUS)
         FillCbo.CONSTR_CAT(cboConstrCat)
@@ -97,7 +97,7 @@ Public Class frmConstrunction
 
 
     Private Sub ManageSer()
-        Dim form1 As frmServices = New frmServices()
+        Dim form1 As frmEMP = New frmEMP()
         form1.Text = "Συνεργεία"
         form1.CallerControl = cboSER
         form1.CalledFromControl = True

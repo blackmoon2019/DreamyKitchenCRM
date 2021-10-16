@@ -1,6 +1,9 @@
 ﻿
 
 Partial Public Class DreamyKitchenDataSet
+    Partial Public Class vw_SALERS_AND_COUNTERSDataTable
+    End Class
+
     Partial Public Class vw_COLORSBAZADataTable
     End Class
 End Class

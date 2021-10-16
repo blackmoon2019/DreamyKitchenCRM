@@ -20,6 +20,7 @@ Partial Class frmGen
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.chk2 = New DevExpress.XtraEditors.CheckEdit()
         Me.ColorPickEdit1 = New DevExpress.XtraEditors.ColorPickEdit()
         Me.chk1 = New DevExpress.XtraEditors.CheckEdit()
         Me.cmdNew = New DevExpress.XtraEditors.SimpleButton()
@@ -47,8 +48,12 @@ Partial Class frmGen
         Me.L6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.L10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.chk3 = New DevExpress.XtraEditors.CheckEdit()
+        Me.L11 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.chk2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ColorPickEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chk1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbo2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,6 +77,9 @@ Partial Class frmGen
         CType(Me.L6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.L10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chk3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.L11, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -79,6 +87,8 @@ Partial Class frmGen
         Me.LayoutControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LayoutControl1.Controls.Add(Me.chk3)
+        Me.LayoutControl1.Controls.Add(Me.chk2)
         Me.LayoutControl1.Controls.Add(Me.ColorPickEdit1)
         Me.LayoutControl1.Controls.Add(Me.chk1)
         Me.LayoutControl1.Controls.Add(Me.cmdNew)
@@ -98,6 +108,20 @@ Partial Class frmGen
         Me.LayoutControl1.Size = New System.Drawing.Size(400, 295)
         Me.LayoutControl1.TabIndex = 14
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'chk2
+        '
+        Me.chk2.EditValue = CType(0, Byte)
+        Me.chk2.Location = New System.Drawing.Point(12, 180)
+        Me.chk2.Name = "chk2"
+        Me.chk2.Properties.Caption = "CheckEdit1"
+        Me.chk2.Properties.ValueChecked = CType(1, Byte)
+        Me.chk2.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chk2.Size = New System.Drawing.Size(376, 20)
+        Me.chk2.StyleController = Me.LayoutControl1
+        Me.chk2.TabIndex = 38
+        Me.chk2.Tag = ""
+        Me.chk2.Visible = False
         '
         'ColorPickEdit1
         '
@@ -250,7 +274,7 @@ Partial Class frmGen
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.L2, Me.L3, Me.L1, Me.L4, Me.LayoutControlItem3, Me.EmptySpaceItem2, Me.L7, Me.L5, Me.L6, Me.L8, Me.L9})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem1, Me.L2, Me.L3, Me.L1, Me.L4, Me.LayoutControlItem3, Me.EmptySpaceItem2, Me.L7, Me.L5, Me.L6, Me.L8, Me.L9, Me.L10, Me.L11})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(400, 295)
         Me.Root.TextVisible = False
@@ -258,9 +282,9 @@ Partial Class frmGen
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 168)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 216)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(380, 75)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(380, 27)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
@@ -397,6 +421,40 @@ Partial Class frmGen
         Me.L9.TextSize = New System.Drawing.Size(22, 13)
         Me.L9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
+        'L10
+        '
+        Me.L10.Control = Me.chk2
+        Me.L10.Location = New System.Drawing.Point(0, 168)
+        Me.L10.Name = "L10"
+        Me.L10.Size = New System.Drawing.Size(380, 24)
+        Me.L10.TextSize = New System.Drawing.Size(0, 0)
+        Me.L10.TextVisible = False
+        Me.L10.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        '
+        'chk3
+        '
+        Me.chk3.EditValue = CType(0, Byte)
+        Me.chk3.Location = New System.Drawing.Point(12, 204)
+        Me.chk3.Name = "chk3"
+        Me.chk3.Properties.Caption = "CheckEdit1"
+        Me.chk3.Properties.ValueChecked = CType(1, Byte)
+        Me.chk3.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chk3.Size = New System.Drawing.Size(376, 20)
+        Me.chk3.StyleController = Me.LayoutControl1
+        Me.chk3.TabIndex = 39
+        Me.chk3.Tag = ""
+        Me.chk3.Visible = False
+        '
+        'L11
+        '
+        Me.L11.Control = Me.chk3
+        Me.L11.Location = New System.Drawing.Point(0, 192)
+        Me.L11.Name = "L11"
+        Me.L11.Size = New System.Drawing.Size(380, 24)
+        Me.L11.TextSize = New System.Drawing.Size(0, 0)
+        Me.L11.TextVisible = False
+        Me.L11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        '
         'frmGen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -408,6 +466,7 @@ Partial Class frmGen
         Me.Text = "frmGen"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.chk2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ColorPickEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chk1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbo2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -431,6 +490,9 @@ Partial Class frmGen
         CType(Me.L6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.L10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chk3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.L11, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -463,4 +525,8 @@ Partial Class frmGen
     Friend WithEvents L8 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtName1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents L9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents chk2 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents L10 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents chk3 As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents L11 As DevExpress.XtraLayout.LayoutControlItem
 End Class

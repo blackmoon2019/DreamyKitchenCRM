@@ -70,7 +70,9 @@ Public Class frmInstM
 
     Private Sub frmInstM_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
-        FillCbo.SER(cboSER)
+        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
+        FillCbo.SER(cboSER, sSQL)
+
 
         Select Case Mode
             Case FormMode.NewRecord
@@ -212,5 +214,29 @@ Public Class frmInstM
     Private Sub GridView3_RowClick(sender As Object, e As RowClickEventArgs) Handles GridView3.RowClick
         txtCost.EditValue = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "YPOL")
         dtDeliverDate.EditValue = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "dtDeliverDate")
+    End Sub
+
+    Private Sub cboSER_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSER.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboSER.EditValue = Nothing : ManageSer()
+            Case 2 : If cboSER.EditValue <> Nothing Then ManageSer()
+            Case 3 : cboSER.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub ManageSer()
+        Dim form1 As frmEMP = New frmEMP()
+        form1.Text = "Συνεργεία"
+        form1.CallerControl = cboSER
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If cboSER.EditValue <> Nothing Then
+            form1.ID = cboSER.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+
     End Sub
 End Class

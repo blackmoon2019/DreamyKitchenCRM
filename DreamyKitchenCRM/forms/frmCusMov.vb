@@ -68,26 +68,45 @@ Public Class frmCusMov
                             If dtReminder.Text.ToString = "" Then
                                 XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
-                            Else
-                                sID = System.Guid.NewGuid.ToString
-                                sResult = DBQ.InsertData(LayoutControl1, "CCT_M", sID)
                             End If
-                        Else
-                            sID = System.Guid.NewGuid.ToString
-                            sResult = DBQ.InsertData(LayoutControl1, "CCT_M", sID)
                         End If
+                        If IsDBNull(cboSTATUS.GetColumnValue("RequiredSaler")) = False Then
+                            If cboSTATUS.GetColumnValue("RequiredSaler") = True And cboSaler.EditValue = Nothing Then
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Πωλητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
+                        End If
+                        If IsDBNull(cboSTATUS.GetColumnValue("RequiredCounter")) = False Then
+                            If cboSTATUS.GetColumnValue("RequiredCounter") = True And cboCounter.EditValue = Nothing Then
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Επιμετρητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
+                        End If
+
+                        sID = System.Guid.NewGuid.ToString
+                        sResult = DBQ.InsertData(LayoutControl1, "CCT_M", sID)
                         txtCode.Text = DBQ.GetNextId("CCT_M")
                     Case FormMode.EditRecord
                         If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
                             If dtReminder.Text.ToString = "" Then
                                 XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
-                            Else
-                                sResult = DBQ.UpdateData(LayoutControl1, "CCT_M", sID)
                             End If
-                        Else
-                            sResult = DBQ.UpdateData(LayoutControl1, "CCT_M", sID)
                         End If
+                        If IsDBNull(cboSTATUS.GetColumnValue("RequiredSaler")) = False Then
+                            If cboSTATUS.GetColumnValue("RequiredSaler") = True And cboSaler.EditValue = Nothing Then
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Πωλητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
+                        End If
+                        If IsDBNull(cboSTATUS.GetColumnValue("RequiredCounter")) = False Then
+                            If cboSTATUS.GetColumnValue("RequiredCounter") = True And cboCounter.EditValue = Nothing Then
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Επιμετρητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
+                        End If
+
+                        sResult = DBQ.UpdateData(LayoutControl1, "CCT_M", sID)
 
                 End Select
                 'dtDTS.EditValue = DateTime.Now
@@ -136,6 +155,7 @@ Public Class frmCusMov
         FillCbo.STATUS(cboSTATUS)
         FillCbo.REM_VALUES(cboRemValues)
         FillCbo.SALERS(cboSaler)
+        FillCbo.COUNTERS(cboCounter)
         cboRemValues.Properties.AllowNullInput = True
         Select Case Mode
             Case FormMode.NewRecord
@@ -146,6 +166,7 @@ Public Class frmCusMov
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT_M where id ='" + sID + "'")
         End Select
         If sCusID <> "" Then cboCUS.EditValue = System.Guid.Parse(sCusID) Else FScrollerExist = True
+        If cboSTATUS.GetColumnValue("RequiredSaler") <> Nothing Then lSaler.Enabled = True Else lSaler.Enabled = False
         Me.CenterToScreen()
         My.Settings.frmCusMov = Me.Location
         My.Settings.Save()
@@ -169,25 +190,6 @@ Public Class frmCusMov
         form1.Show()
     End Sub
 
-    Private Sub cmdCboManageSTATUS_Click(sender As Object, e As EventArgs)
-        Dim form1 As frmGen = New frmGen()
-        form1.Text = "STATUS"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Status"
-        form1.L6.Text = "Χρώμα"
-        form1.DataTable = "STATUS"
-        form1.CallerControl = cboSTATUS
-        form1.CalledFromControl = True
-        If cboSTATUS.EditValue <> Nothing Then form1.ID = cboSTATUS.EditValue.ToString
-        form1.MdiParent = frmMain
-        form1.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
-        form1.chk1.Visible = True
-        form1.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        If cboSTATUS.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
 
     Private Sub frmCusMov_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
@@ -227,7 +229,15 @@ Public Class frmCusMov
         form3.L6.Text = "Χρώμα"
         form3.chk1.Text = "Επιτρέπονται ειδοποιήσεις"
         form3.chk1.Visible = True
+        form3.chk2.Text = "Υποχρεωτικότητα Πωλητή"
+        form3.chk2.Visible = True
+        form3.L10.Control.Tag = "RequiredSaler,0,1,2"
+        form3.chk3.Text = "Υποχρεωτικότητα Επιμετρητή"
+        form3.chk3.Visible = True
+        form3.L11.Control.Tag = "RequiredCounter,0,1,2"
+        form3.L11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form3.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form3.L10.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form3.FormScroller = Me
         form3.CalledFromControl = False
         form3.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -264,7 +274,21 @@ Public Class frmCusMov
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
-
+    Private Sub ManageCounter()
+        Dim form1 As frmEMP = New frmEMP()
+        form1.Text = "Επιμετρητές"
+        form1.CallerControl = cboCounter
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If cboCounter.EditValue <> Nothing Then
+            form1.ID = cboCounter.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
     Private Sub cboSTATUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSTATUS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboSTATUS.EditValue = Nothing : ManageStatus()
@@ -273,11 +297,6 @@ Public Class frmCusMov
         End Select
 
     End Sub
-
-    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        If cboCUS.GetColumnValue("SalerID") <> Nothing Then cboSaler.EditValue = System.Guid.Parse(cboCUS.GetColumnValue("SalerID").ToString)
-    End Sub
-
     Private Sub cboSaler_EditValueChanged(sender As Object, e As EventArgs) Handles cboSaler.EditValueChanged
         sColor = cboSaler.GetColumnValue("color")
     End Sub
@@ -291,7 +310,25 @@ Public Class frmCusMov
             tmReminder.EditValue = "" : tmReminder.Text = "" : tmReminder.ReadOnly = True
             txtSch.EditValue = "" : txtSch.ReadOnly = True
             cboRemValues.EditValue = Nothing : cboRemValues.Text = "" : cboRemValues.ReadOnly = True
-
         End If
+        If IsDBNull(cboSTATUS.GetColumnValue("RequiredSaler")) = False Then
+            If cboSTATUS.GetColumnValue("RequiredSaler") = True Then lSaler.Enabled = True Else lSaler.Enabled = False : cboSaler.EditValue = Nothing
+        Else
+            lSaler.Enabled = False : cboSaler.EditValue = Nothing
+        End If
+        If IsDBNull(cboSTATUS.GetColumnValue("RequiredCounter")) = False Then
+            If cboSTATUS.GetColumnValue("RequiredCounter") = True Then lCounter.Enabled = True Else lCounter.Enabled = False : cboCounter.EditValue = Nothing
+        Else
+            lCounter.Enabled = False : cboCounter.EditValue = Nothing
+        End If
+
+    End Sub
+
+    Private Sub cboCounter_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCounter.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboCounter.EditValue = Nothing : ManageCounter()
+            Case 2 : If cboCounter.EditValue <> Nothing Then ManageCounter()
+            Case 3 : cboCounter.EditValue = Nothing
+        End Select
     End Sub
 End Class

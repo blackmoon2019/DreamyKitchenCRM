@@ -734,8 +734,6 @@ Partial Class frmMain
         'RibbonPageGroup13
         '
         Me.RibbonPageGroup13.ItemLinks.Add(Me.bbEmploye, True)
-        Me.RibbonPageGroup13.ItemLinks.Add(Me.bbSalers)
-        Me.RibbonPageGroup13.ItemLinks.Add(Me.BBSer)
         Me.RibbonPageGroup13.ItemLinks.Add(Me.bbDep)
         Me.RibbonPageGroup13.ItemLinks.Add(Me.BBPayrolStatus)
         Me.RibbonPageGroup13.Name = "RibbonPageGroup13"
@@ -891,7 +889,6 @@ Partial Class frmMain
         Me.XtraTabbedMdiManager1.FloatOnDrag = DevExpress.Utils.DefaultBoolean.[True]
         Me.XtraTabbedMdiManager1.HeaderButtons = CType((DevExpress.XtraTab.TabButtons.Close Or DevExpress.XtraTab.TabButtons.[Default]), DevExpress.XtraTab.TabButtons)
         Me.XtraTabbedMdiManager1.MdiParent = Me
-        Me.XtraTabbedMdiManager1.PinPageButtonShowMode = DevExpress.XtraTab.PinPageButtonShowMode.InAllTabPageHeaders
         Me.XtraTabbedMdiManager1.ShowFloatingDropHint = DevExpress.Utils.DefaultBoolean.[True]
         Me.XtraTabbedMdiManager1.ShowHeaderFocus = DevExpress.Utils.DefaultBoolean.[True]
         '

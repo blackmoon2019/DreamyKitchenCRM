@@ -9,6 +9,8 @@ Imports DevExpress.XtraScheduler.Drawing
 Public Class frmCalendar
     Private Calendar As New InitializeCalendar
     Private Sub frmCalendar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS_AND_COUNTERS' table. You can move, or remove it, as needed.
+        Me.Vw_SALERS_AND_COUNTERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS_AND_COUNTERS)
         Try
             Dim sSQL As String
             PanelResults.Visible = False
@@ -38,7 +40,8 @@ Public Class frmCalendar
             PanelResults.Left = (PanelResults.Parent.Width - PanelResults.Width) / 2
             PanelResults.Top = (PanelResults.Parent.Height - PanelResults.Height) / 2
 
-            Me.DreamyKitchenAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
+            'Me.DreamyKitchenAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
+            Me.Vw_SALERS_AND_COUNTERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS_AND_COUNTERS)
 
             SchedulerControl1.Start = Now.Date
             sdr.Close()
@@ -206,4 +209,12 @@ Public Class frmCalendar
         End If
     End Sub
 
+    'Private Sub FillByToolStripButton_Click(sender As Object, e As EventArgs)
+    '    Try
+    '        Me.Vw_SALERS_AND_COUNTERSTableAdapter.FillBy(Me.DreamyKitchenDataSet.vw_SALERS_AND_COUNTERS)
+    '    Catch ex As System.Exception
+    '        System.Windows.Forms.MessageBox.Show(ex.Message)
+    '    End Try
+
+    'End Sub
 End Class

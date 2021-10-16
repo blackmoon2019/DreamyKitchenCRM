@@ -15,7 +15,7 @@ Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_NOTES' table. You can move, or remove it, as needed.
 
-        Me.Vw_NOTESTableAdapter.FillBy1(Me.DreamyKitchenDataSet.vw_NOTES, UserProps.SalerID, UserProps.ID)
+        Me.Vw_NOTESTableAdapter.FillBy1(Me.DreamyKitchenDataSet.vw_NOTES, UserProps.EmpID, UserProps.ID)
         'XtraTabbedMdiManager1.ClosePageButtonShowMode = DevExpress.XtraTab.ClosePageButtonShowMode.InAllTabPageHeaders
         bbDate.Caption = DateTime.Today
         bbUser.Caption = "Χρήστης: " & UserProps.RealName
@@ -257,7 +257,7 @@ Public Class frmMain
         Try
             'Dim i As Integer = 0
             Dim cmd As SqlCommand = New SqlCommand("SELECT ID,title,note
-                                                     FROM vw_NOTES WHERE (salerID = '" & UserProps.SalerID.ToString & "' or salerID is null ) and readed=0", CNDB)
+                                                     FROM vw_NOTES WHERE (empID = '" & UserProps.EmpID.ToString & "' or empID is null ) and readed=0", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             If sdr.HasRows Then
                 'ToastNotificationsManager1.Notifications.Clear()
@@ -471,18 +471,29 @@ Public Class frmMain
         form.Show()
     End Sub
 
-    Private Sub BarButtonItem3_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInst.ItemClick
-        If UserPermissions.CheckViewPermission("Τοποθετήσεις") Then
+    Private Sub BBInstM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInstM.ItemClick
+        If UserPermissions.CheckViewPermission("Χρεωπιστώσεις Συνεργείων") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Μισθοδοσία Τοποθετών"
-            form.DataTable = "vw_INST"
-            form.DataDetail = "vw_INST_M"
+            form.Text = "Χρεωπιστώσεις Συνεργείων"
+            form.DataTable = "vw_INST_M"
             form.MdiParent = Me
             form.Show()
         Else
             XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
-
+    End Sub
+    Private Sub BBInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInst.ItemClick
+        If UserPermissions.CheckViewPermission("Τοποθετήσεις") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Μισθοδοσία Τοποθετών"
+            form.DataTable = "vw_INST"
+            form.DataDetail = "vw_INST_M"
+            form.DataTableWhereCondition = " WHERE DEPID = 'BFD7EBD9-B0B2-4FCB-B1FF-341EC37A6A11'"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 
     Private Sub BBCalendarInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCalendarInst.ItemClick
@@ -575,17 +586,7 @@ Public Class frmMain
         form.Show()
     End Sub
 
-    Private Sub BBInstM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInstM.ItemClick
-        If UserPermissions.CheckViewPermission("Χρεωπιστώσεις Συνεργείων") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Χρεωπιστώσεις Συνεργείων"
-            form.DataTable = "vw_INST_M"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
-    End Sub
+
 
     Private Sub BBPayrolStatus_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayrolStatus.ItemClick
         If UserPermissions.CheckViewPermission("Statuses Μισθοδοσίας") Then
@@ -658,7 +659,7 @@ Public Class frmMain
             Dim form As frmScroller = New frmScroller()
             form.Text = "Χρεωπιστώσεις Κατασκευαστικου"
             form.IsConstr = True
-            form.DataTableWhereCondition = " WHERE DEPID = '16228C6D-FAE6-4CFD-82D1-A9910D909952'"
+            form.DataTableWhereCondition = " WHERE jobid = 'F1A60661-D448-41B7-8CF0-CE6B9FF6E518'"
             form.DataTable = "vw_EMP_M"
             form.MdiParent = Me
             form.Show()
@@ -674,5 +675,6 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
 End Class
 

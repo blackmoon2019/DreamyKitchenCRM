@@ -61,8 +61,10 @@ Public Class frmEmpPayroll
     Private Sub frmEmpPayroll_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
         If bIsConstr = True Then
-            sSQL.AppendLine("Select id,Fullname,salary  from vw_EMP where depID='16228C6D-FAE6-4CFD-82D1-A9910D909952' order by Fullname")
+            'Χρεωπιστώσεις Κατασκευαστικου
+            sSQL.AppendLine("Select id,Fullname,salary  from vw_EMP where jobid='F1A60661-D448-41B7-8CF0-CE6B9FF6E518' order by Fullname")
         Else
+            'Μισθοδοσία Έκθεσης
             sSQL.AppendLine("Select id,Fullname,salary  from vw_EMP where depID='9812E975-2FD4-4653-B043-3D6CAF440888' order by Fullname")
         End If
 
@@ -151,7 +153,7 @@ Public Class frmEmpPayroll
                 End Select
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm
-                    form.DataTableWhereCondition = IIf(bIsConstr = True, "where depid='16228C6D-FAE6-4CFD-82D1-A9910D909952'", "where depid='9812E975-2FD4-4653-B043-3D6CAF440888'")
+                    form.DataTableWhereCondition = IIf(bIsConstr = True, "where jobid='F1A60661-D448-41B7-8CF0-CE6B9FF6E518'", "where depid='9812E975-2FD4-4653-B043-3D6CAF440888'")
                     form.LoadRecords("vw_EMP_M")
                 End If
 

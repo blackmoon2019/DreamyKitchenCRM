@@ -96,7 +96,7 @@ Public Class frmPersonalNote
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "SALER_CALENDAR", LayoutControl1,,, sGuid,, "empID", toSQLValueS(System.Guid.Parse(UserProps.SalerID.ToString).ToString))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "SALER_CALENDAR", LayoutControl1,,, sGuid,, "empID", toSQLValueS(System.Guid.Parse(UserProps.EmpID.ToString).ToString))
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "SALER_CALENDAR", LayoutControl1,,, sID, True)
                         sGuid = sID
