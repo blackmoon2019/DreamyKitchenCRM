@@ -229,10 +229,6 @@ Public Class frmCalendarInst
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Private Sub SchedulerControl1_AppointmentFlyoutShowing(sender As Object, e As AppointmentFlyoutShowingEventArgs) Handles SchedulerControl1.AppointmentFlyoutShowing
-
-    End Sub
-
     Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText
         e.Text = e.Text & vbCrLf + "Σχόλια: " + e.Description
     End Sub

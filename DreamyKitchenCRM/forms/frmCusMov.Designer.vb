@@ -33,6 +33,7 @@ Partial Class frmCusMov
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboSaler = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboSTATUS = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cboCounter = New DevExpress.XtraEditors.LookUpEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -48,12 +49,11 @@ Partial Class frmCusMov
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.lCounter = New DevExpress.XtraLayout.LayoutControlItem()
         Me.cmdCboManageCOU = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.TimeSpanChartRangeControlClient1 = New DevExpress.XtraEditors.TimeSpanChartRangeControlClient()
-        Me.cboCounter = New DevExpress.XtraEditors.LookUpEdit()
-        Me.lCounter = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.tmReminder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -73,6 +73,7 @@ Partial Class frmCusMov
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSTATUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboCounter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -88,9 +89,8 @@ Partial Class frmCusMov
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TimeSpanChartRangeControlClient1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboCounter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.lCounter, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TimeSpanChartRangeControlClient1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -280,6 +280,19 @@ Partial Class frmCusMov
         Me.cboSTATUS.TabIndex = 6
         Me.cboSTATUS.Tag = "statusID,0,1,2"
         '
+        'cboCounter
+        '
+        Me.cboCounter.Location = New System.Drawing.Point(138, 108)
+        Me.cboCounter.Name = "cboCounter"
+        Me.cboCounter.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboCounter.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboCounter.Properties.NullText = ""
+        Me.cboCounter.Properties.PopupSizeable = False
+        Me.cboCounter.Size = New System.Drawing.Size(512, 20)
+        Me.cboCounter.StyleController = Me.LayoutControl1
+        Me.cboCounter.TabIndex = 6
+        Me.cboCounter.Tag = "counterID,0,1,2"
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -441,6 +454,19 @@ Partial Class frmCusMov
         Me.LayoutControlItem2.Text = "Status"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(114, 13)
         '
+        'lCounter
+        '
+        Me.lCounter.Control = Me.cboCounter
+        Me.lCounter.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.lCounter.CustomizationFormText = "Περιοχή"
+        Me.lCounter.Enabled = False
+        Me.lCounter.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.lCounter.Location = New System.Drawing.Point(0, 96)
+        Me.lCounter.Name = "lCounter"
+        Me.lCounter.Size = New System.Drawing.Size(642, 24)
+        Me.lCounter.Text = "Επιμετρητής"
+        Me.lCounter.TextSize = New System.Drawing.Size(114, 13)
+        '
         'cmdCboManageCOU
         '
         Me.cmdCboManageCOU.Location = New System.Drawing.Point(234, 110)
@@ -466,32 +492,6 @@ Partial Class frmCusMov
         Me.cmdSave.Size = New System.Drawing.Size(111, 28)
         Me.cmdSave.TabIndex = 15
         Me.cmdSave.Text = "Αποθήκευση"
-        '
-        'cboCounter
-        '
-        Me.cboCounter.Location = New System.Drawing.Point(138, 108)
-        Me.cboCounter.Name = "cboCounter"
-        Me.cboCounter.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboCounter.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboCounter.Properties.NullText = ""
-        Me.cboCounter.Properties.PopupSizeable = False
-        Me.cboCounter.Size = New System.Drawing.Size(512, 20)
-        Me.cboCounter.StyleController = Me.LayoutControl1
-        Me.cboCounter.TabIndex = 6
-        Me.cboCounter.Tag = "counterID,0,1,2"
-        '
-        'lCounter
-        '
-        Me.lCounter.Control = Me.cboCounter
-        Me.lCounter.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.lCounter.CustomizationFormText = "Περιοχή"
-        Me.lCounter.Enabled = False
-        Me.lCounter.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.lCounter.Location = New System.Drawing.Point(0, 96)
-        Me.lCounter.Name = "lCounter"
-        Me.lCounter.Size = New System.Drawing.Size(642, 24)
-        Me.lCounter.Text = "Επιμετρητής"
-        Me.lCounter.TextSize = New System.Drawing.Size(114, 13)
         '
         'frmCusMov
         '
@@ -523,6 +523,7 @@ Partial Class frmCusMov
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSTATUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboCounter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
@@ -538,9 +539,8 @@ Partial Class frmCusMov
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TimeSpanChartRangeControlClient1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboCounter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.lCounter, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TimeSpanChartRangeControlClient1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

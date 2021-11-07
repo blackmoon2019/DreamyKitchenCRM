@@ -24,6 +24,29 @@ Public Class FormLoader
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
                         If LItem.ControlName <> Nothing Then
+                            'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
+                            If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
+                                Dim RDG As DevExpress.XtraEditors.RadioGroup
+                                RDG = LItem.Control
+                                For i As Integer = 0 To RDG.Properties.Items.Count - 1
+                                    'Βάζω τις τιμές του TAG σε array
+                                    If RDG.Properties.Items(i).Tag <> Nothing Then
+                                        TagValue = RDG.Properties.Items(i).Tag.Split(",")
+                                        'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
+                                        Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
+                                        If value <> Nothing Then
+                                            TagV = TagValue(0).Replace("[", "").Replace("]", "")
+                                            Console.WriteLine(TagV)
+                                            sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
+                                            Dim index = sdr.GetOrdinal(TagV)
+                                            Console.WriteLine(sdr.GetDataTypeName(index))
+                                            If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
+                                                If sdr.GetBoolean(sdr.GetOrdinal(TagV)) = True Then RDG.SelectedIndex = i
+                                            End If
+                                        End If
+                                    End If
+                                Next i
+                            End If
                             ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             If LItem.Control.Tag <> "" Then
                                 'Βάζω τις τιμές του TAG σε array
@@ -168,8 +191,15 @@ Public Class FormLoader
             tm = Ctrl
 
             tm.EditValue = CDate(sValue).ToString("HH:mm")
-
-            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
+            Dim txt As DevExpress.XtraEditors.MemoEdit
+            txt = Ctrl
+            If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
+                txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
+            Else
+                txt.Text = sValue
+            End If
+        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
                 Dim txt As DevExpress.XtraEditors.TextEdit
                 txt = Ctrl
                 If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then

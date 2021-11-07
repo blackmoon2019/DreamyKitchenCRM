@@ -7,6 +7,7 @@ Imports DevExpress.XtraEditors.Controls
 Public Class frmInstallations
     Private sID As String
     Private sEMP_T_ID As String
+    Private sTRANSH_ID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -28,6 +29,11 @@ Public Class frmInstallations
     Public WriteOnly Property EMP_T_ID As String
         Set(value As String)
             sEMP_T_ID = value
+        End Set
+    End Property
+    Public WriteOnly Property TRANSH_ID As String
+        Set(value As String)
+            sTRANSH_ID = value
         End Set
     End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
@@ -60,6 +66,7 @@ Public Class frmInstallations
     End Sub
 
     Private Sub frmInstallations_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_TRANSH' table. You can move, or remove it, as needed.
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
         FillCbo.SER(cboSER, sSQL)
@@ -162,6 +169,23 @@ Public Class frmInstallations
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub ManageTRANSH()
+        Dim form1 As frmTransactions = New frmTransactions()
+        form1.Text = "Χρεωπιστώσεις Πελατών"
+        form1.CallerControl = cboTRANSH
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If cboTRANSH.EditValue <> Nothing Then
+            form1.ID = cboTRANSH.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+
     Private Sub ManageSaler()
         Dim form1 As frmEMP = New frmEMP()
         form1.Text = "Πωλητές"
@@ -224,5 +248,19 @@ Public Class frmInstallations
         frmInstEllipse.CalledFromControl = False
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(frmInstEllipse.Parent.ClientRectangle.Width / 2 - frmInstEllipse.Width / 2), CInt(frmInstEllipse.Parent.ClientRectangle.Height / 2 - frmInstEllipse.Height / 2)))
         frmInstEllipse.Show()
+    End Sub
+
+    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
+        If cboCUS.EditValue = Nothing Then Exit Sub
+        Me.Vw_TRANSHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSH, System.Guid.Parse(cboCUS.EditValue.ToString))
+    End Sub
+
+
+    Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboTRANSH.EditValue = Nothing : ManageTRANSH()
+            Case 2 : If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 3 : cboTRANSH.EditValue = Nothing
+        End Select
     End Sub
 End Class

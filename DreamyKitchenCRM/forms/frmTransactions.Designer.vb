@@ -20,6 +20,11 @@ Partial Class frmTransactions
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTransactions))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.txtEMP_T_ID = New DevExpress.XtraEditors.TextEdit()
@@ -114,6 +119,8 @@ Partial Class frmTransactions
         Me.Vw_BANKSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BANKSTableAdapter()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         Me.Vw_INVTYPESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_INVTYPESTableAdapter()
+        Me.VwSCANFILENAMESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Vw_SCAN_FILE_NAMESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SCAN_FILE_NAMESTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtEMP_T_ID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,6 +187,7 @@ Partial Class frmTransactions
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -242,10 +250,10 @@ Partial Class frmTransactions
         'GridControl2
         '
         Me.GridControl2.DataSource = Me.VwCCTFBindingSource
-        Me.GridControl2.Location = New System.Drawing.Point(24, 324)
+        Me.GridControl2.Location = New System.Drawing.Point(24, 328)
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(519, 105)
+        Me.GridControl2.Size = New System.Drawing.Size(519, 101)
         Me.GridControl2.TabIndex = 47
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -627,9 +635,10 @@ Partial Class frmTransactions
         Me.txtInvoiceFilename.Location = New System.Drawing.Point(146, 300)
         Me.txtInvoiceFilename.Name = "txtInvoiceFilename"
         Me.txtInvoiceFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.txtInvoiceFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions2.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
+        Me.txtInvoiceFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtInvoiceFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtInvoiceFilename.Size = New System.Drawing.Size(397, 20)
+        Me.txtInvoiceFilename.Size = New System.Drawing.Size(397, 24)
         Me.txtInvoiceFilename.StyleController = Me.LayoutControl1
         Me.txtInvoiceFilename.TabIndex = 6
         Me.txtInvoiceFilename.Tag = ""
@@ -876,9 +885,9 @@ Partial Class frmTransactions
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.GridControl2
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 279)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 283)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(523, 109)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(523, 105)
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem16.TextVisible = False
         '
@@ -890,7 +899,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem12.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 255)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(523, 24)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(523, 28)
         Me.LayoutControlItem12.Text = "Αρχεία"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(110, 13)
         '
@@ -1131,6 +1140,15 @@ Partial Class frmTransactions
         '
         Me.Vw_INVTYPESTableAdapter.ClearBeforeFill = True
         '
+        'VwSCANFILENAMESBindingSource
+        '
+        Me.VwSCANFILENAMESBindingSource.DataMember = "vw_SCAN_FILE_NAMES"
+        Me.VwSCANFILENAMESBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'Vw_SCAN_FILE_NAMESTableAdapter
+        '
+        Me.Vw_SCAN_FILE_NAMESTableAdapter.ClearBeforeFill = True
+        '
         'frmTransactions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -1207,6 +1225,7 @@ Partial Class frmTransactions
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1304,4 +1323,6 @@ Partial Class frmTransactions
     Friend WithEvents Vw_INVTYPESTableAdapter As DreamyKitchenDataSetTableAdapters.vw_INVTYPESTableAdapter
     Friend WithEvents cboSaler As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem20 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents VwSCANFILENAMESBindingSource As BindingSource
+    Friend WithEvents Vw_SCAN_FILE_NAMESTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SCAN_FILE_NAMESTableAdapter
 End Class

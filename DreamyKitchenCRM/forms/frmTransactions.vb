@@ -16,6 +16,7 @@ Public Class frmTransactions
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
+    Private ScanFile As ScanToPDF
     Private Valid As New ValidateControls
     Private Log As New Transactions
     Private FillCbo As New FillCombos
@@ -64,6 +65,8 @@ Public Class frmTransactions
     End Sub
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SCAN_FILE_NAMES' table. You can move, or remove it, as needed.
+        Me.Vw_SCAN_FILE_NAMESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SCAN_FILE_NAMES)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INVTYPES' table. You can move, or remove it, as needed.
         Me.Vw_INVTYPESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_INVTYPES)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BANKS' table. You can move, or remove it, as needed.
@@ -197,9 +200,22 @@ Public Class frmTransactions
     End Sub
 
     Private Sub txtInvoiceFilename_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtInvoiceFilename.ButtonClick
+        Dim sFilename As String
         Select Case e.Button.Index
-            Case 0 : FileSelect()
-            Case 1 : txtInvoiceFilename.EditValue = Nothing
+            Case 0
+                Dim result = XtraInputBox.Show("Πληκτρολογήστε το πλήθος σελίδων που θα σκανάρετε", "Όνομα Αρχείου", "1")
+
+                ScanFile = New ScanToPDF
+                If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
+                txtInvoiceFilename.EditValue = sFilename
+                If txtInvoiceFilename.Text <> "" Then
+                    DBQ.InsertDataFilesFromScanner(sFilename, cboCUS.EditValue.ToString, "TRANSH")
+                    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
+                End If
+                ScanFile = Nothing
+
+            Case 1 : FileSelect()
+            Case 2 : txtInvoiceFilename.EditValue = Nothing
         End Select
     End Sub
 
@@ -241,7 +257,7 @@ Public Class frmTransactions
                         oCmd.ExecuteNonQuery()
                     End Using
                     XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(sID))
+                    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
                 End If
                 'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,filename,comefrom,createdon,realname From vw_CCT_F where isinvoice=1 and cctID = '" & sID & "'")
             Else
@@ -491,11 +507,13 @@ Public Class frmTransactions
             frmInstallations.Mode = FormMode.NewRecord
             frmInstallations.Scroller = GridView1
             frmInstallations.FormScroller = Me
+            frmInstallations.TRANSH_ID = sID
             If sEMP_T_ID <> Nothing Then
                 frmInstallations.EMP_T_ID = sEMP_T_ID
             ElseIf txtEMP_T_ID.EditValue <> Nothing Then
                 frmInstallations.EMP_T_ID = txtEMP_T_ID.EditValue.ToString
             End If
+
             frmInstallations.CalledFromControl = False
             'frmInstallations.cboSaler.EditValue = cboCUS.GetColumnValue("SalerID")
             frmInstallations.cboSaler.EditValue = cboSaler.EditValue
@@ -532,4 +550,8 @@ Public Class frmTransactions
         End Sub
         Public Column As GridColumn
     End Class
+
+    Private Sub txtInvoiceFilename_EditValueChanged(sender As Object, e As EventArgs) Handles txtInvoiceFilename.EditValueChanged
+
+    End Sub
 End Class

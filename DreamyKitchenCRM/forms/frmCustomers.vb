@@ -465,6 +465,9 @@ Public Class frmCustomers
                 '4nd Custom Menu Item
                 menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveView, Nothing, Nothing, Nothing, Nothing))
 
+                '5nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Συγχρονισμός όψης από Server", AddressOf OnSyncView, Nothing, Nothing, Nothing, Nothing))
+
             End If
         End If
     End Sub
@@ -503,6 +506,24 @@ Public Class frmCustomers
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\vw_CCT_F_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
+                GridView1.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
+            End If
+        End If
+
+    End Sub
+    'Συγχρονισμός όψης από Server
+    Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
+            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\vw_CCT_F_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\vw_CCT_F_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", True)
+                GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
+            End If
+        End If
     End Sub
 
     Friend Class MenuColumnInfo
@@ -511,6 +532,8 @@ Public Class frmCustomers
         End Sub
         Public Column As GridColumn
     End Class
+
+
 
 
     'Private Sub SqlBlob2File(ByVal DocName As String)

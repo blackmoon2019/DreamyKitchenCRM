@@ -222,10 +222,10 @@ Public Class frmConstrunction
             ExtraCost = ExtraCost - AgreementSalary
         Else
             OverWork = 0
-            txtExtraCost.EditValue = "0"
+            'txtExtraCost.EditValue = "0"
         End If
         txtOverWork.EditValue = OverWork
-        txtExtraCost.EditValue = ExtraCost
+        ' txtExtraCost.EditValue = ExtraCost
 
     End Sub
     Private Sub tmOUT_Validated(sender As Object, e As EventArgs) Handles tmOUT.Validated
@@ -245,9 +245,9 @@ Public Class frmConstrunction
             ExtraCost = ExtraCost - AgreementSalary
         Else
             OverWork = 0
-            txtExtraCost.EditValue = "0"
+            ' txtExtraCost.EditValue = "0"
         End If
         txtOverWork.EditValue = OverWork
-        txtExtraCost.EditValue = ExtraCost
+        ' txtExtraCost.EditValue = ExtraCost
     End Sub
 End Class

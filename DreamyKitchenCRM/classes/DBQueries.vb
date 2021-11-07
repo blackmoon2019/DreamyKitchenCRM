@@ -64,6 +64,43 @@ Public Class DBQueries
         End Try
 
     End Function
+    Public Function InsertDataFilesFromScanner(ByVal sFilename As String, ByVal ID As String, ByVal sTable As String) As Boolean
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.Clear()
+            Select Case sTable
+                Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
+                Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
+                Case "TRANSH" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
+                Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
+            End Select
+            Dim extension As String = Path.GetExtension(sFilename)
+            Dim FilePath As String = Path.GetDirectoryName(sFilename)
+            Dim FileName As String = Path.GetFileName(sFilename)
+
+            sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
+            sSQL.AppendLine(toSQLValueS(FileName) & ",")
+            sSQL.AppendLine(toSQLValueS(FilePath) & ",")
+            sSQL.AppendLine(toSQLValueS(extension) & ",")
+            sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
+            If sTable = "CCT_F" Then sSQL.AppendLine(",0")
+            If sTable = "TRANSH" Then sSQL.AppendLine(",1")
+            sSQL.Append(",files.* ")
+            sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(My.Settings.SERVER_PATH & FileName) & ", SINGLE_BLOB) files")
+
+
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            'ReadBlobFile()
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
     Private Sub ReadBlobFile()
         Dim sSQL As String
         Dim Buffer As Byte()

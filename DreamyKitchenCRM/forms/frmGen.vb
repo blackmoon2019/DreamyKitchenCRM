@@ -84,6 +84,20 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "SCAN_FILE_NAMES"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "SCAN_FILE_NAMES", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.SCAN_FILE_NAMES(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_SCAN_FILE_NAMES")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("SCAN_FILE_NAMES")
                             Case "JOBS"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "JOBS", sGuid)
@@ -365,6 +379,15 @@ Public Class frmGen
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "SCAN_FILE_NAMES"
+                                sResult = DBQ.UpdateData(LayoutControl1, "SCAN_FILE_NAMES", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.SCAN_FILE_NAMES(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_SCAN_FILE_NAMES")
+                                End If
                             Case "JOBS"
                                 sResult = DBQ.UpdateData(LayoutControl1, "JOBS", sID)
                                 If CalledFromCtrl Then
@@ -567,6 +590,12 @@ Public Class frmGen
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "SCAN_FILE_NAMES"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("SCAN_FILE_NAMES")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SCAN_FILE_NAMES where id ='" + sID + "'")
+                End If
             Case "JOBS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("JOBS")
@@ -721,6 +750,13 @@ Public Class frmGen
                 End Using
 
                 Select Case sDataTable
+                    Case "SCAN_FILE_NAMES"
+                        If CalledFromCtrl Then
+                            FillCbo.SCAN_FILE_NAMES(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_SCAN_FILE_NAMES")
+                        End If
                     Case "JOBS"
                         If CalledFromCtrl Then
                             FillCbo.JOBS(CtrlCombo)
@@ -860,10 +896,6 @@ Public Class frmGen
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Sub
-
-    Private Sub ColorPickEdit1_EditValueChanged(sender As Object, e As EventArgs) Handles ColorPickEdit1.EditValueChanged
-
     End Sub
 
     Private Sub ColorPickEdit1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles ColorPickEdit1.ButtonClick

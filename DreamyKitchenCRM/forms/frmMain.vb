@@ -676,5 +676,20 @@ Public Class frmMain
         form.Show()
     End Sub
 
+    Private Sub BBStatistics2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBStatistics2.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
+        form.DataTable = "vw_STATISTICS2"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBScanFileNames_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBScanFileNames.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Ονομασίες Scan Αρχείων"
+        form.DataTable = "vw_SCAN_FILE_NAMES"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

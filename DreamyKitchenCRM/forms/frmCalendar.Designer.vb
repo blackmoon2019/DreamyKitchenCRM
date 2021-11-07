@@ -145,6 +145,8 @@ Partial Class frmCalendar
         Me.SchedulerControl1.Location = New System.Drawing.Point(0, 24)
         Me.SchedulerControl1.MenuManager = Me.BarManager1
         Me.SchedulerControl1.Name = "SchedulerControl1"
+        Me.SchedulerControl1.OptionsRangeControl.RangeMaximum = New Date(2021, 12, 1, 0, 0, 0, 0)
+        Me.SchedulerControl1.OptionsRangeControl.RangeMinimum = New Date(2021, 9, 1, 0, 0, 0, 0)
         Me.SchedulerControl1.Size = New System.Drawing.Size(1574, 688)
         Me.SchedulerControl1.Start = New Date(2020, 10, 5, 0, 0, 0, 0)
         Me.SchedulerControl1.TabIndex = 0
