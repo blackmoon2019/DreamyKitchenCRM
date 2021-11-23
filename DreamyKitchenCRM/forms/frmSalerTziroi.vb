@@ -181,9 +181,10 @@ Public Class frmSalerTziroi
     End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        If cboCUS.EditValue Is Nothing Then Exit Sub
+        Dim sCusID As String
+        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select id,Description,Totamt from vw_TRANSH where cusid = " & toSQLValueS(cboCUS.EditValue.ToString) & "order by description")
+        sSQL.AppendLine("Select id,Description,Totamt from vw_TRANSH where cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTransH, sSQL)
     End Sub
 

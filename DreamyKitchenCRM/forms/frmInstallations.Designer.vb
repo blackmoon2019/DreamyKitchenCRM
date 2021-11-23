@@ -38,8 +38,6 @@ Partial Class frmInstallations
         Me.dtDeliverDate1 = New DevExpress.XtraEditors.DateEdit()
         Me.txtComments1 = New DevExpress.XtraEditors.MemoEdit()
         Me.cboTRANSH = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -59,6 +57,9 @@ Partial Class frmInstallations
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -77,8 +78,6 @@ Partial Class frmInstallations
         CType(Me.dtDeliverDate1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,6 +97,9 @@ Partial Class frmInstallations
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -140,12 +142,12 @@ Partial Class frmInstallations
         'chkPaid
         '
         Me.chkPaid.EditValue = CType(0, Byte)
-        Me.chkPaid.Location = New System.Drawing.Point(262, 204)
+        Me.chkPaid.Location = New System.Drawing.Point(231, 204)
         Me.chkPaid.Name = "chkPaid"
         Me.chkPaid.Properties.Caption = "Εξοφλημένο"
         Me.chkPaid.Properties.ValueChecked = CType(1, Byte)
         Me.chkPaid.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkPaid.Size = New System.Drawing.Size(315, 20)
+        Me.chkPaid.Size = New System.Drawing.Size(346, 20)
         Me.chkPaid.StyleController = Me.LayoutControl1
         Me.chkPaid.TabIndex = 43
         Me.chkPaid.Tag = "paid,0,1,2"
@@ -158,7 +160,7 @@ Partial Class frmInstallations
         Me.chkCompleted.Properties.Caption = "Ολοκληρώθηκε"
         Me.chkCompleted.Properties.ValueChecked = CType(1, Byte)
         Me.chkCompleted.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkCompleted.Size = New System.Drawing.Size(246, 20)
+        Me.chkCompleted.Size = New System.Drawing.Size(215, 20)
         Me.chkCompleted.StyleController = Me.LayoutControl1
         Me.chkCompleted.TabIndex = 35
         Me.chkCompleted.Tag = "completed,0,1,2"
@@ -225,9 +227,9 @@ Partial Class frmInstallations
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(229, 228)
+        Me.txtComments.Location = New System.Drawing.Point(12, 244)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(348, 84)
+        Me.txtComments.Size = New System.Drawing.Size(565, 88)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
@@ -241,7 +243,7 @@ Partial Class frmInstallations
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(50, 20)
+        Me.txtCode.Size = New System.Drawing.Size(63, 20)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
@@ -259,7 +261,7 @@ Partial Class frmInstallations
         Me.txtCost.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtCost.Properties.MaskSettings.Set("mask", "c2")
         Me.txtCost.Properties.Tag = "BenchExtraPrice"
-        Me.txtCost.Size = New System.Drawing.Size(50, 20)
+        Me.txtCost.Size = New System.Drawing.Size(70, 20)
         Me.txtCost.StyleController = Me.LayoutControl1
         Me.txtCost.TabIndex = 42
         Me.txtCost.Tag = "cost,0,1,2"
@@ -268,7 +270,7 @@ Partial Class frmInstallations
         'txtExtraCost
         '
         Me.txtExtraCost.EditValue = "0,00 €"
-        Me.txtExtraCost.Location = New System.Drawing.Point(500, 180)
+        Me.txtExtraCost.Location = New System.Drawing.Point(371, 180)
         Me.txtExtraCost.Name = "txtExtraCost"
         Me.txtExtraCost.Properties.DisplayFormat.FormatString = "c"
         Me.txtExtraCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -278,7 +280,7 @@ Partial Class frmInstallations
         Me.txtExtraCost.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtExtraCost.Properties.MaskSettings.Set("mask", "c2")
         Me.txtExtraCost.Properties.Tag = "BenchExtraPrice"
-        Me.txtExtraCost.Size = New System.Drawing.Size(77, 20)
+        Me.txtExtraCost.Size = New System.Drawing.Size(67, 20)
         Me.txtExtraCost.StyleController = Me.LayoutControl1
         Me.txtExtraCost.TabIndex = 42
         Me.txtExtraCost.Tag = "extraCost,0,1,2"
@@ -312,9 +314,9 @@ Partial Class frmInstallations
         '
         'txtComments1
         '
-        Me.txtComments1.Location = New System.Drawing.Point(229, 316)
+        Me.txtComments1.Location = New System.Drawing.Point(12, 352)
         Me.txtComments1.Name = "txtComments1"
-        Me.txtComments1.Size = New System.Drawing.Size(348, 105)
+        Me.txtComments1.Size = New System.Drawing.Size(565, 69)
         Me.txtComments1.StyleController = Me.LayoutControl1
         Me.txtComments1.TabIndex = 17
         Me.txtComments1.Tag = "cmtParadosis,0,1,2"
@@ -336,21 +338,11 @@ Partial Class frmInstallations
         Me.cboTRANSH.TabIndex = 6
         Me.cboTRANSH.Tag = "transhID,0,1,2"
         '
-        'VwTRANSHBindingSource
-        '
-        Me.VwTRANSHBindingSource.DataMember = "vw_TRANSH"
-        Me.VwTRANSHBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.Lcost, Me.LExtracost, Me.EmptySpaceItem2, Me.LayoutControlItem7, Me.LayoutControlItem8, Me.LayoutControlItem14, Me.LayoutControlItem10, Me.LayoutControlItem12, Me.LayoutControlItem11, Me.LayoutControlItem13})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem5, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.Lcost, Me.LExtracost, Me.EmptySpaceItem2, Me.LayoutControlItem7, Me.LayoutControlItem14, Me.LayoutControlItem10, Me.LayoutControlItem12, Me.LayoutControlItem11, Me.LayoutControlItem13, Me.LayoutControlItem8, Me.EmptySpaceItem3})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(589, 465)
         Me.Root.TextVisible = False
@@ -402,7 +394,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem4.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(271, 24)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(284, 24)
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(205, 13)
         '
@@ -427,9 +419,9 @@ Partial Class frmInstallations
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(271, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(284, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(298, 24)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(285, 24)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem6
@@ -437,7 +429,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem6.Control = Me.chkCompleted
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 192)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(250, 24)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(219, 24)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
@@ -449,7 +441,7 @@ Partial Class frmInstallations
         Me.Lcost.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.Lcost.Location = New System.Drawing.Point(0, 168)
         Me.Lcost.Name = "Lcost"
-        Me.Lcost.Size = New System.Drawing.Size(271, 24)
+        Me.Lcost.Size = New System.Drawing.Size(291, 24)
         Me.Lcost.Text = "Κόστος"
         Me.Lcost.TextSize = New System.Drawing.Size(205, 13)
         '
@@ -459,11 +451,13 @@ Partial Class frmInstallations
         Me.LExtracost.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LExtracost.CustomizationFormText = "Τελική Αξία"
         Me.LExtracost.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LExtracost.Location = New System.Drawing.Point(271, 168)
+        Me.LExtracost.Location = New System.Drawing.Point(291, 168)
         Me.LExtracost.Name = "LExtracost"
-        Me.LExtracost.Size = New System.Drawing.Size(298, 24)
+        Me.LExtracost.Size = New System.Drawing.Size(139, 24)
         Me.LExtracost.Text = "Extra Κόστος"
-        Me.LExtracost.TextSize = New System.Drawing.Size(205, 13)
+        Me.LExtracost.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LExtracost.TextSize = New System.Drawing.Size(63, 13)
+        Me.LExtracost.TextToControlDistance = 5
         '
         'EmptySpaceItem2
         '
@@ -490,9 +484,9 @@ Partial Class frmInstallations
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.chkPaid
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(250, 192)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(219, 192)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(319, 24)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(350, 24)
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
         '
@@ -504,8 +498,9 @@ Partial Class frmInstallations
         Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 216)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(569, 88)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(569, 108)
         Me.LayoutControlItem14.Text = "Σχόλια"
+        Me.LayoutControlItem14.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(205, 13)
         '
         'LayoutControlItem10
@@ -519,14 +514,17 @@ Partial Class frmInstallations
         '
         'LayoutControlItem12
         '
+        Me.LayoutControlItem12.AppearanceItemCaption.Options.UseTextOptions = True
+        Me.LayoutControlItem12.AppearanceItemCaption.TextOptions.WordWrap = DevExpress.Utils.WordWrap.Wrap
         Me.LayoutControlItem12.Control = Me.txtComments1
         Me.LayoutControlItem12.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem12.CustomizationFormText = "Σχόλια"
         Me.LayoutControlItem12.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 304)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 324)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(569, 109)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(569, 89)
         Me.LayoutControlItem12.Text = "Παρατηρήσεις Παραδόσεων Τοποθετήσεων"
+        Me.LayoutControlItem12.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(205, 13)
         '
         'LayoutControlItem11
@@ -551,8 +549,26 @@ Partial Class frmInstallations
         Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
         Me.LayoutControlItem13.Size = New System.Drawing.Size(569, 24)
-        Me.LayoutControlItem13.Text = "Καρτέλα Πελάτη"
+        Me.LayoutControlItem13.Text = "Έργο Πελάτη"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(205, 13)
+        '
+        'EmptySpaceItem3
+        '
+        Me.EmptySpaceItem3.AllowHotTrack = False
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(430, 168)
+        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(139, 24)
+        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'VwTRANSHBindingSource
+        '
+        Me.VwTRANSHBindingSource.DataMember = "vw_TRANSH"
+        Me.VwTRANSHBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Vw_TRANSHTableAdapter
         '
@@ -584,8 +600,6 @@ Partial Class frmInstallations
         CType(Me.dtDeliverDate1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -605,6 +619,9 @@ Partial Class frmInstallations
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -648,4 +665,5 @@ Partial Class frmInstallations
     Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
     Friend WithEvents VwTRANSHBindingSource As BindingSource
     Friend WithEvents Vw_TRANSHTableAdapter As DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter
+    Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

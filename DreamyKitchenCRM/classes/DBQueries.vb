@@ -801,7 +801,7 @@ NextItem:
                                 If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -1312,7 +1312,7 @@ NextItem:
                                 If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
                                     Else
                                         sSQL.Append("NULL")

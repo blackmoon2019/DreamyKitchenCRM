@@ -29,6 +29,7 @@ Partial Class frmInstM
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcctName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colFullTranshDescription = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldtDeliverDate = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colGRMONTH = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colSalerName = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -131,7 +132,7 @@ Partial Class frmInstM
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colcctName, Me.coldtDeliverDate, Me.colGRMONTH, Me.colSalerName, Me.colcmt, Me.colTotalCost, Me.colYPOL})
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colcctName, Me.colFullTranshDescription, Me.coldtDeliverDate, Me.colGRMONTH, Me.colSalerName, Me.colcmt, Me.colTotalCost, Me.colYPOL})
         Me.GridView3.GridControl = Me.grdInst
         Me.GridView3.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
         Me.GridView3.LevelIndent = 0
@@ -140,6 +141,7 @@ Partial Class frmInstM
         Me.GridView3.OptionsMenu.ShowConditionalFormattingItem = True
         Me.GridView3.OptionsView.ColumnAutoWidth = False
         Me.GridView3.PreviewIndent = 0
+        Me.GridView3.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colFullTranshDescription, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'colID
         '
@@ -153,6 +155,16 @@ Partial Class frmInstM
         Me.colcctName.Name = "colcctName"
         Me.colcctName.Visible = True
         Me.colcctName.VisibleIndex = 0
+        Me.colcctName.Width = 138
+        '
+        'colFullTranshDescription
+        '
+        Me.colFullTranshDescription.Caption = "Έργο"
+        Me.colFullTranshDescription.FieldName = "FullTranshDescription"
+        Me.colFullTranshDescription.Name = "colFullTranshDescription"
+        Me.colFullTranshDescription.Visible = True
+        Me.colFullTranshDescription.VisibleIndex = 1
+        Me.colFullTranshDescription.Width = 180
         '
         'coldtDeliverDate
         '
@@ -160,7 +172,8 @@ Partial Class frmInstM
         Me.coldtDeliverDate.FieldName = "dtDeliverDate"
         Me.coldtDeliverDate.Name = "coldtDeliverDate"
         Me.coldtDeliverDate.Visible = True
-        Me.coldtDeliverDate.VisibleIndex = 2
+        Me.coldtDeliverDate.VisibleIndex = 3
+        Me.coldtDeliverDate.Width = 101
         '
         'colGRMONTH
         '
@@ -168,7 +181,8 @@ Partial Class frmInstM
         Me.colGRMONTH.FieldName = "GRMONTH"
         Me.colGRMONTH.Name = "colGRMONTH"
         Me.colGRMONTH.Visible = True
-        Me.colGRMONTH.VisibleIndex = 3
+        Me.colGRMONTH.VisibleIndex = 4
+        Me.colGRMONTH.Width = 100
         '
         'colSalerName
         '
@@ -176,7 +190,7 @@ Partial Class frmInstM
         Me.colSalerName.FieldName = "SalerName"
         Me.colSalerName.Name = "colSalerName"
         Me.colSalerName.Visible = True
-        Me.colSalerName.VisibleIndex = 4
+        Me.colSalerName.VisibleIndex = 5
         '
         'colcmt
         '
@@ -184,7 +198,8 @@ Partial Class frmInstM
         Me.colcmt.FieldName = "cmt"
         Me.colcmt.Name = "colcmt"
         Me.colcmt.Visible = True
-        Me.colcmt.VisibleIndex = 1
+        Me.colcmt.VisibleIndex = 2
+        Me.colcmt.Width = 115
         '
         'colTotalCost
         '
@@ -194,7 +209,7 @@ Partial Class frmInstM
         Me.colTotalCost.Name = "colTotalCost"
         Me.colTotalCost.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "TotalCost", "SUM={0:0.##}")})
         Me.colTotalCost.Visible = True
-        Me.colTotalCost.VisibleIndex = 5
+        Me.colTotalCost.VisibleIndex = 6
         '
         'colYPOL
         '
@@ -202,7 +217,7 @@ Partial Class frmInstM
         Me.colYPOL.FieldName = "YPOL"
         Me.colYPOL.Name = "colYPOL"
         Me.colYPOL.Visible = True
-        Me.colYPOL.VisibleIndex = 6
+        Me.colYPOL.VisibleIndex = 7
         '
         'RepositoryItemButtonOil
         '
@@ -319,7 +334,7 @@ Partial Class frmInstM
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(938, 24)
         Me.LayoutControlItem9.Tag = "1"
-        Me.LayoutControlItem9.Text = "Συνεργείο"
+        Me.LayoutControlItem9.Text = "Τοποθέτες"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(106, 13)
         '
         'LayoutControlItem2
@@ -428,7 +443,7 @@ Partial Class frmInstM
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmInstM"
-        Me.Text = "Χρεωπιστώσεις Συνεργείων"
+        Me.Text = "Χρεωπιστώσεις Τοποθετών"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.grdInst, System.ComponentModel.ISupportInitialize).EndInit()
@@ -492,4 +507,5 @@ Partial Class frmInstM
     Friend WithEvents Vw_INSTPerSerTableAdapter As DreamyKitchenDataSetTableAdapters.vw_INSTPerSerTableAdapter
     Friend WithEvents colGRMONTH As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colYPOL As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colFullTranshDescription As DevExpress.XtraGrid.Columns.GridColumn
 End Class

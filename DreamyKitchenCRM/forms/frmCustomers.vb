@@ -126,6 +126,7 @@ Public Class frmCustomers
         form1.L3.Text = "Νομός"
         form1.DataTable = "AREAS"
         form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.CalledFromControl = True
         form1.CallerControl = cboAREAS
         If cboAREAS.EditValue <> Nothing Then form1.ID = cboAREAS.EditValue.ToString
         form1.MdiParent = frmMain
@@ -162,6 +163,7 @@ Public Class frmCustomers
         form1.L3.Text = "Νομός"
         form1.L4.Text = "Περιοχές"
         form1.DataTable = "ADR"
+        form1.CalledFromControl = True
         form1.CallerControl = cboADR
         form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -259,7 +261,7 @@ Public Class frmCustomers
         If result = DialogResult.OK Then
             txtFileNames.EditValue = ""
             For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
-                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I)
+                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I).Replace("'", "")
             Next I
         End If
     End Sub

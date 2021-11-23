@@ -20,6 +20,7 @@ Public Class frmInstallations
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
+    Private UserPermissions As New CheckPermissions
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -251,16 +252,21 @@ Public Class frmInstallations
     End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        If cboCUS.EditValue = Nothing Then Exit Sub
-        Me.Vw_TRANSHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSH, System.Guid.Parse(cboCUS.EditValue.ToString))
+        Dim sCusID As String
+        If cboCUS.EditValue Is Nothing Then sCusID = Guid.Empty.ToString Else sCusID = cboCUS.EditValue.ToString
+        Me.Vw_TRANSHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSH, System.Guid.Parse(sCusID))
     End Sub
 
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 1 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
+            Case 2 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+
     End Sub
 End Class

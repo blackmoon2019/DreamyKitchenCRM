@@ -476,19 +476,23 @@ Public Class frmTransactions
 
     Private Sub GridView1_CustomDrawFooterCell(sender As Object, e As FooterCellCustomDrawEventArgs) Handles GridView1.CustomDrawFooterCell
         Dim sSQL As String
-        txtBal.EditValue = GridView1.Columns("amt").SummaryItem.SummaryValue
-        If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
-        txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
-        sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(txtBal.EditValue.ToString, True) &
+        Try
+            txtBal.EditValue = GridView1.Columns("amt").SummaryItem.SummaryValue
+            If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
+            txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
+            sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(txtBal.EditValue.ToString, True) &
                            " WHERE ID = " & toSQLValueS(sID)
-        Using oCmd As New SqlCommand(sSQL, CNDB)
-            oCmd.ExecuteNonQuery()
-        End Using
-        If CalledFromCtrl = False Then
-            Dim form As frmScroller = Frm
-            form.DataTable = "vw_TRANSH"
-            form.LoadRecords("vw_TRANSD")
-        End If
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            If CalledFromCtrl = False Then
+                Dim form As frmScroller = Frm
+                form.DataTable = "vw_TRANSH"
+                form.LoadRecords("vw_TRANSD")
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
     End Sub
 
@@ -552,6 +556,21 @@ Public Class frmTransactions
     End Class
 
     Private Sub txtInvoiceFilename_EditValueChanged(sender As Object, e As EventArgs) Handles txtInvoiceFilename.EditValueChanged
+
+    End Sub
+
+    Private Sub txtDebitCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDebitCost.EditValueChanged
+        Dim Debit As Double, Devices As Double
+        If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
+        Debit = txtDebitCost.EditValue : Devices = txtDevicesCost.EditValue
+        txtTotAmt.EditValue = Debit + Devices
+    End Sub
+
+    Private Sub txtDevicesCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDevicesCost.EditValueChanged
+        Dim Debit As Double, Devices As Double
+        If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
+        Debit = txtDebitCost.EditValue : Devices = txtDevicesCost.EditValue
+        txtTotAmt.EditValue = Debit + Devices
 
     End Sub
 End Class

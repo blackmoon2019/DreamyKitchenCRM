@@ -427,7 +427,34 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub TRANSH_FOR_PROJECTCOST(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal sSQL As System.Text.StringBuilder)
+        Try
+            Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            CtrlCombo.Properties.DataSource = ""
+            CtrlCombo.Properties.Columns.Clear()
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.DisplayMember = "Description"
+            CtrlCombo.Properties.ValueMember = "id"
 
+            CtrlCombo.Properties.PopulateColumns()
+            CtrlCombo.Properties.Columns(0).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Έργα"
+            If sdr.HasRows Then
+                CtrlCombo.Properties.Columns(2).Visible = False
+                CtrlCombo.Properties.Columns(3).Visible = False
+                CtrlCombo.Properties.Columns(4).Visible = False
+                CtrlCombo.Properties.Columns(5).Visible = False
+                CtrlCombo.Properties.Columns(6).Visible = False
+                CtrlCombo.Properties.Columns(7).Visible = False
+            End If
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+    End Sub
     Public Sub CALC(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
             Dim cmd As SqlCommand = New SqlCommand("Select id,name,calculations from vw_CALC order by name", CNDB)

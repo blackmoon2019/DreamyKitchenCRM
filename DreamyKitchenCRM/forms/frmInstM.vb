@@ -70,7 +70,7 @@ Public Class frmInstM
 
     Private Sub frmInstM_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
+        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D') order by Fullname")
         FillCbo.SER(cboSER, sSQL)
 
 

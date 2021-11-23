@@ -26,7 +26,7 @@ Public Class frmCalendarInst
             Dim sSQL As String
             PanelResults.Visible = False
             SchedulerLocalizer.Active = New MySchedulerLocalizer()
-            sSQL = "SELECT * FROM vw_INST where completed = 0 order by code"
+            sSQL = "SELECT * FROM vw_INST order by code"
             'Δημιουργία Appointments
             Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, True)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INST' table. You can move, or remove it, as needed.

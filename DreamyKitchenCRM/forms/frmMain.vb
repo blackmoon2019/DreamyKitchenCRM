@@ -22,8 +22,8 @@ Public Class frmMain
         bbServer.Caption = "SQL Server: " & CNDB.DataSource.ToString
         bbDB.Caption = "Database: " & CNDB.Database.ToString
         bbVersion.Caption = "Ver:" + My.Application.Info.Version.ToString
-
         LoadCurrentSkin()
+        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then EmpManage.Visible = False
 
 
     End Sub
@@ -472,9 +472,9 @@ Public Class frmMain
     End Sub
 
     Private Sub BBInstM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInstM.ItemClick
-        If UserPermissions.CheckViewPermission("Χρεωπιστώσεις Συνεργείων") Then
+        If UserPermissions.CheckViewPermission("Χρεωπιστώσεις Τοποθετών") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Χρεωπιστώσεις Συνεργείων"
+            form.Text = "Χρεωπιστώσεις Τοποθετών"
             form.DataTable = "vw_INST_M"
             form.MdiParent = Me
             form.Show()
@@ -690,6 +690,24 @@ Public Class frmMain
         form.DataTable = "vw_SCAN_FILE_NAMES"
         form.MdiParent = Me
         form.Show()
+    End Sub
+
+    Private Sub BBStatistics3_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBStatistics3.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τελευταίο Status Ανα πελάτη"
+        form.DataTable = "vw_STATISTICS3"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBProjectCosts_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectCosts.ItemClick
+        If UserPermissions.CheckViewPermission("Ανάλυση Έργων") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Ανάλυση Έργων"
+            form.DataTable = "vw_PROJECT_COST"
+            form.MdiParent = Me
+            form.Show()
+        End If
     End Sub
 End Class
 

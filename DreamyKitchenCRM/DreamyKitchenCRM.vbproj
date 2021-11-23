@@ -433,6 +433,12 @@
     <Compile Include="forms\frmPersonalNote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmProjectCost.Designer.vb">
+      <DependentUpon>frmProjectCost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmProjectCost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmReport.Designer.vb">
       <DependentUpon>frmReport.vb</DependentUpon>
     </Compile>
@@ -632,6 +638,9 @@
     <EmbeddedResource Include="forms\frmPersonalNote.resx">
       <DependentUpon>frmPersonalNote.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmProjectCost.resx">
+      <DependentUpon>frmProjectCost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmReport.resx">
       <DependentUpon>frmReport.vb</DependentUpon>
     </EmbeddedResource>
@@ -686,8 +695,8 @@
     </None>
     <None Include="DreamyKitchenDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DreamyKitchenDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>DreamyKitchenDataSet.Designer.vb</LastGenOutput>
     </None>
     <None Include="DreamyKitchenDataSet.xss">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
@@ -928,6 +937,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-group-of-projects-40.png" />
     <None Include="Resources\icons8-name-tag-40.png" />
     <None Include="Resources\icons8-scanner-16.png" />
     <None Include="Resources\icons8-job-seeker-40.png" />

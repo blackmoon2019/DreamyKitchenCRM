@@ -20,6 +20,7 @@ Public Class frmConstrunction
     Private CalledFromCtrl As Boolean
     Private WorkingTime As Integer
     Private AgreementSalary As Double
+    Private UserPermissions As New CheckPermissions
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -94,8 +95,6 @@ Public Class frmConstrunction
         form1.Show()
 
     End Sub
-
-
     Private Sub ManageSer()
         Dim form1 As frmEMP = New frmEMP()
         form1.Text = "Συνεργεία"
@@ -127,7 +126,29 @@ Public Class frmConstrunction
         form1.Show()
 
     End Sub
+    Private Sub ManageTRANSH()
+        Dim form1 As frmTransactions = New frmTransactions()
+        form1.Text = "Χρεωπιστώσεις Πελατών"
+        form1.CallerControl = cboTRANSH
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If cboTRANSH.EditValue <> Nothing Then
+            form1.ID = cboTRANSH.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
 
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+    Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
+            Case 2 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 3 : cboTRANSH.EditValue = Nothing
+        End Select
+    End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
         Dim sGuid As String
@@ -183,7 +204,11 @@ Public Class frmConstrunction
             Case 3 : cboConstrCat.EditValue = Nothing
         End Select
     End Sub
-
+    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
+        Dim sCusID As String
+        If cboCUS.EditValue Is Nothing Then sCusID = Guid.Empty.ToString Else sCusID = cboCUS.EditValue.ToString
+        Me.Vw_TRANSHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSH, System.Guid.Parse(sCusID))
+    End Sub
     Private Sub cboSER_EditValueChanged(sender As Object, e As EventArgs) Handles cboSER.EditValueChanged
         txtSalary.EditValue = cboSER.GetColumnValue("salary")
         tmIN.EditValue = cboSER.GetColumnValue("tmIN")

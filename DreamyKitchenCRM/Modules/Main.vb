@@ -45,6 +45,14 @@ Module Main
             If Not isnum Then Return "'" + t.Text + "'" Else Return t.Text.Replace(",", ".")
         End If
     End Function
+    Public Function DbnullToZero(t As DevExpress.XtraEditors.TextEdit) As Double
+        If IsDBNull(t) = False Then
+            If t.Text = "" Then Return 0 Else Return t.EditValue.ToString.Replace(".", ",")
+        Else
+            Return 0
+        End If
+    End Function
+
     Public Sub HideColumns(GridView1 As DevExpress.XtraGrid.Views.Grid.GridView, sExclude As String)
         Dim col As GridColumn
         For Each col In GridView1.Columns
