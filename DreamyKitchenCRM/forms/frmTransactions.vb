@@ -562,14 +562,14 @@ Public Class frmTransactions
     Private Sub txtDebitCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDebitCost.EditValueChanged
         Dim Debit As Double, Devices As Double
         If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
-        Debit = txtDebitCost.EditValue : Devices = txtDevicesCost.EditValue
+        Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost)
         txtTotAmt.EditValue = Debit + Devices
     End Sub
 
     Private Sub txtDevicesCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDevicesCost.EditValueChanged
         Dim Debit As Double, Devices As Double
         If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
-        Debit = txtDebitCost.EditValue : Devices = txtDevicesCost.EditValue
+        Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost)
         txtTotAmt.EditValue = Debit + Devices
 
     End Sub

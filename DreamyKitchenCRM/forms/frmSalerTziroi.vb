@@ -184,7 +184,7 @@ Public Class frmSalerTziroi
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select id,Description,Totamt from vw_TRANSH where cusid = " & sCusID & "order by description")
+        sSQL.AppendLine("Select id,FullTranshDescription,Totamt from vw_TRANSH where cusid = " & sCusID & "order by FullTranshDescription")
         FillCbo.TRANSH(cboTransH, sSQL)
     End Sub
 

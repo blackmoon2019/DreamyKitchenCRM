@@ -164,6 +164,15 @@ Public Class frmConstrunction
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CONSTR", LayoutControl1,,, sID, True)
                         'sGuid = sID
                 End Select
+                sSQL.Clear()
+                sSQL.AppendLine("UPDATE PROJECT_COST SET ConstrPayroll = (Select sum(ISNULL(C.salary, 0) + ISNULL(C.extracost, 0)) from constr C where C.transhid= " & toSQLValueS(cboTRANSH.EditValue.ToString) & ")")
+                sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+
+
 
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm

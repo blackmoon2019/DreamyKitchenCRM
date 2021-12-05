@@ -11,10 +11,13 @@
     <AssemblyName>DreamyKitchenCRM</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MyType>WindowsForms</MyType>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
     <IsWebBootstrapper>false</IsWebBootstrapper>
+    <TargetFrameworkProfile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <PublishUrl>\\Dreamynas\crm setup\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Unc</InstallFrom>
@@ -43,13 +46,14 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>pdbonly</DebugType>
+    <DebugType>full</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineTrace>true</DefineTrace>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DocumentationFile>DreamyKitchenCRM.xml</DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022</NoWarn>
+    <DebugSymbols>true</DebugSymbols>
   </PropertyGroup>
   <PropertyGroup>
     <OptionExplicit>On</OptionExplicit>
@@ -71,74 +75,128 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Accessibility" />
-    <Reference Include="DevExpress.BonusSkins.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.CodeParser.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.Desktop.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.9.0, Culture=neutral, PublicKeyToken=0e99375e54769942">
+      <HintPath>..\packages\BouncyCastle.1.8.9\lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.BonusSkins.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Charts.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.CodeParser.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Dashboard.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dashboard.v20.2.Win, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.Desktop.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Data.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.Desktop.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Data.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.DataAccess.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Diagram.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Dialogs.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Images.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Office.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Pdf.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Data.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.DataAccess.v20.2.UI, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.DataVisualization.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Diagram.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Dialogs.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Images.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Map.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Office.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Pdf.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Pdf.v20.2.Drawing, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.PivotGrid.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.RichEdit.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Sparkline.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Utils.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Printing.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.RichEdit.v20.2.Export, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Sparkline.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Spreadsheet.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.TreeMap.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Xpo.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraBars.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraDiagram.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraDialogs.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Utils.v20.2.UI, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.Utils.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraBars.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraCharts.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.2.Extensions, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.2.UI, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraCharts.v20.2.Wizard, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraDiagram.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraDialogs.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraEditors.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.XtraGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraLayout.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraEditors.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraGauges.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v20.2.Presets, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGauges.v20.2.Win, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraGrid.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraLayout.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraNavBar.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraPrinting.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v20.1.Core, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraScheduler.v20.1.Extensions, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraTreeList.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraVerticalGrid.v20.1, Version=20.1.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraMap.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraNavBar.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraPivotGrid.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraPrinting.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraReports.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v20.2.CodeCompletion, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraReports.v20.2.Extensions, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraRichEdit.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraScheduler.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Core, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 20.2\Components\Bin\Framework\DevExpress.XtraScheduler.v20.2.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Core.Desktop, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 20.2\Components\Bin\Framework\DevExpress.XtraScheduler.v20.2.Core.Desktop.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraScheduler.v20.2.Extensions, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\DevExpress 20.2\Components\Bin\Framework\DevExpress.XtraScheduler.v20.2.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.XtraSpreadsheet.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeList.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraTreeMap.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraTreeMap.v20.2.UI, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.XtraVerticalGrid.v20.2, Version=20.2.4.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
-    <Reference Include="System.Configuration.ConfigurationManager, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Configuration.ConfigurationManager.5.0.0\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    <Reference Include="System.Configuration.ConfigurationManager, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.6.0.0-rc.2.21480.5\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Data.Linq" />
     <Reference Include="System.Data.OracleClient" />
     <Reference Include="System.Deployment" />
-    <Reference Include="System.Drawing" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Drawing">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.8\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Design" />
     <Reference Include="System.Net" />
+    <Reference Include="System.Runtime.Remoting" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Runtime.Serialization.Formatters.Soap" />
     <Reference Include="System.Security" />
-    <Reference Include="System.Security.AccessControl, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.AccessControl.5.0.0\lib\net461\System.Security.AccessControl.dll</HintPath>
+    <Reference Include="System.Security.AccessControl, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.AccessControl.6.0.0-rc.2.21480.5\lib\net461\System.Security.AccessControl.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Permissions, Version=5.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Permissions.5.0.0\lib\net461\System.Security.Permissions.dll</HintPath>
+    <Reference Include="System.Security.Permissions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Permissions.6.0.0-rc.2.21480.5\lib\net461\System.Security.Permissions.dll</HintPath>
     </Reference>
-    <Reference Include="System.Security.Principal.Windows, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.Security.Principal.Windows.5.0.0\lib\net461\System.Security.Principal.Windows.dll</HintPath>
+    <Reference Include="System.Security.Principal.Windows, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Security.Principal.Windows.6.0.0-preview.5.21301.5\lib\net461\System.Security.Principal.Windows.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Input.Manipulations" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="UIAutomationClient" />
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="UIAutomationTypes" />
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
@@ -155,6 +213,7 @@
     <Import Include="System.Threading.Tasks" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
     <Compile Include="classes\CheckForUpdates.vb" />
     <Compile Include="classes\CheckPermissions.vb" />
     <Compile Include="classes\ClearControls.vb" />
@@ -163,7 +222,9 @@
     <Compile Include="classes\FillCombos.vb" />
     <Compile Include="classes\FormLoader.vb" />
     <Compile Include="classes\InitializeCalendar.vb" />
+    <Compile Include="classes\Localization.vb" />
     <Compile Include="classes\ProgProp.vb" />
+    <Compile Include="classes\ScanToPDF.vb" />
     <Compile Include="classes\Transactions.vb" />
     <Compile Include="classes\ValidateControls.vb" />
     <Compile Include="classes\XML_Serialization.vb" />
@@ -175,66 +236,288 @@
     <Compile Include="DreamyKitchenDataSet.vb">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmBench.Designer.vb">
+      <DependentUpon>frmBench.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmBench.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCalculations.Designer.vb">
+      <DependentUpon>frmCalculations.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCalculations.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCalendar.Designer.vb">
       <DependentUpon>frmCalendar.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmCalendar.vb" />
+    <Compile Include="forms\frmCalendar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCalendarInst.Designer.vb">
+      <DependentUpon>frmCalendarInst.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCalendarInst.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCalendarPersonal.Designer.vb">
+      <DependentUpon>frmCalendarPersonal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCalendarPersonal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCatSubErm.Designer.vb">
+      <DependentUpon>frmCatSubErm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCatSubErm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCloneOffer.Designer.vb">
+      <DependentUpon>frmCloneOffer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCloneOffer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmColors.Designer.vb">
+      <DependentUpon>frmColors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmColors.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmConstrunction.Designer.vb">
+      <DependentUpon>frmConstrunction.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmConstrunction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCusMov.Designer.vb">
       <DependentUpon>frmCusMov.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmCusMov.vb" />
+    <Compile Include="forms\frmCusMov.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCustomers.Designer.vb">
       <DependentUpon>frmCustomers.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmCustomers.vb" />
+    <Compile Include="forms\frmCustomers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmDBConnection.designer.vb">
       <DependentUpon>frmDBConnection.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmDBConnection.vb" />
+    <Compile Include="forms\frmDBConnection.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEMP.Designer.vb">
+      <DependentUpon>frmEMP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEMP.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEmpPayroll.Designer.vb">
+      <DependentUpon>frmEmpPayroll.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEmpPayroll.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEmpPresenation.Designer.vb">
+      <DependentUpon>frmEmpPresenation.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEmpPresenation.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmEpendisis.Designer.vb">
+      <DependentUpon>frmEpendisis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEpendisis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmErmaria.Designer.vb">
+      <DependentUpon>frmErmaria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmErmaria.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmGen.Designer.vb">
       <DependentUpon>frmGen.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmGen.vb" />
+    <Compile Include="forms\frmGen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmInputBox.Designer.vb">
+      <DependentUpon>frmInputBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmInputBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmInstallations.Designer.vb">
+      <DependentUpon>frmInstallations.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmInstallations.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmInstEllipse.Designer.vb">
+      <DependentUpon>frmInstEllipse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmInstEllipse.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmInstM.Designer.vb">
+      <DependentUpon>frmInstM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmInstM.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmLogin.Designer.vb">
       <DependentUpon>frmLogin.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmLogin.vb" />
+    <Compile Include="forms\frmLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmMailSettings.Designer.vb">
       <DependentUpon>frmMailSettings.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmMailSettings.vb" />
+    <Compile Include="forms\frmMailSettings.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmMain.Designer.vb">
       <DependentUpon>frmMain.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmMain.vb" />
+    <Compile Include="forms\frmMain.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmMech.Designer.vb">
+      <DependentUpon>frmMech.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmMech.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmNotes.Designer.vb">
       <DependentUpon>frmNotes.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmNotes.vb" />
+    <Compile Include="forms\frmNotes.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmNotesScroller.Designer.vb">
       <DependentUpon>frmNotesScroller.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmNotesScroller.vb" />
+    <Compile Include="forms\frmNotesScroller.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmOffer.Designer.vb">
+      <DependentUpon>frmOffer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmOffer.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmOfferDet.Designer.vb">
+      <DependentUpon>frmOfferDet.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmOfferDet.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmOFFTotal.Designer.vb">
+      <DependentUpon>frmOFFTotal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmOFFTotal.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmPermissions.designer.vb">
       <DependentUpon>frmPermissions.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmPermissions.vb" />
+    <Compile Include="forms\frmPermissions.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmDoorType.Designer.vb">
+      <DependentUpon>frmDoorType.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmDoorType.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmPersonalNote.Designer.vb">
+      <DependentUpon>frmPersonalNote.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmPersonalNote.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmProjectCost.Designer.vb">
+      <DependentUpon>frmProjectCost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmProjectCost.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmReport.Designer.vb">
+      <DependentUpon>frmReport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmReport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmSalerTziroi.Designer.vb">
+      <DependentUpon>frmSalerTziroi.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmSalerTziroi.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmScroller.Designer.vb">
       <DependentUpon>frmScroller.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmScroller.vb" />
+    <Compile Include="forms\frmScroller.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmSplash.Designer.vb">
       <DependentUpon>frmSplash.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmSplash.vb" />
+    <Compile Include="forms\frmSplash.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmTecnicalSupport.designer.vb">
+      <DependentUpon>frmTecnicalSupport.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmTecnicalSupport.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmTransactions.Designer.vb">
+      <DependentUpon>frmTransactions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmTransactions.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmUsers.Designer.vb">
       <DependentUpon>frmUsers.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmUsers.vb" />
+    <Compile Include="forms\frmUsers.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\WaitForm.Designer.vb">
       <DependentUpon>WaitForm.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\WaitForm.vb" />
+    <Compile Include="forms\WaitForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmErmDoorTypes.Designer.vb">
+      <DependentUpon>frmErmDoorTypes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmErmDoorTypes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmServices.Designer.vb">
+      <DependentUpon>frmServices.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmServices.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\RepOfferMech.Designer.vb">
+      <DependentUpon>RepOfferMech.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepOfferMech.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Rep_offer.Designer.vb">
+      <DependentUpon>Rep_offer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Rep_offer.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Modules\Main.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
@@ -252,10 +535,40 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="Reports\Rep_Offer2ndPage.Designer.vb">
+      <DependentUpon>Rep_Offer2ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Rep_Offer2ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="forms\frmBench.resx">
+      <DependentUpon>frmBench.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCalculations.resx">
+      <DependentUpon>frmCalculations.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCalendar.resx">
       <DependentUpon>frmCalendar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCalendarInst.resx">
+      <DependentUpon>frmCalendarInst.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCalendarPersonal.resx">
+      <DependentUpon>frmCalendarPersonal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCatSubErm.resx">
+      <DependentUpon>frmCatSubErm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCloneOffer.resx">
+      <DependentUpon>frmCloneOffer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmColors.resx">
+      <DependentUpon>frmColors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmConstrunction.resx">
+      <DependentUpon>frmConstrunction.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCusMov.resx">
       <DependentUpon>frmCusMov.vb</DependentUpon>
@@ -266,8 +579,35 @@
     <EmbeddedResource Include="forms\frmDBConnection.resx">
       <DependentUpon>frmDBConnection.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEMP.resx">
+      <DependentUpon>frmEMP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEmpPayroll.resx">
+      <DependentUpon>frmEmpPayroll.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEmpPresenation.resx">
+      <DependentUpon>frmEmpPresenation.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEpendisis.resx">
+      <DependentUpon>frmEpendisis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmErmaria.resx">
+      <DependentUpon>frmErmaria.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmGen.resx">
       <DependentUpon>frmGen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmInputBox.resx">
+      <DependentUpon>frmInputBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmInstallations.resx">
+      <DependentUpon>frmInstallations.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmInstEllipse.resx">
+      <DependentUpon>frmInstEllipse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmInstM.resx">
+      <DependentUpon>frmInstM.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmLogin.resx">
       <DependentUpon>frmLogin.vb</DependentUpon>
@@ -278,14 +618,41 @@
     <EmbeddedResource Include="forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmMech.resx">
+      <DependentUpon>frmMech.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmNotes.resx">
       <DependentUpon>frmNotes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmNotesScroller.resx">
       <DependentUpon>frmNotesScroller.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmOffer.resx">
+      <DependentUpon>frmOffer.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmOfferDet.resx">
+      <DependentUpon>frmOfferDet.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmOFFTotal.resx">
+      <DependentUpon>frmOFFTotal.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPermissions.resx">
       <DependentUpon>frmPermissions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmDoorType.resx">
+      <DependentUpon>frmDoorType.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmPersonalNote.resx">
+      <DependentUpon>frmPersonalNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmProjectCost.resx">
+      <DependentUpon>frmProjectCost.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmReport.resx">
+      <DependentUpon>frmReport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSalerTziroi.resx">
+      <DependentUpon>frmSalerTziroi.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmScroller.resx">
       <DependentUpon>frmScroller.vb</DependentUpon>
@@ -293,11 +660,29 @@
     <EmbeddedResource Include="forms\frmSplash.resx">
       <DependentUpon>frmSplash.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTecnicalSupport.resx">
+      <DependentUpon>frmTecnicalSupport.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTransactions.resx">
+      <DependentUpon>frmTransactions.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUsers.resx">
       <DependentUpon>frmUsers.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmErmDoorTypes.resx">
+      <DependentUpon>frmErmDoorTypes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmServices.resx">
+      <DependentUpon>frmServices.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepOfferMech.resx">
+      <DependentUpon>RepOfferMech.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_offer.resx">
+      <DependentUpon>Rep_offer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
@@ -305,6 +690,9 @@
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_Offer2ndPage.resx">
+      <DependentUpon>Rep_Offer2ndPage.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -314,8 +702,8 @@
     </None>
     <None Include="DreamyKitchenDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DreamyKitchenDataSet.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>DreamyKitchenDataSet.Designer.vb</LastGenOutput>
     </None>
     <None Include="DreamyKitchenDataSet.xss">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
@@ -556,6 +944,55 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-group-of-projects-40.png" />
+    <None Include="Resources\icons8-name-tag-40.png" />
+    <None Include="Resources\icons8-scanner-16.png" />
+    <None Include="Resources\icons8-job-seeker-40.png" />
+    <None Include="Resources\icons8-oracle-pl-sql-16.png" />
+    <None Include="Resources\icons8-server-16.png" />
+    <None Include="Resources\icons8-construction2-40.png" />
+    <None Include="Resources\icons8-construction-40.png" />
+    <None Include="Resources\icons8-bank-card-missing-24.png" />
+    <None Include="Resources\icons8-bank-card-missing-40.png" />
+    <None Include="Resources\icons8-businessman-40.png" />
+    <None Include="Resources\icons8-paper-money-40.png" />
+    <None Include="Resources\icons8-insert-money-euro-24.png" />
+    <None Include="Resources\icons8-money-prize-40.png" />
+    <None Include="Resources\icons8-calendar-401.png" />
+    <None Include="Resources\icons8-calendar.gif" />
+    <None Include="Resources\icons8-about-40.png" />
+    <None Include="Resources\icons8-category-40.png" />
+    <None Include="Resources\icons8-presentation-40.png" />
+    <None Include="Resources\icons8-department-40.png" />
+    <None Include="Resources\icons8-employee-40.png" />
+    <None Include="Resources\icons8-email-send-24.png" />
+    <None Include="Resources\icons8-e-mail-24.png" />
+    <None Include="Resources\icons8-e-mail-40.png" />
+    <None Include="Resources\icons8-bank-building-40.png" />
+    <None Include="Resources\icons8-cash-counter-80.png" />
+    <None Include="Resources\icons8-maintenance-40.png" />
+    <None Include="Resources\icons9-workers-40.png" />
+    <None Include="Resources\προσφορα.jpg" />
+    <None Include="Resources\kitchen.png" />
+    <None Include="Resources\ΥΠΟΛΟΓΙΣΜΟΙ1.png" />
+    <None Include="Resources\ΥΠΟΛΟΓΙΣΜΟΙ.png" />
+    <None Include="Resources\διαστασεις.png" />
+    <None Include="Resources\κατηγορια πορτας.png" />
+    <None Include="Resources\παγκοι.png" />
+    <None Include="Resources\μηχανισμοι.png" />
+    <None Include="Resources\κατηγορια χρωματων.png" />
+    <None Include="Resources\χρωματα.png" />
+    <None Include="Resources\επενδυσεις -καταφραγες.png" />
+    <None Include="Resources\υποκατηγοριες ερμαριων.png" />
+    <None Include="Resources\κατηγοριες ερμαριων.png" />
+    <None Include="Resources\icons8-technical-support-40.png" />
+    <None Include="Resources\icons8-paste-special-40.png" />
+    <None Include="Resources\icons8-level-tool-40.png" />
+    <None Include="Resources\icons8-wooden-box-40.png" />
+    <None Include="Resources\icons8-elective-40.png" />
+    <None Include="Resources\icons8-sliding-door-closet-401.png" />
+    <None Include="Resources\icons8-sliding-door-closet-40.png" />
+    <None Include="Resources\icons8-door-40.png" />
     <None Include="Resources\icons8-database-administrator-24.png" />
     <None Include="Resources\dreamyKitchen_logo_2.png" />
     <None Include="Resources\favicon.ico" />
@@ -566,6 +1003,17 @@
     <None Include="Resources\icons8-attach-16.png" />
     <None Include="Resources\icons8-tag-40.png" />
     <None Include="Resources\icons8-notes-40.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WIA">
+      <Guid>{94A0E92D-43C0-494E-AC29-FD45948A5221}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

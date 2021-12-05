@@ -1,4 +1,5 @@
 ﻿
+Imports System.Data.SqlClient
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
@@ -186,6 +187,7 @@ Public Class frmInstM
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
         Dim sGuid As String
+        Dim sSQL As String
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 Select Case Mode
@@ -202,8 +204,23 @@ Public Class frmInstM
                     form.LoadRecords("vw_INST_M")
                 End If
 
-                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                If Mode = FormMode.NewRecord Then Cls.ClearCtrls(LayoutControl1)
+                If sResult = True Then
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    ' Αν υπάρχει στην μισθοδοσία τοποθετών εγγραφή στο ίδιο έργο και με ίδιο ποσό γίνεται εξοφλημενη
+                    sSQL = "Update INST Set paid=1 
+                             From INST I
+                              inner Join INST_M IM on I.ID=IM.instID 
+                              where I.id= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) & " And (I.cost + I.extraCost) = IM.amt and (I.cost + I.extraCost)<>0 and paid = 0"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+
+                End If
+                If Mode = FormMode.NewRecord Then
+                    Cls.ClearCtrls(LayoutControl1)
+                    txtCode.Text = DBQ.GetNextId("INST_M")
+                    Me.Vw_INSTPerSerTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_INSTPerSer, System.Guid.Parse(Guid.Empty.ToString))
+                End If
             End If
 
         Catch ex As Exception

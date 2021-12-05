@@ -12,6 +12,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Public Class frmNotes
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Layout.LayoutView
+    Private Ctrl2 As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
     Private Valid As New ValidateControls
@@ -34,6 +35,12 @@ Public Class frmNotes
             Ctrl = value
         End Set
     End Property
+    Public WriteOnly Property Scroller2 As DevExpress.XtraGrid.Views.Grid.GridView
+        Set(value2 As DevExpress.XtraGrid.Views.Grid.GridView)
+            Ctrl2 = value2
+        End Set
+    End Property
+
     Public WriteOnly Property FormScroller As DevExpress.XtraEditors.XtraForm
         Set(value As DevExpress.XtraEditors.XtraForm)
             Frm = value
@@ -187,8 +194,13 @@ Public Class frmNotes
                     LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,NOTESID,files,filename,comefrom,createdon,realname From vw_NOTES_F where NOTESID = '" & sGuid & "'")
                 End If
                 txtCode.Text = DBQ.GetNextId("NOTES")
-                Dim form As frmNotesScroller = Frm
-                form.LoadRecords("vw_NOTES")
+                If Frm.Name = "frmScroller" Then
+                    Dim form As frmScroller = Frm
+                    form.LoadRecords("vw_NOTES")
+                Else
+                    Dim form As frmNotesScroller = Frm
+                    form.LoadRecords("vw_NOTES")
+                End If
                 If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
 

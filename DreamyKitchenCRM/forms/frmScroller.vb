@@ -229,6 +229,9 @@ Public Class frmScroller
                     Case "vw_JOBS" : sSQL = "DELETE FROM JOBS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SCAN_FILE_NAMES" : sSQL = "DELETE FROM SCAN_FILE_NAMES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_PROJECT_COST" : sSQL = "DELETE FROM PROJECT_COST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_NOTES" : sSQL = "DELETE FROM NOTES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_PAY" : sSQL = "DELETE FROM PAY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_SUP" : sSQL = "DELETE FROM SUP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH"
                         sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
                                 WHERE TRANSH.ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -594,6 +597,16 @@ Public Class frmScroller
     Private Sub EditRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_NOTES"
+                Dim form10 As frmNotes = New frmNotes()
+                form10.Text = "Σημειώματα"
+                form10.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                form10.MdiParent = frmMain
+                form10.Mode = FormMode.EditRecord
+                form10.Scroller2 = GridView1
+                form10.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form10), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form10.Show()
             Case "vw_SCAN_FILE_NAMES"
                 frmGen.Text = "Ονομασίες Scan αρχείων"
                 frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -618,6 +631,20 @@ Public Class frmScroller
                 frmGen.DataTable = "JOBS"
                 frmGen.L1.Text = "Κωδικός"
                 frmGen.L2.Text = "Θέση"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
+            Case "vw_PAY"
+                frmGen.Text = "Τρόποι Πληρωμής"
+                frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.EditRecord
+                frmGen.Scroller = GridView1
+                frmGen.FormScroller = Me
+                frmGen.DataTable = "PAY"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Τρόπος Πληρωμής"
                 frmGen.FormScroller = Me
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
@@ -667,6 +694,18 @@ Public Class frmScroller
                 frmSalerTziroi.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSalerTziroi), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmSalerTziroi.Show()
+            Case "vw_SUP"
+                Dim frmSUP As New frmSUP
+                frmSUP.Text = "Προμηθευτές"
+                frmSUP.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmSUP.MdiParent = frmMain
+                frmSUP.Mode = FormMode.EditRecord
+                frmSUP.Scroller = GridView1
+                frmSUP.FormScroller = Me
+                frmSUP.FormScrollerExist = True
+                frmSUP.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSUP), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmSUP.Show()
             Case "vw_EMP_M"
                 Dim frmEmpPayroll As New frmEmpPayroll
                 frmEmpPayroll.Text = "Μισθοδοσία"
@@ -1186,6 +1225,26 @@ Public Class frmScroller
     Private Sub NewRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_SUP"
+                Dim frmSUP As New frmSUP
+                frmSUP.Text = "Προμηθευτές"
+                frmSUP.MdiParent = frmMain
+                frmSUP.Mode = FormMode.NewRecord
+                frmSUP.Scroller = GridView1
+                frmSUP.FormScroller = Me
+                frmSUP.FormScrollerExist = True
+                frmSUP.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSUP), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmSUP.Show()
+            Case "vw_NOTES"
+                Dim form1 As frmNotes = New frmNotes()
+                form1.Text = "Σημειώματα"
+                form1.MdiParent = frmMain
+                form1.Mode = FormMode.NewRecord
+                form1.Scroller2 = GridView1
+                form1.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                form1.Show()
             Case "vw_PROJECT_COST"
                 Dim frmProjectCost As New frmProjectCost
                 frmProjectCost.Text = "Ανάλυση Έργων"
@@ -1218,6 +1277,19 @@ Public Class frmScroller
                 frmGen.DataTable = "JOBS"
                 frmGen.L1.Text = "Κωδικός"
                 frmGen.L2.Text = "Θέση"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
+            Case "vw_PAY"
+                frmGen.Text = "Τρόποι Πληρωμής"
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.NewRecord
+                frmGen.Scroller = GridView1
+                frmGen.FormScroller = Me
+                frmGen.DataTable = "PAY"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Τρόπος Πληρωμής"
                 frmGen.FormScroller = Me
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))

@@ -147,7 +147,16 @@ Public Class frmInstallations
                     form.LoadRecords("vw_INST")
                 End If
 
-                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If sResult = True Then
+                    sSQL.Clear()
+                    sSQL.AppendLine("UPDATE PROJECT_COST SET InstPayroll = (Select sum(ISNULL(I.cost, 0) + ISNULL(I.extracost, 0)) from INST I where I.transhid= " & toSQLValueS(cboTRANSH.EditValue.ToString) & ")")
+                    sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
+                    'Εκτέλεση QUERY
+                    Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
                 If Mode = FormMode.NewRecord Then
                     'XtraMessageBox.Show("Θα δημιουργηθεί αυτόματη κίνηση εξόφλησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     'If chkPaid.Checked = True Then

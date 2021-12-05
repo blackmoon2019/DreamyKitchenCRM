@@ -117,12 +117,12 @@ Public Class frmProjectCost
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,(CAST(T.CODE AS nvarchar(10)) + ' - ' +  T.Description) AS Description,
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,
                         DebitCost,DevicesCost,Totamt,SalerProfit ,
                         ISNULL((Select sum(ISNULL(C.salary, 0) + ISNULL(C.extracost, 0)) from constr C where transhid=t.id),0) as ConstrPayroll,
                         ISNULL((Select sum(ISNULL(I.cost, 0) + ISNULL(I.extraCost, 0)) from INST I where transhid=t.id),0) as InstPayroll
                         from vw_TRANSH t
-                        where T.cusid = " & sCusID & "order by description")
+                        where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH_FOR_PROJECTCOST(cboTRANSH, sSQL)
     End Sub
 
@@ -144,14 +144,14 @@ Public Class frmProjectCost
     Private Sub txtDevicesBuy_EditValueChanged(sender As Object, e As EventArgs) Handles txtDevicesBuy.EditValueChanged
         Dim DevicesBuy As Double, DevicesCost As Double
         If txtDevicesBuy.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Then Exit Sub
-        DevicesBuy = txtDevicesBuy.EditValue : DevicesCost = txtDevicesCost.EditValue
+        DevicesBuy = DbnullToZero(txtDevicesBuy) : DevicesCost = DbnullToZero(txtDevicesCost)
         txtDevicesProfit.EditValue = DevicesCost - DevicesBuy
     End Sub
 
     Private Sub txtDevicesCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDevicesCost.EditValueChanged
         Dim DevicesBuy As Double, DevicesCost As Double
         If txtDevicesBuy.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Then Exit Sub
-        DevicesBuy = txtDevicesBuy.EditValue : DevicesCost = txtDevicesCost.EditValue
+        DevicesBuy = DbnullToZero(txtDevicesBuy) : DevicesCost = DbnullToZero(txtDevicesCost)
         txtDevicesProfit.EditValue = DevicesCost - DevicesBuy
 
     End Sub

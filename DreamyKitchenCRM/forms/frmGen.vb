@@ -98,6 +98,20 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("SCAN_FILE_NAMES")
+                            Case "PAY"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "PAY", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.PAY(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_PAY")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("PAY")
                             Case "JOBS"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "JOBS", sGuid)
@@ -388,6 +402,15 @@ Public Class frmGen
                                     Dim form As frmScroller = Frm
                                     form.LoadRecords("vw_SCAN_FILE_NAMES")
                                 End If
+                            Case "PAY"
+                                sResult = DBQ.UpdateData(LayoutControl1, "PAY", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.PAY(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_PAY")
+                                End If
                             Case "JOBS"
                                 sResult = DBQ.UpdateData(LayoutControl1, "JOBS", sID)
                                 If CalledFromCtrl Then
@@ -596,6 +619,12 @@ Public Class frmGen
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_SCAN_FILE_NAMES where id ='" + sID + "'")
                 End If
+            Case "PAY"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("PAY")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_PAY where id ='" + sID + "'")
+                End If
             Case "JOBS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("JOBS")
@@ -756,6 +785,13 @@ Public Class frmGen
                         Else
                             Dim form As frmScroller = Frm
                             form.LoadRecords("vw_SCAN_FILE_NAMES")
+                        End If
+                    Case "PAY"
+                        If CalledFromCtrl Then
+                            FillCbo.PAY(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_PAY")
                         End If
                     Case "JOBS"
                         If CalledFromCtrl Then

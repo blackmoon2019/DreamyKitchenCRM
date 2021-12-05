@@ -12,6 +12,7 @@ Imports System.Configuration
 
 Public Class frmMain
     Private UserPermissions As New CheckPermissions
+    Private CheckFUpdate As New CheckForUpdates
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_NOTES' table. You can move, or remove it, as needed.
 
@@ -22,6 +23,7 @@ Public Class frmMain
         bbServer.Caption = "SQL Server: " & CNDB.DataSource.ToString
         bbDB.Caption = "Database: " & CNDB.Database.ToString
         bbVersion.Caption = "Ver:" + My.Application.Info.Version.ToString
+        Timer2.Stop()
         LoadCurrentSkin()
         If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then EmpManage.Visible = False
 
@@ -224,7 +226,11 @@ Public Class frmMain
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         GetNewMessages()
-
+        'Έλεγχος νέας έκδοσης
+        If CheckFUpdate.CheckForNewVersion Then
+            BBUpdate.Visibility = BarItemVisibility.Always
+            Timer2.Start()
+        End If
     End Sub
 
     Private Sub ToastNotificationsManager1_Activated(sender As Object, e As ToastNotificationEventArgs)
@@ -708,6 +714,39 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         End If
+    End Sub
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        If BBUpdate.Visibility = BarItemVisibility.Never Then BBUpdate.Visibility = BarItemVisibility.Always Else BBUpdate.Visibility = BarItemVisibility.Never
+    End Sub
+
+    Private Sub BBUpdate_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdate.ItemClick
+        Timer2.Stop()
+        CheckFUpdate.FindNewVersion()
+    End Sub
+
+    Private Sub BBNotes2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBNotes2.ItemClick
+        Dim form As New frmScroller
+        form.Text = "Σημειώματα"
+        form.DataTable = "vw_NOTES"
+        form.DataTableWhereCondition = "WHERE empID = " & toSQLValueS(UserProps.EmpID.ToString) & "  Or createdBy = " & toSQLValueS(UserProps.ID.ToString)
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBPay_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPay.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τρόποι Πληρωμής"
+        form.DataTable = "vw_PAY"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBSup_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSup.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Προμηθευτές"
+        form.DataTable = "vw_SUP"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 End Class
 

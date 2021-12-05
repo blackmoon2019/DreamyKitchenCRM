@@ -12475,6 +12475,14 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnempID As Global.System.Data.DataColumn
         
+        Private columnDebitCost As Global.System.Data.DataColumn
+        
+        Private columnDevicesCost As Global.System.Data.DataColumn
+        
+        Private columnsalerProfit As Global.System.Data.DataColumn
+        
+        Private columnFullTranshDescription As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -12695,6 +12703,38 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property DebitCostColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDebitCost
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property DevicesCostColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDevicesCost
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property salerProfitColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnsalerProfit
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property FullTranshDescriptionColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFullTranshDescription
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -12754,9 +12794,13 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal invTypeDescr As String,  _
                     ByVal description As String,  _
                     ByVal invType As Integer,  _
-                    ByVal empID As System.Guid) As vw_TRANSHRow
+                    ByVal empID As System.Guid,  _
+                    ByVal DebitCost As Decimal,  _
+                    ByVal DevicesCost As Decimal,  _
+                    ByVal salerProfit As Decimal,  _
+                    ByVal FullTranshDescription As String) As vw_TRANSHRow
             Dim rowvw_TRANSHRow As vw_TRANSHRow = CType(Me.NewRow,vw_TRANSHRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID}
+            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription}
             rowvw_TRANSHRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_TRANSHRow)
             Return rowvw_TRANSHRow
@@ -12802,6 +12846,10 @@ Partial Public Class DreamyKitchenDataSet
             Me.columndescription = MyBase.Columns("description")
             Me.columninvType = MyBase.Columns("invType")
             Me.columnempID = MyBase.Columns("empID")
+            Me.columnDebitCost = MyBase.Columns("DebitCost")
+            Me.columnDevicesCost = MyBase.Columns("DevicesCost")
+            Me.columnsalerProfit = MyBase.Columns("salerProfit")
+            Me.columnFullTranshDescription = MyBase.Columns("FullTranshDescription")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -12853,6 +12901,14 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columninvType)
             Me.columnempID = New Global.System.Data.DataColumn("empID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnempID)
+            Me.columnDebitCost = New Global.System.Data.DataColumn("DebitCost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDebitCost)
+            Me.columnDevicesCost = New Global.System.Data.DataColumn("DevicesCost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDevicesCost)
+            Me.columnsalerProfit = New Global.System.Data.DataColumn("salerProfit", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnsalerProfit)
+            Me.columnFullTranshDescription = New Global.System.Data.DataColumn("FullTranshDescription", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFullTranshDescription)
             Me.columnID.AllowDBNull = false
             Me.columncode.AllowDBNull = false
             Me.columncusID.AllowDBNull = false
@@ -12867,6 +12923,8 @@ Partial Public Class DreamyKitchenDataSet
             Me.columninvTypeDescr.ReadOnly = true
             Me.columninvTypeDescr.MaxLength = 17
             Me.columndescription.MaxLength = 2147483647
+            Me.columnFullTranshDescription.ReadOnly = true
+            Me.columnFullTranshDescription.MaxLength = 2147483647
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -20002,6 +20060,66 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property DebitCost() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.DebitCostColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DebitCost' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.DebitCostColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property DevicesCost() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.DevicesCostColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DevicesCost' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.DevicesCostColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property salerProfit() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.salerProfitColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'salerProfit' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.salerProfitColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property FullTranshDescription() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.FullTranshDescriptionColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'FullTranshDescription' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.FullTranshDescriptionColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsGRMONTHNull() As Boolean
             Return Me.IsNull(Me.tablevw_TRANSH.GRMONTHColumn)
         End Function
@@ -20214,6 +20332,54 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetempIDNull()
             Me(Me.tablevw_TRANSH.empIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsDebitCostNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.DebitCostColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetDebitCostNull()
+            Me(Me.tablevw_TRANSH.DebitCostColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsDevicesCostNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.DevicesCostColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetDevicesCostNull()
+            Me(Me.tablevw_TRANSH.DevicesCostColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IssalerProfitNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.salerProfitColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetsalerProfitNull()
+            Me(Me.tablevw_TRANSH.salerProfitColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsFullTranshDescriptionNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.FullTranshDescriptionColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetFullTranshDescriptionNull()
+            Me(Me.tablevw_TRANSH.FullTranshDescriptionColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -27228,6 +27394,10 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("description", "description")
             tableMapping.ColumnMappings.Add("invType", "invType")
             tableMapping.ColumnMappings.Add("empID", "empID")
+            tableMapping.ColumnMappings.Add("DebitCost", "DebitCost")
+            tableMapping.ColumnMappings.Add("DevicesCost", "DevicesCost")
+            tableMapping.ColumnMappings.Add("salerProfit", "salerProfit")
+            tableMapping.ColumnMappings.Add("FullTranshDescription", "FullTranshDescription")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -27244,7 +27414,11 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        vw_TRANSH.*"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_TRANSH"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where cusID=@cusID"
+            Me._commandCollection(0).CommandText = "SELECT        ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedO"& _ 
+                "n, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, Sal"& _ 
+                "erID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost,"& _ 
+                " salerProfit, FullTranshDescription"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_TRANSH"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (cu"& _ 
+                "sID = @cusID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cusID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cusID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
