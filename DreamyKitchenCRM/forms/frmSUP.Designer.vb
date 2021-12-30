@@ -21,6 +21,7 @@ Partial Class frmSUP
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSUP))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.txtBal = New DevExpress.XtraEditors.TextEdit()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cboDOY = New DevExpress.XtraEditors.LookUpEdit()
@@ -63,10 +64,10 @@ Partial Class frmSUP
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtBal = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.txtBal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDOY.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboAREAS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -107,7 +108,6 @@ Partial Class frmSUP
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtBal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -142,6 +142,26 @@ Partial Class frmSUP
         Me.LayoutControl1.Size = New System.Drawing.Size(1295, 607)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'txtBal
+        '
+        Me.txtBal.EditValue = "0,00 €"
+        Me.txtBal.Location = New System.Drawing.Point(817, 326)
+        Me.txtBal.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtBal.Name = "txtBal"
+        Me.txtBal.Properties.DisplayFormat.FormatString = "c"
+        Me.txtBal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtBal.Properties.EditFormat.FormatString = "n2"
+        Me.txtBal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtBal.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtBal.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtBal.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtBal.Properties.ReadOnly = True
+        Me.txtBal.Properties.Tag = "BenchExtraPrice"
+        Me.txtBal.Size = New System.Drawing.Size(466, 38)
+        Me.txtBal.StyleController = Me.LayoutControl1
+        Me.txtBal.TabIndex = 43
+        Me.txtBal.Tag = "bal,0,1,2"
         '
         'cmdSave
         '
@@ -615,26 +635,6 @@ Partial Class frmSUP
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
         '
-        'txtBal
-        '
-        Me.txtBal.EditValue = "0,00 €"
-        Me.txtBal.Location = New System.Drawing.Point(817, 326)
-        Me.txtBal.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtBal.Name = "txtBal"
-        Me.txtBal.Properties.DisplayFormat.FormatString = "c"
-        Me.txtBal.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtBal.Properties.EditFormat.FormatString = "n2"
-        Me.txtBal.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtBal.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtBal.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtBal.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtBal.Properties.ReadOnly = True
-        Me.txtBal.Properties.Tag = "BenchExtraPrice"
-        Me.txtBal.Size = New System.Drawing.Size(466, 38)
-        Me.txtBal.StyleController = Me.LayoutControl1
-        Me.txtBal.TabIndex = 43
-        Me.txtBal.Tag = "bal,0,1,2"
-        '
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.txtBal
@@ -655,6 +655,7 @@ Partial Class frmSUP
         Me.Text = "Προμηθευτές"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.txtBal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDOY.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboAREAS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -695,7 +696,6 @@ Partial Class frmSUP
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtBal.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

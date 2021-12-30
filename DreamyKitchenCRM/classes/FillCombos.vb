@@ -229,6 +229,27 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub BUY_C(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+        Try
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_BUY_C order by name", CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.DisplayMember = "Name"
+            CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
+            CtrlCombo.Properties.ForceInitialize()
+            CtrlCombo.Properties.PopulateColumns()
+            CtrlCombo.Properties.Columns(0).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Κατηγορίες Αγορών"
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+
     Public Sub PAY(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
             Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_PAY order by name", CNDB)
@@ -446,7 +467,7 @@ Public Class FillCombos
     Public Sub SUP(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
             'Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname,isnull(SalerID,'00000000-0000-0000-0000-000000000000') as SalerID from vw_CCT order by Fullname", CNDB)
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname,'00000000-0000-0000-0000-000000000000' as SalerID from vw_SUP order by Fullname", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname,payID from vw_SUP order by Fullname", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = sdr
             CtrlCombo.Properties.DisplayMember = "Fullname"
@@ -510,6 +531,12 @@ Public Class FillCombos
                 CtrlCombo.Properties.Columns(6).Visible = False
                 CtrlCombo.Properties.Columns(7).Visible = False
                 CtrlCombo.Properties.Columns(8).Visible = False
+                CtrlCombo.Properties.Columns(9).Visible = False
+                CtrlCombo.Properties.Columns(10).Visible = False
+                CtrlCombo.Properties.Columns(11).Visible = False
+                CtrlCombo.Properties.Columns(12).Visible = False
+                CtrlCombo.Properties.Columns(13).Visible = False
+                CtrlCombo.Properties.Columns(14).Visible = False
             End If
             sdr.Close()
         Catch ex As Exception

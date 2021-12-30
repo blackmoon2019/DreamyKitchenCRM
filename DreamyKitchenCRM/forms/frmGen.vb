@@ -98,6 +98,20 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("SCAN_FILE_NAMES")
+                            Case "BUY_C"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "BUY_C", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.BUY_C(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_BUY_C")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("BUY_C")
                             Case "PAY"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "PAY", sGuid)
@@ -411,6 +425,15 @@ Public Class frmGen
                                     Dim form As frmScroller = Frm
                                     form.LoadRecords("vw_PAY")
                                 End If
+                            Case "BUY_C"
+                                sResult = DBQ.UpdateData(LayoutControl1, "BUY_C", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.BUY_C(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_BUY_C")
+                                End If
                             Case "JOBS"
                                 sResult = DBQ.UpdateData(LayoutControl1, "JOBS", sID)
                                 If CalledFromCtrl Then
@@ -625,6 +648,12 @@ Public Class frmGen
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_PAY where id ='" + sID + "'")
                 End If
+            Case "BUY_C"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("BUY_C")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BUY_C where id ='" + sID + "'")
+                End If
             Case "JOBS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("JOBS")
@@ -792,6 +821,13 @@ Public Class frmGen
                         Else
                             Dim form As frmScroller = Frm
                             form.LoadRecords("vw_PAY")
+                        End If
+                    Case "BUY_C"
+                        If CalledFromCtrl Then
+                            FillCbo.BUY_C(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_BUY_C")
                         End If
                     Case "JOBS"
                         If CalledFromCtrl Then

@@ -970,6 +970,72 @@ WHERE        (cusID = @cusID)</CommandText>
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SUPTableAdapter" GeneratorDataComponentClassName="vw_SUPTableAdapter" Name="vw_SUP" UserDataComponentName="vw_SUPTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SUP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, code, Fullname, ttl, bal
+FROM   vw_SUP</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="Fullname" DataSetColumn="Fullname" />
+              <Mapping SourceColumn="ttl" DataSetColumn="ttl" />
+              <Mapping SourceColumn="bal" DataSetColumn="bal" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_BUYTableAdapter" GeneratorDataComponentClassName="vw_BUYTableAdapter" Name="vw_BUY" UserDataComponentName="vw_BUYTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BUY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT vw_BUY.*
+FROM   vw_BUY</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="dtBuy" DataSetColumn="dtBuy" />
+              <Mapping SourceColumn="invoiceNumber" DataSetColumn="invoiceNumber" />
+              <Mapping SourceColumn="supID" DataSetColumn="supID" />
+              <Mapping SourceColumn="cusID" DataSetColumn="cusID" />
+              <Mapping SourceColumn="transhID" DataSetColumn="transhID" />
+              <Mapping SourceColumn="netAmount" DataSetColumn="netAmount" />
+              <Mapping SourceColumn="vatAmount" DataSetColumn="vatAmount" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="SupFullName" DataSetColumn="SupFullName" />
+              <Mapping SourceColumn="CusFullname" DataSetColumn="CusFullname" />
+              <Mapping SourceColumn="TranshDescription" DataSetColumn="TranshDescription" />
+              <Mapping SourceColumn="RealName" DataSetColumn="RealName" />
+              <Mapping SourceColumn="BuyCName" DataSetColumn="BuyCName" />
+              <Mapping SourceColumn="cmt" DataSetColumn="cmt" />
+              <Mapping SourceColumn="buyCID" DataSetColumn="buyCID" />
+              <Mapping SourceColumn="kitchen" DataSetColumn="kitchen" />
+              <Mapping SourceColumn="closet" DataSetColumn="closet" />
+              <Mapping SourceColumn="general" DataSetColumn="general" />
+              <Mapping SourceColumn="materials" DataSetColumn="materials" />
+              <Mapping SourceColumn="bathroomFurn" DataSetColumn="bathroomFurn" />
+              <Mapping SourceColumn="DevicesBuy" DataSetColumn="DevicesBuy" />
+              <Mapping SourceColumn="PayName" DataSetColumn="PayName" />
+              <Mapping SourceColumn="payID" DataSetColumn="payID" />
+              <Mapping SourceColumn="paid" DataSetColumn="paid" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -978,7 +1044,7 @@ WHERE        (cusID = @cusID)</CommandText>
   <xs:element name="DreamyKitchenDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DreamyKitchenDataSet" msprop:Generator_UserDSName="DreamyKitchenDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="vw_NOTES" msprop:Generator_TableClassName="vw_NOTESDataTable" msprop:Generator_TableVarName="tablevw_NOTES" msprop:Generator_TablePropName="vw_NOTES" msprop:Generator_RowDeletingName="vw_NOTESRowDeleting" msprop:Generator_RowChangingName="vw_NOTESRowChanging" msprop:Generator_RowEvHandlerName="vw_NOTESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_NOTESRowDeleted" msprop:Generator_UserTableName="vw_NOTES" msprop:Generator_RowChangedName="vw_NOTESRowChanged" msprop:Generator_RowEvArgName="vw_NOTESRowChangeEvent" msprop:Generator_RowClassName="vw_NOTESRow">
+        <xs:element name="vw_NOTES" msprop:Generator_TableClassName="vw_NOTESDataTable" msprop:Generator_TableVarName="tablevw_NOTES" msprop:Generator_RowChangedName="vw_NOTESRowChanged" msprop:Generator_TablePropName="vw_NOTES" msprop:Generator_RowDeletingName="vw_NOTESRowDeleting" msprop:Generator_RowChangingName="vw_NOTESRowChanging" msprop:Generator_RowEvHandlerName="vw_NOTESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_NOTESRowDeleted" msprop:Generator_RowClassName="vw_NOTESRow" msprop:Generator_UserTableName="vw_NOTES" msprop:Generator_RowEvArgName="vw_NOTESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1034,7 +1100,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_SALERS" msprop:Generator_TableClassName="vw_SALERSDataTable" msprop:Generator_TableVarName="tablevw_SALERS" msprop:Generator_RowChangedName="vw_SALERSRowChanged" msprop:Generator_TablePropName="vw_SALERS" msprop:Generator_RowDeletingName="vw_SALERSRowDeleting" msprop:Generator_RowChangingName="vw_SALERSRowChanging" msprop:Generator_RowEvHandlerName="vw_SALERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SALERSRowDeleted" msprop:Generator_RowClassName="vw_SALERSRow" msprop:Generator_UserTableName="vw_SALERS" msprop:Generator_RowEvArgName="vw_SALERSRowChangeEvent">
+        <xs:element name="vw_SALERS" msprop:Generator_TableClassName="vw_SALERSDataTable" msprop:Generator_TableVarName="tablevw_SALERS" msprop:Generator_TablePropName="vw_SALERS" msprop:Generator_RowDeletingName="vw_SALERSRowDeleting" msprop:Generator_RowChangingName="vw_SALERSRowChanging" msprop:Generator_RowEvHandlerName="vw_SALERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SALERSRowDeleted" msprop:Generator_UserTableName="vw_SALERS" msprop:Generator_RowChangedName="vw_SALERSRowChanged" msprop:Generator_RowEvArgName="vw_SALERSRowChangeEvent" msprop:Generator_RowClassName="vw_SALERSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1057,7 +1123,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_COLORSPVC" msprop:Generator_TableClassName="vw_COLORSPVCDataTable" msprop:Generator_TableVarName="tablevw_COLORSPVC" msprop:Generator_RowChangedName="vw_COLORSPVCRowChanged" msprop:Generator_TablePropName="vw_COLORSPVC" msprop:Generator_RowDeletingName="vw_COLORSPVCRowDeleting" msprop:Generator_RowChangingName="vw_COLORSPVCRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSPVCRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSPVCRowDeleted" msprop:Generator_RowClassName="vw_COLORSPVCRow" msprop:Generator_UserTableName="vw_COLORSPVC" msprop:Generator_RowEvArgName="vw_COLORSPVCRowChangeEvent">
+        <xs:element name="vw_COLORSPVC" msprop:Generator_TableClassName="vw_COLORSPVCDataTable" msprop:Generator_TableVarName="tablevw_COLORSPVC" msprop:Generator_TablePropName="vw_COLORSPVC" msprop:Generator_RowDeletingName="vw_COLORSPVCRowDeleting" msprop:Generator_RowChangingName="vw_COLORSPVCRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSPVCRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSPVCRowDeleted" msprop:Generator_UserTableName="vw_COLORSPVC" msprop:Generator_RowChangedName="vw_COLORSPVCRowChanged" msprop:Generator_RowEvArgName="vw_COLORSPVCRowChangeEvent" msprop:Generator_RowClassName="vw_COLORSPVCRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1072,7 +1138,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_COLORSBOX" msprop:Generator_TableClassName="vw_COLORSBOXDataTable" msprop:Generator_TableVarName="tablevw_COLORSBOX" msprop:Generator_RowChangedName="vw_COLORSBOXRowChanged" msprop:Generator_TablePropName="vw_COLORSBOX" msprop:Generator_RowDeletingName="vw_COLORSBOXRowDeleting" msprop:Generator_RowChangingName="vw_COLORSBOXRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSBOXRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSBOXRowDeleted" msprop:Generator_RowClassName="vw_COLORSBOXRow" msprop:Generator_UserTableName="vw_COLORSBOX" msprop:Generator_RowEvArgName="vw_COLORSBOXRowChangeEvent">
+        <xs:element name="vw_COLORSBOX" msprop:Generator_TableClassName="vw_COLORSBOXDataTable" msprop:Generator_TableVarName="tablevw_COLORSBOX" msprop:Generator_TablePropName="vw_COLORSBOX" msprop:Generator_RowDeletingName="vw_COLORSBOXRowDeleting" msprop:Generator_RowChangingName="vw_COLORSBOXRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSBOXRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSBOXRowDeleted" msprop:Generator_UserTableName="vw_COLORSBOX" msprop:Generator_RowChangedName="vw_COLORSBOXRowChanged" msprop:Generator_RowEvArgName="vw_COLORSBOXRowChangeEvent" msprop:Generator_RowClassName="vw_COLORSBOXRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1087,7 +1153,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_ERM" msprop:Generator_TableClassName="vw_ERMDataTable" msprop:Generator_TableVarName="tablevw_ERM" msprop:Generator_TablePropName="vw_ERM" msprop:Generator_RowDeletingName="vw_ERMRowDeleting" msprop:Generator_RowChangingName="vw_ERMRowChanging" msprop:Generator_RowEvHandlerName="vw_ERMRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_ERMRowDeleted" msprop:Generator_UserTableName="vw_ERM" msprop:Generator_RowChangedName="vw_ERMRowChanged" msprop:Generator_RowEvArgName="vw_ERMRowChangeEvent" msprop:Generator_RowClassName="vw_ERMRow">
+        <xs:element name="vw_ERM" msprop:Generator_TableClassName="vw_ERMDataTable" msprop:Generator_TableVarName="tablevw_ERM" msprop:Generator_RowChangedName="vw_ERMRowChanged" msprop:Generator_TablePropName="vw_ERM" msprop:Generator_RowDeletingName="vw_ERMRowDeleting" msprop:Generator_RowChangingName="vw_ERMRowChanging" msprop:Generator_RowEvHandlerName="vw_ERMRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_ERMRowDeleted" msprop:Generator_RowClassName="vw_ERMRow" msprop:Generator_UserTableName="vw_ERM" msprop:Generator_RowEvArgName="vw_ERMRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1166,7 +1232,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_OFFERS" msprop:Generator_TableClassName="vw_OFFERSDataTable" msprop:Generator_TableVarName="tablevw_OFFERS" msprop:Generator_TablePropName="vw_OFFERS" msprop:Generator_RowDeletingName="vw_OFFERSRowDeleting" msprop:Generator_RowChangingName="vw_OFFERSRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFERSRowDeleted" msprop:Generator_UserTableName="vw_OFFERS" msprop:Generator_RowChangedName="vw_OFFERSRowChanged" msprop:Generator_RowEvArgName="vw_OFFERSRowChangeEvent" msprop:Generator_RowClassName="vw_OFFERSRow">
+        <xs:element name="vw_OFFERS" msprop:Generator_TableClassName="vw_OFFERSDataTable" msprop:Generator_TableVarName="tablevw_OFFERS" msprop:Generator_RowChangedName="vw_OFFERSRowChanged" msprop:Generator_TablePropName="vw_OFFERS" msprop:Generator_RowDeletingName="vw_OFFERSRowDeleting" msprop:Generator_RowChangingName="vw_OFFERSRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFERSRowDeleted" msprop:Generator_RowClassName="vw_OFFERSRow" msprop:Generator_UserTableName="vw_OFFERS" msprop:Generator_RowEvArgName="vw_OFFERSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1242,7 +1308,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPE" msprop:Generator_TableClassName="vw_DOOR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE" msprop:Generator_RowChangedName="vw_DOOR_TYPERowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPE" msprop:Generator_RowDeletingName="vw_DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPERow" msprop:Generator_UserTableName="vw_DOOR_TYPE" msprop:Generator_RowEvArgName="vw_DOOR_TYPERowChangeEvent">
+        <xs:element name="vw_DOOR_TYPE" msprop:Generator_TableClassName="vw_DOOR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE" msprop:Generator_TablePropName="vw_DOOR_TYPE" msprop:Generator_RowDeletingName="vw_DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPE" msprop:Generator_RowChangedName="vw_DOOR_TYPERowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1257,7 +1323,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_CAT_SUB_ERM" msprop:Generator_TableClassName="vw_CAT_SUB_ERMDataTable" msprop:Generator_TableVarName="tablevw_CAT_SUB_ERM" msprop:Generator_RowChangedName="vw_CAT_SUB_ERMRowChanged" msprop:Generator_TablePropName="vw_CAT_SUB_ERM" msprop:Generator_RowDeletingName="vw_CAT_SUB_ERMRowDeleting" msprop:Generator_RowChangingName="vw_CAT_SUB_ERMRowChanging" msprop:Generator_RowEvHandlerName="vw_CAT_SUB_ERMRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CAT_SUB_ERMRowDeleted" msprop:Generator_RowClassName="vw_CAT_SUB_ERMRow" msprop:Generator_UserTableName="vw_CAT_SUB_ERM" msprop:Generator_RowEvArgName="vw_CAT_SUB_ERMRowChangeEvent">
+        <xs:element name="vw_CAT_SUB_ERM" msprop:Generator_TableClassName="vw_CAT_SUB_ERMDataTable" msprop:Generator_TableVarName="tablevw_CAT_SUB_ERM" msprop:Generator_TablePropName="vw_CAT_SUB_ERM" msprop:Generator_RowDeletingName="vw_CAT_SUB_ERMRowDeleting" msprop:Generator_RowChangingName="vw_CAT_SUB_ERMRowChanging" msprop:Generator_RowEvHandlerName="vw_CAT_SUB_ERMRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CAT_SUB_ERMRowDeleted" msprop:Generator_UserTableName="vw_CAT_SUB_ERM" msprop:Generator_RowChangedName="vw_CAT_SUB_ERMRowChanged" msprop:Generator_RowEvArgName="vw_CAT_SUB_ERMRowChangeEvent" msprop:Generator_RowClassName="vw_CAT_SUB_ERMRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1272,7 +1338,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_SIDES" msprop:Generator_TableClassName="vw_SIDESDataTable" msprop:Generator_TableVarName="tablevw_SIDES" msprop:Generator_TablePropName="vw_SIDES" msprop:Generator_RowDeletingName="vw_SIDESRowDeleting" msprop:Generator_RowChangingName="vw_SIDESRowChanging" msprop:Generator_RowEvHandlerName="vw_SIDESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SIDESRowDeleted" msprop:Generator_UserTableName="vw_SIDES" msprop:Generator_RowChangedName="vw_SIDESRowChanged" msprop:Generator_RowEvArgName="vw_SIDESRowChangeEvent" msprop:Generator_RowClassName="vw_SIDESRow">
+        <xs:element name="vw_SIDES" msprop:Generator_TableClassName="vw_SIDESDataTable" msprop:Generator_TableVarName="tablevw_SIDES" msprop:Generator_RowChangedName="vw_SIDESRowChanged" msprop:Generator_TablePropName="vw_SIDES" msprop:Generator_RowDeletingName="vw_SIDESRowDeleting" msprop:Generator_RowChangingName="vw_SIDESRowChanging" msprop:Generator_RowEvHandlerName="vw_SIDESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SIDESRowDeleted" msprop:Generator_RowClassName="vw_SIDESRow" msprop:Generator_UserTableName="vw_SIDES" msprop:Generator_RowEvArgName="vw_SIDESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
@@ -1289,7 +1355,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_OFF" msprop:Generator_TableClassName="vw_OFFDataTable" msprop:Generator_TableVarName="tablevw_OFF" msprop:Generator_TablePropName="vw_OFF" msprop:Generator_RowDeletingName="vw_OFFRowDeleting" msprop:Generator_RowChangingName="vw_OFFRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFRowDeleted" msprop:Generator_UserTableName="vw_OFF" msprop:Generator_RowChangedName="vw_OFFRowChanged" msprop:Generator_RowEvArgName="vw_OFFRowChangeEvent" msprop:Generator_RowClassName="vw_OFFRow">
+        <xs:element name="vw_OFF" msprop:Generator_TableClassName="vw_OFFDataTable" msprop:Generator_TableVarName="tablevw_OFF" msprop:Generator_RowChangedName="vw_OFFRowChanged" msprop:Generator_TablePropName="vw_OFF" msprop:Generator_RowDeletingName="vw_OFFRowDeleting" msprop:Generator_RowChangingName="vw_OFFRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFRowDeleted" msprop:Generator_RowClassName="vw_OFFRow" msprop:Generator_UserTableName="vw_OFF" msprop:Generator_RowEvArgName="vw_OFFRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1352,7 +1418,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_OFFERS_TOTAL" msprop:Generator_TableClassName="vw_OFFERS_TOTALDataTable" msprop:Generator_TableVarName="tablevw_OFFERS_TOTAL" msprop:Generator_RowChangedName="vw_OFFERS_TOTALRowChanged" msprop:Generator_TablePropName="vw_OFFERS_TOTAL" msprop:Generator_RowDeletingName="vw_OFFERS_TOTALRowDeleting" msprop:Generator_RowChangingName="vw_OFFERS_TOTALRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFERS_TOTALRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFERS_TOTALRowDeleted" msprop:Generator_RowClassName="vw_OFFERS_TOTALRow" msprop:Generator_UserTableName="vw_OFFERS_TOTAL" msprop:Generator_RowEvArgName="vw_OFFERS_TOTALRowChangeEvent">
+        <xs:element name="vw_OFFERS_TOTAL" msprop:Generator_TableClassName="vw_OFFERS_TOTALDataTable" msprop:Generator_TableVarName="tablevw_OFFERS_TOTAL" msprop:Generator_TablePropName="vw_OFFERS_TOTAL" msprop:Generator_RowDeletingName="vw_OFFERS_TOTALRowDeleting" msprop:Generator_RowChangingName="vw_OFFERS_TOTALRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFERS_TOTALRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFERS_TOTALRowDeleted" msprop:Generator_UserTableName="vw_OFFERS_TOTAL" msprop:Generator_RowChangedName="vw_OFFERS_TOTALRowChanged" msprop:Generator_RowEvArgName="vw_OFFERS_TOTALRowChangeEvent" msprop:Generator_RowClassName="vw_OFFERS_TOTALRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="offID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnoffID" msprop:Generator_ColumnPropNameInRow="offID" msprop:Generator_ColumnPropNameInTable="offIDColumn" msprop:Generator_UserColumnName="offID" type="xs:string" minOccurs="0" />
@@ -1374,7 +1440,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_OFF_SUBOFF" msprop:Generator_TableClassName="vw_OFF_SUBOFFDataTable" msprop:Generator_TableVarName="tablevw_OFF_SUBOFF" msprop:Generator_RowChangedName="vw_OFF_SUBOFFRowChanged" msprop:Generator_TablePropName="vw_OFF_SUBOFF" msprop:Generator_RowDeletingName="vw_OFF_SUBOFFRowDeleting" msprop:Generator_RowChangingName="vw_OFF_SUBOFFRowChanging" msprop:Generator_RowEvHandlerName="vw_OFF_SUBOFFRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFF_SUBOFFRowDeleted" msprop:Generator_RowClassName="vw_OFF_SUBOFFRow" msprop:Generator_UserTableName="vw_OFF_SUBOFF" msprop:Generator_RowEvArgName="vw_OFF_SUBOFFRowChangeEvent">
+        <xs:element name="vw_OFF_SUBOFF" msprop:Generator_TableClassName="vw_OFF_SUBOFFDataTable" msprop:Generator_TableVarName="tablevw_OFF_SUBOFF" msprop:Generator_TablePropName="vw_OFF_SUBOFF" msprop:Generator_RowDeletingName="vw_OFF_SUBOFFRowDeleting" msprop:Generator_RowChangingName="vw_OFF_SUBOFFRowChanging" msprop:Generator_RowEvHandlerName="vw_OFF_SUBOFFRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFF_SUBOFFRowDeleted" msprop:Generator_UserTableName="vw_OFF_SUBOFF" msprop:Generator_RowChangedName="vw_OFF_SUBOFFRowChanged" msprop:Generator_RowEvArgName="vw_OFF_SUBOFFRowChangeEvent" msprop:Generator_RowClassName="vw_OFF_SUBOFFRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1388,7 +1454,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_OFFER_DOORTYPES" msprop:Generator_TableClassName="vw_OFFER_DOORTYPESDataTable" msprop:Generator_TableVarName="tablevw_OFFER_DOORTYPES" msprop:Generator_RowChangedName="vw_OFFER_DOORTYPESRowChanged" msprop:Generator_TablePropName="vw_OFFER_DOORTYPES" msprop:Generator_RowDeletingName="vw_OFFER_DOORTYPESRowDeleting" msprop:Generator_RowChangingName="vw_OFFER_DOORTYPESRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFER_DOORTYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFER_DOORTYPESRowDeleted" msprop:Generator_RowClassName="vw_OFFER_DOORTYPESRow" msprop:Generator_UserTableName="vw_OFFER_DOORTYPES" msprop:Generator_RowEvArgName="vw_OFFER_DOORTYPESRowChangeEvent">
+        <xs:element name="vw_OFFER_DOORTYPES" msprop:Generator_TableClassName="vw_OFFER_DOORTYPESDataTable" msprop:Generator_TableVarName="tablevw_OFFER_DOORTYPES" msprop:Generator_TablePropName="vw_OFFER_DOORTYPES" msprop:Generator_RowDeletingName="vw_OFFER_DOORTYPESRowDeleting" msprop:Generator_RowChangingName="vw_OFFER_DOORTYPESRowChanging" msprop:Generator_RowEvHandlerName="vw_OFFER_DOORTYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_OFFER_DOORTYPESRowDeleted" msprop:Generator_UserTableName="vw_OFFER_DOORTYPES" msprop:Generator_RowChangedName="vw_OFFER_DOORTYPESRowChanged" msprop:Generator_RowEvArgName="vw_OFFER_DOORTYPESRowChangeEvent" msprop:Generator_RowClassName="vw_OFFER_DOORTYPESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="DoorTypeID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDoorTypeID" msprop:Generator_ColumnPropNameInRow="DoorTypeID" msprop:Generator_ColumnPropNameInTable="DoorTypeIDColumn" msprop:Generator_UserColumnName="DoorTypeID" type="xs:string" minOccurs="0" />
@@ -1403,7 +1469,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_COLORSBAZA" msprop:Generator_TableClassName="vw_COLORSBAZADataTable" msprop:Generator_TableVarName="tablevw_COLORSBAZA" msprop:Generator_TablePropName="vw_COLORSBAZA" msprop:Generator_RowDeletingName="vw_COLORSBAZARowDeleting" msprop:Generator_RowChangingName="vw_COLORSBAZARowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSBAZARowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSBAZARowDeleted" msprop:Generator_UserTableName="vw_COLORSBAZA" msprop:Generator_RowChangedName="vw_COLORSBAZARowChanged" msprop:Generator_RowEvArgName="vw_COLORSBAZARowChangeEvent" msprop:Generator_RowClassName="vw_COLORSBAZARow">
+        <xs:element name="vw_COLORSBAZA" msprop:Generator_TableClassName="vw_COLORSBAZADataTable" msprop:Generator_TableVarName="tablevw_COLORSBAZA" msprop:Generator_RowChangedName="vw_COLORSBAZARowChanged" msprop:Generator_TablePropName="vw_COLORSBAZA" msprop:Generator_RowDeletingName="vw_COLORSBAZARowDeleting" msprop:Generator_RowChangingName="vw_COLORSBAZARowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSBAZARowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSBAZARowDeleted" msprop:Generator_RowClassName="vw_COLORSBAZARow" msprop:Generator_UserTableName="vw_COLORSBAZA" msprop:Generator_RowEvArgName="vw_COLORSBAZARowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1418,7 +1484,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_COLORSBACK" msprop:Generator_TableClassName="vw_COLORSBACKDataTable" msprop:Generator_TableVarName="tablevw_COLORSBACK" msprop:Generator_RowChangedName="vw_COLORSBACKRowChanged" msprop:Generator_TablePropName="vw_COLORSBACK" msprop:Generator_RowDeletingName="vw_COLORSBACKRowDeleting" msprop:Generator_RowChangingName="vw_COLORSBACKRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSBACKRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSBACKRowDeleted" msprop:Generator_RowClassName="vw_COLORSBACKRow" msprop:Generator_UserTableName="vw_COLORSBACK" msprop:Generator_RowEvArgName="vw_COLORSBACKRowChangeEvent">
+        <xs:element name="vw_COLORSBACK" msprop:Generator_TableClassName="vw_COLORSBACKDataTable" msprop:Generator_TableVarName="tablevw_COLORSBACK" msprop:Generator_TablePropName="vw_COLORSBACK" msprop:Generator_RowDeletingName="vw_COLORSBACKRowDeleting" msprop:Generator_RowChangingName="vw_COLORSBACKRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSBACKRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSBACKRowDeleted" msprop:Generator_UserTableName="vw_COLORSBACK" msprop:Generator_RowChangedName="vw_COLORSBACKRowChanged" msprop:Generator_RowEvArgName="vw_COLORSBACKRowChangeEvent" msprop:Generator_RowClassName="vw_COLORSBACKRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1433,7 +1499,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_BENCH" msprop:Generator_TableClassName="vw_BENCHDataTable" msprop:Generator_TableVarName="tablevw_BENCH" msprop:Generator_TablePropName="vw_BENCH" msprop:Generator_RowDeletingName="vw_BENCHRowDeleting" msprop:Generator_RowChangingName="vw_BENCHRowChanging" msprop:Generator_RowEvHandlerName="vw_BENCHRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_BENCHRowDeleted" msprop:Generator_UserTableName="vw_BENCH" msprop:Generator_RowChangedName="vw_BENCHRowChanged" msprop:Generator_RowEvArgName="vw_BENCHRowChangeEvent" msprop:Generator_RowClassName="vw_BENCHRow">
+        <xs:element name="vw_BENCH" msprop:Generator_TableClassName="vw_BENCHDataTable" msprop:Generator_TableVarName="tablevw_BENCH" msprop:Generator_RowChangedName="vw_BENCHRowChanged" msprop:Generator_TablePropName="vw_BENCH" msprop:Generator_RowDeletingName="vw_BENCHRowDeleting" msprop:Generator_RowChangingName="vw_BENCHRowChanging" msprop:Generator_RowEvHandlerName="vw_BENCHRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_BENCHRowDeleted" msprop:Generator_RowClassName="vw_BENCHRow" msprop:Generator_UserTableName="vw_BENCH" msprop:Generator_RowEvArgName="vw_BENCHRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1450,7 +1516,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_CCT_M" msprop:Generator_TableClassName="vw_CCT_MDataTable" msprop:Generator_TableVarName="tablevw_CCT_M" msprop:Generator_RowChangedName="vw_CCT_MRowChanged" msprop:Generator_TablePropName="vw_CCT_M" msprop:Generator_RowDeletingName="vw_CCT_MRowDeleting" msprop:Generator_RowChangingName="vw_CCT_MRowChanging" msprop:Generator_RowEvHandlerName="vw_CCT_MRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CCT_MRowDeleted" msprop:Generator_RowClassName="vw_CCT_MRow" msprop:Generator_UserTableName="vw_CCT_M" msprop:Generator_RowEvArgName="vw_CCT_MRowChangeEvent">
+        <xs:element name="vw_CCT_M" msprop:Generator_TableClassName="vw_CCT_MDataTable" msprop:Generator_TableVarName="tablevw_CCT_M" msprop:Generator_TablePropName="vw_CCT_M" msprop:Generator_RowDeletingName="vw_CCT_MRowDeleting" msprop:Generator_RowChangingName="vw_CCT_MRowChanging" msprop:Generator_RowEvHandlerName="vw_CCT_MRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CCT_MRowDeleted" msprop:Generator_UserTableName="vw_CCT_M" msprop:Generator_RowChangedName="vw_CCT_MRowChanged" msprop:Generator_RowEvArgName="vw_CCT_MRowChangeEvent" msprop:Generator_RowClassName="vw_CCT_MRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1602,7 +1668,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_SER" msprop:Generator_TableClassName="vw_SERDataTable" msprop:Generator_TableVarName="tablevw_SER" msprop:Generator_TablePropName="vw_SER" msprop:Generator_RowDeletingName="vw_SERRowDeleting" msprop:Generator_RowChangingName="vw_SERRowChanging" msprop:Generator_RowEvHandlerName="vw_SERRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SERRowDeleted" msprop:Generator_UserTableName="vw_SER" msprop:Generator_RowChangedName="vw_SERRowChanged" msprop:Generator_RowEvArgName="vw_SERRowChangeEvent" msprop:Generator_RowClassName="vw_SERRow">
+        <xs:element name="vw_SER" msprop:Generator_TableClassName="vw_SERDataTable" msprop:Generator_TableVarName="tablevw_SER" msprop:Generator_RowChangedName="vw_SERRowChanged" msprop:Generator_TablePropName="vw_SER" msprop:Generator_RowDeletingName="vw_SERRowDeleting" msprop:Generator_RowChangingName="vw_SERRowChanging" msprop:Generator_RowEvHandlerName="vw_SERRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SERRowDeleted" msprop:Generator_RowClassName="vw_SERRow" msprop:Generator_UserTableName="vw_SER" msprop:Generator_RowEvArgName="vw_SERRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1618,7 +1684,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_INST" msprop:Generator_TableClassName="vw_INSTDataTable" msprop:Generator_TableVarName="tablevw_INST" msprop:Generator_TablePropName="vw_INST" msprop:Generator_RowDeletingName="vw_INSTRowDeleting" msprop:Generator_RowChangingName="vw_INSTRowChanging" msprop:Generator_RowEvHandlerName="vw_INSTRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_INSTRowDeleted" msprop:Generator_UserTableName="vw_INST" msprop:Generator_RowChangedName="vw_INSTRowChanged" msprop:Generator_RowEvArgName="vw_INSTRowChangeEvent" msprop:Generator_RowClassName="vw_INSTRow">
+        <xs:element name="vw_INST" msprop:Generator_TableClassName="vw_INSTDataTable" msprop:Generator_TableVarName="tablevw_INST" msprop:Generator_RowChangedName="vw_INSTRowChanged" msprop:Generator_TablePropName="vw_INST" msprop:Generator_RowDeletingName="vw_INSTRowDeleting" msprop:Generator_RowChangingName="vw_INSTRowChanging" msprop:Generator_RowEvHandlerName="vw_INSTRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_INSTRowDeleted" msprop:Generator_RowClassName="vw_INSTRow" msprop:Generator_UserTableName="vw_INST" msprop:Generator_RowEvArgName="vw_INSTRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1680,7 +1746,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_CCT_F" msprop:Generator_TableClassName="vw_CCT_FDataTable" msprop:Generator_TableVarName="tablevw_CCT_F" msprop:Generator_TablePropName="vw_CCT_F" msprop:Generator_RowDeletingName="vw_CCT_FRowDeleting" msprop:Generator_RowChangingName="vw_CCT_FRowChanging" msprop:Generator_RowEvHandlerName="vw_CCT_FRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CCT_FRowDeleted" msprop:Generator_UserTableName="vw_CCT_F" msprop:Generator_RowChangedName="vw_CCT_FRowChanged" msprop:Generator_RowEvArgName="vw_CCT_FRowChangeEvent" msprop:Generator_RowClassName="vw_CCT_FRow">
+        <xs:element name="vw_CCT_F" msprop:Generator_TableClassName="vw_CCT_FDataTable" msprop:Generator_TableVarName="tablevw_CCT_F" msprop:Generator_RowChangedName="vw_CCT_FRowChanged" msprop:Generator_TablePropName="vw_CCT_F" msprop:Generator_RowDeletingName="vw_CCT_FRowDeleting" msprop:Generator_RowChangingName="vw_CCT_FRowChanging" msprop:Generator_RowEvHandlerName="vw_CCT_FRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CCT_FRowDeleted" msprop:Generator_RowClassName="vw_CCT_FRow" msprop:Generator_UserTableName="vw_CCT_F" msprop:Generator_RowEvArgName="vw_CCT_FRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1721,7 +1787,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_TRANSD" msprop:Generator_TableClassName="vw_TRANSDDataTable" msprop:Generator_TableVarName="tablevw_TRANSD" msprop:Generator_RowChangedName="vw_TRANSDRowChanged" msprop:Generator_TablePropName="vw_TRANSD" msprop:Generator_RowDeletingName="vw_TRANSDRowDeleting" msprop:Generator_RowChangingName="vw_TRANSDRowChanging" msprop:Generator_RowEvHandlerName="vw_TRANSDRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_TRANSDRowDeleted" msprop:Generator_RowClassName="vw_TRANSDRow" msprop:Generator_UserTableName="vw_TRANSD" msprop:Generator_RowEvArgName="vw_TRANSDRowChangeEvent">
+        <xs:element name="vw_TRANSD" msprop:Generator_TableClassName="vw_TRANSDDataTable" msprop:Generator_TableVarName="tablevw_TRANSD" msprop:Generator_TablePropName="vw_TRANSD" msprop:Generator_RowDeletingName="vw_TRANSDRowDeleting" msprop:Generator_RowChangingName="vw_TRANSDRowChanging" msprop:Generator_RowEvHandlerName="vw_TRANSDRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_TRANSDRowDeleted" msprop:Generator_UserTableName="vw_TRANSD" msprop:Generator_RowChangedName="vw_TRANSDRowChanged" msprop:Generator_RowEvArgName="vw_TRANSDRowChangeEvent" msprop:Generator_RowClassName="vw_TRANSDRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1756,7 +1822,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_BANKS" msprop:Generator_TableClassName="vw_BANKSDataTable" msprop:Generator_TableVarName="tablevw_BANKS" msprop:Generator_TablePropName="vw_BANKS" msprop:Generator_RowDeletingName="vw_BANKSRowDeleting" msprop:Generator_RowChangingName="vw_BANKSRowChanging" msprop:Generator_RowEvHandlerName="vw_BANKSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_BANKSRowDeleted" msprop:Generator_UserTableName="vw_BANKS" msprop:Generator_RowChangedName="vw_BANKSRowChanged" msprop:Generator_RowEvArgName="vw_BANKSRowChangeEvent" msprop:Generator_RowClassName="vw_BANKSRow">
+        <xs:element name="vw_BANKS" msprop:Generator_TableClassName="vw_BANKSDataTable" msprop:Generator_TableVarName="tablevw_BANKS" msprop:Generator_RowChangedName="vw_BANKSRowChanged" msprop:Generator_TablePropName="vw_BANKS" msprop:Generator_RowDeletingName="vw_BANKSRowDeleting" msprop:Generator_RowChangingName="vw_BANKSRowChanging" msprop:Generator_RowEvHandlerName="vw_BANKSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_BANKSRowDeleted" msprop:Generator_RowClassName="vw_BANKSRow" msprop:Generator_UserTableName="vw_BANKS" msprop:Generator_RowEvArgName="vw_BANKSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_UserColumnName="RealName" minOccurs="0">
@@ -1782,7 +1848,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_EMP_S" msprop:Generator_TableClassName="vw_EMP_SDataTable" msprop:Generator_TableVarName="tablevw_EMP_S" msprop:Generator_RowChangedName="vw_EMP_SRowChanged" msprop:Generator_TablePropName="vw_EMP_S" msprop:Generator_RowDeletingName="vw_EMP_SRowDeleting" msprop:Generator_RowChangingName="vw_EMP_SRowChanging" msprop:Generator_RowEvHandlerName="vw_EMP_SRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_EMP_SRowDeleted" msprop:Generator_RowClassName="vw_EMP_SRow" msprop:Generator_UserTableName="vw_EMP_S" msprop:Generator_RowEvArgName="vw_EMP_SRowChangeEvent">
+        <xs:element name="vw_EMP_S" msprop:Generator_TableClassName="vw_EMP_SDataTable" msprop:Generator_TableVarName="tablevw_EMP_S" msprop:Generator_TablePropName="vw_EMP_S" msprop:Generator_RowDeletingName="vw_EMP_SRowDeleting" msprop:Generator_RowChangingName="vw_EMP_SRowChanging" msprop:Generator_RowEvHandlerName="vw_EMP_SRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_EMP_SRowDeleted" msprop:Generator_UserTableName="vw_EMP_S" msprop:Generator_RowChangedName="vw_EMP_SRowChanged" msprop:Generator_RowEvArgName="vw_EMP_SRowChangeEvent" msprop:Generator_RowClassName="vw_EMP_SRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1804,7 +1870,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_SALER_CAL_STATUS" msprop:Generator_TableClassName="vw_SALER_CAL_STATUSDataTable" msprop:Generator_TableVarName="tablevw_SALER_CAL_STATUS" msprop:Generator_TablePropName="vw_SALER_CAL_STATUS" msprop:Generator_RowDeletingName="vw_SALER_CAL_STATUSRowDeleting" msprop:Generator_RowChangingName="vw_SALER_CAL_STATUSRowChanging" msprop:Generator_RowEvHandlerName="vw_SALER_CAL_STATUSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SALER_CAL_STATUSRowDeleted" msprop:Generator_UserTableName="vw_SALER_CAL_STATUS" msprop:Generator_RowChangedName="vw_SALER_CAL_STATUSRowChanged" msprop:Generator_RowEvArgName="vw_SALER_CAL_STATUSRowChangeEvent" msprop:Generator_RowClassName="vw_SALER_CAL_STATUSRow">
+        <xs:element name="vw_SALER_CAL_STATUS" msprop:Generator_TableClassName="vw_SALER_CAL_STATUSDataTable" msprop:Generator_TableVarName="tablevw_SALER_CAL_STATUS" msprop:Generator_RowChangedName="vw_SALER_CAL_STATUSRowChanged" msprop:Generator_TablePropName="vw_SALER_CAL_STATUS" msprop:Generator_RowDeletingName="vw_SALER_CAL_STATUSRowDeleting" msprop:Generator_RowChangingName="vw_SALER_CAL_STATUSRowChanging" msprop:Generator_RowEvHandlerName="vw_SALER_CAL_STATUSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SALER_CAL_STATUSRowDeleted" msprop:Generator_RowClassName="vw_SALER_CAL_STATUSRow" msprop:Generator_UserTableName="vw_SALER_CAL_STATUS" msprop:Generator_RowEvArgName="vw_SALER_CAL_STATUSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1820,7 +1886,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_EMP" msprop:Generator_TableClassName="vw_EMPDataTable" msprop:Generator_TableVarName="tablevw_EMP" msprop:Generator_RowChangedName="vw_EMPRowChanged" msprop:Generator_TablePropName="vw_EMP" msprop:Generator_RowDeletingName="vw_EMPRowDeleting" msprop:Generator_RowChangingName="vw_EMPRowChanging" msprop:Generator_RowEvHandlerName="vw_EMPRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_EMPRowDeleted" msprop:Generator_RowClassName="vw_EMPRow" msprop:Generator_UserTableName="vw_EMP" msprop:Generator_RowEvArgName="vw_EMPRowChangeEvent">
+        <xs:element name="vw_EMP" msprop:Generator_TableClassName="vw_EMPDataTable" msprop:Generator_TableVarName="tablevw_EMP" msprop:Generator_TablePropName="vw_EMP" msprop:Generator_RowDeletingName="vw_EMPRowDeleting" msprop:Generator_RowChangingName="vw_EMPRowChanging" msprop:Generator_RowEvHandlerName="vw_EMPRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_EMPRowDeleted" msprop:Generator_UserTableName="vw_EMP" msprop:Generator_RowChangedName="vw_EMPRowChanged" msprop:Generator_RowEvArgName="vw_EMPRowChangeEvent" msprop:Generator_RowClassName="vw_EMPRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1954,7 +2020,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_INSTPerSer" msprop:Generator_TableClassName="vw_INSTPerSerDataTable" msprop:Generator_TableVarName="tablevw_INSTPerSer" msprop:Generator_RowChangedName="vw_INSTPerSerRowChanged" msprop:Generator_TablePropName="vw_INSTPerSer" msprop:Generator_RowDeletingName="vw_INSTPerSerRowDeleting" msprop:Generator_RowChangingName="vw_INSTPerSerRowChanging" msprop:Generator_RowEvHandlerName="vw_INSTPerSerRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_INSTPerSerRowDeleted" msprop:Generator_RowClassName="vw_INSTPerSerRow" msprop:Generator_UserTableName="vw_INSTPerSer" msprop:Generator_RowEvArgName="vw_INSTPerSerRowChangeEvent">
+        <xs:element name="vw_INSTPerSer" msprop:Generator_TableClassName="vw_INSTPerSerDataTable" msprop:Generator_TableVarName="tablevw_INSTPerSer" msprop:Generator_TablePropName="vw_INSTPerSer" msprop:Generator_RowDeletingName="vw_INSTPerSerRowDeleting" msprop:Generator_RowChangingName="vw_INSTPerSerRowChanging" msprop:Generator_RowEvHandlerName="vw_INSTPerSerRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_INSTPerSerRowDeleted" msprop:Generator_UserTableName="vw_INSTPerSer" msprop:Generator_RowChangedName="vw_INSTPerSerRowChanged" msprop:Generator_RowEvArgName="vw_INSTPerSerRowChangeEvent" msprop:Generator_RowClassName="vw_INSTPerSerRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -2006,7 +2072,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_INVTYPES" msprop:Generator_TableClassName="vw_INVTYPESDataTable" msprop:Generator_TableVarName="tablevw_INVTYPES" msprop:Generator_TablePropName="vw_INVTYPES" msprop:Generator_RowDeletingName="vw_INVTYPESRowDeleting" msprop:Generator_RowChangingName="vw_INVTYPESRowChanging" msprop:Generator_RowEvHandlerName="vw_INVTYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_INVTYPESRowDeleted" msprop:Generator_UserTableName="vw_INVTYPES" msprop:Generator_RowChangedName="vw_INVTYPESRowChanged" msprop:Generator_RowEvArgName="vw_INVTYPESRowChangeEvent" msprop:Generator_RowClassName="vw_INVTYPESRow">
+        <xs:element name="vw_INVTYPES" msprop:Generator_TableClassName="vw_INVTYPESDataTable" msprop:Generator_TableVarName="tablevw_INVTYPES" msprop:Generator_RowChangedName="vw_INVTYPESRowChanged" msprop:Generator_TablePropName="vw_INVTYPES" msprop:Generator_RowDeletingName="vw_INVTYPESRowDeleting" msprop:Generator_RowChangingName="vw_INVTYPESRowChanging" msprop:Generator_RowEvHandlerName="vw_INVTYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_INVTYPESRowDeleted" msprop:Generator_RowClassName="vw_INVTYPESRow" msprop:Generator_UserTableName="vw_INVTYPES" msprop:Generator_RowEvArgName="vw_INVTYPESRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="invType" msprop:Generator_ColumnVarNameInTable="columninvType" msprop:Generator_ColumnPropNameInRow="invType" msprop:Generator_ColumnPropNameInTable="invTypeColumn" msprop:Generator_UserColumnName="invType" type="xs:int" />
@@ -2020,7 +2086,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_SALERS_AND_COUNTERS" msprop:Generator_TableClassName="vw_SALERS_AND_COUNTERSDataTable" msprop:Generator_TableVarName="tablevw_SALERS_AND_COUNTERS" msprop:Generator_TablePropName="vw_SALERS_AND_COUNTERS" msprop:Generator_RowDeletingName="vw_SALERS_AND_COUNTERSRowDeleting" msprop:Generator_RowChangingName="vw_SALERS_AND_COUNTERSRowChanging" msprop:Generator_RowEvHandlerName="vw_SALERS_AND_COUNTERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SALERS_AND_COUNTERSRowDeleted" msprop:Generator_UserTableName="vw_SALERS_AND_COUNTERS" msprop:Generator_RowChangedName="vw_SALERS_AND_COUNTERSRowChanged" msprop:Generator_RowEvArgName="vw_SALERS_AND_COUNTERSRowChangeEvent" msprop:Generator_RowClassName="vw_SALERS_AND_COUNTERSRow">
+        <xs:element name="vw_SALERS_AND_COUNTERS" msprop:Generator_TableClassName="vw_SALERS_AND_COUNTERSDataTable" msprop:Generator_TableVarName="tablevw_SALERS_AND_COUNTERS" msprop:Generator_RowChangedName="vw_SALERS_AND_COUNTERSRowChanged" msprop:Generator_TablePropName="vw_SALERS_AND_COUNTERS" msprop:Generator_RowDeletingName="vw_SALERS_AND_COUNTERSRowDeleting" msprop:Generator_RowChangingName="vw_SALERS_AND_COUNTERSRowChanging" msprop:Generator_RowEvHandlerName="vw_SALERS_AND_COUNTERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SALERS_AND_COUNTERSRowDeleted" msprop:Generator_RowClassName="vw_SALERS_AND_COUNTERSRow" msprop:Generator_UserTableName="vw_SALERS_AND_COUNTERS" msprop:Generator_RowEvArgName="vw_SALERS_AND_COUNTERSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
@@ -2043,7 +2109,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_SCAN_FILE_NAMES" msprop:Generator_TableClassName="vw_SCAN_FILE_NAMESDataTable" msprop:Generator_TableVarName="tablevw_SCAN_FILE_NAMES" msprop:Generator_RowChangedName="vw_SCAN_FILE_NAMESRowChanged" msprop:Generator_TablePropName="vw_SCAN_FILE_NAMES" msprop:Generator_RowDeletingName="vw_SCAN_FILE_NAMESRowDeleting" msprop:Generator_RowChangingName="vw_SCAN_FILE_NAMESRowChanging" msprop:Generator_RowEvHandlerName="vw_SCAN_FILE_NAMESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SCAN_FILE_NAMESRowDeleted" msprop:Generator_RowClassName="vw_SCAN_FILE_NAMESRow" msprop:Generator_UserTableName="vw_SCAN_FILE_NAMES" msprop:Generator_RowEvArgName="vw_SCAN_FILE_NAMESRowChangeEvent">
+        <xs:element name="vw_SCAN_FILE_NAMES" msprop:Generator_TableClassName="vw_SCAN_FILE_NAMESDataTable" msprop:Generator_TableVarName="tablevw_SCAN_FILE_NAMES" msprop:Generator_TablePropName="vw_SCAN_FILE_NAMES" msprop:Generator_RowDeletingName="vw_SCAN_FILE_NAMESRowDeleting" msprop:Generator_RowChangingName="vw_SCAN_FILE_NAMESRowChanging" msprop:Generator_RowEvHandlerName="vw_SCAN_FILE_NAMESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SCAN_FILE_NAMESRowDeleted" msprop:Generator_UserTableName="vw_SCAN_FILE_NAMES" msprop:Generator_RowChangedName="vw_SCAN_FILE_NAMESRowChanged" msprop:Generator_RowEvArgName="vw_SCAN_FILE_NAMESRowChangeEvent" msprop:Generator_RowClassName="vw_SCAN_FILE_NAMESRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
@@ -2056,7 +2122,7 @@ WHERE        (cusID = @cusID)</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_TRANSH" msprop:Generator_TableClassName="vw_TRANSHDataTable" msprop:Generator_TableVarName="tablevw_TRANSH" msprop:Generator_RowChangedName="vw_TRANSHRowChanged" msprop:Generator_TablePropName="vw_TRANSH" msprop:Generator_RowDeletingName="vw_TRANSHRowDeleting" msprop:Generator_RowChangingName="vw_TRANSHRowChanging" msprop:Generator_RowEvHandlerName="vw_TRANSHRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_TRANSHRowDeleted" msprop:Generator_RowClassName="vw_TRANSHRow" msprop:Generator_UserTableName="vw_TRANSH" msprop:Generator_RowEvArgName="vw_TRANSHRowChangeEvent">
+        <xs:element name="vw_TRANSH" msprop:Generator_TableClassName="vw_TRANSHDataTable" msprop:Generator_TableVarName="tablevw_TRANSH" msprop:Generator_TablePropName="vw_TRANSH" msprop:Generator_RowDeletingName="vw_TRANSHRowDeleting" msprop:Generator_RowChangingName="vw_TRANSHRowChanging" msprop:Generator_RowEvHandlerName="vw_TRANSHRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_TRANSHRowDeleted" msprop:Generator_UserTableName="vw_TRANSH" msprop:Generator_RowChangedName="vw_TRANSHRowChanged" msprop:Generator_RowEvArgName="vw_TRANSHRowChangeEvent" msprop:Generator_RowClassName="vw_TRANSHRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -2134,6 +2200,112 @@ WHERE        (cusID = @cusID)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_SUP" msprop:Generator_TableClassName="vw_SUPDataTable" msprop:Generator_TableVarName="tablevw_SUP" msprop:Generator_TablePropName="vw_SUP" msprop:Generator_RowDeletingName="vw_SUPRowDeleting" msprop:Generator_RowChangingName="vw_SUPRowChanging" msprop:Generator_RowEvHandlerName="vw_SUPRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SUPRowDeleted" msprop:Generator_UserTableName="vw_SUP" msprop:Generator_RowChangedName="vw_SUPRowChanged" msprop:Generator_RowEvArgName="vw_SUPRowChangeEvent" msprop:Generator_RowClassName="vw_SUPRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="Fullname" msprop:Generator_ColumnVarNameInTable="columnFullname" msprop:Generator_ColumnPropNameInRow="Fullname" msprop:Generator_ColumnPropNameInTable="FullnameColumn" msprop:Generator_UserColumnName="Fullname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ttl" msprop:Generator_ColumnVarNameInTable="columnttl" msprop:Generator_ColumnPropNameInRow="ttl" msprop:Generator_ColumnPropNameInTable="ttlColumn" msprop:Generator_UserColumnName="ttl" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="300" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="bal" msprop:Generator_ColumnVarNameInTable="columnbal" msprop:Generator_ColumnPropNameInRow="bal" msprop:Generator_ColumnPropNameInTable="balColumn" msprop:Generator_UserColumnName="bal" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_BUY" msprop:Generator_TableClassName="vw_BUYDataTable" msprop:Generator_TableVarName="tablevw_BUY" msprop:Generator_TablePropName="vw_BUY" msprop:Generator_RowDeletingName="vw_BUYRowDeleting" msprop:Generator_RowChangingName="vw_BUYRowChanging" msprop:Generator_RowEvHandlerName="vw_BUYRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_BUYRowDeleted" msprop:Generator_UserTableName="vw_BUY" msprop:Generator_RowChangedName="vw_BUYRowChanged" msprop:Generator_RowEvArgName="vw_BUYRowChangeEvent" msprop:Generator_RowClassName="vw_BUYRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="dtBuy" msprop:Generator_ColumnVarNameInTable="columndtBuy" msprop:Generator_ColumnPropNameInRow="dtBuy" msprop:Generator_ColumnPropNameInTable="dtBuyColumn" msprop:Generator_UserColumnName="dtBuy" type="xs:dateTime" />
+              <xs:element name="invoiceNumber" msprop:Generator_ColumnVarNameInTable="columninvoiceNumber" msprop:Generator_ColumnPropNameInRow="invoiceNumber" msprop:Generator_ColumnPropNameInTable="invoiceNumberColumn" msprop:Generator_UserColumnName="invoiceNumber">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="supID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnsupID" msprop:Generator_ColumnPropNameInRow="supID" msprop:Generator_ColumnPropNameInTable="supIDColumn" msprop:Generator_UserColumnName="supID" type="xs:string" />
+              <xs:element name="cusID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncusID" msprop:Generator_ColumnPropNameInRow="cusID" msprop:Generator_ColumnPropNameInTable="cusIDColumn" msprop:Generator_UserColumnName="cusID" type="xs:string" />
+              <xs:element name="transhID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columntranshID" msprop:Generator_ColumnPropNameInRow="transhID" msprop:Generator_ColumnPropNameInTable="transhIDColumn" msprop:Generator_UserColumnName="transhID" type="xs:string" />
+              <xs:element name="netAmount" msprop:Generator_ColumnVarNameInTable="columnnetAmount" msprop:Generator_ColumnPropNameInRow="netAmount" msprop:Generator_ColumnPropNameInTable="netAmountColumn" msprop:Generator_UserColumnName="netAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="vatAmount" msprop:Generator_ColumnVarNameInTable="columnvatAmount" msprop:Generator_ColumnPropNameInRow="vatAmount" msprop:Generator_ColumnPropNameInTable="vatAmountColumn" msprop:Generator_UserColumnName="vatAmount" type="xs:decimal" minOccurs="0" />
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="SupFullName" msprop:Generator_ColumnVarNameInTable="columnSupFullName" msprop:Generator_ColumnPropNameInRow="SupFullName" msprop:Generator_ColumnPropNameInTable="SupFullNameColumn" msprop:Generator_UserColumnName="SupFullName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CusFullname" msprop:Generator_ColumnVarNameInTable="columnCusFullname" msprop:Generator_ColumnPropNameInRow="CusFullname" msprop:Generator_ColumnPropNameInTable="CusFullnameColumn" msprop:Generator_UserColumnName="CusFullname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="TranshDescription" msprop:Generator_ColumnVarNameInTable="columnTranshDescription" msprop:Generator_ColumnPropNameInRow="TranshDescription" msprop:Generator_ColumnPropNameInTable="TranshDescriptionColumn" msprop:Generator_UserColumnName="TranshDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_UserColumnName="RealName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="BuyCName" msprop:Generator_ColumnVarNameInTable="columnBuyCName" msprop:Generator_ColumnPropNameInRow="BuyCName" msprop:Generator_ColumnPropNameInTable="BuyCNameColumn" msprop:Generator_UserColumnName="BuyCName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cmt" msprop:Generator_ColumnVarNameInTable="columncmt" msprop:Generator_ColumnPropNameInRow="cmt" msprop:Generator_ColumnPropNameInTable="cmtColumn" msprop:Generator_UserColumnName="cmt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="buyCID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnbuyCID" msprop:Generator_ColumnPropNameInRow="buyCID" msprop:Generator_ColumnPropNameInTable="buyCIDColumn" msprop:Generator_UserColumnName="buyCID" type="xs:string" minOccurs="0" />
+              <xs:element name="kitchen" msprop:Generator_ColumnVarNameInTable="columnkitchen" msprop:Generator_ColumnPropNameInRow="kitchen" msprop:Generator_ColumnPropNameInTable="kitchenColumn" msprop:Generator_UserColumnName="kitchen" type="xs:decimal" minOccurs="0" />
+              <xs:element name="closet" msprop:Generator_ColumnVarNameInTable="columncloset" msprop:Generator_ColumnPropNameInRow="closet" msprop:Generator_ColumnPropNameInTable="closetColumn" msprop:Generator_UserColumnName="closet" type="xs:decimal" minOccurs="0" />
+              <xs:element name="general" msprop:Generator_ColumnVarNameInTable="columngeneral" msprop:Generator_ColumnPropNameInRow="general" msprop:Generator_ColumnPropNameInTable="generalColumn" msprop:Generator_UserColumnName="general" type="xs:decimal" minOccurs="0" />
+              <xs:element name="materials" msprop:Generator_ColumnVarNameInTable="columnmaterials" msprop:Generator_ColumnPropNameInRow="materials" msprop:Generator_ColumnPropNameInTable="materialsColumn" msprop:Generator_UserColumnName="materials" type="xs:decimal" minOccurs="0" />
+              <xs:element name="bathroomFurn" msprop:Generator_ColumnVarNameInTable="columnbathroomFurn" msprop:Generator_ColumnPropNameInRow="bathroomFurn" msprop:Generator_ColumnPropNameInTable="bathroomFurnColumn" msprop:Generator_UserColumnName="bathroomFurn" type="xs:decimal" minOccurs="0" />
+              <xs:element name="DevicesBuy" msprop:Generator_ColumnVarNameInTable="columnDevicesBuy" msprop:Generator_ColumnPropNameInRow="DevicesBuy" msprop:Generator_ColumnPropNameInTable="DevicesBuyColumn" msprop:Generator_UserColumnName="DevicesBuy" type="xs:decimal" minOccurs="0" />
+              <xs:element name="PayName" msprop:Generator_ColumnVarNameInTable="columnPayName" msprop:Generator_ColumnPropNameInRow="PayName" msprop:Generator_ColumnPropNameInTable="PayNameColumn" msprop:Generator_UserColumnName="PayName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="payID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnpayID" msprop:Generator_ColumnPropNameInRow="payID" msprop:Generator_ColumnPropNameInTable="payIDColumn" msprop:Generator_UserColumnName="payID" type="xs:string" />
+              <xs:element name="paid" msprop:Generator_ColumnVarNameInTable="columnpaid" msprop:Generator_ColumnPropNameInRow="paid" msprop:Generator_ColumnPropNameInTable="paidColumn" msprop:Generator_UserColumnName="paid" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2237,6 +2409,14 @@ WHERE        (cusID = @cusID)</CommandText>
     </xs:unique>
     <xs:unique name="vw_INSTPerSer_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:vw_INSTPerSer" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_SUP_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_SUP" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_BUY_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_BUY" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
   </xs:element>

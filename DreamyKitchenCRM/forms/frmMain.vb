@@ -25,7 +25,10 @@ Public Class frmMain
         bbVersion.Caption = "Ver:" + My.Application.Info.Version.ToString
         Timer2.Stop()
         LoadCurrentSkin()
-        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then EmpManage.Visible = False
+        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
+            EmpManage.Visible = False
+            ProjectAnalysis.Visible = False
+        End If
 
 
     End Sub
@@ -745,6 +748,22 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Προμηθευτές"
         form.DataTable = "vw_SUP"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBBuy_C_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBBuy_C.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κατηγορίες Αγορών"
+        form.DataTable = "vw_BUY_C"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBuy_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBuy.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Αγορές"
+        form.DataTable = "vw_BUY"
         form.MdiParent = Me
         form.Show()
     End Sub

@@ -133,6 +133,7 @@ Public Class frmNotes
                 End Using
                 XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,notesID,filename,comefrom,createdon,realname From vw_NOTES_F where notesID = '" & sID & "'")
+                GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_F_def.xml", OptionsLayoutBase.FullLayout)
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -192,6 +193,7 @@ Public Class frmNotes
                 If txtFileNames.Text <> "" Then
                     sResult = DBQ.InsertDataFiles(XtraOpenFileDialog1, sGuid, "NOTES_F")
                     LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,NOTESID,files,filename,comefrom,createdon,realname From vw_NOTES_F where NOTESID = '" & sGuid & "'")
+                    GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_F_def.xml", OptionsLayoutBase.FullLayout)
                 End If
                 txtCode.Text = DBQ.GetNextId("NOTES")
                 If Frm.Name = "frmScroller" Then

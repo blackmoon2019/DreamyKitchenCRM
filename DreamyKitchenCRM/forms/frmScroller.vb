@@ -232,6 +232,18 @@ Public Class frmScroller
                     Case "vw_NOTES" : sSQL = "DELETE FROM NOTES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_PAY" : sSQL = "DELETE FROM PAY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SUP" : sSQL = "DELETE FROM SUP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_BUY_C" : sSQL = "DELETE FROM BUY_C WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_BUY"
+                        sSQL = "DELETE FROM BUY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
+                        sSQL = "update sup set bal = (select isnull(sum(vatamount),0) from buy where buy.supID=sup.ID and payID<>'88E7A725-AE4C-4818-ADEE-7F9E26F20165' and paid=0)  WHERE ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+
                     Case "vw_TRANSH"
                         sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
                                 WHERE TRANSH.ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -597,6 +609,16 @@ Public Class frmScroller
     Private Sub EditRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_BUY"
+                Dim frmBUY As frmBUY = New frmBUY()
+                frmBUY.Text = "Αγορές"
+                frmBUY.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmBUY.MdiParent = frmMain
+                frmBUY.Mode = FormMode.EditRecord
+                frmBUY.Scroller = GridView1
+                frmBUY.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBUY), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmBUY.Show()
             Case "vw_NOTES"
                 Dim form10 As frmNotes = New frmNotes()
                 form10.Text = "Σημειώματα"
@@ -607,6 +629,20 @@ Public Class frmScroller
                 form10.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form10), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 form10.Show()
+            Case "vw_BUY_C"
+                frmGen.Text = "Κατηγορίες Αγορών"
+                frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.EditRecord
+                frmGen.Scroller = GridView1
+                frmGen.FormScroller = Me
+                frmGen.DataTable = "BUY_C"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Όνομα"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_SCAN_FILE_NAMES"
                 frmGen.Text = "Ονομασίες Scan αρχείων"
                 frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -1225,6 +1261,28 @@ Public Class frmScroller
     Private Sub NewRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_BUY"
+                Dim frmBUY As frmBUY = New frmBUY()
+                frmBUY.Text = "Αγορές"
+                frmBUY.MdiParent = frmMain
+                frmBUY.Mode = FormMode.NewRecord
+                frmBUY.Scroller = GridView1
+                frmBUY.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBUY), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmBUY.Show()
+            Case "vw_BUY_C"
+                frmGen.Text = "Κατηγορίες Αγορών"
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.NewRecord
+                frmGen.Scroller = GridView1
+                frmGen.FormScroller = Me
+                frmGen.DataTable = "BUY_C"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Όνομα"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_SUP"
                 Dim frmSUP As New frmSUP
                 frmSUP.Text = "Προμηθευτές"
@@ -2091,7 +2149,7 @@ Public Class frmScroller
                     Console.WriteLine(myReader.GetName(i))
                     If i < GridView1.Columns.Count Then
                         'Col2 = GridView1.Columns.Item(i)
-                        Col2 = GridView1.Columns.ColumnByFieldName(myReader.GetName(i))
+                        Col2 = GridView1.Columns.ColumnByName("col" & myReader.GetName(i).ToString)
                     Else
                         Col2 = Nothing
                     End If

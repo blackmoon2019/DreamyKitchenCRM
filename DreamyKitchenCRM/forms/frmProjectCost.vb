@@ -118,9 +118,15 @@ Public Class frmProjectCost
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,
-                        DebitCost,DevicesCost,Totamt,SalerProfit ,
+                        DebitCost,DevicesCost,Totamt,isnull(SalerProfit,0) as  SalerProfit,
                         ISNULL((Select sum(ISNULL(C.salary, 0) + ISNULL(C.extracost, 0)) from constr C where transhid=t.id),0) as ConstrPayroll,
-                        ISNULL((Select sum(ISNULL(I.cost, 0) + ISNULL(I.extraCost, 0)) from INST I where transhid=t.id),0) as InstPayroll
+                        ISNULL((Select sum(ISNULL(I.cost, 0) + ISNULL(I.extraCost, 0)) from INST I where transhid=t.id),0) as InstPayroll,
+                        ISNULL((SELECT sum(KITCHEN) kitchen from BUY B where B.transhID=T.ID),0) as kitchen,
+                        ISNULL((SELECT sum(DEVICESBUY) DEVICESBUY from BUY B where B.transhID=T.ID),0) as DEVICESBUY,
+                        ISNULL((SELECT sum(closet) closet from BUY B where B.transhID=T.ID),0) as closet,
+                        ISNULL((SELECT sum(general) general from BUY B where B.transhID=T.ID),0) as general,
+                        ISNULL((SELECT sum(materials) materials from BUY B where B.transhID=T.ID),0) as materials,
+                        ISNULL((SELECT sum(bathroomFurn) bathroomFurn from BUY B where B.transhID=T.ID),0) as bathroomFurn
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH_FOR_PROJECTCOST(cboTRANSH, sSQL)
@@ -129,7 +135,8 @@ Public Class frmProjectCost
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
         If cboTRANSH.EditValue = Nothing Then
             txtDebitCost.EditValue = "0" : txtDevicesCost.EditValue = "0" : txtTotAmt.EditValue = "0" : txtSalerProfit.EditValue = "0"
-            txtConstrPayroll.EditValue = "0" : txtInstPayroll.EditValue = "0"
+            txtConstrPayroll.EditValue = "0" : txtInstPayroll.EditValue = "0" : txtbathroomFurn.EditValue = "0" : txtcloset.EditValue = "0"
+            txtgeneral.EditValue = "0" : txtmaterials.EditValue = "0" : txtDevicesBuy.EditValue = "0" : txtkitchen.EditValue = "0"
         Else
             txtDebitCost.EditValue = cboTRANSH.GetColumnValue("DebitCost")
             txtDevicesCost.EditValue = cboTRANSH.GetColumnValue("DevicesCost")
@@ -137,7 +144,12 @@ Public Class frmProjectCost
             txtSalerProfit.EditValue = cboTRANSH.GetColumnValue("SalerProfit")
             txtConstrPayroll.EditValue = cboTRANSH.GetColumnValue("ConstrPayroll")
             txtInstPayroll.EditValue = cboTRANSH.GetColumnValue("InstPayroll")
-
+            txtbathroomFurn.EditValue = cboTRANSH.GetColumnValue("bathroomFurn")
+            txtcloset.EditValue = cboTRANSH.GetColumnValue("closet")
+            txtgeneral.EditValue = cboTRANSH.GetColumnValue("general")
+            txtmaterials.EditValue = cboTRANSH.GetColumnValue("materials")
+            txtDevicesBuy.EditValue = cboTRANSH.GetColumnValue("DEVICESBUY")
+            txtkitchen.EditValue = cboTRANSH.GetColumnValue("kitchen")
         End If
     End Sub
 
@@ -220,6 +232,8 @@ Public Class frmProjectCost
         Dim sResult As Boolean
         Dim sGuid As String
         Dim sSQL As New System.Text.StringBuilder
+        Dim Kitchen As Double, Closet As Double, general As Double
+
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 Select Case Mode

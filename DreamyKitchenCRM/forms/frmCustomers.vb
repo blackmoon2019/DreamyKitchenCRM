@@ -109,6 +109,7 @@ Public Class frmCustomers
                 End Using
                 XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,filename,comefrom,createdon,realname From vw_CCT_F where cctID = '" & sID & "'")
+                GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -371,6 +372,7 @@ Public Class frmCustomers
                 If txtFileNames.Text <> "" Then
                     sResult = DBQ.InsertDataFiles(XtraOpenFileDialog1, sGuid, "CCT_F")
                     LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where isINVOICE = 0 AND cctID = '" & sGuid & "'")
+                    GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
                 End If
                 txtCode.Text = DBQ.GetNextId("CCT")
                 If CalledFromCtrl Then
@@ -383,6 +385,7 @@ Public Class frmCustomers
                 'Cls.ClearCtrls(LayoutControl1)
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
                     Mode = FormMode.EditRecord
                     txtFileNames.Text = ""
                     If XtraMessageBox.Show("Θέλετε να καταχωρήσετε κίνηση στον πελάτη?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then

@@ -487,7 +487,7 @@ Public Class FormLoader
                     Dim C As New GridColumn
                     C = GRDView.Columns.ColumnByName("col" & columnName)
                     If C IsNot Nothing Then
-                        If C.Caption = "" Then C.Caption = columnNameValue
+                        C.Caption = columnNameValue
                         C = Nothing
                     End If
                 End If

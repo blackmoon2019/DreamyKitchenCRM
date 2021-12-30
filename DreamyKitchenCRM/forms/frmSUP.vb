@@ -270,7 +270,9 @@ Public Class frmSUP
                 'Cls.ClearCtrls(LayoutControl1)
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Mode = FormMode.EditRecord
+                    Cls.ClearCtrls(LayoutControl1)
+                    Mode = FormMode.NewRecord
+                    txtCode.Text = DBQ.GetNextId("SUP")
                 End If
             End If
 
