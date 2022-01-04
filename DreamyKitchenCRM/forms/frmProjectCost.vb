@@ -121,12 +121,12 @@ Public Class frmProjectCost
                         DebitCost,DevicesCost,Totamt,isnull(SalerProfit,0) as  SalerProfit,
                         ISNULL((Select sum(ISNULL(C.salary, 0) + ISNULL(C.extracost, 0)) from constr C where transhid=t.id),0) as ConstrPayroll,
                         ISNULL((Select sum(ISNULL(I.cost, 0) + ISNULL(I.extraCost, 0)) from INST I where transhid=t.id),0) as InstPayroll,
-                        ISNULL((SELECT sum(KITCHEN) kitchen from BUY B where B.transhID=T.ID),0) as kitchen,
-                        ISNULL((SELECT sum(DEVICESBUY) DEVICESBUY from BUY B where B.transhID=T.ID),0) as DEVICESBUY,
-                        ISNULL((SELECT sum(closet) closet from BUY B where B.transhID=T.ID),0) as closet,
-                        ISNULL((SELECT sum(general) general from BUY B where B.transhID=T.ID),0) as general,
-                        ISNULL((SELECT sum(materials) materials from BUY B where B.transhID=T.ID),0) as materials,
-                        ISNULL((SELECT sum(bathroomFurn) bathroomFurn from BUY B where B.transhID=T.ID),0) as bathroomFurn
+                        ISNULL((SELECT sum(KITCHENV) kitchen from BUY B where B.transhID=T.ID),0) as kitchen,
+                        ISNULL((SELECT sum(DEVICESBUYV) DEVICESBUY from BUY B where B.transhID=T.ID),0) as DEVICESBUY,
+                        ISNULL((SELECT sum(closetV) closet from BUY B where B.transhID=T.ID),0) as closet,
+                        ISNULL((SELECT sum(generalV) general from BUY B where B.transhID=T.ID),0) as general,
+                        ISNULL((SELECT sum(materialsV) materials from BUY B where B.transhID=T.ID),0) as materials,
+                        ISNULL((SELECT sum(bathroomFurnV) bathroomFurn from BUY B where B.transhID=T.ID),0) as bathroomFurn
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH_FOR_PROJECTCOST(cboTRANSH, sSQL)

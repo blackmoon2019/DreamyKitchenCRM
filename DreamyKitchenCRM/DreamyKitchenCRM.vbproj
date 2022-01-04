@@ -968,6 +968,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-transaction-list2-40%281%29.png" />
+    <None Include="Resources\icons8-payment-40.png" />
     <None Include="Resources\icons8-payment-method-40.png" />
     <None Include="Resources\icons8-supplier-40.png" />
     <None Include="Resources\icons8-category-40%281%29.png" />

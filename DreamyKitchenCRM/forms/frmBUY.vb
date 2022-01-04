@@ -76,16 +76,18 @@ Public Class frmBUY
                     form.LoadRecords("vw_BUY")
                 End If
 
-                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
-                sSQL = "update sup set bal = (select isnull(sum(vatamount),0) from buy where buy.supID=sup.ID and payID<>'88E7A725-AE4C-4818-ADEE-7F9E26F20165' and paid=0)  WHERE ID = " & toSQLValueS(cboSUP.EditValue.ToString)
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
+                If sResult = True Then
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
+                    sSQL = "update sup set bal = (select isnull(sum(vatamount),0) from buy where buy.supID=sup.ID and payID<>'88E7A725-AE4C-4818-ADEE-7F9E26F20165' and paid=0)  WHERE ID = " & toSQLValueS(cboSUP.EditValue.ToString)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
 
-                If Mode = FormMode.NewRecord Then
-                    Cls.ClearCtrls(LayoutControl1)
-                    txtCode.Text = DBQ.GetNextId("BUY")
+                    If Mode = FormMode.NewRecord Then
+                        Cls.ClearCtrls(LayoutControl1)
+                        txtCode.Text = DBQ.GetNextId("BUY")
+                    End If
                 End If
             End If
 
@@ -244,6 +246,7 @@ Public Class frmBUY
         DevicesBuy = DbnullToZero(txtDevicesBuy) : bathroomFurn = DbnullToZero(txtbathroomFurn) : closet = DbnullToZero(txtcloset)
         general = DbnullToZero(txtgeneral) : materials = DbnullToZero(txtmaterials) : kitchen = DbnullToZero(txtkitchen)
         Total = DevicesBuy + bathroomFurn + closet + general + materials + kitchen
+        If chkCredit.Checked = True Then Total = Total * -1 Else Total = Math.Abs(Total)
         Return Total
     End Function
 
@@ -267,9 +270,6 @@ Public Class frmBUY
         txtnetAmount.EditValue = CalculateNetAmount()
     End Sub
 
-    Private Sub cboPAY_EditValueChanged(sender As Object, e As EventArgs) Handles cboPAY.EditValueChanged
-
-    End Sub
 
     Private Sub cboPAY_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPAY.ButtonClick
         Select Case e.Button.Index
@@ -284,4 +284,16 @@ Public Class frmBUY
         If cboPAY.EditValue = Nothing Then Exit Sub
         If cboPAY.EditValue.ToString.ToUpper = "88E7A725-AE4C-4818-ADEE-7F9E26F20165" Then chkPaid.CheckState = CheckState.Checked Else chkPaid.CheckState = CheckState.Unchecked
     End Sub
+
+    Private Sub chkCredit_CheckedChanged(sender As Object, e As EventArgs) Handles chkCredit.CheckedChanged
+        Dim Edit As CheckEdit = CType(sender, CheckEdit)
+        If Edit.Checked = True Then
+            LayoutControlItem5.Tag = "" : LayoutControlItem13.Tag = ""
+            cboCUS.Enabled = False : cboTRANSH.Enabled = False
+        Else
+            LayoutControlItem5.Tag = "1" : LayoutControlItem13.Tag = "1"
+            cboCUS.Enabled = True : cboTRANSH.Enabled = True
+        End If
+    End Sub
+
 End Class

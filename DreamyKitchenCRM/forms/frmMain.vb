@@ -764,6 +764,23 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Αγορές"
         form.DataTable = "vw_BUY"
+        form.DataDetail = "vw_SUP_PAYMENTS_D"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBSupInvoicesPayment_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSupInvoicesPayment.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Πληρωμές Παραστατικών Προμηθευτών"
+        form.DataTable = "vw_SUP_PAYMENTS_H"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBTransactions_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBTransactions.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Καρτέλλα"
+        form.DataTable = "vw_SUP_PAYMENTS_D"
         form.MdiParent = Me
         form.Show()
     End Sub

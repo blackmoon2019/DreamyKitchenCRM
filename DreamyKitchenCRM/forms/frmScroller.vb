@@ -233,6 +233,26 @@ Public Class frmScroller
                     Case "vw_PAY" : sSQL = "DELETE FROM PAY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SUP" : sSQL = "DELETE FROM SUP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BUY_C" : sSQL = "DELETE FROM BUY_C WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_SUP_PAYMENTS_H"
+                        ' Επαναφορά τιμολογίων σε απλήρωτα όπου αυτό χρειάζεται
+                        sSQL = "UPDATE BUY	SET PAID=0	FROM BUY INNER JOIN	SUP_PAYMENTS_D SD ON SD.buyID=BUY.ID WHERE SD.supPaymentHID= '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        'Using oCmd As New SqlCommand("usp_RestoreBuyInvNotPaid", CNDB)
+                        '    oCmd.CommandType = CommandType.StoredProcedure
+                        '    oCmd.Parameters.AddWithValue("@supPaymentHID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
+                        '    oCmd.ExecuteNonQuery()
+                        'End Using
+                        sSQL = "DELETE FROM SUP_PAYMENTS_H WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
+                        sSQL = "update sup set bal = (select isnull(sum(vatamount),0) from buy where buy.supID=sup.ID and payID<>'88E7A725-AE4C-4818-ADEE-7F9E26F20165' and paid=0)  WHERE ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
                     Case "vw_BUY"
                         sSQL = "DELETE FROM BUY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                         Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -436,11 +456,13 @@ Public Class frmScroller
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then
             Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = TryCast(e.Menu, GridViewColumnMenu)
+            Dim menuItem As DevExpress.Utils.Menu.DXEditMenuItem
             Dim item As New DXEditMenuItem()
             Dim itemColor As New DXEditMenuItem()
 
+            menuItem = menu.Items.Item("Μετονομασία Στήλης")
             'menu.Items.Clear()
-            If menu.Column IsNot Nothing Then
+            If menu.Column IsNot Nothing And menuItem Is Nothing Then
                 'Για να προσθέσουμε menu item στο Default menu πρέπει πρώτα να προσθέσουμε ένα Repository Item 
                 'Υπάρχουν πολλών ειδών Repositorys
                 '1st Custom Menu Item
@@ -460,9 +482,45 @@ Public Class frmScroller
                 itemColor = menu.Items.Item("Χρώμα Στήλης")
                 itemColor.EditValue = menu.Column.AppearanceCell.BackColor
                 itemColor.Tag = menu.Column.AbsoluteIndex
+
+                '4nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveView, Nothing, Nothing, Nothing, Nothing))
+
+                '5nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Συγχρονισμός όψης από Server", AddressOf OnSyncView, Nothing, Nothing, Nothing, Nothing))
+
+                '6nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Ενημέρωση πεδίων όψης από Βάση", AddressOf OnUpdateViewFromDB, Nothing, Nothing, Nothing, Nothing))
+
             End If
         Else
             PopupMenuRowsDetail.ShowPopup(Control.MousePosition)
+        End If
+    End Sub
+    Private Sub OnUpdateViewFromDB(ByVal sender As System.Object, ByVal e As EventArgs)
+        UpdateViewFromDB(GridView2)
+    End Sub
+    Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
+        GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
+                GridView2.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+            End If
+        End If
+
+    End Sub
+    'Συγχρονισμός όψης από Server
+    Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
+            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml", Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml.xml", True)
+                GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+            End If
         End If
     End Sub
     'Αλλαγή Χρώματος Στήλης Master
@@ -609,6 +667,17 @@ Public Class frmScroller
     Private Sub EditRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_SUP_PAYMENTS_H"
+                Dim frmSupInvoicesPayments As frmSupInvoicesPayments = New frmSupInvoicesPayments()
+                frmSupInvoicesPayments.Text = "Πληρωμές Παραστατικών Προμηθευτών"
+                frmSupInvoicesPayments.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmSupInvoicesPayments.MdiParent = frmMain
+                frmSupInvoicesPayments.Mode = FormMode.EditRecord
+                frmSupInvoicesPayments.Scroller = GridView1
+                frmSupInvoicesPayments.FormScroller = Me
+                frmSupInvoicesPayments.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSupInvoicesPayments), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmSupInvoicesPayments.Show()
             Case "vw_BUY"
                 Dim frmBUY As frmBUY = New frmBUY()
                 frmBUY.Text = "Αγορές"
@@ -617,6 +686,7 @@ Public Class frmScroller
                 frmBUY.Mode = FormMode.EditRecord
                 frmBUY.Scroller = GridView1
                 frmBUY.FormScroller = Me
+                frmBUY.FormScrollerExist = True
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBUY), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmBUY.Show()
             Case "vw_NOTES"
@@ -1261,6 +1331,16 @@ Public Class frmScroller
     Private Sub NewRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_SUP_PAYMENTS_H"
+                Dim frmSupInvoicesPayments As frmSupInvoicesPayments = New frmSupInvoicesPayments()
+                frmSupInvoicesPayments.Text = "Πληρωμές Παραστατικών Προμηθευτών"
+                frmSupInvoicesPayments.MdiParent = frmMain
+                frmSupInvoicesPayments.Mode = FormMode.NewRecord
+                frmSupInvoicesPayments.Scroller = GridView1
+                frmSupInvoicesPayments.FormScroller = Me
+                frmSupInvoicesPayments.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSupInvoicesPayments), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmSupInvoicesPayments.Show()
             Case "vw_BUY"
                 Dim frmBUY As frmBUY = New frmBUY()
                 frmBUY.Text = "Αγορές"
@@ -1268,6 +1348,7 @@ Public Class frmScroller
                 frmBUY.Mode = FormMode.NewRecord
                 frmBUY.Scroller = GridView1
                 frmBUY.FormScroller = Me
+                frmBUY.FormScrollerExist = True
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBUY), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmBUY.Show()
             Case "vw_BUY_C"
@@ -1937,6 +2018,24 @@ Public Class frmScroller
                             'Specify text to be displayed within detail tabs.
                             GrdView.ViewCaption = "Χρεωπιστώσεις Τοποθετών"
                         End If
+                    Case "vw_SUP_PAYMENTS_D"
+                        Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
+                        Dim AdapterDetail As New SqlDataAdapter(sSQL2, CNDB)
+                        Dim sdataSet As New DataSet()
+                        AdapterMaster.Fill(sdataSet, IIf(sDataTable = "", sDataTable2, sDataTable))
+                        AdapterDetail.Fill(sdataSet, sDataDetail)
+                        Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
+                        Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("buyID")
+                        sdataSet.Relations.Add("Ανάλυση Πληρωμών", keyColumn, foreignKeyColumn, False)
+                        GridView1.Columns.Clear() : GridView2.Columns.Clear()
+                        grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
+                        grdMain.ForceInitialize()
+                        If grdMain.LevelTree.Nodes.Count = 1 Then
+                            Dim GrdView As New GridView(grdMain)
+                            grdMain.LevelTree.Nodes.Add("Ανάλυση Πληρωμών", GridView2)
+                            'Specify text to be displayed within detail tabs.
+                            GrdView.ViewCaption = "Ανάλυση Πληρωμών"
+                        End If
 
                 End Select
             End If
@@ -2131,10 +2230,7 @@ Public Class frmScroller
             form.Show()
         End If
     End Sub
-
-    Private Sub BBUpdateViewFromDB_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdateViewFromDB.ItemClick
-        'ReadXml.UpdateXMLFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
-        'My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
+    Private Sub UpdateViewFromDB(ByVal GRDView As GridView)
         Try
             Dim col1 As GridColumn
             Dim Col2 As GridColumn
@@ -2142,19 +2238,19 @@ Public Class frmScroller
             LoadRecords(,, False)
             If myReader Is Nothing Then Exit Sub
             'Εαν υπάρχουν πεδία που πρέπει να προστεθούν από την βάση
-            If myReader.FieldCount >= GridView1.Columns.Count Then
+            If myReader.FieldCount >= GRDView.Columns.Count Then
                 Dim schema As DataTable = myReader.GetSchemaTable()
-                grdColumns = GridView1.Columns.ToList()
+                grdColumns = GRDView.Columns.ToList()
                 For i As Integer = 0 To myReader.FieldCount - 1
                     Console.WriteLine(myReader.GetName(i))
-                    If i < GridView1.Columns.Count Then
-                        'Col2 = GridView1.Columns.Item(i)
-                        Col2 = GridView1.Columns.ColumnByName("col" & myReader.GetName(i).ToString)
+                    If i < GRDView.Columns.Count Then
+                        'Col2 = GRDView.Columns.Item(i)
+                        Col2 = GRDView.Columns.ColumnByName("col" & myReader.GetName(i).ToString)
                     Else
                         Col2 = Nothing
                     End If
                     If Col2 Is Nothing Then
-                        col1 = GridView1.Columns.AddField(myReader.GetName(i))
+                        col1 = GRDView.Columns.AddField(myReader.GetName(i))
                         col1.FieldName = myReader.GetName(i)
                         col1.Visible = True
                         col1.VisibleIndex = 0
@@ -2163,9 +2259,9 @@ Public Class frmScroller
 
                 Next
                 'Εαν έχουν σβηστεί πεδία από την βάση τα αφαιρεί και από το grid
-            ElseIf myReader.FieldCount < GridView1.Columns.Count Then
+            ElseIf myReader.FieldCount < GRDView.Columns.Count Then
                 Dim schema As DataTable = myReader.GetSchemaTable()
-                grdColumns = GridView1.Columns.ToList()
+                grdColumns = GRDView.Columns.ToList()
 
                 For i As Integer = 0 To grdColumns.Count - 1
                     Try
@@ -2173,7 +2269,7 @@ Public Class frmScroller
                         Dim sOrd As String = myReader.GetOrdinal(Col2.FieldName)
                     Catch ex As Exception
                         Col2 = grdColumns(i)
-                        GridView1.Columns.Remove(Col2)
+                        GRDView.Columns.Remove(Col2)
                         Console.WriteLine(ex.Message)
 
                         Continue For
@@ -2182,11 +2278,16 @@ Public Class frmScroller
                 Next
 
             End If
-            LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
+            LoadForms.LoadColumnDescriptionNames(grdMain, GRDView, , sDataTable)
             myReader.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub BBUpdateViewFromDB_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdateViewFromDB.ItemClick
+        'ReadXml.UpdateXMLFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
+        'My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
+        UpdateViewFromDB(GridView1)
     End Sub
     Private Sub GridView1_CustomDrawGroupRow(sender As Object, e As RowObjectCustomDrawEventArgs) Handles GridView1.CustomDrawGroupRow
         Select Case sDataTable

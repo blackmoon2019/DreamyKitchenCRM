@@ -42,25 +42,9 @@ Module Main
         If t.Text.Length = 0 Then
             Return "NULL" 'this will pass through any SQL statement without notice  
         Else 'Lets suppose our textbox is checked to contain only numbers, so we count on it  
-            If Not isnum Then Return "'" + t.Text + "'" Else Return t.Text.Replace(",", ".")
+            If Not isnum Then Return "'" + t.Text + "'" Else Return t.Text.Replace(",", ".").Replace(" €", "")
         End If
     End Function
-    Public Function DbnullToZero(t As DevExpress.XtraEditors.TextEdit) As Double
-        If IsDBNull(t) = False Then
-            If t.Text = "" Then Return 0 Else Return t.EditValue.ToString.Replace(".", ",")
-        Else
-            Return 0
-        End If
-    End Function
-
-    Public Sub HideColumns(GridView1 As DevExpress.XtraGrid.Views.Grid.GridView, sExclude As String)
-        Dim col As GridColumn
-        For Each col In GridView1.Columns
-            ' Look at FieldName, not Name (name of Column)  
-            If col.FieldName.Contains(sExclude) Then col.Visible = False
-        Next
-    End Sub
-
     Public Function toSQLValueS(t As String, Optional ByVal isnum As Boolean = False) As String
         Try
             If t <> Nothing Then
@@ -82,6 +66,23 @@ Module Main
             DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
+    Public Function DbnullToZero(t As DevExpress.XtraEditors.TextEdit) As Double
+        If IsDBNull(t) = False Then
+            If t.Text = "" Then Return 0 Else Return t.EditValue.ToString.Replace(".", ",")
+        Else
+            Return 0
+        End If
+    End Function
+
+    Public Sub HideColumns(GridView1 As DevExpress.XtraGrid.Views.Grid.GridView, sExclude As String)
+        Dim col As GridColumn
+        For Each col In GridView1.Columns
+            ' Look at FieldName, not Name (name of Column)  
+            If col.FieldName.Contains(sExclude) Then col.Visible = False
+        Next
+    End Sub
+
+
     'Public Function FindItemByValChkListBox(ByVal sValue As String, ByVal chkList As DevExpress.XtraEditors.CheckedListBoxControl) As DevExpress.XtraEditors.Controls.CheckedListBoxItem
     '    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkList
 
