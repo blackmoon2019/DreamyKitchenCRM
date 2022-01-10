@@ -272,7 +272,6 @@ Partial Public Class Rep_offer
         Me.XrLabel24 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel37 = New DevExpress.XtraReports.UI.XRLabel()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
-        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         Me.XrPanel5 = New DevExpress.XtraReports.UI.XRPanel()
         Me.ReportFooter = New DevExpress.XtraReports.UI.ReportFooterBand()
         Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
@@ -285,6 +284,7 @@ Partial Public Class Rep_offer
         Me.XrLabel56 = New DevExpress.XtraReports.UI.XRLabel()
         Me.Vw_NOTESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_NOTESTableAdapter()
         Me.Vw_OFFTableAdapter1 = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_OFFTableAdapter()
+        Me.XrSubreport1 = New DevExpress.XtraReports.UI.XRSubreport()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -368,7 +368,7 @@ Partial Public Class Rep_offer
         QueryParameter1.Name = "OfferID"
         QueryParameter1.Type = GetType(DevExpress.DataAccess.Expression)
         QueryParameter1.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery1.Parameters.Add(QueryParameter1)
+        SelectQuery1.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter1})
         SelectQuery1.Tables.Add(Table1)
         ColumnExpression18.ColumnName = "ID"
         Table2.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""383"" />"
@@ -434,7 +434,7 @@ Partial Public Class Rep_offer
         QueryParameter2.Name = "OfferID"
         QueryParameter2.Type = GetType(DevExpress.DataAccess.Expression)
         QueryParameter2.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery2.Parameters.Add(QueryParameter2)
+        SelectQuery2.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter2})
         SelectQuery2.Tables.Add(Table2)
         ColumnExpression32.ColumnName = "ID"
         Table3.Name = "vw_OFFERS"
@@ -587,19 +587,19 @@ Partial Public Class Rep_offer
         QueryParameter3.Name = "OfferID"
         QueryParameter3.Type = GetType(DevExpress.DataAccess.Expression)
         QueryParameter3.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        SelectQuery3.Parameters.Add(QueryParameter3)
+        SelectQuery3.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter3})
         SelectQuery3.Tables.Add(Table3)
         CustomSqlQuery1.Name = "vw_OFF_REP_TOTALPERDOOR"
         QueryParameter4.Name = "OfferID"
         QueryParameter4.Type = GetType(DevExpress.DataAccess.Expression)
         QueryParameter4.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        CustomSqlQuery1.Parameters.Add(QueryParameter4)
+        CustomSqlQuery1.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter4})
         CustomSqlQuery1.Sql = resources.GetString("CustomSqlQuery1.Sql")
         CustomSqlQuery2.Name = "vw_OFF_DET"
         QueryParameter5.Name = "offerID"
         QueryParameter5.Type = GetType(DevExpress.DataAccess.Expression)
         QueryParameter5.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
-        CustomSqlQuery2.Parameters.Add(QueryParameter5)
+        CustomSqlQuery2.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter5})
         CustomSqlQuery2.Sql = resources.GetString("CustomSqlQuery2.Sql")
         Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {SelectQuery1, SelectQuery2, SelectQuery3, CustomSqlQuery1, CustomSqlQuery2})
         MasterDetailInfo1.DetailQueryName = "vw_OFF"
@@ -1749,14 +1749,6 @@ Partial Public Class Rep_offer
         Me.Detail.StyleName = "baseControlStyle"
         Me.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
-        'XrSubreport1
-        '
-        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(337.9808!, 39.04129!)
-        Me.XrSubreport1.Name = "XrSubreport1"
-        Me.XrSubreport1.ParameterBindings.Add(New DevExpress.XtraReports.UI.ParameterBinding("offerID", Me.OfferID))
-        Me.XrSubreport1.ReportSource = New DreamyKitchenCRM.RepOfferMech()
-        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(299.0192!, 23.0!)
-        '
         'XrPanel5
         '
         Me.XrPanel5.Borders = DevExpress.XtraPrinting.BorderSide.None
@@ -1870,6 +1862,14 @@ Partial Public Class Rep_offer
         '
         Me.Vw_OFFTableAdapter1.ClearBeforeFill = True
         '
+        'XrSubreport1
+        '
+        Me.XrSubreport1.LocationFloat = New DevExpress.Utils.PointFloat(337.9808!, 39.04129!)
+        Me.XrSubreport1.Name = "XrSubreport1"
+        Me.XrSubreport1.ParameterBindings.Add(New DevExpress.XtraReports.UI.ParameterBinding("offerID", Me.OfferID))
+        Me.XrSubreport1.ReportSource = New DreamyKitchenCRM.RepOfferMech()
+        Me.XrSubreport1.SizeF = New System.Drawing.SizeF(299.0192!, 23.0!)
+        '
         'Rep_offer
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.PageHeader, Me.DetailReport, Me.DetailReport1, Me.ReportFooter})
@@ -1884,7 +1884,7 @@ Partial Public Class Rep_offer
         Me.PaperKind = System.Drawing.Printing.PaperKind.A4
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.baseControlStyle})
-        Me.Version = "20.2"
+        Me.Version = "21.2"
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 

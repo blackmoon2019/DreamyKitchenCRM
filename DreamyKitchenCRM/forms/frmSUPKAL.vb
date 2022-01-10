@@ -8,7 +8,7 @@ Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
 
-Public Class frmSupInvoicesPayments
+Public Class frmSUPKal
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
@@ -59,7 +59,7 @@ Public Class frmSupInvoicesPayments
         Me.Close()
     End Sub
 
-    Private Sub frmSupInvoicesPayments_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+    Private Sub frmSUPKal_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BANKS' table. You can move, or remove it, as needed.
         Me.Vw_BANKSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BANKS)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_PAY' table. You can move, or remove it, as needed.
@@ -78,12 +78,12 @@ Public Class frmSupInvoicesPayments
         End If
         GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
         Me.CenterToScreen()
-        'Me.Width = 1500 : Me.Height = 1000
-        My.Settings.frmSupInvoicesPayments = Me.Location
+        My.Settings.frmSUPKal = Me.Location
+        Me.Size = My.Settings.frmSUPKalSize
         My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
-    End Sub
 
+    End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
         Dim sGuid As String
@@ -184,7 +184,7 @@ Public Class frmSupInvoicesPayments
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
-    Private Sub cboPAY_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboPAY_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPAY.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboPAY.EditValue = Nothing : ManagePAY()
             Case 2 : If cboPAY.EditValue <> Nothing Then ManagePAY()
@@ -295,8 +295,11 @@ Public Class frmSupInvoicesPayments
         End If
     End Sub
 
-    Private Sub frmSupInvoicesPayments_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+    Private Sub frmSUPKal_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
+        My.Settings.frmSUPKalSize = Me.Size
+        My.Settings.Save()
+
     End Sub
 
     Friend Class MenuColumnInfo
@@ -310,17 +313,16 @@ Public Class frmSupInvoicesPayments
         If cboPAY.EditValue = Nothing Then Exit Sub
         Select Case cboPAY.EditValue.ToString.ToUpper
             Case "1E1BAE0C-A11E-4D42-9FB2-4BB020A9FE3C"
-                txtcheckNum.ReadOnly = False : dtissueDate.ReadOnly = False : cboBANK.ReadOnly = False
+                txtcheckNum.ReadOnly = False : dtissueDate.ReadOnly = False : dtendDate.ReadOnly = False : cboBANK.ReadOnly = False
                 txtDepositNum.ReadOnly = True : txtDepositNum.EditValue = Nothing
             Case "092BA027-3C52-4102-A691-FF2797D40A13"
                 txtDepositNum.ReadOnly = False
-                txtcheckNum.ReadOnly = True : dtissueDate.ReadOnly = True : cboBANK.ReadOnly = True
-                txtcheckNum.EditValue = Nothing : dtissueDate.EditValue = Nothing : cboBANK.EditValue = Nothing
+                txtcheckNum.ReadOnly = True : dtissueDate.ReadOnly = True : cboBANK.ReadOnly = False : dtendDate.ReadOnly = True
+                txtcheckNum.EditValue = Nothing : dtissueDate.EditValue = Nothing : cboBANK.EditValue = Nothing : dtendDate.EditValue = Nothing
             Case Else
-                txtcheckNum.ReadOnly = True : dtissueDate.ReadOnly = True
-                cboBANK.ReadOnly = True
+                txtcheckNum.ReadOnly = True : dtissueDate.ReadOnly = True : cboBANK.ReadOnly = True : dtendDate.ReadOnly = True
                 txtcheckNum.EditValue = Nothing : dtissueDate.EditValue = Nothing : cboBANK.EditValue = Nothing
-                txtDepositNum.ReadOnly = True : txtDepositNum.EditValue = Nothing
+                txtDepositNum.ReadOnly = True : txtDepositNum.EditValue = Nothing : dtendDate.EditValue = Nothing
         End Select
     End Sub
 End Class

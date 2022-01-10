@@ -13,6 +13,7 @@ Public Class frmColors
     Private LoadForms As New FormLoader
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.GridLookUpEdit
+    Private CtrlComboLKUP As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
     Private CallerFormName As String
 
@@ -37,6 +38,12 @@ Public Class frmColors
             CtrlCombo = value
         End Set
     End Property
+    Public WriteOnly Property CallerControlLKUP As DevExpress.XtraEditors.LookUpEdit
+        Set(value As DevExpress.XtraEditors.LookUpEdit)
+            CtrlComboLKUP = value
+        End Set
+    End Property
+
     Public WriteOnly Property CalledFromControl As Boolean
         Set(value As Boolean)
             CalledFromCtrl = value
@@ -86,6 +93,14 @@ Public Class frmColors
                 If CalledFromCtrl Then
                     Dim sSQL As New System.Text.StringBuilder
                     Select Case CallerFormName
+                        Case "frmCUSOffer"
+                            If CtrlComboLKUP.Name.Contains("PVC") Then
+                                frmCUSOffer.Vw_COLORSPVCTableAdapter.Fill(frmCUSOffer.DreamyKitchenDataSet.vw_COLORSPVC)
+                                CtrlComboLKUP.Properties.DataSource = frmCUSOffer.VwCOLORSPVCBindingSource
+                            Else
+                                frmCUSOffer.Vw_COLORSBOXTableAdapter.Fill(frmCUSOffer.DreamyKitchenDataSet.vw_COLORSBOX)
+                                CtrlComboLKUP.Properties.DataSource = frmCUSOffer.VwCOLORSBOXBindingSource
+                            End If
                         Case "frmErmaria"
                             Select Case CtrlCombo.Name
                                 Case "cboPVCColors"
@@ -106,8 +121,12 @@ Public Class frmColors
                                     CtrlCombo.Properties.DataSource = frmOffer.VwCOLORSBOXBindingSource
                             End Select
                     End Select
+                    If CtrlCombo Is Nothing Then
+                        CtrlComboLKUP.EditValue = System.Guid.Parse(sGuid)
+                    Else
+                        CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                    End If
 
-                            CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                 Else
                     Dim form As frmScroller = Frm
                     form.LoadRecords("vw_COLORS")

@@ -43,6 +43,8 @@ Partial Class frmProjectCost
         Me.txtDevicesProfit = New DevExpress.XtraEditors.TextEdit()
         Me.txtMixProfit = New DevExpress.XtraEditors.TextEdit()
         Me.txtMixProfitPerc = New DevExpress.XtraEditors.TextEdit()
+        Me.txtbathroomFurn = New DevExpress.XtraEditors.TextEdit()
+        Me.txtExtraCusBench = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -57,12 +59,14 @@ Partial Class frmProjectCost
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlGroup6 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlGroup6 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LExtracost1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LExtracost2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -79,10 +83,6 @@ Partial Class frmProjectCost
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.txtbathroomFurn = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtExtraCusBench = New DevExpress.XtraEditors.TextEdit()
-        Me.LExtracost2 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +108,8 @@ Partial Class frmProjectCost
         CType(Me.txtDevicesProfit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtMixProfit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtMixProfitPerc.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtbathroomFurn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtExtraCusBench.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,12 +124,14 @@ Partial Class frmProjectCost
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LExtracost1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LExtracost2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -142,10 +146,6 @@ Partial Class frmProjectCost
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtbathroomFurn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtExtraCusBench.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LExtracost2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -643,6 +643,48 @@ Partial Class frmProjectCost
         Me.txtMixProfitPerc.Tag = "MixProfitPerc,0,1,2"
         Me.txtMixProfitPerc.Visible = False
         '
+        'txtbathroomFurn
+        '
+        Me.txtbathroomFurn.EditValue = "0,00 €"
+        Me.txtbathroomFurn.Location = New System.Drawing.Point(1149, 320)
+        Me.txtbathroomFurn.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtbathroomFurn.Name = "txtbathroomFurn"
+        Me.txtbathroomFurn.Properties.DisplayFormat.FormatString = "c"
+        Me.txtbathroomFurn.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtbathroomFurn.Properties.EditFormat.FormatString = "n2"
+        Me.txtbathroomFurn.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtbathroomFurn.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtbathroomFurn.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtbathroomFurn.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtbathroomFurn.Properties.ReadOnly = True
+        Me.txtbathroomFurn.Properties.Tag = "BenchExtraPrice"
+        Me.txtbathroomFurn.Properties.UseReadOnlyAppearance = False
+        Me.txtbathroomFurn.Size = New System.Drawing.Size(145, 38)
+        Me.txtbathroomFurn.StyleController = Me.LayoutControl1
+        Me.txtbathroomFurn.TabIndex = 42
+        Me.txtbathroomFurn.Tag = "bathroomFurn,0,1,2"
+        Me.txtbathroomFurn.Visible = False
+        '
+        'txtExtraCusBench
+        '
+        Me.txtExtraCusBench.EditValue = "0,00 €"
+        Me.txtExtraCusBench.Location = New System.Drawing.Point(1586, 362)
+        Me.txtExtraCusBench.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtExtraCusBench.Name = "txtExtraCusBench"
+        Me.txtExtraCusBench.Properties.DisplayFormat.FormatString = "c"
+        Me.txtExtraCusBench.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtExtraCusBench.Properties.EditFormat.FormatString = "n2"
+        Me.txtExtraCusBench.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtExtraCusBench.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtExtraCusBench.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtExtraCusBench.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtExtraCusBench.Properties.Tag = "BenchExtraPrice"
+        Me.txtExtraCusBench.Size = New System.Drawing.Size(143, 38)
+        Me.txtExtraCusBench.StyleController = Me.LayoutControl1
+        Me.txtExtraCusBench.TabIndex = 42
+        Me.txtExtraCusBench.Tag = "ExtraCusBench,0,1,2"
+        Me.txtExtraCusBench.Visible = False
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -798,15 +840,17 @@ Partial Class frmProjectCost
         Me.LayoutControlItem21.Text = "Κουζίνα"
         Me.LayoutControlItem21.TextSize = New System.Drawing.Size(250, 23)
         '
-        'LayoutControlGroup6
+        'LayoutControlItem1
         '
-        Me.LayoutControlGroup6.CustomizationFormText = "Ξυλεία"
-        Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem20, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.LExtracost1, Me.LExtracost2})
-        Me.LayoutControlGroup6.Location = New System.Drawing.Point(1286, 84)
-        Me.LayoutControlGroup6.Name = "LayoutControlGroup6"
-        Me.LayoutControlGroup6.OptionsItemText.TextToControlDistance = 3
-        Me.LayoutControlGroup6.Size = New System.Drawing.Size(435, 272)
-        Me.LayoutControlGroup6.Text = "Διάφορα Κόστη"
+        Me.LayoutControlItem1.Control = Me.txtbathroomFurn
+        Me.LayoutControlItem1.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem1.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem1.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 84)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(411, 42)
+        Me.LayoutControlItem1.Text = "Έπιπλο Μπάνιου"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(250, 23)
         '
         'LayoutControlItem19
         '
@@ -819,6 +863,16 @@ Partial Class frmProjectCost
         Me.LayoutControlItem19.Size = New System.Drawing.Size(411, 42)
         Me.LayoutControlItem19.Text = "Υλικά"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(250, 23)
+        '
+        'LayoutControlGroup6
+        '
+        Me.LayoutControlGroup6.CustomizationFormText = "Ξυλεία"
+        Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem20, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.LExtracost1, Me.LExtracost2})
+        Me.LayoutControlGroup6.Location = New System.Drawing.Point(1286, 84)
+        Me.LayoutControlGroup6.Name = "LayoutControlGroup6"
+        Me.LayoutControlGroup6.OptionsItemText.TextToControlDistance = 3
+        Me.LayoutControlGroup6.Size = New System.Drawing.Size(435, 272)
+        Me.LayoutControlGroup6.Text = "Διάφορα Κόστη"
         '
         'LayoutControlItem20
         '
@@ -867,6 +921,18 @@ Partial Class frmProjectCost
         Me.LExtracost1.Size = New System.Drawing.Size(409, 42)
         Me.LExtracost1.Text = "Extra Πελατών"
         Me.LExtracost1.TextSize = New System.Drawing.Size(250, 23)
+        '
+        'LExtracost2
+        '
+        Me.LExtracost2.Control = Me.txtExtraCusBench
+        Me.LExtracost2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LExtracost2.CustomizationFormText = "Τελική Αξία"
+        Me.LExtracost2.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LExtracost2.Location = New System.Drawing.Point(0, 126)
+        Me.LExtracost2.Name = "LExtracost2"
+        Me.LExtracost2.Size = New System.Drawing.Size(409, 42)
+        Me.LExtracost2.Text = "Extra Πελατών(Πάγκοι)"
+        Me.LExtracost2.TextSize = New System.Drawing.Size(250, 23)
         '
         'LayoutControlGroup4
         '
@@ -1058,72 +1124,6 @@ Partial Class frmProjectCost
         Me.cmdSave.TabIndex = 36
         Me.cmdSave.Text = "Αποθήκευση"
         '
-        'txtbathroomFurn
-        '
-        Me.txtbathroomFurn.EditValue = "0,00 €"
-        Me.txtbathroomFurn.Location = New System.Drawing.Point(1149, 320)
-        Me.txtbathroomFurn.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtbathroomFurn.Name = "txtbathroomFurn"
-        Me.txtbathroomFurn.Properties.DisplayFormat.FormatString = "c"
-        Me.txtbathroomFurn.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtbathroomFurn.Properties.EditFormat.FormatString = "n2"
-        Me.txtbathroomFurn.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtbathroomFurn.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtbathroomFurn.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtbathroomFurn.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtbathroomFurn.Properties.ReadOnly = True
-        Me.txtbathroomFurn.Properties.Tag = "BenchExtraPrice"
-        Me.txtbathroomFurn.Properties.UseReadOnlyAppearance = False
-        Me.txtbathroomFurn.Size = New System.Drawing.Size(145, 38)
-        Me.txtbathroomFurn.StyleController = Me.LayoutControl1
-        Me.txtbathroomFurn.TabIndex = 42
-        Me.txtbathroomFurn.Tag = "bathroomFurn,0,1,2"
-        Me.txtbathroomFurn.Visible = False
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.txtbathroomFurn
-        Me.LayoutControlItem1.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem1.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem1.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 84)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(411, 42)
-        Me.LayoutControlItem1.Text = "Έπιπλο Μπάνιου"
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(250, 23)
-        '
-        'txtExtraCusBench
-        '
-        Me.txtExtraCusBench.EditValue = "0,00 €"
-        Me.txtExtraCusBench.Location = New System.Drawing.Point(1586, 362)
-        Me.txtExtraCusBench.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtExtraCusBench.Name = "txtExtraCusBench"
-        Me.txtExtraCusBench.Properties.DisplayFormat.FormatString = "c"
-        Me.txtExtraCusBench.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtExtraCusBench.Properties.EditFormat.FormatString = "n2"
-        Me.txtExtraCusBench.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtExtraCusBench.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtExtraCusBench.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtExtraCusBench.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtExtraCusBench.Properties.Tag = "BenchExtraPrice"
-        Me.txtExtraCusBench.Size = New System.Drawing.Size(143, 38)
-        Me.txtExtraCusBench.StyleController = Me.LayoutControl1
-        Me.txtExtraCusBench.TabIndex = 42
-        Me.txtExtraCusBench.Tag = "ExtraCusBench,0,1,2"
-        Me.txtExtraCusBench.Visible = False
-        '
-        'LExtracost2
-        '
-        Me.LExtracost2.Control = Me.txtExtraCusBench
-        Me.LExtracost2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LExtracost2.CustomizationFormText = "Τελική Αξία"
-        Me.LExtracost2.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LExtracost2.Location = New System.Drawing.Point(0, 126)
-        Me.LExtracost2.Name = "LExtracost2"
-        Me.LExtracost2.Size = New System.Drawing.Size(409, 42)
-        Me.LExtracost2.Text = "Extra Πελατών(Πάγκοι)"
-        Me.LExtracost2.TextSize = New System.Drawing.Size(250, 23)
-        '
         'frmProjectCost
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -1161,6 +1161,8 @@ Partial Class frmProjectCost
         CType(Me.txtDevicesProfit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtMixProfit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtMixProfitPerc.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtbathroomFurn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtExtraCusBench.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1175,12 +1177,14 @@ Partial Class frmProjectCost
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LExtracost1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LExtracost2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1195,10 +1199,6 @@ Partial Class frmProjectCost
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtbathroomFurn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtExtraCusBench.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LExtracost2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

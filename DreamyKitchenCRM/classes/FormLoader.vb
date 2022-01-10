@@ -94,6 +94,9 @@ Public Class FormLoader
             End If
             sdr.Close()
         Catch ex As Exception
+            Dim trace = New System.Diagnostics.StackTrace(ex, True)
+            Dim line As String = Strings.Right(trace.ToString, 5)
+
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
@@ -168,38 +171,40 @@ Public Class FormLoader
     End Function
     Private Sub SetValueToControl(ByVal LItem As LayoutControlItem, ByVal sValue As String)
         Dim Ctrl As Control = LItem.Control
-        If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
-            Dim cbo As DevExpress.XtraEditors.LookUpEdit
-            Dim stestGuid As Guid
-            Dim isValid As Boolean = Guid.TryParse(sValue, stestGuid)
-            cbo = Ctrl
-            If isValid = True Then
-                cbo.EditValue = System.Guid.Parse(sValue)
-            Else
-                cbo.EditValue = Convert.ToInt32(sValue)
-            End If
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
-            Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
-            cbo = Ctrl
-            If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
-            Dim dt As DevExpress.XtraEditors.DateEdit
-            dt = Ctrl
-            dt.EditValue = CDate(sValue)
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
-            Dim tm As DevExpress.XtraEditors.TimeEdit
-            tm = Ctrl
+        Try
 
-            tm.EditValue = CDate(sValue).ToString("HH:mm")
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
-            Dim txt As DevExpress.XtraEditors.MemoEdit
-            txt = Ctrl
-            If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
-                txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
-            Else
-                txt.Text = sValue
-            End If
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
+            If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
+                Dim cbo As DevExpress.XtraEditors.LookUpEdit
+                Dim stestGuid As Guid
+                Dim isValid As Boolean = Guid.TryParse(sValue, stestGuid)
+                cbo = Ctrl
+                If isValid = True Then
+                    cbo.EditValue = System.Guid.Parse(sValue)
+                Else
+                    cbo.EditValue = Convert.ToInt32(sValue)
+                End If
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+                Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
+                cbo = Ctrl
+                If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
+                Dim dt As DevExpress.XtraEditors.DateEdit
+                dt = Ctrl
+                dt.EditValue = CDate(sValue)
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+                Dim tm As DevExpress.XtraEditors.TimeEdit
+                tm = Ctrl
+
+                tm.EditValue = CDate(sValue).ToString("HH:mm")
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
+                Dim txt As DevExpress.XtraEditors.MemoEdit
+                txt = Ctrl
+                If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
+                    txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
+                Else
+                    txt.Text = sValue
+                End If
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
                 Dim txt As DevExpress.XtraEditors.TextEdit
                 txt = Ctrl
                 If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
@@ -218,6 +223,9 @@ Public Class FormLoader
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
 
             End If
+        Catch ex As Exception
+        XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
     Public Sub LoadDataToGrid(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
                               ByVal sSQL As String, Optional ByVal AddColumnButton As Boolean = False, Optional ByVal AddColumnInteger As Boolean = False)

@@ -55,7 +55,11 @@ Public Class frmLogin
                     If sdr.IsDBNull(sdr.GetOrdinal("port")) = False Then UserProps.EmailPort = sdr.GetInt32(sdr.GetOrdinal("port"))
                     If sdr.IsDBNull(sdr.GetOrdinal("ssl")) = False Then UserProps.EmailSSL = sdr.GetBoolean(sdr.GetOrdinal("ssl"))
                     'Support Email
-                    ProgProps.SupportEmail = "johnmavroselinos@gmail.com" 'Prog_Prop.GetProgTechSupportEmail
+                    ProgProps.SupportEmail = Prog_Prop.GetProgTechSupportEmail
+                    'Δεκαδικά Προγράμματος
+                    ProgProps.Decimals = Prog_Prop.GetProgDecimals()
+                    'Γενική έκπτωση πελατών
+                    ProgProps.CusDiscount = Prog_Prop.GetProgCusDecimals
                     sdr.Close()
                     cmd.Dispose()
                     'General Permissions

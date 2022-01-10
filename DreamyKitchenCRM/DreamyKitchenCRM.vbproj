@@ -299,6 +299,12 @@
     <Compile Include="forms\frmCusMov.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmCUSOffer.Designer.vb">
+      <DependentUpon>frmCUSOffer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCUSOffer.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCustomers.Designer.vb">
       <DependentUpon>frmCustomers.vb</DependentUpon>
     </Compile>
@@ -425,6 +431,12 @@
     <Compile Include="forms\frmOFFTotal.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmParameters.designer.vb">
+      <DependentUpon>frmParameters.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmParameters.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmPermissions.designer.vb">
       <DependentUpon>frmPermissions.vb</DependentUpon>
     </Compile>
@@ -485,6 +497,12 @@
     <Compile Include="forms\frmSupInvoicesPayments.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmSUPKAL.Designer.vb">
+      <DependentUpon>frmSUPKAL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmSUPKAL.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmTecnicalSupport.designer.vb">
       <DependentUpon>frmTecnicalSupport.vb</DependentUpon>
     </Compile>
@@ -521,6 +539,17 @@
     <Compile Include="forms\frmServices.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOffer.Designer.vb">
+      <DependentUpon>RepCUSOffer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOffer.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RepOfferMech.Designer.vb">
       <DependentUpon>RepOfferMech.vb</DependentUpon>
     </Compile>
@@ -539,11 +568,6 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
       <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="My Project\Resources.Designer.vb">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="My Project\Settings.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -590,6 +614,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCusMov.resx">
       <DependentUpon>frmCusMov.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCUSOffer.resx">
+      <DependentUpon>frmCUSOffer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCustomers.resx">
       <DependentUpon>frmCustomers.vb</DependentUpon>
@@ -654,6 +681,9 @@
     <EmbeddedResource Include="forms\frmOFFTotal.resx">
       <DependentUpon>frmOFFTotal.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmParameters.resx">
+      <DependentUpon>frmParameters.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPermissions.resx">
       <DependentUpon>frmPermissions.vb</DependentUpon>
     </EmbeddedResource>
@@ -684,6 +714,9 @@
     <EmbeddedResource Include="forms\frmSupInvoicesPayments.resx">
       <DependentUpon>frmSupInvoicesPayments.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSUPKAL.resx">
+      <DependentUpon>frmSUPKAL.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTecnicalSupport.resx">
       <DependentUpon>frmTecnicalSupport.vb</DependentUpon>
     </EmbeddedResource>
@@ -702,6 +735,9 @@
     <EmbeddedResource Include="forms\frmServices.resx">
       <DependentUpon>frmServices.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOffer.resx">
+      <DependentUpon>RepCUSOffer.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepOfferMech.resx">
       <DependentUpon>RepOfferMech.vb</DependentUpon>
     </EmbeddedResource>
@@ -711,9 +747,9 @@
     <EmbeddedResource Include="My Project\licenses.licx" />
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Rep_Offer2ndPage.resx">
       <DependentUpon>Rep_Offer2ndPage.vb</DependentUpon>
@@ -968,6 +1004,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-gears-40.png" />
     <None Include="Resources\icons8-transaction-list2-40%281%29.png" />
     <None Include="Resources\icons8-payment-40.png" />
     <None Include="Resources\icons8-payment-method-40.png" />

@@ -146,8 +146,8 @@ Public Class frmScroller
                 GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
-            If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then
-                If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+            If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml") = False Then
+                If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
 
             'Εαν δεν υπάρχει Folder Σχεδίου για το συγκεκριμένο πίνακα δημιουργεί
@@ -155,8 +155,8 @@ Public Class frmScroller
                 My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\DSGNS\" & sDataTable)
 
             'Εαν δεν υπάρχει Folder Σχεδίου για το Detail πίνακα δημιουργεί
-            If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\DSGNS\" & sDataDetail) = False Then _
-                My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\DSGNS\" & sDataDetail)
+            If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\DSGNS\D_" & sDataDetail) = False Then _
+                My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\DSGNS\D_" & sDataDetail)
 
             CType(BarViews.Edit, RepositoryItemComboBox).Items.Clear()
             'Ψάχνει όλα τα σχέδια  του συκεκριμένου χρήστη για τον συγκεκριμένο πίνακα
@@ -168,11 +168,11 @@ Public Class frmScroller
             If CurrentView = "" Then
                 'grdMain.DefaultView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
-                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
             Else
                 'grdMain.DefaultView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
-                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
+                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -233,6 +233,7 @@ Public Class frmScroller
                     Case "vw_PAY" : sSQL = "DELETE FROM PAY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SUP" : sSQL = "DELETE FROM SUP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BUY_C" : sSQL = "DELETE FROM BUY_C WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_CCT_OFFERS" : sSQL = "DELETE FROM CCT_OFFERS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SUP_PAYMENTS_H"
                         ' Επαναφορά τιμολογίων σε απλήρωτα όπου αυτό χρειάζεται
                         sSQL = "UPDATE BUY	SET PAID=0	FROM BUY INNER JOIN	SUP_PAYMENTS_D SD ON SD.buyID=BUY.ID WHERE SD.supPaymentHID= '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -328,7 +329,7 @@ Public Class frmScroller
             If BarViews.EditValue <> "" Then
                 'grdMain.DefaultView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
-                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
+                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
                 CurrentView = BarViews.EditValue
                 popSaveView.Enabled = True
                 popDeleteView.Enabled = True
@@ -351,7 +352,7 @@ Public Class frmScroller
         If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα όψη?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             If BarViews.EditValue <> "" Then
                 My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
-                If sDataDetail <> "" Then My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & BarViews.EditValue)
+                If sDataDetail <> "" Then My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue)
                 CType(BarViews.Edit, RepositoryItemComboBox).Items.Remove(BarViews.EditValue)
                 BarViews.EditValue = "" : CurrentView = "" : popSaveView.Enabled = False
             End If
@@ -369,7 +370,7 @@ Public Class frmScroller
                     GridView1.OptionsLayout.LayoutVersion = "v1"
                 End If
                 GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & sender.EditValue & "_" & UserProps.Code & ".xml", OptionsLayoutBase.FullLayout)
-                If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & sender.EditValue & "_" & UserProps.Code & ".xml", OptionsLayoutBase.FullLayout)
+                If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & sender.EditValue & "_" & UserProps.Code & ".xml", OptionsLayoutBase.FullLayout)
                 'grdMain.DefaultView.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & sender.EditValue & "_" & UserProps.Code & ".xml")
                 CType(BarViews.Edit, RepositoryItemComboBox).Items.Add(sender.EditValue & "_" & UserProps.Code & ".xml")
 
@@ -393,8 +394,8 @@ Public Class frmScroller
             End If
             GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             If sDataDetail <> "" Then
-                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & BarViews.EditValue)
-                GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
+                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue)
+                GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             End If
             'GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
             XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -502,13 +503,13 @@ Public Class frmScroller
     End Sub
     Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
-        GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+        GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
-                GridView2.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+                GridView2.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
 
@@ -517,9 +518,9 @@ Public Class frmScroller
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
         If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml") = True Then
-                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml", Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml.xml", True)
-                GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml", Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", True)
+                GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
     End Sub
@@ -667,17 +668,28 @@ Public Class frmScroller
     Private Sub EditRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_CCT_OFFERS"
+                Dim frmCUSOffer As frmCUSOffer = New frmCUSOffer()
+                frmCUSOffer.Text = "Έντυπο Προσφοράς Πελατών"
+                frmCUSOffer.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmCUSOffer.MdiParent = frmMain
+                frmCUSOffer.Mode = FormMode.EditRecord
+                frmCUSOffer.Scroller = GridView1
+                frmCUSOffer.FormScroller = Me
+                frmCUSOffer.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCUSOffer.Show()
             Case "vw_SUP_PAYMENTS_H"
-                Dim frmSupInvoicesPayments As frmSupInvoicesPayments = New frmSupInvoicesPayments()
-                frmSupInvoicesPayments.Text = "Πληρωμές Παραστατικών Προμηθευτών"
-                frmSupInvoicesPayments.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmSupInvoicesPayments.MdiParent = frmMain
-                frmSupInvoicesPayments.Mode = FormMode.EditRecord
-                frmSupInvoicesPayments.Scroller = GridView1
-                frmSupInvoicesPayments.FormScroller = Me
-                frmSupInvoicesPayments.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSupInvoicesPayments), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmSupInvoicesPayments.Show()
+                Dim frmSUPKal As frmSUPKal = New frmSUPKal()
+                frmSUPKal.Text = "Πληρωμές Παραστατικών Προμηθευτών"
+                frmSUPKal.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmSUPKal.MdiParent = frmMain
+                frmSUPKal.Mode = FormMode.EditRecord
+                frmSUPKal.Scroller = GridView1
+                frmSUPKal.FormScroller = Me
+                frmSUPKal.FormScrollerExist = True
+                'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSUPKal), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmSUPKal.Show()
             Case "vw_BUY"
                 Dim frmBUY As frmBUY = New frmBUY()
                 frmBUY.Text = "Αγορές"
@@ -1020,12 +1032,12 @@ Public Class frmScroller
                 Dim frmoffer As frmOffer = New frmOffer
                 frmoffer.Text = "Προσφορές"
                 frmoffer.MdiParent = frmMain
-                frmOffer.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmOffer.Mode = FormMode.EditRecord
-                frmOffer.Scroller = GridView1
-                frmOffer.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmOffer.Show()
+                frmoffer.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmoffer.Mode = FormMode.EditRecord
+                frmoffer.Scroller = GridView1
+                frmoffer.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmoffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmoffer.Show()
             Case "vw_COLORS"
                 Dim frmColors As frmColors = New frmColors
                 frmColors.Text = "Χρώματα"
@@ -1331,16 +1343,26 @@ Public Class frmScroller
     Private Sub NewRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_CCT_OFFERS"
+                Dim frmCUSOffer As frmCUSOffer = New frmCUSOffer()
+                frmCUSOffer.Text = "Έντυπο Προσφοράς Πελατών"
+                frmCUSOffer.MdiParent = frmMain
+                frmCUSOffer.Mode = FormMode.NewRecord
+                frmCUSOffer.Scroller = GridView1
+                frmCUSOffer.FormScroller = Me
+                frmCUSOffer.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCUSOffer.Show()
             Case "vw_SUP_PAYMENTS_H"
-                Dim frmSupInvoicesPayments As frmSupInvoicesPayments = New frmSupInvoicesPayments()
-                frmSupInvoicesPayments.Text = "Πληρωμές Παραστατικών Προμηθευτών"
-                frmSupInvoicesPayments.MdiParent = frmMain
-                frmSupInvoicesPayments.Mode = FormMode.NewRecord
-                frmSupInvoicesPayments.Scroller = GridView1
-                frmSupInvoicesPayments.FormScroller = Me
-                frmSupInvoicesPayments.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSupInvoicesPayments), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmSupInvoicesPayments.Show()
+                Dim frmSUPKal As frmSUPKal = New frmSUPKal()
+                frmSUPKal.Text = "Πληρωμές Παραστατικών Προμηθευτών"
+                frmSUPKal.MdiParent = frmMain
+                frmSUPKal.Mode = FormMode.NewRecord
+                frmSUPKal.Scroller = GridView1
+                frmSUPKal.FormScroller = Me
+                frmSUPKal.FormScrollerExist = True
+                'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSUPKal), New Point(CInt(frmSUPKal.Parent.ClientRectangle.Width / 2 - frmSUPKal.Width / 2), CInt(frmSUPKal.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmSUPKal.Show()
             Case "vw_BUY"
                 Dim frmBUY As frmBUY = New frmBUY()
                 frmBUY.Text = "Αγορές"
@@ -2112,13 +2134,13 @@ Public Class frmScroller
         GridView2.OptionsView.EnableAppearanceEvenRow = True
         If CurrentView = "" Then
             If sDataDetail <> "" Then
-                If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then
-                    If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+                If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml") = False Then
+                    If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
                 End If
             End If
         Else
-            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "\" & BarViews.EditValue) = False Then
-                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
+            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "\" & BarViews.EditValue) = False Then
+                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             End If
         End If
     End Sub
@@ -2132,7 +2154,7 @@ Public Class frmScroller
         End If
 
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
-        If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+        If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then

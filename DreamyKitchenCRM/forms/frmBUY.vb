@@ -83,6 +83,12 @@ Public Class frmBUY
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
+                    ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                    Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                        oCmd.ExecuteNonQuery()
+                    End Using
 
                     If Mode = FormMode.NewRecord Then
                         Cls.ClearCtrls(LayoutControl1)
@@ -285,15 +291,5 @@ Public Class frmBUY
         If cboPAY.EditValue.ToString.ToUpper = "88E7A725-AE4C-4818-ADEE-7F9E26F20165" Then chkPaid.CheckState = CheckState.Checked Else chkPaid.CheckState = CheckState.Unchecked
     End Sub
 
-    Private Sub chkCredit_CheckedChanged(sender As Object, e As EventArgs) Handles chkCredit.CheckedChanged
-        Dim Edit As CheckEdit = CType(sender, CheckEdit)
-        If Edit.Checked = True Then
-            LayoutControlItem5.Tag = "" : LayoutControlItem13.Tag = ""
-            cboCUS.Enabled = False : cboTRANSH.Enabled = False
-        Else
-            LayoutControlItem5.Tag = "1" : LayoutControlItem13.Tag = "1"
-            cboCUS.Enabled = True : cboTRANSH.Enabled = True
-        End If
-    End Sub
 
 End Class

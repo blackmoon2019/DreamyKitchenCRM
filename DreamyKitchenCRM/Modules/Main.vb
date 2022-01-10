@@ -36,13 +36,28 @@ Module Main
     Public Structure PROG_PROPS
         Public Decimals As Integer
         Public SupportEmail As String
+        Public CusDiscount As Integer
+        Public V_HEIGHT As Double
+        Public K_HEIGHT As Double
+        Public Y_HEIGHT As Double
+        Public V_BOX_COLOR As String
+        Public K_BOX_COLOR As String
+        Public Y_BOX_COLOR As String
+        Public V_PVC_COLOR As String
+        Public K_PVC_COLOR As String
+        Public Y_PVC_COLOR As String
+        Public LEGS As Integer
+        Public K_FINAL_HEIGHT As Double
+        Public Y_FINAL_HEIGHT As Double
+        Public BENCH As String
+        Public DAYS_OF_DELIVERY As Integer
     End Structure
     Public ProgProps As PROG_PROPS
     Public Function toSQLValue(t As DevExpress.XtraEditors.TextEdit, Optional ByVal isnum As Boolean = False) As String
         If t.Text.Length = 0 Then
             Return "NULL" 'this will pass through any SQL statement without notice  
         Else 'Lets suppose our textbox is checked to contain only numbers, so we count on it  
-            If Not isnum Then Return "'" + t.Text + "'" Else Return t.Text.Replace(",", ".").Replace(" €", "")
+            If Not isnum Then Return "'" + t.Text + "'" Else Return t.Text.Replace(",", ".").Replace(" €", "").Replace("%", "")
         End If
     End Function
     Public Function toSQLValueS(t As String, Optional ByVal isnum As Boolean = False) As String
@@ -56,6 +71,7 @@ Module Main
                     Else
                         t = t.Replace(",", ".")
                         t = t.Replace(" €", "")
+                        t = t.Replace("%", "")
                         Return t
                     End If
                 End If

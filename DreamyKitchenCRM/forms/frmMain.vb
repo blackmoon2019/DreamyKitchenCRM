@@ -784,5 +784,22 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBcctOffer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBcctOffer.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Έντυπο Προσφοράς Πελατών"
+        form.DataTable = "vw_CCT_OFFERS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBParam_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBParam.ItemClick
+        Dim form As frmParameters = New frmParameters()
+        form.Text = "Παράμετροι"
+        form.MdiParent = Me
+        form.Mode = FormMode.NewRecord
+        Me.XtraTabbedMdiManager1.Float(Me.XtraTabbedMdiManager1.Pages(form), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
+        form.Show()
+    End Sub
 End Class
 
