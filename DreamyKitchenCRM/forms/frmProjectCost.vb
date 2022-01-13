@@ -174,13 +174,13 @@ Public Class frmProjectCost
     Private Function TotalBuy() As Double
         Dim Kitchen As Double, Closet As Double, general As Double, Materials As Double, Doors As Double
         Dim Varnishes As Double, ExtraCus As Double, Transportation As Double, ConstrPayroll As Double
-        Dim InstPayroll As Double, salerProfit As Double, Total As Double, DebitCost As Double
+        Dim InstPayroll As Double, salerProfit As Double, Total As Double, DebitCost As Double, Glasses As Double
         Kitchen = DbnullToZero(txtkitchen) : Closet = DbnullToZero(txtcloset) : general = DbnullToZero(txtgeneral)
         Materials = DbnullToZero(txtmaterials) : Varnishes = DbnullToZero(txtvarnishes) : ExtraCus = DbnullToZero(txtextraCus)
-        Transportation = DbnullToZero(txttransportation) : ConstrPayroll = DbnullToZero(txtConstrPayroll)
+        Transportation = DbnullToZero(txttransportation) : ConstrPayroll = DbnullToZero(txtConstrPayroll) : Glasses = DbnullToZero(txtglasses)
         Doors = DbnullToZero(txtdoors) : InstPayroll = DbnullToZero(txtInstPayroll) : salerProfit = DbnullToZero(txtSalerProfit)
         DebitCost = DbnullToZero(txtDebitCost)
-        Total = Kitchen + Closet + general + Materials + Varnishes + ExtraCus + Transportation + ConstrPayroll + Doors + InstPayroll + salerProfit
+        Total = Kitchen + Closet + general + Materials + Varnishes + ExtraCus + Transportation + ConstrPayroll + Doors + InstPayroll + salerProfit + Glasses
         Dim TotAmt As Double, TotBuy As Double, MixProfit As Double
         TotAmt = DbnullToZero(txtTotAmt) : TotBuy = DbnullToZero(txtTotBuy)
         txtMixProfit.EditValue = DebitCost - TotBuy : MixProfit = DbnullToZero(txtMixProfit)
@@ -269,6 +269,10 @@ Public Class frmProjectCost
     End Sub
 
     Private Sub txtTotBuy_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotBuy.EditValueChanged
+        txtTotBuy.EditValue = TotalBuy()
+    End Sub
+
+    Private Sub txtglasses_EditValueChanged(sender As Object, e As EventArgs) Handles txtglasses.EditValueChanged
         txtTotBuy.EditValue = TotalBuy()
     End Sub
 End Class

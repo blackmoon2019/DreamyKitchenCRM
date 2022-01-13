@@ -83,19 +83,20 @@ Public Class frmBUY
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
-                    ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
-                    Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
-                        oCmd.CommandType = CommandType.StoredProcedure
-                        oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-
+                    If cboTRANSH.EditValue IsNot Nothing Then
+                        ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                        Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+                            oCmd.CommandType = CommandType.StoredProcedure
+                            oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    End If
                     If Mode = FormMode.NewRecord Then
-                        Cls.ClearCtrls(LayoutControl1)
-                        txtCode.Text = DBQ.GetNextId("BUY")
+                            Cls.ClearCtrls(LayoutControl1)
+                            txtCode.Text = DBQ.GetNextId("BUY")
+                        End If
                     End If
                 End If
-            End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -249,9 +250,11 @@ Public Class frmBUY
     End Sub
     Private Function CalculateNetAmount() As Double
         Dim DevicesBuy As Double, bathroomFurn As Double, closet As Double, general As Double, materials As Double, kitchen As Double, Total As Double
+        Dim Bench As Double, transportation As Double, glasses As Double
         DevicesBuy = DbnullToZero(txtDevicesBuy) : bathroomFurn = DbnullToZero(txtbathroomFurn) : closet = DbnullToZero(txtcloset)
+        transportation = DbnullToZero(txttransportation) : Bench = DbnullToZero(txtbench) : glasses = DbnullToZero(txtglasses)
         general = DbnullToZero(txtgeneral) : materials = DbnullToZero(txtmaterials) : kitchen = DbnullToZero(txtkitchen)
-        Total = DevicesBuy + bathroomFurn + closet + general + materials + kitchen
+        Total = DevicesBuy + bathroomFurn + closet + general + materials + kitchen + transportation + Bench + glasses
         If chkCredit.Checked = True Then Total = Total * -1 Else Total = Math.Abs(Total)
         Return Total
     End Function
@@ -291,5 +294,15 @@ Public Class frmBUY
         If cboPAY.EditValue.ToString.ToUpper = "88E7A725-AE4C-4818-ADEE-7F9E26F20165" Then chkPaid.CheckState = CheckState.Checked Else chkPaid.CheckState = CheckState.Unchecked
     End Sub
 
+    Private Sub txttransportation_EditValueChanged(sender As Object, e As EventArgs) Handles txttransportation.EditValueChanged
+        txtnetAmount.EditValue = CalculateNetAmount()
+    End Sub
 
+    Private Sub txtglasses_EditValueChanged(sender As Object, e As EventArgs) Handles txtglasses.EditValueChanged
+        txtnetAmount.EditValue = CalculateNetAmount()
+    End Sub
+
+    Private Sub txtbench_EditValueChanged(sender As Object, e As EventArgs) Handles txtbench.EditValueChanged
+        txtnetAmount.EditValue = CalculateNetAmount()
+    End Sub
 End Class

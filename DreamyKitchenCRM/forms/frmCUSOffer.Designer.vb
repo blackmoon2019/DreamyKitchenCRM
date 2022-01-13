@@ -29,8 +29,6 @@ Partial Class frmCUSOffer
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
         Me.txtPhn = New DevExpress.XtraEditors.TextEdit()
         Me.txtVHeight = New DevExpress.XtraEditors.TextEdit()
@@ -38,7 +36,6 @@ Partial Class frmCUSOffer
         Me.txtTK = New DevExpress.XtraEditors.TextEdit()
         Me.txtlegs = New DevExpress.XtraEditors.TextEdit()
         Me.cboBENCH = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwBENCHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.dtpresentation = New DevExpress.XtraEditors.DateEdit()
         Me.txtKHeight = New DevExpress.XtraEditors.TextEdit()
         Me.txtKFinalHeight = New DevExpress.XtraEditors.TextEdit()
@@ -72,11 +69,8 @@ Partial Class frmCUSOffer
         Me.txtFinalPrice3 = New DevExpress.XtraEditors.TextEdit()
         Me.txtFinalPrice4 = New DevExpress.XtraEditors.TextEdit()
         Me.cboEMP = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboVBOXColors = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboVPVCColors = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCOLORSPVCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboKBOXColors = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboKPVCColors = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboYBOXColors = New DevExpress.XtraEditors.LookUpEdit()
@@ -146,6 +140,12 @@ Partial Class frmCUSOffer
         Me.EmptySpaceItem14 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem48 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.VwBENCHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwCOLORSPVCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
         Me.Vw_COLORSPVCTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSPVCTableAdapter()
@@ -156,8 +156,6 @@ Partial Class frmCUSOffer
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCou.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPhn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtVHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -165,7 +163,6 @@ Partial Class frmCUSOffer
         CType(Me.txtTK.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtlegs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboBENCH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -200,11 +197,8 @@ Partial Class frmCUSOffer
         CType(Me.txtFinalPrice3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFinalPrice4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVPVCColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboKBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboKPVCColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboYBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -274,6 +268,12 @@ Partial Class frmCUSOffer
         CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -426,16 +426,6 @@ Partial Class frmCUSOffer
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
         '
-        'VwCCTBindingSource
-        '
-        Me.VwCCTBindingSource.DataMember = "vw_CCT"
-        Me.VwCCTBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'txtCode
         '
         Me.txtCode.Location = New System.Drawing.Point(214, 61)
@@ -541,11 +531,6 @@ Partial Class frmCUSOffer
         Me.cboBENCH.TabIndex = 21
         Me.cboBENCH.Tag = "benchID,0,1,2"
         Me.cboBENCH.Visible = False
-        '
-        'VwBENCHBindingSource
-        '
-        Me.VwBENCHBindingSource.DataMember = "vw_BENCH"
-        Me.VwBENCHBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'dtpresentation
         '
@@ -1120,11 +1105,6 @@ Partial Class frmCUSOffer
         Me.cboEMP.TabIndex = 5
         Me.cboEMP.Tag = "empID,0,1,2"
         '
-        'VwSALERSBindingSource
-        '
-        Me.VwSALERSBindingSource.DataMember = "vw_SALERS"
-        Me.VwSALERSBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'cboVBOXColors
         '
         Me.cboVBOXColors.EditValue = ""
@@ -1142,11 +1122,6 @@ Partial Class frmCUSOffer
         Me.cboVBOXColors.TabIndex = 45
         Me.cboVBOXColors.Tag = "VBoxColorID,0,1,2"
         '
-        'VwCOLORSBOXBindingSource
-        '
-        Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
-        Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'cboVPVCColors
         '
         Me.cboVPVCColors.EditValue = ""
@@ -1163,11 +1138,6 @@ Partial Class frmCUSOffer
         Me.cboVPVCColors.StyleController = Me.LayoutControl1
         Me.cboVPVCColors.TabIndex = 45
         Me.cboVPVCColors.Tag = "VPvcColorID,0,1,2"
-        '
-        'VwCOLORSPVCBindingSource
-        '
-        Me.VwCOLORSPVCBindingSource.DataMember = "vw_COLORSPVC"
-        Me.VwCOLORSPVCBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'cboKBOXColors
         '
@@ -1999,6 +1969,36 @@ Partial Class frmCUSOffer
         Me.EmptySpaceItem2.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
+        'VwCCTBindingSource
+        '
+        Me.VwCCTBindingSource.DataMember = "vw_CCT"
+        Me.VwCCTBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwBENCHBindingSource
+        '
+        Me.VwBENCHBindingSource.DataMember = "vw_BENCH"
+        Me.VwBENCHBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'VwSALERSBindingSource
+        '
+        Me.VwSALERSBindingSource.DataMember = "vw_SALERS"
+        Me.VwSALERSBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'VwCOLORSBOXBindingSource
+        '
+        Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
+        Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'VwCOLORSPVCBindingSource
+        '
+        Me.VwCOLORSPVCBindingSource.DataMember = "vw_COLORSPVC"
+        Me.VwCOLORSPVCBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
         'Vw_SALERSTableAdapter
         '
         Me.Vw_SALERSTableAdapter.ClearBeforeFill = True
@@ -2030,11 +2030,10 @@ Partial Class frmCUSOffer
         Me.Text = "Έντυπο Προσφοράς Πελάτη"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        Me.LayoutControl1.PerformLayout()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCou.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPhn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtVHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2042,7 +2041,6 @@ Partial Class frmCUSOffer
         CType(Me.txtTK.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtlegs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboBENCH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2077,11 +2075,8 @@ Partial Class frmCUSOffer
         CType(Me.txtFinalPrice3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFinalPrice4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVPVCColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboKBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboKPVCColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboYBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2151,6 +2146,12 @@ Partial Class frmCUSOffer
         CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

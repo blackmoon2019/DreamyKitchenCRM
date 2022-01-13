@@ -813,7 +813,7 @@ Partial Class frmMain
         '
         'BBTransactions
         '
-        Me.BBTransactions.Caption = "Καρτέλλα"
+        Me.BBTransactions.Caption = "Καρτέλα"
         Me.BBTransactions.Id = 85
         Me.BBTransactions.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_transaction_list2_40_1_
         Me.BBTransactions.Name = "BBTransactions"
