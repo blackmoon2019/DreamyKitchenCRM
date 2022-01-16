@@ -9,7 +9,7 @@ Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
 
-Public Class frmCUSOffer
+Public Class frmCUSOfferKitchen
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
@@ -302,6 +302,7 @@ Public Class frmCUSOffer
 
     Private Sub dtpresentation_EditValueChanged(sender As Object, e As EventArgs) Handles dtpresentation.EditValueChanged
         If dtpresentation.EditValue Is Nothing Or txtdtdaysOfDelivery.EditValue Is Nothing Then Exit Sub
+        If dtpresentation.EditValue = "" Then Exit Sub
         Dim FirstDate As Date = dtpresentation.EditValue
         lblDate.Text = DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate)
     End Sub
@@ -341,7 +342,7 @@ Public Class frmCUSOffer
     End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
-        Dim report As New RepCUSOffer()
+        Dim report As New RepCUSOfferKitchen()
 
         report.Parameters.Item(0).Value = sID
         report.CreateDocument()

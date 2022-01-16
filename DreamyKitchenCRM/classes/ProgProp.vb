@@ -58,6 +58,10 @@ Public Class ProgProp
                 If control Is Nothing Then
                     If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then
                         Select Case sPrm
+                            Case "KNOBS" : ProgProps.KNOBS = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "BAZA" : ProgProps.BAZA = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "DRAWERS" : ProgProps.DRAWERS = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "SHELVES" : ProgProps.SHELVES = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "V_HEIGHT" : ProgProps.V_HEIGHT = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "K_HEIGHT" : ProgProps.K_HEIGHT = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "Y_HEIGHT" : ProgProps.Y_HEIGHT = sdr.GetString(sdr.GetOrdinal("val"))

@@ -95,11 +95,11 @@ Public Class frmColors
                     Select Case CallerFormName
                         Case "frmCUSOffer"
                             If CtrlComboLKUP.Name.Contains("PVC") Then
-                                frmCUSOffer.Vw_COLORSPVCTableAdapter.Fill(frmCUSOffer.DreamyKitchenDataSet.vw_COLORSPVC)
-                                CtrlComboLKUP.Properties.DataSource = frmCUSOffer.VwCOLORSPVCBindingSource
+                                frmCUSOfferKitchen.Vw_COLORSPVCTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSPVC)
+                                CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSPVCBindingSource
                             Else
-                                frmCUSOffer.Vw_COLORSBOXTableAdapter.Fill(frmCUSOffer.DreamyKitchenDataSet.vw_COLORSBOX)
-                                CtrlComboLKUP.Properties.DataSource = frmCUSOffer.VwCOLORSBOXBindingSource
+                                frmCUSOfferKitchen.Vw_COLORSBOXTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSBOX)
+                                CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSBOXBindingSource
                             End If
                         Case "frmErmaria"
                             Select Case CtrlCombo.Name
