@@ -341,7 +341,7 @@ Public Class frmCUSOffer
     End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
-        Dim report As New RepCUSOffer()
+        Dim report As New RepCUSOfferKitchen()
 
         report.Parameters.Item(0).Value = sID
         report.CreateDocument()
