@@ -299,16 +299,10 @@
     <Compile Include="forms\frmCusMov.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmCUSOfferCloset.Designer.vb">
-      <DependentUpon>frmCUSOfferCloset.vb</DependentUpon>
+    <Compile Include="forms\frmCUSOffer.Designer.vb">
+      <DependentUpon>frmCUSOffer.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmCUSOfferCloset.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\frmCUSOfferKitchen.Designer.vb">
-      <DependentUpon>frmCUSOfferKitchen.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmCUSOfferKitchen.vb">
+    <Compile Include="forms\frmCUSOffer.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmCustomers.Designer.vb">
@@ -497,6 +491,12 @@
     <Compile Include="forms\frmSUP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmSupInvoicesPayments.Designer.vb">
+      <DependentUpon>frmSupInvoicesPayments.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmSupInvoicesPayments.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmSUPKAL.Designer.vb">
       <DependentUpon>frmSUPKAL.vb</DependentUpon>
     </Compile>
@@ -544,10 +544,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RepCUSOfferKitchen.Designer.vb">
-      <DependentUpon>RepCUSOfferKitchen.vb</DependentUpon>
+    <Compile Include="Reports\RepCUSOffer.Designer.vb">
+      <DependentUpon>RepCUSOffer.vb</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RepCUSOfferKitchen.vb">
+    <Compile Include="Reports\RepCUSOffer.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RepOfferMech.Designer.vb">
@@ -615,11 +615,8 @@
     <EmbeddedResource Include="forms\frmCusMov.resx">
       <DependentUpon>frmCusMov.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmCUSOfferCloset.resx">
-      <DependentUpon>frmCUSOfferCloset.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmCUSOfferKitchen.resx">
-      <DependentUpon>frmCUSOfferKitchen.vb</DependentUpon>
+    <EmbeddedResource Include="forms\frmCUSOffer.resx">
+      <DependentUpon>frmCUSOffer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCustomers.resx">
       <DependentUpon>frmCustomers.vb</DependentUpon>
@@ -714,6 +711,9 @@
     <EmbeddedResource Include="forms\frmSUP.resx">
       <DependentUpon>frmSUP.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSupInvoicesPayments.resx">
+      <DependentUpon>frmSupInvoicesPayments.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSUPKAL.resx">
       <DependentUpon>frmSUPKAL.vb</DependentUpon>
     </EmbeddedResource>
@@ -735,8 +735,8 @@
     <EmbeddedResource Include="forms\frmServices.resx">
       <DependentUpon>frmServices.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RepCUSOfferKitchen.resx">
-      <DependentUpon>RepCUSOfferKitchen.vb</DependentUpon>
+    <EmbeddedResource Include="Reports\RepCUSOffer.resx">
+      <DependentUpon>RepCUSOffer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepOfferMech.resx">
       <DependentUpon>RepOfferMech.vb</DependentUpon>

@@ -51,10 +51,6 @@ Module Main
         Public Y_FINAL_HEIGHT As Double
         Public BENCH As String
         Public DAYS_OF_DELIVERY As Integer
-        Public KNOBS As String
-        Public BAZA As Integer
-        Public DRAWERS As Integer
-        Public SHELVES As Integer
     End Structure
     Public ProgProps As PROG_PROPS
     Public Function toSQLValue(t As DevExpress.XtraEditors.TextEdit, Optional ByVal isnum As Boolean = False) As String
