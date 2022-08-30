@@ -162,10 +162,10 @@ Partial Class frmMain
         Me.RibbonPage4 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup6 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup4 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPage5 = New DevExpress.XtraBars.Ribbon.RibbonPage()
-        Me.RibbonPageGroup5 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.Ρυθμίσεις = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup19 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPage5 = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibbonPageGroup5 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RepositoryItemHypertextLabel1 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHypertextLabel2 = New DevExpress.XtraEditors.Repository.RepositoryItemHypertextLabel()
         Me.RepositoryItemHyperLinkEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemHyperLinkEdit()
@@ -1330,6 +1330,20 @@ Partial Class frmMain
         Me.RibbonPageGroup4.Name = "RibbonPageGroup4"
         Me.RibbonPageGroup4.Text = "Τιμοκατάλογοι"
         '
+        'Ρυθμίσεις
+        '
+        Me.Ρυθμίσεις.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup19})
+        Me.Ρυθμίσεις.Name = "Ρυθμίσεις"
+        Me.Ρυθμίσεις.Text = "Ρυθμίσεις"
+        '
+        'RibbonPageGroup19
+        '
+        Me.RibbonPageGroup19.ItemLinks.Add(Me.BBParam)
+        Me.RibbonPageGroup19.ItemLinks.Add(Me.bbMailSettings)
+        Me.RibbonPageGroup19.ItemLinks.Add(Me.bbRights)
+        Me.RibbonPageGroup19.Name = "RibbonPageGroup19"
+        Me.RibbonPageGroup19.Text = "Γενικές Παράμετροι"
+        '
         'RibbonPage5
         '
         Me.RibbonPage5.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup5})
@@ -1344,20 +1358,6 @@ Partial Class frmMain
         Me.RibbonPageGroup5.ItemLinks.Add(Me.BBVer)
         Me.RibbonPageGroup5.Name = "RibbonPageGroup5"
         Me.RibbonPageGroup5.Text = "Βοήθεια"
-        '
-        'Ρυθμίσεις
-        '
-        Me.Ρυθμίσεις.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup19})
-        Me.Ρυθμίσεις.Name = "Ρυθμίσεις"
-        Me.Ρυθμίσεις.Text = "Ρυθμίσεις"
-        '
-        'RibbonPageGroup19
-        '
-        Me.RibbonPageGroup19.ItemLinks.Add(Me.BBParam)
-        Me.RibbonPageGroup19.ItemLinks.Add(Me.bbMailSettings)
-        Me.RibbonPageGroup19.ItemLinks.Add(Me.bbRights)
-        Me.RibbonPageGroup19.Name = "RibbonPageGroup19"
-        Me.RibbonPageGroup19.Text = "Γενικές Παράμετροι"
         '
         'RepositoryItemHypertextLabel1
         '

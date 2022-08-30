@@ -105,7 +105,9 @@ Public Class frmCUSOfferKitchen
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from CCT_OFFERS where id ='" + sID + "'")
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "select e.ID,e.code,e.name,e.price,e.price as defPrice,
+                    "select e.ID,e.code,e.name,
+                    isnull((select price from CCT_OFFERS_KITCHEN_EQUIPMENT EQ where eq.cctOffersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as price,
+                    e.price as defPrice,
                     CAST(CASE WHEN (select eq.ID 
                     from CCT_OFFERS_KITCHEN_EQUIPMENT EQ 
                     where eq.cctOffersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
@@ -435,19 +437,6 @@ Public Class frmCUSOfferKitchen
             End If
         Next
         If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-    End Sub
-    'Συγχρονισμός όψης από Server
-    Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
-        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-            ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml") = True Then
-                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml", Application.StartupPath & "\DSGNS\DEF\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml", True)
-                GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml", OptionsLayoutBase.FullLayout)
-                GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
-                GridView2.Columns.Item("checked").OptionsColumn.AllowEdit = True : GridView2.Columns.Item("checked").OptionsColumn.ReadOnly = False
-
-            End If
-        End If
     End Sub
 
     Private Sub RepDefPrice_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles RepDefPrice.ButtonPressed

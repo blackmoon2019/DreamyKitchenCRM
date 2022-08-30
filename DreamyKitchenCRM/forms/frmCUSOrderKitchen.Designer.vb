@@ -214,11 +214,14 @@ Partial Class frmCUSOrderKitchen
         Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colname = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colprice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepDefPrice = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.colmodifiedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colmodifiedOn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedOn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colRealName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldefPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.VwDEVICESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwEQUIPMENTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
@@ -238,6 +241,12 @@ Partial Class frmCUSOrderKitchen
         Me.Vw_DOOR_TYPERafieresKTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresKTableAdapter()
         Me.Vw_DOOR_TYPERafieresYTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresYTableAdapter()
         Me.Vw_DOOR_TYPERafiaWallTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafiaWallTableAdapter()
+        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem71 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem75 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -419,8 +428,16 @@ Partial Class frmCUSOrderKitchen
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdEquipment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepDefPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl2.SuspendLayout()
+        CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem71, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem75, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'coldCode
@@ -2752,9 +2769,7 @@ Partial Class frmCUSOrderKitchen
         'TabNavigationPage2
         '
         Me.TabNavigationPage2.Caption = "TabNavigationPage2"
-        Me.TabNavigationPage2.Controls.Add(Me.cmdSaveEquipDev)
-        Me.TabNavigationPage2.Controls.Add(Me.grdDevices)
-        Me.TabNavigationPage2.Controls.Add(Me.grdEquipment)
+        Me.TabNavigationPage2.Controls.Add(Me.LayoutControl2)
         Me.TabNavigationPage2.Name = "TabNavigationPage2"
         Me.TabNavigationPage2.PageText = "ΣΥΣΚΕΥΕΣ/ΕΞΑΡΤΗΜΑΤΑ"
         Me.TabNavigationPage2.Size = New System.Drawing.Size(1885, 1414)
@@ -2762,11 +2777,11 @@ Partial Class frmCUSOrderKitchen
         'cmdSaveEquipDev
         '
         Me.cmdSaveEquipDev.ImageOptions.Image = CType(resources.GetObject("cmdSaveEquipDev.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSaveEquipDev.Location = New System.Drawing.Point(1706, 1354)
+        Me.cmdSaveEquipDev.Location = New System.Drawing.Point(1642, 1363)
         Me.cmdSaveEquipDev.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSaveEquipDev.Name = "cmdSaveEquipDev"
-        Me.cmdSaveEquipDev.Size = New System.Drawing.Size(165, 46)
-        Me.cmdSaveEquipDev.StyleController = Me.LayoutControl1
+        Me.cmdSaveEquipDev.Size = New System.Drawing.Size(231, 39)
+        Me.cmdSaveEquipDev.StyleController = Me.LayoutControl2
         Me.cmdSaveEquipDev.TabIndex = 64
         Me.cmdSaveEquipDev.Text = "Αποθήκευση"
         '
@@ -2775,11 +2790,11 @@ Partial Class frmCUSOrderKitchen
         Me.grdDevices.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grdDevices.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
-        Me.grdDevices.Location = New System.Drawing.Point(5, 667)
+        Me.grdDevices.Location = New System.Drawing.Point(12, 719)
         Me.grdDevices.MainView = Me.GridView1
         Me.grdDevices.Margin = New System.Windows.Forms.Padding(5)
         Me.grdDevices.Name = "grdDevices"
-        Me.grdDevices.Size = New System.Drawing.Size(1875, 677)
+        Me.grdDevices.Size = New System.Drawing.Size(1861, 640)
         Me.grdDevices.TabIndex = 63
         Me.grdDevices.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -2864,17 +2879,18 @@ Partial Class frmCUSOrderKitchen
         Me.grdEquipment.Anchor = CType(((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.grdEquipment.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
-        Me.grdEquipment.Location = New System.Drawing.Point(5, 4)
+        Me.grdEquipment.Location = New System.Drawing.Point(12, 12)
         Me.grdEquipment.MainView = Me.GridView2
         Me.grdEquipment.Margin = New System.Windows.Forms.Padding(5)
         Me.grdEquipment.Name = "grdEquipment"
-        Me.grdEquipment.Size = New System.Drawing.Size(1875, 653)
+        Me.grdEquipment.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepDefPrice})
+        Me.grdEquipment.Size = New System.Drawing.Size(1861, 703)
         Me.grdEquipment.TabIndex = 62
         Me.grdEquipment.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colcode, Me.colname, Me.colmodifiedBy, Me.colmodifiedOn, Me.colcreatedOn, Me.colcreatedBy, Me.colRealName})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colcode, Me.colname, Me.colprice, Me.colmodifiedBy, Me.colmodifiedOn, Me.colcreatedOn, Me.colcreatedBy, Me.colRealName, Me.coldefPrice})
         Me.GridView2.DetailHeight = 619
         Me.GridView2.GridControl = Me.grdEquipment
         Me.GridView2.LevelIndent = 0
@@ -2905,9 +2921,12 @@ Partial Class frmCUSOrderKitchen
         '
         'colcode
         '
+        Me.colcode.Caption = "Κωδικός"
         Me.colcode.FieldName = "code"
         Me.colcode.MinWidth = 35
         Me.colcode.Name = "colcode"
+        Me.colcode.Visible = True
+        Me.colcode.VisibleIndex = 2
         Me.colcode.Width = 131
         '
         'colname
@@ -2919,6 +2938,25 @@ Partial Class frmCUSOrderKitchen
         Me.colname.Visible = True
         Me.colname.VisibleIndex = 0
         Me.colname.Width = 628
+        '
+        'colprice
+        '
+        Me.colprice.Caption = "Τιμή"
+        Me.colprice.ColumnEdit = Me.RepDefPrice
+        Me.colprice.DisplayFormat.FormatString = "C2"
+        Me.colprice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.colprice.FieldName = "price"
+        Me.colprice.MinWidth = 35
+        Me.colprice.Name = "colprice"
+        Me.colprice.Visible = True
+        Me.colprice.VisibleIndex = 1
+        Me.colprice.Width = 131
+        '
+        'RepDefPrice
+        '
+        Me.RepDefPrice.AutoHeight = False
+        Me.RepDefPrice.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.OK), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.RepDefPrice.Name = "RepDefPrice"
         '
         'colmodifiedBy
         '
@@ -2954,6 +2992,13 @@ Partial Class frmCUSOrderKitchen
         Me.colRealName.MinWidth = 35
         Me.colRealName.Name = "colRealName"
         Me.colRealName.Width = 131
+        '
+        'coldefPrice
+        '
+        Me.coldefPrice.FieldName = "defPrice"
+        Me.coldefPrice.MinWidth = 35
+        Me.coldefPrice.Name = "coldefPrice"
+        Me.coldefPrice.Width = 131
         '
         'VwDEVICESBindingSource
         '
@@ -3032,6 +3077,63 @@ Partial Class frmCUSOrderKitchen
         'Vw_DOOR_TYPERafiaWallTableAdapter
         '
         Me.Vw_DOOR_TYPERafiaWallTableAdapter.ClearBeforeFill = True
+        '
+        'LayoutControl2
+        '
+        Me.LayoutControl2.Controls.Add(Me.cmdSaveEquipDev)
+        Me.LayoutControl2.Controls.Add(Me.grdDevices)
+        Me.LayoutControl2.Controls.Add(Me.grdEquipment)
+        Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl2.Name = "LayoutControl2"
+        Me.LayoutControl2.Root = Me.LayoutControlGroup4
+        Me.LayoutControl2.Size = New System.Drawing.Size(1885, 1414)
+        Me.LayoutControl2.TabIndex = 65
+        Me.LayoutControl2.Text = "LayoutControl2"
+        '
+        'LayoutControlGroup4
+        '
+        Me.LayoutControlGroup4.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup4.GroupBordersVisible = False
+        Me.LayoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem19, Me.LayoutControlItem71, Me.LayoutControlItem75, Me.EmptySpaceItem6})
+        Me.LayoutControlGroup4.Name = "LayoutControlGroup4"
+        Me.LayoutControlGroup4.Size = New System.Drawing.Size(1885, 1414)
+        Me.LayoutControlGroup4.TextVisible = False
+        '
+        'LayoutControlItem19
+        '
+        Me.LayoutControlItem19.Control = Me.grdEquipment
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem19.Name = "LayoutControlItem19"
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(1865, 707)
+        Me.LayoutControlItem19.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem19.TextVisible = False
+        '
+        'LayoutControlItem71
+        '
+        Me.LayoutControlItem71.Control = Me.grdDevices
+        Me.LayoutControlItem71.Location = New System.Drawing.Point(0, 707)
+        Me.LayoutControlItem71.Name = "LayoutControlItem71"
+        Me.LayoutControlItem71.Size = New System.Drawing.Size(1865, 644)
+        Me.LayoutControlItem71.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem71.TextVisible = False
+        '
+        'LayoutControlItem75
+        '
+        Me.LayoutControlItem75.Control = Me.cmdSaveEquipDev
+        Me.LayoutControlItem75.Location = New System.Drawing.Point(1630, 1351)
+        Me.LayoutControlItem75.Name = "LayoutControlItem75"
+        Me.LayoutControlItem75.Size = New System.Drawing.Size(235, 43)
+        Me.LayoutControlItem75.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem75.TextVisible = False
+        '
+        'EmptySpaceItem6
+        '
+        Me.EmptySpaceItem6.AllowHotTrack = False
+        Me.EmptySpaceItem6.Location = New System.Drawing.Point(0, 1351)
+        Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
+        Me.EmptySpaceItem6.Size = New System.Drawing.Size(1630, 43)
+        Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmCUSOrderKitchen
         '
@@ -3224,8 +3326,16 @@ Partial Class frmCUSOrderKitchen
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdEquipment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepDefPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl2.ResumeLayout(False)
+        CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem71, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem75, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3446,5 +3556,14 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents Vw_DOOR_TYPERafiaWallTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPERafiaWallTableAdapter
     Friend WithEvents cboTRANSH As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents colprice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepDefPrice As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
+    Friend WithEvents coldefPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LayoutControl2 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents LayoutControlGroup4 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem19 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem71 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem75 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem6 As DevExpress.XtraLayout.EmptySpaceItem
     '    Friend WithEvents Vw_DOOR_TYPEPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter
 End Class

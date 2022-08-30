@@ -403,6 +403,7 @@ Partial Class frmCUSOfferKitchen
         Me.lblDate.Location = New System.Drawing.Point(1476, 229)
         Me.lblDate.Name = "lblDate"
         Me.lblDate.Size = New System.Drawing.Size(297, 25)
+        Me.lblDate.StyleController = Me.LayoutControl1
         Me.lblDate.TabIndex = 51
         Me.lblDate.Text = "(ΗΗ/ΜΜ/ΕΕΕ)                        "
         '
@@ -413,6 +414,7 @@ Partial Class frmCUSOfferKitchen
         Me.txtdtdaysOfDelivery.Name = "txtdtdaysOfDelivery"
         Me.txtdtdaysOfDelivery.Properties.UseReadOnlyAppearance = False
         Me.txtdtdaysOfDelivery.Size = New System.Drawing.Size(418, 38)
+        Me.txtdtdaysOfDelivery.StyleController = Me.LayoutControl1
         Me.txtdtdaysOfDelivery.TabIndex = 50
         Me.txtdtdaysOfDelivery.Tag = "daysofdeliver,0,1,2"
         '
@@ -464,6 +466,7 @@ Partial Class frmCUSOfferKitchen
         Me.cboCUS.Properties.PopupSizeable = False
         Me.cboCUS.Properties.ValueMember = "ID"
         Me.cboCUS.Size = New System.Drawing.Size(647, 38)
+        Me.cboCUS.StyleController = Me.LayoutControl1
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
         '
@@ -488,6 +491,7 @@ Partial Class frmCUSOfferKitchen
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
         Me.txtCode.Size = New System.Drawing.Size(123, 38)
+        Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
         '
@@ -499,6 +503,7 @@ Partial Class frmCUSOfferKitchen
         Me.txtPhn.Properties.ReadOnly = True
         Me.txtPhn.Properties.UseReadOnlyAppearance = False
         Me.txtPhn.Size = New System.Drawing.Size(719, 38)
+        Me.txtPhn.StyleController = Me.LayoutControl1
         Me.txtPhn.TabIndex = 23
         Me.txtPhn.Tag = "phn"
         '
@@ -529,6 +534,7 @@ Partial Class frmCUSOfferKitchen
         Me.txtADR.Properties.ReadOnly = True
         Me.txtADR.Properties.UseReadOnlyAppearance = False
         Me.txtADR.Size = New System.Drawing.Size(647, 38)
+        Me.txtADR.StyleController = Me.LayoutControl1
         Me.txtADR.TabIndex = 7
         Me.txtADR.Tag = "ADR_name"
         '
@@ -594,6 +600,7 @@ Partial Class frmCUSOfferKitchen
         Me.dtpresentation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtpresentation.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtpresentation.Size = New System.Drawing.Size(647, 38)
+        Me.dtpresentation.StyleController = Me.LayoutControl1
         Me.dtpresentation.TabIndex = 32
         Me.dtpresentation.Tag = "dtOffer,0,1,2"
         '
@@ -677,6 +684,7 @@ Partial Class frmCUSOfferKitchen
         Me.txtArea.Properties.ReadOnly = True
         Me.txtArea.Properties.UseReadOnlyAppearance = False
         Me.txtArea.Size = New System.Drawing.Size(719, 38)
+        Me.txtArea.StyleController = Me.LayoutControl1
         Me.txtArea.TabIndex = 23
         Me.txtArea.Tag = "mob"
         '
@@ -1086,6 +1094,7 @@ Partial Class frmCUSOfferKitchen
         Me.cboEMP.Properties.PopupSizeable = False
         Me.cboEMP.Properties.ValueMember = "ID"
         Me.cboEMP.Size = New System.Drawing.Size(1559, 38)
+        Me.cboEMP.StyleController = Me.LayoutControl1
         Me.cboEMP.TabIndex = 5
         Me.cboEMP.Tag = "empID,0,1,2"
         '
