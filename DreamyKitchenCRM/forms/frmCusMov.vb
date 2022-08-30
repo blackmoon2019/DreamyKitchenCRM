@@ -82,6 +82,12 @@ Public Class frmCusMov
                                 Exit Sub
                             End If
                         End If
+                        If IsDBNull(cboSTATUS.GetColumnValue("RequiredAddress")) = False Then
+                            If cboSTATUS.GetColumnValue("RequiredAddress") = True And IsDBNull(cboCUS.GetColumnValue("AdrID")) = True Then
+                                XtraMessageBox.Show("Δεν έχει συμπληρωθεί η διεύθυνση στον πελάτη", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
+                        End If
 
                         sID = System.Guid.NewGuid.ToString
                         sResult = DBQ.InsertData(LayoutControl1, "CCT_M", sID)
@@ -102,6 +108,12 @@ Public Class frmCusMov
                         If IsDBNull(cboSTATUS.GetColumnValue("RequiredCounter")) = False Then
                             If cboSTATUS.GetColumnValue("RequiredCounter") = True And cboCounter.EditValue = Nothing Then
                                 XtraMessageBox.Show("Δεν έχετε επιλέξει Επιμετρητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
+                        End If
+                        If IsDBNull(cboSTATUS.GetColumnValue("RequiredAddress")) = False Then
+                            If cboSTATUS.GetColumnValue("RequiredAddress") = True And IsDBNull(cboCUS.GetColumnValue("AdrID")) = True Then
+                                XtraMessageBox.Show("Δεν έχει συμπληρωθεί η διεύθυνση στον πελάτη", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                         End If
@@ -208,8 +220,8 @@ Public Class frmCusMov
     End Sub
     Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then If cboSaler.EditValue <> Nothing Then ManageSaler()
             Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub
@@ -330,5 +342,9 @@ Public Class frmCusMov
             Case 2 : If cboCounter.EditValue <> Nothing Then ManageCounter()
             Case 3 : cboCounter.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub chkFollowUp_CheckedChanged(sender As Object, e As EventArgs) Handles chkFollowUp.CheckedChanged
+        If chkFollowUp.Checked = True Then LCmtFollowUp.Enabled = True Else LCmtFollowUp.Enabled = False : txtCmtFollowUp.EditValue = ""
     End Sub
 End Class

@@ -995,6 +995,7 @@ Partial Class frmSUPKal
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1741, 1287)
         Me.Controls.Add(Me.LayoutControl1)
         Me.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.None

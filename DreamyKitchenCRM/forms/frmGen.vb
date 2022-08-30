@@ -84,6 +84,20 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "EP_STATUS"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "EP_STATUS", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.EP_STATUS(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_EP_STATUS")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("EP_STATUS")
                             Case "SCAN_FILE_NAMES"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "SCAN_FILE_NAMES", sGuid)
@@ -98,6 +112,63 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("SCAN_FILE_NAMES")
+                            Case "EQUIPMENT_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "EQUIPMENT_CAT", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.EQUIPMENT_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_EQUIPMENT_CAT")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("EQUIPMENT_CAT")
+                            Case "CONSTR_TYPE"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "CONSTR_TYPE", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.CONSTR_TYPE(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_CONSTR_TYPE")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("CONSTR_TYPE")
+
+                            Case "EQUIPMENT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "EQUIPMENT", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.EQUIPMENT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_EQUIPMENT")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("EQUIPMENT")
+                            Case "DEVICES"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "DEVICES", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.DEVICES(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_DEVICES")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("DEVICES")
                             Case "BUY_C"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "BUY_C", sGuid)
@@ -402,11 +473,33 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("DIM")
+                            Case "DOOR_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "DOOR_CAT", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.DOOR_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_DOOR_CAT")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("DOOR_CAT")
 
 
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "EP_STATUS"
+                                sResult = DBQ.UpdateData(LayoutControl1, "EP_STATUS", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.EP_STATUS(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_EP_STATUS")
+                                End If
                             Case "SCAN_FILE_NAMES"
                                 sResult = DBQ.UpdateData(LayoutControl1, "SCAN_FILE_NAMES", sID)
                                 If CalledFromCtrl Then
@@ -415,6 +508,44 @@ Public Class frmGen
                                 Else
                                     Dim form As frmScroller = Frm
                                     form.LoadRecords("vw_SCAN_FILE_NAMES")
+                                End If
+                            Case "EQUIPMENT_CAT"
+                                sResult = DBQ.UpdateData(LayoutControl1, "EQUIPMENT_CAT", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.EQUIPMENT_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_EQUIPMENT_CAT")
+                                End If
+                            Case "CONSTR_TYPE"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.UpdateData(LayoutControl1, "CONSTR_TYPE", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.CONSTR_TYPE(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_CONSTR_TYPE")
+                                End If
+                            Case "EQUIPMENT"
+                                sResult = DBQ.UpdateData(LayoutControl1, "EQUIPMENT", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.EQUIPMENT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_EQUIPMENT")
+                                End If
+                            Case "DEVICES"
+                                sResult = DBQ.UpdateData(LayoutControl1, "DEVICES", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.DEVICES(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_DEVICES")
                                 End If
                             Case "PAY"
                                 sResult = DBQ.UpdateData(LayoutControl1, "PAY", sID)
@@ -626,6 +757,17 @@ Public Class frmGen
                                     form = Frm
                                     form.LoadRecords("vw_DIM")
                                 End If
+                            Case "DOOR_CAT"
+                                sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "DOOR_CAT", LayoutControl1,,, sID, True)
+                                If CalledFromCtrl Then
+                                    FillCbo.DOOR_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As New frmScroller
+                                    form = Frm
+                                    form.LoadRecords("vw_DOOR_CAT")
+                                End If
+
                         End Select
                 End Select
                 If sResult Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -636,11 +778,42 @@ Public Class frmGen
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "EP_STATUS"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("EP_STATUS")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EP_STATUS where id ='" + sID + "'")
+                End If
             Case "SCAN_FILE_NAMES"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("SCAN_FILE_NAMES")
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_SCAN_FILE_NAMES where id ='" + sID + "'")
+                End If
+            Case "EQUIPMENT_CAT"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("EQUIPMENT_CAT")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EQUIPMENT_CAT where id ='" + sID + "'")
+                End If
+            Case "CONSTR_TYPE"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("CONSTR_TYPE")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_CONSTR_TYPE where id ='" + sID + "'")
+                End If
+            Case "EQUIPMENT"
+                FillCbo.EQUIPMENT_CAT(cbo1)
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("EQUIPMENT")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EQUIPMENT where id ='" + sID + "'")
+                End If
+            Case "DEVICES"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("DEVICES")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DEVICES where id ='" + sID + "'")
                 End If
             Case "PAY"
                 If Mode = FormMode.NewRecord Then
@@ -788,6 +961,13 @@ Public Class frmGen
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_DIM where id ='" + sID + "'")
                 End If
+            Case "DOOR_CAT"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("DOOR_CAT")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOOR_CAT where id ='" + sID + "'")
+                End If
+
         End Select
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         cmdDelete.Enabled = IIf(Mode = FormMode.NewRecord, False, UserProps.AllowDelete)
@@ -808,12 +988,47 @@ Public Class frmGen
                 End Using
 
                 Select Case sDataTable
+                    Case "EP_STATUS"
+                        If CalledFromCtrl Then
+                            FillCbo.EP_STATUS(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_EP_STATUS")
+                        End If
                     Case "SCAN_FILE_NAMES"
                         If CalledFromCtrl Then
                             FillCbo.SCAN_FILE_NAMES(CtrlCombo)
                         Else
                             Dim form As frmScroller = Frm
                             form.LoadRecords("vw_SCAN_FILE_NAMES")
+                        End If
+                    Case "EQUIPMENT_CAT"
+                        If CalledFromCtrl Then
+                            FillCbo.EQUIPMENT_CAT(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_EQUIPMENT_CAT")
+                        End If
+                    Case "CONSTR_TYPE"
+                        If CalledFromCtrl Then
+                            FillCbo.CONSTR_TYPE(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_CONSTR_TYPE")
+                        End If
+                    Case "EQUIPMENT"
+                        If CalledFromCtrl Then
+                            FillCbo.EQUIPMENT(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_EQUIPMENT")
+                        End If
+                    Case "DEVICES"
+                        If CalledFromCtrl Then
+                            FillCbo.DEVICES(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_DEVICES")
                         End If
                     Case "PAY"
                         If CalledFromCtrl Then
@@ -958,6 +1173,13 @@ Public Class frmGen
                             Dim form As New frmScroller
                             form.LoadRecords("vw_DIM")
                         End If
+                    Case "DOOR_CAT"
+                        If CalledFromCtrl Then
+                            FillCbo.DOOR_CAT(CtrlCombo)
+                        Else
+                            Dim form As New frmScroller
+                            form.LoadRecords("vw_DOOR_CAT")
+                        End If
                 End Select
                 Cls.ClearCtrls(LayoutControl1)
                 txtCode.Text = DBQ.GetNextId(sDataTable)
@@ -973,6 +1195,12 @@ Public Class frmGen
     Private Sub ColorPickEdit1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles ColorPickEdit1.ButtonClick
         Select Case e.Button.Index
             Case 1 : ColorPickEdit1.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cbo1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbo1.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cbo1.EditValue = Nothing
         End Select
     End Sub
 

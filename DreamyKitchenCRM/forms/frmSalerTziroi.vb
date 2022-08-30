@@ -18,6 +18,7 @@ Public Class frmSalerTziroi
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
+    Private UserPermissions As New CheckPermissions
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -130,8 +131,8 @@ Public Class frmSalerTziroi
 
     Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then If cboSaler.EditValue <> Nothing Then ManageSaler()
             Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub
@@ -190,8 +191,9 @@ Public Class frmSalerTziroi
 
     Private Sub cboTransH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTransH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If cboTransH.EditValue <> Nothing Then ManageTRANSH()
-            Case 2 : cboTransH.EditValue = Nothing
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then  cboTransH.EditValue = Nothing : ManageTRANSH()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then  If cboTransH.EditValue <> Nothing Then ManageTRANSH()
+            Case 3 : cboTransH.EditValue = Nothing
         End Select
     End Sub
 

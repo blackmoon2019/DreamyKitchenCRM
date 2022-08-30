@@ -12,6 +12,7 @@ Public Class frmLogin
         'My.Settings.Upgrade()
         'My.Settings.Save()
         'MultipleActiveResultSets=True
+        ProgProps.ProgTitle = "DreamyKitchenCRM"
         chkRememberUN.EditValue = My.Settings.UNSave
         If CNDB.ConnectionString.ToString = "" Then
             If CN.OpenConnection = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα κατά την σύνδεση στο Dreamy Kitchen CRM", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -54,12 +55,6 @@ Public Class frmLogin
                     If sdr.IsDBNull(sdr.GetOrdinal("M_pwd")) = False Then UserProps.EmailPassword = sdr.GetString(sdr.GetOrdinal("M_pwd"))
                     If sdr.IsDBNull(sdr.GetOrdinal("port")) = False Then UserProps.EmailPort = sdr.GetInt32(sdr.GetOrdinal("port"))
                     If sdr.IsDBNull(sdr.GetOrdinal("ssl")) = False Then UserProps.EmailSSL = sdr.GetBoolean(sdr.GetOrdinal("ssl"))
-                    'Support Email
-                    ProgProps.SupportEmail = Prog_Prop.GetProgTechSupportEmail
-                    'Δεκαδικά Προγράμματος
-                    ProgProps.Decimals = Prog_Prop.GetProgDecimals()
-                    'Γενική έκπτωση πελατών
-                    ProgProps.CusDiscount = Prog_Prop.GetProgCusDecimals
                     sdr.Close()
                     cmd.Dispose()
                     'General Permissions
@@ -67,8 +62,12 @@ Public Class frmLogin
                     sSQL = "UPDATE USR SET dtLogin = getdate()  where ID = " & toSQLValueS(UserProps.ID.ToString)
                     cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
                     cmd.Dispose()
+                    'Support Email
+                    Prog_Prop.GetProgTechSupportEmail()
                     'Δεκαδικά Προγράμματος
                     Prog_Prop.GetProgDecimals()
+                    'ΦΠΑ Προγράμματος
+                    Prog_Prop.GetProgvat()
                     XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If chkRememberUN.EditValue = True Then
                         My.Settings.UNSave = True
@@ -83,6 +82,7 @@ Public Class frmLogin
                 frmCalendar.MdiParent = frmMain
                 frmCalendar.Text = "Ημερολόγιο Κινήσεων"
                 frmCalendar.Show()
+                'frmEpopteiaChart.Show()
 
             Else
                 XtraMessageBox.Show("Πληκτρολογήσατε λάθος στοιχεία. Παρακαλώ προσπαθήστε ξανά.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

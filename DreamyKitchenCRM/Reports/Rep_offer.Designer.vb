@@ -290,7 +290,7 @@ Partial Public Class Rep_offer
         '
         'SqlDataSource1
         '
-        Me.SqlDataSource1.ConnectionName = "DreamyKitchenCRM.My.MySettings.DreamyKitchenConnectionString"
+        Me.SqlDataSource1.ConnectionName = "DreamyKitchenCRM.My.MySettings.DreamyKitchenConnectionStringRemotely"
         Me.SqlDataSource1.Name = "SqlDataSource1"
         ColumnExpression1.ColumnName = "ID"
         Table1.MetaSerializable = "<Meta X=""30"" Y=""30"" Width=""125"" Height=""403"" />"

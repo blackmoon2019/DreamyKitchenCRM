@@ -203,7 +203,7 @@ Partial Class frmOfferDet
         '
         'SqlDataSource1
         '
-        Me.SqlDataSource1.ConnectionName = "DreamyKitchenCRM.My.MySettings.DreamyKitchenConnectionString"
+        Me.SqlDataSource1.ConnectionName = "DreamyKitchenCRM.My.MySettings.DreamyKitchenConnectionStringRemotely"
         Me.SqlDataSource1.Name = "SqlDataSource1"
         ColumnExpression185.ColumnName = "name"
         Table25.MetaSerializable = "<Meta X=""185"" Y=""30"" Width=""125"" Height=""263"" />"

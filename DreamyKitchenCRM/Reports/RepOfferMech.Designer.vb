@@ -35,7 +35,7 @@ Partial Public Class RepOfferMech
         '
         'SqlDataSource1
         '
-        Me.SqlDataSource1.ConnectionName = "DreamyKitchenCRM.My.MySettings.DreamyKitchenConnectionString"
+        Me.SqlDataSource1.ConnectionName = "DreamyKitchenCRM.My.MySettings.DreamyKitchenConnectionStringRemotely"
         Me.SqlDataSource1.Name = "SqlDataSource1"
         CustomSqlQuery1.Name = "vw_OFFER_MECH"
         QueryParameter1.Name = "OfferID"

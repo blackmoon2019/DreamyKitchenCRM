@@ -77,7 +77,7 @@ Public Class frmErmaria
                 txtCode.Text = DBQ.GetNextId("ERM")
 
             Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from vw_ERM where id ='" + sID + "'")
+                LoadForms.LoadForm(LayoutControl1, "Select * from ERM where id ='" + sID + "'")
 
         End Select
         Me.CenterToScreen()

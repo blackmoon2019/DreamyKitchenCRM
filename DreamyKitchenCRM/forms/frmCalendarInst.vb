@@ -47,6 +47,7 @@ Public Class frmCalendarInst
 
             SchedulerControl1.Start = Now.Date
 
+
             If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\Inst.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\Inst.xml", OptionsLayoutBase.FullLayout)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -101,7 +102,7 @@ Public Class frmCalendarInst
         End If
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.ShowDialog()
-        SetCalendarFilter()
+        'SetCalendarFilter()
     End Sub
     Private Sub SetCalendarFilter(Optional ByVal sWhere As String = "")
         Dim sSQL As String

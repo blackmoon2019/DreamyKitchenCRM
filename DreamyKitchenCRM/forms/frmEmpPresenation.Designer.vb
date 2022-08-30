@@ -21,6 +21,7 @@ Partial Class frmEmpPresenation
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cmdExportToPDF = New DevExpress.XtraEditors.SimpleButton()
         Me.dtFDate = New DevExpress.XtraEditors.DateEdit()
         Me.lstMonths = New DevExpress.XtraEditors.ListBoxControl()
         Me.SPR = New DevExpress.XtraSpreadsheet.SpreadsheetControl()
@@ -28,14 +29,13 @@ Partial Class frmEmpPresenation
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.XtraSaveFileDialog1 = New DevExpress.XtraEditors.XtraSaveFileDialog(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Vw_EMPTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_EMPTableAdapter()
         Me.TableAdapterManager = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.TableAdapterManager()
         Me.Vw_EMP_STableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_EMP_STableAdapter()
         Me.Vw_EMP_SBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.cmdExportToPDF = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.XtraSaveFileDialog1 = New DevExpress.XtraEditors.XtraSaveFileDialog(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.dtFDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -45,9 +45,9 @@ Partial Class frmEmpPresenation
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Vw_EMP_SBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -59,17 +59,29 @@ Partial Class frmEmpPresenation
         Me.LayoutControl1.Controls.Add(Me.dtFDate)
         Me.LayoutControl1.Controls.Add(Me.lstMonths)
         Me.LayoutControl1.Controls.Add(Me.SPR)
-        Me.LayoutControl1.Location = New System.Drawing.Point(2, -2)
+        Me.LayoutControl1.Location = New System.Drawing.Point(3, -4)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1608, 682)
+        Me.LayoutControl1.Size = New System.Drawing.Size(2680, 1207)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'cmdExportToPDF
+        '
+        Me.cmdExportToPDF.Location = New System.Drawing.Point(12, 1156)
+        Me.cmdExportToPDF.Margin = New System.Windows.Forms.Padding(5)
+        Me.cmdExportToPDF.Name = "cmdExportToPDF"
+        Me.cmdExportToPDF.Size = New System.Drawing.Size(204, 39)
+        Me.cmdExportToPDF.StyleController = Me.LayoutControl1
+        Me.cmdExportToPDF.TabIndex = 40
+        Me.cmdExportToPDF.Text = "Export To PDF"
         '
         'dtFDate
         '
         Me.dtFDate.EditValue = Nothing
-        Me.dtFDate.Location = New System.Drawing.Point(50, 12)
+        Me.dtFDate.Location = New System.Drawing.Point(70, 12)
+        Me.dtFDate.Margin = New System.Windows.Forms.Padding(5)
         Me.dtFDate.Name = "dtFDate"
         Me.dtFDate.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtFDate.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -79,7 +91,7 @@ Partial Class frmEmpPresenation
         Me.dtFDate.Properties.UseMaskAsDisplayFormat = True
         Me.dtFDate.Properties.VistaCalendarInitialViewStyle = DevExpress.XtraEditors.VistaCalendarInitialViewStyle.YearsGroupView
         Me.dtFDate.Properties.VistaCalendarViewStyle = DevExpress.XtraEditors.VistaCalendarViewStyle.YearsGroupView
-        Me.dtFDate.Size = New System.Drawing.Size(82, 20)
+        Me.dtFDate.Size = New System.Drawing.Size(146, 38)
         Me.dtFDate.StyleController = Me.LayoutControl1
         Me.dtFDate.TabIndex = 39
         Me.dtFDate.Tag = "fDate,0,1,2"
@@ -87,15 +99,17 @@ Partial Class frmEmpPresenation
         'lstMonths
         '
         Me.lstMonths.Items.AddRange(New Object() {"ΙΑΝΟΥΑΡΙΟΣ", "ΦΕΒΡΟΥΑΡΙΟΣ", "ΜΑΡΤΙΟΣ", "ΑΠΡΙΛΙΟΣ", "ΜΑΪΟΣ", "ΙΟΥΝΙΟΣ", "ΙΟΥΛΙΟΣ", "ΑΥΓΟΥΣΤΟΣ", "ΣΕΠΤΕΜΒΡΙΟΣ", "ΟΚΤΩΒΡΙΟΣ", "ΝΟΕΜΒΡΙΟΣ", "ΔΕΚΕΜΒΡΙΟΣ"})
-        Me.lstMonths.Location = New System.Drawing.Point(12, 36)
+        Me.lstMonths.Location = New System.Drawing.Point(12, 54)
+        Me.lstMonths.Margin = New System.Windows.Forms.Padding(5)
         Me.lstMonths.Name = "lstMonths"
-        Me.lstMonths.Size = New System.Drawing.Size(120, 608)
+        Me.lstMonths.Size = New System.Drawing.Size(204, 1098)
         Me.lstMonths.StyleController = Me.LayoutControl1
         Me.lstMonths.TabIndex = 5
         '
         'SPR
         '
-        Me.SPR.Location = New System.Drawing.Point(136, 12)
+        Me.SPR.Location = New System.Drawing.Point(220, 12)
+        Me.SPR.Margin = New System.Windows.Forms.Padding(5)
         Me.SPR.Name = "SPR"
         Me.SPR.Options.Behavior.Drag = DevExpress.XtraSpreadsheet.DocumentCapability.Enabled
         Me.SPR.Options.Behavior.Drawing.Move = DevExpress.XtraSpreadsheet.DocumentCapability.Disabled
@@ -103,7 +117,7 @@ Partial Class frmEmpPresenation
         Me.SPR.Options.Behavior.Worksheet.Hide = DevExpress.XtraSpreadsheet.DocumentCapability.Disabled
         Me.SPR.Options.Behavior.Worksheet.Insert = DevExpress.XtraSpreadsheet.DocumentCapability.Disabled
         Me.SPR.Options.Behavior.Worksheet.Unhide = DevExpress.XtraSpreadsheet.DocumentCapability.Disabled
-        Me.SPR.Size = New System.Drawing.Size(1460, 658)
+        Me.SPR.Size = New System.Drawing.Size(2448, 1183)
         Me.SPR.TabIndex = 4
         Me.SPR.Text = "SpreadsheetControl1"
         '
@@ -113,24 +127,24 @@ Partial Class frmEmpPresenation
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem4})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1608, 682)
+        Me.Root.Size = New System.Drawing.Size(2680, 1207)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.SPR
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(124, 0)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(208, 0)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(1464, 662)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(2452, 1187)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.lstMonths
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 24)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(124, 612)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(208, 1102)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
@@ -139,9 +153,22 @@ Partial Class frmEmpPresenation
         Me.LayoutControlItem3.Control = Me.dtFDate
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(124, 24)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(208, 42)
         Me.LayoutControlItem3.Text = "ΕΤΟΣ"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(26, 13)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(46, 23)
+        '
+        'LayoutControlItem4
+        '
+        Me.LayoutControlItem4.Control = Me.cmdExportToPDF
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 1144)
+        Me.LayoutControlItem4.Name = "LayoutControlItem4"
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(208, 43)
+        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem4.TextVisible = False
+        '
+        'XtraSaveFileDialog1
+        '
+        Me.XtraSaveFileDialog1.FileName = "XtraSaveFileDialog1"
         '
         'DreamyKitchenDataSet
         '
@@ -167,35 +194,14 @@ Partial Class frmEmpPresenation
         Me.Vw_EMP_SBindingSource.DataMember = "vw_EMP_S"
         Me.Vw_EMP_SBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
-        'cmdExportToPDF
-        '
-        Me.cmdExportToPDF.Location = New System.Drawing.Point(12, 648)
-        Me.cmdExportToPDF.Name = "cmdExportToPDF"
-        Me.cmdExportToPDF.Size = New System.Drawing.Size(120, 22)
-        Me.cmdExportToPDF.StyleController = Me.LayoutControl1
-        Me.cmdExportToPDF.TabIndex = 40
-        Me.cmdExportToPDF.Text = "Export To PDF"
-        '
-        'LayoutControlItem4
-        '
-        Me.LayoutControlItem4.Control = Me.cmdExportToPDF
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 636)
-        Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(124, 26)
-        Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem4.TextVisible = False
-        '
-        'XtraSaveFileDialog1
-        '
-        Me.XtraSaveFileDialog1.FileName = "XtraSaveFileDialog1"
-        '
         'frmEmpPresenation
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1611, 677)
+        Me.ClientSize = New System.Drawing.Size(2685, 1198)
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
+        Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "frmEmpPresenation"
         Me.Text = "Παρουσιολόγιο Έκθεσης"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -207,9 +213,9 @@ Partial Class frmEmpPresenation
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Vw_EMP_SBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

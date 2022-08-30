@@ -128,13 +128,15 @@ Partial Class frmCalendarInst
         '
         Me.barDockControlTop.CausesValidation = False
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
-        Me.barDockControlTop.Location = New System.Drawing.Point(0, 24)
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 40)
         Me.barDockControlTop.Manager = Nothing
-        Me.barDockControlTop.Size = New System.Drawing.Size(1560, 0)
+        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(6)
+        Me.barDockControlTop.Size = New System.Drawing.Size(2860, 0)
         '
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colcode, Me.colcusID, Me.colsalersID, Me.colserID, Me.coldtDeliverDate, Me.colGRMONTH, Me.colcmt, Me.colmodifiedBy, Me.colmodifiedOn, Me.colcreatedOn, Me.colcreatedBy, Me.colcctName, Me.colSalerName, Me.colRealName, Me.colSerName, Me.colcolor, Me.colcompleted})
+        Me.GridView1.DetailHeight = 646
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -144,122 +146,160 @@ Partial Class frmCalendarInst
         'colID
         '
         Me.colID.FieldName = "ID"
+        Me.colID.MinWidth = 37
         Me.colID.Name = "colID"
+        Me.colID.Width = 137
         '
         'colcode
         '
         Me.colcode.FieldName = "code"
+        Me.colcode.MinWidth = 37
         Me.colcode.Name = "colcode"
+        Me.colcode.Width = 137
         '
         'colcusID
         '
         Me.colcusID.FieldName = "cusID"
+        Me.colcusID.MinWidth = 37
         Me.colcusID.Name = "colcusID"
+        Me.colcusID.Width = 137
         '
         'colsalersID
         '
         Me.colsalersID.FieldName = "salersID"
+        Me.colsalersID.MinWidth = 37
         Me.colsalersID.Name = "colsalersID"
+        Me.colsalersID.Width = 137
         '
         'colserID
         '
         Me.colserID.FieldName = "serID"
+        Me.colserID.MinWidth = 37
         Me.colserID.Name = "colserID"
+        Me.colserID.Width = 137
         '
         'coldtDeliverDate
         '
         Me.coldtDeliverDate.Caption = "ΗΜΕΡΟΜΗΝΙΑ"
         Me.coldtDeliverDate.FieldName = "dtDeliverDate"
+        Me.coldtDeliverDate.MinWidth = 37
         Me.coldtDeliverDate.Name = "coldtDeliverDate"
         Me.coldtDeliverDate.Visible = True
         Me.coldtDeliverDate.VisibleIndex = 5
+        Me.coldtDeliverDate.Width = 137
         '
         'colGRMONTH
         '
         Me.colGRMONTH.Caption = "ΜΗΝΑΣ"
         Me.colGRMONTH.FieldName = "GRMONTH"
+        Me.colGRMONTH.MinWidth = 37
         Me.colGRMONTH.Name = "colGRMONTH"
         Me.colGRMONTH.Visible = True
         Me.colGRMONTH.VisibleIndex = 4
+        Me.colGRMONTH.Width = 137
         '
         'colcmt
         '
         Me.colcmt.Caption = "ΣΧΟΛΙΑ"
         Me.colcmt.FieldName = "cmt"
+        Me.colcmt.MinWidth = 37
         Me.colcmt.Name = "colcmt"
         Me.colcmt.Visible = True
         Me.colcmt.VisibleIndex = 3
+        Me.colcmt.Width = 137
         '
         'colmodifiedBy
         '
         Me.colmodifiedBy.FieldName = "modifiedBy"
+        Me.colmodifiedBy.MinWidth = 37
         Me.colmodifiedBy.Name = "colmodifiedBy"
+        Me.colmodifiedBy.Width = 137
         '
         'colmodifiedOn
         '
         Me.colmodifiedOn.FieldName = "modifiedOn"
+        Me.colmodifiedOn.MinWidth = 37
         Me.colmodifiedOn.Name = "colmodifiedOn"
+        Me.colmodifiedOn.Width = 137
         '
         'colcreatedOn
         '
         Me.colcreatedOn.FieldName = "createdOn"
+        Me.colcreatedOn.MinWidth = 37
         Me.colcreatedOn.Name = "colcreatedOn"
+        Me.colcreatedOn.Width = 137
         '
         'colcreatedBy
         '
         Me.colcreatedBy.FieldName = "createdBy"
+        Me.colcreatedBy.MinWidth = 37
         Me.colcreatedBy.Name = "colcreatedBy"
+        Me.colcreatedBy.Width = 137
         '
         'colcctName
         '
         Me.colcctName.Caption = "ΠΕΛΑΤΗΣ"
         Me.colcctName.FieldName = "cctName"
+        Me.colcctName.MinWidth = 37
         Me.colcctName.Name = "colcctName"
         Me.colcctName.Visible = True
         Me.colcctName.VisibleIndex = 1
+        Me.colcctName.Width = 137
         '
         'colSalerName
         '
         Me.colSalerName.Caption = "ΠΩΛΗΤΗΣ"
         Me.colSalerName.FieldName = "SalerName"
+        Me.colSalerName.MinWidth = 37
         Me.colSalerName.Name = "colSalerName"
         Me.colSalerName.Visible = True
         Me.colSalerName.VisibleIndex = 2
+        Me.colSalerName.Width = 137
         '
         'colRealName
         '
         Me.colRealName.FieldName = "RealName"
+        Me.colRealName.MinWidth = 37
         Me.colRealName.Name = "colRealName"
+        Me.colRealName.Width = 137
         '
         'colSerName
         '
         Me.colSerName.Caption = "ΣΥΝΕΡΓΕΙΟ"
         Me.colSerName.FieldName = "SerName"
+        Me.colSerName.MinWidth = 37
         Me.colSerName.Name = "colSerName"
         Me.colSerName.Visible = True
         Me.colSerName.VisibleIndex = 0
+        Me.colSerName.Width = 137
         '
         'colcolor
         '
         Me.colcolor.FieldName = "color"
+        Me.colcolor.MinWidth = 37
         Me.colcolor.Name = "colcolor"
+        Me.colcolor.Width = 137
         '
         'colcompleted
         '
         Me.colcompleted.Caption = "ΟΛΟΚΛΗΡΩΘΗΚΕ"
         Me.colcompleted.FieldName = "completed"
+        Me.colcompleted.MinWidth = 37
         Me.colcompleted.Name = "colcompleted"
         Me.colcompleted.Visible = True
         Me.colcompleted.VisibleIndex = 6
+        Me.colcompleted.Width = 137
         '
         'GridControl1
         '
         Me.GridControl1.DataSource = Me.VwINSTBindingSource
-        Me.GridControl1.Location = New System.Drawing.Point(5, 3)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(6)
+        Me.GridControl1.Location = New System.Drawing.Point(9, 6)
         Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(6)
         Me.GridControl1.MenuManager = Me.BarManager1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(941, 392)
+        Me.GridControl1.Size = New System.Drawing.Size(1725, 724)
         Me.GridControl1.TabIndex = 7
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -298,10 +338,11 @@ Partial Class frmCalendarInst
         Me.SchedulerControl1.ActiveViewType = DevExpress.XtraScheduler.SchedulerViewType.Month
         Me.SchedulerControl1.DataStorage = Me.SchedulerDataStorage1
         Me.SchedulerControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SchedulerControl1.Location = New System.Drawing.Point(0, 24)
+        Me.SchedulerControl1.Location = New System.Drawing.Point(0, 40)
+        Me.SchedulerControl1.Margin = New System.Windows.Forms.Padding(6)
         Me.SchedulerControl1.MenuManager = Me.BarManager1
         Me.SchedulerControl1.Name = "SchedulerControl1"
-        Me.SchedulerControl1.Size = New System.Drawing.Size(1560, 681)
+        Me.SchedulerControl1.Size = New System.Drawing.Size(2860, 1262)
         Me.SchedulerControl1.Start = New Date(2020, 10, 5, 0, 0, 0, 0)
         Me.SchedulerControl1.TabIndex = 11
         Me.SchedulerControl1.Text = "SchedulerControl1"
@@ -551,31 +592,35 @@ Partial Class frmCalendarInst
         Me.BarDockControl1.Dock = System.Windows.Forms.DockStyle.Top
         Me.BarDockControl1.Location = New System.Drawing.Point(0, 0)
         Me.BarDockControl1.Manager = Me.BarManager1
-        Me.BarDockControl1.Size = New System.Drawing.Size(1560, 24)
+        Me.BarDockControl1.Margin = New System.Windows.Forms.Padding(6)
+        Me.BarDockControl1.Size = New System.Drawing.Size(2860, 40)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 705)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1302)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1560, 0)
+        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(6)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(2860, 0)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 24)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 40)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 681)
+        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(6)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 1262)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1560, 24)
+        Me.barDockControlRight.Location = New System.Drawing.Point(2860, 40)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 681)
+        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(6)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 1262)
         '
         'BarHeaderItem1
         '
@@ -610,9 +655,10 @@ Partial Class frmCalendarInst
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(857, 401)
+        Me.cmdExit.Location = New System.Drawing.Point(1571, 740)
+        Me.cmdExit.Margin = New System.Windows.Forms.Padding(6)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(89, 28)
+        Me.cmdExit.Size = New System.Drawing.Size(163, 52)
         Me.cmdExit.TabIndex = 13
         Me.cmdExit.Text = "Έξοδος"
         '
@@ -620,9 +666,10 @@ Partial Class frmCalendarInst
         '
         Me.PanelResults.Controls.Add(Me.cmdExit)
         Me.PanelResults.Controls.Add(Me.GridControl1)
-        Me.PanelResults.Location = New System.Drawing.Point(377, 87)
+        Me.PanelResults.Location = New System.Drawing.Point(691, 161)
+        Me.PanelResults.Margin = New System.Windows.Forms.Padding(6)
         Me.PanelResults.Name = "PanelResults"
-        Me.PanelResults.Size = New System.Drawing.Size(951, 438)
+        Me.PanelResults.Size = New System.Drawing.Size(1744, 809)
         Me.PanelResults.TabIndex = 12
         '
         'Vw_CCT_MTableAdapter
@@ -670,9 +717,9 @@ Partial Class frmCalendarInst
         '
         'frmCalendarInst
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1560, 705)
+        Me.ClientSize = New System.Drawing.Size(2860, 1302)
         Me.Controls.Add(Me.PanelResults)
         Me.Controls.Add(Me.SchedulerControl1)
         Me.Controls.Add(Me.barDockControlTop)
@@ -681,6 +728,7 @@ Partial Class frmCalendarInst
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.BarDockControl1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(6)
         Me.Name = "frmCalendarInst"
         Me.Text = "frmCalendarInst"
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -74,7 +74,7 @@ Public Class frmCustomers
                 If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
                 FillCbo.AREAS(cboAREAS, sSQL)
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT where id ='" + sID + "'")
-                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where cctID = '" & sID & "'")
+                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,filename,comefrom,createdon,realname From vw_CCT_F where isnull(isInvoice,0)=0 and cctID = '" & sID & "'")
                 Dim C As New GridColumn
                 C.Name = "ICO"
                 C.Caption = ""
@@ -87,10 +87,11 @@ Public Class frmCustomers
                 GridView1.Columns.Add(C)
         End Select
         'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml") = False Then
-            GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
+        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml") = True Then
+            'GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
+            GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
         End If
-        GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_CCT_F_def.xml", OptionsLayoutBase.FullLayout)
+
         Me.CenterToScreen()
         My.Settings.frmCustomers = Me.Location
         My.Settings.Save()
@@ -141,7 +142,7 @@ Public Class frmCustomers
         Dim AreaID As String = ""
         If cboCOU.EditValue <> Nothing Then CouID = cboCOU.EditValue.ToString
         If cboAREAS.EditValue <> Nothing Then AreaID = cboAREAS.EditValue.ToString
-        sSQL.AppendLine("Select id,Name from vw_ADR ")
+        sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
         If CouID.Length > 0 Or AreaID.Length > 0 Or txtTK.Text.Length > 0 Then sSQL.AppendLine(" where ")
         If CouID.Length > 0 Then sSQL.AppendLine(" couid = " & toSQLValueS(CouID))
         If AreaID.Length > 0 Then
@@ -163,11 +164,14 @@ Public Class frmCustomers
         form1.L2.Text = "Διεύθυνση"
         form1.L3.Text = "Νομός"
         form1.L4.Text = "Περιοχές"
+        form1.L8.Text = "Αριθμός"
         form1.DataTable = "ADR"
         form1.CalledFromControl = True
         form1.CallerControl = cboADR
         form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.L8.Control.Tag = "Ar,0,1,2"
         If cboADR.EditValue <> Nothing Then form1.ID = cboADR.EditValue.ToString
         form1.MdiParent = frmMain
 
@@ -332,7 +336,8 @@ Public Class frmCustomers
         Try
             Dim sFilename = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename")
             Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
-            Dim b() As Byte = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "files")
+            'Dim b() As Byte = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "files")
+            Dim b() As Byte = GetFile(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
             fs.Write(b, 0, b.Length)
             fs.Close()
             My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & sFilename, My.Settings.CRM_PATH & sFilename, True)
@@ -341,7 +346,21 @@ Public Class frmCustomers
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function GetFile(ByVal sRowID As String) As Byte()
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Dim bytes As Byte()
 
+        sSQL = "Select  files From vw_CCT_F WHERE ID = " & toSQLValueS(sRowID)
+        cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
+        If sdr.Read() = True Then
+            bytes = DirectCast(sdr("files"), Byte())
+            Return bytes
+        End If
+        sdr.Close()
+
+    End Function
     Private Sub cboCOU_EditValueChanged(sender As Object, e As EventArgs) Handles cboCOU.EditValueChanged
         Dim sSQL As New System.Text.StringBuilder
         If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
@@ -537,6 +556,21 @@ Public Class frmCustomers
         End Sub
         Public Column As GridColumn
     End Class
+
+    Private Sub cmdImageSlider_Click(sender As Object, e As EventArgs) Handles cmdImageSlider.Click
+        SplashScreenManager1.ShowWaitForm()
+        SplashScreenManager1.SetWaitFormCaption("Παρακαλώ περιμένετε")
+
+        Dim frmImageSlider As frmImageSlider = New frmImageSlider()
+        frmImageSlider.CCT_ID = sID
+        frmImageSlider.Spl = SplashScreenManager1
+        frmImageSlider.ShowDialog()
+
+    End Sub
+
+    Private Sub GridControl1_Click(sender As Object, e As EventArgs) Handles GridControl1.Click
+
+    End Sub
 
 
 

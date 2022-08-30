@@ -4,8 +4,18 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraVerticalGrid.Rows
+Imports DevExpress.Utils.Menu
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraGrid
+Imports DevExpress.XtraGrid.Menu
+Imports DevExpress.Utils
 
 Public Class FormLoader
+    Private GRDview As GridView
+    Private XMLName As String
+    Private DbTblName As String
+    Private DbQuery As String
+
     Public Function LoadForm(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sSQL As String) As Boolean
 
         Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
@@ -67,6 +77,7 @@ Public Class FormLoader
                                             Case "int"
                                                 If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetInt32(sdr.GetOrdinal(TagV)))
                                             Case "uniqueidentifier"
+                                                'If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, (sdr.GetOrdinal(TagV)).ToString)
                                                 If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetGuid(sdr.GetOrdinal(TagV)).ToString)
                                             Case "bit"
                                                 If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetBoolean(sdr.GetOrdinal(TagV)))
@@ -97,7 +108,7 @@ Public Class FormLoader
             Dim trace = New System.Diagnostics.StackTrace(ex, True)
             Dim line As String = Strings.Right(trace.ToString, 5)
 
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Public Function LoadFormGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sSQL As String) As Boolean
@@ -186,7 +197,13 @@ Public Class FormLoader
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                 Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                 cbo = Ctrl
-                If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
+                If sValue = "False" Or sValue = "True" Then
+                    If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
+                ElseIf IsNumeric(sValue) Then
+                    cbo.SelectedIndex = sValue
+                Else
+                    cbo.EditValue = sValue
+                End If
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
                 Dim dt As DevExpress.XtraEditors.DateEdit
                 dt = Ctrl
@@ -194,7 +211,6 @@ Public Class FormLoader
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
                 Dim tm As DevExpress.XtraEditors.TimeEdit
                 tm = Ctrl
-
                 tm.EditValue = CDate(sValue).ToString("HH:mm")
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
                 Dim txt As DevExpress.XtraEditors.MemoEdit
@@ -204,6 +220,10 @@ Public Class FormLoader
                 Else
                     txt.Text = sValue
                 End If
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.RatingControl Then
+                Dim Rt As DevExpress.XtraEditors.RatingControl
+                Rt = Ctrl
+                Rt.EditValue = sValue
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
                 Dim txt As DevExpress.XtraEditors.TextEdit
                 txt = Ctrl
@@ -224,7 +244,7 @@ Public Class FormLoader
 
             End If
         Catch ex As Exception
-        XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadDataToGrid(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
@@ -239,6 +259,11 @@ Public Class FormLoader
             GRDView.Columns.Clear()
             myReader = myCmd.ExecuteReader()
             dt.Load(myReader)
+            ' Κάνω όλες τις στήλες Editable
+            For Each myField As DataColumn In dt.Columns
+                myField.ReadOnly = False
+            Next
+            'dt.Columns.Item("selected").ReadOnly = False
             If AddColumnInteger = True Then
                 dt.Columns.Add("QTY", GetType(Int32))
                 'dt.Columns.Item("QTY").AllowDBNull = False
@@ -273,7 +298,7 @@ Public Class FormLoader
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadDataToVGrid(ByRef GRDControl As DevExpress.XtraVerticalGrid.VGridControl,
@@ -453,7 +478,7 @@ Public Class FormLoader
             'End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadColumnDescriptionNames(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
@@ -495,7 +520,7 @@ Public Class FormLoader
                     Dim C As New GridColumn
                     C = GRDView.Columns.ColumnByName("col" & columnName)
                     If C IsNot Nothing Then
-                        C.Caption = columnNameValue
+                        If C.Caption = "" Then C.Caption = columnNameValue
                         C = Nothing
                     End If
                 End If
@@ -505,5 +530,247 @@ Public Class FormLoader
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Sub PopupMenuShow(ByVal e As Views.Grid.PopupMenuShowingEventArgs, ByVal GridView As GridView, ByVal sXMLName As String, Optional ByVal sTableName As String = "",
+                             Optional ByVal sQuery As String = "")
+        If e.MenuType = GridMenuType.Column Then
+            Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = TryCast(e.Menu, GridViewColumnMenu)
+            Dim item As New DXEditMenuItem()
+            Dim itemColor As New DXEditMenuItem()
+            GRDview = GridView : XMLName = sXMLName
+            'menu.Items.Clear()
+            If menu.Column IsNot Nothing Then
+                'Για να προσθέσουμε menu item στο Default menu πρέπει πρώτα να προσθέσουμε ένα Repository Item 
+                'Υπάρχουν πολλών ειδών Repositorys
+                '1st Custom Menu Item
+                Dim popRenameColumn As New RepositoryItemTextEdit
+                popRenameColumn.Name = "RenameColumn"
+                menu.Items.Add(New DXEditMenuItem("Μετονομασία Στήλης", popRenameColumn, AddressOf OnEditValueChanged, Nothing, Nothing, 100, 0))
+
+                item = menu.Items.Item("Μετονομασία Στήλης")
+                item.EditValue = menu.Column.GetTextCaption
+                item.Tag = menu.Column.AbsoluteIndex
+
+                '2nd Custom Menu Item
+                menu.Items.Add(CreateCheckItem("Κλείδωμα Στήλης", menu.Column, Nothing))
+
+                '3rd Custom Menu Item
+                Dim popColorsColumn As New RepositoryItemColorEdit
+                popColorsColumn.Name = "ColorsColumn"
+                menu.Items.Add(New DXEditMenuItem("Χρώμα Στήλης", popColorsColumn, AddressOf OnColumnsColorChanged, Nothing, Nothing, 100, 0))
+                itemColor = menu.Items.Item("Χρώμα Στήλης")
+                itemColor.EditValue = menu.Column.AppearanceCell.BackColor
+                itemColor.Tag = menu.Column.AbsoluteIndex
+                '4nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Εκτύπωση όψης", AddressOf OnPrintView, Nothing, Nothing, Nothing, Nothing))
+                '5nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveView, Nothing, Nothing, Nothing, Nothing))
+                '6nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Συγχρονισμός όψης από Server", AddressOf OnSyncView, Nothing, Nothing, Nothing, Nothing))
+
+                If sTableName <> "" Then
+                    DbTblName = sTableName
+                    '7nd Custom Menu Item
+                    menu.Items.Add(New DXMenuItem("Ενημέρωση πεδίων όψης από Βάση", AddressOf OnUpdateViewFromDB, Nothing, Nothing, Nothing, Nothing))
+                ElseIf sQuery <> "" Then
+                    DbQuery = sQuery
+                    '7nd Custom Menu Item
+                    menu.Items.Add(New DXMenuItem("Ενημέρωση πεδίων όψης από Βάση", AddressOf OnUpdateViewFromDB, Nothing, Nothing, Nothing, Nothing))
+                End If
+            End If
+        End If
+
+    End Sub
+    Private Sub OnUpdateViewFromDB(ByVal sender As System.Object, ByVal e As EventArgs)
+        'ReadXml.UpdateXMLFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
+        'My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml")
+        Try
+            Dim col1 As GridColumn
+            Dim Col2 As GridColumn
+            Dim grdColumns As List(Of GridColumn)
+            Dim sSQL As String
+            Dim myCmd As SqlCommand
+            Dim myReader As SqlDataReader
+            If DbTblName <> "" Then
+                sSQL = "SELECT top 1 * FROM " & DbTblName
+            ElseIf DbQuery <> "" Then
+                sSQL = DbQuery
+            End If
+            myCmd = CNDB.CreateCommand
+            myCmd.CommandText = sSQL
+            myReader = myCmd.ExecuteReader()
+
+
+            If myReader Is Nothing Then Exit Sub
+            'Εαν υπάρχουν πεδία που πρέπει να προστεθούν από την βάση
+            If myReader.FieldCount >= GRDview.Columns.Count Then
+                Dim schema As DataTable = myReader.GetSchemaTable()
+                grdColumns = GRDview.Columns.ToList()
+                For i As Integer = 0 To myReader.FieldCount - 1
+                    Console.WriteLine(myReader.GetName(i))
+                    If i < GRDview.Columns.Count Then
+                        'Col2 = GridView1.Columns.Item(i)
+                        Col2 = GRDview.Columns.ColumnByFieldName(myReader.GetName(i))
+                    Else
+                        Col2 = Nothing
+                    End If
+                    If Col2 Is Nothing Then
+                        col1 = GRDview.Columns.AddField(myReader.GetName(i))
+                        col1.FieldName = myReader.GetName(i)
+                        col1.Visible = True
+                        col1.VisibleIndex = 0
+                        col1.AppearanceCell.BackColor = Color.Bisque
+                    End If
+
+                Next
+                'Εαν έχουν σβηστεί πεδία από την βάση τα αφαιρεί και από το grid
+            ElseIf myReader.FieldCount < GRDview.Columns.Count Then
+                Dim schema As DataTable = myReader.GetSchemaTable()
+                grdColumns = GRDview.Columns.ToList()
+
+                For i As Integer = 0 To grdColumns.Count - 1
+                    Try
+                        Col2 = grdColumns(i)
+                        Dim sOrd As String = myReader.GetOrdinal(Col2.FieldName)
+                    Catch ex As Exception
+                        Col2 = grdColumns(i)
+                        GRDview.Columns.Remove(Col2)
+                        Console.WriteLine(ex.Message)
+
+                        Continue For
+                    End Try
+
+                Next
+
+            End If
+            If DbTblName <> "" Then LoadColumnDescriptionNames(GRDview, , DbTblName)
+            myReader.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+    Public Sub LoadColumnDescriptionNames(ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView, Optional ByVal sTable As String = "", Optional ByVal sView As String = "")
+        Dim myCmd As SqlCommand
+        Dim myReader As SqlDataReader
+        Dim sSQL As String
+        Dim dt As New DataTable("sTable")
+        Try
+            If sView.Length > 0 Then
+                sSQL = "Select  VIEW_COLUMN_NAME = c.name,VIEW_CATALOG,VIEW_SCHEMA,VIEW_NAME,TABLE_CATALOG,TABLE_SCHEMA,TABLE_NAME,ISNULL(c.name,COLUMN_NAME) AS COLUMN_NAME, ISNULL(ep.value,ISNULL(c.name,COLUMN_NAME)) As 'COLUMN_DESCRIPTION'
+                        From sys.columns c
+                        INNER Join sys.views vw on c.OBJECT_ID = vw.OBJECT_ID
+                        INNER Join sys.schemas s ON s.schema_id = vw.schema_id
+                        Left Join INFORMATION_SCHEMA.VIEW_COLUMN_USAGE vcu on vw.name = vcu.VIEW_NAME And s.name = vcu.VIEW_SCHEMA And c.name = vcu.COLUMN_NAME
+                        Left Join(
+                            SELECT distinct SCM_Name=SCM.Name, TBL_Name = TBL.name, COLName = COL.name, COL_Object_id = COL.object_id, COL_column_id = COL.column_id
+                            FROM
+                            SYS.COLUMNS COL
+                            INNER Join SYS.TABLES TBL on COL.object_id = TBL.object_id
+                            INNER Join SYS.SCHEMAS SCM ON TBL.schema_id = SCM.schema_id) tempTBL on tempTBL.TBL_Name=vcu.TABLE_NAME And tempTBL.SCM_Name=TABLE_SCHEMA And tempTBL.COLName = vcu.COLUMN_NAME
+                        Left Join sys.extended_properties ep on tempTBL.COL_Object_id = ep.major_id And tempTBL.COL_column_id = ep.minor_id
+                        where vw.NAME = '" & sView & "'"
+            ElseIf sTable.Length > 0 Then
+                sSQL = "Select   objname, [value] FROM fn_listextendedproperty(NULL, 'SCHEMA', 'dbo', 'TABLE', '" & sTable & "','COLUMN', NULL)"
+            Else
+                Exit Sub
+            End If
+
+            myCmd = CNDB.CreateCommand
+            myCmd.CommandText = sSQL
+            myReader = myCmd.ExecuteReader()
+            dt.Load(myReader)
+            For Each row As DataRow In dt.Rows
+                Dim columnName As String = row.Item("COLUMN_NAME").ToString
+                Dim columnNameValue As String = row.Item("COLUMN_DESCRIPTION").ToString
+
+                If columnName.Length > 0 And columnNameValue.Length > 0 Then
+                    Dim C As New GridColumn
+                    C = GRDView.Columns.ColumnByName("col" & columnName)
+                    If C IsNot Nothing Then
+                        If C.Caption = "" Then C.Caption = columnNameValue
+                        C = Nothing
+                    End If
+                End If
+                'If columnName.Length > 0 And GRDView.Columns.Item(columnName) IsNot Nothing Then GRDView.Columns.Item(columnName).Caption = columnNameValue
+            Next
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    'Αποθήκευση όψης 
+    Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim grdVer As Decimal
+        Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
+        grdVer = IIf(GRDview.OptionsLayout.LayoutVersion = "", 0.5, GRDview.OptionsLayout.LayoutVersion)
+        grdVer = grdVer + 0.5 : GRDview.OptionsLayout.LayoutVersion = grdVer
+        GRDview.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & XMLName, OptionsLayoutBase.FullLayout)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\" & XMLName) = False Then GRDview.OptionsLayout.LayoutVersion = "v1"
+                GRDview.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\" & XMLName, OptionsLayoutBase.FullLayout)
+            End If
+        End If
+    End Sub
+
+    'Μετονομασία Στήλης Master
+    Private Sub OnEditValueChanged(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As New DXEditMenuItem()
+        item = sender
+        If item.Tag Is Nothing Then Exit Sub
+        If item.Tag = -1 Then Exit Sub
+        GRDview.Columns(item.Tag).Caption = item.EditValue
+        'MessageBox.Show(item.EditValue.ToString())
+    End Sub
+    Private Function CreateCheckItem(ByVal caption As String, ByVal column As GridColumn, ByVal image As Image) As DXMenuCheckItem
+        Dim item As New DXMenuCheckItem(caption, (Not column.OptionsColumn.AllowMove), image, New EventHandler(AddressOf OnCanMoveItemClick))
+        item.Tag = New MenuColumnInfo(column)
+        Return item
+    End Function
+    'Αλλαγή Χρώματος Στήλης Master
+    Private Sub OnColumnsColorChanged(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXEditMenuItem = TryCast(sender, DXEditMenuItem)
+        item = sender
+        If item.Tag Is Nothing Or item.Tag = -1 Then Exit Sub
+        GRDview.Columns(item.Tag).AppearanceCell.BackColor = item.EditValue
+    End Sub
+    'Κλείδωμα Στήλης Master
+    Private Sub OnCanMoveItemClick(ByVal sender As Object, ByVal e As EventArgs)
+        Dim item As DXMenuCheckItem = TryCast(sender, DXMenuCheckItem)
+        Dim info As MenuColumnInfo = TryCast(item.Tag, MenuColumnInfo)
+        If info Is Nothing Then
+            Return
+        End If
+        info.Column.OptionsColumn.AllowMove = Not item.Checked
+    End Sub
+    'Εκτύπωση Όψης
+    Private Sub OnPrintView(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
+        GRDview.GridControl.ShowRibbonPrintPreview()
+    End Sub
+    'Συγχρονισμός όψης από Server
+    Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
+            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\" & XMLName) = True Then
+                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\" & XMLName, Application.StartupPath & "\DSGNS\DEF\" & XMLName, True)
+                GRDview.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & XMLName, OptionsLayoutBase.FullLayout)
+            End If
+            'If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\APMIL_D_def.xml") = True Then
+            '    My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\APMIL_D_def.xml", Application.StartupPath & "\DSGNS\DEF\APMIL_D_def.xml", True)
+            '    '        GridView7.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\APMIL_D_def.xml", OptionsLayoutBase.FullLayout)
+            'End If
+
+        End If
+    End Sub
+    Friend Class MenuColumnInfo
+        Public Sub New(ByVal column As GridColumn)
+            Me.Column = column
+        End Sub
+        Public Column As GridColumn
+    End Class
+
 End Class
 

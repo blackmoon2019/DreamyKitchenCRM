@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports System.Data.SqlClient
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 
 Public Class frmSUP
@@ -96,7 +97,7 @@ Public Class frmSUP
         Dim AreaID As String = ""
         If cboCOU.EditValue <> Nothing Then CouID = cboCOU.EditValue.ToString
         If cboAREAS.EditValue <> Nothing Then AreaID = cboAREAS.EditValue.ToString
-        sSQL.AppendLine("Select id,Name from vw_ADR ")
+        sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
         If CouID.Length > 0 Or AreaID.Length > 0 Or txtTK.Text.Length > 0 Then sSQL.AppendLine(" where ")
         If CouID.Length > 0 Then sSQL.AppendLine(" couid = " & toSQLValueS(CouID))
         If AreaID.Length > 0 Then
@@ -118,17 +119,21 @@ Public Class frmSUP
         form1.L2.Text = "Διεύθυνση"
         form1.L3.Text = "Νομός"
         form1.L4.Text = "Περιοχές"
+        form1.L8.Text = "Αριθμός"
         form1.DataTable = "ADR"
         form1.CalledFromControl = True
         form1.CallerControl = cboADR
         form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.L8.Control.Tag = "Ar,0,1,2"
         If cboADR.EditValue <> Nothing Then form1.ID = cboADR.EditValue.ToString
         form1.MdiParent = frmMain
 
         If cboADR.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
+
     End Sub
     Private Sub ManageCOU()
         Dim form1 As frmGen = New frmGen()
@@ -254,6 +259,7 @@ Public Class frmSUP
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         sResult = DBQ.InsertData(LayoutControl1, "SUP", sGuid)
+                        sID = sGuid
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateData(LayoutControl1, "SUP", sID)
                         sGuid = sID
@@ -284,4 +290,21 @@ Public Class frmSUP
         Me.Close()
     End Sub
 
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+
+
+        Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
+            oCmd.CommandType = CommandType.StoredProcedure
+            oCmd.Parameters.AddWithValue("@supplierID", sID)
+            oCmd.ExecuteNonQuery()
+        End Using
+        sSQL = "Select  BAL from SUP WHERE ID = " & toSQLValueS(sID)
+        cmd = New SqlCommand(sSQL, CNDB)
+        sdr = cmd.ExecuteReader()
+        If sdr.Read() = True Then txtBal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("BAL"))
+        sdr.Close()
+    End Sub
 End Class

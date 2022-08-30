@@ -142,12 +142,13 @@ Partial Class frmCalendar
         '
         Me.SchedulerControl1.DataStorage = Me.SchedulerDataStorage1
         Me.SchedulerControl1.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.SchedulerControl1.Location = New System.Drawing.Point(0, 24)
+        Me.SchedulerControl1.Location = New System.Drawing.Point(0, 40)
+        Me.SchedulerControl1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.SchedulerControl1.MenuManager = Me.BarManager1
         Me.SchedulerControl1.Name = "SchedulerControl1"
         Me.SchedulerControl1.OptionsRangeControl.RangeMaximum = New Date(2021, 12, 1, 0, 0, 0, 0)
         Me.SchedulerControl1.OptionsRangeControl.RangeMinimum = New Date(2021, 9, 1, 0, 0, 0, 0)
-        Me.SchedulerControl1.Size = New System.Drawing.Size(1574, 688)
+        Me.SchedulerControl1.Size = New System.Drawing.Size(2623, 1220)
         Me.SchedulerControl1.Start = New Date(2020, 10, 5, 0, 0, 0, 0)
         Me.SchedulerControl1.TabIndex = 0
         Me.SchedulerControl1.Text = "SchedulerControl1"
@@ -438,31 +439,35 @@ Partial Class frmCalendar
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Size = New System.Drawing.Size(1574, 24)
+        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.barDockControlTop.Size = New System.Drawing.Size(2623, 40)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 712)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1260)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1574, 0)
+        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(2623, 0)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 24)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 40)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 688)
+        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 1220)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1574, 24)
+        Me.barDockControlRight.Location = New System.Drawing.Point(2623, 40)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 688)
+        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 1220)
         '
         'BarHeaderItem1
         '
@@ -524,35 +529,40 @@ Partial Class frmCalendar
         '
         Me.PanelResults.Controls.Add(Me.cmdExit)
         Me.PanelResults.Controls.Add(Me.GridControl1)
-        Me.PanelResults.Location = New System.Drawing.Point(377, 99)
+        Me.PanelResults.Location = New System.Drawing.Point(628, 175)
+        Me.PanelResults.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.PanelResults.Name = "PanelResults"
-        Me.PanelResults.Size = New System.Drawing.Size(951, 438)
+        Me.PanelResults.Size = New System.Drawing.Size(1585, 775)
         Me.PanelResults.TabIndex = 10
         '
         'cmdExit
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(857, 401)
+        Me.cmdExit.Location = New System.Drawing.Point(1428, 709)
+        Me.cmdExit.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(89, 28)
+        Me.cmdExit.Size = New System.Drawing.Size(148, 50)
         Me.cmdExit.TabIndex = 13
         Me.cmdExit.Text = "Έξοδος"
         '
         'GridControl1
         '
         Me.GridControl1.DataSource = Me.VwCCTMBindingSource
-        Me.GridControl1.Location = New System.Drawing.Point(5, 3)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.GridControl1.Location = New System.Drawing.Point(8, 5)
         Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.GridControl1.MenuManager = Me.BarManager1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(941, 392)
+        Me.GridControl1.Size = New System.Drawing.Size(1568, 694)
         Me.GridControl1.TabIndex = 7
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colFullname, Me.colmob, Me.colemail, Me.colcct_cmt, Me.colcode, Me.colSTATUS_Name, Me.colallowschedule, Me.colSALERS_Name, Me.colcolor, Me.colADR_Name, Me.colAr, Me.coltk, Me.colRealName, Me.colAREAS_Name, Me.colstatusID, Me.colcusID, Me.colsch, Me.colcompleted, Me.coldtcompleted, Me.colcmt, Me.colcreatedOn, Me.colmodifiedOn, Me.colsalersID, Me.colSALERS_Code, Me.coldtReminderDate, Me.colREM_VALUES_name, Me.colremValueID, Me.colReminder, Me.colS_CCT_M_Code, Me.colS_CCT_M_Color, Me.colS_CCT_M_name, Me.coltmReminder, Me.coldtReceiveDate, Me.coldtDeliverDate, Me.colCusSaler, Me.colcreatedby_Realname, Me.colphn})
+        Me.GridView1.DetailHeight = 619
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.Editable = False
@@ -561,210 +571,286 @@ Partial Class frmCalendar
         'colID
         '
         Me.colID.FieldName = "ID"
+        Me.colID.MinWidth = 33
         Me.colID.Name = "colID"
+        Me.colID.Width = 125
         '
         'colFullname
         '
         Me.colFullname.Caption = "ΠΕΛΑΤΗΣ"
         Me.colFullname.FieldName = "Fullname"
+        Me.colFullname.MinWidth = 33
         Me.colFullname.Name = "colFullname"
         Me.colFullname.Visible = True
         Me.colFullname.VisibleIndex = 2
+        Me.colFullname.Width = 125
         '
         'colmob
         '
         Me.colmob.Caption = "ΚΙΝΗΤΟ"
         Me.colmob.FieldName = "mob"
+        Me.colmob.MinWidth = 33
         Me.colmob.Name = "colmob"
+        Me.colmob.Width = 125
         '
         'colemail
         '
         Me.colemail.Caption = "EMAIL"
         Me.colemail.FieldName = "email"
+        Me.colemail.MinWidth = 33
         Me.colemail.Name = "colemail"
+        Me.colemail.Width = 125
         '
         'colcct_cmt
         '
         Me.colcct_cmt.FieldName = "cct_cmt"
+        Me.colcct_cmt.MinWidth = 33
         Me.colcct_cmt.Name = "colcct_cmt"
+        Me.colcct_cmt.Width = 125
         '
         'colcode
         '
         Me.colcode.FieldName = "code"
+        Me.colcode.MinWidth = 33
         Me.colcode.Name = "colcode"
+        Me.colcode.Width = 125
         '
         'colSTATUS_Name
         '
         Me.colSTATUS_Name.Caption = "STATUS"
         Me.colSTATUS_Name.FieldName = "STATUS_Name"
+        Me.colSTATUS_Name.MinWidth = 33
         Me.colSTATUS_Name.Name = "colSTATUS_Name"
         Me.colSTATUS_Name.Visible = True
         Me.colSTATUS_Name.VisibleIndex = 0
+        Me.colSTATUS_Name.Width = 125
         '
         'colallowschedule
         '
         Me.colallowschedule.FieldName = "allowschedule"
+        Me.colallowschedule.MinWidth = 33
         Me.colallowschedule.Name = "colallowschedule"
+        Me.colallowschedule.Width = 125
         '
         'colSALERS_Name
         '
         Me.colSALERS_Name.FieldName = "SALERS_Name"
+        Me.colSALERS_Name.MinWidth = 33
         Me.colSALERS_Name.Name = "colSALERS_Name"
+        Me.colSALERS_Name.Width = 125
         '
         'colcolor
         '
         Me.colcolor.FieldName = "color"
+        Me.colcolor.MinWidth = 33
         Me.colcolor.Name = "colcolor"
+        Me.colcolor.Width = 125
         '
         'colADR_Name
         '
         Me.colADR_Name.FieldName = "ADR_Name"
+        Me.colADR_Name.MinWidth = 33
         Me.colADR_Name.Name = "colADR_Name"
+        Me.colADR_Name.Width = 125
         '
         'colAr
         '
         Me.colAr.FieldName = "Ar"
+        Me.colAr.MinWidth = 33
         Me.colAr.Name = "colAr"
+        Me.colAr.Width = 125
         '
         'coltk
         '
         Me.coltk.FieldName = "tk"
+        Me.coltk.MinWidth = 33
         Me.coltk.Name = "coltk"
+        Me.coltk.Width = 125
         '
         'colRealName
         '
         Me.colRealName.FieldName = "RealName"
+        Me.colRealName.MinWidth = 33
         Me.colRealName.Name = "colRealName"
+        Me.colRealName.Width = 125
         '
         'colAREAS_Name
         '
         Me.colAREAS_Name.FieldName = "AREAS_Name"
+        Me.colAREAS_Name.MinWidth = 33
         Me.colAREAS_Name.Name = "colAREAS_Name"
+        Me.colAREAS_Name.Width = 125
         '
         'colstatusID
         '
         Me.colstatusID.FieldName = "statusID"
+        Me.colstatusID.MinWidth = 33
         Me.colstatusID.Name = "colstatusID"
+        Me.colstatusID.Width = 125
         '
         'colcusID
         '
         Me.colcusID.FieldName = "cusID"
+        Me.colcusID.MinWidth = 33
         Me.colcusID.Name = "colcusID"
+        Me.colcusID.Width = 125
         '
         'colsch
         '
         Me.colsch.FieldName = "sch"
+        Me.colsch.MinWidth = 33
         Me.colsch.Name = "colsch"
+        Me.colsch.Width = 125
         '
         'colcompleted
         '
         Me.colcompleted.FieldName = "completed"
+        Me.colcompleted.MinWidth = 33
         Me.colcompleted.Name = "colcompleted"
+        Me.colcompleted.Width = 125
         '
         'coldtcompleted
         '
         Me.coldtcompleted.FieldName = "dtcompleted"
+        Me.coldtcompleted.MinWidth = 33
         Me.coldtcompleted.Name = "coldtcompleted"
+        Me.coldtcompleted.Width = 125
         '
         'colcmt
         '
         Me.colcmt.FieldName = "cmt"
+        Me.colcmt.MinWidth = 33
         Me.colcmt.Name = "colcmt"
+        Me.colcmt.Width = 125
         '
         'colcreatedOn
         '
         Me.colcreatedOn.FieldName = "createdOn"
+        Me.colcreatedOn.MinWidth = 33
         Me.colcreatedOn.Name = "colcreatedOn"
+        Me.colcreatedOn.Width = 125
         '
         'colmodifiedOn
         '
         Me.colmodifiedOn.FieldName = "modifiedOn"
+        Me.colmodifiedOn.MinWidth = 33
         Me.colmodifiedOn.Name = "colmodifiedOn"
+        Me.colmodifiedOn.Width = 125
         '
         'colsalersID
         '
         Me.colsalersID.FieldName = "salersID"
+        Me.colsalersID.MinWidth = 33
         Me.colsalersID.Name = "colsalersID"
+        Me.colsalersID.Width = 125
         '
         'colSALERS_Code
         '
         Me.colSALERS_Code.FieldName = "SALERS_Code"
+        Me.colSALERS_Code.MinWidth = 33
         Me.colSALERS_Code.Name = "colSALERS_Code"
+        Me.colSALERS_Code.Width = 125
         '
         'coldtReminderDate
         '
         Me.coldtReminderDate.Caption = "ΗΜΕΡΟΜΗΝΙΑ ΕΙΔΟΠΟΙΗΣΗΣ"
         Me.coldtReminderDate.FieldName = "dtReminderDate"
+        Me.coldtReminderDate.MinWidth = 33
         Me.coldtReminderDate.Name = "coldtReminderDate"
         Me.coldtReminderDate.Visible = True
         Me.coldtReminderDate.VisibleIndex = 3
+        Me.coldtReminderDate.Width = 125
         '
         'colREM_VALUES_name
         '
         Me.colREM_VALUES_name.FieldName = "REM_VALUES_name"
+        Me.colREM_VALUES_name.MinWidth = 33
         Me.colREM_VALUES_name.Name = "colREM_VALUES_name"
+        Me.colREM_VALUES_name.Width = 125
         '
         'colremValueID
         '
         Me.colremValueID.FieldName = "remValueID"
+        Me.colremValueID.MinWidth = 33
         Me.colremValueID.Name = "colremValueID"
+        Me.colremValueID.Width = 125
         '
         'colReminder
         '
         Me.colReminder.FieldName = "Reminder"
+        Me.colReminder.MinWidth = 33
         Me.colReminder.Name = "colReminder"
+        Me.colReminder.Width = 125
         '
         'colS_CCT_M_Code
         '
         Me.colS_CCT_M_Code.FieldName = "S_CCT_M_Code"
+        Me.colS_CCT_M_Code.MinWidth = 33
         Me.colS_CCT_M_Code.Name = "colS_CCT_M_Code"
+        Me.colS_CCT_M_Code.Width = 125
         '
         'colS_CCT_M_Color
         '
         Me.colS_CCT_M_Color.Caption = "ΧΡΩΜΑ"
         Me.colS_CCT_M_Color.FieldName = "S_CCT_M_Color"
+        Me.colS_CCT_M_Color.MinWidth = 33
         Me.colS_CCT_M_Color.Name = "colS_CCT_M_Color"
+        Me.colS_CCT_M_Color.Width = 125
         '
         'colS_CCT_M_name
         '
         Me.colS_CCT_M_name.Caption = "ΠΩΛΗΤΗΣ"
         Me.colS_CCT_M_name.FieldName = "S_CCT_M_name"
+        Me.colS_CCT_M_name.MinWidth = 33
         Me.colS_CCT_M_name.Name = "colS_CCT_M_name"
         Me.colS_CCT_M_name.Visible = True
         Me.colS_CCT_M_name.VisibleIndex = 1
+        Me.colS_CCT_M_name.Width = 125
         '
         'coltmReminder
         '
         Me.coltmReminder.FieldName = "tmReminder"
+        Me.coltmReminder.MinWidth = 33
         Me.coltmReminder.Name = "coltmReminder"
+        Me.coltmReminder.Width = 125
         '
         'coldtReceiveDate
         '
         Me.coldtReceiveDate.FieldName = "dtReceiveDate"
+        Me.coldtReceiveDate.MinWidth = 33
         Me.coldtReceiveDate.Name = "coldtReceiveDate"
+        Me.coldtReceiveDate.Width = 125
         '
         'coldtDeliverDate
         '
         Me.coldtDeliverDate.FieldName = "dtDeliverDate"
+        Me.coldtDeliverDate.MinWidth = 33
         Me.coldtDeliverDate.Name = "coldtDeliverDate"
+        Me.coldtDeliverDate.Width = 125
         '
         'colCusSaler
         '
         Me.colCusSaler.FieldName = "CusSaler"
+        Me.colCusSaler.MinWidth = 33
         Me.colCusSaler.Name = "colCusSaler"
+        Me.colCusSaler.Width = 125
         '
         'colcreatedby_Realname
         '
         Me.colcreatedby_Realname.FieldName = "createdby_Realname"
+        Me.colcreatedby_Realname.MinWidth = 33
         Me.colcreatedby_Realname.Name = "colcreatedby_Realname"
+        Me.colcreatedby_Realname.Width = 125
         '
         'colphn
         '
         Me.colphn.Caption = "ΤΗΛΕΦΩΝΟ"
         Me.colphn.FieldName = "phn"
+        Me.colphn.MinWidth = 33
         Me.colphn.Name = "colphn"
         Me.colphn.Visible = True
         Me.colphn.VisibleIndex = 4
+        Me.colphn.Width = 125
         '
         'Vw_SALERS_AND_COUNTERSTableAdapter
         '
@@ -778,9 +864,9 @@ Partial Class frmCalendar
         '
         'frmCalendar
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1574, 712)
+        Me.ClientSize = New System.Drawing.Size(2623, 1260)
         Me.Controls.Add(Me.PanelResults)
         Me.Controls.Add(Me.SchedulerControl1)
         Me.Controls.Add(Me.barDockControlLeft)
@@ -788,6 +874,7 @@ Partial Class frmCalendar
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
+        Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.Name = "frmCalendar"
         Me.Text = "frmCalendar"
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).EndInit()

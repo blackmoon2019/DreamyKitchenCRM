@@ -9,6 +9,7 @@ Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraReports.UI
 
 Public Class frmTransactions
     Private sID As String
@@ -65,6 +66,8 @@ Public Class frmTransactions
     End Sub
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_PAYTYPES' table. You can move, or remove it, as needed.
+        Me.Vw_PAYTYPESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_PAYTYPES)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SCAN_FILE_NAMES' table. You can move, or remove it, as needed.
         Me.Vw_SCAN_FILE_NAMESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SCAN_FILE_NAMES)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INVTYPES' table. You can move, or remove it, as needed.
@@ -361,12 +364,16 @@ Public Class frmTransactions
     End Sub
 
     Private Sub GridView1CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
-        Dim cash As Byte, cmt As String
+        Dim cash As Byte, cmt As String, Paid As Byte
         Try
             Dim sSQL As String
             If Not IsDBNull(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cash")) Then
                 If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cash") = True Then cash = 1 Else cash = 0
             End If
+            If Not IsDBNull(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "paid")) Then
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "paid") = True Then Paid = 1 Else Paid = 0
+            End If
+
             If Not IsDBNull(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt")) Then
                 cmt = toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt"))
             Else
@@ -374,7 +381,9 @@ Public Class frmTransactions
             End If
             sSQL = "UPDATE [TRANSD] SET dtPay  = " & toSQLValueS(CDate(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "dtPay")).ToString("yyyyMMdd")) &
                 ",bankID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "bankID").ToString) &
+                ",PayType = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PayType").ToString) &
                 ",cash = " & cash &
+                ",paid = " & Paid &
                 ",cmt = " & cmt &
                 ",amt = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "amt"), True) &
         " WHERE ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
@@ -417,6 +426,9 @@ Public Class frmTransactions
 
                 '4nd Custom Menu Item
                 menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveView, Nothing, Nothing, Nothing, Nothing))
+                '5nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Συγχρονισμός όψης από Server", AddressOf OnSyncView, Nothing, Nothing, Nothing, Nothing))
+
 
             End If
         End If
@@ -455,8 +467,25 @@ Public Class frmTransactions
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-    End Sub
+        ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
+                GridView1.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
+            End If
+        End If
 
+    End Sub
+    'Συγχρονισμός όψης από Server
+    Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
+            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml") = True Then
+                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml", Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", True)
+                GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
+            End If
+        End If
+    End Sub
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
         Select Case e.KeyCode
             'Case Keys.F2 : If UserProps.AllowInsert = True Then NewRecord()
@@ -528,8 +557,8 @@ Public Class frmTransactions
     End Sub
     Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then If cboSaler.EditValue <> Nothing Then ManageSaler()
             Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub
@@ -555,10 +584,209 @@ Public Class frmTransactions
         Public Column As GridColumn
     End Class
 
-    Private Sub txtInvoiceFilename_EditValueChanged(sender As Object, e As EventArgs) Handles txtInvoiceFilename.EditValueChanged
+
+
+    Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then
+            Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = TryCast(e.Menu, GridViewColumnMenu)
+            Dim item As New DXEditMenuItem()
+            Dim itemColor As New DXEditMenuItem()
+
+            'menu.Items.Clear()
+            If menu.Column IsNot Nothing Then
+                'Για να προσθέσουμε menu item στο Default menu πρέπει πρώτα να προσθέσουμε ένα Repository Item 
+                'Υπάρχουν πολλών ειδών Repositorys
+                '1st Custom Menu Item
+                Dim popRenameColumn As New RepositoryItemTextEdit
+                popRenameColumn.Name = "RenameColumn"
+                menu.Items.Add(New DXEditMenuItem("Μετονομασία Στήλης", popRenameColumn, AddressOf OnEditValueChanged2, Nothing, Nothing, 100, 0))
+                item = menu.Items.Item("Μετονομασία Στήλης")
+                item.EditValue = menu.Column.GetTextCaption
+                item.Tag = menu.Column.AbsoluteIndex
+
+                '2nd Custom Menu Item
+                menu.Items.Add(CreateCheckItem2("Κλείδωμα Στήλης", menu.Column, Nothing))
+
+                '3rd Custom Menu Item
+                Dim popColorsColumn As New RepositoryItemColorEdit
+                popColorsColumn.Name = "ColorsColumn"
+                menu.Items.Add(New DXEditMenuItem("Χρώμα Στήλης", popColorsColumn, AddressOf OnColumnsColorChanged2, Nothing, Nothing, 100, 0))
+                itemColor = menu.Items.Item("Χρώμα Στήλης")
+                itemColor.EditValue = menu.Column.AppearanceCell.BackColor
+                itemColor.Tag = menu.Column.AbsoluteIndex
+
+                '4nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveView2, Nothing, Nothing, Nothing, Nothing))
+                '5nd Custom Menu Item
+                menu.Items.Add(New DXMenuItem("Συγχρονισμός όψης από Server", AddressOf OnSyncView2, Nothing, Nothing, Nothing, Nothing))
+
+
+            End If
+        End If
+    End Sub
+    'Μετονομασία Στήλης Master
+    Private Sub OnEditValueChanged2(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As New DXEditMenuItem()
+        item = sender
+        If item.Tag Is Nothing Then Exit Sub
+        GridView2.Columns(item.Tag).Caption = item.EditValue
+        'MessageBox.Show(item.EditValue.ToString())
+    End Sub
+    Private Function CreateCheckItem2(ByVal caption As String, ByVal column As GridColumn, ByVal image As Image) As DXMenuCheckItem
+        Dim item As New DXMenuCheckItem(caption, (Not column.OptionsColumn.AllowMove), image, New EventHandler(AddressOf OnCanMoveItemClick2))
+        item.Tag = New MenuColumnInfo(column)
+        Return item
+    End Function
+    'Αλλαγή Χρώματος Στήλης Master
+    Private Sub OnColumnsColorChanged2(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXEditMenuItem = TryCast(sender, DXEditMenuItem)
+        item = sender
+        If item.Tag Is Nothing Then Exit Sub
+        GridView2.Columns(item.Tag).AppearanceCell.BackColor = item.EditValue
+    End Sub
+    'Κλείδωμα Στήλης Master
+    Private Sub OnCanMoveItemClick2(ByVal sender As Object, ByVal e As EventArgs)
+        Dim item As DXMenuCheckItem = TryCast(sender, DXMenuCheckItem)
+        Dim info As MenuColumnInfo = TryCast(item.Tag, MenuColumnInfo)
+        If info Is Nothing Then
+            Return
+        End If
+        info.Column.OptionsColumn.AllowMove = Not item.Checked
+    End Sub
+    'Αποθήκευση όψης 
+    Private Sub OnSaveView2(ByVal sender As System.Object, ByVal e As EventArgs)
+        Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
+        GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
+                GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
+            End If
+        End If
 
     End Sub
+    'Συγχρονισμός όψης από Server
+    Private Sub OnSyncView2(ByVal sender As System.Object, ByVal e As EventArgs)
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
+            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", True)
+                GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
+            End If
+        End If
+    End Sub
 
+    Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintAll.Click
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        cmd = New SqlCommand(" select AN.ID AS AnID,A.ID as AgID,C.ID as ClID, K.ID as KitID,SC.ID as SpCID,D.ID as DoorsID
+                                FROM dbo.vw_TRANSH AS T 
+                                LEFT OUTER JOIN dbo.vw_ANALYSH_KOSTOYS AS AN ON AN.ID = T.ID 
+                                LEFT OUTER JOIN dbo.vw_AGREEMENT AS A ON A.transhID = T.ID 
+                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_CLOSET AS C ON C.transhID = T.ID 
+                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_KITCHEN AS K ON K.transhID = T.ID 
+                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_SPECIAL_CONSTR AS SC ON SC.transhID = T.ID 
+                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_DOOR AS D ON D.transhID = T.ID  where  T.ID = " & toSQLValueS(sID), CNDB)
+        sdr = cmd.ExecuteReader()
+        Dim report As New RepCUSPrivateAgreement()
+        While sdr.Read()
+
+            If sdr.IsDBNull(sdr.GetOrdinal("AgID")) = False Then
+                report.Parameters.Item(0).Value = sdr.GetGuid(sdr.GetOrdinal("AgID"))
+                report.CreateDocument()
+
+                Dim report2 As New RepCUSPrivateAgreement2ndPage
+                report2.Parameters.Item(0).Value = sdr.GetGuid(sdr.GetOrdinal("AgID"))
+                report2.CreateDocument()
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report2.Pages)
+                                      End Sub)
+                Dim report3 As New RepCUSPrivateAgreement3ndPage
+                report3.CreateDocument()
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report3.Pages)
+                                      End Sub)
+                Dim report4 As New RepCUSPrivateAgreement4ndPage
+                report4.CreateDocument()
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report4.Pages)
+                                      End Sub)
+            End If
+            If sdr.IsDBNull(sdr.GetOrdinal("AnID")) = False Then
+                Dim report5 As New RepCUSAnalysis
+                report5.Parameters.Item(0).Value = sdr.GetGuid(sdr.GetOrdinal("AnID"))
+                report5.CreateDocument()
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report5.Pages)
+                                      End Sub)
+            End If
+            If sdr.IsDBNull(sdr.GetOrdinal("KitID")) = False Then
+                Dim report6 As New RepCUSOrderKitchen()
+
+                report6.Parameters.Item(0).Value = sdr.GetGuid(sdr.GetOrdinal("KitID"))
+                report6.CreateDocument()
+                Dim report7 As New RepCUSOrderKitchen2ndPage
+
+                report7.Parameters.Item(0).Value = sdr.GetGuid(sdr.GetOrdinal("KitID"))
+                report7.Parameters.Item(1).Value = sdr.GetGuid(sdr.GetOrdinal("KitID"))
+                report7.Parameters.Item(2).Value = sdr.GetGuid(sdr.GetOrdinal("KitID"))
+                report7.CreateDocument()
+                report6.ModifyDocument(Sub(x)
+                                           x.AddPages(report7.Pages)
+                                       End Sub)
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report6.Pages)
+                                      End Sub)
+            End If
+
+            If sdr.IsDBNull(sdr.GetOrdinal("ClID")) = False Then
+                Dim report8 As New RepCUSOrderCloset()
+
+                report8.Parameters.Item(0).Value = sdr.GetGuid(sdr.GetOrdinal("ClID"))
+                report8.CreateDocument()
+
+
+                Dim report9 As New RepCUSOrderCloset2ndPage
+
+                report9.Parameters.Item(0).Value = sdr.GetGuid(sdr.GetOrdinal("ClID"))
+                report9.CreateDocument()
+                report8.ModifyDocument(Sub(x)
+                                           x.AddPages(report9.Pages)
+                                       End Sub)
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report8.Pages)
+                                      End Sub)
+            End If
+            If sdr.IsDBNull(sdr.GetOrdinal("DoorsID")) = False Then
+                Dim report10 As New RepCUSOrderDoors()
+                report10.Parameters.Item(0).Value = sdr.GetGuid(sdr.GetOrdinal("DoorsID"))
+                report10.CreateDocument()
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report10.Pages)
+                                      End Sub)
+            End If
+            If sdr.IsDBNull(sdr.GetOrdinal("SpCID")) = False Then
+                Dim report11 As New RepCUSOrderSpecialConstr()
+                report11.Parameters.Item(0).Value = sdr.GetGuid(sdr.GetOrdinal("SpCID"))
+                report11.CreateDocument()
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report11.Pages)
+                                      End Sub)
+            End If
+        End While
+        sdr.Close()
+        Dim printTool As New ReportPrintTool(report)
+        printTool.ShowRibbonPreview()
+    End Sub
+
+    Private Sub txtExtraCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraCost.EditValueChanged
+        Dim ExtraCost As Double, Debit As Double, Devices As Double
+        If txtExtraCost.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
+        Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost) : ExtraCost = DbnullToZero(txtExtraCost)
+        txtTotAmt.EditValue = Debit + Devices +ExtraCost
+    End Sub
     Private Sub txtDebitCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDebitCost.EditValueChanged
         Dim Debit As Double, Devices As Double
         If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
@@ -571,6 +799,10 @@ Public Class frmTransactions
         If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
         Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost)
         txtTotAmt.EditValue = Debit + Devices
+
+    End Sub
+
+    Private Sub GridControl2_Click(sender As Object, e As EventArgs) Handles GridControl2.Click
 
     End Sub
 End Class

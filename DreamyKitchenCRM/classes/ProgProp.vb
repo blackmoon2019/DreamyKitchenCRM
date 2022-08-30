@@ -14,10 +14,22 @@ Public Class ProgProp
             If (sdr.Read() = True) Then ProgProps.SupportEmail = sdr.GetString(sdr.GetOrdinal("VAL"))
             Return ProgProps.SupportEmail
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Function
+    Public Sub SetProgVAT(ByVal sValue As Integer)
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Try
+            sSQL = "Update PRM set val = '" & sValue & "' where prm= 'VAT'"
+            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
     Public Sub SetProgDecimals(ByVal sValue As Integer)
         Dim sSQL As String
         Dim cmd As SqlCommand
@@ -25,10 +37,24 @@ Public Class ProgProp
             sSQL = "Update PRM set val = '" & sValue & "' where prm= 'DECIMAL_PLACES'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
+    Public Function GetProgvat() As Integer
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "select val FROM PRM where prm= 'VAT'"
+            cmd = New SqlCommand(sSQL, CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then ProgProps.VAT = sdr.GetString(sdr.GetOrdinal("VAL"))
+            Return ProgProps.VAT
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
     Public Function GetProgDecimals() As Integer
         Dim sSQL As String
         Dim cmd As SqlCommand
@@ -58,6 +84,10 @@ Public Class ProgProp
                 If control Is Nothing Then
                     If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then
                         Select Case sPrm
+                            Case "KNOBS" : ProgProps.KNOBS = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "BAZA" : ProgProps.BAZA = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "DRAWERS" : ProgProps.DRAWERS = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "SHELVES" : ProgProps.SHELVES = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "V_HEIGHT" : ProgProps.V_HEIGHT = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "K_HEIGHT" : ProgProps.K_HEIGHT = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "Y_HEIGHT" : ProgProps.Y_HEIGHT = sdr.GetString(sdr.GetOrdinal("val"))
@@ -72,17 +102,47 @@ Public Class ProgProp
                             Case "Y_FINAL_HEIGHT" : ProgProps.Y_FINAL_HEIGHT = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "BENCH" : ProgProps.BENCH = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "DAYS_OF_DELIVERY" : ProgProps.DAYS_OF_DELIVERY = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "DOOR_DESCRIPTION" : ProgProps.DOOR_DESCRIPTION = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "DOOR_CMT" : ProgProps.DOOR_CMT = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CUS_NOTES" : ProgProps.CUS_NOTES = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CUS_DISCOUNT_KITCHEN" : ProgProps.CusDiscountKitchen = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CUS_DISCOUNT_CLOSET" : ProgProps.CusDiscountCloset = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CUS_DISCOUNT_DOORS" : ProgProps.CusDiscountDoors = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CUS_DISCOUNT_SPECIAL" : ProgProps.CusDiscountSpecial = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_DESCRIPTION" : ProgProps.CLOSET_DESCRIPTION = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "KITCHEN_DESCRIPTION" : ProgProps.KITCHEN_DESCRIPTION = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_BACK_THIKNESS" : ProgProps.CLOSET_BACK_THIKNESS = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_BOX_COLOR" : ProgProps.CLOSET_BOX_COLOR = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_BOX_THIKNESS" : ProgProps.CLOSET_BOX_THIKNESS = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_DRAWERS" : ProgProps.CLOSET_DRAWERS = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_LEGS" : ProgProps.CLOSET_LEGS = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_PVC_COLOR" : ProgProps.CLOSET_PVC_COLOR = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_SHELVES" : ProgProps.CLOSET_SHELVES = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_TRANSP" : ProgProps.ClosetTransp = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "KITCHEN_TRANSP" : ProgProps.KitchenTransp = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "DOOR_TRANSP" : ProgProps.DoorTransp = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "SC_TRANSP" : ProgProps.SCTransp = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "KITCHEN_MEASUREMENT" : ProgProps.KitchenMeasurement = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_MEASUREMENT" : ProgProps.ClosetMeasurement = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "DOOR_MEASUREMENT" : ProgProps.DoorMeasurement = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "SC_MEASUREMENT" : ProgProps.SCMeasurement = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "KITCHEN_REMOVE" : ProgProps.KitchenRemove = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CLOSET_REMOVE" : ProgProps.ClosetRemove = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "DOOR_REMOVE" : ProgProps.DoorRemove = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "SC_REMOVE" : ProgProps.SCRemove = sdr.GetString(sdr.GetOrdinal("val"))
                         End Select
                     End If
                 Else
                     Dim Ctrl As Control = control.GetControlByName(sPrm)
-                    Dim LItem As LayoutControlItem = control.GetItemByControl(Ctrl)
-                    If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
+                    If Ctrl IsNot Nothing Then
+                        Dim LItem As LayoutControlItem = control.GetItemByControl(Ctrl)
+                        If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
+                    End If
                 End If
 
             End While
-                sdr.Close()
-                sdr = Nothing
+            sdr.Close()
+            sdr = Nothing
             'End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -169,10 +229,20 @@ Public Class ProgProp
                                 If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
                                     sSQL.Append(toSQLValueS(txt.EditValue, True))
                                 Else
-                                    sSQL.Append(toSQLValueS(txt.Text.Replace("%", "")))
+                                    'sSQL.Append(toSQLValueS(txt.Text.Replace("%", "")))
+                                    sSQL.Append(toSQLValueS(txt.Text))
+                                End If
+                            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
+                                Dim txt As DevExpress.XtraEditors.MemoEdit
+                                txt = Ctrl
+                                If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                    sSQL.Append(toSQLValueS(txt.EditValue, True))
+                                Else
+                                    sSQL.Append(toSQLValueS(txt.Text))
                                 End If
                             End If
                             sSQL.AppendLine(" where prm  = " & toSQLValueS(LItem.Control.Tag.ToString))
+                            Debug.Print(sSQL.ToString)
                             'Εκτέλεση QUERY
                             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                                 oCmd.ExecuteNonQuery()
@@ -188,20 +258,6 @@ Public Class ProgProp
         End Try
     End Sub
 
-    Public Function GetProgCusDecimals() As Integer
-        Dim sSQL As String
-        Dim cmd As SqlCommand
-        Dim sdr As SqlDataReader
-        Try
-            sSQL = "select val FROM PRM where prm= 'CUS_DISCOUNT'"
-            cmd = New SqlCommand(sSQL, CNDB)
-            sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then ProgProps.CusDiscount = sdr.GetString(sdr.GetOrdinal("VAL"))
-            Return ProgProps.CusDiscount
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Function
     Public Sub SetProgTechSupportEmail(ByVal sValue As String)
         Dim sSQL As String
         Dim cmd As SqlCommand
@@ -209,18 +265,9 @@ Public Class ProgProp
             sSQL = "Update PRM set val = '" & sValue & "' where prm= 'SUPPORT_EMAIL'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public Sub SetProgCusDiscount(ByVal sValue As String)
-        Dim sSQL As String
-        Dim cmd As SqlCommand
-        Try
-            sSQL = "Update PRM set val = '" & sValue & "' where prm= 'CUS_DISCOUNT'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "PRIAMOS .NET", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-    End Sub
+
 
 End Class

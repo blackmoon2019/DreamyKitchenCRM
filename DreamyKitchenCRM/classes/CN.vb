@@ -8,7 +8,7 @@ Public Class CN
     'Private connStr As String = ConfigurationManager.ConnectionStrings("myConnectionString").ConnectionString
     'Private connStr As String = ConfigurationManager.ConnectionStrings("myConnectionString").ConnectionString
     Private connStr As String = My.Settings.DreamyKitchenConnectionStringRemotely.ToString
-    'Private connStr As String = My.Settings.DreamyKitchenConnectionStringLocal.ToString
+    'Private connStr As String = My.Settings.DreamyKitchenConnectionStringRemotelyLocal.ToString
 
     Public Function OpenConnection() As Boolean
         Dim DBConnection As New SqlConnection()

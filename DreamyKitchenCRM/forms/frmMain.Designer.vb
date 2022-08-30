@@ -101,9 +101,35 @@ Partial Class frmMain
         Me.BBuy = New DevExpress.XtraBars.BarButtonItem()
         Me.BBSupInvoicesPayment = New DevExpress.XtraBars.BarButtonItem()
         Me.BBTransactions = New DevExpress.XtraBars.BarButtonItem()
-        Me.BarButtonItem4 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBPrivateAgreement = New DevExpress.XtraBars.BarButtonItem()
         Me.BBcctOffer = New DevExpress.XtraBars.BarButtonItem()
         Me.BBParam = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCloset = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBDoors = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBSpecialConstr = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCCctOrdersKitchen = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBEquipment = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBDevices = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBequipmentCat = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCCctOrdersCloset = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCCctDoorsCloset = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBSpecialOrder = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBEpStatus = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarMdiChildrenListItem2 = New DevExpress.XtraBars.BarMdiChildrenListItem()
+        Me.BarDockingMenuItem1 = New DevExpress.XtraBars.BarDockingMenuItem()
+        Me.BBEpopteia = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarSubItem1 = New DevExpress.XtraBars.BarSubItem()
+        Me.BBSupOrders = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBEpopteiaTrans = New DevExpress.XtraBars.BarButtonItem()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BBEpopteiaTable = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBEpopteiaChart = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBTransConstr = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBTransCost = New DevExpress.XtraBars.BarButtonItem()
+        Me.bbDimensionsCat = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBConstruct = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBTechSup = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBVer = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup11 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup15 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -111,6 +137,11 @@ Partial Class frmMain
         Me.RibbonPageGroup14 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage6 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup18 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup20 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup25 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup21 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup24 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup23 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.ProjectAnalysis = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup17 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup16 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -121,12 +152,15 @@ Partial Class frmMain
         Me.RibbonPageGroup12 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup22 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPage7 = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibbonPageGroup26 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup8 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup7 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage3 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup3 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage4 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup6 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPageGroup8 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.RibbonPageGroup7 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup4 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage5 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup5 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -149,6 +183,7 @@ Partial Class frmMain
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHypertextLabel1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHypertextLabel2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -160,17 +195,18 @@ Partial Class frmMain
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbCreditDebit, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse, Me.bbConstrCat, Me.bbConstr, Me.BBPayrollConstr, Me.bbJobs, Me.BBScanFileNames, Me.BBStatistics2, Me.BBStatistics3, Me.BBProjectCosts, Me.BBUpdate, Me.BBNotes2, Me.BBPay, Me.BBSup, Me.BBBuy_C, Me.BBuy, Me.BBSupInvoicesPayment, Me.BBTransactions, Me.BarButtonItem4, Me.BBcctOffer, Me.BBParam})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbCreditDebit, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse, Me.bbConstrCat, Me.bbConstr, Me.BBPayrollConstr, Me.bbJobs, Me.BBScanFileNames, Me.BBStatistics2, Me.BBStatistics3, Me.BBProjectCosts, Me.BBUpdate, Me.BBNotes2, Me.BBPay, Me.BBSup, Me.BBBuy_C, Me.BBuy, Me.BBSupInvoicesPayment, Me.BBTransactions, Me.BBPrivateAgreement, Me.BBcctOffer, Me.BBParam, Me.BBCloset, Me.BBDoors, Me.BBSpecialConstr, Me.BBCCctOrdersKitchen, Me.BBEquipment, Me.BBDevices, Me.BBequipmentCat, Me.BBCCctOrdersCloset, Me.BBCCctDoorsCloset, Me.BBSpecialOrder, Me.BBEpStatus, Me.BarMdiChildrenListItem2, Me.BarDockingMenuItem1, Me.BBEpopteia, Me.BarSubItem1, Me.BBSupOrders, Me.BBEpopteiaTrans, Me.BBTransConstr, Me.BBEpopteiaTable, Me.BBEpopteiaChart, Me.BBTransCost, Me.bbDimensionsCat, Me.BBConstruct, Me.BBTechSup, Me.BBVer})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
         Me.RibbonControl1.Margin = New System.Windows.Forms.Padding(5)
-        Me.RibbonControl1.MaxItemId = 89
+        Me.RibbonControl1.MaxItemId = 114
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.OptionsMenuMinWidth = 550
-        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage6, Me.ProjectAnalysis, Me.EmpManage, Me.RibbonPage2, Me.RibbonPage3, Me.RibbonPage4, Me.RibbonPage5, Me.Ρυθμίσεις})
+        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage6, Me.ProjectAnalysis, Me.EmpManage, Me.RibbonPage2, Me.RibbonPage7, Me.RibbonPage3, Me.RibbonPage4, Me.Ρυθμίσεις, Me.RibbonPage5})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
+        Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarMdiChildrenListItem2)
         Me.RibbonControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemHypertextLabel1, Me.RepositoryItemHypertextLabel2, Me.RepositoryItemHyperLinkEdit2})
         Me.RibbonControl1.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonControlStyle.Office2019
-        Me.RibbonControl1.Size = New System.Drawing.Size(1962, 256)
+        Me.RibbonControl1.Size = New System.Drawing.Size(1886, 256)
         Me.RibbonControl1.StatusBar = Me.MainstatusBar
         '
         'bbUsers
@@ -438,7 +474,7 @@ Partial Class frmMain
         '
         'ΒΒDoorType
         '
-        Me.ΒΒDoorType.Caption = "Κατηγορία Πόρτας"
+        Me.ΒΒDoorType.Caption = "Κατηγορίες Υλικών"
         Me.ΒΒDoorType.Id = 38
         Me.ΒΒDoorType.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.κατηγορια_πορτας
         Me.ΒΒDoorType.Name = "ΒΒDoorType"
@@ -480,7 +516,7 @@ Partial Class frmMain
         '
         Me.bboffer.Caption = "Προσφορά"
         Me.bboffer.Id = 43
-        Me.bboffer.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.προσφορα
+        Me.bboffer.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_purchase_order_48
         Me.bboffer.Name = "bboffer"
         Me.bboffer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -765,7 +801,7 @@ Partial Class frmMain
         '
         'BBNotes2
         '
-        Me.BBNotes2.Caption = "Σημειώματα(Άλλη όψη)"
+        Me.BBNotes2.Caption = "Σημειώματα"
         Me.BBNotes2.Id = 79
         Me.BBNotes2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_notes_40
         Me.BBNotes2.Name = "BBNotes2"
@@ -819,17 +855,19 @@ Partial Class frmMain
         Me.BBTransactions.Name = "BBTransactions"
         Me.BBTransactions.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
-        'BarButtonItem4
+        'BBPrivateAgreement
         '
-        Me.BarButtonItem4.Caption = "Ιδ. Συμφωνητικό"
-        Me.BarButtonItem4.Id = 86
-        Me.BarButtonItem4.Name = "BarButtonItem4"
-        Me.BarButtonItem4.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        Me.BBPrivateAgreement.Caption = "Ιδ. Συμφωνητικό"
+        Me.BBPrivateAgreement.Id = 86
+        Me.BBPrivateAgreement.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_agreement_48
+        Me.BBPrivateAgreement.Name = "BBPrivateAgreement"
+        Me.BBPrivateAgreement.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'BBcctOffer
         '
-        Me.BBcctOffer.Caption = "Έντυπο Προσφοράς"
+        Me.BBcctOffer.Caption = "Κουζίνα"
         Me.BBcctOffer.Id = 87
+        Me.BBcctOffer.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_purchase_order_48
         Me.BBcctOffer.Name = "BBcctOffer"
         Me.BBcctOffer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -837,8 +875,212 @@ Partial Class frmMain
         '
         Me.BBParam.Caption = "Γενικές Παράμετροι"
         Me.BBParam.Id = 88
+        Me.BBParam.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_settings_40
         Me.BBParam.Name = "BBParam"
         Me.BBParam.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBCloset
+        '
+        Me.BBCloset.Caption = "Ντουλάπα"
+        Me.BBCloset.Id = 89
+        Me.BBCloset.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_purchase_order_48
+        Me.BBCloset.Name = "BBCloset"
+        Me.BBCloset.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBDoors
+        '
+        Me.BBDoors.Caption = "Πόρτες"
+        Me.BBDoors.Id = 90
+        Me.BBDoors.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_purchase_order_48
+        Me.BBDoors.Name = "BBDoors"
+        Me.BBDoors.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBSpecialConstr
+        '
+        Me.BBSpecialConstr.Caption = "Ειδικές Κατασκευές"
+        Me.BBSpecialConstr.Id = 91
+        Me.BBSpecialConstr.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_purchase_order_48
+        Me.BBSpecialConstr.Name = "BBSpecialConstr"
+        Me.BBSpecialConstr.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBCCctOrdersKitchen
+        '
+        Me.BBCCctOrdersKitchen.Caption = "Κουζίνα"
+        Me.BBCCctOrdersKitchen.Id = 92
+        Me.BBCCctOrdersKitchen.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_48
+        Me.BBCCctOrdersKitchen.Name = "BBCCctOrdersKitchen"
+        Me.BBCCctOrdersKitchen.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBEquipment
+        '
+        Me.BBEquipment.Caption = "Εξοπλισμός"
+        Me.BBEquipment.Id = 93
+        Me.BBEquipment.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_equipment_40
+        Me.BBEquipment.Name = "BBEquipment"
+        Me.BBEquipment.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBDevices
+        '
+        Me.BBDevices.Caption = "Συσκευές"
+        Me.BBDevices.Id = 94
+        Me.BBDevices.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_kitchen_room_40
+        Me.BBDevices.Name = "BBDevices"
+        Me.BBDevices.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBequipmentCat
+        '
+        Me.BBequipmentCat.Caption = "Κατηγορίες Εξοπλισμών"
+        Me.BBequipmentCat.Id = 95
+        Me.BBequipmentCat.Name = "BBequipmentCat"
+        Me.BBequipmentCat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBCCctOrdersCloset
+        '
+        Me.BBCCctOrdersCloset.Caption = "Ντουλάπα"
+        Me.BBCCctOrdersCloset.Id = 96
+        Me.BBCCctOrdersCloset.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_48
+        Me.BBCCctOrdersCloset.Name = "BBCCctOrdersCloset"
+        Me.BBCCctOrdersCloset.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBCCctDoorsCloset
+        '
+        Me.BBCCctDoorsCloset.Caption = "Πόρτα"
+        Me.BBCCctDoorsCloset.Id = 97
+        Me.BBCCctDoorsCloset.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_48
+        Me.BBCCctDoorsCloset.Name = "BBCCctDoorsCloset"
+        Me.BBCCctDoorsCloset.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBSpecialOrder
+        '
+        Me.BBSpecialOrder.Caption = "Ειδικές Κατασκευές"
+        Me.BBSpecialOrder.Id = 98
+        Me.BBSpecialOrder.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_48
+        Me.BBSpecialOrder.Name = "BBSpecialOrder"
+        Me.BBSpecialOrder.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBEpStatus
+        '
+        Me.BBEpStatus.Caption = "Status Εποπτείας"
+        Me.BBEpStatus.Id = 99
+        Me.BBEpStatus.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_unknown_status_40
+        Me.BBEpStatus.Name = "BBEpStatus"
+        Me.BBEpStatus.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BarMdiChildrenListItem2
+        '
+        Me.BarMdiChildrenListItem2.Caption = "BarMdiChildrenListItem2"
+        Me.BarMdiChildrenListItem2.Id = 100
+        Me.BarMdiChildrenListItem2.Name = "BarMdiChildrenListItem2"
+        '
+        'BarDockingMenuItem1
+        '
+        Me.BarDockingMenuItem1.Caption = "BarDockingMenuItem1"
+        Me.BarDockingMenuItem1.Id = 101
+        Me.BarDockingMenuItem1.Name = "BarDockingMenuItem1"
+        '
+        'BBEpopteia
+        '
+        Me.BBEpopteia.Caption = "Εποπτεία"
+        Me.BBEpopteia.Id = 102
+        Me.BBEpopteia.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_office_48
+        Me.BBEpopteia.Name = "BBEpopteia"
+        Me.BBEpopteia.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BarSubItem1
+        '
+        Me.BarSubItem1.Caption = "BarSubItem1"
+        Me.BarSubItem1.Id = 103
+        Me.BarSubItem1.Name = "BarSubItem1"
+        '
+        'BBSupOrders
+        '
+        Me.BBSupOrders.Caption = "Παραγγελία Προς Προμηθευτή"
+        Me.BBSupOrders.Id = 104
+        Me.BBSupOrders.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_48
+        Me.BBSupOrders.Name = "BBSupOrders"
+        Me.BBSupOrders.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBEpopteiaTrans
+        '
+        Me.BBEpopteiaTrans.ActAsDropDown = True
+        Me.BBEpopteiaTrans.ButtonStyle = DevExpress.XtraBars.BarButtonStyle.DropDown
+        Me.BBEpopteiaTrans.Caption = "Πορεία Έργου"
+        Me.BBEpopteiaTrans.DropDownControl = Me.PopupMenu1
+        Me.BBEpopteiaTrans.Id = 105
+        Me.BBEpopteiaTrans.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_project_48
+        Me.BBEpopteiaTrans.Name = "BBEpopteiaTrans"
+        Me.BBEpopteiaTrans.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'PopupMenu1
+        '
+        Me.PopupMenu1.ItemLinks.Add(Me.BBEpopteiaTable)
+        Me.PopupMenu1.ItemLinks.Add(Me.BBEpopteiaChart)
+        Me.PopupMenu1.Name = "PopupMenu1"
+        Me.PopupMenu1.Ribbon = Me.RibbonControl1
+        '
+        'BBEpopteiaTable
+        '
+        Me.BBEpopteiaTable.Caption = "Εποπτεία(Πίνακας)"
+        Me.BBEpopteiaTable.Id = 107
+        Me.BBEpopteiaTable.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_48
+        Me.BBEpopteiaTable.Name = "BBEpopteiaTable"
+        '
+        'BBEpopteiaChart
+        '
+        Me.BBEpopteiaChart.Caption = "Εποπτεία(Γράφημα)"
+        Me.BBEpopteiaChart.Id = 108
+        Me.BBEpopteiaChart.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_office_48
+        Me.BBEpopteiaChart.Name = "BBEpopteiaChart"
+        '
+        'BBTransConstr
+        '
+        Me.BBTransConstr.Caption = "Κλείσιμο Κατασκευής"
+        Me.BBTransConstr.Id = 106
+        Me.BBTransConstr.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_construction_48
+        Me.BBTransConstr.Name = "BBTransConstr"
+        Me.BBTransConstr.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBTransCost
+        '
+        Me.BBTransCost.Caption = "Κοστολόγηση"
+        Me.BBTransCost.Enabled = False
+        Me.BBTransCost.Id = 109
+        Me.BBTransCost.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_currency_exchange_40
+        Me.BBTransCost.Name = "BBTransCost"
+        Me.BBTransCost.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'bbDimensionsCat
+        '
+        Me.bbDimensionsCat.Caption = "Κατηγορίες Διαστάσεων"
+        Me.bbDimensionsCat.Id = 110
+        Me.bbDimensionsCat.Name = "bbDimensionsCat"
+        Me.bbDimensionsCat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBConstruct
+        '
+        Me.BBConstruct.Caption = "Είδη Κατασκευής"
+        Me.BBConstruct.Id = 111
+        Me.BBConstruct.Name = "BBConstruct"
+        Me.BBConstruct.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBTechSup
+        '
+        Me.BBTechSup.Alignment = DevExpress.XtraBars.BarItemLinkAlignment.Right
+        Me.BBTechSup.Caption = "Τεχνική Υποστήριξη"
+        Me.BBTechSup.Id = 112
+        Me.BBTechSup.ItemAppearance.Normal.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold)
+        Me.BBTechSup.ItemAppearance.Normal.ForeColor = DevExpress.LookAndFeel.DXSkinColors.ForeColors.Question
+        Me.BBTechSup.ItemAppearance.Normal.Options.UseFont = True
+        Me.BBTechSup.ItemAppearance.Normal.Options.UseForeColor = True
+        Me.BBTechSup.Name = "BBTechSup"
+        '
+        'BBVer
+        '
+        Me.BBVer.Caption = "Καταχώρηση Έκδοσης"
+        Me.BBVer.Id = 113
+        Me.BBVer.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_support_40
+        Me.BBVer.Name = "BBVer"
+        Me.BBVer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'RibbonPage1
         '
@@ -856,14 +1098,12 @@ Partial Class frmMain
         'RibbonPageGroup15
         '
         Me.RibbonPageGroup15.ItemLinks.Add(Me.BBCalendarInst)
-        Me.RibbonPageGroup15.ItemLinks.Add(Me.BBEllipse)
         Me.RibbonPageGroup15.Name = "RibbonPageGroup15"
         Me.RibbonPageGroup15.Text = "Τοποθστήσεις Εκκρεμότητες"
         '
         'RibbonPageGroup1
         '
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBPersonalCalendar)
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBNotes)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBNotes2)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.Text = "Λειτουργίες"
@@ -877,16 +1117,58 @@ Partial Class frmMain
         '
         'RibbonPage6
         '
-        Me.RibbonPage6.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup18})
+        Me.RibbonPage6.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup18, Me.RibbonPageGroup20, Me.RibbonPageGroup25, Me.RibbonPageGroup21, Me.RibbonPageGroup24, Me.RibbonPageGroup23})
         Me.RibbonPage6.Name = "RibbonPage6"
         Me.RibbonPage6.Text = "Εποπτεία Έργων"
         '
         'RibbonPageGroup18
         '
         Me.RibbonPageGroup18.ItemLinks.Add(Me.BBcctOffer)
-        Me.RibbonPageGroup18.ItemLinks.Add(Me.BarButtonItem4)
+        Me.RibbonPageGroup18.ItemLinks.Add(Me.BBCloset)
+        Me.RibbonPageGroup18.ItemLinks.Add(Me.BBDoors)
+        Me.RibbonPageGroup18.ItemLinks.Add(Me.BBSpecialConstr)
         Me.RibbonPageGroup18.Name = "RibbonPageGroup18"
-        Me.RibbonPageGroup18.Text = "Εποπτεία"
+        Me.RibbonPageGroup18.Text = "Έντυπα Προσφορών"
+        '
+        'RibbonPageGroup20
+        '
+        Me.RibbonPageGroup20.AllowTextClipping = False
+        Me.RibbonPageGroup20.ItemLinks.Add(Me.BBCCctOrdersKitchen)
+        Me.RibbonPageGroup20.ItemLinks.Add(Me.BBCCctOrdersCloset)
+        Me.RibbonPageGroup20.ItemLinks.Add(Me.BBCCctDoorsCloset)
+        Me.RibbonPageGroup20.ItemLinks.Add(Me.BBSpecialOrder)
+        Me.RibbonPageGroup20.Name = "RibbonPageGroup20"
+        Me.RibbonPageGroup20.Text = "Έντυπα Παραγγελιών"
+        '
+        'RibbonPageGroup25
+        '
+        Me.RibbonPageGroup25.ItemLinks.Add(Me.BBTransCost)
+        Me.RibbonPageGroup25.Name = "RibbonPageGroup25"
+        Me.RibbonPageGroup25.Text = "Κοστολόγηση Έργων"
+        '
+        'RibbonPageGroup21
+        '
+        Me.RibbonPageGroup21.ItemLinks.Add(Me.BBPrivateAgreement)
+        Me.RibbonPageGroup21.Name = "RibbonPageGroup21"
+        Me.RibbonPageGroup21.Text = "Ιδ. Συμφωνητικό"
+        '
+        'RibbonPageGroup24
+        '
+        Me.RibbonPageGroup24.AllowTextClipping = False
+        Me.RibbonPageGroup24.ItemLinks.Add(Me.BBSupOrders)
+        Me.RibbonPageGroup24.ItemLinks.Add(Me.BBTransConstr)
+        Me.RibbonPageGroup24.ItemLinks.Add(Me.BBEpopteiaTrans)
+        Me.RibbonPageGroup24.ItemLinks.Add(Me.BBEllipse)
+        Me.RibbonPageGroup24.Name = "RibbonPageGroup24"
+        Me.RibbonPageGroup24.Text = "Ιδιότητες Έργων"
+        '
+        'RibbonPageGroup23
+        '
+        Me.RibbonPageGroup23.AllowTextClipping = False
+        Me.RibbonPageGroup23.ItemLinks.Add(Me.BBEpopteia)
+        Me.RibbonPageGroup23.Name = "RibbonPageGroup23"
+        Me.RibbonPageGroup23.Text = "Εποπτεία"
+        Me.RibbonPageGroup23.Visible = False
         '
         'ProjectAnalysis
         '
@@ -951,7 +1233,7 @@ Partial Class frmMain
         '
         'RibbonPage2
         '
-        Me.RibbonPage2.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup2})
+        Me.RibbonPage2.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup2, Me.RibbonPageGroup22})
         Me.RibbonPage2.Name = "RibbonPage2"
         Me.RibbonPage2.Text = "Βοηθητικοί Πίνακες"
         '
@@ -962,8 +1244,6 @@ Partial Class frmMain
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbADR)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbDOY)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbPRF)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.bbStatus)
-        Me.RibbonPageGroup2.ItemLinks.Add(Me.BBPersonalCalendarStatus)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbSource)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbLabels)
         Me.RibbonPageGroup2.ItemLinks.Add(Me.bbBanks)
@@ -972,6 +1252,47 @@ Partial Class frmMain
         Me.RibbonPageGroup2.ItemLinks.Add(Me.BBPay)
         Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
         Me.RibbonPageGroup2.Text = "Βοηθητικά"
+        '
+        'RibbonPageGroup22
+        '
+        Me.RibbonPageGroup22.ItemLinks.Add(Me.bbStatus)
+        Me.RibbonPageGroup22.ItemLinks.Add(Me.BBPersonalCalendarStatus)
+        Me.RibbonPageGroup22.ItemLinks.Add(Me.BBEpStatus)
+        Me.RibbonPageGroup22.Name = "RibbonPageGroup22"
+        Me.RibbonPageGroup22.Text = "Status"
+        '
+        'RibbonPage7
+        '
+        Me.RibbonPage7.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup26, Me.RibbonPageGroup8, Me.RibbonPageGroup7})
+        Me.RibbonPage7.Name = "RibbonPage7"
+        Me.RibbonPage7.Text = "Βοηθητικοί Πίνακες Έργων"
+        '
+        'RibbonPageGroup26
+        '
+        Me.RibbonPageGroup26.ItemLinks.Add(Me.bbMech)
+        Me.RibbonPageGroup26.ItemLinks.Add(Me.BBEquipment)
+        Me.RibbonPageGroup26.ItemLinks.Add(Me.BBDevices)
+        Me.RibbonPageGroup26.ItemLinks.Add(Me.BBequipmentCat)
+        Me.RibbonPageGroup26.ItemLinks.Add(Me.ΒΒDoorType)
+        Me.RibbonPageGroup26.ItemLinks.Add(Me.BBConstruct)
+        Me.RibbonPageGroup26.Name = "RibbonPageGroup26"
+        Me.RibbonPageGroup26.Text = "RibbonPageGroup26"
+        '
+        'RibbonPageGroup8
+        '
+        Me.RibbonPageGroup8.ItemLinks.Add(Me.bbDimensions)
+        Me.RibbonPageGroup8.ItemLinks.Add(Me.bbBench)
+        Me.RibbonPageGroup8.ItemLinks.Add(Me.bbEpendisis)
+        Me.RibbonPageGroup8.ItemLinks.Add(Me.bbDimensionsCat)
+        Me.RibbonPageGroup8.Name = "RibbonPageGroup8"
+        Me.RibbonPageGroup8.Text = "Υλικά"
+        '
+        'RibbonPageGroup7
+        '
+        Me.RibbonPageGroup7.ItemLinks.Add(Me.bbColorCAT)
+        Me.RibbonPageGroup7.ItemLinks.Add(Me.bbColors)
+        Me.RibbonPageGroup7.Name = "RibbonPageGroup7"
+        Me.RibbonPageGroup7.Text = "Χρώματα"
         '
         'RibbonPage3
         '
@@ -989,7 +1310,7 @@ Partial Class frmMain
         '
         'RibbonPage4
         '
-        Me.RibbonPage4.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup6, Me.RibbonPageGroup8, Me.RibbonPageGroup7, Me.RibbonPageGroup4})
+        Me.RibbonPage4.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup6, Me.RibbonPageGroup4})
         Me.RibbonPage4.Name = "RibbonPage4"
         Me.RibbonPage4.Text = "Τιμοκατάλογοι"
         '
@@ -1001,27 +1322,10 @@ Partial Class frmMain
         Me.RibbonPageGroup6.Name = "RibbonPageGroup6"
         Me.RibbonPageGroup6.Text = "Ερμάρια"
         '
-        'RibbonPageGroup8
-        '
-        Me.RibbonPageGroup8.ItemLinks.Add(Me.bbEpendisis)
-        Me.RibbonPageGroup8.ItemLinks.Add(Me.bbBench)
-        Me.RibbonPageGroup8.ItemLinks.Add(Me.bbMech)
-        Me.RibbonPageGroup8.Name = "RibbonPageGroup8"
-        Me.RibbonPageGroup8.Text = "Υλικά"
-        '
-        'RibbonPageGroup7
-        '
-        Me.RibbonPageGroup7.ItemLinks.Add(Me.bbColorCAT)
-        Me.RibbonPageGroup7.ItemLinks.Add(Me.bbColors)
-        Me.RibbonPageGroup7.Name = "RibbonPageGroup7"
-        Me.RibbonPageGroup7.Text = "Χρώματα"
-        '
         'RibbonPageGroup4
         '
         Me.RibbonPageGroup4.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.ΥΠΟΛΟΓΙΣΜΟΙ
-        Me.RibbonPageGroup4.ItemLinks.Add(Me.ΒΒDoorType)
         Me.RibbonPageGroup4.ItemLinks.Add(Me.bboffer)
-        Me.RibbonPageGroup4.ItemLinks.Add(Me.bbDimensions)
         Me.RibbonPageGroup4.ItemLinks.Add(Me.bbCalculations)
         Me.RibbonPageGroup4.Name = "RibbonPageGroup4"
         Me.RibbonPageGroup4.Text = "Τιμοκατάλογοι"
@@ -1037,6 +1341,7 @@ Partial Class frmMain
         Me.RibbonPageGroup5.ItemLinks.Add(Me.BarButtonItem2)
         Me.RibbonPageGroup5.ItemLinks.Add(Me.bbTechCateg)
         Me.RibbonPageGroup5.ItemLinks.Add(Me.bbTechnicalSupport)
+        Me.RibbonPageGroup5.ItemLinks.Add(Me.BBVer)
         Me.RibbonPageGroup5.Name = "RibbonPageGroup5"
         Me.RibbonPageGroup5.Text = "Βοήθεια"
         '
@@ -1074,6 +1379,7 @@ Partial Class frmMain
         Me.MainstatusBar.ItemLinks.Add(Me.BarEditItem1)
         Me.MainstatusBar.ItemLinks.Add(Me.BarEditItem2)
         Me.MainstatusBar.ItemLinks.Add(Me.BBUpdate)
+        Me.MainstatusBar.ItemLinks.Add(Me.BBTechSup)
         Me.MainstatusBar.ItemLinks.Add(Me.bbUser)
         Me.MainstatusBar.ItemLinks.Add(Me.bbDate)
         Me.MainstatusBar.ItemLinks.Add(Me.bbServer)
@@ -1084,7 +1390,7 @@ Partial Class frmMain
         Me.MainstatusBar.Margin = New System.Windows.Forms.Padding(5)
         Me.MainstatusBar.Name = "MainstatusBar"
         Me.MainstatusBar.Ribbon = Me.RibbonControl1
-        Me.MainstatusBar.Size = New System.Drawing.Size(1962, 47)
+        Me.MainstatusBar.Size = New System.Drawing.Size(1886, 47)
         '
         'XtraTabbedMdiManager1
         '
@@ -1134,9 +1440,10 @@ Partial Class frmMain
         '
         'frmMain
         '
+        Me.AllowMdiBar = True
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1962, 1369)
+        Me.ClientSize = New System.Drawing.Size(1886, 1369)
         Me.Controls.Add(Me.MainstatusBar)
         Me.Controls.Add(Me.RibbonControl1)
         Me.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Glow
@@ -1144,6 +1451,7 @@ Partial Class frmMain
         Me.IsMdiContainer = True
         Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "frmMain"
+        Me.ShowMdiChildCaptionInParentTitle = True
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Dreamy Kitchen CRM"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
@@ -1152,6 +1460,7 @@ Partial Class frmMain
         CType(Me.RepositoryItemDateEdit1.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHypertextLabel1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHypertextLabel2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemHyperLinkEdit2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1281,10 +1590,44 @@ Partial Class frmMain
     Friend WithEvents BBSupInvoicesPayment As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBTransactions As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents RibbonPageGroup18 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
-    Friend WithEvents BarButtonItem4 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBPrivateAgreement As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBcctOffer As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBParam As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents Ρυθμίσεις As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents RibbonPageGroup19 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents RibbonPage6 As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents BBCloset As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBDoors As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBSpecialConstr As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBCCctOrdersKitchen As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonPageGroup20 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BBEquipment As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBDevices As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBequipmentCat As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBCCctOrdersCloset As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBCCctDoorsCloset As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonPageGroup21 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BBSpecialOrder As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBEpStatus As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonPageGroup22 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BarMdiChildrenListItem2 As DevExpress.XtraBars.BarMdiChildrenListItem
+    Friend WithEvents BarDockingMenuItem1 As DevExpress.XtraBars.BarDockingMenuItem
+    Friend WithEvents BBEpopteia As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarSubItem1 As DevExpress.XtraBars.BarSubItem
+    Friend WithEvents RibbonPageGroup23 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BBSupOrders As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonPageGroup24 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents BBEpopteiaTrans As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBTransConstr As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents BBEpopteiaTable As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBEpopteiaChart As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBTransCost As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents RibbonPageGroup25 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents RibbonPage7 As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents RibbonPageGroup26 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents bbDimensionsCat As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBConstruct As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBTechSup As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBVer As DevExpress.XtraBars.BarButtonItem
 End Class

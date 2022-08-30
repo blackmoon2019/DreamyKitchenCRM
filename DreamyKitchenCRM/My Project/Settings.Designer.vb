@@ -295,33 +295,11 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
-            "chen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True")>  _
-        Public ReadOnly Property DreamyKitchenConnectionString() As String
-            Get
-                Return CType(Me("DreamyKitchenConnectionString"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
-            "chen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchen;Persist Security Info=Tr"& _ 
+            "ue;User ID=sa;Password=Dr3@mySA;MultipleActiveResultSets=True")>  _
         Public ReadOnly Property DreamyKitchenConnectionStringRemotely() As String
             Get
                 Return CType(Me("DreamyKitchenConnectionStringRemotely"),String)
-            End Get
-        End Property
-        
-        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKit"& _ 
-            "chen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True")>  _
-        Public ReadOnly Property DreamyKitchenConnectionStringLocal() As String
-            Get
-                Return CType(Me("DreamyKitchenConnectionStringLocal"),String)
             End Get
         End Property
         

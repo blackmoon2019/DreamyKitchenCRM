@@ -104,7 +104,7 @@ Public Class frmServices
         Dim AreaID As String = ""
         If cboCOU.EditValue <> Nothing Then CouID = cboCOU.EditValue.ToString
         If cboAREAS.EditValue <> Nothing Then AreaID = cboAREAS.EditValue.ToString
-        sSQL.AppendLine("Select id,Name from vw_ADR ")
+        sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
         If CouID.Length > 0 Or AreaID.Length > 0 Or txtTK.Text.Length > 0 Then sSQL.AppendLine(" where ")
         If CouID.Length > 0 Then sSQL.AppendLine(" couid = " & toSQLValueS(CouID))
         If AreaID.Length > 0 Then

@@ -79,8 +79,9 @@ Public Class frmBUY
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
-                    sSQL = "update sup set bal = (select isnull(sum(vatamount),0) from buy where buy.supID=sup.ID and payID<>'88E7A725-AE4C-4818-ADEE-7F9E26F20165' and paid=0)  WHERE ID = " & toSQLValueS(cboSUP.EditValue.ToString)
-                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                    Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@supplierID", cboSUP.EditValue.ToString)
                         oCmd.ExecuteNonQuery()
                     End Using
                     If cboTRANSH.EditValue IsNot Nothing Then
@@ -155,8 +156,8 @@ Public Class frmBUY
     End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub

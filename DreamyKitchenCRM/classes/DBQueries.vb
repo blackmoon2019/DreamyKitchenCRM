@@ -187,6 +187,7 @@ Public Class DBQueries
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
                                     End If
+
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.PictureEdit Then
                                     For I As Integer = 0 To UBound(FormHasPic)
                                         If FormHasPic(I) = False Then
@@ -200,6 +201,19 @@ Public Class DBQueries
                                             Exit For
                                         End If
                                     Next
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+                                    Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
+                                    cbo = Ctrl
+                                    Debug.Print(cbo.Name)
+                                    If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & cbo.SelectedIndex)
+                                        Else
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
+                                        End If
+                                    Else
+                                        sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                    End If
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
                                     Dim dt As DevExpress.XtraEditors.DateEdit
                                     dt = Ctrl
@@ -409,9 +423,18 @@ NextItem:
                                         Dim chk As DevExpress.XtraEditors.CheckEdit
                                         chk = Ctrl
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & chk.EditValue)
-                                        '*******DevExpress.XtraEditors.ColorPickEdit******
+                                        '*******DevExpress.XtraEditors.RatingControl******
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.RatingControl Then
+                                        Dim rt As DevExpress.XtraEditors.RatingControl
+                                        rt = Ctrl
+                                        If rt.EditValue <> Nothing Then
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(rt.EditValue.ToString, True))
+                                        Else
+                                            sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                        End If
+
                                     End If
-                                    IsFirstField = False
+                                        IsFirstField = False
                                 End If
                             End If
                         End If
@@ -524,27 +547,36 @@ NextItem:
                                             sSQL.Append(toSQLValueS(CDate(dt.Text).ToString("yyyyMMdd")))
                                         Else
                                             sSQL.Append("NULL")
-                                            End If
-                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
-                                            Dim tm As DevExpress.XtraEditors.TimeEdit
-                                            tm = Ctrl
-                                            If tm.Text <> "" Then
-                                                sSQL.Append(toSQLValueS(CDate(tm.Text).ToString("HH:mm")))
-                                            Else
-                                                sSQL.Append("NULL")
-                                            End If
-                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
-                                            Dim txt As DevExpress.XtraEditors.TextEdit
-                                            txt = Ctrl
-                                            If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
-                                                sSQL.Append(toSQLValueS(txt.EditValue, True))
-                                            Else
-                                                sSQL.Append(toSQLValueS(txt.Text))
-                                            End If
-                                        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
-                                            Dim chk As DevExpress.XtraEditors.CheckEdit
+                                        End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+                                        Dim tm As DevExpress.XtraEditors.TimeEdit
+                                        tm = Ctrl
+                                        If tm.Text <> "" Then
+                                            sSQL.Append(toSQLValueS(CDate(tm.Text).ToString("HH:mm")))
+                                        Else
+                                            sSQL.Append("NULL")
+                                        End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
+                                        Dim txt As DevExpress.XtraEditors.TextEdit
+                                        txt = Ctrl
+                                        If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                            sSQL.Append(toSQLValueS(txt.EditValue, True))
+                                        Else
+                                            sSQL.Append(toSQLValueS(txt.Text))
+                                        End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
+                                        Dim chk As DevExpress.XtraEditors.CheckEdit
                                         chk = Ctrl
                                         sSQL.Append(chk.EditValue)
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.RatingControl Then
+                                        Dim rt As DevExpress.XtraEditors.RatingControl
+                                        rt = Ctrl
+                                        If rt.EditValue <> Nothing Then
+                                            sSQL.Append(toSQLValueS(rt.EditValue.ToString, True))
+                                        Else
+                                            sSQL.Append("NULL")
+                                        End If
+
                                     End If
                                     IsFirstField = False
                                 End If
@@ -981,7 +1013,7 @@ NextItem:
                                   Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
         Select Case Mode
             Case 1
-                Return UpdateData2(control, sTable, sGuid, IgnoreVisibility)
+                Return UpdateData2(control, sTable, sGuid, IgnoreVisibility, ExtraFieldsAndValues)
             Case 2
                 Return UpdateDataNew(controls, sTable, sGuid, IgnoreVisibility)
             Case 3
@@ -990,7 +1022,7 @@ NextItem:
                 Return UpdateDataGRD(GRD, sTable, sGuid, FieldsToBeUpdate, IgnoreVisibility)
         End Select
     End Function
-    Private Function UpdateData2(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sTable As String, ByVal sID As String, Optional ByVal IgnoreVisibility As Boolean = False) As Boolean
+    Private Function UpdateData2(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sTable As String, ByVal sID As String, Optional ByVal IgnoreVisibility As Boolean = False, Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
         Dim sSQL As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim IsFirstField As Boolean = True
         Dim TagValue As String()
@@ -1003,6 +1035,7 @@ NextItem:
             'Εαν η function καλεστεί με sGuid σημαίνει ότι θα πρε΄πει να καταχωρίσουμε εμείς το ID
             'FIELDS
             sSQL.AppendLine("UPDATE " & sTable & " SET ")
+            If ExtraFieldsAndValues.Length > 0 Then sSQL.AppendLine(ExtraFieldsAndValues) : IsFirstField = False
             For Each item As BaseLayoutItem In control.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
@@ -1067,6 +1100,22 @@ NextItem:
                                             Exit For
                                         End If
                                     Next
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+                                    Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
+                                    cbo = Ctrl
+                                    If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
+                                            sSQL.Append(cbo.SelectedIndex)
+                                        Else
+                                            If cbo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                                sSQL.Append(cbo.SelectedIndex)
+                                            Else
+                                                sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
+                                            End If
+                                        End If
+                                    Else
+                                        sSQL.Append("NULL")
+                                    End If
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
                                     Dim dt As DevExpress.XtraEditors.DateEdit
                                     dt = Ctrl

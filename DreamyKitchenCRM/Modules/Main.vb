@@ -34,9 +34,26 @@ Module Main
     End Structure
     Public UserProps As USER_PROPS
     Public Structure PROG_PROPS
+        Public ProgTitle As String
+        Public VAT As Integer
         Public Decimals As Integer
         Public SupportEmail As String
-        Public CusDiscount As Integer
+        Public KitchenTransp As Decimal
+        Public ClosetTransp As Decimal
+        Public DoorTransp As Decimal
+        Public SCTransp As Decimal
+        Public KitchenMeasurement As Decimal
+        Public ClosetMeasurement As Decimal
+        Public DoorMeasurement As Decimal
+        Public SCMeasurement As Decimal
+        Public KitchenRemove As Decimal
+        Public ClosetRemove As Decimal
+        Public DoorRemove As Decimal
+        Public SCRemove As Decimal
+        Public CusDiscountKitchen As Integer
+        Public CusDiscountCloset As Integer
+        Public CusDiscountDoors As Integer
+        Public CusDiscountSpecial As Integer
         Public V_HEIGHT As Double
         Public K_HEIGHT As Double
         Public Y_HEIGHT As Double
@@ -51,6 +68,22 @@ Module Main
         Public Y_FINAL_HEIGHT As Double
         Public BENCH As String
         Public DAYS_OF_DELIVERY As Integer
+        Public KNOBS As String
+        Public BAZA As Integer
+        Public DRAWERS As Integer
+        Public SHELVES As Integer
+        Public DOOR_DESCRIPTION As String
+        Public DOOR_CMT As String
+        Public CUS_NOTES As String
+        Public KITCHEN_DESCRIPTION As String
+        Public CLOSET_DESCRIPTION As String
+        Public CLOSET_BACK_THIKNESS As String
+        Public CLOSET_BOX_COLOR As String
+        Public CLOSET_BOX_THIKNESS As String
+        Public CLOSET_DRAWERS As String
+        Public CLOSET_LEGS As String
+        Public CLOSET_PVC_COLOR As String
+        Public CLOSET_SHELVES As String
     End Structure
     Public ProgProps As PROG_PROPS
     Public Function toSQLValue(t As DevExpress.XtraEditors.TextEdit, Optional ByVal isnum As Boolean = False) As String

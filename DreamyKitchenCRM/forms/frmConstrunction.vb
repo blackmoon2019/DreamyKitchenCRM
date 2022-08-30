@@ -58,7 +58,7 @@ Public Class frmConstrunction
 
     Private Sub frmConstrunction_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where jobID='F1A60661-D448-41B7-8CF0-CE6B9FF6E518' order by Fullname")
+        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where active=1 and jobID='F1A60661-D448-41B7-8CF0-CE6B9FF6E518' order by Fullname")
         FillCbo.SER(cboSER, sSQL)
         FillCbo.CUS(cboCUS)
         FillCbo.CONSTR_CAT(cboConstrCat)
@@ -144,8 +144,8 @@ Public Class frmConstrunction
     End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then  cboTRANSH.EditValue = Nothing : ManageTRANSH()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then  If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub

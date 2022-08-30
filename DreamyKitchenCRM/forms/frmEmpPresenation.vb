@@ -33,7 +33,7 @@ Public Class frmEmpPresenation
             Dim i As Integer = 3
             Dim emp_s As Int16
             Dim StatusCols As New List(Of String)
-            sSQL = "Select ID,FullName from vw_EMP where depid='9812E975-2FD4-4653-B043-3D6CAF440888' order by 2"
+            sSQL = "Select ID,FullName from vw_EMP where active=1 and depid='9812E975-2FD4-4653-B043-3D6CAF440888' order by 2"
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             Dim worksheet As Worksheet = SPR.ActiveWorksheet
@@ -213,7 +213,8 @@ Public Class frmEmpPresenation
         repository.PopulateColumns()
         repository.Columns.Item(0).Visible = False
         repository.Columns.Item(1).Visible = False
-        repository.Columns.Item(2).Visible = True
+        repository.Columns.Item(2).Visible = True : repository.Columns.Item(2).Caption = "STATUS"
+        repository.Columns.Item(3).Visible = False
         If e.ColumnIndex >= 1 AndAlso e.RowIndex > 1 Then
             e.RepositoryItem = repository
             AddHandler repository.EditValueChanged, AddressOf Repository_Changed
@@ -301,5 +302,41 @@ Public Class frmEmpPresenation
             SPR.ExportToPdf(XtraSaveFileDialog1.FileName)
 
         End If
+    End Sub
+
+
+    Private Sub SPR_CopiedRangePasted(sender As Object, e As CopiedRangePastedEventArgs) Handles SPR.CopiedRangePasted
+        Dim rangeCellsTarget As CellRange
+        Dim rangeCellsSource As CellRange
+        rangeCellsTarget = e.TargetRange
+        rangeCellsSource = e.SourceRange
+
+        For Each cell As Cell In e.TargetRange
+                Dim dr2 As DataRow() = Me.DreamyKitchenDataSet.vw_EMP_S.Select("name = " & toSQLValueS(cell.Value.TextValue), "name DESC")
+                Dim value As Object = dr2(0).Item("ID")
+                Dim valueColor As Object = dr2(0).Item("color")
+                Dim sDate As Date
+                Dim recID As String
+                sDate = SPR.ActiveWorksheet.Cells.Item(1, cell.ColumnIndex).Value.ToString & "-" & lstMonths.SelectedIndex + 1 & "-" & dtFDate.Text
+                If value Is Nothing Then Exit Sub
+                If cell.Tag Is Nothing Then
+                    recID = System.Guid.NewGuid.ToString
+                    cell.Tag = recID
+                Else
+                    recID = cell.Tag
+                End If
+                Using oCmd As New SqlCommand("SaveEmp_P", CNDB)
+                    oCmd.CommandType = CommandType.StoredProcedure
+                    oCmd.Parameters.AddWithValue("@ID", recID)
+                    oCmd.Parameters.AddWithValue("@dtPresent", sDate)
+                    oCmd.Parameters.AddWithValue("@EmpID", SPR.ActiveWorksheet.Cells.Item(cell.RowIndex, 0).Tag)
+                    oCmd.Parameters.AddWithValue("@StatusID", value)
+                    oCmd.Parameters.AddWithValue("@user", UserProps.ID.ToString)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            SPR.ActiveWorksheet.Cells.Item(cell.RowIndex, cell.ColumnIndex).FillColor = Color.FromArgb(valueColor)
+        Next cell
+
+
     End Sub
 End Class

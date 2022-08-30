@@ -9,6 +9,9 @@ Partial Public Class DreamyKitchenDataSet
 End Class
 
 Namespace DreamyKitchenDataSetTableAdapters
+    Partial Public Class vw_COLORSDOORSTableAdapter
+    End Class
+
     Partial Public Class vw_BUYTableAdapter
     End Class
 

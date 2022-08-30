@@ -2,14 +2,14 @@
 <xs:schema id="DreamyKitchenDataSet" targetNamespace="http://tempuri.org/DreamyKitchenDataSet.xsd" xmlns:mstns="http://tempuri.org/DreamyKitchenDataSet.xsd" xmlns="http://tempuri.org/DreamyKitchenDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
   <xs:annotation>
     <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
-      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="Q_TRANSH_FOR_PROJECT_COST" GeneratorFunctionsComponentClassName="Q_TRANSH_FOR_PROJECT_COST" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="Q_TRANSH_FOR_PROJECT_COST" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="vw_PAYTYPES" GeneratorFunctionsComponentClassName="vw_PAYTYPES" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" UserFunctionsComponentName="vw_PAYTYPES" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
         <Connections>
-          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="DreamyKitchenConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DreamyKitchenConnectionString (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DreamyKitchenCRM.My.MySettings.GlobalReference.Default.DreamyKitchenConnectionString" Provider="System.Data.SqlClient" />
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="DreamyKitchenConnectionStringRemotely" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DreamyKitchenConnectionStringRemotely (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DreamyKitchenCRM.My.MySettings.GlobalReference.Default.DreamyKitchenConnectionStringRemotely" Provider="System.Data.SqlClient" />
         </Connections>
         <Tables>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_NOTESTableAdapter" GeneratorDataComponentClassName="vw_NOTESTableAdapter" Name="vw_NOTES" UserDataComponentName="vw_NOTESTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_NOTES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_NOTES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, title, Note, RealName, Label, HasFiles, salerID, SalerName, color, Readed, createdOn, modifiedOn, empID
@@ -39,7 +39,7 @@ WHERE        (empID = @empID)</CommandText>
               <Mapping SourceColumn="empID" DataSetColumn="empID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_NOTES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_NOTES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT HasFiles, ID, Label, Note, Readed, RealName, SalerName, code, color, createdOn, empID, modifiedOn, salerID, title FROM vw_NOTES</CommandText>
@@ -47,7 +47,7 @@ WHERE        (empID = @empID)</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_NOTES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy1" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillBy1" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBy1">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_NOTES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy1" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillBy1" GetMethodModifier="Public" GetMethodName="GetDataBy1" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBy1">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT HasFiles, ID, Label, Note, Readed, RealName, SalerName, code, color, createdOn, empID, modifiedOn, salerID, title FROM vw_NOTES WHERE (empID = @empID) OR (createdBy = @UserID)</CommandText>
@@ -62,7 +62,7 @@ WHERE        (empID = @empID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SALERSTableAdapter" GeneratorDataComponentClassName="vw_SALERSTableAdapter" Name="vw_SALERS" UserDataComponentName="vw_SALERSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SALERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SALERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, color, RealName, name
@@ -83,7 +83,7 @@ FROM            vw_SALERS</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_COLORSPVCTableAdapter" GeneratorDataComponentClassName="vw_COLORSPVCTableAdapter" Name="vw_COLORSPVC" UserDataComponentName="vw_COLORSPVCTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, name, photo
@@ -103,7 +103,7 @@ WHERE        (colorsCatID = '1226147D-2FF2-4076-B24D-92ABC8FB4663')</CommandText
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_COLORSBOXTableAdapter" GeneratorDataComponentClassName="vw_COLORSBOXTableAdapter" Name="vw_COLORSBOX" UserDataComponentName="vw_COLORSBOXTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, name, photo
@@ -123,7 +123,7 @@ WHERE        (colorsCatID = '40C7BFFB-43EB-48FB-A467-74C0BCBE09FA')</CommandText
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_ERMTableAdapter" GeneratorDataComponentClassName="vw_ERMTableAdapter" Name="vw_ERM" UserDataComponentName="vw_ERMTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillErmCategory" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataErmCategory" GeneratorSourceName="FillErmCategory" GetMethodModifier="Public" GetMethodName="GetDataErmCategory" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataErmCategory" UserSourceName="FillErmCategory">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillErmCategory" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataErmCategory" GeneratorSourceName="FillErmCategory" GetMethodModifier="Public" GetMethodName="GetDataErmCategory" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataErmCategory" UserSourceName="FillErmCategory">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, CustomCode, catErmName, height, doorName, cat, width, depth, door, Price, photo1, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, DoorTypeID, calcID, calcName, calculations, DoorPrice, catSubErmName, 
@@ -166,7 +166,7 @@ and visible=1</CommandText>
               <Mapping SourceColumn="photo1" DataSetColumn="photo1" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByAll" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByAll" GeneratorSourceName="FillByAll" GetMethodModifier="Public" GetMethodName="GetDataByAll" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByAll" UserSourceName="FillByAll">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByAll" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByAll" GeneratorSourceName="FillByAll" GetMethodModifier="Public" GetMethodName="GetDataByAll" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByAll" UserSourceName="FillByAll">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM
@@ -175,7 +175,7 @@ where visible=1</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByDoorType" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByDoorType" GeneratorSourceName="FillByDoorType" GetMethodModifier="Public" GetMethodName="GetDataByDoorType" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByDoorType" UserSourceName="FillByDoorType">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByDoorType" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByDoorType" GeneratorSourceName="FillByDoorType" GetMethodModifier="Public" GetMethodName="GetDataByDoorType" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByDoorType" UserSourceName="FillByDoorType">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM WHERE (DoorTypeID = @DoorTypeID)
@@ -186,7 +186,7 @@ and visible=1</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByErmAndDoor" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByErmAndDoor" GeneratorSourceName="FillByErmAndDoor" GetMethodModifier="Public" GetMethodName="GetDataByErmAndDoor" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByErmAndDoor" UserSourceName="FillByErmAndDoor">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByErmAndDoor" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByErmAndDoor" GeneratorSourceName="FillByErmAndDoor" GetMethodModifier="Public" GetMethodName="GetDataByErmAndDoor" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByErmAndDoor" UserSourceName="FillByErmAndDoor">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID) and visible=1</CommandText>
@@ -197,7 +197,7 @@ and visible=1</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByErmAndSubCat" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByErmAndSubCat" GeneratorSourceName="FillByErmAndSubCat" GetMethodModifier="Public" GetMethodName="GetDataByErmAndSubCat" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByErmAndSubCat" UserSourceName="FillByErmAndSubCat">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByErmAndSubCat" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByErmAndSubCat" GeneratorSourceName="FillByErmAndSubCat" GetMethodModifier="Public" GetMethodName="GetDataByErmAndSubCat" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByErmAndSubCat" UserSourceName="FillByErmAndSubCat">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (catSubErmID = @catSubErmID) and visible=1</CommandText>
@@ -208,7 +208,7 @@ and visible=1</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByErmDoorAndSubCat" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByErmDoorAndSubCat" GeneratorSourceName="FillByErmDoorAndSubCat" GetMethodModifier="Public" GetMethodName="GetDataByErmDoorAndSubCat" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByErmDoorAndSubCat" UserSourceName="FillByErmDoorAndSubCat">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByErmDoorAndSubCat" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByErmDoorAndSubCat" GeneratorSourceName="FillByErmDoorAndSubCat" GetMethodModifier="Public" GetMethodName="GetDataByErmDoorAndSubCat" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByErmDoorAndSubCat" UserSourceName="FillByErmDoorAndSubCat">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID) AND (catSubErmID = @catSubErmID)
@@ -225,7 +225,7 @@ and visible=1</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_OFFERSTableAdapter" GeneratorDataComponentClassName="vw_OFFERSTableAdapter" Name="vw_OFFERS" UserDataComponentName="vw_OFFERSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFFERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFFERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, qty, height, width, depth, door, Photo, legs, DoorTypeName, offID, catErmID, ermID, OfferPrice, DoorTypeID, catSubErmID, calculations, DoorPrice, CatSubErmName, CatErmName, HasMech, side, subOffID, SubOFFName, 
@@ -271,7 +271,7 @@ WHERE        (offID = @OfferID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPETableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPETableAdapter" Name="vw_DOOR_TYPE" UserDataComponentName="vw_DOOR_TYPETableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, name, Price
@@ -287,7 +287,7 @@ FROM            vw_DOOR_TYPE ORDER BY NAME</CommandText>
               <Mapping SourceColumn="Price" DataSetColumn="Price" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="false">
                     <CommandText>SELECT ID, Price, name FROM vw_DOOR_TYPE</CommandText>
@@ -299,7 +299,7 @@ FROM            vw_DOOR_TYPE ORDER BY NAME</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_CAT_SUB_ERMTableAdapter" GeneratorDataComponentClassName="vw_CAT_SUB_ERMTableAdapter" Name="vw_CAT_SUB_ERM" UserDataComponentName="vw_CAT_SUB_ERMTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CAT_SUB_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillCatSubErmAll" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataCatSubErmAll" GeneratorSourceName="FillCatSubErmAll" GetMethodModifier="Public" GetMethodName="GetDataCatSubErmAll" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataCatSubErmAll" UserSourceName="FillCatSubErmAll">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CAT_SUB_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillCatSubErmAll" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataCatSubErmAll" GeneratorSourceName="FillCatSubErmAll" GetMethodModifier="Public" GetMethodName="GetDataCatSubErmAll" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataCatSubErmAll" UserSourceName="FillCatSubErmAll">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, name, catERMID
@@ -315,7 +315,7 @@ FROM            vw_CAT_SUB_ERM</CommandText>
               <Mapping SourceColumn="catERMID" DataSetColumn="catERMID" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CAT_SUB_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByCatSubErmByCatErmID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCatSubErmByCatErmID" GeneratorSourceName="FillByCatSubErmByCatErmID" GetMethodModifier="Public" GetMethodName="GetDataByCatSubErmByCatErmID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCatSubErmByCatErmID" UserSourceName="FillByCatSubErmByCatErmID">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CAT_SUB_ERM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByCatSubErmByCatErmID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByCatSubErmByCatErmID" GeneratorSourceName="FillByCatSubErmByCatErmID" GetMethodModifier="Public" GetMethodName="GetDataByCatSubErmByCatErmID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByCatSubErmByCatErmID" UserSourceName="FillByCatSubErmByCatErmID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, name, catERMID
@@ -331,7 +331,7 @@ WHERE        (catERMID = @catERMID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SIDESTableAdapter" GeneratorDataComponentClassName="vw_SIDESTableAdapter" Name="vw_SIDES" UserDataComponentName="vw_SIDESTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SIDES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillSidesBydoorTypeID" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataSidesBydoorTypeID" GeneratorSourceName="FillSidesBydoorTypeID" GetMethodModifier="Public" GetMethodName="GetDataSidesBydoorTypeID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataSidesBydoorTypeID" UserSourceName="FillSidesBydoorTypeID">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SIDES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillSidesBydoorTypeID" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetDataSidesBydoorTypeID" GeneratorSourceName="FillSidesBydoorTypeID" GetMethodModifier="Public" GetMethodName="GetDataSidesBydoorTypeID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataSidesBydoorTypeID" UserSourceName="FillSidesBydoorTypeID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        name, height, width, Price, ID
@@ -355,7 +355,7 @@ WHERE        (doorTypeID = @doorTypeID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_OFFTableAdapter" GeneratorDataComponentClassName="vw_OFFTableAdapter" Name="vw_OFF" UserDataComponentName="vw_OFFTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFF" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFF" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        vw_OFF.*
@@ -386,7 +386,7 @@ FROM            vw_OFF</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_OFFERS_TOTALTableAdapter" GeneratorDataComponentClassName="vw_OFFERS_TOTALTableAdapter" Name="vw_OFFERS_TOTAL" UserDataComponentName="vw_OFFERS_TOTALTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectType="Unknown" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        OFF_TOTAL.ID, OFF_TOTAL.offID, OFF_TOTAL.DoorTypeID, OFF_TOTAL.Price, OFF_TOTAL.NewPrice, OFF_TOTAL.modifiedBy, OFF_TOTAL.modifiedOn, OFF_TOTAL.createdOn, OFF_TOTAL.createdBy, DOOR_TYPE.name
@@ -416,7 +416,7 @@ where offID=@OffID</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_OFF_SUBOFFTableAdapter" GeneratorDataComponentClassName="vw_OFF_SUBOFFTableAdapter" Name="vw_OFF_SUBOFF" UserDataComponentName="vw_OFF_SUBOFFTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFF_SUBOFF" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFF_SUBOFF" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, SubOFFName
@@ -437,7 +437,7 @@ WHERE        (offID = @offID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_OFFER_DOORTYPES" GeneratorDataComponentClassName="vw_OFFER_DOORTYPES" Name="vw_OFFER_DOORTYPES" UserDataComponentName="vw_OFFER_DOORTYPES">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFFERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_OFFERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT DISTINCT DoorTypeID, DoorTypeID AS DoorTypeID2, DoorTypeName
@@ -460,7 +460,7 @@ WHERE        (offID = @OffID) AND (subOffID = @subOffID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_COLORSBAZATableAdapter" GeneratorDataComponentClassName="vw_COLORSBAZATableAdapter" Name="vw_COLORSBAZA" UserDataComponentName="vw_COLORSBAZATableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, name, photo
@@ -480,7 +480,7 @@ WHERE        (colorsCatID = '9F373F04-198E-4588-A94C-80483F70A022')</CommandText
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_COLORSBACKTableAdapter" GeneratorDataComponentClassName="vw_COLORSBACKTableAdapter" Name="vw_COLORSBACK" UserDataComponentName="vw_COLORSBACKTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, name, photo
@@ -500,11 +500,11 @@ WHERE        (colorsCatID = 'CF437CC3-62BF-477F-B983-ABC24D686BBD')</CommandText
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_BENCHTableAdapter" GeneratorDataComponentClassName="vw_BENCHTableAdapter" Name="vw_BENCH" UserDataComponentName="vw_BENCHTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BENCH" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BENCH" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ID, name, pricePerMeter, width, tbl
-FROM            vw_BENCH</CommandText>
+                    <CommandText>SELECT ID, name, pricePerMeter, width, tbl, dimName
+FROM   vw_BENCH</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -516,12 +516,13 @@ FROM            vw_BENCH</CommandText>
               <Mapping SourceColumn="pricePerMeter" DataSetColumn="pricePerMeter" />
               <Mapping SourceColumn="width" DataSetColumn="width" />
               <Mapping SourceColumn="tbl" DataSetColumn="tbl" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
             </Mappings>
             <Sources />
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_CCT_MTableAdapter" GeneratorDataComponentClassName="vw_CCT_MTableAdapter" Name="vw_CCT_M" UserDataComponentName="vw_CCT_MTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CCT_M" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CCT_M" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, Fullname, mob, email, cct_cmt, code, STATUS_Name, allowschedule, SALERS_Name, color, ADR_Name, Ar, tk, RealName, AREAS_Name, statusID, cusID, sch, completed, dtcompleted, cmt, createdOn, modifiedOn, salersID, 
@@ -579,7 +580,7 @@ WHERE      ALLOWSCHEDULE=1 and  completed=0 AND   (Fullname LIKE '%' + @fullname
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SERTableAdapter" GeneratorDataComponentClassName="vw_SERTableAdapter" Name="vw_SER" UserDataComponentName="vw_SERTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SER" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SER" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, color, Fullname
@@ -599,7 +600,7 @@ FROM            vw_SER</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_INSTTableAdapter" GeneratorDataComponentClassName="vw_INSTTableAdapter" Name="vw_INST" UserDataComponentName="vw_INSTTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_INST" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_INST" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, cusID,  serID, dtDeliverDate, GRMONTH, cmt, modifiedBy, modifiedOn, createdOn, createdBy, cctName, SalerName, RealName, SerName, color, completed, SerCode, cost, extraCost
@@ -638,7 +639,7 @@ WHERE        (cctName LIKE '%' + @cctName + '%')</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_CCT_FTableAdapter" GeneratorDataComponentClassName="vw_CCT_FTableAdapter" Name="vw_CCT_F" UserDataComponentName="vw_CCT_FTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CCT_F" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CCT_F" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        filename, RealName, code, comefrom, extension, modifiedOn, createdOn, ID, cctID, files, isinvoice
@@ -668,11 +669,12 @@ WHERE        (isinvoice = 1) AND (cctID = @cusid)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_TRANSDTableAdapter" GeneratorDataComponentClassName="vw_TRANSDTableAdapter" Name="vw_TRANSD" UserDataComponentName="vw_TRANSDTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_TRANSD" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_TRANSD" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, transhID, BankName, cash, amt, cmt, dtPay, RealName, modifiedOn, createdOn, bankID FROM dbo.vw_TRANSD
-where transhID=@transhID</CommandText>
+                    <CommandText>SELECT ID, transhID, BankName, cash, amt, cmt, dtPay, RealName, modifiedOn, createdOn, bankID, PayTypeDescr, PayType, GRMONTH, paid
+FROM   vw_TRANSD
+WHERE (transhID = @transhID)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="transhID" ColumnName="transhID" DataSourceName="DreamyKitchen.dbo.vw_TRANSD" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@transhID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="transhID" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -692,15 +694,19 @@ where transhID=@transhID</CommandText>
               <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
               <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
               <Mapping SourceColumn="bankID" DataSetColumn="bankID" />
+              <Mapping SourceColumn="PayTypeDescr" DataSetColumn="PayTypeDescr" />
+              <Mapping SourceColumn="PayType" DataSetColumn="PayType" />
+              <Mapping SourceColumn="GRMONTH" DataSetColumn="GRMONTH" />
+              <Mapping SourceColumn="paid" DataSetColumn="paid" />
             </Mappings>
             <Sources />
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_BANKSTableAdapter" GeneratorDataComponentClassName="vw_BANKSTableAdapter" Name="vw_BANKS" UserDataComponentName="vw_BANKSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BANKS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BANKS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
-                    <CommandText>SELECT RealName, ID, code, name, modifiedBy, modifiedOn, createdOn, createdBy FROM dbo.vw_BANKS</CommandText>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT RealName, ID, code, name, modifiedBy, modifiedOn, createdOn, createdBy FROM dbo.vw_BANKS order by name</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -720,7 +726,7 @@ where transhID=@transhID</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_EMP_STableAdapter" GeneratorDataComponentClassName="vw_EMP_STableAdapter" Name="vw_EMP_S" UserDataComponentName="vw_EMP_STableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EMP_S" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EMP_S" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, name, shortName, color
@@ -740,7 +746,7 @@ FROM            vw_EMP_S</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SALER_CAL_STATUSTableAdapter" GeneratorDataComponentClassName="vw_SALER_CAL_STATUSTableAdapter" Name="vw_SALER_CAL_STATUS" UserDataComponentName="vw_SALER_CAL_STATUSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SALER_CAL_STATUS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SALER_CAL_STATUS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, name, color
@@ -760,7 +766,7 @@ FROM            vw_SALER_CAL_STATUS</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_EMPTableAdapter" GeneratorDataComponentClassName="vw_EMPTableAdapter" Name="vw_EMP" UserDataComponentName="vw_EMPTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EMP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EMP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, Fullname, CouID, AreaID, AdrID, DoyID, PrfID, salary, hireDate, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn, createdBy, RealName, CouName, AdrName, AreaName, DoyName, PrfName, depID, 
@@ -809,13 +815,13 @@ WHERE        (depID = @DepID)</CommandText>
               <Mapping SourceColumn="color" DataSetColumn="color" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EMP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EMP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, Fullname, CouID, AreaID, AdrID, DoyID, PrfID, salary, hireDate, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn, createdBy, RealName, CouName, AdrName, AreaName, DoyName, PrfName, depID, 
                          DepName, Ar, tk, HasFiles, color
 FROM            vw_EMP
-WHERE        (depID = @DepID)</CommandText>
+WHERE        active= 1 and (depID = @DepID)</CommandText>
                     <Parameters>
                       <Parameter AllowDbNull="false" AutogeneratedName="DepID" ColumnName="depID" DataSourceName="DreamyKitchen.dbo.vw_EMP" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@DepID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="depID" SourceColumnNullMapping="false" SourceVersion="Current" />
                     </Parameters>
@@ -826,7 +832,7 @@ WHERE        (depID = @DepID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_INSTPerSerTableAdapter" GeneratorDataComponentClassName="vw_INSTPerSerTableAdapter" Name="vw_INSTPerSer" UserDataComponentName="vw_INSTPerSerTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_INST" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_INST" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, cctName, cmt, dtDeliverDate, SalerName, cost + extraCost AS TotalCost, GRMONTH, YPOL, description, FullTranshDescription
@@ -853,7 +859,7 @@ ORDER BY dtDeliverDate DESC</CommandText>
               <Mapping SourceColumn="FullTranshDescription" DataSetColumn="FullTranshDescription" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_INST" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByID" GeneratorSourceName="FillByID" GetMethodModifier="Public" GetMethodName="GetDataByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByID" UserSourceName="FillByID">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_INST" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByID" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetDataByID" GeneratorSourceName="FillByID" GetMethodModifier="Public" GetMethodName="GetDataByID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataByID" UserSourceName="FillByID">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT FullTranshDescription, GRMONTH, ID, SalerName, cost + extraCost AS TotalCost, YPOL, cctName, cmt, description, dtDeliverDate FROM vw_INST WHERE (ID = @ID) ORDER BY dtDeliverDate DESC</CommandText>
@@ -867,7 +873,7 @@ ORDER BY dtDeliverDate DESC</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_INVTYPESTableAdapter" GeneratorDataComponentClassName="vw_INVTYPESTableAdapter" Name="vw_INVTYPES" UserDataComponentName="vw_INVTYPESTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_INVTYPES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_INVTYPES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        invType, invTypeDescr
@@ -885,7 +891,7 @@ FROM            vw_INVTYPES</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SALERS_AND_COUNTERSTableAdapter" GeneratorDataComponentClassName="vw_SALERS_AND_COUNTERSTableAdapter" Name="vw_SALERS_AND_COUNTERS" UserDataComponentName="vw_SALERS_AND_COUNTERSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SALERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SALERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, color, RealName, name
@@ -909,7 +915,7 @@ FROM            vw_COUNTERS</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SCAN_FILE_NAMESTableAdapter" GeneratorDataComponentClassName="vw_SCAN_FILE_NAMESTableAdapter" Name="vw_SCAN_FILE_NAMES" UserDataComponentName="vw_SCAN_FILE_NAMESTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SCAN_FILE_NAMES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SCAN_FILE_NAMES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT       name
@@ -926,7 +932,7 @@ FROM            vw_SCAN_FILE_NAMES</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_TRANSHTableAdapter" GeneratorDataComponentClassName="vw_TRANSHTableAdapter" Name="vw_TRANSH" UserDataComponentName="vw_TRANSHTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_TRANSH" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_TRANSH" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT        ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription
@@ -972,11 +978,11 @@ WHERE        (cusID = @cusID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SUPTableAdapter" GeneratorDataComponentClassName="vw_SUPTableAdapter" Name="vw_SUP" UserDataComponentName="vw_SUPTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SUP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SUP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, code, Fullname, ttl, bal
-FROM   vw_SUP</CommandText>
+FROM   vw_SUP order by Fullname</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -993,7 +999,7 @@ FROM   vw_SUP</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_BUYTableAdapter" GeneratorDataComponentClassName="vw_BUYTableAdapter" Name="vw_BUY" UserDataComponentName="vw_BUYTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BUY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BUY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, code, dtBuy, invoiceNumber, supID, cusID, transhID, netAmount, vatAmount, modifiedBy, modifiedOn, createdOn, createdBy, SupFullName, CusFullname, TranshDescription, RealName, BuyCName, cmt, buyCID, kitchen, closet, general, materials, bathroomFurn, DevicesBuy, PayName, payID, paid, kitchenV, closetV, generalV, 
@@ -1043,7 +1049,7 @@ FROM   vw_BUY</CommandText>
               <Mapping SourceColumn="isCredit" DataSetColumn="isCredit" />
             </Mappings>
             <Sources>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BUY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBysupID_with_noPaid" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillBysupID_with_noPaid" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBysupID_with_noPaid">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BUY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBysupID_with_noPaid" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy1" GeneratorSourceName="FillBysupID_with_noPaid" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBysupID_with_noPaid">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT BuyCName, CusFullname, DevicesBuy, DevicesBuyV, ID, PayName, RealName, SupFullName, TranshDescription, bathroomFurn, bathroomFurnV, buyCID, closet, closetV, cmt, code, createdBy, createdOn, cusID, dtBuy, general, generalV, invoiceNumber, isCredit, kitchen, kitchenV, materials, materialsV, modifiedBy, modifiedOn, netAmount, paid, payID, supID, transhID, vatAmount FROM vw_BUY WHERE (supID = @supID) AND (paid = 0) AND (isCredit = 0)</CommandText>
@@ -1053,7 +1059,7 @@ FROM   vw_BUY</CommandText>
                   </DbCommand>
                 </SelectCommand>
               </DbSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BUY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBysupID_with_Paid" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBysupID_with_Paid" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBysupID_with_Paid">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_BUY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBysupID_with_Paid" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBysupID_with_Paid" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="FillBysupID_with_Paid">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT BuyCName, CusFullname, DevicesBuy, DevicesBuyV, ID, PayName, RealName, SupFullName, TranshDescription, bathroomFurn, bathroomFurnV, buyCID, closet, closetV, cmt, code, createdBy, createdOn, cusID, dtBuy, general, generalV, invoiceNumber, isCredit, kitchen, kitchenV, materials, materialsV, modifiedBy, modifiedOn, netAmount, paid, payID, supID, transhID, vatAmount FROM vw_BUY WHERE (supID = @supID) AND (paid = 1) AND (isCredit = 0)</CommandText>
@@ -1067,7 +1073,7 @@ FROM   vw_BUY</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_PAYTableAdapter" GeneratorDataComponentClassName="vw_PAYTableAdapter" Name="vw_PAY" UserDataComponentName="vw_PAYTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_PAY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_PAY" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, name
@@ -1085,10 +1091,10 @@ FROM   vw_PAY</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_CCTTableAdapter" GeneratorDataComponentClassName="vw_CCTTableAdapter" Name="vw_CCT" UserDataComponentName="vw_CCTTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionString (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CCT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CCT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT vw_CCT.*
+                    <CommandText>SELECT ID, code, Fullname, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn,  RealName, COU_Name, SRC_Name, AREAS_Name, ADR_Name, PRF_Name, SALERS_Name, color, CouID, AreaID, AdrID, SourceID, SalerID, DoyID, PrfID, Ar, tk, createdby_Realname, HasFiles, FatherName, DOY_Name
 FROM   vw_CCT</CommandText>
                     <Parameters />
                   </DbCommand>
@@ -1115,7 +1121,6 @@ FROM   vw_CCT</CommandText>
               <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
               <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
               <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
-              <Mapping SourceColumn="name" DataSetColumn="name" />
               <Mapping SourceColumn="RealName" DataSetColumn="RealName" />
               <Mapping SourceColumn="COU_Name" DataSetColumn="COU_Name" />
               <Mapping SourceColumn="SRC_Name" DataSetColumn="SRC_Name" />
@@ -1128,8 +1133,328 @@ FROM   vw_CCT</CommandText>
               <Mapping SourceColumn="tk" DataSetColumn="tk" />
               <Mapping SourceColumn="createdby_Realname" DataSetColumn="createdby_Realname" />
               <Mapping SourceColumn="HasFiles" DataSetColumn="HasFiles" />
+              <Mapping SourceColumn="FatherName" DataSetColumn="FatherName" />
+              <Mapping SourceColumn="DOY_Name" DataSetColumn="DOY_Name" />
             </Mappings>
             <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_COLORSDOORSTableAdapter" GeneratorDataComponentClassName="vw_COLORSDOORSTableAdapter" Name="vw_COLORSDOORS" UserDataComponentName="vw_COLORSDOORSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, name, photo
+FROM   vw_COLORS AS DOORSCOLORS
+WHERE (colorsCatID = 'F7FEADFC-507E-421B-9AB2-CB84DD3A2505')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="photo" DataSetColumn="photo" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_COLORSGOLATableAdapter" GeneratorDataComponentClassName="vw_COLORSGOLATableAdapter" Name="vw_COLORSGOLA" UserDataComponentName="vw_COLORSGOLATableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_COLORS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, code, name, color, photo, modifiedBy, modifiedOn, createdOn, createdBy, RealName, colorCatName, colorsCatID
+FROM   vw_COLORS
+WHERE (colorsCatID = '1fa658c9-a338-4805-b38f-7e6503a5cd25')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="photo" DataSetColumn="photo" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="RealName" DataSetColumn="RealName" />
+              <Mapping SourceColumn="colorCatName" DataSetColumn="colorCatName" />
+              <Mapping SourceColumn="colorsCatID" DataSetColumn="colorsCatID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DEVICESTableAdapter" GeneratorDataComponentClassName="vw_DEVICESTableAdapter" Name="vw_DEVICES" UserDataComponentName="vw_DEVICESTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DEVICES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT vw_DEVICES.*
+FROM   vw_DEVICES</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="RealName" DataSetColumn="RealName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_EQUIPMENTTableAdapter" GeneratorDataComponentClassName="vw_EQUIPMENTTableAdapter" Name="vw_EQUIPMENT" UserDataComponentName="vw_EQUIPMENTTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EQUIPMENT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT vw_EQUIPMENT.*
+FROM   vw_EQUIPMENT</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="RealName" DataSetColumn="RealName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_EQUIPMENT_KITCHENTableAdapter" GeneratorDataComponentClassName="vw_EQUIPMENT_KITCHENTableAdapter" Name="vw_EQUIPMENT_KITCHEN" UserDataComponentName="vw_EQUIPMENT_KITCHENTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EQUIPMENT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText> Select  e.ID,E.code,name,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked ,price as defPrice
+                     From vw_EQUIPMENT E where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="price" DataSetColumn="price" />
+              <Mapping SourceColumn="checked" DataSetColumn="checked" />
+              <Mapping SourceColumn="defPrice" DataSetColumn="defPrice" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_EQUIPMENT_CLOSETTableAdapter" GeneratorDataComponentClassName="vw_EQUIPMENT_CLOSETTableAdapter" Name="vw_EQUIPMENT_CLOSET" UserDataComponentName="vw_EQUIPMENT_CLOSETTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EQUIPMENT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText> Select  e.ID,E.code,name,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked ,price as defPrice
+                     From vw_EQUIPMENT E where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62' ORDER BY NAME</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="price" DataSetColumn="price" />
+              <Mapping SourceColumn="checked" DataSetColumn="checked" />
+              <Mapping SourceColumn="defPrice" DataSetColumn="defPrice" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_ORDER_MANAGERSTableAdapter" GeneratorDataComponentClassName="vw_ORDER_MANAGERSTableAdapter" Name="vw_ORDER_MANAGERS" UserDataComponentName="vw_ORDER_MANAGERSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EMP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, code, Fullname, CouID, AreaID, AdrID, DoyID, PrfID, salary, hireDate, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn, createdBy, RealName, CouName, AdrName, AreaName, DoyName, PrfName, depID, DepName, Ar, tk, HasFiles, color, serID, salerID, SerName, SalerName, tmIN, tmOUT, arProt, profitPerc, 
+           JobName, jobID, isActive, usrName, active
+FROM   vw_EMP
+WHERE (jobID = '446E4C5D-542A-4F48-BB2B-46C2209F6443')</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="Fullname" DataSetColumn="Fullname" />
+              <Mapping SourceColumn="CouID" DataSetColumn="CouID" />
+              <Mapping SourceColumn="AreaID" DataSetColumn="AreaID" />
+              <Mapping SourceColumn="AdrID" DataSetColumn="AdrID" />
+              <Mapping SourceColumn="DoyID" DataSetColumn="DoyID" />
+              <Mapping SourceColumn="PrfID" DataSetColumn="PrfID" />
+              <Mapping SourceColumn="salary" DataSetColumn="salary" />
+              <Mapping SourceColumn="hireDate" DataSetColumn="hireDate" />
+              <Mapping SourceColumn="phn" DataSetColumn="phn" />
+              <Mapping SourceColumn="mob" DataSetColumn="mob" />
+              <Mapping SourceColumn="fax" DataSetColumn="fax" />
+              <Mapping SourceColumn="email" DataSetColumn="email" />
+              <Mapping SourceColumn="afm" DataSetColumn="afm" />
+              <Mapping SourceColumn="cmt" DataSetColumn="cmt" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="RealName" DataSetColumn="RealName" />
+              <Mapping SourceColumn="CouName" DataSetColumn="CouName" />
+              <Mapping SourceColumn="AdrName" DataSetColumn="AdrName" />
+              <Mapping SourceColumn="AreaName" DataSetColumn="AreaName" />
+              <Mapping SourceColumn="DoyName" DataSetColumn="DoyName" />
+              <Mapping SourceColumn="PrfName" DataSetColumn="PrfName" />
+              <Mapping SourceColumn="depID" DataSetColumn="depID" />
+              <Mapping SourceColumn="DepName" DataSetColumn="DepName" />
+              <Mapping SourceColumn="Ar" DataSetColumn="Ar" />
+              <Mapping SourceColumn="tk" DataSetColumn="tk" />
+              <Mapping SourceColumn="HasFiles" DataSetColumn="HasFiles" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="serID" DataSetColumn="serID" />
+              <Mapping SourceColumn="salerID" DataSetColumn="salerID" />
+              <Mapping SourceColumn="SerName" DataSetColumn="SerName" />
+              <Mapping SourceColumn="SalerName" DataSetColumn="SalerName" />
+              <Mapping SourceColumn="tmIN" DataSetColumn="tmIN" />
+              <Mapping SourceColumn="tmOUT" DataSetColumn="tmOUT" />
+              <Mapping SourceColumn="arProt" DataSetColumn="arProt" />
+              <Mapping SourceColumn="profitPerc" DataSetColumn="profitPerc" />
+              <Mapping SourceColumn="JobName" DataSetColumn="JobName" />
+              <Mapping SourceColumn="jobID" DataSetColumn="jobID" />
+              <Mapping SourceColumn="isActive" DataSetColumn="isActive" />
+              <Mapping SourceColumn="usrName" DataSetColumn="usrName" />
+              <Mapping SourceColumn="active" DataSetColumn="active" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_EPOPTEIATableAdapter" GeneratorDataComponentClassName="vw_EPOPTEIATableAdapter" Name="vw_EPOPTEIA" UserDataComponentName="vw_EPOPTEIATableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_EPOPTEIA" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT id, FULLNAME, DESCRIPTION, CountOrder, MaxPeriod1, CountReceipt, MaxPeriod2, CountContruct, MaxPeriod3, CountComplete, MaxPeriod4, FullTranshDescription
+FROM   vw_EPOPTEIA</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CountOrder" DataSetColumn="CountOrder" />
+              <Mapping SourceColumn="MaxPeriod1" DataSetColumn="MaxPeriod1" />
+              <Mapping SourceColumn="CountReceipt" DataSetColumn="CountReceipt" />
+              <Mapping SourceColumn="MaxPeriod2" DataSetColumn="MaxPeriod2" />
+              <Mapping SourceColumn="CountContruct" DataSetColumn="CountContruct" />
+              <Mapping SourceColumn="MaxPeriod3" DataSetColumn="MaxPeriod3" />
+              <Mapping SourceColumn="CountComplete" DataSetColumn="CountComplete" />
+              <Mapping SourceColumn="MaxPeriod4" DataSetColumn="MaxPeriod4" />
+              <Mapping SourceColumn="id" DataSetColumn="id" />
+              <Mapping SourceColumn="FULLNAME" DataSetColumn="FULLNAME" />
+              <Mapping SourceColumn="DESCRIPTION" DataSetColumn="DESCRIPTION" />
+              <Mapping SourceColumn="FullTranshDescription" DataSetColumn="FullTranshDescription" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_PAYTYPESTableAdapter" GeneratorDataComponentClassName="vw_PAYTYPESTableAdapter" Name="vw_PAYTYPES" UserDataComponentName="vw_PAYTYPESTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_PAYTYPES" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT PayType, PayTypeDescr
+FROM   vw_PAYTYPES</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PayType" DataSetColumn="PayType" />
+              <Mapping SourceColumn="PayTypeDescr" DataSetColumn="PayTypeDescr" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DIMTableAdapter" GeneratorDataComponentClassName="vw_DIMTableAdapter" Name="vw_DIM" UserDataComponentName="vw_DIMTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DIM" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, name
+FROM   vw_DIM</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_CATTableAdapter" GeneratorDataComponentClassName="vw_DOOR_CATTableAdapter" Name="vw_DOOR_CAT" UserDataComponentName="vw_DOOR_CATTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_CAT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, name
+FROM   vw_DOOR_CAT</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_TECH_SUPTableAdapter" GeneratorDataComponentClassName="vw_TECH_SUPTableAdapter" Name="vw_TECH_SUP" UserDataComponentName="vw_TECH_SUPTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_TECH_SUP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillWithNew" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillWithNew" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillWithNew">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, subject, descr, code
+FROM   vw_TECH_SUP
+WHERE (fixed = 0) AND (rejected = 0) AND (moreInfo = 0)</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="subject" DataSetColumn="subject" />
+              <Mapping SourceColumn="descr" DataSetColumn="descr" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_TECH_SUP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBy" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillBy" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillBy">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, subject, descr, code
+FROM   vw_TECH_SUP
+</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
         </Tables>
         <Sources />
@@ -1608,6 +1933,13 @@ FROM   vw_CCT</CommandText>
               <xs:element name="pricePerMeter" msprop:Generator_ColumnVarNameInTable="columnpricePerMeter" msprop:Generator_ColumnPropNameInRow="pricePerMeter" msprop:Generator_ColumnPropNameInTable="pricePerMeterColumn" msprop:Generator_UserColumnName="pricePerMeter" type="xs:decimal" minOccurs="0" />
               <xs:element name="width" msprop:Generator_ColumnVarNameInTable="columnwidth" msprop:Generator_ColumnPropNameInRow="width" msprop:Generator_ColumnPropNameInTable="widthColumn" msprop:Generator_UserColumnName="width" type="xs:int" minOccurs="0" />
               <xs:element name="tbl" msprop:Generator_ColumnVarNameInTable="columntbl" msprop:Generator_ColumnPropNameInRow="tbl" msprop:Generator_ColumnPropNameInTable="tblColumn" msprop:Generator_UserColumnName="tbl" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1914,6 +2246,22 @@ FROM   vw_CCT</CommandText>
               <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
               <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
               <xs:element name="bankID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnbankID" msprop:Generator_ColumnPropNameInRow="bankID" msprop:Generator_ColumnPropNameInTable="bankIDColumn" msprop:Generator_UserColumnName="bankID" type="xs:string" minOccurs="0" />
+              <xs:element name="PayTypeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnPayTypeDescr" msprop:Generator_ColumnPropNameInRow="PayTypeDescr" msprop:Generator_ColumnPropNameInTable="PayTypeDescrColumn" msprop:Generator_UserColumnName="PayTypeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PayType" msprop:Generator_ColumnVarNameInTable="columnPayType" msprop:Generator_ColumnPropNameInRow="PayType" msprop:Generator_ColumnPropNameInTable="PayTypeColumn" msprop:Generator_UserColumnName="PayType" type="xs:int" minOccurs="0" />
+              <xs:element name="GRMONTH" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnGRMONTH" msprop:Generator_ColumnPropNameInRow="GRMONTH" msprop:Generator_ColumnPropNameInTable="GRMONTHColumn" msprop:Generator_UserColumnName="GRMONTH" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="paid" msprop:Generator_ColumnVarNameInTable="columnpaid" msprop:Generator_ColumnPropNameInRow="paid" msprop:Generator_ColumnPropNameInTable="paidColumn" msprop:Generator_UserColumnName="paid" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2489,13 +2837,6 @@ FROM   vw_CCT</CommandText>
               <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
               <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
               <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="50" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
               <xs:element name="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_UserColumnName="RealName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -2568,6 +2909,442 @@ FROM   vw_CCT</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="HasFiles" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnHasFiles" msprop:Generator_ColumnPropNameInRow="HasFiles" msprop:Generator_ColumnPropNameInTable="HasFilesColumn" msprop:Generator_UserColumnName="HasFiles" type="xs:boolean" minOccurs="0" />
+              <xs:element name="FatherName" msprop:Generator_ColumnVarNameInTable="columnFatherName" msprop:Generator_ColumnPropNameInRow="FatherName" msprop:Generator_ColumnPropNameInTable="FatherNameColumn" msprop:Generator_UserColumnName="FatherName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DOY_Name" msprop:Generator_ColumnVarNameInTable="columnDOY_Name" msprop:Generator_ColumnPropNameInRow="DOY_Name" msprop:Generator_ColumnPropNameInTable="DOY_NameColumn" msprop:Generator_UserColumnName="DOY_Name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_COLORSDOORS" msprop:Generator_TableClassName="vw_COLORSDOORSDataTable" msprop:Generator_TableVarName="tablevw_COLORSDOORS" msprop:Generator_RowChangedName="vw_COLORSDOORSRowChanged" msprop:Generator_TablePropName="vw_COLORSDOORS" msprop:Generator_RowDeletingName="vw_COLORSDOORSRowDeleting" msprop:Generator_RowChangingName="vw_COLORSDOORSRowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSDOORSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSDOORSRowDeleted" msprop:Generator_RowClassName="vw_COLORSDOORSRow" msprop:Generator_UserTableName="vw_COLORSDOORS" msprop:Generator_RowEvArgName="vw_COLORSDOORSRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="photo" msprop:Generator_ColumnVarNameInTable="columnphoto" msprop:Generator_ColumnPropNameInRow="photo" msprop:Generator_ColumnPropNameInTable="photoColumn" msprop:Generator_UserColumnName="photo" type="xs:base64Binary" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_COLORSGOLA" msprop:Generator_TableClassName="vw_COLORSGOLADataTable" msprop:Generator_TableVarName="tablevw_COLORSGOLA" msprop:Generator_RowChangedName="vw_COLORSGOLARowChanged" msprop:Generator_TablePropName="vw_COLORSGOLA" msprop:Generator_RowDeletingName="vw_COLORSGOLARowDeleting" msprop:Generator_RowChangingName="vw_COLORSGOLARowChanging" msprop:Generator_RowEvHandlerName="vw_COLORSGOLARowChangeEventHandler" msprop:Generator_RowDeletedName="vw_COLORSGOLARowDeleted" msprop:Generator_RowClassName="vw_COLORSGOLARow" msprop:Generator_UserTableName="vw_COLORSGOLA" msprop:Generator_RowEvArgName="vw_COLORSGOLARowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="photo" msprop:Generator_ColumnVarNameInTable="columnphoto" msprop:Generator_ColumnPropNameInRow="photo" msprop:Generator_ColumnPropNameInTable="photoColumn" msprop:Generator_UserColumnName="photo" type="xs:base64Binary" minOccurs="0" />
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_UserColumnName="RealName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="colorCatName" msprop:Generator_ColumnVarNameInTable="columncolorCatName" msprop:Generator_ColumnPropNameInRow="colorCatName" msprop:Generator_ColumnPropNameInTable="colorCatNameColumn" msprop:Generator_UserColumnName="colorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="colorsCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncolorsCatID" msprop:Generator_ColumnPropNameInRow="colorsCatID" msprop:Generator_ColumnPropNameInTable="colorsCatIDColumn" msprop:Generator_UserColumnName="colorsCatID" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DEVICES" msprop:Generator_TableClassName="vw_DEVICESDataTable" msprop:Generator_TableVarName="tablevw_DEVICES" msprop:Generator_TablePropName="vw_DEVICES" msprop:Generator_RowDeletingName="vw_DEVICESRowDeleting" msprop:Generator_RowChangingName="vw_DEVICESRowChanging" msprop:Generator_RowEvHandlerName="vw_DEVICESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DEVICESRowDeleted" msprop:Generator_UserTableName="vw_DEVICES" msprop:Generator_RowChangedName="vw_DEVICESRowChanged" msprop:Generator_RowEvArgName="vw_DEVICESRowChangeEvent" msprop:Generator_RowClassName="vw_DEVICESRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_UserColumnName="RealName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_EQUIPMENT" msprop:Generator_TableClassName="vw_EQUIPMENTDataTable" msprop:Generator_TableVarName="tablevw_EQUIPMENT" msprop:Generator_TablePropName="vw_EQUIPMENT" msprop:Generator_RowDeletingName="vw_EQUIPMENTRowDeleting" msprop:Generator_RowChangingName="vw_EQUIPMENTRowChanging" msprop:Generator_RowEvHandlerName="vw_EQUIPMENTRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_EQUIPMENTRowDeleted" msprop:Generator_UserTableName="vw_EQUIPMENT" msprop:Generator_RowChangedName="vw_EQUIPMENTRowChanged" msprop:Generator_RowEvArgName="vw_EQUIPMENTRowChangeEvent" msprop:Generator_RowClassName="vw_EQUIPMENTRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_UserColumnName="RealName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_EQUIPMENT_KITCHEN" msprop:Generator_TableClassName="vw_EQUIPMENT_KITCHENDataTable" msprop:Generator_TableVarName="tablevw_EQUIPMENT_KITCHEN" msprop:Generator_TablePropName="vw_EQUIPMENT_KITCHEN" msprop:Generator_RowDeletingName="vw_EQUIPMENT_KITCHENRowDeleting" msprop:Generator_RowChangingName="vw_EQUIPMENT_KITCHENRowChanging" msprop:Generator_RowEvHandlerName="vw_EQUIPMENT_KITCHENRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_EQUIPMENT_KITCHENRowDeleted" msprop:Generator_UserTableName="vw_EQUIPMENT_KITCHEN" msprop:Generator_RowChangedName="vw_EQUIPMENT_KITCHENRowChanged" msprop:Generator_RowEvArgName="vw_EQUIPMENT_KITCHENRowChangeEvent" msprop:Generator_RowClassName="vw_EQUIPMENT_KITCHENRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="price" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_UserColumnName="price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="checked" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnchecked" msprop:Generator_ColumnPropNameInRow="checked" msprop:Generator_ColumnPropNameInTable="checkedColumn" msprop:Generator_UserColumnName="checked" type="xs:boolean" minOccurs="0" />
+              <xs:element name="defPrice" msprop:Generator_ColumnVarNameInTable="columndefPrice" msprop:Generator_ColumnPropNameInRow="defPrice" msprop:Generator_ColumnPropNameInTable="defPriceColumn" msprop:Generator_UserColumnName="defPrice" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_EQUIPMENT_CLOSET" msprop:Generator_TableClassName="vw_EQUIPMENT_CLOSETDataTable" msprop:Generator_TableVarName="tablevw_EQUIPMENT_CLOSET" msprop:Generator_RowChangedName="vw_EQUIPMENT_CLOSETRowChanged" msprop:Generator_TablePropName="vw_EQUIPMENT_CLOSET" msprop:Generator_RowDeletingName="vw_EQUIPMENT_CLOSETRowDeleting" msprop:Generator_RowChangingName="vw_EQUIPMENT_CLOSETRowChanging" msprop:Generator_RowEvHandlerName="vw_EQUIPMENT_CLOSETRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_EQUIPMENT_CLOSETRowDeleted" msprop:Generator_RowClassName="vw_EQUIPMENT_CLOSETRow" msprop:Generator_UserTableName="vw_EQUIPMENT_CLOSET" msprop:Generator_RowEvArgName="vw_EQUIPMENT_CLOSETRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="price" msprop:Generator_ColumnVarNameInTable="columnprice" msprop:Generator_ColumnPropNameInRow="price" msprop:Generator_ColumnPropNameInTable="priceColumn" msprop:Generator_UserColumnName="price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="checked" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnchecked" msprop:Generator_ColumnPropNameInRow="checked" msprop:Generator_ColumnPropNameInTable="checkedColumn" msprop:Generator_UserColumnName="checked" type="xs:boolean" minOccurs="0" />
+              <xs:element name="defPrice" msprop:Generator_ColumnVarNameInTable="columndefPrice" msprop:Generator_ColumnPropNameInRow="defPrice" msprop:Generator_ColumnPropNameInTable="defPriceColumn" msprop:Generator_UserColumnName="defPrice" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_ORDER_MANAGERS" msprop:Generator_TableClassName="vw_ORDER_MANAGERSDataTable" msprop:Generator_TableVarName="tablevw_ORDER_MANAGERS" msprop:Generator_TablePropName="vw_ORDER_MANAGERS" msprop:Generator_RowDeletingName="vw_ORDER_MANAGERSRowDeleting" msprop:Generator_RowChangingName="vw_ORDER_MANAGERSRowChanging" msprop:Generator_RowEvHandlerName="vw_ORDER_MANAGERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_ORDER_MANAGERSRowDeleted" msprop:Generator_UserTableName="vw_ORDER_MANAGERS" msprop:Generator_RowChangedName="vw_ORDER_MANAGERSRowChanged" msprop:Generator_RowEvArgName="vw_ORDER_MANAGERSRowChangeEvent" msprop:Generator_RowClassName="vw_ORDER_MANAGERSRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="Fullname" msprop:Generator_ColumnVarNameInTable="columnFullname" msprop:Generator_ColumnPropNameInRow="Fullname" msprop:Generator_ColumnPropNameInTable="FullnameColumn" msprop:Generator_UserColumnName="Fullname">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CouID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnCouID" msprop:Generator_ColumnPropNameInRow="CouID" msprop:Generator_ColumnPropNameInTable="CouIDColumn" msprop:Generator_UserColumnName="CouID" type="xs:string" minOccurs="0" />
+              <xs:element name="AreaID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnAreaID" msprop:Generator_ColumnPropNameInRow="AreaID" msprop:Generator_ColumnPropNameInTable="AreaIDColumn" msprop:Generator_UserColumnName="AreaID" type="xs:string" minOccurs="0" />
+              <xs:element name="AdrID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnAdrID" msprop:Generator_ColumnPropNameInRow="AdrID" msprop:Generator_ColumnPropNameInTable="AdrIDColumn" msprop:Generator_UserColumnName="AdrID" type="xs:string" minOccurs="0" />
+              <xs:element name="DoyID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnDoyID" msprop:Generator_ColumnPropNameInRow="DoyID" msprop:Generator_ColumnPropNameInTable="DoyIDColumn" msprop:Generator_UserColumnName="DoyID" type="xs:string" minOccurs="0" />
+              <xs:element name="PrfID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnPrfID" msprop:Generator_ColumnPropNameInRow="PrfID" msprop:Generator_ColumnPropNameInTable="PrfIDColumn" msprop:Generator_UserColumnName="PrfID" type="xs:string" minOccurs="0" />
+              <xs:element name="salary" msprop:Generator_ColumnVarNameInTable="columnsalary" msprop:Generator_ColumnPropNameInRow="salary" msprop:Generator_ColumnPropNameInTable="salaryColumn" msprop:Generator_UserColumnName="salary" type="xs:decimal" minOccurs="0" />
+              <xs:element name="hireDate" msprop:Generator_ColumnVarNameInTable="columnhireDate" msprop:Generator_ColumnPropNameInRow="hireDate" msprop:Generator_ColumnPropNameInTable="hireDateColumn" msprop:Generator_UserColumnName="hireDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="phn" msprop:Generator_ColumnVarNameInTable="columnphn" msprop:Generator_ColumnPropNameInRow="phn" msprop:Generator_ColumnPropNameInTable="phnColumn" msprop:Generator_UserColumnName="phn" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="mob" msprop:Generator_ColumnVarNameInTable="columnmob" msprop:Generator_ColumnPropNameInRow="mob" msprop:Generator_ColumnPropNameInTable="mobColumn" msprop:Generator_UserColumnName="mob" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="fax" msprop:Generator_ColumnVarNameInTable="columnfax" msprop:Generator_ColumnPropNameInRow="fax" msprop:Generator_ColumnPropNameInTable="faxColumn" msprop:Generator_UserColumnName="fax" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="email" msprop:Generator_ColumnVarNameInTable="columnemail" msprop:Generator_ColumnPropNameInRow="email" msprop:Generator_ColumnPropNameInTable="emailColumn" msprop:Generator_UserColumnName="email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="afm" msprop:Generator_ColumnVarNameInTable="columnafm" msprop:Generator_ColumnPropNameInRow="afm" msprop:Generator_ColumnPropNameInTable="afmColumn" msprop:Generator_UserColumnName="afm" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="11" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cmt" msprop:Generator_ColumnVarNameInTable="columncmt" msprop:Generator_ColumnPropNameInRow="cmt" msprop:Generator_ColumnPropNameInTable="cmtColumn" msprop:Generator_UserColumnName="cmt" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_UserColumnName="RealName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CouName" msprop:Generator_ColumnVarNameInTable="columnCouName" msprop:Generator_ColumnPropNameInRow="CouName" msprop:Generator_ColumnPropNameInTable="CouNameColumn" msprop:Generator_UserColumnName="CouName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AdrName" msprop:Generator_ColumnVarNameInTable="columnAdrName" msprop:Generator_ColumnPropNameInRow="AdrName" msprop:Generator_ColumnPropNameInTable="AdrNameColumn" msprop:Generator_UserColumnName="AdrName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AreaName" msprop:Generator_ColumnVarNameInTable="columnAreaName" msprop:Generator_ColumnPropNameInRow="AreaName" msprop:Generator_ColumnPropNameInTable="AreaNameColumn" msprop:Generator_UserColumnName="AreaName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="150" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DoyName" msprop:Generator_ColumnVarNameInTable="columnDoyName" msprop:Generator_ColumnPropNameInRow="DoyName" msprop:Generator_ColumnPropNameInTable="DoyNameColumn" msprop:Generator_UserColumnName="DoyName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="PrfName" msprop:Generator_ColumnVarNameInTable="columnPrfName" msprop:Generator_ColumnPropNameInRow="PrfName" msprop:Generator_ColumnPropNameInTable="PrfNameColumn" msprop:Generator_UserColumnName="PrfName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="depID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndepID" msprop:Generator_ColumnPropNameInRow="depID" msprop:Generator_ColumnPropNameInTable="depIDColumn" msprop:Generator_UserColumnName="depID" type="xs:string" />
+              <xs:element name="DepName" msprop:Generator_ColumnVarNameInTable="columnDepName" msprop:Generator_ColumnPropNameInRow="DepName" msprop:Generator_ColumnPropNameInTable="DepNameColumn" msprop:Generator_UserColumnName="DepName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Ar" msprop:Generator_ColumnVarNameInTable="columnAr" msprop:Generator_ColumnPropNameInRow="Ar" msprop:Generator_ColumnPropNameInTable="ArColumn" msprop:Generator_UserColumnName="Ar" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tk" msprop:Generator_ColumnVarNameInTable="columntk" msprop:Generator_ColumnPropNameInRow="tk" msprop:Generator_ColumnPropNameInTable="tkColumn" msprop:Generator_UserColumnName="tk" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="15" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="HasFiles" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnHasFiles" msprop:Generator_ColumnPropNameInRow="HasFiles" msprop:Generator_ColumnPropNameInTable="HasFilesColumn" msprop:Generator_UserColumnName="HasFiles" type="xs:boolean" minOccurs="0" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="serID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnserID" msprop:Generator_ColumnPropNameInRow="serID" msprop:Generator_ColumnPropNameInTable="serIDColumn" msprop:Generator_UserColumnName="serID" type="xs:string" minOccurs="0" />
+              <xs:element name="salerID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnsalerID" msprop:Generator_ColumnPropNameInRow="salerID" msprop:Generator_ColumnPropNameInTable="salerIDColumn" msprop:Generator_UserColumnName="salerID" type="xs:string" minOccurs="0" />
+              <xs:element name="SerName" msprop:Generator_ColumnVarNameInTable="columnSerName" msprop:Generator_ColumnPropNameInRow="SerName" msprop:Generator_ColumnPropNameInTable="SerNameColumn" msprop:Generator_UserColumnName="SerName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SalerName" msprop:Generator_ColumnVarNameInTable="columnSalerName" msprop:Generator_ColumnPropNameInRow="SalerName" msprop:Generator_ColumnPropNameInTable="SalerNameColumn" msprop:Generator_UserColumnName="SalerName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tmIN" msprop:Generator_ColumnVarNameInTable="columntmIN" msprop:Generator_ColumnPropNameInRow="tmIN" msprop:Generator_ColumnPropNameInTable="tmINColumn" msprop:Generator_UserColumnName="tmIN" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="tmOUT" msprop:Generator_ColumnVarNameInTable="columntmOUT" msprop:Generator_ColumnPropNameInRow="tmOUT" msprop:Generator_ColumnPropNameInTable="tmOUTColumn" msprop:Generator_UserColumnName="tmOUT" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="arProt" msprop:Generator_ColumnVarNameInTable="columnarProt" msprop:Generator_ColumnPropNameInRow="arProt" msprop:Generator_ColumnPropNameInTable="arProtColumn" msprop:Generator_UserColumnName="arProt" type="xs:int" minOccurs="0" />
+              <xs:element name="profitPerc" msprop:Generator_ColumnVarNameInTable="columnprofitPerc" msprop:Generator_ColumnPropNameInRow="profitPerc" msprop:Generator_ColumnPropNameInTable="profitPercColumn" msprop:Generator_UserColumnName="profitPerc" type="xs:int" minOccurs="0" />
+              <xs:element name="JobName" msprop:Generator_ColumnVarNameInTable="columnJobName" msprop:Generator_ColumnPropNameInRow="JobName" msprop:Generator_ColumnPropNameInTable="JobNameColumn" msprop:Generator_UserColumnName="JobName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="jobID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnjobID" msprop:Generator_ColumnPropNameInRow="jobID" msprop:Generator_ColumnPropNameInTable="jobIDColumn" msprop:Generator_UserColumnName="jobID" type="xs:string" minOccurs="0" />
+              <xs:element name="isActive" msprop:Generator_ColumnVarNameInTable="columnisActive" msprop:Generator_ColumnPropNameInRow="isActive" msprop:Generator_ColumnPropNameInTable="isActiveColumn" msprop:Generator_UserColumnName="isActive" type="xs:boolean" minOccurs="0" />
+              <xs:element name="usrName" msprop:Generator_ColumnVarNameInTable="columnusrName" msprop:Generator_ColumnPropNameInRow="usrName" msprop:Generator_ColumnPropNameInTable="usrNameColumn" msprop:Generator_UserColumnName="usrName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="active" msprop:Generator_ColumnVarNameInTable="columnactive" msprop:Generator_ColumnPropNameInRow="active" msprop:Generator_ColumnPropNameInTable="activeColumn" msprop:Generator_UserColumnName="active" type="xs:boolean" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_EPOPTEIA" msprop:Generator_TableClassName="vw_EPOPTEIADataTable" msprop:Generator_TableVarName="tablevw_EPOPTEIA" msprop:Generator_RowChangedName="vw_EPOPTEIARowChanged" msprop:Generator_TablePropName="vw_EPOPTEIA" msprop:Generator_RowDeletingName="vw_EPOPTEIARowDeleting" msprop:Generator_RowChangingName="vw_EPOPTEIARowChanging" msprop:Generator_RowEvHandlerName="vw_EPOPTEIARowChangeEventHandler" msprop:Generator_RowDeletedName="vw_EPOPTEIARowDeleted" msprop:Generator_RowClassName="vw_EPOPTEIARow" msprop:Generator_UserTableName="vw_EPOPTEIA" msprop:Generator_RowEvArgName="vw_EPOPTEIARowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CountOrder" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCountOrder" msprop:Generator_ColumnPropNameInRow="CountOrder" msprop:Generator_ColumnPropNameInTable="CountOrderColumn" msprop:Generator_UserColumnName="CountOrder" type="xs:int" minOccurs="0" />
+              <xs:element name="MaxPeriod1" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMaxPeriod1" msprop:Generator_ColumnPropNameInRow="MaxPeriod1" msprop:Generator_ColumnPropNameInTable="MaxPeriod1Column" msprop:Generator_UserColumnName="MaxPeriod1" type="xs:int" minOccurs="0" />
+              <xs:element name="CountReceipt" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCountReceipt" msprop:Generator_ColumnPropNameInRow="CountReceipt" msprop:Generator_ColumnPropNameInTable="CountReceiptColumn" msprop:Generator_UserColumnName="CountReceipt" type="xs:int" minOccurs="0" />
+              <xs:element name="MaxPeriod2" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMaxPeriod2" msprop:Generator_ColumnPropNameInRow="MaxPeriod2" msprop:Generator_ColumnPropNameInTable="MaxPeriod2Column" msprop:Generator_UserColumnName="MaxPeriod2" type="xs:int" minOccurs="0" />
+              <xs:element name="CountContruct" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCountContruct" msprop:Generator_ColumnPropNameInRow="CountContruct" msprop:Generator_ColumnPropNameInTable="CountContructColumn" msprop:Generator_UserColumnName="CountContruct" type="xs:int" minOccurs="0" />
+              <xs:element name="MaxPeriod3" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMaxPeriod3" msprop:Generator_ColumnPropNameInRow="MaxPeriod3" msprop:Generator_ColumnPropNameInTable="MaxPeriod3Column" msprop:Generator_UserColumnName="MaxPeriod3" type="xs:int" minOccurs="0" />
+              <xs:element name="CountComplete" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCountComplete" msprop:Generator_ColumnPropNameInRow="CountComplete" msprop:Generator_ColumnPropNameInTable="CountCompleteColumn" msprop:Generator_UserColumnName="CountComplete" type="xs:int" minOccurs="0" />
+              <xs:element name="MaxPeriod4" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnMaxPeriod4" msprop:Generator_ColumnPropNameInRow="MaxPeriod4" msprop:Generator_ColumnPropNameInTable="MaxPeriod4Column" msprop:Generator_UserColumnName="MaxPeriod4" type="xs:int" minOccurs="0" />
+              <xs:element name="id" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnid" msprop:Generator_ColumnPropNameInRow="id" msprop:Generator_ColumnPropNameInTable="idColumn" msprop:Generator_UserColumnName="id" type="xs:string" />
+              <xs:element name="FULLNAME" msprop:Generator_ColumnVarNameInTable="columnFULLNAME" msprop:Generator_ColumnPropNameInRow="FULLNAME" msprop:Generator_ColumnPropNameInTable="FULLNAMEColumn" msprop:Generator_UserColumnName="FULLNAME">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DESCRIPTION" msprop:Generator_ColumnVarNameInTable="columnDESCRIPTION" msprop:Generator_ColumnPropNameInRow="DESCRIPTION" msprop:Generator_ColumnPropNameInTable="DESCRIPTIONColumn" msprop:Generator_UserColumnName="DESCRIPTION" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="FullTranshDescription" msprop:Generator_ColumnVarNameInTable="columnFullTranshDescription" msprop:Generator_ColumnPropNameInRow="FullTranshDescription" msprop:Generator_ColumnPropNameInTable="FullTranshDescriptionColumn" msprop:Generator_UserColumnName="FullTranshDescription" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_PAYTYPES" msprop:Generator_TableClassName="vw_PAYTYPESDataTable" msprop:Generator_TableVarName="tablevw_PAYTYPES" msprop:Generator_RowChangedName="vw_PAYTYPESRowChanged" msprop:Generator_TablePropName="vw_PAYTYPES" msprop:Generator_RowDeletingName="vw_PAYTYPESRowDeleting" msprop:Generator_RowChangingName="vw_PAYTYPESRowChanging" msprop:Generator_RowEvHandlerName="vw_PAYTYPESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_PAYTYPESRowDeleted" msprop:Generator_RowClassName="vw_PAYTYPESRow" msprop:Generator_UserTableName="vw_PAYTYPES" msprop:Generator_RowEvArgName="vw_PAYTYPESRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PayType" msprop:Generator_ColumnVarNameInTable="columnPayType" msprop:Generator_ColumnPropNameInRow="PayType" msprop:Generator_ColumnPropNameInTable="PayTypeColumn" msprop:Generator_UserColumnName="PayType" type="xs:int" />
+              <xs:element name="PayTypeDescr" msprop:Generator_ColumnVarNameInTable="columnPayTypeDescr" msprop:Generator_ColumnPropNameInRow="PayTypeDescr" msprop:Generator_ColumnPropNameInTable="PayTypeDescrColumn" msprop:Generator_UserColumnName="PayTypeDescr">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DIM" msprop:Generator_TableClassName="vw_DIMDataTable" msprop:Generator_TableVarName="tablevw_DIM" msprop:Generator_RowChangedName="vw_DIMRowChanged" msprop:Generator_TablePropName="vw_DIM" msprop:Generator_RowDeletingName="vw_DIMRowDeleting" msprop:Generator_RowChangingName="vw_DIMRowChanging" msprop:Generator_RowEvHandlerName="vw_DIMRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DIMRowDeleted" msprop:Generator_RowClassName="vw_DIMRow" msprop:Generator_UserTableName="vw_DIM" msprop:Generator_RowEvArgName="vw_DIMRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_CAT" msprop:Generator_TableClassName="vw_DOOR_CATDataTable" msprop:Generator_TableVarName="tablevw_DOOR_CAT" msprop:Generator_TablePropName="vw_DOOR_CAT" msprop:Generator_RowDeletingName="vw_DOOR_CATRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_CATRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_CATRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_CATRowDeleted" msprop:Generator_UserTableName="vw_DOOR_CAT" msprop:Generator_RowChangedName="vw_DOOR_CATRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_CATRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_CATRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_TECH_SUP" msprop:Generator_TableClassName="vw_TECH_SUPDataTable" msprop:Generator_TableVarName="tablevw_TECH_SUP" msprop:Generator_TablePropName="vw_TECH_SUP" msprop:Generator_RowDeletingName="vw_TECH_SUPRowDeleting" msprop:Generator_RowChangingName="vw_TECH_SUPRowChanging" msprop:Generator_RowEvHandlerName="vw_TECH_SUPRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_TECH_SUPRowDeleted" msprop:Generator_UserTableName="vw_TECH_SUP" msprop:Generator_RowChangedName="vw_TECH_SUPRowChanged" msprop:Generator_RowEvArgName="vw_TECH_SUPRowChangeEvent" msprop:Generator_RowClassName="vw_TECH_SUPRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="subject" msprop:Generator_ColumnVarNameInTable="columnsubject" msprop:Generator_ColumnPropNameInRow="subject" msprop:Generator_ColumnPropNameInTable="subjectColumn" msprop:Generator_UserColumnName="subject" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="descr" msprop:Generator_ColumnVarNameInTable="columndescr" msprop:Generator_ColumnPropNameInRow="descr" msprop:Generator_ColumnPropNameInTable="descrColumn" msprop:Generator_UserColumnName="descr">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2687,6 +3464,50 @@ FROM   vw_CCT</CommandText>
     </xs:unique>
     <xs:unique name="vw_CCT_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:vw_CCT" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_COLORSDOORS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_COLORSDOORS" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_COLORSGOLA_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_COLORSGOLA" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DEVICES_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DEVICES" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_EQUIPMENT_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_EQUIPMENT" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_EQUIPMENT_KITCHEN_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_EQUIPMENT_KITCHEN" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_EQUIPMENT_CLOSET_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_EQUIPMENT_CLOSET" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_ORDER_MANAGERS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_ORDER_MANAGERS" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_EPOPTEIA_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_EPOPTEIA" />
+      <xs:field xpath="mstns:id" />
+    </xs:unique>
+    <xs:unique name="vw_DIM_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DIM" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_CAT_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_CAT" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_TECH_SUP_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_TECH_SUP" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
   </xs:element>

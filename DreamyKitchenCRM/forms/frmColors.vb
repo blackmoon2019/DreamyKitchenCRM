@@ -3,6 +3,7 @@ Imports DevExpress.XtraEditors.Controls
 
 Public Class frmColors
     Private sID As String
+    Private sColorCategory As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -23,6 +24,12 @@ Public Class frmColors
             sID = value
         End Set
     End Property
+    Public WriteOnly Property ColorCategory As String
+        Set(value As String)
+            sColorCategory = value
+        End Set
+    End Property
+
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
         Set(value As DevExpress.XtraGrid.Views.Grid.GridView)
             Ctrl = value
@@ -67,6 +74,7 @@ Public Class frmColors
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("COLORS")
+                If sColorCategory IsNot Nothing Then cboColorsCat.EditValue = System.Guid.Parse(sColorCategory)
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_COLORS where id ='" + sID + "'")
         End Select
@@ -95,11 +103,11 @@ Public Class frmColors
                     Select Case CallerFormName
                         Case "frmCUSOffer"
                             If CtrlComboLKUP.Name.Contains("PVC") Then
-                                frmCUSOffer.Vw_COLORSPVCTableAdapter.Fill(frmCUSOffer.DreamyKitchenDataSet.vw_COLORSPVC)
-                                CtrlComboLKUP.Properties.DataSource = frmCUSOffer.VwCOLORSPVCBindingSource
+                                frmCUSOfferKitchen.Vw_COLORSPVCTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSPVC)
+                                CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSPVCBindingSource
                             Else
-                                frmCUSOffer.Vw_COLORSBOXTableAdapter.Fill(frmCUSOffer.DreamyKitchenDataSet.vw_COLORSBOX)
-                                CtrlComboLKUP.Properties.DataSource = frmCUSOffer.VwCOLORSBOXBindingSource
+                                frmCUSOfferKitchen.Vw_COLORSBOXTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSBOX)
+                                CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSBOXBindingSource
                             End If
                         Case "frmErmaria"
                             Select Case CtrlCombo.Name
@@ -120,6 +128,42 @@ Public Class frmColors
                                     frmOffer.Vw_COLORSBOXTableAdapter.Fill(frmOffer.DreamyKitchenDataSet.vw_COLORSBOX)
                                     CtrlCombo.Properties.DataSource = frmOffer.VwCOLORSBOXBindingSource
                             End Select
+                        Case "frmCUSOrderKitchen"
+                            Select Case CtrlComboLKUP.Name
+                                Case "cboGOLAColors"
+                                    frmCUSOrderKitchen.Vw_COLORSGOLATableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSGOLA)
+                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderKitchen.VwCOLORSGOLABindingSource
+                                Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors"
+                                    'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
+                                    frmCUSOrderKitchen.Vw_COLORSBOXTableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSBOX)
+                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderKitchen.VwCOLORSBOXBindingSource
+                                Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors"
+                                    frmCUSOrderKitchen.Vw_COLORSPVCTableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSPVC)
+                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderKitchen.VwCOLORSPVCBindingSource
+                            End Select
+                        Case "frmCUSOfferKitchen"
+                            Select Case CtrlComboLKUP.Name
+                                Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors"
+                                    frmCUSOfferKitchen.Vw_COLORSBOXTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSBOX)
+                                    CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSBOXBindingSource
+                                Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors"
+                                    frmCUSOfferKitchen.Vw_COLORSPVCTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSPVC)
+                                    CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSPVCBindingSource
+                            End Select
+                        Case "frmCUSOfferOrderDoors"
+                            frmCUSOfferOrderDoors.Vw_COLORSDOORSTableAdapter.Fill(frmCUSOfferOrderDoors.DreamyKitchenDataSet.vw_COLORSDOORS)
+                            CtrlComboLKUP.Properties.DataSource = frmCUSOfferOrderDoors.VwCOLORSDOORSBindingSource
+                        Case "frmCUSOrderCloset"
+                            Select Case CtrlComboLKUP.Name
+                                Case "cboBOXColors"
+                                    'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
+                                    frmCUSOrderCloset.Vw_COLORSBOXTableAdapter.Fill(frmCUSOrderCloset.DreamyKitchenDataSet.vw_COLORSBOX)
+                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderCloset.VwCOLORSBOXBindingSource
+                                Case "cboPVCColors"
+                                    frmCUSOrderCloset.Vw_COLORSPVCTableAdapter.Fill(frmCUSOrderCloset.DreamyKitchenDataSet.vw_COLORSPVC)
+                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderCloset.VwCOLORSPVCBindingSource
+                            End Select
+
                     End Select
                     If CtrlCombo Is Nothing Then
                         CtrlComboLKUP.EditValue = System.Guid.Parse(sGuid)

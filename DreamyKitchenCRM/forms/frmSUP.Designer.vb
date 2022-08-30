@@ -21,6 +21,7 @@ Partial Class frmSUP
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmSUP))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
         Me.txtBal = New DevExpress.XtraEditors.TextEdit()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
@@ -65,6 +66,7 @@ Partial Class frmSUP
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtBal.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,6 +111,7 @@ Partial Class frmSUP
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -116,6 +119,7 @@ Partial Class frmSUP
         Me.LayoutControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LayoutControl1.Controls.Add(Me.SimpleButton1)
         Me.LayoutControl1.Controls.Add(Me.txtBal)
         Me.LayoutControl1.Controls.Add(Me.cmdSave)
         Me.LayoutControl1.Controls.Add(Me.cmdExit)
@@ -139,9 +143,19 @@ Partial Class frmSUP
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1295, 607)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1295, 617)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'SimpleButton1
+        '
+        Me.SimpleButton1.Location = New System.Drawing.Point(1054, 326)
+        Me.SimpleButton1.Margin = New System.Windows.Forms.Padding(5)
+        Me.SimpleButton1.Name = "SimpleButton1"
+        Me.SimpleButton1.Size = New System.Drawing.Size(229, 39)
+        Me.SimpleButton1.StyleController = Me.LayoutControl1
+        Me.SimpleButton1.TabIndex = 44
+        Me.SimpleButton1.Text = "Διόρθωση Υπολοίπου"
         '
         'txtBal
         '
@@ -158,7 +172,7 @@ Partial Class frmSUP
         Me.txtBal.Properties.MaskSettings.Set("mask", "c2")
         Me.txtBal.Properties.ReadOnly = True
         Me.txtBal.Properties.Tag = "BenchExtraPrice"
-        Me.txtBal.Size = New System.Drawing.Size(466, 38)
+        Me.txtBal.Size = New System.Drawing.Size(233, 38)
         Me.txtBal.StyleController = Me.LayoutControl1
         Me.txtBal.TabIndex = 43
         Me.txtBal.Tag = "bal,0,1,2"
@@ -166,7 +180,7 @@ Partial Class frmSUP
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(893, 556)
+        Me.cmdSave.Location = New System.Drawing.Point(893, 557)
         Me.cmdSave.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(192, 39)
@@ -178,7 +192,7 @@ Partial Class frmSUP
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(1089, 556)
+        Me.cmdExit.Location = New System.Drawing.Point(1089, 557)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(194, 39)
@@ -188,7 +202,7 @@ Partial Class frmSUP
         '
         'cboDOY
         '
-        Me.cboDOY.Location = New System.Drawing.Point(202, 501)
+        Me.cboDOY.Location = New System.Drawing.Point(202, 502)
         Me.cboDOY.Margin = New System.Windows.Forms.Padding(5)
         Me.cboDOY.Name = "cboDOY"
         Me.cboDOY.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -269,7 +283,7 @@ Partial Class frmSUP
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(817, 368)
+        Me.txtComments.Location = New System.Drawing.Point(817, 369)
         Me.txtComments.Margin = New System.Windows.Forms.Padding(5)
         Me.txtComments.Name = "txtComments"
         Me.txtComments.Size = New System.Drawing.Size(466, 184)
@@ -329,7 +343,7 @@ Partial Class frmSUP
         '
         'txtNam1
         '
-        Me.txtNam1.Location = New System.Drawing.Point(202, 417)
+        Me.txtNam1.Location = New System.Drawing.Point(202, 418)
         Me.txtNam1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtNam1.Name = "txtNam1"
         Me.txtNam1.Size = New System.Drawing.Size(421, 38)
@@ -339,7 +353,7 @@ Partial Class frmSUP
         '
         'cboPRF
         '
-        Me.cboPRF.Location = New System.Drawing.Point(202, 459)
+        Me.cboPRF.Location = New System.Drawing.Point(202, 460)
         Me.cboPRF.Margin = New System.Windows.Forms.Padding(5)
         Me.cboPRF.Name = "cboPRF"
         Me.cboPRF.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -379,9 +393,9 @@ Partial Class frmSUP
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlGroup1, Me.LayoutControlGroup2, Me.LayoutControlGroup3, Me.LayoutControlItem14, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem10, Me.EmptySpaceItem2, Me.LayoutControlItem8, Me.LayoutControlItem16})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlGroup1, Me.LayoutControlGroup2, Me.LayoutControlGroup3, Me.LayoutControlItem14, Me.EmptySpaceItem1, Me.LayoutControlItem2, Me.LayoutControlItem10, Me.EmptySpaceItem2, Me.LayoutControlItem8, Me.LayoutControlItem16, Me.LayoutControlItem17})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1295, 607)
+        Me.Root.Size = New System.Drawing.Size(1295, 617)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem4
@@ -399,7 +413,7 @@ Partial Class frmSUP
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem20, Me.LayoutControlItem23, Me.LayoutControlItem21})
-        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 356)
+        Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 357)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(628, 188)
         Me.LayoutControlGroup1.Text = "Επαγγελματικά Στοιχεία"
@@ -494,7 +508,7 @@ Partial Class frmSUP
         Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem9, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LayoutControlItem3})
         Me.LayoutControlGroup3.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlGroup3.Name = "LayoutControlGroup3"
-        Me.LayoutControlGroup3.Size = New System.Drawing.Size(628, 314)
+        Me.LayoutControlGroup3.Size = New System.Drawing.Size(628, 315)
         Me.LayoutControlGroup3.Text = "Προσωπικά Στοιχεία"
         '
         'LayoutControlItem1
@@ -559,7 +573,7 @@ Partial Class frmSUP
         Me.LayoutControlItem7.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 210)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(602, 42)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(602, 43)
         Me.LayoutControlItem7.Text = "Διεύθυνση"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(165, 23)
         '
@@ -581,7 +595,7 @@ Partial Class frmSUP
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
         Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(628, 356)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(628, 357)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
         Me.LayoutControlItem14.Size = New System.Drawing.Size(647, 188)
         Me.LayoutControlItem14.Text = "Σχόλια"
@@ -612,26 +626,26 @@ Partial Class frmSUP
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.cmdSave
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(881, 544)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(881, 545)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(196, 43)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(196, 52)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 544)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 545)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(881, 43)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(881, 52)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.cmdExit
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(1077, 544)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(1077, 545)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(198, 43)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(198, 52)
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
         '
@@ -640,15 +654,25 @@ Partial Class frmSUP
         Me.LayoutControlItem16.Control = Me.txtBal
         Me.LayoutControlItem16.Location = New System.Drawing.Point(628, 314)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(647, 42)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(414, 43)
         Me.LayoutControlItem16.Text = "Υπόλοιπο"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(165, 23)
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.SimpleButton1
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(1042, 314)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(233, 43)
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem17.TextVisible = False
         '
         'frmSUP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1285, 588)
+        Me.AutoSize = True
+        Me.ClientSize = New System.Drawing.Size(1285, 598)
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmSUP"
@@ -697,6 +721,7 @@ Partial Class frmSUP
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -746,4 +771,6 @@ Partial Class frmSUP
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents txtBal As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
 End Class

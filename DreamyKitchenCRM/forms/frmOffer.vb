@@ -1008,7 +1008,7 @@ Public Class frmOffer
 
     Private Sub txtbenchExtraDim_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchExtraDim.EditValueChanged
         If cboExtraBENCH.GetColumnValue("pricePerMeter") = Nothing Or txtbenchExtraDim.EditValue = Nothing Then Exit Sub
-        txtBenchExtraPrice.EditValue = cboExtraBENCH.GetColumnValue("pricePerMeter") * txtbenchExtraDim.EditValue.ToString.Replace(".", ",")
+        txtBenchExtraPrice.EditValue = cboExtraBENCH.GetColumnValue("pricePerMeter") * DbnullToZero(txtbenchExtraDim)
         Calculate()
     End Sub
 
@@ -1509,5 +1509,7 @@ Public Class frmOffer
         End Select
     End Sub
 
+    Private Sub cboSides_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboSides.SelectedIndexChanged
 
+    End Sub
 End Class

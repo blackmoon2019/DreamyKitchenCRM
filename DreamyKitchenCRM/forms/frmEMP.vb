@@ -87,7 +87,7 @@ Public Class frmEMP
         If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml") = False Then
             GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml", OptionsLayoutBase.FullLayout)
         End If
-        'GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml", OptionsLayoutBase.FullLayout)
+        GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml", OptionsLayoutBase.FullLayout)
         Me.CenterToScreen()
         My.Settings.frmCustomers = Me.Location
         My.Settings.Save()
@@ -150,7 +150,7 @@ Public Class frmEMP
         Dim AreaID As String = ""
         If cboCOU.EditValue <> Nothing Then CouID = cboCOU.EditValue.ToString
         If cboAREAS.EditValue <> Nothing Then AreaID = cboAREAS.EditValue.ToString
-        sSQL.AppendLine("Select id,Name from vw_ADR ")
+        sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
         If CouID.Length > 0 Or AreaID.Length > 0 Or txtTK.Text.Length > 0 Then sSQL.AppendLine(" where ")
         If CouID.Length > 0 Then sSQL.AppendLine(" couid = " & toSQLValueS(CouID))
         If AreaID.Length > 0 Then
@@ -172,16 +172,21 @@ Public Class frmEMP
         form1.L2.Text = "Διεύθυνση"
         form1.L3.Text = "Νομός"
         form1.L4.Text = "Περιοχές"
+        form1.L8.Text = "Αριθμός"
         form1.DataTable = "ADR"
+        form1.CalledFromControl = True
+        form1.CallerControl = cboADR
         form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.CallerControl = cboADR
+        form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.L8.Control.Tag = "Ar,0,1,2"
         If cboADR.EditValue <> Nothing Then form1.ID = cboADR.EditValue.ToString
         form1.MdiParent = frmMain
 
         If cboADR.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
+
     End Sub
     Private Sub ManageCOU()
         Dim form1 As frmGen = New frmGen()

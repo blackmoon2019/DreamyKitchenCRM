@@ -120,13 +120,12 @@ Public Class frmEmpPayroll
         form1.Show()
     End Sub
 
-    Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
+    Private Sub cboEMP_ButtonClickcboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboEMP.EditValue = Nothing : ManageEMP()
-            Case 2 : If cboEMP.EditValue <> Nothing Then ManageEMP()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then cboEMP.EditValue = Nothing : ManageEMP()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then If cboEMP.EditValue <> Nothing Then ManageEMP()
             Case 3 : cboEMP.EditValue = Nothing
         End Select
-
     End Sub
 
     Private Sub cboEMP_M_S_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP_M_S.ButtonClick

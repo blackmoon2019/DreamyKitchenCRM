@@ -79,8 +79,10 @@ Public Class ScanToPDF
             Return True
         Catch ex As Exception
 
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim trace = New Diagnostics.StackTrace(ex, True)
+            Dim line As String = Right(trace.ToString, 5)
 
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         Finally
             CD = Nothing

@@ -83,9 +83,7 @@
     <Reference Include="DevExpress.CodeParser.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Dashboard.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Dashboard.v21.2.Win, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.Desktop.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.Desktop.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.Data.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Data.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.DataAccess.v21.2.UI, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -98,14 +96,12 @@
     <Reference Include="DevExpress.Pdf.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Pdf.v21.2.Drawing, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.PivotGrid.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Printing.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Printing.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.RichEdit.v21.2.Export, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Sparkline.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Spreadsheet.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.TreeMap.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
-    <Reference Include="DevExpress.Utils.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v21.2.UI, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Utils.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
@@ -116,7 +112,6 @@
     <Reference Include="DevExpress.XtraCharts.v21.2.Wizard, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraDiagram.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraDialogs.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
-    <Reference Include="DevExpress.XtraEditors.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraEditors.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraGauges.v21.2.Core, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraGauges.v21.2.Presets, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -146,6 +141,7 @@
     <Reference Include="DevExpress.XtraTreeMap.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.XtraTreeMap.v21.2.UI, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.XtraVerticalGrid.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.XtraWizard.v21.2, Version=21.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="itextsharp, Version=5.5.13.2, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
       <HintPath>..\packages\iTextSharp.5.5.13.2\lib\itextsharp.dll</HintPath>
     </Reference>
@@ -184,6 +180,7 @@
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Transactions" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Windows.Input.Manipulations" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
@@ -204,6 +201,7 @@
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Diagnostics" />
+    <Import Include="System.ServiceModel" />
     <Import Include="System.Windows.Forms" />
     <Import Include="System.Linq" />
     <Import Include="System.Xml.Linq" />
@@ -225,6 +223,14 @@
     <Compile Include="classes\Transactions.vb" />
     <Compile Include="classes\ValidateControls.vb" />
     <Compile Include="classes\XML_Serialization.vb" />
+    <Compile Include="DMDataSet.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DMDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DMDataSet.vb">
+      <DependentUpon>DMDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DreamyKitchenDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -299,10 +305,40 @@
     <Compile Include="forms\frmCusMov.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmCUSOffer.Designer.vb">
-      <DependentUpon>frmCUSOffer.vb</DependentUpon>
+    <Compile Include="forms\frmCUSOfferOrderSpecialConstr.Designer.vb">
+      <DependentUpon>frmCUSOfferOrderSpecialConstr.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmCUSOffer.vb">
+    <Compile Include="forms\frmCUSOfferOrderSpecialConstr.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCUSOfferOrderDoors.Designer.vb">
+      <DependentUpon>frmCUSOfferOrderDoors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCUSOfferOrderDoors.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCUSOfferKitchen.Designer.vb">
+      <DependentUpon>frmCUSOfferKitchen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCUSOfferKitchen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCUSOfferCloset.designer.vb">
+      <DependentUpon>frmCUSOfferCloset.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCUSOfferCloset.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCUSOrderCloset.Designer.vb">
+      <DependentUpon>frmCUSOrderCloset.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCUSOrderCloset.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmCUSOrderKitchen.Designer.vb">
+      <DependentUpon>frmCUSOrderKitchen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCUSOrderKitchen.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmCustomers.Designer.vb">
@@ -341,6 +377,12 @@
     <Compile Include="forms\frmEpendisis.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmEpopteiaChart.Designer.vb">
+      <DependentUpon>frmEpopteiaChart.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmEpopteiaChart.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmErmaria.Designer.vb">
       <DependentUpon>frmErmaria.vb</DependentUpon>
     </Compile>
@@ -351,6 +393,12 @@
       <DependentUpon>frmGen.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmGen.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmImageSlider.Designer.vb">
+      <DependentUpon>frmImageSlider.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmImageSlider.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmInputBox.Designer.vb">
@@ -455,6 +503,12 @@
     <Compile Include="forms\frmPersonalNote.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmCUSPrivateAgreement.Designer.vb">
+      <DependentUpon>frmCUSPrivateAgreement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmCUSPrivateAgreement.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmProjectCost.Designer.vb">
       <DependentUpon>frmProjectCost.vb</DependentUpon>
     </Compile>
@@ -491,16 +545,16 @@
     <Compile Include="forms\frmSUP.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmSupInvoicesPayments.Designer.vb">
-      <DependentUpon>frmSupInvoicesPayments.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmSupInvoicesPayments.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\frmSUPKAL.Designer.vb">
       <DependentUpon>frmSUPKAL.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmSUPKAL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmSUPOrders.Designer.vb">
+      <DependentUpon>frmSUPOrders.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmSUPOrders.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmTecnicalSupport.designer.vb">
@@ -515,10 +569,28 @@
     <Compile Include="forms\frmTransactions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmTransConstr.Designer.vb">
+      <DependentUpon>frmTransConstr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmTransConstr.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmTransCost.Designer.vb">
+      <DependentUpon>frmTransCost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmTransCost.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmUsers.Designer.vb">
       <DependentUpon>frmUsers.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmUsers.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmVersions.designer.vb">
+      <DependentUpon>frmVersions.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmVersions.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\WaitForm.Designer.vb">
@@ -544,16 +616,106 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="Reports\RepCUSAnalysis.Designer.vb">
+      <DependentUpon>RepCUSAnalysis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSAnalysis.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOfferCloset3ndPage.Designer.vb">
+      <DependentUpon>RepCUSOfferCloset3ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOfferCloset3ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOfferDoors.Designer.vb">
+      <DependentUpon>RepCUSOfferDoors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOfferDoors.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOfferCloset.Designer.vb">
+      <DependentUpon>RepCUSOfferCloset.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOfferCloset.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RepCUSOfferKitchen.Designer.vb">
       <DependentUpon>RepCUSOfferKitchen.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\RepCUSOfferKitchen.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\RepCusOfferCloset.Designer.vb">
-      <DependentUpon>RepCusOfferCloset.vb</DependentUpon>
+    <Compile Include="Reports\RepCUSOfferKitchen3ndPage.Designer.vb">
+      <DependentUpon>RepCUSOfferKitchen3ndPage.vb</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RepCusOfferCloset.vb">
+    <Compile Include="Reports\RepCUSOfferKitchen3ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOfferSpecialContr.Designer.vb">
+      <DependentUpon>RepCUSOfferSpecialContr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOfferSpecialContr.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderCloset.Designer.vb">
+      <DependentUpon>RepCUSOrderCloset.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderCloset.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderCloset2ndPage.Designer.vb">
+      <DependentUpon>RepCUSOrderCloset2ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderCloset2ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderDoors.Designer.vb">
+      <DependentUpon>RepCUSOrderDoors.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderDoors.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderKitchen.Designer.vb">
+      <DependentUpon>RepCUSOrderKitchen.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderKitchen.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderKitchen2ndPage.Designer.vb">
+      <DependentUpon>RepCUSOrderKitchen2ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderKitchen2ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderSpecialConstr.Designer.vb">
+      <DependentUpon>RepCUSOrderSpecialConstr.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOrderSpecialConstr.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement.Designer.vb">
+      <DependentUpon>RepCUSPrivateAgreement.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement2ndPage.Designer.vb">
+      <DependentUpon>RepCUSPrivateAgreement2ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement2ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement3ndPage.Designer.vb">
+      <DependentUpon>RepCUSPrivateAgreement3ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement3ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement4ndPage.Designer.vb">
+      <DependentUpon>RepCUSPrivateAgreement4ndPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSPrivateAgreement4ndPage.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RepOfferMech.Designer.vb">
@@ -620,9 +782,25 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCusMov.resx">
       <DependentUpon>frmCusMov.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmCUSOffer.resx">
-      <DependentUpon>frmCUSOffer.vb</DependentUpon>
+    <EmbeddedResource Include="forms\frmCUSOfferOrderSpecialConstr.resx">
+      <DependentUpon>frmCUSOfferOrderSpecialConstr.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCUSOfferOrderDoors.resx">
+      <DependentUpon>frmCUSOfferOrderDoors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCUSOfferKitchen.resx">
+      <DependentUpon>frmCUSOfferKitchen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCUSOfferCloset.resx">
+      <DependentUpon>frmCUSOfferCloset.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCUSOrderCloset.resx">
+      <DependentUpon>frmCUSOrderCloset.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCUSOrderKitchen.resx">
+      <DependentUpon>frmCUSOrderKitchen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCustomers.resx">
       <DependentUpon>frmCustomers.vb</DependentUpon>
@@ -642,11 +820,17 @@
     <EmbeddedResource Include="forms\frmEpendisis.resx">
       <DependentUpon>frmEpendisis.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmEpopteiaChart.resx">
+      <DependentUpon>frmEpopteiaChart.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmErmaria.resx">
       <DependentUpon>frmErmaria.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmGen.resx">
       <DependentUpon>frmGen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmImageSlider.resx">
+      <DependentUpon>frmImageSlider.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmInputBox.resx">
       <DependentUpon>frmInputBox.vb</DependentUpon>
@@ -689,6 +873,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmParameters.resx">
       <DependentUpon>frmParameters.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPermissions.resx">
       <DependentUpon>frmPermissions.vb</DependentUpon>
@@ -698,6 +883,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPersonalNote.resx">
       <DependentUpon>frmPersonalNote.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmCUSPrivateAgreement.resx">
+      <DependentUpon>frmCUSPrivateAgreement.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmProjectCost.resx">
       <DependentUpon>frmProjectCost.vb</DependentUpon>
@@ -717,11 +905,11 @@
     <EmbeddedResource Include="forms\frmSUP.resx">
       <DependentUpon>frmSUP.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmSupInvoicesPayments.resx">
-      <DependentUpon>frmSupInvoicesPayments.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSUPKAL.resx">
       <DependentUpon>frmSUPKAL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSUPOrders.resx">
+      <DependentUpon>frmSUPOrders.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmTecnicalSupport.resx">
       <DependentUpon>frmTecnicalSupport.vb</DependentUpon>
@@ -729,8 +917,17 @@
     <EmbeddedResource Include="forms\frmTransactions.resx">
       <DependentUpon>frmTransactions.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTransConstr.resx">
+      <DependentUpon>frmTransConstr.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmTransCost.resx">
+      <DependentUpon>frmTransCost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmUsers.resx">
       <DependentUpon>frmUsers.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmVersions.resx">
+      <DependentUpon>frmVersions.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
@@ -741,11 +938,56 @@
     <EmbeddedResource Include="forms\frmServices.resx">
       <DependentUpon>frmServices.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSAnalysis.resx">
+      <DependentUpon>RepCUSAnalysis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOfferCloset3ndPage.resx">
+      <DependentUpon>RepCUSOfferCloset3ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOfferDoors.resx">
+      <DependentUpon>RepCUSOfferDoors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOfferCloset.resx">
+      <DependentUpon>RepCUSOfferCloset.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSOfferKitchen.resx">
       <DependentUpon>RepCUSOfferKitchen.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RepCusOfferCloset.resx">
-      <DependentUpon>RepCusOfferCloset.vb</DependentUpon>
+    <EmbeddedResource Include="Reports\RepCUSOfferKitchen3ndPage.resx">
+      <DependentUpon>RepCUSOfferKitchen3ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOfferSpecialContr.resx">
+      <DependentUpon>RepCUSOfferSpecialContr.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOrderCloset.resx">
+      <DependentUpon>RepCUSOrderCloset.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOrderCloset2ndPage.resx">
+      <DependentUpon>RepCUSOrderCloset2ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOrderDoors.resx">
+      <DependentUpon>RepCUSOrderDoors.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOrderKitchen.resx">
+      <DependentUpon>RepCUSOrderKitchen.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOrderKitchen2ndPage.resx">
+      <DependentUpon>RepCUSOrderKitchen2ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOrderSpecialConstr.resx">
+      <DependentUpon>RepCUSOrderSpecialConstr.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSPrivateAgreement.resx">
+      <DependentUpon>RepCUSPrivateAgreement.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSPrivateAgreement2ndPage.resx">
+      <DependentUpon>RepCUSPrivateAgreement2ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSPrivateAgreement3ndPage.resx">
+      <DependentUpon>RepCUSPrivateAgreement3ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSPrivateAgreement4ndPage.resx">
+      <DependentUpon>RepCUSPrivateAgreement4ndPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepOfferMech.resx">
       <DependentUpon>RepOfferMech.vb</DependentUpon>
@@ -765,6 +1007,18 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="bin\Release\Release\DreamyKitchenCRM.exe.Config" />
+    <None Include="DMDataSet.xsc">
+      <DependentUpon>DMDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DMDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DMDataSet.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DMDataSet.xss">
+      <DependentUpon>DMDataSet.xsd</DependentUpon>
+    </None>
     <None Include="DreamyKitchenCRM.exe.config" />
     <None Include="DreamyKitchenDataSet.xsc">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
@@ -1010,9 +1264,644 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\DSGNS\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\APT_offer_erm.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\CCT_OFFERS_CLOSET_EQUIPMENT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\CCT_ORDERS_KITCHEN_DEVICES_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\D_vw_FORM_RIGHTS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\D_vw_INST_M_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\D_vw_SUP_PAYMENTS_D_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\D_vw_SUP_PAYMENTS_H_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\D_vw_TRANSD_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\Inst.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\INSTPERSER.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\MECH.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\NOTES_F_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\OFFDET_old.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\OFFER3S.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\OFFERS.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\OFFERSW.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\OFFERS_old.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\OFFTOTAL.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\OFF_erm.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\SUP_PAYMENTS_D_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\TRANSD.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_ADR_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_AGREEMENT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_AREAS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_BANKS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_BDG_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_BENCH_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_BUY_C_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_BUY_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_BUY_INV_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CALC_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CAT_ERM_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CAT_SUB_ERM_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_F_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_M_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_OFFERS_BATH_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_OFFERS_CLOSET_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_OFFERS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_OFFERS_DOOR_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_OFFERS_SPECIAL_CONSTR_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_ORDERS_CLOSET_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_ORDERS_DOOR_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_ORDERS_KITCHEN_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CCT_ORDERS_SPECIAL_CONSTR_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_COLORS_CAT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_COLORS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CONSTR_CAT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CONSTR_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_COU_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_CUS_REPORT1_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_DEP_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_DEVICES_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_DIM_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_DOOR_TYPE_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_DOY_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EMP_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EMP_F_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EMP_M_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EMP_M_S_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EMP_S_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EMP_T_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EPOPTEIA_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EP_STATUS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EQUIPMENT_CAT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_EQUIPMENT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_ERM_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_FORM_RIGHTS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_INST_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_INST_ELLIPSE_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_INST_M_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_JOBS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_MAILS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_MECH_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_NOTES_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_NOTES_F_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_NOTES_L_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_OFFERS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_OFF_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_PAY_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_PRF_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_PRICELIST_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_PROJECT_COST_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_RIGHTS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SALERS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SALER_CAL_STATUS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SCAN_FILE_NAMES_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SER_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SIDES_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SOURCE_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_STATISTICS2_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_STATISTICS3_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_STATUS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SUP_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SUP_ORDERS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SUP_PAYMENTS_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SUP_PAYMENTS_D_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SUP_PAYMENTS_D_def.xml.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_SUP_PAYMENTS_H_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_TECH_CAT_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_TECH_SUP_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_TRANSCOST_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_TRANSD_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_TRANSH_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_TRANSH_F_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_TRANS_CONSTR_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\vw_USR_def.xml" />
+    <Content Include="bin\Debug\DSGNS\DEF\_def.xml" />
+    <Content Include="bin\Debug\DSGNS\D_vw_INST_M\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\D_vw_INST_M\ΙΑΝΟΥΑΡΙΟΣ 22_3.xml_3.xml" />
+    <Content Include="bin\Debug\DSGNS\D_vw_INST_M\ΦΕΒΡΟΥΑΡΙΟΣ 2022_3.xml" />
+    <Content Include="bin\Debug\DSGNS\D_vw_SUP_PAYMENTS_D\j_3.xml" />
+    <Content Include="bin\Debug\DSGNS\D_vw_TRANSD\2021_3.xml" />
+    <Content Include="bin\Debug\DSGNS\D_vw_TRANSD\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_BUY\j_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CALC\1_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CALC\problem_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CCT\ΑΡΧΙΚΗ_2.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CCT\ΑΡΧΙΚΗ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CCT\ΚΑΤΑΧΩΡΗΤΗΣ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CCT_M\ΑΡΧΙΚΗ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CCT_M\ΠΑΡΟΥΣΙΑΣΗ.xml_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CCT_OFFERS\john_3.xml_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CONSTR\14-2 ΕΩΣ 19-2_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CONSTR\21-2 ΕΩΣ 26-2_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_CONSTR\ΕΚΤΥΠΩΤΙΚΑ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_DOOR_TYPE\ΑΡΧΙΚΗ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_DOOR_TYPE\ΠΑΓΚΟΙ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_EMP\S_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_INST\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_INST\ΙΑΝΟΥΑΡΙΟΣ 22_3.xml_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_INST\ΦΕΒΡΟΥΑΡΙΟΣ 2022_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_INST_M\13-18-12_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_INST_M\20-25-12_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_INST_M\29-4_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_INST_M\6-11_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_INST_M\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_PROJECT_COST\ΔΕΚΕΜΒΡΙΟΣ_3.xml_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_PROJECT_COST\ΙΑΝΟΥΑΡΙΟΣ 22_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_PROJECT_COST\ΝΟΕΜΒΡΙΟΣ_3.xml_3.xml_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\1-10 ΕΩΣ 28-2_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\1-10 ΕΩΣ 31-3_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 2022_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_10.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_11.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_6.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_7.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_9.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_10.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_11.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_6.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_7.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_9.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS3\ΔΕΚΕΜΒΡΙΟΣ 2021_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS3\ΙΑΝΟΥΑΡΙΟΣ 2022_3.xml_3.xml_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS3\ΝΟΕΜΒΡΙΟΣ 2021_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_STATISTICS3\ΦΕΒΡΟΥΑΡΙΟΣ 2022_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_TRANSD\1_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_TRANSH\2021_3.xml" />
+    <Content Include="bin\Debug\DSGNS\vw_TRANSH\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Release\Release\BouncyCastle.Crypto.dll" />
+    <Content Include="bin\Release\Release\DevExpress.BonusSkins.v20.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.BonusSkins.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Charts.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Charts.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.CodeParser.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Dashboard.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Dashboard.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Dashboard.v21.2.Win.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Dashboard.v21.2.Win.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Data.Desktop.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Data.Desktop.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Data.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Data.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.DataAccess.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.DataAccess.v21.2.UI.dll" />
+    <Content Include="bin\Release\Release\DevExpress.DataAccess.v21.2.UI.xml" />
+    <Content Include="bin\Release\Release\DevExpress.DataAccess.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.DataVisualization.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Diagram.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Diagram.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Dialogs.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Images.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Map.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Map.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Office.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Office.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Pdf.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Pdf.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Pdf.v21.2.Drawing.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Pdf.v21.2.Drawing.xml" />
+    <Content Include="bin\Release\Release\DevExpress.PivotGrid.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.PivotGrid.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Printing.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Printing.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.RichEdit.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.RichEdit.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.RichEdit.v21.2.Export.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Sparkline.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Sparkline.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.SpellChecker.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.SpellChecker.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Spreadsheet.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Spreadsheet.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.TreeMap.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.TreeMap.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Utils.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Utils.v21.2.UI.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Utils.v21.2.UI.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Utils.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.Xpo.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.Xpo.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraBars.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraBars.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraCharts.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraCharts.v21.2.Extensions.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraCharts.v21.2.UI.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraCharts.v21.2.UI.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraCharts.v21.2.Wizard.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraCharts.v21.2.Wizard.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraCharts.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraDiagram.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraDiagram.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraDialogs.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraDialogs.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraEditors.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraEditors.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraGauges.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraGauges.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraGauges.v21.2.Presets.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraGauges.v21.2.Presets.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraGauges.v21.2.Win.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraGauges.v21.2.Win.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraGrid.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraGrid.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraLayout.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraLayout.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraMap.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraMap.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraNavBar.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraNavBar.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraPivotGrid.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraPivotGrid.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraPrinting.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraPrinting.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraReports.v21.2.CodeCompletion.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraReports.v21.2.CodeCompletion.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraReports.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraReports.v21.2.Extensions.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraReports.v21.2.Extensions.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraReports.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraRichEdit.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraRichEdit.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraScheduler.v21.2.Core.Desktop.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraScheduler.v21.2.Core.Desktop.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraScheduler.v21.2.Core.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraScheduler.v21.2.Core.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraScheduler.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraScheduler.v21.2.Extensions.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraScheduler.v21.2.Extensions.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraScheduler.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraSpellChecker.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraSpellChecker.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraSpreadsheet.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraSpreadsheet.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraTreeList.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraTreeList.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraTreeMap.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraTreeMap.v21.2.UI.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraTreeMap.v21.2.UI.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraTreeMap.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraVerticalGrid.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraVerticalGrid.v21.2.xml" />
+    <Content Include="bin\Release\Release\DevExpress.XtraWizard.v21.2.dll" />
+    <Content Include="bin\Release\Release\DevExpress.XtraWizard.v21.2.xml" />
+    <Content Include="bin\Release\Release\de\DevExpress.Dashboard.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Dashboard.v21.2.Win.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Data.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.DataAccess.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.DataAccess.v21.2.UI.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Diagram.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Dialogs.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Map.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Office.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Pdf.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.PivotGrid.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Printing.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.RichEdit.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Sparkline.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Spreadsheet.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Utils.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Utils.v21.2.UI.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.Xpo.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraBars.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraCharts.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraCharts.v21.2.Wizard.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraEditors.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraGauges.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraGauges.v21.2.Presets.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraLayout.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraNavBar.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraPivotGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraPrinting.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraReports.v21.2.Extensions.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraReports.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraRichEdit.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraScheduler.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraScheduler.v21.2.Extensions.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraScheduler.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraSpellChecker.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraSpreadsheet.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraTreeList.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraVerticalGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\de\DevExpress.XtraWizard.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\DreamyKitchenCRM.exe" />
+    <Content Include="bin\Release\Release\DreamyKitchenCRM.pdb" />
+    <Content Include="bin\Release\Release\DreamyKitchenCRM.xml" />
+    <Content Include="bin\Release\Release\DSGNS\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\CCT_OFFERS_CLOSET_EQUIPMENT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\CCT_ORDERS_KITCHEN_DEVICES_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\D_vw_FORM_RIGHTS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\D_vw_INST_M_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\D_vw_SUP_PAYMENTS_D_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\D_vw_TRANSD_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\Inst.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\INSTPERSER.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\MECH.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\NOTES_F_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\OFFERS.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\OFFERS_old.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\OFFTOTAL.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\OFF_erm.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\SUP_PAYMENTS_D_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\TRANSD.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_ADR_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_AGREEMENT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_AREAS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_BANKS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_BENCH_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_BUY_C_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_BUY_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_BUY_INV_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CALC_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CAT_ERM_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CAT_SUB_ERM_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_F_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_M_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_OFFERS_CLOSET_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_OFFERS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_OFFERS_DOOR_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_OFFERS_SPECIAL_CONSTR_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_ORDERS_CLOSET_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_ORDERS_DOOR_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_ORDERS_KITCHEN_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CCT_ORDERS_SPECIAL_CONSTR_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_COLORS_CAT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_COLORS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CONSTR_CAT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CONSTR_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_COU_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_CUS_REPORT1_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_DEP_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_DEVICES_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_DIM_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_DOOR_TYPE_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_DOY_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EMP_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EMP_F_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EMP_M_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EMP_M_S_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EMP_S_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EMP_T_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EPOPTEIA_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EP_STATUS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EQUIPMENT_CAT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_EQUIPMENT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_ERM_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_FORM_RIGHTS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_INST_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_INST_ELLIPSE_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_INST_M_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_JOBS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_MAILS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_MECH_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_NOTES_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_NOTES_F_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_NOTES_L_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_OFF_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_PAY_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_PRF_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_PROJECT_COST_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_RIGHTS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SALERS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SALER_CAL_STATUS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SCAN_FILE_NAMES_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SER_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SIDES_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SOURCE_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_STATISTICS2_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_STATISTICS3_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_STATUS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SUP_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SUP_ORDERS_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SUP_PAYMENTS_D_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SUP_PAYMENTS_D_def.xml.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_SUP_PAYMENTS_H_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_TECH_CAT_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_TECH_SUP_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_TRANSD_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_TRANSH_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_TRANSH_F_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_TRANS_CONSTR_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\vw_USR_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\DEF\_def.xml" />
+    <Content Include="bin\Release\Release\DSGNS\D_vw_INST_M\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\D_vw_INST_M\ΙΑΝΟΥΑΡΙΟΣ 22_3.xml_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\D_vw_INST_M\ΦΕΒΡΟΥΑΡΙΟΣ 2022_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\D_vw_SUP_PAYMENTS_D\sss_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\D_vw_SUP_PAYMENTS_D\sss_3.xml_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\D_vw_SUP_PAYMENTS_D\sss_3.xml_3.xml_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\D_vw_TRANSD\2021_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\D_vw_TRANSD\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_BUY\sss_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_BUY\sss_3.xml_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_BUY\ΑΠΡΙΛΙΟΣ 2022.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_BUY\ΓΕΝΑΡΗΣ 2022.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_BUY\ΙΟΥΛΙΟΣ 2022.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_BUY\ΙΟΥΝΙΟΣ 2022.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_BUY\ΜΑΙΟΣ 2022.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_BUY\ΜΑΡΤΙΟΣ 2022.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_BUY\ΦΕΒΡΟΥΑΡΙΟΣ 2022.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_CALC\1_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_CALC\problem_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_CCT\ΚΑΤΑΧΩΡΗΤΗΣ_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_CONSTR\14-2 ΕΩΣ 19-2_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_CONSTR\21-2 ΕΩΣ 26-2_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_CONSTR\ΕΚΤΥΠΩΤΙΚΑ_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_DOOR_TYPE\ΑΡΧΙΚΗ_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_DOOR_TYPE\ΠΑΓΚΟΙ_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_INST\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_INST\ΙΑΝΟΥΑΡΙΟΣ 22_3.xml_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_INST\ΦΕΒΡΟΥΑΡΙΟΣ 2022_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_INST_M\13-18-12_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_INST_M\20-25-12_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_INST_M\29-4_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_INST_M\6-11_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_INST_M\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_PROJECT_COST\ΔΕΚΕΜΒΡΙΟΣ_3.xml_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_PROJECT_COST\ΙΑΝΟΥΑΡΙΟΣ 22_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_PROJECT_COST\ΝΟΕΜΒΡΙΟΣ_3.xml_3.xml_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\1-10 ΕΩΣ 28-2_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\1-10 ΕΩΣ 31-3_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 2022_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_10.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_11.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_6.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_7.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΜΑΡΤΙΟΣ 22_9.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_10.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_11.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_6.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_7.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS2\ΦΕΒΡΟΥΑΡΙΟΣ 22_9.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS3\ΔΕΚΕΜΒΡΙΟΣ 2021_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS3\ΙΑΝΟΥΑΡΙΟΣ 2022_3.xml_3.xml_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS3\ΝΟΕΜΒΡΙΟΣ 2021_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_STATISTICS3\ΦΕΒΡΟΥΑΡΙΟΣ 2022_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_TRANSD\1_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_TRANSH\2021_3.xml" />
+    <Content Include="bin\Release\Release\DSGNS\vw_TRANSH\ΔΕΚΕΜΒΡΙΟΣ_3.xml" />
+    <Content Include="bin\Release\Release\es\DevExpress.Dashboard.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Dashboard.v21.2.Win.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Data.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.DataAccess.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.DataAccess.v21.2.UI.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Diagram.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Dialogs.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Map.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Office.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Pdf.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.PivotGrid.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Printing.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.RichEdit.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Sparkline.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Spreadsheet.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Utils.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Utils.v21.2.UI.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.Xpo.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraBars.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraCharts.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraCharts.v21.2.Wizard.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraEditors.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraGauges.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraGauges.v21.2.Presets.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraLayout.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraNavBar.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraPivotGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraPrinting.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraReports.v21.2.Extensions.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraReports.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraRichEdit.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraScheduler.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraScheduler.v21.2.Extensions.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraScheduler.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraSpellChecker.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraSpreadsheet.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraTreeList.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraVerticalGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\es\DevExpress.XtraWizard.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\itextsharp.dll" />
+    <Content Include="bin\Release\Release\itextsharp.xml" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Dashboard.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Dashboard.v21.2.Win.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Data.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.DataAccess.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.DataAccess.v21.2.UI.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Diagram.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Dialogs.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Map.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Office.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Pdf.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.PivotGrid.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Printing.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.RichEdit.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Sparkline.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Spreadsheet.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Utils.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Utils.v21.2.UI.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.Xpo.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraBars.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraCharts.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraCharts.v21.2.Wizard.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraEditors.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraGauges.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraGauges.v21.2.Presets.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraLayout.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraNavBar.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraPivotGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraPrinting.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraReports.v21.2.Extensions.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraReports.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraRichEdit.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraScheduler.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraScheduler.v21.2.Extensions.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraScheduler.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraSpellChecker.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraSpreadsheet.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraTreeList.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraVerticalGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ja\DevExpress.XtraWizard.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Dashboard.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Dashboard.v21.2.Win.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Data.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.DataAccess.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.DataAccess.v21.2.UI.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Diagram.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Dialogs.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Map.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Office.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Pdf.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.PivotGrid.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Printing.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.RichEdit.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Sparkline.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Spreadsheet.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Utils.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Utils.v21.2.UI.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.Xpo.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraBars.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraCharts.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraCharts.v21.2.Wizard.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraEditors.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraGauges.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraGauges.v21.2.Presets.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraLayout.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraNavBar.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraPivotGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraPrinting.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraReports.v21.2.Extensions.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraReports.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraRichEdit.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraScheduler.v21.2.Core.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraScheduler.v21.2.Extensions.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraScheduler.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraSpellChecker.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraSpreadsheet.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraTreeList.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraVerticalGrid.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\ru\DevExpress.XtraWizard.v21.2.resources.dll" />
+    <Content Include="bin\Release\Release\System.Configuration.ConfigurationManager.dll" />
+    <Content Include="bin\Release\Release\System.Configuration.ConfigurationManager.xml" />
+    <Content Include="bin\Release\Release\System.Security.AccessControl.dll" />
+    <Content Include="bin\Release\Release\System.Security.AccessControl.xml" />
+    <Content Include="bin\Release\Release\System.Security.Permissions.dll" />
+    <Content Include="bin\Release\Release\System.Security.Permissions.xml" />
+    <Content Include="bin\Release\Release\System.Security.Principal.Windows.dll" />
+    <Content Include="bin\Release\Release\System.Security.Principal.Windows.xml" />
+    <Content Include="bin\Release\Release\ΓΟΥΛΑΣ.png" />
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\Image1.jpg" />
+    <None Include="Resources\icons8-support-401.png" />
+    <None Include="Resources\icons8-support-40.png" />
+    <None Include="Resources\icons8-currency-exchange-40.png" />
+    <None Include="Resources\icons8-project-481.png" />
+    <None Include="Resources\icons8-project-48.png" />
+    <None Include="Resources\icons8-construction-48.png" />
+    <None Include="Resources\icons8-office-48.png" />
+    <None Include="Resources\icons8-data-science-48.png" />
+    <None Include="Resources\icons8-iris-scan-48.png" />
+    <None Include="Resources\icons8-eye-48.png" />
+    <None Include="Resources\icons8-product-quality-checkmark-for-approved-and-tested-24.png" />
+    <None Include="Resources\icons8-agreement-48.png" />
+    <None Include="Resources\icons8-kitchen-room-40.png" />
+    <None Include="Resources\icons8-equipment-40.png" />
+    <None Include="Resources\icons8-order-48.png" />
+    <None Include="Resources\icons8-slider-24.png" />
+    <None Include="Resources\icons8-settings-40.png" />
+    <None Include="Resources\icons8-purchase-order-48.png" />
     <None Include="Resources\icons8-gears-40.png" />
     <None Include="Resources\icons8-transaction-list2-40%281%29.png" />
     <None Include="Resources\icons8-payment-40.png" />
@@ -1090,6 +1979,138 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\DSGNS\D_vw_FORM_RIGHTS\" />
+    <Folder Include="bin\Debug\DSGNS\SUP_PAYMENTS_D\" />
+    <Folder Include="bin\Debug\DSGNS\vw_ADR\" />
+    <Folder Include="bin\Debug\DSGNS\vw_AGREEMENT\" />
+    <Folder Include="bin\Debug\DSGNS\vw_AREAS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_BANKS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_BDG\" />
+    <Folder Include="bin\Debug\DSGNS\vw_BENCH\" />
+    <Folder Include="bin\Debug\DSGNS\vw_BUY_C\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CAT_ERM\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CAT_SUB_ERM\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CCT_OFFERS_BATH\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CCT_OFFERS_CLOSET\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CCT_OFFERS_DOOR\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CCT_OFFERS_SPECIAL_CONSTR\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CCT_ORDERS_CLOSET\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CCT_ORDERS_DOOR\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CCT_ORDERS_KITCHEN\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CCT_ORDERS_SPECIAL_CONSTR\" />
+    <Folder Include="bin\Debug\DSGNS\vw_COLORS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_COLORS_CAT\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CONSTR_CAT\" />
+    <Folder Include="bin\Debug\DSGNS\vw_COU\" />
+    <Folder Include="bin\Debug\DSGNS\vw_CUS_REPORT1\" />
+    <Folder Include="bin\Debug\DSGNS\vw_DEP\" />
+    <Folder Include="bin\Debug\DSGNS\vw_DEVICES\" />
+    <Folder Include="bin\Debug\DSGNS\vw_DIM\" />
+    <Folder Include="bin\Debug\DSGNS\vw_DOY\" />
+    <Folder Include="bin\Debug\DSGNS\vw_EMP_M\" />
+    <Folder Include="bin\Debug\DSGNS\vw_EMP_M_S\" />
+    <Folder Include="bin\Debug\DSGNS\vw_EMP_S\" />
+    <Folder Include="bin\Debug\DSGNS\vw_EMP_T\" />
+    <Folder Include="bin\Debug\DSGNS\vw_EPOPTEIA\" />
+    <Folder Include="bin\Debug\DSGNS\vw_EP_STATUS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_EQUIPMENT\" />
+    <Folder Include="bin\Debug\DSGNS\vw_EQUIPMENT_CAT\" />
+    <Folder Include="bin\Debug\DSGNS\vw_ERM\" />
+    <Folder Include="bin\Debug\DSGNS\vw_FORM_RIGHTS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_INST_ELLIPSE\" />
+    <Folder Include="bin\Debug\DSGNS\vw_JOBS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_MAILS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_MECH\" />
+    <Folder Include="bin\Debug\DSGNS\vw_NOTES\" />
+    <Folder Include="bin\Debug\DSGNS\vw_NOTES_L\" />
+    <Folder Include="bin\Debug\DSGNS\vw_OFFERS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_OFF\" />
+    <Folder Include="bin\Debug\DSGNS\vw_PAY\" />
+    <Folder Include="bin\Debug\DSGNS\vw_PRF\" />
+    <Folder Include="bin\Debug\DSGNS\vw_PRICELIST\" />
+    <Folder Include="bin\Debug\DSGNS\vw_RIGHTS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SALERS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SALER_CAL_STATUS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SCAN_FILE_NAMES\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SER\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SIDES\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SOURCE\" />
+    <Folder Include="bin\Debug\DSGNS\vw_STATUS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SUP\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SUP_ORDERS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SUP_PAYMENTS\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SUP_PAYMENTS_D\" />
+    <Folder Include="bin\Debug\DSGNS\vw_SUP_PAYMENTS_H\" />
+    <Folder Include="bin\Debug\DSGNS\vw_TECH_CAT\" />
+    <Folder Include="bin\Debug\DSGNS\vw_TECH_SUP\" />
+    <Folder Include="bin\Debug\DSGNS\vw_TRANSCOST\" />
+    <Folder Include="bin\Debug\DSGNS\vw_TRANS_CONSTR\" />
+    <Folder Include="bin\Debug\DSGNS\vw_USR\" />
+    <Folder Include="bin\Release\Release\DSGNS\D_\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_ADR\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_AGREEMENT\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_AREAS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_BANKS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_BENCH\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_BUY_C\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CAT_ERM\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CAT_SUB_ERM\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CCT_M\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CCT_OFFERS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CCT_OFFERS_CLOSET\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CCT_OFFERS_DOOR\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CCT_OFFERS_SPECIAL_CONSTR\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CCT_ORDERS_CLOSET\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CCT_ORDERS_DOOR\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CCT_ORDERS_KITCHEN\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CCT_ORDERS_SPECIAL_CONSTR\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_COLORS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_COLORS_CAT\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CONSTR_CAT\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_COU\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_CUS_REPORT1\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_DEP\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_DEVICES\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_DIM\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_DOY\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_EMP\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_EMP_M\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_EMP_M_S\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_EMP_S\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_EMP_T\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_EPOPTEIA\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_EP_STATUS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_EQUIPMENT\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_EQUIPMENT_CAT\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_ERM\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_FORM_RIGHTS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_INST_ELLIPSE\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_JOBS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_MAILS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_MECH\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_NOTES\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_NOTES_L\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_OFF\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_PAY\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_PRF\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_RIGHTS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SALERS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SALER_CAL_STATUS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SCAN_FILE_NAMES\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SER\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SIDES\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SOURCE\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_STATUS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SUP\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SUP_ORDERS\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SUP_PAYMENTS_D\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_SUP_PAYMENTS_H\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_TECH_CAT\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_TECH_SUP\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_TRANS_CONSTR\" />
+    <Folder Include="bin\Release\Release\DSGNS\vw_USR\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

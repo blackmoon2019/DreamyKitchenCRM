@@ -69,7 +69,7 @@ Public Class frmInstallations
     Private Sub frmInstallations_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_TRANSH' table. You can move, or remove it, as needed.
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
+        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
         FillCbo.SER(cboSER, sSQL)
         FillCbo.CUS(cboCUS)
         FillCbo.SALERS(cboSaler)
@@ -142,10 +142,10 @@ Public Class frmInstallations
                         'sGuid = sID
                 End Select
 
-                If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_INST")
-                End If
+                'If FScrollerExist = True Then
+                '    Dim form As frmScroller = Frm
+                '    form.LoadRecords("vw_INST")
+                'End If
 
                 If sResult = True Then
                     sSQL.Clear()
@@ -228,8 +228,8 @@ Public Class frmInstallations
     End Sub
     Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then If cboSaler.EditValue <> Nothing Then ManageSaler()
             Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub
@@ -269,8 +269,8 @@ Public Class frmInstallations
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserPermissions.CheckViewPermission("Χρεωπιστώσεις") Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then  cboTRANSH.EditValue = Nothing : ManageTRANSH()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then  If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub

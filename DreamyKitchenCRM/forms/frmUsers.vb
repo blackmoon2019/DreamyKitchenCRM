@@ -109,8 +109,9 @@ Public Class frmUsers
 
     Private Sub cboSaler_ButtonClick(sender As Object, e As Controls.ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageSalers()
-            Case 2 : cboSaler.EditValue = Nothing
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then cboSaler.EditValue = Nothing : ManageSalers()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then If cboSaler.EditValue <> Nothing Then ManageSalers()
+            Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub
     'Private Sub FillList()

@@ -1,0 +1,1690 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DMDataSet" targetNamespace="http://tempuri.org/DMDataSet.xsd" xmlns:mstns="http://tempuri.org/DMDataSet.xsd" xmlns="http://tempuri.org/DMDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="MySettings" AppSettingsPropertyName="DreamyKitchenConnectionStringRemotely" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="DreamyKitchenConnectionStringRemotely (MySettings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.DreamyKitchenCRM.My.MySettings.GlobalReference.Default.DreamyKitchenConnectionStringRemotely" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="DOOR_TYPETableAdapter" GeneratorDataComponentClassName="DOOR_TYPETableAdapter" Name="DOOR_TYPE" UserDataComponentName="DOOR_TYPETableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBYPlainaVaseos" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillBYPlainaVaseos" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillBYPlainaVaseos">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = '99F1685E-3094-4AB5-B160-C76BC9975704')
+ORDER BY cat, dimName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPETableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPETableAdapter" Name="vw_DOOR_TYPE" UserDataComponentName="vw_DOOR_TYPETableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBYNisida" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillBYNisida" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillBYNisida">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColorID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = '78317F46-CD2E-4A8C-95B3-A1EA4AF95A9C')
+ORDER BY cat, dimName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPE1TableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPE1TableAdapter" Name="vw_DOOR_TYPE1" UserDataComponentName="vw_DOOR_TYPE1TableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBYErmaria" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillBYErmaria" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillBYErmaria">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColorID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086')
+ORDER BY cat, dimName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByTypeAndDoorColor" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByTypeAndDoorColor" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByTypeAndDoorColor">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColorID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086') and type=@type and doorColorID=@doorColorID
+ORDER BY cat, dimName</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="type" ColumnName="type" DataSourceName="DreamyKitchen.dbo.vw_DOOR_TYPE" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@type" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="type" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="doorColorID" ColumnName="doorColorID" DataSourceName="DreamyKitchen.dbo.vw_DOOR_TYPE" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@doorColorID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="doorColorID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPEPlainaYpsilaTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPEPlainaYpsilaTableAdapter" Name="vw_DOOR_TYPEPlainaYpsila" UserDataComponentName="vw_DOOR_TYPEPlainaYpsilaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBYPlainaYpsila" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillBYPlainaYpsila" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillBYPlainaYpsila">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColorID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = '46C0F883-D4D6-4B12-BE09-27FFB85E9369')
+ORDER BY cat, dimName</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPEPlainaKremastaTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPEPlainaKremastaTableAdapter" Name="vw_DOOR_TYPEPlainaKremasta" UserDataComponentName="vw_DOOR_TYPEPlainaKremastaTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByPlainaKremasta" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillByPlainaKremasta" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillByPlainaKremasta">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = '253DDEFB-DCD9-47AC-95D0-0B94D2EECDA3')
+ORDER BY name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPERafieresVTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPERafieresVTableAdapter" Name="vw_DOOR_TYPERafieresV" UserDataComponentName="vw_DOOR_TYPERafieresVTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByRafieresV" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillByRafieresV" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="FillByRafieresV">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = 'E1D9DBA9-E4FF-45B6-AA26-46ADCED92EE9')
+ORDER BY name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPERafieresKTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPERafieresKTableAdapter" Name="vw_DOOR_TYPERafieresK" UserDataComponentName="vw_DOOR_TYPERafieresKTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByRafieresK" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillByRafieresK" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillByRafieresK">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = 'EC315B2E-B8E7-4932-9980-C570A7DC17CC')
+ORDER BY name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPERafieresYTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPERafieresYTableAdapter" Name="vw_DOOR_TYPERafieresY" UserDataComponentName="vw_DOOR_TYPERafieresYTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByRafieresY" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillByRafieresY" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillByRafieresY">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = 'C05AF8BA-E202-4E06-8E03-8CE7079A41EE')
+ORDER BY name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPERafiaWallTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPERafiaWallTableAdapter" Name="vw_DOOR_TYPERafiaWall" UserDataComponentName="vw_DOOR_TYPERafiaWallTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByRafiaWall" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillByRafiaWall" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillByRafiaWall">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = '77F53BAA-6980-4228-8FE3-AB7EE23F6608')
+ORDER BY name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPEClosetTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPEClosetTableAdapter" Name="vw_DOOR_TYPECloset" UserDataComponentName="vw_DOOR_TYPEClosetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBYCloset" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillBYCloset" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="FillBYCloset">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = 'CF691845-D6CC-4181-9760-6D15934C40B4') and doorColorID=@doorColorID and closetType=@closetType
+ORDER BY name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="doorColorID" ColumnName="doorColorID" DataSourceName="DreamyKitchen.dbo.vw_DOOR_TYPE" DataTypeServer="uniqueidentifier" DbType="Guid" Direction="Input" ParameterName="@doorColorID" Precision="0" ProviderType="UniqueIdentifier" Scale="0" Size="16" SourceColumn="doorColorID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="closetType" ColumnName="closetType" DataSourceName="DreamyKitchen.dbo.vw_DOOR_TYPE" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@closetType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="closetType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPEEpendisisClosetTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPEEpendisisClosetTableAdapter" Name="vw_DOOR_TYPEEpendisisCloset" UserDataComponentName="vw_DOOR_TYPEEpendisisClosetTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillBYEpendisisCloset" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="FillBYEpendisisCloset" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="FillBYEpendisisCloset">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = '7B92C649-9B26-463B-AA8E-6CE0682CB91A')
+ORDER BY name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPEDOORSTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPEDOORSTableAdapter" Name="vw_DOOR_TYPEDOORS" UserDataComponentName="vw_DOOR_TYPEDOORSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = 'E6733593-7DA0-4180-8951-B09315E1F13D') and doorType=@doorType and kasa=@kasa
+ORDER BY name</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="true" AutogeneratedName="doorType" ColumnName="doorType" DataSourceName="DreamyKitchen.dbo.vw_DOOR_TYPE" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@doorType" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="doorType" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="kasa" ColumnName="kasa" DataSourceName="DreamyKitchen.dbo.vw_DOOR_TYPE" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@kasa" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="kasa" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_CONSTR_TYPETableAdapter" GeneratorDataComponentClassName="vw_CONSTR_TYPETableAdapter" Name="vw_CONSTR_TYPE" UserDataComponentName="vw_CONSTR_TYPETableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_CONSTR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT ID, name
+FROM   vw_CONSTR_TYPE</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_DOOR_TYPESpecialConstrTableAdapter" GeneratorDataComponentClassName="vw_DOOR_TYPESpecialConstrTableAdapter" Name="vw_DOOR_TYPESpecialConstr" UserDataComponentName="vw_DOOR_TYPESpecialConstrTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = 'CF47FAEE-7CD7-49AD-9455-3BC69D438DE9') 
+ORDER BY name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="Modifier" DataSetColumn="Modifier" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="cat" DataSetColumn="cat" />
+              <Mapping SourceColumn="color" DataSetColumn="color" />
+              <Mapping SourceColumn="Price" DataSetColumn="Price" />
+              <Mapping SourceColumn="comments" DataSetColumn="comments" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+              <Mapping SourceColumn="doorColorID" DataSetColumn="doorColorID" />
+              <Mapping SourceColumn="ColorName" DataSetColumn="ColorName" />
+              <Mapping SourceColumn="typeDescr" DataSetColumn="typeDescr" />
+              <Mapping SourceColumn="type" DataSetColumn="type" />
+              <Mapping SourceColumn="doorType" DataSetColumn="doorType" />
+              <Mapping SourceColumn="kasa" DataSetColumn="kasa" />
+              <Mapping SourceColumn="dimName" DataSetColumn="dimName" />
+              <Mapping SourceColumn="dimID" DataSetColumn="dimID" />
+              <Mapping SourceColumn="doorCatID" DataSetColumn="doorCatID" />
+              <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
+              <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DMDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DMDataSet" msprop:Generator_UserDSName="DMDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DOOR_TYPE" msprop:Generator_TableClassName="DOOR_TYPEDataTable" msprop:Generator_TableVarName="tableDOOR_TYPE" msprop:Generator_TablePropName="DOOR_TYPE" msprop:Generator_RowDeletingName="DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="DOOR_TYPERowDeleted" msprop:Generator_UserTableName="DOOR_TYPE" msprop:Generator_RowChangedName="DOOR_TYPERowChanged" msprop:Generator_RowEvArgName="DOOR_TYPERowChangeEvent" msprop:Generator_RowClassName="DOOR_TYPERow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPE" msprop:Generator_TableClassName="vw_DOOR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE" msprop:Generator_RowChangedName="vw_DOOR_TYPERowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPE" msprop:Generator_RowDeletingName="vw_DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPERow" msprop:Generator_UserTableName="vw_DOOR_TYPE" msprop:Generator_RowEvArgName="vw_DOOR_TYPERowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPE1" msprop:Generator_TableClassName="vw_DOOR_TYPE1DataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE1" msprop:Generator_RowChangedName="vw_DOOR_TYPE1RowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPE1" msprop:Generator_RowDeletingName="vw_DOOR_TYPE1RowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPE1RowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPE1RowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPE1RowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPE1Row" msprop:Generator_UserTableName="vw_DOOR_TYPE1" msprop:Generator_RowEvArgName="vw_DOOR_TYPE1RowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPEPlainaYpsila" msprop:Generator_TableClassName="vw_DOOR_TYPEPlainaYpsilaDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEPlainaYpsila" msprop:Generator_RowChangedName="vw_DOOR_TYPEPlainaYpsilaRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPEPlainaYpsila" msprop:Generator_RowDeletingName="vw_DOOR_TYPEPlainaYpsilaRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEPlainaYpsilaRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEPlainaYpsilaRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEPlainaYpsilaRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPEPlainaYpsilaRow" msprop:Generator_UserTableName="vw_DOOR_TYPEPlainaYpsila" msprop:Generator_RowEvArgName="vw_DOOR_TYPEPlainaYpsilaRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPEPlainaKremasta" msprop:Generator_TableClassName="vw_DOOR_TYPEPlainaKremastaDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEPlainaKremasta" msprop:Generator_TablePropName="vw_DOOR_TYPEPlainaKremasta" msprop:Generator_RowDeletingName="vw_DOOR_TYPEPlainaKremastaRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEPlainaKremastaRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEPlainaKremastaRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEPlainaKremastaRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPEPlainaKremasta" msprop:Generator_RowChangedName="vw_DOOR_TYPEPlainaKremastaRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPEPlainaKremastaRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPEPlainaKremastaRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPERafieresV" msprop:Generator_TableClassName="vw_DOOR_TYPERafieresVDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafieresV" msprop:Generator_TablePropName="vw_DOOR_TYPERafieresV" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafieresVRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafieresVRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafieresVRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafieresVRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPERafieresV" msprop:Generator_RowChangedName="vw_DOOR_TYPERafieresVRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafieresVRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERafieresVRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPERafieresK" msprop:Generator_TableClassName="vw_DOOR_TYPERafieresKDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafieresK" msprop:Generator_TablePropName="vw_DOOR_TYPERafieresK" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafieresKRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafieresKRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafieresKRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafieresKRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPERafieresK" msprop:Generator_RowChangedName="vw_DOOR_TYPERafieresKRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafieresKRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERafieresKRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPERafieresY" msprop:Generator_TableClassName="vw_DOOR_TYPERafieresYDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafieresY" msprop:Generator_TablePropName="vw_DOOR_TYPERafieresY" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafieresYRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafieresYRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafieresYRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafieresYRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPERafieresY" msprop:Generator_RowChangedName="vw_DOOR_TYPERafieresYRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafieresYRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERafieresYRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPERafiaWall" msprop:Generator_TableClassName="vw_DOOR_TYPERafiaWallDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafiaWall" msprop:Generator_TablePropName="vw_DOOR_TYPERafiaWall" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafiaWallRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafiaWallRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafiaWallRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafiaWallRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPERafiaWall" msprop:Generator_RowChangedName="vw_DOOR_TYPERafiaWallRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafiaWallRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERafiaWallRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPECloset" msprop:Generator_TableClassName="vw_DOOR_TYPEClosetDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPECloset" msprop:Generator_RowChangedName="vw_DOOR_TYPEClosetRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPECloset" msprop:Generator_RowDeletingName="vw_DOOR_TYPEClosetRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEClosetRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEClosetRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEClosetRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPEClosetRow" msprop:Generator_UserTableName="vw_DOOR_TYPECloset" msprop:Generator_RowEvArgName="vw_DOOR_TYPEClosetRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPEEpendisisCloset" msprop:Generator_TableClassName="vw_DOOR_TYPEEpendisisClosetDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEEpendisisCloset" msprop:Generator_TablePropName="vw_DOOR_TYPEEpendisisCloset" msprop:Generator_RowDeletingName="vw_DOOR_TYPEEpendisisClosetRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEEpendisisClosetRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEEpendisisClosetRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEEpendisisClosetRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPEEpendisisCloset" msprop:Generator_RowChangedName="vw_DOOR_TYPEEpendisisClosetRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPEEpendisisClosetRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPEEpendisisClosetRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPEDOORS" msprop:Generator_TableClassName="vw_DOOR_TYPEDOORSDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEDOORS" msprop:Generator_RowChangedName="vw_DOOR_TYPEDOORSRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPEDOORS" msprop:Generator_RowDeletingName="vw_DOOR_TYPEDOORSRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEDOORSRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEDOORSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEDOORSRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPEDOORSRow" msprop:Generator_UserTableName="vw_DOOR_TYPEDOORS" msprop:Generator_RowEvArgName="vw_DOOR_TYPEDOORSRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_CONSTR_TYPE" msprop:Generator_TableClassName="vw_CONSTR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_CONSTR_TYPE" msprop:Generator_TablePropName="vw_CONSTR_TYPE" msprop:Generator_RowDeletingName="vw_CONSTR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_CONSTR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_CONSTR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CONSTR_TYPERowDeleted" msprop:Generator_UserTableName="vw_CONSTR_TYPE" msprop:Generator_RowChangedName="vw_CONSTR_TYPERowChanged" msprop:Generator_RowEvArgName="vw_CONSTR_TYPERowChangeEvent" msprop:Generator_RowClassName="vw_CONSTR_TYPERow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="vw_DOOR_TYPESpecialConstr" msprop:Generator_TableClassName="vw_DOOR_TYPESpecialConstrDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPESpecialConstr" msprop:Generator_TablePropName="vw_DOOR_TYPESpecialConstr" msprop:Generator_RowDeletingName="vw_DOOR_TYPESpecialConstrRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPESpecialConstrRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPESpecialConstrRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPESpecialConstrRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPESpecialConstr" msprop:Generator_RowChangedName="vw_DOOR_TYPESpecialConstrRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPESpecialConstrRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPESpecialConstrRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="CustomCode" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cat" msprop:Generator_ColumnVarNameInTable="columncat" msprop:Generator_ColumnPropNameInRow="cat" msprop:Generator_ColumnPropNameInTable="catColumn" msprop:Generator_UserColumnName="cat" type="xs:int" />
+              <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
+              <xs:element name="Price" msprop:Generator_ColumnVarNameInTable="columnPrice" msprop:Generator_ColumnPropNameInRow="Price" msprop:Generator_ColumnPropNameInTable="PriceColumn" msprop:Generator_UserColumnName="Price" type="xs:decimal" minOccurs="0" />
+              <xs:element name="comments" msprop:Generator_ColumnVarNameInTable="columncomments" msprop:Generator_ColumnPropNameInRow="comments" msprop:Generator_ColumnPropNameInTable="commentsColumn" msprop:Generator_UserColumnName="comments" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+              <xs:element name="doorColorID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorColorID" msprop:Generator_ColumnPropNameInRow="doorColorID" msprop:Generator_ColumnPropNameInTable="doorColorIDColumn" msprop:Generator_UserColumnName="doorColorID" type="xs:string" minOccurs="0" />
+              <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="typeDescr" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columntypeDescr" msprop:Generator_ColumnPropNameInRow="typeDescr" msprop:Generator_ColumnPropNameInTable="typeDescrColumn" msprop:Generator_UserColumnName="typeDescr" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="6" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="type" msprop:Generator_ColumnVarNameInTable="columntype" msprop:Generator_ColumnPropNameInRow="type" msprop:Generator_ColumnPropNameInTable="typeColumn" msprop:Generator_UserColumnName="type" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_UserColumnName="doorType" type="xs:int" minOccurs="0" />
+              <xs:element name="kasa" msprop:Generator_ColumnVarNameInTable="columnkasa" msprop:Generator_ColumnPropNameInRow="kasa" msprop:Generator_ColumnPropNameInTable="kasaColumn" msprop:Generator_UserColumnName="kasa" type="xs:int" minOccurs="0" />
+              <xs:element name="dimName" msprop:Generator_ColumnVarNameInTable="columndimName" msprop:Generator_ColumnPropNameInRow="dimName" msprop:Generator_ColumnPropNameInTable="dimNameColumn" msprop:Generator_UserColumnName="dimName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="dimID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndimID" msprop:Generator_ColumnPropNameInRow="dimID" msprop:Generator_ColumnPropNameInTable="dimIDColumn" msprop:Generator_UserColumnName="dimID" type="xs:string" minOccurs="0" />
+              <xs:element name="doorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columndoorCatID" msprop:Generator_ColumnPropNameInRow="doorCatID" msprop:Generator_ColumnPropNameInTable="doorCatIDColumn" msprop:Generator_UserColumnName="doorCatID" type="xs:string" />
+              <xs:element name="doorCatName" msprop:Generator_ColumnVarNameInTable="columndoorCatName" msprop:Generator_ColumnPropNameInRow="doorCatName" msprop:Generator_ColumnPropNameInTable="doorCatNameColumn" msprop:Generator_UserColumnName="doorCatName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="closetType" msprop:Generator_ColumnVarNameInTable="columnclosetType" msprop:Generator_ColumnPropNameInRow="closetType" msprop:Generator_ColumnPropNameInTable="closetTypeColumn" msprop:Generator_UserColumnName="closetType" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:DOOR_TYPE" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPE_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPE" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPE1_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPE1" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPEPlainaYpsila_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPEPlainaYpsila" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPEPlainaKremasta_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPEPlainaKremasta" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPERafieresV_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPERafieresV" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPERafieresK_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPERafieresK" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPERafieresY_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPERafieresY" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPERafiaWall_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPERafiaWall" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPECloset_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPECloset" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPEEpendisisCloset_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPEEpendisisCloset" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPEDOORS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPEDOORS" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_CONSTR_TYPE_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_CONSTR_TYPE" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_DOOR_TYPESpecialConstr_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_DOOR_TYPESpecialConstr" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
