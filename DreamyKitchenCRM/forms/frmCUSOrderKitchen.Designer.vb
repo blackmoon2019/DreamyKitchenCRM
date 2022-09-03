@@ -21,8 +21,8 @@ Partial Class frmCUSOrderKitchen
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSOrderKitchen))
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Me.coldCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.chkVatVisible = New DevExpress.XtraEditors.CheckEdit()
@@ -202,6 +202,7 @@ Partial Class frmCUSOrderKitchen
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.TabNavigationPage2 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
+        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdSaveEquipDev = New DevExpress.XtraEditors.SimpleButton()
         Me.grdDevices = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -222,6 +223,11 @@ Partial Class frmCUSOrderKitchen
         Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colRealName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coldefPrice = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem71 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem75 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.VwDEVICESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwEQUIPMENTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
@@ -241,12 +247,6 @@ Partial Class frmCUSOrderKitchen
         Me.Vw_DOOR_TYPERafieresKTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresKTableAdapter()
         Me.Vw_DOOR_TYPERafieresYTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresYTableAdapter()
         Me.Vw_DOOR_TYPERafiaWallTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafiaWallTableAdapter()
-        Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem71 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem75 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -424,20 +424,20 @@ Partial Class frmCUSOrderKitchen
         Me.TabPane1.SuspendLayout()
         Me.TabNavigationPage1.SuspendLayout()
         Me.TabNavigationPage2.SuspendLayout()
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl2.SuspendLayout()
         CType(Me.grdDevices, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdEquipment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepDefPrice, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.LayoutControl2.SuspendLayout()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem71, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem75, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'coldCode
@@ -2774,6 +2774,19 @@ Partial Class frmCUSOrderKitchen
         Me.TabNavigationPage2.PageText = "ΣΥΣΚΕΥΕΣ/ΕΞΑΡΤΗΜΑΤΑ"
         Me.TabNavigationPage2.Size = New System.Drawing.Size(1885, 1414)
         '
+        'LayoutControl2
+        '
+        Me.LayoutControl2.Controls.Add(Me.cmdSaveEquipDev)
+        Me.LayoutControl2.Controls.Add(Me.grdDevices)
+        Me.LayoutControl2.Controls.Add(Me.grdEquipment)
+        Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl2.Name = "LayoutControl2"
+        Me.LayoutControl2.Root = Me.LayoutControlGroup4
+        Me.LayoutControl2.Size = New System.Drawing.Size(1885, 1414)
+        Me.LayoutControl2.TabIndex = 65
+        Me.LayoutControl2.Text = "LayoutControl2"
+        '
         'cmdSaveEquipDev
         '
         Me.cmdSaveEquipDev.ImageOptions.Image = CType(resources.GetObject("cmdSaveEquipDev.ImageOptions.Image"), System.Drawing.Image)
@@ -2802,15 +2815,15 @@ Partial Class frmCUSOrderKitchen
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.coldCode, Me.GridColumn3, Me.colchecked})
         Me.GridView1.FixedLineWidth = 3
-        GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Column = Me.coldCode
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.White
-        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
-        FormatConditionRuleExpression1.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
-        FormatConditionRuleExpression1.PredefinedName = "Red Text"
-        GridFormatRule1.Rule = FormatConditionRuleExpression1
-        Me.GridView1.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Column = Me.coldCode
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.White
+        FormatConditionRuleExpression2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression2.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
+        FormatConditionRuleExpression2.PredefinedName = "Red Text"
+        GridFormatRule2.Rule = FormatConditionRuleExpression2
+        Me.GridView1.FormatRules.Add(GridFormatRule2)
         Me.GridView1.GridControl = Me.grdDevices
         Me.GridView1.LevelIndent = 0
         Me.GridView1.Name = "GridView1"
@@ -3000,6 +3013,50 @@ Partial Class frmCUSOrderKitchen
         Me.coldefPrice.Name = "coldefPrice"
         Me.coldefPrice.Width = 131
         '
+        'LayoutControlGroup4
+        '
+        Me.LayoutControlGroup4.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup4.GroupBordersVisible = False
+        Me.LayoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem19, Me.LayoutControlItem71, Me.LayoutControlItem75, Me.EmptySpaceItem6})
+        Me.LayoutControlGroup4.Name = "LayoutControlGroup4"
+        Me.LayoutControlGroup4.Size = New System.Drawing.Size(1885, 1414)
+        Me.LayoutControlGroup4.TextVisible = False
+        '
+        'LayoutControlItem19
+        '
+        Me.LayoutControlItem19.Control = Me.grdEquipment
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem19.Name = "LayoutControlItem19"
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(1865, 707)
+        Me.LayoutControlItem19.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem19.TextVisible = False
+        '
+        'LayoutControlItem71
+        '
+        Me.LayoutControlItem71.Control = Me.grdDevices
+        Me.LayoutControlItem71.Location = New System.Drawing.Point(0, 707)
+        Me.LayoutControlItem71.Name = "LayoutControlItem71"
+        Me.LayoutControlItem71.Size = New System.Drawing.Size(1865, 644)
+        Me.LayoutControlItem71.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem71.TextVisible = False
+        '
+        'LayoutControlItem75
+        '
+        Me.LayoutControlItem75.Control = Me.cmdSaveEquipDev
+        Me.LayoutControlItem75.Location = New System.Drawing.Point(1630, 1351)
+        Me.LayoutControlItem75.Name = "LayoutControlItem75"
+        Me.LayoutControlItem75.Size = New System.Drawing.Size(235, 43)
+        Me.LayoutControlItem75.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem75.TextVisible = False
+        '
+        'EmptySpaceItem6
+        '
+        Me.EmptySpaceItem6.AllowHotTrack = False
+        Me.EmptySpaceItem6.Location = New System.Drawing.Point(0, 1351)
+        Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
+        Me.EmptySpaceItem6.Size = New System.Drawing.Size(1630, 43)
+        Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
+        '
         'VwDEVICESBindingSource
         '
         Me.VwDEVICESBindingSource.DataMember = "vw_DEVICES"
@@ -3077,63 +3134,6 @@ Partial Class frmCUSOrderKitchen
         'Vw_DOOR_TYPERafiaWallTableAdapter
         '
         Me.Vw_DOOR_TYPERafiaWallTableAdapter.ClearBeforeFill = True
-        '
-        'LayoutControl2
-        '
-        Me.LayoutControl2.Controls.Add(Me.cmdSaveEquipDev)
-        Me.LayoutControl2.Controls.Add(Me.grdDevices)
-        Me.LayoutControl2.Controls.Add(Me.grdEquipment)
-        Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControl2.Name = "LayoutControl2"
-        Me.LayoutControl2.Root = Me.LayoutControlGroup4
-        Me.LayoutControl2.Size = New System.Drawing.Size(1885, 1414)
-        Me.LayoutControl2.TabIndex = 65
-        Me.LayoutControl2.Text = "LayoutControl2"
-        '
-        'LayoutControlGroup4
-        '
-        Me.LayoutControlGroup4.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup4.GroupBordersVisible = False
-        Me.LayoutControlGroup4.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem19, Me.LayoutControlItem71, Me.LayoutControlItem75, Me.EmptySpaceItem6})
-        Me.LayoutControlGroup4.Name = "LayoutControlGroup4"
-        Me.LayoutControlGroup4.Size = New System.Drawing.Size(1885, 1414)
-        Me.LayoutControlGroup4.TextVisible = False
-        '
-        'LayoutControlItem19
-        '
-        Me.LayoutControlItem19.Control = Me.grdEquipment
-        Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(1865, 707)
-        Me.LayoutControlItem19.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem19.TextVisible = False
-        '
-        'LayoutControlItem71
-        '
-        Me.LayoutControlItem71.Control = Me.grdDevices
-        Me.LayoutControlItem71.Location = New System.Drawing.Point(0, 707)
-        Me.LayoutControlItem71.Name = "LayoutControlItem71"
-        Me.LayoutControlItem71.Size = New System.Drawing.Size(1865, 644)
-        Me.LayoutControlItem71.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem71.TextVisible = False
-        '
-        'LayoutControlItem75
-        '
-        Me.LayoutControlItem75.Control = Me.cmdSaveEquipDev
-        Me.LayoutControlItem75.Location = New System.Drawing.Point(1630, 1351)
-        Me.LayoutControlItem75.Name = "LayoutControlItem75"
-        Me.LayoutControlItem75.Size = New System.Drawing.Size(235, 43)
-        Me.LayoutControlItem75.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem75.TextVisible = False
-        '
-        'EmptySpaceItem6
-        '
-        Me.EmptySpaceItem6.AllowHotTrack = False
-        Me.EmptySpaceItem6.Location = New System.Drawing.Point(0, 1351)
-        Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
-        Me.EmptySpaceItem6.Size = New System.Drawing.Size(1630, 43)
-        Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmCUSOrderKitchen
         '
@@ -3322,20 +3322,20 @@ Partial Class frmCUSOrderKitchen
         Me.TabPane1.ResumeLayout(False)
         Me.TabNavigationPage1.ResumeLayout(False)
         Me.TabNavigationPage2.ResumeLayout(False)
+        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl2.ResumeLayout(False)
         CType(Me.grdDevices, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdEquipment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepDefPrice, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.LayoutControl2.ResumeLayout(False)
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem71, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem75, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

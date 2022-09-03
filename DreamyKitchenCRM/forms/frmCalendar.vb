@@ -196,7 +196,7 @@ Public Class frmCalendar
     End Sub
     Private Sub SchedulerControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles SchedulerControl1.KeyDown
         Dim sSQL As String
-        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then Exit Sub
+        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" And UserProps.ID.ToString.ToUpper <> "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Exit Sub
         If e.KeyCode = Keys.Delete Then
             For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
 

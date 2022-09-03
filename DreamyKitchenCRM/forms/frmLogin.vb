@@ -25,8 +25,8 @@ Public Class frmLogin
         FillCbo.USR(txtUN)
         If My.Settings.UNSave = True Then txtUN.EditValue = System.Guid.Parse(My.Settings.UN.ToString)
         If Debugger.IsAttached Then
-            txtUN.EditValue = System.Guid.Parse("3f9dc32e-be5b-4d46-a13c-ea606566cf32")
-            txtPWD.Text = "2017"
+            txtUN.EditValue = System.Guid.Parse("E9CEFD11-47C0-4796-A46B-BC41C4C3606B")
+            txtPWD.Text = "1"
             cmdLogin.Select()
         Else
             ' Assume we aren't running from the IDE

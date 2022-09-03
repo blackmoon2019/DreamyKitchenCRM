@@ -1043,7 +1043,6 @@ Partial Class frmMain
         'BBTransCost
         '
         Me.BBTransCost.Caption = "Κοστολόγηση"
-        Me.BBTransCost.Enabled = False
         Me.BBTransCost.Id = 109
         Me.BBTransCost.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_currency_exchange_40
         Me.BBTransCost.Name = "BBTransCost"

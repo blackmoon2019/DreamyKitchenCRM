@@ -74,7 +74,7 @@ Public Class frmInstallations
         FillCbo.CUS(cboCUS)
         FillCbo.SALERS(cboSaler)
         ' Μόνο αν ο Χρήστης ΔΕΝ είναι ο Παναγόπουλος
-        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then Lcost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never : LExtracost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" And UserProps.ID.ToString.ToUpper <> "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Lcost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never : LExtracost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("INST")
@@ -87,7 +87,7 @@ Public Class frmInstallations
         My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
-    End Sub
+        End Sub
 
     Private Sub frmInstallations_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)

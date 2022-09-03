@@ -117,30 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cmdSaveEquipDev.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAppJREFUSEvF
-        k+tPUmEcx/kj6k3/QG/qVb3oH7CtmrZWssVlI8zWetHNTcts6dYUMlvAMC4KltESui0vObpMiTEuB1CC
-        IyIndBY3QzGyq+f8Os9RUYwDDtz6bZ+d53nxfD/PeZ7fwzkmc+0RqccbN8JVuDVHO5xvTii8fq7Mg7PB
-        U/rMJ5VeU/UdbC+HrfgKb32fMwkjU5ksV4xB4HWOg975FXpcmYJcMgThsgGfqVI49q9G5hYSoNBImspy
-        8yUBZ3pwGApTeWkemAWtfZEZNz0LQzhFQt2jielKufvAaux6lSIQqnwgNceZMRKgNayS7RJkJYZNku0U
-        IKZSy3DhAR6pkFp3sQpa+z9CTbf/n+B8ND7JFSB01vjCwTb7PlYBmos0PjhNS2p17Fw1hcGEzeWsRRQV
-        lMv/E6BvOdgiS4UFF3v90O9JlMw102RhQccQAeVU+yCxNUEq8xtCsW9FCUYz0Gv9DDfot3D9KQE1dGep
-        R6OgGY2lCwrQwkFvoiAmexTO6gPQMvwF7mHLoMJIhra3aRB34+QRiVPAKihWJEVBgzEEd20/s8Eb6XT+
-        Ab4q8OlQq2VnXoEtNA+yYYKVhscT0PxqLm/4a4IC2yyd9f47cBXe+yX9QcsLIudY1jDT4SQFYJmhmLlA
-        HfhQ0h2cfxhkAro8JPgSdNd4V3aOwkemV8IRp3RBIq+gWBfV0+ePAvR0cHIJYP4HupfccIRQi+MlHVGf
-        IwaSd4s5ks3hcvsvqFaODXC4Sk9d+2BkocsSnTun85HPsThVDKMjRtXqcaZbUJjGvR68hlg/maySunZz
-        Km9jO9CjQFRI7IKtcvgW1sRT+ROoWzYGo52j8OPyMTHzDsop1OeoFflq3CfqDhJCbQBHx8LsnCkO5y9j
-        M8srxWrdvQAAAABJRU5ErkJggg==
-</value>
-  </data>
   <metadata name="VwCOLORSBOXBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1879, 17</value>
   </metadata>
   <metadata name="DreamyKitchenDataSetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>303, 17</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cmdExit.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAS5JREFUSEtj
@@ -184,6 +167,23 @@
   <metadata name="VwDOORTYPEEpendisisClosetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 121</value>
   </metadata>
+  <data name="cmdSaveEquipDev.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAppJREFUSEvF
+        k+tPUmEcx/kj6k3/QG/qVb3oH7CtmrZWssVlI8zWetHNTcts6dYUMlvAMC4KltESui0vObpMiTEuB1CC
+        IyIndBY3QzGyq+f8Os9RUYwDDtz6bZ+d53nxfD/PeZ7fwzkmc+0RqccbN8JVuDVHO5xvTii8fq7Mg7PB
+        U/rMJ5VeU/UdbC+HrfgKb32fMwkjU5ksV4xB4HWOg975FXpcmYJcMgThsgGfqVI49q9G5hYSoNBImspy
+        8yUBZ3pwGApTeWkemAWtfZEZNz0LQzhFQt2jielKufvAaux6lSIQqnwgNceZMRKgNayS7RJkJYZNku0U
+        IKZSy3DhAR6pkFp3sQpa+z9CTbf/n+B8ND7JFSB01vjCwTb7PlYBmos0PjhNS2p17Fw1hcGEzeWsRRQV
+        lMv/E6BvOdgiS4UFF3v90O9JlMw102RhQccQAeVU+yCxNUEq8xtCsW9FCUYz0Gv9DDfot3D9KQE1dGep
+        R6OgGY2lCwrQwkFvoiAmexTO6gPQMvwF7mHLoMJIhra3aRB34+QRiVPAKihWJEVBgzEEd20/s8Eb6XT+
+        Ab4q8OlQq2VnXoEtNA+yYYKVhscT0PxqLm/4a4IC2yyd9f47cBXe+yX9QcsLIudY1jDT4SQFYJmhmLlA
+        HfhQ0h2cfxhkAro8JPgSdNd4V3aOwkemV8IRp3RBIq+gWBfV0+ePAvR0cHIJYP4HupfccIRQi+MlHVGf
+        IwaSd4s5ks3hcvsvqFaODXC4Sk9d+2BkocsSnTun85HPsThVDKMjRtXqcaZbUJjGvR68hlg/maySunZz
+        Km9jO9CjQFRI7IKtcvgW1sRT+ROoWzYGo52j8OPyMTHzDsop1OeoFflq3CfqDhJCbQBHx8LsnCkO5y9j
+        M8srxWrdvQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="DreamyKitchenDataSetBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>303, 17</value>
   </metadata>
