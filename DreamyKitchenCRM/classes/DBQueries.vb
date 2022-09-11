@@ -1314,6 +1314,7 @@ NextItem:
             'FIELDS
             sSQL.AppendLine("UPDATE " & sTable & " SET ")
             If ExtraFieldsAndValues.Length > 0 Then sSQL.AppendLine(ExtraFieldsAndValues) : IsFirstField = False
+
             For Each item As BaseLayoutItem In GRP.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
@@ -1401,7 +1402,11 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.SpinEdit Then
                                     Dim spn As DevExpress.XtraEditors.SpinEdit
                                     spn = Ctrl
-                                    sSQL.Append(toSQLValueS(spn.Text))
+                                    If spn.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or spn.Properties.Mask.MaskType = Mask.MaskType.Numeric Or spn.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                        sSQL.Append(toSQLValueS(spn.EditValue, True))
+                                    Else
+                                        sSQL.Append(toSQLValueS(spn.Text))
+                                    End If
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
                                     Dim txt As DevExpress.XtraEditors.MemoEdit
                                     txt = Ctrl

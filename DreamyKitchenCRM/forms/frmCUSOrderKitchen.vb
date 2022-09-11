@@ -295,6 +295,16 @@ Public Class frmCUSOrderKitchen
                         End If
                     End If
                     Mode = FormMode.EditRecord
+                    ' Δημιουργία/Ενημέρωση Κοστολόγησης
+                    Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                        oCmd.Parameters.AddWithValue("@cctOrderKitchenID", sID)
+                        oCmd.Parameters.AddWithValue("@Mode", 1)
+                        oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+
                     'If Mode = FormMode.NewRecord Then
                     '    Cls.ClearCtrls(LayoutControl1)
                     '    txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
@@ -306,6 +316,7 @@ Public Class frmCUSOrderKitchen
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
         txtPhn.EditValue = cboCUS.GetColumnValue("phn")
         txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")

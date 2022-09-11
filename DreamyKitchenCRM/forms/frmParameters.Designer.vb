@@ -29,7 +29,6 @@ Partial Class frmParameters
         Me.Vw_COLORSPVCTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSPVCTableAdapter()
         Me.Vw_BENCHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BENCHTableAdapter()
         Me.DreamyKitchenDataSet2 = New DreamyKitchenCRM.DreamyKitchenDataSet()
-        Me.DreamyKitchenDataSet2 = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.TabPane2 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage3 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
@@ -167,6 +166,10 @@ Partial Class frmParameters
         Me.DOOR_REMOVE = New DevExpress.XtraEditors.TextEdit()
         Me.CLOSET_REMOVE = New DevExpress.XtraEditors.TextEdit()
         Me.SC_REMOVE = New DevExpress.XtraEditors.TextEdit()
+        Me.KCOMPANY_PROFIT = New DevExpress.XtraEditors.TextEdit()
+        Me.SCCOMPANY_PROFIT = New DevExpress.XtraEditors.TextEdit()
+        Me.CCOMPANY_PROFIT = New DevExpress.XtraEditors.TextEdit()
+        Me.DCOMPANY_PROFIT = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup12 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup14 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -194,12 +197,15 @@ Partial Class frmParameters
         Me.LayoutControlItem55 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem53 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem57 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem58 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem60 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem61 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem59 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.DreamyKitchenDataSet4 = New DreamyKitchenCRM.DreamyKitchenDataSet()
         CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabPane2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPane2.SuspendLayout()
@@ -319,6 +325,10 @@ Partial Class frmParameters
         CType(Me.DOOR_REMOVE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CLOSET_REMOVE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SC_REMOVE.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.KCOMPANY_PROFIT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SCCOMPANY_PROFIT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCOMPANY_PROFIT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DCOMPANY_PROFIT.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -346,6 +356,10 @@ Partial Class frmParameters
         CType(Me.LayoutControlItem55, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem53, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem57, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem58, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem60, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem61, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem59, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -380,11 +394,6 @@ Partial Class frmParameters
         'Vw_BENCHTableAdapter
         '
         Me.Vw_BENCHTableAdapter.ClearBeforeFill = True
-        '
-        'DreamyKitchenDataSet2
-        '
-        Me.DreamyKitchenDataSet2.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'DreamyKitchenDataSet2
         '
@@ -1833,6 +1842,10 @@ Partial Class frmParameters
         Me.LayoutControl4.Controls.Add(Me.DOOR_REMOVE)
         Me.LayoutControl4.Controls.Add(Me.CLOSET_REMOVE)
         Me.LayoutControl4.Controls.Add(Me.SC_REMOVE)
+        Me.LayoutControl4.Controls.Add(Me.KCOMPANY_PROFIT)
+        Me.LayoutControl4.Controls.Add(Me.SCCOMPANY_PROFIT)
+        Me.LayoutControl4.Controls.Add(Me.CCOMPANY_PROFIT)
+        Me.LayoutControl4.Controls.Add(Me.DCOMPANY_PROFIT)
         Me.LayoutControl4.Location = New System.Drawing.Point(3, 3)
         Me.LayoutControl4.Name = "LayoutControl4"
         Me.LayoutControl4.Root = Me.LayoutControlGroup12
@@ -1844,7 +1857,7 @@ Partial Class frmParameters
         '
         Me.SimpleButton2.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.SimpleButton2.ImageOptions.Image = CType(resources.GetObject("SimpleButton2.ImageOptions.Image"), System.Drawing.Image)
-        Me.SimpleButton2.Location = New System.Drawing.Point(1237, 529)
+        Me.SimpleButton2.Location = New System.Drawing.Point(1237, 616)
         Me.SimpleButton2.Margin = New System.Windows.Forms.Padding(5)
         Me.SimpleButton2.Name = "SimpleButton2"
         Me.SimpleButton2.Size = New System.Drawing.Size(198, 39)
@@ -1855,7 +1868,7 @@ Partial Class frmParameters
         'SimpleButton3
         '
         Me.SimpleButton3.ImageOptions.Image = CType(resources.GetObject("SimpleButton3.ImageOptions.Image"), System.Drawing.Image)
-        Me.SimpleButton3.Location = New System.Drawing.Point(1053, 529)
+        Me.SimpleButton3.Location = New System.Drawing.Point(1053, 616)
         Me.SimpleButton3.Margin = New System.Windows.Forms.Padding(5)
         Me.SimpleButton3.Name = "SimpleButton3"
         Me.SimpleButton3.Size = New System.Drawing.Size(180, 39)
@@ -1866,7 +1879,7 @@ Partial Class frmParameters
         'CLOSET_DRAWERS
         '
         Me.CLOSET_DRAWERS.EditValue = "0"
-        Me.CLOSET_DRAWERS.Location = New System.Drawing.Point(894, 103)
+        Me.CLOSET_DRAWERS.Location = New System.Drawing.Point(916, 103)
         Me.CLOSET_DRAWERS.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_DRAWERS.Name = "CLOSET_DRAWERS"
         Me.CLOSET_DRAWERS.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1883,7 +1896,7 @@ Partial Class frmParameters
         'CLOSET_SHELVES
         '
         Me.CLOSET_SHELVES.EditValue = "0"
-        Me.CLOSET_SHELVES.Location = New System.Drawing.Point(1039, 103)
+        Me.CLOSET_SHELVES.Location = New System.Drawing.Point(1061, 103)
         Me.CLOSET_SHELVES.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_SHELVES.Name = "CLOSET_SHELVES"
         Me.CLOSET_SHELVES.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
@@ -1892,7 +1905,7 @@ Partial Class frmParameters
         Me.CLOSET_SHELVES.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.CLOSET_SHELVES.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.CLOSET_SHELVES.Properties.MaskSettings.Set("mask", "n0")
-        Me.CLOSET_SHELVES.Size = New System.Drawing.Size(396, 38)
+        Me.CLOSET_SHELVES.Size = New System.Drawing.Size(374, 38)
         Me.CLOSET_SHELVES.StyleController = Me.LayoutControl4
         Me.CLOSET_SHELVES.TabIndex = 37
         Me.CLOSET_SHELVES.Tag = "CLOSET_SHELVES"
@@ -1900,7 +1913,7 @@ Partial Class frmParameters
         'CLOSET_BOX_COLOR
         '
         Me.CLOSET_BOX_COLOR.EditValue = ""
-        Me.CLOSET_BOX_COLOR.Location = New System.Drawing.Point(343, 61)
+        Me.CLOSET_BOX_COLOR.Location = New System.Drawing.Point(365, 61)
         Me.CLOSET_BOX_COLOR.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_BOX_COLOR.Name = "CLOSET_BOX_COLOR"
         Me.CLOSET_BOX_COLOR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -1909,7 +1922,7 @@ Partial Class frmParameters
         Me.CLOSET_BOX_COLOR.Properties.DisplayMember = "name"
         Me.CLOSET_BOX_COLOR.Properties.NullText = ""
         Me.CLOSET_BOX_COLOR.Properties.ValueMember = "ID"
-        Me.CLOSET_BOX_COLOR.Size = New System.Drawing.Size(229, 38)
+        Me.CLOSET_BOX_COLOR.Size = New System.Drawing.Size(207, 38)
         Me.CLOSET_BOX_COLOR.StyleController = Me.LayoutControl4
         Me.CLOSET_BOX_COLOR.TabIndex = 45
         Me.CLOSET_BOX_COLOR.Tag = "CLOSET_BOX_COLOR"
@@ -1917,7 +1930,7 @@ Partial Class frmParameters
         'CLOSET_PVC_COLOR
         '
         Me.CLOSET_PVC_COLOR.EditValue = ""
-        Me.CLOSET_PVC_COLOR.Location = New System.Drawing.Point(894, 61)
+        Me.CLOSET_PVC_COLOR.Location = New System.Drawing.Point(916, 61)
         Me.CLOSET_PVC_COLOR.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_PVC_COLOR.Name = "CLOSET_PVC_COLOR"
         Me.CLOSET_PVC_COLOR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -1926,49 +1939,49 @@ Partial Class frmParameters
         Me.CLOSET_PVC_COLOR.Properties.DisplayMember = "name"
         Me.CLOSET_PVC_COLOR.Properties.NullText = ""
         Me.CLOSET_PVC_COLOR.Properties.ValueMember = "ID"
-        Me.CLOSET_PVC_COLOR.Size = New System.Drawing.Size(541, 38)
+        Me.CLOSET_PVC_COLOR.Size = New System.Drawing.Size(519, 38)
         Me.CLOSET_PVC_COLOR.StyleController = Me.LayoutControl4
         Me.CLOSET_PVC_COLOR.TabIndex = 45
         Me.CLOSET_PVC_COLOR.Tag = "CLOSET_PVC_COLOR"
         '
         'CLOSET_BACK_THIKNESS
         '
-        Me.CLOSET_BACK_THIKNESS.Location = New System.Drawing.Point(894, 145)
+        Me.CLOSET_BACK_THIKNESS.Location = New System.Drawing.Point(916, 145)
         Me.CLOSET_BACK_THIKNESS.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_BACK_THIKNESS.Name = "CLOSET_BACK_THIKNESS"
         Me.CLOSET_BACK_THIKNESS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.CLOSET_BACK_THIKNESS.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.CLOSET_BACK_THIKNESS.Properties.Tag = "opening"
         Me.CLOSET_BACK_THIKNESS.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.CLOSET_BACK_THIKNESS.Size = New System.Drawing.Size(541, 38)
+        Me.CLOSET_BACK_THIKNESS.Size = New System.Drawing.Size(519, 38)
         Me.CLOSET_BACK_THIKNESS.StyleController = Me.LayoutControl4
         Me.CLOSET_BACK_THIKNESS.TabIndex = 62
         Me.CLOSET_BACK_THIKNESS.Tag = "CLOSET_BACK_THIKNESS"
         '
         'CLOSET_BOX_THIKNESS
         '
-        Me.CLOSET_BOX_THIKNESS.Location = New System.Drawing.Point(343, 145)
+        Me.CLOSET_BOX_THIKNESS.Location = New System.Drawing.Point(365, 145)
         Me.CLOSET_BOX_THIKNESS.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_BOX_THIKNESS.Name = "CLOSET_BOX_THIKNESS"
         Me.CLOSET_BOX_THIKNESS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.CLOSET_BOX_THIKNESS.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.CLOSET_BOX_THIKNESS.Properties.Tag = "opening"
         Me.CLOSET_BOX_THIKNESS.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.CLOSET_BOX_THIKNESS.Size = New System.Drawing.Size(229, 38)
+        Me.CLOSET_BOX_THIKNESS.Size = New System.Drawing.Size(207, 38)
         Me.CLOSET_BOX_THIKNESS.StyleController = Me.LayoutControl4
         Me.CLOSET_BOX_THIKNESS.TabIndex = 57
         Me.CLOSET_BOX_THIKNESS.Tag = "CLOSET_BOX_THIKNESS"
         '
         'CLOSET_LEGS
         '
-        Me.CLOSET_LEGS.Location = New System.Drawing.Point(343, 103)
+        Me.CLOSET_LEGS.Location = New System.Drawing.Point(365, 103)
         Me.CLOSET_LEGS.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_LEGS.Name = "CLOSET_LEGS"
         Me.CLOSET_LEGS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.CLOSET_LEGS.Properties.Items.AddRange(New Object() {"10mm", "12mm", "15mm"})
         Me.CLOSET_LEGS.Properties.Tag = "opening"
         Me.CLOSET_LEGS.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.CLOSET_LEGS.Size = New System.Drawing.Size(229, 38)
+        Me.CLOSET_LEGS.Size = New System.Drawing.Size(207, 38)
         Me.CLOSET_LEGS.StyleController = Me.LayoutControl4
         Me.CLOSET_LEGS.TabIndex = 57
         Me.CLOSET_LEGS.Tag = "CLOSET_LEGS"
@@ -1976,7 +1989,7 @@ Partial Class frmParameters
         'KITCHEN_TRANSP
         '
         Me.KITCHEN_TRANSP.EditValue = "0,00 €"
-        Me.KITCHEN_TRANSP.Location = New System.Drawing.Point(356, 264)
+        Me.KITCHEN_TRANSP.Location = New System.Drawing.Point(378, 267)
         Me.KITCHEN_TRANSP.Margin = New System.Windows.Forms.Padding(5)
         Me.KITCHEN_TRANSP.Name = "KITCHEN_TRANSP"
         Me.KITCHEN_TRANSP.Properties.DisplayFormat.FormatString = "c"
@@ -1987,7 +2000,7 @@ Partial Class frmParameters
         Me.KITCHEN_TRANSP.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.KITCHEN_TRANSP.Properties.MaskSettings.Set("mask", "c2")
         Me.KITCHEN_TRANSP.Properties.Tag = "BenchExtraPrice"
-        Me.KITCHEN_TRANSP.Size = New System.Drawing.Size(372, 38)
+        Me.KITCHEN_TRANSP.Size = New System.Drawing.Size(350, 38)
         Me.KITCHEN_TRANSP.StyleController = Me.LayoutControl4
         Me.KITCHEN_TRANSP.TabIndex = 42
         Me.KITCHEN_TRANSP.Tag = "KITCHEN_TRANSP"
@@ -1996,7 +2009,7 @@ Partial Class frmParameters
         'CLOSET_TRANSP
         '
         Me.CLOSET_TRANSP.EditValue = "0,00 €"
-        Me.CLOSET_TRANSP.Location = New System.Drawing.Point(1050, 306)
+        Me.CLOSET_TRANSP.Location = New System.Drawing.Point(1072, 309)
         Me.CLOSET_TRANSP.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_TRANSP.Name = "CLOSET_TRANSP"
         Me.CLOSET_TRANSP.Properties.DisplayFormat.FormatString = "c"
@@ -2007,7 +2020,7 @@ Partial Class frmParameters
         Me.CLOSET_TRANSP.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.CLOSET_TRANSP.Properties.MaskSettings.Set("mask", "c2")
         Me.CLOSET_TRANSP.Properties.Tag = "BenchExtraPrice"
-        Me.CLOSET_TRANSP.Size = New System.Drawing.Size(372, 38)
+        Me.CLOSET_TRANSP.Size = New System.Drawing.Size(350, 38)
         Me.CLOSET_TRANSP.StyleController = Me.LayoutControl4
         Me.CLOSET_TRANSP.TabIndex = 42
         Me.CLOSET_TRANSP.Tag = "CLOSET_TRANSP"
@@ -2016,7 +2029,7 @@ Partial Class frmParameters
         'KITCHEN_MEASUREMENT
         '
         Me.KITCHEN_MEASUREMENT.EditValue = "0,00 €"
-        Me.KITCHEN_MEASUREMENT.Location = New System.Drawing.Point(356, 348)
+        Me.KITCHEN_MEASUREMENT.Location = New System.Drawing.Point(378, 351)
         Me.KITCHEN_MEASUREMENT.Margin = New System.Windows.Forms.Padding(5)
         Me.KITCHEN_MEASUREMENT.Name = "KITCHEN_MEASUREMENT"
         Me.KITCHEN_MEASUREMENT.Properties.DisplayFormat.FormatString = "c"
@@ -2027,7 +2040,7 @@ Partial Class frmParameters
         Me.KITCHEN_MEASUREMENT.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.KITCHEN_MEASUREMENT.Properties.MaskSettings.Set("mask", "c2")
         Me.KITCHEN_MEASUREMENT.Properties.Tag = "BenchExtraPrice"
-        Me.KITCHEN_MEASUREMENT.Size = New System.Drawing.Size(372, 38)
+        Me.KITCHEN_MEASUREMENT.Size = New System.Drawing.Size(350, 38)
         Me.KITCHEN_MEASUREMENT.StyleController = Me.LayoutControl4
         Me.KITCHEN_MEASUREMENT.TabIndex = 42
         Me.KITCHEN_MEASUREMENT.Tag = "KITCHEN_MEASUREMENT"
@@ -2036,7 +2049,7 @@ Partial Class frmParameters
         'SC_TRANSP
         '
         Me.SC_TRANSP.EditValue = "0,00 €"
-        Me.SC_TRANSP.Location = New System.Drawing.Point(356, 306)
+        Me.SC_TRANSP.Location = New System.Drawing.Point(378, 309)
         Me.SC_TRANSP.Margin = New System.Windows.Forms.Padding(5)
         Me.SC_TRANSP.Name = "SC_TRANSP"
         Me.SC_TRANSP.Properties.DisplayFormat.FormatString = "c"
@@ -2047,7 +2060,7 @@ Partial Class frmParameters
         Me.SC_TRANSP.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.SC_TRANSP.Properties.MaskSettings.Set("mask", "c2")
         Me.SC_TRANSP.Properties.Tag = "BenchExtraPrice"
-        Me.SC_TRANSP.Size = New System.Drawing.Size(372, 38)
+        Me.SC_TRANSP.Size = New System.Drawing.Size(350, 38)
         Me.SC_TRANSP.StyleController = Me.LayoutControl4
         Me.SC_TRANSP.TabIndex = 42
         Me.SC_TRANSP.Tag = "SC_TRANSP"
@@ -2056,7 +2069,7 @@ Partial Class frmParameters
         'DOOR_TRANSP
         '
         Me.DOOR_TRANSP.EditValue = "0,00 €"
-        Me.DOOR_TRANSP.Location = New System.Drawing.Point(1050, 264)
+        Me.DOOR_TRANSP.Location = New System.Drawing.Point(1072, 267)
         Me.DOOR_TRANSP.Margin = New System.Windows.Forms.Padding(5)
         Me.DOOR_TRANSP.Name = "DOOR_TRANSP"
         Me.DOOR_TRANSP.Properties.DisplayFormat.FormatString = "c"
@@ -2067,7 +2080,7 @@ Partial Class frmParameters
         Me.DOOR_TRANSP.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.DOOR_TRANSP.Properties.MaskSettings.Set("mask", "c2")
         Me.DOOR_TRANSP.Properties.Tag = "BenchExtraPrice"
-        Me.DOOR_TRANSP.Size = New System.Drawing.Size(372, 38)
+        Me.DOOR_TRANSP.Size = New System.Drawing.Size(350, 38)
         Me.DOOR_TRANSP.StyleController = Me.LayoutControl4
         Me.DOOR_TRANSP.TabIndex = 42
         Me.DOOR_TRANSP.Tag = "DOOR_TRANSP"
@@ -2076,7 +2089,7 @@ Partial Class frmParameters
         'CLOSET_MEASUREMENT
         '
         Me.CLOSET_MEASUREMENT.EditValue = "0,00 €"
-        Me.CLOSET_MEASUREMENT.Location = New System.Drawing.Point(1050, 348)
+        Me.CLOSET_MEASUREMENT.Location = New System.Drawing.Point(1072, 351)
         Me.CLOSET_MEASUREMENT.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_MEASUREMENT.Name = "CLOSET_MEASUREMENT"
         Me.CLOSET_MEASUREMENT.Properties.DisplayFormat.FormatString = "c"
@@ -2087,7 +2100,7 @@ Partial Class frmParameters
         Me.CLOSET_MEASUREMENT.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.CLOSET_MEASUREMENT.Properties.MaskSettings.Set("mask", "c2")
         Me.CLOSET_MEASUREMENT.Properties.Tag = "BenchExtraPrice"
-        Me.CLOSET_MEASUREMENT.Size = New System.Drawing.Size(372, 38)
+        Me.CLOSET_MEASUREMENT.Size = New System.Drawing.Size(350, 38)
         Me.CLOSET_MEASUREMENT.StyleController = Me.LayoutControl4
         Me.CLOSET_MEASUREMENT.TabIndex = 42
         Me.CLOSET_MEASUREMENT.Tag = "CLOSET_MEASUREMENT"
@@ -2096,7 +2109,7 @@ Partial Class frmParameters
         'DOOR_MEASUREMENT
         '
         Me.DOOR_MEASUREMENT.EditValue = "0,00 €"
-        Me.DOOR_MEASUREMENT.Location = New System.Drawing.Point(356, 390)
+        Me.DOOR_MEASUREMENT.Location = New System.Drawing.Point(378, 393)
         Me.DOOR_MEASUREMENT.Margin = New System.Windows.Forms.Padding(5)
         Me.DOOR_MEASUREMENT.Name = "DOOR_MEASUREMENT"
         Me.DOOR_MEASUREMENT.Properties.DisplayFormat.FormatString = "c"
@@ -2107,7 +2120,7 @@ Partial Class frmParameters
         Me.DOOR_MEASUREMENT.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.DOOR_MEASUREMENT.Properties.MaskSettings.Set("mask", "c2")
         Me.DOOR_MEASUREMENT.Properties.Tag = "BenchExtraPrice"
-        Me.DOOR_MEASUREMENT.Size = New System.Drawing.Size(372, 38)
+        Me.DOOR_MEASUREMENT.Size = New System.Drawing.Size(350, 38)
         Me.DOOR_MEASUREMENT.StyleController = Me.LayoutControl4
         Me.DOOR_MEASUREMENT.TabIndex = 42
         Me.DOOR_MEASUREMENT.Tag = "DOOR_MEASUREMENT"
@@ -2116,7 +2129,7 @@ Partial Class frmParameters
         'SC_MEASUREMENT
         '
         Me.SC_MEASUREMENT.EditValue = "0,00 €"
-        Me.SC_MEASUREMENT.Location = New System.Drawing.Point(1050, 390)
+        Me.SC_MEASUREMENT.Location = New System.Drawing.Point(1072, 393)
         Me.SC_MEASUREMENT.Margin = New System.Windows.Forms.Padding(5)
         Me.SC_MEASUREMENT.Name = "SC_MEASUREMENT"
         Me.SC_MEASUREMENT.Properties.DisplayFormat.FormatString = "c"
@@ -2127,7 +2140,7 @@ Partial Class frmParameters
         Me.SC_MEASUREMENT.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.SC_MEASUREMENT.Properties.MaskSettings.Set("mask", "c2")
         Me.SC_MEASUREMENT.Properties.Tag = "BenchExtraPrice"
-        Me.SC_MEASUREMENT.Size = New System.Drawing.Size(372, 38)
+        Me.SC_MEASUREMENT.Size = New System.Drawing.Size(350, 38)
         Me.SC_MEASUREMENT.StyleController = Me.LayoutControl4
         Me.SC_MEASUREMENT.TabIndex = 42
         Me.SC_MEASUREMENT.Tag = "SC_MEASUREMENT"
@@ -2136,7 +2149,7 @@ Partial Class frmParameters
         'KITCHEN_REMOVE
         '
         Me.KITCHEN_REMOVE.EditValue = "0,00 €"
-        Me.KITCHEN_REMOVE.Location = New System.Drawing.Point(356, 432)
+        Me.KITCHEN_REMOVE.Location = New System.Drawing.Point(378, 435)
         Me.KITCHEN_REMOVE.Margin = New System.Windows.Forms.Padding(5)
         Me.KITCHEN_REMOVE.Name = "KITCHEN_REMOVE"
         Me.KITCHEN_REMOVE.Properties.DisplayFormat.FormatString = "c"
@@ -2147,7 +2160,7 @@ Partial Class frmParameters
         Me.KITCHEN_REMOVE.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.KITCHEN_REMOVE.Properties.MaskSettings.Set("mask", "c2")
         Me.KITCHEN_REMOVE.Properties.Tag = "BenchExtraPrice"
-        Me.KITCHEN_REMOVE.Size = New System.Drawing.Size(372, 38)
+        Me.KITCHEN_REMOVE.Size = New System.Drawing.Size(350, 38)
         Me.KITCHEN_REMOVE.StyleController = Me.LayoutControl4
         Me.KITCHEN_REMOVE.TabIndex = 42
         Me.KITCHEN_REMOVE.Tag = "KITCHEN_REMOVE"
@@ -2156,7 +2169,7 @@ Partial Class frmParameters
         'DOOR_REMOVE
         '
         Me.DOOR_REMOVE.EditValue = "0,00 €"
-        Me.DOOR_REMOVE.Location = New System.Drawing.Point(356, 474)
+        Me.DOOR_REMOVE.Location = New System.Drawing.Point(378, 477)
         Me.DOOR_REMOVE.Margin = New System.Windows.Forms.Padding(5)
         Me.DOOR_REMOVE.Name = "DOOR_REMOVE"
         Me.DOOR_REMOVE.Properties.DisplayFormat.FormatString = "c"
@@ -2167,7 +2180,7 @@ Partial Class frmParameters
         Me.DOOR_REMOVE.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.DOOR_REMOVE.Properties.MaskSettings.Set("mask", "c2")
         Me.DOOR_REMOVE.Properties.Tag = "BenchExtraPrice"
-        Me.DOOR_REMOVE.Size = New System.Drawing.Size(372, 38)
+        Me.DOOR_REMOVE.Size = New System.Drawing.Size(350, 38)
         Me.DOOR_REMOVE.StyleController = Me.LayoutControl4
         Me.DOOR_REMOVE.TabIndex = 42
         Me.DOOR_REMOVE.Tag = "DOOR_REMOVE"
@@ -2176,7 +2189,7 @@ Partial Class frmParameters
         'CLOSET_REMOVE
         '
         Me.CLOSET_REMOVE.EditValue = "0,00 €"
-        Me.CLOSET_REMOVE.Location = New System.Drawing.Point(1050, 432)
+        Me.CLOSET_REMOVE.Location = New System.Drawing.Point(1072, 435)
         Me.CLOSET_REMOVE.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_REMOVE.Name = "CLOSET_REMOVE"
         Me.CLOSET_REMOVE.Properties.DisplayFormat.FormatString = "c"
@@ -2187,7 +2200,7 @@ Partial Class frmParameters
         Me.CLOSET_REMOVE.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.CLOSET_REMOVE.Properties.MaskSettings.Set("mask", "c2")
         Me.CLOSET_REMOVE.Properties.Tag = "BenchExtraPrice"
-        Me.CLOSET_REMOVE.Size = New System.Drawing.Size(372, 38)
+        Me.CLOSET_REMOVE.Size = New System.Drawing.Size(350, 38)
         Me.CLOSET_REMOVE.StyleController = Me.LayoutControl4
         Me.CLOSET_REMOVE.TabIndex = 42
         Me.CLOSET_REMOVE.Tag = "CLOSET_REMOVE"
@@ -2196,7 +2209,7 @@ Partial Class frmParameters
         'SC_REMOVE
         '
         Me.SC_REMOVE.EditValue = "0,00 €"
-        Me.SC_REMOVE.Location = New System.Drawing.Point(1050, 474)
+        Me.SC_REMOVE.Location = New System.Drawing.Point(1072, 477)
         Me.SC_REMOVE.Margin = New System.Windows.Forms.Padding(5)
         Me.SC_REMOVE.Name = "SC_REMOVE"
         Me.SC_REMOVE.Properties.DisplayFormat.FormatString = "c"
@@ -2207,11 +2220,87 @@ Partial Class frmParameters
         Me.SC_REMOVE.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.SC_REMOVE.Properties.MaskSettings.Set("mask", "c2")
         Me.SC_REMOVE.Properties.Tag = "BenchExtraPrice"
-        Me.SC_REMOVE.Size = New System.Drawing.Size(372, 38)
+        Me.SC_REMOVE.Size = New System.Drawing.Size(350, 38)
         Me.SC_REMOVE.StyleController = Me.LayoutControl4
         Me.SC_REMOVE.TabIndex = 42
         Me.SC_REMOVE.Tag = "SC_REMOVE"
         Me.SC_REMOVE.Visible = False
+        '
+        'KCOMPANY_PROFIT
+        '
+        Me.KCOMPANY_PROFIT.EditValue = "0%"
+        Me.KCOMPANY_PROFIT.Location = New System.Drawing.Point(378, 519)
+        Me.KCOMPANY_PROFIT.Margin = New System.Windows.Forms.Padding(5)
+        Me.KCOMPANY_PROFIT.Name = "KCOMPANY_PROFIT"
+        Me.KCOMPANY_PROFIT.Properties.DisplayFormat.FormatString = "p0"
+        Me.KCOMPANY_PROFIT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.KCOMPANY_PROFIT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.KCOMPANY_PROFIT.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.KCOMPANY_PROFIT.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.KCOMPANY_PROFIT.Properties.MaskSettings.Set("mask", "P0")
+        Me.KCOMPANY_PROFIT.Properties.Tag = "BenchExtraPrice"
+        Me.KCOMPANY_PROFIT.Size = New System.Drawing.Size(350, 38)
+        Me.KCOMPANY_PROFIT.StyleController = Me.LayoutControl4
+        Me.KCOMPANY_PROFIT.TabIndex = 42
+        Me.KCOMPANY_PROFIT.Tag = "KCOMPANYPROFIT"
+        Me.KCOMPANY_PROFIT.Visible = False
+        '
+        'SCCOMPANY_PROFIT
+        '
+        Me.SCCOMPANY_PROFIT.EditValue = "0%"
+        Me.SCCOMPANY_PROFIT.Location = New System.Drawing.Point(1072, 561)
+        Me.SCCOMPANY_PROFIT.Margin = New System.Windows.Forms.Padding(5)
+        Me.SCCOMPANY_PROFIT.Name = "SCCOMPANY_PROFIT"
+        Me.SCCOMPANY_PROFIT.Properties.DisplayFormat.FormatString = "p0"
+        Me.SCCOMPANY_PROFIT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.SCCOMPANY_PROFIT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.SCCOMPANY_PROFIT.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.SCCOMPANY_PROFIT.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.SCCOMPANY_PROFIT.Properties.MaskSettings.Set("mask", "P0")
+        Me.SCCOMPANY_PROFIT.Properties.Tag = "BenchExtraPrice"
+        Me.SCCOMPANY_PROFIT.Size = New System.Drawing.Size(350, 38)
+        Me.SCCOMPANY_PROFIT.StyleController = Me.LayoutControl4
+        Me.SCCOMPANY_PROFIT.TabIndex = 42
+        Me.SCCOMPANY_PROFIT.Tag = "SCCOMPANY_PROFIT"
+        Me.SCCOMPANY_PROFIT.Visible = False
+        '
+        'CCOMPANY_PROFIT
+        '
+        Me.CCOMPANY_PROFIT.EditValue = "0%"
+        Me.CCOMPANY_PROFIT.Location = New System.Drawing.Point(378, 561)
+        Me.CCOMPANY_PROFIT.Margin = New System.Windows.Forms.Padding(5)
+        Me.CCOMPANY_PROFIT.Name = "CCOMPANY_PROFIT"
+        Me.CCOMPANY_PROFIT.Properties.DisplayFormat.FormatString = "p0"
+        Me.CCOMPANY_PROFIT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CCOMPANY_PROFIT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.CCOMPANY_PROFIT.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.CCOMPANY_PROFIT.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.CCOMPANY_PROFIT.Properties.MaskSettings.Set("mask", "P0")
+        Me.CCOMPANY_PROFIT.Properties.Tag = "BenchExtraPrice"
+        Me.CCOMPANY_PROFIT.Size = New System.Drawing.Size(350, 38)
+        Me.CCOMPANY_PROFIT.StyleController = Me.LayoutControl4
+        Me.CCOMPANY_PROFIT.TabIndex = 42
+        Me.CCOMPANY_PROFIT.Tag = "CCOMPANY_PROFIT"
+        Me.CCOMPANY_PROFIT.Visible = False
+        '
+        'DCOMPANY_PROFIT
+        '
+        Me.DCOMPANY_PROFIT.EditValue = "0%"
+        Me.DCOMPANY_PROFIT.Location = New System.Drawing.Point(1072, 519)
+        Me.DCOMPANY_PROFIT.Margin = New System.Windows.Forms.Padding(5)
+        Me.DCOMPANY_PROFIT.Name = "DCOMPANY_PROFIT"
+        Me.DCOMPANY_PROFIT.Properties.DisplayFormat.FormatString = "p0"
+        Me.DCOMPANY_PROFIT.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.DCOMPANY_PROFIT.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.DCOMPANY_PROFIT.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.DCOMPANY_PROFIT.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.DCOMPANY_PROFIT.Properties.MaskSettings.Set("mask", "P0")
+        Me.DCOMPANY_PROFIT.Properties.Tag = "BenchExtraPrice"
+        Me.DCOMPANY_PROFIT.Size = New System.Drawing.Size(350, 38)
+        Me.DCOMPANY_PROFIT.StyleController = Me.LayoutControl4
+        Me.DCOMPANY_PROFIT.TabIndex = 42
+        Me.DCOMPANY_PROFIT.Tag = "DCOMPANY_PROFIT"
+        Me.DCOMPANY_PROFIT.Visible = False
         '
         'LayoutControlGroup12
         '
@@ -2235,9 +2324,9 @@ Partial Class frmParameters
         'EmptySpaceItem4
         '
         Me.EmptySpaceItem4.AllowHotTrack = False
-        Me.EmptySpaceItem4.Location = New System.Drawing.Point(0, 511)
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(0, 598)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Size = New System.Drawing.Size(1414, 702)
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(1414, 615)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem38
@@ -2249,7 +2338,7 @@ Partial Class frmParameters
         Me.LayoutControlItem38.Name = "LayoutControlItem38"
         Me.LayoutControlItem38.Size = New System.Drawing.Size(551, 42)
         Me.LayoutControlItem38.Text = "Χρώμα Κουτιού"
-        Me.LayoutControlItem38.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem38.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem40
         '
@@ -2260,7 +2349,7 @@ Partial Class frmParameters
         Me.LayoutControlItem40.Name = "LayoutControlItem40"
         Me.LayoutControlItem40.Size = New System.Drawing.Size(863, 42)
         Me.LayoutControlItem40.Text = "Χρώμα PVC"
-        Me.LayoutControlItem40.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem40.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem31
         '
@@ -2270,9 +2359,9 @@ Partial Class frmParameters
         Me.LayoutControlItem31.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem31.Location = New System.Drawing.Point(551, 42)
         Me.LayoutControlItem31.Name = "LayoutControlItem31"
-        Me.LayoutControlItem31.Size = New System.Drawing.Size(409, 42)
+        Me.LayoutControlItem31.Size = New System.Drawing.Size(431, 42)
         Me.LayoutControlItem31.Text = "Συρτάρια"
-        Me.LayoutControlItem31.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem31.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem36
         '
@@ -2280,9 +2369,9 @@ Partial Class frmParameters
         Me.LayoutControlItem36.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem36.CustomizationFormText = "Κατηγορία"
         Me.LayoutControlItem36.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem36.Location = New System.Drawing.Point(960, 42)
+        Me.LayoutControlItem36.Location = New System.Drawing.Point(982, 42)
         Me.LayoutControlItem36.Name = "LayoutControlItem36"
-        Me.LayoutControlItem36.Size = New System.Drawing.Size(454, 42)
+        Me.LayoutControlItem36.Size = New System.Drawing.Size(432, 42)
         Me.LayoutControlItem36.Text = "Ράφια"
         Me.LayoutControlItem36.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem36.TextSize = New System.Drawing.Size(49, 23)
@@ -2297,7 +2386,7 @@ Partial Class frmParameters
         Me.LayoutControlItem35.Name = "LayoutControlItem35"
         Me.LayoutControlItem35.Size = New System.Drawing.Size(551, 42)
         Me.LayoutControlItem35.Text = "Πάχος Κουτιού"
-        Me.LayoutControlItem35.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem35.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem34
         '
@@ -2308,7 +2397,7 @@ Partial Class frmParameters
         Me.LayoutControlItem34.Name = "LayoutControlItem34"
         Me.LayoutControlItem34.Size = New System.Drawing.Size(863, 42)
         Me.LayoutControlItem34.Text = "Πάχος Πλάτης"
-        Me.LayoutControlItem34.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem34.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem54
         '
@@ -2319,12 +2408,12 @@ Partial Class frmParameters
         Me.LayoutControlItem54.Name = "LayoutControlItem54"
         Me.LayoutControlItem54.Size = New System.Drawing.Size(551, 42)
         Me.LayoutControlItem54.Text = "Πόδια"
-        Me.LayoutControlItem54.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem54.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem41
         '
         Me.LayoutControlItem41.Control = Me.SimpleButton3
-        Me.LayoutControlItem41.Location = New System.Drawing.Point(1028, 468)
+        Me.LayoutControlItem41.Location = New System.Drawing.Point(1028, 555)
         Me.LayoutControlItem41.Name = "LayoutControlItem41"
         Me.LayoutControlItem41.Size = New System.Drawing.Size(184, 43)
         Me.LayoutControlItem41.TextSize = New System.Drawing.Size(0, 0)
@@ -2333,7 +2422,7 @@ Partial Class frmParameters
         'LayoutControlItem37
         '
         Me.LayoutControlItem37.Control = Me.SimpleButton2
-        Me.LayoutControlItem37.Location = New System.Drawing.Point(1212, 468)
+        Me.LayoutControlItem37.Location = New System.Drawing.Point(1212, 555)
         Me.LayoutControlItem37.Name = "LayoutControlItem37"
         Me.LayoutControlItem37.Size = New System.Drawing.Size(202, 43)
         Me.LayoutControlItem37.TextSize = New System.Drawing.Size(0, 0)
@@ -2344,23 +2433,23 @@ Partial Class frmParameters
         Me.EmptySpaceItem5.AllowHotTrack = False
         Me.EmptySpaceItem5.Location = New System.Drawing.Point(0, 126)
         Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(1414, 28)
+        Me.EmptySpaceItem5.Size = New System.Drawing.Size(1414, 31)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem6
         '
         Me.EmptySpaceItem6.AllowHotTrack = False
-        Me.EmptySpaceItem6.Location = New System.Drawing.Point(0, 468)
+        Me.EmptySpaceItem6.Location = New System.Drawing.Point(0, 555)
         Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
         Me.EmptySpaceItem6.Size = New System.Drawing.Size(1028, 43)
         Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlGroup13
         '
-        Me.LayoutControlGroup13.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem45, Me.LayoutControlItem44, Me.LayoutControlItem43, Me.LayoutControlItem48, Me.LayoutControlItem46, Me.LayoutControlItem42, Me.LayoutControlItem47, Me.LayoutControlItem50, Me.LayoutControlItem51, Me.LayoutControlItem55, Me.LayoutControlItem53, Me.LayoutControlItem57})
-        Me.LayoutControlGroup13.Location = New System.Drawing.Point(0, 154)
+        Me.LayoutControlGroup13.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem45, Me.LayoutControlItem44, Me.LayoutControlItem43, Me.LayoutControlItem48, Me.LayoutControlItem46, Me.LayoutControlItem42, Me.LayoutControlItem47, Me.LayoutControlItem50, Me.LayoutControlItem51, Me.LayoutControlItem55, Me.LayoutControlItem53, Me.LayoutControlItem57, Me.LayoutControlItem58, Me.LayoutControlItem60, Me.LayoutControlItem61, Me.LayoutControlItem59})
+        Me.LayoutControlGroup13.Location = New System.Drawing.Point(0, 157)
         Me.LayoutControlGroup13.Name = "LayoutControlGroup13"
-        Me.LayoutControlGroup13.Size = New System.Drawing.Size(1414, 314)
+        Me.LayoutControlGroup13.Size = New System.Drawing.Size(1414, 398)
         Me.LayoutControlGroup13.Text = "Γενικά Κόστη"
         '
         'LayoutControlItem45
@@ -2373,7 +2462,7 @@ Partial Class frmParameters
         Me.LayoutControlItem45.Name = "LayoutControlItem45"
         Me.LayoutControlItem45.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem45.Text = "Κόστος Μεταφοράς Κουζίνας"
-        Me.LayoutControlItem45.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem45.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem44
         '
@@ -2385,7 +2474,7 @@ Partial Class frmParameters
         Me.LayoutControlItem44.Name = "LayoutControlItem44"
         Me.LayoutControlItem44.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem44.Text = "Κόστος Μεταφοράς Ειδ. Κατασκευής"
-        Me.LayoutControlItem44.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem44.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem43
         '
@@ -2397,7 +2486,7 @@ Partial Class frmParameters
         Me.LayoutControlItem43.Name = "LayoutControlItem43"
         Me.LayoutControlItem43.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem43.Text = "Επιμέτρηση Κουζίνας"
-        Me.LayoutControlItem43.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem43.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem48
         '
@@ -2409,7 +2498,7 @@ Partial Class frmParameters
         Me.LayoutControlItem48.Name = "LayoutControlItem48"
         Me.LayoutControlItem48.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem48.Text = "Επιμέτρηση Πόρτας"
-        Me.LayoutControlItem48.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem48.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem46
         '
@@ -2421,7 +2510,7 @@ Partial Class frmParameters
         Me.LayoutControlItem46.Name = "LayoutControlItem46"
         Me.LayoutControlItem46.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem46.Text = "Κόστος Μεταφοράς Πόρτας"
-        Me.LayoutControlItem46.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem46.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem42
         '
@@ -2433,7 +2522,7 @@ Partial Class frmParameters
         Me.LayoutControlItem42.Name = "LayoutControlItem42"
         Me.LayoutControlItem42.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem42.Text = "Κόστος Μεταφοράς Ντουλάπας"
-        Me.LayoutControlItem42.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem42.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem47
         '
@@ -2445,7 +2534,7 @@ Partial Class frmParameters
         Me.LayoutControlItem47.Name = "LayoutControlItem47"
         Me.LayoutControlItem47.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem47.Text = "Επιμέτρηση Ντουλάπας"
-        Me.LayoutControlItem47.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem47.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem50
         '
@@ -2457,7 +2546,7 @@ Partial Class frmParameters
         Me.LayoutControlItem50.Name = "LayoutControlItem50"
         Me.LayoutControlItem50.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem50.Text = "Επιμέτρηση Ειδ. Κατασκευής"
-        Me.LayoutControlItem50.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem50.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem51
         '
@@ -2469,7 +2558,7 @@ Partial Class frmParameters
         Me.LayoutControlItem51.Name = "LayoutControlItem51"
         Me.LayoutControlItem51.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem51.Text = "Αποξύλωση Κουζίνας"
-        Me.LayoutControlItem51.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem51.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem55
         '
@@ -2481,7 +2570,7 @@ Partial Class frmParameters
         Me.LayoutControlItem55.Name = "LayoutControlItem55"
         Me.LayoutControlItem55.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem55.Text = "Αποξύλωση Ντουλάπας"
-        Me.LayoutControlItem55.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem55.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem53
         '
@@ -2493,7 +2582,7 @@ Partial Class frmParameters
         Me.LayoutControlItem53.Name = "LayoutControlItem53"
         Me.LayoutControlItem53.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem53.Text = "Αποξύλωση Πόρτας"
-        Me.LayoutControlItem53.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem53.TextSize = New System.Drawing.Size(328, 23)
         '
         'LayoutControlItem57
         '
@@ -2505,7 +2594,55 @@ Partial Class frmParameters
         Me.LayoutControlItem57.Name = "LayoutControlItem57"
         Me.LayoutControlItem57.Size = New System.Drawing.Size(694, 42)
         Me.LayoutControlItem57.Text = "Αποξύλωση Ειδ. Κατασκευής"
-        Me.LayoutControlItem57.TextSize = New System.Drawing.Size(306, 23)
+        Me.LayoutControlItem57.TextSize = New System.Drawing.Size(328, 23)
+        '
+        'LayoutControlItem58
+        '
+        Me.LayoutControlItem58.Control = Me.KCOMPANY_PROFIT
+        Me.LayoutControlItem58.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem58.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem58.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem58.Location = New System.Drawing.Point(0, 252)
+        Me.LayoutControlItem58.Name = "LayoutControlItem58"
+        Me.LayoutControlItem58.Size = New System.Drawing.Size(694, 42)
+        Me.LayoutControlItem58.Text = "Ποσοστό Πώλησης Κουζίνας"
+        Me.LayoutControlItem58.TextSize = New System.Drawing.Size(328, 23)
+        '
+        'LayoutControlItem60
+        '
+        Me.LayoutControlItem60.Control = Me.CCOMPANY_PROFIT
+        Me.LayoutControlItem60.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem60.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem60.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem60.Location = New System.Drawing.Point(0, 294)
+        Me.LayoutControlItem60.Name = "LayoutControlItem60"
+        Me.LayoutControlItem60.Size = New System.Drawing.Size(694, 42)
+        Me.LayoutControlItem60.Text = "Ποσοστό Πώλησης Ντουλάπας"
+        Me.LayoutControlItem60.TextSize = New System.Drawing.Size(328, 23)
+        '
+        'LayoutControlItem61
+        '
+        Me.LayoutControlItem61.Control = Me.DCOMPANY_PROFIT
+        Me.LayoutControlItem61.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem61.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem61.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem61.Location = New System.Drawing.Point(694, 252)
+        Me.LayoutControlItem61.Name = "LayoutControlItem61"
+        Me.LayoutControlItem61.Size = New System.Drawing.Size(694, 42)
+        Me.LayoutControlItem61.Text = "Ποσοστό Πώλησης Πόρτας"
+        Me.LayoutControlItem61.TextSize = New System.Drawing.Size(328, 23)
+        '
+        'LayoutControlItem59
+        '
+        Me.LayoutControlItem59.Control = Me.SCCOMPANY_PROFIT
+        Me.LayoutControlItem59.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem59.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem59.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem59.Location = New System.Drawing.Point(694, 294)
+        Me.LayoutControlItem59.Name = "LayoutControlItem59"
+        Me.LayoutControlItem59.Size = New System.Drawing.Size(694, 42)
+        Me.LayoutControlItem59.Text = "Ποσοστό Πώλησης Ειδικής Κατασκευής"
+        Me.LayoutControlItem59.TextSize = New System.Drawing.Size(328, 23)
         '
         'DreamyKitchenDataSet4
         '
@@ -2528,7 +2665,6 @@ Partial Class frmParameters
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabPane2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPane2.ResumeLayout(False)
@@ -2648,6 +2784,10 @@ Partial Class frmParameters
         CType(Me.DOOR_REMOVE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CLOSET_REMOVE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SC_REMOVE.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.KCOMPANY_PROFIT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SCCOMPANY_PROFIT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCOMPANY_PROFIT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DCOMPANY_PROFIT.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2675,6 +2815,10 @@ Partial Class frmParameters
         CType(Me.LayoutControlItem55, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem53, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem57, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem58, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem60, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem61, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem59, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -2852,4 +2996,12 @@ Partial Class frmParameters
     Friend WithEvents LayoutControlItem55 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem53 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem57 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents KCOMPANY_PROFIT As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents SCCOMPANY_PROFIT As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents CCOMPANY_PROFIT As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents DCOMPANY_PROFIT As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem58 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem60 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem61 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem59 As DevExpress.XtraLayout.LayoutControlItem
 End Class

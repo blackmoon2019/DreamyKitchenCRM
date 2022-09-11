@@ -130,6 +130,10 @@ Public Class ProgProp
                             Case "CLOSET_REMOVE" : ProgProps.ClosetRemove = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "DOOR_REMOVE" : ProgProps.DoorRemove = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "SC_REMOVE" : ProgProps.SCRemove = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "KCOMPANY_PROFIT" : ProgProps.KCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "CCOMPANY_PROFIT" : ProgProps.CCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "DCOMPANY_PROFIT" : ProgProps.DCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "SCCOMPANY_PROFIT" : ProgProps.SCCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
                         End Select
                     End If
                 Else

@@ -111,7 +111,7 @@ Public Class FormLoader
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
-    Public Function LoadFormGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sSQL As String) As Boolean
+    Public Function LoadFormGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sSQL As String, Optional ByVal IgnoreVisibility As Boolean = True) As Boolean
 
         Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
         Dim sdr As SqlDataReader = cmd.ExecuteReader()
@@ -135,8 +135,12 @@ Public Class FormLoader
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα Προβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("0")))
                                 ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
-                                If LItem.Control.Visible = True Then
-                                    If value <> Nothing Then
+                                If IgnoreVisibility = True Then
+                                    If LItem.Control.Visible = False Then GoTo NextItem
+                                End If
+
+                                'If LItem.Control.Visible = True Then
+                                If value <> Nothing Then
                                         TagV = TagValue(0).Replace("[", "").Replace("]", "")
                                         Console.WriteLine(TagV)
                                         If sdr.GetSchemaTable().Select("ColumnName='" & TagV & "'").Length > 0 Then
@@ -169,8 +173,9 @@ Public Class FormLoader
                                             End Select
                                         End If
                                     End If
+NextItem:
+                                    'End If
                                 End If
-                            End If
                         End If
                     End If
                 Next

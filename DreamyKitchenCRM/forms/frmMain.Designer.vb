@@ -162,7 +162,7 @@ Partial Class frmMain
         Me.RibbonPage4 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup6 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup4 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
-        Me.Ρυθμίσεις = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibonSettings = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup19 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage5 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup5 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -201,7 +201,7 @@ Partial Class frmMain
         Me.RibbonControl1.MaxItemId = 114
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.OptionsMenuMinWidth = 550
-        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage6, Me.ProjectAnalysis, Me.EmpManage, Me.RibbonPage2, Me.RibbonPage7, Me.RibbonPage3, Me.RibbonPage4, Me.Ρυθμίσεις, Me.RibbonPage5})
+        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1, Me.RibbonPage6, Me.ProjectAnalysis, Me.EmpManage, Me.RibbonPage2, Me.RibbonPage7, Me.RibbonPage3, Me.RibbonPage4, Me.RibonSettings, Me.RibbonPage5})
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarClose)
         Me.RibbonControl1.QuickToolbarItemLinks.Add(Me.BarMdiChildrenListItem2)
         Me.RibbonControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemCalcEdit1, Me.RepositoryItemDateEdit1, Me.RepositoryItemHyperLinkEdit1, Me.RepositoryItemHypertextLabel1, Me.RepositoryItemHypertextLabel2, Me.RepositoryItemHyperLinkEdit2})
@@ -1329,11 +1329,11 @@ Partial Class frmMain
         Me.RibbonPageGroup4.Name = "RibbonPageGroup4"
         Me.RibbonPageGroup4.Text = "Τιμοκατάλογοι"
         '
-        'Ρυθμίσεις
+        'RibonSettings
         '
-        Me.Ρυθμίσεις.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup19})
-        Me.Ρυθμίσεις.Name = "Ρυθμίσεις"
-        Me.Ρυθμίσεις.Text = "Ρυθμίσεις"
+        Me.RibonSettings.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup19})
+        Me.RibonSettings.Name = "RibonSettings"
+        Me.RibonSettings.Text = "Ρυθμίσεις"
         '
         'RibbonPageGroup19
         '
@@ -1592,7 +1592,7 @@ Partial Class frmMain
     Friend WithEvents BBPrivateAgreement As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBcctOffer As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBParam As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents Ρυθμίσεις As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents RibonSettings As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents RibbonPageGroup19 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
     Friend WithEvents RibbonPage6 As DevExpress.XtraBars.Ribbon.RibbonPage
     Friend WithEvents BBCloset As DevExpress.XtraBars.BarButtonItem

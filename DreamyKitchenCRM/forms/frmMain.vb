@@ -29,6 +29,7 @@ Public Class frmMain
             EmpManage.Visible = False
             ProjectAnalysis.Visible = False
             RibbonPage4.Visible = False
+            RibonSettings.Visible = False
         End If
 
 
@@ -945,6 +946,7 @@ Public Class frmMain
     Private Sub bbDimensionsCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDimensionsCat.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Κατηγορίες Υλικών"
+        form.BarNewRec.Enabled = False
         form.DataTable = "vw_DOOR_CAT"
         form.MdiParent = Me
         form.Show()

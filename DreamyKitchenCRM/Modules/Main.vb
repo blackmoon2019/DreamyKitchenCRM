@@ -42,6 +42,10 @@ Module Main
         Public ClosetTransp As Decimal
         Public DoorTransp As Decimal
         Public SCTransp As Decimal
+        Public KCOMPANY_PROFIT As Integer
+        Public CCOMPANY_PROFIT As Integer
+        Public DCOMPANY_PROFIT As Integer
+        Public SCCOMPANY_PROFIT As Integer
         Public KitchenMeasurement As Decimal
         Public ClosetMeasurement As Decimal
         Public DoorMeasurement As Decimal
@@ -90,7 +94,18 @@ Module Main
         If t.Text.Length = 0 Then
             Return "NULL" 'this will pass through any SQL statement without notice  
         Else 'Lets suppose our textbox is checked to contain only numbers, so we count on it  
-            If Not isnum Then Return "'" + t.Text + "'" Else Return t.Text.Replace(",", ".").Replace(" €", "").Replace("%", "")
+            Dim sValue As String = t.Text
+            If Not isnum Then
+                Return "'" + sValue + "'"
+            Else
+                sValue = sValue.Replace(" €", "")
+                sValue = sValue.Replace("%", "")
+                Dim Result As Double
+                Double.TryParse(sValue, Result)
+                sValue = sValue.Replace(",", ".")
+                'Return sValue
+                Return Result.ToString.Replace(",", ".")
+            End If
         End If
     End Function
     Public Function toSQLValueS(t As String, Optional ByVal isnum As Boolean = False) As String

@@ -2309,6 +2309,16 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnname As Global.System.Data.DataColumn
         
+        Private columnprofitPerc As Global.System.Data.DataColumn
+        
+        Private columnprofitPercK As Global.System.Data.DataColumn
+        
+        Private columnprofitPercC As Global.System.Data.DataColumn
+        
+        Private columnprofitPercD As Global.System.Data.DataColumn
+        
+        Private columnprofitPercSC As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -2385,6 +2395,46 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property profitPercColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnprofitPerc
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property profitPercKColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnprofitPercK
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property profitPercCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnprofitPercC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property profitPercDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnprofitPercD
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property profitPercSCColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnprofitPercSC
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2421,9 +2471,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function Addvw_SALERSRow(ByVal ID As System.Guid, ByVal code As Integer, ByVal color As Integer, ByVal RealName As String, ByVal name As String) As vw_SALERSRow
+        Public Overloads Function Addvw_SALERSRow(ByVal ID As System.Guid, ByVal code As Integer, ByVal color As Integer, ByVal RealName As String, ByVal name As String, ByVal profitPerc As Integer, ByVal profitPercK As Integer, ByVal profitPercC As Integer, ByVal profitPercD As Integer, ByVal profitPercSC As Integer) As vw_SALERSRow
             Dim rowvw_SALERSRow As vw_SALERSRow = CType(Me.NewRow,vw_SALERSRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, color, RealName, name}
+            Dim columnValuesArray() As Object = New Object() {ID, code, color, RealName, name, profitPerc, profitPercK, profitPercC, profitPercD, profitPercSC}
             rowvw_SALERSRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_SALERSRow)
             Return rowvw_SALERSRow
@@ -2457,6 +2507,11 @@ Partial Public Class DreamyKitchenDataSet
             Me.columncolor = MyBase.Columns("color")
             Me.columnRealName = MyBase.Columns("RealName")
             Me.columnname = MyBase.Columns("name")
+            Me.columnprofitPerc = MyBase.Columns("profitPerc")
+            Me.columnprofitPercK = MyBase.Columns("profitPercK")
+            Me.columnprofitPercC = MyBase.Columns("profitPercC")
+            Me.columnprofitPercD = MyBase.Columns("profitPercD")
+            Me.columnprofitPercSC = MyBase.Columns("profitPercSC")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2472,10 +2527,19 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columnRealName)
             Me.columnname = New Global.System.Data.DataColumn("name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnname)
+            Me.columnprofitPerc = New Global.System.Data.DataColumn("profitPerc", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnprofitPerc)
+            Me.columnprofitPercK = New Global.System.Data.DataColumn("profitPercK", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnprofitPercK)
+            Me.columnprofitPercC = New Global.System.Data.DataColumn("profitPercC", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnprofitPercC)
+            Me.columnprofitPercD = New Global.System.Data.DataColumn("profitPercD", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnprofitPercD)
+            Me.columnprofitPercSC = New Global.System.Data.DataColumn("profitPercSC", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnprofitPercSC)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
-            Me.columncode.AllowDBNull = false
             Me.columnRealName.MaxLength = 200
             Me.columnname.MaxLength = 100
         End Sub
@@ -20634,7 +20698,11 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Property code() As Integer
             Get
-                Return CType(Me(Me.tablevw_SALERS.codeColumn),Integer)
+                Try 
+                    Return CType(Me(Me.tablevw_SALERS.codeColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'code' in table 'vw_SALERS' is DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tablevw_SALERS.codeColumn) = value
@@ -20688,6 +20756,93 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property profitPerc() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SALERS.profitPercColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'profitPerc' in table 'vw_SALERS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SALERS.profitPercColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property profitPercK() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SALERS.profitPercKColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'profitPercK' in table 'vw_SALERS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SALERS.profitPercKColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property profitPercC() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SALERS.profitPercCColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'profitPercC' in table 'vw_SALERS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SALERS.profitPercCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property profitPercD() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SALERS.profitPercDColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'profitPercD' in table 'vw_SALERS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SALERS.profitPercDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property profitPercSC() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SALERS.profitPercSCColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'profitPercSC' in table 'vw_SALERS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SALERS.profitPercSCColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IscodeNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SALERS.codeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetcodeNull()
+            Me(Me.tablevw_SALERS.codeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IscolorNull() As Boolean
             Return Me.IsNull(Me.tablevw_SALERS.colorColumn)
         End Function
@@ -20720,6 +20875,66 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetnameNull()
             Me(Me.tablevw_SALERS.nameColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsprofitPercNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SALERS.profitPercColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetprofitPercNull()
+            Me(Me.tablevw_SALERS.profitPercColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsprofitPercKNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SALERS.profitPercKColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetprofitPercKNull()
+            Me(Me.tablevw_SALERS.profitPercKColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsprofitPercCNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SALERS.profitPercCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetprofitPercCNull()
+            Me(Me.tablevw_SALERS.profitPercCColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsprofitPercDNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SALERS.profitPercDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetprofitPercDNull()
+            Me(Me.tablevw_SALERS.profitPercDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsprofitPercSCNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SALERS.profitPercSCColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetprofitPercSCNull()
+            Me(Me.tablevw_SALERS.profitPercSCColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -34372,6 +34587,11 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("color", "color")
             tableMapping.ColumnMappings.Add("RealName", "RealName")
             tableMapping.ColumnMappings.Add("name", "name")
+            tableMapping.ColumnMappings.Add("profitPerc", "profitPerc")
+            tableMapping.ColumnMappings.Add("profitPercK", "profitPercK")
+            tableMapping.ColumnMappings.Add("profitPercC", "profitPercC")
+            tableMapping.ColumnMappings.Add("profitPercD", "profitPercD")
+            tableMapping.ColumnMappings.Add("profitPercSC", "profitPercSC")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -34388,7 +34608,8 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, code, color, RealName, name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_SALERS"
+            Me._commandCollection(0).CommandText = "SELECT ID, code, color, RealName, name, profitPerc, profitPercK, profitPercC, pro"& _ 
+                "fitPercD, profitPercSC"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_SALERS"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

@@ -215,6 +215,17 @@ Public Class frmCUSOfferOrderDoors
                     If Mode = FormMode.NewRecord Then
                         '    Cls.ClearCtrls(LayoutControl1)
                         '    txtCode.Text = DBQ.GetNextId("CCT_OFFERS_DOOR")
+                        If sIsOrder Then
+                            ' Δημιουργία/Ενημέρωση Κοστολόγησης
+                            Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
+                                oCmd.CommandType = CommandType.StoredProcedure
+                                oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                                oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                                oCmd.Parameters.AddWithValue("@Mode", 3)
+                                oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                        End If
                         Mode = FormMode.EditRecord
                     End If
                 End If

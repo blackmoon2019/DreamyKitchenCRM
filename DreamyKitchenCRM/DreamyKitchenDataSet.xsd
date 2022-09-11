@@ -62,11 +62,11 @@ WHERE        (empID = @empID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SALERSTableAdapter" GeneratorDataComponentClassName="vw_SALERSTableAdapter" Name="vw_SALERS" UserDataComponentName="vw_SALERSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SALERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenTest.dbo.vw_SALERS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT        ID, code, color, RealName, name
-FROM            vw_SALERS</CommandText>
+                    <CommandText>SELECT ID, code, color, RealName, name, profitPerc, profitPercK, profitPercC, profitPercD, profitPercSC
+FROM   vw_SALERS</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -78,6 +78,11 @@ FROM            vw_SALERS</CommandText>
               <Mapping SourceColumn="color" DataSetColumn="color" />
               <Mapping SourceColumn="RealName" DataSetColumn="RealName" />
               <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="profitPerc" DataSetColumn="profitPerc" />
+              <Mapping SourceColumn="profitPercK" DataSetColumn="profitPercK" />
+              <Mapping SourceColumn="profitPercC" DataSetColumn="profitPercC" />
+              <Mapping SourceColumn="profitPercD" DataSetColumn="profitPercD" />
+              <Mapping SourceColumn="profitPercSC" DataSetColumn="profitPercSC" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1523,8 +1528,8 @@ FROM   vw_TECH_SUP
         <xs:element name="vw_SALERS" msprop:Generator_TableClassName="vw_SALERSDataTable" msprop:Generator_TableVarName="tablevw_SALERS" msprop:Generator_RowChangedName="vw_SALERSRowChanged" msprop:Generator_TablePropName="vw_SALERS" msprop:Generator_RowDeletingName="vw_SALERSRowDeleting" msprop:Generator_RowChangingName="vw_SALERSRowChanging" msprop:Generator_RowEvHandlerName="vw_SALERSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_SALERSRowDeleted" msprop:Generator_RowClassName="vw_SALERSRow" msprop:Generator_UserTableName="vw_SALERS" msprop:Generator_RowEvArgName="vw_SALERSRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
-              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" minOccurs="0" />
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" type="xs:int" minOccurs="0" />
               <xs:element name="color" msprop:Generator_ColumnVarNameInTable="columncolor" msprop:Generator_ColumnPropNameInRow="color" msprop:Generator_ColumnPropNameInTable="colorColumn" msprop:Generator_UserColumnName="color" type="xs:int" minOccurs="0" />
               <xs:element name="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_UserColumnName="RealName" minOccurs="0">
                 <xs:simpleType>
@@ -1540,6 +1545,11 @@ FROM   vw_TECH_SUP
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="profitPerc" msprop:Generator_ColumnVarNameInTable="columnprofitPerc" msprop:Generator_ColumnPropNameInRow="profitPerc" msprop:Generator_ColumnPropNameInTable="profitPercColumn" msprop:Generator_UserColumnName="profitPerc" type="xs:int" minOccurs="0" />
+              <xs:element name="profitPercK" msprop:Generator_ColumnVarNameInTable="columnprofitPercK" msprop:Generator_ColumnPropNameInRow="profitPercK" msprop:Generator_ColumnPropNameInTable="profitPercKColumn" msprop:Generator_UserColumnName="profitPercK" type="xs:int" minOccurs="0" />
+              <xs:element name="profitPercC" msprop:Generator_ColumnVarNameInTable="columnprofitPercC" msprop:Generator_ColumnPropNameInRow="profitPercC" msprop:Generator_ColumnPropNameInTable="profitPercCColumn" msprop:Generator_UserColumnName="profitPercC" type="xs:int" minOccurs="0" />
+              <xs:element name="profitPercD" msprop:Generator_ColumnVarNameInTable="columnprofitPercD" msprop:Generator_ColumnPropNameInRow="profitPercD" msprop:Generator_ColumnPropNameInTable="profitPercDColumn" msprop:Generator_UserColumnName="profitPercD" type="xs:int" minOccurs="0" />
+              <xs:element name="profitPercSC" msprop:Generator_ColumnVarNameInTable="columnprofitPercSC" msprop:Generator_ColumnPropNameInRow="profitPercSC" msprop:Generator_ColumnPropNameInTable="profitPercSCColumn" msprop:Generator_UserColumnName="profitPercSC" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

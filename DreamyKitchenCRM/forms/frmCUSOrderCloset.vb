@@ -261,6 +261,15 @@ Public Class frmCUSOrderCloset
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Mode = FormMode.EditRecord
+                    ' Δημιουργία/Ενημέρωση Κοστολόγησης
+                    Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                        oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                        oCmd.Parameters.AddWithValue("@Mode", 2)
+                        oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
+                        oCmd.ExecuteNonQuery()
+                    End Using
                     TabNavigationPage2.Enabled = True
                 End If
             End If
@@ -603,4 +612,5 @@ Public Class frmCUSOrderCloset
             Case 3 : cboSides6.EditValue = Nothing : cboSides6.EditValue = Nothing
         End Select
     End Sub
+
 End Class
