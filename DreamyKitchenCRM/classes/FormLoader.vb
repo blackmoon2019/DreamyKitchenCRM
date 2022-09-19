@@ -204,6 +204,8 @@ NextItem:
                 cbo = Ctrl
                 If sValue = "False" Or sValue = "True" Then
                     If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
+                ElseIf cbo.Properties.tag = "String" Then
+                    cbo.EditValue = sValue
                 ElseIf IsNumeric(sValue) Then
                     cbo.SelectedIndex = sValue
                 Else

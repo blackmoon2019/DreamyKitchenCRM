@@ -71,6 +71,10 @@ Public Class frmCUSPrivateAgreement
         Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
         Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
+        Dim sSQL As New System.Text.StringBuilder
+        FillCbo.ADR(cboADR, sSQL)
+
+
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("AGREEMENT")
@@ -224,6 +228,7 @@ Public Class frmCUSPrivateAgreement
         txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
         txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
         txtAFM.EditValue = cboCUS.GetColumnValue("afm")
+        cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
@@ -571,4 +576,36 @@ Public Class frmCUSPrivateAgreement
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Private Sub cboADR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboADR.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboADR.EditValue = Nothing : ManageADR()
+            Case 2 : If cboADR.EditValue <> Nothing Then ManageADR()
+            Case 3 : cboADR.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub ManageADR()
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "Διευθύνσεις"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Διεύθυνση"
+        form1.L3.Text = "Νομός"
+        form1.L4.Text = "Περιοχές"
+        form1.L8.Text = "Αριθμός"
+        form1.DataTable = "ADR"
+        form1.CalledFromControl = True
+        form1.CallerControl = cboADR
+        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.L8.Control.Tag = "Ar,0,1,2"
+        If cboADR.EditValue <> Nothing Then form1.ID = cboADR.EditValue.ToString
+        form1.MdiParent = frmMain
+
+        If cboADR.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
+
 End Class

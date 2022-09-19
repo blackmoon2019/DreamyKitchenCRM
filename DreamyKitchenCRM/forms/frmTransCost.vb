@@ -4,6 +4,7 @@ Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraReports.UI
 
 Public Class frmTransCost
     Private FillCbo As New FillCombos
@@ -30,15 +31,15 @@ Public Class frmTransCost
         Dim profitPercCompD As Integer
         Dim profitPercCompSC As Integer
         '****ΚΕΡΔΟΣ ΠΩΛΗΤΗ******
-        Dim SprofitK As Integer
-        Dim SprofitC As Integer
-        Dim SprofitD As Integer
-        Dim SprofitSC As Integer
+        Dim SprofitK As Double
+        Dim SprofitC As Double
+        Dim SprofitD As Double
+        Dim SprofitSC As Double
         '****ΚΕΡΔΟΣ ΕΠΙΧΕΙΡΗΣΗΣ******
-        Dim CprofitK As Integer
-        Dim CprofitC As Integer
-        Dim CprofitD As Integer
-        Dim CprofitSC As Integer
+        Dim CprofitK As Double
+        Dim CprofitC As Double
+        Dim CprofitD As Double
+        Dim CprofitSC As Double
 
         '****ΕΡΜΑΡΙΑ*******
         'ΕΡΜΑΡΙΑ ΒΑΣΕΩΣ
@@ -130,6 +131,8 @@ Public Class frmTransCost
         Dim BackID As Guid
         'ΜΗΧΑΝΙΣΜΟΊ - ΚΟΥΖΙΝΑΣ
         Dim TotKEquipment As Double
+        'ΣΥΣΚΕΥΕΣ - ΚΟΥΖΙΝΑΣ
+        Dim TotKDevices As Double
         '****ΝΤΟΥΛΑΠΕΣ*******
         Dim BoxColorID As Guid
         Dim BoxColorID2 As Guid
@@ -349,114 +352,120 @@ Public Class frmTransCost
     End Property
 
     Private Sub frmTransCost_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DMDataSet.vw_DOOR_TYPERafiaWall)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPESpecialConstr' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPESpecialConstrTableAdapter.Fill(Me.DMDataSet.vw_DOOR_TYPESpecialConstr)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_CONSTR_TYPE' table. You can move, or remove it, as needed.
-        Me.Vw_CONSTR_TYPETableAdapter.Fill(Me.DMDataSet.vw_CONSTR_TYPE)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEEpendisisCloset' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter.FillBYEpendisisCloset(Me.DMDataSet.vw_DOOR_TYPEEpendisisCloset)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BENCH' table. You can move, or remove it, as needed.
-        Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresY' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresYTableAdapter.FillByRafieresY(Me.DMDataSet.vw_DOOR_TYPERafieresY)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaYpsila' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DMDataSet.vw_DOOR_TYPEPlainaYpsila)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresK' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresKTableAdapter.FillByRafieresK(Me.DMDataSet.vw_DOOR_TYPERafieresK)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaKremasta' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter.FillByPlainaKremasta(Me.DMDataSet.vw_DOOR_TYPEPlainaKremasta)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresV' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresVTableAdapter.FillByRafieresV(Me.DMDataSet.vw_DOOR_TYPERafieresV)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPETableAdapter.FillBYNisida(Me.DMDataSet.vw_DOOR_TYPE)
-        'TODO: This line of code loads data into the 'DMDataSet.DOOR_TYPE' table. You can move, or remove it, as needed.
-        Me.DOOR_TYPETableAdapter.FillBYPlainaVaseos(Me.DMDataSet.DOOR_TYPE)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE1' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPE1TableAdapter.FillBYErmaria(Me.DMDataSet.vw_DOOR_TYPE1)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
-        Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
-        Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
-        Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
-        Dim Prog_Prop As New ProgProp
-        Prog_Prop.GetProgPROSF()
+        Try
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DMDataSet.vw_DOOR_TYPERafiaWall)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPESpecialConstr' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPESpecialConstrTableAdapter.Fill(Me.DMDataSet.vw_DOOR_TYPESpecialConstr)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_CONSTR_TYPE' table. You can move, or remove it, as needed.
+            Me.Vw_CONSTR_TYPETableAdapter.Fill(Me.DMDataSet.vw_CONSTR_TYPE)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEEpendisisCloset' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter.FillBYEpendisisCloset(Me.DMDataSet.vw_DOOR_TYPEEpendisisCloset)
+            'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BENCH' table. You can move, or remove it, as needed.
+            Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresY' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPERafieresYTableAdapter.FillByRafieresY(Me.DMDataSet.vw_DOOR_TYPERafieresY)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaYpsila' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DMDataSet.vw_DOOR_TYPEPlainaYpsila)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresK' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPERafieresKTableAdapter.FillByRafieresK(Me.DMDataSet.vw_DOOR_TYPERafieresK)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaKremasta' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter.FillByPlainaKremasta(Me.DMDataSet.vw_DOOR_TYPEPlainaKremasta)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresV' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPERafieresVTableAdapter.FillByRafieresV(Me.DMDataSet.vw_DOOR_TYPERafieresV)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPETableAdapter.FillBYNisida(Me.DMDataSet.vw_DOOR_TYPE)
+            'TODO: This line of code loads data into the 'DMDataSet.DOOR_TYPE' table. You can move, or remove it, as needed.
+            Me.DOOR_TYPETableAdapter.FillBYPlainaVaseos(Me.DMDataSet.DOOR_TYPE)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE1' table. You can move, or remove it, as needed.
+            Me.Vw_DOOR_TYPE1TableAdapter.FillBYErmaria(Me.DMDataSet.vw_DOOR_TYPE1)
+            'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
+            Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
+            'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
+            Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
+            'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
+            Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
+            Dim Prog_Prop As New ProgProp
+            Prog_Prop.GetProgPROSF()
 
-        FillCbo.CUS(cboCUS)
+            FillCbo.CUS(cboCUS)
 
-        XtraTabPage1.Visible = False
+            XtraTabPage1.Visible = False
 
-        Select Case Mode
-            Case FormMode.NewRecord
-                txtCode.Text = DBQ.GetNextId("TRANSCOST")
-                cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
-                TileNavPane1.Enabled = False
-            Case FormMode.EditRecord
-                'Γενικά Στοιχεία Κοστολόγησης
-                LoadForms.LoadFormGRP(LayoutControlGroup1, "Select [ID],[code],[empID],[cusID],[transhID] ,[cctOrderKitchenID],[cmt] from TRANSCOST where id = " & toSQLValueS(sID), False)
-                TileNavPane1.Enabled = True
-                'Γενικά Στοιχεία Ντουλάπας
-                LoadForms.LoadFormGRP(LayoutControlGroup30, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Γενικά Στοιχεία Κουζίνας
-                LoadForms.LoadFormGRP(LayoutControlGroup28, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Ανάλυση Ειδ. Κατασκευής
-                LoadForms.LoadFormGRP(LayoutControlGroup27, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Γενικά Στοιχεία Ειδ. Κατασκευής
-                LoadForms.LoadFormGRP(LayoutControlGroup26, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Γενικά Στοιχεία Πόρτας
-                LoadForms.LoadFormGRP(LayoutControlGroup18, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Ανάλυση Πορτών
-                LoadForms.LoadFormGRP(LayoutControlGroup19, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Ερμάρια Βάσεως
-                LoadForms.LoadFormGRP(LayoutControlGroup5, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Ερμάρια Κρεμαστά
-                LoadForms.LoadFormGRP(LayoutControlGroup3, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Ερμάρια Υψηλά
-                LoadForms.LoadFormGRP(LayoutControlGroup6, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Επενδύσεις-Ραφιέρες-Ράφια Βάσεως
-                LoadForms.LoadFormGRP(LayoutControlGroup8, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Επενδύσεις-Ραφιέρες-Ράφια Κρεμαστά
-                LoadForms.LoadFormGRP(LayoutControlGroup10, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Επενδύσεις-Ραφιέρες-Ράφια Υψηλά
-                LoadForms.LoadFormGRP(LayoutControlGroup11, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Πάγκοι-Πλάτες
-                LoadForms.LoadFormGRP(LayoutControlGroup29, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                'Ανάλυση Ντουλαπών
-                LoadForms.LoadFormGRP(LayoutControlGroup20, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                LoadForms.LoadFormGRP(LayoutControlGroup21, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                LoadForms.LoadFormGRP(LayoutControlGroup22, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                LoadForms.LoadFormGRP(LayoutControlGroup23, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                LoadForms.LoadFormGRP(LayoutControlGroup24, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
-                LoadForms.LoadFormGRP(LayoutControlGroup25, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+            Select Case Mode
+                Case FormMode.NewRecord
+                    txtCode.Text = DBQ.GetNextId("TRANSCOST")
+                    cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
+                    TileNavPane1.Enabled = False
+                Case FormMode.EditRecord
+                    'Γενικά Στοιχεία Κοστολόγησης
+                    LoadForms.LoadFormGRP(LayoutControlGroup1, "Select [ID],[code],[empID],[cusID],[transhID] ,[cctOrderKitchenID],[cmt] from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    TileNavPane1.Enabled = True
 
-                Dim sSQL As String = "Select Totamt, TotKErm, TotKEpendRaf, TotBackBench, TotK, TotC, TotD, TotSC, TotDErm,TotalSalerProfit,TotalCompanyProfit,TotamtWithoutProfit from TRANSCOST where id = " & toSQLValueS(sID)
-                Dim cmd As SqlCommand
-                Dim sdr As SqlDataReader
-                cmd = New SqlCommand(sSQL.ToString, CNDB)
-                sdr = cmd.ExecuteReader()
-                If (sdr.Read() = True) Then
-                    txtGenTot.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotAmt"))
-                    txtGenTotWithoutProfit.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotamtWithoutProfit"))
-                    txtErmTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotKErm"))
-                    txtEpendTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotKEpendRaf"))
-                    txtBenchTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotBackBench"))
-                    txtKTotalStandar.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotK"))
-                    txtCTotalStandar.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotC"))
-                    txtDTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotD"))
-                    txtSCTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotSC"))
-                    txtCErmTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotDErm"))
-                    txtTotalSalerProfit.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalSalerProfit"))
-                    txtTotalCompanyProfit.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalCompanyProfit"))
-                End If
-                sdr.Close()
-                FillDataGridM()
-                FillDataGridC()
-                FillCostFromDB()
-        End Select
-        Me.CenterToScreen()
-        cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+                    'Γενικά Στοιχεία Ντουλάπας
+                    LoadForms.LoadFormGRP(LayoutControlGroup30, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Γενικά Στοιχεία Κουζίνας
+                    LoadForms.LoadFormGRP(LayoutControlGroup28, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Ανάλυση Ειδ. Κατασκευής
+                    LoadForms.LoadFormGRP(LayoutControlGroup27, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Γενικά Στοιχεία Ειδ. Κατασκευής
+                    LoadForms.LoadFormGRP(LayoutControlGroup26, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Γενικά Στοιχεία Πόρτας
+                    LoadForms.LoadFormGRP(LayoutControlGroup18, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Ανάλυση Πορτών
+                    LoadForms.LoadFormGRP(LayoutControlGroup19, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Ερμάρια Βάσεως
+                    LoadForms.LoadFormGRP(LayoutControlGroup5, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Ερμάρια Κρεμαστά
+                    LoadForms.LoadFormGRP(LayoutControlGroup3, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Ερμάρια Υψηλά
+                    LoadForms.LoadFormGRP(LayoutControlGroup6, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Επενδύσεις-Ραφιέρες-Ράφια Βάσεως
+                    LoadForms.LoadFormGRP(LayoutControlGroup8, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Επενδύσεις-Ραφιέρες-Ράφια Κρεμαστά
+                    LoadForms.LoadFormGRP(LayoutControlGroup10, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Επενδύσεις-Ραφιέρες-Ράφια Υψηλά
+                    LoadForms.LoadFormGRP(LayoutControlGroup11, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Πάγκοι-Πλάτες
+                    LoadForms.LoadFormGRP(LayoutControlGroup29, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    'Ανάλυση Ντουλαπών
+                    LoadForms.LoadFormGRP(LayoutControlGroup20, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    LoadForms.LoadFormGRP(LayoutControlGroup21, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    LoadForms.LoadFormGRP(LayoutControlGroup22, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    LoadForms.LoadFormGRP(LayoutControlGroup23, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    LoadForms.LoadFormGRP(LayoutControlGroup24, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+                    LoadForms.LoadFormGRP(LayoutControlGroup25, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
+
+                    Dim sSQL As String = "Select Totamt, TotKErm, TotKEpendRaf, TotBackBench, TotK, TotC, TotD, TotSC, TotDErm,TotalSalerProfit,TotalCompanyProfit,TotamtWithoutProfit from TRANSCOST where id = " & toSQLValueS(sID)
+                    Dim cmd As SqlCommand
+                    Dim sdr As SqlDataReader
+                    cmd = New SqlCommand(sSQL.ToString, CNDB)
+                    sdr = cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotAmt")) = False Then txtGenTot.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotAmt"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotamtWithoutProfit")) = False Then txtGenTotWithoutProfit.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotamtWithoutProfit"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotKErm")) = False Then txtErmTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotKErm"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotKEpendRaf")) = False Then txtEpendTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotKEpendRaf"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotBackBench")) = False Then txtBenchTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotBackBench"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotK")) = False Then txtKTotalStandar.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotK"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotC")) = False Then txtCTotalStandar.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotC"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotD")) = False Then txtDTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotD"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotSC")) = False Then txtSCTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotSC"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotDErm")) = False Then txtCErmTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotDErm"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotalSalerProfit")) = False Then txtTotalSalerProfit.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalSalerProfit"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotalCompanyProfit")) = False Then txtTotalCompanyProfit.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalCompanyProfit"))
+                    End If
+                    sdr.Close()
+                    FillDataGridM()
+                    FillDataGridC()
+                    FillCostFromDB()
+            End Select
+            Me.CenterToScreen()
+            cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
     ' Κ Ο Υ Ζ Ι Ν Α
     Private Sub TErmaria_ElementClick(sender As Object, e As NavElementEventArgs) Handles TErmaria.ElementClick
@@ -520,11 +529,41 @@ Public Class frmTransCost
         If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml") = True Then
             GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml", OptionsLayoutBase.FullLayout)
         End If
-        GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
-        GridView2.Columns.Item("qty").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("qty").OptionsColumn.AllowEdit = False
-        GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
-        GridView2.Columns.Item("Total").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("Total").OptionsColumn.AllowEdit = False
+        GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False
+        GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
+        GridView2.Columns.Item("qty").OptionsColumn.AllowEdit = False
+        GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
+        GridView2.Columns.Item("Total").OptionsColumn.AllowEdit = False
         CostPrices.TotKEquipment = GridView2.Columns("Total").SummaryItem.SummaryValue
+
+        LoadForms.LoadDataToGrid(grdEquipment, GridView2,
+                    "select EQ.ID,EQ.code,E.name, EQ.price,EQ.qty,(EQ.price * EQ.qty ) AS Total
+					from CCT_ORDERS_KITCHEN_EQUIPMENT EQ
+					INNER JOIN EQUIPMENT E ON E.ID = EQ.equipmentID 
+					INNER JOIN CCT_ORDERS_KITCHEN COK ON EQ.cctOrdersKitchenID =  COK.ID 
+					INNER JOIN TRANSH ON TRANSH.ID =  COK.transhID 
+					where TRANSH.ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
+
+        LoadForms.LoadDataToGrid(grdDevices, GridView3,
+                    "select ED.ID,ED.code,ED.dcode,E.name, ED.price
+					from CCT_ORDERS_KITCHEN_DEVICES  ED
+					INNER JOIN DEVICES E ON E.ID = ED.devicesID 
+					INNER JOIN CCT_ORDERS_KITCHEN COK ON ED.cctOrdersKitchenID =  COK.ID 
+					INNER JOIN TRANSH ON TRANSH.ID =  COK.transhID 
+					where TRANSH.ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
+
+        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml") = True Then
+            GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml", OptionsLayoutBase.FullLayout)
+        End If
+        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_DEVICES_COST_def.xml") = True Then
+            GridView3.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_DEVICES_COST_def.xml", OptionsLayoutBase.FullLayout)
+        End If
+
+        GridView3.Columns.Item("name").OptionsColumn.AllowEdit = False
+        GridView3.Columns.Item("code").OptionsColumn.AllowEdit = False
+        GridView3.Columns.Item("dcode").OptionsColumn.AllowEdit = False
+        GridView3.Columns.Item("price").OptionsColumn.AllowEdit = False
+        CostPrices.TotKDevices = GridView3.Columns("price").SummaryItem.SummaryValue
     End Sub
     Private Sub TVaseos_ElementClick(sender As Object, e As NavElementEventArgs)
         Maintab.SelectedTabPage = XtraTabPage1
@@ -617,6 +656,8 @@ Public Class frmTransCost
                         'Μηχανισμοι Ντουλάπας - Κουζίνας
                         InsertSelectedRows()
 
+                        'Ενημέρωση Τζίρων Ποσοστά Έκθεσης
+                        UpdateEmpT()
                 End Select
 
                 If FScrollerExist = True Then
@@ -636,6 +677,23 @@ Public Class frmTransCost
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub UpdateEmpT()
+        Try
+            Dim sSQL As String
+            sSQL = "UPDATE EMP_T SET  salePrice = " & toSQLValue(txtGenTot, True) &
+                " ,normalPrice = " & toSQLValue(txtGenTotWithoutProfit, True) &
+                " ,salerProfit = " & toSQLValue(txtTotalSalerProfit, True) &
+                " ,busisnessProfit = " & toSQLValue(txtTotalCompanyProfit, True) &
+                "WHERE keepRecord = 0 and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
     Private Sub InsertSelectedRows()
         Dim sSQL As String
@@ -660,6 +718,19 @@ Public Class frmTransCost
                     oCmd.ExecuteNonQuery()
                 End Using
             Next
+
+            sSQL = "DELETE FROM TRANSCOST_ED WHERE transCostID = " & toSQLValueS(sID)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            For I = 0 To GridView3.RowCount - 1
+                sSQL = "INSERT INTO TRANSCOST_ED(transCostID,cctOrdersKitchenDevicesID,price,qty,Total,isKitchen) " &
+                    " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "price").ToString, True) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "qty").ToString, True) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "Total").ToString, True) & ",1 )"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            Next
+
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -733,222 +804,227 @@ Public Class frmTransCost
 
     End Sub
     Private Sub FillCostFromDB()
-        '********************************* Κ Ο Υ Ζ Ι Ν Α**************************************
-        CostPrices.KTransp = txtKtransport.EditValue            ' ΜΕΤΑΦΟΡΑ
-        CostPrices.KPartofVat = txtKPartOfVat.EditValue         ' ΣΥΜΦΩΝΗΘΕΝ ΦΠΑ
-        CostPrices.KMeasurement = txtKmeasurement.EditValue     ' ΕΠΙΜΕΤΡΗΣΗ
-        CostPrices.KRemove = txtKRemove.EditValue               ' ΑΠΟΞΥΛΩΣΗ 
-        CostPrices.KStandarTotal = CostPrices.KTransp + CostPrices.KPartofVat + CostPrices.KMeasurement + CostPrices.KRemove    ' ΣΥΝΟΛΟ ΓΕΝΙΚΩΝ ΣΤΟΙΧΕΙΩΝ
-        ' ΕΡΜΑΡΙΑ
-        CostPrices.VDoorPrice1 = txtVDoorPrice1.EditValue
-        CostPrices.VDoorPrice2 = txtVDoorPrice2.EditValue
-        CostPrices.KDoorPrice1 = txtKDoorPrice1.EditValue
-        CostPrices.KDoorPrice2 = txtKDoorPrice2.EditValue
-        CostPrices.YDoorPrice1 = txtYDoorPrice1.EditValue
-        CostPrices.YDoorPrice2 = txtYDoorPrice2.EditValue
-        CostPrices.Vtrm1 = Vtrm1.EditValue : CostPrices.VFinalPrice1 = CostPrices.Vtrm1 * CostPrices.VDoorPrice1
-        CostPrices.Vtrm2 = Vtrm2.EditValue : CostPrices.VFinalPrice2 = CostPrices.Vtrm2 * CostPrices.VDoorPrice2
-        CostPrices.VTotal = CostPrices.VFinalPrice1 + CostPrices.VFinalPrice2
-        CostPrices.Ktrm1 = Ktrm1.EditValue : CostPrices.KFinalPrice1 = CostPrices.Ktrm1 * CostPrices.KDoorPrice1
-        CostPrices.Ktrm2 = Ktrm2.EditValue : CostPrices.KFinalPrice2 = CostPrices.Ktrm2 * CostPrices.KDoorPrice2
-        CostPrices.KTotal = CostPrices.KFinalPrice1 + CostPrices.KFinalPrice2
-        CostPrices.Ytrm1 = Ytrm1.EditValue : CostPrices.YFinalPrice1 = CostPrices.Ytrm1 * CostPrices.YDoorPrice1
-        CostPrices.Ytrm2 = Ytrm2.EditValue : CostPrices.YFinalPrice2 = CostPrices.Ytrm2 * CostPrices.YDoorPrice2
-        CostPrices.YTotal = CostPrices.YFinalPrice1 + CostPrices.YFinalPrice2
+        Try
+            '********************************* Κ Ο Υ Ζ Ι Ν Α**************************************
+            CostPrices.KTransp = txtKtransport.EditValue            ' ΜΕΤΑΦΟΡΑ
+            CostPrices.KPartofVat = txtKPartOfVat.EditValue         ' ΣΥΜΦΩΝΗΘΕΝ ΦΠΑ
+            CostPrices.KMeasurement = txtKmeasurement.EditValue     ' ΕΠΙΜΕΤΡΗΣΗ
+            CostPrices.KRemove = txtKRemove.EditValue               ' ΑΠΟΞΥΛΩΣΗ 
+            CostPrices.KStandarTotal = CostPrices.KTransp + CostPrices.KPartofVat + CostPrices.KMeasurement + CostPrices.KRemove    ' ΣΥΝΟΛΟ ΓΕΝΙΚΩΝ ΣΤΟΙΧΕΙΩΝ
+            ' ΕΡΜΑΡΙΑ
+            CostPrices.VDoorPrice1 = txtVDoorPrice1.EditValue
+            CostPrices.VDoorPrice2 = txtVDoorPrice2.EditValue
+            CostPrices.KDoorPrice1 = txtKDoorPrice1.EditValue
+            CostPrices.KDoorPrice2 = txtKDoorPrice2.EditValue
+            CostPrices.YDoorPrice1 = txtYDoorPrice1.EditValue
+            CostPrices.YDoorPrice2 = txtYDoorPrice2.EditValue
+            CostPrices.Vtrm1 = Vtrm1.EditValue : CostPrices.VFinalPrice1 = CostPrices.Vtrm1 * CostPrices.VDoorPrice1
+            CostPrices.Vtrm2 = Vtrm2.EditValue : CostPrices.VFinalPrice2 = CostPrices.Vtrm2 * CostPrices.VDoorPrice2
+            CostPrices.VTotal = CostPrices.VFinalPrice1 + CostPrices.VFinalPrice2
+            CostPrices.Ktrm1 = Ktrm1.EditValue : CostPrices.KFinalPrice1 = CostPrices.Ktrm1 * CostPrices.KDoorPrice1
+            CostPrices.Ktrm2 = Ktrm2.EditValue : CostPrices.KFinalPrice2 = CostPrices.Ktrm2 * CostPrices.KDoorPrice2
+            CostPrices.KTotal = CostPrices.KFinalPrice1 + CostPrices.KFinalPrice2
+            CostPrices.Ytrm1 = Ytrm1.EditValue : CostPrices.YFinalPrice1 = CostPrices.Ytrm1 * CostPrices.YDoorPrice1
+            CostPrices.Ytrm2 = Ytrm2.EditValue : CostPrices.YFinalPrice2 = CostPrices.Ytrm2 * CostPrices.YDoorPrice2
+            CostPrices.YTotal = CostPrices.YFinalPrice1 + CostPrices.YFinalPrice2
 
-        ' ΠΑΓΚΟΙ - ΠΛΑΤΕΣ
-        CostPrices.BenchPrice1 = txtBenchDoorPrice1.EditValue
-        CostPrices.BenchPrice2 = txtBenchDoorPrice2.EditValue
-        CostPrices.BackPrice = txtBackDoorPrice.EditValue
-        CostPrices.BenchTem1 = BenchTem1.EditValue : CostPrices.BenchFinalPrice1 = CostPrices.BenchTem1 * CostPrices.BenchPrice1
-        CostPrices.BenchTem2 = BenchTem2.EditValue : CostPrices.BenchFinalPrice2 = CostPrices.BenchTem2 * CostPrices.BenchPrice2
-        CostPrices.BackTem = BackTem.EditValue : CostPrices.BackFinalPrice = CostPrices.BackTem * CostPrices.BackPrice
-        CostPrices.BenchBackTotal = CostPrices.BenchFinalPrice1 + CostPrices.BenchFinalPrice2 + CostPrices.BackFinalPrice
+            ' ΠΑΓΚΟΙ - ΠΛΑΤΕΣ
+            CostPrices.BenchPrice1 = txtBenchDoorPrice1.EditValue
+            CostPrices.BenchPrice2 = txtBenchDoorPrice2.EditValue
+            CostPrices.BackPrice = txtBackDoorPrice.EditValue
+            CostPrices.BenchTem1 = BenchTem1.EditValue : CostPrices.BenchFinalPrice1 = CostPrices.BenchTem1 * CostPrices.BenchPrice1
+            CostPrices.BenchTem2 = BenchTem2.EditValue : CostPrices.BenchFinalPrice2 = CostPrices.BenchTem2 * CostPrices.BenchPrice2
+            CostPrices.BackTem = BackTem.EditValue : CostPrices.BackFinalPrice = CostPrices.BackTem * CostPrices.BackPrice
+            CostPrices.BenchBackTotal = CostPrices.BenchFinalPrice1 + CostPrices.BenchFinalPrice2 + CostPrices.BackFinalPrice
 
-        ' ΕΠΕΝΔΥΣΕΙΣ - ΡΑΦΙΕΡΕΣ -ΡΑΦΙΑ
-        CostPrices.VependisisPrice = txtVEpendDoorPrice.EditValue
-        CostPrices.NependisisPrice = txtNEpendDoorPrice.EditValue
-        CostPrices.VRafieraPrice = txtVRafPrice.EditValue
-        CostPrices.KependisisPrice = txtKEpendDoorPrice.EditValue
-        CostPrices.SependisisPrice = txtSEpendDoorPrice.EditValue
-        CostPrices.KRafieraPrice = txtKRafPrice.EditValue
-        CostPrices.YependisisPrice = txtYEpendDoorPrice.EditValue
-        CostPrices.YRafieraPrice = txtYRafPrice.EditValue
-        CostPrices.WRafieraPrice = txtWRafPrice.EditValue
+            ' ΕΠΕΝΔΥΣΕΙΣ - ΡΑΦΙΕΡΕΣ -ΡΑΦΙΑ
+            CostPrices.VependisisPrice = txtVEpendDoorPrice.EditValue
+            CostPrices.NependisisPrice = txtNEpendDoorPrice.EditValue
+            CostPrices.VRafieraPrice = txtVRafPrice.EditValue
+            CostPrices.KependisisPrice = txtKEpendDoorPrice.EditValue
+            CostPrices.SependisisPrice = txtSEpendDoorPrice.EditValue
+            CostPrices.KRafieraPrice = txtKRafPrice.EditValue
+            CostPrices.YependisisPrice = txtYEpendDoorPrice.EditValue
+            CostPrices.YRafieraPrice = txtYRafPrice.EditValue
+            CostPrices.WRafieraPrice = txtWRafPrice.EditValue
 
-        CostPrices.VEpendTrm = VEpendTrm.EditValue : CostPrices.VependisisFinalPrice = CostPrices.VEpendTrm * CostPrices.VependisisPrice
-        CostPrices.NEpendTrm = NEpendTrm.EditValue : CostPrices.NependisisFinalPrice = CostPrices.NEpendTrm * CostPrices.NependisisPrice
-        CostPrices.VRafTem = VRafTem.EditValue : CostPrices.VRafieraFinalPrice = CostPrices.VRafTem * CostPrices.VRafieraPrice
-        CostPrices.KEpendTrm = KEpendTrm.EditValue : CostPrices.KependisisFinalPrice = CostPrices.KEpendTrm * CostPrices.KependisisPrice
-        CostPrices.SEpendTrm = SEpendTrm.EditValue : CostPrices.SependisisFinalPrice = CostPrices.SEpendTrm * CostPrices.SependisisPrice
-        CostPrices.KRafTem = KRafTem.EditValue : CostPrices.KRafieraFinalPrice = CostPrices.KRafTem * CostPrices.KRafieraPrice
-        CostPrices.YEpendTrm = YEpendTrm.EditValue : CostPrices.YependisisFinalPrice = CostPrices.YEpendTrm * CostPrices.YependisisPrice
-        CostPrices.YRafTem = YRafTem.EditValue : CostPrices.YRafieraFinalPrice = CostPrices.YRafTem * CostPrices.YRafieraPrice
-        CostPrices.WRafTem = WRafTem.EditValue : CostPrices.WRafieraFinalPrice = CostPrices.WRafTem * CostPrices.WRafieraPrice
+            CostPrices.VEpendTrm = VEpendTrm.EditValue : CostPrices.VependisisFinalPrice = CostPrices.VEpendTrm * CostPrices.VependisisPrice
+            CostPrices.NEpendTrm = NEpendTrm.EditValue : CostPrices.NependisisFinalPrice = CostPrices.NEpendTrm * CostPrices.NependisisPrice
+            CostPrices.VRafTem = VRafTem.EditValue : CostPrices.VRafieraFinalPrice = CostPrices.VRafTem * CostPrices.VRafieraPrice
+            CostPrices.KEpendTrm = KEpendTrm.EditValue : CostPrices.KependisisFinalPrice = CostPrices.KEpendTrm * CostPrices.KependisisPrice
+            CostPrices.SEpendTrm = SEpendTrm.EditValue : CostPrices.SependisisFinalPrice = CostPrices.SEpendTrm * CostPrices.SependisisPrice
+            CostPrices.KRafTem = KRafTem.EditValue : CostPrices.KRafieraFinalPrice = CostPrices.KRafTem * CostPrices.KRafieraPrice
+            CostPrices.YEpendTrm = YEpendTrm.EditValue : CostPrices.YependisisFinalPrice = CostPrices.YEpendTrm * CostPrices.YependisisPrice
+            CostPrices.YRafTem = YRafTem.EditValue : CostPrices.YRafieraFinalPrice = CostPrices.YRafTem * CostPrices.YRafieraPrice
+            CostPrices.WRafTem = WRafTem.EditValue : CostPrices.WRafieraFinalPrice = CostPrices.WRafTem * CostPrices.WRafieraPrice
 
-        CostPrices.VEpendisisTotal = CostPrices.VependisisFinalPrice + CostPrices.NependisisFinalPrice + CostPrices.VRafieraFinalPrice
-        CostPrices.KEpendisisTotal = CostPrices.KependisisFinalPrice + CostPrices.SependisisFinalPrice + CostPrices.KRafieraFinalPrice + CostPrices.WRafieraFinalPrice
-        CostPrices.YEpendisisTotal = CostPrices.YependisisFinalPrice + CostPrices.YRafieraFinalPrice
-        CostPrices.BenchBackTotal = CostPrices.BenchFinalPrice1 + CostPrices.BenchFinalPrice2 + CostPrices.BackFinalPrice
-        '********************************* Ν Τ Ο Υ Λ Α Π Α**************************************
-        CostPrices.CTransp = txtCtransport.EditValue                ' ΜΕΤΑΦΟΡΑ
-        CostPrices.CPartofVat = txtCPartOfVat.EditValue             ' ΣΥΜΦΩΝΗΘΕΝ ΦΠΑ
-        CostPrices.CMeasurement = txtCmeasurement.EditValue         ' ΕΠΙΜΕΤΡΗΣΗ    
-        CostPrices.CRemove = txtCRemove.EditValue                   ' ΑΠΟΞΥΛΩΣΗ
-        CostPrices.CStandarTotal = CostPrices.CTransp + CostPrices.CPartofVat + CostPrices.CMeasurement + CostPrices.CRemove    ' ΣΥΝΟΛΟ ΓΕΝΙΚΩΝ ΣΤΟΙΧΕΙΩΝ
+            CostPrices.VEpendisisTotal = CostPrices.VependisisFinalPrice + CostPrices.NependisisFinalPrice + CostPrices.VRafieraFinalPrice
+            CostPrices.KEpendisisTotal = CostPrices.KependisisFinalPrice + CostPrices.SependisisFinalPrice + CostPrices.KRafieraFinalPrice + CostPrices.WRafieraFinalPrice
+            CostPrices.YEpendisisTotal = CostPrices.YependisisFinalPrice + CostPrices.YRafieraFinalPrice
+            CostPrices.BenchBackTotal = CostPrices.BenchFinalPrice1 + CostPrices.BenchFinalPrice2 + CostPrices.BackFinalPrice
+            '********************************* Ν Τ Ο Υ Λ Α Π Α**************************************
+            CostPrices.CTransp = txtCtransport.EditValue                ' ΜΕΤΑΦΟΡΑ
+            CostPrices.CPartofVat = txtCPartOfVat.EditValue             ' ΣΥΜΦΩΝΗΘΕΝ ΦΠΑ
+            CostPrices.CMeasurement = txtCmeasurement.EditValue         ' ΕΠΙΜΕΤΡΗΣΗ    
+            CostPrices.CRemove = txtCRemove.EditValue                   ' ΑΠΟΞΥΛΩΣΗ
+            CostPrices.CStandarTotal = CostPrices.CTransp + CostPrices.CPartofVat + CostPrices.CMeasurement + CostPrices.CRemove    ' ΣΥΝΟΛΟ ΓΕΝΙΚΩΝ ΣΤΟΙΧΕΙΩΝ
 
-        ' ΑΝΑΛΥΣΗ ΝΤΟΥΛΑΠΩΝ
-        CostPrices.ModelPrice1 = txtCDoorPrice1.EditValue
-        CostPrices.ModelPrice2 = txtCDoorPrice2.EditValue
-        CostPrices.ModelPrice3 = txtCDoorPrice3.EditValue
-        CostPrices.ModelPrice4 = txtCDoorPrice4.EditValue
-        CostPrices.ModelPrice5 = txtCDoorPrice5.EditValue
-        CostPrices.ModelPrice6 = txtCDoorPrice6.EditValue
-        CostPrices.ModelPrice7 = txtCDoorPrice7.EditValue
-        CostPrices.ModelPrice8 = txtCDoorPrice8.EditValue
-        CostPrices.ModelPrice9 = txtCDoorPrice9.EditValue
-        CostPrices.ModelPrice10 = txtCDoorPrice10.EditValue
-        CostPrices.ModelPrice11 = txtCDoorPrice11.EditValue
-        CostPrices.ModelPrice12 = txtCDoorPrice12.EditValue
-        CostPrices.PlainaPrice1 = txtPDoorPrice1.EditValue
-        CostPrices.PlainaPrice2 = txtPDoorPrice2.EditValue
-        CostPrices.PlainaPrice3 = txtPDoorPrice3.EditValue
-        CostPrices.PlainaPrice4 = txtPDoorPrice4.EditValue
-        CostPrices.PlainaPrice5 = txtPDoorPrice5.EditValue
-        CostPrices.PlainaPrice6 = txtPDoorPrice6.EditValue
+            ' ΑΝΑΛΥΣΗ ΝΤΟΥΛΑΠΩΝ
+            CostPrices.ModelPrice1 = txtCDoorPrice1.EditValue
+            CostPrices.ModelPrice2 = txtCDoorPrice2.EditValue
+            CostPrices.ModelPrice3 = txtCDoorPrice3.EditValue
+            CostPrices.ModelPrice4 = txtCDoorPrice4.EditValue
+            CostPrices.ModelPrice5 = txtCDoorPrice5.EditValue
+            CostPrices.ModelPrice6 = txtCDoorPrice6.EditValue
+            CostPrices.ModelPrice7 = txtCDoorPrice7.EditValue
+            CostPrices.ModelPrice8 = txtCDoorPrice8.EditValue
+            CostPrices.ModelPrice9 = txtCDoorPrice9.EditValue
+            CostPrices.ModelPrice10 = txtCDoorPrice10.EditValue
+            CostPrices.ModelPrice11 = txtCDoorPrice11.EditValue
+            CostPrices.ModelPrice12 = txtCDoorPrice12.EditValue
+            CostPrices.PlainaPrice1 = txtPDoorPrice1.EditValue
+            CostPrices.PlainaPrice2 = txtPDoorPrice2.EditValue
+            CostPrices.PlainaPrice3 = txtPDoorPrice3.EditValue
+            CostPrices.PlainaPrice4 = txtPDoorPrice4.EditValue
+            CostPrices.PlainaPrice5 = txtPDoorPrice5.EditValue
+            CostPrices.PlainaPrice6 = txtPDoorPrice6.EditValue
 
-        CostPrices.CTm1 = Ctm1.EditValue
-        CostPrices.CTm2 = Ctm2.EditValue
-        CostPrices.CTm3 = Ctm3.EditValue
-        CostPrices.CTm4 = Ctm4.EditValue
-        CostPrices.CTm5 = Ctm5.EditValue
-        CostPrices.CTm6 = Ctm6.EditValue
-        CostPrices.CTm7 = Ctm7.EditValue
-        CostPrices.CTm8 = Ctm8.EditValue
-        CostPrices.CTm9 = Ctm9.EditValue
-        CostPrices.CTm10 = Ctm10.EditValue
-        CostPrices.CTm11 = Ctm11.EditValue
-        CostPrices.CTm12 = Ctm12.EditValue
-
-
-        CostPrices.ModelFinalPrice1 = CostPrices.CTm1 * CostPrices.ModelPrice1
-        CostPrices.ModelFinalPrice2 = CostPrices.CTm2 * CostPrices.ModelPrice2
-        CostPrices.ModelFinalPrice3 = CostPrices.CTm3 * CostPrices.ModelPrice3
-        CostPrices.ModelFinalPrice4 = CostPrices.CTm4 * CostPrices.ModelPrice4
-        CostPrices.ModelFinalPrice5 = CostPrices.CTm5 * CostPrices.ModelPrice5
-        CostPrices.ModelFinalPrice6 = CostPrices.CTm6 * CostPrices.ModelPrice6
-        CostPrices.ModelFinalPrice7 = CostPrices.CTm7 * CostPrices.ModelPrice7
-        CostPrices.ModelFinalPrice8 = CostPrices.CTm8 * CostPrices.ModelPrice8
-        CostPrices.ModelFinalPrice9 = CostPrices.CTm9 * CostPrices.ModelPrice9
-        CostPrices.ModelFinalPrice10 = CostPrices.CTm10 * CostPrices.ModelPrice10
-        CostPrices.ModelFinalPrice11 = CostPrices.CTm11 * CostPrices.ModelPrice11
-        CostPrices.ModelFinalPrice12 = CostPrices.CTm12 * CostPrices.ModelPrice12
-
-        CostPrices.PTem1 = CTem1.EditValue : CostPrices.PlainaFinalPrice1 = CostPrices.PTem1 * CostPrices.PlainaPrice1
-        CostPrices.PTem2 = CTem2.EditValue : CostPrices.PlainaFinalPrice2 = CostPrices.PTem2 * CostPrices.PlainaPrice2
-        CostPrices.PTem3 = CTem3.EditValue : CostPrices.PlainaFinalPrice3 = CostPrices.PTem3 * CostPrices.PlainaPrice3
-        CostPrices.PTem4 = CTem4.EditValue : CostPrices.PlainaFinalPrice4 = CostPrices.PTem4 * CostPrices.PlainaPrice4
-        CostPrices.PTem5 = CTem5.EditValue : CostPrices.PlainaFinalPrice5 = CostPrices.PTem5 * CostPrices.PlainaPrice5
-        CostPrices.PTem6 = CTem6.EditValue : CostPrices.PlainaFinalPrice6 = CostPrices.PTem6 * CostPrices.PlainaPrice6
-
-        CalculateCErmariaTotal()
-        '********************************* Π Ο Ρ Τ Α **************************************
-        'ΓΕΝΙΚΑ ΣΤΟΙΧΕΙΑ - ΠΟΡΤΑ
-        CostPrices.DTransp = txtDtransport.EditValue            ' ΜΕΤΑΦΟΡΑ
-        CostPrices.DPartofVat = txtDPartOfVat.EditValue         ' ΣΥΜΦΩΝΗΘΕΝ ΦΠΑ
-        CostPrices.DMeasurement = txtDmeasurement.EditValue     ' ΕΠΙΜΕΤΡΗΣΗ
-        CostPrices.DRemove = txtDRemove.EditValue               ' ΑΠΟΞΥΛΩΣΗ
-        CostPrices.DStandarTotal = CostPrices.DTransp + CostPrices.DPartofVat + CostPrices.DMeasurement + CostPrices.DRemove           ' ΣΥΝΟΛΟ ΓΕΝΙΚΩΝ ΣΤΟΙΧΕΙΩΝ 
-
-        ' ΑΝΑΛΥΣΗ ΠΟΡΤΩΝ
-        CostPrices.DDoorPrice1 = txtDDoorPrice1.EditValue
-        CostPrices.DDoorPrice2 = txtDDoorPrice2.EditValue
-        CostPrices.DDoorPrice3 = txtDDoorPrice3.EditValue
-        CostPrices.DDoorPrice4 = txtDDoorPrice4.EditValue
-        CostPrices.DDoorPrice5 = txtDDoorPrice5.EditValue
-        CostPrices.DDoorPrice6 = txtDDoorPrice6.EditValue
-        CostPrices.DTem1 = DTem1.EditValue : CostPrices.DDoorFinalPrice1 = CostPrices.DTem1 * CostPrices.DDoorPrice1
-        CostPrices.DTem2 = DTem2.EditValue : CostPrices.DDoorFinalPrice2 = CostPrices.DTem2 * CostPrices.DDoorPrice2
-        CostPrices.DTem3 = DTem3.EditValue : CostPrices.DDoorFinalPrice3 = CostPrices.DTem3 * CostPrices.DDoorPrice3
-        CostPrices.DTem4 = DTem4.EditValue : CostPrices.DDoorFinalPrice4 = CostPrices.DTem4 * CostPrices.DDoorPrice4
-        CostPrices.DTem5 = DTem5.EditValue : CostPrices.DDoorFinalPrice5 = CostPrices.DTem5 * CostPrices.DDoorPrice5
-        CostPrices.DTem6 = DTem6.EditValue : CostPrices.DDoorFinalPrice6 = CostPrices.DTem6 * CostPrices.DDoorPrice6
-
-        CalculateDTotal()
-
-        '********************************* Ε Ι Δ . Κ Α Τ Α Σ Κ Ε Υ Η **************************************
-        'ΓΕΝΙΚΑ ΣΤΟΙΧΕΙΑ - ΕΙΔ. ΚΑΤΑΣΚΕΥΗ
-        CostPrices.SCTransp = txtSCtransport.EditValue              ' ΜΕΤΑΦΟΡΑ
-        CostPrices.SCPartofVat = txtSCPartOfVat.EditValue           ' ΣΥΜΦΩΝΗΘΕΝ ΦΠΑ    
-        CostPrices.SCMeasurement = txtSCmeasurement.EditValue       ' ΕΠΙΜΕΤΡΗΣΗ    
-        CostPrices.SCRemove = txtSCRemove.EditValue                 ' ΑΠΟΞΥΛΩΣΗ
-        CostPrices.SCStandarTotal = CostPrices.SCTransp + CostPrices.SCPartofVat + CostPrices.SCMeasurement + CostPrices.SCRemove       ' ΣΥΝΟΛΟ ΓΕΝΙΚΩΝ ΣΤΟΙΧΕΙΩΝ
-
-        ' ΑΝΑΛΥΣΗ ΕΙΔ. ΚΑΤΑΣΚΕΥΗΣ
-        CostPrices.SCDoorFinalPrice1 = txtSCPrice1.EditValue
-        CostPrices.SCDoorFinalPrice2 = txtSCPrice2.EditValue
-        CostPrices.SCDoorFinalPrice3 = txtSCPrice3.EditValue
-        CostPrices.SCDoorFinalPrice4 = txtSCPrice4.EditValue
-        CostPrices.SCTotal = CostPrices.SCDoorFinalPrice1 + CostPrices.SCDoorFinalPrice2 + CostPrices.SCDoorFinalPrice3 + CostPrices.SCDoorFinalPrice4
+            CostPrices.CTm1 = Ctm1.EditValue
+            CostPrices.CTm2 = Ctm2.EditValue
+            CostPrices.CTm3 = Ctm3.EditValue
+            CostPrices.CTm4 = Ctm4.EditValue
+            CostPrices.CTm5 = Ctm5.EditValue
+            CostPrices.CTm6 = Ctm6.EditValue
+            CostPrices.CTm7 = Ctm7.EditValue
+            CostPrices.CTm8 = Ctm8.EditValue
+            CostPrices.CTm9 = Ctm9.EditValue
+            CostPrices.CTm10 = Ctm10.EditValue
+            CostPrices.CTm11 = Ctm11.EditValue
+            CostPrices.CTm12 = Ctm12.EditValue
 
 
-        '********************************* Σ Υ Ν Ο Λ Α **************************************
-        ' Γενικό σύνολο από όλα τα είδη πώλησης. Με ποσοστά
-        CalculateGenTot()
+            CostPrices.ModelFinalPrice1 = CostPrices.CTm1 * CostPrices.ModelPrice1
+            CostPrices.ModelFinalPrice2 = CostPrices.CTm2 * CostPrices.ModelPrice2
+            CostPrices.ModelFinalPrice3 = CostPrices.CTm3 * CostPrices.ModelPrice3
+            CostPrices.ModelFinalPrice4 = CostPrices.CTm4 * CostPrices.ModelPrice4
+            CostPrices.ModelFinalPrice5 = CostPrices.CTm5 * CostPrices.ModelPrice5
+            CostPrices.ModelFinalPrice6 = CostPrices.CTm6 * CostPrices.ModelPrice6
+            CostPrices.ModelFinalPrice7 = CostPrices.CTm7 * CostPrices.ModelPrice7
+            CostPrices.ModelFinalPrice8 = CostPrices.CTm8 * CostPrices.ModelPrice8
+            CostPrices.ModelFinalPrice9 = CostPrices.CTm9 * CostPrices.ModelPrice9
+            CostPrices.ModelFinalPrice10 = CostPrices.CTm10 * CostPrices.ModelPrice10
+            CostPrices.ModelFinalPrice11 = CostPrices.CTm11 * CostPrices.ModelPrice11
+            CostPrices.ModelFinalPrice12 = CostPrices.CTm12 * CostPrices.ModelPrice12
+
+            CostPrices.PTem1 = CTem1.EditValue : CostPrices.PlainaFinalPrice1 = CostPrices.PTem1 * CostPrices.PlainaPrice1
+            CostPrices.PTem2 = CTem2.EditValue : CostPrices.PlainaFinalPrice2 = CostPrices.PTem2 * CostPrices.PlainaPrice2
+            CostPrices.PTem3 = CTem3.EditValue : CostPrices.PlainaFinalPrice3 = CostPrices.PTem3 * CostPrices.PlainaPrice3
+            CostPrices.PTem4 = CTem4.EditValue : CostPrices.PlainaFinalPrice4 = CostPrices.PTem4 * CostPrices.PlainaPrice4
+            CostPrices.PTem5 = CTem5.EditValue : CostPrices.PlainaFinalPrice5 = CostPrices.PTem5 * CostPrices.PlainaPrice5
+            CostPrices.PTem6 = CTem6.EditValue : CostPrices.PlainaFinalPrice6 = CostPrices.PTem6 * CostPrices.PlainaPrice6
+
+            CalculateCErmariaTotal()
+            '********************************* Π Ο Ρ Τ Α **************************************
+            'ΓΕΝΙΚΑ ΣΤΟΙΧΕΙΑ - ΠΟΡΤΑ
+            CostPrices.DTransp = txtDtransport.EditValue            ' ΜΕΤΑΦΟΡΑ
+            CostPrices.DPartofVat = txtDPartOfVat.EditValue         ' ΣΥΜΦΩΝΗΘΕΝ ΦΠΑ
+            CostPrices.DMeasurement = txtDmeasurement.EditValue     ' ΕΠΙΜΕΤΡΗΣΗ
+            CostPrices.DRemove = txtDRemove.EditValue               ' ΑΠΟΞΥΛΩΣΗ
+            CostPrices.DStandarTotal = CostPrices.DTransp + CostPrices.DPartofVat + CostPrices.DMeasurement + CostPrices.DRemove           ' ΣΥΝΟΛΟ ΓΕΝΙΚΩΝ ΣΤΟΙΧΕΙΩΝ 
+
+            ' ΑΝΑΛΥΣΗ ΠΟΡΤΩΝ
+            CostPrices.DDoorPrice1 = txtDDoorPrice1.EditValue
+            CostPrices.DDoorPrice2 = txtDDoorPrice2.EditValue
+            CostPrices.DDoorPrice3 = txtDDoorPrice3.EditValue
+            CostPrices.DDoorPrice4 = txtDDoorPrice4.EditValue
+            CostPrices.DDoorPrice5 = txtDDoorPrice5.EditValue
+            CostPrices.DDoorPrice6 = txtDDoorPrice6.EditValue
+            CostPrices.DTem1 = DTem1.EditValue : CostPrices.DDoorFinalPrice1 = CostPrices.DTem1 * CostPrices.DDoorPrice1
+            CostPrices.DTem2 = DTem2.EditValue : CostPrices.DDoorFinalPrice2 = CostPrices.DTem2 * CostPrices.DDoorPrice2
+            CostPrices.DTem3 = DTem3.EditValue : CostPrices.DDoorFinalPrice3 = CostPrices.DTem3 * CostPrices.DDoorPrice3
+            CostPrices.DTem4 = DTem4.EditValue : CostPrices.DDoorFinalPrice4 = CostPrices.DTem4 * CostPrices.DDoorPrice4
+            CostPrices.DTem5 = DTem5.EditValue : CostPrices.DDoorFinalPrice5 = CostPrices.DTem5 * CostPrices.DDoorPrice5
+            CostPrices.DTem6 = DTem6.EditValue : CostPrices.DDoorFinalPrice6 = CostPrices.DTem6 * CostPrices.DDoorPrice6
+
+            CalculateDTotal()
+
+            '********************************* Ε Ι Δ . Κ Α Τ Α Σ Κ Ε Υ Η **************************************
+            'ΓΕΝΙΚΑ ΣΤΟΙΧΕΙΑ - ΕΙΔ. ΚΑΤΑΣΚΕΥΗ
+            CostPrices.SCTransp = txtSCtransport.EditValue              ' ΜΕΤΑΦΟΡΑ
+            CostPrices.SCPartofVat = txtSCPartOfVat.EditValue           ' ΣΥΜΦΩΝΗΘΕΝ ΦΠΑ    
+            CostPrices.SCMeasurement = txtSCmeasurement.EditValue       ' ΕΠΙΜΕΤΡΗΣΗ    
+            CostPrices.SCRemove = txtSCRemove.EditValue                 ' ΑΠΟΞΥΛΩΣΗ
+            CostPrices.SCStandarTotal = CostPrices.SCTransp + CostPrices.SCPartofVat + CostPrices.SCMeasurement + CostPrices.SCRemove       ' ΣΥΝΟΛΟ ΓΕΝΙΚΩΝ ΣΤΟΙΧΕΙΩΝ
+
+            ' ΑΝΑΛΥΣΗ ΕΙΔ. ΚΑΤΑΣΚΕΥΗΣ
+            CostPrices.SCDoorFinalPrice1 = txtSCPrice1.EditValue
+            CostPrices.SCDoorFinalPrice2 = txtSCPrice2.EditValue
+            CostPrices.SCDoorFinalPrice3 = txtSCPrice3.EditValue
+            CostPrices.SCDoorFinalPrice4 = txtSCPrice4.EditValue
+            CostPrices.SCTotal = CostPrices.SCDoorFinalPrice1 + CostPrices.SCDoorFinalPrice2 + CostPrices.SCDoorFinalPrice3 + CostPrices.SCDoorFinalPrice4
+
+
+            '********************************* Σ Υ Ν Ο Λ Α **************************************
+            ' Γενικό σύνολο από όλα τα είδη πώλησης. Με ποσοστά
+            CalculateGenTot()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("FillCostFromDB Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
     End Sub
     Private Sub CalculateGenTot()
-        ' Ποσοστό κέρδους Πωλητή
-        CostPrices.profitPercK = cboEMP.GetColumnValue("profitPercK")
-        CostPrices.profitPercC = cboEMP.GetColumnValue("profitPercC")
-        CostPrices.profitPercD = cboEMP.GetColumnValue("profitPercD")
-        CostPrices.profitPercSC = cboEMP.GetColumnValue("profitPercSC")
-
-        ' Ποσοστό κέρδους Επιχείρησης
-        CostPrices.profitPercCompK = ProgProps.KCOMPANY_PROFIT - CostPrices.profitPercK
-        CostPrices.profitPercCompC = ProgProps.CCOMPANY_PROFIT - CostPrices.profitPercC
-        CostPrices.profitPercCompD = ProgProps.DCOMPANY_PROFIT - CostPrices.profitPercD
-        CostPrices.profitPercCompSC = ProgProps.SCCOMPANY_PROFIT - CostPrices.profitPercSC
+        Try
 
 
-        ' ΚΟΥΖΙΝΑ ΣΥΝΟΛΑ
-        CostPrices.GenTotK = CostPrices.KStandarTotal + CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal + CostPrices.VEpendisisTotal + CostPrices.KEpendisisTotal +
+            ' Ποσοστό κέρδους Επιχείρησης
+            CostPrices.profitPercCompK = ProgProps.KCOMPANY_PROFIT - CostPrices.profitPercK
+            CostPrices.profitPercCompC = ProgProps.CCOMPANY_PROFIT - CostPrices.profitPercC
+            CostPrices.profitPercCompD = ProgProps.DCOMPANY_PROFIT - CostPrices.profitPercD
+            CostPrices.profitPercCompSC = ProgProps.SCCOMPANY_PROFIT - CostPrices.profitPercSC
+
+
+            ' ΚΟΥΖΙΝΑ ΣΥΝΟΛΑ
+            CostPrices.GenTotK = CostPrices.KStandarTotal + CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal + CostPrices.VEpendisisTotal + CostPrices.KEpendisisTotal +
                              CostPrices.YEpendisisTotal + CostPrices.BenchBackTotal + CostPrices.TotKEquipment
-        CostPrices.SprofitK = (CostPrices.GenTotK / 100) * CostPrices.profitPercK
-        CostPrices.CprofitK = (CostPrices.GenTotK / 100) * CostPrices.profitPercCompK
-        CostPrices.GenTotK = CostPrices.GenTotK + CostPrices.SprofitK + CostPrices.CprofitK
+            CostPrices.SprofitK = (CostPrices.GenTotK / 100) * CostPrices.profitPercK
+            CostPrices.CprofitK = (CostPrices.GenTotK / 100) * CostPrices.profitPercCompK
+            CostPrices.GenTotK = CostPrices.GenTotK + CostPrices.SprofitK + CostPrices.CprofitK + CostPrices.TotKDevices
 
-        ' ΝΤΟΥΛΑΠΑ ΣΥΝΟΛΑ
-        CostPrices.GenTotC = CostPrices.CStandarTotal + CostPrices.CErmariaTotal + CostPrices.TotCEquipment
-        CostPrices.CprofitC = (CostPrices.GenTotC / 100) * CostPrices.profitPercCompC
-        CostPrices.SprofitC = (CostPrices.GenTotC / 100) * CostPrices.profitPercC
-        CostPrices.GenTotC = CostPrices.GenTotC + CostPrices.SprofitC + CostPrices.CprofitC
+            ' ΝΤΟΥΛΑΠΑ ΣΥΝΟΛΑ
+            CostPrices.GenTotC = CostPrices.CStandarTotal + CostPrices.CErmariaTotal + CostPrices.TotCEquipment
+            CostPrices.CprofitC = (CostPrices.GenTotC / 100) * CostPrices.profitPercCompC
+            CostPrices.SprofitC = (CostPrices.GenTotC / 100) * CostPrices.profitPercC
+            CostPrices.GenTotC = CostPrices.GenTotC + CostPrices.SprofitC + CostPrices.CprofitC
 
-        ' ΠΟΡΤΑ ΣΥΝΟΛΑ
-        CostPrices.GenTotD = CostPrices.DStandarTotal + CostPrices.DTotal + CostPrices.DDesign
-        CostPrices.CprofitD = (CostPrices.GenTotD / 100) * CostPrices.profitPercCompD
-        CostPrices.SprofitD = (CostPrices.GenTotD / 100) * CostPrices.profitPercD
-        CostPrices.GenTotD = CostPrices.GenTotD + CostPrices.SprofitD + CostPrices.CprofitD
+            ' ΠΟΡΤΑ ΣΥΝΟΛΑ
+            CostPrices.GenTotD = CostPrices.DStandarTotal + CostPrices.DTotal + CostPrices.DDesign
+            CostPrices.CprofitD = (CostPrices.GenTotD / 100) * CostPrices.profitPercCompD
+            CostPrices.SprofitD = (CostPrices.GenTotD / 100) * CostPrices.profitPercD
+            CostPrices.GenTotD = CostPrices.GenTotD + CostPrices.SprofitD + CostPrices.CprofitD
 
-        ' ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ ΣΥΝΟΛΑ
-        CostPrices.GenTotSC = CostPrices.SCStandarTotal + CostPrices.SCTotal + CostPrices.SCDesign
-        CostPrices.CprofitSC = (CostPrices.GenTotSC / 100) * CostPrices.profitPercCompSC
-        CostPrices.SprofitSC = (CostPrices.GenTotSC / 100) * CostPrices.profitPercSC
-        CostPrices.GenTotSC = CostPrices.GenTotSC + CostPrices.SprofitSC + CostPrices.CprofitSC
-        CostPrices.GenTot = CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal + CostPrices.VEpendisisTotal + CostPrices.KEpendisisTotal + CostPrices.YEpendisisTotal + CostPrices.BenchBackTotal + CostPrices.TotKEquipment +
-                            CostPrices.CErmariaTotal + CostPrices.TotCEquipment + CostPrices.DTotal + CostPrices.KStandarTotal + CostPrices.CStandarTotal + CostPrices.DStandarTotal + CostPrices.SCStandarTotal
-        ' Γενικό σύνολο από όλα τα είδη πώλησης και με τα ποσοστά
-        CostPrices.GenTotWithoutProfit = CostPrices.GenTot
+            ' ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ ΣΥΝΟΛΑ
+            CostPrices.GenTotSC = CostPrices.SCStandarTotal + CostPrices.SCTotal + CostPrices.SCDesign
+            CostPrices.CprofitSC = (CostPrices.GenTotSC / 100) * CostPrices.profitPercCompSC
+            CostPrices.SprofitSC = (CostPrices.GenTotSC / 100) * CostPrices.profitPercSC
+            CostPrices.GenTotSC = CostPrices.GenTotSC + CostPrices.SprofitSC + CostPrices.CprofitSC
 
-        CostPrices.GenTot = CostPrices.GenTot +
+            CostPrices.GenTot = CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal + CostPrices.VEpendisisTotal + CostPrices.KEpendisisTotal + CostPrices.YEpendisisTotal + CostPrices.BenchBackTotal + CostPrices.TotKEquipment +
+                            CostPrices.CErmariaTotal + CostPrices.TotCEquipment + CostPrices.DTotal + CostPrices.KStandarTotal + CostPrices.CStandarTotal + CostPrices.DStandarTotal + CostPrices.SCStandarTotal + CostPrices.TotKDevices
+            ' Γενικό σύνολο από όλα τα είδη πώλησης και με τα ποσοστά
+            CostPrices.GenTotWithoutProfit = CostPrices.GenTot
+            CostPrices.GenTot = CostPrices.GenTot +
                             CostPrices.SprofitK + CostPrices.CprofitK +
                             CostPrices.SprofitC + CostPrices.CprofitC +
                             CostPrices.SprofitD + CostPrices.CprofitD +
                             CostPrices.SprofitSC + CostPrices.CprofitSC
-        txtGenTot.EditValue = CostPrices.GenTot
-        txtGenTotWithoutProfit.EditValue = CostPrices.GenTotWithoutProfit
-        txtTotalSalerProfit.EditValue = CostPrices.SprofitK + CostPrices.SprofitC + CostPrices.SprofitD + CostPrices.SprofitSC
-        txtTotalCompanyProfit.EditValue = CostPrices.CprofitK + CostPrices.CprofitC + CostPrices.CprofitD + CostPrices.CprofitSC
+            txtGenTot.EditValue = CostPrices.GenTot
+            txtGenTotWithoutProfit.EditValue = CostPrices.GenTotWithoutProfit
+            txtTotalSalerProfit.EditValue = CostPrices.SprofitK + CostPrices.SprofitC + CostPrices.SprofitD + CostPrices.SprofitSC
+            txtTotalCompanyProfit.EditValue = CostPrices.CprofitK + CostPrices.CprofitC + CostPrices.CprofitD + CostPrices.CprofitSC
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("CalculateGenTot Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
     Private Sub CalculateCErmariaTotal()
         CostPrices.CErmariaTotal = CostPrices.ModelFinalPrice1 + CostPrices.ModelFinalPrice2 + CostPrices.ModelFinalPrice3 + CostPrices.ModelFinalPrice4 + CostPrices.ModelFinalPrice5 + CostPrices.ModelFinalPrice6 +
@@ -1571,4 +1647,60 @@ Public Class frmTransCost
         If Me.IsActive = True Then CalculateEpendisisTotal()
     End Sub
 
+
+    Private Sub cboEMP_EditValueChanged(sender As Object, e As EventArgs) Handles cboEMP.EditValueChanged
+        ' Ποσοστό κέρδους Πωλητή
+        CostPrices.profitPercK = cboEMP.GetColumnValue("profitPercK")
+        CostPrices.profitPercC = cboEMP.GetColumnValue("profitPercC")
+        CostPrices.profitPercD = cboEMP.GetColumnValue("profitPercD")
+        CostPrices.profitPercSC = cboEMP.GetColumnValue("profitPercSC")
+    End Sub
+
+    Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "CCT_ORDERS_KITCHEN_DEVICES_COST_def.xml", "vw_CCT_ORDERS_KITCHEN_DEVICES")
+    End Sub
+
+    Private Sub cmdPrint_Click(sender As Object, e As EventArgs) Handles cmdPrint.Click
+        Dim reportDummy As New XtraReport
+
+        If CostPrices.Kitchen = True Then
+            Dim report As New RepTransCostK
+            report.Parameters.Item(0).Value = sID
+            report.CreateDocument()
+            reportDummy.ModifyDocument(Sub(x)
+                                           x.AddPages(report.Pages)
+                                       End Sub)
+        End If
+
+        If CostPrices.Closet = True Then
+            Dim report2 As New RepTransCostC
+            report2.Parameters.Item(0).Value = sID
+            report2.CreateDocument()
+            reportDummy.ModifyDocument(Sub(x)
+                                           x.AddPages(report2.Pages)
+                                       End Sub)
+
+        End If
+        If CostPrices.Doors = True Then
+            Dim report3 As New RepTransCostD
+            report3.Parameters.Item(0).Value = sID
+            report3.CreateDocument()
+            reportDummy.ModifyDocument(Sub(x)
+                                           x.AddPages(report3.Pages)
+                                       End Sub)
+
+        End If
+        If CostPrices.SC = True Then
+            Dim report4 As New RepTransCostSC
+            report4.Parameters.Item(0).Value = sID
+            report4.CreateDocument()
+            reportDummy.ModifyDocument(Sub(x)
+                                           x.AddPages(report4.Pages)
+                                       End Sub)
+        End If
+
+
+        Dim printTool As New ReportPrintTool(reportDummy)
+        printTool.ShowRibbonPreview()
+    End Sub
 End Class

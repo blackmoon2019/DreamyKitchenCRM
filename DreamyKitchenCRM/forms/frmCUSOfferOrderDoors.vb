@@ -83,6 +83,7 @@ Public Class frmCUSOfferOrderDoors
             LayoutControlItem55.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem69.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem70.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LayoutControlItem72.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         End If
         Select Case Mode
             Case FormMode.NewRecord
@@ -92,7 +93,7 @@ Public Class frmCUSOfferOrderDoors
                 txtDescription.EditValue = ProgProps.DOOR_DESCRIPTION
                 txtComments.EditValue = ProgProps.DOOR_CMT
                 txtNotes.EditValue = ProgProps.CUS_NOTES
-                txtExtraTransp.EditValue = ProgProps.DoorTransp
+                txtTransp.EditValue = ProgProps.DoorTransp
                 txtMeasurement.EditValue = ProgProps.DoorMeasurement
                 txtRemove.EditValue = ProgProps.DoorRemove
             Case FormMode.EditRecord
@@ -155,7 +156,7 @@ Public Class frmCUSOfferOrderDoors
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
@@ -215,18 +216,27 @@ Public Class frmCUSOfferOrderDoors
                     If Mode = FormMode.NewRecord Then
                         '    Cls.ClearCtrls(LayoutControl1)
                         '    txtCode.Text = DBQ.GetNextId("CCT_OFFERS_DOOR")
-                        If sIsOrder Then
-                            ' Δημιουργία/Ενημέρωση Κοστολόγησης
-                            Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
-                                oCmd.CommandType = CommandType.StoredProcedure
-                                oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
-                                oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse("00000000-0000-0000-0000-000000000000"))
-                                oCmd.Parameters.AddWithValue("@Mode", 3)
-                                oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
-                                oCmd.ExecuteNonQuery()
-                            End Using
-                        End If
                         Mode = FormMode.EditRecord
+                    End If
+                    If sIsOrder Then
+                        Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
+                        HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
+                        HasCloset = cboTRANSH.GetColumnValue("Iscloset")
+                        HasDoors = cboTRANSH.GetColumnValue("Isdoors")
+                        HasSc = cboTRANSH.GetColumnValue("Issc")
+                        If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
+                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Exit Sub
+                        End If
+                        ' Δημιουργία/Ενημέρωση Κοστολόγησης
+                        Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
+                            oCmd.CommandType = CommandType.StoredProcedure
+                            oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                            oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                            oCmd.Parameters.AddWithValue("@Mode", 3)
+                            oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
+                            oCmd.ExecuteNonQuery()
+                        End Using
                     End If
                 End If
             End If
@@ -350,109 +360,109 @@ Public Class frmCUSOfferOrderDoors
 
     Private Sub cboFora1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora1.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboFora1.EditValue = Nothing
+            Case 1 : cboFora1.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboFora2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora2.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboFora2.EditValue = Nothing
+            Case 1 : cboFora2.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboFora3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora3.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboFora3.EditValue = Nothing
+            Case 1 : cboFora3.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboFora4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora4.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboFora4.EditValue = Nothing
+            Case 1 : cboFora4.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboFora5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora5.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboFora5.EditValue = Nothing
+            Case 1 : cboFora5.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboFora6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora6.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboFora6.EditValue = Nothing
+            Case 1 : cboFora6.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboKasa1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa1.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboKasa1.EditValue = Nothing
+            Case 1 : cboKasa1.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboKasa2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa2.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboKasa2.EditValue = Nothing
+            Case 1 : cboKasa2.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboKasa3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa3.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboKasa3.EditValue = Nothing
+            Case 1 : cboKasa3.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboKasa4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa4.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboKasa4.EditValue = Nothing
+            Case 1 : cboKasa4.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboKasa5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa5.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboKasa5.EditValue = Nothing
+            Case 1 : cboKasa5.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboKasa6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa6.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboKasa6.EditValue = Nothing
+            Case 1 : cboKasa6.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType1.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboType1.EditValue = Nothing
+            Case 1 : cboType1.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType2.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboType2.EditValue = Nothing
+            Case 1 : cboType2.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType3.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboType3.EditValue = Nothing
+            Case 1 : cboType3.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboType4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType4.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboType4.EditValue = Nothing
+            Case 1 : cboType4.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboType5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType5.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboType5.EditValue = Nothing
+            Case 1 : cboType5.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboType6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType6.ButtonClick
         Select Case e.Button.Index
-            Case 0 : cboType6.EditValue = Nothing
+            Case 1 : cboType6.EditValue = Nothing
         End Select
     End Sub
     Private Sub ManageDoorType(ByVal CallerControl As LookUpEdit)
@@ -512,11 +522,13 @@ Public Class frmCUSOfferOrderDoors
     End Sub
 
     Private Sub LoadDoorType(ByVal cboEdit As ComboBoxEdit, ByVal cboKasa As ComboBoxEdit, ByVal lkupEditDoorType As LookUpEdit)
-        'If Me.IsActive = False Then Exit Sub
         If cboEdit.SelectedIndex = -1 Or cboKasa.EditValue = -1 Then Exit Sub
         Dim sSQL = New System.Text.StringBuilder
         sSQL.AppendLine("Select id,name,price from vw_DOOR_TYPE where doorCatID='E6733593-7DA0-4180-8951-B09315E1F13D' and doorType = " & cboEdit.SelectedIndex & " and kasa = " & cboKasa.SelectedIndex)
         FillCbo.DOOR_TYPE(lkupEditDoorType, sSQL)
+        'If Me.IsActive = False Then Exit Sub
+        'If cboEdit.SelectedIndex = -1 Or lkupEditDoorType.EditValue = Nothing Then Exit Sub
+        'Me.Vw_DOOR_TYPEDOORSTableAdapter.Fill(Me.DMDataSet.vw_DOOR_TYPEDOORS, cboEdit.SelectedIndex, cboKasa.SelectedIndex)
     End Sub
 
 
@@ -566,4 +578,11 @@ Public Class frmCUSOfferOrderDoors
         LoadDoorType(cboType6, cboKasa6, cboDoorType6)
     End Sub
 
+    Private Sub cboType1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboType1.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub cboKasa1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboKasa1.SelectedIndexChanged
+
+    End Sub
 End Class

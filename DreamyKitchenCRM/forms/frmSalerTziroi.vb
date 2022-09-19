@@ -202,7 +202,15 @@ Public Class frmSalerTziroi
     End Sub
 
     Private Sub txtbusisnessProfit_EditValueChanged(sender As Object, e As EventArgs) Handles txtbusisnessProfit.EditValueChanged
-        If cboSaler.GetColumnValue("profitPerc") = Nothing Then Exit Sub
-        txtsalerProfit.EditValue = (txtbusisnessProfit.EditValue / 100) * cboSaler.GetColumnValue("profitPerc")
+        'If cboSaler.GetColumnValue("profitPerc") = Nothing Then Exit Sub
+        'txtsalerProfit.EditValue = (txtbusisnessProfit.EditValue / 100) * cboSaler.GetColumnValue("profitPerc")
+    End Sub
+
+    Private Sub txtsalePrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtsalePrice.EditValueChanged
+
+    End Sub
+
+    Private Sub txtnormalPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtnormalPrice.EditValueChanged
+
     End Sub
 End Class

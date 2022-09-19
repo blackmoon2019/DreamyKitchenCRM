@@ -593,6 +593,12 @@
     <Compile Include="forms\frmVersions.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Reports\RepTransCostD.Designer.vb">
+      <DependentUpon>RepTransCostD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepTransCostD.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="forms\WaitForm.Designer.vb">
       <DependentUpon>WaitForm.vb</DependentUpon>
     </Compile>
@@ -724,6 +730,36 @@
     <Compile Include="Reports\RepOfferMech.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RepTransCostC.Designer.vb">
+      <DependentUpon>RepTransCostC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepTransCostC.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepTransCostEQC.Designer.vb">
+      <DependentUpon>RepTransCostEQC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepTransCostEQC.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepTransCostK.Designer.vb">
+      <DependentUpon>RepTransCostK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepTransCostK.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepTransCostEQK.Designer.vb">
+      <DependentUpon>RepTransCostEQK.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepTransCostEQK.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\RepTransCostSC.Designer.vb">
+      <DependentUpon>RepTransCostSC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepTransCostSC.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Rep_offer.Designer.vb">
       <DependentUpon>Rep_offer.vb</DependentUpon>
     </Compile>
@@ -746,6 +782,12 @@
       <DependentUpon>Rep_Offer2ndPage.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\Rep_Offer2ndPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Rep_TransCostDE.Designer.vb">
+      <DependentUpon>Rep_TransCostDE.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Rep_TransCostDE.vb">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
@@ -929,6 +971,9 @@
     <EmbeddedResource Include="forms\frmVersions.resx">
       <DependentUpon>frmVersions.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepTransCostD.resx">
+      <DependentUpon>RepTransCostD.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
     </EmbeddedResource>
@@ -992,6 +1037,21 @@
     <EmbeddedResource Include="Reports\RepOfferMech.resx">
       <DependentUpon>RepOfferMech.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepTransCostC.resx">
+      <DependentUpon>RepTransCostC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepTransCostEQC.resx">
+      <DependentUpon>RepTransCostEQC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepTransCostK.resx">
+      <DependentUpon>RepTransCostK.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepTransCostEQK.resx">
+      <DependentUpon>RepTransCostEQK.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepTransCostSC.resx">
+      <DependentUpon>RepTransCostSC.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Rep_offer.resx">
       <DependentUpon>Rep_offer.vb</DependentUpon>
     </EmbeddedResource>
@@ -1004,6 +1064,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Rep_Offer2ndPage.resx">
       <DependentUpon>Rep_Offer2ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Rep_TransCostDE.resx">
+      <DependentUpon>Rep_TransCostDE.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

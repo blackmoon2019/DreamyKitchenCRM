@@ -88,7 +88,7 @@ Public Class frmCUSOrderCloset
                 cboLegs.EditValue = ProgProps.CLOSET_LEGS
                 txtshelves.EditValue = ProgProps.CLOSET_SHELVES
                 txtdrawers.EditValue = ProgProps.CLOSET_DRAWERS
-                txtExtraTransp.EditValue = ProgProps.ClosetTransp
+                txtTransp.EditValue = ProgProps.ClosetTransp
                 txtMeasurement.EditValue = ProgProps.ClosetMeasurement
                 txtRemove.EditValue = ProgProps.ClosetRemove
 
@@ -261,6 +261,18 @@ Public Class frmCUSOrderCloset
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Mode = FormMode.EditRecord
+                    TabNavigationPage2.Enabled = True
+
+                    Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
+                    HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
+                    HasCloset = cboTRANSH.GetColumnValue("Iscloset")
+                    HasDoors = cboTRANSH.GetColumnValue("Isdoors")
+                    HasSc = cboTRANSH.GetColumnValue("Issc")
+                    If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
+                        XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
+
                     ' Δημιουργία/Ενημέρωση Κοστολόγησης
                     Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
@@ -270,7 +282,6 @@ Public Class frmCUSOrderCloset
                         oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
                         oCmd.ExecuteNonQuery()
                     End Using
-                    TabNavigationPage2.Enabled = True
                 End If
             End If
 
@@ -285,7 +296,7 @@ Public Class frmCUSOrderCloset
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         Dim sVal As String

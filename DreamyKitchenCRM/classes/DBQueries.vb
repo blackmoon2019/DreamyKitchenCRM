@@ -1083,7 +1083,7 @@ NextItem:
                                     Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                     cbo = Ctrl
                                     If cbo.EditValue <> Nothing Then
-                                        sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
+                                        If cbo.Text <> "" Then sSQL.Append(toSQLValueS(cbo.EditValue.ToString)) Else sSQL.Append("NULL")
                                     Else
                                         sSQL.Append("NULL")
                                     End If

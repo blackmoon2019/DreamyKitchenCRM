@@ -825,7 +825,6 @@ Public Class frmScroller
                     CurrentView = ""
                 End If
                 sdr.Close()
-
             Else
                 If CurrentView <> "" Then
                     Cmd = CNDB.CreateCommand

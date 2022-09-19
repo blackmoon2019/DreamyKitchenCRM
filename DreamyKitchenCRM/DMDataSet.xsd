@@ -530,7 +530,19 @@ ORDER BY name</CommandText>
               <Mapping SourceColumn="doorCatName" DataSetColumn="doorCatName" />
               <Mapping SourceColumn="closetType" DataSetColumn="closetType" />
             </Mappings>
-            <Sources />
+            <Sources>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_DOOR_TYPE" DbObjectType="View" FillMethodModifier="Public" FillMethodName="FillByAll" GenerateMethods="Fill" GenerateShortCommands="true" GeneratorSourceName="FillByAll" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="FillByAll">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, doorType, kasa, dimName, dimID, doorCatID, doorCatName, closetType
+FROM   vw_DOOR_TYPE
+WHERE (doorCatID = 'E6733593-7DA0-4180-8951-B09315E1F13D') 
+ORDER BY name</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </Sources>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_CONSTR_TYPETableAdapter" GeneratorDataComponentClassName="vw_CONSTR_TYPETableAdapter" Name="vw_CONSTR_TYPE" UserDataComponentName="vw_CONSTR_TYPETableAdapter">
             <MainSource>
@@ -600,7 +612,7 @@ ORDER BY name</CommandText>
   <xs:element name="DMDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DMDataSet" msprop:Generator_UserDSName="DMDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="DOOR_TYPE" msprop:Generator_TableClassName="DOOR_TYPEDataTable" msprop:Generator_TableVarName="tableDOOR_TYPE" msprop:Generator_TablePropName="DOOR_TYPE" msprop:Generator_RowDeletingName="DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="DOOR_TYPERowDeleted" msprop:Generator_UserTableName="DOOR_TYPE" msprop:Generator_RowChangedName="DOOR_TYPERowChanged" msprop:Generator_RowEvArgName="DOOR_TYPERowChangeEvent" msprop:Generator_RowClassName="DOOR_TYPERow">
+        <xs:element name="DOOR_TYPE" msprop:Generator_TableClassName="DOOR_TYPEDataTable" msprop:Generator_TableVarName="tableDOOR_TYPE" msprop:Generator_RowChangedName="DOOR_TYPERowChanged" msprop:Generator_TablePropName="DOOR_TYPE" msprop:Generator_RowDeletingName="DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="DOOR_TYPERowDeleted" msprop:Generator_RowClassName="DOOR_TYPERow" msprop:Generator_UserTableName="DOOR_TYPE" msprop:Generator_RowEvArgName="DOOR_TYPERowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -678,7 +690,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPE" msprop:Generator_TableClassName="vw_DOOR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE" msprop:Generator_RowChangedName="vw_DOOR_TYPERowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPE" msprop:Generator_RowDeletingName="vw_DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPERow" msprop:Generator_UserTableName="vw_DOOR_TYPE" msprop:Generator_RowEvArgName="vw_DOOR_TYPERowChangeEvent">
+        <xs:element name="vw_DOOR_TYPE" msprop:Generator_TableClassName="vw_DOOR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE" msprop:Generator_TablePropName="vw_DOOR_TYPE" msprop:Generator_RowDeletingName="vw_DOOR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPE" msprop:Generator_RowChangedName="vw_DOOR_TYPERowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
@@ -756,7 +768,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPE1" msprop:Generator_TableClassName="vw_DOOR_TYPE1DataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE1" msprop:Generator_RowChangedName="vw_DOOR_TYPE1RowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPE1" msprop:Generator_RowDeletingName="vw_DOOR_TYPE1RowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPE1RowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPE1RowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPE1RowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPE1Row" msprop:Generator_UserTableName="vw_DOOR_TYPE1" msprop:Generator_RowEvArgName="vw_DOOR_TYPE1RowChangeEvent">
+        <xs:element name="vw_DOOR_TYPE1" msprop:Generator_TableClassName="vw_DOOR_TYPE1DataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPE1" msprop:Generator_TablePropName="vw_DOOR_TYPE1" msprop:Generator_RowDeletingName="vw_DOOR_TYPE1RowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPE1RowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPE1RowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPE1RowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPE1" msprop:Generator_RowChangedName="vw_DOOR_TYPE1RowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPE1RowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPE1Row">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
@@ -834,7 +846,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPEPlainaYpsila" msprop:Generator_TableClassName="vw_DOOR_TYPEPlainaYpsilaDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEPlainaYpsila" msprop:Generator_RowChangedName="vw_DOOR_TYPEPlainaYpsilaRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPEPlainaYpsila" msprop:Generator_RowDeletingName="vw_DOOR_TYPEPlainaYpsilaRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEPlainaYpsilaRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEPlainaYpsilaRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEPlainaYpsilaRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPEPlainaYpsilaRow" msprop:Generator_UserTableName="vw_DOOR_TYPEPlainaYpsila" msprop:Generator_RowEvArgName="vw_DOOR_TYPEPlainaYpsilaRowChangeEvent">
+        <xs:element name="vw_DOOR_TYPEPlainaYpsila" msprop:Generator_TableClassName="vw_DOOR_TYPEPlainaYpsilaDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEPlainaYpsila" msprop:Generator_TablePropName="vw_DOOR_TYPEPlainaYpsila" msprop:Generator_RowDeletingName="vw_DOOR_TYPEPlainaYpsilaRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEPlainaYpsilaRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEPlainaYpsilaRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEPlainaYpsilaRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPEPlainaYpsila" msprop:Generator_RowChangedName="vw_DOOR_TYPEPlainaYpsilaRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPEPlainaYpsilaRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPEPlainaYpsilaRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ColorName" msprop:Generator_ColumnVarNameInTable="columnColorName" msprop:Generator_ColumnPropNameInRow="ColorName" msprop:Generator_ColumnPropNameInTable="ColorNameColumn" msprop:Generator_UserColumnName="ColorName" minOccurs="0">
@@ -912,7 +924,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPEPlainaKremasta" msprop:Generator_TableClassName="vw_DOOR_TYPEPlainaKremastaDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEPlainaKremasta" msprop:Generator_TablePropName="vw_DOOR_TYPEPlainaKremasta" msprop:Generator_RowDeletingName="vw_DOOR_TYPEPlainaKremastaRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEPlainaKremastaRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEPlainaKremastaRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEPlainaKremastaRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPEPlainaKremasta" msprop:Generator_RowChangedName="vw_DOOR_TYPEPlainaKremastaRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPEPlainaKremastaRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPEPlainaKremastaRow">
+        <xs:element name="vw_DOOR_TYPEPlainaKremasta" msprop:Generator_TableClassName="vw_DOOR_TYPEPlainaKremastaDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEPlainaKremasta" msprop:Generator_RowChangedName="vw_DOOR_TYPEPlainaKremastaRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPEPlainaKremasta" msprop:Generator_RowDeletingName="vw_DOOR_TYPEPlainaKremastaRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEPlainaKremastaRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEPlainaKremastaRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEPlainaKremastaRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPEPlainaKremastaRow" msprop:Generator_UserTableName="vw_DOOR_TYPEPlainaKremasta" msprop:Generator_RowEvArgName="vw_DOOR_TYPEPlainaKremastaRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
@@ -990,7 +1002,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPERafieresV" msprop:Generator_TableClassName="vw_DOOR_TYPERafieresVDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafieresV" msprop:Generator_TablePropName="vw_DOOR_TYPERafieresV" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafieresVRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafieresVRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafieresVRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafieresVRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPERafieresV" msprop:Generator_RowChangedName="vw_DOOR_TYPERafieresVRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafieresVRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERafieresVRow">
+        <xs:element name="vw_DOOR_TYPERafieresV" msprop:Generator_TableClassName="vw_DOOR_TYPERafieresVDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafieresV" msprop:Generator_RowChangedName="vw_DOOR_TYPERafieresVRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPERafieresV" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafieresVRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafieresVRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafieresVRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafieresVRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPERafieresVRow" msprop:Generator_UserTableName="vw_DOOR_TYPERafieresV" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafieresVRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
@@ -1068,7 +1080,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPERafieresK" msprop:Generator_TableClassName="vw_DOOR_TYPERafieresKDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafieresK" msprop:Generator_TablePropName="vw_DOOR_TYPERafieresK" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafieresKRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafieresKRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafieresKRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafieresKRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPERafieresK" msprop:Generator_RowChangedName="vw_DOOR_TYPERafieresKRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafieresKRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERafieresKRow">
+        <xs:element name="vw_DOOR_TYPERafieresK" msprop:Generator_TableClassName="vw_DOOR_TYPERafieresKDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafieresK" msprop:Generator_RowChangedName="vw_DOOR_TYPERafieresKRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPERafieresK" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafieresKRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafieresKRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafieresKRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafieresKRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPERafieresKRow" msprop:Generator_UserTableName="vw_DOOR_TYPERafieresK" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafieresKRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
@@ -1146,7 +1158,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPERafieresY" msprop:Generator_TableClassName="vw_DOOR_TYPERafieresYDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafieresY" msprop:Generator_TablePropName="vw_DOOR_TYPERafieresY" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafieresYRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafieresYRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafieresYRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafieresYRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPERafieresY" msprop:Generator_RowChangedName="vw_DOOR_TYPERafieresYRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafieresYRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERafieresYRow">
+        <xs:element name="vw_DOOR_TYPERafieresY" msprop:Generator_TableClassName="vw_DOOR_TYPERafieresYDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafieresY" msprop:Generator_RowChangedName="vw_DOOR_TYPERafieresYRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPERafieresY" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafieresYRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafieresYRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafieresYRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafieresYRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPERafieresYRow" msprop:Generator_UserTableName="vw_DOOR_TYPERafieresY" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafieresYRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
@@ -1224,7 +1236,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPERafiaWall" msprop:Generator_TableClassName="vw_DOOR_TYPERafiaWallDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafiaWall" msprop:Generator_TablePropName="vw_DOOR_TYPERafiaWall" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafiaWallRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafiaWallRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafiaWallRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafiaWallRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPERafiaWall" msprop:Generator_RowChangedName="vw_DOOR_TYPERafiaWallRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafiaWallRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPERafiaWallRow">
+        <xs:element name="vw_DOOR_TYPERafiaWall" msprop:Generator_TableClassName="vw_DOOR_TYPERafiaWallDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPERafiaWall" msprop:Generator_RowChangedName="vw_DOOR_TYPERafiaWallRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPERafiaWall" msprop:Generator_RowDeletingName="vw_DOOR_TYPERafiaWallRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPERafiaWallRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPERafiaWallRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPERafiaWallRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPERafiaWallRow" msprop:Generator_UserTableName="vw_DOOR_TYPERafiaWall" msprop:Generator_RowEvArgName="vw_DOOR_TYPERafiaWallRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
@@ -1302,7 +1314,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPECloset" msprop:Generator_TableClassName="vw_DOOR_TYPEClosetDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPECloset" msprop:Generator_RowChangedName="vw_DOOR_TYPEClosetRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPECloset" msprop:Generator_RowDeletingName="vw_DOOR_TYPEClosetRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEClosetRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEClosetRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEClosetRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPEClosetRow" msprop:Generator_UserTableName="vw_DOOR_TYPECloset" msprop:Generator_RowEvArgName="vw_DOOR_TYPEClosetRowChangeEvent">
+        <xs:element name="vw_DOOR_TYPECloset" msprop:Generator_TableClassName="vw_DOOR_TYPEClosetDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPECloset" msprop:Generator_TablePropName="vw_DOOR_TYPECloset" msprop:Generator_RowDeletingName="vw_DOOR_TYPEClosetRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEClosetRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEClosetRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEClosetRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPECloset" msprop:Generator_RowChangedName="vw_DOOR_TYPEClosetRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPEClosetRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPEClosetRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
@@ -1380,7 +1392,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPEEpendisisCloset" msprop:Generator_TableClassName="vw_DOOR_TYPEEpendisisClosetDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEEpendisisCloset" msprop:Generator_TablePropName="vw_DOOR_TYPEEpendisisCloset" msprop:Generator_RowDeletingName="vw_DOOR_TYPEEpendisisClosetRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEEpendisisClosetRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEEpendisisClosetRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEEpendisisClosetRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPEEpendisisCloset" msprop:Generator_RowChangedName="vw_DOOR_TYPEEpendisisClosetRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPEEpendisisClosetRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPEEpendisisClosetRow">
+        <xs:element name="vw_DOOR_TYPEEpendisisCloset" msprop:Generator_TableClassName="vw_DOOR_TYPEEpendisisClosetDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEEpendisisCloset" msprop:Generator_RowChangedName="vw_DOOR_TYPEEpendisisClosetRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPEEpendisisCloset" msprop:Generator_RowDeletingName="vw_DOOR_TYPEEpendisisClosetRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEEpendisisClosetRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEEpendisisClosetRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEEpendisisClosetRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPEEpendisisClosetRow" msprop:Generator_UserTableName="vw_DOOR_TYPEEpendisisCloset" msprop:Generator_RowEvArgName="vw_DOOR_TYPEEpendisisClosetRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
@@ -1458,7 +1470,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPEDOORS" msprop:Generator_TableClassName="vw_DOOR_TYPEDOORSDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEDOORS" msprop:Generator_RowChangedName="vw_DOOR_TYPEDOORSRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPEDOORS" msprop:Generator_RowDeletingName="vw_DOOR_TYPEDOORSRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEDOORSRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEDOORSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEDOORSRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPEDOORSRow" msprop:Generator_UserTableName="vw_DOOR_TYPEDOORS" msprop:Generator_RowEvArgName="vw_DOOR_TYPEDOORSRowChangeEvent">
+        <xs:element name="vw_DOOR_TYPEDOORS" msprop:Generator_TableClassName="vw_DOOR_TYPEDOORSDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPEDOORS" msprop:Generator_TablePropName="vw_DOOR_TYPEDOORS" msprop:Generator_RowDeletingName="vw_DOOR_TYPEDOORSRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPEDOORSRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPEDOORSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPEDOORSRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPEDOORS" msprop:Generator_RowChangedName="vw_DOOR_TYPEDOORSRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPEDOORSRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPEDOORSRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">
@@ -1536,7 +1548,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_CONSTR_TYPE" msprop:Generator_TableClassName="vw_CONSTR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_CONSTR_TYPE" msprop:Generator_TablePropName="vw_CONSTR_TYPE" msprop:Generator_RowDeletingName="vw_CONSTR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_CONSTR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_CONSTR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CONSTR_TYPERowDeleted" msprop:Generator_UserTableName="vw_CONSTR_TYPE" msprop:Generator_RowChangedName="vw_CONSTR_TYPERowChanged" msprop:Generator_RowEvArgName="vw_CONSTR_TYPERowChangeEvent" msprop:Generator_RowClassName="vw_CONSTR_TYPERow">
+        <xs:element name="vw_CONSTR_TYPE" msprop:Generator_TableClassName="vw_CONSTR_TYPEDataTable" msprop:Generator_TableVarName="tablevw_CONSTR_TYPE" msprop:Generator_RowChangedName="vw_CONSTR_TYPERowChanged" msprop:Generator_TablePropName="vw_CONSTR_TYPE" msprop:Generator_RowDeletingName="vw_CONSTR_TYPERowDeleting" msprop:Generator_RowChangingName="vw_CONSTR_TYPERowChanging" msprop:Generator_RowEvHandlerName="vw_CONSTR_TYPERowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CONSTR_TYPERowDeleted" msprop:Generator_RowClassName="vw_CONSTR_TYPERow" msprop:Generator_UserTableName="vw_CONSTR_TYPE" msprop:Generator_RowEvArgName="vw_CONSTR_TYPERowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_UserColumnName="ID" type="xs:string" />
@@ -1550,7 +1562,7 @@ ORDER BY name</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_DOOR_TYPESpecialConstr" msprop:Generator_TableClassName="vw_DOOR_TYPESpecialConstrDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPESpecialConstr" msprop:Generator_TablePropName="vw_DOOR_TYPESpecialConstr" msprop:Generator_RowDeletingName="vw_DOOR_TYPESpecialConstrRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPESpecialConstrRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPESpecialConstrRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPESpecialConstrRowDeleted" msprop:Generator_UserTableName="vw_DOOR_TYPESpecialConstr" msprop:Generator_RowChangedName="vw_DOOR_TYPESpecialConstrRowChanged" msprop:Generator_RowEvArgName="vw_DOOR_TYPESpecialConstrRowChangeEvent" msprop:Generator_RowClassName="vw_DOOR_TYPESpecialConstrRow">
+        <xs:element name="vw_DOOR_TYPESpecialConstr" msprop:Generator_TableClassName="vw_DOOR_TYPESpecialConstrDataTable" msprop:Generator_TableVarName="tablevw_DOOR_TYPESpecialConstr" msprop:Generator_RowChangedName="vw_DOOR_TYPESpecialConstrRowChanged" msprop:Generator_TablePropName="vw_DOOR_TYPESpecialConstr" msprop:Generator_RowDeletingName="vw_DOOR_TYPESpecialConstrRowDeleting" msprop:Generator_RowChangingName="vw_DOOR_TYPESpecialConstrRowChanging" msprop:Generator_RowEvHandlerName="vw_DOOR_TYPESpecialConstrRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_DOOR_TYPESpecialConstrRowDeleted" msprop:Generator_RowClassName="vw_DOOR_TYPESpecialConstrRow" msprop:Generator_UserTableName="vw_DOOR_TYPESpecialConstr" msprop:Generator_RowEvArgName="vw_DOOR_TYPESpecialConstrRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Modifier" msprop:Generator_ColumnVarNameInTable="columnModifier" msprop:Generator_ColumnPropNameInRow="Modifier" msprop:Generator_ColumnPropNameInTable="ModifierColumn" msprop:Generator_UserColumnName="Modifier" minOccurs="0">

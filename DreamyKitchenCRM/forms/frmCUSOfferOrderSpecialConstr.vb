@@ -92,7 +92,7 @@ Public Class frmCUSOfferOrderSpecialConstr
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
                 txtnotes.EditValue = ProgProps.CUS_NOTES
-                txtExtraTransp.EditValue = ProgProps.SCTransp
+                txtTransp.EditValue = ProgProps.SCTransp
                 txtMeasurement.EditValue = ProgProps.SCMeasurement
                 txtRemove.EditValue = ProgProps.SCRemove
             Case FormMode.EditRecord
@@ -130,6 +130,15 @@ Public Class frmCUSOfferOrderSpecialConstr
                     If Mode = FormMode.NewRecord Then
                         Mode = FormMode.EditRecord
                         If sIsOrder Then
+                            Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
+                            HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
+                            HasCloset = cboTRANSH.GetColumnValue("Iscloset")
+                            HasDoors = cboTRANSH.GetColumnValue("Isdoors")
+                            HasSc = cboTRANSH.GetColumnValue("Issc")
+                            If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
+                                XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                                Exit Sub
+                            End If
                             ' Δημιουργία/Ενημέρωση Κοστολόγησης
                             Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
                                 oCmd.CommandType = CommandType.StoredProcedure
@@ -263,7 +272,7 @@ Public Class frmCUSOfferOrderSpecialConstr
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)

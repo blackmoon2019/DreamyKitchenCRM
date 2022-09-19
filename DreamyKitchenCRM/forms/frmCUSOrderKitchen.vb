@@ -104,7 +104,7 @@ Public Class frmCUSOrderKitchen
                 txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
-                txtExtraTransp.EditValue = ProgProps.KitchenTransp
+                txtTransp.EditValue = ProgProps.KitchenTransp
                 txtMeasurement.EditValue = ProgProps.KitchenMeasurement
                 txtRemove.EditValue = ProgProps.KitchenRemove
 
@@ -295,6 +295,15 @@ Public Class frmCUSOrderKitchen
                         End If
                     End If
                     Mode = FormMode.EditRecord
+                    Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
+                    HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
+                    HasCloset = cboTRANSH.GetColumnValue("Iscloset")
+                    HasDoors = cboTRANSH.GetColumnValue("Isdoors")
+                    HasSc = cboTRANSH.GetColumnValue("Issc")
+                    If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
+                        XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Sub
+                    End If
                     ' Δημιουργία/Ενημέρωση Κοστολόγησης
                     Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
@@ -324,7 +333,7 @@ Public Class frmCUSOrderKitchen
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
@@ -415,10 +424,10 @@ Public Class frmCUSOrderKitchen
     End Sub
 
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_ORDERS_KITCHEN_DEVICES_def.xml", "vw_CCT_ORDERS_KITCHEN_DEVICES")
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml", "vw_CCT_ORDERS_KITCHEN_EQUIPMENT")
     End Sub
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml", "vw_CCT_ORDERS_KITCHEN_EQUIPMENT")
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_ORDERS_KITCHEN_DEVICES_def.xml", "vw_CCT_ORDERS_KITCHEN_DEVICES")
     End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
