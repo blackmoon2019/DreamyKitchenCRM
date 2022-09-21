@@ -255,7 +255,7 @@ Partial Public Class RepTransCostK
         Me.TransCostID.Description = "TransCostID"
         Me.TransCostID.Name = "TransCostID"
         Me.TransCostID.Type = GetType(System.Guid)
-        Me.TransCostID.ValueInfo = "b80bc979-fec5-4e4f-8443-6ee5c389af1b"
+        Me.TransCostID.ValueInfo = "93a1e51a-0272-4da5-96f4-1d40af00fd9c"
         DynamicListLookUpSettings1.DataMember = "VW_REPTRANSCOSTK"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"

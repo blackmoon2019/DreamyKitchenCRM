@@ -131,7 +131,7 @@
 inner join "dbo"."TRANSCOST" "TRANSCOST"
        on ("TRANSCOST"."ID" = "TRANSCOST_EQ"."transCostID"))
 where        "TRANSCOST_EQ"."transCostID"=@transCostID
-and "TRANSCOST_EQ"."isKitchen"=1</value>
+and "TRANSCOST_EQ"."isKitchen"=1 and "TRANSCOST_EQ"."price" &lt;&gt;0</value>
   </data>
   <data name="SqlDataSource1.ResultSchemaSerializable" xml:space="preserve">
     <value>PERhdGFTZXQgTmFtZT0iU3FsRGF0YVNvdXJjZTEiPjxWaWV3IE5hbWU9IlRSQU5TQ09TVF9FUSI+PEZpZWxkIE5hbWU9InRyYW5zQ29zdElEIiBUeXBlPSJHdWlkIiAvPjxGaWVsZCBOYW1lPSJuYW1lIiBUeXBlPSJTdHJpbmciIC8+PEZpZWxkIE5hbWU9InByaWNlIiBUeXBlPSJEZWNpbWFsIiAvPjxGaWVsZCBOYW1lPSJxdHkiIFR5cGU9IkludDMyIiAvPjxGaWVsZCBOYW1lPSJUb3RhbCIgVHlwZT0iRGVjaW1hbCIgLz48RmllbGQgTmFtZT0iVG90RVFNIiBUeXBlPSJEZWNpbWFsIiAvPjwvVmlldz48L0RhdGFTZXQ+</value>

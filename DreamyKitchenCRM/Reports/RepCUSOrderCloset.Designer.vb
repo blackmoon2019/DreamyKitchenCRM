@@ -122,6 +122,8 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel32 = New DevExpress.XtraReports.UI.XRLabel()
         Me.GroupHeader3 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -241,7 +243,7 @@ Partial Public Class RepCUSOrderCloset
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "d1115a0e-50ce-4381-b24c-cab14935f5e2"
+        Me.OfferID.ValueInfo = "e4273d18-61e5-440a-b309-f7eeaea25b57"
         DynamicListLookUpSettings1.DataMember = "vw_CCT_ORDERS_CLOSET"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
@@ -1219,10 +1221,10 @@ Partial Public Class RepCUSOrderCloset
         '
         'Detail1
         '
-        Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel37})
+        Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel5, Me.XrLabel37})
         Me.Detail1.HeightF = 24.35913!
-        Me.Detail1.MultiColumn.ColumnCount = 3
-        Me.Detail1.MultiColumn.ColumnSpacing = 3.0!
+        Me.Detail1.MultiColumn.ColumnCount = 2
+        Me.Detail1.MultiColumn.ColumnSpacing = 2.0!
         Me.Detail1.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown
         Me.Detail1.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount
         Me.Detail1.Name = "Detail1"
@@ -1276,11 +1278,10 @@ Partial Public Class RepCUSOrderCloset
         '
         'Detail3
         '
-        Me.Detail3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel33, Me.XrLabel32})
+        Me.Detail3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel7, Me.XrLabel33, Me.XrLabel32})
         Me.Detail3.HeightF = 23.0!
-        Me.Detail3.MultiColumn.ColumnCount = 2
+        Me.Detail3.MultiColumn.ColumnCount = 3
         Me.Detail3.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown
-        Me.Detail3.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount
         Me.Detail3.Name = "Detail3"
         '
         'XrLabel33
@@ -1288,11 +1289,11 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel33.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[price]")})
         Me.XrLabel33.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel33.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(211.9999!, 0!)
+        Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(210.9999!, 0!)
         Me.XrLabel33.Multiline = True
         Me.XrLabel33.Name = "XrLabel33"
         Me.XrLabel33.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel33.SizeF = New System.Drawing.SizeF(101.5!, 23.0!)
+        Me.XrLabel33.SizeF = New System.Drawing.SizeF(75.90479!, 23.0!)
         Me.XrLabel33.StylePriority.UseFont = False
         Me.XrLabel33.StylePriority.UseForeColor = False
         Me.XrLabel33.Text = "XrLabel10"
@@ -1336,6 +1337,36 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel31.StylePriority.UseTextAlignment = False
         Me.XrLabel31.Text = "Extra εξοπλισμός"
         Me.XrLabel31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
+        Me.XrLabel5.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(207.0!, 0!)
+        Me.XrLabel5.Multiline = True
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseForeColor = False
+        Me.XrLabel5.Text = "XrLabel5"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
+        Me.XrLabel7.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(299.9046!, 0!)
+        Me.XrLabel7.Multiline = True
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(57.8681!, 23.0!)
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseForeColor = False
+        Me.XrLabel7.Text = "XrLabel7"
+        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'RepCUSOrderCloset
         '
@@ -1446,4 +1477,6 @@ Partial Public Class RepCUSOrderCloset
     Friend WithEvents XrTableCell5 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell9 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
 End Class

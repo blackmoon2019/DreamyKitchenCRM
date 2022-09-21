@@ -352,6 +352,8 @@ Public Class frmTransCost
     End Property
 
     Private Sub frmTransCost_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEDOORS' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPEDOORSTableAdapter.Fill(Me.DMDataSet.vw_DOOR_TYPEDOORS)
         Try
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
             Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DMDataSet.vw_DOOR_TYPERafiaWall)
@@ -385,6 +387,7 @@ Public Class frmTransCost
             Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
             Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
+            Me.Vw_DOOR_TYPEClosetTableAdapter.FillBYCloset(Me.DMDataSet.vw_DOOR_TYPECloset)
             Dim Prog_Prop As New ProgProp
             Prog_Prop.GetProgPROSF()
 
@@ -459,6 +462,7 @@ Public Class frmTransCost
                     FillDataGridM()
                     FillDataGridC()
                     FillCostFromDB()
+                    ChangeBackColortoFields()
             End Select
             Me.CenterToScreen()
             cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -466,6 +470,44 @@ Public Class frmTransCost
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
+    End Sub
+    Private Sub ChangeBackColortoFields()
+        If txtVDoorPrice1.EditValue <> 0 Then Vtrm1.BackColor = Color.Orange
+        If txtVDoorPrice2.EditValue <> 0 Then Vtrm2.BackColor = Color.Orange
+        If txtKDoorPrice1.EditValue <> 0 Then Ktrm1.BackColor = Color.Orange
+        If txtKDoorPrice2.EditValue <> 0 Then Ktrm2.BackColor = Color.Orange
+        If txtYDoorPrice1.EditValue <> 0 Then Ytrm1.BackColor = Color.Orange
+        If txtYDoorPrice2.EditValue <> 0 Then Ytrm2.BackColor = Color.Orange
+        If txtVEpendDoorPrice.EditValue <> 0 Then VEpendTrm.BackColor = Color.Orange
+        If txtNEpendDoorPrice.EditValue <> 0 Then NEpendTrm.BackColor = Color.Orange
+        If txtVRafPrice.EditValue <> 0 Then VRafTem.BackColor = Color.Orange
+        If txtKEpendDoorPrice.EditValue <> 0 Then KEpendTrm.BackColor = Color.Orange
+        If txtSEpendDoorPrice.EditValue <> 0 Then SEpendTrm.BackColor = Color.Orange
+        If txtKRafPrice.EditValue <> 0 Then KRafTem.BackColor = Color.Orange
+        If txtWRafPrice.EditValue <> 0 Then WRafTem.BackColor = Color.Orange
+        If txtYEpendDoorPrice.EditValue <> 0 Then YEpendTrm.BackColor = Color.Orange
+        If txtYRafPrice.EditValue <> 0 Then YRafTem.BackColor = Color.Orange
+        If txtBenchDoorPrice1.EditValue <> 0 Then BenchTem1.BackColor = Color.Orange
+        If txtBenchDoorPrice2.EditValue <> 0 Then BenchTem2.BackColor = Color.Orange
+        If txtBackDoorPrice.EditValue <> 0 Then BackTem.BackColor = Color.Orange
+        If txtCDoorPrice1.EditValue <> 0 Then Ctm1.BackColor = Color.Orange
+        If txtCDoorPrice2.EditValue <> 0 Then Ctm2.BackColor = Color.Orange
+        If txtCDoorPrice3.EditValue <> 0 Then Ctm3.BackColor = Color.Orange
+        If txtCDoorPrice4.EditValue <> 0 Then Ctm4.BackColor = Color.Orange
+        If txtCDoorPrice5.EditValue <> 0 Then Ctm5.BackColor = Color.Orange
+        If txtCDoorPrice6.EditValue <> 0 Then Ctm6.BackColor = Color.Orange
+        If txtCDoorPrice7.EditValue <> 0 Then Ctm7.BackColor = Color.Orange
+        If txtCDoorPrice8.EditValue <> 0 Then Ctm8.BackColor = Color.Orange
+        If txtCDoorPrice9.EditValue <> 0 Then Ctm9.BackColor = Color.Orange
+        If txtCDoorPrice10.EditValue <> 0 Then Ctm10.BackColor = Color.Orange
+        If txtCDoorPrice11.EditValue <> 0 Then Ctm11.BackColor = Color.Orange
+        If txtCDoorPrice12.EditValue <> 0 Then Ctm12.BackColor = Color.Orange
+        If txtDDoorPrice1.EditValue <> 0 Then DTem1.BackColor = Color.Orange
+        If txtDDoorPrice2.EditValue <> 0 Then DTem2.BackColor = Color.Orange
+        If txtDDoorPrice3.EditValue <> 0 Then DTem3.BackColor = Color.Orange
+        If txtDDoorPrice4.EditValue <> 0 Then DTem4.BackColor = Color.Orange
+        If txtDDoorPrice5.EditValue <> 0 Then DTem5.BackColor = Color.Orange
+        If txtDDoorPrice6.EditValue <> 0 Then DTem6.BackColor = Color.Orange
     End Sub
     ' Κ Ο Υ Ζ Ι Ν Α
     Private Sub TErmaria_ElementClick(sender As Object, e As NavElementEventArgs) Handles TErmaria.ElementClick
@@ -520,7 +562,7 @@ Public Class frmTransCost
     End Sub
     Private Sub FillDataGridM()
         LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "select EQ.ID,EQ.code,E.name, EQ.price,EQ.qty,(EQ.price * EQ.qty ) AS Total
+                    "select EQ.ID,EQ.equipmentID,EQ.code,E.name, EQ.price,EQ.qty,(EQ.price * EQ.qty ) AS Total
 					from CCT_ORDERS_KITCHEN_EQUIPMENT EQ
 					INNER JOIN EQUIPMENT E ON E.ID = EQ.equipmentID 
 					INNER JOIN CCT_ORDERS_KITCHEN COK ON EQ.cctOrdersKitchenID =  COK.ID 
@@ -536,16 +578,16 @@ Public Class frmTransCost
         GridView2.Columns.Item("Total").OptionsColumn.AllowEdit = False
         CostPrices.TotKEquipment = GridView2.Columns("Total").SummaryItem.SummaryValue
 
-        LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "select EQ.ID,EQ.code,E.name, EQ.price,EQ.qty,(EQ.price * EQ.qty ) AS Total
-					from CCT_ORDERS_KITCHEN_EQUIPMENT EQ
-					INNER JOIN EQUIPMENT E ON E.ID = EQ.equipmentID 
-					INNER JOIN CCT_ORDERS_KITCHEN COK ON EQ.cctOrdersKitchenID =  COK.ID 
-					INNER JOIN TRANSH ON TRANSH.ID =  COK.transhID 
-					where TRANSH.ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
+        '   LoadForms.LoadDataToGrid(grdEquipment, GridView2,
+        '               "select EQ.ID,EQ.code,E.name, EQ.price,EQ.qty,(EQ.price * EQ.qty ) AS Total
+        'from CCT_ORDERS_KITCHEN_EQUIPMENT EQ
+        'INNER JOIN EQUIPMENT E ON E.ID = EQ.equipmentID 
+        'INNER JOIN CCT_ORDERS_KITCHEN COK ON EQ.cctOrdersKitchenID =  COK.ID 
+        'INNER JOIN TRANSH ON TRANSH.ID =  COK.transhID 
+        'where TRANSH.ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
 
         LoadForms.LoadDataToGrid(grdDevices, GridView3,
-                    "select ED.ID,ED.code,ED.dcode,E.name, ED.price
+                    "select ED.ID,ED.devicesID ,ED.code,ED.dcode,E.name, ED.price
 					from CCT_ORDERS_KITCHEN_DEVICES  ED
 					INNER JOIN DEVICES E ON E.ID = ED.devicesID 
 					INNER JOIN CCT_ORDERS_KITCHEN COK ON ED.cctOrdersKitchenID =  COK.ID 
@@ -564,6 +606,23 @@ Public Class frmTransCost
         GridView3.Columns.Item("dcode").OptionsColumn.AllowEdit = False
         GridView3.Columns.Item("price").OptionsColumn.AllowEdit = False
         CostPrices.TotKDevices = GridView3.Columns("price").SummaryItem.SummaryValue
+    End Sub
+    Private Sub FillDataGridC()
+        LoadForms.LoadDataToGrid(GridControl1, GridView1,
+                    "select EQ.ID,EQ.equipmentID ,EQ.code,E.name, EQ.price,EQ.qty,(EQ.price * EQ.qty ) AS Total
+					from CCT_ORDERS_CLOSET_EQUIPMENT  EQ
+					INNER JOIN EQUIPMENT E ON E.ID = EQ.equipmentID 
+					INNER JOIN CCT_ORDERS_CLOSET COK ON EQ.cctOrdersClosetID =  COK.ID 
+					INNER JOIN TRANSH ON TRANSH.ID =  COK.transhID 
+					where TRANSH.ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
+        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_COST_def.xml") = True Then
+            GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_COST_def.xml", OptionsLayoutBase.FullLayout)
+        End If
+        GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
+        GridView1.Columns.Item("qty").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("qty").OptionsColumn.AllowEdit = False
+        GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False
+        GridView1.Columns.Item("Total").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("Total").OptionsColumn.AllowEdit = False
+        CostPrices.TotCEquipment = GridView1.Columns("Total").SummaryItem.SummaryValue
     End Sub
     Private Sub TVaseos_ElementClick(sender As Object, e As NavElementEventArgs)
         Maintab.SelectedTabPage = XtraTabPage1
@@ -705,7 +764,7 @@ Public Class frmTransCost
             End Using
             For I = 0 To GridView2.RowCount - 1
                 sSQL = "INSERT INTO TRANSCOST_EQ(transCostID,cctOrdersKitchenEquipmentID,price,qty,Total,isKitchen) " &
-                    " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "price").ToString, True) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "qty").ToString, True) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "Total").ToString, True) & ",1 )"
+                    " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "equipmentID").ToString) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "price").ToString, True) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "qty").ToString, True) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "Total").ToString, True) & ",1 )"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
@@ -713,7 +772,7 @@ Public Class frmTransCost
 
             For I = 0 To GridView1.RowCount - 1
                 sSQL = "INSERT INTO TRANSCOST_EQ(transCostID,cctOrdersKitchenEquipmentID,price,qty,Total,isCloset) " &
-                    " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "price").ToString, True) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "qty").ToString, True) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "Total").ToString, True) & ",1 )"
+                    " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "equipmentID").ToString) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "price").ToString, True) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "qty").ToString, True) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "Total").ToString, True) & ",1 )"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
@@ -724,8 +783,8 @@ Public Class frmTransCost
                 oCmd.ExecuteNonQuery()
             End Using
             For I = 0 To GridView3.RowCount - 1
-                sSQL = "INSERT INTO TRANSCOST_ED(transCostID,cctOrdersKitchenDevicesID,price,qty,Total,isKitchen) " &
-                    " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "price").ToString, True) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "qty").ToString, True) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "Total").ToString, True) & ",1 )"
+                sSQL = "INSERT INTO TRANSCOST_ED(transCostID,cctOrdersKitchenDevicesID,price) " &
+                    " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "devicesID").ToString) & "," & toSQLValueS(GridView3.GetRowCellValue(I, "price").ToString, True) & ")"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
@@ -984,8 +1043,8 @@ Public Class frmTransCost
 
 
             ' ΚΟΥΖΙΝΑ ΣΥΝΟΛΑ
-            CostPrices.GenTotK = CostPrices.KStandarTotal + CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal + CostPrices.VEpendisisTotal + CostPrices.KEpendisisTotal +
-                             CostPrices.YEpendisisTotal + CostPrices.BenchBackTotal + CostPrices.TotKEquipment
+            CostPrices.GenTotK = CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal + CostPrices.VEpendisisTotal + CostPrices.KEpendisisTotal +
+                             CostPrices.YEpendisisTotal + CostPrices.BenchBackTotal + CostPrices.TotKEquipment '+ CostPrices.KStandarTotal    + CostPrices.TotKDevices
             CostPrices.SprofitK = (CostPrices.GenTotK / 100) * CostPrices.profitPercK
             CostPrices.CprofitK = (CostPrices.GenTotK / 100) * CostPrices.profitPercCompK
             CostPrices.GenTotK = CostPrices.GenTotK + CostPrices.SprofitK + CostPrices.CprofitK + CostPrices.TotKDevices
@@ -1012,15 +1071,16 @@ Public Class frmTransCost
                             CostPrices.CErmariaTotal + CostPrices.TotCEquipment + CostPrices.DTotal + CostPrices.KStandarTotal + CostPrices.CStandarTotal + CostPrices.DStandarTotal + CostPrices.SCStandarTotal + CostPrices.TotKDevices
             ' Γενικό σύνολο από όλα τα είδη πώλησης και με τα ποσοστά
             CostPrices.GenTotWithoutProfit = CostPrices.GenTot
+            ' Είπαμε ότι οι πόρτες δεν
             CostPrices.GenTot = CostPrices.GenTot +
                             CostPrices.SprofitK + CostPrices.CprofitK +
                             CostPrices.SprofitC + CostPrices.CprofitC +
-                            CostPrices.SprofitD + CostPrices.CprofitD +
                             CostPrices.SprofitSC + CostPrices.CprofitSC
+            'CostPrices.SprofitD + CostPrices.CprofitD +
             txtGenTot.EditValue = CostPrices.GenTot
             txtGenTotWithoutProfit.EditValue = CostPrices.GenTotWithoutProfit
-            txtTotalSalerProfit.EditValue = CostPrices.SprofitK + CostPrices.SprofitC + CostPrices.SprofitD + CostPrices.SprofitSC
-            txtTotalCompanyProfit.EditValue = CostPrices.CprofitK + CostPrices.CprofitC + CostPrices.CprofitD + CostPrices.CprofitSC
+            txtTotalSalerProfit.EditValue = CostPrices.SprofitK + CostPrices.SprofitC + CostPrices.SprofitSC
+            txtTotalCompanyProfit.EditValue = CostPrices.CprofitK + CostPrices.CprofitC + CostPrices.CprofitSC
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("CalculateGenTot Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -1053,8 +1113,9 @@ Public Class frmTransCost
         txtErmTotal.EditValue = CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal
     End Sub
     Private Sub CalculateDTotal()
-        CostPrices.DTotal = CostPrices.DDoorFinalPrice1 + CostPrices.DDoorFinalPrice2 + CostPrices.DDoorFinalPrice3 + CostPrices.DDoorFinalPrice4 + CostPrices.DDoorFinalPrice5 + CostPrices.DDoorFinalPrice6 + CostPrices.DStandarTotal +
-            CostPrices.DDesign
+        CostPrices.DTotal = CostPrices.DDoorFinalPrice1 + CostPrices.DDoorFinalPrice2 + CostPrices.DDoorFinalPrice3 + CostPrices.DDoorFinalPrice4 + CostPrices.DDoorFinalPrice5 + CostPrices.DDoorFinalPrice6
+        'CostPrices.DStandarTotal +CostPrices.DDesign
+
         txtDTotal.EditValue = CostPrices.DTotal
     End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
@@ -1519,23 +1580,7 @@ Public Class frmTransCost
         XtraTabPage6.Visible = True
         'FillDataGridC()
     End Sub
-    Private Sub FillDataGridC()
-        LoadForms.LoadDataToGrid(GridControl1, GridView1,
-                    "select EQ.ID,EQ.code,E.name, EQ.price,EQ.qty,(EQ.price * EQ.qty ) AS Total
-					from CCT_ORDERS_CLOSET_EQUIPMENT  EQ
-					INNER JOIN EQUIPMENT E ON E.ID = EQ.equipmentID 
-					INNER JOIN CCT_ORDERS_CLOSET COK ON EQ.cctOrdersClosetID =  COK.ID 
-					INNER JOIN TRANSH ON TRANSH.ID =  COK.transhID 
-					where TRANSH.ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
-        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_COST_def.xml") = True Then
-            GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_COST_def.xml", OptionsLayoutBase.FullLayout)
-        End If
-        GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
-        GridView1.Columns.Item("qty").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("qty").OptionsColumn.AllowEdit = False
-        GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False
-        GridView1.Columns.Item("Total").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("Total").OptionsColumn.AllowEdit = False
-        CostPrices.TotCEquipment = GridView1.Columns("Total").SummaryItem.SummaryValue
-    End Sub
+
 
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "CCT_ORDERS_CLOSET_EQUIPMENT_COST_def.xml", "vw_CCT_ORDERS_CLOSET_EQUIPMENT")
@@ -1703,4 +1748,6 @@ Public Class frmTransCost
         Dim printTool As New ReportPrintTool(reportDummy)
         printTool.ShowRibbonPreview()
     End Sub
+
+
 End Class

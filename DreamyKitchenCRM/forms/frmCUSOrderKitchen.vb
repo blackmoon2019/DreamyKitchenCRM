@@ -63,6 +63,8 @@ Public Class frmCUSOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaKremasta2hsSeiras' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter.FillBYPlainaKremasta2hsSeiras(Me.DMDataSet.vw_DOOR_TYPEPlainaKremasta2hsSeiras)
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
         Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DMDataSet.vw_DOOR_TYPERafiaWall)
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresY' table. You can move, or remove it, as needed.
@@ -424,10 +426,10 @@ Public Class frmCUSOrderKitchen
     End Sub
 
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml", "vw_CCT_ORDERS_KITCHEN_EQUIPMENT")
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml", "vw_CCT_ORDERS_KITCHEN_DEVICES")
     End Sub
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_ORDERS_KITCHEN_DEVICES_def.xml", "vw_CCT_ORDERS_KITCHEN_DEVICES")
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml", "vw_CCT_ORDERS_KITCHEN_EQUIPMENT")
     End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
@@ -695,4 +697,43 @@ Public Class frmCUSOrderKitchen
         'lkupEditDoorType.Enabled = True
     End Sub
 
+    Private Sub cboBaza_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBaza.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboBaza.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboLegs_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboLegs.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboLegs.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboVwater_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVwater.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboVwater.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboYwater_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYwater.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboYwater.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboKwater_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKwater.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboKwater.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboLedProfil_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboLedProfil.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboLedProfil.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cbobenchThickness_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbobenchThickness.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cbobenchThickness.EditValue = Nothing
+        End Select
+    End Sub
 End Class

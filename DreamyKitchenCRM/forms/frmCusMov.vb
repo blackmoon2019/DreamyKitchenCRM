@@ -177,7 +177,7 @@ Public Class frmCusMov
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT_M where id ='" + sID + "'")
         End Select
-        If sCusID <> "" Then cboCUS.EditValue = System.Guid.Parse(sCusID) Else FScrollerExist = True
+        If sCusID <> "" Then cboCUS.EditValue = System.Guid.Parse(sCusID) 'Else FScrollerExist = True
         If cboSTATUS.GetColumnValue("RequiredSaler") <> Nothing Then lSaler.Enabled = True Else lSaler.Enabled = False
         Me.CenterToScreen()
         My.Settings.frmCusMov = Me.Location

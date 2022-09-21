@@ -507,7 +507,15 @@ NextItem:
                                         Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                         cbo = Ctrl
                                         If cbo.EditValue <> Nothing Then
-                                            sSQL.Append(cbo.SelectedIndex)
+                                            If cbo.EditValue = "False" Or cbo.EditValue = "True" Then
+                                                sSQL.Append(cbo.SelectedIndex)
+                                            Else
+                                                If cbo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                                    sSQL.Append(cbo.SelectedIndex)
+                                                Else
+                                                    sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
+                                                End If
+                                            End If
                                         Else
                                             sSQL.Append("NULL")
                                         End If

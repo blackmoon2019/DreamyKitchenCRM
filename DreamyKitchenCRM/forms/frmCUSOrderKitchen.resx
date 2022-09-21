@@ -182,6 +182,9 @@
   <metadata name="VwDOORTYPEPlainaKremastaBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>318, 173</value>
   </metadata>
+  <metadata name="VwDOORTYPEPlainaKremasta2hsSeirasBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1747, 225</value>
+  </metadata>
   <metadata name="VwDOORTYPERafieresVBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1298, 173</value>
   </metadata>
@@ -318,6 +321,9 @@
   </metadata>
   <metadata name="Vw_DOOR_TYPERafiaWallTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1310, 225</value>
+  </metadata>
+  <metadata name="Vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>2322, 225</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>327</value>
