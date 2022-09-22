@@ -170,12 +170,12 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
+        Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwCOLORSDOORSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
-        Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_COLORSDOORSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSDOORSTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -2487,6 +2487,14 @@ Partial Class frmCUSOfferOrderDoors
         Me.EmptySpaceItem4.Size = New System.Drawing.Size(413, 46)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
+        'Vw_CCTTableAdapter
+        '
+        Me.Vw_CCTTableAdapter.ClearBeforeFill = True
+        '
+        'Vw_SALERSTableAdapter
+        '
+        Me.Vw_SALERSTableAdapter.ClearBeforeFill = True
+        '
         'VwCCTBindingSource
         '
         Me.VwCCTBindingSource.DataMember = "vw_CCT"
@@ -2506,14 +2514,6 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.VwCOLORSDOORSBindingSource.DataMember = "vw_COLORSDOORS"
         Me.VwCOLORSDOORSBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'Vw_CCTTableAdapter
-        '
-        Me.Vw_CCTTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_SALERSTableAdapter
-        '
-        Me.Vw_SALERSTableAdapter.ClearBeforeFill = True
         '
         'Vw_COLORSDOORSTableAdapter
         '

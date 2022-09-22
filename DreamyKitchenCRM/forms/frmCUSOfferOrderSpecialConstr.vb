@@ -85,6 +85,7 @@ Public Class frmCUSOfferOrderSpecialConstr
             LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem50.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem57.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LayoutControlItem72.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         End If
         Select Case Mode
             Case FormMode.NewRecord
