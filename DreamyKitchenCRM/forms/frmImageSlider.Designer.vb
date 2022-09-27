@@ -26,12 +26,10 @@ Partial Class frmImageSlider
         '
         'mySlider
         '
-        Me.mySlider.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
-            Or System.Windows.Forms.AnchorStyles.Left) _
-            Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
-        Me.mySlider.Location = New System.Drawing.Point(18, 12)
+        Me.mySlider.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.mySlider.Location = New System.Drawing.Point(0, 0)
         Me.mySlider.Name = "mySlider"
-        Me.mySlider.Size = New System.Drawing.Size(1747, 1297)
+        Me.mySlider.Size = New System.Drawing.Size(1896, 1393)
         Me.mySlider.TabIndex = 20
         Me.mySlider.Text = "ImageSlider1"
         '
@@ -40,7 +38,7 @@ Partial Class frmImageSlider
         Me.cmdExit.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(1580, 1270)
+        Me.cmdExit.Location = New System.Drawing.Point(1699, 1342)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(179, 39)
@@ -52,7 +50,7 @@ Partial Class frmImageSlider
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(1777, 1321)
+        Me.ClientSize = New System.Drawing.Size(1896, 1393)
         Me.Controls.Add(Me.mySlider)
         Me.Controls.Add(Me.cmdExit)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon

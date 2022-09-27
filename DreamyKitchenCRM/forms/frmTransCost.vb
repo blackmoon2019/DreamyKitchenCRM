@@ -716,7 +716,7 @@ Public Class frmTransCost
                         InsertSelectedRows()
 
                         'Ενημέρωση Τζίρων Ποσοστά Έκθεσης
-                        UpdateEmpT()
+                        '  UpdateEmpT()
                 End Select
 
                 If FScrollerExist = True Then

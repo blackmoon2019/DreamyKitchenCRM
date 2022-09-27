@@ -507,7 +507,7 @@ Partial Class frmEMP
         Me.TimeEdit12.Properties.MaskSettings.Set("mask", "HH:mm")
         Me.TimeEdit12.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
         Me.TimeEdit12.Properties.UseMaskAsDisplayFormat = True
-        Me.TimeEdit12.Size = New System.Drawing.Size(261, 38)
+        Me.TimeEdit12.Size = New System.Drawing.Size(171, 38)
         Me.TimeEdit12.StyleController = Me.LayoutControl1
         Me.TimeEdit12.TabIndex = 44
         Me.TimeEdit12.Tag = "tmIN,0,1,2"
@@ -515,7 +515,7 @@ Partial Class frmEMP
         'TimeEdit11
         '
         Me.TimeEdit11.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.TimeEdit11.Location = New System.Drawing.Point(1320, 815)
+        Me.TimeEdit11.Location = New System.Drawing.Point(1230, 815)
         Me.TimeEdit11.Margin = New System.Windows.Forms.Padding(5)
         Me.TimeEdit11.Name = "TimeEdit11"
         Me.TimeEdit11.Properties.BeepOnError = True
@@ -523,7 +523,7 @@ Partial Class frmEMP
         Me.TimeEdit11.Properties.MaskSettings.Set("mask", "HH:mm")
         Me.TimeEdit11.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
         Me.TimeEdit11.Properties.UseMaskAsDisplayFormat = True
-        Me.TimeEdit11.Size = New System.Drawing.Size(87, 38)
+        Me.TimeEdit11.Size = New System.Drawing.Size(177, 38)
         Me.TimeEdit11.StyleController = Me.LayoutControl1
         Me.TimeEdit11.TabIndex = 44
         Me.TimeEdit11.Tag = "tmOUT,0,1,2"
@@ -916,7 +916,7 @@ Partial Class frmEMP
         Me.LayoutControlItem16.CustomizationFormText = "Ώρα Εισόδου"
         Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 482)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(525, 42)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(435, 42)
         Me.LayoutControlItem16.Text = "Ώρα Εισόδου"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(248, 23)
         '
@@ -925,9 +925,9 @@ Partial Class frmEMP
         Me.LayoutControlItem17.Control = Me.TimeEdit11
         Me.LayoutControlItem17.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem17.CustomizationFormText = "Ώρα Εισόδου"
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(525, 482)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(435, 482)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(205, 42)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(295, 42)
         Me.LayoutControlItem17.Text = "Ώρα Εξόδου"
         Me.LayoutControlItem17.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(102, 23)
