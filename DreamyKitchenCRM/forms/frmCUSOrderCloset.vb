@@ -298,7 +298,7 @@ Public Class frmCUSOrderCloset
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
-                        where  T.cusid = " & sCusID & "order by description")
+                        where  completed = 0 and T.cusid = " & sCusID & "order by description")
         Dim sVal As String
         If cboTRANSH.EditValue IsNot Nothing Then sVal = cboTRANSH.EditValue.ToString
         FillCbo.TRANSH(cboTRANSH, sSQL)

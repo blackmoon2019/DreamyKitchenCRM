@@ -275,7 +275,7 @@ Public Class frmCUSOfferOrderSpecialConstr
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
-                        where  T.cusid = " & sCusID & "order by description")
+                        where completed = 0 and  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
     End Sub
 
@@ -461,5 +461,9 @@ Public Class frmCUSOfferOrderSpecialConstr
             Case 2 : If cboScpecialConstr4.EditValue <> Nothing Then ManageSpecialConstr(cboScpecialConstr4)
             Case 3 : cboScpecialConstr4.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+
     End Sub
 End Class

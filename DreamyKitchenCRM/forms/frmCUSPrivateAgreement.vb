@@ -83,6 +83,7 @@ Public Class frmCUSPrivateAgreement
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from AGREEMENT where id = " & toSQLValueS(sID))
                 ChangeVal = False
+                cmdPrintOffer.Enabled = True
         End Select
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -189,6 +190,7 @@ Public Class frmCUSPrivateAgreement
                         End Using
                     End If
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    cmdPrintOffer.Enabled = True
                     Dim cmd As SqlCommand
                     Dim sdr As SqlDataReader
                     Dim ExistNegative As Integer = 0
@@ -234,7 +236,7 @@ Public Class frmCUSPrivateAgreement
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description
                         from vw_TRANSH t
-                        where  T.cusid = " & sCusID & "order by description")
+                        where  completed = 0 and T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick

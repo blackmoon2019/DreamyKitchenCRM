@@ -22,6 +22,8 @@ Partial Class frmInstallations
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstallations))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.TimeEdit1 = New DevExpress.XtraEditors.TimeEdit()
+        Me.TimeEdit12 = New DevExpress.XtraEditors.TimeEdit()
         Me.cmdInstEllipse = New DevExpress.XtraEditors.SimpleButton()
         Me.chkPaid = New DevExpress.XtraEditors.CheckEdit()
         Me.chkCompleted = New DevExpress.XtraEditors.CheckEdit()
@@ -38,8 +40,6 @@ Partial Class frmInstallations
         Me.dtDeliverDate1 = New DevExpress.XtraEditors.DateEdit()
         Me.txtComments1 = New DevExpress.XtraEditors.MemoEdit()
         Me.cboTRANSH = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -60,14 +60,16 @@ Partial Class frmInstallations
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter()
-        Me.TimeEdit12 = New DevExpress.XtraEditors.TimeEdit()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.TimeEdit1 = New DevExpress.XtraEditors.TimeEdit()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem5 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.TimeEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TimeEdit12.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkPaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSER.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,8 +85,6 @@ Partial Class frmInstallations
         CType(Me.dtDeliverDate1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -105,11 +105,11 @@ Partial Class frmInstallations
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TimeEdit12.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TimeEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -140,6 +140,38 @@ Partial Class frmInstallations
         Me.LayoutControl1.Size = New System.Drawing.Size(982, 823)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'TimeEdit1
+        '
+        Me.TimeEdit1.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
+        Me.TimeEdit1.Location = New System.Drawing.Point(529, 348)
+        Me.TimeEdit1.Margin = New System.Windows.Forms.Padding(5)
+        Me.TimeEdit1.Name = "TimeEdit1"
+        Me.TimeEdit1.Properties.BeepOnError = True
+        Me.TimeEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TimeEdit1.Properties.MaskSettings.Set("mask", "HH:mm")
+        Me.TimeEdit1.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
+        Me.TimeEdit1.Properties.UseMaskAsDisplayFormat = True
+        Me.TimeEdit1.Size = New System.Drawing.Size(87, 38)
+        Me.TimeEdit1.StyleController = Me.LayoutControl1
+        Me.TimeEdit1.TabIndex = 46
+        Me.TimeEdit1.Tag = "tmOUT,0,1,2"
+        '
+        'TimeEdit12
+        '
+        Me.TimeEdit12.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
+        Me.TimeEdit12.Location = New System.Drawing.Point(387, 348)
+        Me.TimeEdit12.Margin = New System.Windows.Forms.Padding(5)
+        Me.TimeEdit12.Name = "TimeEdit12"
+        Me.TimeEdit12.Properties.BeepOnError = True
+        Me.TimeEdit12.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.TimeEdit12.Properties.MaskSettings.Set("mask", "HH:mm")
+        Me.TimeEdit12.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
+        Me.TimeEdit12.Properties.UseMaskAsDisplayFormat = True
+        Me.TimeEdit12.Size = New System.Drawing.Size(97, 38)
+        Me.TimeEdit12.StyleController = Me.LayoutControl1
+        Me.TimeEdit12.TabIndex = 45
+        Me.TimeEdit12.Tag = "tmIN,0,1,2"
         '
         'cmdInstEllipse
         '
@@ -367,16 +399,6 @@ Partial Class frmInstallations
         Me.cboTRANSH.TabIndex = 6
         Me.cboTRANSH.Tag = "transhID,0,1,2"
         '
-        'VwTRANSHBindingSource
-        '
-        Me.VwTRANSHBindingSource.DataMember = "vw_TRANSH"
-        Me.VwTRANSHBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -599,26 +621,6 @@ Partial Class frmInstallations
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(149, 42)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
-        'Vw_TRANSHTableAdapter
-        '
-        Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
-        '
-        'TimeEdit12
-        '
-        Me.TimeEdit12.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.TimeEdit12.Location = New System.Drawing.Point(387, 348)
-        Me.TimeEdit12.Margin = New System.Windows.Forms.Padding(5)
-        Me.TimeEdit12.Name = "TimeEdit12"
-        Me.TimeEdit12.Properties.BeepOnError = True
-        Me.TimeEdit12.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TimeEdit12.Properties.MaskSettings.Set("mask", "HH:mm")
-        Me.TimeEdit12.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
-        Me.TimeEdit12.Properties.UseMaskAsDisplayFormat = True
-        Me.TimeEdit12.Size = New System.Drawing.Size(97, 38)
-        Me.TimeEdit12.StyleController = Me.LayoutControl1
-        Me.TimeEdit12.TabIndex = 45
-        Me.TimeEdit12.Tag = "tmIN,0,1,2"
-        '
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me.TimeEdit12
@@ -627,22 +629,6 @@ Partial Class frmInstallations
         Me.LayoutControlItem15.Size = New System.Drawing.Size(476, 42)
         Me.LayoutControlItem15.Text = "Από"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(363, 23)
-        '
-        'TimeEdit1
-        '
-        Me.TimeEdit1.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.TimeEdit1.Location = New System.Drawing.Point(529, 348)
-        Me.TimeEdit1.Margin = New System.Windows.Forms.Padding(5)
-        Me.TimeEdit1.Name = "TimeEdit1"
-        Me.TimeEdit1.Properties.BeepOnError = True
-        Me.TimeEdit1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.TimeEdit1.Properties.MaskSettings.Set("mask", "HH:mm")
-        Me.TimeEdit1.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
-        Me.TimeEdit1.Properties.UseMaskAsDisplayFormat = True
-        Me.TimeEdit1.Size = New System.Drawing.Size(87, 38)
-        Me.TimeEdit1.StyleController = Me.LayoutControl1
-        Me.TimeEdit1.TabIndex = 46
-        Me.TimeEdit1.Tag = "tmOUT,0,1,2"
         '
         'LayoutControlItem16
         '
@@ -663,6 +649,20 @@ Partial Class frmInstallations
         Me.EmptySpaceItem5.Size = New System.Drawing.Size(354, 42)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
+        'VwTRANSHBindingSource
+        '
+        Me.VwTRANSHBindingSource.DataMember = "vw_TRANSH"
+        Me.VwTRANSHBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'Vw_TRANSHTableAdapter
+        '
+        Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
+        '
         'frmInstallations
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -676,6 +676,8 @@ Partial Class frmInstallations
         Me.Text = "Μισθοδοσία Τοποθετών"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.TimeEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TimeEdit12.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkPaid.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSER.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -691,8 +693,6 @@ Partial Class frmInstallations
         CType(Me.dtDeliverDate1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -713,11 +713,11 @@ Partial Class frmInstallations
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TimeEdit12.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TimeEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

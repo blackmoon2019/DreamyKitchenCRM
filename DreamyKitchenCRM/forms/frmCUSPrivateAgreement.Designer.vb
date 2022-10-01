@@ -373,6 +373,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'cmdPrintOffer
         '
+        Me.cmdPrintOffer.Enabled = False
         Me.cmdPrintOffer.Location = New System.Drawing.Point(12, 847)
         Me.cmdPrintOffer.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdPrintOffer.Name = "cmdPrintOffer"

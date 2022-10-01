@@ -200,7 +200,6 @@ Partial Public Class RepTransCostK
         Me.XrTableCell113 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell114 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell115 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrTable7 = New DevExpress.XtraReports.UI.XRTable()
         Me.XrTableRow28 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.XrTableCell118 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -255,7 +254,7 @@ Partial Public Class RepTransCostK
         Me.TransCostID.Description = "TransCostID"
         Me.TransCostID.Name = "TransCostID"
         Me.TransCostID.Type = GetType(System.Guid)
-        Me.TransCostID.ValueInfo = "93a1e51a-0272-4da5-96f4-1d40af00fd9c"
+        Me.TransCostID.ValueInfo = "83f1949f-1238-4c59-84b6-513800805651"
         DynamicListLookUpSettings1.DataMember = "VW_REPTRANSCOSTK"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
@@ -295,6 +294,7 @@ Partial Public Class RepTransCostK
         '
         'BottomMargin
         '
+        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable7})
         Me.BottomMargin.HeightF = 46.0!
         Me.BottomMargin.Name = "BottomMargin"
         Me.BottomMargin.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
@@ -2676,12 +2676,6 @@ Partial Public Class RepTransCostK
         Me.XrTableCell115.TextFormatString = "{0:C}"
         Me.XrTableCell115.Weight = 1.4831195887282125R
         '
-        'PageFooter
-        '
-        Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable7})
-        Me.PageFooter.Name = "PageFooter"
-        Me.PageFooter.PrintOn = CType((DevExpress.XtraReports.UI.PrintOnPages.NotWithReportHeader Or DevExpress.XtraReports.UI.PrintOnPages.NotWithReportFooter), DevExpress.XtraReports.UI.PrintOnPages)
-        '
         'XrTable7
         '
         Me.XrTable7.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
@@ -2736,7 +2730,7 @@ Partial Public Class RepTransCostK
         '
         'RepTransCostK
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader, Me.PageFooter})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail, Me.TopMargin, Me.BottomMargin, Me.ReportHeader})
         Me.CalculatedFields.AddRange(New DevExpress.XtraReports.UI.CalculatedField() {Me.CalculatedField1})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataMember = "VW_REPTRANSCOSTK"
@@ -2932,7 +2926,6 @@ Partial Public Class RepTransCostK
     Friend WithEvents XrTableCell115 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents SubBand2 As DevExpress.XtraReports.UI.SubBand
     Friend WithEvents XrSubreport2 As DevExpress.XtraReports.UI.XRSubreport
-    Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
     Friend WithEvents XrTable7 As DevExpress.XtraReports.UI.XRTable
     Friend WithEvents XrTableRow28 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents XrTableCell118 As DevExpress.XtraReports.UI.XRTableCell
