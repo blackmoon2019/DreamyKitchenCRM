@@ -23,8 +23,6 @@ Partial Class frmDoorType
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmDoorType))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cboDoorColor = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.ColorPickEdit11 = New DevExpress.XtraEditors.ColorPickEdit()
@@ -38,9 +36,7 @@ Partial Class frmDoorType
         Me.cboKasa = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboDoorType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboDim = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwDIMBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboDoorCat = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwDOORCATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboDoorType1 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -60,14 +56,16 @@ Partial Class frmDoorType
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem52 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.VwDIMBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwDOORCATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
         Me.Vw_DIMTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DIMTableAdapter()
         Me.Vw_DOOR_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_CATTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboDoorColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ColorPickEdit11.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCustomCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -79,9 +77,7 @@ Partial Class frmDoorType
         CType(Me.cboKasa.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDIMBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORCATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -101,6 +97,10 @@ Partial Class frmDoorType
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDIMBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDOORCATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -146,16 +146,6 @@ Partial Class frmDoorType
         Me.cboDoorColor.StyleController = Me.LayoutControl1
         Me.cboDoorColor.TabIndex = 46
         Me.cboDoorColor.Tag = "doorColorID,0,1,2"
-        '
-        'VwCOLORSBOXBindingSource
-        '
-        Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
-        Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cmdExit
         '
@@ -337,11 +327,6 @@ Partial Class frmDoorType
         Me.cboDim.TabIndex = 46
         Me.cboDim.Tag = "dimID,0,1,2"
         '
-        'VwDIMBindingSource
-        '
-        Me.VwDIMBindingSource.DataMember = "vw_DIM"
-        Me.VwDIMBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'cboDoorCat
         '
         Me.cboDoorCat.EditValue = ""
@@ -359,17 +344,13 @@ Partial Class frmDoorType
         Me.cboDoorCat.TabIndex = 46
         Me.cboDoorCat.Tag = "doorCatID,0,1,2"
         '
-        'VwDOORCATBindingSource
-        '
-        Me.VwDOORCATBindingSource.DataMember = "vw_DOOR_CAT"
-        Me.VwDOORCATBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'cboDoorType1
         '
         Me.cboDoorType1.Location = New System.Drawing.Point(244, 348)
         Me.cboDoorType1.Margin = New System.Windows.Forms.Padding(5)
         Me.cboDoorType1.Name = "cboDoorType1"
         Me.cboDoorType1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboDoorType1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.cboDoorType1.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ ΑΠΛΗ", "ΣΥΡΟΜΕΝΗ ΚΡΕΜΑΣΤΗ", "ΒΕΣΤΙΑΡΙΟ"})
         Me.cboDoorType1.Properties.Tag = "opening"
         Me.cboDoorType1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
@@ -575,6 +556,26 @@ Partial Class frmDoorType
         Me.LayoutControlItem10.Text = "Είδος Ντουλάπας"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(220, 23)
         '
+        'VwCOLORSBOXBindingSource
+        '
+        Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
+        Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwDIMBindingSource
+        '
+        Me.VwDIMBindingSource.DataMember = "vw_DIM"
+        Me.VwDIMBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'VwDOORCATBindingSource
+        '
+        Me.VwDOORCATBindingSource.DataMember = "vw_DOOR_CAT"
+        Me.VwDOORCATBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
         'Vw_COLORSBOXTableAdapter
         '
         Me.Vw_COLORSBOXTableAdapter.ClearBeforeFill = True
@@ -602,8 +603,6 @@ Partial Class frmDoorType
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.cboDoorColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ColorPickEdit11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCustomCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -615,9 +614,7 @@ Partial Class frmDoorType
         CType(Me.cboKasa.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDIMBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORCATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -637,6 +634,10 @@ Partial Class frmDoorType
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDIMBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDOORCATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
