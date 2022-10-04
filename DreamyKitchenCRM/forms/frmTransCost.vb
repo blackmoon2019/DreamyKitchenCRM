@@ -508,6 +508,13 @@ Public Class frmTransCost
         If txtDDoorPrice4.EditValue <> 0 Then DTem4.BackColor = Color.Orange
         If txtDDoorPrice5.EditValue <> 0 Then DTem5.BackColor = Color.Orange
         If txtDDoorPrice6.EditValue <> 0 Then DTem6.BackColor = Color.Orange
+        If txtPDoorPrice1.EditValue <> 0 Then CTem1.BackColor = Color.Orange
+        If txtPDoorPrice2.EditValue <> 0 Then CTem2.BackColor = Color.Orange
+        If txtPDoorPrice3.EditValue <> 0 Then CTem3.BackColor = Color.Orange
+        If txtPDoorPrice4.EditValue <> 0 Then CTem4.BackColor = Color.Orange
+        If txtPDoorPrice5.EditValue <> 0 Then CTem5.BackColor = Color.Orange
+        If txtPDoorPrice6.EditValue <> 0 Then CTem6.BackColor = Color.Orange
+
     End Sub
     ' Κ Ο Υ Ζ Ι Ν Α
     Private Sub TErmaria_ElementClick(sender As Object, e As NavElementEventArgs) Handles TErmaria.ElementClick

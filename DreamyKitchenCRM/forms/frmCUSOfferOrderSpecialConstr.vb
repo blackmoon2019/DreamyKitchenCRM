@@ -128,32 +128,30 @@ Public Class frmCUSOfferOrderSpecialConstr
 
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    If Mode = FormMode.NewRecord Then
-                        Mode = FormMode.EditRecord
-                        If sIsOrder Then
-                            Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
-                            HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
-                            HasCloset = cboTRANSH.GetColumnValue("Iscloset")
-                            HasDoors = cboTRANSH.GetColumnValue("Isdoors")
-                            HasSc = cboTRANSH.GetColumnValue("Issc")
-                            If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                                XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                                Exit Sub
-                            End If
-                            ' Δημιουργία/Ενημέρωση Κοστολόγησης
-                            Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
-                                oCmd.CommandType = CommandType.StoredProcedure
-                                oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
-                                oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse("00000000-0000-0000-0000-000000000000"))
-                                oCmd.Parameters.AddWithValue("@Mode", 4)
-                                oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
-                                oCmd.ExecuteNonQuery()
-                            End Using
+                    If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
+                    If sIsOrder Then
+                        Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
+                        HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
+                        HasCloset = cboTRANSH.GetColumnValue("Iscloset")
+                        HasDoors = cboTRANSH.GetColumnValue("Isdoors")
+                        HasSc = cboTRANSH.GetColumnValue("Issc")
+                        If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
+                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Exit Sub
                         End If
-
-                        '    Cls.ClearCtrls(LayoutControl1)
-                        '    txtCode.Text = DBQ.GetNextId("CCT_OFFERS_SPECIAL_CONSTR")
+                        ' Δημιουργία/Ενημέρωση Κοστολόγησης
+                        Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
+                            oCmd.CommandType = CommandType.StoredProcedure
+                            oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                            oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                            oCmd.Parameters.AddWithValue("@Mode", 4)
+                            oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
+                            oCmd.ExecuteNonQuery()
+                        End Using
                     End If
+
+                    '    Cls.ClearCtrls(LayoutControl1)
+                    '    txtCode.Text = DBQ.GetNextId("CCT_OFFERS_SPECIAL_CONSTR")
                 End If
             End If
 
