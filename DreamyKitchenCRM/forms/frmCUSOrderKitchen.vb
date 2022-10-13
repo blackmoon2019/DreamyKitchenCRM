@@ -119,7 +119,7 @@ Public Class frmCUSOrderKitchen
                 LoadForms.LoadForm(LayoutControl1, "Select * from CCT_ORDERS_KITCHEN where id = " & toSQLValueS(sID))
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
                     "select e.ID,e.code,e.name,
-                    isnull((select price from CCT_ORDERS_KITCHEN_EQUIPMENT EQ where eq.cctOrdersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as price,
+                    isnull((select price from CCT_ORDERS_KITCHEN_EQUIPMENT EQ where eq.cctOrdersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),e.price ) as price,
                     e.price as defPrice,
                     CAST(CASE WHEN (select eq.ID 
                     from CCT_ORDERS_KITCHEN_EQUIPMENT EQ 
@@ -153,7 +153,14 @@ Public Class frmCUSOrderKitchen
     End Sub
     Private Sub RepDefPrice_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles RepDefPrice.ButtonPressed
         Select Case e.Button.Index
-            Case 0 : GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice").ToString)
+            Case 0
+                Dim sDefPrice As Decimal
+                If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice") = Nothing Then
+                    sDefPrice = 0
+                Else
+                    sDefPrice = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice")
+                End If
+                GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", sDefPrice)
             Case 1 : GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", "0.00")
         End Select
     End Sub
@@ -288,7 +295,7 @@ Public Class frmCUSOrderKitchen
                     If Mode = FormMode.NewRecord Then
                         GridView1.PopulateColumns() : GridView2.PopulateColumns()
                         TabNavigationPage2.Enabled = True
-                        InsertSelectedRows(True)
+                        '    InsertSelectedRows(True)
                         If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml") = True Then
                             GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml", OptionsLayoutBase.FullLayout)
                         End If
@@ -393,15 +400,21 @@ Public Class frmCUSOrderKitchen
             oCmd.ExecuteNonQuery()
         End Using
         Dim Selected As Boolean
+        Dim sPrice As Decimal
         For I = 0 To GridView2.RowCount - 1
             Selected = GridView2.GetRowCellValue(I, "checked")
             If Selected = True Then
+                If GridView2.GetRowCellValue(I, "price") = 0 Then
+                    sPrice = GridView2.GetRowCellValue(I, "defPrice")
+                Else
+                    sPrice = GridView2.GetRowCellValue(I, "price")
+                End If
                 sSQL = "INSERT INTO CCT_ORDERS_KITCHEN_EQUIPMENT(cctOrdersKitchenID,equipmentID,price,selected,qty) " &
-                    " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "price").ToString, True) & ",1," & toSQLValueS(GridView2.GetRowCellValue(I, "QTY").ToString, True) & ")"
+                        " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(sPrice.ToString, True) & ",1," & toSQLValueS(GridView2.GetRowCellValue(I, "QTY").ToString, True) & ")"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
-            End If
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
         Next
         Dim DcodeIsEmpty As Boolean = False
         For I = 0 To GridView1.RowCount - 1
@@ -735,5 +748,11 @@ Public Class frmCUSOrderKitchen
         Select Case e.Button.Index
             Case 1 : cbobenchThickness.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
+        If e.Column.FieldName <> "QTY" Then Exit Sub
+        Dim sTot As Decimal = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "QTY") * GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "price")
+        GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", sTot)
     End Sub
 End Class
