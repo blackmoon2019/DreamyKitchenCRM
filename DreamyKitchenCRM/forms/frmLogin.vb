@@ -68,6 +68,12 @@ Public Class frmLogin
                     Prog_Prop.GetProgDecimals()
                     'ΦΠΑ Προγράμματος
                     Prog_Prop.GetProgvat()
+
+                    'Διαδρομή TEMP FOLDER για ανοιγμα αρχείων
+                    If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\TEMP\") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\TEMP\")
+                    If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\TEMP\Pictures") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\TEMP\Pictures")
+                    ProgProps.TempFolderPath = Application.StartupPath & "\TEMP\"
+                    ProgProps.TempPicturesFolderPath = Application.StartupPath & "\TEMP\Pictures\"
                     XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If chkRememberUN.EditValue = True Then
                         My.Settings.UNSave = True

@@ -34,6 +34,8 @@ Module Main
     End Structure
     Public UserProps As USER_PROPS
     Public Structure PROG_PROPS
+        Public TempFolderPath As String
+        Public TempPicturesFolderPath As String
         Public ProgTitle As String
         Public VAT As Integer
         Public Decimals As Integer

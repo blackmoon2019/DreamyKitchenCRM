@@ -231,7 +231,7 @@ Public Class frmCalendarInst
     End Sub
 
     Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText
-        e.Text = e.Text & vbCrLf + "Σχόλια: " + e.Description
+        'e.Text = e.Text & vbCrLf + "Σχόλια: " + e.Description
     End Sub
 
     Private Sub SchedulerControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles SchedulerControl1.KeyDown

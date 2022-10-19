@@ -328,14 +328,29 @@ Public Class frmEMP
     Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
         Try
             Dim sFilename = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename")
-            Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
+            'Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
+            Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
             Dim b() As Byte = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "files")
             fs.Write(b, 0, b.Length)
             fs.Close()
-            My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & sFilename, My.Settings.CRM_PATH & sFilename, True)
-            ShellExecute(My.Settings.CRM_PATH & sFilename)
+            'My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & sFilename, My.Settings.CRM_PATH & sFilename, True)
+            'My.Computer.FileSystem.MoveFile(ProgProps.TempFolderPath & sFilename, My.Settings.CRM_PATH & sFilename, True)
+            'ShellExecute(My.Settings.CRM_PATH & sFilename)
+            ShellExecute(ProgProps.TempFolderPath & sFilename)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+
+
+            '    Dim sFilename = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename")
+            '    Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
+            '    Dim b() As Byte = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "files")
+            '    fs.Write(b, 0, b.Length)
+            '    fs.Close()
+            '    My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & sFilename, My.Settings.CRM_PATH & sFilename, True)
+            '    ShellExecute(My.Settings.CRM_PATH & sFilename)
+            'Catch ex As Exception
+            '    XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

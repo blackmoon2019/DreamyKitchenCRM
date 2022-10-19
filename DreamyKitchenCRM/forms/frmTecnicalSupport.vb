@@ -285,30 +285,28 @@ Public Class frmTecnicalSupport
         myProcess.Start()
         myProcess.Dispose()
     End Sub
-
+    Private Sub PictureEdit1_DoubleClick(sender As Object, e As EventArgs) Handles PictureEdit1.DoubleClick
+        PictureEdit1.Image.Save(ProgProps.TempPicturesFolderPath & "Image1.jpg", Imaging.ImageFormat.Jpeg)
+        If My.Computer.FileSystem.FileExists(ProgProps.TempPicturesFolderPath & "Image1.jpg") Then ShellExecute(ProgProps.TempPicturesFolderPath & "Image1.jpg")
+    End Sub
     Private Sub PictureEdit11_DoubleClick(sender As Object, e As EventArgs) Handles PictureEdit11.DoubleClick
-        If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\Pictures") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\Pictures")
-        PictureEdit11.Image.Save(Application.StartupPath & "\Pictures\Image5.jpg", Imaging.ImageFormat.Jpeg)
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\Pictures\Image5.jpg") Then ShellExecute(Application.StartupPath & "\Pictures\Image5.jpg")
+        PictureEdit11.Image.Save(ProgProps.TempPicturesFolderPath & "Image5.jpg", Imaging.ImageFormat.Jpeg)
+        If My.Computer.FileSystem.FileExists(ProgProps.TempPicturesFolderPath & "Image5.jpg") Then ShellExecute(ProgProps.TempPicturesFolderPath & "Image5.jpg")
     End Sub
 
     Private Sub PictureEdit12_DoubleClick(sender As Object, e As EventArgs) Handles PictureEdit12.DoubleClick
-        If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\Pictures") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\Pictures")
-        PictureEdit12.Image.Save(Application.StartupPath & "\Pictures\Image2.jpg", Imaging.ImageFormat.Jpeg)
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\Pictures\Image2.jpg") Then ShellExecute(Application.StartupPath & "\Pictures\Image2.jpg")
+        PictureEdit12.Image.Save(ProgProps.TempPicturesFolderPath & "Image2.jpg", Imaging.ImageFormat.Jpeg)
+        If My.Computer.FileSystem.FileExists(ProgProps.TempPicturesFolderPath & "Image2.jpg") Then ShellExecute(ProgProps.TempPicturesFolderPath & "Image2.jpg")
     End Sub
 
     Private Sub PictureEdit13_DoubleClick(sender As Object, e As EventArgs) Handles PictureEdit13.DoubleClick
-        If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\Pictures") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\Pictures")
-        PictureEdit13.Image.Save(Application.StartupPath & "\Pictures\Image3.jpg", Imaging.ImageFormat.Jpeg)
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\Pictures\Image3.jpg") Then ShellExecute(Application.StartupPath & "\Pictures\Image3.jpg")
+        PictureEdit13.Image.Save(ProgProps.TempPicturesFolderPath & "Image3.jpg", Imaging.ImageFormat.Jpeg)
+        If My.Computer.FileSystem.FileExists(ProgProps.TempPicturesFolderPath & "Image3.jpg") Then ShellExecute(ProgProps.TempPicturesFolderPath & "Image3.jpg")
     End Sub
 
     Private Sub PictureEdit14_DoubleClick(sender As Object, e As EventArgs) Handles PictureEdit14.DoubleClick
-        If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\Pictures") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\Pictures")
-        PictureEdit14.Image.Save(Application.StartupPath & "\Pictures\Image4.jpg", Imaging.ImageFormat.Jpeg)
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\Pictures\Image4.jpg") Then ShellExecute(Application.StartupPath & "\Pictures\Image4.jpg")
-
+        PictureEdit14.Image.Save(ProgProps.TempPicturesFolderPath & "Image4.jpg", Imaging.ImageFormat.Jpeg)
+        If My.Computer.FileSystem.FileExists(ProgProps.TempPicturesFolderPath & "Image4.jpg") Then ShellExecute(ProgProps.TempPicturesFolderPath & "Image4.jpg")
     End Sub
 
     Private Sub SimpleButton2_Click(sender As Object, e As EventArgs) Handles SimpleButton2.Click
@@ -345,9 +343,5 @@ Public Class frmTecnicalSupport
         End Try
     End Function
 
-    Private Sub PictureEdit1_DoubleClick(sender As Object, e As EventArgs) Handles PictureEdit1.DoubleClick
-        If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\Pictures") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\Pictures")
-        PictureEdit1.Image.Save(Application.StartupPath & "\Pictures\Image1.jpg", Imaging.ImageFormat.Jpeg)
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\Pictures\Image1.jpg") Then ShellExecute(Application.StartupPath & "\Pictures\Image1.jpg")
-    End Sub
+
 End Class

@@ -53,7 +53,7 @@ Public Class InitializeCalendar
     End Sub
     Public Sub InitializeInst(ByVal SCH As DevExpress.XtraScheduler.SchedulerControl, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage, ByVal sSQL As String, ByVal Reminder As Boolean)
         Dim sDate As String, sStatus As String, Cmt As String
-        Dim sCusName As String, sRemValues As String, sID As String, stmReminder As String, sSalerName As String
+        Dim sCusName As String, sRemValues As String, sID As String, FTime As String, TTime As String, sSalerName As String
         Dim sReminder As Integer, SalersCode As Integer, SerCode As Integer
         Dim sColor As Color, sStatusColor As Color
         Dim sCompleted As Boolean
@@ -74,12 +74,14 @@ Public Class InitializeCalendar
                 If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SerName")) = False Then sStatus = "Συνεργείο: " & sdr.GetString(sdr.GetOrdinal("SerName"))
                 sRemValues = ""
+                If sdr.IsDBNull(sdr.GetOrdinal("tmIN")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmIN"))
+                If sdr.IsDBNull(sdr.GetOrdinal("tmOUT")) = False Then TTime = sdr.GetString(sdr.GetOrdinal("tmOUT"))
                 If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
                 If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SerCode")) = False Then SerCode = sdr.GetInt32(sdr.GetOrdinal("SerCode"))
                 If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
-                CreateAppointmentInst(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, stmReminder, sCompleted, sSalerName, Reminder)
+                CreateAppointmentInst(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, FTime, sCompleted, sSalerName, Reminder, TTime)
                 sCusName = ""
             End While
         End If
@@ -188,24 +190,24 @@ Public Class InitializeCalendar
     Public Sub CreateAppointmentInst(ByVal ID As String, ByVal SCH_Storage As DevExpress.XtraScheduler.SchedulerDataStorage,
                                       ByVal AptDate As String, ByVal AptSubject As String, ByVal sReminder As Integer,
                                       ByVal sColor As Color, ByVal Cmt As String, ByVal sLabelID As Integer,
-                                      ByVal sCusname As String, ByVal sRemValues As String, ByVal AptTime As String, ByVal Completed As Boolean,
-                                       ByVal SalerName As String, Optional ByVal EnableReminder As Boolean = False
+                                      ByVal sCusname As String, ByVal sRemValues As String, ByVal FTime As String, ByVal Completed As Boolean,
+                                       ByVal SalerName As String, Optional ByVal EnableReminder As Boolean = False, Optional ByVal TTime As String = ""
                                       )
         Dim apt As Appointment = SCH_Storage.CreateAppointment(AppointmentType.Normal, CDate(AptDate), CDate(AptDate),
-                                                               AptSubject & vbCrLf & "Πελάτης: " & sCusname & vbCrLf & "Πωλητής: " & SalerName)
+                                                               "Πελάτης: " & sCusname & vbCrLf & AptSubject & vbCrLf)
         Try
 
             Dim Field As New DevExpress.XtraScheduler.Native.CustomField("StatusColor", sColor)
 
-            apt.CustomFields.Add(Field)
+            '   apt.CustomFields.Add(Field)
             'apt.Location = SalerName
-            apt.Description = Cmt
+            'apt.Description = Cmt
 
             'apt.AllDay = True
-            If AptTime <> Nothing Then
-                apt.Start = CDate(AptDate) & " " & AptTime
+            If FTime <> "" Then
+                apt.Start = CDate(AptDate) & " " & FTime
                 '2/29/2016 22:00:00
-                apt.End = CDate(AptDate) & " " & AptTime
+                apt.End = CDate(AptDate) & " " & TTime
             Else
                 apt.Start = CDate(AptDate)
                 apt.End = CDate(AptDate)
