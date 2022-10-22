@@ -337,7 +337,7 @@ Public Class frmCustomers
             Dim sFilename = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename")
             'Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
             Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
-            Dim b() As Byte = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "files")
+            Dim b() As Byte = GetFile(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
             fs.Write(b, 0, b.Length)
             fs.Close()
             'My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & sFilename, My.Settings.CRM_PATH & sFilename, True)

@@ -511,6 +511,7 @@ Partial Class frmMain
         Me.bbMech.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.μηχανισμοι
         Me.bbMech.Name = "bbMech"
         Me.bbMech.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        Me.bbMech.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         '
         'bboffer
         '
@@ -567,6 +568,7 @@ Partial Class frmMain
         Me.bbEpendisis.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.επενδυσεις__καταφραγες
         Me.bbEpendisis.Name = "bbEpendisis"
         Me.bbEpendisis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        Me.bbEpendisis.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         '
         'bbDimensions
         '
@@ -913,7 +915,7 @@ Partial Class frmMain
         '
         'BBEquipment
         '
-        Me.BBEquipment.Caption = "Εξοπλισμός"
+        Me.BBEquipment.Caption = "Μηχανισμοι"
         Me.BBEquipment.Id = 93
         Me.BBEquipment.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_equipment_40
         Me.BBEquipment.Name = "BBEquipment"
@@ -929,7 +931,7 @@ Partial Class frmMain
         '
         'BBequipmentCat
         '
-        Me.BBequipmentCat.Caption = "Κατηγορίες Εξοπλισμών"
+        Me.BBequipmentCat.Caption = "Group Εξοπλισμών"
         Me.BBequipmentCat.Id = 95
         Me.BBequipmentCat.Name = "BBequipmentCat"
         Me.BBequipmentCat.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
@@ -1275,7 +1277,7 @@ Partial Class frmMain
         Me.RibbonPageGroup26.ItemLinks.Add(Me.ΒΒDoorType)
         Me.RibbonPageGroup26.ItemLinks.Add(Me.BBConstruct)
         Me.RibbonPageGroup26.Name = "RibbonPageGroup26"
-        Me.RibbonPageGroup26.Text = "RibbonPageGroup26"
+        Me.RibbonPageGroup26.Text = "Κατηγορίες Υλικών/Εξοπλισμών"
         '
         'RibbonPageGroup8
         '
