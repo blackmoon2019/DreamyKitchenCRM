@@ -2120,7 +2120,7 @@ Partial Public Class RepTransCostC
         'XrTableCell120
         '
         Me.XrTableCell120.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell120.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TotDErm]")})
+        Me.XrTableCell120.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TotCErm]")})
         Me.XrTableCell120.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell120.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell120.Multiline = True
@@ -2375,7 +2375,7 @@ Partial Public Class RepTransCostC
         'XrTableCell125
         '
         Me.XrTableCell125.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell125.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TotC] + [TotEQC] + " & Global.Microsoft.VisualBasic.ChrW(10) & "[TotDErm]")})
+        Me.XrTableCell125.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TotC] + [TotEQC] + " & Global.Microsoft.VisualBasic.ChrW(10) & "[TotCErm]")})
         Me.XrTableCell125.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrTableCell125.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell125.Multiline = True

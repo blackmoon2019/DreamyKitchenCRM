@@ -115,6 +115,7 @@ Public Class frmCUSOrderCloset
             GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_def.xml", OptionsLayoutBase.FullLayout)
         End If
         GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
+        GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
@@ -272,12 +273,24 @@ Public Class frmCUSOrderCloset
                         XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         Exit Sub
                     End If
+                    Dim cmd As SqlCommand
+                    Dim sdr As SqlDataReader
+                    Dim sSQL As String
+                    Dim cctOrderKitchen As String = "00000000-0000-0000-0000-000000000000"
 
+                    sSQL = "select ID from CCT_ORDERS_KITCHEN where transhID = " & (toSQLValueS(cboTRANSH.EditValue.ToString))
+                    cmd = New SqlCommand(sSQL, CNDB)
+                    sdr = cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then cctOrderKitchen = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                    End If
+                    sdr.Close()
+                    cmd.Dispose()
                     ' Δημιουργία/Ενημέρωση Κοστολόγησης
                     Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
                         oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
-                        oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                        oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse(cctOrderKitchen))
                         oCmd.Parameters.AddWithValue("@Mode", 2)
                         oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
                         oCmd.ExecuteNonQuery()
