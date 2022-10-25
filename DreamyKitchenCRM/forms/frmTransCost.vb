@@ -569,7 +569,7 @@ Public Class frmTransCost
     End Sub
     Private Sub FillDataGridM()
         LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "select EQ.ID,EQ.equipmentID,EQ.code,E.name, EQ.price,EQ.qty,(EQ.price * EQ.qty ) AS Total
+                    "select EQ.ID,EQ.equipmentID,EQ.code,E.name, E.price,EQ.qty,EQ.price AS Total
 					from CCT_ORDERS_KITCHEN_EQUIPMENT EQ
 					INNER JOIN EQUIPMENT E ON E.ID = EQ.equipmentID 
 					INNER JOIN CCT_ORDERS_KITCHEN COK ON EQ.cctOrdersKitchenID =  COK.ID 
@@ -616,7 +616,7 @@ Public Class frmTransCost
     End Sub
     Private Sub FillDataGridC()
         LoadForms.LoadDataToGrid(GridControl1, GridView1,
-                    "select EQ.ID,EQ.equipmentID ,EQ.code,E.name, EQ.price,EQ.qty,(EQ.price * EQ.qty ) AS Total
+                    "select EQ.ID,EQ.equipmentID ,EQ.code,E.name, E.price,EQ.qty,(EQ.price ) AS Total
 					from CCT_ORDERS_CLOSET_EQUIPMENT  EQ
 					INNER JOIN EQUIPMENT E ON E.ID = EQ.equipmentID 
 					INNER JOIN CCT_ORDERS_CLOSET COK ON EQ.cctOrdersClosetID =  COK.ID 
