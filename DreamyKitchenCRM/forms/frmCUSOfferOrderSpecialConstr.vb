@@ -139,11 +139,24 @@ Public Class frmCUSOfferOrderSpecialConstr
                             XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                             Exit Sub
                         End If
+                        Dim cmd As SqlCommand
+                        Dim sdr As SqlDataReader
+                        Dim sSQL As String
+                        Dim cctOrderKitchen As String = "00000000-0000-0000-0000-000000000000"
+
+                        sSQL = "select ID from CCT_ORDERS_KITCHEN where transhID = " & (toSQLValueS(cboTRANSH.EditValue.ToString))
+                        cmd = New SqlCommand(sSQL, CNDB)
+                        sdr = cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then cctOrderKitchen = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                        End If
+                        sdr.Close()
+                        cmd.Dispose()
                         ' Δημιουργία/Ενημέρωση Κοστολόγησης
                         Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
                             oCmd.CommandType = CommandType.StoredProcedure
                             oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
-                            oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse("00000000-0000-0000-0000-000000000000"))
+                            oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse(cctOrderKitchen))
                             oCmd.Parameters.AddWithValue("@Mode", 4)
                             oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
                             oCmd.ExecuteNonQuery()

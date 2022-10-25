@@ -439,7 +439,7 @@ Public Class frmTransCost
                     LoadForms.LoadFormGRP(LayoutControlGroup24, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
                     LoadForms.LoadFormGRP(LayoutControlGroup25, "Select * from TRANSCOST where id = " & toSQLValueS(sID), False)
 
-                    Dim sSQL As String = "Select Totamt, TotKErm, TotKEpendRaf, TotBackBench, TotK, TotC, TotD, TotSC, TotDErm,TotalSalerProfit,TotalCompanyProfit,TotamtWithoutProfit from TRANSCOST where id = " & toSQLValueS(sID)
+                    Dim sSQL As String = "Select Totamt, TotKErm, TotKEpendRaf, TotBackBench, TotK, TotC, TotD, TotSC, TotCErm,TotalSalerProfit,TotalCompanyProfit,TotamtWithoutProfit from TRANSCOST where id = " & toSQLValueS(sID)
                     Dim cmd As SqlCommand
                     Dim sdr As SqlDataReader
                     cmd = New SqlCommand(sSQL.ToString, CNDB)
@@ -454,7 +454,7 @@ Public Class frmTransCost
                         If sdr.IsDBNull(sdr.GetOrdinal("TotC")) = False Then txtCTotalStandar.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotC"))
                         If sdr.IsDBNull(sdr.GetOrdinal("TotD")) = False Then txtDTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotD"))
                         If sdr.IsDBNull(sdr.GetOrdinal("TotSC")) = False Then txtSCTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotSC"))
-                        If sdr.IsDBNull(sdr.GetOrdinal("TotDErm")) = False Then txtCErmTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotDErm"))
+                        If sdr.IsDBNull(sdr.GetOrdinal("TotCErm")) = False Then txtCErmTotal.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotCErm"))
                         If sdr.IsDBNull(sdr.GetOrdinal("TotalSalerProfit")) = False Then txtTotalSalerProfit.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalSalerProfit"))
                         If sdr.IsDBNull(sdr.GetOrdinal("TotalCompanyProfit")) = False Then txtTotalCompanyProfit.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalCompanyProfit"))
                     End If
@@ -678,7 +678,7 @@ Public Class frmTransCost
                         ExtraFieldsAndValues.Append(",TotC = " & toSQLValue(txtCTotalStandar, True))
                         ExtraFieldsAndValues.Append(",TotD = " & toSQLValue(txtDTotal, True))
                         ExtraFieldsAndValues.Append(",TotSC = " & toSQLValue(txtSCTotal, True))
-                        ExtraFieldsAndValues.Append(",TotDErm = " & toSQLValue(txtCErmTotal, True))
+                        ExtraFieldsAndValues.Append(",TotCErm = " & toSQLValue(txtCErmTotal, True))
                         ExtraFieldsAndValues.Append(",TotalSalerProfit = " & toSQLValue(txtTotalSalerProfit, True))
                         ExtraFieldsAndValues.Append(",TotalCompanyProfit = " & toSQLValue(txtTotalCompanyProfit, True))
                         ExtraFieldsAndValues.Append(",TotamtWithoutProfit = " & toSQLValue(txtGenTotWithoutProfit, True))
@@ -1051,10 +1051,10 @@ Public Class frmTransCost
 
             ' ΚΟΥΖΙΝΑ ΣΥΝΟΛΑ
             CostPrices.GenTotK = CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal + CostPrices.VEpendisisTotal + CostPrices.KEpendisisTotal +
-                             CostPrices.YEpendisisTotal + CostPrices.BenchBackTotal + CostPrices.TotKEquipment '+ CostPrices.KStandarTotal    + CostPrices.TotKDevices
+                             CostPrices.YEpendisisTotal + CostPrices.BenchBackTotal + CostPrices.TotKEquipment  '+ CostPrices.KStandarTotal    + CostPrices.TotKDevices
             CostPrices.SprofitK = (CostPrices.GenTotK / 100) * CostPrices.profitPercK
             CostPrices.CprofitK = (CostPrices.GenTotK / 100) * CostPrices.profitPercCompK
-            CostPrices.GenTotK = CostPrices.GenTotK + CostPrices.SprofitK + CostPrices.CprofitK + CostPrices.TotKDevices
+            CostPrices.GenTotK = CostPrices.GenTotK + CostPrices.SprofitK + CostPrices.CprofitK + CostPrices.TotKDevices + CostPrices.KStandarTotal
 
             ' ΝΤΟΥΛΑΠΑ ΣΥΝΟΛΑ
             CostPrices.GenTotC = CostPrices.CStandarTotal + CostPrices.CErmariaTotal + CostPrices.TotCEquipment
@@ -1075,7 +1075,7 @@ Public Class frmTransCost
             CostPrices.GenTotSC = CostPrices.GenTotSC + CostPrices.SprofitSC + CostPrices.CprofitSC
 
             CostPrices.GenTot = CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal + CostPrices.VEpendisisTotal + CostPrices.KEpendisisTotal + CostPrices.YEpendisisTotal + CostPrices.BenchBackTotal + CostPrices.TotKEquipment +
-                            CostPrices.CErmariaTotal + CostPrices.TotCEquipment + CostPrices.DTotal + CostPrices.KStandarTotal + CostPrices.CStandarTotal + CostPrices.DStandarTotal + CostPrices.SCStandarTotal + CostPrices.TotKDevices
+                            CostPrices.CErmariaTotal + CostPrices.TotCEquipment + CostPrices.DTotal + CostPrices.KStandarTotal + CostPrices.CStandarTotal + CostPrices.SCStandarTotal + CostPrices.TotKDevices + CostPrices.SCTotal
             ' Γενικό σύνολο από όλα τα είδη πώλησης και με τα ποσοστά
             CostPrices.GenTotWithoutProfit = CostPrices.GenTot
             ' Είπαμε ότι οι πόρτες δεν
@@ -1120,8 +1120,8 @@ Public Class frmTransCost
         txtErmTotal.EditValue = CostPrices.VTotal + CostPrices.KTotal + CostPrices.YTotal
     End Sub
     Private Sub CalculateDTotal()
-        CostPrices.DTotal = CostPrices.DDoorFinalPrice1 + CostPrices.DDoorFinalPrice2 + CostPrices.DDoorFinalPrice3 + CostPrices.DDoorFinalPrice4 + CostPrices.DDoorFinalPrice5 + CostPrices.DDoorFinalPrice6
-        'CostPrices.DStandarTotal +CostPrices.DDesign
+        CostPrices.DTotal = CostPrices.DDoorFinalPrice1 + CostPrices.DDoorFinalPrice2 + CostPrices.DDoorFinalPrice3 + CostPrices.DDoorFinalPrice4 + CostPrices.DDoorFinalPrice5 + CostPrices.DDoorFinalPrice6 +
+        CostPrices.DStandarTotal + CostPrices.DDesign
 
         txtDTotal.EditValue = CostPrices.DTotal
     End Sub
