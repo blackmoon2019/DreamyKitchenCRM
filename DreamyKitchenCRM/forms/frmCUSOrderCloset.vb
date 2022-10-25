@@ -115,6 +115,7 @@ Public Class frmCUSOrderCloset
             GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_def.xml", OptionsLayoutBase.FullLayout)
         End If
         GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
+        GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 

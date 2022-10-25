@@ -147,6 +147,7 @@ Public Class frmCUSOrderKitchen
         End If
         GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
+        GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
         GridView1.OptionsMenu.ShowConditionalFormattingItem = True
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
