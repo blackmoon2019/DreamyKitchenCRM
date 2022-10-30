@@ -432,6 +432,20 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("CAT_ERM")
+                            Case "BASE_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "BASE_CAT", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.BASE_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_BASE_CAT")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("BASE_CAT")
+
                             Case "TECH_CAT"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TECH_CAT", LayoutControl1,,, sGuid, True)
@@ -727,6 +741,16 @@ Public Class frmGen
                                     Dim form As frmScroller = Frm
                                     form.LoadRecords("vw_CAT_ERM")
                                 End If
+                            Case "BASE_CAT"
+                                sResult = DBQ.UpdateData(LayoutControl1, "BASE_CAT", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.BASE_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_BASE_CAT")
+                                End If
+
                             Case "TECH_CAT"
                                 sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TECH_CAT", LayoutControl1,,, sID, True)
                                 If CalledFromCtrl Then
@@ -943,6 +967,13 @@ Public Class frmGen
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_CAT_ERM where id ='" + sID + "'")
                 End If
+            Case "BASE_CAT"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("BASE_CAT")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BASE_CAT where id ='" + sID + "'")
+                End If
+
             Case "TECH_CAT"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("TECH_CAT")

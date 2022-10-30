@@ -537,6 +537,10 @@ NextItem:
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Sub RestoreLayoutFromXml(ByVal GridView As GridView, ByVal sXMLName As String)
+        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sXMLName) Then GridView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
+    End Sub
+
     Public Sub PopupMenuShow(ByVal e As Views.Grid.PopupMenuShowingEventArgs, ByVal GridView As GridView, ByVal sXMLName As String, Optional ByVal sTableName As String = "",
                              Optional ByVal sQuery As String = "")
         If e.MenuType = GridMenuType.Column Then

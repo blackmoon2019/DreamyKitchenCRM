@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
@@ -20,6 +21,7 @@ Public Class frmCUSOrderKitchen
     Private FScrollerExist As Boolean = False
     Private Log As New Transactions
     Private FillCbo As New FillCombos
+    Private ManageCbo As New CombosManager
     Private DBQ As New DBQueries
     Private LoadForms As New FormLoader
     Private Cls As New ClearControls
@@ -29,6 +31,11 @@ Public Class frmCUSOrderKitchen
     Private AgreementSalary As Double
     Private UserPermissions As New CheckPermissions
     Private Prog_Prop As New ProgProp
+    Private vType As Integer
+    Private vTypeDescr As String
+    Private kType As Integer
+    Private kTypeDescr As String
+
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
@@ -63,6 +70,18 @@ Public Class frmCUSOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_CATK' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_CATKTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_CATK)
+        'TODO: This line of code loads data into the 'DMDataSet.CCT_ORDERS_KITCHEN_K' table. You can move, or remove it, as needed.
+        Me.CCT_ORDERS_KITCHEN_KTableAdapter.Fill(Me.DMDataSet.CCT_ORDERS_KITCHEN_K)
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BASE_CAT' table. You can move, or remove it, as needed.
+        Me.Vw_BASE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BASE_CAT)
+        Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
+        Me.Vw_COLORSGOLATableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSGOLA)
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPETableAdapter2.Fill(Me.DreamyKitchenDataSet.vw_DOOR_TYPE)
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_CATV' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_CATVTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_CATV)
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaKremasta2hsSeiras' table. You can move, or remove it, as needed.
         Me.Vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter.FillBYPlainaKremasta2hsSeiras(Me.DMDataSet.vw_DOOR_TYPEPlainaKremasta2hsSeiras)
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
@@ -71,20 +90,12 @@ Public Class frmCUSOrderKitchen
         Me.Vw_DOOR_TYPERafieresYTableAdapter.FillByRafieresY(Me.DMDataSet.vw_DOOR_TYPERafieresY)
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresK' table. You can move, or remove it, as needed.
         Me.Vw_DOOR_TYPERafieresKTableAdapter.FillByRafieresK(Me.DMDataSet.vw_DOOR_TYPERafieresK)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresV' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresVTableAdapter.FillByRafieresV(Me.DMDataSet.vw_DOOR_TYPERafieresV)
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaKremasta' table. You can move, or remove it, as needed.
         Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter.FillByPlainaKremasta(Me.DMDataSet.vw_DOOR_TYPEPlainaKremasta)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BENCH' table. You can move, or remove it, as needed.
         Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaYpsila' table. You can move, or remove it, as needed.
         Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DMDataSet.vw_DOOR_TYPEPlainaYpsila)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE1' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPE1TableAdapter.FillBYErmaria(Me.DMDataSet.vw_DOOR_TYPE1)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPETableAdapter1.FillBYNisida(Me.DMDataSet.vw_DOOR_TYPE)
-        'TODO: This line of code loads data into the 'DMDataSet.DOOR_TYPE' table. You can move, or remove it, as needed.
-        Me.DOOR_TYPETableAdapter.FillBYPlainaVaseos(Me.DMDataSet.DOOR_TYPE)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
         Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
@@ -93,16 +104,16 @@ Public Class frmCUSOrderKitchen
         'Me.Vw_DEVICESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DEVICES)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_EQUIPMENT' table. You can move, or remove it, as needed.
         'Me.Vw_EQUIPMENTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EQUIPMENT)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSGOLA' table. You can move, or remove it, as needed.
-        Me.Vw_COLORSGOLATableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSGOLA)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSPVC' table. You can move, or remove it, as needed.
-        Me.Vw_COLORSPVCTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSPVC)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
-        Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
         Prog_Prop.GetProgPROSF()
+        AddHandler GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigatorV_ButtonClick
+        AddHandler GridControl2.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigatorK_ButtonClick
 
         Select Case Mode
             Case FormMode.NewRecord
+                sID = System.Guid.NewGuid.ToString
+                Me.CCT_ORDERS_KITCHEN_VTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_V, System.Guid.Parse(sID))
+                Me.CCT_ORDERS_KITCHEN_KTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_K, System.Guid.Parse(sID))
+
                 txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
@@ -116,6 +127,8 @@ Public Class frmCUSOrderKitchen
                      "From vw_EQUIPMENT E where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
                 TabNavigationPage2.Enabled = False
             Case FormMode.EditRecord
+                Me.CCT_ORDERS_KITCHEN_VTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_V, System.Guid.Parse(sID))
+                Me.CCT_ORDERS_KITCHEN_KTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_K, System.Guid.Parse(sID))
                 LoadForms.LoadForm(LayoutControl1, "Select * from CCT_ORDERS_KITCHEN where id = " & toSQLValueS(sID))
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
                     "select e.ID,e.code,e.name,
@@ -139,12 +152,11 @@ Public Class frmCUSOrderKitchen
 	                    where ED.cctOrdersKitchenID=" & toSQLValueS(sID) & " AND  ED.devicesID =D.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked
                       from DEVICES D
                         ORDER BY NAME")
-        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml") = True Then
-            GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml", OptionsLayoutBase.FullLayout)
-        End If
-        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_DEVICES_def.xml") = True Then
-            GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_DEVICES_def.xml", OptionsLayoutBase.FullLayout)
-        End If
+
+
+        LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
+        LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
+        LoadForms.RestoreLayoutFromXml(GridView3, "CCT_ORDERS_KITCHEN_V_def.xml")
         GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
@@ -152,6 +164,96 @@ Public Class frmCUSOrderKitchen
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
+    Private Sub Grid_EmbeddedNavigatorV_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
+        If UserProps.AllowDelete = True Then If e.Button.ButtonType = NavigatorButtonType.Remove Then DeleteRecordV()
+        If UserProps.AllowEdit = True Then If e.Button.ButtonType = NavigatorButtonType.EndEdit Then UpdateRecordV()
+    End Sub
+    Private Sub Grid_EmbeddedNavigatorK_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
+        If UserProps.AllowDelete = True Then If e.Button.ButtonType = NavigatorButtonType.Remove Then DeleteRecordK()
+        If UserProps.AllowEdit = True Then If e.Button.ButtonType = NavigatorButtonType.EndEdit Then UpdateRecordK()
+    End Sub
+
+    Private Sub InsertRecordV()
+        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_V(cctOrdersKitchenID,doorCatID,constrType,GolaColorID,BoxColorID,DoorTypeID,Shelves,trm,Price,FinalPrice) " &
+                    " VALUES ( " & toSQLValueS(sID) &
+                               "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doorCatID").ToString()) &
+                               "," & toSQLValueS(vTypeDescr) &
+                               "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "GolaColorID").ToString()) &
+                               "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "BoxColorID").ToString()) &
+                               "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "DoorTypeID").ToString()) &
+                               "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "Shelves").ToString()) &
+                               "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "trm").ToString(), True) &
+                               "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "Price").ToString(), True) &
+                               "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "FinalPrice").ToString(), True) & ")"
+        Using oCmd As New SqlCommand(sSQL, CNDB)
+            oCmd.ExecuteNonQuery()
+        End Using
+    End Sub
+    Private Sub DeleteRecordV()
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            Dim sSQL As String = "DELETE FROM CCT_ORDERS_KITCHEN_V WHERE ID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        End If
+    End Sub
+    Private Sub UpdateRecordV()
+        Dim sSQL As String = "UPDATE [CCT_ORDERS_KITCHEN_V] SET constrType  = " & toSQLValueS(vTypeDescr) &
+                ",doorCatID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doorCatID").ToString()) &
+                ",GolaColorID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "GolaColorID").ToString()) &
+                ",BoxColorID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "BoxColorID").ToString()) &
+                ",DoorTypeID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "DoorTypeID").ToString()) &
+                ",Shelves = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "Shelves").ToString()) &
+                ",trm = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "trm").ToString(), True) &
+                ",Price = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "Price").ToString(), True) &
+                ",FinalPrice = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "FinalPrice").ToString(), True) &
+        " WHERE ID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString)
+        Using oCmd As New SqlCommand(sSQL, CNDB)
+            oCmd.ExecuteNonQuery()
+        End Using
+
+    End Sub
+    Private Sub InsertRecordK()
+        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_K(cctOrdersKitchenID,doorCatID,constrType,Height,BoxColorID,DoorTypeID,Shelves,trm,Price,FinalPrice) " &
+                    " VALUES ( " & toSQLValueS(sID) &
+                               "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "doorCatID").ToString()) &
+                               "," & toSQLValueS(vTypeDescr) &
+                               "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Height").ToString(), True) &
+                               "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "BoxColorID").ToString()) &
+                               "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "DoorTypeID").ToString()) &
+                               "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Shelves").ToString()) &
+                               "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "trm").ToString(), True) &
+                               "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price").ToString(), True) &
+                               "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice").ToString(), True) & ")"
+        Using oCmd As New SqlCommand(sSQL, CNDB)
+            oCmd.ExecuteNonQuery()
+        End Using
+    End Sub
+    Private Sub DeleteRecordK()
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            Dim sSQL As String = "DELETE FROM CCT_ORDERS_KITCHEN_K WHERE ID = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "ID").ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        End If
+    End Sub
+    Private Sub UpdateRecordK()
+        Dim sSQL As String = "UPDATE [CCT_ORDERS_KITCHEN_K] SET constrType  = " & toSQLValueS(vTypeDescr) &
+                ",doorCatID = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "doorCatID").ToString()) &
+                ",Height = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Height").ToString(), True) &
+                ",BoxColorID = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "BoxColorID").ToString()) &
+                ",DoorTypeID = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "DoorTypeID").ToString()) &
+                ",Shelves = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Shelves").ToString()) &
+                ",trm = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "trm").ToString(), True) &
+                ",Price = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price").ToString(), True) &
+                ",FinalPrice = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice").ToString(), True) &
+        " WHERE ID = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "ID").ToString)
+        Using oCmd As New SqlCommand(sSQL, CNDB)
+            oCmd.ExecuteNonQuery()
+        End Using
+
+    End Sub
+
     Private Sub RepDefPrice_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles RepDefPrice.ButtonPressed
         Select Case e.Button.Index
             Case 0
@@ -165,107 +267,27 @@ Public Class frmCUSOrderKitchen
             Case 1 : GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", "0.00")
         End Select
     End Sub
+    Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
+            Case 3 : cboTRANSH.EditValue = Nothing
+        End Select
+    End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then cboEMP.EditValue = Nothing : ManageEMP()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then If cboEMP.EditValue <> Nothing Then ManageEMP()
+            Case 1 : ManageCbo.ManageEMP(cboEMP, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageEMP(cboEMP, FormMode.EditRecord)
             Case 3 : cboEMP.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 1 : ManageCbo.ManageCus(cboCUS, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageCus(cboCUS, FormMode.EditRecord)
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVBOXColors.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboVBOXColors.EditValue = Nothing : ManageColors(cboVBOXColors)
-            Case 2 : If cboVBOXColors.EditValue <> Nothing Then ManageColors(cboVBOXColors)
-            Case 3 : cboVBOXColors.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub ManageColors(ByVal CallerControl As LookUpEdit)
-        Dim frmColors As frmColors = New frmColors
-        Select Case CallerControl.Name
-            Case "cboGOLAColors" : frmColors.ColorCategory = "1FA658C9-A338-4805-B38F-7E6503A5CD25"
-            Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors" : frmColors.ColorCategory = "40C7BFFB-43EB-48FB-A467-74C0BCBE09FA"
-            Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors" : frmColors.ColorCategory = "1226147D-2FF2-4076-B24D-92ABC8FB4663"
-        End Select
-        frmColors.Text = "Χρώματα"
-        frmColors.CallerForm = "frmCUSOrderKitchen"
-        frmColors.CallerControlLKUP = CallerControl
-        frmColors.CalledFromControl = True
-        frmColors.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
-            frmColors.ID = CallerControl.EditValue.ToString
-            frmColors.Mode = FormMode.EditRecord
-        Else
-            frmColors.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
-        frmColors.Show()
-    End Sub
-
-    Private Sub ManageCus()
-        Dim form1 As frmCustomers = New frmCustomers()
-        form1.Text = "Πελάτες"
-        form1.CallerControl = cboCUS
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
-            form1.ID = cboCUS.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-
-    End Sub
-
-    Private Sub ManageEMP()
-        Dim form1 As frmEMP = New frmEMP()
-        form1.Text = "Προσωπικό"
-        form1.CallerControl = cboEMP
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboEMP.EditValue <> Nothing Then
-            form1.ID = cboEMP.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
-    Private Sub cboKBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKBOXColors.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboVBOXColors.EditValue = Nothing : ManageColors(cboKBOXColors)
-            Case 2 : If cboKBOXColors.EditValue <> Nothing Then ManageColors(cboKBOXColors)
-            Case 3 : cboKBOXColors.EditValue = Nothing
-        End Select
-    End Sub
-
-
-    Private Sub cboYBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYBOXColors.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboVBOXColors.EditValue = Nothing : ManageColors(cboYBOXColors)
-            Case 2 : If cboYBOXColors.EditValue <> Nothing Then ManageColors(cboYBOXColors)
-            Case 3 : cboYBOXColors.EditValue = Nothing
-        End Select
-    End Sub
-
-    Private Sub cboGOLAColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboGOLAColors.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboGOLAColors.EditValue = Nothing : ManageColors(cboGOLAColors)
-            Case 2 : If cboGOLAColors.EditValue <> Nothing Then ManageColors(cboGOLAColors)
-            Case 3 : cboGOLAColors.EditValue = Nothing
-        End Select
-
-    End Sub
-
     Private Sub frmCUSOrderKitchen_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
@@ -277,9 +299,9 @@ Public Class frmCUSOrderKitchen
             If Valid.ValidateForm(LayoutControl1) Then
                 Select Case Mode
                     Case FormMode.NewRecord
-                        sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sGuid, True, "dtDeliver", toSQLValueS(CDate(lblDate.Text).ToString("yyyyMMdd")))
-                        sID = sGuid
+                        'sGuid = System.Guid.NewGuid.ToString
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sID, True, "dtDeliver", toSQLValueS(CDate(lblDate.Text).ToString("yyyyMMdd")))
+                        'sID = sGuid
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(lblDate.Text).ToString("yyyyMMdd")))
                         'sGuid = sID
@@ -365,16 +387,7 @@ Public Class frmCUSOrderKitchen
         lblDate.Text = DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate)
     End Sub
 
-    Private Sub cboVType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboVType.SelectedIndexChanged
-        If cboVType.SelectedIndex = 1 Then
-            cboGOLAColors.ReadOnly = False
-        Else
-            cboGOLAColors.ReadOnly = True
-            cboGOLAColors.EditValue = Nothing
-        End If
-    End Sub
-
-    Private Sub cboYHeight_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboYHeight.SelectedIndexChanged
+    Private Sub cboYHeight_SelectedIndexChanged(sender As Object, e As EventArgs)
         If cboYHeight.SelectedIndex = 3 Then
             txtOtherHeight.ReadOnly = False
         Else
@@ -413,9 +426,9 @@ Public Class frmCUSOrderKitchen
                 sSQL = "INSERT INTO CCT_ORDERS_KITCHEN_EQUIPMENT(cctOrdersKitchenID,equipmentID,price,selected,qty) " &
                         " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(sPrice.ToString, True) & ",1," & toSQLValueS(GridView2.GetRowCellValue(I, "QTY").ToString, True) & ")"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                End If
+                    oCmd.ExecuteNonQuery()
+                End Using
+            End If
         Next
         Dim DcodeIsEmpty As Boolean = False
         For I = 0 To GridView1.RowCount - 1
@@ -445,7 +458,9 @@ Public Class frmCUSOrderKitchen
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml", "vw_CCT_ORDERS_KITCHEN_EQUIPMENT")
     End Sub
-
+    Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "CCT_ORDERS_KITCHEN_V_def.xml", "CCT_ORDERS_KITCHEN_V")
+    End Sub
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
         Dim report As New RepCUSOrderKitchen()
 
@@ -462,27 +477,6 @@ Public Class frmCUSOrderKitchen
                               End Sub)
         Dim printTool As New ReportPrintTool(report)
         printTool.ShowRibbonPreview()
-    End Sub
-
-    Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
-        Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
-            Case 3 : cboTRANSH.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub ManageTRANSH()
-        Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Χρεωπιστώσεις Πελατών"
-        form1.CallerControl = cboTRANSH
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboTRANSH.EditValue <> Nothing Then
-            form1.ID = cboTRANSH.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
     End Sub
 
     Private Sub cmdSaveEquipDev_Click(sender As Object, e As EventArgs) Handles cmdSaveEquipDev.Click
@@ -502,202 +496,68 @@ Public Class frmCUSOrderKitchen
         End Try
     End Sub
 
-    Private Sub chkVatVisible_CheckedChanged(sender As Object, e As EventArgs) Handles chkVatVisible.CheckedChanged
-        'Dim ProFPA As Double = DbnullToZero(txtTotalErmariaVat)
-        'Dim MeFPA As Double = DbnullToZero(txtTotalErmariaPice)
-        'If chkVatVisible.Checked = True Then
-        '    txtPartofVat.EditValue = MeFPA - ProFPA
-        'Else
-        '    txtPartofVat.EditValue = 0
-        'End If
-    End Sub
-
-    Private Sub cboVDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVDoorType.ButtonClick
+    Private Sub cboYDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : cboVDoorType.EditValue = Nothing : ManageDoorType(cboVDoorType)
-            Case 2 : If cboVDoorType.EditValue <> Nothing Then ManageDoorType(cboVDoorType)
-            Case 3 : cboVDoorType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboKDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKDoorType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboKDoorType.EditValue = Nothing : ManageDoorType(cboKDoorType)
-            Case 2 : If cboKDoorType.EditValue <> Nothing Then ManageDoorType(cboKDoorType)
-            Case 3 : cboKDoorType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboYDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYDoorType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboYDoorType.EditValue = Nothing : ManageDoorType(cboYDoorType)
-            Case 2 : If cboYDoorType.EditValue <> Nothing Then ManageDoorType(cboYDoorType)
+            Case 1 : cboYDoorType.EditValue = Nothing : ManageCbo.ManageDoorType(cboYDoorType)
+            Case 2 : If cboYDoorType.EditValue <> Nothing Then ManageCbo.ManageDoorType(cboYDoorType)
             Case 3 : cboYDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVDoorType1.ButtonClick
+
+    Private Sub cboYDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : cboVDoorType1.EditValue = Nothing : ManageDoorType(cboVDoorType1)
-            Case 2 : If cboVDoorType1.EditValue <> Nothing Then ManageDoorType(cboVDoorType1)
-            Case 3 : cboVDoorType1.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboKDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKDoorType1.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboKDoorType1.EditValue = Nothing : ManageDoorType(cboKDoorType1)
-            Case 2 : If cboKDoorType1.EditValue <> Nothing Then ManageDoorType(cboKDoorType1)
-            Case 3 : cboKDoorType1.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboYDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYDoorType1.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboYDoorType1.EditValue = Nothing : ManageDoorType(cboYDoorType1)
-            Case 2 : If cboYDoorType1.EditValue <> Nothing Then ManageDoorType(cboYDoorType1)
+            Case 1 : cboYDoorType1.EditValue = Nothing : ManageCbo.ManageDoorType(cboYDoorType1)
+            Case 2 : If cboYDoorType1.EditValue <> Nothing Then ManageCbo.ManageDoorType(cboYDoorType1)
             Case 3 : cboYDoorType1.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVependisisDoorType.ButtonClick
+
+    Private Sub cboYRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : cboVependisisDoorType.EditValue = Nothing : ManageDoorType(cboVependisisDoorType)
-            Case 2 : If cboVependisisDoorType.EditValue <> Nothing Then ManageDoorType(cboVependisisDoorType)
-            Case 3 : cboVependisisDoorType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboKependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKependisisDoorType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboKependisisDoorType.EditValue = Nothing : ManageDoorType(cboKependisisDoorType)
-            Case 2 : If cboKependisisDoorType.EditValue <> Nothing Then ManageDoorType(cboKependisisDoorType)
-            Case 3 : cboKependisisDoorType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboSndEpendisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSndEpendisisDoorType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboSndEpendisisDoorType.EditValue = Nothing : ManageDoorType(cboSndEpendisisDoorType)
-            Case 2 : If cboSndEpendisisDoorType.EditValue <> Nothing Then ManageDoorType(cboSndEpendisisDoorType)
-            Case 3 : cboSndEpendisisDoorType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboNependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboNependisisDoorType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboNependisisDoorType.EditValue = Nothing : ManageDoorType(cboNependisisDoorType)
-            Case 2 : If cboNependisisDoorType.EditValue <> Nothing Then ManageDoorType(cboNependisisDoorType)
-            Case 3 : cboNependisisDoorType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboVRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVRafieraDoorType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboVRafieraDoorType.EditValue = Nothing : ManageDoorType(cboVRafieraDoorType)
-            Case 2 : If cboVRafieraDoorType.EditValue <> Nothing Then ManageDoorType(cboVRafieraDoorType)
-            Case 3 : cboVRafieraDoorType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboYRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYRafieraDoorType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboYRafieraDoorType.EditValue = Nothing : ManageDoorType(cboYRafieraDoorType)
-            Case 2 : If cboYRafieraDoorType.EditValue <> Nothing Then ManageDoorType(cboYRafieraDoorType)
+            Case 1 : cboYRafieraDoorType.EditValue = Nothing : ManageCbo.ManageDoorType(cboYRafieraDoorType)
+            Case 2 : If cboYRafieraDoorType.EditValue <> Nothing Then ManageCbo.ManageDoorType(cboYRafieraDoorType)
             Case 3 : cboYRafieraDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKRafieraDoorType.ButtonClick
+    Private Sub cboBenchType_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : cboKRafieraDoorType.EditValue = Nothing : ManageDoorType(cboKRafieraDoorType)
-            Case 2 : If cboKRafieraDoorType.EditValue <> Nothing Then ManageDoorType(cboYRafieraDoorType)
-            Case 3 : cboKRafieraDoorType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboBenchType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBenchType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboBenchType.EditValue = Nothing : ManageBENCH(cboBenchType)
-            Case 2 : If cboBenchType.EditValue <> Nothing Then ManageBENCH(cboBenchType)
+            Case 1 : cboBenchType.EditValue = Nothing : ManageCbo.ManageBENCH(cboBenchType)
+            Case 2 : If cboBenchType.EditValue <> Nothing Then ManageCbo.ManageBENCH(cboBenchType)
             Case 3 : cboBenchType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboBenchType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBenchType2.ButtonClick
+    Private Sub cboBenchType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : cboBenchType2.EditValue = Nothing : ManageBENCH(cboBenchType2)
-            Case 2 : If cboBenchType2.EditValue <> Nothing Then ManageBENCH(cboBenchType2)
+            Case 1 : cboBenchType2.EditValue = Nothing : ManageCbo.ManageBENCH(cboBenchType2)
+            Case 2 : If cboBenchType2.EditValue <> Nothing Then ManageCbo.ManageBENCH(cboBenchType2)
             Case 3 : cboBenchType2.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboBack_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBack.ButtonClick
+    Private Sub cboBack_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : cboBack.EditValue = Nothing : ManageBENCH(cboBack)
-            Case 2 : If cboBack.EditValue <> Nothing Then ManageBENCH(cboBack)
+            Case 1 : cboBack.EditValue = Nothing : ManageCbo.ManageBENCH(cboBack)
+            Case 2 : If cboBack.EditValue <> Nothing Then ManageCbo.ManageBENCH(cboBack)
             Case 3 : cboBack.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKWallRafiaDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKWallRafiaDoorType.ButtonClick
+    Private Sub cboPependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : cboKWallRafiaDoorType.EditValue = Nothing : ManageDoorType(cboKWallRafiaDoorType)
-            Case 2 : If cboKWallRafiaDoorType.EditValue <> Nothing Then ManageDoorType(cboKWallRafiaDoorType)
-            Case 3 : cboKWallRafiaDoorType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboPependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPependisisDoorType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboPependisisDoorType.EditValue = Nothing : ManageDoorType(cboPependisisDoorType)
-            Case 2 : If cboPependisisDoorType.EditValue <> Nothing Then ManageDoorType(cboPependisisDoorType)
+            Case 1 : cboPependisisDoorType.EditValue = Nothing : ManageCbo.ManageDoorType(cboPependisisDoorType)
+            Case 2 : If cboPependisisDoorType.EditValue <> Nothing Then ManageCbo.ManageDoorType(cboPependisisDoorType)
             Case 3 : cboPependisisDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageDoorType(ByVal CallerControl As LookUpEdit)
-        Dim frmDoorType As frmDoorType = New frmDoorType
-        frmDoorType.Text = "Κατηγορία Πόρτας"
-        frmDoorType.CallerControl = CallerControl
-        frmDoorType.CalledFromControl = True
-        If CallerControl.EditValue <> Nothing Then frmDoorType.ID = CallerControl.EditValue.ToString
-        frmDoorType.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then frmDoorType.Mode = FormMode.EditRecord Else frmDoorType.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(frmDoorType.Parent.ClientRectangle.Width / 2 - frmDoorType.Width / 2), CInt(frmDoorType.Parent.ClientRectangle.Height / 2 - frmDoorType.Height / 2)))
-        frmDoorType.Show()
-    End Sub
-    Private Sub ManageBENCH(ByVal CallerControl As LookUpEdit)
-        Dim frmBench As frmBench = New frmBench
-        frmBench.CallerForm = Me.Name
-        frmBench.CallerControl = CallerControl
-        frmBench.CalledFromControl = True
-        frmBench.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
-            frmBench.ID = CallerControl.EditValue.ToString
-            frmBench.Mode = FormMode.EditRecord
-        Else
-            frmBench.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
-        frmBench.Show()
-    End Sub
-    Private Sub cbovType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboVType.EditValue = Nothing : cboVBOXColors.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboKType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKType.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboKType.EditValue = Nothing : cboKBOXColors.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboyType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYType.ButtonClick
+
+    Private Sub cboyType_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboYType.EditValue = Nothing : cboYBOXColors.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub cboYType_EditValueChanged(sender As Object, e As EventArgs) Handles cboYType.EditValueChanged
+    Private Sub cboYType_EditValueChanged(sender As Object, e As EventArgs)
         LoadDoorType(cboYType, cboYBOXColors, cboYDoorType) : LoadDoorType(cboYType, cboYBOXColors, cboYDoorType1)
     End Sub
-    Private Sub cboKType_EditValueChanged(sender As Object, e As EventArgs) Handles cboKType.EditValueChanged
-        LoadDoorType(cboKType, cboKBOXColors, cboKDoorType) : LoadDoorType(cboKType, cboKBOXColors, cboKDoorType1)
-    End Sub
-    Private Sub cboVType_EditValueChanged(sender As Object, e As EventArgs) Handles cboVType.EditValueChanged
-        LoadDoorType(cboVType, cboVBOXColors, cboVDoorType) : LoadDoorType(cboVType, cboVBOXColors, cboVDoorType1)
-    End Sub
-    Private Sub cboVBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboVBOXColors.EditValueChanged
-        LoadDoorType(cboVType, cboVBOXColors, cboVDoorType) : LoadDoorType(cboVType, cboVBOXColors, cboVDoorType1)
-        LoadDoorType(cboVType, cboVBOXColors, cboVependisisDoorType) : LoadDoorType(cboVType, cboVBOXColors, cboNependisisDoorType)
-    End Sub
-    Private Sub cboKBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboKBOXColors.EditValueChanged
-        LoadDoorType(cboKType, cboKBOXColors, cboKDoorType) : LoadDoorType(cboKType, cboKBOXColors, cboKDoorType1)
-        LoadDoorType(cboKType, cboKBOXColors, cboKependisisDoorType) : LoadDoorType(cboKType, cboKBOXColors, cboSndEpendisisDoorType)
-    End Sub
-    Private Sub cboYBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboYBOXColors.EditValueChanged
+    Private Sub cboYBOXColors_EditValueChanged(sender As Object, e As EventArgs)
         LoadDoorType(cboYType, cboYBOXColors, cboYDoorType) : LoadDoorType(cboYType, cboYBOXColors, cboYDoorType1)
     End Sub
 
@@ -711,41 +571,41 @@ Public Class frmCUSOrderKitchen
         'lkupEditDoorType.Enabled = True
     End Sub
 
-    Private Sub cboBaza_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBaza.ButtonClick
+    Private Sub cboBaza_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboBaza.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub cboLegs_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboLegs.ButtonClick
+    Private Sub cboLegs_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboLegs.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub cboVwater_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVwater.ButtonClick
+    Private Sub cboVwater_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboVwater.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboYwater_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYwater.ButtonClick
+    Private Sub cboYwater_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboYwater.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKwater_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKwater.ButtonClick
+    Private Sub cboKwater_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboKwater.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub cboLedProfil_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboLedProfil.ButtonClick
+    Private Sub cboLedProfil_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboLedProfil.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub cbobenchThickness_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbobenchThickness.ButtonClick
+    Private Sub cbobenchThickness_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cbobenchThickness.EditValue = Nothing
         End Select
@@ -756,4 +616,339 @@ Public Class frmCUSOrderKitchen
         Dim sTot As Decimal = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "QTY") * GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "price")
         GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", sTot)
     End Sub
+
+    '**************************** NEW GRID**********************************
+    '************Β Α Σ Ε Ω Σ***********************
+    Private Sub GridView3_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles GridView3.InitNewRow
+        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "ID", sID)
+        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "cctOrdersKitchenID", sID)
+    End Sub
+
+    Private Sub GridView3_ShowingEditor(sender As Object, e As CancelEventArgs) Handles GridView3.ShowingEditor
+        'Dim view As ColumnView = DirectCast(sender, ColumnView)
+        'If view.FocusedColumn.FieldName = "GolaColorID" And vType = 0 Then e.Cancel = True
+        'If view.FocusedColumn.FieldName = "BoxColorID" And vType = 1 Then e.Cancel = True
+    End Sub
+
+    Private Sub RepDoorTYPEV_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepDoorTYPEV.PopupFilter
+        Dim colorID As String
+        If cbobaseCatErm.EditValue Is Nothing Then
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" doorCatID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+            Exit Sub
+        End If
+        If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doorCatID") Is Nothing Then
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" doorCatID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+            Exit Sub
+        End If
+        Dim DoorCatID As String = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doorCatID").ToString()
+        If DoorCatID = "" Then
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" doorCatID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+            Exit Sub
+        End If
+        If DoorCatID.ToUpper = "53582708-BB28-4714-99AC-736AEF1D3086" Then
+            If vType = 0 Then colorID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "BoxColorID").ToString() Else colorID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "GolaColorID").ToString()
+            If colorID.Length > 0 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" baseCatErmID == " & toSQLValueS(System.Guid.Parse(cbobaseCatErm.EditValue.ToString).ToString) &
+                                                                                                     " And doorCatID == " & toSQLValueS(System.Guid.Parse(DoorCatID).ToString) &
+                                                                                                     " And type == " & vType & " And  doorColorID == " & toSQLValueS(System.Guid.Parse(colorID).ToString))
+        Else
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse("baseCatID == " & toSQLValueS(System.Guid.Parse(cbobaseCatErm.EditValue.ToString).ToString) & " And  doorCatID == " & toSQLValueS(System.Guid.Parse(DoorCatID).ToString))
+        End If
+    End Sub
+
+    Private Sub RepConstrTypeV_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RepConstrTypeV.SelectedIndexChanged
+        vType = DirectCast(sender, DevExpress.XtraEditors.ComboBoxEdit).SelectedIndex
+        vTypeDescr = DirectCast(sender, DevExpress.XtraEditors.ComboBoxEdit).EditValue
+    End Sub
+
+    Private Sub RepDoorTYPEV_EditValueChanged(sender As Object, e As EventArgs) Handles RepDoorTYPEV.EditValueChanged
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "Price", editor.GetColumnValue("Price"))
+    End Sub
+
+    Private Sub GridView3_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView3.CellValueChanged
+    End Sub
+
+    Private Sub GridView3_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GridView3.CellValueChanging
+        Select Case e.Column.FieldName
+            Case "doorCatID"
+                If e.Value Is Nothing Then Exit Sub
+                Dim DoorCatID As String = e.Value.ToString
+                Select Case DoorCatID.ToUpper
+                    'ΕΡΜΑΡΙΑ
+                    Case "53582708-BB28-4714-99AC-736AEF1D3086"
+                        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "Shelves", "")
+                    'ΡΑΦΙΕΡΕΣ ΒΑΣΕΩΣ
+                    Case "E1D9DBA9-E4FF-45B6-AA26-46ADCED92EE9"
+                        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "constrType", "")
+                        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "GolaColorID", Nothing)
+                        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "BoxColorID", Nothing)
+                    Case Else
+                        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "Shelves", "")
+                        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "constrType", "")
+                        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "GolaColorID", Nothing)
+                        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "BoxColorID", Nothing)
+                End Select
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "DoorTypeID", Nothing)
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "Price", "0")
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "FinalPrice", "0")
+            Case "trm"
+                Dim Price As Double = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "Price")
+                Dim trm As Double = e.Value
+                Dim FinalPrice As Double = trm * Price
+                GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "FinalPrice", FinalPrice)
+        End Select
+
+        If e.Column.FieldName <> "trm" Then Exit Sub
+    End Sub
+
+    Private Sub GridView3_RowUpdated(sender As Object, e As RowObjectEventArgs) Handles GridView3.RowUpdated
+        If GridView3.IsNewItemRow(e.RowHandle) Then InsertRecordV() Else UpdateRecordV()
+    End Sub
+
+    Private Sub GridView3_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView3.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Delete : If UserProps.AllowDelete = True Then DeleteRecordV()
+        End Select
+
+    End Sub
+
+    Private Sub RepDoorTYPEV_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepDoorTYPEV.ButtonClick
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        Select Case e.Button.Index
+            Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageDoorType(editor)
+            Case 2 : editor.EditValue = Nothing
+        End Select
+    End Sub
+
+
+    Private Sub RepDoorCATV_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepDoorCATV.ButtonClick
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        Select Case e.Button.Index
+            Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageDoorCAT(editor)
+            Case 2 : editor.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub RepConstrTypeV_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepConstrTypeV.ButtonClick
+        Dim editor As DevExpress.XtraEditors.ComboBoxEdit = TryCast(sender, DevExpress.XtraEditors.ComboBoxEdit)
+        Select Case e.Button.Index
+            Case 1 : editor.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub RepColorBOXV_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepColorBOXV.ButtonClick
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        Select Case e.Button.Index
+            Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageColors(editor)
+            Case 2 : editor.EditValue = Nothing
+        End Select
+
+    End Sub
+
+    Private Sub RepColorGola_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepColorGola.ButtonClick
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        Select Case e.Button.Index
+            Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageColors(editor)
+            Case 2 : editor.EditValue = Nothing
+        End Select
+
+    End Sub
+    Private Sub cboBaseCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbobaseCatErm.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageDoorBaseCat(cbobaseCatErm)
+            Case 2 : ManageCbo.ManageDoorBaseCat(cbobaseCatErm)
+            Case 3 : cbobaseCatErm.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub RepColorBOXV_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepColorBOXV.PopupFilter
+        If vType = 1 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" BoxColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+    End Sub
+
+    Private Sub RepColorGola_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepColorGola.PopupFilter
+        If vType = 0 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" GolaColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+    End Sub
+
+    Private Sub GridView3_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView3.ValidateRow
+        Dim View As GridView = CType(sender, GridView)
+        If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "DoorTypeID").ToString() = "" Then
+            Dim DoorTypeID As GridColumn = View.Columns("DoorTypeID")
+            e.Valid = False
+            View.SetColumnError(DoorTypeID, "Δεν έχετε επιλέξει Υλικό")
+        End If
+        If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "trm").ToString() = "" Then
+            Dim trmCOL As GridColumn = View.Columns("trm")
+            e.Valid = False
+            View.SetColumnError(trmCOL, "Δεν έχετε πληκτρολογήσει ΤΡ.Μ.")
+        End If
+        If e.Valid Then View.ClearColumnErrors()
+
+    End Sub
+
+    Private Sub GridView3_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView3.InvalidRowException
+        e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
+    End Sub
+
+
+    '************Κ Ρ Ε Μ Α Σ Τ Α***********************
+    Private Sub GridView4_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles GridView4.InitNewRow
+        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "ID", sID)
+        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "cctOrdersKitchenID", sID)
+    End Sub
+
+    Private Sub GridView4_ShowingEditor(sender As Object, e As CancelEventArgs) Handles GridView4.ShowingEditor
+        'Dim view As ColumnView = DirectCast(sender, ColumnView)
+        'If view.FocusedColumn.FieldName = "GolaColorID" And vType = 0 Then e.Cancel = True
+        'If view.FocusedColumn.FieldName = "BoxColorID" And vType = 1 Then e.Cancel = True
+    End Sub
+
+    Private Sub RepDoorTYPEK_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepDoorTYPEK.PopupFilter
+        Dim colorID As String
+        If cbobaseCatErm.EditValue Is Nothing Then
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" doorCatID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+            Exit Sub
+        End If
+        If GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "doorCatID") Is Nothing Then
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" doorCatID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+            Exit Sub
+        End If
+        Dim DoorCatID As String = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "doorCatID").ToString()
+        If DoorCatID = "" Then
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" doorCatID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+            Exit Sub
+        End If
+        If DoorCatID.ToUpper = "53582708-BB28-4714-99AC-736AEF1D3086" Then
+            If vType = 0 Then colorID = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "BoxColorID").ToString() Else colorID = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "GolaColorID").ToString()
+            If colorID.Length > 0 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" baseCatErmID == " & toSQLValueS(System.Guid.Parse(cbobaseCatErm.EditValue.ToString).ToString) &
+                                                                                                     " And doorCatID == " & toSQLValueS(System.Guid.Parse(DoorCatID).ToString) &
+                                                                                                     " And type == " & vType & " And  doorColorID == " & toSQLValueS(System.Guid.Parse(colorID).ToString))
+        Else
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse("baseCatID == " & toSQLValueS(System.Guid.Parse(cbobaseCatErm.EditValue.ToString).ToString) & " And  doorCatID == " & toSQLValueS(System.Guid.Parse(DoorCatID).ToString))
+        End If
+    End Sub
+
+    Private Sub RepConstrTypeK_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RepConstrTypeK.SelectedIndexChanged
+        kType = DirectCast(sender, DevExpress.XtraEditors.ComboBoxEdit).SelectedIndex
+        kTypeDescr = DirectCast(sender, DevExpress.XtraEditors.ComboBoxEdit).EditValue
+    End Sub
+
+    Private Sub RepDoorTYPEK_EditValueChanged(sender As Object, e As EventArgs) Handles RepDoorTYPEK.EditValueChanged
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "Price", editor.GetColumnValue("Price"))
+    End Sub
+
+    Private Sub GridView4_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GridView4.CellValueChanging
+        Select Case e.Column.FieldName
+            Case "doorCatID"
+                If e.Value Is Nothing Then Exit Sub
+                Dim DoorCatID As String = e.Value.ToString
+                Select Case DoorCatID.ToUpper
+                    'ΕΡΜΑΡΙΑ
+                    Case "53582708-BB28-4714-99AC-736AEF1D3086"
+                        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "Shelves", "")
+                    'ΡΑΦΙΕΡΕΣ ΒΑΣΕΩΣ
+                    Case "E1D9DBA9-E4FF-45B6-AA26-46ADCED92EE9"
+                        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "constrType", "")
+                        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "GolaColorID", Nothing)
+                        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "BoxColorID", Nothing)
+                    Case Else
+                        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "Shelves", "")
+                        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "constrType", "")
+                        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "GolaColorID", Nothing)
+                        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "BoxColorID", Nothing)
+                End Select
+                GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "DoorTypeID", Nothing)
+                GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "Price", "0")
+                GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice", "0")
+            Case "trm"
+                Dim Price As Double = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price")
+                Dim trm As Double = e.Value
+                Dim FinalPrice As Double = trm * Price
+                GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice", FinalPrice)
+        End Select
+
+        If e.Column.FieldName <> "trm" Then Exit Sub
+    End Sub
+
+    Private Sub GridView4_RowUpdated(sender As Object, e As RowObjectEventArgs) Handles GridView4.RowUpdated
+        If GridView4.IsNewItemRow(e.RowHandle) Then InsertRecordK() Else UpdateRecordK()
+    End Sub
+
+    Private Sub GridView4_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView4.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Delete : If UserProps.AllowDelete = True Then DeleteRecordK()
+        End Select
+
+    End Sub
+
+    Private Sub RepDoorTYPEK_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepDoorTYPEK.ButtonClick
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        Select Case e.Button.Index
+            Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageDoorType(editor)
+            Case 2 : editor.EditValue = Nothing
+        End Select
+    End Sub
+
+
+    Private Sub RepDoorCATK_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepDoorCATK.ButtonClick
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        Select Case e.Button.Index
+            Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageDoorCAT(editor)
+            Case 2 : editor.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub RepConstrTypeK_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepConstrTypeK.ButtonClick
+        Dim editor As DevExpress.XtraEditors.ComboBoxEdit = TryCast(sender, DevExpress.XtraEditors.ComboBoxEdit)
+        Select Case e.Button.Index
+            Case 1 : editor.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub RepColorBOXK_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepColorBOXK.ButtonClick
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        Select Case e.Button.Index
+            Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageColors(editor)
+            Case 2 : editor.EditValue = Nothing
+        End Select
+
+    End Sub
+
+    'Private Sub RepColorGola_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepColorGola.ButtonClick
+    '    Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+    '    Select Case e.Button.Index
+    '        Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageColors(editor)
+    '        Case 2 : editor.EditValue = Nothing
+    '    End Select
+
+    'End Sub
+    Private Sub RepColorBOXK_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepColorBOXK.PopupFilter
+        If vType = 1 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" BoxColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+    End Sub
+
+    'Private Sub RepColorGola_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepColorGola.PopupFilter
+    '    If vType = 0 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" GolaColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+    'End Sub
+
+    Private Sub GridView4_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView4.ValidateRow
+        Dim View As GridView = CType(sender, GridView)
+        If GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "DoorTypeID").ToString() = "" Then
+            Dim DoorTypeID As GridColumn = View.Columns("DoorTypeID")
+            e.Valid = False
+            View.SetColumnError(DoorTypeID, "Δεν έχετε επιλέξει Υλικό")
+        End If
+        If GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "trm").ToString() = "" Then
+            Dim trmCOL As GridColumn = View.Columns("trm")
+            e.Valid = False
+            View.SetColumnError(trmCOL, "Δεν έχετε πληκτρολογήσει ΤΡ.Μ.")
+        End If
+        If e.Valid Then View.ClearColumnErrors()
+
+    End Sub
+
+    Private Sub GridView4_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView4.InvalidRowException
+        e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
+    End Sub
+
+
+
 End Class

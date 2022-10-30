@@ -975,5 +975,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBBaseCatERP_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBBaseCatERP.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κεντρικές Κατηγορίες Υλικών"
+        form.DataTable = "vw_BASE_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

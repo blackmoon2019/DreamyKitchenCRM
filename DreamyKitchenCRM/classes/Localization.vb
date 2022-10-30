@@ -15,6 +15,8 @@ Public Class GreekGridLocalizer
         'Console.WriteLine(id)
         Select Case id
             ' ... 
+            'Case GridStringId.ColumnViewExceptionMessage
+                'Return ""
             Case GridStringId.FindControlFindButton
                 Return "Εύρεση"
             Case GridStringId.FindControlClearButton

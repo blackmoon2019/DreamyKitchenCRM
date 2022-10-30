@@ -50,6 +50,8 @@ Public Class frmDoorType
     End Sub
 
     Private Sub frmDoorType_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BASE_CAT' table. You can move, or remove it, as needed.
+        Me.Vw_BASE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BASE_CAT)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_CAT' table. You can move, or remove it, as needed.
         Me.Vw_DOOR_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_CAT)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DIM' table. You can move, or remove it, as needed.
@@ -141,7 +143,20 @@ Public Class frmDoorType
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
-
+    Private Sub ManageBaseCATErm()
+        Dim form1 As frmGen = New frmGen()
+        form1.Text = "Κεντρική Κατηγορία "
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Κεντρικές Κατηγορίες Ερμαρίων"
+        form1.DataTable = "BASE_CAT"
+        form1.CallerControl = cboBaseCatErm
+        form1.CalledFromControl = True
+        If cboBaseCatErm.EditValue <> Nothing Then form1.ID = cboBaseCatErm.EditValue.ToString
+        form1.MdiParent = frmMain
+        If cboBaseCatErm.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
     Private Sub cboDim_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDim.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDim.EditValue = Nothing : ManageDIM()
@@ -198,4 +213,11 @@ Public Class frmDoorType
         frmColors.Show()
     End Sub
 
+    Private Sub cboBaseCatErm_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBaseCatErm.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboBaseCatErm.EditValue = Nothing : ManageBaseCATErm()
+            Case 2 : If cboBaseCatErm.EditValue <> Nothing Then ManageBaseCATErm()
+            Case 3 : cboBaseCatErm.EditValue = Nothing
+        End Select
+    End Sub
 End Class
