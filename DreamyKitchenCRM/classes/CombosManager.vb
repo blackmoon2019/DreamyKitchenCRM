@@ -68,7 +68,7 @@ Public Class CombosManager
         frmColors.CallerControlLKUP = CallerControl
         frmColors.CalledFromControl = True
         frmColors.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue IsNot Nothing Then
             frmColors.ID = CallerControl.EditValue.ToString
             frmColors.Mode = FormMode.EditRecord
         Else

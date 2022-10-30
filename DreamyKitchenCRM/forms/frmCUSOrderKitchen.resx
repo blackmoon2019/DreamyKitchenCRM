@@ -118,31 +118,37 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="CCTORDERSKITCHENVBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 277</value>
+    <value>2007, 69</value>
   </metadata>
   <metadata name="DMDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2149, 69</value>
+    <value>864, 69</value>
   </metadata>
   <metadata name="VwDOORCATVBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1550, 277</value>
+    <value>17, 121</value>
   </metadata>
   <metadata name="DreamyKitchenDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
   <metadata name="VwCOLORSGOLABindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 329</value>
+    <value>1429, 121</value>
   </metadata>
   <metadata name="VwCOLORSBOXBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>387, 329</value>
+    <value>1799, 121</value>
   </metadata>
   <metadata name="VwDOORTYPEBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2250, 277</value>
+    <value>717, 121</value>
   </metadata>
   <metadata name="CCTORDERSKITCHENKBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1404, 329</value>
+    <value>17, 173</value>
   </metadata>
   <metadata name="VwDOORCATKBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2263, 329</value>
+    <value>876, 173</value>
+  </metadata>
+  <metadata name="CCTORDERSKITCHENYBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1576, 173</value>
+  </metadata>
+  <metadata name="VwDOORCATYBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>2433, 173</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cmdExit.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -174,13 +180,13 @@
 </value>
   </data>
   <metadata name="VwCCTBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1606, 69</value>
+    <value>321, 69</value>
   </metadata>
   <metadata name="VwSALERSBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>997, 69</value>
+    <value>2714, 17</value>
   </metadata>
   <metadata name="VwBASECATBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>754, 329</value>
+    <value>2166, 121</value>
   </metadata>
   <data name="LayoutControlItem6.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -239,41 +245,11 @@
   <metadata name="VwCOLORSBOXBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>303, 17</value>
   </metadata>
-  <metadata name="VwDOORTYPE1BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>718, 121</value>
-  </metadata>
-  <metadata name="DOORTYPEBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2636, 69</value>
-  </metadata>
   <metadata name="VwBENCHBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2708, 121</value>
-  </metadata>
-  <metadata name="VwDOORTYPEBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 121</value>
-  </metadata>
-  <metadata name="VwDOORTYPEPlainaYpsilaBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1794, 121</value>
-  </metadata>
-  <metadata name="VwDOORTYPEPlainaKremastaBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>318, 173</value>
-  </metadata>
-  <metadata name="VwDOORTYPEPlainaKremasta2hsSeirasBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1747, 225</value>
-  </metadata>
-  <metadata name="VwDOORTYPERafieresVBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1298, 173</value>
-  </metadata>
-  <metadata name="VwDOORTYPERafieresKBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2164, 173</value>
-  </metadata>
-  <metadata name="VwDOORTYPERafieresYBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 225</value>
-  </metadata>
-  <metadata name="VwDOORTYPERafiaWallBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>881, 225</value>
+    <value>1404, 69</value>
   </metadata>
   <metadata name="VwDOORTYPE1BindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1430, 121</value>
+    <value>1040, 69</value>
   </metadata>
   <data name="cmdSaveEquipDev.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -293,81 +269,57 @@
 </value>
   </data>
   <metadata name="VwDEVICESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>368, 69</value>
+    <value>2085, 17</value>
   </metadata>
   <metadata name="VwEQUIPMENTBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2458, 17</value>
+    <value>1383, 17</value>
   </metadata>
   <metadata name="Vw_COLORSBOXTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>659, 17</value>
   </metadata>
   <metadata name="Vw_COLORSGOLATableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2089, 17</value>
+    <value>1014, 17</value>
   </metadata>
   <metadata name="Vw_EQUIPMENTTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 69</value>
+    <value>1734, 17</value>
   </metadata>
   <metadata name="Vw_DEVICESTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>683, 69</value>
+    <value>2400, 17</value>
   </metadata>
   <metadata name="Vw_SALERSTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1302, 69</value>
+    <value>17, 69</value>
   </metadata>
   <metadata name="Vw_CCTTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1878, 69</value>
-  </metadata>
-  <metadata name="DOOR_TYPETableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2325, 69</value>
-  </metadata>
-  <metadata name="Vw_DOOR_TYPETableAdapter1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>358, 121</value>
-  </metadata>
-  <metadata name="Vw_DOOR_TYPE1TableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1070, 121</value>
-  </metadata>
-  <metadata name="Vw_DOOR_TYPEPlainaYpsilaTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2247, 121</value>
+    <value>593, 69</value>
   </metadata>
   <metadata name="Vw_BENCHTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 173</value>
-  </metadata>
-  <metadata name="Vw_DOOR_TYPEPlainaKremastaTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>804, 173</value>
-  </metadata>
-  <metadata name="Vw_DOOR_TYPERafieresVTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1727, 173</value>
-  </metadata>
-  <metadata name="Vw_DOOR_TYPERafieresKTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2592, 173</value>
-  </metadata>
-  <metadata name="Vw_DOOR_TYPERafieresYTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>445, 225</value>
-  </metadata>
-  <metadata name="Vw_DOOR_TYPERafiaWallTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1310, 225</value>
-  </metadata>
-  <metadata name="Vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2322, 225</value>
+    <value>1706, 69</value>
   </metadata>
   <metadata name="CCT_ORDERS_KITCHEN_VTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>438, 277</value>
+    <value>2428, 69</value>
   </metadata>
   <metadata name="Vw_DOOR_CATVTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1896, 277</value>
+    <value>363, 121</value>
   </metadata>
   <metadata name="Vw_DOOR_TYPETableAdapter2.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2602, 277</value>
+    <value>1069, 121</value>
   </metadata>
   <metadata name="Vw_BASE_CATTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1075, 329</value>
+    <value>2487, 121</value>
   </metadata>
   <metadata name="CCT_ORDERS_KITCHEN_KTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1825, 329</value>
+    <value>438, 173</value>
   </metadata>
   <metadata name="Vw_DOOR_CATKTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2609, 329</value>
+    <value>1222, 173</value>
+  </metadata>
+  <metadata name="CCT_ORDERS_KITCHEN_YTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1996, 173</value>
+  </metadata>
+  <metadata name="Vw_DOOR_CATYTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>2778, 173</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>363</value>
+    <value>411</value>
   </metadata>
 </root>

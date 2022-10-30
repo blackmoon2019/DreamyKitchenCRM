@@ -130,6 +130,7 @@ Partial Class frmMain
         Me.BBConstruct = New DevExpress.XtraBars.BarButtonItem()
         Me.BBTechSup = New DevExpress.XtraBars.BarButtonItem()
         Me.BBVer = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBBaseCatERP = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup11 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup15 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -178,7 +179,6 @@ Partial Class frmMain
         Me.AlertControl1 = New DevExpress.XtraBars.Alerter.AlertControl(Me.components)
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.BBBaseCatERP = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1086,6 +1086,13 @@ Partial Class frmMain
         Me.BBVer.Name = "BBVer"
         Me.BBVer.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'BBBaseCatERP
+        '
+        Me.BBBaseCatERP.Caption = "Τύποι Κατασκευής"
+        Me.BBBaseCatERP.Id = 114
+        Me.BBBaseCatERP.Name = "BBBaseCatERP"
+        Me.BBBaseCatERP.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'RibbonPage1
         '
         Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup11, Me.RibbonPageGroup15, Me.RibbonPageGroup1, Me.RibbonPageGroup14})
@@ -1442,13 +1449,6 @@ Partial Class frmMain
         '
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 1000
-        '
-        'BBBaseCatERP
-        '
-        Me.BBBaseCatERP.Caption = "Κεντρικές Κατηγορίες Υλικών"
-        Me.BBBaseCatERP.Id = 114
-        Me.BBBaseCatERP.Name = "BBBaseCatERP"
-        Me.BBBaseCatERP.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'frmMain
         '

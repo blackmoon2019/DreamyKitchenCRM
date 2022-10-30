@@ -51,6 +51,7 @@ Partial Class frmCUSOrderKitchen
         Me.VwDOORTYPEBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepTrmV = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcctOrdersKitchenID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtVFinalHeight = New DevExpress.XtraEditors.TextEdit()
@@ -80,24 +81,22 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn16 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepColorBOXK = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.colHeight = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepNumericK = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.colHeight2ndLine = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn17 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepDoorTYPEK = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.GridColumn18 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn19 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn20 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn21 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.txtKHeight = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txtKFinalHeight = New DevExpress.XtraEditors.TextEdit()
-        Me.txtKHeight2 = New DevExpress.XtraEditors.TextEdit()
         Me.txtKdoorCode = New DevExpress.XtraEditors.TextEdit()
         Me.cboKwater = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboLedProfil = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.chkHangingOnDoors = New DevExpress.XtraEditors.CheckEdit()
         Me.chkHoodAlignment = New DevExpress.XtraEditors.CheckEdit()
         Me.LayoutControlGroup5 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem50 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem55 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem57 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem59 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -106,31 +105,36 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TabNavYpsila = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl5 = New DevExpress.XtraLayout.LayoutControl()
-        Me.txtOtherHeight = New DevExpress.XtraEditors.TextEdit()
-        Me.cboYBOXColors = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GridControl3 = New DevExpress.XtraGrid.GridControl()
+        Me.CCTORDERSKITCHENYBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GridView5 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridColumn15 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn22 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepDoorCATY = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.VwDOORCATYBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GridColumn23 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepConstrTypeY = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.GridColumn24 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn25 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepColorGolaY = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumn26 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepColorBOXY = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumn27 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepDoorTYPEY = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumn28 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn29 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepNumericY = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
+        Me.GridColumn30 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn31 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colHeight1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtYFinalHeight = New DevExpress.XtraEditors.TextEdit()
-        Me.cboYHeight = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboYwater = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txtYdoorCode = New DevExpress.XtraEditors.TextEdit()
-        Me.cboYType = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.txtYShelves = New DevExpress.XtraEditors.TextEdit()
-        Me.cboYDoorType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cboYDoorType1 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cboPependisisDoorType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cboYRafieraDoorType = New DevExpress.XtraEditors.LookUpEdit()
         Me.LayoutControlGroup6 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem62 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem64 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem63 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem39 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem72 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem36 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem48 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem41 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem69 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TabNavBench = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl6 = New DevExpress.XtraLayout.LayoutControl()
         Me.txtbenchCode = New DevExpress.XtraEditors.TextEdit()
@@ -208,17 +212,7 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem32 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwDOORTYPE1BindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DOORTYPEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwBENCHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwDOORTYPEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwDOORTYPEPlainaYpsilaBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwDOORTYPEPlainaKremastaBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwDOORTYPEPlainaKremasta2hsSeirasBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwDOORTYPERafieresVBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwDOORTYPERafieresKBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwDOORTYPERafieresYBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwDOORTYPERafiaWallBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwDOORTYPE1BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
@@ -257,23 +251,25 @@ Partial Class frmCUSOrderKitchen
         Me.Vw_DEVICESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DEVICESTableAdapter()
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
-        Me.DOOR_TYPETableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.DOOR_TYPETableAdapter()
-        Me.Vw_DOOR_TYPETableAdapter1 = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPETableAdapter()
-        Me.Vw_DOOR_TYPE1TableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPE1TableAdapter()
-        Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter()
         Me.Vw_BENCHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BENCHTableAdapter()
-        Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEPlainaKremastaTableAdapter()
-        Me.Vw_DOOR_TYPERafieresVTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresVTableAdapter()
-        Me.Vw_DOOR_TYPERafieresKTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresKTableAdapter()
-        Me.Vw_DOOR_TYPERafieresYTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresYTableAdapter()
-        Me.Vw_DOOR_TYPERafiaWallTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafiaWallTableAdapter()
-        Me.Vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter()
         Me.CCT_ORDERS_KITCHEN_VTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_ORDERS_KITCHEN_VTableAdapter()
         Me.Vw_DOOR_CATVTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_CATVTableAdapter()
         Me.Vw_DOOR_TYPETableAdapter2 = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_TYPETableAdapter()
         Me.Vw_BASE_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BASE_CATTableAdapter()
         Me.CCT_ORDERS_KITCHEN_KTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_ORDERS_KITCHEN_KTableAdapter()
         Me.Vw_DOOR_CATKTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_CATKTableAdapter()
+        Me.CCT_ORDERS_KITCHEN_YTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_ORDERS_KITCHEN_YTableAdapter()
+        Me.Vw_DOOR_CATYTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_CATYTableAdapter()
+        Me.txtbenchCode1 = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.cbobenchThickness1 = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.txtbenchCode2 = New DevExpress.XtraEditors.TextEdit()
+        Me.cboBenchType1 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cbobenchThickness11 = New DevExpress.XtraEditors.ComboBoxEdit()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TabPane2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -295,6 +291,7 @@ Partial Class frmCUSOrderKitchen
         CType(Me.VwCOLORSBOXBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepDoorTYPEV, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDOORTYPEBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepTrmV, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtVFinalHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboBaza.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboLegs.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -317,19 +314,16 @@ Partial Class frmCUSOrderKitchen
         CType(Me.VwDOORCATKBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepConstrTypeK, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepColorBOXK, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepNumericK, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepDoorTYPEK, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtKHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKFinalHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtKHeight2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKdoorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboKwater.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboLedProfil.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHangingOnDoors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHoodAlignment.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem50, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem55, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem57, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem59, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -339,31 +333,24 @@ Partial Class frmCUSOrderKitchen
         Me.TabNavYpsila.SuspendLayout()
         CType(Me.LayoutControl5, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl5.SuspendLayout()
-        CType(Me.txtOtherHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboYBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCTORDERSKITCHENYBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepDoorCATY, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDOORCATYBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepConstrTypeY, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepColorGolaY, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepColorBOXY, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepDoorTYPEY, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepNumericY, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtYFinalHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboYHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboYwater.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtYdoorCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboYType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtYShelves.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboYDoorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboYDoorType1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboPependisisDoorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboYRafieraDoorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem62, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem64, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem63, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem72, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem69, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabNavBench.SuspendLayout()
         CType(Me.LayoutControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl6.SuspendLayout()
@@ -439,17 +426,7 @@ Partial Class frmCUSOrderKitchen
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPE1BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPEPlainaYpsilaBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPEPlainaKremastaBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPEPlainaKremasta2hsSeirasBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPERafieresVBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPERafieresKBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPERafieresYBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPERafiaWallBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDOORTYPE1BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPane1.SuspendLayout()
@@ -469,6 +446,16 @@ Partial Class frmCUSOrderKitchen
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtbenchCode1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbobenchThickness1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtbenchCode2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboBenchType1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cbobenchThickness11.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'coldCode
@@ -567,9 +554,9 @@ Partial Class frmCUSOrderKitchen
         Me.GridControl1.Location = New System.Drawing.Point(12, 12)
         Me.GridControl1.MainView = Me.GridView3
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepConstrTypeV, Me.RepColorGola, Me.RepColorBOXV, Me.RepDoorTYPEV, Me.RepDoorCATV})
+        Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepConstrTypeV, Me.RepColorGola, Me.RepColorBOXV, Me.RepDoorTYPEV, Me.RepDoorCATV, Me.RepTrmV})
         Me.GridControl1.Size = New System.Drawing.Size(1811, 540)
-        Me.GridControl1.TabIndex = 58
+        Me.GridControl1.TabIndex = 0
         Me.GridControl1.UseEmbeddedNavigator = True
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
@@ -607,7 +594,7 @@ Partial Class frmCUSOrderKitchen
         '
         'coldoorCatID
         '
-        Me.coldoorCatID.Caption = "Κατηγορία Υλικού"
+        Me.coldoorCatID.Caption = "Υποκατηγορίες"
         Me.coldoorCatID.ColumnEdit = Me.RepDoorCATV
         Me.coldoorCatID.FieldName = "doorCatID"
         Me.coldoorCatID.MinWidth = 35
@@ -639,7 +626,7 @@ Partial Class frmCUSOrderKitchen
         '
         'GridColumn4
         '
-        Me.GridColumn4.Caption = "Τύπος Κατασκευής"
+        Me.GridColumn4.Caption = "Χειρολαβή"
         Me.GridColumn4.ColumnEdit = Me.RepConstrTypeV
         Me.GridColumn4.FieldName = "constrType"
         Me.GridColumn4.MinWidth = 35
@@ -722,7 +709,7 @@ Partial Class frmCUSOrderKitchen
         '
         'GridColumn7
         '
-        Me.GridColumn7.Caption = "Υλικό"
+        Me.GridColumn7.Caption = "Κατηγορία Υλικού"
         Me.GridColumn7.ColumnEdit = Me.RepDoorTYPEV
         Me.GridColumn7.FieldName = "DoorTypeID"
         Me.GridColumn7.MinWidth = 35
@@ -766,7 +753,8 @@ Partial Class frmCUSOrderKitchen
         '
         'GridColumn9
         '
-        Me.GridColumn9.Caption = "ΤΡ.Μ."
+        Me.GridColumn9.Caption = "ΤΡ.Μ./ΤΕΜ"
+        Me.GridColumn9.ColumnEdit = Me.RepTrmV
         Me.GridColumn9.DisplayFormat.FormatString = "n2"
         Me.GridColumn9.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn9.FieldName = "trm"
@@ -775,6 +763,17 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn9.Visible = True
         Me.GridColumn9.VisibleIndex = 7
         Me.GridColumn9.Width = 131
+        '
+        'RepTrmV
+        '
+        Me.RepTrmV.AutoHeight = False
+        Me.RepTrmV.EditFormat.FormatString = "n2"
+        Me.RepTrmV.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepTrmV.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.RepTrmV.MaskSettings.Set("MaskManagerSignature", "allowNull=False")
+        Me.RepTrmV.MaskSettings.Set("mask", "n2")
+        Me.RepTrmV.Name = "RepTrmV"
+        Me.RepTrmV.UseMaskAsDisplayFormat = True
         '
         'GridColumn10
         '
@@ -812,7 +811,7 @@ Partial Class frmCUSOrderKitchen
         Me.txtVFinalHeight.Properties.MaskSettings.Set("mask", "n2")
         Me.txtVFinalHeight.Size = New System.Drawing.Size(1599, 38)
         Me.txtVFinalHeight.StyleController = Me.LayoutControl3
-        Me.txtVFinalHeight.TabIndex = 42
+        Me.txtVFinalHeight.TabIndex = 2
         Me.txtVFinalHeight.Tag = "VFinalHeight,0,1,2"
         '
         'cboBaza
@@ -827,7 +826,7 @@ Partial Class frmCUSOrderKitchen
         Me.cboBaza.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboBaza.Size = New System.Drawing.Size(691, 38)
         Me.cboBaza.StyleController = Me.LayoutControl3
-        Me.cboBaza.TabIndex = 57
+        Me.cboBaza.TabIndex = 3
         Me.cboBaza.Tag = "Baza,0,1,2"
         '
         'cboLegs
@@ -842,7 +841,7 @@ Partial Class frmCUSOrderKitchen
         Me.cboLegs.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboLegs.Size = New System.Drawing.Size(692, 38)
         Me.cboLegs.StyleController = Me.LayoutControl3
-        Me.cboLegs.TabIndex = 57
+        Me.cboLegs.TabIndex = 4
         Me.cboLegs.Tag = "Legs,0,1,2"
         '
         'txtVdoorCode
@@ -853,7 +852,7 @@ Partial Class frmCUSOrderKitchen
         Me.txtVdoorCode.Properties.UseReadOnlyAppearance = False
         Me.txtVdoorCode.Size = New System.Drawing.Size(693, 38)
         Me.txtVdoorCode.StyleController = Me.LayoutControl3
-        Me.txtVdoorCode.TabIndex = 44
+        Me.txtVdoorCode.TabIndex = 6
         Me.txtVdoorCode.Tag = "VdoorCode,0,1,2"
         '
         'cboVwater
@@ -868,7 +867,7 @@ Partial Class frmCUSOrderKitchen
         Me.cboVwater.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboVwater.Size = New System.Drawing.Size(691, 38)
         Me.cboVwater.StyleController = Me.LayoutControl3
-        Me.cboVwater.TabIndex = 57
+        Me.cboVwater.TabIndex = 5
         Me.cboVwater.Tag = "Vwater,0,1,2"
         '
         'LayoutControlGroup3
@@ -961,9 +960,7 @@ Partial Class frmCUSOrderKitchen
         'LayoutControl4
         '
         Me.LayoutControl4.Controls.Add(Me.GridControl2)
-        Me.LayoutControl4.Controls.Add(Me.txtKHeight)
         Me.LayoutControl4.Controls.Add(Me.txtKFinalHeight)
-        Me.LayoutControl4.Controls.Add(Me.txtKHeight2)
         Me.LayoutControl4.Controls.Add(Me.txtKdoorCode)
         Me.LayoutControl4.Controls.Add(Me.cboKwater)
         Me.LayoutControl4.Controls.Add(Me.cboLedProfil)
@@ -984,9 +981,9 @@ Partial Class frmCUSOrderKitchen
         Me.GridControl2.Location = New System.Drawing.Point(12, 12)
         Me.GridControl2.MainView = Me.GridView4
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepConstrTypeK, Me.RepColorBOXK, Me.RepDoorTYPEK, Me.RepDoorCATK})
-        Me.GridControl2.Size = New System.Drawing.Size(1811, 417)
-        Me.GridControl2.TabIndex = 60
+        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepConstrTypeK, Me.RepColorBOXK, Me.RepDoorTYPEK, Me.RepDoorCATK, Me.RepNumericK})
+        Me.GridControl2.Size = New System.Drawing.Size(1811, 459)
+        Me.GridControl2.TabIndex = 0
         Me.GridControl2.UseEmbeddedNavigator = True
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})
         '
@@ -997,7 +994,7 @@ Partial Class frmCUSOrderKitchen
         '
         'GridView4
         '
-        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn16, Me.colHeight, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
+        Me.GridView4.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.GridColumn13, Me.GridColumn14, Me.GridColumn16, Me.colHeight, Me.colHeight2ndLine, Me.GridColumn17, Me.GridColumn18, Me.GridColumn19, Me.GridColumn20, Me.GridColumn21})
         Me.GridView4.GridControl = Me.GridControl2
         Me.GridView4.Name = "GridView4"
         Me.GridView4.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
@@ -1019,7 +1016,7 @@ Partial Class frmCUSOrderKitchen
         '
         'GridColumn12
         '
-        Me.GridColumn12.Caption = "Κατηγορία Υλικού"
+        Me.GridColumn12.Caption = "Υποκατηγορίες"
         Me.GridColumn12.ColumnEdit = Me.RepDoorCATK
         Me.GridColumn12.FieldName = "doorCatID"
         Me.GridColumn12.MinWidth = 35
@@ -1046,7 +1043,7 @@ Partial Class frmCUSOrderKitchen
         '
         'GridColumn13
         '
-        Me.GridColumn13.Caption = "Τύπος Κατασκευής"
+        Me.GridColumn13.Caption = "Χειρολαβή"
         Me.GridColumn13.ColumnEdit = Me.RepConstrTypeK
         Me.GridColumn13.FieldName = "constrType"
         Me.GridColumn13.MinWidth = 35
@@ -1070,7 +1067,7 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn14.MinWidth = 35
         Me.GridColumn14.Name = "GridColumn14"
         Me.GridColumn14.Visible = True
-        Me.GridColumn14.VisibleIndex = 4
+        Me.GridColumn14.VisibleIndex = 5
         Me.GridColumn14.Width = 131
         '
         'GridColumn16
@@ -1081,7 +1078,7 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn16.MinWidth = 35
         Me.GridColumn16.Name = "GridColumn16"
         Me.GridColumn16.Visible = True
-        Me.GridColumn16.VisibleIndex = 3
+        Me.GridColumn16.VisibleIndex = 4
         Me.GridColumn16.Width = 131
         '
         'RepColorBOXK
@@ -1098,6 +1095,7 @@ Partial Class frmCUSOrderKitchen
         'colHeight
         '
         Me.colHeight.Caption = "Ύψος"
+        Me.colHeight.ColumnEdit = Me.RepNumericK
         Me.colHeight.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.colHeight.FieldName = "Height"
         Me.colHeight.MinWidth = 35
@@ -1106,15 +1104,39 @@ Partial Class frmCUSOrderKitchen
         Me.colHeight.VisibleIndex = 2
         Me.colHeight.Width = 131
         '
+        'RepNumericK
+        '
+        Me.RepNumericK.AutoHeight = False
+        Me.RepNumericK.DisplayFormat.FormatString = "n2"
+        Me.RepNumericK.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepNumericK.EditFormat.FormatString = "n2"
+        Me.RepNumericK.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepNumericK.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.RepNumericK.MaskSettings.Set("MaskManagerSignature", "allowNull=False")
+        Me.RepNumericK.MaskSettings.Set("mask", "n2")
+        Me.RepNumericK.Name = "RepNumericK"
+        Me.RepNumericK.UseMaskAsDisplayFormat = True
+        '
+        'colHeight2ndLine
+        '
+        Me.colHeight2ndLine.Caption = "Ύψος 2ης Σειράς"
+        Me.colHeight2ndLine.ColumnEdit = Me.RepNumericK
+        Me.colHeight2ndLine.FieldName = "Height2ndLine"
+        Me.colHeight2ndLine.MinWidth = 35
+        Me.colHeight2ndLine.Name = "colHeight2ndLine"
+        Me.colHeight2ndLine.Visible = True
+        Me.colHeight2ndLine.VisibleIndex = 3
+        Me.colHeight2ndLine.Width = 131
+        '
         'GridColumn17
         '
-        Me.GridColumn17.Caption = "Υλικό"
+        Me.GridColumn17.Caption = "Κατηγορία Υλικού"
         Me.GridColumn17.ColumnEdit = Me.RepDoorTYPEK
         Me.GridColumn17.FieldName = "DoorTypeID"
         Me.GridColumn17.MinWidth = 35
         Me.GridColumn17.Name = "GridColumn17"
         Me.GridColumn17.Visible = True
-        Me.GridColumn17.VisibleIndex = 5
+        Me.GridColumn17.VisibleIndex = 6
         Me.GridColumn17.Width = 131
         '
         'RepDoorTYPEK
@@ -1142,19 +1164,20 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn18.OptionsColumn.AllowEdit = False
         Me.GridColumn18.OptionsColumn.ReadOnly = True
         Me.GridColumn18.Visible = True
-        Me.GridColumn18.VisibleIndex = 6
+        Me.GridColumn18.VisibleIndex = 7
         Me.GridColumn18.Width = 131
         '
         'GridColumn19
         '
-        Me.GridColumn19.Caption = "ΤΡ.Μ."
+        Me.GridColumn19.Caption = "ΤΡ.Μ./ΤΕΜ"
+        Me.GridColumn19.ColumnEdit = Me.RepNumericK
         Me.GridColumn19.DisplayFormat.FormatString = "n2"
         Me.GridColumn19.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.GridColumn19.FieldName = "trm"
         Me.GridColumn19.MinWidth = 35
         Me.GridColumn19.Name = "GridColumn19"
         Me.GridColumn19.Visible = True
-        Me.GridColumn19.VisibleIndex = 7
+        Me.GridColumn19.VisibleIndex = 8
         Me.GridColumn19.Width = 131
         '
         'GridColumn20
@@ -1168,7 +1191,7 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.OptionsColumn.ReadOnly = True
         Me.GridColumn20.Visible = True
-        Me.GridColumn20.VisibleIndex = 8
+        Me.GridColumn20.VisibleIndex = 9
         Me.GridColumn20.Width = 131
         '
         'GridColumn21
@@ -1178,23 +1201,10 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn21.Name = "GridColumn21"
         Me.GridColumn21.Width = 131
         '
-        'txtKHeight
-        '
-        Me.txtKHeight.EditValue = ""
-        Me.txtKHeight.Location = New System.Drawing.Point(226, 475)
-        Me.txtKHeight.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtKHeight.Name = "txtKHeight"
-        Me.txtKHeight.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtKHeight.Properties.Items.AddRange(New Object() {"36cm", "48cm", "60cm", "72cm", "80cm", "90cm", "96cm", "120cm"})
-        Me.txtKHeight.Size = New System.Drawing.Size(996, 38)
-        Me.txtKHeight.StyleController = Me.LayoutControl4
-        Me.txtKHeight.TabIndex = 42
-        Me.txtKHeight.Tag = "KHeight,0,1,2"
-        '
         'txtKFinalHeight
         '
         Me.txtKFinalHeight.EditValue = "0,00 €"
-        Me.txtKFinalHeight.Location = New System.Drawing.Point(226, 433)
+        Me.txtKFinalHeight.Location = New System.Drawing.Point(226, 475)
         Me.txtKFinalHeight.Margin = New System.Windows.Forms.Padding(5)
         Me.txtKFinalHeight.Name = "txtKFinalHeight"
         Me.txtKFinalHeight.Properties.DisplayFormat.FormatString = "n"
@@ -1206,26 +1216,8 @@ Partial Class frmCUSOrderKitchen
         Me.txtKFinalHeight.Properties.MaskSettings.Set("mask", "n2")
         Me.txtKFinalHeight.Size = New System.Drawing.Size(1597, 38)
         Me.txtKFinalHeight.StyleController = Me.LayoutControl4
-        Me.txtKFinalHeight.TabIndex = 42
+        Me.txtKFinalHeight.TabIndex = 2
         Me.txtKFinalHeight.Tag = "KFinalHeight,0,1,2"
-        '
-        'txtKHeight2
-        '
-        Me.txtKHeight2.EditValue = "0,00 €"
-        Me.txtKHeight2.Location = New System.Drawing.Point(1318, 475)
-        Me.txtKHeight2.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtKHeight2.Name = "txtKHeight2"
-        Me.txtKHeight2.Properties.DisplayFormat.FormatString = "n"
-        Me.txtKHeight2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtKHeight2.Properties.EditFormat.FormatString = "n2"
-        Me.txtKHeight2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtKHeight2.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtKHeight2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtKHeight2.Properties.MaskSettings.Set("mask", "n2")
-        Me.txtKHeight2.Size = New System.Drawing.Size(505, 38)
-        Me.txtKHeight2.StyleController = Me.LayoutControl4
-        Me.txtKHeight2.TabIndex = 42
-        Me.txtKHeight2.Tag = "KHeight2,0,1,2"
         '
         'txtKdoorCode
         '
@@ -1235,7 +1227,7 @@ Partial Class frmCUSOrderKitchen
         Me.txtKdoorCode.Properties.UseReadOnlyAppearance = False
         Me.txtKdoorCode.Size = New System.Drawing.Size(1598, 38)
         Me.txtKdoorCode.StyleController = Me.LayoutControl4
-        Me.txtKdoorCode.TabIndex = 44
+        Me.txtKdoorCode.TabIndex = 3
         Me.txtKdoorCode.Tag = "KdoorCode,0,1,2"
         '
         'cboKwater
@@ -1250,7 +1242,7 @@ Partial Class frmCUSOrderKitchen
         Me.cboKwater.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboKwater.Size = New System.Drawing.Size(1597, 38)
         Me.cboKwater.StyleController = Me.LayoutControl4
-        Me.cboKwater.TabIndex = 57
+        Me.cboKwater.TabIndex = 4
         Me.cboKwater.Tag = "Kwater,0,1,2"
         '
         'cboLedProfil
@@ -1265,7 +1257,7 @@ Partial Class frmCUSOrderKitchen
         Me.cboLedProfil.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboLedProfil.Size = New System.Drawing.Size(1597, 38)
         Me.cboLedProfil.StyleController = Me.LayoutControl4
-        Me.cboLedProfil.TabIndex = 57
+        Me.cboLedProfil.TabIndex = 7
         Me.cboLedProfil.Tag = "LedProfil,0,1,2"
         '
         'chkHangingOnDoors
@@ -1284,7 +1276,7 @@ Partial Class frmCUSOrderKitchen
         Me.chkHangingOnDoors.Properties.ValueUnchecked = CType(0, Byte)
         Me.chkHangingOnDoors.Size = New System.Drawing.Size(796, 35)
         Me.chkHangingOnDoors.StyleController = Me.LayoutControl4
-        Me.chkHangingOnDoors.TabIndex = 59
+        Me.chkHangingOnDoors.TabIndex = 5
         Me.chkHangingOnDoors.Tag = "HangingOnDoors,0,1,2"
         '
         'chkHoodAlignment
@@ -1303,29 +1295,17 @@ Partial Class frmCUSOrderKitchen
         Me.chkHoodAlignment.Properties.ValueUnchecked = CType(0, Byte)
         Me.chkHoodAlignment.Size = New System.Drawing.Size(1011, 35)
         Me.chkHoodAlignment.StyleController = Me.LayoutControl4
-        Me.chkHoodAlignment.TabIndex = 58
+        Me.chkHoodAlignment.TabIndex = 6
         Me.chkHoodAlignment.Tag = "HoodAlignment,0,1,2"
         '
         'LayoutControlGroup5
         '
         Me.LayoutControlGroup5.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup5.GroupBordersVisible = False
-        Me.LayoutControlGroup5.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem11, Me.LayoutControlItem50, Me.LayoutControlItem55, Me.LayoutControlItem57, Me.LayoutControlItem59, Me.LayoutControlItem23, Me.LayoutControlItem61, Me.LayoutControlItem15})
+        Me.LayoutControlGroup5.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem11, Me.LayoutControlItem55, Me.LayoutControlItem57, Me.LayoutControlItem59, Me.LayoutControlItem23, Me.LayoutControlItem61, Me.LayoutControlItem15})
         Me.LayoutControlGroup5.Name = "LayoutControlGroup5"
         Me.LayoutControlGroup5.Size = New System.Drawing.Size(1835, 694)
         Me.LayoutControlGroup5.TextVisible = False
-        '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me.txtKHeight
-        Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem3.CustomizationFormText = "Ύψος"
-        Me.LayoutControlItem3.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 463)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(1214, 42)
-        Me.LayoutControlItem3.Text = "Ύψος (cm)"
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(202, 23)
         '
         'LayoutControlItem11
         '
@@ -1333,25 +1313,11 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem11.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem11.CustomizationFormText = "Ύψος"
         Me.LayoutControlItem11.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 421)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(0, 463)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(1815, 42)
         Me.LayoutControlItem11.Text = "Τελικό Ύψος (cm)"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(202, 23)
-        '
-        'LayoutControlItem50
-        '
-        Me.LayoutControlItem50.Control = Me.txtKHeight2
-        Me.LayoutControlItem50.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem50.CustomizationFormText = "Ύψος"
-        Me.LayoutControlItem50.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem50.Location = New System.Drawing.Point(1214, 463)
-        Me.LayoutControlItem50.Name = "LayoutControlItem50"
-        Me.LayoutControlItem50.Size = New System.Drawing.Size(601, 42)
-        Me.LayoutControlItem50.Text = "Ύψος (cm)"
-        Me.LayoutControlItem50.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem50.TextSize = New System.Drawing.Size(91, 23)
-        Me.LayoutControlItem50.TextToControlDistance = 1
         '
         'LayoutControlItem55
         '
@@ -1417,7 +1383,7 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem15.Control = Me.GridControl2
         Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(1815, 421)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(1815, 463)
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem15.TextVisible = False
         '
@@ -1432,18 +1398,10 @@ Partial Class frmCUSOrderKitchen
         '
         'LayoutControl5
         '
-        Me.LayoutControl5.Controls.Add(Me.txtOtherHeight)
-        Me.LayoutControl5.Controls.Add(Me.cboYBOXColors)
+        Me.LayoutControl5.Controls.Add(Me.GridControl3)
         Me.LayoutControl5.Controls.Add(Me.txtYFinalHeight)
-        Me.LayoutControl5.Controls.Add(Me.cboYHeight)
         Me.LayoutControl5.Controls.Add(Me.cboYwater)
         Me.LayoutControl5.Controls.Add(Me.txtYdoorCode)
-        Me.LayoutControl5.Controls.Add(Me.cboYType)
-        Me.LayoutControl5.Controls.Add(Me.txtYShelves)
-        Me.LayoutControl5.Controls.Add(Me.cboYDoorType)
-        Me.LayoutControl5.Controls.Add(Me.cboYDoorType1)
-        Me.LayoutControl5.Controls.Add(Me.cboPependisisDoorType)
-        Me.LayoutControl5.Controls.Add(Me.cboYRafieraDoorType)
         Me.LayoutControl5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl5.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl5.Name = "LayoutControl5"
@@ -1452,46 +1410,245 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControl5.TabIndex = 0
         Me.LayoutControl5.Text = "LayoutControl5"
         '
-        'txtOtherHeight
+        'GridControl3
         '
-        Me.txtOtherHeight.EditValue = "0,00 €"
-        Me.txtOtherHeight.Location = New System.Drawing.Point(224, 96)
-        Me.txtOtherHeight.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtOtherHeight.Name = "txtOtherHeight"
-        Me.txtOtherHeight.Properties.DisplayFormat.FormatString = "n"
-        Me.txtOtherHeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtOtherHeight.Properties.EditFormat.FormatString = "n2"
-        Me.txtOtherHeight.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtOtherHeight.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtOtherHeight.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtOtherHeight.Properties.MaskSettings.Set("mask", "n2")
-        Me.txtOtherHeight.Properties.ReadOnly = True
-        Me.txtOtherHeight.Size = New System.Drawing.Size(1599, 38)
-        Me.txtOtherHeight.StyleController = Me.LayoutControl5
-        Me.txtOtherHeight.TabIndex = 42
-        Me.txtOtherHeight.Tag = "OtherHeight,0,1,2"
+        Me.GridControl3.DataSource = Me.CCTORDERSKITCHENYBindingSource
+        Me.GridControl3.EmbeddedNavigator.TextStringFormat = "Εγγραφή {0} of {1}"
+        Me.GridControl3.Location = New System.Drawing.Point(12, 12)
+        Me.GridControl3.MainView = Me.GridView5
+        Me.GridControl3.Name = "GridControl3"
+        Me.GridControl3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepConstrTypeY, Me.RepColorGolaY, Me.RepColorBOXY, Me.RepDoorTYPEY, Me.RepDoorCATY, Me.RepNumericY})
+        Me.GridControl3.Size = New System.Drawing.Size(1811, 540)
+        Me.GridControl3.TabIndex = 0
+        Me.GridControl3.UseEmbeddedNavigator = True
+        Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView5})
         '
-        'cboYBOXColors
+        'CCTORDERSKITCHENYBindingSource
         '
-        Me.cboYBOXColors.EditValue = ""
-        Me.cboYBOXColors.Location = New System.Drawing.Point(224, 180)
-        Me.cboYBOXColors.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboYBOXColors.Name = "cboYBOXColors"
-        Me.cboYBOXColors.Properties.AllowMouseWheel = False
-        Me.cboYBOXColors.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboYBOXColors.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Χρώμα", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("photo", "photo", 63, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboYBOXColors.Properties.DisplayMember = "name"
-        Me.cboYBOXColors.Properties.NullText = ""
-        Me.cboYBOXColors.Properties.ValueMember = "ID"
-        Me.cboYBOXColors.Size = New System.Drawing.Size(1599, 38)
-        Me.cboYBOXColors.StyleController = Me.LayoutControl5
-        Me.cboYBOXColors.TabIndex = 45
-        Me.cboYBOXColors.Tag = "YBoxColorID,0,1,2"
+        Me.CCTORDERSKITCHENYBindingSource.DataMember = "CCT_ORDERS_KITCHEN_Y"
+        Me.CCTORDERSKITCHENYBindingSource.DataSource = Me.DMDataSet
+        '
+        'GridView5
+        '
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn15, Me.GridColumn22, Me.GridColumn23, Me.GridColumn24, Me.GridColumn25, Me.GridColumn26, Me.GridColumn27, Me.GridColumn28, Me.GridColumn29, Me.GridColumn30, Me.GridColumn31, Me.colHeight1})
+        Me.GridView5.GridControl = Me.GridControl3
+        Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridView5.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.GridView5.OptionsMenu.ShowFooterItem = True
+        Me.GridView5.OptionsMenu.ShowGroupSummaryEditorItem = True
+        Me.GridView5.OptionsNavigation.AutoFocusNewRow = True
+        Me.GridView5.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom
+        Me.GridView5.OptionsView.ShowFooter = True
+        Me.GridView5.OptionsView.ShowGroupedColumns = True
+        Me.GridView5.OptionsView.ShowGroupPanel = False
+        '
+        'GridColumn15
+        '
+        Me.GridColumn15.FieldName = "ID"
+        Me.GridColumn15.MinWidth = 35
+        Me.GridColumn15.Name = "GridColumn15"
+        Me.GridColumn15.Width = 131
+        '
+        'GridColumn22
+        '
+        Me.GridColumn22.Caption = "Υποκατηγορίες"
+        Me.GridColumn22.ColumnEdit = Me.RepDoorCATY
+        Me.GridColumn22.FieldName = "doorCatID"
+        Me.GridColumn22.MinWidth = 35
+        Me.GridColumn22.Name = "GridColumn22"
+        Me.GridColumn22.Visible = True
+        Me.GridColumn22.VisibleIndex = 0
+        Me.GridColumn22.Width = 131
+        '
+        'RepDoorCATY
+        '
+        Me.RepDoorCATY.AutoHeight = False
+        Me.RepDoorCATY.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.RepDoorCATY.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Κατηγορία", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepDoorCATY.DataSource = Me.VwDOORCATYBindingSource
+        Me.RepDoorCATY.DisplayMember = "name"
+        Me.RepDoorCATY.Name = "RepDoorCATY"
+        Me.RepDoorCATY.NullText = ""
+        Me.RepDoorCATY.ValueMember = "ID"
+        '
+        'VwDOORCATYBindingSource
+        '
+        Me.VwDOORCATYBindingSource.DataMember = "vw_DOOR_CATY"
+        Me.VwDOORCATYBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'GridColumn23
+        '
+        Me.GridColumn23.Caption = "Χειρολαβή"
+        Me.GridColumn23.ColumnEdit = Me.RepConstrTypeY
+        Me.GridColumn23.FieldName = "constrType"
+        Me.GridColumn23.MinWidth = 35
+        Me.GridColumn23.Name = "GridColumn23"
+        Me.GridColumn23.Visible = True
+        Me.GridColumn23.VisibleIndex = 1
+        Me.GridColumn23.Width = 131
+        '
+        'RepConstrTypeY
+        '
+        Me.RepConstrTypeY.AutoHeight = False
+        Me.RepConstrTypeY.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.RepConstrTypeY.Items.AddRange(New Object() {"Απλό 72cm", "Gola 75cm"})
+        Me.RepConstrTypeY.Name = "RepConstrTypeY"
+        Me.RepConstrTypeY.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        '
+        'GridColumn24
+        '
+        Me.GridColumn24.Caption = "Κωδ.Ραφιέρας"
+        Me.GridColumn24.FieldName = "Shelves"
+        Me.GridColumn24.MinWidth = 35
+        Me.GridColumn24.Name = "GridColumn24"
+        Me.GridColumn24.Visible = True
+        Me.GridColumn24.VisibleIndex = 5
+        Me.GridColumn24.Width = 131
+        '
+        'GridColumn25
+        '
+        Me.GridColumn25.Caption = "Χρώμα Gola"
+        Me.GridColumn25.ColumnEdit = Me.RepColorGolaY
+        Me.GridColumn25.FieldName = "GolaColorID"
+        Me.GridColumn25.MinWidth = 35
+        Me.GridColumn25.Name = "GridColumn25"
+        Me.GridColumn25.Visible = True
+        Me.GridColumn25.VisibleIndex = 3
+        Me.GridColumn25.Width = 131
+        '
+        'RepColorGolaY
+        '
+        Me.RepColorGolaY.AutoHeight = False
+        Me.RepColorGolaY.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.RepColorGolaY.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Χρώμα", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("color", "color", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("photo", "photo", 63, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("colorCatName", "color Cat Name", 143, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("colorsCatID", "colors Cat ID", 122, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepColorGolaY.DataSource = Me.VwCOLORSGOLABindingSource
+        Me.RepColorGolaY.DisplayMember = "name"
+        Me.RepColorGolaY.Name = "RepColorGolaY"
+        Me.RepColorGolaY.NullText = ""
+        Me.RepColorGolaY.ValueMember = "ID"
+        '
+        'GridColumn26
+        '
+        Me.GridColumn26.Caption = "Χρώμα Κουτιού"
+        Me.GridColumn26.ColumnEdit = Me.RepColorBOXY
+        Me.GridColumn26.FieldName = "BoxColorID"
+        Me.GridColumn26.MinWidth = 35
+        Me.GridColumn26.Name = "GridColumn26"
+        Me.GridColumn26.Visible = True
+        Me.GridColumn26.VisibleIndex = 4
+        Me.GridColumn26.Width = 131
+        '
+        'RepColorBOXY
+        '
+        Me.RepColorBOXY.AutoHeight = False
+        Me.RepColorBOXY.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.RepColorBOXY.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Χρώμα", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("photo", "photo", 63, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepColorBOXY.DataSource = Me.VwCOLORSBOXBindingSource1
+        Me.RepColorBOXY.DisplayMember = "name"
+        Me.RepColorBOXY.Name = "RepColorBOXY"
+        Me.RepColorBOXY.NullText = ""
+        Me.RepColorBOXY.ValueMember = "ID"
+        '
+        'GridColumn27
+        '
+        Me.GridColumn27.Caption = "Κατηγορία Υλικού"
+        Me.GridColumn27.ColumnEdit = Me.RepDoorTYPEY
+        Me.GridColumn27.FieldName = "DoorTypeID"
+        Me.GridColumn27.MinWidth = 35
+        Me.GridColumn27.Name = "GridColumn27"
+        Me.GridColumn27.Visible = True
+        Me.GridColumn27.VisibleIndex = 6
+        Me.GridColumn27.Width = 131
+        '
+        'RepDoorTYPEY
+        '
+        Me.RepDoorTYPEY.AutoHeight = False
+        Me.RepDoorTYPEY.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.RepDoorTYPEY.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Υλικό", 120, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 101, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Price", "Τιμή", 55, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorColorID", "door Color ID", 127, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type", "type", 51, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("baseCatErmID", "base Cat Erm ID", 153, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorCatID", "door Cat ID", 112, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepDoorTYPEY.DataSource = Me.VwDOORTYPEBindingSource1
+        Me.RepDoorTYPEY.DisplayMember = "name"
+        Me.RepDoorTYPEY.Name = "RepDoorTYPEY"
+        Me.RepDoorTYPEY.NullText = ""
+        Me.RepDoorTYPEY.PopupFormMinSize = New System.Drawing.Size(500, 0)
+        Me.RepDoorTYPEY.PopupWidth = 500
+        Me.RepDoorTYPEY.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth
+        Me.RepDoorTYPEY.ValueMember = "ID"
+        '
+        'GridColumn28
+        '
+        Me.GridColumn28.Caption = "Τιμή"
+        Me.GridColumn28.DisplayFormat.FormatString = "c2"
+        Me.GridColumn28.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn28.FieldName = "Price"
+        Me.GridColumn28.MinWidth = 35
+        Me.GridColumn28.Name = "GridColumn28"
+        Me.GridColumn28.OptionsColumn.AllowEdit = False
+        Me.GridColumn28.OptionsColumn.ReadOnly = True
+        Me.GridColumn28.Visible = True
+        Me.GridColumn28.VisibleIndex = 7
+        Me.GridColumn28.Width = 131
+        '
+        'GridColumn29
+        '
+        Me.GridColumn29.Caption = "ΤΡ.Μ./ΤΕΜ"
+        Me.GridColumn29.ColumnEdit = Me.RepNumericY
+        Me.GridColumn29.DisplayFormat.FormatString = "n2"
+        Me.GridColumn29.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn29.FieldName = "trm"
+        Me.GridColumn29.MinWidth = 35
+        Me.GridColumn29.Name = "GridColumn29"
+        Me.GridColumn29.Visible = True
+        Me.GridColumn29.VisibleIndex = 8
+        Me.GridColumn29.Width = 131
+        '
+        'RepNumericY
+        '
+        Me.RepNumericY.AutoHeight = False
+        Me.RepNumericY.EditFormat.FormatString = "n2"
+        Me.RepNumericY.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.RepNumericY.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.RepNumericY.MaskSettings.Set("MaskManagerSignature", "allowNull=False")
+        Me.RepNumericY.MaskSettings.Set("mask", "n2")
+        Me.RepNumericY.Name = "RepNumericY"
+        Me.RepNumericY.UseMaskAsDisplayFormat = True
+        '
+        'GridColumn30
+        '
+        Me.GridColumn30.Caption = "Τελική Τιμή"
+        Me.GridColumn30.DisplayFormat.FormatString = "c2"
+        Me.GridColumn30.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.GridColumn30.FieldName = "FinalPrice"
+        Me.GridColumn30.MinWidth = 35
+        Me.GridColumn30.Name = "GridColumn30"
+        Me.GridColumn30.OptionsColumn.AllowEdit = False
+        Me.GridColumn30.OptionsColumn.ReadOnly = True
+        Me.GridColumn30.Visible = True
+        Me.GridColumn30.VisibleIndex = 9
+        Me.GridColumn30.Width = 131
+        '
+        'GridColumn31
+        '
+        Me.GridColumn31.FieldName = "cctOrdersKitchenID"
+        Me.GridColumn31.MinWidth = 35
+        Me.GridColumn31.Name = "GridColumn31"
+        Me.GridColumn31.Width = 131
+        '
+        'colHeight1
+        '
+        Me.colHeight1.Caption = "Ύψος"
+        Me.colHeight1.ColumnEdit = Me.RepNumericY
+        Me.colHeight1.FieldName = "Height"
+        Me.colHeight1.MinWidth = 35
+        Me.colHeight1.Name = "colHeight1"
+        Me.colHeight1.Visible = True
+        Me.colHeight1.VisibleIndex = 2
+        Me.colHeight1.Width = 131
         '
         'txtYFinalHeight
         '
         Me.txtYFinalHeight.EditValue = "0,00 €"
-        Me.txtYFinalHeight.Location = New System.Drawing.Point(224, 12)
+        Me.txtYFinalHeight.Location = New System.Drawing.Point(224, 556)
         Me.txtYFinalHeight.Margin = New System.Windows.Forms.Padding(5)
         Me.txtYFinalHeight.Name = "txtYFinalHeight"
         Me.txtYFinalHeight.Properties.DisplayFormat.FormatString = "n"
@@ -1503,27 +1660,12 @@ Partial Class frmCUSOrderKitchen
         Me.txtYFinalHeight.Properties.MaskSettings.Set("mask", "n2")
         Me.txtYFinalHeight.Size = New System.Drawing.Size(1599, 38)
         Me.txtYFinalHeight.StyleController = Me.LayoutControl5
-        Me.txtYFinalHeight.TabIndex = 42
+        Me.txtYFinalHeight.TabIndex = 2
         Me.txtYFinalHeight.Tag = "YFinalHeight,0,1,2"
-        '
-        'cboYHeight
-        '
-        Me.cboYHeight.EditValue = ""
-        Me.cboYHeight.Location = New System.Drawing.Point(224, 54)
-        Me.cboYHeight.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboYHeight.Name = "cboYHeight"
-        Me.cboYHeight.Properties.AllowMouseWheel = False
-        Me.cboYHeight.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboYHeight.Properties.Items.AddRange(New Object() {"135cm", "209cm", "232cm", "Άλλο"})
-        Me.cboYHeight.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cboYHeight.Size = New System.Drawing.Size(1599, 38)
-        Me.cboYHeight.StyleController = Me.LayoutControl5
-        Me.cboYHeight.TabIndex = 42
-        Me.cboYHeight.Tag = "YHeight,0,1,2"
         '
         'cboYwater
         '
-        Me.cboYwater.Location = New System.Drawing.Point(224, 394)
+        Me.cboYwater.Location = New System.Drawing.Point(224, 644)
         Me.cboYwater.Margin = New System.Windows.Forms.Padding(5)
         Me.cboYwater.Name = "cboYwater"
         Me.cboYwater.Properties.AllowMouseWheel = False
@@ -1533,153 +1675,28 @@ Partial Class frmCUSOrderKitchen
         Me.cboYwater.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboYwater.Size = New System.Drawing.Size(1599, 38)
         Me.cboYwater.StyleController = Me.LayoutControl5
-        Me.cboYwater.TabIndex = 57
+        Me.cboYwater.TabIndex = 4
         Me.cboYwater.Tag = "Ywater,0,1,2"
         '
         'txtYdoorCode
         '
-        Me.txtYdoorCode.Location = New System.Drawing.Point(222, 350)
+        Me.txtYdoorCode.Location = New System.Drawing.Point(222, 600)
         Me.txtYdoorCode.Margin = New System.Windows.Forms.Padding(5)
         Me.txtYdoorCode.Name = "txtYdoorCode"
         Me.txtYdoorCode.Properties.UseReadOnlyAppearance = False
         Me.txtYdoorCode.Size = New System.Drawing.Size(1600, 38)
         Me.txtYdoorCode.StyleController = Me.LayoutControl5
-        Me.txtYdoorCode.TabIndex = 44
+        Me.txtYdoorCode.TabIndex = 3
         Me.txtYdoorCode.Tag = "YdoorCode,0,1,2"
-        '
-        'cboYType
-        '
-        Me.cboYType.Location = New System.Drawing.Point(224, 138)
-        Me.cboYType.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboYType.Name = "cboYType"
-        Me.cboYType.Properties.AllowMouseWheel = False
-        Me.cboYType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboYType.Properties.Items.AddRange(New Object() {"Απλό 72cm", "Gola 75cm"})
-        Me.cboYType.Properties.Tag = "opening"
-        Me.cboYType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cboYType.Size = New System.Drawing.Size(1599, 38)
-        Me.cboYType.StyleController = Me.LayoutControl5
-        Me.cboYType.TabIndex = 57
-        Me.cboYType.Tag = "YType,0,1,2"
-        '
-        'txtYShelves
-        '
-        Me.txtYShelves.Location = New System.Drawing.Point(224, 478)
-        Me.txtYShelves.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtYShelves.Name = "txtYShelves"
-        Me.txtYShelves.Properties.UseReadOnlyAppearance = False
-        Me.txtYShelves.Size = New System.Drawing.Size(1599, 38)
-        Me.txtYShelves.StyleController = Me.LayoutControl5
-        Me.txtYShelves.TabIndex = 10
-        Me.txtYShelves.Tag = "YShelves,0,1,2"
-        '
-        'cboYDoorType
-        '
-        Me.cboYDoorType.Location = New System.Drawing.Point(224, 222)
-        Me.cboYDoorType.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboYDoorType.Name = "cboYDoorType"
-        Me.cboYDoorType.Properties.AllowMouseWheel = False
-        Me.cboYDoorType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboYDoorType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboYDoorType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cat", "Κατηγορία", 35, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Υλικό", 100, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("typeDescr", "Τύπος", 60, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ColorName", "Χρώμα", 60, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Price", "Τιμή", 30, DevExpress.Utils.FormatType.Numeric, "c2", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CustomCode", "Custom Code", 125, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("color", "color", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorColorID", "door Color ID", 127, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorType", "door Type", 100, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("closetType", "closet Type", 109, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimID", "dim ID", 72, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorCatID", "door Cat ID", 112, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type", "type", 51, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("kasa", "kasa", 52, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("comments", "comments", 101, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Modifier", "Modifier", 82, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorCatName", "door Cat Name", 141, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("description", "description", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboYDoorType.Properties.DisplayMember = "name"
-        Me.cboYDoorType.Properties.NullText = ""
-        Me.cboYDoorType.Properties.PopupFormMinSize = New System.Drawing.Size(800, 600)
-        Me.cboYDoorType.Properties.PopupSizeable = False
-        Me.cboYDoorType.Properties.ValueMember = "ID"
-        Me.cboYDoorType.Size = New System.Drawing.Size(1599, 38)
-        Me.cboYDoorType.StyleController = Me.LayoutControl5
-        Me.cboYDoorType.TabIndex = 49
-        Me.cboYDoorType.Tag = "YdoorTypeID,0,1,2"
-        '
-        'cboYDoorType1
-        '
-        Me.cboYDoorType1.Location = New System.Drawing.Point(224, 264)
-        Me.cboYDoorType1.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboYDoorType1.Name = "cboYDoorType1"
-        Me.cboYDoorType1.Properties.AllowMouseWheel = False
-        Me.cboYDoorType1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboYDoorType1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboYDoorType1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cat", "Κατηγορία", 35, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Υλικό", 100, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("typeDescr", "Τύπος", 60, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ColorName", "Χρώμα", 60, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Price", "Τιμή", 30, DevExpress.Utils.FormatType.Numeric, "c2", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CustomCode", "Custom Code", 125, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("color", "color", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorColorID", "door Color ID", 127, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorType", "door Type", 100, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("closetType", "closet Type", 109, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimID", "dim ID", 72, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorCatID", "door Cat ID", 112, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type", "type", 51, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("kasa", "kasa", 52, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("comments", "comments", 101, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Modifier", "Modifier", 82, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorCatName", "door Cat Name", 141, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("description", "description", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboYDoorType1.Properties.DisplayMember = "name"
-        Me.cboYDoorType1.Properties.NullText = ""
-        Me.cboYDoorType1.Properties.PopupFormMinSize = New System.Drawing.Size(800, 600)
-        Me.cboYDoorType1.Properties.PopupSizeable = False
-        Me.cboYDoorType1.Properties.ValueMember = "ID"
-        Me.cboYDoorType1.Size = New System.Drawing.Size(1599, 38)
-        Me.cboYDoorType1.StyleController = Me.LayoutControl5
-        Me.cboYDoorType1.TabIndex = 49
-        Me.cboYDoorType1.Tag = "YdoorTypeID2,0,1,2"
-        '
-        'cboPependisisDoorType
-        '
-        Me.cboPependisisDoorType.Location = New System.Drawing.Point(224, 306)
-        Me.cboPependisisDoorType.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboPependisisDoorType.Name = "cboPependisisDoorType"
-        Me.cboPependisisDoorType.Properties.AllowMouseWheel = False
-        Me.cboPependisisDoorType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboPependisisDoorType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboPependisisDoorType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cat", "Κατηγορία", 30, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Υλικό", 100, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 35, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Price", "Τιμή", 30, DevExpress.Utils.FormatType.Numeric, "c2", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CustomCode", "Custom Code", 125, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("color", "color", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorColorID", "door Color ID", 127, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorType", "door Type", 100, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("closetType", "closet Type", 109, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimID", "dim ID", 72, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorCatID", "door Cat ID", 112, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type", "type", 51, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("kasa", "kasa", 52, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("comments", "comments", 101, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Modifier", "Modifier", 82, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ColorName", "Color Name", 112, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("typeDescr", "type Descr", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorCatName", "door Cat Name", 141, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("description", "description", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboPependisisDoorType.Properties.DisplayMember = "name"
-        Me.cboPependisisDoorType.Properties.NullText = ""
-        Me.cboPependisisDoorType.Properties.PopupFormMinSize = New System.Drawing.Size(700, 600)
-        Me.cboPependisisDoorType.Properties.PopupSizeable = False
-        Me.cboPependisisDoorType.Properties.ValueMember = "ID"
-        Me.cboPependisisDoorType.Size = New System.Drawing.Size(1599, 38)
-        Me.cboPependisisDoorType.StyleController = Me.LayoutControl5
-        Me.cboPependisisDoorType.TabIndex = 49
-        Me.cboPependisisDoorType.Tag = "PependisisDoorTypeID,0,1,2"
-        '
-        'cboYRafieraDoorType
-        '
-        Me.cboYRafieraDoorType.Location = New System.Drawing.Point(224, 436)
-        Me.cboYRafieraDoorType.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboYRafieraDoorType.Name = "cboYRafieraDoorType"
-        Me.cboYRafieraDoorType.Properties.AllowMouseWheel = False
-        Me.cboYRafieraDoorType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboYRafieraDoorType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboYRafieraDoorType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cat", "Κατηγορία", 30, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Υλικό", 100, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 35, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Price", "Τιμή", 30, DevExpress.Utils.FormatType.Numeric, "c2", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CustomCode", "Custom Code", 125, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("color", "color", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorColorID", "door Color ID", 127, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorType", "door Type", 100, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("closetType", "closet Type", 109, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimID", "dim ID", 72, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorCatID", "door Cat ID", 112, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("type", "type", 51, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("kasa", "kasa", 52, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("comments", "comments", 101, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Modifier", "Modifier", 82, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ColorName", "Color Name", 112, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("typeDescr", "type Descr", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("doorCatName", "door Cat Name", 141, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("description", "description", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboYRafieraDoorType.Properties.DisplayMember = "name"
-        Me.cboYRafieraDoorType.Properties.NullText = ""
-        Me.cboYRafieraDoorType.Properties.PopupFormMinSize = New System.Drawing.Size(700, 600)
-        Me.cboYRafieraDoorType.Properties.PopupSizeable = False
-        Me.cboYRafieraDoorType.Properties.ValueMember = "ID"
-        Me.cboYRafieraDoorType.Size = New System.Drawing.Size(1599, 38)
-        Me.cboYRafieraDoorType.StyleController = Me.LayoutControl5
-        Me.cboYRafieraDoorType.TabIndex = 49
-        Me.cboYRafieraDoorType.Tag = "YRafieraDoorTypeID,0,1,2"
         '
         'LayoutControlGroup6
         '
         Me.LayoutControlGroup6.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup6.GroupBordersVisible = False
-        Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10, Me.LayoutControlItem14, Me.LayoutControlItem16, Me.LayoutControlItem62, Me.LayoutControlItem64, Me.LayoutControlItem63, Me.LayoutControlItem39, Me.LayoutControlItem72, Me.LayoutControlItem36, Me.LayoutControlItem48, Me.LayoutControlItem41, Me.LayoutControlItem69})
+        Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem16, Me.LayoutControlItem64, Me.LayoutControlItem63, Me.LayoutControlItem3})
         Me.LayoutControlGroup6.Name = "LayoutControlGroup6"
         Me.LayoutControlGroup6.Size = New System.Drawing.Size(1835, 694)
         Me.LayoutControlGroup6.TextVisible = False
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me.txtOtherHeight
-        Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem10.CustomizationFormText = "Ύψος"
-        Me.LayoutControlItem10.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 84)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem10.Text = "Άλλο Ύψος (cm)"
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(200, 23)
-        '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.cboYBOXColors
-        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem14.CustomizationFormText = "Χρώμα PVC"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 168)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem14.Text = "Χρώμα Κουτιού"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(200, 23)
         '
         'LayoutControlItem16
         '
@@ -1687,30 +1704,18 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem16.CustomizationFormText = "Ύψος"
         Me.LayoutControlItem16.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 544)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
         Me.LayoutControlItem16.Size = New System.Drawing.Size(1815, 42)
         Me.LayoutControlItem16.Text = "Τελικό Ύψος (cm)"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(200, 23)
-        '
-        'LayoutControlItem62
-        '
-        Me.LayoutControlItem62.Control = Me.cboYHeight
-        Me.LayoutControlItem62.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem62.CustomizationFormText = "Ύψος"
-        Me.LayoutControlItem62.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem62.Location = New System.Drawing.Point(0, 42)
-        Me.LayoutControlItem62.Name = "LayoutControlItem62"
-        Me.LayoutControlItem62.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem62.Text = "Ύψος (cm)"
-        Me.LayoutControlItem62.TextSize = New System.Drawing.Size(200, 23)
         '
         'LayoutControlItem64
         '
         Me.LayoutControlItem64.Control = Me.cboYwater
         Me.LayoutControlItem64.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem64.CustomizationFormText = "Τύπος"
-        Me.LayoutControlItem64.Location = New System.Drawing.Point(0, 382)
+        Me.LayoutControlItem64.Location = New System.Drawing.Point(0, 632)
         Me.LayoutControlItem64.Name = "LayoutControlItem64"
         Me.LayoutControlItem64.Size = New System.Drawing.Size(1815, 42)
         Me.LayoutControlItem64.Text = "Νερά"
@@ -1721,7 +1726,7 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem63.Control = Me.txtYdoorCode
         Me.LayoutControlItem63.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem63.CustomizationFormText = "Πλάτη"
-        Me.LayoutControlItem63.Location = New System.Drawing.Point(0, 336)
+        Me.LayoutControlItem63.Location = New System.Drawing.Point(0, 586)
         Me.LayoutControlItem63.MaxSize = New System.Drawing.Size(0, 46)
         Me.LayoutControlItem63.MinSize = New System.Drawing.Size(309, 46)
         Me.LayoutControlItem63.Name = "LayoutControlItem63"
@@ -1731,71 +1736,14 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem63.Text = "Κωδικός Πόρτας-Εταιρία"
         Me.LayoutControlItem63.TextSize = New System.Drawing.Size(200, 23)
         '
-        'LayoutControlItem39
+        'LayoutControlItem3
         '
-        Me.LayoutControlItem39.Control = Me.cboYType
-        Me.LayoutControlItem39.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem39.CustomizationFormText = "Τύπος"
-        Me.LayoutControlItem39.Location = New System.Drawing.Point(0, 126)
-        Me.LayoutControlItem39.Name = "LayoutControlItem39"
-        Me.LayoutControlItem39.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem39.Text = "Τύπος Κατασκευής"
-        Me.LayoutControlItem39.TextSize = New System.Drawing.Size(200, 23)
-        '
-        'LayoutControlItem72
-        '
-        Me.LayoutControlItem72.Control = Me.txtYShelves
-        Me.LayoutControlItem72.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem72.CustomizationFormText = "Αριθμός"
-        Me.LayoutControlItem72.Location = New System.Drawing.Point(0, 466)
-        Me.LayoutControlItem72.Name = "LayoutControlItem72"
-        Me.LayoutControlItem72.Size = New System.Drawing.Size(1815, 208)
-        Me.LayoutControlItem72.Text = "Κωδικός Ραφιέρας"
-        Me.LayoutControlItem72.TextSize = New System.Drawing.Size(200, 23)
-        '
-        'LayoutControlItem36
-        '
-        Me.LayoutControlItem36.Control = Me.cboYDoorType
-        Me.LayoutControlItem36.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem36.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 210)
-        Me.LayoutControlItem36.Name = "LayoutControlItem36"
-        Me.LayoutControlItem36.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem36.Text = "Κατηγορία Υλικού 1"
-        Me.LayoutControlItem36.TextSize = New System.Drawing.Size(200, 23)
-        '
-        'LayoutControlItem48
-        '
-        Me.LayoutControlItem48.Control = Me.cboYDoorType1
-        Me.LayoutControlItem48.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem48.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem48.Location = New System.Drawing.Point(0, 252)
-        Me.LayoutControlItem48.Name = "LayoutControlItem48"
-        Me.LayoutControlItem48.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem48.Text = "Κατηγορία Υλικού 2"
-        Me.LayoutControlItem48.TextSize = New System.Drawing.Size(200, 23)
-        '
-        'LayoutControlItem41
-        '
-        Me.LayoutControlItem41.Control = Me.cboPependisisDoorType
-        Me.LayoutControlItem41.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem41.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem41.Location = New System.Drawing.Point(0, 294)
-        Me.LayoutControlItem41.Name = "LayoutControlItem41"
-        Me.LayoutControlItem41.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem41.Text = "Πλαϊνά Υψηλά"
-        Me.LayoutControlItem41.TextSize = New System.Drawing.Size(200, 23)
-        '
-        'LayoutControlItem69
-        '
-        Me.LayoutControlItem69.Control = Me.cboYRafieraDoorType
-        Me.LayoutControlItem69.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem69.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem69.Location = New System.Drawing.Point(0, 424)
-        Me.LayoutControlItem69.Name = "LayoutControlItem69"
-        Me.LayoutControlItem69.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem69.Text = "Ραφιέρα"
-        Me.LayoutControlItem69.TextSize = New System.Drawing.Size(200, 23)
+        Me.LayoutControlItem3.Control = Me.GridControl3
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem3.Name = "LayoutControlItem3"
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(1815, 544)
+        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem3.TextVisible = False
         '
         'TabNavBench
         '
@@ -1814,6 +1762,11 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControl6.Controls.Add(Me.cboBenchType)
         Me.LayoutControl6.Controls.Add(Me.cboBack)
         Me.LayoutControl6.Controls.Add(Me.cboBenchType2)
+        Me.LayoutControl6.Controls.Add(Me.txtbenchCode1)
+        Me.LayoutControl6.Controls.Add(Me.cbobenchThickness1)
+        Me.LayoutControl6.Controls.Add(Me.txtbenchCode2)
+        Me.LayoutControl6.Controls.Add(Me.cboBenchType1)
+        Me.LayoutControl6.Controls.Add(Me.cbobenchThickness11)
         Me.LayoutControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl6.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl6.Name = "LayoutControl6"
@@ -1824,30 +1777,30 @@ Partial Class frmCUSOrderKitchen
         '
         'txtbenchCode
         '
-        Me.txtbenchCode.Location = New System.Drawing.Point(205, 12)
+        Me.txtbenchCode.Location = New System.Drawing.Point(1020, 12)
         Me.txtbenchCode.Margin = New System.Windows.Forms.Padding(5)
         Me.txtbenchCode.Name = "txtbenchCode"
         Me.txtbenchCode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.txtbenchCode.Properties.Tag = "benchID"
-        Me.txtbenchCode.Size = New System.Drawing.Size(1618, 38)
+        Me.txtbenchCode.Size = New System.Drawing.Size(387, 38)
         Me.txtbenchCode.StyleController = Me.LayoutControl6
         Me.txtbenchCode.TabIndex = 21
         Me.txtbenchCode.Tag = "benchCode,0,1,2"
         '
         'txtbackCode
         '
-        Me.txtbackCode.Location = New System.Drawing.Point(203, 182)
+        Me.txtbackCode.Location = New System.Drawing.Point(1018, 140)
         Me.txtbackCode.Margin = New System.Windows.Forms.Padding(5)
         Me.txtbackCode.Name = "txtbackCode"
         Me.txtbackCode.Properties.UseReadOnlyAppearance = False
-        Me.txtbackCode.Size = New System.Drawing.Size(1619, 38)
+        Me.txtbackCode.Size = New System.Drawing.Size(804, 38)
         Me.txtbackCode.StyleController = Me.LayoutControl6
         Me.txtbackCode.TabIndex = 44
         Me.txtbackCode.Tag = "backCode,0,1,2"
         '
         'cbobenchThickness
         '
-        Me.cbobenchThickness.Location = New System.Drawing.Point(205, 138)
+        Me.cbobenchThickness.Location = New System.Drawing.Point(1604, 96)
         Me.cbobenchThickness.Margin = New System.Windows.Forms.Padding(5)
         Me.cbobenchThickness.Name = "cbobenchThickness"
         Me.cbobenchThickness.Properties.AllowMouseWheel = False
@@ -1855,14 +1808,14 @@ Partial Class frmCUSOrderKitchen
         Me.cbobenchThickness.Properties.Items.AddRange(New Object() {"2cm", "4cm"})
         Me.cbobenchThickness.Properties.Tag = "opening"
         Me.cbobenchThickness.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbobenchThickness.Size = New System.Drawing.Size(1618, 38)
+        Me.cbobenchThickness.Size = New System.Drawing.Size(219, 38)
         Me.cbobenchThickness.StyleController = Me.LayoutControl6
         Me.cbobenchThickness.TabIndex = 57
         Me.cbobenchThickness.Tag = "benchThickness,0,1,2"
         '
         'cboBenchType
         '
-        Me.cboBenchType.Location = New System.Drawing.Point(205, 54)
+        Me.cboBenchType.Location = New System.Drawing.Point(205, 12)
         Me.cboBenchType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBenchType.Name = "cboBenchType"
         Me.cboBenchType.Properties.AllowMouseWheel = False
@@ -1874,14 +1827,14 @@ Partial Class frmCUSOrderKitchen
         Me.cboBenchType.Properties.PopupFormMinSize = New System.Drawing.Size(600, 400)
         Me.cboBenchType.Properties.PopupSizeable = False
         Me.cboBenchType.Properties.ValueMember = "ID"
-        Me.cboBenchType.Size = New System.Drawing.Size(1618, 38)
+        Me.cboBenchType.Size = New System.Drawing.Size(618, 38)
         Me.cboBenchType.StyleController = Me.LayoutControl6
         Me.cboBenchType.TabIndex = 49
         Me.cboBenchType.Tag = "BenchID,0,1,2"
         '
         'cboBack
         '
-        Me.cboBack.Location = New System.Drawing.Point(205, 226)
+        Me.cboBack.Location = New System.Drawing.Point(205, 138)
         Me.cboBack.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBack.Name = "cboBack"
         Me.cboBack.Properties.AllowMouseWheel = False
@@ -1893,7 +1846,7 @@ Partial Class frmCUSOrderKitchen
         Me.cboBack.Properties.PopupFormMinSize = New System.Drawing.Size(400, 600)
         Me.cboBack.Properties.PopupSizeable = False
         Me.cboBack.Properties.ValueMember = "ID"
-        Me.cboBack.Size = New System.Drawing.Size(1618, 38)
+        Me.cboBack.Size = New System.Drawing.Size(618, 38)
         Me.cboBack.StyleController = Me.LayoutControl6
         Me.cboBack.TabIndex = 49
         Me.cboBack.Tag = "BackID,0,1,2"
@@ -1912,7 +1865,7 @@ Partial Class frmCUSOrderKitchen
         Me.cboBenchType2.Properties.PopupFormMinSize = New System.Drawing.Size(600, 400)
         Me.cboBenchType2.Properties.PopupSizeable = False
         Me.cboBenchType2.Properties.ValueMember = "ID"
-        Me.cboBenchType2.Size = New System.Drawing.Size(1618, 38)
+        Me.cboBenchType2.Size = New System.Drawing.Size(618, 38)
         Me.cboBenchType2.StyleController = Me.LayoutControl6
         Me.cboBenchType2.TabIndex = 49
         Me.cboBenchType2.Tag = "BenchID2,0,1,2"
@@ -1921,8 +1874,8 @@ Partial Class frmCUSOrderKitchen
         '
         Me.LayoutControlGroup8.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup8.GroupBordersVisible = False
-        Me.LayoutControlGroup8.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem25, Me.LayoutControlItem17, Me.LayoutControlItem66, Me.LayoutControlItem68, Me.LayoutControlItem12, Me.LayoutControlItem67})
-        Me.LayoutControlGroup8.Name = "LayoutControlGroup8"
+        Me.LayoutControlGroup8.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem17, Me.LayoutControlItem67, Me.LayoutControlItem25, Me.LayoutControlItem12, Me.LayoutControlItem66, Me.LayoutControlItem10, Me.LayoutControlItem18, Me.LayoutControlItem14, Me.LayoutControlItem20, Me.LayoutControlItem68, Me.LayoutControlItem5})
+        Me.LayoutControlGroup8.Name = "Root"
         Me.LayoutControlGroup8.Size = New System.Drawing.Size(1835, 694)
         Me.LayoutControlGroup8.TextVisible = False
         '
@@ -1931,10 +1884,10 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem25.Control = Me.txtbenchCode
         Me.LayoutControlItem25.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem25.CustomizationFormText = "Κατηγορία"
-        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(815, 0)
         Me.LayoutControlItem25.Name = "LayoutControlItem25"
-        Me.LayoutControlItem25.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem25.Text = "Κωδικός Πάγκου"
+        Me.LayoutControlItem25.Size = New System.Drawing.Size(584, 42)
+        Me.LayoutControlItem25.Text = "Κωδικός"
         Me.LayoutControlItem25.TextSize = New System.Drawing.Size(181, 23)
         '
         'LayoutControlItem17
@@ -1942,14 +1895,14 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem17.Control = Me.txtbackCode
         Me.LayoutControlItem17.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem17.CustomizationFormText = "Κωδικός Πλάτης"
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 168)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(815, 126)
         Me.LayoutControlItem17.MaxSize = New System.Drawing.Size(0, 46)
         Me.LayoutControlItem17.MinSize = New System.Drawing.Size(385, 46)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
         Me.LayoutControlItem17.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 3, 4, 4)
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(1815, 46)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(1000, 548)
         Me.LayoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem17.Text = "Κωδικός Πλάτης"
+        Me.LayoutControlItem17.Text = "Κωδικός"
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(181, 23)
         '
         'LayoutControlItem66
@@ -1957,10 +1910,10 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem66.Control = Me.cboBenchType
         Me.LayoutControlItem66.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem66.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem66.Location = New System.Drawing.Point(0, 42)
+        Me.LayoutControlItem66.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem66.Name = "LayoutControlItem66"
-        Me.LayoutControlItem66.Size = New System.Drawing.Size(1815, 42)
-        Me.LayoutControlItem66.Text = "Κατηγορία Πάγκου 1"
+        Me.LayoutControlItem66.Size = New System.Drawing.Size(815, 42)
+        Me.LayoutControlItem66.Text = "Πάγκος Ερμαρίων"
         Me.LayoutControlItem66.TextSize = New System.Drawing.Size(181, 23)
         '
         'LayoutControlItem68
@@ -1970,7 +1923,7 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem68.CustomizationFormText = "Έργο Πελάτη"
         Me.LayoutControlItem68.Location = New System.Drawing.Point(0, 84)
         Me.LayoutControlItem68.Name = "LayoutControlItem68"
-        Me.LayoutControlItem68.Size = New System.Drawing.Size(1815, 42)
+        Me.LayoutControlItem68.Size = New System.Drawing.Size(815, 42)
         Me.LayoutControlItem68.Text = "Έξτρα πάγκοι-Τραπέζι"
         Me.LayoutControlItem68.TextSize = New System.Drawing.Size(181, 23)
         '
@@ -1979,9 +1932,9 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem12.Control = Me.cbobenchThickness
         Me.LayoutControlItem12.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem12.CustomizationFormText = "Τύπος"
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 126)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(1399, 84)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(1815, 42)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(416, 42)
         Me.LayoutControlItem12.Text = "Πάχος"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(181, 23)
         '
@@ -1990,10 +1943,10 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem67.Control = Me.cboBack
         Me.LayoutControlItem67.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem67.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem67.Location = New System.Drawing.Point(0, 214)
+        Me.LayoutControlItem67.Location = New System.Drawing.Point(0, 126)
         Me.LayoutControlItem67.Name = "LayoutControlItem67"
-        Me.LayoutControlItem67.Size = New System.Drawing.Size(1815, 460)
-        Me.LayoutControlItem67.Text = "Κατηγορία Υλικού"
+        Me.LayoutControlItem67.Size = New System.Drawing.Size(815, 548)
+        Me.LayoutControlItem67.Text = "Πάγκος Πλάτης"
         Me.LayoutControlItem67.TextSize = New System.Drawing.Size(181, 23)
         '
         'chkVatVisible
@@ -2014,10 +1967,10 @@ Partial Class frmCUSOrderKitchen
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = CType(resources.GetObject("cmdExit.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdExit.Location = New System.Drawing.Point(1505, 1363)
+        Me.cmdExit.Location = New System.Drawing.Point(1618, 1363)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(368, 39)
+        Me.cmdExit.Size = New System.Drawing.Size(255, 39)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 21
         Me.cmdExit.Text = "Έξοδος"
@@ -2583,7 +2536,7 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(1839, 42)
-        Me.LayoutControlItem6.Text = "Κεντρική Κατηγορία Υλικών"
+        Me.LayoutControlItem6.Text = "Τύπος Κατασκευής"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(294, 23)
         '
         'LayoutControlGroup1
@@ -2769,7 +2722,7 @@ Partial Class frmCUSOrderKitchen
         Me.EmptySpaceItem3.AllowHotTrack = False
         Me.EmptySpaceItem3.Location = New System.Drawing.Point(410, 1351)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(1083, 43)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(1196, 43)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem32
@@ -2784,9 +2737,9 @@ Partial Class frmCUSOrderKitchen
         'LayoutControlItem27
         '
         Me.LayoutControlItem27.Control = Me.cmdExit
-        Me.LayoutControlItem27.Location = New System.Drawing.Point(1493, 1351)
+        Me.LayoutControlItem27.Location = New System.Drawing.Point(1606, 1351)
         Me.LayoutControlItem27.Name = "LayoutControlItem27"
-        Me.LayoutControlItem27.Size = New System.Drawing.Size(372, 43)
+        Me.LayoutControlItem27.Size = New System.Drawing.Size(259, 43)
         Me.LayoutControlItem27.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem27.TextVisible = False
         '
@@ -2795,60 +2748,10 @@ Partial Class frmCUSOrderKitchen
         Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
         Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
-        'VwDOORTYPE1BindingSource
-        '
-        Me.VwDOORTYPE1BindingSource.DataMember = "vw_DOOR_TYPE1"
-        Me.VwDOORTYPE1BindingSource.DataSource = Me.DMDataSet
-        '
-        'DOORTYPEBindingSource
-        '
-        Me.DOORTYPEBindingSource.DataMember = "DOOR_TYPE"
-        Me.DOORTYPEBindingSource.DataSource = Me.DMDataSet
-        '
         'VwBENCHBindingSource
         '
         Me.VwBENCHBindingSource.DataMember = "vw_BENCH"
         Me.VwBENCHBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'VwDOORTYPEBindingSource
-        '
-        Me.VwDOORTYPEBindingSource.DataMember = "vw_DOOR_TYPE"
-        Me.VwDOORTYPEBindingSource.DataSource = Me.DMDataSet
-        '
-        'VwDOORTYPEPlainaYpsilaBindingSource
-        '
-        Me.VwDOORTYPEPlainaYpsilaBindingSource.DataMember = "vw_DOOR_TYPEPlainaYpsila"
-        Me.VwDOORTYPEPlainaYpsilaBindingSource.DataSource = Me.DMDataSet
-        '
-        'VwDOORTYPEPlainaKremastaBindingSource
-        '
-        Me.VwDOORTYPEPlainaKremastaBindingSource.DataMember = "vw_DOOR_TYPEPlainaKremasta"
-        Me.VwDOORTYPEPlainaKremastaBindingSource.DataSource = Me.DMDataSet
-        '
-        'VwDOORTYPEPlainaKremasta2hsSeirasBindingSource
-        '
-        Me.VwDOORTYPEPlainaKremasta2hsSeirasBindingSource.DataMember = "vw_DOOR_TYPEPlainaKremasta2hsSeiras"
-        Me.VwDOORTYPEPlainaKremasta2hsSeirasBindingSource.DataSource = Me.DMDataSet
-        '
-        'VwDOORTYPERafieresVBindingSource
-        '
-        Me.VwDOORTYPERafieresVBindingSource.DataMember = "vw_DOOR_TYPERafieresV"
-        Me.VwDOORTYPERafieresVBindingSource.DataSource = Me.DMDataSet
-        '
-        'VwDOORTYPERafieresKBindingSource
-        '
-        Me.VwDOORTYPERafieresKBindingSource.DataMember = "vw_DOOR_TYPERafieresK"
-        Me.VwDOORTYPERafieresKBindingSource.DataSource = Me.DMDataSet
-        '
-        'VwDOORTYPERafieresYBindingSource
-        '
-        Me.VwDOORTYPERafieresYBindingSource.DataMember = "vw_DOOR_TYPERafieresY"
-        Me.VwDOORTYPERafieresYBindingSource.DataSource = Me.DMDataSet
-        '
-        'VwDOORTYPERafiaWallBindingSource
-        '
-        Me.VwDOORTYPERafiaWallBindingSource.DataMember = "vw_DOOR_TYPERafiaWall"
-        Me.VwDOORTYPERafiaWallBindingSource.DataSource = Me.DMDataSet
         '
         'VwDOORTYPE1BindingSource1
         '
@@ -3201,49 +3104,9 @@ Partial Class frmCUSOrderKitchen
         '
         Me.Vw_CCTTableAdapter.ClearBeforeFill = True
         '
-        'DOOR_TYPETableAdapter
-        '
-        Me.DOOR_TYPETableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPETableAdapter1
-        '
-        Me.Vw_DOOR_TYPETableAdapter1.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPE1TableAdapter
-        '
-        Me.Vw_DOOR_TYPE1TableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPEPlainaYpsilaTableAdapter
-        '
-        Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.ClearBeforeFill = True
-        '
         'Vw_BENCHTableAdapter
         '
         Me.Vw_BENCHTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPEPlainaKremastaTableAdapter
-        '
-        Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPERafieresVTableAdapter
-        '
-        Me.Vw_DOOR_TYPERafieresVTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPERafieresKTableAdapter
-        '
-        Me.Vw_DOOR_TYPERafieresKTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPERafieresYTableAdapter
-        '
-        Me.Vw_DOOR_TYPERafieresYTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPERafiaWallTableAdapter
-        '
-        Me.Vw_DOOR_TYPERafiaWallTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter
-        '
-        Me.Vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter.ClearBeforeFill = True
         '
         'CCT_ORDERS_KITCHEN_VTableAdapter
         '
@@ -3268,6 +3131,142 @@ Partial Class frmCUSOrderKitchen
         'Vw_DOOR_CATKTableAdapter
         '
         Me.Vw_DOOR_CATKTableAdapter.ClearBeforeFill = True
+        '
+        'CCT_ORDERS_KITCHEN_YTableAdapter
+        '
+        Me.CCT_ORDERS_KITCHEN_YTableAdapter.ClearBeforeFill = True
+        '
+        'Vw_DOOR_CATYTableAdapter
+        '
+        Me.Vw_DOOR_CATYTableAdapter.ClearBeforeFill = True
+        '
+        'txtbenchCode1
+        '
+        Me.txtbenchCode1.Location = New System.Drawing.Point(1020, 96)
+        Me.txtbenchCode1.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtbenchCode1.Name = "txtbenchCode1"
+        Me.txtbenchCode1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.txtbenchCode1.Properties.Tag = "benchID"
+        Me.txtbenchCode1.Size = New System.Drawing.Size(387, 38)
+        Me.txtbenchCode1.StyleController = Me.LayoutControl6
+        Me.txtbenchCode1.TabIndex = 21
+        Me.txtbenchCode1.Tag = "benchCode,0,1,2"
+        '
+        'LayoutControlItem5
+        '
+        Me.LayoutControlItem5.Control = Me.txtbenchCode1
+        Me.LayoutControlItem5.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem5.CustomizationFormText = "Κατηγορία"
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(815, 84)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(584, 42)
+        Me.LayoutControlItem5.Text = "Κωδικός"
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(181, 23)
+        '
+        'cbobenchThickness1
+        '
+        Me.cbobenchThickness1.Location = New System.Drawing.Point(1604, 12)
+        Me.cbobenchThickness1.Margin = New System.Windows.Forms.Padding(5)
+        Me.cbobenchThickness1.Name = "cbobenchThickness1"
+        Me.cbobenchThickness1.Properties.AllowMouseWheel = False
+        Me.cbobenchThickness1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cbobenchThickness1.Properties.Items.AddRange(New Object() {"2cm", "4cm"})
+        Me.cbobenchThickness1.Properties.Tag = "opening"
+        Me.cbobenchThickness1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cbobenchThickness1.Size = New System.Drawing.Size(219, 38)
+        Me.cbobenchThickness1.StyleController = Me.LayoutControl6
+        Me.cbobenchThickness1.TabIndex = 57
+        Me.cbobenchThickness1.Tag = "benchThickness,0,1,2"
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.cbobenchThickness1
+        Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem10.CustomizationFormText = "Τύπος"
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(1399, 0)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(416, 42)
+        Me.LayoutControlItem10.Text = "Πάχος"
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(181, 23)
+        '
+        'txtbenchCode2
+        '
+        Me.txtbenchCode2.Location = New System.Drawing.Point(1020, 54)
+        Me.txtbenchCode2.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtbenchCode2.Name = "txtbenchCode2"
+        Me.txtbenchCode2.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.txtbenchCode2.Properties.Tag = "benchID"
+        Me.txtbenchCode2.Size = New System.Drawing.Size(387, 38)
+        Me.txtbenchCode2.StyleController = Me.LayoutControl6
+        Me.txtbenchCode2.TabIndex = 21
+        Me.txtbenchCode2.Tag = "benchCode,0,1,2"
+        '
+        'cboBenchType1
+        '
+        Me.cboBenchType1.Location = New System.Drawing.Point(205, 54)
+        Me.cboBenchType1.Margin = New System.Windows.Forms.Padding(5)
+        Me.cboBenchType1.Name = "cboBenchType1"
+        Me.cboBenchType1.Properties.AllowMouseWheel = False
+        Me.cboBenchType1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboBenchType1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboBenchType1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Πάγκος", 200, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pricePerMeter", "Τιμή", 60, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("width", "width", 61, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tbl", "tbl", 36, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 60, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.cboBenchType1.Properties.DisplayMember = "name"
+        Me.cboBenchType1.Properties.NullText = ""
+        Me.cboBenchType1.Properties.PopupFormMinSize = New System.Drawing.Size(600, 400)
+        Me.cboBenchType1.Properties.PopupSizeable = False
+        Me.cboBenchType1.Properties.ValueMember = "ID"
+        Me.cboBenchType1.Size = New System.Drawing.Size(618, 38)
+        Me.cboBenchType1.StyleController = Me.LayoutControl6
+        Me.cboBenchType1.TabIndex = 49
+        Me.cboBenchType1.Tag = "BenchID,0,1,2"
+        '
+        'cbobenchThickness11
+        '
+        Me.cbobenchThickness11.Location = New System.Drawing.Point(1604, 54)
+        Me.cbobenchThickness11.Margin = New System.Windows.Forms.Padding(5)
+        Me.cbobenchThickness11.Name = "cbobenchThickness11"
+        Me.cbobenchThickness11.Properties.AllowMouseWheel = False
+        Me.cbobenchThickness11.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cbobenchThickness11.Properties.Items.AddRange(New Object() {"2cm", "4cm"})
+        Me.cbobenchThickness11.Properties.Tag = "opening"
+        Me.cbobenchThickness11.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.cbobenchThickness11.Size = New System.Drawing.Size(219, 38)
+        Me.cbobenchThickness11.StyleController = Me.LayoutControl6
+        Me.cbobenchThickness11.TabIndex = 57
+        Me.cbobenchThickness11.Tag = "benchThickness,0,1,2"
+        '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me.txtbenchCode2
+        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem14.CustomizationFormText = "Κατηγορία"
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(815, 42)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(584, 42)
+        Me.LayoutControlItem14.Text = "Κωδικός"
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(181, 23)
+        '
+        'LayoutControlItem18
+        '
+        Me.LayoutControlItem18.Control = Me.cboBenchType1
+        Me.LayoutControlItem18.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem18.CustomizationFormText = "Έργο Πελάτη"
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 42)
+        Me.LayoutControlItem18.Name = "LayoutControlItem18"
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(815, 42)
+        Me.LayoutControlItem18.Text = "Πάγκος Νησίδας"
+        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(181, 23)
+        '
+        'LayoutControlItem20
+        '
+        Me.LayoutControlItem20.Control = Me.cbobenchThickness11
+        Me.LayoutControlItem20.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem20.CustomizationFormText = "Τύπος"
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(1399, 42)
+        Me.LayoutControlItem20.Name = "LayoutControlItem20"
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(416, 42)
+        Me.LayoutControlItem20.Text = "Πάχος"
+        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(181, 23)
         '
         'frmCUSOrderKitchen
         '
@@ -3300,6 +3299,7 @@ Partial Class frmCUSOrderKitchen
         CType(Me.VwCOLORSBOXBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepDoorTYPEV, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDOORTYPEBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepTrmV, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtVFinalHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboBaza.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboLegs.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3322,19 +3322,16 @@ Partial Class frmCUSOrderKitchen
         CType(Me.VwDOORCATKBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepConstrTypeK, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepColorBOXK, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepNumericK, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepDoorTYPEK, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtKHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKFinalHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtKHeight2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKdoorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboKwater.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboLedProfil.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHangingOnDoors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHoodAlignment.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem50, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem55, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem57, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem59, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3344,31 +3341,24 @@ Partial Class frmCUSOrderKitchen
         Me.TabNavYpsila.ResumeLayout(False)
         CType(Me.LayoutControl5, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl5.ResumeLayout(False)
-        CType(Me.txtOtherHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboYBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCTORDERSKITCHENYBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepDoorCATY, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDOORCATYBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepConstrTypeY, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepColorGolaY, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepColorBOXY, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepDoorTYPEY, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepNumericY, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtYFinalHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboYHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboYwater.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtYdoorCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboYType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtYShelves.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboYDoorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboYDoorType1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboPependisisDoorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboYRafieraDoorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem62, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem64, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem63, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem72, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem41, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem69, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabNavBench.ResumeLayout(False)
         CType(Me.LayoutControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl6.ResumeLayout(False)
@@ -3444,17 +3434,7 @@ Partial Class frmCUSOrderKitchen
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPE1BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPEPlainaYpsilaBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPEPlainaKremastaBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPEPlainaKremasta2hsSeirasBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPERafieresVBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPERafieresKBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPERafieresYBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPERafiaWallBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDOORTYPE1BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPane1.ResumeLayout(False)
@@ -3474,6 +3454,16 @@ Partial Class frmCUSOrderKitchen
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtbenchCode1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbobenchThickness1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtbenchCode2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboBenchType1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cbobenchThickness11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3558,28 +3548,10 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents LayoutControlItem43 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem44 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents DMDataSet As DMDataSet
-    Friend WithEvents DOOR_TYPETableAdapter As DMDataSetTableAdapters.DOOR_TYPETableAdapter
-    Friend WithEvents DOORTYPEBindingSource As BindingSource
     Friend WithEvents Vw_DOOR_TYPETableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPETableAdapter
-    Friend WithEvents VwDOORTYPEBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPETableAdapter1 As DMDataSetTableAdapters.vw_DOOR_TYPETableAdapter
-    Friend WithEvents VwDOORTYPE1BindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPE1TableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPE1TableAdapter
     Friend WithEvents VwDOORTYPE1BindingSource1 As BindingSource
-    Friend WithEvents VwDOORTYPEPlainaYpsilaBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter
     Friend WithEvents VwBENCHBindingSource As BindingSource
     Friend WithEvents Vw_BENCHTableAdapter As DreamyKitchenDataSetTableAdapters.vw_BENCHTableAdapter
-    Friend WithEvents VwDOORTYPEPlainaKremastaBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEPlainaKremastaTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaKremastaTableAdapter
-    Friend WithEvents VwDOORTYPERafieresVBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPERafieresVTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPERafieresVTableAdapter
-    Friend WithEvents VwDOORTYPERafieresKBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPERafieresKTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPERafieresKTableAdapter
-    Friend WithEvents VwDOORTYPERafieresYBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPERafieresYTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPERafieresYTableAdapter
-    Friend WithEvents VwDOORTYPERafiaWallBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPERafiaWallTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPERafiaWallTableAdapter
     Friend WithEvents cboTRANSH As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents colprice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepDefPrice As DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit
@@ -3592,8 +3564,6 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents EmptySpaceItem6 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents txtTransp As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem76 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents VwDOORTYPEPlainaKremasta2hsSeirasBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter
     Friend WithEvents TabPane2 As DevExpress.XtraBars.Navigation.TabPane
     Friend WithEvents TabNavVaseos As DevExpress.XtraBars.Navigation.TabNavigationPage
     Friend WithEvents TabNavKremasta As DevExpress.XtraBars.Navigation.TabNavigationPage
@@ -3609,9 +3579,7 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents LayoutControlGroup3 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControl4 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup5 As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents txtKHeight As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents txtKFinalHeight As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtKHeight2 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtKdoorCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents cboKwater As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboLedProfil As DevExpress.XtraEditors.ComboBoxEdit
@@ -3619,18 +3587,9 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents chkHoodAlignment As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LayoutControl5 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup6 As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents txtOtherHeight As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents cboYBOXColors As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents txtYFinalHeight As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents cboYHeight As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboYwater As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents txtYdoorCode As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents cboYType As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents txtYShelves As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents cboYDoorType As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents cboYDoorType1 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents cboPependisisDoorType As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents cboYRafieraDoorType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControl6 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup8 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents txtbenchCode As DevExpress.XtraEditors.TextEdit
@@ -3650,26 +3609,15 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents LayoutControlItem54 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem22 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem24 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem50 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem55 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem57 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem59 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem23 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem61 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem62 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem64 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem63 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem39 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem72 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem36 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem48 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem41 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem69 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -3730,5 +3678,43 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents colHeight As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents VwDOORCATKBindingSource As BindingSource
     Friend WithEvents Vw_DOOR_CATKTableAdapter As DreamyKitchenDataSetTableAdapters.vw_DOOR_CATKTableAdapter
+    Friend WithEvents colHeight2ndLine As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepTrmV As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents RepNumericK As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridControl3 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView5 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridColumn15 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn22 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepDoorCATY As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn23 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepConstrTypeY As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents GridColumn24 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn25 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepColorGolaY As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn26 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepColorBOXY As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn27 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepDoorTYPEY As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents GridColumn28 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn29 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepNumericY As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents GridColumn30 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents GridColumn31 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents CCTORDERSKITCHENYBindingSource As BindingSource
+    Friend WithEvents CCT_ORDERS_KITCHEN_YTableAdapter As DMDataSetTableAdapters.CCT_ORDERS_KITCHEN_YTableAdapter
+    Friend WithEvents colHeight1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents VwDOORCATYBindingSource As BindingSource
+    Friend WithEvents Vw_DOOR_CATYTableAdapter As DreamyKitchenDataSetTableAdapters.vw_DOOR_CATYTableAdapter
+    Friend WithEvents txtbenchCode1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cbobenchThickness1 As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtbenchCode2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents cboBenchType1 As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents cbobenchThickness11 As DevExpress.XtraEditors.ComboBoxEdit
+    Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem20 As DevExpress.XtraLayout.LayoutControlItem
     '    Friend WithEvents Vw_DOOR_TYPEPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter
 End Class

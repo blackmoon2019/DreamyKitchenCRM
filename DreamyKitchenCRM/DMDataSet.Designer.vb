@@ -59,6 +59,8 @@ Partial Public Class DMDataSet
     
     Private tableCCT_ORDERS_KITCHEN_K As CCT_ORDERS_KITCHEN_KDataTable
     
+    Private tableCCT_ORDERS_KITCHEN_Y As CCT_ORDERS_KITCHEN_YDataTable
+    
     Private _schemaSerializationMode As Global.System.Data.SchemaSerializationMode = Global.System.Data.SchemaSerializationMode.IncludeSchema
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -138,6 +140,9 @@ Partial Public Class DMDataSet
             End If
             If (Not (ds.Tables("CCT_ORDERS_KITCHEN_K")) Is Nothing) Then
                 MyBase.Tables.Add(New CCT_ORDERS_KITCHEN_KDataTable(ds.Tables("CCT_ORDERS_KITCHEN_K")))
+            End If
+            If (Not (ds.Tables("CCT_ORDERS_KITCHEN_Y")) Is Nothing) Then
+                MyBase.Tables.Add(New CCT_ORDERS_KITCHEN_YDataTable(ds.Tables("CCT_ORDERS_KITCHEN_Y")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -328,6 +333,16 @@ Partial Public Class DMDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+     Global.System.ComponentModel.Browsable(false),  _
+     Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
+    Public ReadOnly Property CCT_ORDERS_KITCHEN_Y() As CCT_ORDERS_KITCHEN_YDataTable
+        Get
+            Return Me.tableCCT_ORDERS_KITCHEN_Y
+        End Get
+    End Property
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
      Global.System.ComponentModel.BrowsableAttribute(true),  _
      Global.System.ComponentModel.DesignerSerializationVisibilityAttribute(Global.System.ComponentModel.DesignerSerializationVisibility.Visible)>  _
     Public Overrides Property SchemaSerializationMode() As Global.System.Data.SchemaSerializationMode
@@ -443,6 +458,9 @@ Partial Public Class DMDataSet
             End If
             If (Not (ds.Tables("CCT_ORDERS_KITCHEN_K")) Is Nothing) Then
                 MyBase.Tables.Add(New CCT_ORDERS_KITCHEN_KDataTable(ds.Tables("CCT_ORDERS_KITCHEN_K")))
+            End If
+            If (Not (ds.Tables("CCT_ORDERS_KITCHEN_Y")) Is Nothing) Then
+                MyBase.Tables.Add(New CCT_ORDERS_KITCHEN_YDataTable(ds.Tables("CCT_ORDERS_KITCHEN_Y")))
             End If
             Me.DataSetName = ds.DataSetName
             Me.Prefix = ds.Prefix
@@ -578,6 +596,12 @@ Partial Public Class DMDataSet
                 Me.tableCCT_ORDERS_KITCHEN_K.InitVars
             End If
         End If
+        Me.tableCCT_ORDERS_KITCHEN_Y = CType(MyBase.Tables("CCT_ORDERS_KITCHEN_Y"),CCT_ORDERS_KITCHEN_YDataTable)
+        If (initTable = true) Then
+            If (Not (Me.tableCCT_ORDERS_KITCHEN_Y) Is Nothing) Then
+                Me.tableCCT_ORDERS_KITCHEN_Y.InitVars
+            End If
+        End If
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -622,6 +646,8 @@ Partial Public Class DMDataSet
         MyBase.Tables.Add(Me.tableCCT_ORDERS_KITCHEN_V)
         Me.tableCCT_ORDERS_KITCHEN_K = New CCT_ORDERS_KITCHEN_KDataTable()
         MyBase.Tables.Add(Me.tableCCT_ORDERS_KITCHEN_K)
+        Me.tableCCT_ORDERS_KITCHEN_Y = New CCT_ORDERS_KITCHEN_YDataTable()
+        MyBase.Tables.Add(Me.tableCCT_ORDERS_KITCHEN_Y)
     End Sub
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -723,6 +749,12 @@ Partial Public Class DMDataSet
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Private Function ShouldSerializeCCT_ORDERS_KITCHEN_K() As Boolean
+        Return false
+    End Function
+    
+    <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Private Function ShouldSerializeCCT_ORDERS_KITCHEN_Y() As Boolean
         Return false
     End Function
     
@@ -834,6 +866,9 @@ Partial Public Class DMDataSet
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
     Public Delegate Sub CCT_ORDERS_KITCHEN_KRowChangeEventHandler(ByVal sender As Object, ByVal e As CCT_ORDERS_KITCHEN_KRowChangeEvent)
+    
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Delegate Sub CCT_ORDERS_KITCHEN_YRowChangeEventHandler(ByVal sender As Object, ByVal e As CCT_ORDERS_KITCHEN_YRowChangeEvent)
     
     '''<summary>
     '''Represents the strongly named DataTable class.
@@ -9898,6 +9933,8 @@ Partial Public Class DMDataSet
         
         Private columnHeight As Global.System.Data.DataColumn
         
+        Private columnHeight2ndLine As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -10022,6 +10059,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Height2ndLineColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnHeight2ndLine
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -10058,9 +10103,9 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddCCT_ORDERS_KITCHEN_KRow(ByVal ID As System.Guid, ByVal constrType As String, ByVal BoxColorID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal trm As Decimal, ByVal Price As Decimal, ByVal FinalPrice As Decimal, ByVal cctOrdersKitchenID As System.Guid, ByVal doorCatID As System.Guid, ByVal Shelves As String, ByVal Height As Decimal) As CCT_ORDERS_KITCHEN_KRow
+        Public Overloads Function AddCCT_ORDERS_KITCHEN_KRow(ByVal ID As System.Guid, ByVal constrType As String, ByVal BoxColorID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal trm As Decimal, ByVal Price As Decimal, ByVal FinalPrice As Decimal, ByVal cctOrdersKitchenID As System.Guid, ByVal doorCatID As System.Guid, ByVal Shelves As String, ByVal Height As Decimal, ByVal Height2ndLine As Decimal) As CCT_ORDERS_KITCHEN_KRow
             Dim rowCCT_ORDERS_KITCHEN_KRow As CCT_ORDERS_KITCHEN_KRow = CType(Me.NewRow,CCT_ORDERS_KITCHEN_KRow)
-            Dim columnValuesArray() As Object = New Object() {ID, constrType, BoxColorID, DoorTypeID, trm, Price, FinalPrice, cctOrdersKitchenID, doorCatID, Shelves, Height}
+            Dim columnValuesArray() As Object = New Object() {ID, constrType, BoxColorID, DoorTypeID, trm, Price, FinalPrice, cctOrdersKitchenID, doorCatID, Shelves, Height, Height2ndLine}
             rowCCT_ORDERS_KITCHEN_KRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCCT_ORDERS_KITCHEN_KRow)
             Return rowCCT_ORDERS_KITCHEN_KRow
@@ -10100,6 +10145,7 @@ Partial Public Class DMDataSet
             Me.columndoorCatID = MyBase.Columns("doorCatID")
             Me.columnShelves = MyBase.Columns("Shelves")
             Me.columnHeight = MyBase.Columns("Height")
+            Me.columnHeight2ndLine = MyBase.Columns("Height2ndLine")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10127,6 +10173,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnShelves)
             Me.columnHeight = New Global.System.Data.DataColumn("Height", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnHeight)
+            Me.columnHeight2ndLine = New Global.System.Data.DataColumn("Height2ndLine", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnHeight2ndLine)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -10221,6 +10269,415 @@ Partial Public Class DMDataSet
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
             attribute2.FixedValue = "CCT_ORDERS_KITCHEN_KDataTable"
+            type.Attributes.Add(attribute2)
+            type.Particle = sequence
+            Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
+            If xs.Contains(dsSchema.TargetNamespace) Then
+                Dim s1 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Dim s2 As Global.System.IO.MemoryStream = New Global.System.IO.MemoryStream()
+                Try 
+                    Dim schema As Global.System.Xml.Schema.XmlSchema = Nothing
+                    dsSchema.Write(s1)
+                    Dim schemas As Global.System.Collections.IEnumerator = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator
+                    Do While schemas.MoveNext
+                        schema = CType(schemas.Current,Global.System.Xml.Schema.XmlSchema)
+                        s2.SetLength(0)
+                        schema.Write(s2)
+                        If (s1.Length = s2.Length) Then
+                            s1.Position = 0
+                            s2.Position = 0
+                            
+                            Do While ((s1.Position <> s1.Length)  _
+                                        AndAlso (s1.ReadByte = s2.ReadByte))
+                                
+                                
+                            Loop
+                            If (s1.Position = s1.Length) Then
+                                Return type
+                            End If
+                        End If
+                        
+                    Loop
+                Finally
+                    If (Not (s1) Is Nothing) Then
+                        s1.Close
+                    End If
+                    If (Not (s2) Is Nothing) Then
+                        s2.Close
+                    End If
+                End Try
+            End If
+            xs.Add(dsSchema)
+            Return type
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the strongly named DataTable class.
+    '''</summary>
+    <Global.System.Serializable(),  _
+     Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
+    Partial Public Class CCT_ORDERS_KITCHEN_YDataTable
+        Inherits Global.System.Data.TypedTableBase(Of CCT_ORDERS_KITCHEN_YRow)
+        
+        Private columnID As Global.System.Data.DataColumn
+        
+        Private columnconstrType As Global.System.Data.DataColumn
+        
+        Private columnBoxColorID As Global.System.Data.DataColumn
+        
+        Private columnDoorTypeID As Global.System.Data.DataColumn
+        
+        Private columntrm As Global.System.Data.DataColumn
+        
+        Private columnPrice As Global.System.Data.DataColumn
+        
+        Private columnFinalPrice As Global.System.Data.DataColumn
+        
+        Private columncctOrdersKitchenID As Global.System.Data.DataColumn
+        
+        Private columndoorCatID As Global.System.Data.DataColumn
+        
+        Private columnShelves As Global.System.Data.DataColumn
+        
+        Private columnHeight As Global.System.Data.DataColumn
+        
+        Private columnGolaColorID As Global.System.Data.DataColumn
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.TableName = "CCT_ORDERS_KITCHEN_Y"
+            Me.BeginInit
+            Me.InitClass
+            Me.EndInit
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal table As Global.System.Data.DataTable)
+            MyBase.New
+            Me.TableName = table.TableName
+            If (table.CaseSensitive <> table.DataSet.CaseSensitive) Then
+                Me.CaseSensitive = table.CaseSensitive
+            End If
+            If (table.Locale.ToString <> table.DataSet.Locale.ToString) Then
+                Me.Locale = table.Locale
+            End If
+            If (table.Namespace <> table.DataSet.Namespace) Then
+                Me.Namespace = table.Namespace
+            End If
+            Me.Prefix = table.Prefix
+            Me.MinimumCapacity = table.MinimumCapacity
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Sub New(ByVal info As Global.System.Runtime.Serialization.SerializationInfo, ByVal context As Global.System.Runtime.Serialization.StreamingContext)
+            MyBase.New(info, context)
+            Me.InitVars
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property IDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property constrTypeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnconstrType
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property BoxColorIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBoxColorID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property DoorTypeIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDoorTypeID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property trmColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columntrm
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPrice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property FinalPriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnFinalPrice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property cctOrdersKitchenIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncctOrdersKitchenID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property doorCatIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndoorCatID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property ShelvesColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnShelves
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property HeightColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnHeight
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property GolaColorIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnGolaColorID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Browsable(false)>  _
+        Public ReadOnly Property Count() As Integer
+            Get
+                Return Me.Rows.Count
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Default ReadOnly Property Item(ByVal index As Integer) As CCT_ORDERS_KITCHEN_YRow
+            Get
+                Return CType(Me.Rows(index),CCT_ORDERS_KITCHEN_YRow)
+            End Get
+        End Property
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event CCT_ORDERS_KITCHEN_YRowChanging As CCT_ORDERS_KITCHEN_YRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event CCT_ORDERS_KITCHEN_YRowChanged As CCT_ORDERS_KITCHEN_YRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event CCT_ORDERS_KITCHEN_YRowDeleting As CCT_ORDERS_KITCHEN_YRowChangeEventHandler
+        
+        <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Event CCT_ORDERS_KITCHEN_YRowDeleted As CCT_ORDERS_KITCHEN_YRowChangeEventHandler
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Sub AddCCT_ORDERS_KITCHEN_YRow(ByVal row As CCT_ORDERS_KITCHEN_YRow)
+            Me.Rows.Add(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overloads Function AddCCT_ORDERS_KITCHEN_YRow(ByVal ID As System.Guid, ByVal constrType As String, ByVal BoxColorID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal trm As Decimal, ByVal Price As Decimal, ByVal FinalPrice As Decimal, ByVal cctOrdersKitchenID As System.Guid, ByVal doorCatID As System.Guid, ByVal Shelves As String, ByVal Height As Decimal, ByVal GolaColorID As System.Guid) As CCT_ORDERS_KITCHEN_YRow
+            Dim rowCCT_ORDERS_KITCHEN_YRow As CCT_ORDERS_KITCHEN_YRow = CType(Me.NewRow,CCT_ORDERS_KITCHEN_YRow)
+            Dim columnValuesArray() As Object = New Object() {ID, constrType, BoxColorID, DoorTypeID, trm, Price, FinalPrice, cctOrdersKitchenID, doorCatID, Shelves, Height, GolaColorID}
+            rowCCT_ORDERS_KITCHEN_YRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowCCT_ORDERS_KITCHEN_YRow)
+            Return rowCCT_ORDERS_KITCHEN_YRow
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function FindByID(ByVal ID As System.Guid) As CCT_ORDERS_KITCHEN_YRow
+            Return CType(Me.Rows.Find(New Object() {ID}),CCT_ORDERS_KITCHEN_YRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Overrides Function Clone() As Global.System.Data.DataTable
+            Dim cln As CCT_ORDERS_KITCHEN_YDataTable = CType(MyBase.Clone,CCT_ORDERS_KITCHEN_YDataTable)
+            cln.InitVars
+            Return cln
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
+            Return New CCT_ORDERS_KITCHEN_YDataTable()
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub InitVars()
+            Me.columnID = MyBase.Columns("ID")
+            Me.columnconstrType = MyBase.Columns("constrType")
+            Me.columnBoxColorID = MyBase.Columns("BoxColorID")
+            Me.columnDoorTypeID = MyBase.Columns("DoorTypeID")
+            Me.columntrm = MyBase.Columns("trm")
+            Me.columnPrice = MyBase.Columns("Price")
+            Me.columnFinalPrice = MyBase.Columns("FinalPrice")
+            Me.columncctOrdersKitchenID = MyBase.Columns("cctOrdersKitchenID")
+            Me.columndoorCatID = MyBase.Columns("doorCatID")
+            Me.columnShelves = MyBase.Columns("Shelves")
+            Me.columnHeight = MyBase.Columns("Height")
+            Me.columnGolaColorID = MyBase.Columns("GolaColorID")
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitClass()
+            Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnID)
+            Me.columnconstrType = New Global.System.Data.DataColumn("constrType", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnconstrType)
+            Me.columnBoxColorID = New Global.System.Data.DataColumn("BoxColorID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBoxColorID)
+            Me.columnDoorTypeID = New Global.System.Data.DataColumn("DoorTypeID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDoorTypeID)
+            Me.columntrm = New Global.System.Data.DataColumn("trm", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columntrm)
+            Me.columnPrice = New Global.System.Data.DataColumn("Price", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPrice)
+            Me.columnFinalPrice = New Global.System.Data.DataColumn("FinalPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnFinalPrice)
+            Me.columncctOrdersKitchenID = New Global.System.Data.DataColumn("cctOrdersKitchenID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncctOrdersKitchenID)
+            Me.columndoorCatID = New Global.System.Data.DataColumn("doorCatID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndoorCatID)
+            Me.columnShelves = New Global.System.Data.DataColumn("Shelves", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnShelves)
+            Me.columnHeight = New Global.System.Data.DataColumn("Height", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnHeight)
+            Me.columnGolaColorID = New Global.System.Data.DataColumn("GolaColorID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnGolaColorID)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
+            Me.columnID.AllowDBNull = false
+            Me.columnID.Unique = true
+            Me.columnconstrType.MaxLength = 50
+            Me.columntrm.AllowDBNull = false
+            Me.columncctOrdersKitchenID.AllowDBNull = false
+            Me.columndoorCatID.AllowDBNull = false
+            Me.columnShelves.MaxLength = 50
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function NewCCT_ORDERS_KITCHEN_YRow() As CCT_ORDERS_KITCHEN_YRow
+            Return CType(Me.NewRow,CCT_ORDERS_KITCHEN_YRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
+            Return New CCT_ORDERS_KITCHEN_YRow(builder)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Function GetRowType() As Global.System.Type
+            Return GetType(CCT_ORDERS_KITCHEN_YRow)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanged(e)
+            If (Not (Me.CCT_ORDERS_KITCHEN_YRowChangedEvent) Is Nothing) Then
+                RaiseEvent CCT_ORDERS_KITCHEN_YRowChanged(Me, New CCT_ORDERS_KITCHEN_YRowChangeEvent(CType(e.Row,CCT_ORDERS_KITCHEN_YRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowChanging(e)
+            If (Not (Me.CCT_ORDERS_KITCHEN_YRowChangingEvent) Is Nothing) Then
+                RaiseEvent CCT_ORDERS_KITCHEN_YRowChanging(Me, New CCT_ORDERS_KITCHEN_YRowChangeEvent(CType(e.Row,CCT_ORDERS_KITCHEN_YRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleted(e)
+            If (Not (Me.CCT_ORDERS_KITCHEN_YRowDeletedEvent) Is Nothing) Then
+                RaiseEvent CCT_ORDERS_KITCHEN_YRowDeleted(Me, New CCT_ORDERS_KITCHEN_YRowChangeEvent(CType(e.Row,CCT_ORDERS_KITCHEN_YRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
+            MyBase.OnRowDeleting(e)
+            If (Not (Me.CCT_ORDERS_KITCHEN_YRowDeletingEvent) Is Nothing) Then
+                RaiseEvent CCT_ORDERS_KITCHEN_YRowDeleting(Me, New CCT_ORDERS_KITCHEN_YRowChangeEvent(CType(e.Row,CCT_ORDERS_KITCHEN_YRow), e.Action))
+            End If
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub RemoveCCT_ORDERS_KITCHEN_YRow(ByVal row As CCT_ORDERS_KITCHEN_YRow)
+            Me.Rows.Remove(row)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Shared Function GetTypedTableSchema(ByVal xs As Global.System.Xml.Schema.XmlSchemaSet) As Global.System.Xml.Schema.XmlSchemaComplexType
+            Dim type As Global.System.Xml.Schema.XmlSchemaComplexType = New Global.System.Xml.Schema.XmlSchemaComplexType()
+            Dim sequence As Global.System.Xml.Schema.XmlSchemaSequence = New Global.System.Xml.Schema.XmlSchemaSequence()
+            Dim ds As DMDataSet = New DMDataSet()
+            Dim any1 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any1.Namespace = "http://www.w3.org/2001/XMLSchema"
+            any1.MinOccurs = New Decimal(0)
+            any1.MaxOccurs = Decimal.MaxValue
+            any1.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any1)
+            Dim any2 As Global.System.Xml.Schema.XmlSchemaAny = New Global.System.Xml.Schema.XmlSchemaAny()
+            any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1"
+            any2.MinOccurs = New Decimal(1)
+            any2.ProcessContents = Global.System.Xml.Schema.XmlSchemaContentProcessing.Lax
+            sequence.Items.Add(any2)
+            Dim attribute1 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute1.Name = "namespace"
+            attribute1.FixedValue = ds.Namespace
+            type.Attributes.Add(attribute1)
+            Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
+            attribute2.Name = "tableTypeName"
+            attribute2.FixedValue = "CCT_ORDERS_KITCHEN_YDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -18943,6 +19400,21 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Height2ndLine() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_K.Height2ndLineColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Height2ndLine' in table 'CCT_ORDERS_KITCHEN_K' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_K.Height2ndLineColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsconstrTypeNull() As Boolean
             Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_K.constrTypeColumn)
         End Function
@@ -19023,6 +19495,294 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetHeightNull()
             Me(Me.tableCCT_ORDERS_KITCHEN_K.HeightColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsHeight2ndLineNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_K.Height2ndLineColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetHeight2ndLineNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_K.Height2ndLineColumn) = Global.System.Convert.DBNull
+        End Sub
+    End Class
+    
+    '''<summary>
+    '''Represents strongly named DataRow class.
+    '''</summary>
+    Partial Public Class CCT_ORDERS_KITCHEN_YRow
+        Inherits Global.System.Data.DataRow
+        
+        Private tableCCT_ORDERS_KITCHEN_Y As CCT_ORDERS_KITCHEN_YDataTable
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
+            MyBase.New(rb)
+            Me.tableCCT_ORDERS_KITCHEN_Y = CType(Me.Table,CCT_ORDERS_KITCHEN_YDataTable)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ID() As System.Guid
+            Get
+                Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.IDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.IDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property constrType() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.constrTypeColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'constrType' in table 'CCT_ORDERS_KITCHEN_Y' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.constrTypeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property BoxColorID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.BoxColorIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BoxColorID' in table 'CCT_ORDERS_KITCHEN_Y' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.BoxColorIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property DoorTypeID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.DoorTypeIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DoorTypeID' in table 'CCT_ORDERS_KITCHEN_Y' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.DoorTypeIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property trm() As Decimal
+            Get
+                Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.trmColumn),Decimal)
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.trmColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Price() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.PriceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Price' in table 'CCT_ORDERS_KITCHEN_Y' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.PriceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property FinalPrice() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.FinalPriceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'FinalPrice' in table 'CCT_ORDERS_KITCHEN_Y' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.FinalPriceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property cctOrdersKitchenID() As System.Guid
+            Get
+                Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.cctOrdersKitchenIDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.cctOrdersKitchenIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property doorCatID() As System.Guid
+            Get
+                Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.doorCatIDColumn),Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.doorCatIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Shelves() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.ShelvesColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Shelves' in table 'CCT_ORDERS_KITCHEN_Y' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.ShelvesColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property Height() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.HeightColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Height' in table 'CCT_ORDERS_KITCHEN_Y' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.HeightColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property GolaColorID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.GolaColorIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'GolaColorID' in table 'CCT_ORDERS_KITCHEN_Y' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.GolaColorIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsconstrTypeNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.constrTypeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetconstrTypeNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_Y.constrTypeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsBoxColorIDNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.BoxColorIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetBoxColorIDNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_Y.BoxColorIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsDoorTypeIDNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.DoorTypeIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetDoorTypeIDNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_Y.DoorTypeIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPriceNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.PriceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPriceNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_Y.PriceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsFinalPriceNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.FinalPriceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetFinalPriceNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_Y.FinalPriceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsShelvesNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.ShelvesColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetShelvesNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_Y.ShelvesColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsHeightNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.HeightColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetHeightNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_Y.HeightColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsGolaColorIDNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.GolaColorIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetGolaColorIDNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_Y.GolaColorIDColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -19624,6 +20384,42 @@ Partial Public Class DMDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public ReadOnly Property Row() As CCT_ORDERS_KITCHEN_KRow
+            Get
+                Return Me.eventRow
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Action() As Global.System.Data.DataRowAction
+            Get
+                Return Me.eventAction
+            End Get
+        End Property
+    End Class
+    
+    '''<summary>
+    '''Row event argument class
+    '''</summary>
+    <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+    Public Class CCT_ORDERS_KITCHEN_YRowChangeEvent
+        Inherits Global.System.EventArgs
+        
+        Private eventRow As CCT_ORDERS_KITCHEN_YRow
+        
+        Private eventAction As Global.System.Data.DataRowAction
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New(ByVal row As CCT_ORDERS_KITCHEN_YRow, ByVal action As Global.System.Data.DataRowAction)
+            MyBase.New
+            Me.eventRow = row
+            Me.eventAction = action
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property Row() As CCT_ORDERS_KITCHEN_YRow
             Get
                 Return Me.eventRow
             End Get
@@ -22826,6 +23622,7 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("doorCatID", "doorCatID")
             tableMapping.ColumnMappings.Add("Shelves", "Shelves")
             tableMapping.ColumnMappings.Add("Height", "Height")
+            tableMapping.ColumnMappings.Add("Height2ndLine", "Height2ndLine")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -22842,14 +23639,14 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height, BoxColorID, DoorTyp"& _ 
-                "eID, trm, Price, FinalPrice, Shelves"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORDERS_KITCHEN_K"
+            Me._commandCollection(0).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height,Height2ndLine, BoxCo"& _ 
+                "lorID, DoorTypeID, trm, Price, FinalPrice, Shelves"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORDERS_KITCHEN_K"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height,BoxColorID, DoorType"& _ 
-                "ID, trm, Price, FinalPrice, Shelves"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORDERS_KITCHEN_K WHERE (cctOrder"& _ 
-                "sKitchenID = @cctOrdersKitchenID)"
+            Me._commandCollection(1).CommandText = "SELECT BoxColorID, DoorTypeID, FinalPrice, Height, Height2ndLine, ID, Price, Shel"& _ 
+                "ves, cctOrdersKitchenID, constrType, doorCatID, trm FROM CCT_ORDERS_KITCHEN_K WH"& _ 
+                "ERE (cctOrdersKitchenID = @cctOrdersKitchenID)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cctOrdersKitchenID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cctOrdersKitchenID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -22872,6 +23669,201 @@ Namespace DMDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillBycctOrdersKitchenID(ByVal dataTable As DMDataSet.CCT_ORDERS_KITCHEN_KDataTable, ByVal cctOrdersKitchenID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(cctOrdersKitchenID,System.Guid)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+    End Class
+    
+    '''<summary>
+    '''Represents the connection and commands used to retrieve and save data.
+    '''</summary>
+    <Global.System.ComponentModel.DesignerCategoryAttribute("code"),  _
+     Global.System.ComponentModel.ToolboxItem(true),  _
+     Global.System.ComponentModel.DataObjectAttribute(true),  _
+     Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
+     Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
+    Partial Public Class CCT_ORDERS_KITCHEN_YTableAdapter
+        Inherits Global.System.ComponentModel.Component
+        
+        Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
+        
+        Private _connection As Global.System.Data.SqlClient.SqlConnection
+        
+        Private _transaction As Global.System.Data.SqlClient.SqlTransaction
+        
+        Private _commandCollection() As Global.System.Data.SqlClient.SqlCommand
+        
+        Private _clearBeforeFill As Boolean
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub New()
+            MyBase.New
+            Me.ClearBeforeFill = true
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected Friend ReadOnly Property Adapter() As Global.System.Data.SqlClient.SqlDataAdapter
+            Get
+                If (Me._adapter Is Nothing) Then
+                    Me.InitAdapter
+                End If
+                Return Me._adapter
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Connection() As Global.System.Data.SqlClient.SqlConnection
+            Get
+                If (Me._connection Is Nothing) Then
+                    Me.InitConnection
+                End If
+                Return Me._connection
+            End Get
+            Set
+                Me._connection = value
+                If (Not (Me.Adapter.InsertCommand) Is Nothing) Then
+                    Me.Adapter.InsertCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.DeleteCommand) Is Nothing) Then
+                    Me.Adapter.DeleteCommand.Connection = value
+                End If
+                If (Not (Me.Adapter.UpdateCommand) Is Nothing) Then
+                    Me.Adapter.UpdateCommand.Connection = value
+                End If
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    If (Not (Me.CommandCollection(i)) Is Nothing) Then
+                        CType(Me.CommandCollection(i),Global.System.Data.SqlClient.SqlCommand).Connection = value
+                    End If
+                    i = (i + 1)
+                Loop
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Friend Property Transaction() As Global.System.Data.SqlClient.SqlTransaction
+            Get
+                Return Me._transaction
+            End Get
+            Set
+                Me._transaction = value
+                Dim i As Integer = 0
+                Do While (i < Me.CommandCollection.Length)
+                    Me.CommandCollection(i).Transaction = Me._transaction
+                    i = (i + 1)
+                Loop
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.DeleteCommand) Is Nothing)) Then
+                    Me.Adapter.DeleteCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.InsertCommand) Is Nothing)) Then
+                    Me.Adapter.InsertCommand.Transaction = Me._transaction
+                End If
+                If ((Not (Me.Adapter) Is Nothing)  _
+                            AndAlso (Not (Me.Adapter.UpdateCommand) Is Nothing)) Then
+                    Me.Adapter.UpdateCommand.Transaction = Me._transaction
+                End If
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Protected ReadOnly Property CommandCollection() As Global.System.Data.SqlClient.SqlCommand()
+            Get
+                If (Me._commandCollection Is Nothing) Then
+                    Me.InitCommandCollection
+                End If
+                Return Me._commandCollection
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property ClearBeforeFill() As Boolean
+            Get
+                Return Me._clearBeforeFill
+            End Get
+            Set
+                Me._clearBeforeFill = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitAdapter()
+            Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
+            Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
+            tableMapping.SourceTable = "Table"
+            tableMapping.DataSetTable = "CCT_ORDERS_KITCHEN_Y"
+            tableMapping.ColumnMappings.Add("ID", "ID")
+            tableMapping.ColumnMappings.Add("constrType", "constrType")
+            tableMapping.ColumnMappings.Add("BoxColorID", "BoxColorID")
+            tableMapping.ColumnMappings.Add("DoorTypeID", "DoorTypeID")
+            tableMapping.ColumnMappings.Add("trm", "trm")
+            tableMapping.ColumnMappings.Add("Price", "Price")
+            tableMapping.ColumnMappings.Add("FinalPrice", "FinalPrice")
+            tableMapping.ColumnMappings.Add("cctOrdersKitchenID", "cctOrdersKitchenID")
+            tableMapping.ColumnMappings.Add("doorCatID", "doorCatID")
+            tableMapping.ColumnMappings.Add("Shelves", "Shelves")
+            tableMapping.ColumnMappings.Add("Height", "Height")
+            tableMapping.ColumnMappings.Add("GolaColorID", "GolaColorID")
+            Me._adapter.TableMappings.Add(tableMapping)
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitConnection()
+            Me._connection = New Global.System.Data.SqlClient.SqlConnection()
+            Me._connection.ConnectionString = Global.DreamyKitchenCRM.My.MySettings.Default.DreamyKitchenConnectionStringRemotely
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Private Sub InitCommandCollection()
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
+            Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(0).Connection = Me.Connection
+            Me._commandCollection(0).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height,GolaColorID,BoxColor"& _ 
+                "ID, DoorTypeID, trm, Price, FinalPrice, Shelves"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORDERS_KITCHEN_Y"
+            Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height,GolaColorID,BoxColor"& _ 
+                "ID, DoorTypeID, trm, Price, FinalPrice, Shelves"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORDERS_KITCHEN_Y"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WH"& _ 
+                "ERE (cctOrdersKitchenID = @cctOrdersKitchenID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cctOrdersKitchenID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cctOrdersKitchenID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
+        Public Overloads Overridable Function Fill(ByVal dataTable As DMDataSet.CCT_ORDERS_KITCHEN_YDataTable) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBycctOrdersKitchenID(ByVal dataTable As DMDataSet.CCT_ORDERS_KITCHEN_YDataTable, ByVal cctOrdersKitchenID As System.Guid) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(cctOrdersKitchenID,System.Guid)
             If (Me.ClearBeforeFill = true) Then

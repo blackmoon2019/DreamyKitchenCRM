@@ -1726,7 +1726,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
             Case "vw_BASE_CAT"
-                frmGen.Text = "Κεντρικές Κατηγορίες Υλικών"
+                frmGen.Text = "Τύποι Κατασκευής"
                 frmGen.MdiParent = frmMain
                 frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmGen.Mode = FormMode.EditRecord
@@ -2580,7 +2580,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
             Case "vw_BASE_CAT"
-                frmGen.Text = "Κεντρικές Κατηγορίες Υλικών"
+                frmGen.Text = "Τύποι Κατασκευής"
                 frmGen.MdiParent = frmMain
                 frmGen.Mode = FormMode.NewRecord
                 frmGen.Scroller = GridView1
