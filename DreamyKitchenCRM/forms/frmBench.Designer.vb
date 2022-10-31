@@ -19,6 +19,7 @@ Partial Class frmBench
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBench))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
@@ -30,6 +31,9 @@ Partial Class frmBench
         Me.txtHeight = New DevExpress.XtraEditors.TextEdit()
         Me.txtHeight1 = New DevExpress.XtraEditors.TextEdit()
         Me.cboDim = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cboBenchCat = New DevExpress.XtraEditors.LookUpEdit()
+        Me.BENCHCATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem56 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -41,6 +45,8 @@ Partial Class frmBench
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.BENCH_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.BENCH_CATTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -50,6 +56,9 @@ Partial Class frmBench
         CType(Me.txtHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtHeight1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboBenchCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BENCHCATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,6 +70,7 @@ Partial Class frmBench
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -74,21 +84,23 @@ Partial Class frmBench
         Me.LayoutControl1.Controls.Add(Me.txtHeight)
         Me.LayoutControl1.Controls.Add(Me.txtHeight1)
         Me.LayoutControl1.Controls.Add(Me.cboDim)
-        Me.LayoutControl1.Location = New System.Drawing.Point(-2, -7)
+        Me.LayoutControl1.Controls.Add(Me.cboBenchCat)
+        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(805, 259)
+        Me.LayoutControl1.Size = New System.Drawing.Size(967, 348)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(361, 180)
+        Me.cmdSave.Location = New System.Drawing.Point(433, 222)
         Me.cmdSave.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(203, 39)
+        Me.cmdSave.Size = New System.Drawing.Size(246, 39)
         Me.cmdSave.StyleController = Me.LayoutControl1
         Me.cmdSave.TabIndex = 44
         Me.cmdSave.Text = "Αποθήκευση"
@@ -97,10 +109,10 @@ Partial Class frmBench
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(568, 180)
+        Me.cmdExit.Location = New System.Drawing.Point(683, 222)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(225, 39)
+        Me.cmdExit.Size = New System.Drawing.Size(272, 39)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 43
         Me.cmdExit.Text = "Έξοδος"
@@ -115,7 +127,7 @@ Partial Class frmBench
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(161, 38)
+        Me.txtCode.Size = New System.Drawing.Size(233, 38)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
@@ -123,7 +135,7 @@ Partial Class frmBench
         'txtPricePerMeter
         '
         Me.txtPricePerMeter.EditValue = "0,00 €"
-        Me.txtPricePerMeter.Location = New System.Drawing.Point(196, 138)
+        Me.txtPricePerMeter.Location = New System.Drawing.Point(196, 180)
         Me.txtPricePerMeter.Margin = New System.Windows.Forms.Padding(5)
         Me.txtPricePerMeter.Name = "txtPricePerMeter"
         Me.txtPricePerMeter.Properties.DisplayFormat.FormatString = "c"
@@ -133,31 +145,31 @@ Partial Class frmBench
         Me.txtPricePerMeter.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtPricePerMeter.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtPricePerMeter.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPricePerMeter.Size = New System.Drawing.Size(161, 38)
+        Me.txtPricePerMeter.Size = New System.Drawing.Size(233, 38)
         Me.txtPricePerMeter.StyleController = Me.LayoutControl1
         Me.txtPricePerMeter.TabIndex = 42
         Me.txtPricePerMeter.Tag = "PricePerMeter,0,1,2"
         '
         'txtCustomCode
         '
-        Me.txtCustomCode.Location = New System.Drawing.Point(545, 12)
+        Me.txtCustomCode.Location = New System.Drawing.Point(617, 12)
         Me.txtCustomCode.Margin = New System.Windows.Forms.Padding(5)
         Me.txtCustomCode.Name = "txtCustomCode"
         Me.txtCustomCode.Properties.Appearance.BackColor = System.Drawing.SystemColors.Info
         Me.txtCustomCode.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, System.Drawing.FontStyle.Bold)
         Me.txtCustomCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCustomCode.Properties.Appearance.Options.UseFont = True
-        Me.txtCustomCode.Size = New System.Drawing.Size(248, 38)
+        Me.txtCustomCode.Size = New System.Drawing.Size(338, 38)
         Me.txtCustomCode.StyleController = Me.LayoutControl1
         Me.txtCustomCode.TabIndex = 4
         Me.txtCustomCode.Tag = "CustomCode,0,1,2"
         '
         'txtNam
         '
-        Me.txtNam.Location = New System.Drawing.Point(196, 96)
+        Me.txtNam.Location = New System.Drawing.Point(196, 138)
         Me.txtNam.Margin = New System.Windows.Forms.Padding(5)
         Me.txtNam.Name = "txtNam"
-        Me.txtNam.Size = New System.Drawing.Size(319, 38)
+        Me.txtNam.Size = New System.Drawing.Size(424, 38)
         Me.txtNam.StyleController = Me.LayoutControl1
         Me.txtNam.TabIndex = 9
         Me.txtNam.Tag = "name,0,1,2"
@@ -165,7 +177,7 @@ Partial Class frmBench
         'txtHeight
         '
         Me.txtHeight.EditValue = "0,00 €"
-        Me.txtHeight.Location = New System.Drawing.Point(545, 138)
+        Me.txtHeight.Location = New System.Drawing.Point(617, 180)
         Me.txtHeight.Margin = New System.Windows.Forms.Padding(5)
         Me.txtHeight.Name = "txtHeight"
         Me.txtHeight.Properties.DisplayFormat.FormatString = "n"
@@ -175,7 +187,7 @@ Partial Class frmBench
         Me.txtHeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtHeight.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtHeight.Properties.MaskSettings.Set("mask", "n2")
-        Me.txtHeight.Size = New System.Drawing.Size(248, 38)
+        Me.txtHeight.Size = New System.Drawing.Size(338, 38)
         Me.txtHeight.StyleController = Me.LayoutControl1
         Me.txtHeight.TabIndex = 42
         Me.txtHeight.Tag = "width,0,1,2"
@@ -183,7 +195,7 @@ Partial Class frmBench
         'txtHeight1
         '
         Me.txtHeight1.EditValue = "0,00 €"
-        Me.txtHeight1.Location = New System.Drawing.Point(639, 96)
+        Me.txtHeight1.Location = New System.Drawing.Point(744, 138)
         Me.txtHeight1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtHeight1.Name = "txtHeight1"
         Me.txtHeight1.Properties.DisplayFormat.FormatString = "n"
@@ -193,7 +205,7 @@ Partial Class frmBench
         Me.txtHeight1.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtHeight1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtHeight1.Properties.MaskSettings.Set("mask", "n2")
-        Me.txtHeight1.Size = New System.Drawing.Size(154, 38)
+        Me.txtHeight1.Size = New System.Drawing.Size(211, 38)
         Me.txtHeight1.StyleController = Me.LayoutControl1
         Me.txtHeight1.TabIndex = 42
         Me.txtHeight1.Tag = "tbl,0,1,2"
@@ -201,7 +213,7 @@ Partial Class frmBench
         'cboDim
         '
         Me.cboDim.EditValue = ""
-        Me.cboDim.Location = New System.Drawing.Point(196, 54)
+        Me.cboDim.Location = New System.Drawing.Point(196, 96)
         Me.cboDim.Margin = New System.Windows.Forms.Padding(5)
         Me.cboDim.Name = "cboDim"
         Me.cboDim.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -209,18 +221,45 @@ Partial Class frmBench
         Me.cboDim.Properties.DisplayMember = "name"
         Me.cboDim.Properties.NullText = ""
         Me.cboDim.Properties.ValueMember = "ID"
-        Me.cboDim.Size = New System.Drawing.Size(597, 38)
+        Me.cboDim.Size = New System.Drawing.Size(759, 38)
         Me.cboDim.StyleController = Me.LayoutControl1
         Me.cboDim.TabIndex = 46
         Me.cboDim.Tag = "dimID,0,1,2"
+        '
+        'cboBenchCat
+        '
+        Me.cboBenchCat.EditValue = ""
+        Me.cboBenchCat.Location = New System.Drawing.Point(196, 54)
+        Me.cboBenchCat.Margin = New System.Windows.Forms.Padding(5)
+        Me.cboBenchCat.Name = "cboBenchCat"
+        Me.cboBenchCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboBenchCat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Διάσταση", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.cboBenchCat.Properties.DataSource = Me.BENCHCATBindingSource
+        Me.cboBenchCat.Properties.DisplayMember = "name"
+        Me.cboBenchCat.Properties.NullText = ""
+        Me.cboBenchCat.Properties.ValueMember = "ID"
+        Me.cboBenchCat.Size = New System.Drawing.Size(759, 38)
+        Me.cboBenchCat.StyleController = Me.LayoutControl1
+        Me.cboBenchCat.TabIndex = 46
+        Me.cboBenchCat.Tag = "benchCatID,0,1,2"
+        '
+        'BENCHCATBindingSource
+        '
+        Me.BENCHCATBindingSource.DataMember = "BENCH_CAT"
+        Me.BENCHCATBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem56, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.LayoutControlItem7, Me.LayoutControlItem9})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem56, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem1, Me.LayoutControlItem6, Me.LayoutControlItem2, Me.EmptySpaceItem1, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem8})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(805, 259)
+        Me.Root.Size = New System.Drawing.Size(967, 348)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem4
@@ -230,7 +269,7 @@ Partial Class frmBench
         Me.LayoutControlItem4.CustomizationFormText = "Κωδικός"
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(349, 42)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(421, 42)
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(172, 23)
         '
@@ -241,9 +280,9 @@ Partial Class frmBench
         Me.LayoutControlItem56.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem56.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem56.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem56.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem56.Location = New System.Drawing.Point(0, 126)
+        Me.LayoutControlItem56.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem56.Name = "LayoutControlItem56"
-        Me.LayoutControlItem56.Size = New System.Drawing.Size(349, 42)
+        Me.LayoutControlItem56.Size = New System.Drawing.Size(421, 42)
         Me.LayoutControlItem56.Tag = "1"
         Me.LayoutControlItem56.Text = "Τιμή Τετρ. Μ."
         Me.LayoutControlItem56.TextSize = New System.Drawing.Size(172, 23)
@@ -253,9 +292,9 @@ Partial Class frmBench
         Me.LayoutControlItem3.Control = Me.txtCustomCode
         Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem3.CustomizationFormText = "Κωδικός"
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(349, 0)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(421, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(436, 42)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(526, 42)
         Me.LayoutControlItem3.Text = "Κωδικός Αναζήτησης"
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(172, 23)
         '
@@ -265,9 +304,9 @@ Partial Class frmBench
         Me.LayoutControlItem5.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem5.CustomizationFormText = "Επωνυμία"
         Me.LayoutControlItem5.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem5.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 84)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 126)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(507, 42)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(612, 42)
         Me.LayoutControlItem5.Tag = "1"
         Me.LayoutControlItem5.Text = "Περιγραφή"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(172, 23)
@@ -279,9 +318,9 @@ Partial Class frmBench
         Me.LayoutControlItem1.CustomizationFormText = "Πλάτος"
         Me.LayoutControlItem1.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem1.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem1.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(349, 126)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(421, 168)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(436, 42)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(526, 42)
         Me.LayoutControlItem1.Tag = "1"
         Me.LayoutControlItem1.Text = "Πλάτος (cm)"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(172, 23)
@@ -289,27 +328,27 @@ Partial Class frmBench
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.cmdExit
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(556, 168)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(671, 210)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(229, 71)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(276, 118)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.cmdSave
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(349, 168)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(421, 210)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(207, 71)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(250, 118)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 168)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 210)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(349, 71)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(421, 118)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem7
@@ -318,9 +357,9 @@ Partial Class frmBench
         Me.LayoutControlItem7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem7.CustomizationFormText = "Πλάτος"
         Me.LayoutControlItem7.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(507, 84)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(612, 126)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(278, 42)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(335, 42)
         Me.LayoutControlItem7.Text = "Τραπέζι (cm)"
         Me.LayoutControlItem7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(108, 23)
@@ -331,17 +370,34 @@ Partial Class frmBench
         Me.LayoutControlItem9.Control = Me.cboDim
         Me.LayoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem9.CustomizationFormText = "Χρώμα Κασώματος"
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 42)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 84)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(785, 42)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(947, 42)
         Me.LayoutControlItem9.Text = "Διάσταση"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(172, 23)
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.cboBenchCat
+        Me.LayoutControlItem8.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem8.CustomizationFormText = "Χρώμα Κασώματος"
+        Me.LayoutControlItem8.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 42)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(947, 42)
+        Me.LayoutControlItem8.Tag = "1"
+        Me.LayoutControlItem8.Text = "Κατηγορία"
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(172, 23)
+        '
+        'BENCH_CATTableAdapter
+        '
+        Me.BENCH_CATTableAdapter.ClearBeforeFill = True
         '
         'frmBench
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(800, 249)
+        Me.ClientSize = New System.Drawing.Size(967, 348)
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(5)
@@ -356,6 +412,9 @@ Partial Class frmBench
         CType(Me.txtHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtHeight1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboBenchCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BENCHCATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).EndInit()
@@ -367,6 +426,7 @@ Partial Class frmBench
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -392,4 +452,9 @@ Partial Class frmBench
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cboDim As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cboBenchCat As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
+    Friend WithEvents BENCHCATBindingSource As BindingSource
+    Friend WithEvents BENCH_CATTableAdapter As DreamyKitchenDataSetTableAdapters.BENCH_CATTableAdapter
 End Class

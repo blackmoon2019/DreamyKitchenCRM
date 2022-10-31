@@ -15,7 +15,7 @@ Public Class frmBench
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
     Private CallerFormName As String
-
+    Private ManageCbo As New CombosManager
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -56,6 +56,8 @@ Public Class frmBench
     End Sub
 
     Private Sub frmBench_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.BENCH_CAT' table. You can move, or remove it, as needed.
+        Me.BENCH_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.BENCH_CAT)
         FillCbo.DIMENSION(cboDim)
         'Πάγκοι
         Select Case Mode
@@ -99,30 +101,22 @@ Public Class frmBench
                     txtCode.Text = DBQ.GetNextId("BENCH")
                 End If
             End If
-
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub cboDim_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDim.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboDim.EditValue = Nothing : ManageDIM()
-            Case 2 : If cboDim.EditValue <> Nothing Then ManageDIM()
+            Case 1 : cboDim.EditValue = Nothing : ManageCbo.ManageDIM(cboDim)
+            Case 2 : If cboDim.EditValue <> Nothing Then ManageCbo.ManageDIM(cboDim)
             Case 3 : cboDim.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageDIM()
-        Dim form1 As frmGen = New frmGen()
-        form1.Text = "Διάσταση"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Διάσταση"
-        form1.DataTable = "DIM"
-        form1.CallerControl = cboDim
-        form1.CalledFromControl = True
-        If cboDim.EditValue <> Nothing Then form1.ID = cboDim.EditValue.ToString
-        form1.MdiParent = frmMain
-        If cboDim.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
+    Private Sub cboBenchCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBenchCat.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboBenchCat.EditValue = Nothing : ManageCbo.ManageBenchCat(cboDim)
+            Case 2 : If cboBenchCat.EditValue <> Nothing Then ManageCbo.ManageBenchCat(cboDim)
+            Case 3 : cboBenchCat.EditValue = Nothing
+        End Select
     End Sub
 End Class

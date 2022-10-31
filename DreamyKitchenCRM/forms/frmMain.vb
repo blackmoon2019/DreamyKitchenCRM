@@ -983,5 +983,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBBenchCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBBenchCat.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κατηγορίες Πάγκων"
+        form.DataTable = "vw_BENCH_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

@@ -14,6 +14,7 @@ Imports DevExpress.XtraReports.UI
 
 Public Class frmCUSOrderKitchen
     Private sID As String
+    Private sNewGuid As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -72,6 +73,10 @@ Public Class frmCUSOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.BENCH_CAT' table. You can move, or remove it, as needed.
+        Me.BENCH_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.BENCH_CAT)
+        'TODO: This line of code loads data into the 'DMDataSet.CCT_ORDERS_KITCHEN_B' table. You can move, or remove it, as needed.
+        Me.CCT_ORDERS_KITCHEN_BTableAdapter.Fill(Me.DMDataSet.CCT_ORDERS_KITCHEN_B)
         Me.Vw_DOOR_CATYTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_CATY)
         Me.CCT_ORDERS_KITCHEN_YTableAdapter.Fill(Me.DMDataSet.CCT_ORDERS_KITCHEN_Y)
         Me.Vw_DOOR_CATKTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_CATK)
@@ -83,11 +88,13 @@ Public Class frmCUSOrderKitchen
         Me.Vw_DOOR_CATVTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_CATV)
         Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
         Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
+        Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
 
         Prog_Prop.GetProgPROSF()
         AddHandler GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigatorV_ButtonClick
         AddHandler GridControl2.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigatorK_ButtonClick
         AddHandler GridControl3.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigatorY_ButtonClick
+        AddHandler GridControl4.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigatorB_ButtonClick
 
         Select Case Mode
             Case FormMode.NewRecord
@@ -95,6 +102,7 @@ Public Class frmCUSOrderKitchen
                 Me.CCT_ORDERS_KITCHEN_VTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_V, System.Guid.Parse(sID))
                 Me.CCT_ORDERS_KITCHEN_KTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_K, System.Guid.Parse(sID))
                 Me.CCT_ORDERS_KITCHEN_YTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_Y, System.Guid.Parse(sID))
+                Me.CCT_ORDERS_KITCHEN_BTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_B, System.Guid.Parse(sID))
 
                 txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
@@ -113,6 +121,7 @@ Public Class frmCUSOrderKitchen
                 Me.CCT_ORDERS_KITCHEN_VTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_V, System.Guid.Parse(sID))
                 Me.CCT_ORDERS_KITCHEN_KTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_K, System.Guid.Parse(sID))
                 Me.CCT_ORDERS_KITCHEN_YTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_Y, System.Guid.Parse(sID))
+                Me.CCT_ORDERS_KITCHEN_BTableAdapter.FillBycctOrdersKitchenID(Me.DMDataSet.CCT_ORDERS_KITCHEN_B, System.Guid.Parse(sID))
 
                 LoadForms.LoadForm(LayoutControl1, "Select * from CCT_ORDERS_KITCHEN where id = " & toSQLValueS(sID))
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
@@ -145,6 +154,8 @@ Public Class frmCUSOrderKitchen
         LoadForms.RestoreLayoutFromXml(GridView3, "CCT_ORDERS_KITCHEN_V_def.xml")
         LoadForms.RestoreLayoutFromXml(GridView4, "CCT_ORDERS_KITCHEN_K_def.xml")
         LoadForms.RestoreLayoutFromXml(GridView5, "CCT_ORDERS_KITCHEN_Y_def.xml")
+        LoadForms.RestoreLayoutFromXml(GridView6, "CCT_ORDERS_KITCHEN_B_def.xml")
+
         GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
@@ -164,10 +175,14 @@ Public Class frmCUSOrderKitchen
         If UserProps.AllowDelete = True Then If e.Button.ButtonType = NavigatorButtonType.Remove Then DeleteRecordY()
         If UserProps.AllowEdit = True Then If e.Button.ButtonType = NavigatorButtonType.EndEdit Then UpdateRecordY()
     End Sub
+    Private Sub Grid_EmbeddedNavigatorB_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
+        If UserProps.AllowDelete = True Then If e.Button.ButtonType = NavigatorButtonType.Remove Then DeleteRecordB()
+        If UserProps.AllowEdit = True Then If e.Button.ButtonType = NavigatorButtonType.EndEdit Then UpdateRecordB()
+    End Sub
 
     Private Sub InsertRecordV()
-        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_V(cctOrdersKitchenID,doorCatID,constrType,GolaColorID,BoxColorID,DoorTypeID,Shelves,trm,Price,FinalPrice) " &
-                    " VALUES ( " & toSQLValueS(sID) &
+        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_V(ID,cctOrdersKitchenID,doorCatID,constrType,GolaColorID,BoxColorID,DoorTypeID,Shelves,trm,Price,FinalPrice) " &
+                    " VALUES ( " & toSQLValueS(sNewGuid) & "," & toSQLValueS(sID) &
                                "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doorCatID").ToString()) &
                                "," & toSQLValueS(vTypeDescr) &
                                "," & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "GolaColorID").ToString()) &
@@ -206,8 +221,8 @@ Public Class frmCUSOrderKitchen
 
     End Sub
     Private Sub InsertRecordK()
-        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_K(cctOrdersKitchenID,doorCatID,constrType,Height,Height2ndLine,BoxColorID,DoorTypeID,Shelves,trm,Price,FinalPrice) " &
-                    " VALUES ( " & toSQLValueS(sID) &
+        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_K(ID,cctOrdersKitchenID,doorCatID,constrType,Height,Height2ndLine,BoxColorID,DoorTypeID,Shelves,trm,Price,FinalPrice) " &
+                    " VALUES ( " & toSQLValueS(sNewGuid) & "," & toSQLValueS(sID) &
                                "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "doorCatID").ToString()) &
                                "," & toSQLValueS(vTypeDescr) &
                                "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Height").ToString(), True) &
@@ -248,8 +263,8 @@ Public Class frmCUSOrderKitchen
 
     End Sub
     Private Sub InsertRecordY()
-        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_Y(cctOrdersKitchenID,doorCatID,constrType,GolaColorID,BoxColorID,DoorTypeID,Shelves,Height,trm,Price,FinalPrice) " &
-                    " VALUES ( " & toSQLValueS(sID) &
+        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_Y(ID,cctOrdersKitchenID,doorCatID,constrType,GolaColorID,BoxColorID,DoorTypeID,Shelves,Height,trm,Price,FinalPrice) " &
+                    " VALUES ( " & toSQLValueS(sNewGuid) & "," & toSQLValueS(sID) &
                                "," & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "doorCatID").ToString()) &
                                "," & toSQLValueS(yTypeDescr) &
                                "," & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "GolaColorID").ToString()) &
@@ -289,6 +304,44 @@ Public Class frmCUSOrderKitchen
         End Using
 
     End Sub
+    Private Sub InsertRecordB()
+        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_B(ID,cctOrdersKitchenID,benchCatID,benchID,benchCode,Thickness,tem,Price,FinalPrice) " &
+                    " VALUES ( " & toSQLValueS(sNewGuid) & "," & toSQLValueS(sID) &
+                               "," & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "benchCatID").ToString()) &
+                               "," & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "benchID").ToString()) &
+                               "," & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "benchCode").ToString()) &
+                               "," & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "Thickness").ToString()) &
+                               "," & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "tem").ToString(), True) &
+                               "," & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "Price").ToString(), True) &
+                               "," & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "FinalPrice").ToString(), True) & ")"
+        Using oCmd As New SqlCommand(sSQL, CNDB)
+            oCmd.ExecuteNonQuery()
+        End Using
+    End Sub
+    Private Sub DeleteRecordB()
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            Dim sSQL As String = "DELETE FROM CCT_ORDERS_KITCHEN_B WHERE ID = " & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "ID").ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        End If
+    End Sub
+    Private Sub UpdateRecordB()
+        Dim sSQL As String = "UPDATE [CCT_ORDERS_KITCHEN_B] SET " &
+                "benchCatID = " & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "benchCatID").ToString()) &
+                ",benchID = " & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "benchID").ToString()) &
+                ",benchCode = " & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "benchCode").ToString()) &
+                ",Thickness = " & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "Thickness").ToString()) &
+                ",tem = " & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "tem").ToString(), True) &
+                ",Price = " & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "Price").ToString(), True) &
+                ",FinalPrice = " & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "FinalPrice").ToString(), True) &
+        " WHERE ID = " & toSQLValueS(GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "ID").ToString)
+        Using oCmd As New SqlCommand(sSQL, CNDB)
+            oCmd.ExecuteNonQuery()
+        End Using
+
+    End Sub
+
     Private Sub RepDefPrice_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles RepDefPrice.ButtonPressed
         Select Case e.Button.Index
             Case 0
@@ -494,6 +547,10 @@ Public Class frmCUSOrderKitchen
     Private Sub GridView5_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView5.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView5, "CCT_ORDERS_KITCHEN_Y_def.xml", "CCT_ORDERS_KITCHEN_Y")
     End Sub
+    Private Sub GridView6_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView6.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView5, "CCT_ORDERS_KITCHEN_B_def.xml", "CCT_ORDERS_KITCHEN_B")
+    End Sub
+
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
         Dim report As New RepCUSOrderKitchen()
 
@@ -528,27 +585,7 @@ Public Class frmCUSOrderKitchen
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Sub cboBenchType_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
-        Select Case e.Button.Index
-            Case 1 : cboBenchType.EditValue = Nothing : ManageCbo.ManageBENCH(cboBenchType)
-            Case 2 : If cboBenchType.EditValue <> Nothing Then ManageCbo.ManageBENCH(cboBenchType)
-            Case 3 : cboBenchType.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboBenchType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
-        Select Case e.Button.Index
-            Case 1 : cboBenchType2.EditValue = Nothing : ManageCbo.ManageBENCH(cboBenchType2)
-            Case 2 : If cboBenchType2.EditValue <> Nothing Then ManageCbo.ManageBENCH(cboBenchType2)
-            Case 3 : cboBenchType2.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboBack_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
-        Select Case e.Button.Index
-            Case 1 : cboBack.EditValue = Nothing : ManageCbo.ManageBENCH(cboBack)
-            Case 2 : If cboBack.EditValue <> Nothing Then ManageCbo.ManageBENCH(cboBack)
-            Case 3 : cboBack.EditValue = Nothing
-        End Select
-    End Sub
+
     Private Sub cboBaza_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboBaza.EditValue = Nothing
@@ -583,11 +620,6 @@ Public Class frmCUSOrderKitchen
         End Select
     End Sub
 
-    Private Sub cbobenchThickness_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
-        Select Case e.Button.Index
-            Case 1 : cbobenchThickness.EditValue = Nothing
-        End Select
-    End Sub
 
     Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
         If e.Column.FieldName <> "QTY" Then Exit Sub
@@ -598,7 +630,8 @@ Public Class frmCUSOrderKitchen
     '**************************** NEW GRID**********************************
     '************Β Α Σ Ε Ω Σ***********************
     Private Sub GridView3_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles GridView3.InitNewRow
-        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "ID", sID)
+        sNewGuid = Guid.NewGuid.ToString
+        GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "ID", sNewGuid)
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "cctOrdersKitchenID", sID)
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "trm", "0")
         GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "Price", "0")
@@ -792,7 +825,8 @@ Public Class frmCUSOrderKitchen
 
     '************Κ Ρ Ε Μ Α Σ Τ Α***********************
     Private Sub GridView4_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles GridView4.InitNewRow
-        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "ID", sID)
+        sNewGuid = Guid.NewGuid.ToString
+        GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "ID", sNewGuid)
         GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "cctOrdersKitchenID", sID)
         GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "Height", "0")
         GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "Height2ndLine", "0")
@@ -957,7 +991,8 @@ Public Class frmCUSOrderKitchen
 
     '************Υ Ψ Η Λ Α***********************
     Private Sub GridView5_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles GridView5.InitNewRow
-        GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "ID", sID)
+        sNewGuid = Guid.NewGuid.ToString
+        GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "ID", sNewGuid)
         GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "cctOrdersKitchenID", sID)
         GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "Height", "0")
         GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "trm", "0")
@@ -1143,5 +1178,105 @@ Public Class frmCUSOrderKitchen
         e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
     End Sub
 
+
+    '************Π Α Γ Κ Ο Ι***********************
+    Private Sub GridView6_InitNewRow(sender As Object, e As InitNewRowEventArgs) Handles GridView6.InitNewRow
+        sNewGuid = Guid.NewGuid.ToString
+        GridView6.SetRowCellValue(GridView6.FocusedRowHandle, "ID", sNewGuid)
+        GridView6.SetRowCellValue(GridView6.FocusedRowHandle, "cctOrdersKitchenID", sID)
+        GridView6.SetRowCellValue(GridView6.FocusedRowHandle, "tem", "0")
+        GridView6.SetRowCellValue(GridView6.FocusedRowHandle, "Price", "0")
+        GridView6.SetRowCellValue(GridView6.FocusedRowHandle, "FinalPrice", "0")
+
+    End Sub
+
+    Private Sub GridView6_ShowingEditor(sender As Object, e As CancelEventArgs) Handles GridView6.ShowingEditor
+        'Dim view As ColumnView = DirectCast(sender, ColumnView)
+        'If view.FocusedColumn.FieldName = "GolaColorID" And vType = 0 Then e.Cancel = True
+        'If view.FocusedColumn.FieldName = "BoxColorID" And vType = 1 Then e.Cancel = True
+    End Sub
+
+
+    Private Sub RepBench_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepBench.PopupFilter
+
+        If GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "benchCatID") Is Nothing Then
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" benchID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+            Exit Sub
+        End If
+        Dim benchCatID As String = GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "benchCatID").ToString()
+        If benchCatID = "" Then
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" benchID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+            Exit Sub
+        Else
+            e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" benchCatID == " & toSQLValueS(System.Guid.Parse(benchCatID).ToString))
+        End If
+    End Sub
+
+    Private Sub RepBench_EditValueChanged(sender As Object, e As EventArgs) Handles RepBench.EditValueChanged
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        GridView6.SetRowCellValue(GridView6.FocusedRowHandle, "Price", editor.GetColumnValue("pricePerMeter"))
+    End Sub
+
+    Private Sub GridView6_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GridView6.CellValueChanging
+        Select Case e.Column.FieldName
+            Case "tem"
+                If e.Value Is Nothing Then Exit Sub
+                If GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "Price").ToString = "" Then Exit Sub
+                Dim Price As Double = GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "Price")
+                Dim tem As Double = e.Value.ToString.Replace(".", ",")
+                Dim FinalPrice As Double = tem * Price
+                GridView6.SetRowCellValue(GridView6.FocusedRowHandle, "FinalPrice", FinalPrice)
+        End Select
+
+
+    End Sub
+
+    Private Sub GridView6_RowUpdated(sender As Object, e As RowObjectEventArgs) Handles GridView6.RowUpdated
+        If GridView6.IsNewItemRow(e.RowHandle) Then InsertRecordB() Else UpdateRecordB()
+    End Sub
+
+    Private Sub GridView6_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView6.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Delete : If UserProps.AllowDelete = True Then DeleteRecordB()
+        End Select
+
+    End Sub
+
+    Private Sub RepBenchCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepBenchCat.ButtonClick
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        Select Case e.Button.Index
+            Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageBenchCat(editor)
+            Case 2 : editor.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub RepBench_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepBench.ButtonClick
+        Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+        Select Case e.Button.Index
+            Case 1 : If editor.EditValue <> Nothing Then ManageCbo.ManageBENCH(editor)
+            Case 2 : editor.EditValue = Nothing
+        End Select
+
+    End Sub
+
+
+    Private Sub GridView6_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView6.ValidateRow
+        Dim View As GridView = CType(sender, GridView)
+        If GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "benchID").ToString() = "" Then
+            Dim benchID As GridColumn = View.Columns("benchID")
+            e.Valid = False
+            View.SetColumnError(benchID, "Δεν έχετε επιλέξει Πάγκο")
+        End If
+        If GridView6.GetRowCellValue(GridView6.FocusedRowHandle, "tem").ToString() = "" Then
+            Dim temCOL As GridColumn = View.Columns("tem")
+            e.Valid = False
+            View.SetColumnError(temCOL, "Δεν έχετε πληκτρολογήσει ΤΕΜ")
+        End If
+        If e.Valid Then View.ClearColumnErrors()
+
+    End Sub
+
+    Private Sub GridView6_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView6.InvalidRowException
+        e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
+    End Sub
 
 End Class

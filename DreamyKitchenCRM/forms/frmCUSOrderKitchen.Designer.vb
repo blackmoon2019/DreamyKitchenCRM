@@ -137,19 +137,25 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TabNavBench = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl6 = New DevExpress.XtraLayout.LayoutControl()
-        Me.txtbenchCode = New DevExpress.XtraEditors.TextEdit()
-        Me.txtbackCode = New DevExpress.XtraEditors.TextEdit()
-        Me.cbobenchThickness = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.cboBenchType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cboBack = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cboBenchType2 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.GridControl4 = New DevExpress.XtraGrid.GridControl()
+        Me.CCTORDERSKITCHENBBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.GridView6 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.colID2 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colbenchCatID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepBenchCat = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.BENCHCATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.colbenchCode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colbenchID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepBench = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.VwBENCHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.colcctOrdersKitchenID1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colThickness = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepThickness = New DevExpress.XtraEditors.Repository.RepositoryItemComboBox()
+        Me.colPrice1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coltem = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colFinalPrice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControlGroup8 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem66 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem68 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem67 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem52 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.chkVatVisible = New DevExpress.XtraEditors.CheckEdit()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
@@ -212,7 +218,6 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControlItem32 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwBENCHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwDOORTYPE1BindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
@@ -260,16 +265,8 @@ Partial Class frmCUSOrderKitchen
         Me.Vw_DOOR_CATKTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_CATKTableAdapter()
         Me.CCT_ORDERS_KITCHEN_YTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_ORDERS_KITCHEN_YTableAdapter()
         Me.Vw_DOOR_CATYTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_CATYTableAdapter()
-        Me.txtbenchCode1 = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.cbobenchThickness1 = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtbenchCode2 = New DevExpress.XtraEditors.TextEdit()
-        Me.cboBenchType1 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.cbobenchThickness11 = New DevExpress.XtraEditors.ComboBoxEdit()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.CCT_ORDERS_KITCHEN_BTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_ORDERS_KITCHEN_BTableAdapter()
+        Me.BENCH_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.BENCH_CATTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TabPane2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -354,19 +351,16 @@ Partial Class frmCUSOrderKitchen
         Me.TabNavBench.SuspendLayout()
         CType(Me.LayoutControl6, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl6.SuspendLayout()
-        CType(Me.txtbenchCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtbackCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbobenchThickness.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboBenchType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboBack.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboBenchType2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCTORDERSKITCHENBBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepBenchCat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BENCHCATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepBench, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepThickness, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem66, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem68, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem67, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -426,7 +420,6 @@ Partial Class frmCUSOrderKitchen
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDOORTYPE1BindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPane1.SuspendLayout()
@@ -446,16 +439,6 @@ Partial Class frmCUSOrderKitchen
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtbenchCode1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbobenchThickness1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtbenchCode2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboBenchType1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cbobenchThickness11.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'coldCode
@@ -1756,17 +1739,7 @@ Partial Class frmCUSOrderKitchen
         '
         'LayoutControl6
         '
-        Me.LayoutControl6.Controls.Add(Me.txtbenchCode)
-        Me.LayoutControl6.Controls.Add(Me.txtbackCode)
-        Me.LayoutControl6.Controls.Add(Me.cbobenchThickness)
-        Me.LayoutControl6.Controls.Add(Me.cboBenchType)
-        Me.LayoutControl6.Controls.Add(Me.cboBack)
-        Me.LayoutControl6.Controls.Add(Me.cboBenchType2)
-        Me.LayoutControl6.Controls.Add(Me.txtbenchCode1)
-        Me.LayoutControl6.Controls.Add(Me.cbobenchThickness1)
-        Me.LayoutControl6.Controls.Add(Me.txtbenchCode2)
-        Me.LayoutControl6.Controls.Add(Me.cboBenchType1)
-        Me.LayoutControl6.Controls.Add(Me.cbobenchThickness11)
+        Me.LayoutControl6.Controls.Add(Me.GridControl4)
         Me.LayoutControl6.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl6.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl6.Name = "LayoutControl6"
@@ -1775,179 +1748,192 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControl6.TabIndex = 0
         Me.LayoutControl6.Text = "LayoutControl6"
         '
-        'txtbenchCode
+        'GridControl4
         '
-        Me.txtbenchCode.Location = New System.Drawing.Point(1020, 12)
-        Me.txtbenchCode.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtbenchCode.Name = "txtbenchCode"
-        Me.txtbenchCode.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.txtbenchCode.Properties.Tag = "benchID"
-        Me.txtbenchCode.Size = New System.Drawing.Size(387, 38)
-        Me.txtbenchCode.StyleController = Me.LayoutControl6
-        Me.txtbenchCode.TabIndex = 21
-        Me.txtbenchCode.Tag = "benchCode,0,1,2"
+        Me.GridControl4.DataSource = Me.CCTORDERSKITCHENBBindingSource
+        Me.GridControl4.EmbeddedNavigator.TextStringFormat = "Εγγραφή {0} of {1}"
+        Me.GridControl4.Location = New System.Drawing.Point(12, 12)
+        Me.GridControl4.MainView = Me.GridView6
+        Me.GridControl4.Name = "GridControl4"
+        Me.GridControl4.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepThickness, Me.RepBenchCat, Me.RepBench})
+        Me.GridControl4.Size = New System.Drawing.Size(1811, 670)
+        Me.GridControl4.TabIndex = 58
+        Me.GridControl4.UseEmbeddedNavigator = True
+        Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView6})
         '
-        'txtbackCode
+        'CCTORDERSKITCHENBBindingSource
         '
-        Me.txtbackCode.Location = New System.Drawing.Point(1018, 140)
-        Me.txtbackCode.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtbackCode.Name = "txtbackCode"
-        Me.txtbackCode.Properties.UseReadOnlyAppearance = False
-        Me.txtbackCode.Size = New System.Drawing.Size(804, 38)
-        Me.txtbackCode.StyleController = Me.LayoutControl6
-        Me.txtbackCode.TabIndex = 44
-        Me.txtbackCode.Tag = "backCode,0,1,2"
+        Me.CCTORDERSKITCHENBBindingSource.DataMember = "CCT_ORDERS_KITCHEN_B"
+        Me.CCTORDERSKITCHENBBindingSource.DataSource = Me.DMDataSet
         '
-        'cbobenchThickness
+        'GridView6
         '
-        Me.cbobenchThickness.Location = New System.Drawing.Point(1604, 96)
-        Me.cbobenchThickness.Margin = New System.Windows.Forms.Padding(5)
-        Me.cbobenchThickness.Name = "cbobenchThickness"
-        Me.cbobenchThickness.Properties.AllowMouseWheel = False
-        Me.cbobenchThickness.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cbobenchThickness.Properties.Items.AddRange(New Object() {"2cm", "4cm"})
-        Me.cbobenchThickness.Properties.Tag = "opening"
-        Me.cbobenchThickness.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbobenchThickness.Size = New System.Drawing.Size(219, 38)
-        Me.cbobenchThickness.StyleController = Me.LayoutControl6
-        Me.cbobenchThickness.TabIndex = 57
-        Me.cbobenchThickness.Tag = "benchThickness,0,1,2"
+        Me.GridView6.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID2, Me.colbenchCatID, Me.colbenchCode, Me.colbenchID, Me.colcctOrdersKitchenID1, Me.colThickness, Me.colPrice1, Me.coltem, Me.colFinalPrice})
+        Me.GridView6.GridControl = Me.GridControl4
+        Me.GridView6.Name = "GridView6"
+        Me.GridView6.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.[True]
+        Me.GridView6.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.GridView6.OptionsMenu.ShowFooterItem = True
+        Me.GridView6.OptionsMenu.ShowGroupSummaryEditorItem = True
+        Me.GridView6.OptionsNavigation.AutoFocusNewRow = True
+        Me.GridView6.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom
+        Me.GridView6.OptionsView.ShowFooter = True
+        Me.GridView6.OptionsView.ShowGroupedColumns = True
+        Me.GridView6.OptionsView.ShowGroupPanel = False
         '
-        'cboBenchType
+        'colID2
         '
-        Me.cboBenchType.Location = New System.Drawing.Point(205, 12)
-        Me.cboBenchType.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboBenchType.Name = "cboBenchType"
-        Me.cboBenchType.Properties.AllowMouseWheel = False
-        Me.cboBenchType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboBenchType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBenchType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Πάγκος", 200, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pricePerMeter", "Τιμή", 60, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("width", "width", 61, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tbl", "tbl", 36, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 60, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboBenchType.Properties.DisplayMember = "name"
-        Me.cboBenchType.Properties.NullText = ""
-        Me.cboBenchType.Properties.PopupFormMinSize = New System.Drawing.Size(600, 400)
-        Me.cboBenchType.Properties.PopupSizeable = False
-        Me.cboBenchType.Properties.ValueMember = "ID"
-        Me.cboBenchType.Size = New System.Drawing.Size(618, 38)
-        Me.cboBenchType.StyleController = Me.LayoutControl6
-        Me.cboBenchType.TabIndex = 49
-        Me.cboBenchType.Tag = "BenchID,0,1,2"
+        Me.colID2.FieldName = "ID"
+        Me.colID2.MinWidth = 35
+        Me.colID2.Name = "colID2"
+        Me.colID2.Width = 131
         '
-        'cboBack
+        'colbenchCatID
         '
-        Me.cboBack.Location = New System.Drawing.Point(205, 138)
-        Me.cboBack.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboBack.Name = "cboBack"
-        Me.cboBack.Properties.AllowMouseWheel = False
-        Me.cboBack.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboBack.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBack.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Πάγκος", 200, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pricePerMeter", "Τιμή", 60, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("width", "width", 61, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tbl", "tbl", 36, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 60, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("description", "description", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboBack.Properties.DisplayMember = "name"
-        Me.cboBack.Properties.NullText = ""
-        Me.cboBack.Properties.PopupFormMinSize = New System.Drawing.Size(400, 600)
-        Me.cboBack.Properties.PopupSizeable = False
-        Me.cboBack.Properties.ValueMember = "ID"
-        Me.cboBack.Size = New System.Drawing.Size(618, 38)
-        Me.cboBack.StyleController = Me.LayoutControl6
-        Me.cboBack.TabIndex = 49
-        Me.cboBack.Tag = "BackID,0,1,2"
+        Me.colbenchCatID.Caption = "Κατηγορία"
+        Me.colbenchCatID.ColumnEdit = Me.RepBenchCat
+        Me.colbenchCatID.FieldName = "benchCatID"
+        Me.colbenchCatID.MinWidth = 35
+        Me.colbenchCatID.Name = "colbenchCatID"
+        Me.colbenchCatID.Visible = True
+        Me.colbenchCatID.VisibleIndex = 0
+        Me.colbenchCatID.Width = 131
         '
-        'cboBenchType2
+        'RepBenchCat
         '
-        Me.cboBenchType2.Location = New System.Drawing.Point(205, 96)
-        Me.cboBenchType2.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboBenchType2.Name = "cboBenchType2"
-        Me.cboBenchType2.Properties.AllowMouseWheel = False
-        Me.cboBenchType2.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboBenchType2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBenchType2.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Πάγκος", 200, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pricePerMeter", "Τιμή", 143, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("width", "width", 61, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tbl", "tbl", 36, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 80, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboBenchType2.Properties.DisplayMember = "name"
-        Me.cboBenchType2.Properties.NullText = ""
-        Me.cboBenchType2.Properties.PopupFormMinSize = New System.Drawing.Size(600, 400)
-        Me.cboBenchType2.Properties.PopupSizeable = False
-        Me.cboBenchType2.Properties.ValueMember = "ID"
-        Me.cboBenchType2.Size = New System.Drawing.Size(618, 38)
-        Me.cboBenchType2.StyleController = Me.LayoutControl6
-        Me.cboBenchType2.TabIndex = 49
-        Me.cboBenchType2.Tag = "BenchID2,0,1,2"
+        Me.RepBenchCat.AutoHeight = False
+        Me.RepBenchCat.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.RepBenchCat.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Κατηγορία", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepBenchCat.DataSource = Me.BENCHCATBindingSource
+        Me.RepBenchCat.DisplayMember = "name"
+        Me.RepBenchCat.Name = "RepBenchCat"
+        Me.RepBenchCat.NullText = ""
+        Me.RepBenchCat.ValueMember = "ID"
+        '
+        'BENCHCATBindingSource
+        '
+        Me.BENCHCATBindingSource.DataMember = "BENCH_CAT"
+        Me.BENCHCATBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'colbenchCode
+        '
+        Me.colbenchCode.Caption = "Κωδικός"
+        Me.colbenchCode.FieldName = "benchCode"
+        Me.colbenchCode.MinWidth = 35
+        Me.colbenchCode.Name = "colbenchCode"
+        Me.colbenchCode.Visible = True
+        Me.colbenchCode.VisibleIndex = 1
+        Me.colbenchCode.Width = 131
+        '
+        'colbenchID
+        '
+        Me.colbenchID.Caption = "Πάγκος"
+        Me.colbenchID.ColumnEdit = Me.RepBench
+        Me.colbenchID.FieldName = "benchID"
+        Me.colbenchID.MinWidth = 35
+        Me.colbenchID.Name = "colbenchID"
+        Me.colbenchID.Visible = True
+        Me.colbenchID.VisibleIndex = 2
+        Me.colbenchID.Width = 131
+        '
+        'RepBench
+        '
+        Me.RepBench.AutoHeight = False
+        Me.RepBench.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.RepBench.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Πάγκος", 150, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pricePerMeter", "Τιμή", 60, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("width", "width", 61, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tbl", "tbl", 36, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 101, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("benchCatID", "bench Cat ID", 126, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepBench.DataSource = Me.VwBENCHBindingSource
+        Me.RepBench.DisplayMember = "name"
+        Me.RepBench.Name = "RepBench"
+        Me.RepBench.NullText = ""
+        Me.RepBench.PopupFormMinSize = New System.Drawing.Size(500, 0)
+        Me.RepBench.PopupWidth = 500
+        Me.RepBench.ValueMember = "ID"
+        '
+        'VwBENCHBindingSource
+        '
+        Me.VwBENCHBindingSource.DataMember = "vw_BENCH"
+        Me.VwBENCHBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'colcctOrdersKitchenID1
+        '
+        Me.colcctOrdersKitchenID1.FieldName = "cctOrdersKitchenID"
+        Me.colcctOrdersKitchenID1.MinWidth = 35
+        Me.colcctOrdersKitchenID1.Name = "colcctOrdersKitchenID1"
+        Me.colcctOrdersKitchenID1.Width = 131
+        '
+        'colThickness
+        '
+        Me.colThickness.Caption = "Πάχος"
+        Me.colThickness.ColumnEdit = Me.RepThickness
+        Me.colThickness.FieldName = "Thickness"
+        Me.colThickness.MinWidth = 35
+        Me.colThickness.Name = "colThickness"
+        Me.colThickness.Visible = True
+        Me.colThickness.VisibleIndex = 3
+        Me.colThickness.Width = 131
+        '
+        'RepThickness
+        '
+        Me.RepThickness.AutoHeight = False
+        Me.RepThickness.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.RepThickness.Items.AddRange(New Object() {"2cm", "4cm"})
+        Me.RepThickness.Name = "RepThickness"
+        Me.RepThickness.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        '
+        'colPrice1
+        '
+        Me.colPrice1.Caption = "Τιμή"
+        Me.colPrice1.DisplayFormat.FormatString = "c2"
+        Me.colPrice1.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.colPrice1.FieldName = "Price"
+        Me.colPrice1.MinWidth = 35
+        Me.colPrice1.Name = "colPrice1"
+        Me.colPrice1.OptionsColumn.ReadOnly = True
+        Me.colPrice1.Visible = True
+        Me.colPrice1.VisibleIndex = 4
+        Me.colPrice1.Width = 131
+        '
+        'coltem
+        '
+        Me.coltem.Caption = "ΤΕΜ"
+        Me.coltem.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.coltem.FieldName = "tem"
+        Me.coltem.MinWidth = 35
+        Me.coltem.Name = "coltem"
+        Me.coltem.Visible = True
+        Me.coltem.VisibleIndex = 5
+        Me.coltem.Width = 131
+        '
+        'colFinalPrice
+        '
+        Me.colFinalPrice.Caption = "Τελική Τιμή"
+        Me.colFinalPrice.DisplayFormat.FormatString = "c2"
+        Me.colFinalPrice.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.colFinalPrice.FieldName = "FinalPrice"
+        Me.colFinalPrice.MinWidth = 35
+        Me.colFinalPrice.Name = "colFinalPrice"
+        Me.colFinalPrice.OptionsColumn.ReadOnly = True
+        Me.colFinalPrice.Visible = True
+        Me.colFinalPrice.VisibleIndex = 6
+        Me.colFinalPrice.Width = 131
         '
         'LayoutControlGroup8
         '
         Me.LayoutControlGroup8.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup8.GroupBordersVisible = False
-        Me.LayoutControlGroup8.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem17, Me.LayoutControlItem67, Me.LayoutControlItem25, Me.LayoutControlItem12, Me.LayoutControlItem66, Me.LayoutControlItem10, Me.LayoutControlItem18, Me.LayoutControlItem14, Me.LayoutControlItem20, Me.LayoutControlItem68, Me.LayoutControlItem5})
+        Me.LayoutControlGroup8.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem52})
         Me.LayoutControlGroup8.Name = "Root"
         Me.LayoutControlGroup8.Size = New System.Drawing.Size(1835, 694)
         Me.LayoutControlGroup8.TextVisible = False
         '
-        'LayoutControlItem25
+        'LayoutControlItem52
         '
-        Me.LayoutControlItem25.Control = Me.txtbenchCode
-        Me.LayoutControlItem25.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem25.CustomizationFormText = "Κατηγορία"
-        Me.LayoutControlItem25.Location = New System.Drawing.Point(815, 0)
-        Me.LayoutControlItem25.Name = "LayoutControlItem25"
-        Me.LayoutControlItem25.Size = New System.Drawing.Size(584, 42)
-        Me.LayoutControlItem25.Text = "Κωδικός"
-        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(181, 23)
-        '
-        'LayoutControlItem17
-        '
-        Me.LayoutControlItem17.Control = Me.txtbackCode
-        Me.LayoutControlItem17.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem17.CustomizationFormText = "Κωδικός Πλάτης"
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(815, 126)
-        Me.LayoutControlItem17.MaxSize = New System.Drawing.Size(0, 46)
-        Me.LayoutControlItem17.MinSize = New System.Drawing.Size(385, 46)
-        Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 3, 4, 4)
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(1000, 548)
-        Me.LayoutControlItem17.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem17.Text = "Κωδικός"
-        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(181, 23)
-        '
-        'LayoutControlItem66
-        '
-        Me.LayoutControlItem66.Control = Me.cboBenchType
-        Me.LayoutControlItem66.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem66.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem66.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem66.Name = "LayoutControlItem66"
-        Me.LayoutControlItem66.Size = New System.Drawing.Size(815, 42)
-        Me.LayoutControlItem66.Text = "Πάγκος Ερμαρίων"
-        Me.LayoutControlItem66.TextSize = New System.Drawing.Size(181, 23)
-        '
-        'LayoutControlItem68
-        '
-        Me.LayoutControlItem68.Control = Me.cboBenchType2
-        Me.LayoutControlItem68.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem68.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem68.Location = New System.Drawing.Point(0, 84)
-        Me.LayoutControlItem68.Name = "LayoutControlItem68"
-        Me.LayoutControlItem68.Size = New System.Drawing.Size(815, 42)
-        Me.LayoutControlItem68.Text = "Έξτρα πάγκοι-Τραπέζι"
-        Me.LayoutControlItem68.TextSize = New System.Drawing.Size(181, 23)
-        '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me.cbobenchThickness
-        Me.LayoutControlItem12.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem12.CustomizationFormText = "Τύπος"
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(1399, 84)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(416, 42)
-        Me.LayoutControlItem12.Text = "Πάχος"
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(181, 23)
-        '
-        'LayoutControlItem67
-        '
-        Me.LayoutControlItem67.Control = Me.cboBack
-        Me.LayoutControlItem67.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem67.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem67.Location = New System.Drawing.Point(0, 126)
-        Me.LayoutControlItem67.Name = "LayoutControlItem67"
-        Me.LayoutControlItem67.Size = New System.Drawing.Size(815, 548)
-        Me.LayoutControlItem67.Text = "Πάγκος Πλάτης"
-        Me.LayoutControlItem67.TextSize = New System.Drawing.Size(181, 23)
+        Me.LayoutControlItem52.Control = Me.GridControl4
+        Me.LayoutControlItem52.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem52.Name = "LayoutControlItem52"
+        Me.LayoutControlItem52.Size = New System.Drawing.Size(1815, 674)
+        Me.LayoutControlItem52.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem52.TextVisible = False
         '
         'chkVatVisible
         '
@@ -2748,11 +2734,6 @@ Partial Class frmCUSOrderKitchen
         Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
         Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
-        'VwBENCHBindingSource
-        '
-        Me.VwBENCHBindingSource.DataMember = "vw_BENCH"
-        Me.VwBENCHBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'VwDOORTYPE1BindingSource1
         '
         Me.VwDOORTYPE1BindingSource1.DataMember = "vw_DOOR_TYPE1"
@@ -3140,133 +3121,13 @@ Partial Class frmCUSOrderKitchen
         '
         Me.Vw_DOOR_CATYTableAdapter.ClearBeforeFill = True
         '
-        'txtbenchCode1
+        'CCT_ORDERS_KITCHEN_BTableAdapter
         '
-        Me.txtbenchCode1.Location = New System.Drawing.Point(1020, 96)
-        Me.txtbenchCode1.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtbenchCode1.Name = "txtbenchCode1"
-        Me.txtbenchCode1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.txtbenchCode1.Properties.Tag = "benchID"
-        Me.txtbenchCode1.Size = New System.Drawing.Size(387, 38)
-        Me.txtbenchCode1.StyleController = Me.LayoutControl6
-        Me.txtbenchCode1.TabIndex = 21
-        Me.txtbenchCode1.Tag = "benchCode,0,1,2"
+        Me.CCT_ORDERS_KITCHEN_BTableAdapter.ClearBeforeFill = True
         '
-        'LayoutControlItem5
+        'BENCH_CATTableAdapter
         '
-        Me.LayoutControlItem5.Control = Me.txtbenchCode1
-        Me.LayoutControlItem5.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem5.CustomizationFormText = "Κατηγορία"
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(815, 84)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(584, 42)
-        Me.LayoutControlItem5.Text = "Κωδικός"
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(181, 23)
-        '
-        'cbobenchThickness1
-        '
-        Me.cbobenchThickness1.Location = New System.Drawing.Point(1604, 12)
-        Me.cbobenchThickness1.Margin = New System.Windows.Forms.Padding(5)
-        Me.cbobenchThickness1.Name = "cbobenchThickness1"
-        Me.cbobenchThickness1.Properties.AllowMouseWheel = False
-        Me.cbobenchThickness1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cbobenchThickness1.Properties.Items.AddRange(New Object() {"2cm", "4cm"})
-        Me.cbobenchThickness1.Properties.Tag = "opening"
-        Me.cbobenchThickness1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbobenchThickness1.Size = New System.Drawing.Size(219, 38)
-        Me.cbobenchThickness1.StyleController = Me.LayoutControl6
-        Me.cbobenchThickness1.TabIndex = 57
-        Me.cbobenchThickness1.Tag = "benchThickness,0,1,2"
-        '
-        'LayoutControlItem10
-        '
-        Me.LayoutControlItem10.Control = Me.cbobenchThickness1
-        Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem10.CustomizationFormText = "Τύπος"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(1399, 0)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(416, 42)
-        Me.LayoutControlItem10.Text = "Πάχος"
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(181, 23)
-        '
-        'txtbenchCode2
-        '
-        Me.txtbenchCode2.Location = New System.Drawing.Point(1020, 54)
-        Me.txtbenchCode2.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtbenchCode2.Name = "txtbenchCode2"
-        Me.txtbenchCode2.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.txtbenchCode2.Properties.Tag = "benchID"
-        Me.txtbenchCode2.Size = New System.Drawing.Size(387, 38)
-        Me.txtbenchCode2.StyleController = Me.LayoutControl6
-        Me.txtbenchCode2.TabIndex = 21
-        Me.txtbenchCode2.Tag = "benchCode,0,1,2"
-        '
-        'cboBenchType1
-        '
-        Me.cboBenchType1.Location = New System.Drawing.Point(205, 54)
-        Me.cboBenchType1.Margin = New System.Windows.Forms.Padding(5)
-        Me.cboBenchType1.Name = "cboBenchType1"
-        Me.cboBenchType1.Properties.AllowMouseWheel = False
-        Me.cboBenchType1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboBenchType1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBenchType1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Πάγκος", 200, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("pricePerMeter", "Τιμή", 60, DevExpress.Utils.FormatType.Numeric, "", True, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("width", "width", 61, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tbl", "tbl", 36, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("dimName", "Διάσταση", 60, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboBenchType1.Properties.DisplayMember = "name"
-        Me.cboBenchType1.Properties.NullText = ""
-        Me.cboBenchType1.Properties.PopupFormMinSize = New System.Drawing.Size(600, 400)
-        Me.cboBenchType1.Properties.PopupSizeable = False
-        Me.cboBenchType1.Properties.ValueMember = "ID"
-        Me.cboBenchType1.Size = New System.Drawing.Size(618, 38)
-        Me.cboBenchType1.StyleController = Me.LayoutControl6
-        Me.cboBenchType1.TabIndex = 49
-        Me.cboBenchType1.Tag = "BenchID,0,1,2"
-        '
-        'cbobenchThickness11
-        '
-        Me.cbobenchThickness11.Location = New System.Drawing.Point(1604, 54)
-        Me.cbobenchThickness11.Margin = New System.Windows.Forms.Padding(5)
-        Me.cbobenchThickness11.Name = "cbobenchThickness11"
-        Me.cbobenchThickness11.Properties.AllowMouseWheel = False
-        Me.cbobenchThickness11.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cbobenchThickness11.Properties.Items.AddRange(New Object() {"2cm", "4cm"})
-        Me.cbobenchThickness11.Properties.Tag = "opening"
-        Me.cbobenchThickness11.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.cbobenchThickness11.Size = New System.Drawing.Size(219, 38)
-        Me.cbobenchThickness11.StyleController = Me.LayoutControl6
-        Me.cbobenchThickness11.TabIndex = 57
-        Me.cbobenchThickness11.Tag = "benchThickness,0,1,2"
-        '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.txtbenchCode2
-        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem14.CustomizationFormText = "Κατηγορία"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(815, 42)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(584, 42)
-        Me.LayoutControlItem14.Text = "Κωδικός"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(181, 23)
-        '
-        'LayoutControlItem18
-        '
-        Me.LayoutControlItem18.Control = Me.cboBenchType1
-        Me.LayoutControlItem18.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem18.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 42)
-        Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(815, 42)
-        Me.LayoutControlItem18.Text = "Πάγκος Νησίδας"
-        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(181, 23)
-        '
-        'LayoutControlItem20
-        '
-        Me.LayoutControlItem20.Control = Me.cbobenchThickness11
-        Me.LayoutControlItem20.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem20.CustomizationFormText = "Τύπος"
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(1399, 42)
-        Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(416, 42)
-        Me.LayoutControlItem20.Text = "Πάχος"
-        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(181, 23)
+        Me.BENCH_CATTableAdapter.ClearBeforeFill = True
         '
         'frmCUSOrderKitchen
         '
@@ -3362,19 +3223,16 @@ Partial Class frmCUSOrderKitchen
         Me.TabNavBench.ResumeLayout(False)
         CType(Me.LayoutControl6, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl6.ResumeLayout(False)
-        CType(Me.txtbenchCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtbackCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbobenchThickness.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboBenchType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboBack.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboBenchType2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCTORDERSKITCHENBBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepBenchCat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BENCHCATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepBench, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepThickness, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem66, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem68, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem67, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3434,7 +3292,6 @@ Partial Class frmCUSOrderKitchen
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDOORTYPE1BindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPane1.ResumeLayout(False)
@@ -3454,16 +3311,6 @@ Partial Class frmCUSOrderKitchen
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtbenchCode1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbobenchThickness1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtbenchCode2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboBenchType1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cbobenchThickness11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3592,18 +3439,6 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents txtYdoorCode As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControl6 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents LayoutControlGroup8 As DevExpress.XtraLayout.LayoutControlGroup
-    Friend WithEvents txtbenchCode As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtbackCode As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents cbobenchThickness As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents cboBenchType As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents cboBack As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents cboBenchType2 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem66 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem68 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem67 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem49 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem53 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem54 As DevExpress.XtraLayout.LayoutControlItem
@@ -3706,15 +3541,24 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents colHeight1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents VwDOORCATYBindingSource As BindingSource
     Friend WithEvents Vw_DOOR_CATYTableAdapter As DreamyKitchenDataSetTableAdapters.vw_DOOR_CATYTableAdapter
-    Friend WithEvents txtbenchCode1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents cbobenchThickness1 As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents txtbenchCode2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents cboBenchType1 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents cbobenchThickness11 As DevExpress.XtraEditors.ComboBoxEdit
-    Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem20 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents GridControl4 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView6 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents RepThickness As DevExpress.XtraEditors.Repository.RepositoryItemComboBox
+    Friend WithEvents RepBenchCat As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents RepBench As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents LayoutControlItem52 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents CCTORDERSKITCHENBBindingSource As BindingSource
+    Friend WithEvents CCT_ORDERS_KITCHEN_BTableAdapter As DMDataSetTableAdapters.CCT_ORDERS_KITCHEN_BTableAdapter
+    Friend WithEvents colbenchCatID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colbenchCode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colbenchID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcctOrdersKitchenID1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colThickness As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colPrice1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coltem As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colFinalPrice As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BENCHCATBindingSource As BindingSource
+    Friend WithEvents BENCH_CATTableAdapter As DreamyKitchenDataSetTableAdapters.BENCH_CATTableAdapter
+    Friend WithEvents colID2 As DevExpress.XtraGrid.Columns.GridColumn
     '    Friend WithEvents Vw_DOOR_TYPEPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter
 End Class

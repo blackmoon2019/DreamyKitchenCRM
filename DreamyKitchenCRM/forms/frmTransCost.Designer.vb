@@ -21,18 +21,18 @@ Partial Class frmTransCost
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTransCost))
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
-        Dim TileItemElement5 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement1 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement2 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement3 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement4 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement8 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement6 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement7 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement9 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
-        Dim TileItemElement10 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
+        Dim TileItemElement15 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement11 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement12 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement13 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement14 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement18 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement16 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement17 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement19 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
+        Dim TileItemElement20 As DevExpress.XtraEditors.TileItemElement = New DevExpress.XtraEditors.TileItemElement()
         Me.coldCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdPrint = New DevExpress.XtraEditors.SimpleButton()
@@ -1374,7 +1374,7 @@ Partial Class frmTransCost
         Me.Maintab.Location = New System.Drawing.Point(12, 341)
         Me.Maintab.Name = "Maintab"
         Me.Maintab.SelectedTabPage = Me.XtraTabPage1
-        Me.Maintab.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[False]
+        Me.Maintab.ShowTabHeader = DevExpress.Utils.DefaultBoolean.[True]
         Me.Maintab.Size = New System.Drawing.Size(1643, 843)
         Me.Maintab.TabIndex = 53
         Me.Maintab.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3, Me.XtraTabPage4, Me.XtraTabPage7, Me.XtraTabPage8, Me.XtraTabPage9, Me.XtraTabPage10, Me.XtraTabPage5, Me.XtraTabPage6})
@@ -1386,7 +1386,7 @@ Partial Class frmTransCost
         Me.XtraTabPage1.Appearance.PageClient.Options.UseBackColor = True
         Me.XtraTabPage1.Controls.Add(Me.LayoutControl2)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1639, 839)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1639, 798)
         Me.XtraTabPage1.Text = "Ερμάρια"
         '
         'LayoutControl2
@@ -1421,7 +1421,7 @@ Partial Class frmTransCost
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1460, 626, 1137, 700)
         Me.LayoutControl2.Root = Me.LayoutControlGroup2
-        Me.LayoutControl2.Size = New System.Drawing.Size(1639, 839)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1639, 798)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -1943,7 +1943,7 @@ Partial Class frmTransCost
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup5, Me.LayoutControlItem51, Me.EmptySpaceItem4, Me.LayoutControlGroup3, Me.LayoutControlGroup6})
         Me.LayoutControlGroup2.Name = "Root"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1639, 839)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1639, 798)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlGroup5
@@ -2071,7 +2071,7 @@ Partial Class frmTransCost
         Me.LayoutControlItem51.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem51.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem51.Location = New System.Drawing.Point(1136, 690)
         Me.LayoutControlItem51.Name = "LayoutControlItem51"
-        Me.LayoutControlItem51.Size = New System.Drawing.Size(483, 129)
+        Me.LayoutControlItem51.Size = New System.Drawing.Size(483, 88)
         Me.LayoutControlItem51.Text = "Συνολική Τιμή Ερμαρίων"
         Me.LayoutControlItem51.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem51.TextSize = New System.Drawing.Size(233, 23)
@@ -2082,7 +2082,7 @@ Partial Class frmTransCost
         Me.EmptySpaceItem4.AllowHotTrack = False
         Me.EmptySpaceItem4.Location = New System.Drawing.Point(0, 690)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Size = New System.Drawing.Size(1136, 129)
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(1136, 88)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlGroup3
@@ -2325,7 +2325,7 @@ Partial Class frmTransCost
         '
         Me.XtraTabPage2.Controls.Add(Me.LayoutControl3)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1639, 798)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1639, 839)
         Me.XtraTabPage2.Text = "Επενδύσεις-Ραφιέρες-Ράφια"
         '
         'LayoutControl3
@@ -2372,7 +2372,7 @@ Partial Class frmTransCost
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1460, 626, 1137, 700)
         Me.LayoutControl3.Root = Me.LayoutControlGroup7
-        Me.LayoutControl3.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControl3.TabIndex = 1
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -4226,7 +4226,7 @@ Partial Class frmTransCost
         Me.XtraTabPage4.Controls.Add(Me.grdDevices)
         Me.XtraTabPage4.Controls.Add(Me.grdEquipment)
         Me.XtraTabPage4.Name = "XtraTabPage4"
-        Me.XtraTabPage4.Size = New System.Drawing.Size(1639, 798)
+        Me.XtraTabPage4.Size = New System.Drawing.Size(1639, 839)
         Me.XtraTabPage4.Text = "Μηχανισμοί/Συσκευές - Κουζίνας"
         '
         'grdDevices
@@ -4245,15 +4245,15 @@ Partial Class frmTransCost
         '
         Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn11, Me.GridColumn12, Me.coldCode, Me.GridColumn13, Me.colchecked})
         Me.GridView3.FixedLineWidth = 3
-        GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Column = Me.coldCode
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.White
-        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
-        FormatConditionRuleExpression1.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
-        FormatConditionRuleExpression1.PredefinedName = "Red Text"
-        GridFormatRule1.Rule = FormatConditionRuleExpression1
-        Me.GridView3.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Column = Me.coldCode
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.White
+        FormatConditionRuleExpression2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression2.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
+        FormatConditionRuleExpression2.PredefinedName = "Red Text"
+        GridFormatRule2.Rule = FormatConditionRuleExpression2
+        Me.GridView3.FormatRules.Add(GridFormatRule2)
         Me.GridView3.GridControl = Me.grdDevices
         Me.GridView3.LevelIndent = 0
         Me.GridView3.Name = "GridView3"
@@ -4444,7 +4444,7 @@ Partial Class frmTransCost
         '
         Me.XtraTabPage7.Controls.Add(Me.LayoutControl5)
         Me.XtraTabPage7.Name = "XtraTabPage7"
-        Me.XtraTabPage7.Size = New System.Drawing.Size(1639, 798)
+        Me.XtraTabPage7.Size = New System.Drawing.Size(1639, 839)
         Me.XtraTabPage7.Text = "Κουζίνα"
         '
         'LayoutControl5
@@ -4459,7 +4459,7 @@ Partial Class frmTransCost
         Me.LayoutControl5.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl5.Name = "LayoutControl5"
         Me.LayoutControl5.Root = Me.LayoutControlGroup12
-        Me.LayoutControl5.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControl5.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControl5.TabIndex = 0
         Me.LayoutControl5.Text = "LayoutControl5"
         '
@@ -4618,7 +4618,7 @@ Partial Class frmTransCost
         Me.LayoutControlGroup12.GroupBordersVisible = False
         Me.LayoutControlGroup12.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem8, Me.LayoutControlGroup28})
         Me.LayoutControlGroup12.Name = "Root"
-        Me.LayoutControlGroup12.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControlGroup12.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControlGroup12.TextVisible = False
         '
         'EmptySpaceItem8
@@ -4626,7 +4626,7 @@ Partial Class frmTransCost
         Me.EmptySpaceItem8.AllowHotTrack = False
         Me.EmptySpaceItem8.Location = New System.Drawing.Point(0, 338)
         Me.EmptySpaceItem8.Name = "EmptySpaceItem8"
-        Me.EmptySpaceItem8.Size = New System.Drawing.Size(1619, 440)
+        Me.EmptySpaceItem8.Size = New System.Drawing.Size(1619, 481)
         Me.EmptySpaceItem8.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlGroup28
@@ -4721,7 +4721,7 @@ Partial Class frmTransCost
         '
         Me.XtraTabPage8.Controls.Add(Me.LayoutControl6)
         Me.XtraTabPage8.Name = "XtraTabPage8"
-        Me.XtraTabPage8.Size = New System.Drawing.Size(1639, 798)
+        Me.XtraTabPage8.Size = New System.Drawing.Size(1639, 839)
         Me.XtraTabPage8.Text = "Ντουλάπα"
         '
         'LayoutControl6
@@ -4736,7 +4736,7 @@ Partial Class frmTransCost
         Me.LayoutControl6.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl6.Name = "LayoutControl6"
         Me.LayoutControl6.Root = Me.LayoutControlGroup13
-        Me.LayoutControl6.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControl6.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControl6.TabIndex = 1
         Me.LayoutControl6.Text = "LayoutControl6"
         '
@@ -4895,7 +4895,7 @@ Partial Class frmTransCost
         Me.LayoutControlGroup13.GroupBordersVisible = False
         Me.LayoutControlGroup13.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem9, Me.LayoutControlGroup30})
         Me.LayoutControlGroup13.Name = "Root"
-        Me.LayoutControlGroup13.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControlGroup13.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControlGroup13.TextVisible = False
         '
         'EmptySpaceItem9
@@ -4903,7 +4903,7 @@ Partial Class frmTransCost
         Me.EmptySpaceItem9.AllowHotTrack = False
         Me.EmptySpaceItem9.Location = New System.Drawing.Point(0, 338)
         Me.EmptySpaceItem9.Name = "EmptySpaceItem7"
-        Me.EmptySpaceItem9.Size = New System.Drawing.Size(1619, 440)
+        Me.EmptySpaceItem9.Size = New System.Drawing.Size(1619, 481)
         Me.EmptySpaceItem9.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlGroup30
@@ -5000,7 +5000,7 @@ Partial Class frmTransCost
         '
         Me.XtraTabPage9.Controls.Add(Me.LayoutControl7)
         Me.XtraTabPage9.Name = "XtraTabPage9"
-        Me.XtraTabPage9.Size = New System.Drawing.Size(1639, 798)
+        Me.XtraTabPage9.Size = New System.Drawing.Size(1639, 839)
         Me.XtraTabPage9.Text = "Πόρτα"
         '
         'LayoutControl7
@@ -5052,7 +5052,7 @@ Partial Class frmTransCost
         Me.LayoutControl7.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl7.Name = "LayoutControl7"
         Me.LayoutControl7.Root = Me.LayoutControlGroup14
-        Me.LayoutControl7.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControl7.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControl7.TabIndex = 1
         Me.LayoutControl7.Text = "LayoutControl7"
         '
@@ -5158,7 +5158,7 @@ Partial Class frmTransCost
         '
         Me.txtDTotal.EditValue = "0,00 €"
         Me.txtDTotal.Enabled = False
-        Me.txtDTotal.Location = New System.Drawing.Point(1390, 744)
+        Me.txtDTotal.Location = New System.Drawing.Point(1390, 785)
         Me.txtDTotal.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDTotal.Name = "txtDTotal"
         Me.txtDTotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
@@ -5893,7 +5893,7 @@ Partial Class frmTransCost
         Me.LayoutControlGroup14.GroupBordersVisible = False
         Me.LayoutControlGroup14.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem11, Me.LayoutControlItem66, Me.EmptySpaceItem21, Me.LayoutControlGroup18, Me.LayoutControlGroup19})
         Me.LayoutControlGroup14.Name = "Root"
-        Me.LayoutControlGroup14.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControlGroup14.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControlGroup14.TextVisible = False
         '
         'EmptySpaceItem11
@@ -5901,7 +5901,7 @@ Partial Class frmTransCost
         Me.EmptySpaceItem11.AllowHotTrack = False
         Me.EmptySpaceItem11.Location = New System.Drawing.Point(0, 652)
         Me.EmptySpaceItem11.Name = "EmptySpaceItem7"
-        Me.EmptySpaceItem11.Size = New System.Drawing.Size(1619, 80)
+        Me.EmptySpaceItem11.Size = New System.Drawing.Size(1619, 121)
         Me.EmptySpaceItem11.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem66
@@ -5910,7 +5910,7 @@ Partial Class frmTransCost
         Me.LayoutControlItem66.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem66.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem66.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem66.Location = New System.Drawing.Point(1135, 732)
+        Me.LayoutControlItem66.Location = New System.Drawing.Point(1135, 773)
         Me.LayoutControlItem66.Name = "LayoutControlItem66"
         Me.LayoutControlItem66.Size = New System.Drawing.Size(484, 46)
         Me.LayoutControlItem66.Text = "Συνολική Τιμή "
@@ -5921,7 +5921,7 @@ Partial Class frmTransCost
         'EmptySpaceItem21
         '
         Me.EmptySpaceItem21.AllowHotTrack = False
-        Me.EmptySpaceItem21.Location = New System.Drawing.Point(0, 732)
+        Me.EmptySpaceItem21.Location = New System.Drawing.Point(0, 773)
         Me.EmptySpaceItem21.Name = "EmptySpaceItem21"
         Me.EmptySpaceItem21.Size = New System.Drawing.Size(1135, 46)
         Me.EmptySpaceItem21.TextSize = New System.Drawing.Size(0, 0)
@@ -6498,7 +6498,7 @@ Partial Class frmTransCost
         '
         Me.XtraTabPage10.Controls.Add(Me.LayoutControl8)
         Me.XtraTabPage10.Name = "XtraTabPage10"
-        Me.XtraTabPage10.Size = New System.Drawing.Size(1639, 798)
+        Me.XtraTabPage10.Size = New System.Drawing.Size(1639, 839)
         Me.XtraTabPage10.Text = "Ειδ. Κατασκευή"
         '
         'LayoutControl8
@@ -6526,7 +6526,7 @@ Partial Class frmTransCost
         Me.LayoutControl8.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl8.Name = "LayoutControl8"
         Me.LayoutControl8.Root = Me.LayoutControlGroup15
-        Me.LayoutControl8.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControl8.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControl8.TabIndex = 2
         Me.LayoutControl8.Text = "LayoutControl8"
         '
@@ -6632,7 +6632,7 @@ Partial Class frmTransCost
         '
         Me.txtSCTotal.EditValue = "0,00 €"
         Me.txtSCTotal.Enabled = False
-        Me.txtSCTotal.Location = New System.Drawing.Point(1391, 744)
+        Me.txtSCTotal.Location = New System.Drawing.Point(1391, 785)
         Me.txtSCTotal.Margin = New System.Windows.Forms.Padding(5)
         Me.txtSCTotal.Name = "txtSCTotal"
         Me.txtSCTotal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
@@ -6966,7 +6966,7 @@ Partial Class frmTransCost
         Me.LayoutControlGroup15.GroupBordersVisible = False
         Me.LayoutControlGroup15.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem22, Me.EmptySpaceItem24, Me.LayoutControlGroup26, Me.LayoutControlGroup27, Me.LayoutControlItem73})
         Me.LayoutControlGroup15.Name = "Root"
-        Me.LayoutControlGroup15.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControlGroup15.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControlGroup15.TextVisible = False
         '
         'EmptySpaceItem22
@@ -6974,13 +6974,13 @@ Partial Class frmTransCost
         Me.EmptySpaceItem22.AllowHotTrack = False
         Me.EmptySpaceItem22.Location = New System.Drawing.Point(0, 568)
         Me.EmptySpaceItem22.Name = "EmptySpaceItem7"
-        Me.EmptySpaceItem22.Size = New System.Drawing.Size(1619, 164)
+        Me.EmptySpaceItem22.Size = New System.Drawing.Size(1619, 205)
         Me.EmptySpaceItem22.TextSize = New System.Drawing.Size(0, 0)
         '
         'EmptySpaceItem24
         '
         Me.EmptySpaceItem24.AllowHotTrack = False
-        Me.EmptySpaceItem24.Location = New System.Drawing.Point(0, 732)
+        Me.EmptySpaceItem24.Location = New System.Drawing.Point(0, 773)
         Me.EmptySpaceItem24.Name = "EmptySpaceItem21"
         Me.EmptySpaceItem24.Size = New System.Drawing.Size(1136, 46)
         Me.EmptySpaceItem24.TextSize = New System.Drawing.Size(0, 0)
@@ -7239,7 +7239,7 @@ Partial Class frmTransCost
         Me.LayoutControlItem73.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem73.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem73.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem73.Location = New System.Drawing.Point(1136, 732)
+        Me.LayoutControlItem73.Location = New System.Drawing.Point(1136, 773)
         Me.LayoutControlItem73.Name = "LayoutControlItem66"
         Me.LayoutControlItem73.Size = New System.Drawing.Size(483, 46)
         Me.LayoutControlItem73.Text = "Συνολική Τιμή "
@@ -7251,7 +7251,7 @@ Partial Class frmTransCost
         '
         Me.XtraTabPage5.Controls.Add(Me.LayoutControl10)
         Me.XtraTabPage5.Name = "XtraTabPage5"
-        Me.XtraTabPage5.Size = New System.Drawing.Size(1639, 798)
+        Me.XtraTabPage5.Size = New System.Drawing.Size(1639, 839)
         Me.XtraTabPage5.Text = "Ανάλυση Ντουλαπών"
         '
         'LayoutControl10
@@ -7346,7 +7346,7 @@ Partial Class frmTransCost
         Me.LayoutControl10.Name = "LayoutControl10"
         Me.LayoutControl10.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1738, 875, 1137, 700)
         Me.LayoutControl10.Root = Me.LayoutControlGroup17
-        Me.LayoutControl10.Size = New System.Drawing.Size(1639, 798)
+        Me.LayoutControl10.Size = New System.Drawing.Size(1639, 839)
         Me.LayoutControl10.TabIndex = 0
         Me.LayoutControl10.Text = "LayoutControl10"
         '
@@ -10115,7 +10115,7 @@ Partial Class frmTransCost
         '
         Me.XtraTabPage6.Controls.Add(Me.GridControl1)
         Me.XtraTabPage6.Name = "XtraTabPage6"
-        Me.XtraTabPage6.Size = New System.Drawing.Size(1639, 798)
+        Me.XtraTabPage6.Size = New System.Drawing.Size(1639, 839)
         Me.XtraTabPage6.Text = "Μηχανισμοί - Ντουλάπας"
         '
         'GridControl1
@@ -10127,7 +10127,7 @@ Partial Class frmTransCost
         Me.GridControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemButtonEdit1})
-        Me.GridControl1.Size = New System.Drawing.Size(1639, 798)
+        Me.GridControl1.Size = New System.Drawing.Size(1639, 839)
         Me.GridControl1.TabIndex = 64
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -10276,9 +10276,9 @@ Partial Class frmTransCost
         '
         '
         Me.TKitchen.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement5.Text = "ΚΟΥΖΙΝΑ"
-        TileItemElement5.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TKitchen.Tile.Elements.Add(TileItemElement5)
+        TileItemElement15.Text = "ΚΟΥΖΙΝΑ"
+        TileItemElement15.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TKitchen.Tile.Elements.Add(TileItemElement15)
         Me.TKitchen.Tile.Name = "TileBarItem2"
         '
         'TErmaria
@@ -10289,9 +10289,9 @@ Partial Class frmTransCost
         '
         '
         Me.TErmaria.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement1.Text = "ΕΡΜΑΡΙΑ"
-        TileItemElement1.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TErmaria.Tile.Elements.Add(TileItemElement1)
+        TileItemElement11.Text = "ΕΡΜΑΡΙΑ"
+        TileItemElement11.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TErmaria.Tile.Elements.Add(TileItemElement11)
         '
         'TEpendisis
         '
@@ -10301,9 +10301,9 @@ Partial Class frmTransCost
         '
         '
         Me.TEpendisis.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement2.Text = "ΕΠΕΝΔΥΣΕΙΣ-ΡΑΦΙΕΡΕΣ-ΡΑΦΙΑ"
-        TileItemElement2.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TEpendisis.Tile.Elements.Add(TileItemElement2)
+        TileItemElement12.Text = "ΕΠΕΝΔΥΣΕΙΣ-ΡΑΦΙΕΡΕΣ-ΡΑΦΙΑ"
+        TileItemElement12.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TEpendisis.Tile.Elements.Add(TileItemElement12)
         '
         'TBech
         '
@@ -10313,9 +10313,9 @@ Partial Class frmTransCost
         '
         '
         Me.TBech.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement3.Text = "ΠΑΓΚΟΙ-ΠΛΑΤΕΣ"
-        TileItemElement3.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TBech.Tile.Elements.Add(TileItemElement3)
+        TileItemElement13.Text = "ΠΑΓΚΟΙ-ΠΛΑΤΕΣ"
+        TileItemElement13.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TBech.Tile.Elements.Add(TileItemElement13)
         '
         'TMech
         '
@@ -10325,9 +10325,9 @@ Partial Class frmTransCost
         '
         '
         Me.TMech.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement4.Text = "ΜΗΧΑΝΙΣΜΟΙ"
-        TileItemElement4.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TMech.Tile.Elements.Add(TileItemElement4)
+        TileItemElement14.Text = "ΜΗΧΑΝΙΣΜΟΙ"
+        TileItemElement14.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TMech.Tile.Elements.Add(TileItemElement14)
         Me.TMech.Tile.Name = "TileBarItem13"
         '
         'TCloset
@@ -10339,9 +10339,9 @@ Partial Class frmTransCost
         '
         '
         Me.TCloset.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement8.Text = "ΝΤΟΥΛΑΠΑ"
-        TileItemElement8.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TCloset.Tile.Elements.Add(TileItemElement8)
+        TileItemElement18.Text = "ΝΤΟΥΛΑΠΑ"
+        TileItemElement18.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TCloset.Tile.Elements.Add(TileItemElement18)
         Me.TCloset.Tile.Name = "TileBarItem2"
         '
         'TCErmaria
@@ -10352,9 +10352,9 @@ Partial Class frmTransCost
         '
         '
         Me.TCErmaria.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement6.Text = "ΕΡΜΑΡΙΑ"
-        TileItemElement6.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TCErmaria.Tile.Elements.Add(TileItemElement6)
+        TileItemElement16.Text = "ΕΡΜΑΡΙΑ"
+        TileItemElement16.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TCErmaria.Tile.Elements.Add(TileItemElement16)
         Me.TCErmaria.Tile.Name = "TileBarItem1"
         '
         'TCMech
@@ -10365,9 +10365,9 @@ Partial Class frmTransCost
         '
         '
         Me.TCMech.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement7.Text = "ΜΗΧΑΝΙΣΜΟΙ"
-        TileItemElement7.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TCMech.Tile.Elements.Add(TileItemElement7)
+        TileItemElement17.Text = "ΜΗΧΑΝΙΣΜΟΙ"
+        TileItemElement17.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TCMech.Tile.Elements.Add(TileItemElement17)
         Me.TCMech.Tile.Name = "TileBarItem14"
         '
         'TDoor
@@ -10378,9 +10378,9 @@ Partial Class frmTransCost
         '
         '
         Me.TDoor.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement9.Text = "ΠΟΡΤΑ"
-        TileItemElement9.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TDoor.Tile.Elements.Add(TileItemElement9)
+        TileItemElement19.Text = "ΠΟΡΤΑ"
+        TileItemElement19.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TDoor.Tile.Elements.Add(TileItemElement19)
         Me.TDoor.Tile.Name = "TileBarItem3"
         '
         'TSC
@@ -10391,9 +10391,9 @@ Partial Class frmTransCost
         '
         '
         Me.TSC.Tile.DropDownOptions.BeakColor = System.Drawing.Color.Empty
-        TileItemElement10.Text = "ΕΙΔΙΚΕΣ ΚΑΤΑΣΚΕΥΕΣ"
-        TileItemElement10.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
-        Me.TSC.Tile.Elements.Add(TileItemElement10)
+        TileItemElement20.Text = "ΕΙΔΙΚΕΣ ΚΑΤΑΣΚΕΥΕΣ"
+        TileItemElement20.TextAlignment = DevExpress.XtraEditors.TileItemContentAlignment.MiddleCenter
+        Me.TSC.Tile.Elements.Add(TileItemElement20)
         Me.TSC.Tile.Name = "TileBarItem2"
         '
         'cmdSave
