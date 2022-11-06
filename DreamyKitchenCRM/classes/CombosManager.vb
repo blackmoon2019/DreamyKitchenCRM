@@ -17,10 +17,10 @@ Public Class CombosManager
     End Sub
     Public Sub ManageBenchCat(ByVal CallerControl As LookUpEdit)
         Dim form1 As frmGen = New frmGen()
-        form1.Text = "Πάγκοι"
+        form1.Text = "Κατηγορίες Πάγκων"
         form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Πάγκοι"
-        form1.DataTable = "BASE_CAT"
+        form1.L2.Text = "Κατηγορία"
+        form1.DataTable = "BENCH_CAT"
         form1.CallerControl = CallerControl
         form1.CalledFromControl = True
         If CallerControl.EditValue <> Nothing Then form1.ID = CallerControl.EditValue.ToString

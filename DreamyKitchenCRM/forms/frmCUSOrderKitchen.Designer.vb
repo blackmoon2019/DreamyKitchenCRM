@@ -21,8 +21,8 @@ Partial Class frmCUSOrderKitchen
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSOrderKitchen))
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Me.coldCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TabPane2 = New DevExpress.XtraBars.Navigation.TabPane()
@@ -169,9 +169,9 @@ Partial Class frmCUSOrderKitchen
         Me.txtADR = New DevExpress.XtraEditors.TextEdit()
         Me.dtpresentation = New DevExpress.XtraEditors.DateEdit()
         Me.txtArea = New DevExpress.XtraEditors.TextEdit()
-        Me.txtTotalErmariaVat = New DevExpress.XtraEditors.TextEdit()
+        Me.txtTotalErmariaPriceWVat = New DevExpress.XtraEditors.TextEdit()
         Me.txtTotalDevicesPrice = New DevExpress.XtraEditors.TextEdit()
-        Me.txtTotalErmariaPice = New DevExpress.XtraEditors.TextEdit()
+        Me.txtTotalErmariaPrice = New DevExpress.XtraEditors.TextEdit()
         Me.cboEMP = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtArea1 = New DevExpress.XtraEditors.TextEdit()
@@ -371,9 +371,9 @@ Partial Class frmCUSOrderKitchen
         CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalErmariaVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalErmariaPriceWVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotalDevicesPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalErmariaPice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalErmariaPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtArea1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -466,9 +466,9 @@ Partial Class frmCUSOrderKitchen
         Me.LayoutControl1.Controls.Add(Me.txtADR)
         Me.LayoutControl1.Controls.Add(Me.dtpresentation)
         Me.LayoutControl1.Controls.Add(Me.txtArea)
-        Me.LayoutControl1.Controls.Add(Me.txtTotalErmariaVat)
+        Me.LayoutControl1.Controls.Add(Me.txtTotalErmariaPriceWVat)
         Me.LayoutControl1.Controls.Add(Me.txtTotalDevicesPrice)
-        Me.LayoutControl1.Controls.Add(Me.txtTotalErmariaPice)
+        Me.LayoutControl1.Controls.Add(Me.txtTotalErmariaPrice)
         Me.LayoutControl1.Controls.Add(Me.cboEMP)
         Me.LayoutControl1.Controls.Add(Me.txtArea1)
         Me.LayoutControl1.Controls.Add(Me.txtExtraTransp)
@@ -768,6 +768,7 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn10.Name = "GridColumn10"
         Me.GridColumn10.OptionsColumn.AllowEdit = False
         Me.GridColumn10.OptionsColumn.ReadOnly = True
+        Me.GridColumn10.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FinalPrice", "SUM={0:c2}")})
         Me.GridColumn10.Visible = True
         Me.GridColumn10.VisibleIndex = 8
         Me.GridColumn10.Width = 131
@@ -1173,6 +1174,7 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn20.Name = "GridColumn20"
         Me.GridColumn20.OptionsColumn.AllowEdit = False
         Me.GridColumn20.OptionsColumn.ReadOnly = True
+        Me.GridColumn20.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FinalPrice", "SUM={0:c2}")})
         Me.GridColumn20.Visible = True
         Me.GridColumn20.VisibleIndex = 9
         Me.GridColumn20.Width = 131
@@ -1606,6 +1608,7 @@ Partial Class frmCUSOrderKitchen
         Me.GridColumn30.Name = "GridColumn30"
         Me.GridColumn30.OptionsColumn.AllowEdit = False
         Me.GridColumn30.OptionsColumn.ReadOnly = True
+        Me.GridColumn30.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FinalPrice", "SUM={0:c2}")})
         Me.GridColumn30.Visible = True
         Me.GridColumn30.VisibleIndex = 9
         Me.GridColumn30.Width = 131
@@ -1913,6 +1916,7 @@ Partial Class frmCUSOrderKitchen
         Me.colFinalPrice.MinWidth = 35
         Me.colFinalPrice.Name = "colFinalPrice"
         Me.colFinalPrice.OptionsColumn.ReadOnly = True
+        Me.colFinalPrice.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "FinalPrice", "SUM={0:c2}")})
         Me.colFinalPrice.Visible = True
         Me.colFinalPrice.VisibleIndex = 6
         Me.colFinalPrice.Width = 131
@@ -2094,26 +2098,26 @@ Partial Class frmCUSOrderKitchen
         Me.txtArea.TabIndex = 23
         Me.txtArea.Tag = "mob"
         '
-        'txtTotalErmariaVat
+        'txtTotalErmariaPriceWVat
         '
-        Me.txtTotalErmariaVat.EditValue = "0,00 €"
-        Me.txtTotalErmariaVat.Location = New System.Drawing.Point(1766, 1216)
-        Me.txtTotalErmariaVat.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtTotalErmariaVat.Name = "txtTotalErmariaVat"
-        Me.txtTotalErmariaVat.Properties.DisplayFormat.FormatString = "c"
-        Me.txtTotalErmariaVat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalErmariaVat.Properties.EditFormat.FormatString = "n2"
-        Me.txtTotalErmariaVat.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalErmariaVat.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtTotalErmariaVat.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtTotalErmariaVat.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtTotalErmariaVat.Properties.Tag = "BenchExtraPrice"
-        Me.txtTotalErmariaVat.Properties.UseReadOnlyAppearance = False
-        Me.txtTotalErmariaVat.Size = New System.Drawing.Size(94, 38)
-        Me.txtTotalErmariaVat.StyleController = Me.LayoutControl1
-        Me.txtTotalErmariaVat.TabIndex = 42
-        Me.txtTotalErmariaVat.Tag = "TotalErmariaVat,0,1,2"
-        Me.txtTotalErmariaVat.Visible = False
+        Me.txtTotalErmariaPriceWVat.EditValue = "0,00 €"
+        Me.txtTotalErmariaPriceWVat.Location = New System.Drawing.Point(1766, 1216)
+        Me.txtTotalErmariaPriceWVat.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtTotalErmariaPriceWVat.Name = "txtTotalErmariaPriceWVat"
+        Me.txtTotalErmariaPriceWVat.Properties.DisplayFormat.FormatString = "c"
+        Me.txtTotalErmariaPriceWVat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalErmariaPriceWVat.Properties.EditFormat.FormatString = "n2"
+        Me.txtTotalErmariaPriceWVat.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalErmariaPriceWVat.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtTotalErmariaPriceWVat.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtTotalErmariaPriceWVat.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtTotalErmariaPriceWVat.Properties.Tag = "BenchExtraPrice"
+        Me.txtTotalErmariaPriceWVat.Properties.UseReadOnlyAppearance = False
+        Me.txtTotalErmariaPriceWVat.Size = New System.Drawing.Size(94, 38)
+        Me.txtTotalErmariaPriceWVat.StyleController = Me.LayoutControl1
+        Me.txtTotalErmariaPriceWVat.TabIndex = 42
+        Me.txtTotalErmariaPriceWVat.Tag = "TotalErmariaVat,0,1,2"
+        Me.txtTotalErmariaPriceWVat.Visible = False
         '
         'txtTotalDevicesPrice
         '
@@ -2141,31 +2145,31 @@ Partial Class frmCUSOrderKitchen
         Me.txtTotalDevicesPrice.Tag = "TotalEquipmentPrice,0,1,2"
         Me.txtTotalDevicesPrice.Visible = False
         '
-        'txtTotalErmariaPice
+        'txtTotalErmariaPrice
         '
-        Me.txtTotalErmariaPice.EditValue = "0,00 €"
-        Me.txtTotalErmariaPice.Location = New System.Drawing.Point(1766, 1258)
-        Me.txtTotalErmariaPice.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtTotalErmariaPice.Name = "txtTotalErmariaPice"
-        Me.txtTotalErmariaPice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.txtTotalErmariaPice.Properties.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.txtTotalErmariaPice.Properties.Appearance.Options.UseFont = True
-        Me.txtTotalErmariaPice.Properties.Appearance.Options.UseForeColor = True
-        Me.txtTotalErmariaPice.Properties.DisplayFormat.FormatString = "c"
-        Me.txtTotalErmariaPice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalErmariaPice.Properties.EditFormat.FormatString = "n2"
-        Me.txtTotalErmariaPice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalErmariaPice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtTotalErmariaPice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtTotalErmariaPice.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtTotalErmariaPice.Properties.ReadOnly = True
-        Me.txtTotalErmariaPice.Properties.Tag = "BenchExtraPrice"
-        Me.txtTotalErmariaPice.Properties.UseReadOnlyAppearance = False
-        Me.txtTotalErmariaPice.Size = New System.Drawing.Size(94, 42)
-        Me.txtTotalErmariaPice.StyleController = Me.LayoutControl1
-        Me.txtTotalErmariaPice.TabIndex = 42
-        Me.txtTotalErmariaPice.Tag = "TotalErmariaPice,0,1,2"
-        Me.txtTotalErmariaPice.Visible = False
+        Me.txtTotalErmariaPrice.EditValue = "0,00 €"
+        Me.txtTotalErmariaPrice.Location = New System.Drawing.Point(1766, 1258)
+        Me.txtTotalErmariaPrice.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtTotalErmariaPrice.Name = "txtTotalErmariaPrice"
+        Me.txtTotalErmariaPrice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.txtTotalErmariaPrice.Properties.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.txtTotalErmariaPrice.Properties.Appearance.Options.UseFont = True
+        Me.txtTotalErmariaPrice.Properties.Appearance.Options.UseForeColor = True
+        Me.txtTotalErmariaPrice.Properties.DisplayFormat.FormatString = "c"
+        Me.txtTotalErmariaPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalErmariaPrice.Properties.EditFormat.FormatString = "n2"
+        Me.txtTotalErmariaPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalErmariaPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtTotalErmariaPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtTotalErmariaPrice.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtTotalErmariaPrice.Properties.ReadOnly = True
+        Me.txtTotalErmariaPrice.Properties.Tag = "BenchExtraPrice"
+        Me.txtTotalErmariaPrice.Properties.UseReadOnlyAppearance = False
+        Me.txtTotalErmariaPrice.Size = New System.Drawing.Size(94, 42)
+        Me.txtTotalErmariaPrice.StyleController = Me.LayoutControl1
+        Me.txtTotalErmariaPrice.TabIndex = 42
+        Me.txtTotalErmariaPrice.Tag = "TotalErmariaPice,0,1,2"
+        Me.txtTotalErmariaPrice.Visible = False
         '
         'cboEMP
         '
@@ -2413,7 +2417,7 @@ Partial Class frmCUSOrderKitchen
         '
         'LayoutControlItem34
         '
-        Me.LayoutControlItem34.Control = Me.txtTotalErmariaVat
+        Me.LayoutControlItem34.Control = Me.txtTotalErmariaPriceWVat
         Me.LayoutControlItem34.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem34.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem34.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
@@ -2425,7 +2429,7 @@ Partial Class frmCUSOrderKitchen
         '
         'LayoutControlItem42
         '
-        Me.LayoutControlItem42.Control = Me.txtTotalErmariaPice
+        Me.LayoutControlItem42.Control = Me.txtTotalErmariaPrice
         Me.LayoutControlItem42.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem42.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem42.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
@@ -2809,15 +2813,15 @@ Partial Class frmCUSOrderKitchen
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.coldCode, Me.GridColumn3, Me.colchecked})
         Me.GridView1.FixedLineWidth = 3
-        GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Column = Me.coldCode
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.White
-        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
-        FormatConditionRuleExpression1.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
-        FormatConditionRuleExpression1.PredefinedName = "Red Text"
-        GridFormatRule1.Rule = FormatConditionRuleExpression1
-        Me.GridView1.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Column = Me.coldCode
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.White
+        FormatConditionRuleExpression2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression2.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
+        FormatConditionRuleExpression2.PredefinedName = "Red Text"
+        GridFormatRule2.Rule = FormatConditionRuleExpression2
+        Me.GridView1.FormatRules.Add(GridFormatRule2)
         Me.GridView1.GridControl = Me.grdDevices
         Me.GridView1.LevelIndent = 0
         Me.GridView1.Name = "GridView1"
@@ -3243,9 +3247,9 @@ Partial Class frmCUSOrderKitchen
         CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalErmariaVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalErmariaPriceWVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotalDevicesPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalErmariaPice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalErmariaPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtArea1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3326,9 +3330,9 @@ Partial Class frmCUSOrderKitchen
     Friend WithEvents txtADR As DevExpress.XtraEditors.TextEdit
     Friend WithEvents dtpresentation As DevExpress.XtraEditors.DateEdit
     Friend WithEvents txtArea As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtTotalErmariaVat As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtTotalErmariaPriceWVat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtTotalDevicesPrice As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtTotalErmariaPice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtTotalErmariaPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents cboEMP As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup

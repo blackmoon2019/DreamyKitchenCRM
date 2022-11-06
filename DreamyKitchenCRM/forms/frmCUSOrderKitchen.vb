@@ -476,10 +476,10 @@ Public Class frmCUSOrderKitchen
         lblDate.Text = DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate)
     End Sub
 
-    Private Sub txtTotalErmariaVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalErmariaVat.EditValueChanged
+    Private Sub txtTotalErmariaVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalErmariaPriceWVat.EditValueChanged
         Dim TotalErmariaPrice As Double
-        TotalErmariaPrice = (txtTotalErmariaVat.EditValue * (ProgProps.VAT / 100)) + txtTotalErmariaVat.EditValue
-        txtTotalErmariaPice.EditValue = TotalErmariaPrice
+        TotalErmariaPrice = (txtTotalErmariaPriceWVat.EditValue * (ProgProps.VAT / 100)) + txtTotalErmariaPriceWVat.EditValue
+        txtTotalErmariaPrice.EditValue = TotalErmariaPrice
     End Sub
 
     Private Sub InsertSelectedRows(ByVal msg As Boolean)
@@ -533,22 +533,22 @@ Public Class frmCUSOrderKitchen
     End Sub
 
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml", "vw_CCT_ORDERS_KITCHEN_DEVICES")
+        LoadForms.PopupMenuShow(e, GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml", "vw_CCT_ORDERS_KITCHEN_DEVICES")
     End Sub
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml", "vw_CCT_ORDERS_KITCHEN_EQUIPMENT")
+        LoadForms.PopupMenuShow(e, GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml", "vw_CCT_ORDERS_KITCHEN_EQUIPMENT")
     End Sub
     Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "CCT_ORDERS_KITCHEN_V_def.xml", "CCT_ORDERS_KITCHEN_V")
+        LoadForms.PopupMenuShow(e, GridView3, "CCT_ORDERS_KITCHEN_V_def.xml", "CCT_ORDERS_KITCHEN_V")
     End Sub
     Private Sub GridView4_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView4.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView4, "CCT_ORDERS_KITCHEN_K_def.xml", "CCT_ORDERS_KITCHEN_K")
+        LoadForms.PopupMenuShow(e, GridView4, "CCT_ORDERS_KITCHEN_K_def.xml", "CCT_ORDERS_KITCHEN_K")
     End Sub
     Private Sub GridView5_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView5.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView5, "CCT_ORDERS_KITCHEN_Y_def.xml", "CCT_ORDERS_KITCHEN_Y")
+        LoadForms.PopupMenuShow(e, GridView5, "CCT_ORDERS_KITCHEN_Y_def.xml", "CCT_ORDERS_KITCHEN_Y")
     End Sub
     Private Sub GridView6_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView6.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView5, "CCT_ORDERS_KITCHEN_B_def.xml", "CCT_ORDERS_KITCHEN_B")
+        LoadForms.PopupMenuShow(e, GridView6, "CCT_ORDERS_KITCHEN_B_def.xml", "CCT_ORDERS_KITCHEN_B")
     End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
@@ -687,6 +687,7 @@ Public Class frmCUSOrderKitchen
     End Sub
 
     Private Sub GridView3_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView3.CellValueChanged
+
     End Sub
 
     Private Sub GridView3_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GridView3.CellValueChanging
@@ -730,6 +731,13 @@ Public Class frmCUSOrderKitchen
                 Dim trm As Double = e.Value.ToString.Replace(".", ",")
                 Dim FinalPrice As Double = trm * Price
                 GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "FinalPrice", FinalPrice)
+                GridView3.UpdateTotalSummary()
+                Dim TotalErmaria As Double = GridView3.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView4.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView5.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView6.Columns("FinalPrice").SummaryItem.SummaryValue
+                txtTotalErmariaPriceWVat.EditValue = TotalErmaria
+
         End Select
 
 
@@ -915,6 +923,12 @@ Public Class frmCUSOrderKitchen
                 Dim trm As Double = e.Value.ToString.Replace(".", ",")
                 Dim FinalPrice As Double = trm * Price
                 GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice", FinalPrice)
+                GridView4.UpdateTotalSummary()
+                Dim TotalErmaria As Double = GridView3.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView4.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView5.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView6.Columns("FinalPrice").SummaryItem.SummaryValue
+                txtTotalErmariaPriceWVat.EditValue = TotalErmaria
         End Select
 
 
@@ -1093,6 +1107,12 @@ Public Class frmCUSOrderKitchen
                 Dim trm As Double = e.Value.ToString.Replace(".", ",")
                 Dim FinalPrice As Double = trm * Price
                 GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FinalPrice", FinalPrice)
+                GridView5.UpdateTotalSummary()
+                Dim TotalErmaria As Double = GridView3.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView4.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView5.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView6.Columns("FinalPrice").SummaryItem.SummaryValue
+                txtTotalErmariaPriceWVat.EditValue = TotalErmaria
         End Select
 
 
@@ -1226,6 +1246,12 @@ Public Class frmCUSOrderKitchen
                 Dim tem As Double = e.Value.ToString.Replace(".", ",")
                 Dim FinalPrice As Double = tem * Price
                 GridView6.SetRowCellValue(GridView6.FocusedRowHandle, "FinalPrice", FinalPrice)
+                GridView6.UpdateTotalSummary()
+                Dim TotalErmaria As Double = GridView3.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView4.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView5.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView6.Columns("FinalPrice").SummaryItem.SummaryValue
+                txtTotalErmariaPriceWVat.EditValue = TotalErmaria
         End Select
 
 
@@ -1279,4 +1305,11 @@ Public Class frmCUSOrderKitchen
         e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
     End Sub
 
+    Private Sub RepThickness_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepThickness.ButtonClick
+        Dim editor As DevExpress.XtraEditors.ComboBoxEdit = TryCast(sender, DevExpress.XtraEditors.ComboBoxEdit)
+        Select Case e.Button.Index
+            Case 1 : editor.EditValue = Nothing
+        End Select
+
+    End Sub
 End Class
