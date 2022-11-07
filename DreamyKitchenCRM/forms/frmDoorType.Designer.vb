@@ -31,7 +31,7 @@ Partial Class frmDoorType
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
         Me.txtCustomCode = New DevExpress.XtraEditors.TextEdit()
         Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
-        Me.txtOInvTotalPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDoorTypePrice = New DevExpress.XtraEditors.TextEdit()
         Me.txtOInvNumber = New DevExpress.XtraEditors.TextEdit()
         Me.txtNam = New DevExpress.XtraEditors.TextEdit()
         Me.cboType = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -67,6 +67,8 @@ Partial Class frmDoorType
         Me.Vw_DIMTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DIMTableAdapter()
         Me.Vw_DOOR_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_CATTableAdapter()
         Me.Vw_BASE_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BASE_CATTableAdapter()
+        Me.txttxtDoorTypeHeighPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboDoorColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -76,7 +78,7 @@ Partial Class frmDoorType
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCustomCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtOInvTotalPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDoorTypePrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOInvNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -108,6 +110,8 @@ Partial Class frmDoorType
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txttxtDoorTypeHeighPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -119,7 +123,7 @@ Partial Class frmDoorType
         Me.LayoutControl1.Controls.Add(Me.txtCode)
         Me.LayoutControl1.Controls.Add(Me.txtCustomCode)
         Me.LayoutControl1.Controls.Add(Me.txtComments)
-        Me.LayoutControl1.Controls.Add(Me.txtOInvTotalPrice)
+        Me.LayoutControl1.Controls.Add(Me.txtDoorTypePrice)
         Me.LayoutControl1.Controls.Add(Me.txtOInvNumber)
         Me.LayoutControl1.Controls.Add(Me.txtNam)
         Me.LayoutControl1.Controls.Add(Me.cboType)
@@ -129,6 +133,7 @@ Partial Class frmDoorType
         Me.LayoutControl1.Controls.Add(Me.cboDoorCat)
         Me.LayoutControl1.Controls.Add(Me.cboDoorType1)
         Me.LayoutControl1.Controls.Add(Me.cboBaseCatErm)
+        Me.LayoutControl1.Controls.Add(Me.txttxtDoorTypeHeighPrice)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(5)
@@ -242,23 +247,23 @@ Partial Class frmDoorType
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "comments,0,1,2"
         '
-        'txtOInvTotalPrice
+        'txtDoorTypePrice
         '
-        Me.txtOInvTotalPrice.EditValue = "0,00 €"
-        Me.txtOInvTotalPrice.Location = New System.Drawing.Point(248, 432)
-        Me.txtOInvTotalPrice.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtOInvTotalPrice.Name = "txtOInvTotalPrice"
-        Me.txtOInvTotalPrice.Properties.DisplayFormat.FormatString = "c"
-        Me.txtOInvTotalPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtOInvTotalPrice.Properties.EditFormat.FormatString = "n2"
-        Me.txtOInvTotalPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtOInvTotalPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtOInvTotalPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtOInvTotalPrice.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtOInvTotalPrice.Size = New System.Drawing.Size(676, 38)
-        Me.txtOInvTotalPrice.StyleController = Me.LayoutControl1
-        Me.txtOInvTotalPrice.TabIndex = 42
-        Me.txtOInvTotalPrice.Tag = "price,0,1,2"
+        Me.txtDoorTypePrice.EditValue = "0,00 €"
+        Me.txtDoorTypePrice.Location = New System.Drawing.Point(248, 432)
+        Me.txtDoorTypePrice.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDoorTypePrice.Name = "txtDoorTypePrice"
+        Me.txtDoorTypePrice.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDoorTypePrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDoorTypePrice.Properties.EditFormat.FormatString = "n2"
+        Me.txtDoorTypePrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDoorTypePrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDoorTypePrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDoorTypePrice.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDoorTypePrice.Size = New System.Drawing.Size(218, 38)
+        Me.txtDoorTypePrice.StyleController = Me.LayoutControl1
+        Me.txtDoorTypePrice.TabIndex = 42
+        Me.txtDoorTypePrice.Tag = "price,0,1,2"
         '
         'txtOInvNumber
         '
@@ -415,7 +420,7 @@ Partial Class frmDoorType
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem14, Me.EmptySpaceItem3, Me.LayoutControlItem56, Me.color, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem26, Me.LayoutControlItem25, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem8, Me.LayoutControlItem52, Me.LayoutControlItem10, Me.LayoutControlItem11})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem4, Me.LayoutControlItem14, Me.EmptySpaceItem3, Me.LayoutControlItem56, Me.color, Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem6, Me.LayoutControlItem26, Me.LayoutControlItem25, Me.LayoutControlItem7, Me.LayoutControlItem9, Me.LayoutControlItem8, Me.LayoutControlItem52, Me.LayoutControlItem10, Me.LayoutControlItem11, Me.LayoutControlItem12})
         Me.Root.Name = "Root"
         Me.Root.Size = New System.Drawing.Size(936, 753)
         Me.Root.TextVisible = False
@@ -470,14 +475,14 @@ Partial Class frmDoorType
         '
         'LayoutControlItem56
         '
-        Me.LayoutControlItem56.Control = Me.txtOInvTotalPrice
+        Me.LayoutControlItem56.Control = Me.txtDoorTypePrice
         Me.LayoutControlItem56.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem56.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem56.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem56.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem56.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem56.Location = New System.Drawing.Point(0, 420)
         Me.LayoutControlItem56.Name = "LayoutControlItem56"
-        Me.LayoutControlItem56.Size = New System.Drawing.Size(916, 42)
+        Me.LayoutControlItem56.Size = New System.Drawing.Size(458, 42)
         Me.LayoutControlItem56.Tag = "1"
         Me.LayoutControlItem56.Text = "Τιμή"
         Me.LayoutControlItem56.TextSize = New System.Drawing.Size(224, 23)
@@ -635,6 +640,37 @@ Partial Class frmDoorType
         '
         Me.Vw_BASE_CATTableAdapter.ClearBeforeFill = True
         '
+        'txttxtDoorTypeHeighPrice
+        '
+        Me.txttxtDoorTypeHeighPrice.EditValue = "0,00 €"
+        Me.txttxtDoorTypeHeighPrice.Location = New System.Drawing.Point(706, 432)
+        Me.txttxtDoorTypeHeighPrice.Margin = New System.Windows.Forms.Padding(5)
+        Me.txttxtDoorTypeHeighPrice.Name = "txttxtDoorTypeHeighPrice"
+        Me.txttxtDoorTypeHeighPrice.Properties.DisplayFormat.FormatString = "c"
+        Me.txttxtDoorTypeHeighPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txttxtDoorTypeHeighPrice.Properties.EditFormat.FormatString = "n2"
+        Me.txttxtDoorTypeHeighPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txttxtDoorTypeHeighPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txttxtDoorTypeHeighPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txttxtDoorTypeHeighPrice.Properties.MaskSettings.Set("mask", "c2")
+        Me.txttxtDoorTypeHeighPrice.Size = New System.Drawing.Size(218, 38)
+        Me.txttxtDoorTypeHeighPrice.StyleController = Me.LayoutControl1
+        Me.txttxtDoorTypeHeighPrice.TabIndex = 42
+        Me.txttxtDoorTypeHeighPrice.Tag = "PricePerCM,0,1,2"
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.txttxtDoorTypeHeighPrice
+        Me.LayoutControlItem12.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem12.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem12.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem12.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem12.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(458, 420)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(458, 42)
+        Me.LayoutControlItem12.Text = "Τιμή CM Ύψους"
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(224, 23)
+        '
         'frmDoorType
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -656,7 +692,7 @@ Partial Class frmDoorType
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCustomCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtOInvTotalPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDoorTypePrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOInvNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -688,6 +724,8 @@ Partial Class frmDoorType
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txttxtDoorTypeHeighPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -706,7 +744,7 @@ Partial Class frmDoorType
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtComments As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents txtOInvTotalPrice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDoorTypePrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem56 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtOInvNumber As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem52 As DevExpress.XtraLayout.LayoutControlItem
@@ -738,4 +776,6 @@ Partial Class frmDoorType
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents VwBASECATBindingSource As BindingSource
     Friend WithEvents Vw_BASE_CATTableAdapter As DreamyKitchenDataSetTableAdapters.vw_BASE_CATTableAdapter
+    Friend WithEvents txttxtDoorTypeHeighPrice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
 End Class

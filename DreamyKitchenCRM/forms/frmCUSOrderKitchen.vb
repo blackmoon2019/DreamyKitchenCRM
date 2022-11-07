@@ -38,6 +38,8 @@ Public Class frmCUSOrderKitchen
     Private kTypeDescr As String
     Private yType As Integer
     Private yTypeDescr As String
+    Private PriceHeightK As Double
+    Private PriceHeightY As Double
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -221,7 +223,7 @@ Public Class frmCUSOrderKitchen
 
     End Sub
     Private Sub InsertRecordK()
-        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_K(ID,cctOrdersKitchenID,doorCatID,constrType,Height,Height2ndLine,BoxColorID,DoorTypeID,Shelves,trm,Price,FinalPrice) " &
+        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_K(ID,cctOrdersKitchenID,doorCatID,constrType,Height,Height2ndLine,BoxColorID,DoorTypeID,Shelves,trm,Price,PriceHeight,FinalPrice) " &
                     " VALUES ( " & toSQLValueS(sNewGuid) & "," & toSQLValueS(sID) &
                                "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "doorCatID").ToString()) &
                                "," & toSQLValueS(vTypeDescr) &
@@ -232,6 +234,7 @@ Public Class frmCUSOrderKitchen
                                "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Shelves").ToString()) &
                                "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "trm").ToString(), True) &
                                "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price").ToString(), True) &
+                               "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "PriceHeight").ToString(), True) &
                                "," & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice").ToString(), True) & ")"
         Using oCmd As New SqlCommand(sSQL, CNDB)
             oCmd.ExecuteNonQuery()
@@ -255,6 +258,7 @@ Public Class frmCUSOrderKitchen
                 ",Shelves = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Shelves").ToString()) &
                 ",trm = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "trm").ToString(), True) &
                 ",Price = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price").ToString(), True) &
+                ",PriceHeight = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "PriceHeight").ToString(), True) &
                 ",FinalPrice = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice").ToString(), True) &
         " WHERE ID = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "ID").ToString)
         Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -263,7 +267,7 @@ Public Class frmCUSOrderKitchen
 
     End Sub
     Private Sub InsertRecordY()
-        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_Y(ID,cctOrdersKitchenID,doorCatID,constrType,GolaColorID,BoxColorID,DoorTypeID,Shelves,Height,trm,Price,FinalPrice) " &
+        Dim sSQL As String = "INSERT INTO CCT_ORDERS_KITCHEN_Y(ID,cctOrdersKitchenID,doorCatID,constrType,GolaColorID,BoxColorID,DoorTypeID,Shelves,Height,trm,Price,PriceHeight,FinalPrice) " &
                     " VALUES ( " & toSQLValueS(sNewGuid) & "," & toSQLValueS(sID) &
                                "," & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "doorCatID").ToString()) &
                                "," & toSQLValueS(yTypeDescr) &
@@ -274,6 +278,7 @@ Public Class frmCUSOrderKitchen
                                "," & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "Height").ToString(), True) &
                                "," & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "trm").ToString(), True) &
                                "," & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "Price").ToString(), True) &
+                               "," & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "PriceHeight").ToString(), True) &
                                "," & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "FinalPrice").ToString(), True) & ")"
         Using oCmd As New SqlCommand(sSQL, CNDB)
             oCmd.ExecuteNonQuery()
@@ -297,6 +302,7 @@ Public Class frmCUSOrderKitchen
                 ",Height = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "Height").ToString(), True) &
                 ",trm = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "trm").ToString(), True) &
                 ",Price = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "Price").ToString(), True) &
+                ",PriceHeight = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "PriceHeight").ToString(), True) &
                 ",FinalPrice = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "FinalPrice").ToString(), True) &
         " WHERE ID = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString)
         Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -661,7 +667,8 @@ Public Class frmCUSOrderKitchen
             Exit Sub
         End If
         If DoorCatID.ToUpper = "53582708-BB28-4714-99AC-736AEF1D3086" Then
-            If vType = 0 Then colorID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "BoxColorID").ToString() Else colorID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "GolaColorID").ToString()
+            'If vType = 0 Then colorID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "BoxColorID").ToString() Else colorID = Guid.Empty.ToString
+            colorID = GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "BoxColorID").ToString()
             If colorID.Length > 0 Then
                 e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" baseCatErmID == " & toSQLValueS(System.Guid.Parse(cbobaseCatErm.EditValue.ToString).ToString) &
                                                                                                      " And doorCatID == " & toSQLValueS(System.Guid.Parse(DoorCatID).ToString) &
@@ -679,6 +686,7 @@ Public Class frmCUSOrderKitchen
     Private Sub RepConstrTypeV_SelectedIndexChanged(sender As Object, e As EventArgs) Handles RepConstrTypeV.SelectedIndexChanged
         vType = DirectCast(sender, DevExpress.XtraEditors.ComboBoxEdit).SelectedIndex
         vTypeDescr = DirectCast(sender, DevExpress.XtraEditors.ComboBoxEdit).EditValue
+        If vType = 0 Then GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "GolaColorID", Nothing)
     End Sub
 
     Private Sub RepDoorTYPEV_EditValueChanged(sender As Object, e As EventArgs) Handles RepDoorTYPEV.EditValueChanged
@@ -803,11 +811,11 @@ Public Class frmCUSOrderKitchen
         End Select
     End Sub
     Private Sub RepColorBOXV_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepColorBOXV.PopupFilter
-        If vType = 1 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" BoxColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+        ' If vType = 1 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" BoxColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
     End Sub
 
     Private Sub RepColorGola_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepColorGola.PopupFilter
-        If vType = 0 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" GolaColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+        '    If vType = 0 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" GolaColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
     End Sub
 
     Private Sub GridView3_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView3.ValidateRow
@@ -865,7 +873,8 @@ Public Class frmCUSOrderKitchen
             Exit Sub
         End If
         If DoorCatID.ToUpper = "53582708-BB28-4714-99AC-736AEF1D3086" Then
-            If vType = 0 Then colorID = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "BoxColorID").ToString() Else colorID = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "GolaColorID").ToString()
+            'If vType = 0 Then colorID = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "BoxColorID").ToString() Else colorID = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "GolaColorID").ToString()
+            colorID = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "BoxColorID").ToString()
             If colorID.Length > 0 Then
                 e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" baseCatErmID == " & toSQLValueS(System.Guid.Parse(cbobaseCatErm.EditValue.ToString).ToString) &
                                                                                                      " And doorCatID == " & toSQLValueS(System.Guid.Parse(DoorCatID).ToString) &
@@ -888,6 +897,7 @@ Public Class frmCUSOrderKitchen
     Private Sub RepDoorTYPEK_EditValueChanged(sender As Object, e As EventArgs) Handles RepDoorTYPEK.EditValueChanged
         Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
         GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "Price", editor.GetColumnValue("Price"))
+        PriceHeightK = editor.GetColumnValue("PricePerCM")
     End Sub
 
     Private Sub GridView4_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GridView4.CellValueChanging
@@ -900,6 +910,7 @@ Public Class frmCUSOrderKitchen
                     GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "BoxColorID", Nothing)
                     GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "DoorTypeID", Nothing)
                     GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "Price", "0")
+                    GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "PriceHeight", "0")
                     GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "trm", "0")
                     GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice", "0")
                     Exit Sub
@@ -916,19 +927,14 @@ Public Class frmCUSOrderKitchen
                 GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "DoorTypeID", Nothing)
                 GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "Price", "0")
                 GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice", "0")
+            Case "Height"
+                If e.Value Is Nothing Then Exit Sub
+                If GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price") Is Nothing Then Exit Sub
+                CalcFinalPrice(GridView4)
             Case "trm"
                 If e.Value Is Nothing Then Exit Sub
                 If GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price").ToString = "" Then Exit Sub
-                Dim Price As Double = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price")
-                Dim trm As Double = e.Value.ToString.Replace(".", ",")
-                Dim FinalPrice As Double = trm * Price
-                GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice", FinalPrice)
-                GridView4.UpdateTotalSummary()
-                Dim TotalErmaria As Double = GridView3.Columns("FinalPrice").SummaryItem.SummaryValue +
-                                  GridView4.Columns("FinalPrice").SummaryItem.SummaryValue +
-                                  GridView5.Columns("FinalPrice").SummaryItem.SummaryValue +
-                                  GridView6.Columns("FinalPrice").SummaryItem.SummaryValue
-                txtTotalErmariaPriceWVat.EditValue = TotalErmaria
+                CalcFinalPrice(GridView4)
         End Select
 
 
@@ -979,7 +985,7 @@ Public Class frmCUSOrderKitchen
     End Sub
 
     Private Sub RepColorBOXK_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepColorBOXK.PopupFilter
-        If kType = 1 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" BoxColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+        '  If kType = 1 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" BoxColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
     End Sub
 
 
@@ -1037,7 +1043,8 @@ Public Class frmCUSOrderKitchen
             Exit Sub
         End If
         If DoorCatID.ToUpper = "53582708-BB28-4714-99AC-736AEF1D3086" Then
-            If vType = 0 Then colorID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "BoxColorID").ToString() Else colorID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "GolaColorID").ToString()
+            'If vType = 0 Then colorID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "BoxColorID").ToString() Else colorID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "GolaColorID").ToString()
+            colorID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "BoxColorID").ToString()
             If colorID.Length > 0 Then
                 e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" baseCatErmID == " & toSQLValueS(System.Guid.Parse(cbobaseCatErm.EditValue.ToString).ToString) &
                                                                                                      " And doorCatID == " & toSQLValueS(System.Guid.Parse(DoorCatID).ToString) &
@@ -1060,6 +1067,7 @@ Public Class frmCUSOrderKitchen
     Private Sub RepDoorTYPEY_EditValueChanged(sender As Object, e As EventArgs) Handles RepDoorTYPEY.EditValueChanged
         Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
         GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "Price", editor.GetColumnValue("Price"))
+        PriceHeightY = editor.GetColumnValue("PricePerCM")
     End Sub
 
     Private Sub GridView5_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView5.CellValueChanged
@@ -1076,6 +1084,7 @@ Public Class frmCUSOrderKitchen
                         GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "DoorTypeID", Nothing)
                         GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "Height", "0")
                         GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "Price", "0")
+                        GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "PriceHeight", "0")
                         GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "trm", "0")
                         GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FinalPrice", "0")
                         Exit Sub
@@ -1100,19 +1109,15 @@ Public Class frmCUSOrderKitchen
                 GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "DoorTypeID", Nothing)
                 GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "Price", "0")
                 GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FinalPrice", "0")
+            Case "Height"
+                If e.Value Is Nothing Then Exit Sub
+                If GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "Price") Is Nothing Then Exit Sub
+                CalcFinalPrice(GridView5)
+
             Case "trm"
                 If e.Value Is Nothing Then Exit Sub
                 If GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "Price").ToString = "" Then Exit Sub
-                Dim Price As Double = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "Price")
-                Dim trm As Double = e.Value.ToString.Replace(".", ",")
-                Dim FinalPrice As Double = trm * Price
-                GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FinalPrice", FinalPrice)
-                GridView5.UpdateTotalSummary()
-                Dim TotalErmaria As Double = GridView3.Columns("FinalPrice").SummaryItem.SummaryValue +
-                                  GridView4.Columns("FinalPrice").SummaryItem.SummaryValue +
-                                  GridView5.Columns("FinalPrice").SummaryItem.SummaryValue +
-                                  GridView6.Columns("FinalPrice").SummaryItem.SummaryValue
-                txtTotalErmariaPriceWVat.EditValue = TotalErmaria
+                CalcFinalPrice(GridView5)
         End Select
 
 
@@ -1171,7 +1176,7 @@ Public Class frmCUSOrderKitchen
 
     End Sub
     Private Sub RepColorBOXY_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepColorBOXY.PopupFilter
-        If yType = 1 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" BoxColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
+        'If yType = 1 Then e.Criteria = DevExpress.Data.Filtering.CriteriaOperator.Parse(" BoxColorID == " & toSQLValueS(System.Guid.Parse(Guid.Empty.ToString).ToString))
     End Sub
 
     Private Sub RepColorGolaY_PopupFilter(sender As Object, e As PopupFilterEventArgs) Handles RepColorGolaY.PopupFilter
@@ -1310,6 +1315,80 @@ Public Class frmCUSOrderKitchen
         Select Case e.Button.Index
             Case 1 : editor.EditValue = Nothing
         End Select
+
+    End Sub
+
+    Private Function GetPricePerCM(ByVal dtID As String) As Double
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Dim PCM As Double
+        Try
+
+            sSQL = "select PricePerCM from DOOR_TYPE where ID = " & toSQLValueS(dtID.ToUpper)
+            cmd = New SqlCommand(sSQL, CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("PricePerCM")) = True Then
+                    PCM = 0
+                Else
+                    PCM = sdr.GetDecimal(sdr.GetOrdinal("PricePerCM")).ToString.Replace(".", ",")
+                End If
+            End If
+            sdr.Close()
+            Return PCM
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+    End Function
+    Private Sub CalcFinalPrice(ByVal GRV As GridView)
+        Try
+            If GRV.Name = "GridView5" Then
+                Dim Price As Double
+                Price = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "Price")
+                Dim trm As Double = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "trm").ToString.Replace(".", ",")
+                Dim FinalPrice As Double = trm * Price
+                Price = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "Price")
+                Dim Height As Double = GridView5.GetRowCellValue(GridView4.FocusedRowHandle, "Height").ToString.Replace(".", ",")
+                PriceHeightY = GetPricePerCM(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "DoorTypeID").ToString)
+                Dim PriceH As Double = Height * PriceHeightY
+                GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "PriceHeight", PriceH)
+                FinalPrice = FinalPrice + PriceH
+
+                GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FinalPrice", FinalPrice)
+                GridView5.UpdateTotalSummary()
+                Dim TotalErmaria As Double = GridView3.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView4.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView5.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView6.Columns("FinalPrice").SummaryItem.SummaryValue
+                txtTotalErmariaPriceWVat.EditValue = TotalErmaria
+            Else
+                Dim Price As Double
+                Price = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price")
+                Dim trm As Double = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "trm").ToString.Replace(".", ",")
+                Dim FinalPrice As Double = trm * Price
+                Price = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Price")
+
+                Dim Height As Double = GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "Height").ToString.Replace(".", ",")
+                PriceHeightY = GetPricePerCM(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "DoorTypeID").ToString)
+                Dim PriceH As Double = Height * PriceHeightY
+                GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "PriceHeight", PriceH)
+                FinalPrice = FinalPrice + PriceH
+
+                GridView4.SetRowCellValue(GridView4.FocusedRowHandle, "FinalPrice", FinalPrice)
+                GridView4.UpdateTotalSummary()
+                Dim TotalErmaria As Double = GridView3.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView4.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView4.Columns("FinalPrice").SummaryItem.SummaryValue +
+                                  GridView6.Columns("FinalPrice").SummaryItem.SummaryValue
+                txtTotalErmariaPriceWVat.EditValue = TotalErmaria
+
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
     End Sub
 End Class

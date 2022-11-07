@@ -2158,6 +2158,8 @@ Partial Public Class DMDataSet
         
         Private columntypeDescr As Global.System.Data.DataColumn
         
+        Private columnPricePerCM As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -2386,6 +2388,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PricePerCMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPricePerCM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2446,9 +2456,10 @@ Partial Public Class DMDataSet
                     ByVal modifiedOn As Date,  _
                     ByVal name As String,  _
                     ByVal type As Integer,  _
-                    ByVal typeDescr As String) As vw_DOOR_TYPE1Row
+                    ByVal typeDescr As String,  _
+                    ByVal PricePerCM As Decimal) As vw_DOOR_TYPE1Row
             Dim rowvw_DOOR_TYPE1Row As vw_DOOR_TYPE1Row = CType(Me.NewRow,vw_DOOR_TYPE1Row)
-            Dim columnValuesArray() As Object = New Object() {ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColorID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr}
+            Dim columnValuesArray() As Object = New Object() {ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColorID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr, PricePerCM}
             rowvw_DOOR_TYPE1Row.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_DOOR_TYPE1Row)
             Return rowvw_DOOR_TYPE1Row
@@ -2501,6 +2512,7 @@ Partial Public Class DMDataSet
             Me.columnname = MyBase.Columns("name")
             Me.columntype = MyBase.Columns("type")
             Me.columntypeDescr = MyBase.Columns("typeDescr")
+            Me.columnPricePerCM = MyBase.Columns("PricePerCM")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2554,6 +2566,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columntype)
             Me.columntypeDescr = New Global.System.Data.DataColumn("typeDescr", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columntypeDescr)
+            Me.columnPricePerCM = New Global.System.Data.DataColumn("PricePerCM", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPricePerCM)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnColorName.MaxLength = 250
             Me.columnCustomCode.MaxLength = 10
@@ -2570,6 +2584,7 @@ Partial Public Class DMDataSet
             Me.columnname.MaxLength = 250
             Me.columntypeDescr.ReadOnly = true
             Me.columntypeDescr.MaxLength = 6
+            Me.columnPricePerCM.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -9970,6 +9985,8 @@ Partial Public Class DMDataSet
         
         Private columnHeight2ndLine As Global.System.Data.DataColumn
         
+        Private columnPriceHeight As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -10102,6 +10119,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PriceHeightColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPriceHeight
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -10138,9 +10163,9 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddCCT_ORDERS_KITCHEN_KRow(ByVal ID As System.Guid, ByVal constrType As String, ByVal BoxColorID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal trm As Decimal, ByVal Price As Decimal, ByVal FinalPrice As Decimal, ByVal cctOrdersKitchenID As System.Guid, ByVal doorCatID As System.Guid, ByVal Shelves As String, ByVal Height As Decimal, ByVal Height2ndLine As Decimal) As CCT_ORDERS_KITCHEN_KRow
+        Public Overloads Function AddCCT_ORDERS_KITCHEN_KRow(ByVal ID As System.Guid, ByVal constrType As String, ByVal BoxColorID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal trm As Decimal, ByVal Price As Decimal, ByVal FinalPrice As Decimal, ByVal cctOrdersKitchenID As System.Guid, ByVal doorCatID As System.Guid, ByVal Shelves As String, ByVal Height As Decimal, ByVal Height2ndLine As Decimal, ByVal PriceHeight As Decimal) As CCT_ORDERS_KITCHEN_KRow
             Dim rowCCT_ORDERS_KITCHEN_KRow As CCT_ORDERS_KITCHEN_KRow = CType(Me.NewRow,CCT_ORDERS_KITCHEN_KRow)
-            Dim columnValuesArray() As Object = New Object() {ID, constrType, BoxColorID, DoorTypeID, trm, Price, FinalPrice, cctOrdersKitchenID, doorCatID, Shelves, Height, Height2ndLine}
+            Dim columnValuesArray() As Object = New Object() {ID, constrType, BoxColorID, DoorTypeID, trm, Price, FinalPrice, cctOrdersKitchenID, doorCatID, Shelves, Height, Height2ndLine, PriceHeight}
             rowCCT_ORDERS_KITCHEN_KRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCCT_ORDERS_KITCHEN_KRow)
             Return rowCCT_ORDERS_KITCHEN_KRow
@@ -10181,6 +10206,7 @@ Partial Public Class DMDataSet
             Me.columnShelves = MyBase.Columns("Shelves")
             Me.columnHeight = MyBase.Columns("Height")
             Me.columnHeight2ndLine = MyBase.Columns("Height2ndLine")
+            Me.columnPriceHeight = MyBase.Columns("PriceHeight")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10210,6 +10236,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnHeight)
             Me.columnHeight2ndLine = New Global.System.Data.DataColumn("Height2ndLine", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnHeight2ndLine)
+            Me.columnPriceHeight = New Global.System.Data.DataColumn("PriceHeight", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPriceHeight)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -10379,6 +10407,8 @@ Partial Public Class DMDataSet
         
         Private columnGolaColorID As Global.System.Data.DataColumn
         
+        Private columnPriceHeight As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -10511,6 +10541,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PriceHeightColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPriceHeight
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -10547,9 +10585,9 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function AddCCT_ORDERS_KITCHEN_YRow(ByVal ID As System.Guid, ByVal constrType As String, ByVal BoxColorID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal trm As Decimal, ByVal Price As Decimal, ByVal FinalPrice As Decimal, ByVal cctOrdersKitchenID As System.Guid, ByVal doorCatID As System.Guid, ByVal Shelves As String, ByVal Height As Decimal, ByVal GolaColorID As System.Guid) As CCT_ORDERS_KITCHEN_YRow
+        Public Overloads Function AddCCT_ORDERS_KITCHEN_YRow(ByVal ID As System.Guid, ByVal constrType As String, ByVal BoxColorID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal trm As Decimal, ByVal Price As Decimal, ByVal FinalPrice As Decimal, ByVal cctOrdersKitchenID As System.Guid, ByVal doorCatID As System.Guid, ByVal Shelves As String, ByVal Height As Decimal, ByVal GolaColorID As System.Guid, ByVal PriceHeight As Decimal) As CCT_ORDERS_KITCHEN_YRow
             Dim rowCCT_ORDERS_KITCHEN_YRow As CCT_ORDERS_KITCHEN_YRow = CType(Me.NewRow,CCT_ORDERS_KITCHEN_YRow)
-            Dim columnValuesArray() As Object = New Object() {ID, constrType, BoxColorID, DoorTypeID, trm, Price, FinalPrice, cctOrdersKitchenID, doorCatID, Shelves, Height, GolaColorID}
+            Dim columnValuesArray() As Object = New Object() {ID, constrType, BoxColorID, DoorTypeID, trm, Price, FinalPrice, cctOrdersKitchenID, doorCatID, Shelves, Height, GolaColorID, PriceHeight}
             rowCCT_ORDERS_KITCHEN_YRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowCCT_ORDERS_KITCHEN_YRow)
             Return rowCCT_ORDERS_KITCHEN_YRow
@@ -10590,6 +10628,7 @@ Partial Public Class DMDataSet
             Me.columnShelves = MyBase.Columns("Shelves")
             Me.columnHeight = MyBase.Columns("Height")
             Me.columnGolaColorID = MyBase.Columns("GolaColorID")
+            Me.columnPriceHeight = MyBase.Columns("PriceHeight")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -10619,6 +10658,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnHeight)
             Me.columnGolaColorID = New Global.System.Data.DataColumn("GolaColorID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnGolaColorID)
+            Me.columnPriceHeight = New Global.System.Data.DataColumn("PriceHeight", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPriceHeight)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -12646,6 +12687,17 @@ Partial Public Class DMDataSet
             End Get
             Set
                 Me(Me.tablevw_DOOR_TYPE1.typeDescrColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PricePerCM() As Decimal
+            Get
+                Return CType(Me(Me.tablevw_DOOR_TYPE1.PricePerCMColumn),Decimal)
+            End Get
+            Set
+                Me(Me.tablevw_DOOR_TYPE1.PricePerCMColumn) = value
             End Set
         End Property
         
@@ -19820,6 +19872,21 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PriceHeight() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_K.PriceHeightColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PriceHeight' in table 'CCT_ORDERS_KITCHEN_K' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_K.PriceHeightColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsconstrTypeNull() As Boolean
             Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_K.constrTypeColumn)
         End Function
@@ -19912,6 +19979,18 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetHeight2ndLineNull()
             Me(Me.tableCCT_ORDERS_KITCHEN_K.Height2ndLineColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPriceHeightNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_K.PriceHeightColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPriceHeightNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_K.PriceHeightColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -20096,6 +20175,21 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PriceHeight() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tableCCT_ORDERS_KITCHEN_Y.PriceHeightColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PriceHeight' in table 'CCT_ORDERS_KITCHEN_Y' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableCCT_ORDERS_KITCHEN_Y.PriceHeightColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsconstrTypeNull() As Boolean
             Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.constrTypeColumn)
         End Function
@@ -20188,6 +20282,18 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub SetGolaColorIDNull()
             Me(Me.tableCCT_ORDERS_KITCHEN_Y.GolaColorIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Function IsPriceHeightNull() As Boolean
+            Return Me.IsNull(Me.tableCCT_ORDERS_KITCHEN_Y.PriceHeightColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Sub SetPriceHeightNull()
+            Me(Me.tableCCT_ORDERS_KITCHEN_Y.PriceHeightColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -21602,6 +21708,7 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("name", "name")
             tableMapping.ColumnMappings.Add("type", "type")
             tableMapping.ColumnMappings.Add("typeDescr", "typeDescr")
+            tableMapping.ColumnMappings.Add("PricePerCM", "PricePerCM")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -21620,17 +21727,16 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, "& _ 
                 "comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColo"& _ 
-                "rID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_DO"& _ 
-                "OR_TYPE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY ca"& _ 
-                "t, dimName"
+                "rID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr, PricePerCM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "FROM   vw_DOOR_TYPE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086')"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY cat, dimName"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
             Me._commandCollection(1).CommandText = "SELECT ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, "& _ 
                 "comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColo"& _ 
-                "rID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_DO"& _ 
-                "OR_TYPE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086') and type=@ty"& _ 
-                "pe and doorColorID=@doorColorID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY cat, dimName"
+                "rID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr, PricePerCM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)& _ 
+                "FROM   vw_DOOR_TYPE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086') "& _ 
+                "and type=@type and doorColorID=@doorColorID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY cat, dimName"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@type", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "type", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@doorColorID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "doorColorID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -24259,6 +24365,7 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Shelves", "Shelves")
             tableMapping.ColumnMappings.Add("Height", "Height")
             tableMapping.ColumnMappings.Add("Height2ndLine", "Height2ndLine")
+            tableMapping.ColumnMappings.Add("PriceHeight", "PriceHeight")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -24275,14 +24382,15 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height,Height2ndLine, BoxCo"& _ 
-                "lorID, DoorTypeID, trm, Price, FinalPrice, Shelves"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORDERS_KITCHEN_K"
+            Me._commandCollection(0).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height, Height2ndLine, BoxC"& _ 
+                "olorID, DoorTypeID, trm, Price, FinalPrice, Shelves, PriceHeight"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORD"& _ 
+                "ERS_KITCHEN_K"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT BoxColorID, DoorTypeID, FinalPrice, Height, Height2ndLine, ID, Price, Shel"& _ 
-                "ves, cctOrdersKitchenID, constrType, doorCatID, trm FROM CCT_ORDERS_KITCHEN_K WH"& _ 
-                "ERE (cctOrdersKitchenID = @cctOrdersKitchenID)"
+            Me._commandCollection(1).CommandText = "SELECT BoxColorID, DoorTypeID, FinalPrice, Height, Height2ndLine, ID, Price, Pric"& _ 
+                "eHeight, Shelves, cctOrdersKitchenID, constrType, doorCatID, trm FROM CCT_ORDERS"& _ 
+                "_KITCHEN_K WHERE (cctOrdersKitchenID = @cctOrdersKitchenID)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cctOrdersKitchenID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cctOrdersKitchenID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -24454,6 +24562,7 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Shelves", "Shelves")
             tableMapping.ColumnMappings.Add("Height", "Height")
             tableMapping.ColumnMappings.Add("GolaColorID", "GolaColorID")
+            tableMapping.ColumnMappings.Add("PriceHeight", "PriceHeight")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -24470,14 +24579,15 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height,GolaColorID,BoxColor"& _ 
-                "ID, DoorTypeID, trm, Price, FinalPrice, Shelves"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORDERS_KITCHEN_Y"
+            Me._commandCollection(0).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height, GolaColorID, BoxCol"& _ 
+                "orID, DoorTypeID, trm, Price, FinalPrice, Shelves, PriceHeight"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORDER"& _ 
+                "S_KITCHEN_Y"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT ID, cctOrdersKitchenID, doorCatID, constrType, Height,GolaColorID,BoxColor"& _ 
-                "ID, DoorTypeID, trm, Price, FinalPrice, Shelves"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   CCT_ORDERS_KITCHEN_Y"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WH"& _ 
-                "ERE (cctOrdersKitchenID = @cctOrdersKitchenID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)
+            Me._commandCollection(1).CommandText = "SELECT BoxColorID, DoorTypeID, FinalPrice, GolaColorID, Height, ID, Price, PriceH"& _ 
+                "eight, Shelves, cctOrdersKitchenID, constrType, doorCatID, trm FROM CCT_ORDERS_K"& _ 
+                "ITCHEN_Y WHERE (cctOrdersKitchenID = @cctOrdersKitchenID)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cctOrdersKitchenID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cctOrdersKitchenID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

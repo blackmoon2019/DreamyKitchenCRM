@@ -8,7 +8,7 @@
   <Shapes>
     <Shape ID="DesignTable:DOOR_TYPE" ZOrder="19" X="70" Y="70" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:vw_DOOR_TYPE" ZOrder="17" X="479" Y="100" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
-    <Shape ID="DesignTable:vw_DOOR_TYPE1" ZOrder="5" X="898" Y="209" Height="516" Width="380" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
+    <Shape ID="DesignTable:vw_DOOR_TYPE1" ZOrder="2" X="898" Y="209" Height="516" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:vw_DOOR_TYPEPlainaYpsila" ZOrder="18" X="1374" Y="149" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:vw_DOOR_TYPEPlainaKremasta" ZOrder="13" X="1709" Y="185" Height="485" Width="422" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:vw_DOOR_TYPERafieresV" ZOrder="16" X="616" Y="829" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
@@ -21,10 +21,10 @@
     <Shape ID="DesignTable:vw_CONSTR_TYPE" ZOrder="9" X="425" Y="634" Height="175" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="100" />
     <Shape ID="DesignTable:vw_DOOR_TYPESpecialConstr" ZOrder="7" X="21" Y="579" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:vw_DOOR_TYPEPlainaKremasta2hsSeiras" ZOrder="6" X="2441" Y="865" Height="485" Width="379" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
-    <Shape ID="DesignTable:CCT_ORDERS_KITCHEN_V" ZOrder="4" X="195" Y="978" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="379" />
-    <Shape ID="DesignTable:CCT_ORDERS_KITCHEN_K" ZOrder="3" X="542" Y="1303" Height="516" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
-    <Shape ID="DesignTable:CCT_ORDERS_KITCHEN_Y" ZOrder="2" X="959" Y="1338" Height="516" Width="334" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
-    <Shape ID="DesignTable:CCT_ORDERS_KITCHEN_B" ZOrder="1" X="1558" Y="1416" Height="423" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="317" />
+    <Shape ID="DesignTable:CCT_ORDERS_KITCHEN_V" ZOrder="5" X="195" Y="978" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="379" />
+    <Shape ID="DesignTable:CCT_ORDERS_KITCHEN_K" ZOrder="1" X="542" Y="1303" Height="516" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
+    <Shape ID="DesignTable:CCT_ORDERS_KITCHEN_Y" ZOrder="4" X="959" Y="1338" Height="516" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
+    <Shape ID="DesignTable:CCT_ORDERS_KITCHEN_B" ZOrder="3" X="1558" Y="1416" Height="423" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="317" />
   </Shapes>
   <Connectors />
 </DiagramLayout>

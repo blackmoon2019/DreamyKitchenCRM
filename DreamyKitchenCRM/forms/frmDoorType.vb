@@ -220,4 +220,19 @@ Public Class frmDoorType
             Case 3 : cboBaseCatErm.EditValue = Nothing
         End Select
     End Sub
+
+    Private Sub cboDoorCat_EditValueChanged(sender As Object, e As EventArgs) Handles cboDoorCat.EditValueChanged
+        If cboDoorCat.EditValue.ToString.ToUpper = "53582708-BB28-4714-99AC-736AEF1D3086" Then txttxtDoorTypeHeighPrice.Enabled = True Else txttxtDoorTypeHeighPrice.Enabled = False : txttxtDoorTypeHeighPrice.EditValue = 0
+    End Sub
+
+    Private Sub txtDoorTypePrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtDoorTypePrice.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        Dim Price As Double
+        If cboDoorCat.EditValue.ToString.ToUpper = "53582708-BB28-4714-99AC-736AEF1D3086" Then
+            Price = txtDoorTypePrice.EditValue
+            txttxtDoorTypeHeighPrice.EditValue = Price / 72
+        Else
+            txttxtDoorTypeHeighPrice.EditValue = 0
+        End If
+    End Sub
 End Class

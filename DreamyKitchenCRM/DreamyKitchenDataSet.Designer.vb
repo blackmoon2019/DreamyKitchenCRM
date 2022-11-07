@@ -4721,6 +4721,8 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columndimName As Global.System.Data.DataColumn
         
+        Private columnPricePerCM As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Sub New()
@@ -4821,6 +4823,14 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public ReadOnly Property PricePerCMColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnPricePerCM
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -4857,9 +4867,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
-        Public Overloads Function Addvw_DOOR_TYPERow(ByVal ID As System.Guid, ByVal name As String, ByVal Price As Decimal, ByVal doorColorID As System.Guid, ByVal type As Integer, ByVal baseCatErmID As System.Guid, ByVal doorCatID As System.Guid, ByVal dimName As String) As vw_DOOR_TYPERow
+        Public Overloads Function Addvw_DOOR_TYPERow(ByVal ID As System.Guid, ByVal name As String, ByVal Price As Decimal, ByVal doorColorID As System.Guid, ByVal type As Integer, ByVal baseCatErmID As System.Guid, ByVal doorCatID As System.Guid, ByVal dimName As String, ByVal PricePerCM As Decimal) As vw_DOOR_TYPERow
             Dim rowvw_DOOR_TYPERow As vw_DOOR_TYPERow = CType(Me.NewRow,vw_DOOR_TYPERow)
-            Dim columnValuesArray() As Object = New Object() {ID, name, Price, doorColorID, type, baseCatErmID, doorCatID, dimName}
+            Dim columnValuesArray() As Object = New Object() {ID, name, Price, doorColorID, type, baseCatErmID, doorCatID, dimName, PricePerCM}
             rowvw_DOOR_TYPERow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_DOOR_TYPERow)
             Return rowvw_DOOR_TYPERow
@@ -4896,6 +4906,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnbaseCatErmID = MyBase.Columns("baseCatErmID")
             Me.columndoorCatID = MyBase.Columns("doorCatID")
             Me.columndimName = MyBase.Columns("dimName")
+            Me.columnPricePerCM = MyBase.Columns("PricePerCM")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4917,6 +4928,8 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columndoorCatID)
             Me.columndimName = New Global.System.Data.DataColumn("dimName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndimName)
+            Me.columnPricePerCM = New Global.System.Data.DataColumn("PricePerCM", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnPricePerCM)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -4924,6 +4937,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnname.MaxLength = 250
             Me.columndoorCatID.AllowDBNull = false
             Me.columndimName.MaxLength = 50
+            Me.columnPricePerCM.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -24064,6 +24078,17 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
+        Public Property PricePerCM() As Decimal
+            Get
+                Return CType(Me(Me.tablevw_DOOR_TYPE.PricePerCMColumn),Decimal)
+            End Get
+            Set
+                Me(Me.tablevw_DOOR_TYPE.PricePerCMColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")>  _
         Public Function IsPriceNull() As Boolean
             Return Me.IsNull(Me.tablevw_DOOR_TYPE.PriceColumn)
         End Function
@@ -37912,6 +37937,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("baseCatErmID", "baseCatErmID")
             tableMapping.ColumnMappings.Add("doorCatID", "doorCatID")
             tableMapping.ColumnMappings.Add("dimName", "dimName")
+            tableMapping.ColumnMappings.Add("PricePerCM", "PricePerCM")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -37928,8 +37954,8 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, name, Price, doorColorID, type, baseCatErmID, doorCatID, dimName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM"& _ 
-                "   vw_DOOR_TYPE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY name"
+            Me._commandCollection(0).CommandText = "SELECT ID, name, Price, doorColorID, type, baseCatErmID, doorCatID, dimName, Pric"& _ 
+                "ePerCM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_DOOR_TYPE"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY name"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
