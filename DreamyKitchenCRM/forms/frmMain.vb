@@ -975,5 +975,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBEMP_P_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEMP_P.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Παρουσιολόγιο"
+        form.DataTable = "vw_EMP_P"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

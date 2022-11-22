@@ -251,11 +251,12 @@ Public Class frmBUY
     End Sub
     Private Function CalculateNetAmount() As Double
         Dim DevicesBuy As Double, bathroomFurn As Double, closet As Double, general As Double, materials As Double, kitchen As Double, Total As Double
-        Dim Bench As Double, transportation As Double, glasses As Double
+        Dim Bench As Double, transportation As Double, glasses As Double, measurement As Double
         DevicesBuy = DbnullToZero(txtDevicesBuy) : bathroomFurn = DbnullToZero(txtbathroomFurn) : closet = DbnullToZero(txtcloset)
         transportation = DbnullToZero(txttransportation) : Bench = DbnullToZero(txtbench) : glasses = DbnullToZero(txtglasses)
         general = DbnullToZero(txtgeneral) : materials = DbnullToZero(txtmaterials) : kitchen = DbnullToZero(txtkitchen)
-        Total = DevicesBuy + bathroomFurn + closet + general + materials + kitchen + transportation + Bench + glasses
+        measurement = DbnullToZero(txtmeasurement)
+        Total = DevicesBuy + bathroomFurn + closet + general + materials + kitchen + transportation + Bench + glasses + measurement
         If chkCredit.Checked = True Then Total = Total * -1 Else Total = Math.Abs(Total)
         Return Total
     End Function
@@ -304,6 +305,10 @@ Public Class frmBUY
     End Sub
 
     Private Sub txtbench_EditValueChanged(sender As Object, e As EventArgs) Handles txtbench.EditValueChanged
+        txtnetAmount.EditValue = CalculateNetAmount()
+    End Sub
+
+    Private Sub txtmeasurement_EditValueChanged(sender As Object, e As EventArgs) Handles txtmeasurement.EditValueChanged
         txtnetAmount.EditValue = CalculateNetAmount()
     End Sub
 End Class
