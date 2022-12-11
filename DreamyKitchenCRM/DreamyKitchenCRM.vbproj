@@ -549,6 +549,12 @@
     <Compile Include="forms\frmSUP.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmSupInvoicesPayments.Designer.vb">
+      <DependentUpon>frmSupInvoicesPayments.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmSupInvoicesPayments.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmSUPKAL.Designer.vb">
       <DependentUpon>frmSUPKAL.vb</DependentUpon>
     </Compile>
@@ -950,6 +956,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSUP.resx">
       <DependentUpon>frmSUP.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmSupInvoicesPayments.resx">
+      <DependentUpon>frmSupInvoicesPayments.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmSUPKAL.resx">
       <DependentUpon>frmSUPKAL.vb</DependentUpon>

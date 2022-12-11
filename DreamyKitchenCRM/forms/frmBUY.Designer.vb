@@ -35,8 +35,6 @@ Partial Class frmBUY
         Me.txtnetAmount = New DevExpress.XtraEditors.TextEdit()
         Me.txtvatAmount = New DevExpress.XtraEditors.TextEdit()
         Me.cboTRANSH = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.txtinvoiceNumber = New DevExpress.XtraEditors.TextEdit()
         Me.txtgeneral = New DevExpress.XtraEditors.TextEdit()
         Me.txtcloset = New DevExpress.XtraEditors.TextEdit()
@@ -82,6 +80,8 @@ Partial Class frmBUY
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
+        Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Vw_PAYTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_PAYTableAdapter()
         Me.VwPAYBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter()
@@ -100,8 +100,6 @@ Partial Class frmBUY
         CType(Me.txtnetAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtvatAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtinvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtgeneral.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtcloset.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -147,6 +145,8 @@ Partial Class frmBUY
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwPAYBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -196,7 +196,7 @@ Partial Class frmBUY
         Me.chkCredit.Properties.Caption = "Πιστωτικό"
         Me.chkCredit.Properties.ValueChecked = CType(1, Byte)
         Me.chkCredit.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkCredit.Size = New System.Drawing.Size(331, 35)
+        Me.chkCredit.Size = New System.Drawing.Size(501, 35)
         Me.chkCredit.StyleController = Me.LayoutControl1
         Me.chkCredit.TabIndex = 44
         Me.chkCredit.Tag = "isCredit,0,1,2"
@@ -271,13 +271,13 @@ Partial Class frmBUY
         'dtBuy
         '
         Me.dtBuy.EditValue = Nothing
-        Me.dtBuy.Location = New System.Drawing.Point(564, 96)
+        Me.dtBuy.Location = New System.Drawing.Point(487, 96)
         Me.dtBuy.Margin = New System.Windows.Forms.Padding(5)
         Me.dtBuy.Name = "dtBuy"
         Me.dtBuy.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtBuy.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtBuy.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtBuy.Size = New System.Drawing.Size(180, 38)
+        Me.dtBuy.Size = New System.Drawing.Size(87, 38)
         Me.dtBuy.StyleController = Me.LayoutControl1
         Me.dtBuy.TabIndex = 32
         Me.dtBuy.Tag = "dtBuy,0,1,2"
@@ -381,22 +381,12 @@ Partial Class frmBUY
         Me.cboTRANSH.TabIndex = 6
         Me.cboTRANSH.Tag = "transhID,0,1,2"
         '
-        'VwTRANSHBindingSource
-        '
-        Me.VwTRANSHBindingSource.DataMember = "vw_TRANSH"
-        Me.VwTRANSHBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'txtinvoiceNumber
         '
         Me.txtinvoiceNumber.Location = New System.Drawing.Point(204, 96)
         Me.txtinvoiceNumber.Margin = New System.Windows.Forms.Padding(5)
         Me.txtinvoiceNumber.Name = "txtinvoiceNumber"
-        Me.txtinvoiceNumber.Size = New System.Drawing.Size(164, 38)
+        Me.txtinvoiceNumber.Size = New System.Drawing.Size(87, 38)
         Me.txtinvoiceNumber.StyleController = Me.LayoutControl1
         Me.txtinvoiceNumber.TabIndex = 22
         Me.txtinvoiceNumber.Tag = "invoiceNumber,0,1,2"
@@ -698,9 +688,9 @@ Partial Class frmBUY
         Me.LayoutControlItem2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem2.CustomizationFormText = "Ημερ/νία Ολοκλήρωσης"
         Me.LayoutControlItem2.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem2.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(360, 84)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(283, 84)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(376, 42)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(283, 42)
         Me.LayoutControlItem2.Tag = "1"
         Me.LayoutControlItem2.Text = "Ημερ/νία Τιμολογίου"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(180, 23)
@@ -728,7 +718,7 @@ Partial Class frmBUY
         Me.LayoutControlItem12.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 84)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(360, 42)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(283, 42)
         Me.LayoutControlItem12.Tag = "1"
         Me.LayoutControlItem12.Text = "Τιμολόγιο"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(180, 23)
@@ -923,9 +913,9 @@ Partial Class frmBUY
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me.chkCredit
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(736, 84)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(566, 84)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(335, 42)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(505, 42)
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem15.TextVisible = False
         '
@@ -985,6 +975,18 @@ Partial Class frmBUY
         Me.LayoutControlItem23.Text = "Πάγκοι"
         Me.LayoutControlItem23.TextSize = New System.Drawing.Size(180, 23)
         '
+        'LayoutControlItem24
+        '
+        Me.LayoutControlItem24.Control = Me.txtmeasurement
+        Me.LayoutControlItem24.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem24.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem24.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem24.Location = New System.Drawing.Point(0, 126)
+        Me.LayoutControlItem24.Name = "LayoutControlItem24"
+        Me.LayoutControlItem24.Size = New System.Drawing.Size(511, 126)
+        Me.LayoutControlItem24.Text = "Επιμέτρηση"
+        Me.LayoutControlItem24.TextSize = New System.Drawing.Size(180, 23)
+        '
         'Vw_PAYTableAdapter
         '
         Me.Vw_PAYTableAdapter.ClearBeforeFill = True
@@ -1026,8 +1028,6 @@ Partial Class frmBUY
         CType(Me.txtnetAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtvatAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtinvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtgeneral.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtcloset.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1073,6 +1073,8 @@ Partial Class frmBUY
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwPAYBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)

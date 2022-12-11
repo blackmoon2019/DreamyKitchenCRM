@@ -360,6 +360,17 @@ Public Class frmTransactions
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
                     dtPay.EditValue = DateTime.Now
                     txtCode1.Text = DBQ.GetNextId("TRANSD")
+
+                    sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(txtBal.EditValue.ToString, True) &
+                          " WHERE ID = " & toSQLValueS(sID)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    If CalledFromCtrl = False Then
+                        Dim form As frmScroller = Frm
+                        form.DataTable = "vw_TRANSH"
+                        form.LoadRecords("vw_TRANSD")
+                    End If
                 End If
             End If
         Catch ex As Exception
@@ -394,6 +405,17 @@ Public Class frmTransactions
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
+
+            sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(txtBal.EditValue.ToString, True) &
+                  " WHERE ID = " & toSQLValueS(sID)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            If CalledFromCtrl = False Then
+                Dim form As frmScroller = Frm
+                form.DataTable = "vw_TRANSH"
+                form.LoadRecords("vw_TRANSD")
+            End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -513,16 +535,7 @@ Public Class frmTransactions
             txtBal.EditValue = GridView1.Columns("amt").SummaryItem.SummaryValue
             If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
             txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
-            sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(txtBal.EditValue.ToString, True) &
-                           " WHERE ID = " & toSQLValueS(sID)
-            Using oCmd As New SqlCommand(sSQL, CNDB)
-                oCmd.ExecuteNonQuery()
-            End Using
-            If CalledFromCtrl = False Then
-                Dim form As frmScroller = Frm
-                form.DataTable = "vw_TRANSH"
-                form.LoadRecords("vw_TRANSD")
-            End If
+
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

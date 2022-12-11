@@ -874,6 +874,23 @@ Public Class frmScroller
     Private Sub BarRefresh_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarRefresh.ItemClick
         LoadRecords()
     End Sub
+    Private Sub EditRecordDetail()
+        If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID") Is Nothing Then Exit Sub
+        Select Case sDataDetail
+            Case "vw_SUP_PAYMENTS_D"
+                Dim frmSUPKal As frmSUPKal = New frmSUPKal()
+                frmSUPKal.Text = "Πληρωμές Παραστατικών Προμηθευτών"
+                frmSUPKal.ID = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "supPaymentHID").ToString
+                frmSUPKal.MdiParent = frmMain
+                frmSUPKal.Mode = FormMode.EditRecord
+                frmSUPKal.Scroller = GridView2
+                frmSUPKal.FormScroller = Me
+                frmSUPKal.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSUPKal), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmSUPKal.Show()
+
+        End Select
+    End Sub
     'Επεξεργασία Εγγραφής
     Private Sub EditRecord()
         Dim frmGen As frmGen = New frmGen()
@@ -3061,5 +3078,7 @@ Public Class frmScroller
         End If
     End Sub
 
-
+    Private Sub GridView2_DoubleClick(sender As Object, e As EventArgs) Handles GridView2.DoubleClick
+        If GridView2.IsGroupRow(GridView2.FocusedRowHandle) Then Exit Sub Else EditRecordDetail()
+    End Sub
 End Class

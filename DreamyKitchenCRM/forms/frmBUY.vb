@@ -78,6 +78,15 @@ Public Class frmBUY
 
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    If Mode = FormMode.NewRecord Then
+                        sSQL = "INSERT INTO SUP_PAYMENTS_P (ID,BUYID,AMT) VALUES (NEWID()," & toSQLValueS(sID) & "," & toSQLValue(txtvatAmount, True) & ")"
+                    Else
+                        sSQL = "UPDATE SUP_PAYMENTS_P SET AMT = " & toSQLValue(txtvatAmount, True) & " WHERE BUYID = " & toSQLValueS(sID)
+                    End If
+                    'Εκτέλεση QUERY
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
                     'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
                     Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
@@ -93,11 +102,11 @@ Public Class frmBUY
                         End Using
                     End If
                     If Mode = FormMode.NewRecord Then
-                            Cls.ClearCtrls(LayoutControl1)
-                            txtCode.Text = DBQ.GetNextId("BUY")
-                        End If
+                        Cls.ClearCtrls(LayoutControl1)
+                        txtCode.Text = DBQ.GetNextId("BUY")
                     End If
                 End If
+            End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

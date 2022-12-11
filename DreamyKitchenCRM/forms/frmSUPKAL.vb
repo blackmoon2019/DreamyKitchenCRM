@@ -116,11 +116,11 @@ Public Class frmSUPKal
 
                 If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-                If Mode = FormMode.NewRecord Then
-                    Cls.ClearCtrls(LayoutControl1)
-                    txtCode.Text = DBQ.GetNextId("SUP_PAYMENTS_H")
+                    If Mode = FormMode.NewRecord Then
+                        Cls.ClearCtrls(LayoutControl1)
+                        txtCode.Text = DBQ.GetNextId("SUP_PAYMENTS_H")
+                    End If
                 End If
-            End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
