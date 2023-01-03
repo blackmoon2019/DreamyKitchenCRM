@@ -65,8 +65,6 @@ Public Class frmBench
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_BENCH where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
-        My.Settings.frmDoorType = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         txtCustomCode.Select()
 

@@ -69,8 +69,6 @@ Public Class frmInstEllipse
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_INST_ELLIPSE where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
-        My.Settings.frmInstEllipse = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
     End Sub

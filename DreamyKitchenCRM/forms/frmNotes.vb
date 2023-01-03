@@ -111,14 +111,8 @@ Public Class frmNotes
                 C.VisibleIndex = 0
                 GridView1.Columns.Add(C)
         End Select
-        'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_F_def.xml") = False Then
-            GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_F_def.xml", OptionsLayoutBase.FullLayout)
-        End If
-        GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_F_def.xml", OptionsLayoutBase.FullLayout)
+        LoadForms.RestoreLayoutFromXml(GridView1, "vw_NOTES_F_def.xml")
         Me.CenterToScreen()
-        My.Settings.frmCustomers = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
     Private Sub DeleteRecord()
@@ -133,7 +127,7 @@ Public Class frmNotes
                 End Using
                 XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,notesID,filename,comefrom,createdon,realname From vw_NOTES_F where notesID = '" & sID & "'")
-                GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_F_def.xml", OptionsLayoutBase.FullLayout)
+                LoadForms.RestoreLayoutFromXml(GridView1, "vw_NOTES_F_def.xml")
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -193,7 +187,7 @@ Public Class frmNotes
                 If txtFileNames.Text <> "" Then
                     sResult = DBQ.InsertDataFiles(XtraOpenFileDialog1, sGuid, "NOTES_F")
                     LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,NOTESID,files,filename,comefrom,createdon,realname From vw_NOTES_F where NOTESID = '" & sGuid & "'")
-                    GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_NOTES_F_def.xml", OptionsLayoutBase.FullLayout)
+                    LoadForms.RestoreLayoutFromXml(GridView1, "vw_NOTES_F_def.xml")
                 End If
                 txtCode.Text = DBQ.GetNextId("NOTES")
                 If Frm.Name = "frmScroller" Then
@@ -332,8 +326,8 @@ Public Class frmNotes
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\NOTES_F_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
-                GridView1.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\NOTES_F_def.xml", OptionsLayoutBase.FullLayout)
+                If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\NOTES_F_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
+                GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\NOTES_F_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
 
@@ -342,8 +336,8 @@ Public Class frmNotes
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
         If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\NOTES_F_def.xml") = True Then
-                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\NOTES_F_def.xml", Application.StartupPath & "\DSGNS\DEF\NOTES_F_def.xml", True)
+            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\NOTES_F_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\NOTES_F_def.xml", Application.StartupPath & "\DSGNS\DEF\NOTES_F_def.xml", True)
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\NOTES_F_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If

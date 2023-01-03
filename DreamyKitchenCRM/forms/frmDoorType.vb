@@ -63,8 +63,6 @@ Public Class frmDoorType
                 LoadForms.LoadForm(LayoutControl1, "Select * from DOOR_TYPE where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
-        My.Settings.frmDoorType = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
 

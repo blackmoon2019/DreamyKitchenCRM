@@ -449,10 +449,7 @@ Public Class frmCUSOfferKitchen
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
             Case 1
-                If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml") = True Then
-                    GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml", OptionsLayoutBase.FullLayout)
-                End If
-
+                LoadForms.RestoreLayoutFromXml(GridView2, "CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml")
                 GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
                 GridView2.Columns.Item("checked").OptionsColumn.AllowEdit = True : GridView2.Columns.Item("checked").OptionsColumn.ReadOnly = False
 

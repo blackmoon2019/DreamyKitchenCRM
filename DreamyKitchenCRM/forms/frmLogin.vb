@@ -9,11 +9,11 @@ Public Class frmLogin
     Private FillCbo As New FillCombos
     Private Sub frmLogin_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim CN As New CN
-        'My.Settings.Upgrade()
-        'My.Settings.Save()
         'MultipleActiveResultSets=True
         ProgProps.ProgTitle = "DreamyKitchenCRM"
-        chkRememberUN.EditValue = My.Settings.UNSave
+        UserProps.UNSave = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "UNSave", "2")
+        If UserProps.UNSave Is Nothing Then UserProps.UNSave = 2
+        chkRememberUN.Checked = UserProps.UNSave
         If CNDB.ConnectionString.ToString = "" Then
             If CN.OpenConnection = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα κατά την σύνδεση στο Dreamy Kitchen CRM", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
 
@@ -22,10 +22,11 @@ Public Class frmLogin
 
             End If
         End If
-        FillCbo.USR(txtUN)
-        If My.Settings.UNSave = True Then txtUN.EditValue = System.Guid.Parse(My.Settings.UN.ToString)
+        FillCbo.USR(cboUN)
+        UserProps.UN = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "UN", System.Guid.Empty.ToString)
+        If UserProps.UNSave = "1" Then cboUN.EditValue = System.Guid.Parse(UserProps.UN)
         If Debugger.IsAttached Then
-            txtUN.EditValue = System.Guid.Parse("E9CEFD11-47C0-4796-A46B-BC41C4C3606B")
+            cboUN.EditValue = System.Guid.Parse("E9CEFD11-47C0-4796-A46B-BC41C4C3606B")
             txtPWD.Text = "1"
             cmdLogin.Select()
         Else
@@ -40,7 +41,7 @@ Public Class frmLogin
         Try
 
             sSQL = "select Realname,code,ID,M_UN,M_pwd,server,port,ssl,empID from vw_USR 
-                where UN= '" & txtUN.Text & "' and pwd = '" & txtPWD.Text & "'"
+                where UN= '" & cboUN.Text & "' and pwd = '" & txtPWD.Text & "'"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
@@ -69,20 +70,34 @@ Public Class frmLogin
                     'ΦΠΑ Προγράμματος
                     Prog_Prop.GetProgvat()
 
+                    'Δημιουργία Κλειδιών
+
+                    If Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\DreamyKitchen") Is Nothing Then My.Computer.Registry.CurrentUser.CreateSubKey("SOFTWARE\\DreamyKitchen")
+                    ProgProps.ServerViewsPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "SERVERVIEWS", "")
+                    ProgProps.ServerPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "SERVER_PATH", "")
+                    ProgProps.Records = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "Records", 0)
+                    UserProps.UNSave = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "UNSave", "2")
+
+                    If ProgProps.ServerPath = "" Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "SERVER_PATH", "\\10.10.5.7\TempCrm\")
+                    If ProgProps.ServerViewsPath = "" Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "SERVERVIEWS", "\\10.10.5.7\CrmViews\")
+                    If ProgProps.Records = 0 Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "Records", "1000")
+                    If chkRememberUN.CheckState = CheckState.Checked Then
+                        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "UNSave", "1")
+                    Else
+                        My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "UNSave", "0")
+                    End If
+
+                    My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "UN", cboUN.EditValue.ToString) : UserProps.UN = cboUN.EditValue.ToString
+
+
+
                     'Διαδρομή TEMP FOLDER για ανοιγμα αρχείων
                     If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\TEMP\") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\TEMP\")
                     If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\TEMP\Pictures") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\TEMP\Pictures")
                     ProgProps.TempFolderPath = Application.StartupPath & "\TEMP\"
                     ProgProps.TempPicturesFolderPath = Application.StartupPath & "\TEMP\Pictures\"
                     XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    If chkRememberUN.EditValue = True Then
-                        My.Settings.UNSave = True
-                        My.Settings.UN = txtUN.EditValue
-                        My.Settings.UN = txtUN.EditValue
-                        My.Settings.Save()
-                    End If
                 End If
-                UserProps.ServerViewsPath = My.Settings.SERVERVIEWS
                 frmMain.Show()
                 Me.Close()
                 frmCalendar.MdiParent = frmMain
@@ -98,7 +113,7 @@ Public Class frmLogin
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Sub txtUN_KeyDown(sender As Object, e As KeyEventArgs) Handles txtUN.KeyDown
+    Private Sub txtUN_KeyDown(sender As Object, e As KeyEventArgs) Handles cboUN.KeyDown
         If e.KeyCode = Keys.Enter Then txtPWD.Select()
     End Sub
 
@@ -107,10 +122,12 @@ Public Class frmLogin
     End Sub
 
     Private Sub chkRememberUN_CheckedChanged(sender As Object, e As EventArgs) Handles chkRememberUN.CheckedChanged
-        My.Settings.UNSave = chkRememberUN.EditValue
-        If My.Settings.UNSave = False Then
-            My.Settings.UN = System.Guid.Parse("00000000-0000-0000-0000-000000000000")
-            My.Settings.Save()
+        If chkRememberUN.Checked = False Then
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "UNSave", "0")
+            UserProps.UNSave = "0"
+        Else
+            My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "UNSave", "1")
+            UserProps.UNSave = "1"
         End If
     End Sub
 

@@ -17,7 +17,7 @@ Public Class ScanToPDF
                 'Scanner = CD.ShowSelectDevice(WIA.WiaDeviceType.ScannerDeviceType, False, False)
                 Dim imagefile As ImageFile = CD.ShowAcquireImage(DeviceType:=WiaDeviceType.ScannerDeviceType, Intent:=WiaImageIntent.ColorIntent, Bias:=WiaImageBias.MinimizeSize,
                                                     FormatID:=WIA.FormatID.wiaFormatJPEG, AlwaysSelectDevice:=False, UseCommonUI:=True, CancelError:=False)
-                Dim sPath As String = My.Settings.SERVER_PATH & "tmpscan" & i & ".jpg"
+                Dim sPath As String = ProgProps.ServerPath & "tmpscan" & i & ".jpg"
                 If (imagefile IsNot Nothing) Then
                     Dim v As Vector = imagefile.FileData
                     Dim bytes As Byte() = v.BinaryData()
@@ -37,38 +37,38 @@ Public Class ScanToPDF
             Next i
             ' Dim result = XtraInputBox.Show("Πληκτρολογήστε το όνομα του αρχείου", "Όνομα Αρχείου", "Έγγραφο")
             Dim args As New XtraInputBoxArgs()
-                ' Specify settings.
-                args.Caption = "Πληκτρολογήστε το όνομα του αρχείου"
-                args.Prompt = "Όνομα Αρχείου"
-                args.DefaultButtonIndex = 0
-                ' Initialize a new DateEdit instance.
-                Dim editor As New DevExpress.XtraEditors.LookUpEdit()
-                ' Specify settings.
-                editor.Properties.DataSource = BNDSource
-                editor.Properties.DisplayMember = "name"
-                editor.Properties.ValueMember = "name"
-                editor.Properties.NullValuePrompt = ""
-                editor.Properties.NullText = ""
+            ' Specify settings.
+            args.Caption = "Πληκτρολογήστε το όνομα του αρχείου"
+            args.Prompt = "Όνομα Αρχείου"
+            args.DefaultButtonIndex = 0
+            ' Initialize a new DateEdit instance.
+            Dim editor As New DevExpress.XtraEditors.LookUpEdit()
+            ' Specify settings.
+            editor.Properties.DataSource = BNDSource
+            editor.Properties.DisplayMember = "name"
+            editor.Properties.ValueMember = "name"
+            editor.Properties.NullValuePrompt = ""
+            editor.Properties.NullText = ""
 
-                ' Assign the editor to the input box settings.
-                args.Editor = editor
-                ' Specify the editor's default value.
-                Dim result = XtraInputBox.Show(args)
+            ' Assign the editor to the input box settings.
+            args.Editor = editor
+            ' Specify the editor's default value.
+            Dim result = XtraInputBox.Show(args)
 
-                If result = "" Then
-                    CD = Nothing
-                    oPDF = Nothing
-                    Return False
-                End If
-                'Dim oPDF As New Document()
+            If result = "" Then
+                CD = Nothing
+                oPDF = Nothing
+                Return False
+            End If
+            'Dim oPDF As New Document()
 
-                Dim pdfFILE As String = My.Settings.SERVER_PATH & result & ".pdf"
-                sFilename = My.Settings.SERVER_PATH & result & ".pdf"
-                Dim oPDfWriter As PdfWriter = PdfWriter.GetInstance(oPDF, New FileStream(pdfFILE, FileMode.Create))
+            Dim pdfFILE As String = ProgProps.ServerPath & result & ".pdf"
+            sFilename = ProgProps.ServerPath & result & ".pdf"
+            Dim oPDfWriter As PdfWriter = PdfWriter.GetInstance(oPDF, New FileStream(pdfFILE, FileMode.Create))
 
             oPDF.Open()
             For i = 1 To sPages
-                Dim myImage As Image = Image.GetInstance(My.Settings.SERVER_PATH & "tmpscan" & i & ".jpg")
+                Dim myImage As Image = Image.GetInstance(ProgProps.ServerPath & "tmpscan" & i & ".jpg")
                 myImage.ScaleToFit(PageSize.A4)
                 myImage.Alignment = Element.ALIGN_CENTER
                 oPDF.Add(myImage)

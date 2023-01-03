@@ -1,6 +1,7 @@
 ﻿Imports System.ComponentModel
 Imports System.Data.SqlClient
 Imports System.Text
+Imports DevExpress.PivotGrid.QueryMode
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraBars
@@ -18,6 +19,7 @@ Imports DevExpress.XtraScheduler.Services
 
 Public Class frmCalendarInst
     Private Calendar As New InitializeCalendar
+    Private LoadForms As New FormLoader
     Private Sub frmCalendarInst_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SER' table. You can move, or remove it, as needed.
         Me.Vw_SERTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SER)
@@ -44,11 +46,9 @@ Public Class frmCalendarInst
             PanelResults.Top = (PanelResults.Parent.Height - PanelResults.Height) / 2
 
             Me.DreamyKitchenAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
-
             SchedulerControl1.Start = Now.Date
 
-
-            If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\Inst.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\Inst.xml", OptionsLayoutBase.FullLayout)
+            LoadForms.RestoreLayoutFromXml(GridView1, "Inst.xml")
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

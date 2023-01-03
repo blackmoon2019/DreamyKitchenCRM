@@ -66,10 +66,8 @@ Public Class frmMain
         Select Case XtraTabbedMdiManager1.ActiveFloatForm.Name
             Case "frmUsers"
                 XtraTabbedMdiManager1.ActiveFloatForm.Width = 489 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 166
-                XtraTabbedMdiManager1.ActiveFloatForm.Location = My.Settings.frmUsers
             Case "frmMailSettings"
                 XtraTabbedMdiManager1.ActiveFloatForm.Width = 520 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 136
-                XtraTabbedMdiManager1.ActiveFloatForm.Location = My.Settings.frmUsers
             Case "frmCalendar"
                 XtraTabbedMdiManager1.SelectedPage.ShowCloseButton = DefaultBoolean.False
         End Select

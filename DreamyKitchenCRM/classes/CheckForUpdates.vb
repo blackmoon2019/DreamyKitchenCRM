@@ -26,7 +26,7 @@ Public Class CheckForUpdates
                     If sdr.IsDBNull(sdr.GetOrdinal("ExeVer")) = False Then sExeVer = sdr.GetString(sdr.GetOrdinal("ExeVer"))
                     If sdr.IsDBNull(sdr.GetOrdinal("DbVer")) = False Then sDbVer = sdr.GetString(sdr.GetOrdinal("DbVer"))
                     If sdr.IsDBNull(sdr.GetOrdinal("UpdatePath")) = False Then UpdatePath = sdr.GetString(sdr.GetOrdinal("UpdatePath"))
-                    'If My.Settings.UNSave = True Then My.Settings.UN = txtUN.Text : My.Settings.Save()
+
                     Dim version1 = New Version(My.Application.Info.Version.ToString)
                     Dim version2 = New Version(sExeVer)
                     If version1.CompareTo(version2) < 0 Then
@@ -34,18 +34,15 @@ Public Class CheckForUpdates
                         XtraMessageBox.Show("Βρέθηκε νέα έκδοση του προγράμματος " & sExeVer & "." & vbCrLf &
                                             "Θα πραγματοποιηθεί έξοδος του προγράμματος και έναρξη της αναβάθμισης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                         sdr.Close()
-                        ' Shell(Application.StartupPath & "\Updater\PriamosUpdate.exe")
+
                         Dim pHelp As New ProcessStartInfo
                         pHelp.WorkingDirectory = Application.StartupPath & "\Updater"
                         pHelp.FileName = "DreamyKitchenUpdater.exe"
-                        pHelp.Arguments = My.Settings.ExeVer & "," & UpdatePath & "," & Application.StartupPath & "," & sExeVer
+                        pHelp.Arguments = version1.ToString & "," & UpdatePath & "," & Application.StartupPath & "," & sExeVer
                         pHelp.UseShellExecute = True
                         pHelp.WindowStyle = ProcessWindowStyle.Normal
                         Dim proc As Process = Process.Start(pHelp)
                         End
-                    Else
-                        My.Settings.ExeVer = sExeVer
-                        My.Settings.DbVer = sExeVer
                     End If
                 End If
             End If
@@ -81,15 +78,11 @@ Public Class CheckForUpdates
                     If sdr.IsDBNull(sdr.GetOrdinal("ExeVer")) = False Then sExeVer = sdr.GetString(sdr.GetOrdinal("ExeVer"))
                     If sdr.IsDBNull(sdr.GetOrdinal("DbVer")) = False Then sDbVer = sdr.GetString(sdr.GetOrdinal("DbVer"))
                     If sdr.IsDBNull(sdr.GetOrdinal("UpdatePath")) = False Then UpdatePath = sdr.GetString(sdr.GetOrdinal("UpdatePath"))
-                    'If My.Settings.UNSave = True Then My.Settings.UN = txtUN.Text : My.Settings.Save()
                     Dim version1 = New Version(My.Application.Info.Version.ToString)
                     Dim version2 = New Version(sExeVer)
                     If version1.CompareTo(version2) < 0 Then
                         sdr.Close()
                         Return True
-                    Else
-                        My.Settings.ExeVer = sExeVer
-                        My.Settings.DbVer = sExeVer
                     End If
                 End If
             End If

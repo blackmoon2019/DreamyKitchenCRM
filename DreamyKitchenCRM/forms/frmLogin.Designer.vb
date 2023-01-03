@@ -24,94 +24,102 @@ Partial Class frmLogin
         Me.txtPWD = New DevExpress.XtraEditors.TextEdit()
         Me.cmdLogin = New DevExpress.XtraEditors.SimpleButton()
         Me.chkRememberUN = New DevExpress.XtraEditors.CheckEdit()
-        Me.txtUN = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cboUN = New DevExpress.XtraEditors.LookUpEdit()
         Me.cmdConnect = New DevExpress.XtraEditors.SimpleButton()
         CType(Me.txtPWD.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkRememberUN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtUN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboUN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LabelControl1
         '
-        Me.LabelControl1.Location = New System.Drawing.Point(13, 22)
+        Me.LabelControl1.Location = New System.Drawing.Point(22, 39)
+        Me.LabelControl1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(71, 13)
+        Me.LabelControl1.Size = New System.Drawing.Size(125, 23)
         Me.LabelControl1.TabIndex = 1
         Me.LabelControl1.Text = "Όνομα Χρήστη"
         '
         'LabelControl2
         '
-        Me.LabelControl2.Location = New System.Drawing.Point(14, 80)
+        Me.LabelControl2.Location = New System.Drawing.Point(23, 142)
+        Me.LabelControl2.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(39, 13)
+        Me.LabelControl2.Size = New System.Drawing.Size(67, 23)
         Me.LabelControl2.TabIndex = 3
         Me.LabelControl2.Text = "Κωδικός"
         '
         'txtPWD
         '
-        Me.txtPWD.Location = New System.Drawing.Point(13, 100)
+        Me.txtPWD.Location = New System.Drawing.Point(22, 177)
+        Me.txtPWD.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.txtPWD.Name = "txtPWD"
         Me.txtPWD.Properties.AppearanceFocused.BackColor = System.Drawing.Color.LightSteelBlue
         Me.txtPWD.Properties.AppearanceFocused.Options.UseBackColor = True
         Me.txtPWD.Properties.PasswordChar = Global.Microsoft.VisualBasic.ChrW(42)
-        Me.txtPWD.Size = New System.Drawing.Size(215, 20)
+        Me.txtPWD.Size = New System.Drawing.Size(358, 38)
         Me.txtPWD.TabIndex = 2
         '
         'cmdLogin
         '
-        Me.cmdLogin.Location = New System.Drawing.Point(14, 172)
+        Me.cmdLogin.Location = New System.Drawing.Point(23, 304)
+        Me.cmdLogin.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.cmdLogin.Name = "cmdLogin"
-        Me.cmdLogin.Size = New System.Drawing.Size(203, 23)
+        Me.cmdLogin.Size = New System.Drawing.Size(338, 41)
         Me.cmdLogin.TabIndex = 4
         Me.cmdLogin.Text = "Είσοδος"
         '
         'chkRememberUN
         '
-        Me.chkRememberUN.Location = New System.Drawing.Point(14, 136)
+        Me.chkRememberUN.Location = New System.Drawing.Point(23, 241)
+        Me.chkRememberUN.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.chkRememberUN.Name = "chkRememberUN"
         Me.chkRememberUN.Properties.Caption = "Απομνημόνευση ""Όνομα Χρήστη"""
         Me.chkRememberUN.Properties.GlyphAlignment = DevExpress.Utils.HorzAlignment.[Default]
-        Me.chkRememberUN.Size = New System.Drawing.Size(214, 20)
+        Me.chkRememberUN.Size = New System.Drawing.Size(357, 35)
         Me.chkRememberUN.TabIndex = 5
         '
-        'txtUN
+        'cboUN
         '
-        Me.txtUN.Location = New System.Drawing.Point(12, 42)
-        Me.txtUN.Name = "txtUN"
-        Me.txtUN.Properties.AppearanceFocused.BackColor = System.Drawing.Color.LightSteelBlue
-        Me.txtUN.Properties.AppearanceFocused.Options.UseBackColor = True
-        Me.txtUN.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.txtUN.Properties.NullText = ""
-        Me.txtUN.Size = New System.Drawing.Size(216, 20)
-        Me.txtUN.TabIndex = 0
+        Me.cboUN.Location = New System.Drawing.Point(20, 74)
+        Me.cboUN.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.cboUN.Name = "cboUN"
+        Me.cboUN.Properties.AppearanceFocused.BackColor = System.Drawing.Color.LightSteelBlue
+        Me.cboUN.Properties.AppearanceFocused.Options.UseBackColor = True
+        Me.cboUN.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboUN.Properties.NullText = ""
+        Me.cboUN.Size = New System.Drawing.Size(360, 38)
+        Me.cboUN.TabIndex = 0
         '
         'cmdConnect
         '
         Me.cmdConnect.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_database_administrator_24
-        Me.cmdConnect.Location = New System.Drawing.Point(223, 170)
+        Me.cmdConnect.Location = New System.Drawing.Point(372, 301)
+        Me.cmdConnect.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.cmdConnect.Name = "cmdConnect"
-        Me.cmdConnect.Size = New System.Drawing.Size(30, 27)
+        Me.cmdConnect.Size = New System.Drawing.Size(50, 48)
         Me.cmdConnect.TabIndex = 7
         '
         'frmLogin
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(262, 211)
+        Me.ClientSize = New System.Drawing.Size(437, 373)
         Me.Controls.Add(Me.cmdConnect)
         Me.Controls.Add(Me.chkRememberUN)
         Me.Controls.Add(Me.cmdLogin)
         Me.Controls.Add(Me.LabelControl2)
         Me.Controls.Add(Me.txtPWD)
         Me.Controls.Add(Me.LabelControl1)
-        Me.Controls.Add(Me.txtUN)
+        Me.Controls.Add(Me.cboUN)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
+        Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
         Me.Name = "frmLogin"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Dreamy CRM"
         CType(Me.txtPWD.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkRememberUN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtUN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboUN.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -121,6 +129,6 @@ Partial Class frmLogin
     Friend WithEvents txtPWD As DevExpress.XtraEditors.TextEdit
     Friend WithEvents cmdLogin As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents chkRememberUN As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents txtUN As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents cboUN As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents cmdConnect As DevExpress.XtraEditors.SimpleButton
 End Class

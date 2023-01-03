@@ -37,7 +37,7 @@ Public Class DBQueries
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
                 Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))
                 Dim FileName As String = Path.GetFileName(control.FileNames(i))
-                My.Computer.FileSystem.CopyFile(control.FileNames(i), My.Settings.SERVER_PATH & FileName, True)
+                My.Computer.FileSystem.CopyFile(control.FileNames(i), ProgProps.ServerPath & FileName, True)
 
                 sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
                 sSQL.AppendLine(toSQLValueS(control.SafeFileNames(i).ToString) & ",")
@@ -47,7 +47,7 @@ Public Class DBQueries
                 If sTable = "CCT_F" Then sSQL.AppendLine(",0")
                 If sTable = "TRANSH" Then sSQL.AppendLine(",1")
                 sSQL.Append(",files.* ")
-                sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(My.Settings.SERVER_PATH & FileName) & ", SINGLE_BLOB) files")
+                sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(ProgProps.ServerPath & FileName) & ", SINGLE_BLOB) files")
 
 
                 'Εκτέλεση QUERY
@@ -86,7 +86,7 @@ Public Class DBQueries
             If sTable = "CCT_F" Then sSQL.AppendLine(",0")
             If sTable = "TRANSH" Then sSQL.AppendLine(",1")
             sSQL.Append(",files.* ")
-            sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(My.Settings.SERVER_PATH & FileName) & ", SINGLE_BLOB) files")
+            sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(ProgProps.ServerPath & FileName) & ", SINGLE_BLOB) files")
 
 
             'Εκτέλεση QUERY

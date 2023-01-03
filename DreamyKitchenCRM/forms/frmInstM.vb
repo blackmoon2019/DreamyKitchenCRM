@@ -5,6 +5,7 @@ Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
@@ -83,9 +84,8 @@ Public Class frmInstM
                 Me.Vw_INSTPerSerTableAdapter.FillByID(Me.DreamyKitchenDataSet.vw_INSTPerSer, System.Guid.Parse(sInstID))
         End Select
         Me.CenterToScreen()
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\INSTPERSER.xml") Then GridView3.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\INSTPERSER.xml", OptionsLayoutBase.FullLayout)
+        LoadForms.RestoreLayoutFromXml(GridView3, "INSTPERSER.xml")
         GridView3.OptionsMenu.ShowFooterItem = True
         GridView3.OptionsMenu.EnableFooterMenu = True
         GridView3.OptionsMenu.EnableGroupPanelMenu = True

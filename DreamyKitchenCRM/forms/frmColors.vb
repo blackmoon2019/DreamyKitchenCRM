@@ -79,8 +79,6 @@ Public Class frmColors
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_COLORS where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
-        My.Settings.frmDoorType = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         txtNam.Select()
     End Sub

@@ -180,8 +180,6 @@ Public Class frmCusMov
         If sCusID <> "" Then cboCUS.EditValue = System.Guid.Parse(sCusID) 'Else FScrollerExist = True
         If cboSTATUS.GetColumnValue("RequiredSaler") <> Nothing Then lSaler.Enabled = True Else lSaler.Enabled = False
         Me.CenterToScreen()
-        My.Settings.frmCusMov = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
     End Sub

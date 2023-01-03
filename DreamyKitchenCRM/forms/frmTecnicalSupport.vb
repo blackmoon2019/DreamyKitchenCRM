@@ -70,8 +70,6 @@ Public Class frmTecnicalSupport
                 End If
         End Select
         Me.CenterToScreen()
-        My.Settings.frmTecnicalSupport = Me.Location
-        My.Settings.Save()
         'cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
 

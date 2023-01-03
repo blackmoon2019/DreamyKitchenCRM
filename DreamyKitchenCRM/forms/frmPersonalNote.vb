@@ -63,8 +63,6 @@ Public Class frmPersonalNote
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_SALER_CALENDAR where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
-        My.Settings.frmPersonalNote = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
     End Sub

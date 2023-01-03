@@ -66,8 +66,6 @@ Public Class frmSUP
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_SUP where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
-        My.Settings.frmSUP = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
 

@@ -111,9 +111,7 @@ Public Class frmCUSOrderCloset
                 TabNavigationPage2.Enabled = True
 
         End Select
-        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_def.xml") = True Then
-            GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_def.xml", OptionsLayoutBase.FullLayout)
-        End If
+        LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_CLOSET_EQUIPMENT_def.xml")
         GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
         Me.CenterToScreen()

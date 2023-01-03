@@ -3,6 +3,7 @@ Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Base
@@ -69,7 +70,8 @@ Public Class frmOFFTotal
                INNER  JOIN [OFF]  ON O.OffID= [OFF].ID 
                where O.offid =  " & toSQLValueS(sID)
         LoadForms.LoadDataToGrid(grdOffTotal, GridView3, sSQL)
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFFTOTAL.xml") Then GridView3.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFFTOTAL.xml", OptionsLayoutBase.FullLayout)
+        LoadForms.RestoreLayoutFromXml(GridView3, "OFFTOTAL.xml")
+
         GridView3.Columns("SubOFFName").OptionsColumn.ReadOnly = True
         GridView3.Columns("SubOFFName").OptionsColumn.AllowEdit = False
         GridView3.Columns("NewPrice").OptionsColumn.ReadOnly = False

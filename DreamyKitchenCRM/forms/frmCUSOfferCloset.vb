@@ -5,6 +5,7 @@ Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
@@ -256,9 +257,7 @@ Public Class frmCUSOfferCloset
                         GridView2.PopulateColumns()
                         TabNavigationPage2.Enabled = True
                         InsertSelectedRows(False)
-                        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\CCT_OFFERS_CLOSET_EQUIPMENT_def.xml") = True Then
-                            GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_OFFERS_CLOSET_EQUIPMENT_def.xml", OptionsLayoutBase.FullLayout)
-                        End If
+                        LoadForms.RestoreLayoutFromXml(GridView2, "CCT_OFFERS_CLOSET_EQUIPMENT_def.xml")
                         Mode = FormMode.EditRecord
                     End If
                     'If Mode = FormMode.NewRecord Then
@@ -333,10 +332,7 @@ Public Class frmCUSOfferCloset
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
             Case 1
-                If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\CCT_OFFERS_CLOSET_EQUIPMENT_def.xml") = True Then
-                    GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_OFFERS_CLOSET_EQUIPMENT_def.xml", OptionsLayoutBase.FullLayout)
-                End If
-
+                LoadForms.RestoreLayoutFromXml(GridView2, "CCT_OFFERS_CLOSET_EQUIPMENT_def.xml")
                 GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
                 GridView2.Columns.Item("checked").OptionsColumn.AllowEdit = True : GridView2.Columns.Item("checked").OptionsColumn.ReadOnly = False
 

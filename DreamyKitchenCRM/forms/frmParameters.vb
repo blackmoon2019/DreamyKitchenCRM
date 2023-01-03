@@ -5,6 +5,7 @@ Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraNavBar
@@ -180,16 +181,12 @@ Public Class frmParameters
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
                     "Select  E.ID,E.code,name ,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked " &
                      "From vw_EQUIPMENT E where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
-                If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml") = True Then
-                    GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", OptionsLayoutBase.FullLayout)
-                End If
+                LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml")
                 GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
                 LoadForms.LoadDataToGrid(grdEquipmentCloset, GridView1,
                     "Select  E.ID,E.code,name ,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked " &
                      "From vw_EQUIPMENT E where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62' ORDER BY NAME")
-                If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml") = True Then
-                    GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", OptionsLayoutBase.FullLayout)
-                End If
+                LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml")
                 GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False
             Case 3 : Prog_Prop.GetProgPROSF(LayoutControl4)
             Case Else
@@ -224,8 +221,8 @@ Public Class frmParameters
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
         If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml") = True Then
-                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", True)
+            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", True)
                 GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
@@ -238,8 +235,8 @@ Public Class frmParameters
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
-                GridView2.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", OptionsLayoutBase.FullLayout)
+                If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
+                GridView2.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
 
@@ -275,8 +272,8 @@ Public Class frmParameters
     Private Sub OnSyncViewCloset(ByVal sender As System.Object, ByVal e As EventArgs)
         If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml") = True Then
-                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", True)
+            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", True)
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
@@ -289,8 +286,8 @@ Public Class frmParameters
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
-                GridView1.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", OptionsLayoutBase.FullLayout)
+                If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
+                GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
 

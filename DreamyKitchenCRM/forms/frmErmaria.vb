@@ -81,8 +81,6 @@ Public Class frmErmaria
 
         End Select
         Me.CenterToScreen()
-        My.Settings.frmDoorType = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         txtCustomCode.Select()
     End Sub

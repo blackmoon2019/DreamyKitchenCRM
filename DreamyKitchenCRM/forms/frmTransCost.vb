@@ -575,9 +575,7 @@ Public Class frmTransCost
 					INNER JOIN CCT_ORDERS_KITCHEN COK ON EQ.cctOrdersKitchenID =  COK.ID 
 					INNER JOIN TRANSH ON TRANSH.ID =  COK.transhID 
 					where TRANSH.ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
-        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml") = True Then
-            GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml", OptionsLayoutBase.FullLayout)
-        End If
+        LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml")
         GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False
         GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView2.Columns.Item("qty").OptionsColumn.AllowEdit = False
@@ -601,12 +599,8 @@ Public Class frmTransCost
 					INNER JOIN TRANSH ON TRANSH.ID =  COK.transhID 
 					where TRANSH.ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
 
-        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml") = True Then
-            GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml", OptionsLayoutBase.FullLayout)
-        End If
-        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_DEVICES_COST_def.xml") = True Then
-            GridView3.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_DEVICES_COST_def.xml", OptionsLayoutBase.FullLayout)
-        End If
+        LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_COST_def.xml")
+        LoadForms.RestoreLayoutFromXml(GridView3, "CCT_ORDERS_KITCHEN_DEVICES_COST_def.xml")
 
         GridView3.Columns.Item("name").OptionsColumn.AllowEdit = False
         GridView3.Columns.Item("code").OptionsColumn.AllowEdit = False
@@ -622,9 +616,7 @@ Public Class frmTransCost
 					INNER JOIN CCT_ORDERS_CLOSET COK ON EQ.cctOrdersClosetID =  COK.ID 
 					INNER JOIN TRANSH ON TRANSH.ID =  COK.transhID 
 					where TRANSH.ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
-        If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_COST_def.xml") = True Then
-            GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_CLOSET_EQUIPMENT_COST_def.xml", OptionsLayoutBase.FullLayout)
-        End If
+        LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_CLOSET_EQUIPMENT_COST_def.xml")
         GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView1.Columns.Item("qty").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("qty").OptionsColumn.AllowEdit = False
         GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False

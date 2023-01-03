@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid.Columns
 
@@ -21,7 +22,6 @@ Module Main
         Public PWD As String
         Public DataTable As String
         Public CurrentView As String
-        Public ServerViewsPath As String
         Public AllowInsert As Boolean
         Public AllowEdit As Boolean
         Public AllowDelete As Boolean
@@ -31,9 +31,13 @@ Module Main
         Public EmailPassword As String
         Public EmailPort As Integer
         Public EmailSSL As Boolean
+        Public UNSave As String
     End Structure
     Public UserProps As USER_PROPS
     Public Structure PROG_PROPS
+        Public ServerViewsPath As String
+        Public ServerPath As String
+        Public Records As Integer
         Public TempFolderPath As String
         Public TempPicturesFolderPath As String
         Public ProgTitle As String
@@ -148,6 +152,29 @@ Module Main
         Next
     End Sub
 
+    Public Sub GetNewestFileFromServer(ByVal sFile As String)
+        Try
+            Dim LastModifiedF1 As Date, LastModifiedF2 As Date
+            Dim ServerFile As String = ProgProps.ServerViewsPath & "DSGNS\DEF\" & System.IO.Path.GetFileName(sFile)
+            LastModifiedF1 = System.IO.File.GetLastWriteTime(sFile)
+            LastModifiedF2 = System.IO.File.GetLastWriteTime(ServerFile)
+            Dim result As Integer = DateTime.Compare(LastModifiedF1, LastModifiedF2)
+            If result < 0 Then
+                If XtraMessageBox.Show("Βρέθηκε νεώτερη προεπιλεγμένη όψη στον Server. Να μεταφερθεί?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    My.Computer.FileSystem.CopyFile(ServerFile, sFile, True)
+                    LastModifiedF1 = System.IO.File.GetLastWriteTime(sFile)
+                Else
+                    Exit Sub
+                End If
+                Do
+
+                Loop Until LastModifiedF1 = LastModifiedF2
+            End If
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 
     'Public Function FindItemByValChkListBox(ByVal sValue As String, ByVal chkList As DevExpress.XtraEditors.CheckedListBoxControl) As DevExpress.XtraEditors.Controls.CheckedListBoxItem
     '    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkList

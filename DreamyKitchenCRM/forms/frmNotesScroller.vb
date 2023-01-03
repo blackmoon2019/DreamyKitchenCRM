@@ -8,6 +8,7 @@ Imports DevExpress.XtraGrid.Columns
 Public Class frmNotesScroller
     Private myReader As SqlDataReader
     Private myCmd As SqlCommand
+    Private LoadForms As New FormLoader
     Private Sub frmNotesScroller_Load(sender As Object, e As EventArgs) Handles Me.Load
         'Dim strSql As String = "SELECT *  FROM vw_NOTES where UserID = " & toSQLValueS(UserProps.ID.ToString)
         'Dim dtb As New DataTable

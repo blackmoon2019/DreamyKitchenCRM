@@ -55,8 +55,6 @@ Public Class frmCatSubErm
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CAT_SUB_ERM where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
-        My.Settings.frmEpendisis = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         txtCustomCode.Select()
 

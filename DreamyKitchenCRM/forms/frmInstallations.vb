@@ -83,11 +83,9 @@ Public Class frmInstallations
                 cmdInstEllipse.Enabled = True
         End Select
         Me.CenterToScreen()
-        My.Settings.frmServices = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
-        End Sub
+    End Sub
 
     Private Sub frmInstallations_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)

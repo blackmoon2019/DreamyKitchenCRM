@@ -72,7 +72,6 @@ Public Class frmOfferDet
         Console.WriteLine(VGridControl1.RecordCount)
         'backColorID.View.PopulateColumns(backColorID.DataSource)
         'backColorID.View.Columns("ID").Visible = False
-        'If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFFDET.xml") Then VGridControl1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFFDET.xml", OptionsLayoutBase.FullLayout)
         'VGridControl1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\OFFDET.xml", OptionsLayoutBase.FullLayout)
 
         'GridView3.Columns("SubOFFName").OptionsColumn.ReadOnly = True

@@ -141,16 +141,13 @@ Public Class frmOffer
                 cmdOfferDetails.Enabled = True
         End Select
         Me.CenterToScreen()
-        My.Settings.frmDoorType = Me.Location
-        My.Settings.Save()
         LayoutControlGroup2.Enabled = False
         'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
         LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , "ERM")
         'Φορτώνει όλες τις ονομασίες των στηλών από τον SQL. Από το πεδίο Description
         LoadForms.LoadColumnDescriptionNames(grdMain, GridView3, , "OFFERS")
-
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFF_erm.xml", OptionsLayoutBase.FullLayout)
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\OFFERS.xml") Then GridView3.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\OFFERS.xml", OptionsLayoutBase.FullLayout)
+        LoadForms.RestoreLayoutFromXml(GridView1, "OFF_erm.xml")
+        LoadForms.RestoreLayoutFromXml(GridView3, "OFFERS.xml")
 
         GridView3.OptionsBehavior.AutoExpandAllGroups = True
         cmdSaveOff.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -183,12 +180,8 @@ Public Class frmOffer
         GridView2.Columns("TOTALPRICE").SummaryItem.DisplayFormat = "SUM={0:0.##}"
         GridView2.Columns("TOTALPRICE").SummaryItem.SummaryType = DevExpress.Data.SummaryItemType.Sum
         GridView2.OptionsView.ShowFooter = True
-        'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\MECH.xml") = False Then
-            GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\MECH.xml", OptionsLayoutBase.FullLayout)
-        Else
-            GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\MECH.xml", OptionsLayoutBase.FullLayout)
-        End If
+        LoadForms.RestoreLayoutFromXml(GridView2, "MECH.xml")
+
     End Sub
     Private Sub frmOffer_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)

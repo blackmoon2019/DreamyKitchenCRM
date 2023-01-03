@@ -71,8 +71,6 @@ Public Class frmConstrunction
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CONSTR where id ='" + sID + "'")
         End Select
         Me.CenterToScreen()
-        My.Settings.frmServices = Me.Location
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
 

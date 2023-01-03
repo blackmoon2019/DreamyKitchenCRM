@@ -89,21 +89,15 @@ Public Class frmTransactions
                 txtCode.Text = DBQ.GetNextId("TRANSH")
                 LayoutControlGroup2.Enabled = False
             Case FormMode.EditRecord
-                LoadForms.LoadFormGRP(LayoutControlGroup1, "Select * from vw_TRANSH where id ='" + sID + "'")
+                LoadForms.LoadFormGRP(LayoutControlGroup1, "Select * from vw_TRANSH with(nolock) where id ='" + sID + "'")
                 Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
                 Me.Vw_TRANSDTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSD, System.Guid.Parse(sID))
                 txtCode1.Text = DBQ.GetNextId("TRANSD")
                 dtPay.EditValue = DateTime.Now
         End Select
-        'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml") = False Then
-            GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
-        End If
-        GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml") Then GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
+        LoadForms.RestoreLayoutFromXml(GridView2, "vw_TRANSH_F_def.xml")
+        LoadForms.RestoreLayoutFromXml(GridView1, "TRANSD.xml")
         Me.CenterToScreen()
-        My.Settings.frmTransactions = Me.Location
-        My.Settings.Save()
         cmdSaveTransH.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         cmdSaveTransD.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
@@ -284,14 +278,10 @@ Public Class frmTransactions
         Try
 
             Dim sFilename = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "filename")
-            'Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
             Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
             Dim b() As Byte = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "files")
             fs.Write(b, 0, b.Length)
             fs.Close()
-            'My.Computer.FileSystem.MoveFile(Application.StartupPath & "\" & sFilename, My.Settings.CRM_PATH & sFilename, True)
-            'My.Computer.FileSystem.MoveFile(ProgProps.TempFolderPath & sFilename, My.Settings.CRM_PATH & sFilename, True)
-            'ShellExecute(My.Settings.CRM_PATH & sFilename)
             ShellExecute(ProgProps.TempFolderPath & sFilename)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -360,6 +350,11 @@ Public Class frmTransactions
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
                     dtPay.EditValue = DateTime.Now
                     txtCode1.Text = DBQ.GetNextId("TRANSD")
+                    sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(txtBal.EditValue.ToString, True) &
+                    " WHERE ID = " & toSQLValueS(sID)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
                 End If
             End If
         Catch ex As Exception
@@ -383,6 +378,7 @@ Public Class frmTransactions
             Else
                 cmt = "NULL"
             End If
+
             sSQL = "UPDATE [TRANSD] SET dtPay  = " & toSQLValueS(CDate(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "dtPay")).ToString("yyyyMMdd")) &
                 ",bankID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "bankID").ToString) &
                 ",PayType = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PayType").ToString) &
@@ -391,6 +387,11 @@ Public Class frmTransactions
                 ",cmt = " & cmt &
                 ",amt = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "amt"), True) &
         " WHERE ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(txtBal.EditValue.ToString, True) &
+                    " WHERE ID = " & toSQLValueS(sID)
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
@@ -474,8 +475,8 @@ Public Class frmTransactions
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
-                GridView1.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
+                If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
+                GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
 
@@ -484,8 +485,8 @@ Public Class frmTransactions
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
         If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml") = True Then
-                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml", Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", True)
+            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml") = True Then
+                My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml", Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", True)
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
@@ -513,11 +514,7 @@ Public Class frmTransactions
             txtBal.EditValue = GridView1.Columns("amt").SummaryItem.SummaryValue
             If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
             txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
-            sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(txtBal.EditValue.ToString, True) &
-                           " WHERE ID = " & toSQLValueS(sID)
-            Using oCmd As New SqlCommand(sSQL, CNDB)
-                oCmd.ExecuteNonQuery()
-            End Using
+
             If CalledFromCtrl = False Then
                 Dim form As frmScroller = Frm
                 form.DataTable = "vw_TRANSH"
@@ -665,7 +662,7 @@ Public Class frmTransactions
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
+                If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
                 GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
@@ -675,8 +672,8 @@ Public Class frmTransactions
     Private Sub OnSyncView2(ByVal sender As System.Object, ByVal e As EventArgs)
         If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml") = True Then
-                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", True)
+            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", True)
                 GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If

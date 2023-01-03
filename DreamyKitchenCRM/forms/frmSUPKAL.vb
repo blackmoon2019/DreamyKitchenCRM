@@ -72,15 +72,8 @@ Public Class frmSUPKal
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from SUP_PAYMENTS_H where id ='" + sID + "'")
         End Select
-        'Εαν δεν υπάρχει Default Σχέδιο δημιουργεί
-        If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml") = False Then
-            GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
-        End If
-        GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
+        LoadForms.RestoreLayoutFromXml(GridView1, "vw_BUY_INV_def.xml")
         Me.CenterToScreen()
-        My.Settings.frmSUPKal = Me.Location
-        Me.Size = My.Settings.frmSUPKalSize
-        My.Settings.Save()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
     End Sub
@@ -278,8 +271,8 @@ Public Class frmSUPKal
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                If My.Computer.FileSystem.FileExists(UserProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
-                GridView1.SaveLayoutToXml(UserProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
+                If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
+                GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
 
@@ -288,8 +281,8 @@ Public Class frmSUPKal
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
         If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-            If System.IO.File.Exists(UserProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml") = True Then
-                My.Computer.FileSystem.CopyFile(UserProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", True)
+            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", True)
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
             End If
         End If
@@ -297,8 +290,6 @@ Public Class frmSUPKal
 
     Private Sub frmSUPKal_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
-        My.Settings.frmSUPKalSize = Me.Size
-        My.Settings.Save()
 
     End Sub
 
