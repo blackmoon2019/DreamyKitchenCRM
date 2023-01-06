@@ -19,8 +19,8 @@ Partial Class frmCusMov
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Dim SuperToolTip2 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
-        Dim ToolTipTitleItem2 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
+        Dim SuperToolTip1 As DevExpress.Utils.SuperToolTip = New DevExpress.Utils.SuperToolTip()
+        Dim ToolTipTitleItem1 As DevExpress.Utils.ToolTipTitleItem = New DevExpress.Utils.ToolTipTitleItem()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCusMov))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.chkFollowUp = New DevExpress.XtraEditors.CheckEdit()
@@ -171,12 +171,12 @@ Partial Class frmCusMov
         Me.RatingControl1.Rating = New Decimal(New Integer() {0, 0, 0, 0})
         Me.RatingControl1.Size = New System.Drawing.Size(102, 32)
         Me.RatingControl1.StyleController = Me.LayoutControl1
-        ToolTipTitleItem2.AllowHtmlText = DevExpress.Utils.DefaultBoolean.[True]
-        ToolTipTitleItem2.Icon = CType(resources.GetObject("ToolTipTitleItem2.Icon"), System.Drawing.Icon)
-        ToolTipTitleItem2.Text = "<u>Αξιολόγηση πελάτη</u>" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "1 Αστέρι = Αδιάφορο" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "2 Αστέρια = Καλά" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "3 Αστέρια = Πο" &
+        ToolTipTitleItem1.AllowHtmlText = DevExpress.Utils.DefaultBoolean.[True]
+        ToolTipTitleItem1.Icon = CType(resources.GetObject("ToolTipTitleItem1.Icon"), System.Drawing.Icon)
+        ToolTipTitleItem1.Text = "<u>Αξιολόγηση πελάτη</u>" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "1 Αστέρι = Αδιάφορο" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "2 Αστέρια = Καλά" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "3 Αστέρια = Πο" &
     "λύ Καλά"
-        SuperToolTip2.Items.Add(ToolTipTitleItem2)
-        Me.RatingControl1.SuperTip = SuperToolTip2
+        SuperToolTip1.Items.Add(ToolTipTitleItem1)
+        Me.RatingControl1.SuperTip = SuperToolTip1
         Me.RatingControl1.TabIndex = 36
         Me.RatingControl1.Tag = "rating,0,1,2"
         Me.RatingControl1.Text = "RatingControl1"
@@ -432,7 +432,7 @@ Partial Class frmCusMov
         Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 378)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
         Me.LayoutControlItem14.Size = New System.Drawing.Size(1134, 211)
-        Me.LayoutControlItem14.Text = "Σχόλια Πωλητή"
+        Me.LayoutControlItem14.Text = "Σχόλια"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(196, 23)
         '
         'LayoutControlItem6

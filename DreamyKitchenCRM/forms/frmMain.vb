@@ -30,6 +30,8 @@ Public Class frmMain
             ProjectAnalysis.Visible = False
             RibbonPage4.Visible = False
             RibonSettings.Visible = False
+            bbCreditDebit.Visibility = BarItemVisibility.Never
+            BBProjectCosts.Visibility = BarItemVisibility.Never
         End If
 
 
@@ -975,9 +977,21 @@ Public Class frmMain
     End Sub
 
     Private Sub BBEMP_P_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEMP_P.ItemClick
+        If UserPermissions.CheckViewPermission("Παρουσιολόγιο Report") Then
+            Dim form As frmScroller = New frmScroller()
+            form.Text = "Παρουσιολόγιο Report"
+            form.DataTable = "vw_EMP_P"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    Private Sub BBOrderFormNumbers_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBOrderFormNumbers.ItemClick
         Dim form As frmScroller = New frmScroller()
-        form.Text = "Παρουσιολόγιο"
-        form.DataTable = "vw_EMP_P"
+        form.Text = "Δελτία Παραγγελίας"
+        form.DataTable = "vw_BUY_WITH_ORDERNUM"
         form.MdiParent = Me
         form.Show()
     End Sub

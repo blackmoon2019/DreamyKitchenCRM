@@ -100,7 +100,10 @@ Public Class frmScroller
             GridView1.OptionsMenu.ShowConditionalFormattingItem = True
             GridView1.OptionsSelection.MultiSelect = True
             GridView1.OptionsSelection.MultiSelectMode = GridMultiSelectMode.RowSelect
+            GridView1.OptionsView.ShowGroupedColumns = False
 
+
+            GridView2.OptionsView.ShowGroupedColumns = False
             GridView2.OptionsBehavior.AutoExpandAllGroups = True
             GridView2.OptionsMenu.ShowFooterItem = True
             GridView2.OptionsMenu.EnableFooterMenu = True
@@ -1537,11 +1540,11 @@ Public Class frmScroller
                 frmGen.chk1.Visible = True
                 frmGen.chk2.Text = "Υποχρεωτικότητα Πωλητή"
                 frmGen.chk2.Visible = True
-                frmGen.chk3.Text = "Υποχρεωτικότητα Πωλητή"
+                frmGen.chk3.Text = "Υποχρεωτικότητα Επιμετρητή"
                 frmGen.chk3.Visible = True
-                frmGen.L10.Control.Tag = "RequiredSaler,0,1,2"
                 frmGen.chk4.Text = "Υποχρεωτικότητα Διεύθυνσης"
                 frmGen.chk4.Visible = True
+                frmGen.L10.Control.Tag = "RequiredSaler,0,1,2"
                 frmGen.L11.Control.Tag = "RequiredCounter,0,1,2"
                 frmGen.L12.Control.Tag = "RequiredAddress,0,1,2"
                 frmGen.L12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -2393,7 +2396,7 @@ Public Class frmScroller
                 frmGen.chk1.Visible = True
                 frmGen.chk2.Text = "Υποχρεωτικότητα Πωλητή"
                 frmGen.chk2.Visible = True
-                frmGen.chk3.Text = "Υποχρεωτικότητα Πωλητή"
+                frmGen.chk3.Text = "Υποχρεωτικότητα Επιμετρητή"
                 frmGen.chk3.Visible = True
                 frmGen.L10.Control.Tag = "RequiredSaler,0,1,2"
                 frmGen.chk4.Text = "Υποχρεωτικότητα Διεύθυνσης"
