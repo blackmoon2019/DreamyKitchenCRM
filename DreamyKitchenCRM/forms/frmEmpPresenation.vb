@@ -6,14 +6,25 @@ Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraPrinting
 Imports DevExpress.XtraSpreadsheet
 
-Public Class frmEmpPresenation
+Public Class frmEmpPresentation
     Private repository As RepositoryItemLookUpEdit
     Private LastDetailRow As Integer
+    Private bIsConstr As Boolean
 
+    Public WriteOnly Property IsConstr As Boolean
+        Set(value As Boolean)
+            bIsConstr = value
+        End Set
+    End Property
     Private Sub frmEmpMov_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_EMP_S' table. You can move, or remove it, as needed.
         Me.Vw_EMP_STableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EMP_S)
-        Me.Vw_EMPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EMP, System.Guid.Parse("9812E975-2FD4-4653-B043-3D6CAF440888"))
+        If bIsConstr = True Then
+            Me.Vw_EMPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EMP, System.Guid.Parse("16228C6D-FAE6-4CFD-82D1-A9910D909952"))
+        Else
+            Me.Vw_EMPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EMP, System.Guid.Parse("9812E975-2FD4-4653-B043-3D6CAF440888"))
+        End If
+
         Dim worksheet As Worksheet = SPR.ActiveWorksheet
         SPR.WorksheetDisplayArea.SetSize(SPR.ActiveWorksheet.Name, 32, 2)
         worksheet.Columns.Item(0).Width = 700
@@ -33,7 +44,12 @@ Public Class frmEmpPresenation
             Dim i As Integer = 3
             Dim emp_s As Int16
             Dim StatusCols As New List(Of String)
-            sSQL = "Select ID,FullName from vw_EMP where active=1 and depid='9812E975-2FD4-4653-B043-3D6CAF440888' order by 2"
+            If bIsConstr = True Then
+                sSQL = "Select ID,FullName from vw_EMP where active=1 and depid='16228C6D-FAE6-4CFD-82D1-A9910D909952' order by 2"
+            Else
+                sSQL = "Select ID,FullName from vw_EMP where active=1 and depid='9812E975-2FD4-4653-B043-3D6CAF440888' order by 2"
+            End If
+
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             Dim worksheet As Worksheet = SPR.ActiveWorksheet
@@ -90,9 +106,20 @@ Public Class frmEmpPresenation
             ' Για να μην τα ξαναφέρνω από την βάση κάνω Copy paste τους υπαλλήλους
             ' CellRange = worksheet.Range("A" & 2 & ":A" & LastDetailRow)
             'worksheet.Range("A" & Row).CopyFrom(CellRange, PasteSpecial.Values)
+            If bIsConstr = True Then
+                ' Πάιρνω ανα υπάλληλο το πλήθος των Status
+                cmd = New SqlCommand("SELECT COUNT(p.id),shortName ,P.fullname
+                                    FROM vw_EMP_P P
+                                    inner join vw_EMP_S S on P.statusID = S.ID 
+                                    inner join vw_EMP E on e.id = P.empID 
+                                    where depid='16228C6D-FAE6-4CFD-82D1-A9910D909952' and 
+                                    month(dtpresent)= " & toSQLValueS(lstMonths.SelectedIndex + 1) & "and year(dtPresent)= " & toSQLValueS(dtFDate.Text) &
+                                    " group by P.fullname,shortName 
+                                    order by P.fullname,shortName  ", CNDB)
 
-            ' Πάιρνω ανα υπάλληλο το πλήθος των Status
-            cmd = New SqlCommand("SELECT COUNT(p.id),shortName ,P.fullname
+            Else
+                ' Πάιρνω ανα υπάλληλο το πλήθος των Status
+                cmd = New SqlCommand("SELECT COUNT(p.id),shortName ,P.fullname
                                     FROM vw_EMP_P P
                                     inner join vw_EMP_S S on P.statusID = S.ID 
                                     inner join vw_EMP E on e.id = P.empID 
@@ -100,6 +127,8 @@ Public Class frmEmpPresenation
                                     month(dtpresent)= " & toSQLValueS(lstMonths.SelectedIndex + 1) & "and year(dtPresent)= " & toSQLValueS(dtFDate.Text) &
                                     " group by P.fullname,shortName 
                                     order by P.fullname,shortName  ", CNDB)
+
+            End If
             sdr = cmd.ExecuteReader()
             Dim tmpFullname As String
             Dim TotRow As Integer = Row

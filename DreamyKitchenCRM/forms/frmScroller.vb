@@ -174,11 +174,11 @@ Public Class frmScroller
             BarViews.EditValue = CurrentView
             If CurrentView = "" Then
                 LoadForms.RestoreLayoutFromXml(GridView1, sDataTable & "_def.xml")
-                GridView1.OptionsBehavior.AlignGroupSummaryInGroupRow = DefaultBoolean.True
+                GridView1.OptionsBehavior.AlignGroupSummaryInGroupRow = DefaultBoolean.False
                 If sDataDetail <> "" Then LoadForms.RestoreLayoutFromXml(GridView2, sDataDetail & "_def.xml")
             Else
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
-                GridView1.OptionsBehavior.AlignGroupSummaryInGroupRow = DefaultBoolean.True
+                GridView1.OptionsBehavior.AlignGroupSummaryInGroupRow = DefaultBoolean.False
                 If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             End If
         Catch ex As Exception
@@ -1387,7 +1387,7 @@ Public Class frmScroller
                 frmGen.Show()
             Case "vw_INST"
                 Dim frmInstallations As New frmInstallations
-                frmInstallations.Text = "Μισθοδοσία Τοποθετών"
+                frmInstallations.Text = "Πρόγραμμα Εργασιών Τοποθετών"
                 frmInstallations.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmInstallations.MdiParent = frmMain
                 frmInstallations.Mode = FormMode.EditRecord
@@ -2257,7 +2257,7 @@ Public Class frmScroller
                 frmGen.Show()
             Case "vw_INST"
                 Dim frmInstallations As New frmInstallations
-                frmInstallations.Text = "Μισθοδοσία Τοποθετών"
+                frmInstallations.Text = "Πρόγραμμα Εργασιών Τοποθετών"
                 frmInstallations.MdiParent = frmMain
                 frmInstallations.Mode = FormMode.NewRecord
                 frmInstallations.Scroller = GridView1

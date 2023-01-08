@@ -143,7 +143,7 @@ Partial Class frmCalendar
         Me.SchedulerControl1.DataStorage = Me.SchedulerDataStorage1
         Me.SchedulerControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.SchedulerControl1.Location = New System.Drawing.Point(0, 40)
-        Me.SchedulerControl1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.SchedulerControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.SchedulerControl1.MenuManager = Me.BarManager1
         Me.SchedulerControl1.Name = "SchedulerControl1"
         Me.SchedulerControl1.OptionsRangeControl.RangeMaximum = New Date(2021, 12, 1, 0, 0, 0, 0)
@@ -439,7 +439,7 @@ Partial Class frmCalendar
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(5)
         Me.barDockControlTop.Size = New System.Drawing.Size(2623, 40)
         '
         'barDockControlBottom
@@ -448,7 +448,7 @@ Partial Class frmCalendar
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
         Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1260)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(5)
         Me.barDockControlBottom.Size = New System.Drawing.Size(2623, 0)
         '
         'barDockControlLeft
@@ -457,7 +457,7 @@ Partial Class frmCalendar
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 40)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(5)
         Me.barDockControlLeft.Size = New System.Drawing.Size(0, 1220)
         '
         'barDockControlRight
@@ -466,7 +466,7 @@ Partial Class frmCalendar
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(2623, 40)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(5)
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 1220)
         '
         'BarHeaderItem1
@@ -530,7 +530,7 @@ Partial Class frmCalendar
         Me.PanelResults.Controls.Add(Me.cmdExit)
         Me.PanelResults.Controls.Add(Me.GridControl1)
         Me.PanelResults.Location = New System.Drawing.Point(628, 175)
-        Me.PanelResults.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.PanelResults.Margin = New System.Windows.Forms.Padding(5)
         Me.PanelResults.Name = "PanelResults"
         Me.PanelResults.Size = New System.Drawing.Size(1585, 775)
         Me.PanelResults.TabIndex = 10
@@ -540,7 +540,7 @@ Partial Class frmCalendar
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
         Me.cmdExit.Location = New System.Drawing.Point(1428, 709)
-        Me.cmdExit.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(148, 50)
         Me.cmdExit.TabIndex = 13
@@ -549,10 +549,10 @@ Partial Class frmCalendar
         'GridControl1
         '
         Me.GridControl1.DataSource = Me.VwCCTMBindingSource
-        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
         Me.GridControl1.Location = New System.Drawing.Point(8, 5)
         Me.GridControl1.MainView = Me.GridView1
-        Me.GridControl1.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.GridControl1.MenuManager = Me.BarManager1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.Size = New System.Drawing.Size(1568, 694)
@@ -874,7 +874,7 @@ Partial Class frmCalendar
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
-        Me.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "frmCalendar"
         Me.Text = "frmCalendar"
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).EndInit()

@@ -73,12 +73,14 @@ Public Class InitializeCalendar
                 If sdr.IsDBNull(sdr.GetOrdinal("color")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("color")))
                 If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SerName")) = False Then sStatus = "Συνεργείο: " & sdr.GetString(sdr.GetOrdinal("SerName"))
+                ' If sStatus.IndexOf("-") > 0 Then sColor = Color.FromArgb("-7108269")
                 sRemValues = ""
                 If sdr.IsDBNull(sdr.GetOrdinal("tmIN")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmIN"))
                 If sdr.IsDBNull(sdr.GetOrdinal("tmOUT")) = False Then TTime = sdr.GetString(sdr.GetOrdinal("tmOUT"))
                 If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
                 If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SerCode")) = False Then SerCode = sdr.GetInt32(sdr.GetOrdinal("SerCode"))
+
                 If sdr.IsDBNull(sdr.GetOrdinal("completed")) = False Then sCompleted = sdr.GetBoolean(sdr.GetOrdinal("completed"))
                 If sdr.IsDBNull(sdr.GetOrdinal("SalerName")) = False Then sSalerName = sdr.GetString(sdr.GetOrdinal("SalerName"))
                 CreateAppointmentInst(sID, SCH_Storage, sDate, sStatus, sReminder, sColor, Cmt, SerCode, sCusName, sRemValues, FTime, sCompleted, sSalerName, Reminder, TTime)

@@ -24,6 +24,16 @@ Public Class ValidateControls
                             XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         End If
+
+                        If TypeOf Ctrl Is DevExpress.XtraEditors.CheckedListBoxControl Then
+                            Dim chklst As DevExpress.XtraEditors.CheckedListBoxControl
+                            chklst = Ctrl
+                            If chklst.CheckedItems.Count = 0 Then
+                                XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
+                        End If
+
                     End If
                 End If
             End If

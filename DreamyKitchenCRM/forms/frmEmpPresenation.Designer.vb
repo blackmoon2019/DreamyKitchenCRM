@@ -1,5 +1,5 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
-Partial Class frmEmpPresenation
+Partial Class frmEmpPresentation
     Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
@@ -194,7 +194,7 @@ Partial Class frmEmpPresenation
         Me.Vw_EMP_SBindingSource.DataMember = "vw_EMP_S"
         Me.Vw_EMP_SBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
-        'frmEmpPresenation
+        'frmEmpPresentation
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -202,7 +202,7 @@ Partial Class frmEmpPresenation
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(5)
-        Me.Name = "frmEmpPresenation"
+        Me.Name = "frmEmpPresentation"
         Me.Text = "Παρουσιολόγιο Έκθεσης"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)

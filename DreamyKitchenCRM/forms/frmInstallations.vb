@@ -70,7 +70,7 @@ Public Class frmInstallations
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_TRANSH' table. You can move, or remove it, as needed.
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
-        FillCbo.SER(cboSER, sSQL)
+
         FillCbo.CUS(cboCUS)
         FillCbo.SALERS(cboSaler)
         ' Μόνο αν ο Χρήστης ΔΕΝ είναι ο Παναγόπουλος
@@ -78,8 +78,10 @@ Public Class frmInstallations
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("INST")
+                FillCbo.FillCheckedListSER(chkSER, FormMode.NewRecord)
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_INST where id ='" + sID + "'")
+                FillCbo.FillCheckedListSER(chkSER, FormMode.EditRecord, sID)
                 cmdInstEllipse.Enabled = True
         End Select
         Me.CenterToScreen()
@@ -106,28 +108,13 @@ Public Class frmInstallations
         form1.Show()
 
     End Sub
-    Private Sub ManageSer()
-        Dim form1 As frmEMP = New frmEMP()
-        form1.Text = "Συνεργεία"
-        form1.CallerControl = cboSER
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboSER.EditValue <> Nothing Then
-            form1.ID = cboSER.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-
-    End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
         Dim sGuid As String
         Dim sSQL As New System.Text.StringBuilder
         Try
             If Valid.ValidateForm(LayoutControl1) Then
+
                 If txtTmIN.Text = "00:00" Or txtTmOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
                 Dim Hours As Long = DateDiff(DateInterval.Hour, txtTmIN.EditValue, txtTmOUT.EditValue)
                 If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
@@ -156,6 +143,24 @@ Public Class frmInstallations
                     End Using
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
+                Dim sSQL2 As String
+                If Mode = FormMode.EditRecord Then
+                    sSQL2 = "DELETE FROM INST_SER where instID = '" & sID & "'"
+                    Using oCmd As New SqlCommand(sSQL2, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
+
+                ' Καταχώρηση Χιλιοστών πολυκατοικίας
+                For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkSER.CheckedItems
+                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn])  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                                                        toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                    Using oCmd As New SqlCommand(sSQL2, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Next
+                FillCbo.FillCheckedListSER(chkSER, FormMode.EditRecord, sID)
                 If Mode = FormMode.NewRecord Then
                     'XtraMessageBox.Show("Θα δημιουργηθεί αυτόματη κίνηση εξόφλησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     'If chkPaid.Checked = True Then
@@ -172,10 +177,10 @@ Public Class frmInstallations
                     Cls.ClearCtrls(LayoutControl1)
                     txtCode.Text = DBQ.GetNextId("INST")
                 End If
-                End If
+            End If
 
-                Catch ex As Exception
-                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub ManageTRANSH()
@@ -210,13 +215,7 @@ Public Class frmInstallations
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
-    Private Sub cboSER_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSER.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboSER.EditValue = Nothing : ManageSer()
-            Case 2 : If cboSER.EditValue <> Nothing Then ManageSer()
-            Case 3 : cboSER.EditValue = Nothing
-        End Select
-    End Sub
+
 
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index

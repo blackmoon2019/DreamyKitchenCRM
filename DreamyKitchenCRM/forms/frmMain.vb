@@ -483,9 +483,9 @@ Public Class frmMain
     End Sub
 
     Private Sub BBInstM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInstM.ItemClick
-        If UserPermissions.CheckViewPermission("Χρεωπιστώσεις Τοποθετών") Then
+        If UserPermissions.CheckViewPermission("Μισθοδοσία Τοποθετών") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Χρεωπιστώσεις Τοποθετών"
+            form.Text = "Μισθοδοσία Τοποθετών"
             form.DataTable = "vw_INST_M"
             form.MdiParent = Me
             form.Show()
@@ -494,12 +494,12 @@ Public Class frmMain
         End If
     End Sub
     Private Sub BBInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInst.ItemClick
-        If UserPermissions.CheckViewPermission("Τοποθετήσεις") Then
+        If UserPermissions.CheckViewPermission("Πρόγραμμα Εργασιών Τοποθετών") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Μισθοδοσία Τοποθετών"
+            form.Text = "Πρόγραμμα Εργασιών Τοποθετών"
             form.DataTable = "vw_INST"
             form.DataDetail = "vw_INST_M"
-            form.DataTableWhereCondition = " WHERE DEPID = 'BFD7EBD9-B0B2-4FCB-B1FF-341EC37A6A11'"
+            'form.DataTableWhereCondition = " WHERE DEPID = 'BFD7EBD9-B0B2-4FCB-B1FF-341EC37A6A11'"
             form.MdiParent = Me
             form.Show()
         Else
@@ -525,7 +525,7 @@ Public Class frmMain
     Private Sub bbCreditDebit_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCreditDebit.ItemClick
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Χρεωπιστώσεις"
+            form.Text = "Χρεωπιστώσεις Πελατών"
             form.DataTable = "vw_TRANSH"
             form.DataDetail = "vw_TRANSD"
             form.MdiParent = Me
@@ -561,7 +561,8 @@ Public Class frmMain
 
     Private Sub bbEmpMov_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEmpMov.ItemClick
         If UserPermissions.CheckViewPermission("Παρουσιολόγιο Έκθεσης") Then
-            Dim form As frmEmpPresenation = New frmEmpPresenation()
+            Dim form As frmEmpPresentation = New frmEmpPresentation()
+            form.IsConstr = False
             form.Text = "Παρουσιολόγιο Έκθεσης"
             form.MdiParent = Me
             form.Show()
@@ -571,9 +572,9 @@ Public Class frmMain
     End Sub
 
     Private Sub bbStatusPre_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbStatusPre.ItemClick
-        If UserPermissions.CheckViewPermission("Statuses Παρουσιολογίου") Then
+        If UserPermissions.CheckViewPermission("Status Παρουσιολογίου") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Statuses Παρουσιολογίου"
+            form.Text = "Status Παρουσιολογίου"
             form.DataTable = "vw_EMP_S"
             form.MdiParent = Me
             form.Show()
@@ -600,9 +601,9 @@ Public Class frmMain
 
 
     Private Sub BBPayrolStatus_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayrolStatus.ItemClick
-        If UserPermissions.CheckViewPermission("Statuses Μισθοδοσίας") Then
+        If UserPermissions.CheckViewPermission("Status Μισθοδοσίας") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Statuses Μισθοδοσίας"
+            form.Text = "Status Μισθοδοσίας"
             form.DataTable = "vw_EMP_M_S"
             form.MdiParent = Me
             form.Show()
@@ -612,7 +613,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBPayroll_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayroll.ItemClick
-        If UserPermissions.CheckViewPermission("Μισθοδοσία") Then
+        If UserPermissions.CheckViewPermission("Μισθοδοσία Έκθεσης") Then
             Dim form As frmScroller = New frmScroller()
             form.Text = "Μισθοδοσία Έκθεσης"
             form.DataTableWhereCondition = " WHERE DEPID = '9812E975-2FD4-4653-B043-3D6CAF440888'"
@@ -647,16 +648,16 @@ Public Class frmMain
 
     Private Sub bbConstrCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbConstrCat.ItemClick
         Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορίες Εργασιών"
+        form.Text = "Status Κατασκευαστικού"
         form.DataTable = "vw_CONSTR_CAT"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub bbConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbConstr.ItemClick
-        If UserPermissions.CheckViewPermission("Μισθοδοσία Κατασκευαστικού") Then
+        If UserPermissions.CheckViewPermission("Πρόγραμμα Εργασίας Κατασκευαστικού") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Μισθοδοσία Κατασκευαστικού"
+            form.Text = "Πρόγραμμα Εργασίας Κατασκευαστικού"
             form.DataTable = "vw_CONSTR"
             form.MdiParent = Me
             form.Show()
@@ -666,9 +667,9 @@ Public Class frmMain
     End Sub
 
     Private Sub BBPayrollConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayrollConstr.ItemClick
-        If UserPermissions.CheckViewPermission("Μισθοδοσία") Then
+        If UserPermissions.CheckViewPermission("Μισθοδοσία Κατασκευαστικου") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Χρεωπιστώσεις Κατασκευαστικου"
+            form.Text = "Μισθοδοσία Κατασκευαστικου"
             form.IsConstr = True
             form.DataTableWhereCondition = " WHERE jobid = 'F1A60661-D448-41B7-8CF0-CE6B9FF6E518'"
             form.DataTable = "vw_EMP_M"
@@ -994,6 +995,18 @@ Public Class frmMain
         form.DataTable = "vw_BUY_WITH_ORDERNUM"
         form.MdiParent = Me
         form.Show()
+    End Sub
+
+    Private Sub bbEmpConstrMov_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEmpConstrMov.ItemClick
+        If UserPermissions.CheckViewPermission("Παρουσιολόγιο Κατασκευαστικού") Then
+            Dim form As frmEmpPresentation = New frmEmpPresentation()
+            form.IsConstr = True
+            form.Text = "Παρουσιολόγιο Κατασκευαστικού"
+            form.MdiParent = Me
+            form.Show()
+        Else
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
 End Class
 
