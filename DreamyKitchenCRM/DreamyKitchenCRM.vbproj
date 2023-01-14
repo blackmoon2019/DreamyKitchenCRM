@@ -216,6 +216,7 @@
     <Compile Include="classes\CheckPermissions.vb" />
     <Compile Include="classes\ClearControls.vb" />
     <Compile Include="classes\CN.vb" />
+    <Compile Include="classes\CombosManager.vb" />
     <Compile Include="classes\DBQueries.vb" />
     <Compile Include="classes\FillCombos.vb" />
     <Compile Include="classes\FormLoader.vb" />
@@ -1949,6 +1950,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-invoice-40.png" />
     <None Include="Resources\Image1.jpg" />
     <None Include="Resources\icons8-support-401.png" />
     <None Include="Resources\icons8-support-40.png" />

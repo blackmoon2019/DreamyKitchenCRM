@@ -261,6 +261,19 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("EMP_S")
+                            Case "DOC_TYPES"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "DOC_TYPES", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.DOC_TYPES(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_DOC_TYPES")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("DOC_TYPES")
                             Case "DEP"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "DEP", sGuid)
@@ -608,6 +621,15 @@ Public Class frmGen
                                     Dim form As frmScroller = Frm
                                     form.LoadRecords("vw_EMP_S")
                                 End If
+                            Case "DOC_TYPES"
+                                sResult = DBQ.UpdateData(LayoutControl1, "DOC_TYPES", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.DOC_TYPES(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sID)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_DOC_TYPES")
+                                End If
                             Case "DEP"
                                 sResult = DBQ.UpdateData(LayoutControl1, "DEP", sID)
                                 If CalledFromCtrl Then
@@ -856,7 +878,12 @@ Public Class frmGen
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP_S where id ='" + sID + "'")
                 End If
-
+            Case "DOC_TYPES"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("DOC_TYPES")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOC_TYPES  where id ='" + sID + "'")
+                End If
             Case "DEP"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("DEP")
@@ -1080,6 +1107,14 @@ Public Class frmGen
                             Dim form As frmScroller = Frm
                             form.LoadRecords("vw_EMP_S")
                         End If
+                    Case "DOC_TYPES"
+                        If CalledFromCtrl Then
+                            FillCbo.DOC_TYPES(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_DOC_TYPES")
+                        End If
+
                     Case "DEP"
                         If CalledFromCtrl Then
                             FillCbo.DEP(CtrlCombo)

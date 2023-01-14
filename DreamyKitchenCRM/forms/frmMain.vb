@@ -1008,5 +1008,13 @@ Public Class frmMain
             XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
+
+    Private Sub BBinvBuyTypes_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBinvBuyTypes.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τύποι Παραστατικών"
+        form.DataTable = "vw_DOC_TYPES"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 
