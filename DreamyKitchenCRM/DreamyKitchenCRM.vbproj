@@ -255,6 +255,12 @@
     <Compile Include="forms\frmBUY.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="forms\frmBuyCollectionInsert.Designer.vb">
+      <DependentUpon>frmBuyCollectionInsert.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmBuyCollectionInsert.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCalculations.Designer.vb">
       <DependentUpon>frmCalculations.vb</DependentUpon>
     </Compile>
@@ -801,6 +807,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmBUY.resx">
       <DependentUpon>frmBUY.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmBuyCollectionInsert.resx">
+      <DependentUpon>frmBuyCollectionInsert.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCalculations.resx">
       <DependentUpon>frmCalculations.vb</DependentUpon>
@@ -1950,6 +1959,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-delete-24.png" />
+    <None Include="Resources\icons8-delete-16.png" />
     <None Include="Resources\icons8-invoice-40.png" />
     <None Include="Resources\Image1.jpg" />
     <None Include="Resources\icons8-support-401.png" />

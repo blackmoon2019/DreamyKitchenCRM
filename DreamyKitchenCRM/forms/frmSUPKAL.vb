@@ -93,10 +93,10 @@ Public Class frmSUPKal
                         sGuid = sID
                 End Select
 
-                If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_SUP_PAYMENTS_H")
-                End If
+                'If FScrollerExist = True Then
+                '    Dim form As frmScroller = Frm
+                '    form.LoadRecords("vw_SUP_PAYMENTS_H")
+                'End If
 
                 ' Ενημέρωση πληρωμών
                 Using oCmd As New SqlCommand("SUP_PAYMENTS", CNDB)

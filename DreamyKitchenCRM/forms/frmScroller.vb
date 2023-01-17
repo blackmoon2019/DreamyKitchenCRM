@@ -1369,11 +1369,14 @@ Public Class frmScroller
                 frmGen.DataTable = "DOC_TYPES"
                 frmGen.L1.Text = "Κωδικός"
                 frmGen.L2.Text = "Τύπος"
+                frmGen.L3.Text = "Προμηθευτής"
+                frmGen.L3.Control.Tag = "supID,0,1,2"
                 frmGen.L8.Control.Tag = "Vmultiplier,0,1,2"
                 frmGen.L8.Text = "Πολλαπλασιαστής"
                 frmGen.FormScroller = Me
                 frmGen.CalledFromControl = False
                 frmGen.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
             Case "vw_DEP"
@@ -2268,11 +2271,14 @@ Public Class frmScroller
                 frmGen.DataTable = "DOC_TYPES"
                 frmGen.L1.Text = "Κωδικός"
                 frmGen.L2.Text = "Τύπος"
+                frmGen.L3.Text = "Προμηθευτής"
+                frmGen.L3.Control.Tag = "supID,0,1,2"
                 frmGen.L8.Control.Tag = "Vmultiplier,0,1,2"
                 frmGen.L8.Text = "Πολλαπλασιαστής"
                 frmGen.FormScroller = Me
                 frmGen.CalledFromControl = False
                 frmGen.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
             Case "vw_SALER_CAL_STATUS"

@@ -77,10 +77,12 @@ Public Class frmBUY
                 Dim sCusID As String
                 If cboCUS.EditValue Is Nothing Then sCusID = Guid.Empty.ToString Else sCusID = cboCUS.EditValue.ToString
                 Me.Vw_TRANSHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSH, System.Guid.Parse(sCusID))
+                Multiplier = cboDocType.GetColumnValue("Vmultiplier") : If Multiplier = 0 Then Multiplier = 1
+
         End Select
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
-
+        If chkPaid.Checked = True Then cmdSave.Enabled = False
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
@@ -88,6 +90,7 @@ Public Class frmBUY
         Dim sSQL As String
         Try
             If Valid.ValidateForm(LayoutControl1) Then
+
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
@@ -113,6 +116,16 @@ Public Class frmBUY
                         oCmd.Parameters.AddWithValue("@supplierID", cboSUP.EditValue.ToString)
                         oCmd.ExecuteNonQuery()
                     End Using
+                    sSQL = "DELETE FROM SUP_PAYMENTS_P  WHERE buyID = " & toSQLValueS(sID)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    sSQL = "INSERT SUP_PAYMENTS_P  SELECT NEWID(),ID,vatAmount from BUY WHERE ID = " & toSQLValueS(sID)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+
+
                     If cboTRANSH.EditValue IsNot Nothing Then
                         ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
                         Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
@@ -336,6 +349,23 @@ Public Class frmBUY
         Dim sdr As SqlDataReader = cmd.ExecuteReader()
         If (sdr.Read() = True) Then
             If sdr.IsDBNull(sdr.GetOrdinal("ORD")) = False Then txtOrd.EditValue = sdr.GetInt32(sdr.GetOrdinal("ORD")) Else txtOrd.EditValue = 1
+        End If
+    End Sub
+
+    Private Sub txtvatAmount_EditValueChanging(sender As Object, e As ChangingEventArgs) Handles txtvatAmount.EditValueChanging
+        If Me.isFormPainted = False Then Exit Sub
+        Dim CountP As Integer
+        If e.OldValue <> e.NewValue Then
+            Dim cmd As SqlCommand = New SqlCommand("Select count(ID) as CountP FROM SUP_PAYMENTS_D WHERE buyID= " & toSQLValueS(sID), CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountP")) = False Then CountP = sdr.GetInt32(sdr.GetOrdinal("CountP")) Else CountP = 0
+                If CountP > 0 Then
+                    XtraMessageBox.Show("Δεν μπορείτε να μεταβάλετε ποσό παραστατικού όταν έχουν πραγματοποιηθεί πληρωμές. " & vbCrLf &
+                        "Πρέπει να σβήσετε τις πληρωμές και μετά να αλλάξετε το παραστατικό ή να σβήσετε όλο το παραστατικό.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    e.Cancel = True
+                End If
+            End If
         End If
     End Sub
 End Class

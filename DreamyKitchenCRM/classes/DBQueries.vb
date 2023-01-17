@@ -64,6 +64,59 @@ Public Class DBQueries
         End Try
 
     End Function
+    Public Function InsertNewDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal sTable As String, ByVal ID As String,
+                                       Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "", Optional ByVal PB As System.Windows.Forms.ProgressBar = Nothing) As Boolean
+        Dim sSQL As New System.Text.StringBuilder
+        Dim i As Integer
+        Try
+            If PB IsNot Nothing Then
+                PB.Minimum = 0
+                PB.Maximum = control.FileNames.Count - 1
+                PB.Step = 1
+                PB.Style = ProgressBarStyle.Continuous
+                'PB.Properties.Minimum = 0
+                'PB.Properties.Maximum = control.FileNames.Count - 1
+                'PB.Properties.Step = 1
+                'PB.Properties.PercentView = True
+                'PB.Properties.ShowTitle = True
+            End If
+            For i = 0 To control.FileNames.Count - 1
+                sSQL.Clear()
+                Select Case sTable
+                    Case "BUY_F" : sSQL.AppendLine("INSERT INTO BUY_F ( ") : sSQL.AppendLine(IIf(ExtraFields.Length > 0, ExtraFields & ",", "") & "ID, filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
+                End Select
+                Dim extension As String = Path.GetExtension(control.FileNames(i))
+                Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))
+                Dim FileName As String = Path.GetFileName(control.FileNames(i))
+                'If File.Exists(ProgProps.ServerPath & FileName) Then File.Delete(ProgProps.ServerPath & FileName)
+                My.Computer.FileSystem.CopyFile(control.FileNames(i), ProgProps.ServerPath & FileName, True)
+
+                sSQL.AppendLine("Select ")
+                If ExtraValues.Length > 0 Then sSQL.AppendLine(ExtraValues & ",")
+                sSQL.AppendLine(toSQLValueS(ID) & ",")
+                sSQL.AppendLine(toSQLValueS(control.SafeFileNames(i).ToString) & ",")
+                sSQL.AppendLine(toSQLValueS(FilePath) & ",")
+                sSQL.AppendLine(toSQLValueS(extension) & ",")
+
+                sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate(),  files.* ")
+                sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(ProgProps.ServerPath & FileName) & ", SINGLE_BLOB) files")
+
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                If PB IsNot Nothing Then PB.PerformStep()
+            Next
+            control.FileName = ""
+            'ReadBlobFile()
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+            Return False
+        End Try
+    End Function
+
     Public Function InsertDataFilesFromScanner(ByVal sFilename As String, ByVal ID As String, ByVal sTable As String) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Try

@@ -879,6 +879,7 @@ Public Class frmGen
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP_S where id ='" + sID + "'")
                 End If
             Case "DOC_TYPES"
+                FillCbo.SUP(cbo1)
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("DOC_TYPES")
                 Else

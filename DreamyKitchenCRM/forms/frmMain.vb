@@ -1016,5 +1016,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBBulkInsertInvoices_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBBulkInsertInvoices.ItemClick
+        Dim form As frmBuyCollectionInsert = New frmBuyCollectionInsert()
+        form.Text = "Αυτόματη Εισαγωγή Τιμολογίων Προμηθευτών"
+        'UserPermissions.GetUserPermissions(form.Text) : If UserProps.AllowView = False Then XtraMessageBox.Show("Δεν έχουν οριστεί τα απαραίτητα δικαιώματα στον χρήστη", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : form.Dispose() : Exit Sub
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 
