@@ -585,8 +585,6 @@ Public Class frmTransactions
         Public Column As GridColumn
     End Class
 
-
-
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then
             Dim menu As DevExpress.XtraGrid.Menu.GridViewColumnMenu = TryCast(e.Menu, GridViewColumnMenu)

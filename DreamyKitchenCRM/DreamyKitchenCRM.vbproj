@@ -1959,6 +1959,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-invoice-batch-40.png" />
     <None Include="Resources\icons8-delete-24.png" />
     <None Include="Resources\icons8-delete-16.png" />
     <None Include="Resources\icons8-invoice-40.png" />

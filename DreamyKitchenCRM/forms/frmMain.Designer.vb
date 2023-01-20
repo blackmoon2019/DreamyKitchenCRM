@@ -134,6 +134,7 @@ Partial Class frmMain
         Me.BBOrderFormNumbers = New DevExpress.XtraBars.BarButtonItem()
         Me.bbEmpConstrMov = New DevExpress.XtraBars.BarButtonItem()
         Me.BBinvBuyTypes = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBBulkInsertInvoices = New DevExpress.XtraBars.BarButtonItem()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup11 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPageGroup15 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
@@ -180,7 +181,6 @@ Partial Class frmMain
         Me.AlertControl1 = New DevExpress.XtraBars.Alerter.AlertControl(Me.components)
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.BBBulkInsertInvoices = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1118,6 +1118,14 @@ Partial Class frmMain
         Me.BBinvBuyTypes.Name = "BBinvBuyTypes"
         Me.BBinvBuyTypes.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'BBBulkInsertInvoices
+        '
+        Me.BBBulkInsertInvoices.Caption = "Αυτόματη Εισαγωγή Παραστατικών"
+        Me.BBBulkInsertInvoices.Id = 118
+        Me.BBBulkInsertInvoices.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_invoice_batch_40
+        Me.BBBulkInsertInvoices.Name = "BBBulkInsertInvoices"
+        Me.BBBulkInsertInvoices.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'RibbonPage1
         '
         Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup11, Me.RibbonPageGroup15, Me.RibbonPageGroup1, Me.RibbonPageGroup14})
@@ -1475,13 +1483,6 @@ Partial Class frmMain
         '
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 1000
-        '
-        'BBBulkInsertInvoices
-        '
-        Me.BBBulkInsertInvoices.Caption = "Ατυτόματη Εισαγωγή Παραστατικών"
-        Me.BBBulkInsertInvoices.Id = 118
-        Me.BBBulkInsertInvoices.Name = "BBBulkInsertInvoices"
-        Me.BBBulkInsertInvoices.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'frmMain
         '
