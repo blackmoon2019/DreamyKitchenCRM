@@ -58,8 +58,7 @@ Public Class frmBUY
     Private Sub frmBUY_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
         Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOC_TYPES' table. You can move, or remove it, as needed.
-        Me.Vw_DOC_TYPESTableAdapter.Fill(Me.DMDataSet.vw_DOC_TYPES)
+
         'FillCbo.CUS(cboCUS)
         FillCbo.SUP(cboSUP)
         FillCbo.BUY_C(cbobuyC)
@@ -78,7 +77,7 @@ Public Class frmBUY
                 If cboCUS.EditValue Is Nothing Then sCusID = Guid.Empty.ToString Else sCusID = cboCUS.EditValue.ToString
                 Me.Vw_TRANSHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSH, System.Guid.Parse(sCusID))
                 Multiplier = cboDocType.GetColumnValue("Vmultiplier") : If Multiplier = 0 Then Multiplier = 1
-
+                Me.Vw_DOC_TYPESTableAdapter.FillBySupID(Me.DMDataSet.vw_DOC_TYPES, System.Guid.Parse(cboSUP.EditValue.ToString))
         End Select
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -110,6 +109,11 @@ Public Class frmBUY
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     LayoutControlItem25.Enabled = True
                     If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
+
+                    'Ενημέρωση πίνακα KANELLOPOYLOS με έργο - πελάτη
+                    Using oCmd As New SqlCommand("UPDATE KANELLOPOULOS SET transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString) & ", cctID = " & toSQLValueS(cboCUS.EditValue.ToString) & " where buyID = " & toSQLValueS(sID), CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
                     'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
                     Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
@@ -242,6 +246,7 @@ Public Class frmBUY
         cboPAY.EditValue = cboSUP.GetColumnValue("payID")
         If cboPAY.EditValue = Nothing Then Exit Sub
         If cboPAY.EditValue.ToString.ToUpper = "88E7A725-AE4C-4818-ADEE-7F9E26F20165" Then chkPaid.CheckState = CheckState.Checked Else chkPaid.CheckState = CheckState.Unchecked
+        Me.Vw_DOC_TYPESTableAdapter.FillBySupID(Me.DMDataSet.vw_DOC_TYPES, System.Guid.Parse(cboSUP.EditValue.ToString))
         MaxOrd()
     End Sub
 

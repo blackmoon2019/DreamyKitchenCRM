@@ -10826,6 +10826,10 @@ Partial Public Class DMDataSet
         
         Private columnisCredit As Global.System.Data.DataColumn
         
+        Private columnbuyID As Global.System.Data.DataColumn
+        
+        Private columncmt As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -11046,6 +11050,22 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property buyIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnbuyID
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property cmtColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncmt
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -11105,9 +11125,11 @@ Partial Public Class DMDataSet
                     ByVal vatAmount As Decimal,  _
                     ByVal completed As Boolean,  _
                     ByVal FullTranshDescription As String,  _
-                    ByVal isCredit As Boolean) As KANELLOPOULOSRow
+                    ByVal isCredit As Boolean,  _
+                    ByVal buyID As System.Guid,  _
+                    ByVal cmt As String) As KANELLOPOULOSRow
             Dim rowKANELLOPOULOSRow As KANELLOPOULOSRow = CType(Me.NewRow,KANELLOPOULOSRow)
-            Dim columnValuesArray() As Object = New Object() {ID, ord, supID, invDate, invNumber, docTypeID, uploadDate, dtYBuy, buyFID, createdOn, createdBy, cctID, transhID, kitchen, closet, general, materials, bathroomFurn, netAmount, vatAmount, completed, FullTranshDescription, isCredit}
+            Dim columnValuesArray() As Object = New Object() {ID, ord, supID, invDate, invNumber, docTypeID, uploadDate, dtYBuy, buyFID, createdOn, createdBy, cctID, transhID, kitchen, closet, general, materials, bathroomFurn, netAmount, vatAmount, completed, FullTranshDescription, isCredit, buyID, cmt}
             rowKANELLOPOULOSRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowKANELLOPOULOSRow)
             Return rowKANELLOPOULOSRow
@@ -11159,6 +11181,8 @@ Partial Public Class DMDataSet
             Me.columncompleted = MyBase.Columns("completed")
             Me.columnFullTranshDescription = MyBase.Columns("FullTranshDescription")
             Me.columnisCredit = MyBase.Columns("isCredit")
+            Me.columnbuyID = MyBase.Columns("buyID")
+            Me.columncmt = MyBase.Columns("cmt")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11210,6 +11234,10 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnFullTranshDescription)
             Me.columnisCredit = New Global.System.Data.DataColumn("isCredit", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnisCredit)
+            Me.columnbuyID = New Global.System.Data.DataColumn("buyID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnbuyID)
+            Me.columncmt = New Global.System.Data.DataColumn("cmt", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncmt)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -11231,6 +11259,7 @@ Partial Public Class DMDataSet
             Me.columncompleted.AllowDBNull = false
             Me.columnFullTranshDescription.MaxLength = 150
             Me.columnisCredit.AllowDBNull = false
+            Me.columncmt.MaxLength = 2147483647
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -20712,6 +20741,36 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property buyID() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tableKANELLOPOULOS.buyIDColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'buyID' in table 'KANELLOPOULOS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableKANELLOPOULOS.buyIDColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property cmt() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableKANELLOPOULOS.cmtColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'cmt' in table 'KANELLOPOULOS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableKANELLOPOULOS.cmtColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsdtYBuyNull() As Boolean
             Return Me.IsNull(Me.tableKANELLOPOULOS.dtYBuyColumn)
         End Function
@@ -20792,6 +20851,30 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetFullTranshDescriptionNull()
             Me(Me.tableKANELLOPOULOS.FullTranshDescriptionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsbuyIDNull() As Boolean
+            Return Me.IsNull(Me.tableKANELLOPOULOS.buyIDColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetbuyIDNull()
+            Me(Me.tableKANELLOPOULOS.buyIDColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IscmtNull() As Boolean
+            Return Me.IsNull(Me.tableKANELLOPOULOS.cmtColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetcmtNull()
+            Me(Me.tableKANELLOPOULOS.cmtColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -24645,11 +24728,16 @@ Namespace DMDataSetTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, name, Vmultiplier"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_DOC_TYPES"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT ID, name, Vmultiplier"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_DOC_TYPES"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE supID=@supID"
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@supID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "supID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -24658,6 +24746,20 @@ Namespace DMDataSetTableAdapters
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
         Public Overloads Overridable Function Fill(ByVal dataTable As DMDataSet.vw_DOC_TYPESDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillBySupID(ByVal dataTable As DMDataSet.vw_DOC_TYPESDataTable, ByVal supID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(supID,System.Guid)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -24999,6 +25101,8 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("completed", "completed")
             tableMapping.ColumnMappings.Add("FullTranshDescription", "FullTranshDescription")
             tableMapping.ColumnMappings.Add("isCredit", "isCredit")
+            tableMapping.ColumnMappings.Add("buyID", "buyID")
+            tableMapping.ColumnMappings.Add("cmt", "cmt")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -25015,10 +25119,15 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, ord, supID, invDate, invNumber, docTypeID, uploadDate, dtYBuy, buyFID,"& _ 
-                " cctID, transhID, FullTranshDescription, kitchen, closet, general, materials, ba"& _ 
-                "throomFurn, netAmount, vatAmount, completed, isCredit, createdOn, createdBy"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FRO"& _ 
-                "M   KANELLOPOULOS"
+            Me._commandCollection(0).CommandText = "SELECT KANELLOPOULOS.ID, KANELLOPOULOS.ord, KANELLOPOULOS.supID, KANELLOPOULOS.in"& _ 
+                "vDate, KANELLOPOULOS.invNumber, KANELLOPOULOS.docTypeID, KANELLOPOULOS.uploadDat"& _ 
+                "e, KANELLOPOULOS.dtYBuy, KANELLOPOULOS.buyFID, KANELLOPOULOS.cctID, KANELLOPOULO"& _ 
+                "S.transhID, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           KANELLOPOULOS.FullTranshDescription, KANELLOPOULOS.kitc"& _ 
+                "hen, KANELLOPOULOS.closet, KANELLOPOULOS.general, KANELLOPOULOS.materials, KANEL"& _ 
+                "LOPOULOS.bathroomFurn, KANELLOPOULOS.netAmount, KANELLOPOULOS.vatAmount, KANELLO"& _ 
+                "POULOS.completed, KANELLOPOULOS.isCredit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           KANELLOPOULOS.createdOn, "& _ 
+                "KANELLOPOULOS.createdBy, KANELLOPOULOS.buyID, BUY.cmt"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   KANELLOPOULOS LEFT"& _ 
+                " OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           BUY ON BUY.ID = KANELLOPOULOS.buyID"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

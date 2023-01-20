@@ -20,39 +20,44 @@ Partial Class frmBuyCollectionInsert
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim FieldInfo14 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo15 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo16 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo17 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo18 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo19 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo20 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo21 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo22 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo23 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo24 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo25 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim FieldInfo26 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
-        Dim ExcelWorksheetSettings2 As DevExpress.DataAccess.Excel.ExcelWorksheetSettings = New DevExpress.DataAccess.Excel.ExcelWorksheetSettings()
-        Dim ExcelSourceOptions2 As DevExpress.DataAccess.Excel.ExcelSourceOptions = New DevExpress.DataAccess.Excel.ExcelSourceOptions(ExcelWorksheetSettings2)
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim FieldInfo1 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo2 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo3 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo4 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo5 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo6 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo7 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo8 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo9 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo10 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo11 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo12 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim FieldInfo13 As DevExpress.DataAccess.Excel.FieldInfo = New DevExpress.DataAccess.Excel.FieldInfo()
+        Dim ExcelWorksheetSettings1 As DevExpress.DataAccess.Excel.ExcelWorksheetSettings = New DevExpress.DataAccess.Excel.ExcelWorksheetSettings()
+        Dim ExcelSourceOptions1 As DevExpress.DataAccess.Excel.ExcelSourceOptions = New DevExpress.DataAccess.Excel.ExcelSourceOptions(ExcelWorksheetSettings1)
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmBuyCollectionInsert))
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
         Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
-        Dim EditorButtonImageOptions4 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject13 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject14 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject15 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject16 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim EditorButtonImageOptions5 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject17 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject18 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject19 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject20 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim EditorButtonImageOptions6 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject21 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject22 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject23 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject24 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Me.colkitchen = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepCopyDelete = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.colvatAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colDocType = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.DockManager1 = New DevExpress.XtraBars.Docking.DockManager(Me.components)
         Me.DockPanel1 = New DevExpress.XtraBars.Docking.DockPanel()
@@ -83,19 +88,23 @@ Partial Class frmBuyCollectionInsert
         Me.RepTransh = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
-        Me.colvatAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colnetAmount = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn3 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepColExcel = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.colbuyFID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colCompleted = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colkitchen = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.RepCopyDelete = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.colmaterials = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colgeneral = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcloset = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colbathroomFurn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colisCredit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colord = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colsupID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coluploadDate = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldtYBuy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcreatedOn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colbuyID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtImageCorrect = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.txtImageError = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepColBtn = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -114,6 +123,8 @@ Partial Class frmBuyCollectionInsert
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
         Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter()
         Me.KANELLOPOULOSTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.KANELLOPOULOSTableAdapter()
+        Me.colcmt = New DevExpress.XtraGrid.Columns.GridColumn()
+        CType(Me.RepCopyDelete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
         Me.DockPanel1_Container.SuspendLayout()
@@ -134,7 +145,6 @@ Partial Class frmBuyCollectionInsert
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepColExcel, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.RepCopyDelete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtImageCorrect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtImageError, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepColBtn, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -149,6 +159,41 @@ Partial Class frmBuyCollectionInsert
         CType(Me.VwBUYBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'colkitchen
+        '
+        Me.colkitchen.Caption = "Κουζίνα"
+        Me.colkitchen.ColumnEdit = Me.RepCopyDelete
+        Me.colkitchen.DisplayFormat.FormatString = "c2"
+        Me.colkitchen.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.colkitchen.FieldName = "kitchen"
+        Me.colkitchen.MinWidth = 35
+        Me.colkitchen.Name = "colkitchen"
+        Me.colkitchen.Visible = True
+        Me.colkitchen.VisibleIndex = 7
+        Me.colkitchen.Width = 148
+        '
+        'RepCopyDelete
+        '
+        Me.RepCopyDelete.AutoHeight = False
+        EditorButtonImageOptions1.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_copy_16
+        Me.RepCopyDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.RepCopyDelete.Name = "RepCopyDelete"
+        '
+        'colvatAmount
+        '
+        Me.colvatAmount.Caption = "Αξία με ΦΠΑ"
+        Me.colvatAmount.DisplayFormat.FormatString = "c2"
+        Me.colvatAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.colvatAmount.FieldName = "vatAmount"
+        Me.colvatAmount.MinWidth = 35
+        Me.colvatAmount.Name = "colvatAmount"
+        Me.colvatAmount.OptionsColumn.AllowEdit = False
+        Me.colvatAmount.OptionsColumn.ReadOnly = True
+        Me.colvatAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vatAmount", "Σύνολο={0:c2}")})
+        Me.colvatAmount.Visible = True
+        Me.colvatAmount.VisibleIndex = 13
+        Me.colvatAmount.Width = 177
         '
         'colDocType
         '
@@ -242,59 +287,59 @@ Partial Class frmBuyCollectionInsert
     "022.XLSX"
         Me.KANELOPOULOS.Name = "KANELOPOULOS"
         Me.KANELOPOULOS.ResultSchemaSerializable = resources.GetString("KANELOPOULOS.ResultSchemaSerializable")
-        FieldInfo14.Name = "Column1"
-        FieldInfo14.OriginalName = "Column1"
-        FieldInfo14.Type = GetType(String)
-        FieldInfo15.Name = "Column2"
-        FieldInfo15.OriginalName = "Column2"
-        FieldInfo15.Type = GetType(Date)
-        FieldInfo16.Name = "Column3"
-        FieldInfo16.OriginalName = "Column3"
-        FieldInfo16.Type = GetType(String)
-        FieldInfo17.Name = "Column4"
-        FieldInfo17.OriginalName = "Column4"
-        FieldInfo17.Type = GetType(String)
-        FieldInfo18.Name = "Column5"
-        FieldInfo18.OriginalName = "Column5"
-        FieldInfo18.Selected = False
-        FieldInfo18.Type = GetType(String)
-        FieldInfo19.Name = "Column6"
-        FieldInfo19.OriginalName = "Column6"
-        FieldInfo19.Selected = False
-        FieldInfo19.Type = GetType(String)
-        FieldInfo20.Name = "Column7"
-        FieldInfo20.OriginalName = "Column7"
-        FieldInfo20.Type = GetType(Decimal)
-        FieldInfo21.Name = "Column8"
-        FieldInfo21.OriginalName = "Column8"
-        FieldInfo21.Type = GetType(Decimal)
-        FieldInfo22.Name = "Column9"
-        FieldInfo22.OriginalName = "Column9"
-        FieldInfo22.Selected = False
-        FieldInfo22.Type = GetType(String)
-        FieldInfo23.Name = "Column10"
-        FieldInfo23.OriginalName = "Column10"
-        FieldInfo23.Selected = False
-        FieldInfo23.Type = GetType(String)
-        FieldInfo24.Name = "Column11"
-        FieldInfo24.OriginalName = "Column11"
-        FieldInfo24.Selected = False
-        FieldInfo24.Type = GetType(String)
-        FieldInfo25.Name = "Column12"
-        FieldInfo25.OriginalName = "Column12"
-        FieldInfo25.Selected = False
-        FieldInfo25.Type = GetType(String)
-        FieldInfo26.Name = "Column13"
-        FieldInfo26.OriginalName = "Column13"
-        FieldInfo26.Selected = False
-        FieldInfo26.Type = GetType(String)
-        Me.KANELOPOULOS.Schema.AddRange(New DevExpress.DataAccess.Excel.FieldInfo() {FieldInfo14, FieldInfo15, FieldInfo16, FieldInfo17, FieldInfo18, FieldInfo19, FieldInfo20, FieldInfo21, FieldInfo22, FieldInfo23, FieldInfo24, FieldInfo25, FieldInfo26})
-        ExcelWorksheetSettings2.CellRange = Nothing
-        ExcelWorksheetSettings2.WorksheetIndex = Nothing
-        ExcelWorksheetSettings2.WorksheetName = "Sheet1"
-        ExcelSourceOptions2.ImportSettings = ExcelWorksheetSettings2
-        ExcelSourceOptions2.UseFirstRowAsHeader = False
-        Me.KANELOPOULOS.SourceOptions = ExcelSourceOptions2
+        FieldInfo1.Name = "Column1"
+        FieldInfo1.OriginalName = "Column1"
+        FieldInfo1.Type = GetType(String)
+        FieldInfo2.Name = "Column2"
+        FieldInfo2.OriginalName = "Column2"
+        FieldInfo2.Type = GetType(Date)
+        FieldInfo3.Name = "Column3"
+        FieldInfo3.OriginalName = "Column3"
+        FieldInfo3.Type = GetType(String)
+        FieldInfo4.Name = "Column4"
+        FieldInfo4.OriginalName = "Column4"
+        FieldInfo4.Type = GetType(String)
+        FieldInfo5.Name = "Column5"
+        FieldInfo5.OriginalName = "Column5"
+        FieldInfo5.Selected = False
+        FieldInfo5.Type = GetType(String)
+        FieldInfo6.Name = "Column6"
+        FieldInfo6.OriginalName = "Column6"
+        FieldInfo6.Selected = False
+        FieldInfo6.Type = GetType(String)
+        FieldInfo7.Name = "Column7"
+        FieldInfo7.OriginalName = "Column7"
+        FieldInfo7.Type = GetType(Decimal)
+        FieldInfo8.Name = "Column8"
+        FieldInfo8.OriginalName = "Column8"
+        FieldInfo8.Type = GetType(Decimal)
+        FieldInfo9.Name = "Column9"
+        FieldInfo9.OriginalName = "Column9"
+        FieldInfo9.Selected = False
+        FieldInfo9.Type = GetType(String)
+        FieldInfo10.Name = "Column10"
+        FieldInfo10.OriginalName = "Column10"
+        FieldInfo10.Selected = False
+        FieldInfo10.Type = GetType(String)
+        FieldInfo11.Name = "Column11"
+        FieldInfo11.OriginalName = "Column11"
+        FieldInfo11.Selected = False
+        FieldInfo11.Type = GetType(String)
+        FieldInfo12.Name = "Column12"
+        FieldInfo12.OriginalName = "Column12"
+        FieldInfo12.Selected = False
+        FieldInfo12.Type = GetType(String)
+        FieldInfo13.Name = "Column13"
+        FieldInfo13.OriginalName = "Column13"
+        FieldInfo13.Selected = False
+        FieldInfo13.Type = GetType(String)
+        Me.KANELOPOULOS.Schema.AddRange(New DevExpress.DataAccess.Excel.FieldInfo() {FieldInfo1, FieldInfo2, FieldInfo3, FieldInfo4, FieldInfo5, FieldInfo6, FieldInfo7, FieldInfo8, FieldInfo9, FieldInfo10, FieldInfo11, FieldInfo12, FieldInfo13})
+        ExcelWorksheetSettings1.CellRange = Nothing
+        ExcelWorksheetSettings1.WorksheetIndex = Nothing
+        ExcelWorksheetSettings1.WorksheetName = "Sheet1"
+        ExcelSourceOptions1.ImportSettings = ExcelWorksheetSettings1
+        ExcelSourceOptions1.UseFirstRowAsHeader = False
+        Me.KANELOPOULOS.SourceOptions = ExcelSourceOptions1
         '
         'LayoutControl1
         '
@@ -386,21 +431,28 @@ Partial Class frmBuyCollectionInsert
         '
         'GridView5
         '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colFullTranshDescription, Me.colID, Me.colinvoiceNumber, Me.colcusID, Me.coldtBuy, Me.coltranshID, Me.colDocType, Me.colvatAmount, Me.colnetAmount, Me.GridColumn3, Me.colbuyFID, Me.colCompleted, Me.colkitchen, Me.colmaterials, Me.colgeneral, Me.colcloset, Me.colbathroomFurn, Me.colisCredit})
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colFullTranshDescription, Me.colID, Me.colinvoiceNumber, Me.colcusID, Me.coldtBuy, Me.coltranshID, Me.colDocType, Me.colvatAmount, Me.colnetAmount, Me.GridColumn3, Me.colbuyFID, Me.colCompleted, Me.colkitchen, Me.colmaterials, Me.colgeneral, Me.colcloset, Me.colbathroomFurn, Me.colisCredit, Me.colord, Me.colsupID, Me.coluploadDate, Me.coldtYBuy, Me.colcreatedOn, Me.colcreatedBy, Me.colbuyID, Me.colcmt})
         Me.GridView5.FixedLineWidth = 3
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Column = Me.colkitchen
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleExpression1.Expression = "[kitchen] <> 0.0m Or [general] <> 0.0m Or [bathroomFurn] <> 0.0m Or [closet] <> 0" &
+    ".0m Or [materials] <> 0.0m"
+        FormatConditionRuleExpression1.PredefinedName = "Green Fill"
+        GridFormatRule1.Rule = FormatConditionRuleExpression1
         GridFormatRule2.ApplyToRow = True
-        GridFormatRule2.Column = Me.colDocType
-        GridFormatRule2.Name = "Format0"
-        FormatConditionRuleExpression2.Appearance.Font = New System.Drawing.Font("Tahoma", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Strikeout), System.Drawing.FontStyle))
+        GridFormatRule2.Column = Me.colvatAmount
+        GridFormatRule2.Name = "Format1"
         FormatConditionRuleExpression2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(240, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        FormatConditionRuleExpression2.Appearance.Options.UseFont = True
         FormatConditionRuleExpression2.Appearance.Options.UseForeColor = True
-        FormatConditionRuleExpression2.Expression = "[credit] < 0.0m"
+        FormatConditionRuleExpression2.Expression = "[vatAmount] < 0.0m"
         GridFormatRule2.Rule = FormatConditionRuleExpression2
+        Me.GridView5.FormatRules.Add(GridFormatRule1)
         Me.GridView5.FormatRules.Add(GridFormatRule2)
         Me.GridView5.GridControl = Me.grdINVOICES
         Me.GridView5.LevelIndent = 0
         Me.GridView5.Name = "GridView5"
+        Me.GridView5.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridView5.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDown
         Me.GridView5.OptionsLayout.StoreAllOptions = True
         Me.GridView5.OptionsLayout.StoreAppearance = True
@@ -419,6 +471,7 @@ Partial Class frmBuyCollectionInsert
         Me.GridView5.OptionsView.ShowFooter = True
         Me.GridView5.OptionsView.ShowGroupPanel = False
         Me.GridView5.PreviewIndent = 0
+        Me.GridView5.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colord, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'colFullTranshDescription
         '
@@ -426,7 +479,7 @@ Partial Class frmBuyCollectionInsert
         Me.colFullTranshDescription.FieldName = "FullTranshDescription"
         Me.colFullTranshDescription.MinWidth = 35
         Me.colFullTranshDescription.Name = "colFullTranshDescription"
-        Me.colFullTranshDescription.Width = 131
+        Me.colFullTranshDescription.Width = 132
         '
         'colID
         '
@@ -446,8 +499,8 @@ Partial Class frmBuyCollectionInsert
         Me.colinvoiceNumber.OptionsColumn.AllowEdit = False
         Me.colinvoiceNumber.OptionsColumn.ReadOnly = True
         Me.colinvoiceNumber.Visible = True
-        Me.colinvoiceNumber.VisibleIndex = 2
-        Me.colinvoiceNumber.Width = 180
+        Me.colinvoiceNumber.VisibleIndex = 3
+        Me.colinvoiceNumber.Width = 215
         '
         'colcusID
         '
@@ -457,8 +510,8 @@ Partial Class frmBuyCollectionInsert
         Me.colcusID.MinWidth = 35
         Me.colcusID.Name = "colcusID"
         Me.colcusID.Visible = True
-        Me.colcusID.VisibleIndex = 3
-        Me.colcusID.Width = 342
+        Me.colcusID.VisibleIndex = 4
+        Me.colcusID.Width = 375
         '
         'RepCus
         '
@@ -485,8 +538,8 @@ Partial Class frmBuyCollectionInsert
         Me.coldtBuy.OptionsColumn.AllowEdit = False
         Me.coldtBuy.OptionsColumn.ReadOnly = True
         Me.coldtBuy.Visible = True
-        Me.coldtBuy.VisibleIndex = 1
-        Me.coldtBuy.Width = 119
+        Me.coldtBuy.VisibleIndex = 2
+        Me.coldtBuy.Width = 108
         '
         'coltranshID
         '
@@ -496,8 +549,8 @@ Partial Class frmBuyCollectionInsert
         Me.coltranshID.MinWidth = 35
         Me.coltranshID.Name = "coltranshID"
         Me.coltranshID.Visible = True
-        Me.coltranshID.VisibleIndex = 4
-        Me.coltranshID.Width = 459
+        Me.coltranshID.VisibleIndex = 5
+        Me.coltranshID.Width = 503
         '
         'RepTransh
         '
@@ -525,21 +578,6 @@ Partial Class frmBuyCollectionInsert
         Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
         Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'colvatAmount
-        '
-        Me.colvatAmount.Caption = "Αξία με ΦΠΑ"
-        Me.colvatAmount.DisplayFormat.FormatString = "c2"
-        Me.colvatAmount.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.colvatAmount.FieldName = "vatAmount"
-        Me.colvatAmount.MinWidth = 35
-        Me.colvatAmount.Name = "colvatAmount"
-        Me.colvatAmount.OptionsColumn.AllowEdit = False
-        Me.colvatAmount.OptionsColumn.ReadOnly = True
-        Me.colvatAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vatAmount", "Σύνολο={0:c2}")})
-        Me.colvatAmount.Visible = True
-        Me.colvatAmount.VisibleIndex = 11
-        Me.colvatAmount.Width = 162
-        '
         'colnetAmount
         '
         Me.colnetAmount.Caption = "Καθαρή Αξία"
@@ -552,8 +590,8 @@ Partial Class frmBuyCollectionInsert
         Me.colnetAmount.OptionsColumn.ReadOnly = True
         Me.colnetAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "netAmount", "Σύνολο={0:c2}")})
         Me.colnetAmount.Visible = True
-        Me.colnetAmount.VisibleIndex = 10
-        Me.colnetAmount.Width = 147
+        Me.colnetAmount.VisibleIndex = 12
+        Me.colnetAmount.Width = 167
         '
         'GridColumn3
         '
@@ -563,14 +601,14 @@ Partial Class frmBuyCollectionInsert
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 13
-        Me.GridColumn3.Width = 131
+        Me.GridColumn3.VisibleIndex = 16
+        Me.GridColumn3.Width = 92
         '
         'RepColExcel
         '
         Me.RepColExcel.AutoHeight = False
-        EditorButtonImageOptions4.SvgImage = CType(resources.GetObject("EditorButtonImageOptions4.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.RepColExcel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions4, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject13, SerializableAppearanceObject14, SerializableAppearanceObject15, SerializableAppearanceObject16, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions2.SvgImage = CType(resources.GetObject("EditorButtonImageOptions2.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.RepColExcel.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.RepColExcel.Name = "RepColExcel"
         Me.RepColExcel.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
@@ -579,7 +617,7 @@ Partial Class frmBuyCollectionInsert
         Me.colbuyFID.FieldName = "buyFID"
         Me.colbuyFID.MinWidth = 35
         Me.colbuyFID.Name = "colbuyFID"
-        Me.colbuyFID.Width = 131
+        Me.colbuyFID.Width = 132
         '
         'colCompleted
         '
@@ -587,31 +625,9 @@ Partial Class frmBuyCollectionInsert
         Me.colCompleted.FieldName = "completed"
         Me.colCompleted.MinWidth = 35
         Me.colCompleted.Name = "colCompleted"
-        Me.colCompleted.OptionsColumn.AllowEdit = False
-        Me.colCompleted.OptionsColumn.ReadOnly = True
         Me.colCompleted.Visible = True
-        Me.colCompleted.VisibleIndex = 12
-        Me.colCompleted.Width = 165
-        '
-        'colkitchen
-        '
-        Me.colkitchen.Caption = "Κουζίνα"
-        Me.colkitchen.ColumnEdit = Me.RepCopyDelete
-        Me.colkitchen.DisplayFormat.FormatString = "c2"
-        Me.colkitchen.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.colkitchen.FieldName = "kitchen"
-        Me.colkitchen.MinWidth = 35
-        Me.colkitchen.Name = "colkitchen"
-        Me.colkitchen.Visible = True
-        Me.colkitchen.VisibleIndex = 5
-        Me.colkitchen.Width = 131
-        '
-        'RepCopyDelete
-        '
-        Me.RepCopyDelete.AutoHeight = False
-        EditorButtonImageOptions5.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_copy_16
-        Me.RepCopyDelete.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions5, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject17, SerializableAppearanceObject18, SerializableAppearanceObject19, SerializableAppearanceObject20, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
-        Me.RepCopyDelete.Name = "RepCopyDelete"
+        Me.colCompleted.VisibleIndex = 15
+        Me.colCompleted.Width = 163
         '
         'colmaterials
         '
@@ -623,8 +639,8 @@ Partial Class frmBuyCollectionInsert
         Me.colmaterials.MinWidth = 35
         Me.colmaterials.Name = "colmaterials"
         Me.colmaterials.Visible = True
-        Me.colmaterials.VisibleIndex = 8
-        Me.colmaterials.Width = 131
+        Me.colmaterials.VisibleIndex = 10
+        Me.colmaterials.Width = 138
         '
         'colgeneral
         '
@@ -636,8 +652,8 @@ Partial Class frmBuyCollectionInsert
         Me.colgeneral.MinWidth = 35
         Me.colgeneral.Name = "colgeneral"
         Me.colgeneral.Visible = True
-        Me.colgeneral.VisibleIndex = 9
-        Me.colgeneral.Width = 131
+        Me.colgeneral.VisibleIndex = 11
+        Me.colgeneral.Width = 158
         '
         'colcloset
         '
@@ -649,8 +665,8 @@ Partial Class frmBuyCollectionInsert
         Me.colcloset.MinWidth = 35
         Me.colcloset.Name = "colcloset"
         Me.colcloset.Visible = True
-        Me.colcloset.VisibleIndex = 6
-        Me.colcloset.Width = 131
+        Me.colcloset.VisibleIndex = 8
+        Me.colcloset.Width = 138
         '
         'colbathroomFurn
         '
@@ -662,20 +678,80 @@ Partial Class frmBuyCollectionInsert
         Me.colbathroomFurn.MinWidth = 35
         Me.colbathroomFurn.Name = "colbathroomFurn"
         Me.colbathroomFurn.Visible = True
-        Me.colbathroomFurn.VisibleIndex = 7
-        Me.colbathroomFurn.Width = 155
+        Me.colbathroomFurn.VisibleIndex = 9
+        Me.colbathroomFurn.Width = 163
         '
         'colisCredit
         '
         Me.colisCredit.Caption = "Πιστωτικό"
         Me.colisCredit.FieldName = "isCredit"
-        Me.colisCredit.MinWidth = 35
+        Me.colisCredit.MinWidth = 58
         Me.colisCredit.Name = "colisCredit"
         Me.colisCredit.OptionsColumn.AllowEdit = False
         Me.colisCredit.OptionsColumn.ReadOnly = True
         Me.colisCredit.Visible = True
         Me.colisCredit.VisibleIndex = 14
-        Me.colisCredit.Width = 131
+        Me.colisCredit.Width = 128
+        '
+        'colord
+        '
+        Me.colord.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.colord.AppearanceCell.Options.UseBackColor = True
+        Me.colord.Caption = "ΑΑ"
+        Me.colord.FieldName = "ord"
+        Me.colord.MinWidth = 33
+        Me.colord.Name = "colord"
+        Me.colord.OptionsColumn.AllowEdit = False
+        Me.colord.OptionsColumn.ReadOnly = True
+        Me.colord.Visible = True
+        Me.colord.VisibleIndex = 1
+        '
+        'colsupID
+        '
+        Me.colsupID.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colsupID.AppearanceCell.Options.UseBackColor = True
+        Me.colsupID.FieldName = "supID"
+        Me.colsupID.MinWidth = 33
+        Me.colsupID.Name = "colsupID"
+        '
+        'coluploadDate
+        '
+        Me.coluploadDate.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.coluploadDate.AppearanceCell.Options.UseBackColor = True
+        Me.coluploadDate.FieldName = "uploadDate"
+        Me.coluploadDate.MinWidth = 33
+        Me.coluploadDate.Name = "coluploadDate"
+        '
+        'coldtYBuy
+        '
+        Me.coldtYBuy.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.coldtYBuy.AppearanceCell.Options.UseBackColor = True
+        Me.coldtYBuy.FieldName = "dtYBuy"
+        Me.coldtYBuy.MinWidth = 33
+        Me.coldtYBuy.Name = "coldtYBuy"
+        '
+        'colcreatedOn
+        '
+        Me.colcreatedOn.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colcreatedOn.AppearanceCell.Options.UseBackColor = True
+        Me.colcreatedOn.FieldName = "createdOn"
+        Me.colcreatedOn.MinWidth = 33
+        Me.colcreatedOn.Name = "colcreatedOn"
+        '
+        'colcreatedBy
+        '
+        Me.colcreatedBy.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colcreatedBy.AppearanceCell.Options.UseBackColor = True
+        Me.colcreatedBy.FieldName = "createdBy"
+        Me.colcreatedBy.MinWidth = 33
+        Me.colcreatedBy.Name = "colcreatedBy"
+        '
+        'colbuyID
+        '
+        Me.colbuyID.FieldName = "buyID"
+        Me.colbuyID.MinWidth = 35
+        Me.colbuyID.Name = "colbuyID"
+        Me.colbuyID.Width = 131
         '
         'txtImageCorrect
         '
@@ -694,8 +770,8 @@ Partial Class frmBuyCollectionInsert
         'RepColBtn
         '
         Me.RepColBtn.AutoHeight = False
-        EditorButtonImageOptions6.SvgImage = CType(resources.GetObject("EditorButtonImageOptions6.SvgImage"), DevExpress.Utils.Svg.SvgImage)
-        Me.RepColBtn.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions6, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject21, SerializableAppearanceObject22, SerializableAppearanceObject23, SerializableAppearanceObject24, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions3.SvgImage = CType(resources.GetObject("EditorButtonImageOptions3.SvgImage"), DevExpress.Utils.Svg.SvgImage)
+        Me.RepColBtn.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.RepColBtn.Name = "RepColBtn"
         Me.RepColBtn.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
         '
@@ -803,6 +879,18 @@ Partial Class frmBuyCollectionInsert
         '
         Me.KANELLOPOULOSTableAdapter.ClearBeforeFill = True
         '
+        'colcmt
+        '
+        Me.colcmt.Caption = "Σχόλια Παραστατικού"
+        Me.colcmt.FieldName = "cmt"
+        Me.colcmt.MinWidth = 35
+        Me.colcmt.Name = "colcmt"
+        Me.colcmt.OptionsColumn.AllowEdit = False
+        Me.colcmt.OptionsColumn.ReadOnly = True
+        Me.colcmt.Visible = True
+        Me.colcmt.VisibleIndex = 6
+        Me.colcmt.Width = 142
+        '
         'frmBuyCollectionInsert
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -814,6 +902,7 @@ Partial Class frmBuyCollectionInsert
         Me.Name = "frmBuyCollectionInsert"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "frmBuyCollectionInsert"
+        CType(Me.RepCopyDelete, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.DockPanel1.ResumeLayout(False)
         Me.DockPanel1_Container.ResumeLayout(False)
@@ -834,7 +923,6 @@ Partial Class frmBuyCollectionInsert
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepColExcel, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.RepCopyDelete, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtImageCorrect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtImageError, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepColBtn, System.ComponentModel.ISupportInitialize).EndInit()
@@ -913,4 +1001,12 @@ Partial Class frmBuyCollectionInsert
     Friend WithEvents cmdSave As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents colisCredit As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colord As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colsupID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coluploadDate As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldtYBuy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcreatedOn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcreatedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colbuyID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcmt As DevExpress.XtraGrid.Columns.GridColumn
 End Class

@@ -320,9 +320,29 @@ Public Class frmBuyCollectionInsert
                             lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(0)
 
                             'Ενημέρωση πίνακα KANELLOPOYLOS με ολοκληρωμένο
-                            Using oCmd As New SqlCommand("UPDATE KANELLOPOULOS SET completed = 1 where ID = " & toSQLValueS(GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString), CNDB)
+                            Using oCmd As New SqlCommand("UPDATE KANELLOPOULOS SET buyID = " & toSQLValueS(sbuyID) & ", completed = 1 where ID = " & toSQLValueS(GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString), CNDB)
                                 oCmd.ExecuteNonQuery()
                             End Using
+
+                            Dim ssSQL = "DELETE FROM SUP_PAYMENTS_P  WHERE buyID = " & toSQLValueS(sbuyID)
+                            Using oCmd As New SqlCommand(ssSQL, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                            ssSQL = "INSERT SUP_PAYMENTS_P  SELECT NEWID(),ID,vatAmount from BUY WHERE ID = " & toSQLValueS(sbuyID)
+                            Using oCmd As New SqlCommand(ssSQL, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+
+
+                            If sTranshID.Length > 0 Then
+                                ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                                Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+                                    oCmd.CommandType = CommandType.StoredProcedure
+                                    oCmd.Parameters.AddWithValue("@transhID", sTranshID)
+                                    oCmd.ExecuteNonQuery()
+                                End Using
+                            End If
+
 
                             ItemsCorrect = ItemsCorrect + 1
                             ProgressBarControl1.PerformStep()
@@ -347,6 +367,16 @@ Public Class frmBuyCollectionInsert
                 End Try
                 sSQL.Clear() : Found = 0
             Next I
+
+            If ItemsCorrect > 0 Then
+                'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
+                Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
+                    oCmd.CommandType = CommandType.StoredProcedure
+                    oCmd.Parameters.AddWithValue("@supplierID", supID)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            End If
+
             grdINVOICES.DataSource = Nothing
             Me.KANELLOPOULOSTableAdapter.Fill(Me.DMDataSet.KANELLOPOULOS)
             grdINVOICES.DataSource = Me.DMDataSet.KANELLOPOULOS
@@ -368,6 +398,13 @@ Public Class frmBuyCollectionInsert
         Dim kitchen As Double, materials As Double, general As Double, closet As Double, bathroomFurn As Double
         Dim Found As Integer = 0
 
+        If GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "completed") = "True" And sender.FocusedColumn.FieldName <> "completed" Then
+            e.ErrorText = "Δεν μπορείτε να αλλάξετε Ολοκληρωμένη εγγραφή"
+            e.Valid = False
+            Exit Sub
+        End If
+
+
         kitchen = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "kitchen")
         materials = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "materials")
         general = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "general")
@@ -385,11 +422,17 @@ Public Class frmBuyCollectionInsert
             e.Valid = False
             Exit Sub
         End If
-
-        If Found = 0 And sender.FocusedColumn.FieldName = "completed" And e.Value.ToString = "True" Then
+        If Found = 0 And sender.FocusedColumn.FieldName = "completed" And e.Value = Nothing Then
             e.ErrorText = "Δεν μπορείτε να κάνετε ολοκληρωμένο το Παραστατικό χωρίς να έχετε περάσει ποσά"
             e.Valid = False
             Exit Sub
+        End If
+        If e.Value IsNot Nothing Then
+            If Found = 0 And sender.FocusedColumn.FieldName = "completed" And e.Value.ToString = "True" Then
+                e.ErrorText = "Δεν μπορείτε να κάνετε ολοκληρωμένο το Παραστατικό χωρίς να έχετε περάσει ποσά"
+                e.Valid = False
+                Exit Sub
+            End If
         End If
 
         If sender.FocusedColumn.FieldName = "cctID" And e.Value = Nothing Then
@@ -402,7 +445,7 @@ Public Class frmBuyCollectionInsert
 
     Private Sub RepCopy_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepCopyDelete.ButtonClick
         Select Case e.Button.Index
-            Case 0 : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, GridView5.FocusedColumn.FieldName, GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "netAmount"))
+            Case 0 : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, GridView5.FocusedColumn.FieldName, GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "vatAmount"))
             Case 1 : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, GridView5.FocusedColumn.FieldName, 0)
         End Select
         repCCTID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString.ToUpper
@@ -611,5 +654,22 @@ Public Class frmBuyCollectionInsert
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         InsertRecordsToBuy()
+    End Sub
+
+    Private Sub GridView5_DoubleClick(sender As Object, e As EventArgs) Handles GridView5.DoubleClick
+        Dim sBuyID As String
+        If sender.FocusedColumn.FieldName <> "invNumber" Then Exit Sub
+        sBuyID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "buyID").ToString.ToUpper
+        If sBuyID <> "" Then
+            Dim frmBUY As frmBUY = New frmBUY()
+            frmBUY.Text = "Αγορές"
+            frmBUY.ID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "buyID").ToString
+            frmBUY.MdiParent = frmMain
+            frmBUY.Mode = FormMode.EditRecord
+            frmBUY.Scroller = GridView5
+            frmBUY.FormScroller = Me
+            frmBUY.Show()
+
+        End If
     End Sub
 End Class

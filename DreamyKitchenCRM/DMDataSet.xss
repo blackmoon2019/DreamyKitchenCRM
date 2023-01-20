@@ -22,7 +22,7 @@
     <Shape ID="DesignTable:vw_DOOR_TYPESpecialConstr" ZOrder="7" X="107" Y="639" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:vw_DOOR_TYPEPlainaKremasta2hsSeiras" ZOrder="6" X="2441" Y="865" Height="485" Width="379" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:vw_BUY_O" ZOrder="4" X="504" Y="663" Height="423" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="348" />
-    <Shape ID="DesignTable:vw_DOC_TYPES" ZOrder="3" X="487" Y="1250" Height="206" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="131" />
+    <Shape ID="DesignTable:vw_DOC_TYPES" ZOrder="3" X="487" Y="1250" Height="237" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="131" />
     <Shape ID="DesignTable:CCT_TRANSH" ZOrder="2" X="144" Y="1188" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:KANELLOPOULOS" ZOrder="1" X="1007" Y="1265" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
   </Shapes>
