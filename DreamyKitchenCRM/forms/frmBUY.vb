@@ -76,12 +76,12 @@ Public Class frmBUY
                 Dim sCusID As String
                 If cboCUS.EditValue Is Nothing Then sCusID = Guid.Empty.ToString Else sCusID = cboCUS.EditValue.ToString
                 Me.Vw_TRANSHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSH, System.Guid.Parse(sCusID))
+                If cboSUP.EditValue IsNot Nothing Then Me.Vw_DOC_TYPESTableAdapter.FillBySupID(Me.DMDataSet.vw_DOC_TYPES, System.Guid.Parse(cboSUP.EditValue.ToString))
                 Multiplier = cboDocType.GetColumnValue("Vmultiplier") : If Multiplier = 0 Then Multiplier = 1
-                Me.Vw_DOC_TYPESTableAdapter.FillBySupID(Me.DMDataSet.vw_DOC_TYPES, System.Guid.Parse(cboSUP.EditValue.ToString))
         End Select
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
-        If chkPaid.Checked = True Then cmdSave.Enabled = False
+        'If chkPaid.Checked = True Then cmdSave.Enabled = False
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
@@ -110,10 +110,17 @@ Public Class frmBUY
                     LayoutControlItem25.Enabled = True
                     If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
 
-                    'Ενημέρωση πίνακα KANELLOPOYLOS με έργο - πελάτη
-                    Using oCmd As New SqlCommand("UPDATE KANELLOPOULOS SET transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString) & ", cctID = " & toSQLValueS(cboCUS.EditValue.ToString) & " where buyID = " & toSQLValueS(sID), CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
+                    ' ΚΑΝΕΛΛΟΠΟΥΛΟΣ
+                    If cboSUP.EditValue.ToString.ToUpper = "89251045-64C7-4E35-9CAF-51D020279CFE" Then
+                        Dim sTranshID As String, cctID As String
+                        If cboTRANSH.EditValue = Nothing Then sTranshID = "" Else sTranshID = cboTRANSH.EditValue.ToString
+                        If cboCUS.EditValue = Nothing Then cctID = "" Else cctID = cboCUS.EditValue.ToString
+
+                        'Ενημέρωση πίνακα KANELLOPOYLOS με έργο - πελάτη
+                        Using oCmd As New SqlCommand("UPDATE KANELLOPOULOS SET transhID = " & toSQLValueS(sTranshID) & ", cctID = " & toSQLValueS(cctID) & " where buyID = " & toSQLValueS(sID), CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    End If
                     'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
                     Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
@@ -194,7 +201,8 @@ Public Class frmBUY
         Dim Net As Double, Vat As Double
         If txtnetAmount.EditValue Is Nothing Or txtvatAmount.EditValue Is Nothing Then Exit Sub
         Net = DbnullToZero(txtnetAmount) : Vat = DbnullToZero(txtvatAmount)
-        txtvatAmount.EditValue = Net * 1.24 * Multiplier
+        Net = Math.Abs(Net) * Multiplier
+        txtvatAmount.EditValue = Net * 1.24
     End Sub
 
     Private Sub txtDevicesBuy_EditValueChanged(sender As Object, e As EventArgs) Handles txtDevicesBuy.EditValueChanged
@@ -208,7 +216,7 @@ Public Class frmBUY
         general = DbnullToZero(txtgeneral) : materials = DbnullToZero(txtmaterials) : kitchen = DbnullToZero(txtkitchen)
         measurement = DbnullToZero(txtmeasurement)
         Total = DevicesBuy + bathroomFurn + closet + general + materials + kitchen + transportation + Bench + glasses + measurement
-        Total = Total * Multiplier
+        Total = Math.Abs(Total) * Multiplier
         Return Total
     End Function
 

@@ -3,6 +3,7 @@ Imports System.Text
 Imports System.Text.RegularExpressions
 Imports DevExpress.CodeParser
 Imports DevExpress.DataAccess
+Imports DevExpress.DataAccess.Native
 Imports DevExpress.Office.PInvoke.Win32
 Imports DevExpress.Xpo
 Imports DevExpress.XtraBars.Navigation
@@ -12,6 +13,7 @@ Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraLayout
+Imports DevExpress.XtraMap.Drawing.DirectD3D9
 Imports DevExpress.XtraRichEdit.Utils
 Imports iTextSharp.text
 
@@ -22,6 +24,7 @@ Public Class frmBuyCollectionInsert
     Private sFileName As String
     Private repCCTID As String = ""
     Private reptranshID As String = ""
+    Private sCmt As String = ""
 
     Private Sub frmBuyCollectionInsert_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
@@ -31,6 +34,7 @@ Public Class frmBuyCollectionInsert
         LoadForms.RestoreLayoutFromXml(GridView5, "KANELLOPOULOS.xml")
         AddHandler RepTransh.EditValueChanged, AddressOf RepTransh_Changed
         AddHandler RepCus.EditValueChanged, AddressOf RepCus_Changed
+        AddHandler RepKan_O.KeyDown, AddressOf RepKan_O_KeyDown
         SupMode = 1
     End Sub
     Private Sub NavKanelopoulos_ElementClick(sender As Object, e As NavElementEventArgs) Handles NavKanelopoulos.ElementClick
@@ -50,15 +54,39 @@ Public Class frmBuyCollectionInsert
         If editor.EditValue Is Nothing Then Exit Sub
         repCCTID = editor.EditValue.ToString
     End Sub
+    Private Sub RepKan_O_KeyDown(sender As Object, e As EventArgs)
+        Dim k As KeyEventArgs = e
+        If k.KeyCode = Keys.Enter Then
+            Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+            If editor.Controls(0).Text Is Nothing Then Exit Sub
+            Dim KanOName As String = editor.Controls(0).Text
+            Dim sSQL As New System.Text.StringBuilder
+            sSQL.AppendLine("INSERT INTO KANELLOPOULOS_O (kanID,name) VALUES( ")
+            sSQL.AppendLine(toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString.ToUpper) & ",")
+            sSQL.AppendLine(toSQLValueS(KanOName) & ")")
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Dim ID As String = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString()
+            If ID.Length > 0 Then editor.Properties.DataSource = Me.KANELLOPOULOS_OTableAdapter.GetData(System.Guid.Parse(ID))
+            editor.EditValue = 0
+            editor.Text = ""
+        End If
+
+    End Sub
 
     Private Sub GridView5_ShownEditor(sender As Object, e As EventArgs) Handles GridView5.ShownEditor
         Dim view As ColumnView = DirectCast(sender, ColumnView)
         Try
             If GridView5.FocusedRowHandle < 0 Then Exit Sub
             Dim cctID As String = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString()
+            Dim ID As String = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString()
             If view.FocusedColumn.FieldName = "transhID" Then
                 Dim editor As LookUpEdit = CType(view.ActiveEditor, LookUpEdit)
                 If cctID.Length > 0 Then editor.Properties.DataSource = Me.Vw_TRANSHTableAdapter.GetData(System.Guid.Parse(cctID))
+            ElseIf view.FocusedColumn.Name = "colKanO" Then
+                Dim editor As LookUpEdit = CType(view.ActiveEditor, LookUpEdit)
+                If ID.Length > 0 Then editor.Properties.DataSource = Me.KANELLOPOULOS_OTableAdapter.GetData(System.Guid.Parse(ID))
             End If
         Catch ex As Exception
             'XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -205,14 +233,20 @@ Public Class frmBuyCollectionInsert
                                 lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(0)
                                 lstLog.Items(lstLog.Items.Count - 1).Tag = sKanelopoulosID
                                 ItemsCorrect = ItemsCorrect + 1
+                                lstLog.SelectedIndex = lstLog.ItemCount + 1
+                                lstLog.Refresh()
                             Catch dbException As System.Data.SqlClient.SqlException
                                 lstLog.Items.Add("Το τιμολόγιο με αριθμό " & sInvNumber & " και ημερομηνία " & sDate & " υπάρχει ήδη.")
                                 lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(4)
                                 ItemsWrong = ItemsWrong + 1
+                                lstLog.SelectedIndex = lstLog.ItemCount + 1
+                                lstLog.Refresh()
                             Catch ex As Exception
                                 lstLog.Items.Add(ex.Message.ToString.Replace(vbCrLf, ""))
                                 lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(1)
                                 ItemsWrong = ItemsWrong + 1
+                                lstLog.SelectedIndex = lstLog.ItemCount + 1
+                                lstLog.Refresh()
                             End Try
                             sSQL.Clear()
                         End If
@@ -231,6 +265,8 @@ Public Class frmBuyCollectionInsert
 
             lstLog.Items.Add("Καταχωρήθηκαν: " & ItemsCorrect & " Λάθοι: " & ItemsWrong)
             lstLog.Items(lstLog.Items.Count - 1).ImageOptions.Image = ImageCollection1.Images.Item(2)
+            lstLog.SelectedIndex = lstLog.ItemCount + 1
+            lstLog.Refresh()
             If ItemsCorrect > 0 Then
                 Dim sResult As Boolean = DBQ.InsertNewDataFiles(XtraOpenFileDialog1, "BUY_F", sKanelopoulosFileID)
                 If sResult = False Then XtraMessageBox.Show("Προσοχή το αρχείο Excel δεν αποθηκεύθηκε στην βάση", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -245,7 +281,7 @@ Public Class frmBuyCollectionInsert
     Private Sub InsertRecordsToBuy()
         Dim sInvNumber As String, sDate As String, sVatAmount As Double, sNetAmount As Double
         Dim kitchen As Double, materials As Double, general As Double, closet As Double, bathroomFurn As Double
-        Dim sOrd As String
+        Dim sOrd As String, cmt As String
         Dim supID As String, sdocTypeID As String, sCusID As String, sTranshID As String, sPayID As String
         Dim selectedRowHandles As Int32() = GridView5.GetSelectedRows
         Dim ItemsCorrect As Integer = 0, ItemsWrong As Integer = 0
@@ -268,6 +304,7 @@ Public Class frmBuyCollectionInsert
                         sbuyID = System.Guid.NewGuid.ToString
                         supID = GridView5.GetRowCellValue(selectedRowHandle, "supID").ToString
                         sInvNumber = GridView5.GetRowCellValue(selectedRowHandle, "invNumber")
+                        cmt = GridView5.GetRowCellValue(selectedRowHandle, "cmt").ToString
                         sDate = CDate(GridView5.GetRowCellValue(selectedRowHandle, "invDate"))
                         sdocTypeID = GridView5.GetRowCellValue(selectedRowHandle, "docTypeID").ToString
                         sOrd = "(select max(ord) + 1 FROM BUY where supID = " & toSQLValueS(supID) & " and dtYBuy = " & toSQLValueS(Year(GridView5.GetRowCellValue(selectedRowHandle, "invDate")), True) & ")"
@@ -291,7 +328,8 @@ Public Class frmBuyCollectionInsert
                         If Found > 0 Then
 
 
-                            sSQL.AppendLine("INSERT INTO BUY (ID, ord, dtBuy, invoiceNumber, docTypeID, supID, cusID, transhID, payID, paid, kitchen, closet, general, materials, bathroomFurn, netAmount, vatAmount,ComeFrom,createdOn,createdBy) VALUES( ")
+                            sSQL.AppendLine("INSERT INTO BUY (ID, ord, dtBuy, invoiceNumber, docTypeID, supID, cusID, transhID, payID, paid, kitchen, closet, general, materials, bathroomFurn, netAmount, " &
+                                            " vatAmount,ComeFrom,cmt,createdOn,createdBy) VALUES( ")
                             sSQL.AppendLine(toSQLValueS(sbuyID) & ",")
                             sSQL.AppendLine(sOrd & ",")
                             sSQL.AppendLine(toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",")
@@ -303,13 +341,14 @@ Public Class frmBuyCollectionInsert
                             sSQL.AppendLine(sPayID & ",")
                             sSQL.AppendLine("0" & ",")
                             sSQL.AppendLine(toSQLValueS(kitchen, True) & ",")
-                            sSQL.AppendLine(toSQLValueS(materials, True) & ",")
-                            sSQL.AppendLine(toSQLValueS(general, True) & ",")
                             sSQL.AppendLine(toSQLValueS(closet, True) & ",")
+                            sSQL.AppendLine(toSQLValueS(general, True) & ",")
+                            sSQL.AppendLine(toSQLValueS(materials, True) & ",")
                             sSQL.AppendLine(toSQLValueS(bathroomFurn, True) & ",")
                             sSQL.AppendLine(toSQLValueS(sNetAmount, True) & ",")
                             sSQL.AppendLine(toSQLValueS(sVatAmount, True) & ",")
                             sSQL.AppendLine("1" & ",")
+                            sSQL.AppendLine(toSQLValueS(cmt) & ",")
                             sSQL.AppendLine("getdate(),")
                             sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ")")
 
@@ -333,6 +372,16 @@ Public Class frmBuyCollectionInsert
                                 oCmd.ExecuteNonQuery()
                             End Using
 
+                            ' Διαγραφή δελτίων Παραγγελίας
+                            ssSQL = "DELETE FROM BUY_O WHERE buyID = " & toSQLValueS(sbuyID)
+                            Using oCmd As New SqlCommand(ssSQL, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                            ' ΚΑταχώρηση δελτίων Παραγγελίας
+                            ssSQL = "INSERT INTO BUY_O (name,buyID,createdON,createdBy,modifiedBy) SELECT name," & toSQLValueS(sbuyID) & ",getdate()," & toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & " FROM KANELLOPOULOS_O where kanID = " & toSQLValueS(GridView5.GetRowCellValue(selectedRowHandle, "ID").ToString)
+                            Using oCmd As New SqlCommand(ssSQL, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
 
                             If sTranshID.Length > 0 Then
                                 ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
@@ -397,7 +446,7 @@ Public Class frmBuyCollectionInsert
     Private Sub GridView5_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles GridView5.ValidatingEditor
         Dim kitchen As Double, materials As Double, general As Double, closet As Double, bathroomFurn As Double
         Dim Found As Integer = 0
-
+        If GridView5.FocusedColumn.Name = "colKanO" Then Exit Sub
         If GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "completed") = "True" And sender.FocusedColumn.FieldName <> "completed" Then
             e.ErrorText = "Δεν μπορείτε να αλλάξετε Ολοκληρωμένη εγγραφή"
             e.Valid = False
@@ -435,17 +484,21 @@ Public Class frmBuyCollectionInsert
             End If
         End If
 
-        If sender.FocusedColumn.FieldName = "cctID" And e.Value = Nothing Then
+        If sender.FocusedColumn.FieldName = "cmt" Then GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "cmt", e.Value)
+
+        Dim CellValue As String = ""
+        If e.Value IsNot Nothing Then CellValue = e.Value.ToString.ToUpper
+        If sender.FocusedColumn.FieldName = "cctID" And CellValue = "" Then
             GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "transhID", "") : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FullTranshDescription", "")
-        ElseIf sender.FocusedColumn.FieldName = "cctID" And e.Value.ToString.ToUpper <> GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString.ToUpper Then
+        ElseIf sender.FocusedColumn.FieldName = "cctID" And CellValue <> GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString.ToUpper Then
             GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "transhID", "") : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, "FullTranshDescription", "")
         End If
-        If sender.FocusedColumn.FieldName = "completed" Then UpdateColBuy(e.Value.ToString) Else UpdateColBuy()
+        If sender.FocusedColumn.FieldName = "completed" Then UpdateColBuy(CellValue) Else UpdateColBuy()
     End Sub
 
     Private Sub RepCopy_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles RepCopyDelete.ButtonClick
         Select Case e.Button.Index
-            Case 0 : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, GridView5.FocusedColumn.FieldName, GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "vatAmount"))
+            Case 0 : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, GridView5.FocusedColumn.FieldName, GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "netAmount"))
             Case 1 : GridView5.SetRowCellValue(GridView5.FocusedRowHandle, GridView5.FocusedColumn.FieldName, 0)
         End Select
         repCCTID = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cctID").ToString.ToUpper
@@ -591,6 +644,7 @@ Public Class frmBuyCollectionInsert
             sSQL.AppendLine("cctID = " & toSQLValueS(repCCTID) & ",")
             sSQL.AppendLine("transhID = " & toSQLValueS(reptranshID) & ",")
             sSQL.AppendLine("FullTranshDescription = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "FullTranshDescription").ToString) & ",")
+            sSQL.AppendLine("cmt= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "cmt").ToString) & ",")
             sSQL.AppendLine("kitchen= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "kitchen").ToString, True) & ",")
             sSQL.AppendLine("closet= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "closet").ToString, True) & ",")
             sSQL.AppendLine("general= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "general").ToString, True) & ",")
@@ -669,7 +723,28 @@ Public Class frmBuyCollectionInsert
             frmBUY.Scroller = GridView5
             frmBUY.FormScroller = Me
             frmBUY.Show()
-
         End If
+    End Sub
+
+    Private Sub RepKan_O_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles RepKan_O.ButtonPressed
+        Select Case e.Button.Index
+            Case 1
+                Dim editor As DevExpress.XtraEditors.LookUpEdit = TryCast(sender, DevExpress.XtraEditors.LookUpEdit)
+                If editor.Controls(0).Text Is Nothing Then Exit Sub
+                Dim KanOName As String = editor.Controls(0).Text
+                If KanOName = "" Then Exit Sub
+                Dim sSQL As New System.Text.StringBuilder
+                sSQL.AppendLine("DELETE FROM KANELLOPOULOS_O WHERE ID = " & toSQLValueS(editor.EditValue.ToString))
+                Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                Dim ID As String = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString()
+                If ID.Length > 0 Then editor.Properties.DataSource = Me.KANELLOPOULOS_OTableAdapter.GetData(System.Guid.Parse(ID))
+        End Select
+
+    End Sub
+
+    Private Sub RepKan_O_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles RepKan_O.ProcessNewValue
+
     End Sub
 End Class

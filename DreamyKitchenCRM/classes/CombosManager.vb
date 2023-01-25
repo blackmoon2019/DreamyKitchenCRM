@@ -113,8 +113,11 @@ Public Class CombosManager
         form1.L2.Text = "Τύπος"
         form1.L8.Control.Tag = "Vmultiplier,0,1,2"
         form1.L8.Text = "Πολλαπλασιαστής"
+        form1.L3.Text = "Προμηθευτής"
+        form1.L3.Control.Tag = "supID,0,1,2"
         form1.DataTable = "DOC_TYPES"
         form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form1.CallerControl = CallerControl
         form1.CalledFromControl = True
         form1.MdiParent = frmMain

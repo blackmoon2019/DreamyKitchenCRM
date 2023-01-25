@@ -105,9 +105,14 @@ Partial Class frmBuyCollectionInsert
         Me.colcreatedOn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colbuyID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcmt1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colKanO = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepKan_O = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.KANELLOPOULOSOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtImageCorrect = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.txtImageError = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepColBtn = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
+        Me.ReptxtO = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -123,7 +128,7 @@ Partial Class frmBuyCollectionInsert
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
         Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter()
         Me.KANELLOPOULOSTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.KANELLOPOULOSTableAdapter()
-        Me.colcmt = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.KANELLOPOULOS_OTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.KANELLOPOULOS_OTableAdapter()
         CType(Me.RepCopyDelete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
@@ -145,9 +150,12 @@ Partial Class frmBuyCollectionInsert
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepColExcel, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepKan_O, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.KANELLOPOULOSOBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtImageCorrect, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtImageError, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepColBtn, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ReptxtO, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,7 +178,7 @@ Partial Class frmBuyCollectionInsert
         Me.colkitchen.MinWidth = 35
         Me.colkitchen.Name = "colkitchen"
         Me.colkitchen.Visible = True
-        Me.colkitchen.VisibleIndex = 7
+        Me.colkitchen.VisibleIndex = 8
         Me.colkitchen.Width = 148
         '
         'RepCopyDelete
@@ -192,7 +200,7 @@ Partial Class frmBuyCollectionInsert
         Me.colvatAmount.OptionsColumn.ReadOnly = True
         Me.colvatAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "vatAmount", "Σύνολο={0:c2}")})
         Me.colvatAmount.Visible = True
-        Me.colvatAmount.VisibleIndex = 13
+        Me.colvatAmount.VisibleIndex = 14
         Me.colvatAmount.Width = 177
         '
         'colDocType
@@ -413,7 +421,7 @@ Partial Class frmBuyCollectionInsert
         Me.grdINVOICES.MainView = Me.GridView5
         Me.grdINVOICES.Margin = New System.Windows.Forms.Padding(5)
         Me.grdINVOICES.Name = "grdINVOICES"
-        Me.grdINVOICES.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepCus, Me.txtImageCorrect, Me.txtImageError, Me.RepColBtn, Me.RepTransh, Me.RepColExcel, Me.RepCopyDelete})
+        Me.grdINVOICES.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepCus, Me.txtImageCorrect, Me.txtImageError, Me.RepColBtn, Me.RepTransh, Me.RepColExcel, Me.RepCopyDelete, Me.RepKan_O, Me.ReptxtO})
         Me.grdINVOICES.Size = New System.Drawing.Size(2360, 927)
         Me.grdINVOICES.TabIndex = 0
         Me.grdINVOICES.UseEmbeddedNavigator = True
@@ -431,7 +439,7 @@ Partial Class frmBuyCollectionInsert
         '
         'GridView5
         '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colFullTranshDescription, Me.colID, Me.colinvoiceNumber, Me.colcusID, Me.coldtBuy, Me.coltranshID, Me.colDocType, Me.colvatAmount, Me.colnetAmount, Me.GridColumn3, Me.colbuyFID, Me.colCompleted, Me.colkitchen, Me.colmaterials, Me.colgeneral, Me.colcloset, Me.colbathroomFurn, Me.colisCredit, Me.colord, Me.colsupID, Me.coluploadDate, Me.coldtYBuy, Me.colcreatedOn, Me.colcreatedBy, Me.colbuyID, Me.colcmt})
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colFullTranshDescription, Me.colID, Me.colinvoiceNumber, Me.colcusID, Me.coldtBuy, Me.coltranshID, Me.colDocType, Me.colvatAmount, Me.colnetAmount, Me.GridColumn3, Me.colbuyFID, Me.colCompleted, Me.colkitchen, Me.colmaterials, Me.colgeneral, Me.colcloset, Me.colbathroomFurn, Me.colisCredit, Me.colord, Me.colsupID, Me.coluploadDate, Me.coldtYBuy, Me.colcreatedOn, Me.colcreatedBy, Me.colbuyID, Me.colcmt1, Me.colKanO})
         Me.GridView5.FixedLineWidth = 3
         GridFormatRule1.ApplyToRow = True
         GridFormatRule1.Column = Me.colkitchen
@@ -454,6 +462,7 @@ Partial Class frmBuyCollectionInsert
         Me.GridView5.Name = "GridView5"
         Me.GridView5.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.[True]
         Me.GridView5.OptionsBehavior.EditorShowMode = DevExpress.Utils.EditorShowMode.MouseDown
+        Me.GridView5.OptionsDetail.EnableMasterViewMode = False
         Me.GridView5.OptionsLayout.StoreAllOptions = True
         Me.GridView5.OptionsLayout.StoreAppearance = True
         Me.GridView5.OptionsLayout.StoreFormatRules = True
@@ -590,7 +599,7 @@ Partial Class frmBuyCollectionInsert
         Me.colnetAmount.OptionsColumn.ReadOnly = True
         Me.colnetAmount.Summary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridColumnSummaryItem(DevExpress.Data.SummaryItemType.Sum, "netAmount", "Σύνολο={0:c2}")})
         Me.colnetAmount.Visible = True
-        Me.colnetAmount.VisibleIndex = 12
+        Me.colnetAmount.VisibleIndex = 13
         Me.colnetAmount.Width = 167
         '
         'GridColumn3
@@ -601,7 +610,7 @@ Partial Class frmBuyCollectionInsert
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.ShowButtonMode = DevExpress.XtraGrid.Views.Base.ShowButtonModeEnum.ShowAlways
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 16
+        Me.GridColumn3.VisibleIndex = 17
         Me.GridColumn3.Width = 92
         '
         'RepColExcel
@@ -626,7 +635,7 @@ Partial Class frmBuyCollectionInsert
         Me.colCompleted.MinWidth = 35
         Me.colCompleted.Name = "colCompleted"
         Me.colCompleted.Visible = True
-        Me.colCompleted.VisibleIndex = 15
+        Me.colCompleted.VisibleIndex = 16
         Me.colCompleted.Width = 163
         '
         'colmaterials
@@ -639,7 +648,7 @@ Partial Class frmBuyCollectionInsert
         Me.colmaterials.MinWidth = 35
         Me.colmaterials.Name = "colmaterials"
         Me.colmaterials.Visible = True
-        Me.colmaterials.VisibleIndex = 10
+        Me.colmaterials.VisibleIndex = 11
         Me.colmaterials.Width = 138
         '
         'colgeneral
@@ -652,7 +661,7 @@ Partial Class frmBuyCollectionInsert
         Me.colgeneral.MinWidth = 35
         Me.colgeneral.Name = "colgeneral"
         Me.colgeneral.Visible = True
-        Me.colgeneral.VisibleIndex = 11
+        Me.colgeneral.VisibleIndex = 12
         Me.colgeneral.Width = 158
         '
         'colcloset
@@ -665,7 +674,7 @@ Partial Class frmBuyCollectionInsert
         Me.colcloset.MinWidth = 35
         Me.colcloset.Name = "colcloset"
         Me.colcloset.Visible = True
-        Me.colcloset.VisibleIndex = 8
+        Me.colcloset.VisibleIndex = 9
         Me.colcloset.Width = 138
         '
         'colbathroomFurn
@@ -678,7 +687,7 @@ Partial Class frmBuyCollectionInsert
         Me.colbathroomFurn.MinWidth = 35
         Me.colbathroomFurn.Name = "colbathroomFurn"
         Me.colbathroomFurn.Visible = True
-        Me.colbathroomFurn.VisibleIndex = 9
+        Me.colbathroomFurn.VisibleIndex = 10
         Me.colbathroomFurn.Width = 163
         '
         'colisCredit
@@ -690,7 +699,7 @@ Partial Class frmBuyCollectionInsert
         Me.colisCredit.OptionsColumn.AllowEdit = False
         Me.colisCredit.OptionsColumn.ReadOnly = True
         Me.colisCredit.Visible = True
-        Me.colisCredit.VisibleIndex = 14
+        Me.colisCredit.VisibleIndex = 15
         Me.colisCredit.Width = 128
         '
         'colord
@@ -751,7 +760,45 @@ Partial Class frmBuyCollectionInsert
         Me.colbuyID.FieldName = "buyID"
         Me.colbuyID.MinWidth = 35
         Me.colbuyID.Name = "colbuyID"
-        Me.colbuyID.Width = 131
+        Me.colbuyID.Width = 132
+        '
+        'colcmt1
+        '
+        Me.colcmt1.Caption = "Σχόλια"
+        Me.colcmt1.FieldName = "cmt"
+        Me.colcmt1.MinWidth = 35
+        Me.colcmt1.Name = "colcmt1"
+        Me.colcmt1.Visible = True
+        Me.colcmt1.VisibleIndex = 7
+        Me.colcmt1.Width = 144
+        '
+        'colKanO
+        '
+        Me.colKanO.Caption = "Δελτία Π."
+        Me.colKanO.ColumnEdit = Me.RepKan_O
+        Me.colKanO.MinWidth = 35
+        Me.colKanO.Name = "colKanO"
+        Me.colKanO.Visible = True
+        Me.colKanO.VisibleIndex = 6
+        Me.colKanO.Width = 189
+        '
+        'RepKan_O
+        '
+        Me.RepKan_O.AllowMouseWheel = False
+        Me.RepKan_O.AutoHeight = False
+        Me.RepKan_O.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Minus)})
+        Me.RepKan_O.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("kanID", "kan ID", 71, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Δελτία", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepKan_O.DataSource = Me.KANELLOPOULOSOBindingSource
+        Me.RepKan_O.DisplayMember = "name"
+        Me.RepKan_O.Name = "RepKan_O"
+        Me.RepKan_O.NullText = ""
+        Me.RepKan_O.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
+        Me.RepKan_O.ValueMember = "ID"
+        '
+        'KANELLOPOULOSOBindingSource
+        '
+        Me.KANELLOPOULOSOBindingSource.DataMember = "KANELLOPOULOS_O"
+        Me.KANELLOPOULOSOBindingSource.DataSource = Me.DMDataSet
         '
         'txtImageCorrect
         '
@@ -774,6 +821,11 @@ Partial Class frmBuyCollectionInsert
         Me.RepColBtn.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.RepColBtn.Name = "RepColBtn"
         Me.RepColBtn.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.HideTextEditor
+        '
+        'ReptxtO
+        '
+        Me.ReptxtO.AutoHeight = False
+        Me.ReptxtO.Name = "ReptxtO"
         '
         'Root
         '
@@ -879,17 +931,9 @@ Partial Class frmBuyCollectionInsert
         '
         Me.KANELLOPOULOSTableAdapter.ClearBeforeFill = True
         '
-        'colcmt
+        'KANELLOPOULOS_OTableAdapter
         '
-        Me.colcmt.Caption = "Σχόλια Παραστατικού"
-        Me.colcmt.FieldName = "cmt"
-        Me.colcmt.MinWidth = 35
-        Me.colcmt.Name = "colcmt"
-        Me.colcmt.OptionsColumn.AllowEdit = False
-        Me.colcmt.OptionsColumn.ReadOnly = True
-        Me.colcmt.Visible = True
-        Me.colcmt.VisibleIndex = 6
-        Me.colcmt.Width = 142
+        Me.KANELLOPOULOS_OTableAdapter.ClearBeforeFill = True
         '
         'frmBuyCollectionInsert
         '
@@ -923,9 +967,12 @@ Partial Class frmBuyCollectionInsert
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepColExcel, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepKan_O, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.KANELLOPOULOSOBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtImageCorrect, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtImageError, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepColBtn, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ReptxtO, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1008,5 +1055,10 @@ Partial Class frmBuyCollectionInsert
     Friend WithEvents colcreatedOn As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcreatedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colbuyID As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colcmt As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcmt1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepKan_O As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents KANELLOPOULOSOBindingSource As BindingSource
+    Friend WithEvents KANELLOPOULOS_OTableAdapter As DMDataSetTableAdapters.KANELLOPOULOS_OTableAdapter
+    Friend WithEvents colKanO As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents ReptxtO As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class
