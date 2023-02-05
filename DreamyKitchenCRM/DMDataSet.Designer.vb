@@ -10870,6 +10870,8 @@ Partial Public Class DMDataSet
         
         Private columncmt As Global.System.Data.DataColumn
         
+        Private columnDeltOrders As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -11106,6 +11108,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property DeltOrdersColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnDeltOrders
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -11167,9 +11177,10 @@ Partial Public Class DMDataSet
                     ByVal FullTranshDescription As String,  _
                     ByVal isCredit As Boolean,  _
                     ByVal buyID As System.Guid,  _
-                    ByVal cmt As String) As KANELLOPOULOSRow
+                    ByVal cmt As String,  _
+                    ByVal DeltOrders As Boolean) As KANELLOPOULOSRow
             Dim rowKANELLOPOULOSRow As KANELLOPOULOSRow = CType(Me.NewRow,KANELLOPOULOSRow)
-            Dim columnValuesArray() As Object = New Object() {ID, ord, supID, invDate, invNumber, docTypeID, uploadDate, dtYBuy, buyFID, createdOn, createdBy, cctID, transhID, kitchen, closet, general, materials, bathroomFurn, netAmount, vatAmount, completed, FullTranshDescription, isCredit, buyID, cmt}
+            Dim columnValuesArray() As Object = New Object() {ID, ord, supID, invDate, invNumber, docTypeID, uploadDate, dtYBuy, buyFID, createdOn, createdBy, cctID, transhID, kitchen, closet, general, materials, bathroomFurn, netAmount, vatAmount, completed, FullTranshDescription, isCredit, buyID, cmt, DeltOrders}
             rowKANELLOPOULOSRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowKANELLOPOULOSRow)
             Return rowKANELLOPOULOSRow
@@ -11223,6 +11234,7 @@ Partial Public Class DMDataSet
             Me.columnisCredit = MyBase.Columns("isCredit")
             Me.columnbuyID = MyBase.Columns("buyID")
             Me.columncmt = MyBase.Columns("cmt")
+            Me.columnDeltOrders = MyBase.Columns("DeltOrders")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -11278,6 +11290,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnbuyID)
             Me.columncmt = New Global.System.Data.DataColumn("cmt", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncmt)
+            Me.columnDeltOrders = New Global.System.Data.DataColumn("DeltOrders", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnDeltOrders)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -11300,6 +11314,7 @@ Partial Public Class DMDataSet
             Me.columnFullTranshDescription.MaxLength = 150
             Me.columnisCredit.AllowDBNull = false
             Me.columncmt.MaxLength = 2147483647
+            Me.columnDeltOrders.ReadOnly = true
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -21117,6 +21132,21 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property DeltOrders() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tableKANELLOPOULOS.DeltOrdersColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'DeltOrders' in table 'KANELLOPOULOS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableKANELLOPOULOS.DeltOrdersColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsdtYBuyNull() As Boolean
             Return Me.IsNull(Me.tableKANELLOPOULOS.dtYBuyColumn)
         End Function
@@ -21221,6 +21251,18 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetcmtNull()
             Me(Me.tableKANELLOPOULOS.cmtColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsDeltOrdersNull() As Boolean
+            Return Me.IsNull(Me.tableKANELLOPOULOS.DeltOrdersColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetDeltOrdersNull()
+            Me(Me.tableKANELLOPOULOS.DeltOrdersColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -25582,6 +25624,7 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("isCredit", "isCredit")
             tableMapping.ColumnMappings.Add("buyID", "buyID")
             tableMapping.ColumnMappings.Add("cmt", "cmt")
+            tableMapping.ColumnMappings.Add("DeltOrders", "DeltOrders")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -25605,8 +25648,10 @@ Namespace DMDataSetTableAdapters
                 "hen, KANELLOPOULOS.closet, KANELLOPOULOS.general, KANELLOPOULOS.materials, KANEL"& _ 
                 "LOPOULOS.bathroomFurn, KANELLOPOULOS.netAmount, KANELLOPOULOS.vatAmount, KANELLO"& _ 
                 "POULOS.completed, KANELLOPOULOS.isCredit, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           KANELLOPOULOS.createdOn, "& _ 
-                "KANELLOPOULOS.createdBy, KANELLOPOULOS.buyID, KANELLOPOULOS.cmt"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   KANELLOP"& _ 
-                "OULOS LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           BUY ON BUY.ID = KANELLOPOULOS.buyID"
+                "KANELLOPOULOS.createdBy, KANELLOPOULOS.buyID, KANELLOPOULOS.cmt,  cast(case when"& _ 
+                " (select count(id) from KANELLOPOULOS_O where kanID=KANELLOPOULOS.ID) >0 then 1 "& _ 
+                " else 0 end as bit) as DeltOrders"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   KANELLOPOULOS LEFT OUTER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"       "& _ 
+                "    BUY ON BUY.ID = KANELLOPOULOS.buyID"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

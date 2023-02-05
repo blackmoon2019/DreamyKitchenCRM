@@ -734,7 +734,7 @@ ORDER BY C.Fullname </CommandText>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT KANELLOPOULOS.ID, KANELLOPOULOS.ord, KANELLOPOULOS.supID, KANELLOPOULOS.invDate, KANELLOPOULOS.invNumber, KANELLOPOULOS.docTypeID, KANELLOPOULOS.uploadDate, KANELLOPOULOS.dtYBuy, KANELLOPOULOS.buyFID, KANELLOPOULOS.cctID, KANELLOPOULOS.transhID, 
            KANELLOPOULOS.FullTranshDescription, KANELLOPOULOS.kitchen, KANELLOPOULOS.closet, KANELLOPOULOS.general, KANELLOPOULOS.materials, KANELLOPOULOS.bathroomFurn, KANELLOPOULOS.netAmount, KANELLOPOULOS.vatAmount, KANELLOPOULOS.completed, KANELLOPOULOS.isCredit, 
-           KANELLOPOULOS.createdOn, KANELLOPOULOS.createdBy, KANELLOPOULOS.buyID, KANELLOPOULOS.cmt
+           KANELLOPOULOS.createdOn, KANELLOPOULOS.createdBy, KANELLOPOULOS.buyID, KANELLOPOULOS.cmt,  cast(case when (select count(id) from KANELLOPOULOS_O where kanID=KANELLOPOULOS.ID) &gt;0 then 1  else 0 end as bit) as DeltOrders
 FROM   KANELLOPOULOS LEFT OUTER JOIN
            BUY ON BUY.ID = KANELLOPOULOS.buyID</CommandText>
                     <Parameters />
@@ -768,6 +768,7 @@ FROM   KANELLOPOULOS LEFT OUTER JOIN
               <Mapping SourceColumn="isCredit" DataSetColumn="isCredit" />
               <Mapping SourceColumn="buyID" DataSetColumn="buyID" />
               <Mapping SourceColumn="cmt" DataSetColumn="cmt" />
+              <Mapping SourceColumn="DeltOrders" DataSetColumn="DeltOrders" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -2119,16 +2120,17 @@ SELECT ID, kanID, code, name FROM KANELLOPOULOS_O WHERE (ID = @ID)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="DeltOrders" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInRow="DeltOrders" msprop:Generator_ColumnPropNameInTable="DeltOrdersColumn" msprop:Generator_ColumnVarNameInTable="columnDeltOrders" msprop:Generator_UserColumnName="DeltOrders" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="KANELLOPOULOS_O" msprop:Generator_RowEvHandlerName="KANELLOPOULOS_ORowChangeEventHandler" msprop:Generator_RowDeletedName="KANELLOPOULOS_ORowDeleted" msprop:Generator_RowDeletingName="KANELLOPOULOS_ORowDeleting" msprop:Generator_RowEvArgName="KANELLOPOULOS_ORowChangeEvent" msprop:Generator_TablePropName="KANELLOPOULOS_O" msprop:Generator_RowChangedName="KANELLOPOULOS_ORowChanged" msprop:Generator_RowChangingName="KANELLOPOULOS_ORowChanging" msprop:Generator_TableClassName="KANELLOPOULOS_ODataTable" msprop:Generator_RowClassName="KANELLOPOULOS_ORow" msprop:Generator_TableVarName="tableKANELLOPOULOS_O" msprop:Generator_UserTableName="KANELLOPOULOS_O">
+        <xs:element name="KANELLOPOULOS_O" msprop:Generator_RowEvHandlerName="KANELLOPOULOS_ORowChangeEventHandler" msprop:Generator_RowDeletedName="KANELLOPOULOS_ORowDeleted" msprop:Generator_RowDeletingName="KANELLOPOULOS_ORowDeleting" msprop:Generator_RowEvArgName="KANELLOPOULOS_ORowChangeEvent" msprop:Generator_TablePropName="KANELLOPOULOS_O" msprop:Generator_RowChangedName="KANELLOPOULOS_ORowChanged" msprop:Generator_UserTableName="KANELLOPOULOS_O" msprop:Generator_RowChangingName="KANELLOPOULOS_ORowChanging" msprop:Generator_RowClassName="KANELLOPOULOS_ORow" msprop:Generator_TableClassName="KANELLOPOULOS_ODataTable" msprop:Generator_TableVarName="tableKANELLOPOULOS_O">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:string" />
-              <xs:element name="kanID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="kanID" msprop:Generator_ColumnPropNameInTable="kanIDColumn" msprop:Generator_ColumnVarNameInTable="columnkanID" msprop:Generator_UserColumnName="kanID" type="xs:string" minOccurs="0" />
-              <xs:element name="code" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_UserColumnName="code" type="xs:int" />
-              <xs:element name="name" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_UserColumnName="name">
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" />
+              <xs:element name="kanID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="kanIDColumn" msprop:Generator_ColumnPropNameInRow="kanID" msprop:Generator_UserColumnName="kanID" msprop:Generator_ColumnVarNameInTable="columnkanID" type="xs:string" minOccurs="0" />
+              <xs:element name="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_UserColumnName="code" msprop:Generator_ColumnVarNameInTable="columncode" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="250" />

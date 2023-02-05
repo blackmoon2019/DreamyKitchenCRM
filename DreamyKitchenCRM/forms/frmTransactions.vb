@@ -121,15 +121,15 @@ Public Class frmTransactions
                         sID = sGuid
                         sSQL.Clear()
                         sEMP_T_ID = System.Guid.NewGuid.ToString
-                        sSQL.AppendLine("INSERT INTO EMP_T (ID,CUSID,EMPID,SALEPRICE,CREATEDBY,CREATEDON,TRANSHID,dtPay)")
+                        sSQL.AppendLine("INSERT INTO EMP_T (ID,CUSID,EMPID,SALEPRICE,CREATEDBY,CREATEDON,TRANSHID)")
                         sSQL.AppendLine("Select " & toSQLValueS(sEMP_T_ID.ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(cboCUS.EditValue.ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(cboSaler.EditValue.ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(txtTotAmt.EditValue, True) & ",")
                         sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ",")
                         sSQL.AppendLine("getdate(),")
-                        sSQL.AppendLine(toSQLValueS(sID) & ",")
-                        sSQL.AppendLine(toSQLValueS(CDate(dtPay.Text).ToString("yyyyMMdd")))
+                        sSQL.AppendLine(toSQLValueS(sID))
+
                         'Εκτέλεση QUERY
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                             oCmd.ExecuteNonQuery()
@@ -137,20 +137,20 @@ Public Class frmTransactions
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sID,,,,, "bal=" & toSQLValueS(txtBal.EditValue.ToString, True))
                         sGuid = sID
-                        sSQL.Clear()
-                        sSQL.AppendLine("UPDATE EMP_T SET CUSID = " & toSQLValueS(cboCUS.EditValue.ToString) & ",")
-                        sSQL.AppendLine("EMPID = " & toSQLValueS(cboSaler.EditValue.ToString) & ",")
-                        sSQL.AppendLine("SALEPRICE = " & toSQLValueS(txtTotAmt.EditValue, True) & ",")
-                        sSQL.AppendLine("MODIFIEDBY= " & toSQLValueS(UserProps.ID.ToString) & ",")
-                        sSQL.AppendLine("MODIFIEDON= GETDATE(), ")
-                        sSQL.AppendLine("DTPAY = " & toSQLValueS(CDate(dtPay.Text).ToString("yyyyMMdd")))
+                        'sSQL.Clear()
+                        'sSQL.AppendLine("UPDATE EMP_T SET CUSID = " & toSQLValueS(cboCUS.EditValue.ToString) & ",")
+                        'sSQL.AppendLine("EMPID = " & toSQLValueS(cboSaler.EditValue.ToString) & ",")
+                        'sSQL.AppendLine("SALEPRICE = " & toSQLValueS(txtTotAmt.EditValue, True) & ",")
+                        'sSQL.AppendLine("MODIFIEDBY= " & toSQLValueS(UserProps.ID.ToString) & ",")
+                        'sSQL.AppendLine("MODIFIEDON= GETDATE(), ")
+                        'sSQL.AppendLine("DTPAY = " & toSQLValueS(CDate(dtPay.Text).ToString("yyyyMMdd")))
 
 
-                        sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(sID))
-                        'Εκτέλεση QUERY
-                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
+                        'sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(sID))
+                        ''Εκτέλεση QUERY
+                        'Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                        '    oCmd.ExecuteNonQuery()
+                        'End Using
                 End Select
                 'Καθαρισμός Controls
                 'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)

@@ -78,7 +78,7 @@ Partial Public Class RepCUSPrivateAgreement3ndPage
         '
         'XrLabel2
         '
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(250.6191!, 67.0!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(250.6191!, 10.0!)
         Me.XrLabel2.Multiline = True
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)

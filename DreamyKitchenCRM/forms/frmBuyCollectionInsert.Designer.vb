@@ -109,6 +109,7 @@ Partial Class frmBuyCollectionInsert
         Me.colKanO = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepKan_O = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.KANELLOPOULOSOBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.colDeltOrders = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtImageCorrect = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.txtImageError = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.RepColBtn = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
@@ -439,7 +440,8 @@ Partial Class frmBuyCollectionInsert
         '
         'GridView5
         '
-        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colFullTranshDescription, Me.colID, Me.colinvoiceNumber, Me.colcusID, Me.coldtBuy, Me.coltranshID, Me.colDocType, Me.colvatAmount, Me.colnetAmount, Me.GridColumn3, Me.colbuyFID, Me.colCompleted, Me.colkitchen, Me.colmaterials, Me.colgeneral, Me.colcloset, Me.colbathroomFurn, Me.colisCredit, Me.colord, Me.colsupID, Me.coluploadDate, Me.coldtYBuy, Me.colcreatedOn, Me.colcreatedBy, Me.colbuyID, Me.colcmt1, Me.colKanO})
+        Me.GridView5.ActiveFilterString = "[completed] = False"
+        Me.GridView5.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colFullTranshDescription, Me.colID, Me.colinvoiceNumber, Me.colcusID, Me.coldtBuy, Me.coltranshID, Me.colDocType, Me.colvatAmount, Me.colnetAmount, Me.GridColumn3, Me.colbuyFID, Me.colCompleted, Me.colkitchen, Me.colmaterials, Me.colgeneral, Me.colcloset, Me.colbathroomFurn, Me.colisCredit, Me.colord, Me.colsupID, Me.coluploadDate, Me.coldtYBuy, Me.colcreatedOn, Me.colcreatedBy, Me.colbuyID, Me.colcmt1, Me.colKanO, Me.colDeltOrders})
         Me.GridView5.FixedLineWidth = 3
         GridFormatRule1.ApplyToRow = True
         GridFormatRule1.Column = Me.colkitchen
@@ -770,7 +772,7 @@ Partial Class frmBuyCollectionInsert
         Me.colcmt1.Name = "colcmt1"
         Me.colcmt1.Visible = True
         Me.colcmt1.VisibleIndex = 7
-        Me.colcmt1.Width = 144
+        Me.colcmt1.Width = 143
         '
         'colKanO
         '
@@ -780,7 +782,7 @@ Partial Class frmBuyCollectionInsert
         Me.colKanO.Name = "colKanO"
         Me.colKanO.Visible = True
         Me.colKanO.VisibleIndex = 6
-        Me.colKanO.Width = 189
+        Me.colKanO.Width = 188
         '
         'RepKan_O
         '
@@ -799,6 +801,16 @@ Partial Class frmBuyCollectionInsert
         '
         Me.KANELLOPOULOSOBindingSource.DataMember = "KANELLOPOULOS_O"
         Me.KANELLOPOULOSOBindingSource.DataSource = Me.DMDataSet
+        '
+        'colDeltOrders
+        '
+        Me.colDeltOrders.Caption = "Έχει Δελτία"
+        Me.colDeltOrders.FieldName = "DeltOrders"
+        Me.colDeltOrders.MinWidth = 35
+        Me.colDeltOrders.Name = "colDeltOrders"
+        Me.colDeltOrders.Visible = True
+        Me.colDeltOrders.VisibleIndex = 18
+        Me.colDeltOrders.Width = 131
         '
         'txtImageCorrect
         '
@@ -1061,4 +1073,5 @@ Partial Class frmBuyCollectionInsert
     Friend WithEvents KANELLOPOULOS_OTableAdapter As DMDataSetTableAdapters.KANELLOPOULOS_OTableAdapter
     Friend WithEvents colKanO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ReptxtO As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
+    Friend WithEvents colDeltOrders As DevExpress.XtraGrid.Columns.GridColumn
 End Class
