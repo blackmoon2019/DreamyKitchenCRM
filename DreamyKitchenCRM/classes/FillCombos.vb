@@ -513,6 +513,36 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub FillCheckedListINST_ELLIPSE_SER(CtrlList As DevExpress.XtraEditors.CheckedListBoxControl, ByVal mode As Byte, Optional ByVal sID As String = "")
+        Try
+            Dim sSQL As String
+            If mode = FormMode.NewRecord Then
+                sSQL = "Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
+            Else
+                sSQL = "Select id,Fullname ,
+                       isnull((select case when INST_ELLIPSE_SER.id is not null then 1 else 0 end as checked
+		               from INST_ELLIPSE_SER where instEllipseID = '" & sID & "' and INST_ELLIPSE_SER.empID = M.ID),0) as checked
+                       from vw_EMP M where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
+            End If
+            Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            'chkLstUsers.DataSource = sdr
+            CtrlList.Items.Clear()
+            CtrlList.DisplayMember = "Fullname"
+            CtrlList.ValueMember = "id"
+            While sdr.Read()
+                Dim chkLstItem As New DevExpress.XtraEditors.Controls.CheckedListBoxItem
+                chkLstItem.Value = sdr.Item(1).ToString
+                chkLstItem.Tag = sdr.Item(0).ToString
+                If mode = FormMode.EditRecord Then chkLstItem.CheckState = sdr.Item("checked").ToString
+                CtrlList.Items.Add(chkLstItem)
+            End While
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 
     Public Sub SER(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
         Try

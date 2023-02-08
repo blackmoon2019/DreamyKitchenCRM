@@ -230,10 +230,6 @@ Public Class frmCalendarInst
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText
-        'e.Text = e.Text & vbCrLf + "Σχόλια: " + e.Description
-    End Sub
-
     Private Sub SchedulerControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles SchedulerControl1.KeyDown
         Dim sSQL As String
         If e.KeyCode = Keys.Delete Then
@@ -280,6 +276,14 @@ Public Class frmCalendarInst
         Next i
     End Sub
 
+    Private Sub SchedulerControl1_InitAppointmentImages(sender As Object, e As AppointmentImagesEventArgs) Handles SchedulerControl1.InitAppointmentImages
+        Dim info As AppointmentImageInfo = New AppointmentImageInfo()
+        info.Image = SvgImageCollection1.GetImage(0)
+        e.ImageInfoList.Add(info)
+    End Sub
+    Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText
+        'e.Text = e.Text & vbCrLf + "Σχόλια: " + e.Description
+    End Sub
     Friend Class MenuColumnInfo
         Public Sub New(ByVal column As GridColumn)
             Me.Column = column

@@ -767,7 +767,7 @@ Partial Class frmMain
         '
         'BBStatistics2
         '
-        Me.BBStatistics2.Caption = "Πρόγραμμα Παραδόσεων-τοποθετήσεων"
+        Me.BBStatistics2.Caption = "Υπόλοιπα Πελατών"
         Me.BBStatistics2.Id = 75
         Me.BBStatistics2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_report_file_40
         Me.BBStatistics2.Name = "BBStatistics2"

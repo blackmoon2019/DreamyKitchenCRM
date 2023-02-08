@@ -642,6 +642,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Ελλείψεις Τοποθετήσεων"
         form.DataTable = "vw_INST_ELLIPSE"
+        form.DataDetail = "INST_ELLIPSE_JOBS"
         form.MdiParent = Me
         form.Show()
     End Sub

@@ -153,7 +153,7 @@ Public Class frmInstallations
                     End Using
                 End If
 
-                ' Καταχώρηση Χιλιοστών πολυκατοικίας
+                ' Καταχώρηση Συνεργείων
                 For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkSER.CheckedItems
                     sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn])  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
