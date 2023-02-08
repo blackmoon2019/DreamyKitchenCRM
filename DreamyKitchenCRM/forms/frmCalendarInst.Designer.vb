@@ -105,6 +105,7 @@ Partial Class frmCalendarInst
         Me.DreamyKitchenAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_SERTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SERTableAdapter()
         Me.Vw_INSTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_INSTTableAdapter()
+        Me.SvgImageCollection1 = New DevExpress.Utils.SvgImageCollection(Me.components)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwINSTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -122,6 +123,7 @@ Partial Class frmCalendarInst
         CType(Me.PanelResults, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelResults.SuspendLayout()
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.SvgImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'barDockControlTop
@@ -715,6 +717,10 @@ Partial Class frmCalendarInst
         '
         Me.Vw_INSTTableAdapter.ClearBeforeFill = True
         '
+        'SvgImageCollection1
+        '
+        Me.SvgImageCollection1.Add("shipment", "image://svgimages/outlook inspired/shipment.svg")
+        '
         'frmCalendarInst
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
@@ -748,6 +754,7 @@ Partial Class frmCalendarInst
         CType(Me.PanelResults, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelResults.ResumeLayout(False)
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.SvgImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -830,4 +837,5 @@ Partial Class frmCalendarInst
     Friend WithEvents colSerName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcolor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcompleted As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents SvgImageCollection1 As DevExpress.Utils.SvgImageCollection
 End Class
