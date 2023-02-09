@@ -29,8 +29,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
         Me.txtPhn = New DevExpress.XtraEditors.TextEdit()
         Me.txtADR = New DevExpress.XtraEditors.TextEdit()
@@ -50,9 +48,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtPrice4 = New DevExpress.XtraEditors.TextEdit()
         Me.txtPrice5 = New DevExpress.XtraEditors.TextEdit()
         Me.cboEMP = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboVBOXColors = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCOLORSDOORSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboFora1 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboFora2 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboFora3 = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -174,6 +170,10 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwCOLORSDOORSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_COLORSDOORSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSDOORSTableAdapter()
@@ -182,8 +182,6 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPhn.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtADR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -204,9 +202,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtPrice4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPrice5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFora1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFora2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFora3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -328,6 +324,10 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -499,16 +499,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboCUS.StyleController = Me.LayoutControl1
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
-        '
-        'VwCCTBindingSource
-        '
-        Me.VwCCTBindingSource.DataMember = "vw_CCT"
-        Me.VwCCTBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'txtCode
         '
@@ -815,11 +805,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboEMP.TabIndex = 5
         Me.cboEMP.Tag = "empID,0,1,2"
         '
-        'VwSALERSBindingSource
-        '
-        Me.VwSALERSBindingSource.DataMember = "vw_SALERS"
-        Me.VwSALERSBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'cboVBOXColors
         '
         Me.cboVBOXColors.EditValue = ""
@@ -837,11 +822,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboVBOXColors.StyleController = Me.LayoutControl1
         Me.cboVBOXColors.TabIndex = 45
         Me.cboVBOXColors.Tag = "doorColorID,0,1,2"
-        '
-        'VwCOLORSDOORSBindingSource
-        '
-        Me.VwCOLORSDOORSBindingSource.DataMember = "vw_COLORSDOORS"
-        Me.VwCOLORSDOORSBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'cboFora1
         '
@@ -1306,7 +1286,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboType1.Name = "cboType1"
         Me.cboType1.Properties.AllowMouseWheel = False
         Me.cboType1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboType1.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ"})
+        Me.cboType1.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ", "ΠΑΤΑΡΙ"})
         Me.cboType1.Properties.Tag = "String"
         Me.cboType1.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboType1.Size = New System.Drawing.Size(204, 38)
@@ -1321,7 +1301,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboType2.Name = "cboType2"
         Me.cboType2.Properties.AllowMouseWheel = False
         Me.cboType2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboType2.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ"})
+        Me.cboType2.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ", "ΠΑΤΑΡΙ"})
         Me.cboType2.Properties.Tag = "String"
         Me.cboType2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboType2.Size = New System.Drawing.Size(204, 38)
@@ -1336,7 +1316,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboType3.Name = "cboType3"
         Me.cboType3.Properties.AllowMouseWheel = False
         Me.cboType3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboType3.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ"})
+        Me.cboType3.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ", "ΠΑΤΑΡΙ"})
         Me.cboType3.Properties.Tag = "String"
         Me.cboType3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboType3.Size = New System.Drawing.Size(204, 38)
@@ -1351,7 +1331,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboType4.Name = "cboType4"
         Me.cboType4.Properties.AllowMouseWheel = False
         Me.cboType4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboType4.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ"})
+        Me.cboType4.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ", "ΠΑΤΑΡΙ"})
         Me.cboType4.Properties.Tag = "String"
         Me.cboType4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboType4.Size = New System.Drawing.Size(204, 38)
@@ -1366,7 +1346,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboType5.Name = "cboType5"
         Me.cboType5.Properties.AllowMouseWheel = False
         Me.cboType5.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboType5.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ"})
+        Me.cboType5.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ", "ΠΑΤΑΡΙ"})
         Me.cboType5.Properties.Tag = "String"
         Me.cboType5.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboType5.Size = New System.Drawing.Size(204, 38)
@@ -1381,7 +1361,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboType6.Name = "cboType6"
         Me.cboType6.Properties.AllowMouseWheel = False
         Me.cboType6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboType6.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ"})
+        Me.cboType6.Properties.Items.AddRange(New Object() {"ΑΝΟΙΓΟΜΕΝΗ", "ΣΥΡΟΜΕΝΗ", "ΠΑΤΑΡΙ"})
         Me.cboType6.Properties.Tag = "String"
         Me.cboType6.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboType6.Size = New System.Drawing.Size(204, 38)
@@ -2532,6 +2512,26 @@ Partial Class frmCUSOfferOrderDoors
         Me.EmptySpaceItem4.Size = New System.Drawing.Size(413, 46)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
+        'VwCCTBindingSource
+        '
+        Me.VwCCTBindingSource.DataMember = "vw_CCT"
+        Me.VwCCTBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwSALERSBindingSource
+        '
+        Me.VwSALERSBindingSource.DataMember = "vw_SALERS"
+        Me.VwSALERSBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'VwCOLORSDOORSBindingSource
+        '
+        Me.VwCOLORSDOORSBindingSource.DataMember = "vw_COLORSDOORS"
+        Me.VwCOLORSDOORSBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
         'Vw_CCTTableAdapter
         '
         Me.Vw_CCTTableAdapter.ClearBeforeFill = True
@@ -2556,11 +2556,10 @@ Partial Class frmCUSOfferOrderDoors
         Me.Text = "Έντυπο Προσφοράς Πελάτη"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        Me.LayoutControl1.PerformLayout()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPhn.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtADR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2581,9 +2580,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtPrice4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPrice5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFora1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFora2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFora3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2705,6 +2702,10 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

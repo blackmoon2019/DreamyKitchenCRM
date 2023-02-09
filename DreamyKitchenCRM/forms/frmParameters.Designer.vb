@@ -1978,7 +1978,7 @@ Partial Class frmParameters
         Me.CLOSET_LEGS.Margin = New System.Windows.Forms.Padding(5)
         Me.CLOSET_LEGS.Name = "CLOSET_LEGS"
         Me.CLOSET_LEGS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.CLOSET_LEGS.Properties.Items.AddRange(New Object() {"10mm", "12mm", "15mm"})
+        Me.CLOSET_LEGS.Properties.Items.AddRange(New Object() {"10cm", "12cm", "15cm"})
         Me.CLOSET_LEGS.Properties.Tag = "opening"
         Me.CLOSET_LEGS.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.CLOSET_LEGS.Size = New System.Drawing.Size(207, 38)
