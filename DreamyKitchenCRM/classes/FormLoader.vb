@@ -769,8 +769,6 @@ NextItem:
                 My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\" & XMLName, Application.StartupPath & "\DSGNS\DEF\" & XMLName, True)
                 GRDview.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & XMLName, OptionsLayoutBase.FullLayout)
             End If
-
-
         End If
     End Sub
     Public Function GetFile(ByVal sRowID As String, ByVal sTable As String) As Byte()
@@ -806,7 +804,7 @@ NextItem:
                 GetNewestFileFromServer(Application.StartupPath & "\DSGNS\DEF\" & sXMLName)
                 GridView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
             End If
-            GridView.OptionsBehavior.AlignGroupSummaryInGroupRow = DefaultBoolean.True
+            GridView.OptionsBehavior.AlignGroupSummaryInGroupRow = DefaultBoolean.False
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

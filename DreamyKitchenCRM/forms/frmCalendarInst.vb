@@ -28,7 +28,7 @@ Public Class frmCalendarInst
             Dim sSQL As String
             PanelResults.Visible = False
             SchedulerLocalizer.Active = New MySchedulerLocalizer()
-            sSQL = "SELECT * FROM vw_INST order by code"
+            sSQL = "SELECT * FROM vw_INST left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID and vw_INST_ELLIPSE.completed=0 order by vw_INST.code"
             'Δημιουργία Appointments
             Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, True)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INST' table. You can move, or remove it, as needed.
@@ -108,8 +108,8 @@ Public Class frmCalendarInst
         Dim sSQL As String
         Dim sIDS As New StringBuilder
         SchedulerDataStorage1.Appointments.Clear()
-        sSQL = "SELECT * FROM vw_INST "
-        If sWhere.Length > 0 Then sSQL = sSQL & " where cctName like " & toSQLValueS("%" & sWhere & "%")
+        sSQL = "SELECT * FROM vw_INST left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID and vw_INST_ELLIPSE.completed=0   "
+        If sWhere.Length > 0 Then sSQL = sSQL & " where vw_INST.cctName like " & toSQLValueS("%" & sWhere & "%")
         For i As Integer = 0 To cboCompleted.Items.Count - 1
             If cboCompleted.Items(i).CheckState = CheckState.Checked Then
                 If sIDS.Length > 0 Then sIDS.Append(",")
@@ -118,9 +118,9 @@ Public Class frmCalendarInst
 
         Next
         If sIDS.Length > 0 And sWhere.Length > 0 Then
-            sSQL = sSQL + " and completed in (" & sIDS.ToString & ")"
+            sSQL = sSQL + " and vw_INST.completed in (" & sIDS.ToString & ")"
         ElseIf sIDS.Length > 0 Then
-            sSQL = sSQL + " where completed in (" & sIDS.ToString & ")"
+            sSQL = sSQL + " where vw_INST.completed in (" & sIDS.ToString & ")"
         End If
         Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, False)
         SchedulerControl1.Start = Now.Date
@@ -277,8 +277,9 @@ Public Class frmCalendarInst
     End Sub
 
     Private Sub SchedulerControl1_InitAppointmentImages(sender As Object, e As AppointmentImagesEventArgs) Handles SchedulerControl1.InitAppointmentImages
+
         Dim info As AppointmentImageInfo = New AppointmentImageInfo()
-        info.Image = SvgImageCollection1.GetImage(0)
+        If e.Appointment.CustomFields.Item("IsEllipse") = True Then info.Image = SvgImageCollection1.GetImage(1) Else info.Image = SvgImageCollection1.GetImage(0)
         e.ImageInfoList.Add(info)
     End Sub
     Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText

@@ -27,6 +27,7 @@ Public Class DBQueries
         Dim i As Integer
         Try
             For i = 0 To control.FileNames.Count - 1
+
                 sSQL.Clear()
                 Select Case sTable
                     Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")

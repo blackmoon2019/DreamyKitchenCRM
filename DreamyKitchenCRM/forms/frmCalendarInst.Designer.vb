@@ -720,6 +720,7 @@ Partial Class frmCalendarInst
         'SvgImageCollection1
         '
         Me.SvgImageCollection1.Add("shipment", "image://svgimages/outlook inspired/shipment.svg")
+        Me.SvgImageCollection1.Add("actions_settings", "image://svgimages/icon builder/actions_settings.svg")
         '
         'frmCalendarInst
         '
