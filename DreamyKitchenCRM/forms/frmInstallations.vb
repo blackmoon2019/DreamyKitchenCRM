@@ -1,4 +1,4 @@
-﻿
+﻿Imports System.IO
 Imports System.ComponentModel
 Imports System.Data.SqlClient
 Imports DevExpress.XtraEditors
@@ -277,5 +277,91 @@ Public Class frmInstallations
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
 
+    End Sub
+
+    Private Sub cmdUploadInstF_Click(sender As Object, e As EventArgs)
+    End Sub
+    Private Sub FileSelect()
+        'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+        XtraOpenFileDialog1.FilterIndex = 1
+        XtraOpenFileDialog1.InitialDirectory = "C:\"
+        XtraOpenFileDialog1.Title = "Open File"
+        XtraOpenFileDialog1.CheckFileExists = False
+        XtraOpenFileDialog1.Multiselect = False
+        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
+        If result = DialogResult.OK Then
+            txtInstFilename.EditValue = XtraOpenFileDialog1.FileName
+            Dim sSQL As String
+            Try
+                My.Computer.FileSystem.CopyFile(XtraOpenFileDialog1.FileName, ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName), True)
+
+                sSQL = "UPDATE INST SET fInstName =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ",fInst =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstF where ID = " & toSQLValueS(sID)
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                XtraMessageBox.Show("Το αρχείο αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+
+        End If
+    End Sub
+
+    Private Sub txtInstFilename_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtInstFilename.ButtonClick
+        Select Case e.Button.Index
+            Case 0
+                'Dim result = XtraInputBox.Show("Πληκτρολογήστε το πλήθος σελίδων που θα σκανάρετε", "Όνομα Αρχείου", "1")
+                'ScanFile = New ScanToPDF
+                'If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
+                'txtInvoiceFilename.EditValue = sFilename
+                'If txtInvoiceFilename.Text <> "" Then
+                '    DBQ.InsertDataFilesFromScanner(sFilename, cboCUS.EditValue.ToString, "TRANSH")
+                '    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
+                'End If
+                'ScanFile = Nothing
+                FileSelect()
+            Case 1
+                Try
+                    Dim Cmd As SqlCommand, sdr As SqlDataReader
+                    Dim sSQL As String = "SELECT fInst,fInstName  FROM INST WHERE ID= " & toSQLValueS(sID)
+                    Cmd = New SqlCommand(sSQL.ToString, CNDB)
+                    sdr = Cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        Dim sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
+                        Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                        Dim b As Byte()
+                        b = DirectCast(sdr("fInst"), Byte())
+                        fs.Write(b, 0, b.Length)
+                        fs.Close()
+                        ShellExecute(ProgProps.TempFolderPath & sFilename)
+                    End If
+                    sdr.Close()
+                Catch exfs As Exception
+                    XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Finally
+
+                End Try
+
+            Case 2
+                If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    Dim sSQL As String
+                    sSQL = "UPDATE INST SET fInstName =  NULL ,fInst =  NULL where ID = " & toSQLValueS(sID)
+                    'Εκτέλεση QUERY
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    txtInstFilename.EditValue = Nothing
+                End If
+        End Select
+
+    End Sub
+    Private Sub ShellExecute(ByVal File As String)
+        Dim myProcess As New Process
+        myProcess.StartInfo.FileName = File
+        myProcess.StartInfo.UseShellExecute = True
+        myProcess.StartInfo.RedirectStandardOutput = False
+        myProcess.Start()
+        myProcess.Dispose()
     End Sub
 End Class

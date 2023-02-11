@@ -1,6 +1,8 @@
-﻿
+﻿Imports System.IO
 Imports System.ComponentModel
 Imports System.Data.SqlClient
+Imports DevExpress.DataAccess
+Imports DevExpress.DataAccess.Native
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraExport.Helpers
@@ -8,6 +10,9 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraMap.Drawing.DirectD3D9
+Imports DevExpress.DataAccess.UI
+Imports DevExpress.DataAccess.UI.Native
+Imports DevExpress.XtraSpreadsheet.Layout
 
 Public Class frmInstEllipse
 
@@ -95,6 +100,7 @@ Public Class frmInstEllipse
                     If CountEllipse > 0 Then LayoutControl1.Enabled = False
                 End If
                 sdr.Close()
+                txtInstellipseFilename.Enabled = True
         End Select
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -146,8 +152,8 @@ Public Class frmInstEllipse
                 End If
 
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.EditRecord Then
+                        ' Διαγραφή όλων των συνεργείων πάντα στην επεξεργασία εγγραφής
                         sSQL = "DELETE FROM INST_ELLIPSE_SER where instEllipseID = '" & sID & "'"
                         Using oCmd As New SqlCommand(sSQL, CNDB)
                             oCmd.ExecuteNonQuery()
@@ -169,7 +175,7 @@ Public Class frmInstEllipse
                                 "SELECT NEWID()," & toSQLValueS(sID) & " ,  " & toSQLValueS(sINST_ID) & ", [name], IEJ.[cmt], IEJ.[completed], [dtCompleted],  IEJ.[createdOn], IEJ.[createdBy] " &
                                 "from INST I " &
                                 "inner join INST_ELLIPSE IE on IE.id= " & toSQLValueS(LastEllipseID) &
-                                "INNER  join INST_ELLIPSE_JOBS  IEJ ON IEJ.instEllipseID =IE.ID " &
+                                " INNER  join INST_ELLIPSE_JOBS  IEJ ON IEJ.instEllipseID =IE.ID " &
                                 "WHERE IEJ.completed=0 And I.[ID]= " & toSQLValueS(sINST_ID)
                         Using oCmd As New SqlCommand(sSQL2, CNDB)
                             oCmd.ExecuteNonQuery()
@@ -179,11 +185,12 @@ Public Class frmInstEllipse
 
                         'Cls.ClearCtrls(LayoutControl1)
                         'txtCode.Text = DBQ.GetNextId("INST_ELLIPSE")
+                        txtInstellipseFilename.Enabled = True
                         GridView1.OptionsBehavior.Editable = True
                         Mode = FormMode.EditRecord
                     End If
                     sSQL2 = ""
-                    ' Καταχώρηση Συνεργείων
+                    ' Καταχώρηση Συνεργείων 
                     For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkSER.CheckedItems
                         sSQL2 = "INSERT INTO INST_ELLIPSE_SER (instEllipseID,empID,[createdBy],[createdOn])  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
@@ -193,6 +200,7 @@ Public Class frmInstEllipse
                         End Using
                     Next
                     FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.EditRecord, sID)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             End If
         Catch ex As Exception
@@ -295,5 +303,99 @@ Public Class frmInstEllipse
         If e.Column.FieldName = "completed" Then
             If e.Value = True Then GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "dtCompleted", Date.Now) Else GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "dtCompleted", Nothing)
         End If
+    End Sub
+
+    Private Sub cmdUploadInstEllipseF_Click(sender As Object, e As EventArgs)
+
+
+    End Sub
+    Private Sub FileSelect()
+        'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+        XtraOpenFileDialog1.FilterIndex = 1
+        XtraOpenFileDialog1.InitialDirectory = "C:\"
+        XtraOpenFileDialog1.Title = "Open File"
+        XtraOpenFileDialog1.CheckFileExists = False
+        XtraOpenFileDialog1.Multiselect = False
+        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
+        If result = DialogResult.OK Then
+            txtInstellipseFilename.EditValue = XtraOpenFileDialog1.FileName
+            Dim sSQL As String
+            Try
+                My.Computer.FileSystem.CopyFile(XtraOpenFileDialog1.FileName, ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName), True)
+
+                sSQL = "UPDATE INST_ELLIPSE SET fInstEllipseName =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ", fInstEllipse =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstEllipseF where ID = " & toSQLValueS(sID)
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                XtraMessageBox.Show("Το αρχείο αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As Exception
+                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End Try
+        End If
+    End Sub
+
+    Private Sub txtInstellipseFilename_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtInstellipseFilename.ButtonClick
+        Try
+            Select Case e.Button.Index
+                Case 0
+                    'Dim result = XtraInputBox.Show("Πληκτρολογήστε το πλήθος σελίδων που θα σκανάρετε", "Όνομα Αρχείου", "1")
+                    'ScanFile = New ScanToPDF
+                    'If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
+                    'txtInvoiceFilename.EditValue = sFilename
+                    'If txtInvoiceFilename.Text <> "" Then
+                    '    DBQ.InsertDataFilesFromScanner(sFilename, cboCUS.EditValue.ToString, "TRANSH")
+                    '    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
+                    'End If
+                    'ScanFile = Nothing
+                    FileSelect()
+                Case 1
+                    Try
+                        Dim Cmd As SqlCommand, sdr As SqlDataReader
+                        Dim sSQL As String = "SELECT fInstEllipse,fInstEllipseName  FROM INST_ELLIPSE WHERE ID= " & toSQLValueS(sID)
+                        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+                        sdr = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            Dim sFilename = sdr.GetString(sdr.GetOrdinal("fInstEllipseName"))
+                            Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                            Dim b As Byte()
+                            b = DirectCast(sdr("fInstEllipse"), Byte())
+                            fs.Write(b, 0, b.Length)
+                            fs.Close()
+                            ShellExecute(ProgProps.TempFolderPath & sFilename)
+                        End If
+                        sdr.Close()
+                    Catch exfs As Exception
+                        XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Finally
+
+                    End Try
+                Case 2
+                        If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                        Dim sSQL As String
+                        sSQL = "UPDATE INST_ELLIPSE SET fInstEllipseName =  NULL ,fInstEllipse =  NULL where ID = " & toSQLValueS(sID)
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        txtInstellipseFilename.EditValue = Nothing
+                    End If
+            End Select
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+    End Sub
+    Private Sub ShellExecute(ByVal File As String)
+        Dim myProcess As New Process
+        myProcess.StartInfo.FileName = File
+        myProcess.StartInfo.UseShellExecute = True
+        myProcess.StartInfo.RedirectStandardOutput = False
+        myProcess.Start()
+        myProcess.Dispose()
+    End Sub
+    Private Sub txtInstellipseFilename_EditValueChanged(sender As Object, e As EventArgs) Handles txtInstellipseFilename.EditValueChanged
+
     End Sub
 End Class
