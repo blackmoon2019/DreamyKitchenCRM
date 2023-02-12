@@ -23,9 +23,9 @@ Partial Class frmCalendarInst
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TimeRuler1 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
-        Dim TimeRuler2 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
-        Dim TimeRuler3 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler7 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler8 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler9 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCalendarInst))
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -89,6 +89,7 @@ Partial Class frmCalendarInst
         Me.txtSearch2 = New DevExpress.XtraEditors.Repository.RepositoryItemButtonEdit()
         Me.BBrefresh = New DevExpress.XtraBars.BarButtonItem()
         Me.BarNewRec = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBEllipse = New DevExpress.XtraBars.BarButtonItem()
         Me.BarDockControl1 = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -323,8 +324,8 @@ Partial Class frmCalendarInst
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.OpenScheduleItem1, Me.SaveScheduleItem1, Me.PrintPreviewItem1, Me.PrintItem1, Me.PrintPageSetupItem1, Me.NewAppointmentItem1, Me.NewRecurringAppointmentItem1, Me.NavigateViewBackwardItem1, Me.NavigateViewForwardItem1, Me.GotoTodayItem1, Me.ViewZoomInItem1, Me.ViewZoomOutItem1, Me.SwitchToDayViewItem1, Me.SwitchToWorkWeekViewItem1, Me.SwitchToWeekViewItem1, Me.SwitchToFullWeekViewItem1, Me.SwitchToMonthViewItem1, Me.SwitchToTimelineViewItem1, Me.SwitchToGanttViewItem1, Me.SwitchToAgendaViewItem1, Me.GroupByNoneItem1, Me.GroupByDateItem1, Me.GroupByResourceItem1, Me.BBrefresh, Me.BarNewRec, Me.Ο, Me.BarHeaderItem1, Me.BarEditItem3})
-        Me.BarManager1.MaxItemId = 71
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.OpenScheduleItem1, Me.SaveScheduleItem1, Me.PrintPreviewItem1, Me.PrintItem1, Me.PrintPageSetupItem1, Me.NewAppointmentItem1, Me.NewRecurringAppointmentItem1, Me.NavigateViewBackwardItem1, Me.NavigateViewForwardItem1, Me.GotoTodayItem1, Me.ViewZoomInItem1, Me.ViewZoomOutItem1, Me.SwitchToDayViewItem1, Me.SwitchToWorkWeekViewItem1, Me.SwitchToWeekViewItem1, Me.SwitchToFullWeekViewItem1, Me.SwitchToMonthViewItem1, Me.SwitchToTimelineViewItem1, Me.SwitchToGanttViewItem1, Me.SwitchToAgendaViewItem1, Me.GroupByNoneItem1, Me.GroupByDateItem1, Me.GroupByResourceItem1, Me.BBrefresh, Me.BarNewRec, Me.Ο, Me.BarHeaderItem1, Me.BarEditItem3, Me.BBEllipse})
+        Me.BarManager1.MaxItemId = 72
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cboStatus, Me.cboCompleted, Me.txtSearch, Me.txtSearch2})
         '
         'CommonBar1
@@ -348,12 +349,12 @@ Partial Class frmCalendarInst
         Me.SchedulerControl1.Start = New Date(2020, 10, 5, 0, 0, 0, 0)
         Me.SchedulerControl1.TabIndex = 11
         Me.SchedulerControl1.Text = "SchedulerControl1"
-        Me.SchedulerControl1.Views.DayView.TimeRulers.Add(TimeRuler1)
+        Me.SchedulerControl1.Views.DayView.TimeRulers.Add(TimeRuler7)
         Me.SchedulerControl1.Views.FullWeekView.Enabled = True
-        Me.SchedulerControl1.Views.FullWeekView.TimeRulers.Add(TimeRuler2)
+        Me.SchedulerControl1.Views.FullWeekView.TimeRulers.Add(TimeRuler8)
         Me.SchedulerControl1.Views.MonthView.AppointmentDisplayOptions.AppointmentAutoHeight = True
         Me.SchedulerControl1.Views.WeekView.Enabled = False
-        Me.SchedulerControl1.Views.WorkWeekView.TimeRulers.Add(TimeRuler3)
+        Me.SchedulerControl1.Views.WorkWeekView.TimeRulers.Add(TimeRuler9)
         Me.SchedulerControl1.Views.YearView.UseOptimizedScrolling = False
         '
         'SchedulerDataStorage1
@@ -526,7 +527,7 @@ Partial Class frmCalendarInst
         Me.GroupByBar1.DockCol = 5
         Me.GroupByBar1.DockRow = 0
         Me.GroupByBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.GroupByBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByNoneItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByDateItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByResourceItem1), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.Ο, "", False, True, True, 68), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem3, "", False, True, True, 157), New DevExpress.XtraBars.LinkPersistInfo(Me.BBrefresh), New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec)})
+        Me.GroupByBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByNoneItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByDateItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByResourceItem1), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.Ο, "", False, True, True, 68), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem3, "", False, True, True, 157), New DevExpress.XtraBars.LinkPersistInfo(Me.BBrefresh), New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec), New DevExpress.XtraBars.LinkPersistInfo(Me.BBEllipse)})
         '
         'GroupByNoneItem1
         '
@@ -587,6 +588,13 @@ Partial Class frmCalendarInst
         Me.BarNewRec.Id = 66
         Me.BarNewRec.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.AddFile_16x16
         Me.BarNewRec.Name = "BarNewRec"
+        '
+        'BBEllipse
+        '
+        Me.BBEllipse.Caption = "Εκκρεμότητες"
+        Me.BBEllipse.Id = 71
+        Me.BBEllipse.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_bank_card_missing_16
+        Me.BBEllipse.Name = "BBEllipse"
         '
         'BarDockControl1
         '
@@ -839,4 +847,5 @@ Partial Class frmCalendarInst
     Friend WithEvents colcolor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcompleted As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SvgImageCollection1 As DevExpress.Utils.SvgImageCollection
+    Friend WithEvents BBEllipse As DevExpress.XtraBars.BarButtonItem
 End Class

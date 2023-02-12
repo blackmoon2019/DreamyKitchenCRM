@@ -224,6 +224,7 @@
     <Compile Include="classes\Localization.vb" />
     <Compile Include="classes\ProgProp.vb" />
     <Compile Include="classes\ScanToPDF.vb" />
+    <Compile Include="classes\SendEmail.vb" />
     <Compile Include="classes\Transactions.vb" />
     <Compile Include="classes\ValidateControls.vb" />
     <Compile Include="classes\XML_Serialization.vb" />
@@ -602,6 +603,12 @@
     </Compile>
     <Compile Include="forms\frmVersions.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCUSEllipse.Designer.vb">
+      <DependentUpon>RepCUSEllipse.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSEllipse.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RepTransCostD.Designer.vb">
       <DependentUpon>RepTransCostD.vb</DependentUpon>
@@ -983,6 +990,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmVersions.resx">
       <DependentUpon>frmVersions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSEllipse.resx">
+      <DependentUpon>RepCUSEllipse.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepTransCostD.resx">
       <DependentUpon>RepTransCostD.vb</DependentUpon>
@@ -1959,6 +1969,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-bank-card-missing-16.png" />
+    <None Include="Resources\icons8-missing-16.png" />
     <None Include="Resources\icons8-invoice-batch-40.png" />
     <None Include="Resources\icons8-delete-24.png" />
     <None Include="Resources\icons8-delete-16.png" />
