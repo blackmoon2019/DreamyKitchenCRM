@@ -640,7 +640,7 @@ Public Class frmMain
 
     Private Sub BBEllipse_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEllipse.ItemClick
         Dim form As frmScroller = New frmScroller()
-        form.Text = "Ελλείψεις Τοποθετήσεων"
+        form.Text = "Εκκρεμότητες Έργων"
         form.DataTable = "vw_INST_ELLIPSE"
         form.DataDetail = "INST_ELLIPSE_JOBS"
         form.MdiParent = Me

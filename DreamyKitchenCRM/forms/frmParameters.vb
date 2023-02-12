@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraBars.Navigation
@@ -36,6 +37,8 @@ Public Class frmParameters
     End Property
 
     Private Sub frmParameters_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet1.MAILS' table. You can move, or remove it, as needed.
+        Me.MAILSTableAdapter.Fill(Me.DreamyKitchenDataSet1.MAILS)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BENCH' table. You can move, or remove it, as needed.
         Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSPVC' table. You can move, or remove it, as needed.
@@ -189,6 +192,7 @@ Public Class frmParameters
                 LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml")
                 GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False
             Case 3 : Prog_Prop.GetProgPROSF(LayoutControl4)
+            Case 4 : Prog_Prop.GetProgBodyEmail(LayoutControl5)
             Case Else
         End Select
     End Sub
@@ -233,7 +237,7 @@ Public Class frmParameters
         GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then 
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
                 GridView2.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", OptionsLayoutBase.FullLayout)
@@ -284,7 +288,7 @@ Public Class frmParameters
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then 
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", OptionsLayoutBase.FullLayout)
@@ -356,5 +360,10 @@ Public Class frmParameters
 
     Private Sub SimpleButton2_Click_1(sender As Object, e As EventArgs) Handles SimpleButton2.Click
         Me.Close()
+    End Sub
+
+    Private Sub SimpleButton5_Click(sender As Object, e As EventArgs) Handles SimpleButton5.Click
+        Prog_Prop.SetProgBodyEmail(ELLIPSE_BODY_INF.EditValue.ToString, INSTALLATIONS_EMAIL.EditValue.ToString, ELLIPSE_SUBJECT_INF.EditValue.ToString)
+        Prog_Prop.GetProgBodyEmail(LayoutControl5)
     End Sub
 End Class

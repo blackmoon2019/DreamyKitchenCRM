@@ -1021,7 +1021,7 @@ Public Class FillCombos
     End Sub
     Public Sub INST(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,grmonth,cctName,SerName ,SalerName,cmt from vw_INST where completed=0 order by grmonth,Sername", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,grmonth,cctName,SerName ,SalerName,cmt,cusID,email from vw_INST where completed=0 order by grmonth,Sername", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
 
             CtrlCombo.Properties.DataSource = sdr

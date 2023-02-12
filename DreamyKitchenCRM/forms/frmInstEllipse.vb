@@ -13,6 +13,11 @@ Imports DevExpress.XtraMap.Drawing.DirectD3D9
 Imports DevExpress.DataAccess.UI
 Imports DevExpress.DataAccess.UI.Native
 Imports DevExpress.XtraSpreadsheet.Layout
+Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraBars
+Imports DevExpress.XtraSpreadsheet.DocumentFormats
+Imports System.Text
+Imports DevExpress.XtraScheduler.Native
 
 Public Class frmInstEllipse
 
@@ -21,6 +26,7 @@ Public Class frmInstEllipse
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
+    Private Prog_Prop As New ProgProp
     Private Valid As New ValidateControls
     Private FScrollerExist As Boolean = False
     Private Log As New Transactions
@@ -30,6 +36,7 @@ Public Class frmInstEllipse
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
+    Private ComeFrom As Integer
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -74,16 +81,19 @@ Public Class frmInstEllipse
     Private Sub frmInstEllipse_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DmDataSet.INST_ELLIPSE_JOBS' table. You can move, or remove it, as needed.
         'Me.INST_ELLIPSE_JOBSTableAdapter.Fill(Me.DmDataSet.INST_ELLIPSE_JOBS)
+
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
 
         FillCbo.INST(cboINST)
         Select Case Mode
             Case FormMode.NewRecord
+                ShowQuestionForm()
                 txtCode.Text = DBQ.GetNextId("INST_ELLIPSE")
                 If sINST_ID IsNot Nothing Then cboINST.EditValue = System.Guid.Parse(sINST_ID)
                 FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.NewRecord)
                 GridView1.OptionsBehavior.Editable = False
+                cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_INST_ELLIPSE where id =" & toSQLValueS(sID))
                 FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.EditRecord, sID)
@@ -101,10 +111,48 @@ Public Class frmInstEllipse
                 End If
                 sdr.Close()
                 txtInstellipseFilename.Enabled = True
+                GridControl1.ForceInitialize()
+                If GridView1.DataRowCount = 0 Then cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False
         End Select
+        LoadForms.RestoreLayoutFromXml(GridView1, "INST_ELLIPSE_JOBS_def.xml")
+        If ComeFrom = 1 Then LayoutControlGroup1.Enabled = False
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
+    End Sub
+    Private Sub ShowQuestionForm()
+        Dim args As New XtraInputBoxArgs()
+        Dim Item1 As New RadioGroupItem
+        Item1.Description = "Αφορά Πελάτη"
+        Dim item2 As New RadioGroupItem
+        item2.Description = "Αφορά Προμηθευτή"
+        Dim RadioEdit1 As New RadioGroup
+        RadioEdit1.Properties.Items.Add(Item1)
+        RadioEdit1.Properties.Items.Add(item2)
+        RadioEdit1.Name = "radioEditComeFrom"
+        RadioEdit1.Location = New System.Drawing.Point(30, 35)
+        RadioEdit1.Width = 50
+        RadioEdit1.Height = 100
+        ' set required Input Box options
+        args.Caption = "Επιλογή Εκκρεμότητας"
+        args.Prompt = "Επιλέξτε ποιον αφορά η εκκρεμότητα"
+        args.DefaultButtonIndex = 0
+        AddHandler args.Showing, AddressOf Args_Showing
+        ' initialize a DateEdit editor with custom settings
+
+        args.Editor = RadioEdit1
+        AddHandler RadioEdit1.SelectedIndexChanged, AddressOf SelectedIndexChanged
+
+        Dim result = XtraInputBox.Show(args)
+        If result = Nothing Then ComeFrom = 0
+
+    End Sub
+    Private Sub SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs)
+        Dim Edit As RadioGroup = CType(sender, RadioGroup)
+        If (Edit.SelectedIndex = 0) Then ComeFrom = 0 Else ComeFrom = 1
+    End Sub
+    Private Sub Args_Showing(ByVal sender As Object, ByVal e As XtraMessageShowingArgs)
+        e.Form.Icon = Me.Icon
     End Sub
 
     Private Sub frmInstEllipse_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -133,6 +181,7 @@ Public Class frmInstEllipse
         Dim LastEllipseID As String
         Try
             If Valid.ValidateForm(LayoutControl1) Then
+                If CheckIfInstEllipseFExist() = False Then Exit Sub
                 Select Case Mode
                     Case FormMode.NewRecord
                         sID = System.Guid.NewGuid.ToString
@@ -141,7 +190,7 @@ Public Class frmInstEllipse
                         sdr = Cmd.ExecuteReader()
                         If (sdr.Read() = True) Then LastEllipseID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString.ToUpper
                         sdr.Close()
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", ComeFrom)
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
                 End Select
@@ -164,11 +213,11 @@ Public Class frmInstEllipse
 
                     If Mode = FormMode.NewRecord Then
 
-                        ' Κάνει ολοκληρωμένες όλες τις άλλες ελλέιψεις τις συγκεκριμένης τοποθέτησης
-                        sSQL2 = "UPDATE INST_ELLIPSE SET COMPLETED =1 WHERE instID = " & toSQLValueS(sINST_ID) & " and ID <> " & toSQLValueS(sID)
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
+                        '' Κάνει ολοκληρωμένες όλες τις άλλες ελλέιψεις τις συγκεκριμένης τοποθέτησης
+                        'sSQL2 = "UPDATE INST_ELLIPSE SET COMPLETED =1 WHERE instID = " & toSQLValueS(sINST_ID) & " and ID <> " & toSQLValueS(sID)
+                        'Using oCmd As New SqlCommand(sSQL2, CNDB)
+                        '    oCmd.ExecuteNonQuery()
+                        'End Using
 
                         ' Μεταφέρει στην καινούρια έλλειψη ότι ανολοκλήρωτη εκκρεμότητα υπάρχει
                         sSQL2 = "INSERT INTO INST_ELLIPSE_JOBS ([ID],[instEllipseID],[instID], [name], [cmt], [completed], [dtCompleted],  [createdOn], [createdBy]) " &
@@ -207,7 +256,31 @@ Public Class frmInstEllipse
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
+    Private Function CheckIfInstEllipseFExist() As Boolean
+        Dim sFilename As String = ""
+        If chkCompleted.Checked = True Then
+            Dim Cmd As SqlCommand, sdr As SqlDataReader
+            Dim sSQL As String = "SELECT fInstEllipseName  FROM INST_ELLIPSE WHERE ID= " & toSQLValueS(sID)
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("fInstEllipseName")) = False Then sFilename = sdr.GetString(sdr.GetOrdinal("fInstEllipseName"))
+                If sFilename = "" Then
+                    XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Εκκρεμότητα χωρίς να επισυνάψετε έντυπο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    sdr.Close()
+                    Return False
+                Else
+                    sdr.Close()
+                    Return True
+                End If
+            Else
+                XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Εκκρεμότητα χωρίς να επισυνάψετε έντυπο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            End If
+        Else
+            Return True
+        End If
+    End Function
     Private Sub cboINST_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboINST.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboINST.EditValue = Nothing : ManageINST()
@@ -248,6 +321,7 @@ Public Class frmInstEllipse
     Private Sub GridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView1.ValidateRow
         Dim sSQL As New System.Text.StringBuilder
         Dim CompletedCell As String = "", sDate As String
+        Dim missing As String, replacement As String, orderError As String
         Try
             sSQL.Clear()
             If e.RowHandle = GridControl1.NewItemRowHandle Then
@@ -256,13 +330,19 @@ Public Class frmInstEllipse
                     e.Valid = False
                     Exit Sub
                 End If
-                sSQL.AppendLine("INSERT INTO INST_ELLIPSE_JOBS (instEllipseID,instID,name,cmt,completed,dtCompleted,[modifiedBy],[createdby],[createdOn])")
+                sSQL.AppendLine("INSERT INTO INST_ELLIPSE_JOBS (instEllipseID,instID,name,cmt,completed,missing,replacement,orderError,dtCompleted,[modifiedBy],[createdby],[createdOn])")
                 sSQL.AppendLine("Select " & toSQLValueS(sID) & ",")
                 sSQL.AppendLine(toSQLValueS(sINST_ID) & ",")
                 sSQL.AppendLine(toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "name").ToString) & ",")
                 sSQL.AppendLine(toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt").ToString) & ",")
                 CompletedCell = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "completed").ToString : If CompletedCell = "" Then CompletedCell = "0"
                 sSQL.AppendLine("completed = " & toSQLValueS(CompletedCell) & ",")
+                missing = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "missing").ToString : If missing = "" Then missing = "0"
+                sSQL.AppendLine("missing = " & toSQLValueS(missing) & ",")
+                replacement = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "replacement").ToString : If replacement = "" Then replacement = "0"
+                sSQL.AppendLine("replacement = " & toSQLValueS(replacement) & ",")
+                orderError = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "orderError").ToString : If orderError = "" Then orderError = "0"
+                sSQL.AppendLine("orderError= " & toSQLValueS(orderError) & ",")
                 sDate = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "dtCompleted").ToString
                 If sDate <> "" Then sDate = toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) Else sDate = "NULL"
                 sSQL.AppendLine(sDate & ",")
@@ -279,6 +359,13 @@ Public Class frmInstEllipse
                 sSQL.AppendLine("cmt = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt").ToString) & ",")
                 CompletedCell = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "completed").ToString : If CompletedCell = "" Then CompletedCell = "0"
                 sSQL.AppendLine("completed = " & toSQLValueS(CompletedCell) & ",")
+                missing = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "missing").ToString : If missing = "" Then missing = "0"
+                sSQL.AppendLine("missing= " & toSQLValueS(missing) & ",")
+                replacement = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "replacement").ToString : If replacement = "" Then replacement = "0"
+                sSQL.AppendLine("replacement = " & toSQLValueS(replacement) & ",")
+                orderError = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "orderError").ToString : If orderError = "" Then orderError = "0"
+                sSQL.AppendLine("orderError= " & toSQLValueS(orderError) & ",")
+
                 sDate = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "dtCompleted").ToString
                 If sDate <> "" Then sDate = toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) Else sDate = "NULL"
                 sSQL.AppendLine("dtcompleted = " & sDate & ",")
@@ -289,6 +376,11 @@ Public Class frmInstEllipse
                     oCmd.ExecuteNonQuery()
                 End Using
                 Me.INST_ELLIPSE_JOBSTableAdapter.FillBYinstEllipseID(Me.DmDataSet.INST_ELLIPSE_JOBS, System.Guid.Parse(sID))
+            End If
+            If GridView1.RowCount = 0 Then
+                cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False
+            Else
+                cmdSendEmail.Enabled = True : cmdPrintAll.Enabled = True
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -371,7 +463,7 @@ Public Class frmInstEllipse
 
                     End Try
                 Case 2
-                        If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                         Dim sSQL As String
                         sSQL = "UPDATE INST_ELLIPSE SET fInstEllipseName =  NULL ,fInstEllipse =  NULL where ID = " & toSQLValueS(sID)
                         'Εκτέλεση QUERY
@@ -397,5 +489,55 @@ Public Class frmInstEllipse
     End Sub
     Private Sub txtInstellipseFilename_EditValueChanged(sender As Object, e As EventArgs) Handles txtInstellipseFilename.EditValueChanged
 
+    End Sub
+
+    Private Sub cmdPrintAll_Click(sender As Object, e As EventArgs) Handles cmdPrintAll.Click
+        Dim report As New RepCUSEllipse
+        report.Parameters.Item(0).Value = sID
+        report.CreateDocument()
+        Dim printTool As New ReportPrintTool(report)
+        printTool.ShowRibbonPreview()
+    End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles cmdSendEmail.Click
+        If GridView1.RowCount = 0 Then XtraMessageBox.Show("Δεν υπάρχουν εκκρεμότητες προς αποστολή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        Prog_Prop.GetProgBodyEmail()
+        SendEmailExportReport()
+    End Sub
+    Private Sub SendEmailExportReport()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim Emails As New SendEmail
+        Dim statusMsg As String
+        Dim sEmailTo As String
+        Dim sBody As String
+        Dim sSQL As String
+        Try
+
+
+
+            Dim report As New RepCUSEllipse()
+            report.Parameters.Item(0).Value = sID
+            sEmailTo = cboINST.GetColumnValue("email")
+            sBody = ProgProps.InstEllipseInfBody
+            sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
+            sEmailTo = "johnmavroselinos@gmail.com"
+            report.CreateDocument()
+            report.ExportToPdf(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf")
+            report.Dispose()
+            report = Nothing
+            If Emails.SendEmail(ProgProps.InstEmailAccount, ProgProps.InstEllipseInfSubject, sBody, sEmailTo, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf", statusMsg) = True Then
+                sSQL = "Update INST_ELLIPSE SET EMAIL = 1,DateOfEmail=getdate() WHERE ID = " & toSQLValueS(sID)
+                Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
+                XtraMessageBox.Show("Το email στάλθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα με σφάλμα " & statusMsg, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "INST_ELLIPSE_JOBS_def.xml", "INST_ELLIPSE_JOBS")
     End Sub
 End Class

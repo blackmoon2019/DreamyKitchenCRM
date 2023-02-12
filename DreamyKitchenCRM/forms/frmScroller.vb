@@ -1243,7 +1243,7 @@ Public Class frmScroller
                 frmProjectCost.Show()
             Case "vw_INST_ELLIPSE"
                 Dim frmInstEllipse As New frmInstEllipse
-                frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
+                frmInstEllipse.Text = "Εκκρεμότητες Έργων"
                 frmInstEllipse.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmInstEllipse.MdiParent = frmMain
                 frmInstEllipse.Mode = FormMode.EditRecord
@@ -2159,7 +2159,7 @@ Public Class frmScroller
                 frmConstrunction.Show()
             Case "vw_INST_ELLIPSE"
                 Dim frmInstEllipse As New frmInstEllipse
-                frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
+                frmInstEllipse.Text = "Εκκρεμότητες Έργων"
                 frmInstEllipse.MdiParent = frmMain
                 frmInstEllipse.Mode = FormMode.NewRecord
                 frmInstEllipse.Scroller = GridView1

@@ -44,6 +44,9 @@ Module Main
         Public VAT As Integer
         Public Decimals As Integer
         Public SupportEmail As String
+        Public InstEllipseInfBody As String
+        Public InstEllipseInfSubject As String
+        Public InstEmailAccount As String
         Public KitchenTransp As Decimal
         Public ClosetTransp As Decimal
         Public DoorTransp As Decimal

@@ -260,14 +260,14 @@ Public Class frmCalendarInst
             e.Menu.Items.Add(menuItem)
 
             ' Insert a new item into the Scheduler popup menu and handle its click event.
-            e.Menu.Items.Add(New SchedulerMenuItem("Δημιουργία Έλλειψης", AddressOf MyClickHandler))
+            e.Menu.Items.Add(New SchedulerMenuItem("Δημιουργία Εκκρεμότητας", AddressOf MyClickHandler))
         End If
     End Sub
     Public Sub MyClickHandler(ByVal sender As Object, ByVal e As EventArgs)
         For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
             Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
             Dim frmInstEllipse As New frmInstEllipse
-            frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
+            frmInstEllipse.Text = "Εκκρεμότητες Έργων"
             frmInstEllipse.Mode = FormMode.NewRecord
             frmInstEllipse.INST_ID = apt.Id
             frmInstEllipse.CalledFromControl = False
@@ -302,6 +302,14 @@ Public Class frmCalendarInst
         End Function
     End Class
 
-
+    Private Sub BBEllipse_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEllipse.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Εκκρεμότητες Έργων"
+        form.DataTable = "vw_INST_ELLIPSE"
+        form.DataDetail = "INST_ELLIPSE_JOBS"
+        form.WindowState = FormWindowState.Maximized
+        'form.MdiParent = form
+        form.Show()
+    End Sub
 End Class
 

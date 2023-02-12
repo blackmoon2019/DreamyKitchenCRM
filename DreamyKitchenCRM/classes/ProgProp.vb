@@ -154,6 +154,50 @@ Public Class ProgProp
             sdr = Nothing
         End Try
     End Sub
+    Public Sub GetProgBodyEmail(Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing)
+        Dim sSQL As String
+        Dim sVal As String, sPrm As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "select prm,val FROM PRM where grpName= 'EMAIL_INSTALLATIONS' ORDER by prm"
+            cmd = New SqlCommand(sSQL, CNDB)
+            sdr = cmd.ExecuteReader()
+            While sdr.Read()
+                sPrm = sdr.GetString(sdr.GetOrdinal("prm"))
+                If control Is Nothing Then
+                    If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then
+                        Select Case sPrm
+                            Case "ELLIPSE_BODY_INF" : ProgProps.InstEllipseInfBody = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccount = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "ELLIPSE_SUBJECT_INF" : ProgProps.InstEllipseInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                        End Select
+                    End If
+                Else
+                    Dim Ctrl As Control = control.GetControlByName(sPrm)
+                    If Ctrl IsNot Nothing Then
+                        Dim LItem As LayoutControlItem = control.GetItemByControl(Ctrl)
+                        If sdr.IsDBNull(sdr.GetOrdinal("val")) = False Then
+                            SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
+                            Select Case sPrm
+                                Case "ELLIPSE_BODY_INF" : ProgProps.InstEllipseInfBody = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccount = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "ELLIPSE_SUBJECT_INF" : ProgProps.InstEllipseInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                            End Select
+                        End If
+                    End If
+                End If
+            End While
+            sdr.Close()
+            sdr = Nothing
+            'End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sdr.Close()
+            sdr = Nothing
+        End Try
+    End Sub
+
     Private Sub SetValueToControl(ByVal LItem As LayoutControlItem, ByVal sValue As String)
         Dim Ctrl As Control = LItem.Control
         If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
@@ -273,5 +317,20 @@ Public Class ProgProp
         End Try
     End Sub
 
+    Public Sub SetProgBodyEmail(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String)
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Try
+            sSQL = "Update PRM set val = '" & sValue & "' where prm= 'ELLIPSE_BODY_INF'"
+            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            sSQL = "Update PRM set val = '" & sValue2 & "' where prm= 'INSTALLATIONS_EMAIL'"
+            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            sSQL = "Update PRM set val = '" & sValue3 & "' where prm= 'ELLIPSE_SUBJECT_INF'"
+            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 
 End Class

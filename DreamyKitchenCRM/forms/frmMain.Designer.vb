@@ -615,7 +615,7 @@ Partial Class frmMain
         '
         'BBCalendarInst
         '
-        Me.BBCalendarInst.Caption = "Πρόγραμμα Τοποθετήσεων"
+        Me.BBCalendarInst.Caption = "Πρόγραμμα Εκκρεμοτήτων - Παραδόσεων"
         Me.BBCalendarInst.Id = 55
         Me.BBCalendarInst.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_calendar_40
         Me.BBCalendarInst.Name = "BBCalendarInst"
@@ -719,7 +719,7 @@ Partial Class frmMain
         '
         'BBEllipse
         '
-        Me.BBEllipse.Caption = "Ελλείψεις Τοποθετήσεων"
+        Me.BBEllipse.Caption = "Εκκρεμότητες Έργων"
         Me.BBEllipse.Id = 68
         Me.BBEllipse.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_bank_card_missing_40
         Me.BBEllipse.Name = "BBEllipse"
@@ -1150,7 +1150,7 @@ Partial Class frmMain
         Me.RibbonPageGroup15.AllowTextClipping = False
         Me.RibbonPageGroup15.ItemLinks.Add(Me.BBCalendarInst)
         Me.RibbonPageGroup15.Name = "RibbonPageGroup15"
-        Me.RibbonPageGroup15.Text = "Τοποθετήσεις Εκκρεμότητες"
+        Me.RibbonPageGroup15.Text = "Εκκρεμότητες Έργων"
         '
         'RibbonPageGroup1
         '

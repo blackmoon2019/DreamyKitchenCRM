@@ -383,7 +383,7 @@ Partial Public Class RepCUSAnalysis
         Me.XrTableCell11.StylePriority.UseForeColor = False
         Me.XrTableCell11.StylePriority.UseTextAlignment = False
         Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell11.Weight = 0.20577415708567493R
+        Me.XrTableCell11.Weight = 0.20577415708567492R
         '
         'XrTableCell12
         '

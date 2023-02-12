@@ -206,10 +206,10 @@ Partial Class frmInstallations
         Me.cmdInstEllipse.Location = New System.Drawing.Point(12, 876)
         Me.cmdInstEllipse.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdInstEllipse.Name = "cmdInstEllipse"
-        Me.cmdInstEllipse.Size = New System.Drawing.Size(247, 39)
+        Me.cmdInstEllipse.Size = New System.Drawing.Size(255, 39)
         Me.cmdInstEllipse.StyleController = Me.LayoutControl1
         Me.cmdInstEllipse.TabIndex = 44
-        Me.cmdInstEllipse.Text = "Δημιουργία Έλλειψης"
+        Me.cmdInstEllipse.Text = "Δημιουργία Εκκρεμότητας"
         '
         'chkPaid
         '
@@ -243,10 +243,10 @@ Partial Class frmInstallations
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(894, 876)
+        Me.cmdExit.Location = New System.Drawing.Point(896, 876)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(203, 39)
+        Me.cmdExit.Size = New System.Drawing.Size(201, 39)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 33
         Me.cmdExit.Text = "Έξοδος"
@@ -254,10 +254,10 @@ Partial Class frmInstallations
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(700, 876)
+        Me.cmdSave.Location = New System.Drawing.Point(704, 876)
         Me.cmdSave.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(190, 39)
+        Me.cmdSave.Size = New System.Drawing.Size(188, 39)
         Me.cmdSave.StyleController = Me.LayoutControl1
         Me.cmdSave.TabIndex = 34
         Me.cmdSave.Text = "Αποθήκευση"
@@ -483,18 +483,18 @@ Partial Class frmInstallations
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.cmdSave
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(688, 864)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(692, 864)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(194, 43)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(192, 43)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.cmdExit
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(882, 864)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(884, 864)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(207, 43)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(205, 43)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -544,9 +544,9 @@ Partial Class frmInstallations
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(251, 864)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(259, 864)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(437, 43)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(433, 43)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem7
@@ -581,7 +581,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem10.Control = Me.cmdInstEllipse
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 864)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(251, 43)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(259, 43)
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '

@@ -114,10 +114,8 @@ Public Class frmInstallations
         Dim sSQL As New System.Text.StringBuilder
         Try
             If Valid.ValidateForm(LayoutControl1) Then
-
-                If txtTmIN.Text = "00:00" Or txtTmOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-                Dim Hours As Long = DateDiff(DateInterval.Hour, txtTmIN.EditValue, txtTmOUT.EditValue)
-                If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                If CheckIfTimeisValid() = False Then Exit Sub
+                If CheckIfInstFExist() = False Then Exit Sub
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
@@ -127,11 +125,6 @@ Public Class frmInstallations
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST", LayoutControl1,,, sID, True)
                         'sGuid = sID
                 End Select
-
-                'If FScrollerExist = True Then
-                '    Dim form As frmScroller = Frm
-                '    form.LoadRecords("vw_INST")
-                'End If
 
                 If sResult = True Then
                     If cboTRANSH.EditValue IsNot Nothing Then
@@ -163,28 +156,43 @@ Public Class frmInstallations
                     End Using
                 Next
                 FillCbo.FillCheckedListSER(chkSER, FormMode.EditRecord, sID)
-                If Mode = FormMode.NewRecord Then
-                    'XtraMessageBox.Show("Θα δημιουργηθεί αυτόματη κίνηση εξόφλησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    'If chkPaid.Checked = True Then
-                    '    sSQL.AppendLine("INSERT INTO INST_M (instID,amt,dtpay,createdby,createdOn")
-                    '    sSQL.AppendLine("Select " & toSQLValueS(sGuid) & ",")
-                    '    sSQL.AppendLine(toSQLValueS(txtCost.EditValue, True) & ",")
-                    '    sSQL.AppendLine(toSQLValueS(dtDeliverDate.EditValue.ToString) & ",")
-                    '    sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & "," & " getdate()")
-                    'End If
-                    ''Εκτέλεση QUERY
-                    'Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                    '    oCmd.ExecuteNonQuery()
-                    'End Using
-                    'Cls.ClearCtrls(LayoutControl1)
-                    'txtCode.Text = DBQ.GetNextId("INST")
-                End If
             End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function CheckIfTimeisValid() As Boolean
+        If txtTmIN.Text = "00:00" Or txtTmOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+        Dim Hours As Long = DateDiff(DateInterval.Hour, txtTmIN.EditValue, txtTmOUT.EditValue)
+        If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+        Return True
+    End Function
+    Private Function CheckIfInstFExist() As Boolean
+        Dim sFilename As String = ""
+        If chkCompleted.Checked = True Then
+            Dim Cmd As SqlCommand, sdr As SqlDataReader
+            Dim sSQL As String = "SELECT fInstName  FROM INST WHERE ID= " & toSQLValueS(sID)
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("fInstName")) = False Then sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
+                If sFilename = "" Then
+                    XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    sdr.Close()
+                    Return False
+                Else
+                    sdr.Close()
+                    Return True
+                End If
+            Else
+                XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            End If
+        Else
+            Return True
+        End If
+    End Function
     Private Sub ManageTRANSH()
         Dim form1 As frmTransactions = New frmTransactions()
         form1.Text = "Χρεωπιστώσεις Πελατών"
@@ -228,8 +236,8 @@ Public Class frmInstallations
     End Sub
     Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then If cboSaler.EditValue <> Nothing Then ManageSaler()
             Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub
@@ -252,7 +260,7 @@ Public Class frmInstallations
 
     Private Sub cmdInstEllipse_Click(sender As Object, e As EventArgs) Handles cmdInstEllipse.Click
         Dim frmInstEllipse As New frmInstEllipse
-        frmInstEllipse.Text = "Ελλείψεις Τοποθετήσεων"
+        frmInstEllipse.Text = "Εκκρεμότητες Έργων"
         frmInstEllipse.Mode = FormMode.NewRecord
         frmInstEllipse.INST_ID = sID
         frmInstEllipse.CalledFromControl = False
@@ -269,8 +277,8 @@ Public Class frmInstallations
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub

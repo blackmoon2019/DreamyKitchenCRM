@@ -71,7 +71,6 @@ Public Class frmLogin
                     Prog_Prop.GetProgvat()
 
                     'Δημιουργία Κλειδιών
-
                     If Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\DreamyKitchen") Is Nothing Then My.Computer.Registry.CurrentUser.CreateSubKey("SOFTWARE\\DreamyKitchen")
                     ProgProps.ServerViewsPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "SERVERVIEWS", "")
                     ProgProps.ServerPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "SERVER_PATH", "")
