@@ -36,7 +36,7 @@ Public Class frmInstEllipse
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
-    Private ComeFrom As Integer
+    Private sComeFrom As Integer
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -48,7 +48,11 @@ Public Class frmInstEllipse
             sINST_ID = value
         End Set
     End Property
-
+    Public WriteOnly Property ComeFrom As Integer
+        Set(value As Integer)
+            sComeFrom = value
+        End Set
+    End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
         Set(value As DevExpress.XtraGrid.Views.Grid.GridView)
             Ctrl = value
@@ -88,7 +92,7 @@ Public Class frmInstEllipse
         FillCbo.INST(cboINST)
         Select Case Mode
             Case FormMode.NewRecord
-                ShowQuestionForm()
+                'ShowQuestionForm()
                 txtCode.Text = DBQ.GetNextId("INST_ELLIPSE")
                 If sINST_ID IsNot Nothing Then cboINST.EditValue = System.Guid.Parse(sINST_ID)
                 FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.NewRecord)
@@ -115,45 +119,55 @@ Public Class frmInstEllipse
                 If GridView1.DataRowCount = 0 Then cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False
         End Select
         LoadForms.RestoreLayoutFromXml(GridView1, "INST_ELLIPSE_JOBS_def.xml")
-        If ComeFrom = 1 Then LayoutControlGroup1.Enabled = False
+        LInst.Enabled = False
+        If sComeFrom = 1 Then
+            LayoutControlGroup1.Text = "Αφορά Προμηθευτή"
+            chkSER.Enabled = False
+            LayoutControlItem2.Enabled = False
+            LayoutControlItem15.Enabled = False : LayoutControlItem16.Enabled = False
+            cboINST.EditValue = System.Guid.Parse("00000001-0001-0001-0001-000000000001")
+        Else
+            LayoutControlGroup1.Text = "Αφορά Πελάτη"
+        End If
+
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
     End Sub
-    Private Sub ShowQuestionForm()
-        Dim args As New XtraInputBoxArgs()
-        Dim Item1 As New RadioGroupItem
-        Item1.Description = "Αφορά Πελάτη"
-        Dim item2 As New RadioGroupItem
-        item2.Description = "Αφορά Προμηθευτή"
-        Dim RadioEdit1 As New RadioGroup
-        RadioEdit1.Properties.Items.Add(Item1)
-        RadioEdit1.Properties.Items.Add(item2)
-        RadioEdit1.Name = "radioEditComeFrom"
-        RadioEdit1.Location = New System.Drawing.Point(30, 35)
-        RadioEdit1.Width = 50
-        RadioEdit1.Height = 100
-        ' set required Input Box options
-        args.Caption = "Επιλογή Εκκρεμότητας"
-        args.Prompt = "Επιλέξτε ποιον αφορά η εκκρεμότητα"
-        args.DefaultButtonIndex = 0
-        AddHandler args.Showing, AddressOf Args_Showing
-        ' initialize a DateEdit editor with custom settings
+    'Private Sub ShowQuestionForm()
+    '    Dim args As New XtraInputBoxArgs()
+    '    Dim Item1 As New RadioGroupItem
+    '    Item1.Description = "Αφορά Πελάτη"
+    '    Dim item2 As New RadioGroupItem
+    '    item2.Description = "Αφορά Προμηθευτή"
+    '    Dim RadioEdit1 As New RadioGroup
+    '    RadioEdit1.Properties.Items.Add(Item1)
+    '    RadioEdit1.Properties.Items.Add(item2)
+    '    RadioEdit1.Name = "radioEditComeFrom"
+    '    RadioEdit1.Location = New System.Drawing.Point(30, 35)
+    '    RadioEdit1.Width = 50
+    '    RadioEdit1.Height = 100
+    '    ' set required Input Box options
+    '    args.Caption = "Επιλογή Εκκρεμότητας"
+    '    args.Prompt = "Επιλέξτε ποιον αφορά η εκκρεμότητα"
+    '    args.DefaultButtonIndex = 0
+    '    AddHandler args.Showing, AddressOf Args_Showing
+    '    ' initialize a DateEdit editor with custom settings
 
-        args.Editor = RadioEdit1
-        AddHandler RadioEdit1.SelectedIndexChanged, AddressOf SelectedIndexChanged
+    '    args.Editor = RadioEdit1
+    '    AddHandler RadioEdit1.SelectedIndexChanged, AddressOf SelectedIndexChanged
 
-        Dim result = XtraInputBox.Show(args)
-        If result = Nothing Then ComeFrom = 0
+    '    Dim result = XtraInputBox.Show(args)
+    '    'If result = Nothing Then ComeFrom = 0
 
-    End Sub
-    Private Sub SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs)
-        Dim Edit As RadioGroup = CType(sender, RadioGroup)
-        If (Edit.SelectedIndex = 0) Then ComeFrom = 0 Else ComeFrom = 1
-    End Sub
-    Private Sub Args_Showing(ByVal sender As Object, ByVal e As XtraMessageShowingArgs)
-        e.Form.Icon = Me.Icon
-    End Sub
+    'End Sub
+    'Private Sub SelectedIndexChanged(ByVal sender As Object, ByVal e As System.EventArgs)
+    '    Dim Edit As RadioGroup = CType(sender, RadioGroup)
+    '    If (Edit.SelectedIndex = 0) Then sComeFrom = 0 Else sComeFrom = 1
+    'End Sub
+    'Private Sub Args_Showing(ByVal sender As Object, ByVal e As XtraMessageShowingArgs)
+    '    e.Form.Icon = Me.Icon
+    'End Sub
 
     Private Sub frmInstEllipse_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
@@ -186,11 +200,11 @@ Public Class frmInstEllipse
                     Case FormMode.NewRecord
                         sID = System.Guid.NewGuid.ToString
                         Dim Cmd As SqlCommand, sdr As SqlDataReader
-                        Cmd = New SqlCommand("SELECT TOP 1 IE.id,MAX(ie.createdOn) as createdOn  FROM INST_ELLIPSE IE WHERE IE.instID= " & toSQLValueS(sINST_ID) & " group by IE.ID ORDER BY createdOn DESC ", CNDB)
+                        Cmd = New SqlCommand("Select TOP 1 IE.id, MAX(ie.createdOn) as createdOn  FROM INST_ELLIPSE IE WHERE IE.instID= " & toSQLValueS(sINST_ID) & " group by IE.ID ORDER BY createdOn DESC ", CNDB)
                         sdr = Cmd.ExecuteReader()
                         If (sdr.Read() = True) Then LastEllipseID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString.ToUpper
                         sdr.Close()
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", ComeFrom)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", sComeFrom)
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
                 End Select
@@ -204,7 +218,7 @@ Public Class frmInstEllipse
                     If Mode = FormMode.EditRecord Then
                         ' Διαγραφή όλων των συνεργείων πάντα στην επεξεργασία εγγραφής
                         sSQL = "DELETE FROM INST_ELLIPSE_SER where instEllipseID = '" & sID & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
                     End If
@@ -501,7 +515,7 @@ Public Class frmInstEllipse
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles cmdSendEmail.Click
         If GridView1.RowCount = 0 Then XtraMessageBox.Show("Δεν υπάρχουν εκκρεμότητες προς αποστολή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        Prog_Prop.GetProgBodyEmail()
+        Prog_Prop.GetProgEmailInst()
         SendEmailExportReport()
     End Sub
     Private Sub SendEmailExportReport()
@@ -517,7 +531,7 @@ Public Class frmInstEllipse
 
             Dim report As New RepCUSEllipse()
             report.Parameters.Item(0).Value = sID
-            sEmailTo = cboINST.GetColumnValue("email")
+            If sComeFrom = 1 Then sEmailTo = ProgProps.InstEmailAccountSup Else sEmailTo = cboINST.GetColumnValue("email")
             sBody = ProgProps.InstEllipseInfBody
             sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
             sEmailTo = "johnmavroselinos@gmail.com"
@@ -525,6 +539,7 @@ Public Class frmInstEllipse
             report.ExportToPdf(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf")
             report.Dispose()
             report = Nothing
+            If sEmailTo = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
             If Emails.SendEmail(ProgProps.InstEmailAccount, ProgProps.InstEllipseInfSubject, sBody, sEmailTo, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf", statusMsg) = True Then
                 sSQL = "Update INST_ELLIPSE SET EMAIL = 1,DateOfEmail=getdate() WHERE ID = " & toSQLValueS(sID)
                 Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
