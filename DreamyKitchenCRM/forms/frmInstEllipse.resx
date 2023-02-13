@@ -121,7 +121,7 @@
   <data name="cmdSendEmail.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DQAACw0B7QfALAAAAnpJREFUSEvFlt9PUnEYxs9df0Bd9y90wX/QdRddtK6sqzbSkhjyM02IVhzADNQT
+        DAAACwwBP0AiyAAAAnpJREFUSEvFlt9PUnEYxs9df0Bd9y90wX/QdRddtK6sqzbSkhjyM02IVhzADNQT
         wkGEWINEkYHERREkIpiCxY8albUZc22uxKxWWr3xnh0RiWOcaevZPtu793yf59lh7AtEqzqhDh45rX2g
         QnBm1wenk8opQTv19BOCM7vmLwVpPUpavQEDfS9UT7d5fFoyUtxEcG58jh70sjHcUvbRgmS2UIEGvS5X
         4LK7xIBzo9CDXjaGW80K3qysQ2yxXCvAGXf12ldBIPkWhKYUaP0rDDjjrl77KkCZJwqgHlsGjW8ZzP4i
@@ -138,7 +138,7 @@
   <data name="cmdPrintAll.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        DgAACw4BQL7hQQAAAnpJREFUSEvFlt9PUnEYxs9df0Bd9y90wX/QdRddtK6sqzbSkhjyM02IVhzADNQT
+        DAAACwwBP0AiyAAAAnpJREFUSEvFlt9PUnEYxs9df0Bd9y90wX/QdRddtK6sqzbSkhjyM02IVhzADNQT
         wkGEWINEkYHERREkIpiCxY8albUZc22uxKxWWr3xnh0RiWOcaevZPtu793yf59lh7AtEqzqhDh45rX2g
         QnBm1wenk8opQTv19BOCM7vmLwVpPUpavQEDfS9UT7d5fFoyUtxEcG58jh70sjHcUvbRgmS2UIEGvS5X
         4LK7xIBzo9CDXjaGW80K3qysQ2yxXCvAGXf12ldBIPkWhKYUaP0rDDjjrl77KkCZJwqgHlsGjW8ZzP4i
@@ -158,7 +158,7 @@
   <metadata name="DmDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <data name="EditorButtonImageOptions2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="EditorButtonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABV0RVh0VGl0
         bGUAVmlld01lcmdlZERhdGE7shxIswAAAkJJREFUOE+lkl9Ik2EUxjdnYg4Z6IUX0Y1dBEUQdrOQpEYy
@@ -174,10 +174,7 @@
         DoDsF67YQEGpdtFTAAAAAElFTkSuQmCC
 </value>
   </data>
-  <metadata name="DmDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
-  <data name="LayoutControlItem9.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="LInst.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
         JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAB3RJTUUH5AkWETM3aFGQfgAAAIZJREFU

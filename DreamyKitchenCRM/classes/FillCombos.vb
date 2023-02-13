@@ -1021,7 +1021,9 @@ Public Class FillCombos
     End Sub
     Public Sub INST(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,grmonth,cctName,SerName ,SalerName,cmt,cusID,email from vw_INST where completed=0 order by grmonth,Sername", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,grmonth,cctName,SerName ,SalerName,cmt,cusID,email from vw_INST where completed=0   " &
+                                                   "UNION " &
+                                                   "Select id,null As grmonth,'CRM' As cctName,null As SerName ,null As SalerName,cmt,cusID,null As email from INST where id='00000001-0001-0001-0001-000000000001' order by grmonth,Sername ", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
 
             CtrlCombo.Properties.DataSource = sdr

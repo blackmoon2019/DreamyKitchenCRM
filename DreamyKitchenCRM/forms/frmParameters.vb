@@ -192,7 +192,7 @@ Public Class frmParameters
                 LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml")
                 GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False
             Case 3 : Prog_Prop.GetProgPROSF(LayoutControl4)
-            Case 4 : Prog_Prop.GetProgBodyEmail(LayoutControl5)
+            Case 4 : Prog_Prop.GetProgEmailInst(LayoutControl5)
             Case Else
         End Select
     End Sub
@@ -363,7 +363,7 @@ Public Class frmParameters
     End Sub
 
     Private Sub SimpleButton5_Click(sender As Object, e As EventArgs) Handles SimpleButton5.Click
-        Prog_Prop.SetProgBodyEmail(ELLIPSE_BODY_INF.EditValue.ToString, INSTALLATIONS_EMAIL.EditValue.ToString, ELLIPSE_SUBJECT_INF.EditValue.ToString)
-        Prog_Prop.GetProgBodyEmail(LayoutControl5)
+        Prog_Prop.SetProgInstEmail(ELLIPSE_BODY_INF.EditValue.ToString, INSTALLATIONS_EMAIL.EditValue.ToString, ELLIPSE_SUBJECT_INF.EditValue.ToString, INSTALLATIONS_EMAIL_SUP.EditValue.ToString)
+        Prog_Prop.GetProgEmailInst(LayoutControl5)
     End Sub
 End Class

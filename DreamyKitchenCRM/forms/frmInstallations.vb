@@ -264,6 +264,7 @@ Public Class frmInstallations
         frmInstEllipse.Mode = FormMode.NewRecord
         frmInstEllipse.INST_ID = sID
         frmInstEllipse.CalledFromControl = False
+        frmInstEllipse.ComeFrom = 0
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(frmInstEllipse.Parent.ClientRectangle.Width / 2 - frmInstEllipse.Width / 2), CInt(frmInstEllipse.Parent.ClientRectangle.Height / 2 - frmInstEllipse.Height / 2)))
         frmInstEllipse.Show()
     End Sub

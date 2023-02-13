@@ -1253,6 +1253,7 @@ Public Class frmScroller
                 frmInstEllipse.MdiParent = frmMain
                 frmInstEllipse.Mode = FormMode.EditRecord
                 frmInstEllipse.Scroller = GridView1
+                frmInstEllipse.ComeFrom = 1
                 frmInstEllipse.FormScroller = Me
                 frmInstEllipse.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
@@ -2175,6 +2176,7 @@ Public Class frmScroller
                 frmInstEllipse.Scroller = GridView1
                 frmInstEllipse.FormScroller = Me
                 frmInstEllipse.CalledFromControl = False
+                frmInstEllipse.ComeFrom = 1
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmInstEllipse.Show()
             Case "vw_EMP_T"

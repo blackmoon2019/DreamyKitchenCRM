@@ -154,7 +154,7 @@ Public Class ProgProp
             sdr = Nothing
         End Try
     End Sub
-    Public Sub GetProgBodyEmail(Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing)
+    Public Sub GetProgEmailInst(Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing)
         Dim sSQL As String
         Dim sVal As String, sPrm As String
         Dim cmd As SqlCommand
@@ -171,6 +171,7 @@ Public Class ProgProp
                             Case "ELLIPSE_BODY_INF" : ProgProps.InstEllipseInfBody = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccount = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_SUBJECT_INF" : ProgProps.InstEllipseInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "INSTALLATIONS_EMAIL_SUP" : ProgProps.InstEmailAccountSup = sdr.GetString(sdr.GetOrdinal("val"))
                         End Select
                     End If
                 Else
@@ -183,6 +184,7 @@ Public Class ProgProp
                                 Case "ELLIPSE_BODY_INF" : ProgProps.InstEllipseInfBody = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "INSTALLATIONS_EMAIL" : ProgProps.InstEmailAccount = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_SUBJECT_INF" : ProgProps.InstEllipseInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "INSTALLATIONS_EMAIL_SUP" : ProgProps.InstEmailAccountSup = sdr.GetString(sdr.GetOrdinal("val"))
                             End Select
                         End If
                     End If
@@ -323,7 +325,7 @@ Public Class ProgProp
         End Try
     End Sub
 
-    Public Sub SetProgBodyEmail(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String)
+    Public Sub SetProgInstEmail(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String, ByVal sValue4 As String)
         Dim sSQL As String
         Dim cmd As SqlCommand
         Try
@@ -332,6 +334,8 @@ Public Class ProgProp
             sSQL = "Update PRM set val = '" & sValue2 & "' where prm= 'INSTALLATIONS_EMAIL'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             sSQL = "Update PRM set val = '" & sValue3 & "' where prm= 'ELLIPSE_SUBJECT_INF'"
+            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            sSQL = "Update PRM set val = '" & sValue4 & "' where prm= 'INSTALLATIONS_EMAIL_SUP'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
 
         Catch ex As Exception
