@@ -610,6 +610,12 @@
     <Compile Include="Reports\RepCUSEllipse.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RepCUSEllipseForSUP.Designer.vb">
+      <DependentUpon>RepCUSEllipseForSUP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSEllipseForSUP.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RepTransCostD.Designer.vb">
       <DependentUpon>RepTransCostD.vb</DependentUpon>
     </Compile>
@@ -993,6 +999,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSEllipse.resx">
       <DependentUpon>RepCUSEllipse.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSEllipseForSUP.resx">
+      <DependentUpon>RepCUSEllipseForSUP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepTransCostD.resx">
       <DependentUpon>RepTransCostD.vb</DependentUpon>
