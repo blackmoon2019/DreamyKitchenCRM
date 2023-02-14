@@ -131,7 +131,7 @@
        "vw_INST_ELLIPSE"."ID"
   from ("dbo"."vw_INST_ELLIPSE" "vw_INST_ELLIPSE"
   inner join "dbo"."vw_CCT" "vw_CCT"
-       on ("vw_CCT"."ID" = "vw_INST_ELLIPSE"."cctID"))
+       on ("vw_CCT"."ID" = "vw_INST_ELLIPSE"."cusID"))
  where ("vw_INST_ELLIPSE"."ID" = @ID)</value>
   </data>
   <data name="CustomSqlQuery2.Sql" xml:space="preserve">

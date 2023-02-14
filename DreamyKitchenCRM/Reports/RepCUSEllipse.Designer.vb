@@ -67,9 +67,9 @@ Partial Public Class RepCUSEllipse
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.ReportHeader = New DevExpress.XtraReports.UI.ReportHeaderBand()
         Me.ID = New DevExpress.XtraReports.Parameters.Parameter()
+        Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -615,13 +615,6 @@ Partial Public Class RepCUSEllipse
     "ος" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Τηλέφωνο:210-34 10 770" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "email: info@dreamykitchen.gr"
         Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
-        'XrPictureBox1
-        '
-        Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 16.39316!)
-        Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(275.8548!, 62.60684!)
-        '
         'ReportHeader
         '
         Me.ReportHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrPictureBox1, Me.XrLabel1})
@@ -643,6 +636,13 @@ Partial Public Class RepCUSEllipse
         DynamicListLookUpSettings1.ValueMember = "ID"
         Me.ID.ValueSourceSettings = DynamicListLookUpSettings1
         Me.ID.Visible = False
+        '
+        'XrPictureBox1
+        '
+        Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 16.39316!)
+        Me.XrPictureBox1.Name = "XrPictureBox1"
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(275.8548!, 62.60684!)
         '
         'RepCUSEllipse
         '

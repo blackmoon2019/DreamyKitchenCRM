@@ -1,23 +1,12 @@
-﻿Imports System.IO
-Imports System.ComponentModel
+﻿
+Imports System.IO
 Imports System.Data.SqlClient
-Imports DevExpress.DataAccess
-Imports DevExpress.DataAccess.Native
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-Imports DevExpress.XtraMap.Drawing.DirectD3D9
-Imports DevExpress.DataAccess.UI
-Imports DevExpress.DataAccess.UI.Native
-Imports DevExpress.XtraSpreadsheet.Layout
 Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraBars
-Imports DevExpress.XtraSpreadsheet.DocumentFormats
-Imports System.Text
-Imports DevExpress.XtraScheduler.Native
 
 Public Class frmInstEllipse
 
@@ -83,6 +72,8 @@ Public Class frmInstEllipse
     End Sub
 
     Private Sub frmInstEllipse_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DmDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DmDataSet.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DmDataSet.INST_ELLIPSE_JOBS' table. You can move, or remove it, as needed.
         'Me.INST_ELLIPSE_JOBSTableAdapter.Fill(Me.DmDataSet.INST_ELLIPSE_JOBS)
 
@@ -99,7 +90,9 @@ Public Class frmInstEllipse
                 GridView1.OptionsBehavior.Editable = False
                 cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False
             Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from vw_INST_ELLIPSE where id =" & toSQLValueS(sID))
+                Dim sFields As New Dictionary(Of String, String)
+                LoadForms.LoadForm(LayoutControl1, "Select * from vw_INST_ELLIPSE where id =" & toSQLValueS(sID), sFields)
+                If sFields("comeFrom") = "False" Then sComeFrom = 0 Else sComeFrom = 1
                 FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.EditRecord, sID)
                 Me.INST_ELLIPSE_JOBSTableAdapter.FillBYinstEllipseID(Me.DmDataSet.INST_ELLIPSE_JOBS, System.Guid.Parse(sID))
                 If sINST_ID Is Nothing Then sINST_ID = cboINST.EditValue.ToString
@@ -123,11 +116,13 @@ Public Class frmInstEllipse
         If sComeFrom = 1 Then
             LayoutControlGroup1.Text = "Αφορά Προμηθευτή"
             chkSER.Enabled = False
-            LayoutControlItem2.Enabled = False
-            LayoutControlItem15.Enabled = False : LayoutControlItem16.Enabled = False
+            LdtDateDelivered.Enabled = False
+            LTmINFrom.Enabled = False : LTmINTo.Enabled = False
             cboINST.EditValue = System.Guid.Parse("00000001-0001-0001-0001-000000000001")
         Else
             LayoutControlGroup1.Text = "Αφορά Πελάτη"
+            LCus.Enabled = False
+            LTransh.Enabled = False
         End If
 
         Me.CenterToScreen()
@@ -506,11 +501,20 @@ Public Class frmInstEllipse
     End Sub
 
     Private Sub cmdPrintAll_Click(sender As Object, e As EventArgs) Handles cmdPrintAll.Click
-        Dim report As New RepCUSEllipse
-        report.Parameters.Item(0).Value = sID
-        report.CreateDocument()
-        Dim printTool As New ReportPrintTool(report)
-        printTool.ShowRibbonPreview()
+
+        If sComeFrom = 0 Then
+            Dim report As New RepCUSEllipse
+            report.Parameters.Item(0).Value = sID
+            report.CreateDocument()
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        Else
+            Dim report As New RepCUSEllipseForSUP
+            report.Parameters.Item(0).Value = sID
+            report.CreateDocument()
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        End If
     End Sub
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles cmdSendEmail.Click
@@ -531,16 +535,21 @@ Public Class frmInstEllipse
 
             Dim report As New RepCUSEllipse()
             report.Parameters.Item(0).Value = sID
-            If sComeFrom = 1 Then sEmailTo = ProgProps.InstEmailAccountSup Else sEmailTo = cboINST.GetColumnValue("email")
-            sBody = ProgProps.InstEllipseInfBody
-            sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
+            If sComeFrom = 1 Then
+                sEmailTo = ProgProps.InstEmailAccountSup
+                sBody = "τεστ"
+            Else
+                sEmailTo = cboINST.GetColumnValue("email")
+                sBody = ProgProps.InstEllipseInfBody
+                sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
+            End If
             sEmailTo = "johnmavroselinos@gmail.com"
             report.CreateDocument()
-            report.ExportToPdf(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf")
+            report.ExportToPdf(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & IIf(sComeFrom = 1, "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων προμηθευτή.pdf", "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf"))
             report.Dispose()
             report = Nothing
             If sEmailTo = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-            If Emails.SendEmail(ProgProps.InstEmailAccount, ProgProps.InstEllipseInfSubject, sBody, sEmailTo, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf", statusMsg) = True Then
+            If Emails.SendEmail(ProgProps.InstEmailAccount, ProgProps.InstEllipseInfSubject, sBody, sEmailTo, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & IIf(sComeFrom = 1, "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων προμηθευτή.pdf", "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf"), statusMsg) = True Then
                 sSQL = "Update INST_ELLIPSE SET EMAIL = 1,DateOfEmail=getdate() WHERE ID = " & toSQLValueS(sID)
                 Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
                 XtraMessageBox.Show("Το email στάλθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -554,5 +563,20 @@ Public Class frmInstEllipse
 
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "INST_ELLIPSE_JOBS_def.xml", "INST_ELLIPSE_JOBS")
+    End Sub
+
+    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
+        Dim sCusID As String
+        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(GUID.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
+                        from vw_TRANSH t
+                        where  completed = 0 and T.cusid = " & sCusID & "order by description")
+        FillCbo.TRANSH(cboTRANSH, sSQL)
+    End Sub
+
+    Private Sub cboINST_EditValueChanged(sender As Object, e As EventArgs) Handles cboINST.EditValueChanged
+        If cboINST.GetColumnValue("cusID").ToString <> "" Then cboCUS.EditValue = System.Guid.Parse(cboINST.GetColumnValue("cusID").ToString)
+        If cboINST.GetColumnValue("transhID").ToString <> "" Then cboTRANSH.EditValue = System.Guid.Parse(cboINST.GetColumnValue("transhID").ToString)
     End Sub
 End Class

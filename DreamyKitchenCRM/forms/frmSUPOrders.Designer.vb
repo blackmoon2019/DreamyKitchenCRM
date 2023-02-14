@@ -40,6 +40,7 @@ Partial Class frmSUPOrders
         Me.cboSUP = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwSUPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.dtReceipt = New DevExpress.XtraEditors.DateEdit()
+        Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -57,11 +58,10 @@ Partial Class frmSUPOrders
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Vw_ORDER_MANAGERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_ORDER_MANAGERSTableAdapter()
         Me.Vw_SUPTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SUPTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
-        Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -81,6 +81,7 @@ Partial Class frmSUPOrders
         CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtReceipt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtReceipt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,7 +99,6 @@ Partial Class frmSUPOrders
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -336,6 +336,16 @@ Partial Class frmSUPOrders
         Me.dtReceipt.TabIndex = 50
         Me.dtReceipt.Tag = "dtReceipt,0,1,2"
         '
+        'txtComments
+        '
+        Me.txtComments.Location = New System.Drawing.Point(209, 368)
+        Me.txtComments.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtComments.Name = "txtComments"
+        Me.txtComments.Size = New System.Drawing.Size(995, 155)
+        Me.txtComments.StyleController = Me.LayoutControl1
+        Me.txtComments.TabIndex = 17
+        Me.txtComments.Tag = "cmt,0,1,2"
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -522,6 +532,17 @@ Partial Class frmSUPOrders
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(780, 43)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me.txtComments
+        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 356)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(1196, 159)
+        Me.LayoutControlItem14.Text = "Σχόλια"
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(196, 23)
+        '
         'Vw_ORDER_MANAGERSTableAdapter
         '
         Me.Vw_ORDER_MANAGERSTableAdapter.ClearBeforeFill = True
@@ -533,27 +554,6 @@ Partial Class frmSUPOrders
         'Vw_CCTTableAdapter
         '
         Me.Vw_CCTTableAdapter.ClearBeforeFill = True
-        '
-        'txtComments
-        '
-        Me.txtComments.Location = New System.Drawing.Point(209, 368)
-        Me.txtComments.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(995, 155)
-        Me.txtComments.StyleController = Me.LayoutControl1
-        Me.txtComments.TabIndex = 17
-        Me.txtComments.Tag = "cmt,0,1,2"
-        '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.txtComments
-        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 356)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(1196, 159)
-        Me.LayoutControlItem14.Text = "Σχόλια"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(196, 23)
         '
         'frmSUPOrders
         '
@@ -584,6 +584,7 @@ Partial Class frmSUPOrders
         CType(Me.VwSUPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtReceipt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtReceipt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
@@ -601,7 +602,6 @@ Partial Class frmSUPOrders
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
