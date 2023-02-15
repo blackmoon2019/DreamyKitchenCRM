@@ -28,7 +28,8 @@ Public Class frmCalendarInst
             Dim sSQL As String
             PanelResults.Visible = False
             SchedulerLocalizer.Active = New MySchedulerLocalizer()
-            sSQL = "SELECT * FROM vw_INST left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID and vw_INST_ELLIPSE.completed=0 order by vw_INST.code"
+            sSQL = "SELECT *,vw_INST_ELLIPSE.ID as EllipseID FROM vw_INST " &
+                    "left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID And vw_INST_ELLIPSE.completed=0  order by vw_INST.code"
             'Δημιουργία Appointments
             Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, True)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INST' table. You can move, or remove it, as needed.
@@ -89,19 +90,32 @@ Public Class frmCalendarInst
         form1.Text = "Τοποθετήσεις"
         form1.Scroller = frmScroller.GridView1
         form1.FormScroller = frmScroller
+        Dim apt As Appointment
         'form1.MdiParent = frmMain
         If SchedulerControl1.SelectedAppointments.Count = 0 Then
             form1.Mode = FormMode.NewRecord
             form1.dtDeliverDate.EditValue = SchedulerControl1.SelectedInterval.Start
         Else
             For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
-                Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
+                apt = SchedulerControl1.SelectedAppointments(i)
                 form1.ID = apt.Id
                 form1.Mode = FormMode.EditRecord
             Next i
         End If
-        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.ShowDialog()
+        If apt.CustomFields.Item("IsEllipse") = True Then
+            Dim frmInstEllipse As frmInstEllipse = New frmInstEllipse()
+            frmInstEllipse.ID = apt.CustomFields.Item("EllipseID").ToString
+            frmInstEllipse.INST_ID = apt.Id
+            frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+            frmInstEllipse.Mode = FormMode.EditRecord
+            frmInstEllipse.CalledFromControl = False
+            frmInstEllipse.ShowDialog()
+            form1.Dispose()
+            form1 = Nothing
+        Else
+            form1.ShowDialog()
+        End If
+
         'SetCalendarFilter()
     End Sub
     Private Sub SetCalendarFilter(Optional ByVal sWhere As String = "")
@@ -279,7 +293,9 @@ Public Class frmCalendarInst
     Private Sub SchedulerControl1_InitAppointmentImages(sender As Object, e As AppointmentImagesEventArgs) Handles SchedulerControl1.InitAppointmentImages
 
         Dim info As AppointmentImageInfo = New AppointmentImageInfo()
-        If e.Appointment.CustomFields.Item("IsEllipse") = True Then info.Image = SvgImageCollection1.GetImage(1) Else info.Image = SvgImageCollection1.GetImage(0)
+        If e.Appointment.CustomFields.Item("IsInst") = True Then info.Image = SvgImageCollection1.GetImage(2)
+        If e.Appointment.CustomFields.Item("IsEllipse") = True Then info.Image = SvgImageCollection1.GetImage(1)
+        If e.Appointment.CustomFields.Item("IsDelivery") = True Then info.Image = SvgImageCollection1.GetImage(0)
         e.ImageInfoList.Add(info)
     End Sub
     Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText

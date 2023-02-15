@@ -96,17 +96,20 @@ Public Class frmInstEllipse
                 FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.EditRecord, sID)
                 Me.INST_ELLIPSE_JOBSTableAdapter.FillBYinstEllipseID(Me.DmDataSet.INST_ELLIPSE_JOBS, System.Guid.Parse(sID))
                 If sINST_ID Is Nothing Then sINST_ID = cboINST.EditValue.ToString
-                Dim Cmd As SqlCommand, sdr As SqlDataReader
-                sSQL.Clear()
-                sSQL.AppendLine("SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE ID= " & toSQLValueS(sID) & " and createdOn<(select max(createdon) from INST_ELLIPSE WHERE instID= " & toSQLValueS(sINST_ID) & ")")
-                Cmd = New SqlCommand(sSQL.ToString, CNDB)
-                sdr = Cmd.ExecuteReader()
-                Dim CountEllipse As Integer
-                If (sdr.Read() = True) Then
-                    If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
-                    If CountEllipse > 0 Then LayoutControl1.Enabled = False
+                'Αφορά μόνο τον πελάτη και ελέγχει αν υπάρχει έλλειψη πριν την τελευταία . Αν υπάρχει δεν μπορεί να την επεξεργαστεί αυτήν
+                If sComeFrom = 0 Then
+                    Dim Cmd As SqlCommand, sdr As SqlDataReader
+                    sSQL.Clear()
+                    sSQL.AppendLine("SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE ID= " & toSQLValueS(sID) & " and createdOn<(select max(createdon) from INST_ELLIPSE WHERE instID= " & toSQLValueS(sINST_ID) & ")")
+                    Cmd = New SqlCommand(sSQL.ToString, CNDB)
+                    sdr = Cmd.ExecuteReader()
+                    Dim CountEllipse As Integer
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
+                        If CountEllipse > 0 Then LayoutControl1.Enabled = False
+                    End If
+                    sdr.Close()
                 End If
-                sdr.Close()
                 txtInstellipseFilename.Enabled = True
                 GridControl1.ForceInitialize()
                 If GridView1.DataRowCount = 0 Then cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False
@@ -527,29 +530,41 @@ Public Class frmInstEllipse
         Dim Emails As New SendEmail
         Dim statusMsg As String
         Dim sEmailTo As String
+        Dim sSubject As String
         Dim sBody As String
+        Dim sFile As String
         Dim sSQL As String
         Try
 
 
-
-            Dim report As New RepCUSEllipse()
-            report.Parameters.Item(0).Value = sID
             If sComeFrom = 1 Then
+                Dim report As New RepCUSEllipseForSUP()
+                report.Parameters.Item(0).Value = sID
                 sEmailTo = ProgProps.InstEmailAccountSup
-                sBody = "τεστ"
+                sBody = ProgProps.InstEllipseInfBodySup
+                sSubject = ProgProps.InstEllipseInfSubjectSup
+                sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", Date.Now.Date)
+                sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων προμηθευτή.pdf"
+                report.CreateDocument()
+                report.ExportToPdf(sFile)
+                report.Dispose()
+                report = Nothing
             Else
+                Dim report As New RepCUSEllipse()
+                report.Parameters.Item(0).Value = sID
                 sEmailTo = cboINST.GetColumnValue("email")
                 sBody = ProgProps.InstEllipseInfBody
                 sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
+                sSubject = ProgProps.InstEllipseInfSubject
+                sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf"
+                report.CreateDocument()
+                report.ExportToPdf(sFile)
+                report.Dispose()
+                report = Nothing
             End If
             sEmailTo = "johnmavroselinos@gmail.com"
-            report.CreateDocument()
-            report.ExportToPdf(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & IIf(sComeFrom = 1, "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων προμηθευτή.pdf", "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf"))
-            report.Dispose()
-            report = Nothing
             If sEmailTo = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-            If Emails.SendEmail(ProgProps.InstEmailAccount, ProgProps.InstEllipseInfSubject, sBody, sEmailTo, Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & IIf(sComeFrom = 1, "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων προμηθευτή.pdf", "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων.pdf"), statusMsg) = True Then
+            If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
                 sSQL = "Update INST_ELLIPSE SET EMAIL = 1,DateOfEmail=getdate() WHERE ID = " & toSQLValueS(sID)
                 Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
                 XtraMessageBox.Show("Το email στάλθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)

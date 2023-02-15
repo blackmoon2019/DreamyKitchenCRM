@@ -23,9 +23,9 @@ Partial Class frmCalendarInst
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TimeRuler7 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
-        Dim TimeRuler8 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
-        Dim TimeRuler9 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler1 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler2 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler3 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCalendarInst))
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -349,12 +349,12 @@ Partial Class frmCalendarInst
         Me.SchedulerControl1.Start = New Date(2020, 10, 5, 0, 0, 0, 0)
         Me.SchedulerControl1.TabIndex = 11
         Me.SchedulerControl1.Text = "SchedulerControl1"
-        Me.SchedulerControl1.Views.DayView.TimeRulers.Add(TimeRuler7)
+        Me.SchedulerControl1.Views.DayView.TimeRulers.Add(TimeRuler1)
         Me.SchedulerControl1.Views.FullWeekView.Enabled = True
-        Me.SchedulerControl1.Views.FullWeekView.TimeRulers.Add(TimeRuler8)
+        Me.SchedulerControl1.Views.FullWeekView.TimeRulers.Add(TimeRuler2)
         Me.SchedulerControl1.Views.MonthView.AppointmentDisplayOptions.AppointmentAutoHeight = True
         Me.SchedulerControl1.Views.WeekView.Enabled = False
-        Me.SchedulerControl1.Views.WorkWeekView.TimeRulers.Add(TimeRuler9)
+        Me.SchedulerControl1.Views.WorkWeekView.TimeRulers.Add(TimeRuler3)
         Me.SchedulerControl1.Views.YearView.UseOptimizedScrolling = False
         '
         'SchedulerDataStorage1
@@ -729,6 +729,7 @@ Partial Class frmCalendarInst
         '
         Me.SvgImageCollection1.Add("shipment", "image://svgimages/outlook inspired/shipment.svg")
         Me.SvgImageCollection1.Add("actions_settings", "image://svgimages/icon builder/actions_settings.svg")
+        Me.SvgImageCollection1.Add("switchtimescalesto", "image://svgimages/scheduling/switchtimescalesto.svg")
         '
         'frmCalendarInst
         '
