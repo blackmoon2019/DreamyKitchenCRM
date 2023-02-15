@@ -209,15 +209,21 @@ Partial Class frmParameters
         Me.MAILSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet1 = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.ELLIPSE_SUBJECT_INF = New DevExpress.XtraEditors.TextEdit()
+        Me.INSTALLATIONS_EMAIL_SUP = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup15 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem62 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem63 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem64 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem65 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem66 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.MAILSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.MAILSTableAdapter()
         Me.LayoutControlItem67 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.INSTALLATIONS_EMAIL_SUP = New DevExpress.XtraEditors.TextEdit()
+        Me.MAILSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.MAILSTableAdapter()
+        Me.ELLIPSE_SUBJECT_SUP_INF = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlItem68 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.ELLIPSE_BODY_SUP_INF = New DevExpress.XtraEditors.MemoEdit()
+        Me.LayoutControlItem69 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlGroup16 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlGroup17 = New DevExpress.XtraLayout.LayoutControlGroup()
         CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCOLORSPVCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -383,6 +389,7 @@ Partial Class frmParameters
         CType(Me.MAILSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ELLIPSE_SUBJECT_INF.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.INSTALLATIONS_EMAIL_SUP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem62, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem63, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -390,7 +397,12 @@ Partial Class frmParameters
         CType(Me.LayoutControlItem65, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem66, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem67, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.INSTALLATIONS_EMAIL_SUP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ELLIPSE_SUBJECT_SUP_INF.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem68, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ELLIPSE_BODY_SUP_INF.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem69, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup16, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup17, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'VwCOLORSBOXBindingSource
@@ -2685,6 +2697,8 @@ Partial Class frmParameters
         Me.LayoutControl5.Controls.Add(Me.INSTALLATIONS_EMAIL)
         Me.LayoutControl5.Controls.Add(Me.ELLIPSE_SUBJECT_INF)
         Me.LayoutControl5.Controls.Add(Me.INSTALLATIONS_EMAIL_SUP)
+        Me.LayoutControl5.Controls.Add(Me.ELLIPSE_SUBJECT_SUP_INF)
+        Me.LayoutControl5.Controls.Add(Me.ELLIPSE_BODY_SUP_INF)
         Me.LayoutControl5.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl5.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl5.Name = "LayoutControl5"
@@ -2718,18 +2732,18 @@ Partial Class frmParameters
         '
         'ELLIPSE_BODY_INF
         '
-        Me.ELLIPSE_BODY_INF.Location = New System.Drawing.Point(12, 242)
+        Me.ELLIPSE_BODY_INF.Location = New System.Drawing.Point(748, 223)
         Me.ELLIPSE_BODY_INF.Margin = New System.Windows.Forms.Padding(5)
         Me.ELLIPSE_BODY_INF.Name = "ELLIPSE_BODY_INF"
         Me.ELLIPSE_BODY_INF.Properties.UseReadOnlyAppearance = False
-        Me.ELLIPSE_BODY_INF.Size = New System.Drawing.Size(1449, 1010)
+        Me.ELLIPSE_BODY_INF.Size = New System.Drawing.Size(700, 1016)
         Me.ELLIPSE_BODY_INF.StyleController = Me.LayoutControl5
         Me.ELLIPSE_BODY_INF.TabIndex = 7
         Me.ELLIPSE_BODY_INF.Tag = "ELLIPSE_BODY_INF"
         '
         'INSTALLATIONS_EMAIL
         '
-        Me.INSTALLATIONS_EMAIL.Location = New System.Drawing.Point(12, 106)
+        Me.INSTALLATIONS_EMAIL.Location = New System.Drawing.Point(748, 87)
         Me.INSTALLATIONS_EMAIL.Margin = New System.Windows.Forms.Padding(5)
         Me.INSTALLATIONS_EMAIL.Name = "INSTALLATIONS_EMAIL"
         Me.INSTALLATIONS_EMAIL.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -2742,7 +2756,7 @@ Partial Class frmParameters
         Me.INSTALLATIONS_EMAIL.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
         Me.INSTALLATIONS_EMAIL.Properties.PopupSizeable = False
         Me.INSTALLATIONS_EMAIL.Properties.ValueMember = "ID"
-        Me.INSTALLATIONS_EMAIL.Size = New System.Drawing.Size(1449, 38)
+        Me.INSTALLATIONS_EMAIL.Size = New System.Drawing.Size(700, 38)
         Me.INSTALLATIONS_EMAIL.StyleController = Me.LayoutControl5
         Me.INSTALLATIONS_EMAIL.TabIndex = 45
         Me.INSTALLATIONS_EMAIL.Tag = "INSTALLATIONS_EMAIL"
@@ -2759,21 +2773,32 @@ Partial Class frmParameters
         '
         'ELLIPSE_SUBJECT_INF
         '
-        Me.ELLIPSE_SUBJECT_INF.Location = New System.Drawing.Point(12, 174)
+        Me.ELLIPSE_SUBJECT_INF.Location = New System.Drawing.Point(748, 155)
         Me.ELLIPSE_SUBJECT_INF.Margin = New System.Windows.Forms.Padding(5)
         Me.ELLIPSE_SUBJECT_INF.Name = "ELLIPSE_SUBJECT_INF"
         Me.ELLIPSE_SUBJECT_INF.Properties.UseReadOnlyAppearance = False
-        Me.ELLIPSE_SUBJECT_INF.Size = New System.Drawing.Size(1449, 38)
+        Me.ELLIPSE_SUBJECT_INF.Size = New System.Drawing.Size(700, 38)
         Me.ELLIPSE_SUBJECT_INF.StyleController = Me.LayoutControl5
         Me.ELLIPSE_SUBJECT_INF.TabIndex = 46
         Me.ELLIPSE_SUBJECT_INF.Tag = "ELLIPSE_SUBJECT_INF"
+        '
+        'INSTALLATIONS_EMAIL_SUP
+        '
+        Me.INSTALLATIONS_EMAIL_SUP.Location = New System.Drawing.Point(25, 87)
+        Me.INSTALLATIONS_EMAIL_SUP.Margin = New System.Windows.Forms.Padding(5)
+        Me.INSTALLATIONS_EMAIL_SUP.Name = "INSTALLATIONS_EMAIL_SUP"
+        Me.INSTALLATIONS_EMAIL_SUP.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.INSTALLATIONS_EMAIL_SUP.Size = New System.Drawing.Size(693, 38)
+        Me.INSTALLATIONS_EMAIL_SUP.StyleController = Me.LayoutControl5
+        Me.INSTALLATIONS_EMAIL_SUP.TabIndex = 47
+        Me.INSTALLATIONS_EMAIL_SUP.Tag = "INSTALLATIONS_EMAIL_SUP"
         '
         'LayoutControlGroup15
         '
         Me.LayoutControlGroup15.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup15.GroupBordersVisible = False
-        Me.LayoutControlGroup15.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem62, Me.LayoutControlItem63, Me.LayoutControlItem64, Me.LayoutControlItem65, Me.LayoutControlItem66, Me.LayoutControlItem67})
-        Me.LayoutControlGroup15.Name = "LayoutControlGroup15"
+        Me.LayoutControlGroup15.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem63, Me.LayoutControlItem64, Me.LayoutControlGroup16, Me.LayoutControlGroup17})
+        Me.LayoutControlGroup15.Name = "Root"
         Me.LayoutControlGroup15.Size = New System.Drawing.Size(1473, 1307)
         Me.LayoutControlGroup15.TextVisible = False
         '
@@ -2782,10 +2807,10 @@ Partial Class frmParameters
         Me.LayoutControlItem62.Control = Me.ELLIPSE_BODY_INF
         Me.LayoutControlItem62.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem62.CustomizationFormText = "Απάντηση"
-        Me.LayoutControlItem62.Location = New System.Drawing.Point(0, 204)
+        Me.LayoutControlItem62.Location = New System.Drawing.Point(0, 136)
         Me.LayoutControlItem62.Name = "LayoutControlItem62"
-        Me.LayoutControlItem62.Size = New System.Drawing.Size(1453, 1040)
-        Me.LayoutControlItem62.Text = "Κείμενο ενημέρωσης πελάτη(Αφορά εκκρεμότητες)"
+        Me.LayoutControlItem62.Size = New System.Drawing.Size(704, 1046)
+        Me.LayoutControlItem62.Text = "Κείμενο ενημέρωσης (Αφορά εκκρεμότητες)"
         Me.LayoutControlItem62.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem62.TextSize = New System.Drawing.Size(458, 23)
         '
@@ -2812,9 +2837,9 @@ Partial Class frmParameters
         Me.LayoutControlItem65.Control = Me.INSTALLATIONS_EMAIL
         Me.LayoutControlItem65.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem65.CustomizationFormText = "Συνεργείο/Συνεργάτης"
-        Me.LayoutControlItem65.Location = New System.Drawing.Point(0, 68)
+        Me.LayoutControlItem65.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem65.Name = "LayoutControlItem65"
-        Me.LayoutControlItem65.Size = New System.Drawing.Size(1453, 68)
+        Me.LayoutControlItem65.Size = New System.Drawing.Size(704, 68)
         Me.LayoutControlItem65.Text = "Email Αποστολής Εκκρεμοτήτων"
         Me.LayoutControlItem65.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem65.TextSize = New System.Drawing.Size(458, 23)
@@ -2822,37 +2847,88 @@ Partial Class frmParameters
         'LayoutControlItem66
         '
         Me.LayoutControlItem66.Control = Me.ELLIPSE_SUBJECT_INF
-        Me.LayoutControlItem66.Location = New System.Drawing.Point(0, 136)
+        Me.LayoutControlItem66.Location = New System.Drawing.Point(0, 68)
         Me.LayoutControlItem66.Name = "LayoutControlItem66"
-        Me.LayoutControlItem66.Size = New System.Drawing.Size(1453, 68)
-        Me.LayoutControlItem66.Text = "Θέμα Email ενημέρωσης πελάτη(Αφορά εκκρεμότητες)"
+        Me.LayoutControlItem66.Size = New System.Drawing.Size(704, 68)
+        Me.LayoutControlItem66.Text = "Θέμα Email ενημέρωσης (Αφορά εκκρεμότητες)"
         Me.LayoutControlItem66.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem66.TextSize = New System.Drawing.Size(458, 23)
-        '
-        'MAILSTableAdapter
-        '
-        Me.MAILSTableAdapter.ClearBeforeFill = True
         '
         'LayoutControlItem67
         '
         Me.LayoutControlItem67.Control = Me.INSTALLATIONS_EMAIL_SUP
         Me.LayoutControlItem67.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem67.Name = "LayoutControlItem67"
-        Me.LayoutControlItem67.Size = New System.Drawing.Size(1453, 68)
-        Me.LayoutControlItem67.Text = "Email Προμηθευτή Εκκρεμοτήτων"
+        Me.LayoutControlItem67.Size = New System.Drawing.Size(697, 68)
+        Me.LayoutControlItem67.Text = "Email Αποστολής Εκκρεμοτήτων"
         Me.LayoutControlItem67.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem67.TextSize = New System.Drawing.Size(458, 23)
         '
-        'INSTALLATIONS_EMAIL_SUP
+        'MAILSTableAdapter
         '
-        Me.INSTALLATIONS_EMAIL_SUP.Location = New System.Drawing.Point(12, 38)
-        Me.INSTALLATIONS_EMAIL_SUP.Margin = New System.Windows.Forms.Padding(5)
-        Me.INSTALLATIONS_EMAIL_SUP.Name = "INSTALLATIONS_EMAIL_SUP"
-        Me.INSTALLATIONS_EMAIL_SUP.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.INSTALLATIONS_EMAIL_SUP.Size = New System.Drawing.Size(1449, 38)
-        Me.INSTALLATIONS_EMAIL_SUP.StyleController = Me.LayoutControl5
-        Me.INSTALLATIONS_EMAIL_SUP.TabIndex = 47
-        Me.INSTALLATIONS_EMAIL_SUP.Tag = "INSTALLATIONS_EMAIL_SUP"
+        Me.MAILSTableAdapter.ClearBeforeFill = True
+        '
+        'ELLIPSE_SUBJECT_SUP_INF
+        '
+        Me.ELLIPSE_SUBJECT_SUP_INF.Location = New System.Drawing.Point(25, 155)
+        Me.ELLIPSE_SUBJECT_SUP_INF.Margin = New System.Windows.Forms.Padding(5)
+        Me.ELLIPSE_SUBJECT_SUP_INF.Name = "ELLIPSE_SUBJECT_SUP_INF"
+        Me.ELLIPSE_SUBJECT_SUP_INF.Properties.UseReadOnlyAppearance = False
+        Me.ELLIPSE_SUBJECT_SUP_INF.Size = New System.Drawing.Size(693, 38)
+        Me.ELLIPSE_SUBJECT_SUP_INF.StyleController = Me.LayoutControl5
+        Me.ELLIPSE_SUBJECT_SUP_INF.TabIndex = 46
+        Me.ELLIPSE_SUBJECT_SUP_INF.Tag = "ELLIPSE_SUBJECT_SUP_INF"
+        '
+        'LayoutControlItem68
+        '
+        Me.LayoutControlItem68.Control = Me.ELLIPSE_SUBJECT_SUP_INF
+        Me.LayoutControlItem68.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem68.CustomizationFormText = "Θέμα Email ενημέρωσης πελάτη(Αφορά εκκρεμότητες)"
+        Me.LayoutControlItem68.Location = New System.Drawing.Point(0, 68)
+        Me.LayoutControlItem68.Name = "LayoutControlItem68"
+        Me.LayoutControlItem68.Size = New System.Drawing.Size(697, 68)
+        Me.LayoutControlItem68.Text = "Θέμα Email ενημέρωσης πελάτη(Αφορά εκκρεμότητες)"
+        Me.LayoutControlItem68.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem68.TextSize = New System.Drawing.Size(458, 23)
+        '
+        'ELLIPSE_BODY_SUP_INF
+        '
+        Me.ELLIPSE_BODY_SUP_INF.Location = New System.Drawing.Point(25, 223)
+        Me.ELLIPSE_BODY_SUP_INF.Margin = New System.Windows.Forms.Padding(5)
+        Me.ELLIPSE_BODY_SUP_INF.Name = "ELLIPSE_BODY_SUP_INF"
+        Me.ELLIPSE_BODY_SUP_INF.Properties.UseReadOnlyAppearance = False
+        Me.ELLIPSE_BODY_SUP_INF.Size = New System.Drawing.Size(693, 1016)
+        Me.ELLIPSE_BODY_SUP_INF.StyleController = Me.LayoutControl5
+        Me.ELLIPSE_BODY_SUP_INF.TabIndex = 7
+        Me.ELLIPSE_BODY_SUP_INF.Tag = "ELLIPSE_BODY_SUP_INF"
+        '
+        'LayoutControlItem69
+        '
+        Me.LayoutControlItem69.Control = Me.ELLIPSE_BODY_SUP_INF
+        Me.LayoutControlItem69.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem69.CustomizationFormText = "Απάντηση"
+        Me.LayoutControlItem69.Location = New System.Drawing.Point(0, 136)
+        Me.LayoutControlItem69.Name = "LayoutControlItem69"
+        Me.LayoutControlItem69.Size = New System.Drawing.Size(697, 1046)
+        Me.LayoutControlItem69.Text = "Κείμενο ενημέρωσης πελάτη(Αφορά εκκρεμότητες)"
+        Me.LayoutControlItem69.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem69.TextSize = New System.Drawing.Size(458, 23)
+        '
+        'LayoutControlGroup16
+        '
+        Me.LayoutControlGroup16.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem69, Me.LayoutControlItem68, Me.LayoutControlItem67})
+        Me.LayoutControlGroup16.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup16.Name = "LayoutControlGroup16"
+        Me.LayoutControlGroup16.Size = New System.Drawing.Size(723, 1244)
+        Me.LayoutControlGroup16.Text = "Για Προμηθευτή"
+        '
+        'LayoutControlGroup17
+        '
+        Me.LayoutControlGroup17.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem65, Me.LayoutControlItem66, Me.LayoutControlItem62})
+        Me.LayoutControlGroup17.Location = New System.Drawing.Point(723, 0)
+        Me.LayoutControlGroup17.Name = "LayoutControlGroup17"
+        Me.LayoutControlGroup17.Size = New System.Drawing.Size(730, 1244)
+        Me.LayoutControlGroup17.Text = "Για Πελάτη"
         '
         'frmParameters
         '
@@ -3031,6 +3107,7 @@ Partial Class frmParameters
         CType(Me.MAILSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ELLIPSE_SUBJECT_INF.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.INSTALLATIONS_EMAIL_SUP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem62, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem63, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3038,7 +3115,12 @@ Partial Class frmParameters
         CType(Me.LayoutControlItem65, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem66, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem67, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.INSTALLATIONS_EMAIL_SUP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ELLIPSE_SUBJECT_SUP_INF.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem68, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ELLIPSE_BODY_SUP_INF.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem69, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup16, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup17, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -3239,4 +3321,10 @@ Partial Class frmParameters
     Friend WithEvents LayoutControlItem66 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem67 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents INSTALLATIONS_EMAIL_SUP As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents ELLIPSE_SUBJECT_SUP_INF As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem68 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents ELLIPSE_BODY_SUP_INF As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents LayoutControlGroup16 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem69 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlGroup17 As DevExpress.XtraLayout.LayoutControlGroup
 End Class

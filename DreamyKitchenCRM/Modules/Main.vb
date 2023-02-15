@@ -46,6 +46,8 @@ Module Main
         Public SupportEmail As String
         Public InstEllipseInfBody As String
         Public InstEllipseInfSubject As String
+        Public InstEllipseInfBodySup As String
+        Public InstEllipseInfSubjectSup As String
         Public InstEmailAccount As String
         Public InstEmailAccountSup As String
         Public KitchenTransp As Decimal
