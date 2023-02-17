@@ -12,7 +12,6 @@ Imports DevExpress.XtraPrinting
 Imports DevExpress.Export
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.Utils
-Imports DevExpress.XtraGrid.Views.Card
 Imports DevExpress.XtraGrid.Localization
 Imports DevExpress.XtraGrid
 Imports System.IO

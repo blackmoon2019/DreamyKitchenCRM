@@ -765,7 +765,7 @@ NextItem:
     Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim grdVer As Decimal
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
-        grdVer = IIf(GRDview.OptionsLayout.LayoutVersion = "", 0.5, GRDview.OptionsLayout.LayoutVersion)
+        grdVer = IIf(GRDview.OptionsLayout.LayoutVersion = "", 0.5, GRDview.OptionsLayout.LayoutVersion.Replace("v", ""))
         grdVer = grdVer + 0.5 : GRDview.OptionsLayout.LayoutVersion = grdVer
         GRDview.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & XMLName, OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
