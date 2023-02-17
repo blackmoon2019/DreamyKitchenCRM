@@ -3,6 +3,11 @@ Imports System.ComponentModel
 Imports System.Data.SqlClient
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraBars.Navigation
+Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraExport.Helpers
+Imports DevExpress.DataAccess
+
 
 Public Class frmInstallations
     Private sID As String
@@ -62,7 +67,7 @@ Public Class frmInstallations
             FScrollerExist = value
         End Set
     End Property
-    Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
+    Private Sub cmdExit_Click(sender As Object, e As EventArgs)
         Me.Close()
     End Sub
 
@@ -84,6 +89,8 @@ Public Class frmInstallations
                 FillCbo.FillCheckedListSER(chkSER, FormMode.EditRecord, sID)
                 cmdInstEllipse.Enabled = True
         End Select
+        If CheckIfExistInstEllipse() = True Then LInstFilename.Enabled = False
+        If txtInstFilename.Text.Length > 0 Then cmdInstEllipse.Enabled = False
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
@@ -284,12 +291,7 @@ Public Class frmInstallations
         End Select
     End Sub
 
-    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
 
-    End Sub
-
-    Private Sub cmdUploadInstF_Click(sender As Object, e As EventArgs)
-    End Sub
     Private Sub FileSelect()
         'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
         XtraOpenFileDialog1.FilterIndex = 1
@@ -329,28 +331,13 @@ Public Class frmInstallations
                 '    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
                 'End If
                 'ScanFile = Nothing
-                FileSelect()
-            Case 1
-                Try
-                    Dim Cmd As SqlCommand, sdr As SqlDataReader
-                    Dim sSQL As String = "SELECT fInst,fInstName  FROM INST WHERE ID= " & toSQLValueS(sID)
-                    Cmd = New SqlCommand(sSQL.ToString, CNDB)
-                    sdr = Cmd.ExecuteReader()
-                    If (sdr.Read() = True) Then
-                        Dim sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
-                        Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
-                        Dim b As Byte()
-                        b = DirectCast(sdr("fInst"), Byte())
-                        fs.Write(b, 0, b.Length)
-                        fs.Close()
-                        ShellExecute(ProgProps.TempFolderPath & sFilename)
-                    End If
-                    sdr.Close()
-                Catch exfs As Exception
-                    XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Finally
+                If CheckIfExistInstEllipse() = False Then
+                    FileSelect()
+                Else
+                    XtraMessageBox.Show("Δεν μπορείτε να ανεβάσετε έντυπο ολοκλήρωσης γιατί υπάρχουν εκκρεμότητες", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
 
-                End Try
+            Case 1 : OpenFile()
 
             Case 2
                 If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
@@ -361,10 +348,60 @@ Public Class frmInstallations
                         oCmd.ExecuteNonQuery()
                     End Using
                     txtInstFilename.EditValue = Nothing
+                    cmdInstEllipse.Enabled = True
                 End If
         End Select
 
     End Sub
+    Private Function CheckIfExistInstEllipse() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim EllipseID As String = ""
+        Try
+            Cmd = New SqlCommand("Select TOP 1 ID FROM INST_ELLIPSE IE WHERE IE.instID= " & toSQLValueS(sID), CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                EllipseID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString.ToUpper
+                If EllipseID <> "" Then
+                    sdr.Close()
+                    Return True
+                Else
+                    sdr.Close()
+                    Return False
+                End If
+            Else
+                sdr.Close()
+                Return False
+            End If
+        Catch ex As Exception
+            Return False
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Function
+    Private Sub OpenFile()
+        Try
+            Dim Cmd As SqlCommand, sdr As SqlDataReader
+            Dim sSQL As String = "SELECT fInst,fInstName  FROM INST WHERE ID= " & toSQLValueS(sID)
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                Dim sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
+                Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                Dim b As Byte()
+                b = DirectCast(sdr("fInst"), Byte())
+                fs.Write(b, 0, b.Length)
+                fs.Close()
+                ShellExecute(ProgProps.TempFolderPath & sFilename)
+            End If
+            sdr.Close()
+        Catch exfs As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+
+        End Try
+
+    End Sub
+
     Private Sub ShellExecute(ByVal File As String)
         Dim myProcess As New Process
         myProcess.StartInfo.FileName = File
@@ -372,5 +409,91 @@ Public Class frmInstallations
         myProcess.StartInfo.RedirectStandardOutput = False
         myProcess.Start()
         myProcess.Dispose()
+    End Sub
+
+    Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
+        Select Case TabPane1.SelectedPageIndex
+            Case 0
+            Case 1 : LoadRecords()
+
+            Case 2
+        End Select
+    End Sub
+    Private Sub LoadRecords()
+        Dim sSQL As String = "SELECT  * FROM vw_INST_ELLIPSE where instID = " & toSQLValueS(sID)
+        Dim sSQL2 As String = "SELECT  * FROM  INST_ELLIPSE_JOBS where instID = " & toSQLValueS(sID)
+        Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
+        Dim AdapterDetail As New SqlDataAdapter(sSQL2, CNDB)
+        Dim sdataSet As New DataSet()
+        AdapterMaster.Fill(sdataSet, "vw_INST_ELLIPSE")
+        AdapterDetail.Fill(sdataSet, "INST_ELLIPSE_JOBS")
+        Dim keyColumn As DataColumn = sdataSet.Tables("vw_INST_ELLIPSE").Columns("ID")
+        Dim foreignKeyColumn As DataColumn = sdataSet.Tables("INST_ELLIPSE_JOBS").Columns("instEllipseID")
+        sdataSet.Relations.Add("Εκκρεμότητες", keyColumn, foreignKeyColumn, False)
+        GridView1.Columns.Clear() : GridView2.Columns.Clear()
+        grdMain.DataSource = sdataSet.Tables("vw_INST_ELLIPSE")
+        grdMain.ForceInitialize()
+        If grdMain.LevelTree.Nodes.Count = 1 Then
+            Dim GrdView As New GridView(grdMain)
+            grdMain.LevelTree.Nodes.Add("Εκκρεμότητες", GridView2)
+            'Specify text to be displayed within detail tabs.
+            GrdView.ViewCaption = "Εκκρεμότητες"
+        End If
+        LoadForms.RestoreLayoutFromXml(GridView1, "vw_INST_ELLIPSE_INSIDE.xml")
+        LoadForms.RestoreLayoutFromXml(GridView2, "D_INST_ELLIPSE_JOBS_INSIDE.xml")
+    End Sub
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "vw_INST_ELLIPSE_INSIDE.xml", "vw_INST_ELLIPSE")
+    End Sub
+
+    Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "D_INST_ELLIPSE_JOBS_INSIDE.xml", "INST_ELLIPSE_JOBS")
+    End Sub
+
+    Private Sub GridView1_DoubleClick(sender As Object, e As EventArgs) Handles GridView1.DoubleClick
+        Dim frmInstEllipse As New frmInstEllipse
+        frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+        'frmInstEllipse.MdiParent = frmMain
+        frmInstEllipse.Mode = FormMode.EditRecord
+        frmInstEllipse.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+        frmInstEllipse.Scroller = GridView1
+        frmInstEllipse.FormScroller = Me
+        frmInstEllipse.CalledFromControl = False
+        frmInstEllipse.ComeFrom = 1
+        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+        frmInstEllipse.ShowDialog()
+
+    End Sub
+
+    Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
+        Dim sSQL As String
+        If e.KeyCode = Keys.Delete Then
+            If UserProps.AllowDelete = False Then Exit Sub
+
+            Dim Cmd As SqlCommand, sdr As SqlDataReader
+            sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
+                                " and DATEADD(ms, -DATEPART(ms, createdOn), createdOn)> " & toSQLValueS(DateTime.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "createdOn")).ToString("yyyy-MM-dd HH:mm:ss.fff"))
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            Dim CountEllipse As Integer
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
+                If CountEllipse > 0 Then
+                    XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    sdr.Close()
+                    Exit Sub
+                Else
+                    sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    LoadRecords()
+                End If
+            Else
+                XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                sdr.Close()
+                Exit Sub
+            End If
+        End If
     End Sub
 End Class

@@ -7,6 +7,9 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraReports.UI
+Imports DevExpress.DataAccess
+Imports DevExpress.DataAccess.Native
+Imports DevExpress.DataAccess.UI
 
 Public Class frmInstEllipse
 
@@ -76,7 +79,7 @@ Public Class frmInstEllipse
         Me.CCT_TRANSHTableAdapter.Fill(Me.DmDataSet.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DmDataSet.INST_ELLIPSE_JOBS' table. You can move, or remove it, as needed.
         'Me.INST_ELLIPSE_JOBSTableAdapter.Fill(Me.DmDataSet.INST_ELLIPSE_JOBS)
-
+        AddHandler GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
 
@@ -189,85 +192,105 @@ Public Class frmInstEllipse
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
-        Dim sSQL As String
         Dim LastEllipseID As String
         Try
             If Valid.ValidateForm(LayoutControl1) Then
-                If CheckIfInstEllipseFExist() = False Then Exit Sub
+                ' Έλεγχος επισύναψης εντύπου
+                'If CheckIfInstEllipseFExist() = False Then Exit Sub
                 Select Case Mode
                     Case FormMode.NewRecord
-                        sID = System.Guid.NewGuid.ToString
-                        Dim Cmd As SqlCommand, sdr As SqlDataReader
-                        Cmd = New SqlCommand("Select TOP 1 IE.id, MAX(ie.createdOn) as createdOn  FROM INST_ELLIPSE IE WHERE IE.instID= " & toSQLValueS(sINST_ID) & " group by IE.ID ORDER BY createdOn DESC ", CNDB)
-                        sdr = Cmd.ExecuteReader()
-                        If (sdr.Read() = True) Then LastEllipseID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString.ToUpper
-                        sdr.Close()
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", sComeFrom)
+                        sID = System.Guid.NewGuid.ToString : LastEllipseID = GetLastEllipseID()
+                        ' Έλεγχος επισύναψης εντύπου και καταχώρησης εκκρεμοτήτων
+                        If ValidateRecord() Then sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", sComeFrom)
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
+                        If ValidateRecord() Then sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
                 End Select
 
-                If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_INST_ELLIPSE")
-                End If
-
                 If sResult = True Then
-                    If Mode = FormMode.EditRecord Then
-                        ' Διαγραφή όλων των συνεργείων πάντα στην επεξεργασία εγγραφής
-                        sSQL = "DELETE FROM INST_ELLIPSE_SER where instEllipseID = '" & sID & "'"
-            Using oCmd As New SqlCommand(sSQL, CNDB)
+                    If Insetrt_EllipseSer_EllipseJobs_InstEllipse(LastEllipseID) = False Then
+                        Using oCmd As New SqlCommand("DELETE FROM INST_ELLIPSE WHERE ID =  " & toSQLValueS(sID), CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
+                    Else
+                        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     End If
-
-                    Dim sSQL2 As String
-
-                    If Mode = FormMode.NewRecord Then
-
-                        '' Κάνει ολοκληρωμένες όλες τις άλλες ελλέιψεις τις συγκεκριμένης τοποθέτησης
-                        'sSQL2 = "UPDATE INST_ELLIPSE SET COMPLETED =1 WHERE instID = " & toSQLValueS(sINST_ID) & " and ID <> " & toSQLValueS(sID)
-                        'Using oCmd As New SqlCommand(sSQL2, CNDB)
-                        '    oCmd.ExecuteNonQuery()
-                        'End Using
-
-                        ' Μεταφέρει στην καινούρια έλλειψη ότι ανολοκλήρωτη εκκρεμότητα υπάρχει
-                        sSQL2 = "INSERT INTO INST_ELLIPSE_JOBS ([ID],[instEllipseID],[instID], [name], [cmt], [completed], [dtCompleted],  [createdOn], [createdBy]) " &
-                                "SELECT NEWID()," & toSQLValueS(sID) & " ,  " & toSQLValueS(sINST_ID) & ", [name], IEJ.[cmt], IEJ.[completed], [dtCompleted],  IEJ.[createdOn], IEJ.[createdBy] " &
-                                "from INST I " &
-                                "inner join INST_ELLIPSE IE on IE.id= " & toSQLValueS(LastEllipseID) &
-                                " INNER  join INST_ELLIPSE_JOBS  IEJ ON IEJ.instEllipseID =IE.ID " &
-                                "WHERE IEJ.completed=0 And I.[ID]= " & toSQLValueS(sINST_ID)
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        Me.INST_ELLIPSE_JOBSTableAdapter.FillBYinstEllipseID(Me.DmDataSet.INST_ELLIPSE_JOBS, System.Guid.Parse(sID))
-
-
-                        'Cls.ClearCtrls(LayoutControl1)
-                        'txtCode.Text = DBQ.GetNextId("INST_ELLIPSE")
-                        txtInstellipseFilename.Enabled = True
-                        GridView1.OptionsBehavior.Editable = True
-                        Mode = FormMode.EditRecord
-                    End If
-                    sSQL2 = ""
-                    ' Καταχώρηση Συνεργείων 
-                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkSER.CheckedItems
-                        sSQL2 = "INSERT INTO INST_ELLIPSE_SER (instEllipseID,empID,[createdBy],[createdOn])  
-                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
-                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                    Next
-                    FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.EditRecord, sID)
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function Insetrt_EllipseSer_EllipseJobs_InstEllipse(ByVal LastEllipseID As String) As Boolean
+        Try
+            Dim sSQL As String
+            If Mode = FormMode.EditRecord Then
+                ' Διαγραφή όλων των συνεργείων πάντα στην επεξεργασία εγγραφής
+                sSQL = "DELETE FROM INST_ELLIPSE_SER where instEllipseID = '" & sID & "'"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            End If
+
+
+            If Mode = FormMode.NewRecord Then
+                ' Κάνει ολοκληρωμένες όλες τις άλλες ελλέιψεις τις συγκεκριμένης τοποθέτησης
+                sSQL = "UPDATE INST_ELLIPSE SET COMPLETED =1 WHERE instID = " & toSQLValueS(sINST_ID) & " and ID <> " & toSQLValueS(sID)
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+
+                ' Μεταφέρει στην καινούρια έλλειψη ότι ανολοκλήρωτη εκκρεμότητα υπάρχει
+                sSQL = "INSERT INTO INST_ELLIPSE_JOBS ([ID],[instEllipseID],[instID], [name], [cmt], [completed], [dtCompleted],  [createdOn], [createdBy]) " &
+                                    "SELECT NEWID()," & toSQLValueS(sID) & " ,  " & toSQLValueS(sINST_ID) & ", [name], IEJ.[cmt], IEJ.[completed], [dtCompleted],  IEJ.[createdOn], IEJ.[createdBy] " &
+                                    "from INST I " &
+                                    "inner join INST_ELLIPSE IE on IE.id= " & toSQLValueS(LastEllipseID) &
+                                    " INNER  join INST_ELLIPSE_JOBS  IEJ ON IEJ.instEllipseID =IE.ID " &
+                                    "WHERE IEJ.completed=0 And I.[ID]= " & toSQLValueS(sINST_ID)
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                Me.INST_ELLIPSE_JOBSTableAdapter.FillBYinstEllipseID(Me.DmDataSet.INST_ELLIPSE_JOBS, System.Guid.Parse(sID))
+                txtInstellipseFilename.Enabled = True
+                GridView1.OptionsBehavior.Editable = True
+                Mode = FormMode.EditRecord
+            End If
+            sSQL = ""
+            ' Καταχώρηση Συνεργείων 
+            For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkSER.CheckedItems
+                sSQL = "INSERT INTO INST_ELLIPSE_SER (instEllipseID,empID,[createdBy],[createdOn])  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                                                                toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            Next
+            FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.EditRecord, sID)
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Private Function ValidateRecord() As Boolean
+        GridControl1.ForceInitialize()
+        If GridView1.DataRowCount = 0 Then
+            XtraMessageBox.Show("Δεν έχετε καταχωρήσει εκκρεμότητες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End If
+        If txtInstellipseFilename.EditValue = Nothing Then
+            XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End If
+        Return True
+    End Function
+    Private Function GetLastEllipseID() As String
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Cmd = New SqlCommand("Select TOP 1 IE.id, MAX(ie.createdOn) as createdOn  FROM INST_ELLIPSE IE WHERE IE.instID= " & toSQLValueS(sINST_ID) & " group by IE.ID ORDER BY createdOn DESC ", CNDB)
+        sdr = Cmd.ExecuteReader()
+        If (sdr.Read() = True) Then GetLastEllipseID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString.ToUpper
+        sdr.Close()
+        Return GetLastEllipseID
+    End Function
     Private Function CheckIfInstEllipseFExist() As Boolean
         Dim sFilename As String = ""
         If chkCompleted.Checked = True Then
@@ -307,6 +330,11 @@ Public Class frmInstEllipse
     Private Sub Grid_EmbeddedNavigator_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
         Select Case e.Button.ButtonType
             Case e.Button.ButtonType.Remove : DeleteRecord() : e.Handled = True
+            Case e.Button.ButtonType.Append
+                If txtInstellipseFilename.EditValue = Nothing Then
+                    XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    e.Handled = True
+                End If
         End Select
     End Sub
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
@@ -315,8 +343,11 @@ Public Class frmInstEllipse
             If sender.FocusedRowHandle < 0 Then Exit Sub
             Dim viewInfo As GridViewInfo = TryCast(sender.GetViewInfo(), GridViewInfo)
             If sender.FocusedRowHandle = viewInfo.RowsInfo.Last().RowHandle Then
-                GridView1.PostEditor()
-                GridView1.AddNewRow()
+                If txtInstellipseFilename.EditValue = Nothing Then
+                    XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
+                GridView1.PostEditor() : GridView1.AddNewRow()
             End If
         End If
     End Sub
@@ -399,20 +430,12 @@ Public Class frmInstEllipse
         End Try
     End Sub
 
-    Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
-
-    End Sub
-
     Private Sub GridView1_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanging
         If e.Column.FieldName = "completed" Then
             If e.Value = True Then GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "dtCompleted", Date.Now) Else GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "dtCompleted", Nothing)
         End If
     End Sub
 
-    Private Sub cmdUploadInstEllipseF_Click(sender As Object, e As EventArgs)
-
-
-    End Sub
     Private Sub FileSelect()
         'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
         XtraOpenFileDialog1.FilterIndex = 1
@@ -422,9 +445,10 @@ Public Class frmInstEllipse
         XtraOpenFileDialog1.Multiselect = False
         Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
         If result = DialogResult.OK Then
-            txtInstellipseFilename.EditValue = XtraOpenFileDialog1.FileName
-            Dim sSQL As String
             Try
+                txtInstellipseFilename.EditValue = XtraOpenFileDialog1.FileName
+                Dim sSQL As String
+
                 My.Computer.FileSystem.CopyFile(XtraOpenFileDialog1.FileName, ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName), True)
 
                 sSQL = "UPDATE INST_ELLIPSE SET fInstEllipseName =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ", fInstEllipse =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstEllipseF where ID = " & toSQLValueS(sID)
@@ -499,9 +523,6 @@ Public Class frmInstEllipse
         myProcess.Start()
         myProcess.Dispose()
     End Sub
-    Private Sub txtInstellipseFilename_EditValueChanged(sender As Object, e As EventArgs) Handles txtInstellipseFilename.EditValueChanged
-
-    End Sub
 
     Private Sub cmdPrintAll_Click(sender As Object, e As EventArgs) Handles cmdPrintAll.Click
 
@@ -562,7 +583,7 @@ Public Class frmInstEllipse
                 report.Dispose()
                 report = Nothing
             End If
-            sEmailTo = "johnmavroselinos@gmail.com"
+            sEmailTo = "dreamykitchen@gmail.com"
             If sEmailTo = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
             If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
                 sSQL = "Update INST_ELLIPSE SET EMAIL = 1,DateOfEmail=getdate() WHERE ID = " & toSQLValueS(sID)

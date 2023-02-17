@@ -122,7 +122,7 @@ Public Class frmCalendarInst
         Dim sSQL As String
         Dim sIDS As New StringBuilder
         SchedulerDataStorage1.Appointments.Clear()
-        sSQL = "SELECT * FROM vw_INST left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID and vw_INST_ELLIPSE.completed=0   "
+        sSQL = "SELECT *,vw_INST_ELLIPSE.ID as EllipseID  FROM vw_INST left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID and vw_INST_ELLIPSE.completed=0   "
         If sWhere.Length > 0 Then sSQL = sSQL & " where vw_INST.cctName like " & toSQLValueS("%" & sWhere & "%")
         For i As Integer = 0 To cboCompleted.Items.Count - 1
             If cboCompleted.Items(i).CheckState = CheckState.Checked Then
