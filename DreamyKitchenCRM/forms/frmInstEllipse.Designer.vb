@@ -21,11 +21,6 @@ Partial Class frmInstEllipse
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstEllipse))
-        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdSendEmail = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdPrintAll = New DevExpress.XtraEditors.SimpleButton()
@@ -81,6 +76,30 @@ Partial Class frmInstEllipse
         Me.INST_ELLIPSE_JOBSTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.INST_ELLIPSE_JOBSTableAdapter()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
+        Me.ToolbarFormManager1 = New DevExpress.XtraBars.ToolbarForm.ToolbarFormManager(Me.components)
+        Me.Bar1 = New DevExpress.XtraBars.Bar()
+        Me.BarButtonItem1 = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarButtonItem2 = New DevExpress.XtraBars.BarButtonItem()
+        Me.Bar2 = New DevExpress.XtraBars.Bar()
+        Me.Bar3 = New DevExpress.XtraBars.Bar()
+        Me.Bar4 = New DevExpress.XtraBars.Bar()
+        Me.Bar5 = New DevExpress.XtraBars.Bar()
+        Me.Bar6 = New DevExpress.XtraBars.Bar()
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.RibbonControl1 = New DevExpress.XtraBars.Ribbon.RibbonControl()
+        Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonPageGroup2 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
+        Me.RibbonStatusBar1 = New DevExpress.XtraBars.Ribbon.RibbonStatusBar()
+        Me.RibbonPage2 = New DevExpress.XtraBars.Ribbon.RibbonPage()
+        Me.FluentDesignFormContainer1 = New DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer()
+        Me.AccordionControl1 = New DevExpress.XtraBars.Navigation.AccordionControl()
+        Me.AccordionControlElement1 = New DevExpress.XtraBars.Navigation.AccordionControlElement()
+        Me.WindowsUIButtonPanel1 = New DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -124,6 +143,10 @@ Partial Class frmInstEllipse
         CType(Me.LTransh, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LdtReceipt, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ToolbarFormManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.AccordionControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -131,6 +154,7 @@ Partial Class frmInstEllipse
         Me.LayoutControl1.Anchor = CType((((System.Windows.Forms.AnchorStyles.Top Or System.Windows.Forms.AnchorStyles.Bottom) _
             Or System.Windows.Forms.AnchorStyles.Left) _
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.LayoutControl1.Controls.Add(Me.WindowsUIButtonPanel1)
         Me.LayoutControl1.Controls.Add(Me.cmdSendEmail)
         Me.LayoutControl1.Controls.Add(Me.cmdPrintAll)
         Me.LayoutControl1.Controls.Add(Me.LabelControl2)
@@ -300,7 +324,7 @@ Partial Class frmInstEllipse
         Me.chkSER.Location = New System.Drawing.Point(25, 256)
         Me.chkSER.Margin = New System.Windows.Forms.Padding(5)
         Me.chkSER.Name = "chkSER"
-        Me.chkSER.Size = New System.Drawing.Size(1582, 81)
+        Me.chkSER.Size = New System.Drawing.Size(1582, 0)
         Me.chkSER.SortOrder = System.Windows.Forms.SortOrder.Ascending
         Me.chkSER.StyleController = Me.LayoutControl1
         Me.chkSER.TabIndex = 37
@@ -309,7 +333,7 @@ Partial Class frmInstEllipse
         'chkCompleted
         '
         Me.chkCompleted.EditValue = CType(0, Byte)
-        Me.chkCompleted.Location = New System.Drawing.Point(1402, 341)
+        Me.chkCompleted.Location = New System.Drawing.Point(1402, 260)
         Me.chkCompleted.Margin = New System.Windows.Forms.Padding(5)
         Me.chkCompleted.Name = "chkCompleted"
         Me.chkCompleted.Properties.Caption = "Ολοκληρώθηκε"
@@ -360,7 +384,7 @@ Partial Class frmInstEllipse
         'dtDateDelivered
         '
         Me.dtDateDelivered.EditValue = Nothing
-        Me.dtDateDelivered.Location = New System.Drawing.Point(230, 341)
+        Me.dtDateDelivered.Location = New System.Drawing.Point(230, 260)
         Me.dtDateDelivered.Margin = New System.Windows.Forms.Padding(5)
         Me.dtDateDelivered.Name = "dtDateDelivered"
         Me.dtDateDelivered.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -373,10 +397,10 @@ Partial Class frmInstEllipse
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(25, 409)
+        Me.txtComments.Location = New System.Drawing.Point(25, 429)
         Me.txtComments.Margin = New System.Windows.Forms.Padding(5)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(1582, 74)
+        Me.txtComments.Size = New System.Drawing.Size(1582, 54)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
@@ -399,7 +423,7 @@ Partial Class frmInstEllipse
         'txtTmINFrom
         '
         Me.txtTmINFrom.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.txtTmINFrom.Location = New System.Drawing.Point(684, 341)
+        Me.txtTmINFrom.Location = New System.Drawing.Point(684, 260)
         Me.txtTmINFrom.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTmINFrom.Name = "txtTmINFrom"
         Me.txtTmINFrom.Properties.BeepOnError = True
@@ -415,7 +439,7 @@ Partial Class frmInstEllipse
         'txtTmINTo
         '
         Me.txtTmINTo.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.txtTmINTo.Location = New System.Drawing.Point(846, 341)
+        Me.txtTmINTo.Location = New System.Drawing.Point(846, 260)
         Me.txtTmINTo.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTmINTo.Name = "txtTmINTo"
         Me.txtTmINTo.Properties.BeepOnError = True
@@ -435,8 +459,7 @@ Partial Class frmInstEllipse
         Me.txtInstellipseFilename.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInstellipseFilename.Name = "txtInstellipseFilename"
         Me.txtInstellipseFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-        Me.txtInstellipseFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.txtInstellipseFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtInstellipseFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtInstellipseFilename.Size = New System.Drawing.Size(827, 38)
         Me.txtInstellipseFilename.StyleController = Me.LayoutControl1
@@ -486,7 +509,7 @@ Partial Class frmInstEllipse
         'dtReceipt
         '
         Me.dtReceipt.EditValue = Nothing
-        Me.dtReceipt.Location = New System.Drawing.Point(1161, 341)
+        Me.dtReceipt.Location = New System.Drawing.Point(1161, 260)
         Me.dtReceipt.Margin = New System.Windows.Forms.Padding(5)
         Me.dtReceipt.Name = "dtReceipt"
         Me.dtReceipt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -518,7 +541,7 @@ Partial Class frmInstEllipse
         '
         Me.LayoutControlGroup1.AppearanceGroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.LayoutControlGroup1.AppearanceGroup.Options.UseForeColor = True
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LInst, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LdtDateDelivered, Me.LTmINFrom, Me.LTmINTo, Me.LayoutControlItem5, Me.LayoutControlItem14, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.LfInstEllipseName, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LCus, Me.LTransh, Me.LdtReceipt})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LInst, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LdtDateDelivered, Me.LTmINFrom, Me.LTmINTo, Me.LayoutControlItem5, Me.LayoutControlItem14, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.LfInstEllipseName, Me.LayoutControlItem11, Me.LayoutControlItem12, Me.LCus, Me.LTransh, Me.LdtReceipt, Me.LayoutControlItem2})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1612, 531)
@@ -562,7 +585,7 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem6.Control = Me.chkSER
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 195)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(1586, 85)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(1586, 4)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
@@ -580,7 +603,7 @@ Partial Class frmInstEllipse
         Me.LdtDateDelivered.Control = Me.dtDateDelivered
         Me.LdtDateDelivered.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LdtDateDelivered.CustomizationFormText = "Ημερ/νία Διεκπεραίωσης"
-        Me.LdtDateDelivered.Location = New System.Drawing.Point(0, 280)
+        Me.LdtDateDelivered.Location = New System.Drawing.Point(0, 199)
         Me.LdtDateDelivered.Name = "LdtDateDelivered"
         Me.LdtDateDelivered.Size = New System.Drawing.Size(454, 42)
         Me.LdtDateDelivered.Tag = ""
@@ -592,7 +615,7 @@ Partial Class frmInstEllipse
         Me.LTmINFrom.Control = Me.txtTmINFrom
         Me.LTmINFrom.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LTmINFrom.CustomizationFormText = "Από"
-        Me.LTmINFrom.Location = New System.Drawing.Point(454, 280)
+        Me.LTmINFrom.Location = New System.Drawing.Point(454, 199)
         Me.LTmINFrom.Name = "LTmINFrom"
         Me.LTmINFrom.Size = New System.Drawing.Size(326, 42)
         Me.LTmINFrom.Text = "Ώρα Άφιξης(Διάστημα)"
@@ -603,7 +626,7 @@ Partial Class frmInstEllipse
         Me.LTmINTo.Control = Me.txtTmINTo
         Me.LTmINTo.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LTmINTo.CustomizationFormText = "Έως"
-        Me.LTmINTo.Location = New System.Drawing.Point(780, 280)
+        Me.LTmINTo.Location = New System.Drawing.Point(780, 199)
         Me.LTmINTo.Name = "LTmINTo"
         Me.LTmINTo.Size = New System.Drawing.Size(151, 42)
         Me.LTmINTo.Text = "Έως"
@@ -614,7 +637,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.chkCompleted
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(1377, 280)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(1377, 199)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(209, 42)
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
@@ -626,9 +649,9 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
         Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 322)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 342)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(1586, 104)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(1586, 84)
         Me.LayoutControlItem14.Tag = ""
         Me.LayoutControlItem14.Text = "Σχόλια"
         Me.LayoutControlItem14.TextLocation = DevExpress.Utils.Locations.Top
@@ -710,7 +733,7 @@ Partial Class frmInstEllipse
         Me.LdtReceipt.Control = Me.dtReceipt
         Me.LdtReceipt.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LdtReceipt.CustomizationFormText = "Ημερ/νία Παραγγελίας"
-        Me.LdtReceipt.Location = New System.Drawing.Point(931, 280)
+        Me.LdtReceipt.Location = New System.Drawing.Point(931, 199)
         Me.LdtReceipt.Name = "LdtReceipt"
         Me.LdtReceipt.Size = New System.Drawing.Size(446, 42)
         Me.LdtReceipt.Text = "Ημερ/νία Παραλαβής"
@@ -739,6 +762,199 @@ Partial Class frmInstEllipse
         '
         Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
+        'ToolbarFormManager1
+        '
+        Me.ToolbarFormManager1.Bars.AddRange(New DevExpress.XtraBars.Bar() {Me.Bar1, Me.Bar2, Me.Bar3, Me.Bar4, Me.Bar5, Me.Bar6})
+        Me.ToolbarFormManager1.DockControls.Add(Me.barDockControlTop)
+        Me.ToolbarFormManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.ToolbarFormManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.ToolbarFormManager1.DockControls.Add(Me.barDockControlRight)
+        Me.ToolbarFormManager1.Form = Me
+        Me.ToolbarFormManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarButtonItem1, Me.BarButtonItem2})
+        Me.ToolbarFormManager1.MainMenu = Me.Bar6
+        Me.ToolbarFormManager1.MaxItemId = 2
+        Me.ToolbarFormManager1.StatusBar = Me.Bar5
+        '
+        'Bar1
+        '
+        Me.Bar1.BarName = "Custom 2"
+        Me.Bar1.DockCol = 0
+        Me.Bar1.DockRow = 0
+        Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.BarButtonItem2)})
+        Me.Bar1.Text = "Custom 2"
+        '
+        'BarButtonItem1
+        '
+        Me.BarButtonItem1.Caption = "BarButtonItem1"
+        Me.BarButtonItem1.Id = 0
+        Me.BarButtonItem1.Name = "BarButtonItem1"
+        '
+        'BarButtonItem2
+        '
+        Me.BarButtonItem2.Caption = "BarButtonItem2"
+        Me.BarButtonItem2.Id = 1
+        Me.BarButtonItem2.Name = "BarButtonItem2"
+        '
+        'Bar2
+        '
+        Me.Bar2.BarName = "Custom 3"
+        Me.Bar2.DockCol = 0
+        Me.Bar2.DockRow = 1
+        Me.Bar2.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.Bar2.Text = "Custom 3"
+        '
+        'Bar3
+        '
+        Me.Bar3.BarName = "Custom 4"
+        Me.Bar3.DockCol = 0
+        Me.Bar3.DockRow = 2
+        Me.Bar3.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.Bar3.Text = "Custom 4"
+        '
+        'Bar4
+        '
+        Me.Bar4.BarName = "Custom 5"
+        Me.Bar4.DockCol = 0
+        Me.Bar4.DockRow = 3
+        Me.Bar4.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.Bar4.Text = "Custom 5"
+        '
+        'Bar5
+        '
+        Me.Bar5.BarName = "Custom 6"
+        Me.Bar5.CanDockStyle = DevExpress.XtraBars.BarCanDockStyle.Bottom
+        Me.Bar5.DockCol = 0
+        Me.Bar5.DockRow = 0
+        Me.Bar5.DockStyle = DevExpress.XtraBars.BarDockStyle.Bottom
+        Me.Bar5.OptionsBar.AllowQuickCustomization = False
+        Me.Bar5.OptionsBar.DrawDragBorder = False
+        Me.Bar5.OptionsBar.UseWholeRow = True
+        Me.Bar5.Text = "Custom 6"
+        '
+        'Bar6
+        '
+        Me.Bar6.BarName = "Custom 7"
+        Me.Bar6.DockCol = 0
+        Me.Bar6.DockRow = 4
+        Me.Bar6.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
+        Me.Bar6.OptionsBar.MultiLine = True
+        Me.Bar6.OptionsBar.UseWholeRow = True
+        Me.Bar6.Text = "Custom 7"
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Manager = Me.ToolbarFormManager1
+        Me.barDockControlTop.Size = New System.Drawing.Size(1611, 118)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1050)
+        Me.barDockControlBottom.Manager = Me.ToolbarFormManager1
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1611, 22)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 118)
+        Me.barDockControlLeft.Manager = Me.ToolbarFormManager1
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 932)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1611, 118)
+        Me.barDockControlRight.Manager = Me.ToolbarFormManager1
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 932)
+        '
+        'RibbonControl1
+        '
+        Me.RibbonControl1.ExpandCollapseItem.Id = 0
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.RibbonControl1.SearchEditItem})
+        Me.RibbonControl1.Location = New System.Drawing.Point(260, 118)
+        Me.RibbonControl1.MaxItemId = 1
+        Me.RibbonControl1.Name = "RibbonControl1"
+        Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.RibbonPage1})
+        Me.RibbonControl1.Size = New System.Drawing.Size(1351, 256)
+        Me.RibbonControl1.StatusBar = Me.RibbonStatusBar1
+        '
+        'RibbonPage1
+        '
+        Me.RibbonPage1.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1, Me.RibbonPageGroup2})
+        Me.RibbonPage1.Name = "RibbonPage1"
+        Me.RibbonPage1.Text = "RibbonPage1"
+        '
+        'RibbonPageGroup1
+        '
+        Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
+        Me.RibbonPageGroup1.Text = "RibbonPageGroup1"
+        '
+        'RibbonPageGroup2
+        '
+        Me.RibbonPageGroup2.Name = "RibbonPageGroup2"
+        Me.RibbonPageGroup2.Text = "RibbonPageGroup2"
+        '
+        'RibbonStatusBar1
+        '
+        Me.RibbonStatusBar1.Location = New System.Drawing.Point(260, 1003)
+        Me.RibbonStatusBar1.Name = "RibbonStatusBar1"
+        Me.RibbonStatusBar1.Ribbon = Me.RibbonControl1
+        Me.RibbonStatusBar1.Size = New System.Drawing.Size(1351, 47)
+        '
+        'RibbonPage2
+        '
+        Me.RibbonPage2.Name = "RibbonPage2"
+        Me.RibbonPage2.Text = "RibbonPage2"
+        '
+        'FluentDesignFormContainer1
+        '
+        Me.FluentDesignFormContainer1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.FluentDesignFormContainer1.Location = New System.Drawing.Point(260, 118)
+        Me.FluentDesignFormContainer1.Name = "FluentDesignFormContainer1"
+        Me.FluentDesignFormContainer1.Size = New System.Drawing.Size(1351, 932)
+        Me.FluentDesignFormContainer1.TabIndex = 15
+        '
+        'AccordionControl1
+        '
+        Me.AccordionControl1.Dock = System.Windows.Forms.DockStyle.Left
+        Me.AccordionControl1.Elements.AddRange(New DevExpress.XtraBars.Navigation.AccordionControlElement() {Me.AccordionControlElement1})
+        Me.AccordionControl1.Location = New System.Drawing.Point(0, 118)
+        Me.AccordionControl1.Name = "AccordionControl1"
+        Me.AccordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch
+        Me.AccordionControl1.Size = New System.Drawing.Size(260, 932)
+        Me.AccordionControl1.TabIndex = 16
+        Me.AccordionControl1.ViewType = DevExpress.XtraBars.Navigation.AccordionControlViewType.HamburgerMenu
+        '
+        'AccordionControlElement1
+        '
+        Me.AccordionControlElement1.Name = "AccordionControlElement1"
+        Me.AccordionControlElement1.Text = "Element1"
+        '
+        'WindowsUIButtonPanel1
+        '
+        Me.WindowsUIButtonPanel1.Buttons.AddRange(New DevExpress.XtraEditors.ButtonPanel.IBaseButton() {New DevExpress.XtraBars.Docking2010.WindowsUIButton(), New DevExpress.XtraBars.Docking2010.WindowsUIButton(), New DevExpress.XtraBars.Docking2010.WindowsUISeparator()})
+        Me.WindowsUIButtonPanel1.Location = New System.Drawing.Point(25, 302)
+        Me.WindowsUIButtonPanel1.Name = "WindowsUIButtonPanel1"
+        Me.WindowsUIButtonPanel1.Size = New System.Drawing.Size(1582, 97)
+        Me.WindowsUIButtonPanel1.TabIndex = 64
+        Me.WindowsUIButtonPanel1.Text = "WindowsUIButtonPanel1"
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.WindowsUIButtonPanel1
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 241)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(1586, 101)
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem2.TextVisible = False
+        '
         'frmInstEllipse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -746,6 +962,14 @@ Partial Class frmInstEllipse
         Me.CancelButton = Me.cmdExit
         Me.ClientSize = New System.Drawing.Size(1611, 1072)
         Me.Controls.Add(Me.LayoutControl1)
+        Me.Controls.Add(Me.RibbonControl1)
+        Me.Controls.Add(Me.RibbonStatusBar1)
+        Me.Controls.Add(Me.FluentDesignFormContainer1)
+        Me.Controls.Add(Me.AccordionControl1)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "frmInstEllipse"
@@ -793,7 +1017,12 @@ Partial Class frmInstEllipse
         CType(Me.LTransh, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LdtReceipt, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ToolbarFormManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.AccordionControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
 
@@ -852,4 +1081,28 @@ Partial Class frmInstEllipse
     Friend WithEvents CCT_TRANSHTableAdapter As DMDataSetTableAdapters.CCT_TRANSHTableAdapter
     Friend WithEvents dtReceipt As DevExpress.XtraEditors.DateEdit
     Friend WithEvents LdtReceipt As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents ToolbarFormManager1 As DevExpress.XtraBars.ToolbarForm.ToolbarFormManager
+    Friend WithEvents Bar1 As DevExpress.XtraBars.Bar
+    Friend WithEvents BarButtonItem1 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents Bar2 As DevExpress.XtraBars.Bar
+    Friend WithEvents Bar3 As DevExpress.XtraBars.Bar
+    Friend WithEvents Bar4 As DevExpress.XtraBars.Bar
+    Friend WithEvents Bar5 As DevExpress.XtraBars.Bar
+    Friend WithEvents Bar6 As DevExpress.XtraBars.Bar
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents RibbonControl1 As DevExpress.XtraBars.Ribbon.RibbonControl
+    Friend WithEvents RibbonPage1 As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents RibbonPageGroup1 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents RibbonPageGroup2 As DevExpress.XtraBars.Ribbon.RibbonPageGroup
+    Friend WithEvents RibbonStatusBar1 As DevExpress.XtraBars.Ribbon.RibbonStatusBar
+    Friend WithEvents RibbonPage2 As DevExpress.XtraBars.Ribbon.RibbonPage
+    Friend WithEvents FluentDesignFormContainer1 As DevExpress.XtraBars.FluentDesignSystem.FluentDesignFormContainer
+    Friend WithEvents AccordionControl1 As DevExpress.XtraBars.Navigation.AccordionControl
+    Friend WithEvents AccordionControlElement1 As DevExpress.XtraBars.Navigation.AccordionControlElement
+    Friend WithEvents WindowsUIButtonPanel1 As DevExpress.XtraBars.Docking2010.WindowsUIButtonPanel
+    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
 End Class
