@@ -628,28 +628,29 @@ Partial Public Class RepCUSOfferCloset3ndPage
         '
         'XrLabel42
         '
-        Me.XrLabel42.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
+        Me.XrLabel42.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel42.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 135.4583!)
+        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 139.4583!)
         Me.XrLabel42.Name = "XrLabel42"
-        Me.XrLabel42.SizeF = New System.Drawing.SizeF(200.0!, 16.96428!)
+        Me.XrLabel42.SizeF = New System.Drawing.SizeF(480.3571!, 16.96426!)
         Me.XrLabel42.StylePriority.UseFont = False
         Me.XrLabel42.StylePriority.UseForeColor = False
         Me.XrLabel42.StylePriority.UseTextAlignment = False
-        Me.XrLabel42.Text = "Προκαταβολή: 50%"
+        Me.XrLabel42.Text = "Προκαταβολή: Με την υπογραφή του ιδιωτικού συμφωνητικού 50%"
         Me.XrLabel42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel43
         '
-        Me.XrLabel43.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
+        Me.XrLabel43.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel43.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 152.4226!)
+        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 161.4226!)
         Me.XrLabel43.Name = "XrLabel43"
-        Me.XrLabel43.SizeF = New System.Drawing.SizeF(461.4397!, 16.04164!)
+        Me.XrLabel43.SizeF = New System.Drawing.SizeF(503.0553!, 32.7083!)
         Me.XrLabel43.StylePriority.UseFont = False
         Me.XrLabel43.StylePriority.UseForeColor = False
         Me.XrLabel43.StylePriority.UseTextAlignment = False
-        Me.XrLabel43.Text = "Με την παράδοση των εμπορευμάτων στο χώρο σας: ΕΞΟΦΛΗΣΗ"
+        Me.XrLabel43.Text = "Εξόφληση: Με την παράδοση των εμπορευμάτων στο χώρο σας και πριν την έναρξη της τ" &
+    "οποθέτησης"
         Me.XrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel39

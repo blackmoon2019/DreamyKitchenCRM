@@ -1068,6 +1068,11 @@ Public Class frmScroller
                 frmGen.L3.Control.Tag = "equipmentCatID,0,1,2"
                 frmGen.L3.Tag = ""
                 frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                frmGen.chk1.Text = "Standard Εξοπλισμός"
+                frmGen.L5.Text = "Standard"
+                frmGen.L5.Control.Tag = "standard,0,1,2"
+                frmGen.L5.Tag = ""
+                frmGen.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmGen.L13.Text = "Τιμή"
                 frmGen.L13.Control.Tag = "price,0,1,2"
                 frmGen.L13.Tag = ""
@@ -1990,6 +1995,11 @@ Public Class frmScroller
                 frmGen.L3.Control.Tag = "equipmentCatID,0,1,2"
                 frmGen.L3.Tag = ""
                 frmGen.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                frmGen.chk1.Text = "Standard Εξοπλισμός"
+                frmGen.L5.Text = "Standard"
+                frmGen.L5.Control.Tag = "standard,0,1,2"
+                frmGen.L5.Tag = ""
+                frmGen.L5.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 frmGen.L13.Text = "Τιμή"
                 frmGen.L13.Control.Tag = "price,0,1,2"
                 frmGen.L13.Tag = ""

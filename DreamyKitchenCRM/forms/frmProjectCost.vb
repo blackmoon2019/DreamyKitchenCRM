@@ -125,7 +125,8 @@ Public Class frmProjectCost
                         ISNULL((SELECT sum(generalV) general from BUY B where B.transhID=T.ID),0) as general,
                         ISNULL((SELECT sum(materialsV) materials from BUY B where B.transhID=T.ID),0) as materials,
                         ISNULL((SELECT sum(bathroomFurnV) bathroomFurn from BUY B where B.transhID=T.ID),0) as bathroomFurn,
-                        ISNULL((SELECT sum(measurementV) measurement from BUY B where B.transhID=T.ID),0) as measurement
+                        ISNULL((SELECT sum(measurementV) measurement from BUY B where B.transhID=T.ID),0) as measurement,
+                        ISNULL((SELECT sum(doorsV) doors from BUY B where B.transhID=T.ID),0) as doors
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH_FOR_PROJECTCOST(cboTRANSH, sSQL)
@@ -149,6 +150,7 @@ Public Class frmProjectCost
             txtmaterials.EditValue = cboTRANSH.GetColumnValue("materials")
             txtDevicesBuy.EditValue = cboTRANSH.GetColumnValue("DEVICESBUY")
             txtkitchen.EditValue = cboTRANSH.GetColumnValue("kitchen")
+            txtdoors.EditValue = cboTRANSH.GetColumnValue("doors")
         End If
     End Sub
 

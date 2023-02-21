@@ -1,10 +1,12 @@
 ﻿Imports System.ComponentModel
 Imports System.Data.SqlClient
+Imports System.IO
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Base
@@ -90,7 +92,7 @@ Public Class frmTransactions
                 LayoutControlGroup2.Enabled = False
             Case FormMode.EditRecord
                 LoadForms.LoadFormGRP(LayoutControlGroup1, "Select * from vw_TRANSH with(nolock) where id ='" + sID + "'")
-                Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
+                Me.TRANSH_FTableAdapter.FillByTanshID(Me.DreamyKitchenDataSet.TRANSH_F, System.Guid.Parse(sID))
                 Me.Vw_TRANSDTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSD, System.Guid.Parse(sID))
                 txtCode1.Text = DBQ.GetNextId("TRANSD")
                 dtPay.EditValue = DateTime.Now
@@ -156,9 +158,8 @@ Public Class frmTransactions
                 'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
                 'dtDTS.EditValue = DateTime.Now
                 If txtInvoiceFilename.Text <> "" Then
-                    sResultF = DBQ.InsertDataFiles(XtraOpenFileDialog1, cboCUS.EditValue.ToString, "TRANSH")
-                    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
-                    'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where ISINVOICE = 1 AND cctID = " & toSQLValueS(cboCUS.EditValue.ToString))
+                    sResultF = DBQ.InsertDataFiles(XtraOpenFileDialog1, sID, "TRANSH_F")
+                    Me.TRANSH_FTableAdapter.FillByTanshID(Me.DreamyKitchenDataSet.TRANSH_F, System.Guid.Parse(sID))
                 End If
                 txtCode.Text = DBQ.GetNextId("TRANSH")
                 txtCode1.Text = DBQ.GetNextId("TRANSD")
@@ -206,8 +207,8 @@ Public Class frmTransactions
                 If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
                 txtInvoiceFilename.EditValue = sFilename
                 If txtInvoiceFilename.Text <> "" Then
-                    DBQ.InsertDataFilesFromScanner(sFilename, cboCUS.EditValue.ToString, "TRANSH")
-                    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
+                    DBQ.InsertDataFilesFromScanner(sFilename, cboCUS.EditValue.ToString, "TRANSH_H")
+                    Me.TRANSH_FTableAdapter.FillByTanshID(Me.DreamyKitchenDataSet.TRANSH_F, System.Guid.Parse(sID))
                 End If
                 ScanFile = Nothing
 
@@ -239,24 +240,23 @@ Public Class frmTransactions
             'Case Keys.F2 : If UserProps.AllowInsert = True Then NewRecord()
             'Case Keys.F3 : If UserProps.AllowEdit = True Then EditRecord()
             'Case Keys.F5 : LoadRecords()
-            Case Keys.Delete : DeleteRecord("CCT_F") 'If UserProps.AllowDelete = True Then DeleteRecord()
+            Case Keys.Delete : DeleteRecord("TRANSH_F") 'If UserProps.AllowDelete = True Then DeleteRecord()
         End Select
     End Sub
     Private Sub DeleteRecord(ByVal sTable As String)
         Dim sSQL As String
         Try
-            If sTable = "CCT_F" Then
+            If sTable = "TRANSH_F" Then
                 If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID") = Nothing Then Exit Sub
                 If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                    sSQL = "DELETE FROM CCT_F WHERE ID = '" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString & "'"
+                    sSQL = "DELETE FROM TRANSH_F WHERE ID = '" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString & "'"
 
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
                     XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Me.Vw_CCT_FTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT_F, System.Guid.Parse(cboCUS.EditValue.ToString))
+                    Me.TRANSH_FTableAdapter.FillByTanshID(Me.DreamyKitchenDataSet.TRANSH_F, System.Guid.Parse(sID))
                 End If
-                'LoadForms.LoadDataToGrid(GridControl2, GridView2, "select ID,cctID,filename,comefrom,createdon,realname From vw_CCT_F where isinvoice=1 and cctID = '" & sID & "'")
             Else
                 If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
                 If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
@@ -275,16 +275,17 @@ Public Class frmTransactions
     End Sub
 
     Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
+        If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "filename") Is DBNull.Value Then Exit Sub
         Try
-
-            Dim sFilename = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "filename")
-            Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
-            Dim b() As Byte = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "files")
+            Dim fs As System.IO.FileStream = New System.IO.FileStream(Application.StartupPath & "\" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "filename"), System.IO.FileMode.Create)
+            Dim b() As Byte = LoadForms.GetFile(GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString, "TRANSH_F")
             fs.Write(b, 0, b.Length)
             fs.Close()
-            ShellExecute(ProgProps.TempFolderPath & sFilename)
+            ShellExecute(Application.StartupPath & "\" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "filename"))
+        Catch ex As IOException
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
@@ -473,7 +474,7 @@ Public Class frmTransactions
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then 
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
@@ -558,8 +559,8 @@ Public Class frmTransactions
     End Sub
     Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then If cboSaler.EditValue <> Nothing Then ManageSaler()
             Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub
@@ -658,7 +659,7 @@ Public Class frmTransactions
         GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
         XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then 
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
                 GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
@@ -784,7 +785,7 @@ Public Class frmTransactions
         Dim ExtraCost As Double, Debit As Double, Devices As Double
         If txtExtraCost.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
         Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost) : ExtraCost = DbnullToZero(txtExtraCost)
-        txtTotAmt.EditValue = Debit + Devices +ExtraCost
+        txtTotAmt.EditValue = Debit + Devices + ExtraCost
     End Sub
     Private Sub txtDebitCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDebitCost.EditValueChanged
         Dim Debit As Double, Devices As Double
@@ -801,7 +802,4 @@ Public Class frmTransactions
 
     End Sub
 
-    Private Sub GridControl2_Click(sender As Object, e As EventArgs) Handles GridControl2.Click
-
-    End Sub
 End Class

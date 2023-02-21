@@ -210,12 +210,12 @@ Public Class frmBUY
     End Sub
     Private Function CalculateNetAmount() As Double
         Dim DevicesBuy As Double, bathroomFurn As Double, closet As Double, general As Double, materials As Double, kitchen As Double, Total As Double
-        Dim Bench As Double, transportation As Double, glasses As Double, measurement As Double
+        Dim Bench As Double, transportation As Double, glasses As Double, measurement As Double, Doors As Double
         DevicesBuy = DbnullToZero(txtDevicesBuy) : bathroomFurn = DbnullToZero(txtbathroomFurn) : closet = DbnullToZero(txtcloset)
         transportation = DbnullToZero(txttransportation) : Bench = DbnullToZero(txtbench) : glasses = DbnullToZero(txtglasses)
         general = DbnullToZero(txtgeneral) : materials = DbnullToZero(txtmaterials) : kitchen = DbnullToZero(txtkitchen)
-        measurement = DbnullToZero(txtmeasurement)
-        Total = DevicesBuy + bathroomFurn + closet + general + materials + kitchen + transportation + Bench + glasses + measurement
+        measurement = DbnullToZero(txtmeasurement) : Doors = DbnullToZero(txtDoors)
+        Total = DevicesBuy + bathroomFurn + closet + general + materials + kitchen + transportation + Bench + glasses + measurement + Doors
         Total = Math.Abs(Total) * Multiplier
         Return Total
     End Function
@@ -380,5 +380,9 @@ Public Class frmBUY
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub txtDoors_EditValueChanged(sender As Object, e As EventArgs) Handles txtDoors.EditValueChanged
+        If Me.isFormPainted Then txtnetAmount.EditValue = CalculateNetAmount()
     End Sub
 End Class

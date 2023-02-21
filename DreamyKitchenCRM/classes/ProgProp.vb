@@ -169,7 +169,13 @@ Public Class ProgProp
         ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
             Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
             cbo = Ctrl
-            If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
+            If sValue = "False" Or sValue = "True" Then
+                If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
+            ElseIf IsNumeric(sValue) Then
+                cbo.SelectedIndex = sValue
+            Else
+                cbo.EditValue = sValue
+            End If
         ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
             Dim dt As DevExpress.XtraEditors.DateEdit
             dt = Ctrl

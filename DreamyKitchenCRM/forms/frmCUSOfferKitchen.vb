@@ -5,6 +5,7 @@ Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
@@ -98,7 +99,7 @@ Public Class frmCUSOfferKitchen
                 txtNotes.EditValue = ProgProps.CUS_NOTES
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
                     "Select  e.ID,E.code,name,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, 
-                    case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY " &
+                    case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard " &
                      "From vw_EQUIPMENT E where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
                 TabNavigationPage2.Enabled = False
 
@@ -111,13 +112,14 @@ Public Class frmCUSOfferKitchen
                     CAST(CASE WHEN (select eq.ID 
                     from CCT_OFFERS_KITCHEN_EQUIPMENT EQ 
                     where eq.cctOffersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
-                    isnull((select qty from CCT_OFFERS_KITCHEN_EQUIPMENT EQ where eq.cctOffersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as QTY
+                    isnull((select qty from CCT_OFFERS_KITCHEN_EQUIPMENT EQ where eq.cctOffersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as QTY,standard
                     from EQUIPMENT E
                     where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB'
                     ORDER BY NAME")
 
                 TabNavigationPage2.Enabled = True
         End Select
+        LoadForms.RestoreLayoutFromXml(GridView2, "CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml")
 
 
         Me.CenterToScreen()
@@ -408,7 +410,7 @@ Public Class frmCUSOfferKitchen
     End Sub
 
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml", "vw_CCT_OFFERS_KITCHEN_EQUIPMENT_def")
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_OFFERS_KITCHEN_EQUIPMENT_def.xml", "vw_CCT_OFFERS_KITCHEN_EQUIPMENT")
     End Sub
 
     Private Sub cmdSaveEquipDev_Click(sender As Object, e As EventArgs) Handles cmdSaveEquip.Click

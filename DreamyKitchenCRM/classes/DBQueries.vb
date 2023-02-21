@@ -31,7 +31,7 @@ Public Class DBQueries
                 Select Case sTable
                     Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                     Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
-                    Case "TRANSH" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
+                    Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                     Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                 End Select
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
@@ -45,7 +45,7 @@ Public Class DBQueries
                 sSQL.AppendLine(toSQLValueS(extension) & ",")
                 sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
                 If sTable = "CCT_F" Then sSQL.AppendLine(",0")
-                If sTable = "TRANSH" Then sSQL.AppendLine(",1")
+                'If sTable = "TRANSH" Then sSQL.AppendLine(",1")
                 sSQL.Append(",files.* ")
                 sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(ProgProps.ServerPath & FileName) & ", SINGLE_BLOB) files")
 
@@ -83,7 +83,10 @@ Public Class DBQueries
             For i = 0 To control.FileNames.Count - 1
                 sSQL.Clear()
                 Select Case sTable
-                    Case "BUY_F" : sSQL.AppendLine("INSERT INTO BUY_F ( ") : sSQL.AppendLine(IIf(ExtraFields.Length > 0, ExtraFields & ",", "") & "ID, filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
+                    Case "BUY_F"
+                        sSQL.AppendLine("INSERT INTO BUY_F ( ") : sSQL.AppendLine(IIf(ExtraFields.Length > 0, ExtraFields & ",", "") & "ID, filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
+                    Case "TECH_SUP_F"
+                        sSQL.AppendLine("INSERT INTO TECH_SUP_F ( ") : sSQL.AppendLine(IIf(ExtraFields.Length > 0, ExtraFields & ",", "") & " techSupID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                 End Select
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
                 Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))
@@ -124,7 +127,7 @@ Public Class DBQueries
             Select Case sTable
                 Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                 Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
-                Case "TRANSH" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
+                Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                 Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
             End Select
             Dim extension As String = Path.GetExtension(sFilename)
@@ -137,7 +140,7 @@ Public Class DBQueries
             sSQL.AppendLine(toSQLValueS(extension) & ",")
             sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
             If sTable = "CCT_F" Then sSQL.AppendLine(",0")
-            If sTable = "TRANSH" Then sSQL.AppendLine(",1")
+            'If sTable = "TRANSH" Then sSQL.AppendLine(",1")
             sSQL.Append(",files.* ")
             sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(ProgProps.ServerPath & FileName) & ", SINGLE_BLOB) files")
 

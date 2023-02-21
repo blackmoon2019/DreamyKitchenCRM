@@ -20,11 +20,11 @@ Partial Class frmTransactions
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTransactions))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdPrintAll = New DevExpress.XtraEditors.SimpleButton()
@@ -32,24 +32,22 @@ Partial Class frmTransactions
         Me.txtEMP_T_ID = New DevExpress.XtraEditors.TextEdit()
         Me.chkCash = New DevExpress.XtraEditors.CheckEdit()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
-        Me.VwCCTFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.TRANSHFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colcode1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colcctID = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colfiles = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coltranshID1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colfilename = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colisinvoice = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcomefrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colextension = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colmodifiedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colmodifiedOn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedOn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colRealName1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdSaveTransD = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.VwTRANSDBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coltranshID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -130,7 +128,6 @@ Partial Class frmTransactions
         Me.EmptySpaceItem7 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
-        Me.Vw_CCT_FTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCT_FTableAdapter()
         Me.Vw_TRANSDTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSDTableAdapter()
         Me.Vw_BANKSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BANKSTableAdapter()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
@@ -139,18 +136,18 @@ Partial Class frmTransactions
         Me.Vw_SCAN_FILE_NAMESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SCAN_FILE_NAMESTableAdapter()
         Me.DreamyKitchenDataSet2 = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Vw_PAYTYPESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_PAYTYPESTableAdapter()
+        Me.TRANSH_FTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.TRANSH_FTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtEMP_T_ID.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkCash.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCCTFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwTRANSDBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwBANKSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -323,7 +320,7 @@ Partial Class frmTransactions
         '
         'GridControl2
         '
-        Me.GridControl2.DataSource = Me.VwCCTFBindingSource
+        Me.GridControl2.DataSource = Me.TRANSHFBindingSource
         Me.GridControl2.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(8, 9, 8, 9)
         Me.GridControl2.Location = New System.Drawing.Point(25, 904)
         Me.GridControl2.MainView = Me.GridView2
@@ -333,24 +330,14 @@ Partial Class frmTransactions
         Me.GridControl2.TabIndex = 47
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
-        'VwCCTFBindingSource
+        'TRANSHFBindingSource
         '
-        Me.VwCCTFBindingSource.DataMember = "vw_CCT_F"
-        Me.VwCCTFBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
-        '
-        'DreamyKitchenDataSetBindingSource
-        '
-        Me.DreamyKitchenDataSetBindingSource.DataSource = Me.DreamyKitchenDataSet
-        Me.DreamyKitchenDataSetBindingSource.Position = 0
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.TRANSHFBindingSource.DataMember = "TRANSH_F"
+        Me.TRANSHFBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'GridView2
         '
-        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colcode1, Me.colcctID, Me.colfiles, Me.colfilename, Me.colisinvoice, Me.colcomefrom, Me.colextension, Me.colmodifiedOn1, Me.colcreatedOn1, Me.colRealName1})
+        Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colcode, Me.coltranshID1, Me.colfilename, Me.colcomefrom, Me.colextension, Me.colmodifiedBy, Me.colmodifiedOn1, Me.colcreatedOn1, Me.colcreatedBy})
         Me.GridView2.DetailHeight = 619
         Me.GridView2.GridControl = Me.GridControl2
         Me.GridView2.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
@@ -362,88 +349,92 @@ Partial Class frmTransactions
         'colID1
         '
         Me.colID1.FieldName = "ID"
-        Me.colID1.MinWidth = 33
+        Me.colID1.MinWidth = 35
         Me.colID1.Name = "colID1"
-        Me.colID1.Width = 125
+        Me.colID1.Visible = True
+        Me.colID1.VisibleIndex = 0
+        Me.colID1.Width = 131
         '
-        'colcode1
+        'colcode
         '
-        Me.colcode1.FieldName = "code"
-        Me.colcode1.MinWidth = 33
-        Me.colcode1.Name = "colcode1"
-        Me.colcode1.Width = 125
+        Me.colcode.FieldName = "code"
+        Me.colcode.MinWidth = 35
+        Me.colcode.Name = "colcode"
+        Me.colcode.Visible = True
+        Me.colcode.VisibleIndex = 1
+        Me.colcode.Width = 131
         '
-        'colcctID
+        'coltranshID1
         '
-        Me.colcctID.FieldName = "cctID"
-        Me.colcctID.MinWidth = 33
-        Me.colcctID.Name = "colcctID"
-        Me.colcctID.Width = 125
-        '
-        'colfiles
-        '
-        Me.colfiles.FieldName = "files"
-        Me.colfiles.MinWidth = 33
-        Me.colfiles.Name = "colfiles"
-        Me.colfiles.Width = 125
+        Me.coltranshID1.FieldName = "transhID"
+        Me.coltranshID1.MinWidth = 35
+        Me.coltranshID1.Name = "coltranshID1"
+        Me.coltranshID1.Visible = True
+        Me.coltranshID1.VisibleIndex = 2
+        Me.coltranshID1.Width = 131
         '
         'colfilename
         '
-        Me.colfilename.Caption = "Όνομα Αρχείου"
         Me.colfilename.FieldName = "filename"
-        Me.colfilename.MinWidth = 33
+        Me.colfilename.MinWidth = 35
         Me.colfilename.Name = "colfilename"
         Me.colfilename.Visible = True
-        Me.colfilename.VisibleIndex = 0
-        Me.colfilename.Width = 262
-        '
-        'colisinvoice
-        '
-        Me.colisinvoice.FieldName = "isinvoice"
-        Me.colisinvoice.MinWidth = 33
-        Me.colisinvoice.Name = "colisinvoice"
-        Me.colisinvoice.Width = 125
+        Me.colfilename.VisibleIndex = 3
+        Me.colfilename.Width = 131
         '
         'colcomefrom
         '
-        Me.colcomefrom.Caption = "Τοποθεσία"
         Me.colcomefrom.FieldName = "comefrom"
-        Me.colcomefrom.MinWidth = 33
+        Me.colcomefrom.MinWidth = 35
         Me.colcomefrom.Name = "colcomefrom"
         Me.colcomefrom.Visible = True
-        Me.colcomefrom.VisibleIndex = 1
-        Me.colcomefrom.Width = 382
+        Me.colcomefrom.VisibleIndex = 4
+        Me.colcomefrom.Width = 131
         '
         'colextension
         '
-        Me.colextension.Caption = "Επέκταση"
         Me.colextension.FieldName = "extension"
-        Me.colextension.MinWidth = 33
+        Me.colextension.MinWidth = 35
         Me.colextension.Name = "colextension"
         Me.colextension.Visible = True
-        Me.colextension.VisibleIndex = 2
-        Me.colextension.Width = 105
+        Me.colextension.VisibleIndex = 5
+        Me.colextension.Width = 131
+        '
+        'colmodifiedBy
+        '
+        Me.colmodifiedBy.FieldName = "modifiedBy"
+        Me.colmodifiedBy.MinWidth = 35
+        Me.colmodifiedBy.Name = "colmodifiedBy"
+        Me.colmodifiedBy.Visible = True
+        Me.colmodifiedBy.VisibleIndex = 6
+        Me.colmodifiedBy.Width = 131
         '
         'colmodifiedOn1
         '
         Me.colmodifiedOn1.FieldName = "modifiedOn"
-        Me.colmodifiedOn1.MinWidth = 33
+        Me.colmodifiedOn1.MinWidth = 35
         Me.colmodifiedOn1.Name = "colmodifiedOn1"
-        Me.colmodifiedOn1.Width = 125
+        Me.colmodifiedOn1.Visible = True
+        Me.colmodifiedOn1.VisibleIndex = 7
+        Me.colmodifiedOn1.Width = 131
         '
         'colcreatedOn1
         '
         Me.colcreatedOn1.FieldName = "createdOn"
-        Me.colcreatedOn1.MinWidth = 33
+        Me.colcreatedOn1.MinWidth = 35
         Me.colcreatedOn1.Name = "colcreatedOn1"
-        Me.colcreatedOn1.Width = 125
+        Me.colcreatedOn1.Visible = True
+        Me.colcreatedOn1.VisibleIndex = 8
+        Me.colcreatedOn1.Width = 131
         '
-        'colRealName1
+        'colcreatedBy
         '
-        Me.colRealName1.FieldName = "RealName"
-        Me.colRealName1.MinWidth = 33
-        Me.colRealName1.Name = "colRealName1"
-        Me.colRealName1.Width = 125
+        Me.colcreatedBy.FieldName = "createdBy"
+        Me.colcreatedBy.MinWidth = 35
+        Me.colcreatedBy.Name = "colcreatedBy"
+        Me.colcreatedBy.Visible = True
+        Me.colcreatedBy.VisibleIndex = 9
+        Me.colcreatedBy.Width = 131
         '
         'cmdSaveTransD
         '
@@ -472,7 +463,12 @@ Partial Class frmTransactions
         'VwTRANSDBindingSource
         '
         Me.VwTRANSDBindingSource.DataMember = "vw_TRANSD"
-        Me.VwTRANSDBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
+        Me.VwTRANSDBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'GridView1
         '
@@ -525,7 +521,7 @@ Partial Class frmTransactions
         'VwBANKSBindingSource
         '
         Me.VwBANKSBindingSource.DataMember = "vw_BANKS"
-        Me.VwBANKSBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
+        Me.VwBANKSBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'colBankName
         '
@@ -624,7 +620,7 @@ Partial Class frmTransactions
         'VwPAYTYPESBindingSource
         '
         Me.VwPAYTYPESBindingSource.DataMember = "vw_PAYTYPES"
-        Me.VwPAYTYPESBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
+        Me.VwPAYTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'colpaid
         '
@@ -799,8 +795,8 @@ Partial Class frmTransactions
         Me.txtInvoiceFilename.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInvoiceFilename.Name = "txtInvoiceFilename"
         Me.txtInvoiceFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions2.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
-        Me.txtInvoiceFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions1.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
+        Me.txtInvoiceFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtInvoiceFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtInvoiceFilename.Size = New System.Drawing.Size(682, 38)
         Me.txtInvoiceFilename.StyleController = Me.LayoutControl1
@@ -902,7 +898,7 @@ Partial Class frmTransactions
         'VwINVTYPESBindingSource
         '
         Me.VwINVTYPESBindingSource.DataMember = "vw_INVTYPES"
-        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
+        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'cboSaler
         '
@@ -1438,10 +1434,6 @@ Partial Class frmTransactions
         Me.cmdExit.TabIndex = 47
         Me.cmdExit.Text = "Έξοδος"
         '
-        'Vw_CCT_FTableAdapter
-        '
-        Me.Vw_CCT_FTableAdapter.ClearBeforeFill = True
-        '
         'Vw_TRANSDTableAdapter
         '
         Me.Vw_TRANSDTableAdapter.ClearBeforeFill = True
@@ -1477,6 +1469,10 @@ Partial Class frmTransactions
         '
         Me.Vw_PAYTYPESTableAdapter.ClearBeforeFill = True
         '
+        'TRANSH_FTableAdapter
+        '
+        Me.TRANSH_FTableAdapter.ClearBeforeFill = True
+        '
         'frmTransactions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -1495,12 +1491,11 @@ Partial Class frmTransactions
         CType(Me.txtEMP_T_ID.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkCash.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCCTFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwTRANSDBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwBANKSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1621,21 +1616,7 @@ Partial Class frmTransactions
     Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents chkCash As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents DreamyKitchenDataSetBindingSource As BindingSource
     Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
-    Friend WithEvents VwCCTFBindingSource As BindingSource
-    Friend WithEvents colID1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colcode1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colcctID As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colfiles As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colfilename As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colisinvoice As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colcomefrom As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colextension As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colmodifiedOn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colcreatedOn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents colRealName1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents Vw_CCT_FTableAdapter As DreamyKitchenDataSetTableAdapters.vw_CCT_FTableAdapter
     Friend WithEvents VwTRANSDBindingSource As BindingSource
     Friend WithEvents colID As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents coltranshID As DevExpress.XtraGrid.Columns.GridColumn
@@ -1687,4 +1668,16 @@ Partial Class frmTransactions
     Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtExtraCost As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem28 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TRANSHFBindingSource As BindingSource
+    Friend WithEvents TRANSH_FTableAdapter As DreamyKitchenDataSetTableAdapters.TRANSH_FTableAdapter
+    Friend WithEvents colID1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coltranshID1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colfilename As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcomefrom As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colextension As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colmodifiedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colmodifiedOn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcreatedOn1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcreatedBy As DevExpress.XtraGrid.Columns.GridColumn
 End Class

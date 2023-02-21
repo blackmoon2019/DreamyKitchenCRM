@@ -624,6 +624,10 @@ NextItem:
                         col1 = GRDview.Columns.AddField(myReader.GetName(i))
                         col1.FieldName = myReader.GetName(i)
                         col1.Visible = True
+                        If myReader.GetFieldType(i) Is GetType(Boolean) Then
+                            Dim chk As New RepositoryItemCheckEdit()
+                            col1.ColumnEdit = chk
+                        End If
                         col1.VisibleIndex = 0
                         col1.AppearanceCell.BackColor = Color.Bisque
                     End If
@@ -769,6 +773,23 @@ NextItem:
 
         End If
     End Sub
+    Public Function GetFile(ByVal sRowID As String, ByVal sTable As String) As Byte()
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Dim bytes As Byte()
+
+        sSQL = "Select  files From " & sTable & " WHERE ID = " & toSQLValueS(sRowID)
+        cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
+        If sdr.Read() = True Then
+            bytes = DirectCast(sdr("files"), Byte())
+            sdr.Close()
+            Return bytes
+        End If
+        sdr.Close()
+
+    End Function
+
     Friend Class MenuColumnInfo
         Public Sub New(ByVal column As GridColumn)
             Me.Column = column

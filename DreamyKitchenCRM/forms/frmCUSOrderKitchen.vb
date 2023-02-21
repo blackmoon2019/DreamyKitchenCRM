@@ -112,7 +112,7 @@ Public Class frmCUSOrderKitchen
 
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
                     "Select  e.ID,E.code,name,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked,
-                     case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY " &
+                     case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard " &
                      "From vw_EQUIPMENT E where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
                 TabNavigationPage2.Enabled = False
             Case FormMode.EditRecord
@@ -124,7 +124,7 @@ Public Class frmCUSOrderKitchen
                     CAST(CASE WHEN (select eq.ID 
                     from CCT_ORDERS_KITCHEN_EQUIPMENT EQ 
                     where eq.cctOrdersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
-                    isnull((select qty from CCT_ORDERS_KITCHEN_EQUIPMENT EQ where eq.cctOrdersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as QTY
+                    isnull((select qty from CCT_ORDERS_KITCHEN_EQUIPMENT EQ where eq.cctOrdersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as QTY,standard
                     from EQUIPMENT E
                     ORDER BY NAME")
                 TabNavigationPage2.Enabled = True
@@ -143,7 +143,7 @@ Public Class frmCUSOrderKitchen
         LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
         GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
-        GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
+        GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
         GridView1.OptionsMenu.ShowConditionalFormattingItem = True
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)

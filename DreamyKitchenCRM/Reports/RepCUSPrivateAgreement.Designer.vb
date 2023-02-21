@@ -35,6 +35,8 @@ Partial Public Class RepCUSPrivateAgreement
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.OfferID = New DevExpress.XtraReports.Parameters.Parameter()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel44 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel43 = New DevExpress.XtraReports.UI.XRLabel()
@@ -139,7 +141,7 @@ Partial Public Class RepCUSPrivateAgreement
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "2422297f-a11b-4836-814c-aebbca9bd616"
+        Me.OfferID.ValueInfo = "4b7ff0e8-0ae8-4324-8a5b-001ba54927bd"
         DynamicListLookUpSettings1.DataMember = "vw_AGREEMENT"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
@@ -151,10 +153,51 @@ Partial Public Class RepCUSPrivateAgreement
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel3, Me.XrLabel44, Me.XrLabel43, Me.XrLabel34, Me.XrRichText3, Me.XrLabel4, Me.XrLabel23, Me.XrLabel11, Me.XrLabel1, Me.XrRichText2})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrLabel5, Me.XrLabel3, Me.XrLabel44, Me.XrLabel43, Me.XrLabel34, Me.XrRichText3, Me.XrLabel4, Me.XrLabel23, Me.XrLabel11, Me.XrLabel1, Me.XrRichText2})
         Me.PageHeader.Dpi = 254.0!
-        Me.PageHeader.HeightF = 1814.466!
+        Me.PageHeader.HeightF = 1955.073!
         Me.PageHeader.Name = "PageHeader"
+        '
+        'XrLabel6
+        '
+        Me.XrLabel6.BackColor = System.Drawing.Color.White
+        Me.XrLabel6.Dpi = 254.0!
+        Me.XrLabel6.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", resources.GetString("XrLabel6.ExpressionBindings"))})
+        Me.XrLabel6.Font = New System.Drawing.Font("Zona Pro Light", 11.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.XrLabel6.ForeColor = System.Drawing.Color.Black
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0.9681487!, 1742.075!)
+        Me.XrLabel6.Multiline = True
+        Me.XrLabel6.Name = "XrLabel6"
+        Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(1591.612!, 49.71118!)
+        Me.XrLabel6.StylePriority.UseBackColor = False
+        Me.XrLabel6.StylePriority.UseFont = False
+        Me.XrLabel6.StylePriority.UseForeColor = False
+        Me.XrLabel6.StylePriority.UsePadding = False
+        Me.XrLabel6.StylePriority.UseTextAlignment = False
+        Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.XrLabel6.TextFormatString = "{0},"
+        '
+        'XrLabel5
+        '
+        Me.XrLabel5.BackColor = System.Drawing.Color.White
+        Me.XrLabel5.Dpi = 254.0!
+        Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([kitchen]=True,'Ερμαρίων κουζίνας'," & Global.Microsoft.VisualBasic.ChrW(10) & "iif([closet]=True,'Ντουλαπών υπνοδωματίου" &
+                    "'," & Global.Microsoft.VisualBasic.ChrW(10) & "iif([doors]=True,'Εσωτερικών πορτών','')))" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrLabel5.Font = New System.Drawing.Font("Zona Pro Light", 11.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.XrLabel5.ForeColor = System.Drawing.Color.Black
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(790.3285!, 1685.364!)
+        Me.XrLabel5.Multiline = True
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(801.2837!, 49.71118!)
+        Me.XrLabel5.StylePriority.UseBackColor = False
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseForeColor = False
+        Me.XrLabel5.StylePriority.UsePadding = False
+        Me.XrLabel5.StylePriority.UseTextAlignment = False
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
+        Me.XrLabel5.TextFormatString = "{0},"
         '
         'XrLabel3
         '
@@ -184,7 +227,7 @@ Partial Public Class RepCUSPrivateAgreement
         Me.XrLabel44.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[arProt]")})
         Me.XrLabel44.Font = New System.Drawing.Font("Zona Pro Light", 11.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel44.ForeColor = System.Drawing.Color.Black
-        Me.XrLabel44.LocationFloat = New DevExpress.Utils.PointFloat(308.6706!, 1752.054!)
+        Me.XrLabel44.LocationFloat = New DevExpress.Utils.PointFloat(506.3736!, 1818.578!)
         Me.XrLabel44.Multiline = True
         Me.XrLabel44.Name = "XrLabel44"
         Me.XrLabel44.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 254.0!)
@@ -221,6 +264,7 @@ Partial Public Class RepCUSPrivateAgreement
         '
         Me.XrLabel34.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel34.Dpi = 254.0!
+        Me.XrLabel34.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[dtAgreement]")})
         Me.XrLabel34.Font = New System.Drawing.Font("Zona Pro Light", 11.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
         Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(1130.058!, 951.4106!)
         Me.XrLabel34.Multiline = True
@@ -241,7 +285,7 @@ Partial Public Class RepCUSPrivateAgreement
         Me.XrRichText3.Name = "XrRichText3"
         Me.XrRichText3.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
         Me.XrRichText3.SerializableRtfString = resources.GetString("XrRichText3.SerializableRtfString")
-        Me.XrRichText3.SizeF = New System.Drawing.SizeF(1591.612!, 1112.096!)
+        Me.XrRichText3.SizeF = New System.Drawing.SizeF(1591.612!, 1252.703!)
         '
         'XrLabel4
         '
@@ -384,4 +428,6 @@ Partial Public Class RepCUSPrivateAgreement
     Friend WithEvents XrRichText3 As DevExpress.XtraReports.UI.XRRichText
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
 End Class

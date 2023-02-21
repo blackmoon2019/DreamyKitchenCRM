@@ -40,7 +40,6 @@ Partial Class frmGen
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.L2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L4 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -55,6 +54,7 @@ Partial Class frmGen
         Me.L11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.L13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.L2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -74,7 +74,6 @@ Partial Class frmGen
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.L2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -89,6 +88,7 @@ Partial Class frmGen
         CType(Me.L11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.L13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.L2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -116,7 +116,7 @@ Partial Class frmGen
         Me.LayoutControl1.Location = New System.Drawing.Point(-3, -8)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(342, 0, 650, 400)
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1337, 315, 1412, 723)
         Me.LayoutControl1.Root = Me.Root
         Me.LayoutControl1.Size = New System.Drawing.Size(707, 589)
         Me.LayoutControl1.TabIndex = 14
@@ -382,16 +382,6 @@ Partial Class frmGen
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
-        'L2
-        '
-        Me.L2.Control = Me.txtName
-        Me.L2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.L2.Location = New System.Drawing.Point(0, 42)
-        Me.L2.Name = "L2"
-        Me.L2.Size = New System.Drawing.Size(687, 42)
-        Me.L2.Tag = "1"
-        Me.L2.TextSize = New System.Drawing.Size(30, 23)
-        '
         'L3
         '
         Me.L3.Control = Me.cbo1
@@ -540,6 +530,16 @@ Partial Class frmGen
         Me.L13.TextSize = New System.Drawing.Size(30, 23)
         Me.L13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
+        'L2
+        '
+        Me.L2.Control = Me.txtName
+        Me.L2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Me.L2.Location = New System.Drawing.Point(0, 42)
+        Me.L2.Name = "L2"
+        Me.L2.Size = New System.Drawing.Size(687, 42)
+        Me.L2.Tag = "1"
+        Me.L2.TextSize = New System.Drawing.Size(30, 23)
+        '
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
@@ -576,7 +576,6 @@ Partial Class frmGen
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.L2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -591,6 +590,7 @@ Partial Class frmGen
         CType(Me.L11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.L13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.L2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

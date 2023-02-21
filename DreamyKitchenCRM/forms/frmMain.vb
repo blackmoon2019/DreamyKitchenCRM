@@ -32,6 +32,7 @@ Public Class frmMain
             RibonSettings.Visible = False
             bbCreditDebit.Visibility = BarItemVisibility.Never
             BBProjectCosts.Visibility = BarItemVisibility.Never
+            bbProjects.Visible = False
         End If
 
 

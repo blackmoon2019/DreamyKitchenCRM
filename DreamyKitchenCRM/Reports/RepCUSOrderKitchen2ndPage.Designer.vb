@@ -27,6 +27,8 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Dim QueryParameter2 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
         Dim CustomSqlQuery3 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
         Dim QueryParameter3 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
+        Dim CustomSqlQuery4 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
+        Dim QueryParameter4 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
         Dim MasterDetailInfo1 As DevExpress.DataAccess.Sql.MasterDetailInfo = New DevExpress.DataAccess.Sql.MasterDetailInfo()
         Dim RelationColumnInfo1 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
         Dim MasterDetailInfo2 As DevExpress.DataAccess.Sql.MasterDetailInfo = New DevExpress.DataAccess.Sql.MasterDetailInfo()
@@ -57,8 +59,6 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.XrLabel8 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel43 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel42 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
@@ -77,6 +77,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.table4 = New DevExpress.XtraReports.UI.XRTable()
         Me.tableRow4 = New DevExpress.XtraReports.UI.XRTableRow()
         Me.tableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.Title = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailCaption2 = New DevExpress.XtraReports.UI.XRControlStyle()
         Me.DetailData2 = New DevExpress.XtraReports.UI.XRControlStyle()
@@ -85,11 +86,24 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.OfferIDDev = New DevExpress.XtraReports.Parameters.Parameter()
         Me.OfferIDEq = New DevExpress.XtraReports.Parameters.Parameter()
         Me.OfferID = New DevExpress.XtraReports.Parameters.Parameter()
-        Me.XrTableCell1 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.DetailReport2 = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail3 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrTable2 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow2 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell3 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell4 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.GroupHeader3 = New DevExpress.XtraReports.UI.GroupHeaderBand()
+        Me.XrTable1 = New DevExpress.XtraReports.UI.XRTable()
+        Me.XrTableRow1 = New DevExpress.XtraReports.UI.XRTableRow()
+        Me.XrTableCell2 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrLabel43 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel42 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.table1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.table4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'SqlDataSource1
@@ -117,7 +131,14 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         QueryParameter3.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
         CustomSqlQuery3.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter3})
         CustomSqlQuery3.Sql = resources.GetString("CustomSqlQuery3.Sql")
-        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1, CustomSqlQuery2, CustomSqlQuery3})
+        CustomSqlQuery4.MetaSerializable = "<Meta X=""281"" Y=""20"" Width=""260"" Height=""172"" />"
+        CustomSqlQuery4.Name = "vw_CCT_ORDERS_KITCHEN_EQUIPMENT_EXTRA"
+        QueryParameter4.Name = "OfferIDEq"
+        QueryParameter4.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter4.Value = New DevExpress.DataAccess.Expression("?OfferIDEq", GetType(System.Guid))
+        CustomSqlQuery4.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter4})
+        CustomSqlQuery4.Sql = resources.GetString("CustomSqlQuery4.Sql")
+        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1, CustomSqlQuery2, CustomSqlQuery3, CustomSqlQuery4})
         MasterDetailInfo1.DetailQueryName = "vw_CCT_ORDERS_KITCHEN"
         RelationColumnInfo1.NestedKeyColumn = "ID"
         RelationColumnInfo1.ParentKeyColumn = "cctOrdersKitchenID"
@@ -169,7 +190,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.GroupHeader1, Me.Detail1, Me.ReportFooter1})
         Me.DetailReport.DataMember = "vw_CCT_ORDERS_KITCHEN_DEVICES"
         Me.DetailReport.DataSource = Me.SqlDataSource1
-        Me.DetailReport.Level = 1
+        Me.DetailReport.Level = 2
         Me.DetailReport.Name = "DetailReport"
         '
         'GroupHeader1
@@ -254,7 +275,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         '
         'ReportFooter1
         '
-        Me.ReportFooter1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel43, Me.XrLabel42, Me.XrLabel41, Me.XrLabel2, Me.XrLabel3, Me.XrLine2, Me.XrLine1, Me.XrLabel72, Me.XrLabel70, Me.XrLabel4, Me.XrLabel5})
+        Me.ReportFooter1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel43, Me.XrLabel42, Me.XrLabel11, Me.XrLabel10, Me.XrLabel9, Me.XrLabel8, Me.XrLabel7, Me.XrLabel6, Me.XrLabel41, Me.XrLabel2, Me.XrLabel3, Me.XrLine2, Me.XrLine1, Me.XrLabel72, Me.XrLabel70, Me.XrLabel4, Me.XrLabel5})
         Me.ReportFooter1.HeightF = 392.3094!
         Me.ReportFooter1.Name = "ReportFooter1"
         '
@@ -347,32 +368,6 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.XrLabel6.StylePriority.UseTextAlignment = False
         Me.XrLabel6.Text = "Έξτρα Μεταφορά:"
         Me.XrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel43
-        '
-        Me.XrLabel43.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
-        Me.XrLabel43.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 207.8929!)
-        Me.XrLabel43.Name = "XrLabel43"
-        Me.XrLabel43.SizeF = New System.Drawing.SizeF(471.1106!, 16.04164!)
-        Me.XrLabel43.StylePriority.UseFont = False
-        Me.XrLabel43.StylePriority.UseForeColor = False
-        Me.XrLabel43.StylePriority.UseTextAlignment = False
-        Me.XrLabel43.Text = "Με την παράδοση των εμπορευμάτων στο χώρο σας: ΕΞΟΦΛΗΣΗ"
-        Me.XrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
-        '
-        'XrLabel42
-        '
-        Me.XrLabel42.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
-        Me.XrLabel42.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 190.9286!)
-        Me.XrLabel42.Name = "XrLabel42"
-        Me.XrLabel42.SizeF = New System.Drawing.SizeF(200.0!, 16.96428!)
-        Me.XrLabel42.StylePriority.UseFont = False
-        Me.XrLabel42.StylePriority.UseForeColor = False
-        Me.XrLabel42.StylePriority.UseTextAlignment = False
-        Me.XrLabel42.Text = "Προκαταβολή: 50%"
-        Me.XrLabel42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel41
         '
@@ -535,7 +530,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.tableCell5.StylePriority.UseFont = False
         Me.tableCell5.StylePriority.UseForeColor = False
         Me.tableCell5.StylePriority.UseTextAlignment = False
-        Me.tableCell5.Text = "Εξοπλισμός"
+        Me.tableCell5.Text = "Standard Εξοπλισμός"
         Me.tableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.tableCell5.Weight = 1.0R
         '
@@ -570,6 +565,22 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.tableCell6.StylePriority.UseFont = False
         Me.tableCell6.StylePriority.UseForeColor = False
         Me.tableCell6.Weight = 1.0R
+        '
+        'XrTableCell1
+        '
+        Me.XrTableCell1.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
+        Me.XrTableCell1.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrTableCell1.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell1.Multiline = True
+        Me.XrTableCell1.Name = "XrTableCell1"
+        Me.XrTableCell1.StyleName = "DetailData2"
+        Me.XrTableCell1.StylePriority.UseBorders = False
+        Me.XrTableCell1.StylePriority.UseFont = False
+        Me.XrTableCell1.StylePriority.UseForeColor = False
+        Me.XrTableCell1.Text = "XrTableCell1"
+        Me.XrTableCell1.Visible = False
+        Me.XrTableCell1.Weight = 1.0R
         '
         'Title
         '
@@ -629,7 +640,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.OfferIDDev.Description = "OfferIDDev"
         Me.OfferIDDev.Name = "OfferIDDev"
         Me.OfferIDDev.Type = GetType(System.Guid)
-        Me.OfferIDDev.ValueInfo = "75899184-c9b5-45ec-aee5-155a05e19e1a"
+        Me.OfferIDDev.ValueInfo = "455c38e7-1d79-4f52-83b0-e3c040c53140"
         DynamicListLookUpSettings1.DataMember = "vw_CCT_ORDERS_KITCHEN_DEVICES"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "cctOrdersKitchenID"
@@ -644,7 +655,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.OfferIDEq.Description = "OfferIDEq"
         Me.OfferIDEq.Name = "OfferIDEq"
         Me.OfferIDEq.Type = GetType(System.Guid)
-        Me.OfferIDEq.ValueInfo = "75899184-c9b5-45ec-aee5-155a05e19e1a"
+        Me.OfferIDEq.ValueInfo = "455c38e7-1d79-4f52-83b0-e3c040c53140"
         DynamicListLookUpSettings2.DataMember = "vw_CCT_ORDERS_KITCHEN_EQUIPMENT"
         DynamicListLookUpSettings2.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings2.DisplayMember = "cctOrdersKitchenID"
@@ -659,7 +670,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "75899184-c9b5-45ec-aee5-155a05e19e1a"
+        Me.OfferID.ValueInfo = "455c38e7-1d79-4f52-83b0-e3c040c53140"
         DynamicListLookUpSettings3.DataMember = "vw_CCT_ORDERS_KITCHEN"
         DynamicListLookUpSettings3.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings3.DisplayMember = "ID"
@@ -669,24 +680,127 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.OfferID.ValueSourceSettings = DynamicListLookUpSettings3
         Me.OfferID.Visible = False
         '
-        'XrTableCell1
+        'DetailReport2
         '
-        Me.XrTableCell1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrTableCell1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
-        Me.XrTableCell1.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
-        Me.XrTableCell1.ForeColor = System.Drawing.Color.Gray
-        Me.XrTableCell1.Multiline = True
-        Me.XrTableCell1.Name = "XrTableCell1"
-        Me.XrTableCell1.StyleName = "DetailData2"
-        Me.XrTableCell1.StylePriority.UseBorders = False
-        Me.XrTableCell1.StylePriority.UseFont = False
-        Me.XrTableCell1.StylePriority.UseForeColor = False
-        Me.XrTableCell1.Text = "XrTableCell1"
-        Me.XrTableCell1.Weight = 1.0R
+        Me.DetailReport2.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail3, Me.GroupHeader3})
+        Me.DetailReport2.DataMember = "vw_CCT_ORDERS_KITCHEN_EQUIPMENT_EXTRA"
+        Me.DetailReport2.DataSource = Me.SqlDataSource1
+        Me.DetailReport2.Level = 1
+        Me.DetailReport2.Name = "DetailReport2"
+        '
+        'Detail3
+        '
+        Me.Detail3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2})
+        Me.Detail3.HeightF = 25.0!
+        Me.Detail3.Name = "Detail3"
+        '
+        'XrTable2
+        '
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrTable2.Name = "XrTable2"
+        Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2})
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(627.0!, 25.0!)
+        '
+        'XrTableRow2
+        '
+        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell3, Me.XrTableCell4})
+        Me.XrTableRow2.Name = "XrTableRow2"
+        Me.XrTableRow2.Weight = 11.5R
+        '
+        'XrTableCell3
+        '
+        Me.XrTableCell3.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[EquipmentName]")})
+        Me.XrTableCell3.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrTableCell3.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell3.Name = "XrTableCell3"
+        Me.XrTableCell3.StyleName = "DetailData2"
+        Me.XrTableCell3.StylePriority.UseBorders = False
+        Me.XrTableCell3.StylePriority.UseFont = False
+        Me.XrTableCell3.StylePriority.UseForeColor = False
+        Me.XrTableCell3.Weight = 1.0R
+        '
+        'XrTableCell4
+        '
+        Me.XrTableCell4.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
+        Me.XrTableCell4.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrTableCell4.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell4.Multiline = True
+        Me.XrTableCell4.Name = "XrTableCell4"
+        Me.XrTableCell4.StyleName = "DetailData2"
+        Me.XrTableCell4.StylePriority.UseBorders = False
+        Me.XrTableCell4.StylePriority.UseFont = False
+        Me.XrTableCell4.StylePriority.UseForeColor = False
+        Me.XrTableCell4.Text = "XrTableCell1"
+        Me.XrTableCell4.Weight = 1.0R
+        '
+        'GroupHeader3
+        '
+        Me.GroupHeader3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
+        Me.GroupHeader3.HeightF = 28.0!
+        Me.GroupHeader3.Name = "GroupHeader3"
+        '
+        'XrTable1
+        '
+        Me.XrTable1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrTable1.Name = "XrTable1"
+        Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(627.0!, 28.0!)
+        '
+        'XrTableRow1
+        '
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell2})
+        Me.XrTableRow1.Name = "XrTableRow1"
+        Me.XrTableRow1.Weight = 1.0R
+        '
+        'XrTableCell2
+        '
+        Me.XrTableCell2.BackColor = System.Drawing.Color.White
+        Me.XrTableCell2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrTableCell2.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrTableCell2.Name = "XrTableCell2"
+        Me.XrTableCell2.StyleName = "DetailCaption2"
+        Me.XrTableCell2.StylePriority.UseBackColor = False
+        Me.XrTableCell2.StylePriority.UseBorders = False
+        Me.XrTableCell2.StylePriority.UseFont = False
+        Me.XrTableCell2.StylePriority.UseForeColor = False
+        Me.XrTableCell2.StylePriority.UseTextAlignment = False
+        Me.XrTableCell2.Text = "Extra Εξοπλισμός"
+        Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell2.Weight = 1.0R
+        '
+        'XrLabel43
+        '
+        Me.XrLabel43.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel43.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 215.9644!)
+        Me.XrLabel43.Name = "XrLabel43"
+        Me.XrLabel43.SizeF = New System.Drawing.SizeF(503.0553!, 32.7083!)
+        Me.XrLabel43.StylePriority.UseFont = False
+        Me.XrLabel43.StylePriority.UseForeColor = False
+        Me.XrLabel43.StylePriority.UseTextAlignment = False
+        Me.XrLabel43.Text = "Εξόφληση: Με την παράδοση των εμπορευμάτων στο χώρο σας και πριν την έναρξη της τ" &
+    "οποθέτησης"
+        Me.XrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
+        '
+        'XrLabel42
+        '
+        Me.XrLabel42.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel42.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 194.0!)
+        Me.XrLabel42.Name = "XrLabel42"
+        Me.XrLabel42.SizeF = New System.Drawing.SizeF(480.3571!, 16.96426!)
+        Me.XrLabel42.StylePriority.UseFont = False
+        Me.XrLabel42.StylePriority.UseForeColor = False
+        Me.XrLabel42.StylePriority.UseTextAlignment = False
+        Me.XrLabel42.Text = "Προκαταβολή: Με την υπογραφή του ιδιωτικού συμφωνητικού 50%"
+        Me.XrLabel42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'RepCUSOrderKitchen2ndPage
         '
-        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail, Me.DetailReport, Me.DetailReport1})
+        Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail, Me.DetailReport, Me.DetailReport1, Me.DetailReport2})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataSource = Me.SqlDataSource1
         Me.Font = New System.Drawing.Font("Arial", 9.75!)
@@ -701,6 +815,8 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         CType(Me.table2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.table3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.table4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
     End Sub
@@ -721,9 +837,6 @@ Partial Public Class RepCUSOrderKitchen2ndPage
     Friend WithEvents SqlDataSource1 As DevExpress.DataAccess.Sql.SqlDataSource
     Friend WithEvents DetailReport1 As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents GroupHeader2 As DevExpress.XtraReports.UI.GroupHeaderBand
-    Friend WithEvents table3 As DevExpress.XtraReports.UI.XRTable
-    Friend WithEvents tableRow3 As DevExpress.XtraReports.UI.XRTableRow
-    Friend WithEvents tableCell5 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents Detail2 As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents Title As DevExpress.XtraReports.UI.XRControlStyle
     Friend WithEvents DetailCaption2 As DevExpress.XtraReports.UI.XRControlStyle
@@ -739,8 +852,6 @@ Partial Public Class RepCUSOrderKitchen2ndPage
     Friend WithEvents tableRow4 As DevExpress.XtraReports.UI.XRTableRow
     Friend WithEvents tableCell6 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents ReportFooter1 As DevExpress.XtraReports.UI.ReportFooterBand
-    Friend WithEvents XrLabel43 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrLabel42 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel41 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
@@ -757,4 +868,19 @@ Partial Public Class RepCUSOrderKitchen2ndPage
     Friend WithEvents XrLabel10 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrTableCell1 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents table3 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents tableRow3 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents tableCell5 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents DetailReport2 As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail3 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents XrTable2 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow2 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell3 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell4 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents GroupHeader3 As DevExpress.XtraReports.UI.GroupHeaderBand
+    Friend WithEvents XrTable1 As DevExpress.XtraReports.UI.XRTable
+    Friend WithEvents XrTableRow1 As DevExpress.XtraReports.UI.XRTableRow
+    Friend WithEvents XrTableCell2 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrLabel43 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel42 As DevExpress.XtraReports.UI.XRLabel
 End Class
