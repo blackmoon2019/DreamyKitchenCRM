@@ -265,7 +265,7 @@ Partial Public Class RepCUSPrivateAgreement
         Me.XrLabel34.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel34.Dpi = 254.0!
         Me.XrLabel34.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[dtAgreement]")})
-        Me.XrLabel34.Font = New System.Drawing.Font("Zona Pro Light", 11.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.XrLabel34.Font = New System.Drawing.Font("Zona Pro Light", 11.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(1130.058!, 951.4106!)
         Me.XrLabel34.Multiline = True
         Me.XrLabel34.Name = "XrLabel34"

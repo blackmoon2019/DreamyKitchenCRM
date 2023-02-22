@@ -33,6 +33,7 @@ Partial Class frmTransactions
         Me.chkCash = New DevExpress.XtraEditors.CheckEdit()
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.TRANSHFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcode = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -47,7 +48,6 @@ Partial Class frmTransactions
         Me.cmdSaveTransD = New DevExpress.XtraEditors.SimpleButton()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.VwTRANSDBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.coltranshID = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -144,10 +144,10 @@ Partial Class frmTransactions
         CType(Me.chkCash.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwTRANSDBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwBANKSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -335,6 +335,11 @@ Partial Class frmTransactions
         Me.TRANSHFBindingSource.DataMember = "TRANSH_F"
         Me.TRANSHFBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'GridView2
         '
         Me.GridView2.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colcode, Me.coltranshID1, Me.colfilename, Me.colcomefrom, Me.colextension, Me.colmodifiedBy, Me.colmodifiedOn1, Me.colcreatedOn1, Me.colcreatedBy})
@@ -464,11 +469,6 @@ Partial Class frmTransactions
         '
         Me.VwTRANSDBindingSource.DataMember = "vw_TRANSD"
         Me.VwTRANSDBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'GridView1
         '
@@ -1492,10 +1492,10 @@ Partial Class frmTransactions
         CType(Me.chkCash.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwTRANSDBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.RepositoryItemLookUpEdit1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwBANKSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
