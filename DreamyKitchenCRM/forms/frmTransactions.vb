@@ -207,7 +207,7 @@ Public Class frmTransactions
                 If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
                 txtInvoiceFilename.EditValue = sFilename
                 If txtInvoiceFilename.Text <> "" Then
-                    DBQ.InsertDataFilesFromScanner(sFilename, sID, "TRANSH_H")
+                    DBQ.InsertDataFilesFromScanner(sFilename, sID, "TRANSH_F")
                     Me.TRANSH_FTableAdapter.FillByTanshID(Me.DreamyKitchenDataSet.TRANSH_F, System.Guid.Parse(sID))
                 End If
                 ScanFile = Nothing

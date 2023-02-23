@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
+Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
@@ -292,7 +293,7 @@ Public Class frmCUSOrderKitchen
                     If Mode = FormMode.NewRecord Then
                         GridView1.PopulateColumns() : GridView2.PopulateColumns()
                         TabNavigationPage2.Enabled = True
-                        '    InsertSelectedRows(True)
+                        InsertSelectedRows(False)
                         LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
                         LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def")
                     End If
@@ -747,5 +748,13 @@ Public Class frmCUSOrderKitchen
         If e.Column.FieldName <> "QTY" Then Exit Sub
         Dim sTot As Decimal = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "QTY") * GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "price")
         GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", sTot)
+    End Sub
+
+    Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
+        Select Case TabPane1.SelectedPageIndex
+            Case 1
+                LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
+                LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
+        End Select
     End Sub
 End Class
