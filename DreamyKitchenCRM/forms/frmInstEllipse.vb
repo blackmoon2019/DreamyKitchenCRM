@@ -10,6 +10,7 @@ Imports DevExpress.XtraReports.UI
 Imports DevExpress.DataAccess
 Imports DevExpress.DataAccess.Native
 Imports DevExpress.DataAccess.UI
+Imports System.ComponentModel
 
 Public Class frmInstEllipse
 
@@ -29,6 +30,7 @@ Public Class frmInstEllipse
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
     Private sComeFrom As Integer
+    Private SaveButtonPressed As Boolean = False
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -92,6 +94,16 @@ Public Class frmInstEllipse
                 FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.NewRecord)
                 GridView1.OptionsBehavior.Editable = False
                 cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False
+                txtInstellipseFilename.Enabled = True
+
+                sID = System.Guid.NewGuid.ToString
+                '΅Εισαγωγή εγγραφής απευθείας στην βάση
+                Dim sResult As Boolean = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", sComeFrom)
+                If sResult = False Then
+                    XtraMessageBox.Show("Υπήρξε πρόβλημα κατά την διαδικασία ανοίγματος εκκρεμότητας.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Me.Close()
+                End If
+                Mode = FormMode.EditRecord
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_INST_ELLIPSE where id =" & toSQLValueS(sID), sFields)
@@ -207,6 +219,7 @@ Public Class frmInstEllipse
                 End Select
 
                 If sResult = True Then
+                    SaveButtonPressed = True
                     If Insetrt_EllipseSer_EllipseJobs_InstEllipse(LastEllipseID) = False Then
                         Using oCmd As New SqlCommand("DELETE FROM INST_ELLIPSE WHERE ID =  " & toSQLValueS(sID), CNDB)
                             oCmd.ExecuteNonQuery()
@@ -431,6 +444,7 @@ Public Class frmInstEllipse
     End Sub
 
     Private Sub GridView1_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanging
+
         If e.Column.FieldName = "completed" Then
             If e.Value = True Then GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "dtCompleted", Date.Now) Else GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "dtCompleted", Nothing)
         End If
@@ -541,7 +555,7 @@ Public Class frmInstEllipse
         End If
     End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles cmdSendEmail.Click
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         If GridView1.RowCount = 0 Then XtraMessageBox.Show("Δεν υπάρχουν εκκρεμότητες προς αποστολή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Prog_Prop.GetProgEmailInst()
         SendEmailExportReport()
@@ -603,7 +617,7 @@ Public Class frmInstEllipse
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
         Dim sCusID As String
-        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(GUID.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
+        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
@@ -614,5 +628,16 @@ Public Class frmInstEllipse
     Private Sub cboINST_EditValueChanged(sender As Object, e As EventArgs) Handles cboINST.EditValueChanged
         If cboINST.GetColumnValue("cusID").ToString <> "" Then cboCUS.EditValue = System.Guid.Parse(cboINST.GetColumnValue("cusID").ToString)
         If cboINST.GetColumnValue("transhID").ToString <> "" Then cboTRANSH.EditValue = System.Guid.Parse(cboINST.GetColumnValue("transhID").ToString)
+    End Sub
+
+    Private Sub frmInstEllipse_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If SaveButtonPressed = False Then
+            If XtraMessageBox.Show("Θέλετε να σώσετε την εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then
+                Dim sSQL As String = "DELETE FROM INST_ELLIPSE WHERE ID = '" & sID & "'"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            End If
+        End If
     End Sub
 End Class

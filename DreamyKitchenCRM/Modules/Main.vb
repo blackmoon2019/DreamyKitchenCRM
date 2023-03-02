@@ -45,6 +45,7 @@ Module Main
         Public Decimals As Integer
         Public SupportEmail As String
         Public InstEllipseInfBody As String
+        Public InstEllipseInfAppointmentBody As String
         Public InstEllipseInfSubject As String
         Public InstEllipseInfBodySup As String
         Public InstEllipseInfSubjectSup As String
