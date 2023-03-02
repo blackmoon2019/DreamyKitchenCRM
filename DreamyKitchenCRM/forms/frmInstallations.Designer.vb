@@ -20,13 +20,16 @@ Partial Class frmInstallations
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstallations))
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.grdMain = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
@@ -80,10 +83,10 @@ Partial Class frmInstallations
         Me.TabNavigationPage2 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.grdMain = New DevExpress.XtraGrid.GridControl()
-        Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -137,11 +140,64 @@ Partial Class frmInstallations
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'GridView2
+        '
+        Me.GridView2.DetailHeight = 619
+        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
+        Me.GridView2.GridControl = Me.grdMain
+        Me.GridView2.Name = "GridView2"
+        Me.GridView2.OptionsBehavior.Editable = False
+        Me.GridView2.OptionsBehavior.ReadOnly = True
+        Me.GridView2.OptionsLayout.Columns.StoreAllOptions = True
+        Me.GridView2.OptionsLayout.Columns.StoreAppearance = True
+        Me.GridView2.OptionsLayout.StoreAllOptions = True
+        Me.GridView2.OptionsLayout.StoreAppearance = True
+        Me.GridView2.OptionsLayout.StoreFormatRules = True
+        Me.GridView2.OptionsPrint.PrintPreview = True
+        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView2.OptionsView.ColumnAutoWidth = False
+        Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
+        '
+        'grdMain
+        '
+        Me.grdMain.Cursor = System.Windows.Forms.Cursors.Default
+        Me.grdMain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
+        GridLevelNode1.LevelTemplate = Me.GridView2
+        GridLevelNode1.RelationName = "Level1"
+        Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        Me.grdMain.Location = New System.Drawing.Point(12, 12)
+        Me.grdMain.MainView = Me.GridView1
+        Me.grdMain.Margin = New System.Windows.Forms.Padding(5)
+        Me.grdMain.Name = "grdMain"
+        Me.grdMain.Size = New System.Drawing.Size(1341, 992)
+        Me.grdMain.TabIndex = 7
+        Me.grdMain.UseEmbeddedNavigator = True
+        Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
+        '
+        'GridView1
+        '
+        Me.GridView1.DetailHeight = 619
+        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
+        Me.GridView1.GridControl = Me.grdMain
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GridView1.OptionsBehavior.Editable = False
+        Me.GridView1.OptionsBehavior.ReadOnly = True
+        Me.GridView1.OptionsLayout.Columns.StoreAppearance = True
+        Me.GridView1.OptionsLayout.StoreAllOptions = True
+        Me.GridView1.OptionsLayout.StoreAppearance = True
+        Me.GridView1.OptionsLayout.StoreFormatRules = True
+        Me.GridView1.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.GridView1.OptionsMenu.ShowFooterItem = True
+        Me.GridView1.OptionsMenu.ShowGroupSummaryEditorItem = True
+        Me.GridView1.OptionsPrint.PrintPreview = True
+        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView1.OptionsView.ColumnAutoWidth = False
+        Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView1.OptionsView.ShowFooter = True
         '
         'VwTRANSHBindingSource
         '
@@ -231,7 +287,7 @@ Partial Class frmInstallations
         'txtTmOUT
         '
         Me.txtTmOUT.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.txtTmOUT.Location = New System.Drawing.Point(636, 509)
+        Me.txtTmOUT.Location = New System.Drawing.Point(603, 509)
         Me.txtTmOUT.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTmOUT.Name = "txtTmOUT"
         Me.txtTmOUT.Properties.BeepOnError = True
@@ -239,7 +295,7 @@ Partial Class frmInstallations
         Me.txtTmOUT.Properties.MaskSettings.Set("mask", "HH:mm")
         Me.txtTmOUT.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
         Me.txtTmOUT.Properties.UseMaskAsDisplayFormat = True
-        Me.txtTmOUT.Size = New System.Drawing.Size(124, 38)
+        Me.txtTmOUT.Size = New System.Drawing.Size(157, 38)
         Me.txtTmOUT.StyleController = Me.LayoutControl1
         Me.txtTmOUT.TabIndex = 46
         Me.txtTmOUT.Tag = "tmOUT,0,1,2"
@@ -255,7 +311,7 @@ Partial Class frmInstallations
         Me.txtTmIN.Properties.MaskSettings.Set("mask", "HH:mm")
         Me.txtTmIN.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
         Me.txtTmIN.Properties.UseMaskAsDisplayFormat = True
-        Me.txtTmIN.Size = New System.Drawing.Size(204, 38)
+        Me.txtTmIN.Size = New System.Drawing.Size(171, 38)
         Me.txtTmIN.StyleController = Me.LayoutControl1
         Me.txtTmIN.TabIndex = 45
         Me.txtTmIN.Tag = "tmIN,0,1,2"
@@ -275,13 +331,13 @@ Partial Class frmInstallations
         'chkPaid
         '
         Me.chkPaid.EditValue = CType(0, Byte)
-        Me.chkPaid.Location = New System.Drawing.Point(453, 551)
+        Me.chkPaid.Location = New System.Drawing.Point(392, 551)
         Me.chkPaid.Margin = New System.Windows.Forms.Padding(5)
         Me.chkPaid.Name = "chkPaid"
         Me.chkPaid.Properties.Caption = "Εξοφλημένο"
         Me.chkPaid.Properties.ValueChecked = CType(1, Byte)
         Me.chkPaid.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkPaid.Size = New System.Drawing.Size(900, 35)
+        Me.chkPaid.Size = New System.Drawing.Size(961, 35)
         Me.chkPaid.StyleController = Me.LayoutControl1
         Me.chkPaid.TabIndex = 43
         Me.chkPaid.Tag = "paid,0,1,2"
@@ -295,7 +351,7 @@ Partial Class frmInstallations
         Me.chkCompleted.Properties.Caption = "Ολοκληρώθηκε"
         Me.chkCompleted.Properties.ValueChecked = CType(1, Byte)
         Me.chkCompleted.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkCompleted.Size = New System.Drawing.Size(437, 35)
+        Me.chkCompleted.Size = New System.Drawing.Size(376, 35)
         Me.chkCompleted.StyleController = Me.LayoutControl1
         Me.chkCompleted.TabIndex = 35
         Me.chkCompleted.Tag = "completed,0,1,2"
@@ -371,7 +427,7 @@ Partial Class frmInstallations
         Me.txtCode.Properties.Appearance.Options.UseBackColor = True
         Me.txtCode.Properties.Appearance.Options.UseFont = True
         Me.txtCode.Properties.ReadOnly = True
-        Me.txtCode.Size = New System.Drawing.Size(244, 38)
+        Me.txtCode.Size = New System.Drawing.Size(124, 38)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
         Me.txtCode.Tag = "code,0"
@@ -527,7 +583,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem4.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(623, 42)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(503, 42)
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(363, 23)
         '
@@ -552,9 +608,9 @@ Partial Class frmInstallations
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(623, 0)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(503, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(722, 42)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(842, 42)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem6
@@ -562,7 +618,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem6.Control = Me.chkCompleted
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 539)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(441, 39)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(380, 39)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
@@ -679,9 +735,9 @@ Partial Class frmInstallations
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.chkPaid
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(441, 539)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(380, 539)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(904, 39)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(965, 39)
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
         '
@@ -698,16 +754,16 @@ Partial Class frmInstallations
         Me.LayoutControlItem15.Control = Me.txtTmIN
         Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 497)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(583, 42)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(550, 42)
         Me.LayoutControlItem15.Text = "Από"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(363, 23)
         '
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.txtTmOUT
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(583, 497)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(550, 497)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(169, 42)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(202, 42)
         Me.LayoutControlItem16.Text = "Έως"
         Me.LayoutControlItem16.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(36, 23)
@@ -769,62 +825,6 @@ Partial Class frmInstallations
         Me.LayoutControlGroup1.Size = New System.Drawing.Size(1365, 1016)
         Me.LayoutControlGroup1.TextVisible = False
         '
-        'grdMain
-        '
-        Me.grdMain.Cursor = System.Windows.Forms.Cursors.Default
-        Me.grdMain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
-        GridLevelNode1.LevelTemplate = Me.GridView2
-        GridLevelNode1.RelationName = "Level1"
-        Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.grdMain.Location = New System.Drawing.Point(12, 12)
-        Me.grdMain.MainView = Me.GridView1
-        Me.grdMain.Margin = New System.Windows.Forms.Padding(5)
-        Me.grdMain.Name = "grdMain"
-        Me.grdMain.Size = New System.Drawing.Size(1341, 992)
-        Me.grdMain.TabIndex = 7
-        Me.grdMain.UseEmbeddedNavigator = True
-        Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2, Me.GridView1})
-        '
-        'GridView2
-        '
-        Me.GridView2.DetailHeight = 619
-        Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
-        Me.GridView2.GridControl = Me.grdMain
-        Me.GridView2.Name = "GridView2"
-        Me.GridView2.OptionsBehavior.Editable = False
-        Me.GridView2.OptionsBehavior.ReadOnly = True
-        Me.GridView2.OptionsLayout.Columns.StoreAllOptions = True
-        Me.GridView2.OptionsLayout.Columns.StoreAppearance = True
-        Me.GridView2.OptionsLayout.StoreAllOptions = True
-        Me.GridView2.OptionsLayout.StoreAppearance = True
-        Me.GridView2.OptionsLayout.StoreFormatRules = True
-        Me.GridView2.OptionsPrint.PrintPreview = True
-        Me.GridView2.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView2.OptionsView.ColumnAutoWidth = False
-        Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
-        '
-        'GridView1
-        '
-        Me.GridView1.DetailHeight = 619
-        Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
-        Me.GridView1.GridControl = Me.grdMain
-        Me.GridView1.Name = "GridView1"
-        Me.GridView1.OptionsBehavior.AutoExpandAllGroups = True
-        Me.GridView1.OptionsBehavior.Editable = False
-        Me.GridView1.OptionsBehavior.ReadOnly = True
-        Me.GridView1.OptionsLayout.Columns.StoreAppearance = True
-        Me.GridView1.OptionsLayout.StoreAllOptions = True
-        Me.GridView1.OptionsLayout.StoreAppearance = True
-        Me.GridView1.OptionsLayout.StoreFormatRules = True
-        Me.GridView1.OptionsMenu.ShowConditionalFormattingItem = True
-        Me.GridView1.OptionsMenu.ShowFooterItem = True
-        Me.GridView1.OptionsMenu.ShowGroupSummaryEditorItem = True
-        Me.GridView1.OptionsPrint.PrintPreview = True
-        Me.GridView1.OptionsSelection.EnableAppearanceFocusedCell = False
-        Me.GridView1.OptionsView.ColumnAutoWidth = False
-        Me.GridView1.OptionsView.EnableAppearanceEvenRow = True
-        Me.GridView1.OptionsView.ShowFooter = True
-        '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.grdMain
@@ -845,6 +845,9 @@ Partial Class frmInstallations
         Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "frmInstallations"
         Me.Text = "Μισθοδοσία Τοποθετών"
+        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.grdMain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -898,9 +901,6 @@ Partial Class frmInstallations
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.grdMain, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 

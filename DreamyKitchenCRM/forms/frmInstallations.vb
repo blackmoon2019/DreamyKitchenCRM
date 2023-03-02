@@ -312,6 +312,7 @@ Public Class frmInstallations
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Το αρχείο αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                cmdInstEllipse.Enabled = False
             Catch ex As Exception
                 XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
@@ -469,30 +470,31 @@ Public Class frmInstallations
         Dim sSQL As String
         If e.KeyCode = Keys.Delete Then
             If UserProps.AllowDelete = False Then Exit Sub
-
-            Dim Cmd As SqlCommand, sdr As SqlDataReader
-            sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η εκκρεμότητα?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                Dim Cmd As SqlCommand, sdr As SqlDataReader
+                sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
                                 " and DATEADD(ms, -DATEPART(ms, createdOn), createdOn)> " & toSQLValueS(DateTime.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "createdOn")).ToString("yyyy-MM-dd HH:mm:ss.fff"))
-            Cmd = New SqlCommand(sSQL.ToString, CNDB)
-            sdr = Cmd.ExecuteReader()
-            Dim CountEllipse As Integer
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
-                If CountEllipse > 0 Then
-                    XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Cmd = New SqlCommand(sSQL.ToString, CNDB)
+                sdr = Cmd.ExecuteReader()
+                Dim CountEllipse As Integer
+                If (sdr.Read() = True) Then
+                    If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
+                    If CountEllipse > 0 Then
+                        XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        sdr.Close()
+                        Exit Sub
+                    Else
+                        sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        LoadRecords()
+                    End If
+                Else
+                    XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     sdr.Close()
                     Exit Sub
-                Else
-                    sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Using oCmd As New SqlCommand(sSQL, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                    LoadRecords()
                 End If
-            Else
-                XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                sdr.Close()
-                Exit Sub
             End If
         End If
     End Sub

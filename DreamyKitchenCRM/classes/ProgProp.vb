@@ -174,6 +174,7 @@ Public Class ProgProp
                             Case "INSTALLATIONS_EMAIL_SUP" : ProgProps.InstEmailAccountSup = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_BODY_SUP_INF" : ProgProps.InstEllipseInfBodySup = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "ELLIPSE_SUBJECT_SUP_INF" : ProgProps.InstEllipseInfSubjectSup = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "ELLIPSE_BODY_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
                         End Select
                     End If
                 Else
@@ -189,6 +190,7 @@ Public Class ProgProp
                                 Case "INSTALLATIONS_EMAIL_SUP" : ProgProps.InstEmailAccountSup = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_BODY_SUP_INF" : ProgProps.InstEllipseInfBodySup = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "ELLIPSE_SUBJECT_SUP_INF" : ProgProps.InstEllipseInfSubjectSup = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "ELLIPSE_BODY_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
                             End Select
                         End If
                     End If
@@ -323,7 +325,7 @@ Public Class ProgProp
         End Try
     End Sub
 
-    Public Sub SetProgInstEmail(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String, ByVal sValue4 As String, ByVal sValue5 As String, ByVal sValue6 As String)
+    Public Sub SetProgInstEmail(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String, ByVal sValue4 As String, ByVal sValue5 As String, ByVal sValue6 As String, ByVal sValue7 As String)
         Dim sSQL As String
         Dim cmd As SqlCommand
         Try
@@ -338,6 +340,8 @@ Public Class ProgProp
             sSQL = "Update PRM set val = '" & sValue5 & "' where prm= 'ELLIPSE_SUBJECT_SUP_INF'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             sSQL = "Update PRM set val = '" & sValue6 & "' where prm= 'ELLIPSE_BODY_SUP_INF'"
+            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            sSQL = "Update PRM set val = '" & sValue7 & "' where prm= 'ELLIPSE_BODY_INF_APPOINTMENT'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
 
         Catch ex As Exception
