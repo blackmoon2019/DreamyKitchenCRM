@@ -21,11 +21,11 @@ Partial Class frmInstEllipse
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstEllipse))
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.INSTELLIPSEJOBSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DmDataSet = New DreamyKitchenCRM.DMDataSet()
         Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -88,25 +88,35 @@ Partial Class frmInstEllipse
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.TabNavigationPage2 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cmdDefEmail = New DevExpress.XtraEditors.DropDownButton()
+        Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.DefInst = New DevExpress.XtraBars.BarButtonItem()
+        Me.DefInstAppointment = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
+        Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
+        Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
-        Me.SimpleButton1 = New DevExpress.XtraEditors.SimpleButton()
+        Me.cmdSendApointmentEmail = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSendEmail = New DevExpress.XtraEditors.SimpleButton()
-        Me.MemoEdit1 = New DevExpress.XtraEditors.MemoEdit()
-        Me.TextEdit2 = New DevExpress.XtraEditors.TextEdit()
-        Me.TextEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtBody = New DevExpress.XtraEditors.MemoEdit()
+        Me.txtTo = New DevExpress.XtraEditors.TextEdit()
         Me.grdMain = New DevExpress.XtraGrid.GridControl()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
-        Me.TextEdit11 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtSubject = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
         CType(Me.INSTELLIPSEJOBSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DmDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,22 +168,25 @@ Partial Class frmInstEllipse
         Me.TabNavigationPage2.SuspendLayout()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtBody.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.TextEdit11.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'INSTELLIPSEJOBSBindingSource
@@ -298,10 +311,10 @@ Partial Class frmInstEllipse
         Me.LabelControl2.Appearance.Options.UseForeColor = True
         Me.LabelControl2.Location = New System.Drawing.Point(12, 622)
         Me.LabelControl2.Name = "LabelControl2"
-        Me.LabelControl2.Size = New System.Drawing.Size(148, 25)
+        Me.LabelControl2.Size = New System.Drawing.Size(262, 25)
         Me.LabelControl2.StyleController = Me.LayoutControl1
         Me.LabelControl2.TabIndex = 48
-        Me.LabelControl2.Text = "Εκκρεμότητες"
+        Me.LabelControl2.Text = "Εργασίες - Εκκρεμότητες"
         '
         'GridControl1
         '
@@ -581,8 +594,8 @@ Partial Class frmInstEllipse
         Me.txtInstellipseFilename.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInstellipseFilename.Name = "txtInstellipseFilename"
         Me.txtInstellipseFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
-        Me.txtInstellipseFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.txtInstellipseFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtInstellipseFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtInstellipseFilename.Size = New System.Drawing.Size(1194, 38)
         Me.txtInstellipseFilename.StyleController = Me.LayoutControl1
@@ -846,14 +859,14 @@ Partial Class frmInstEllipse
         '
         'LayoutControl2
         '
+        Me.LayoutControl2.Controls.Add(Me.cmdDefEmail)
         Me.LayoutControl2.Controls.Add(Me.LabelControl3)
-        Me.LayoutControl2.Controls.Add(Me.SimpleButton1)
+        Me.LayoutControl2.Controls.Add(Me.cmdSendApointmentEmail)
         Me.LayoutControl2.Controls.Add(Me.cmdSendEmail)
-        Me.LayoutControl2.Controls.Add(Me.MemoEdit1)
-        Me.LayoutControl2.Controls.Add(Me.TextEdit2)
-        Me.LayoutControl2.Controls.Add(Me.TextEdit1)
+        Me.LayoutControl2.Controls.Add(Me.txtBody)
+        Me.LayoutControl2.Controls.Add(Me.txtTo)
         Me.LayoutControl2.Controls.Add(Me.grdMain)
-        Me.LayoutControl2.Controls.Add(Me.TextEdit11)
+        Me.LayoutControl2.Controls.Add(Me.txtSubject)
         Me.LayoutControl2.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl2.Name = "LayoutControl2"
@@ -862,74 +875,138 @@ Partial Class frmInstEllipse
         Me.LayoutControl2.TabIndex = 9
         Me.LayoutControl2.Text = "LayoutControl2"
         '
+        'cmdDefEmail
+        '
+        Me.cmdDefEmail.DropDownControl = Me.PopupMenu1
+        Me.cmdDefEmail.ImageOptions.Image = CType(resources.GetObject("cmdDefEmail.ImageOptions.Image"), System.Drawing.Image)
+        Me.cmdDefEmail.Location = New System.Drawing.Point(12, 386)
+        Me.cmdDefEmail.MenuManager = Me.BarManager1
+        Me.cmdDefEmail.Name = "cmdDefEmail"
+        Me.cmdDefEmail.Size = New System.Drawing.Size(289, 38)
+        Me.cmdDefEmail.StyleController = Me.LayoutControl2
+        Me.cmdDefEmail.TabIndex = 51
+        Me.cmdDefEmail.Text = "Προεπιλεγμένο Κείμενο"
+        '
+        'PopupMenu1
+        '
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.DefInst), New DevExpress.XtraBars.LinkPersistInfo(Me.DefInstAppointment)})
+        Me.PopupMenu1.Manager = Me.BarManager1
+        Me.PopupMenu1.Name = "PopupMenu1"
+        '
+        'DefInst
+        '
+        Me.DefInst.Caption = "Ενημέρωσης Εκκρεμοτήτων"
+        Me.DefInst.Id = 0
+        Me.DefInst.Name = "DefInst"
+        '
+        'DefInstAppointment
+        '
+        Me.DefInstAppointment.Caption = "Ενημέρωσης Προγραμματισμένου Ραντεβού"
+        Me.DefInstAppointment.Id = 1
+        Me.DefInstAppointment.Name = "DefInstAppointment"
+        '
+        'BarManager1
+        '
+        Me.BarManager1.DockControls.Add(Me.barDockControlTop)
+        Me.BarManager1.DockControls.Add(Me.barDockControlBottom)
+        Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
+        Me.BarManager1.DockControls.Add(Me.barDockControlRight)
+        Me.BarManager1.Form = Me
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.DefInst, Me.DefInstAppointment})
+        Me.BarManager1.MaxItemId = 2
+        '
+        'barDockControlTop
+        '
+        Me.barDockControlTop.CausesValidation = False
+        Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
+        Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlTop.Manager = Me.BarManager1
+        Me.barDockControlTop.Size = New System.Drawing.Size(1635, 0)
+        '
+        'barDockControlBottom
+        '
+        Me.barDockControlBottom.CausesValidation = False
+        Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1255)
+        Me.barDockControlBottom.Manager = Me.BarManager1
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1635, 0)
+        '
+        'barDockControlLeft
+        '
+        Me.barDockControlLeft.CausesValidation = False
+        Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
+        Me.barDockControlLeft.Manager = Me.BarManager1
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 1255)
+        '
+        'barDockControlRight
+        '
+        Me.barDockControlRight.CausesValidation = False
+        Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
+        Me.barDockControlRight.Location = New System.Drawing.Point(1635, 0)
+        Me.barDockControlRight.Manager = Me.BarManager1
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 1255)
+        '
         'LabelControl3
         '
         Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
         Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.LabelControl3.Appearance.Options.UseFont = True
         Me.LabelControl3.Appearance.Options.UseForeColor = True
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 392)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 430)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(157, 25)
         Me.LabelControl3.StyleController = Me.LayoutControl2
         Me.LabelControl3.TabIndex = 49
         Me.LabelControl3.Text = "Ιστορικό Email"
         '
-        'SimpleButton1
+        'cmdSendApointmentEmail
         '
-        Me.SimpleButton1.ImageOptions.Image = CType(resources.GetObject("SimpleButton1.ImageOptions.Image"), System.Drawing.Image)
-        Me.SimpleButton1.Location = New System.Drawing.Point(819, 348)
-        Me.SimpleButton1.Margin = New System.Windows.Forms.Padding(5)
-        Me.SimpleButton1.Name = "SimpleButton1"
-        Me.SimpleButton1.Size = New System.Drawing.Size(804, 40)
-        Me.SimpleButton1.StyleController = Me.LayoutControl2
-        Me.SimpleButton1.TabIndex = 6
-        Me.SimpleButton1.Text = "Αποστολή Email Ενημέρωσης Ραντεβού"
+        Me.cmdSendApointmentEmail.ImageOptions.Image = CType(resources.GetObject("cmdSendApointmentEmail.ImageOptions.Image"), System.Drawing.Image)
+        Me.cmdSendApointmentEmail.Location = New System.Drawing.Point(716, 386)
+        Me.cmdSendApointmentEmail.Margin = New System.Windows.Forms.Padding(5)
+        Me.cmdSendApointmentEmail.Name = "cmdSendApointmentEmail"
+        Me.cmdSendApointmentEmail.Size = New System.Drawing.Size(457, 40)
+        Me.cmdSendApointmentEmail.StyleController = Me.LayoutControl2
+        Me.cmdSendApointmentEmail.TabIndex = 6
+        Me.cmdSendApointmentEmail.Text = "Αποστολή Email Ενημέρωσης Ραντεβού"
         '
         'cmdSendEmail
         '
         Me.cmdSendEmail.ImageOptions.Image = CType(resources.GetObject("cmdSendEmail.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSendEmail.Location = New System.Drawing.Point(12, 348)
+        Me.cmdSendEmail.Location = New System.Drawing.Point(1177, 386)
         Me.cmdSendEmail.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSendEmail.Name = "cmdSendEmail"
-        Me.cmdSendEmail.Size = New System.Drawing.Size(803, 40)
+        Me.cmdSendEmail.Size = New System.Drawing.Size(446, 40)
         Me.cmdSendEmail.StyleController = Me.LayoutControl2
         Me.cmdSendEmail.TabIndex = 5
         Me.cmdSendEmail.Text = "Αποστολή Email Ενημέρωσης Εκκρεμοτήτων"
         '
-        'MemoEdit1
+        'txtBody
         '
-        Me.MemoEdit1.Location = New System.Drawing.Point(87, 138)
-        Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(1536, 206)
-        Me.MemoEdit1.StyleController = Me.LayoutControl2
-        Me.MemoEdit1.TabIndex = 4
+        Me.txtBody.Location = New System.Drawing.Point(87, 96)
+        Me.txtBody.Name = "txtBody"
+        Me.txtBody.Size = New System.Drawing.Size(1536, 286)
+        Me.txtBody.StyleController = Me.LayoutControl2
+        Me.txtBody.TabIndex = 4
         '
-        'TextEdit2
+        'txtTo
         '
-        Me.TextEdit2.Location = New System.Drawing.Point(87, 12)
-        Me.TextEdit2.Name = "TextEdit2"
-        Me.TextEdit2.Size = New System.Drawing.Size(1536, 38)
-        Me.TextEdit2.StyleController = Me.LayoutControl2
-        Me.TextEdit2.TabIndex = 0
-        '
-        'TextEdit1
-        '
-        Me.TextEdit1.Location = New System.Drawing.Point(87, 54)
-        Me.TextEdit1.Name = "TextEdit1"
-        Me.TextEdit1.Size = New System.Drawing.Size(1536, 38)
-        Me.TextEdit1.StyleController = Me.LayoutControl2
-        Me.TextEdit1.TabIndex = 2
+        Me.txtTo.Location = New System.Drawing.Point(87, 12)
+        Me.txtTo.Name = "txtTo"
+        Me.txtTo.Size = New System.Drawing.Size(1536, 38)
+        Me.txtTo.StyleController = Me.LayoutControl2
+        Me.txtTo.TabIndex = 2
         '
         'grdMain
         '
         Me.grdMain.Cursor = System.Windows.Forms.Cursors.Default
         Me.grdMain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
-        Me.grdMain.Location = New System.Drawing.Point(12, 421)
+        Me.grdMain.Location = New System.Drawing.Point(12, 459)
         Me.grdMain.MainView = Me.GridView3
         Me.grdMain.Margin = New System.Windows.Forms.Padding(5)
         Me.grdMain.Name = "grdMain"
-        Me.grdMain.Size = New System.Drawing.Size(1611, 764)
+        Me.grdMain.Size = New System.Drawing.Size(1611, 726)
         Me.grdMain.TabIndex = 7
         Me.grdMain.UseEmbeddedNavigator = True
         Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3, Me.GridView2})
@@ -974,19 +1051,19 @@ Partial Class frmInstEllipse
         Me.GridView2.OptionsView.ColumnAutoWidth = False
         Me.GridView2.OptionsView.EnableAppearanceEvenRow = True
         '
-        'TextEdit11
+        'txtSubject
         '
-        Me.TextEdit11.Location = New System.Drawing.Point(87, 96)
-        Me.TextEdit11.Name = "TextEdit11"
-        Me.TextEdit11.Size = New System.Drawing.Size(1536, 38)
-        Me.TextEdit11.StyleController = Me.LayoutControl2
-        Me.TextEdit11.TabIndex = 3
+        Me.txtSubject.Location = New System.Drawing.Point(87, 54)
+        Me.txtSubject.Name = "txtSubject"
+        Me.txtSubject.Size = New System.Drawing.Size(1536, 38)
+        Me.txtSubject.StyleController = Me.LayoutControl2
+        Me.txtSubject.TabIndex = 3
         '
         'LayoutControlGroup2
         '
         Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup2.GroupBordersVisible = False
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem12, Me.LayoutControlItem13, Me.LayoutControlItem19, Me.LayoutControlItem20})
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem18, Me.LayoutControlItem13, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem12, Me.LayoutControlItem17, Me.EmptySpaceItem3})
         Me.LayoutControlGroup2.Name = "Root"
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(1635, 1197)
         Me.LayoutControlGroup2.TextVisible = False
@@ -994,63 +1071,45 @@ Partial Class frmInstEllipse
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me.grdMain
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 409)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 447)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(1615, 768)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(1615, 730)
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem15.TextVisible = False
         '
         'LayoutControlItem16
         '
-        Me.LayoutControlItem16.Control = Me.TextEdit1
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 42)
+        Me.LayoutControlItem16.Control = Me.txtTo
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
         Me.LayoutControlItem16.Size = New System.Drawing.Size(1615, 42)
         Me.LayoutControlItem16.Text = "Προς"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(63, 23)
         '
-        'LayoutControlItem17
-        '
-        Me.LayoutControlItem17.Control = Me.TextEdit2
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(1615, 42)
-        Me.LayoutControlItem17.Text = "Από"
-        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(63, 23)
-        '
         'LayoutControlItem18
         '
-        Me.LayoutControlItem18.Control = Me.MemoEdit1
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 126)
+        Me.LayoutControlItem18.Control = Me.txtBody
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 84)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(1615, 210)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(1615, 290)
         Me.LayoutControlItem18.Text = "Κείμενο"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(63, 23)
-        '
-        'LayoutControlItem12
-        '
-        Me.LayoutControlItem12.Control = Me.SimpleButton1
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(807, 336)
-        Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(808, 44)
-        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem12.TextVisible = False
         '
         'LayoutControlItem13
         '
         Me.LayoutControlItem13.Control = Me.cmdSendEmail
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 336)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(1165, 374)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(807, 44)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(450, 44)
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem13.TextVisible = False
         '
         'LayoutControlItem19
         '
-        Me.LayoutControlItem19.Control = Me.TextEdit11
+        Me.LayoutControlItem19.Control = Me.txtSubject
         Me.LayoutControlItem19.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem19.CustomizationFormText = "Προς"
-        Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 84)
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
         Me.LayoutControlItem19.Size = New System.Drawing.Size(1615, 42)
         Me.LayoutControlItem19.Text = "Θέμα"
@@ -1059,11 +1118,37 @@ Partial Class frmInstEllipse
         'LayoutControlItem20
         '
         Me.LayoutControlItem20.Control = Me.LabelControl3
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 380)
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 418)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
         Me.LayoutControlItem20.Size = New System.Drawing.Size(1615, 29)
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem20.TextVisible = False
+        '
+        'LayoutControlItem12
+        '
+        Me.LayoutControlItem12.Control = Me.cmdSendApointmentEmail
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(704, 374)
+        Me.LayoutControlItem12.Name = "LayoutControlItem12"
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(461, 44)
+        Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem12.TextVisible = False
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.cmdDefEmail
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 374)
+        Me.LayoutControlItem17.Name = "LayoutControlItem17"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(293, 44)
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem17.TextVisible = False
+        '
+        'EmptySpaceItem3
+        '
+        Me.EmptySpaceItem3.AllowHotTrack = False
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(293, 374)
+        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(411, 44)
+        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
         'frmInstEllipse
         '
@@ -1071,6 +1156,10 @@ Partial Class frmInstEllipse
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1635, 1255)
         Me.Controls.Add(Me.TabPane1)
+        Me.Controls.Add(Me.barDockControlLeft)
+        Me.Controls.Add(Me.barDockControlRight)
+        Me.Controls.Add(Me.barDockControlBottom)
+        Me.Controls.Add(Me.barDockControlTop)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "frmInstEllipse"
@@ -1126,23 +1215,27 @@ Partial Class frmInstEllipse
         Me.TabNavigationPage2.ResumeLayout(False)
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
-        CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PopupMenu1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtBody.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.TextEdit11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
     Friend WithEvents DmDataSet As DMDataSet
@@ -1209,21 +1302,31 @@ Partial Class frmInstEllipse
     Friend WithEvents GridView2 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents SimpleButton1 As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents cmdSendApointmentEmail As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents cmdSendEmail As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.MemoEdit
-    Friend WithEvents TextEdit2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents TextEdit1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtBody As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents txtTo As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents TextEdit11 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtSubject As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem19 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LayoutControlItem20 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtInstellipseFilename As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LfInstEllipseName As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents BehaviorManager1 As DevExpress.Utils.Behaviors.BehaviorManager
+    Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
+    Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlLeft As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents barDockControlRight As DevExpress.XtraBars.BarDockControl
+    Friend WithEvents DefInst As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents DefInstAppointment As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
+    Friend WithEvents cmdDefEmail As DevExpress.XtraEditors.DropDownButton
+    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
 End Class

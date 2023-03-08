@@ -266,6 +266,7 @@ Public Class frmInstallations
     End Sub
 
     Private Sub cmdInstEllipse_Click(sender As Object, e As EventArgs) Handles cmdInstEllipse.Click
+        If CheckIfHasInstEllipseNotCompleted() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν υπάρχει μη ολοκληρωμένη εκκρεμότητα.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Dim frmInstEllipse As New frmInstEllipse
         frmInstEllipse.Text = "Εκκρεμότητες Έργων"
         frmInstEllipse.Mode = FormMode.NewRecord
@@ -275,6 +276,20 @@ Public Class frmInstallations
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(frmInstEllipse.Parent.ClientRectangle.Width / 2 - frmInstEllipse.Width / 2), CInt(frmInstEllipse.Parent.ClientRectangle.Height / 2 - frmInstEllipse.Height / 2)))
         frmInstEllipse.Show()
     End Sub
+    Private Function CheckIfHasInstEllipseNotCompleted()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE completed = 0  and instID= " & toSQLValueS(sID)
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim CountEllipse As Integer
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
+            If CountEllipse > 0 Then Return True Else Return False
+        End If
+        sdr.Close()
+
+    End Function
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
         Dim sCusID As String
@@ -386,13 +401,15 @@ Public Class frmInstallations
             Cmd = New SqlCommand(sSQL.ToString, CNDB)
             sdr = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
-                Dim sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
-                Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
-                Dim b As Byte()
-                b = DirectCast(sdr("fInst"), Byte())
-                fs.Write(b, 0, b.Length)
-                fs.Close()
-                ShellExecute(ProgProps.TempFolderPath & sFilename)
+                If sdr.IsDBNull(sdr.GetOrdinal("fInstName")) = False Then
+                    Dim sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
+                    Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                    Dim b As Byte()
+                    b = DirectCast(sdr("fInst"), Byte())
+                    fs.Write(b, 0, b.Length)
+                    fs.Close()
+                    ShellExecute(ProgProps.TempFolderPath & sFilename)
+                End If
             End If
             sdr.Close()
         Catch exfs As Exception
@@ -418,6 +435,7 @@ Public Class frmInstallations
             Case 1 : LoadRecords()
 
             Case 2
+                If dtDeliverDate.EditValue = Nothing Or txtTmIN.Text = "00:00" Or txtTmOUT.EditValue = "00:00" Then cmdSendApointmentEmail.Enabled = False Else cmdSendApointmentEmail.Enabled = True
         End Select
     End Sub
     Private Sub LoadRecords()
