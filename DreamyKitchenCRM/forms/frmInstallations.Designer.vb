@@ -84,6 +84,28 @@ Partial Class frmInstallations
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.TabNavigationPage3 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
+        Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.TabNavigationPage4 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
+        Me.LayoutControl4 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
+        Me.cmdSendApointmentEmail = New DevExpress.XtraEditors.SimpleButton()
+        Me.txtBody = New DevExpress.XtraEditors.MemoEdit()
+        Me.txtTo = New DevExpress.XtraEditors.TextEdit()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.txtSubject = New DevExpress.XtraEditors.TextEdit()
+        Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,6 +163,28 @@ Partial Class frmInstallations
         Me.LayoutControl2.SuspendLayout()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabNavigationPage3.SuspendLayout()
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl3.SuspendLayout()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.TabNavigationPage4.SuspendLayout()
+        CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.LayoutControl4.SuspendLayout()
+        CType(Me.txtBody.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView2
@@ -222,10 +266,11 @@ Partial Class frmInstallations
         '
         Me.TabPane1.Controls.Add(Me.TabNavigationPage1)
         Me.TabPane1.Controls.Add(Me.TabNavigationPage2)
+        Me.TabPane1.Controls.Add(Me.TabNavigationPage3)
         Me.TabPane1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.TabPane1.Location = New System.Drawing.Point(0, 0)
         Me.TabPane1.Name = "TabPane1"
-        Me.TabPane1.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.TabNavigationPage1, Me.TabNavigationPage2})
+        Me.TabPane1.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.TabNavigationPage1, Me.TabNavigationPage2, Me.TabNavigationPage3})
         Me.TabPane1.RegularSize = New System.Drawing.Size(1365, 1074)
         Me.TabPane1.SelectedPage = Me.TabNavigationPage1
         Me.TabPane1.Size = New System.Drawing.Size(1365, 1074)
@@ -834,6 +879,239 @@ Partial Class frmInstallations
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
+        'TabNavigationPage3
+        '
+        Me.TabNavigationPage3.Caption = "Emaill"
+        Me.TabNavigationPage3.Controls.Add(Me.LayoutControl3)
+        Me.TabNavigationPage3.Name = "TabNavigationPage3"
+        Me.TabNavigationPage3.Size = New System.Drawing.Size(1365, 1016)
+        '
+        'LayoutControl3
+        '
+        Me.LayoutControl3.Controls.Add(Me.TabNavigationPage4)
+        Me.LayoutControl3.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl3.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl3.Name = "LayoutControl3"
+        Me.LayoutControl3.Root = Me.LayoutControlGroup2
+        Me.LayoutControl3.Size = New System.Drawing.Size(1365, 1016)
+        Me.LayoutControl3.TabIndex = 0
+        Me.LayoutControl3.Text = "LayoutControl3"
+        '
+        'LayoutControlGroup2
+        '
+        Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup2.GroupBordersVisible = False
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem25})
+        Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1365, 1016)
+        Me.LayoutControlGroup2.TextVisible = False
+        '
+        'TabNavigationPage4
+        '
+        Me.TabNavigationPage4.Caption = "Email"
+        Me.TabNavigationPage4.Controls.Add(Me.LayoutControl4)
+        Me.TabNavigationPage4.Name = "TabNavigationPage4"
+        Me.TabNavigationPage4.Size = New System.Drawing.Size(1341, 992)
+        '
+        'LayoutControl4
+        '
+        Me.LayoutControl4.Controls.Add(Me.LabelControl3)
+        Me.LayoutControl4.Controls.Add(Me.cmdSendApointmentEmail)
+        Me.LayoutControl4.Controls.Add(Me.txtBody)
+        Me.LayoutControl4.Controls.Add(Me.txtTo)
+        Me.LayoutControl4.Controls.Add(Me.GridControl1)
+        Me.LayoutControl4.Controls.Add(Me.txtSubject)
+        Me.LayoutControl4.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl4.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl4.Name = "LayoutControl4"
+        Me.LayoutControl4.Root = Me.LayoutControlGroup3
+        Me.LayoutControl4.Size = New System.Drawing.Size(1341, 992)
+        Me.LayoutControl4.TabIndex = 9
+        Me.LayoutControl4.Text = "LayoutControl4"
+        '
+        'LabelControl3
+        '
+        Me.LabelControl3.Appearance.Font = New System.Drawing.Font("Tahoma", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.LabelControl3.Appearance.Options.UseFont = True
+        Me.LabelControl3.Appearance.Options.UseForeColor = True
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 376)
+        Me.LabelControl3.Name = "LabelControl3"
+        Me.LabelControl3.Size = New System.Drawing.Size(157, 25)
+        Me.LabelControl3.StyleController = Me.LayoutControl4
+        Me.LabelControl3.TabIndex = 49
+        Me.LabelControl3.Text = "Ιστορικό Email"
+        '
+        'cmdSendApointmentEmail
+        '
+        Me.cmdSendApointmentEmail.ImageOptions.Image = CType(resources.GetObject("cmdSendApointmentEmail.ImageOptions.Image"), System.Drawing.Image)
+        Me.cmdSendApointmentEmail.Location = New System.Drawing.Point(953, 332)
+        Me.cmdSendApointmentEmail.Margin = New System.Windows.Forms.Padding(5)
+        Me.cmdSendApointmentEmail.Name = "cmdSendApointmentEmail"
+        Me.cmdSendApointmentEmail.Size = New System.Drawing.Size(376, 40)
+        Me.cmdSendApointmentEmail.StyleController = Me.LayoutControl4
+        Me.cmdSendApointmentEmail.TabIndex = 6
+        Me.cmdSendApointmentEmail.Text = "Αποστολή Email Ενημέρωσης Ραντεβού"
+        '
+        'txtBody
+        '
+        Me.txtBody.Location = New System.Drawing.Point(87, 96)
+        Me.txtBody.Name = "txtBody"
+        Me.txtBody.Size = New System.Drawing.Size(1242, 232)
+        Me.txtBody.StyleController = Me.LayoutControl4
+        Me.txtBody.TabIndex = 4
+        '
+        'txtTo
+        '
+        Me.txtTo.Location = New System.Drawing.Point(87, 12)
+        Me.txtTo.Name = "txtTo"
+        Me.txtTo.Size = New System.Drawing.Size(1242, 38)
+        Me.txtTo.StyleController = Me.LayoutControl4
+        Me.txtTo.TabIndex = 2
+        '
+        'GridControl1
+        '
+        Me.GridControl1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
+        Me.GridControl1.Location = New System.Drawing.Point(12, 405)
+        Me.GridControl1.MainView = Me.GridView3
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(5)
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(1317, 575)
+        Me.GridControl1.TabIndex = 7
+        Me.GridControl1.UseEmbeddedNavigator = True
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3, Me.GridView4})
+        '
+        'GridView3
+        '
+        Me.GridView3.DetailHeight = 619
+        Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
+        Me.GridView3.GridControl = Me.GridControl1
+        Me.GridView3.Name = "GridView3"
+        Me.GridView3.OptionsBehavior.AutoExpandAllGroups = True
+        Me.GridView3.OptionsBehavior.Editable = False
+        Me.GridView3.OptionsBehavior.ReadOnly = True
+        Me.GridView3.OptionsLayout.Columns.StoreAppearance = True
+        Me.GridView3.OptionsLayout.StoreAllOptions = True
+        Me.GridView3.OptionsLayout.StoreAppearance = True
+        Me.GridView3.OptionsLayout.StoreFormatRules = True
+        Me.GridView3.OptionsMenu.ShowConditionalFormattingItem = True
+        Me.GridView3.OptionsMenu.ShowFooterItem = True
+        Me.GridView3.OptionsMenu.ShowGroupSummaryEditorItem = True
+        Me.GridView3.OptionsPrint.PrintPreview = True
+        Me.GridView3.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView3.OptionsView.ColumnAutoWidth = False
+        Me.GridView3.OptionsView.EnableAppearanceEvenRow = True
+        Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'GridView4
+        '
+        Me.GridView4.DetailHeight = 619
+        Me.GridView4.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
+        Me.GridView4.GridControl = Me.GridControl1
+        Me.GridView4.Name = "GridView4"
+        Me.GridView4.OptionsBehavior.Editable = False
+        Me.GridView4.OptionsBehavior.ReadOnly = True
+        Me.GridView4.OptionsLayout.Columns.StoreAllOptions = True
+        Me.GridView4.OptionsLayout.Columns.StoreAppearance = True
+        Me.GridView4.OptionsLayout.StoreAllOptions = True
+        Me.GridView4.OptionsLayout.StoreAppearance = True
+        Me.GridView4.OptionsLayout.StoreFormatRules = True
+        Me.GridView4.OptionsPrint.PrintPreview = True
+        Me.GridView4.OptionsSelection.EnableAppearanceFocusedCell = False
+        Me.GridView4.OptionsView.ColumnAutoWidth = False
+        Me.GridView4.OptionsView.EnableAppearanceEvenRow = True
+        '
+        'txtSubject
+        '
+        Me.txtSubject.Location = New System.Drawing.Point(87, 54)
+        Me.txtSubject.Name = "txtSubject"
+        Me.txtSubject.Size = New System.Drawing.Size(1242, 38)
+        Me.txtSubject.StyleController = Me.LayoutControl4
+        Me.txtSubject.TabIndex = 3
+        '
+        'LayoutControlGroup3
+        '
+        Me.LayoutControlGroup3.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup3.GroupBordersVisible = False
+        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem17, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.LayoutControlItem23, Me.EmptySpaceItem4})
+        Me.LayoutControlGroup3.Name = "Root"
+        Me.LayoutControlGroup3.Size = New System.Drawing.Size(1341, 992)
+        Me.LayoutControlGroup3.TextVisible = False
+        '
+        'LayoutControlItem17
+        '
+        Me.LayoutControlItem17.Control = Me.GridControl1
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 393)
+        Me.LayoutControlItem17.Name = "LayoutControlItem15"
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(1321, 579)
+        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem17.TextVisible = False
+        '
+        'LayoutControlItem18
+        '
+        Me.LayoutControlItem18.Control = Me.txtTo
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem18.Name = "LayoutControlItem16"
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(1321, 42)
+        Me.LayoutControlItem18.Text = "Προς"
+        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(63, 23)
+        '
+        'LayoutControlItem19
+        '
+        Me.LayoutControlItem19.Control = Me.txtBody
+        Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 84)
+        Me.LayoutControlItem19.Name = "LayoutControlItem18"
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(1321, 236)
+        Me.LayoutControlItem19.Text = "Κείμενο"
+        Me.LayoutControlItem19.TextSize = New System.Drawing.Size(63, 23)
+        '
+        'LayoutControlItem21
+        '
+        Me.LayoutControlItem21.Control = Me.txtSubject
+        Me.LayoutControlItem21.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem21.CustomizationFormText = "Προς"
+        Me.LayoutControlItem21.Location = New System.Drawing.Point(0, 42)
+        Me.LayoutControlItem21.Name = "LayoutControlItem19"
+        Me.LayoutControlItem21.Size = New System.Drawing.Size(1321, 42)
+        Me.LayoutControlItem21.Text = "Θέμα"
+        Me.LayoutControlItem21.TextSize = New System.Drawing.Size(63, 23)
+        '
+        'LayoutControlItem22
+        '
+        Me.LayoutControlItem22.Control = Me.LabelControl3
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(0, 364)
+        Me.LayoutControlItem22.Name = "LayoutControlItem20"
+        Me.LayoutControlItem22.Size = New System.Drawing.Size(1321, 29)
+        Me.LayoutControlItem22.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem22.TextVisible = False
+        '
+        'LayoutControlItem23
+        '
+        Me.LayoutControlItem23.Control = Me.cmdSendApointmentEmail
+        Me.LayoutControlItem23.Location = New System.Drawing.Point(941, 320)
+        Me.LayoutControlItem23.Name = "LayoutControlItem12"
+        Me.LayoutControlItem23.Size = New System.Drawing.Size(380, 44)
+        Me.LayoutControlItem23.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem23.TextVisible = False
+        '
+        'EmptySpaceItem4
+        '
+        Me.EmptySpaceItem4.AllowHotTrack = False
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(0, 320)
+        Me.EmptySpaceItem4.Name = "EmptySpaceItem3"
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(941, 44)
+        Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem25
+        '
+        Me.LayoutControlItem25.Control = Me.TabNavigationPage4
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem25.Name = "LayoutControlItem25"
+        Me.LayoutControlItem25.Size = New System.Drawing.Size(1345, 996)
+        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem25.TextVisible = False
+        '
         'frmInstallations
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -902,6 +1180,28 @@ Partial Class frmInstallations
         Me.LayoutControl2.ResumeLayout(False)
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabNavigationPage3.ResumeLayout(False)
+        CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl3.ResumeLayout(False)
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabNavigationPage4.ResumeLayout(False)
+        CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.LayoutControl4.ResumeLayout(False)
+        CType(Me.txtBody.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -962,4 +1262,26 @@ Partial Class frmInstallations
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LayoutControlGroup1 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents TabNavigationPage3 As DevExpress.XtraBars.Navigation.TabNavigationPage
+    Friend WithEvents LayoutControl3 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents TabNavigationPage4 As DevExpress.XtraBars.Navigation.TabNavigationPage
+    Friend WithEvents LayoutControl4 As DevExpress.XtraLayout.LayoutControl
+    Friend WithEvents LabelControl3 As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents cmdSendApointmentEmail As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents txtBody As DevExpress.XtraEditors.MemoEdit
+    Friend WithEvents txtTo As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents GridView4 As DevExpress.XtraGrid.Views.Grid.GridView
+    Friend WithEvents txtSubject As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlGroup3 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem18 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem19 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem21 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem22 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem23 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
 End Class
