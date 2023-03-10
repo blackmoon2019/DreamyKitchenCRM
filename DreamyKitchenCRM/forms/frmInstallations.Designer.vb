@@ -86,7 +86,6 @@ Partial Class frmInstallations
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TabNavigationPage3 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
-        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.TabNavigationPage4 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl4 = New DevExpress.XtraLayout.LayoutControl()
         Me.LabelControl3 = New DevExpress.XtraEditors.LabelControl()
@@ -94,7 +93,20 @@ Partial Class frmInstallations
         Me.txtBody = New DevExpress.XtraEditors.MemoEdit()
         Me.txtTo = New DevExpress.XtraEditors.TextEdit()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.INSTMAILBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcode = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colinstID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colinstEllipseID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colemailFrom = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colemailTo = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colemailSubject = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colemailBody = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colDateOfEmail = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcreatedOn = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.txtSubject = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -105,7 +117,9 @@ Partial Class frmInstallations
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.INST_MAILTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.INST_MAILTableAdapter()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,13 +180,14 @@ Partial Class frmInstallations
         Me.TabNavigationPage3.SuspendLayout()
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl3.SuspendLayout()
-        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabNavigationPage4.SuspendLayout()
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl4.SuspendLayout()
         CType(Me.txtBody.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.INSTMAILBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -184,6 +199,7 @@ Partial Class frmInstallations
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -897,15 +913,6 @@ Partial Class frmInstallations
         Me.LayoutControl3.TabIndex = 0
         Me.LayoutControl3.Text = "LayoutControl3"
         '
-        'LayoutControlGroup2
-        '
-        Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlGroup2.GroupBordersVisible = False
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem25})
-        Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1365, 1016)
-        Me.LayoutControlGroup2.TextVisible = False
-        '
         'TabNavigationPage4
         '
         Me.TabNavigationPage4.Caption = "Email"
@@ -972,6 +979,7 @@ Partial Class frmInstallations
         'GridControl1
         '
         Me.GridControl1.Cursor = System.Windows.Forms.Cursors.Default
+        Me.GridControl1.DataSource = Me.INSTMAILBindingSource
         Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
         Me.GridControl1.Location = New System.Drawing.Point(12, 405)
         Me.GridControl1.MainView = Me.GridView3
@@ -982,8 +990,19 @@ Partial Class frmInstallations
         Me.GridControl1.UseEmbeddedNavigator = True
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3, Me.GridView4})
         '
+        'INSTMAILBindingSource
+        '
+        Me.INSTMAILBindingSource.DataMember = "INST_MAIL"
+        Me.INSTMAILBindingSource.DataSource = Me.DMDataSet
+        '
+        'DMDataSet
+        '
+        Me.DMDataSet.DataSetName = "DMDataSet"
+        Me.DMDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'GridView3
         '
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.colcode, Me.colinstID, Me.colinstEllipseID, Me.colemailFrom, Me.colemailTo, Me.colemailSubject, Me.colemailBody, Me.colDateOfEmail, Me.colcreatedOn, Me.colcreatedBy})
         Me.GridView3.DetailHeight = 619
         Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
         Me.GridView3.GridControl = Me.GridControl1
@@ -1003,6 +1022,105 @@ Partial Class frmInstallations
         Me.GridView3.OptionsView.ColumnAutoWidth = False
         Me.GridView3.OptionsView.EnableAppearanceEvenRow = True
         Me.GridView3.OptionsView.ShowGroupPanel = False
+        '
+        'colID
+        '
+        Me.colID.FieldName = "ID"
+        Me.colID.MinWidth = 35
+        Me.colID.Name = "colID"
+        Me.colID.Visible = True
+        Me.colID.VisibleIndex = 0
+        Me.colID.Width = 131
+        '
+        'colcode
+        '
+        Me.colcode.FieldName = "code"
+        Me.colcode.MinWidth = 35
+        Me.colcode.Name = "colcode"
+        Me.colcode.Visible = True
+        Me.colcode.VisibleIndex = 1
+        Me.colcode.Width = 131
+        '
+        'colinstID
+        '
+        Me.colinstID.FieldName = "instID"
+        Me.colinstID.MinWidth = 35
+        Me.colinstID.Name = "colinstID"
+        Me.colinstID.Visible = True
+        Me.colinstID.VisibleIndex = 2
+        Me.colinstID.Width = 131
+        '
+        'colinstEllipseID
+        '
+        Me.colinstEllipseID.FieldName = "instEllipseID"
+        Me.colinstEllipseID.MinWidth = 35
+        Me.colinstEllipseID.Name = "colinstEllipseID"
+        Me.colinstEllipseID.Visible = True
+        Me.colinstEllipseID.VisibleIndex = 3
+        Me.colinstEllipseID.Width = 131
+        '
+        'colemailFrom
+        '
+        Me.colemailFrom.FieldName = "emailFrom"
+        Me.colemailFrom.MinWidth = 35
+        Me.colemailFrom.Name = "colemailFrom"
+        Me.colemailFrom.Visible = True
+        Me.colemailFrom.VisibleIndex = 4
+        Me.colemailFrom.Width = 131
+        '
+        'colemailTo
+        '
+        Me.colemailTo.FieldName = "emailTo"
+        Me.colemailTo.MinWidth = 35
+        Me.colemailTo.Name = "colemailTo"
+        Me.colemailTo.Visible = True
+        Me.colemailTo.VisibleIndex = 5
+        Me.colemailTo.Width = 131
+        '
+        'colemailSubject
+        '
+        Me.colemailSubject.FieldName = "emailSubject"
+        Me.colemailSubject.MinWidth = 35
+        Me.colemailSubject.Name = "colemailSubject"
+        Me.colemailSubject.Visible = True
+        Me.colemailSubject.VisibleIndex = 6
+        Me.colemailSubject.Width = 131
+        '
+        'colemailBody
+        '
+        Me.colemailBody.FieldName = "emailBody"
+        Me.colemailBody.MinWidth = 35
+        Me.colemailBody.Name = "colemailBody"
+        Me.colemailBody.Visible = True
+        Me.colemailBody.VisibleIndex = 7
+        Me.colemailBody.Width = 131
+        '
+        'colDateOfEmail
+        '
+        Me.colDateOfEmail.FieldName = "DateOfEmail"
+        Me.colDateOfEmail.MinWidth = 35
+        Me.colDateOfEmail.Name = "colDateOfEmail"
+        Me.colDateOfEmail.Visible = True
+        Me.colDateOfEmail.VisibleIndex = 8
+        Me.colDateOfEmail.Width = 131
+        '
+        'colcreatedOn
+        '
+        Me.colcreatedOn.FieldName = "createdOn"
+        Me.colcreatedOn.MinWidth = 35
+        Me.colcreatedOn.Name = "colcreatedOn"
+        Me.colcreatedOn.Visible = True
+        Me.colcreatedOn.VisibleIndex = 9
+        Me.colcreatedOn.Width = 131
+        '
+        'colcreatedBy
+        '
+        Me.colcreatedBy.FieldName = "createdBy"
+        Me.colcreatedBy.MinWidth = 35
+        Me.colcreatedBy.Name = "colcreatedBy"
+        Me.colcreatedBy.Visible = True
+        Me.colcreatedBy.VisibleIndex = 10
+        Me.colcreatedBy.Width = 131
         '
         'GridView4
         '
@@ -1103,6 +1221,15 @@ Partial Class frmInstallations
         Me.EmptySpaceItem4.Size = New System.Drawing.Size(941, 44)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
+        'LayoutControlGroup2
+        '
+        Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlGroup2.GroupBordersVisible = False
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem25})
+        Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1365, 1016)
+        Me.LayoutControlGroup2.TextVisible = False
+        '
         'LayoutControlItem25
         '
         Me.LayoutControlItem25.Control = Me.TabNavigationPage4
@@ -1111,6 +1238,10 @@ Partial Class frmInstallations
         Me.LayoutControlItem25.Size = New System.Drawing.Size(1345, 996)
         Me.LayoutControlItem25.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem25.TextVisible = False
+        '
+        'INST_MAILTableAdapter
+        '
+        Me.INST_MAILTableAdapter.ClearBeforeFill = True
         '
         'frmInstallations
         '
@@ -1183,13 +1314,14 @@ Partial Class frmInstallations
         Me.TabNavigationPage3.ResumeLayout(False)
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl3.ResumeLayout(False)
-        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabNavigationPage4.ResumeLayout(False)
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl4.ResumeLayout(False)
         CType(Me.txtBody.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.INSTMAILBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1201,6 +1333,7 @@ Partial Class frmInstallations
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
@@ -1284,4 +1417,18 @@ Partial Class frmInstallations
     Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents INSTMAILBindingSource As BindingSource
+    Friend WithEvents DMDataSet As DMDataSet
+    Friend WithEvents colID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcode As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colinstID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colinstEllipseID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colemailFrom As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colemailTo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colemailSubject As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colemailBody As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colDateOfEmail As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcreatedOn As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colcreatedBy As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents INST_MAILTableAdapter As DMDataSetTableAdapters.INST_MAILTableAdapter
 End Class

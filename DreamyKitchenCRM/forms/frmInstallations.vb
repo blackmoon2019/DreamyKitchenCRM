@@ -7,9 +7,12 @@ Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.DataAccess
+Imports DevExpress.CodeParser
+Imports DreamyKitchenCRM.Main
 
 
 Public Class frmInstallations
+    Private Prog_Prop As New ProgProp
     Private sID As String
     Private sEMP_T_ID As String
     Private sTRANSH_ID As String
@@ -266,7 +269,11 @@ Public Class frmInstallations
     End Sub
 
     Private Sub cmdInstEllipse_Click(sender As Object, e As EventArgs) Handles cmdInstEllipse.Click
-        If CheckIfHasInstEllipseNotCompleted() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν υπάρχει μη ολοκληρωμένη εκκρεμότητα.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        'Έλεγχος για να δεί αν υπάρχει μη ολοκληρωμένη έλλειψη πριν ανοίξει καινούρια γιαυτην την τοποθέτηση 
+        If CheckIfHasInstNotCompleted() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν υπάρχει μη ολοκληρωμένη εκκρεμότητα.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        'Eλεγχος αν υπάρχει έντυπο ολοκλήρωσης
+        If CheckIfEllipseHasCompleteDocument() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή, έχουν ολοκληρωθεί όλες οι εκκρεμότητες.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+
         Dim frmInstEllipse As New frmInstEllipse
         frmInstEllipse.Text = "Εκκρεμότητες Έργων"
         frmInstEllipse.Mode = FormMode.NewRecord
@@ -276,16 +283,32 @@ Public Class frmInstallations
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(frmInstEllipse.Parent.ClientRectangle.Width / 2 - frmInstEllipse.Width / 2), CInt(frmInstEllipse.Parent.ClientRectangle.Height / 2 - frmInstEllipse.Height / 2)))
         frmInstEllipse.Show()
     End Sub
-    Private Function CheckIfHasInstEllipseNotCompleted()
+    Private Function CheckIfEllipseHasCompleteDocument() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String
-        sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE completed = 0  and instID= " & toSQLValueS(sID)
+        sSQL = "SELECT fInstEllipseNameComplete FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(sID)
         Cmd = New SqlCommand(sSQL.ToString, CNDB)
         sdr = Cmd.ExecuteReader()
-        Dim CountEllipse As Integer
+        Dim fInstEllipseNameComplete As String
         If (sdr.Read() = True) Then
-            If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
-            If CountEllipse > 0 Then Return True Else Return False
+            If sdr.IsDBNull(sdr.GetOrdinal("fInstEllipseNameComplete")) = False Then fInstEllipseNameComplete = sdr.GetString(sdr.GetOrdinal("fInstEllipseNameComplete")) Else fInstEllipseNameComplete = ""
+            If fInstEllipseNameComplete <> "" Then Return True Else Return False
+        End If
+        sdr.Close()
+    End Function
+
+    Private Function CheckIfHasInstNotCompleted()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        sSQL = "SELECT top 1 id FROM INST_ELLIPSE WHERE completed = 0  and instID= " & toSQLValueS(sID)
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim EllipseID As String
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("EllipseID")) = False Then EllipseID = sdr.GetString(sdr.GetOrdinal("EllipseID")) Else EllipseID = ""
+            If EllipseID <> "" Then Return True Else Return False
+        Else
+            Return False
         End If
         sdr.Close()
 
@@ -433,9 +456,14 @@ Public Class frmInstallations
         Select Case TabPane1.SelectedPageIndex
             Case 0
             Case 1 : LoadRecords()
-
             Case 2
                 If dtDeliverDate.EditValue = Nothing Or txtTmIN.Text = "00:00" Or txtTmOUT.EditValue = "00:00" Then cmdSendApointmentEmail.Enabled = False Else cmdSendApointmentEmail.Enabled = True
+                Me.INST_MAILTableAdapter.FillByinstID(Me.DMDataSet.INST_MAIL, System.Guid.Parse(sID))
+                LoadForms.RestoreLayoutFromXml(GridView3, "INST_MAIL.xml")
+                Prog_Prop.GetProgEmailInst()
+                txtTo.EditValue = cboCUS.GetColumnValue("email")
+                txtSubject.EditValue = ProgProps.InstInfSubject
+                txtBody.EditValue = ProgProps.InstInfAppointmentBody
         End Select
     End Sub
     Private Sub LoadRecords()
@@ -460,13 +488,6 @@ Public Class frmInstallations
         End If
         LoadForms.RestoreLayoutFromXml(GridView1, "vw_INST_ELLIPSE_INSIDE.xml")
         LoadForms.RestoreLayoutFromXml(GridView2, "D_INST_ELLIPSE_JOBS_INSIDE.xml")
-    End Sub
-    Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "vw_INST_ELLIPSE_INSIDE.xml", "vw_INST_ELLIPSE")
-    End Sub
-
-    Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "D_INST_ELLIPSE_JOBS_INSIDE.xml", "INST_ELLIPSE_JOBS")
     End Sub
 
     Private Sub GridView1_DoubleClick(sender As Object, e As EventArgs) Handles GridView1.DoubleClick
@@ -515,5 +536,73 @@ Public Class frmInstallations
                 End If
             End If
         End If
+    End Sub
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "vw_INST_ELLIPSE_INSIDE.xml", "vw_INST_ELLIPSE")
+    End Sub
+    Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "D_INST_ELLIPSE_JOBS_INSIDE.xml", "INST_ELLIPSE_JOBS")
+    End Sub
+    Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "INST_MAIL.xml", "INST_MAIL")
+    End Sub
+    Private Sub ValidateEmail()
+        If txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If txtTo.Text = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            SendEmail()
+            Me.INST_MAILTableAdapter.FillByinstID(Me.DMDataSet.INST_MAIL, System.Guid.Parse(sID))
+        End If
+    End Sub
+    Private Sub cmdSendApointmentEmail_Click(sender As Object, e As EventArgs) Handles cmdSendApointmentEmail.Click
+        ValidateEmail()
+    End Sub
+    Private Sub SendEmail()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim Emails As New SendEmail
+        Dim statusMsg As String = ""
+        Dim sEmailTo As String
+        Dim sSubject As String
+        Dim sBody As String
+        Dim sFile As String = ""
+        Dim sSQL As String
+        Try
+
+
+
+            sEmailTo = txtTo.EditValue
+            sBody = txtBody.EditValue
+            sSubject = txtSubject.EditValue
+            sBody = sBody.Replace("{INST_DATE_DELIVERED}", Date.Now.Date)
+
+            sEmailTo = "dreamykitchen@gmail.com"
+            sEmailTo = "johnmavroselinos@gmail.com"
+
+
+            If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
+                sSQL = "Update INST SET emailApp = 1,DateOfEmailApp=getdate() WHERE ID = " & toSQLValueS(sID)
+
+
+                Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
+
+                ' Εισαγωγή ιστορικού email
+                sSQL = "INSERT INTO INST_MAIL (instID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn])  
+                        values (" & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.InstEmailAccount.ToString) & "," &
+                                    toSQLValue(txtTo) & "," & toSQLValue(txtSubject) & "," &
+                                    toSQLValue(txtBody) & ",getdate(), " &
+                                    toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+
+
+                XtraMessageBox.Show("Το email στάλθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα με σφάλμα " & statusMsg, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class
