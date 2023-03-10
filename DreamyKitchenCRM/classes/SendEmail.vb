@@ -44,14 +44,18 @@ Public Class SendEmail
 
             e_mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
             Dim myMailHTMLBody = "<html><head></head><body>" & Body & " </body></html>"
-            If System.IO.File.Exists(sFile) Then
-                Dim data As System.Net.Mail.Attachment = New System.Net.Mail.Attachment(sFile)
-                e_mail.Attachments.Add(data)
-                Smtp_Server.Send(e_mail)
+            If sFile <> "" Then
+                If System.IO.File.Exists(sFile) Then
+                    Dim data As System.Net.Mail.Attachment = New System.Net.Mail.Attachment(sFile)
+                    e_mail.Attachments.Add(data)
+                    Smtp_Server.Send(e_mail)
+                Else
+                    statusMsg = "Δεν βρέθηκε το αρχείο " & sFile
+                    'XtraMessageBox.Show("Δεν βρέθηκε το αρχείο " & sFile, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
             Else
-                statusMsg = "Δεν βρέθηκε το αρχείο " & sFile
-                'XtraMessageBox.Show("Δεν βρέθηκε το αρχείο " & sFile, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
+                Smtp_Server.Send(e_mail)
             End If
             e_mail.Dispose()
             Smtp_Server.Dispose()

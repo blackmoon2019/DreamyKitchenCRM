@@ -204,4 +204,13 @@
         6qMifaxeVuRJ4CPGHguDwbDq340j4jYtOeG+AAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="INSTMAILBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1372, 17</value>
+  </metadata>
+  <metadata name="DMDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1196, 17</value>
+  </metadata>
+  <metadata name="INST_MAILTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1671, 17</value>
+  </metadata>
 </root>
