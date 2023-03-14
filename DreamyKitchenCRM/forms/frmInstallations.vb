@@ -5,11 +5,7 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraExport.Helpers
-Imports DevExpress.DataAccess
-Imports DevExpress.CodeParser
-Imports DreamyKitchenCRM.Main
-
+Imports DevExpress.DataAccess.Native.Sql.MasterDetail
 
 Public Class frmInstallations
     Private Prog_Prop As New ProgProp
@@ -77,9 +73,13 @@ Public Class frmInstallations
     Private Sub frmInstallations_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_TRANSH' table. You can move, or remove it, as needed.
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
+        sSQL.AppendLine(" Select C.id,C.Fullname,'00000000-0000-0000-0000-000000000000' as SalerID,phn,AdrID,email " &
+                            "from vw_CCT C " &
+                            "inner join vw_TRANSH T On C.ID = T.cusID  " &
+                            "where completed=0 " &
+                            "order by Fullname")
 
-        FillCbo.CUS(cboCUS)
+        FillCbo.CUS(cboCUS, sSQL)
         FillCbo.SALERS(cboSaler)
         ' Μόνο αν ο Χρήστης ΔΕΝ είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" And UserProps.ID.ToString.ToUpper <> "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Lcost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never : LExtracost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
@@ -305,7 +305,7 @@ Public Class frmInstallations
         sdr = Cmd.ExecuteReader()
         Dim EllipseID As String
         If (sdr.Read() = True) Then
-            If sdr.IsDBNull(sdr.GetOrdinal("EllipseID")) = False Then EllipseID = sdr.GetString(sdr.GetOrdinal("EllipseID")) Else EllipseID = ""
+            If sdr.IsDBNull(sdr.GetOrdinal("id")) = False Then EllipseID = sdr.GetGuid(sdr.GetOrdinal("id")).ToString Else EllipseID = ""
             If EllipseID <> "" Then Return True Else Return False
         Else
             Return False
@@ -344,11 +344,13 @@ Public Class frmInstallations
             Try
                 My.Computer.FileSystem.CopyFile(XtraOpenFileDialog1.FileName, ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName), True)
 
-                sSQL = "UPDATE INST SET fInstName =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ",fInst =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstF where ID = " & toSQLValueS(sID)
+                sSQL = "UPDATE INST SET completed = 1, fInstName =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ",fInst =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstF where ID = " & toSQLValueS(sID)
                 'Εκτέλεση QUERY
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
+                chkCompleted.CheckState = CheckState.Checked : cmdInstEllipse.Enabled = False
+
                 XtraMessageBox.Show("Το αρχείο αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 cmdInstEllipse.Enabled = False
             Catch ex As Exception
@@ -381,13 +383,12 @@ Public Class frmInstallations
             Case 2
                 If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     Dim sSQL As String
-                    sSQL = "UPDATE INST SET fInstName =  NULL ,fInst =  NULL where ID = " & toSQLValueS(sID)
+                    sSQL = "UPDATE INST SET completed = 0 ,fInstName =  NULL ,fInst =  NULL where ID = " & toSQLValueS(sID)
                     'Εκτέλεση QUERY
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
-                    txtInstFilename.EditValue = Nothing
-                    cmdInstEllipse.Enabled = True
+                    txtInstFilename.EditValue = Nothing : cmdInstEllipse.Enabled = True : chkCompleted.CheckState = CheckState.Unchecked
                 End If
         End Select
 
@@ -511,7 +512,7 @@ Public Class frmInstallations
             If UserProps.AllowDelete = False Then Exit Sub
             If XtraMessageBox.Show("Θέλετε να διαγραφεί η εκκρεμότητα?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Dim Cmd As SqlCommand, sdr As SqlDataReader
-                sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
+                sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE comefrom= 0 and instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
                                 " and DATEADD(ms, -DATEPART(ms, createdOn), createdOn)> " & toSQLValueS(DateTime.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "createdOn")).ToString("yyyy-MM-dd HH:mm:ss.fff"))
                 Cmd = New SqlCommand(sSQL.ToString, CNDB)
                 sdr = Cmd.ExecuteReader()
@@ -519,14 +520,23 @@ Public Class frmInstallations
                 If (sdr.Read() = True) Then
                     If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
                     If CountEllipse > 0 Then
-                        XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                         sdr.Close()
                         Exit Sub
                     Else
-                        sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
+                        Try
+                            sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                            Using oCmd As New SqlCommand(sSQL, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                        Catch ex As SqlException
+                            If ex.ErrorCode = -2146232060 Then
+                                XtraMessageBox.Show("Δεν μπορεί να διαγραφέι η εκκρεμότητα από την στιγμή που έχει αποσταλεί Email", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Else
+                                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            End If
+
+                        End Try
                         LoadRecords()
                     End If
                 Else
@@ -604,5 +614,9 @@ Public Class frmInstallations
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+
+    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+
     End Sub
 End Class

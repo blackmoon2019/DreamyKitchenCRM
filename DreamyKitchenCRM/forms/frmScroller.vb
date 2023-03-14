@@ -16,6 +16,7 @@ Imports DevExpress.XtraGrid.Localization
 Imports DevExpress.XtraGrid
 Imports System.IO
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+Imports DevExpress.DataAccess
 
 Public Class frmScroller
 
@@ -87,6 +88,10 @@ Public Class frmScroller
                 sItem.Caption = "Εμφάνιση Κινήσεων Πελάτη"
                 sItem.Name = "ViewCusMov"
                 PopupMenuRows.AddItem(sItem)
+            End If
+            If sDataTable = "vw_INST_ELLIPSE" Then
+                ' Το κουμπί απενεργοποιείται γιατί θα πρέπει να μπεί μέσα από την έλλεψη και να πατήσει μετατροπή σε παραγγελία
+                BarNewRec.Enabled = False
             End If
             GridView1.OptionsBehavior.AutoExpandAllGroups = True
             GridView1.OptionsMenu.ShowFooterItem = True
@@ -243,7 +248,7 @@ Public Class frmScroller
                             sdr.Close()
                             Exit Sub
                         End If
-
+                    Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -431,7 +436,7 @@ Public Class frmScroller
                             sdr.Close()
                             Exit Sub
                         End If
-
+                    Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
@@ -1439,6 +1444,17 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
+            Case "vw_PROJECT_JOBS"
+                Dim frmProjectJobs As New frmProjectJobs
+                frmProjectJobs.Text = "Εργασίες"
+                frmProjectJobs.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmProjectJobs.MdiParent = frmMain
+                frmProjectJobs.Mode = FormMode.EditRecord
+                frmProjectJobs.Scroller = GridView1
+                frmProjectJobs.FormScroller = Me
+                frmProjectJobs.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProjectJobs), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmProjectJobs.Show()
             Case "vw_BANKS"
                 frmGen.Text = "Τράπεζες"
                 frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -2270,6 +2286,16 @@ Public Class frmScroller
                 frmTransactions.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmTransactions), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmTransactions.Show()
+            Case "vw_PROJECT_JOBS"
+                Dim frmProjectJobs As New frmProjectJobs
+                frmProjectJobs.Text = "Εργασίες"
+                frmProjectJobs.MdiParent = frmMain
+                frmProjectJobs.Mode = FormMode.NewRecord
+                frmProjectJobs.Scroller = GridView1
+                frmProjectJobs.FormScroller = Me
+                frmProjectJobs.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProjectJobs), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmProjectJobs.Show()
             Case "vw_BANKS"
                 frmGen.Text = "Τράπεζες"
                 frmGen.MdiParent = frmMain
