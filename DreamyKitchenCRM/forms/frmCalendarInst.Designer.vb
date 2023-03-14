@@ -107,6 +107,8 @@ Partial Class frmCalendarInst
         Me.Vw_SERTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SERTableAdapter()
         Me.Vw_INSTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_INSTTableAdapter()
         Me.SvgImageCollection1 = New DevExpress.Utils.SvgImageCollection(Me.components)
+        Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
+        Me.cboCalendars = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwINSTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -125,6 +127,7 @@ Partial Class frmCalendarInst
         Me.PanelResults.SuspendLayout()
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SvgImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboCalendars, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'barDockControlTop
@@ -324,9 +327,9 @@ Partial Class frmCalendarInst
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.OpenScheduleItem1, Me.SaveScheduleItem1, Me.PrintPreviewItem1, Me.PrintItem1, Me.PrintPageSetupItem1, Me.NewAppointmentItem1, Me.NewRecurringAppointmentItem1, Me.NavigateViewBackwardItem1, Me.NavigateViewForwardItem1, Me.GotoTodayItem1, Me.ViewZoomInItem1, Me.ViewZoomOutItem1, Me.SwitchToDayViewItem1, Me.SwitchToWorkWeekViewItem1, Me.SwitchToWeekViewItem1, Me.SwitchToFullWeekViewItem1, Me.SwitchToMonthViewItem1, Me.SwitchToTimelineViewItem1, Me.SwitchToGanttViewItem1, Me.SwitchToAgendaViewItem1, Me.GroupByNoneItem1, Me.GroupByDateItem1, Me.GroupByResourceItem1, Me.BBrefresh, Me.BarNewRec, Me.Ο, Me.BarHeaderItem1, Me.BarEditItem3, Me.BBEllipse})
-        Me.BarManager1.MaxItemId = 72
-        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cboStatus, Me.cboCompleted, Me.txtSearch, Me.txtSearch2})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.OpenScheduleItem1, Me.SaveScheduleItem1, Me.PrintPreviewItem1, Me.PrintItem1, Me.PrintPageSetupItem1, Me.NewAppointmentItem1, Me.NewRecurringAppointmentItem1, Me.NavigateViewBackwardItem1, Me.NavigateViewForwardItem1, Me.GotoTodayItem1, Me.ViewZoomInItem1, Me.ViewZoomOutItem1, Me.SwitchToDayViewItem1, Me.SwitchToWorkWeekViewItem1, Me.SwitchToWeekViewItem1, Me.SwitchToFullWeekViewItem1, Me.SwitchToMonthViewItem1, Me.SwitchToTimelineViewItem1, Me.SwitchToGanttViewItem1, Me.SwitchToAgendaViewItem1, Me.GroupByNoneItem1, Me.GroupByDateItem1, Me.GroupByResourceItem1, Me.BBrefresh, Me.BarNewRec, Me.Ο, Me.BarHeaderItem1, Me.BarEditItem3, Me.BBEllipse, Me.BarEditItem1})
+        Me.BarManager1.MaxItemId = 73
+        Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.cboStatus, Me.cboCompleted, Me.txtSearch, Me.txtSearch2, Me.cboCalendars})
         '
         'CommonBar1
         '
@@ -527,7 +530,7 @@ Partial Class frmCalendarInst
         Me.GroupByBar1.DockCol = 5
         Me.GroupByBar1.DockRow = 0
         Me.GroupByBar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Top
-        Me.GroupByBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByNoneItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByDateItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByResourceItem1), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.Ο, "", False, True, True, 68), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem3, "", False, True, True, 157), New DevExpress.XtraBars.LinkPersistInfo(Me.BBrefresh), New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec), New DevExpress.XtraBars.LinkPersistInfo(Me.BBEllipse)})
+        Me.GroupByBar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByNoneItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByDateItem1), New DevExpress.XtraBars.LinkPersistInfo(Me.GroupByResourceItem1), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem1, "", False, True, True, 183), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.Ο, "", False, True, True, 68), New DevExpress.XtraBars.LinkPersistInfo(DevExpress.XtraBars.BarLinkUserDefines.Width, Me.BarEditItem3, "", False, True, True, 157), New DevExpress.XtraBars.LinkPersistInfo(Me.BBrefresh), New DevExpress.XtraBars.LinkPersistInfo(Me.BarNewRec), New DevExpress.XtraBars.LinkPersistInfo(Me.BBEllipse)})
         '
         'GroupByNoneItem1
         '
@@ -731,6 +734,23 @@ Partial Class frmCalendarInst
         Me.SvgImageCollection1.Add("actions_settings", "image://svgimages/icon builder/actions_settings.svg")
         Me.SvgImageCollection1.Add("switchtimescalesto", "image://svgimages/scheduling/switchtimescalesto.svg")
         '
+        'BarEditItem1
+        '
+        Me.BarEditItem1.Caption = "Ημερολόγια"
+        Me.BarEditItem1.Edit = Me.cboCalendars
+        Me.BarEditItem1.Hint = "Ημερολόγια"
+        Me.BarEditItem1.Id = 72
+        Me.BarEditItem1.Name = "BarEditItem1"
+        Me.BarEditItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.Caption
+        '
+        'cboCalendars
+        '
+        Me.cboCalendars.AllowMultiSelect = True
+        Me.cboCalendars.AutoHeight = False
+        Me.cboCalendars.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboCalendars.Items.AddRange(New DevExpress.XtraEditors.Controls.CheckedListBoxItem() {New DevExpress.XtraEditors.Controls.CheckedListBoxItem("0", "Τοποθετήσεις"), New DevExpress.XtraEditors.Controls.CheckedListBoxItem("1", "Εκκρεμότητες"), New DevExpress.XtraEditors.Controls.CheckedListBoxItem("2", "Παραδόσεις"), New DevExpress.XtraEditors.Controls.CheckedListBoxItem("3", "Εργασίες")})
+        Me.cboCalendars.Name = "cboCalendars"
+        '
         'frmCalendarInst
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(11.0!, 24.0!)
@@ -765,6 +785,7 @@ Partial Class frmCalendarInst
         Me.PanelResults.ResumeLayout(False)
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SvgImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboCalendars, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -849,4 +870,6 @@ Partial Class frmCalendarInst
     Friend WithEvents colcompleted As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents SvgImageCollection1 As DevExpress.Utils.SvgImageCollection
     Friend WithEvents BBEllipse As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarEditItem1 As DevExpress.XtraBars.BarEditItem
+    Friend WithEvents cboCalendars As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
 End Class

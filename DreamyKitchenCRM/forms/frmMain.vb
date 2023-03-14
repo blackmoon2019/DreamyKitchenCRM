@@ -1025,5 +1025,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBProjectJobs_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectJobs.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Εργασίες"
+        form.DataTable = "vw_PROJECT_JOBS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 
