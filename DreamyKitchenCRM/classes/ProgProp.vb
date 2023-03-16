@@ -177,6 +177,9 @@ Public Class ProgProp
                             Case "ELLIPSE_BODY_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "INSTALLATIONS_SUBJECT_INF" : ProgProps.InstInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "INSTALLATIONS_BODY_INF_APPOINTMENT" : ProgProps.InstInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "ELLIPSE_SUBJECT_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "ELLIPSE_SUBJECT_COMPLETE_INF" : ProgProps.InstEllipseInfSubjectComplete = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "ELLIPSE_BODY_COMPLETE_INF" : ProgProps.InstEllipseInfBodyComplete = sdr.GetString(sdr.GetOrdinal("val"))
                         End Select
                     End If
                 Else
@@ -195,6 +198,9 @@ Public Class ProgProp
                                 Case "ELLIPSE_BODY_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "INSTALLATIONS_SUBJECT_INF" : ProgProps.InstInfSubject = sdr.GetString(sdr.GetOrdinal("val"))
                                 Case "INSTALLATIONS_BODY_INF_APPOINTMENT" : ProgProps.InstInfAppointmentBody = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "ELLIPSE_SUBJECT_INF_APPOINTMENT" : ProgProps.InstEllipseInfAppointmentSubject = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "ELLIPSE_SUBJECT_COMPLETE_INF" : ProgProps.InstEllipseInfSubjectComplete = sdr.GetString(sdr.GetOrdinal("val"))
+                                Case "ELLIPSE_BODY_COMPLETE_INF" : ProgProps.InstEllipseInfBodyComplete = sdr.GetString(sdr.GetOrdinal("val"))
                             End Select
                         End If
                     End If
@@ -329,7 +335,9 @@ Public Class ProgProp
         End Try
     End Sub
 
-    Public Sub SetProgInstEmail(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String, ByVal sValue4 As String, ByVal sValue5 As String, ByVal sValue6 As String, ByVal sValue7 As String, ByVal sValue8 As String, ByVal sValue9 As String)
+    Public Sub SetProgInstEmail(ByVal sValue As String, ByVal sValue2 As String, ByVal sValue3 As String, ByVal sValue4 As String, ByVal sValue5 As String,
+                                ByVal sValue6 As String, ByVal sValue7 As String, ByVal sValue8 As String, ByVal sValue9 As String, ByVal sValue10 As String,
+                                ByVal sValue11 As String, ByVal sValue12 As String)
         Dim sSQL As String
         Dim cmd As SqlCommand
         Try
@@ -351,6 +359,13 @@ Public Class ProgProp
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
             sSQL = "Update PRM set val = '" & sValue9 & "' where prm= 'INSTALLATIONS_BODY_INF_APPOINTMENT'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            sSQL = "Update PRM set val = '" & sValue10 & "' where prm= 'ELLIPSE_SUBJECT_INF_APPOINTMENT'"
+            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            sSQL = "Update PRM set val = '" & sValue11 & "' where prm= 'ELLIPSE_SUBJECT_COMPLETE_INF'"
+            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            sSQL = "Update PRM set val = '" & sValue12 & "' where prm= 'ELLIPSE_BODY_COMPLETE_INF'"
+            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

@@ -83,6 +83,8 @@ Partial Class frmCalendarInst
         Me.GroupByNoneItem1 = New DevExpress.XtraScheduler.UI.GroupByNoneItem()
         Me.GroupByDateItem1 = New DevExpress.XtraScheduler.UI.GroupByDateItem()
         Me.GroupByResourceItem1 = New DevExpress.XtraScheduler.UI.GroupByResourceItem()
+        Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
+        Me.cboCalendars = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         Me.Ο = New DevExpress.XtraBars.BarEditItem()
         Me.cboCompleted = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         Me.BarEditItem3 = New DevExpress.XtraBars.BarEditItem()
@@ -107,8 +109,6 @@ Partial Class frmCalendarInst
         Me.Vw_SERTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SERTableAdapter()
         Me.Vw_INSTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_INSTTableAdapter()
         Me.SvgImageCollection1 = New DevExpress.Utils.SvgImageCollection(Me.components)
-        Me.BarEditItem1 = New DevExpress.XtraBars.BarEditItem()
-        Me.cboCalendars = New DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwINSTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -117,6 +117,7 @@ Partial Class frmCalendarInst
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSERBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboCalendars, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCompleted, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSearch2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,7 +128,6 @@ Partial Class frmCalendarInst
         Me.PanelResults.SuspendLayout()
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.SvgImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboCalendars, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'barDockControlTop
@@ -547,6 +547,23 @@ Partial Class frmCalendarInst
         Me.GroupByResourceItem1.Id = 63
         Me.GroupByResourceItem1.Name = "GroupByResourceItem1"
         '
+        'BarEditItem1
+        '
+        Me.BarEditItem1.Caption = "Ημερολόγια"
+        Me.BarEditItem1.Edit = Me.cboCalendars
+        Me.BarEditItem1.Hint = "Ημερολόγια"
+        Me.BarEditItem1.Id = 72
+        Me.BarEditItem1.Name = "BarEditItem1"
+        Me.BarEditItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.Caption
+        '
+        'cboCalendars
+        '
+        Me.cboCalendars.AllowMultiSelect = True
+        Me.cboCalendars.AutoHeight = False
+        Me.cboCalendars.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.cboCalendars.Items.AddRange(New DevExpress.XtraEditors.Controls.CheckedListBoxItem() {New DevExpress.XtraEditors.Controls.CheckedListBoxItem("0", "Τοποθετήσεις"), New DevExpress.XtraEditors.Controls.CheckedListBoxItem("1", "Εκκρεμότητες"), New DevExpress.XtraEditors.Controls.CheckedListBoxItem("2", "Παραδόσεις"), New DevExpress.XtraEditors.Controls.CheckedListBoxItem("3", "Εργασίες")})
+        Me.cboCalendars.Name = "cboCalendars"
+        '
         'Ο
         '
         Me.Ο.Caption = "Ολοκληρώθηκε"
@@ -733,23 +750,7 @@ Partial Class frmCalendarInst
         Me.SvgImageCollection1.Add("shipment", "image://svgimages/outlook inspired/shipment.svg")
         Me.SvgImageCollection1.Add("actions_settings", "image://svgimages/icon builder/actions_settings.svg")
         Me.SvgImageCollection1.Add("switchtimescalesto", "image://svgimages/scheduling/switchtimescalesto.svg")
-        '
-        'BarEditItem1
-        '
-        Me.BarEditItem1.Caption = "Ημερολόγια"
-        Me.BarEditItem1.Edit = Me.cboCalendars
-        Me.BarEditItem1.Hint = "Ημερολόγια"
-        Me.BarEditItem1.Id = 72
-        Me.BarEditItem1.Name = "BarEditItem1"
-        Me.BarEditItem1.PaintStyle = DevExpress.XtraBars.BarItemPaintStyle.Caption
-        '
-        'cboCalendars
-        '
-        Me.cboCalendars.AllowMultiSelect = True
-        Me.cboCalendars.AutoHeight = False
-        Me.cboCalendars.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboCalendars.Items.AddRange(New DevExpress.XtraEditors.Controls.CheckedListBoxItem() {New DevExpress.XtraEditors.Controls.CheckedListBoxItem("0", "Τοποθετήσεις"), New DevExpress.XtraEditors.Controls.CheckedListBoxItem("1", "Εκκρεμότητες"), New DevExpress.XtraEditors.Controls.CheckedListBoxItem("2", "Παραδόσεις"), New DevExpress.XtraEditors.Controls.CheckedListBoxItem("3", "Εργασίες")})
-        Me.cboCalendars.Name = "cboCalendars"
+        Me.SvgImageCollection1.Add("bo_project", "image://svgimages/business objects/bo_project.svg")
         '
         'frmCalendarInst
         '
@@ -775,6 +776,7 @@ Partial Class frmCalendarInst
         CType(Me.SchedulerControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SchedulerDataStorage1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSERBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboCalendars, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCompleted, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSearch2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboStatus, System.ComponentModel.ISupportInitialize).EndInit()
@@ -785,7 +787,6 @@ Partial Class frmCalendarInst
         Me.PanelResults.ResumeLayout(False)
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.SvgImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboCalendars, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
