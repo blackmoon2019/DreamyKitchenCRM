@@ -28,8 +28,16 @@ Public Class frmCalendarInst
             Dim sSQL As String
             PanelResults.Visible = False
             SchedulerLocalizer.Active = New MySchedulerLocalizer()
-            sSQL = "SELECT *,vw_INST_ELLIPSE.ID as EllipseID FROM vw_INST " &
-                    "left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID And vw_INST_ELLIPSE.completed=0 and comeFrom = 0  order by vw_INST.code"
+            'sSQL = "SELECT *,vw_INST_ELLIPSE.ID as EllipseID FROM vw_INST " &
+            '        "left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID And vw_INST_ELLIPSE.completed=0 and comeFrom = 0  order by vw_INST.code"
+            sSQL = "Select * FROM(
+                select '0' as CalendarType,NULL AS EllipseID ,dtDeliverDate,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST where dtDeliverDate  is NOT null 
+                union
+                Select '1' as CalendarType,IE.ID AS EllipseID ,DateDelivered,cctName,vw_INST.ID,color,SerName,tmINFrom,tmINTo,vw_INST.cmt,vw_INST.code,SerCode,IE.completed,SalerName from vw_INST INNER JOIN INST_ELLIPSE IE ON IE.instID = vw_INST.ID  where comefrom=0 and IE.DateDelivered IS NOT NULL
+                union
+                Select '2' as CalendarType,NULL AS EllipseID ,dtParadosis,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST  where   dtParadosis IS NOT NULL
+                union
+                Select '3' as CalendarType,NULL AS EllipseID , visitDate,cctName,ID,color,SerName,visitTimeF,visitTimeT,cmt,code,SerCode,completed,EmpFullName FROM VW_PROJECT_JOBS) AS Calendars "
             'Δημιουργία Appointments
             Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, True)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INST' table. You can move, or remove it, as needed.
@@ -91,7 +99,6 @@ Public Class frmCalendarInst
         form1.Scroller = frmScroller.GridView1
         form1.FormScroller = frmScroller
         Dim apt As Appointment
-        'form1.MdiParent = frmMain
         If SchedulerControl1.SelectedAppointments.Count = 0 Then
             form1.Mode = FormMode.NewRecord
             form1.dtDeliverDate.EditValue = SchedulerControl1.SelectedInterval.Start
@@ -101,6 +108,11 @@ Public Class frmCalendarInst
                 form1.ID = apt.Id
                 form1.Mode = FormMode.EditRecord
             Next i
+        End If
+
+        If apt.CustomFields.Item("IsInst") = True Or apt.CustomFields.Item("IsDelivery") = True Then
+            form1.ShowDialog()
+            Exit Sub
         End If
         If apt.CustomFields.Item("IsEllipse") = True Then
             Dim frmInstEllipse As frmInstEllipse = New frmInstEllipse()
@@ -112,8 +124,16 @@ Public Class frmCalendarInst
             frmInstEllipse.ShowDialog()
             form1.Dispose()
             form1 = Nothing
-        Else
-            form1.ShowDialog()
+        End If
+        If apt.CustomFields.Item("IsProjectJob") = True Then
+            Dim frmProjectJobs As frmProjectJobs = New frmProjectJobs()
+            frmProjectJobs.ID = apt.CustomFields.Item("ProjectJobID").ToString
+            frmProjectJobs.Text = "Εργασίες"
+            frmProjectJobs.Mode = FormMode.EditRecord
+            frmProjectJobs.CalledFromControl = False
+            frmProjectJobs.ShowDialog()
+            form1.Dispose()
+            form1 = Nothing
         End If
 
         'SetCalendarFilter()
@@ -121,19 +141,29 @@ Public Class frmCalendarInst
     Private Sub SetCalendarFilter(Optional ByVal sWhere As String = "")
         Dim sSQL As String
         Dim sIDS As New StringBuilder
+        Dim sCalendars As New StringBuilder
         SchedulerDataStorage1.Appointments.Clear()
         For i As Integer = 0 To cboCalendars.Items.Count - 1
             If cboCalendars.Items(i).CheckState = CheckState.Checked Then
-                If sIDS.Length > 0 Then sIDS.Append(",")
-                sIDS.Append(toSQLValueS(cboCalendars.Items(i).Value.ToString))
+                If sCalendars.Length > 0 Then sCalendars.Append(",")
+                sCalendars.Append(toSQLValueS(cboCalendars.Items(i).Value.ToString))
             End If
         Next
 
+        'sSQL = "SELECT *,vw_INST_ELLIPSE.ID as EllipseID FROM vw_INST left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID and vw_INST_ELLIPSE.completed=0  and comeFrom = 0 order by vw_INST.code"
+
+        sSQL = "Select * FROM(
+                select '0' as CalendarType,NULL AS EllipseID ,dtDeliverDate,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST where dtDeliverDate  is NOT null 
+                union
+                Select '1' as CalendarType,IE.ID AS EllipseID ,DateDelivered,cctName,vw_INST.ID,color,SerName,tmINFrom,tmINTo,vw_INST.cmt,vw_INST.code,SerCode,IE.completed,SalerName from vw_INST INNER JOIN INST_ELLIPSE IE ON IE.instID = vw_INST.ID  where comefrom=0 and IE.DateDelivered IS NOT NULL
+                union
+                Select '2' as CalendarType,NULL AS EllipseID ,dtParadosis,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST  where   dtParadosis IS NOT NULL
+                union
+                Select '3' as CalendarType,NULL AS EllipseID , visitDate,cctName,ID,color,SerName,visitTimeF,visitTimeT,cmt,code,SerCode,completed,EmpFullName FROM VW_PROJECT_JOBS) AS Calendars "
 
 
-        sSQL = "SELECT *,vw_INST_ELLIPSE.ID as EllipseID FROM vw_INST left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID and vw_INST_ELLIPSE.completed=0  and comeFrom = 0 order by vw_INST.code"
 
-        If sWhere.Length > 0 Then sSQL = sSQL & " where vw_INST.cctName like " & toSQLValueS("%" & sWhere & "%")
+        If sWhere.Length > 0 Then sSQL = sSQL & " where Calendars.cctName like " & toSQLValueS("%" & sWhere & "%")
         For i As Integer = 0 To cboCompleted.Items.Count - 1
             If cboCompleted.Items(i).CheckState = CheckState.Checked Then
                 If sIDS.Length > 0 Then sIDS.Append(",")
@@ -141,14 +171,16 @@ Public Class frmCalendarInst
             End If
         Next
         If sIDS.Length > 0 And sWhere.Length > 0 Then
-            sSQL = sSQL + " and vw_INST.completed in (" & sIDS.ToString & ")"
+            sSQL = sSQL + " and Calendars.completed in (" & sIDS.ToString & ")"
         ElseIf sIDS.Length > 0 Then
-            sSQL = sSQL + " where vw_INST.completed in (" & sIDS.ToString & ")"
+            sSQL = sSQL + " where Calendars.completed in (" & sIDS.ToString & ")"
+        End If
+        If sCalendars.Length > 0 And (sWhere.Length > 0 Or sIDS.Length > 0) Then
+            sSQL = sSQL + " and Calendars.CalendarType in (" & sCalendars.ToString & ")"
+        ElseIf sCalendars.Length > 0 Then
+            sSQL = sSQL + " where Calendars.CalendarType in (" & sCalendars.ToString & ")"
         End If
 
-        If sSQL.Contains("where vw_INST.") Then
-
-        End If
         Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, False)
         SchedulerControl1.Start = Now.Date
     End Sub
@@ -319,6 +351,7 @@ Public Class frmCalendarInst
         If e.Appointment.CustomFields.Item("IsInst") = True Then info.Image = SvgImageCollection1.GetImage(2)
         If e.Appointment.CustomFields.Item("IsEllipse") = True Then info.Image = SvgImageCollection1.GetImage(1)
         If e.Appointment.CustomFields.Item("IsDelivery") = True Then info.Image = SvgImageCollection1.GetImage(0)
+        If e.Appointment.CustomFields.Item("IsProjectJob") = True Then info.Image = SvgImageCollection1.GetImage(3)
         e.ImageInfoList.Add(info)
     End Sub
     Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText

@@ -53,6 +53,9 @@ Module Main
         Public InstEmailAccountSup As String
         Public InstInfSubject As String
         Public InstInfAppointmentBody As String
+        Public InstEllipseInfAppointmentSubject As String
+        Public InstEllipseInfSubjectComplete As String
+        Public InstEllipseInfBodyComplete As String
         Public KitchenTransp As Decimal
         Public ClosetTransp As Decimal
         Public DoorTransp As Decimal

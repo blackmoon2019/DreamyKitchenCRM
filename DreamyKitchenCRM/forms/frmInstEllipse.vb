@@ -273,8 +273,8 @@ Public Class frmInstEllipse
             If txtTmINFrom.Text = "00:00" Or txtTmINTo.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
             Dim Hours As Long = DateDiff(DateInterval.Hour, txtTmINFrom.EditValue, txtTmINTo.EditValue)
             If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-            Return True
         End If
+        Return True
     End Function
 
     Private Function GetLastEllipseID() As String
@@ -566,6 +566,7 @@ Public Class frmInstEllipse
                 sBody = ProgProps.InstEllipseInfBodySup
                 sSubject = ProgProps.InstEllipseInfSubjectSup
                 sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", Date.Now.Date)
+                sBody = sBody.Replace("{CUS}", cboCUS.Text)
                 sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων προμηθευτή.pdf"
                 report.CreateDocument()
                 report.ExportToPdf(sFile)
@@ -588,13 +589,14 @@ Public Class frmInstEllipse
             End If
 
             sEmailTo = "dreamykitchen@gmail.com"
-            sEmailTo = "johnmavroselinos@gmail.com"
+            'sEmailTo = "johnmavroselinos@gmail.com"
 
 
             If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
                 Select Case emailMode
                     Case 1 : sSQL = "Update INST_ELLIPSE SET emailApp = 1,DateOfEmailApp=getdate() WHERE ID = " & toSQLValueS(sID)
                     Case 2 : sSQL = "Update INST_ELLIPSE SET emailInf = 1,DateOfEmailInf=getdate() WHERE ID = " & toSQLValueS(sID)
+                    Case 3 : sSQL = "Update INST_ELLIPSE SET emailInfComplete = 1,DateOfEmailInfComplete=getdate() WHERE ID = " & toSQLValueS(sID)
                 End Select
 
                 Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
@@ -655,6 +657,13 @@ Public Class frmInstEllipse
                 If sComeFrom = 0 Then
                     txtSubject.EditValue = ProgProps.InstEllipseInfSubject
                     txtTo.EditValue = cboINST.GetColumnValue("email")
+                    If txtInstellipseFilenameComplete.EditValue IsNot Nothing Then
+                        cmdSendEmailComplete.Enabled = True
+                        DefInstComplete.Enabled = True
+                    Else
+                        cmdSendEmailComplete.Enabled = False
+                        DefInstComplete.Enabled = False
+                    End If
                 Else
                     txtSubject.EditValue = ProgProps.InstEllipseInfSubjectSup
                     txtTo.EditValue = ProgProps.InstEmailAccountSup
@@ -671,16 +680,25 @@ Public Class frmInstEllipse
     Private Sub DefInst_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInst.ItemClick
         If sComeFrom = 0 Then
             txtBody.EditValue = ProgProps.InstEllipseInfBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
+            txtSubject.EditValue = ProgProps.InstEllipseInfSubject
         Else
             txtBody.EditValue = ProgProps.InstEllipseInfBodySup.Replace("{CUS}", cboCUS.Text)
+            txtSubject.EditValue = ProgProps.InstEllipseInfSubjectSup
         End If
     End Sub
+    Private Sub DefInstComplete_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInstComplete.ItemClick
+        If sComeFrom = 0 Then
+            If dtDateDelivered.EditValue IsNot Nothing Then txtBody.EditValue = ProgProps.InstEllipseInfBodyComplete.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
+            txtSubject.EditValue = ProgProps.InstEllipseInfSubjectComplete
+        End If
 
+    End Sub
     Private Sub DefInstAppointment_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInstAppointment.ItemClick
         txtBody.EditValue = ProgProps.InstEllipseInfAppointmentBody
         txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
         txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_TIME_FROM}", txtTmINFrom.Text)
         txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_TIME_TO}", txtTmINTo.Text)
+        txtSubject.EditValue = ProgProps.InstEllipseInfAppointmentSubject
     End Sub
     Private Sub cmdSendApointmentEmail_Click(sender As Object, e As EventArgs) Handles cmdSendApointmentEmail.Click
         emailMode = 1 : ValidateEmail()
@@ -688,6 +706,9 @@ Public Class frmInstEllipse
 
     Private Sub cmdSendEmail_Click(sender As Object, e As EventArgs) Handles cmdSendEmail.Click
         emailMode = 2 : ValidateEmail()
+    End Sub
+    Private Sub cmdSendEmailComplete_Click(sender As Object, e As EventArgs) Handles cmdSendEmailComplete.Click
+        emailMode = 3 : ValidateEmail()
     End Sub
 
     Private Sub cmdNewInstEllipse_Click(sender As Object, e As EventArgs) Handles cmdNewInstEllipse.Click
@@ -840,7 +861,7 @@ Public Class frmInstEllipse
         dtDateDelivered.EditValue = Nothing : txtTmINFrom.EditValue = "00:00" : txtTmINTo.EditValue = "00:00" : dtReceipt.EditValue = Nothing : chkCompleted.CheckState = CheckState.Unchecked
         txtComments.EditValue = Nothing : txtInstellipseFilename.EditValue = Nothing : cmdConvertToOrder.Enabled = False : cmdViewOrder.Enabled = False
         AddRecord()
-        End Sub
+    End Sub
 
     Private Sub txtInstellipseFilenameComplete_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtInstellipseFilenameComplete.ButtonClick
         Try
@@ -958,14 +979,6 @@ Public Class frmInstEllipse
         frmInstEllipse.ComeFrom = 1
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(frmInstEllipse.Parent.ClientRectangle.Width / 2 - frmInstEllipse.Width / 2), CInt(frmInstEllipse.Parent.ClientRectangle.Height / 2 - frmInstEllipse.Height / 2)))
         frmInstEllipse.ShowDialog()
-    End Sub
-
-    Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
-
-    End Sub
-
-    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
-
     End Sub
 End Class
 'Private Sub ShowQuestionForm()
