@@ -363,10 +363,10 @@ Public Class frmParameters
     End Sub
 
     Private Sub SimpleButton5_Click(sender As Object, e As EventArgs) Handles SimpleButton5.Click
-        Prog_Prop.SetProgInstEmail(ELLIPSE_BODY_INF.EditValue.ToString, INSTALLATIONS_EMAIL.EditValue.ToString, ELLIPSE_SUBJECT_INF.EditValue.ToString, INSTALLATIONS_EMAIL_SUP.EditValue.ToString,
-                                   ELLIPSE_SUBJECT_SUP_INF.EditValue.ToString, ELLIPSE_BODY_SUP_INF.EditValue.ToString, ELLIPSE_BODY_INF_APPOINTMENT.EditValue.ToString, INSTALLATIONS_SUBJECT_INF.EditValue.ToString,
-                                   INSTALLATIONS_BODY_INF_APPOINTMENT.EditValue.ToString, ELLIPSE_SUBJECT_INF_APPOINTMENT.EditValue.ToString, ELLIPSE_SUBJECT_COMPLETE_INF.EditValue.ToString,
-                                   ELLIPSE_BODY_COMPLETE_INF.EditValue.ToString)
+        Prog_Prop.SetProgInstEmail(ELLIPSE_BODY_INF.Text, INSTALLATIONS_EMAIL.Text, ELLIPSE_SUBJECT_INF.Text, INSTALLATIONS_EMAIL_SUP.Text,
+                                   ELLIPSE_SUBJECT_SUP_INF.Text, ELLIPSE_BODY_SUP_INF.Text, ELLIPSE_BODY_INF_APPOINTMENT.Text, INSTALLATIONS_SUBJECT_INF.Text,
+                                   INSTALLATIONS_BODY_INF_APPOINTMENT.Text, ELLIPSE_SUBJECT_INF_APPOINTMENT.Text, ELLIPSE_SUBJECT_COMPLETE_INF.Text,
+                                   ELLIPSE_BODY_COMPLETE_INF.Text)
         Prog_Prop.GetProgEmailInst(LayoutControl5)
         XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub

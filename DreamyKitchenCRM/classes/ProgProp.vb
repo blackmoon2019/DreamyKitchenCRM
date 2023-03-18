@@ -217,57 +217,67 @@ Public Class ProgProp
     End Sub
 
     Private Sub SetValueToControl(ByVal LItem As LayoutControlItem, ByVal sValue As String)
-        Dim Ctrl As Control = LItem.Control
-        If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
-            Dim cbo As DevExpress.XtraEditors.LookUpEdit
-            Dim stestGuid As Guid
-            Dim isValid As Boolean = Guid.TryParse(sValue, stestGuid)
-            cbo = Ctrl
-            If isValid = True Then
-                cbo.EditValue = System.Guid.Parse(sValue)
-            Else
-                cbo.EditValue = Convert.ToInt32(sValue)
-            End If
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
-            Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
-            cbo = Ctrl
-            If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
-            Dim dt As DevExpress.XtraEditors.DateEdit
-            dt = Ctrl
-            dt.EditValue = CDate(sValue)
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
-            Dim tm As DevExpress.XtraEditors.TimeEdit
-            tm = Ctrl
+        Try
+            Dim Ctrl As Control = LItem.Control
+            If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
+                Dim cbo As DevExpress.XtraEditors.LookUpEdit
+                Dim stestGuid As Guid
+                Dim isint As Integer
+                Dim isValid As Boolean = Guid.TryParse(sValue, stestGuid)
+                cbo = Ctrl
+                If isValid = True Then
+                    cbo.EditValue = System.Guid.Parse(sValue)
+                Else
+                    If Integer.TryParse(sValue, isint) Then
+                        cbo.EditValue = Convert.ToInt32(sValue)
+                    Else
+                        cbo.EditValue = sValue
+                    End If
+                End If
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+                Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
+                cbo = Ctrl
+                If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
+                Dim dt As DevExpress.XtraEditors.DateEdit
+                dt = Ctrl
+                dt.EditValue = CDate(sValue)
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+                Dim tm As DevExpress.XtraEditors.TimeEdit
+                tm = Ctrl
 
-            tm.EditValue = CDate(sValue).ToString("HH:mm")
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
-            Dim txt As DevExpress.XtraEditors.MemoEdit
-            txt = Ctrl
-            If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
-                txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
-            Else
-                txt.Text = sValue
-            End If
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
-            Dim txt As DevExpress.XtraEditors.TextEdit
-            txt = Ctrl
-            If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
-                txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
-            ElseIf txt.Properties.Mask.EditMask = "d" Then ' Αφορά το DateEditControl
-                'sSQL.Append(toSQLValueS(CDate(txt.Text).ToString("yyyyMMdd")))
-                txt.Text = sValue
-            Else
-                txt.Text = sValue
-            End If
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
-            Dim chk As DevExpress.XtraEditors.CheckEdit
-            chk = Ctrl
-            chk.EditValue = sValue
-            chk.Checked = sValue
-        ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
+                tm.EditValue = CDate(sValue).ToString("HH:mm")
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
+                Dim txt As DevExpress.XtraEditors.MemoEdit
+                txt = Ctrl
+                If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
+                    txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
+                Else
+                    txt.Text = sValue
+                End If
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
+                Dim txt As DevExpress.XtraEditors.TextEdit
+                txt = Ctrl
+                If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
+                    txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
+                ElseIf txt.Properties.Mask.EditMask = "d" Then ' Αφορά το DateEditControl
+                    'sSQL.Append(toSQLValueS(CDate(txt.Text).ToString("yyyyMMdd")))
+                    txt.Text = sValue
+                Else
+                    txt.Text = sValue
+                End If
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
+                Dim chk As DevExpress.XtraEditors.CheckEdit
+                chk = Ctrl
+                chk.EditValue = sValue
+                chk.Checked = sValue
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
 
-        End If
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
     End Sub
     Public Sub SetProgPROSF(ByVal control As DevExpress.XtraLayout.LayoutControl)
         Dim sSQL As New System.Text.StringBuilder
@@ -341,30 +351,19 @@ Public Class ProgProp
         Dim sSQL As String
         Dim cmd As SqlCommand
         Try
-            sSQL = "Update PRM set val = '" & sValue & "' where prm= 'ELLIPSE_BODY_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue2 & "' where prm= 'INSTALLATIONS_EMAIL'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue3 & "' where prm= 'ELLIPSE_SUBJECT_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue4 & "' where prm= 'INSTALLATIONS_EMAIL_SUP'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue5 & "' where prm= 'ELLIPSE_SUBJECT_SUP_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue6 & "' where prm= 'ELLIPSE_BODY_SUP_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue7 & "' where prm= 'ELLIPSE_BODY_INF_APPOINTMENT'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue8 & "' where prm= 'INSTALLATIONS_SUBJECT_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue9 & "' where prm= 'INSTALLATIONS_BODY_INF_APPOINTMENT'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue10 & "' where prm= 'ELLIPSE_SUBJECT_INF_APPOINTMENT'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue11 & "' where prm= 'ELLIPSE_SUBJECT_COMPLETE_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue12 & "' where prm= 'ELLIPSE_BODY_COMPLETE_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+
+            If sValue.Length > 0 Then sSQL = "Update PRM set val = '" & sValue & "' where prm= 'ELLIPSE_BODY_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue2.Length > 0 Then sSQL = "Update PRM set val = '" & sValue2 & "' where prm= 'INSTALLATIONS_EMAIL'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue3.Length > 0 Then sSQL = "Update PRM set val = '" & sValue3 & "' where prm= 'ELLIPSE_SUBJECT_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue4.Length > 0 Then sSQL = "Update PRM set val = '" & sValue4 & "' where prm= 'INSTALLATIONS_EMAIL_SUP'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue5.Length > 0 Then sSQL = "Update PRM set val = '" & sValue5 & "' where prm= 'ELLIPSE_SUBJECT_SUP_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue6.Length > 0 Then sSQL = "Update PRM set val = '" & sValue6 & "' where prm= 'ELLIPSE_BODY_SUP_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue7.Length > 0 Then sSQL = "Update PRM set val = '" & sValue7 & "' where prm= 'ELLIPSE_BODY_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue8.Length > 0 Then sSQL = "Update PRM set val = '" & sValue8 & "' where prm= 'INSTALLATIONS_SUBJECT_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue9.Length > 0 Then sSQL = "Update PRM set val = '" & sValue9 & "' where prm= 'INSTALLATIONS_BODY_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue10.Length > 0 Then sSQL = "Update PRM set val = '" & sValue10 & "' where prm= 'ELLIPSE_SUBJECT_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue11.Length > 0 Then sSQL = "Update PRM set val = '" & sValue11 & "' where prm= 'ELLIPSE_SUBJECT_COMPLETE_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue12.Length > 0 Then sSQL = "Update PRM set val = '" & sValue12 & "' where prm= 'ELLIPSE_BODY_COMPLETE_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

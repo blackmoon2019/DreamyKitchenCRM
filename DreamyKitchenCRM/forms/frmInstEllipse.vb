@@ -6,6 +6,7 @@ Imports DevExpress.Office.PInvoke.Win32
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
@@ -572,6 +573,7 @@ Public Class frmInstEllipse
                 report.ExportToPdf(sFile)
                 report.Dispose()
                 report = Nothing
+                My.Computer.FileSystem.CopyFile(sFile, ProgProps.ServerPath & Path.GetFileName(sFile), True)
             Else
                 Dim report As New RepCUSEllipse()
                 report.Parameters.Item(0).Value = sID
@@ -586,10 +588,11 @@ Public Class frmInstEllipse
                 report.ExportToPdf(sFile)
                 report.Dispose()
                 report = Nothing
+                My.Computer.FileSystem.CopyFile(sFile, ProgProps.ServerPath & Path.GetFileName(sFile), True)
             End If
 
-            sEmailTo = "dreamykitchen@gmail.com"
-            'sEmailTo = "johnmavroselinos@gmail.com"
+            'sEmailTo = "dreamykitchen@gmail.com"
+            sEmailTo = "johnmavroselinos@gmail.com"
 
 
             If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
@@ -602,11 +605,11 @@ Public Class frmInstEllipse
                 Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
 
                 ' Εισαγωγή ιστορικού email
-                sSQL = "INSERT INTO INST_MAIL (instID,instEllipseID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn])  
-                        values (" & toSQLValueS(sINST_ID) & "," & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.InstEmailAccount.ToString) & "," &
+                sSQL = "INSERT INTO INST_MAIL (instID,instEllipseID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment)  
+                        Select " & toSQLValueS(sINST_ID) & "," & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.InstEmailAccount.ToString) & "," &
                                     toSQLValue(txtTo) & "," & toSQLValue(txtSubject) & "," &
                                     toSQLValue(txtBody) & ",getdate(), " &
-                                    toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                                    toSQLValueS(UserProps.ID.ToString) & ", getdate(), " & sComeFrom & "," & emailMode & ",  * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F;"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
@@ -788,7 +791,7 @@ Public Class frmInstEllipse
         sdr.Close()
     End Function
 
-    Private Function CheckIfHasInstNotCompleted()
+    Private Function CheckIfHasInstNotCompleted() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String
         sSQL = "SELECT id FROM INST_ELLIPSE WHERE completed = 0  and instID= " & toSQLValueS(sID)
@@ -803,7 +806,7 @@ Public Class frmInstEllipse
         End If
         sdr.Close()
     End Function
-    Private Function CheckIfInstJobsAreCompleted()
+    Private Function CheckIfInstJobsAreCompleted() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String
         sSQL = "SELECT id as CountJobEllipse  FROM INST_ELLIPSE_JOBS WHERE completed = 0 and instEllipseID= " & toSQLValueS(sID)
@@ -817,6 +820,22 @@ Public Class frmInstEllipse
         Else
             sdr.Close()
             Return True
+        End If
+    End Function
+    Private Function CheckIfHasInstJobsForOrder() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        sSQL = "SELECT top 1 id as toOrderID FROM INST_ELLIPSE_JOBS WHERE toOrder = 1 and instEllipseID= " & toSQLValueS(sID)
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim toOrderID As String
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("toOrderID")) = False Then toOrderID = sdr.GetGuid(sdr.GetOrdinal("toOrderID")).ToString Else toOrderID = ""
+            sdr.Close()
+            If toOrderID <> "" Then Return True Else Return False
+        Else
+            sdr.Close()
+            Return False
         End If
     End Function
 
@@ -930,11 +949,15 @@ Public Class frmInstEllipse
     End Sub
 
     Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "INST_MAIL_ELLIPSE.xml", "INST_MAIL")
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "INST_MAIL_ELLIPSE.xml", "vw_INST_MAIL")
     End Sub
 
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
         Try
+            If SaveButtonPressed = False Then
+                XtraMessageBox.Show("Δεν έχετε αποθηκέυση την εκκρεμότητα. Παρακαλώ κάντε κλίκ στο  ""Αποθήκευση"".", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
             If CheckIfInstJobsAreCompleted() Then
                 XtraMessageBox.Show("Όλες οι εκρεμμότητες είναι ολοκληρωμένες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
@@ -953,6 +976,10 @@ Public Class frmInstEllipse
                     XtraMessageBox.Show("Δεν έχετε καταχωρήσει εκκρεμότητες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
+                If CheckIfHasInstJobsForOrder() = False Then
+                    XtraMessageBox.Show("Δεν έχετε επιλέξει εκκρεμότητες προς Παραγγελία. Δεν μπορεί να γίνει η μετατροπή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Exit Sub
+                End If
                 If XtraMessageBox.Show("Θέλετε να μετατραπούν οι εκκρεμότητες σε παραγγελία?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     Using oCmd As New SqlCommand("cloneINSTELLIPSE", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
@@ -960,7 +987,7 @@ Public Class frmInstEllipse
                         oCmd.ExecuteNonQuery()
                     End Using
                     XtraMessageBox.Show("Η παραγγελία δημιουργήθηκε με επιτυχία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    cmdViewOrder.Enabled = True
+                    If CheckIfHasConnectedOrder() = True Then cmdConvertToOrder.Text = "Ενημέρωση Παραγγελίας" : HasConnectedOrder = True : 
                 End If
             End If
         Catch ex As Exception
@@ -979,6 +1006,32 @@ Public Class frmInstEllipse
         frmInstEllipse.ComeFrom = 1
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstEllipse), New Point(CInt(frmInstEllipse.Parent.ClientRectangle.Width / 2 - frmInstEllipse.Width / 2), CInt(frmInstEllipse.Parent.ClientRectangle.Height / 2 - frmInstEllipse.Height / 2)))
         frmInstEllipse.ShowDialog()
+    End Sub
+
+    Private Sub GridView3_CustomRowCellEdit(sender As Object, e As CustomRowCellEditEventArgs) Handles GridView3.CustomRowCellEdit
+        If e.Column.FieldName = "imageCell" Then
+            e.RepositoryItem = txtImageAttachment
+            GridView3.SetRowCellValue(GridView3.FocusedRowHandle, "imageCell", "Επισυναπτόμενο")
+        End If
+    End Sub
+
+    Private Sub GridView3_DoubleClick(sender As Object, e As EventArgs) Handles GridView3.DoubleClick
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String = "SELECT Attachment  FROM INST_MAIL WHERE ID= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString)
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("Attachment")) = False Then
+                Dim sFilename = "ATTACHMENT.PDF"
+                Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                Dim b As Byte()
+                b = DirectCast(sdr("Attachment"), Byte())
+                fs.Write(b, 0, b.Length)
+                fs.Close()
+                ShellExecute(ProgProps.TempFolderPath & sFilename)
+            End If
+        End If
+        sdr.Close()
     End Sub
 End Class
 'Private Sub ShowQuestionForm()

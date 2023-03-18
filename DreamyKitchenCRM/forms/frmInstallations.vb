@@ -554,7 +554,7 @@ Public Class frmInstallations
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "D_INST_ELLIPSE_JOBS_INSIDE.xml", "INST_ELLIPSE_JOBS")
     End Sub
     Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "INST_MAIL.xml", "INST_MAIL")
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "INST_MAIL.xml", "vw_INST_MAIL")
     End Sub
     Private Sub ValidateEmail()
         If txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
@@ -597,11 +597,11 @@ Public Class frmInstallations
                 Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
 
                 ' Εισαγωγή ιστορικού email
-                sSQL = "INSERT INTO INST_MAIL (instID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn])  
+                sSQL = "INSERT INTO INST_MAIL (instID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],emailMode,ComeFrom)  
                         values (" & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.InstEmailAccount.ToString) & "," &
                                     toSQLValue(txtTo) & "," & toSQLValue(txtSubject) & "," &
                                     toSQLValue(txtBody) & ",getdate(), " &
-                                    toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                                    toSQLValueS(UserProps.ID.ToString) & ", getdate(),0,0 )"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
