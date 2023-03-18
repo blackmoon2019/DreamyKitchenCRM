@@ -127,6 +127,8 @@ Partial Class frmInstEllipse
         Me.colDateOfEmail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedOn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.ColAttchment = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.txtImageAttachment = New DevExpress.XtraEditors.Repository.RepositoryItemTextEdit()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.txtSubject = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -137,7 +139,6 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
@@ -203,6 +204,7 @@ Partial Class frmInstEllipse
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.INSTMAILBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtImageAttachment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,7 +215,6 @@ Partial Class frmInstEllipse
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -310,7 +311,7 @@ Partial Class frmInstEllipse
         Me.cmdViewOrder.Name = "cmdViewOrder"
         Me.cmdViewOrder.Size = New System.Drawing.Size(231, 40)
         Me.cmdViewOrder.StyleController = Me.LayoutControl1
-        Me.cmdViewOrder.TabIndex = 66
+        Me.cmdViewOrder.TabIndex = 17
         Me.cmdViewOrder.Text = "Προβολή Παραγγελίας"
         '
         'cmdNewInstEllipse
@@ -321,7 +322,7 @@ Partial Class frmInstEllipse
         Me.cmdNewInstEllipse.Name = "cmdNewInstEllipse"
         Me.cmdNewInstEllipse.Size = New System.Drawing.Size(161, 40)
         Me.cmdNewInstEllipse.StyleController = Me.LayoutControl1
-        Me.cmdNewInstEllipse.TabIndex = 65
+        Me.cmdNewInstEllipse.TabIndex = 15
         Me.cmdNewInstEllipse.Text = "Νέα Εγγραφή"
         '
         'cmdConvertToOrder
@@ -332,7 +333,7 @@ Partial Class frmInstEllipse
         Me.cmdConvertToOrder.Name = "cmdConvertToOrder"
         Me.cmdConvertToOrder.Size = New System.Drawing.Size(272, 40)
         Me.cmdConvertToOrder.StyleController = Me.LayoutControl1
-        Me.cmdConvertToOrder.TabIndex = 64
+        Me.cmdConvertToOrder.TabIndex = 16
         Me.cmdConvertToOrder.Text = "Μετατροπή σε Παραγγελία"
         '
         'cmdPrintAll
@@ -343,7 +344,7 @@ Partial Class frmInstEllipse
         Me.cmdPrintAll.Name = "cmdPrintAll"
         Me.cmdPrintAll.Size = New System.Drawing.Size(190, 40)
         Me.cmdPrintAll.StyleController = Me.LayoutControl1
-        Me.cmdPrintAll.TabIndex = 62
+        Me.cmdPrintAll.TabIndex = 18
         Me.cmdPrintAll.Text = "Έντυπο"
         '
         'LabelControl2
@@ -356,7 +357,7 @@ Partial Class frmInstEllipse
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(262, 25)
         Me.LabelControl2.StyleController = Me.LayoutControl1
-        Me.LabelControl2.TabIndex = 48
+        Me.LabelControl2.TabIndex = 1
         Me.LabelControl2.Text = "Εργασίες - Εκκρεμότητες"
         '
         'GridControl1
@@ -373,7 +374,7 @@ Partial Class frmInstEllipse
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.Size = New System.Drawing.Size(1636, 428)
-        Me.GridControl1.TabIndex = 47
+        Me.GridControl1.TabIndex = 14
         Me.GridControl1.UseEmbeddedNavigator = True
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -445,7 +446,7 @@ Partial Class frmInstEllipse
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(83, 23)
         Me.LabelControl1.StyleController = Me.LayoutControl1
-        Me.LabelControl1.TabIndex = 38
+        Me.LabelControl1.TabIndex = 1
         Me.LabelControl1.Text = "Συνεργεία"
         '
         'chkSER
@@ -458,7 +459,7 @@ Partial Class frmInstEllipse
         Me.chkSER.Size = New System.Drawing.Size(1610, 116)
         Me.chkSER.SortOrder = System.Windows.Forms.SortOrder.Ascending
         Me.chkSER.StyleController = Me.LayoutControl1
-        Me.chkSER.TabIndex = 37
+        Me.chkSER.TabIndex = 5
         Me.chkSER.Tag = ""
         '
         'chkCompleted
@@ -472,7 +473,7 @@ Partial Class frmInstEllipse
         Me.chkCompleted.Properties.ValueUnchecked = CType(0, Byte)
         Me.chkCompleted.Size = New System.Drawing.Size(165, 35)
         Me.chkCompleted.StyleController = Me.LayoutControl1
-        Me.chkCompleted.TabIndex = 36
+        Me.chkCompleted.TabIndex = 10
         Me.chkCompleted.Tag = "completed,0,1,2"
         '
         'cmdExit
@@ -484,7 +485,7 @@ Partial Class frmInstEllipse
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(136, 39)
         Me.cmdExit.StyleController = Me.LayoutControl1
-        Me.cmdExit.TabIndex = 33
+        Me.cmdExit.TabIndex = 20
         Me.cmdExit.Text = "Έξοδος"
         '
         'cmdSave
@@ -495,7 +496,7 @@ Partial Class frmInstEllipse
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(164, 40)
         Me.cmdSave.StyleController = Me.LayoutControl1
-        Me.cmdSave.TabIndex = 34
+        Me.cmdSave.TabIndex = 19
         Me.cmdSave.Text = "Αποθήκευση"
         '
         'cboINST
@@ -509,7 +510,7 @@ Partial Class frmInstEllipse
         Me.cboINST.Properties.PopupSizeable = False
         Me.cboINST.Size = New System.Drawing.Size(1264, 38)
         Me.cboINST.StyleController = Me.LayoutControl1
-        Me.cboINST.TabIndex = 5
+        Me.cboINST.TabIndex = 2
         Me.cboINST.Tag = "instID,0,1,2"
         '
         'dtDateDelivered
@@ -523,7 +524,7 @@ Partial Class frmInstEllipse
         Me.dtDateDelivered.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.dtDateDelivered.Size = New System.Drawing.Size(261, 38)
         Me.dtDateDelivered.StyleController = Me.LayoutControl1
-        Me.dtDateDelivered.TabIndex = 32
+        Me.dtDateDelivered.TabIndex = 6
         Me.dtDateDelivered.Tag = "DateDelivered,0,1,2"
         '
         'txtComments
@@ -533,7 +534,7 @@ Partial Class frmInstEllipse
         Me.txtComments.Name = "txtComments"
         Me.txtComments.Size = New System.Drawing.Size(1610, 139)
         Me.txtComments.StyleController = Me.LayoutControl1
-        Me.txtComments.TabIndex = 17
+        Me.txtComments.TabIndex = 11
         Me.txtComments.Tag = "cmt,0,1,2"
         '
         'txtCode
@@ -548,7 +549,7 @@ Partial Class frmInstEllipse
         Me.txtCode.Properties.ReadOnly = True
         Me.txtCode.Size = New System.Drawing.Size(130, 38)
         Me.txtCode.StyleController = Me.LayoutControl1
-        Me.txtCode.TabIndex = 4
+        Me.txtCode.TabIndex = 0
         Me.txtCode.Tag = "code,0"
         '
         'txtTmINFrom
@@ -564,7 +565,7 @@ Partial Class frmInstEllipse
         Me.txtTmINFrom.Properties.UseMaskAsDisplayFormat = True
         Me.txtTmINFrom.Size = New System.Drawing.Size(140, 38)
         Me.txtTmINFrom.StyleController = Me.LayoutControl1
-        Me.txtTmINFrom.TabIndex = 45
+        Me.txtTmINFrom.TabIndex = 7
         Me.txtTmINFrom.Tag = "tmINFrom,0,1,2"
         '
         'txtTmINTo
@@ -580,7 +581,7 @@ Partial Class frmInstEllipse
         Me.txtTmINTo.Properties.UseMaskAsDisplayFormat = True
         Me.txtTmINTo.Size = New System.Drawing.Size(123, 38)
         Me.txtTmINTo.StyleController = Me.LayoutControl1
-        Me.txtTmINTo.TabIndex = 46
+        Me.txtTmINTo.TabIndex = 8
         Me.txtTmINTo.Tag = "tmINTo,0,1,2"
         '
         'cboCUS
@@ -598,7 +599,7 @@ Partial Class frmInstEllipse
         Me.cboCUS.Properties.ValueMember = "ID"
         Me.cboCUS.Size = New System.Drawing.Size(1264, 38)
         Me.cboCUS.StyleController = Me.LayoutControl1
-        Me.cboCUS.TabIndex = 6
+        Me.cboCUS.TabIndex = 3
         Me.cboCUS.Tag = "cusID,0,1,2"
         '
         'cboTRANSH
@@ -615,7 +616,7 @@ Partial Class frmInstEllipse
         Me.cboTRANSH.Properties.ValueMember = "ID"
         Me.cboTRANSH.Size = New System.Drawing.Size(1264, 38)
         Me.cboTRANSH.StyleController = Me.LayoutControl1
-        Me.cboTRANSH.TabIndex = 6
+        Me.cboTRANSH.TabIndex = 4
         Me.cboTRANSH.Tag = "transhID,0,1,2"
         '
         'dtReceipt
@@ -628,7 +629,7 @@ Partial Class frmInstEllipse
         Me.dtReceipt.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtReceipt.Size = New System.Drawing.Size(313, 38)
         Me.dtReceipt.StyleController = Me.LayoutControl1
-        Me.dtReceipt.TabIndex = 32
+        Me.dtReceipt.TabIndex = 9
         Me.dtReceipt.Tag = "dtReceipt,0,1,2"
         '
         'txtInstellipseFilename
@@ -642,7 +643,7 @@ Partial Class frmInstEllipse
         Me.txtInstellipseFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtInstellipseFilename.Size = New System.Drawing.Size(1264, 38)
         Me.txtInstellipseFilename.StyleController = Me.LayoutControl1
-        Me.txtInstellipseFilename.TabIndex = 48
+        Me.txtInstellipseFilename.TabIndex = 12
         Me.txtInstellipseFilename.Tag = "fInstEllipseName,0,1,2"
         '
         'txtInstellipseFilenameComplete
@@ -656,7 +657,7 @@ Partial Class frmInstEllipse
         Me.txtInstellipseFilenameComplete.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtInstellipseFilenameComplete.Size = New System.Drawing.Size(1264, 38)
         Me.txtInstellipseFilenameComplete.StyleController = Me.LayoutControl1
-        Me.txtInstellipseFilenameComplete.TabIndex = 48
+        Me.txtInstellipseFilenameComplete.TabIndex = 13
         Me.txtInstellipseFilenameComplete.Tag = "fInstEllipseNameComplete,0,1,2"
         '
         'Root
@@ -964,12 +965,12 @@ Partial Class frmInstEllipse
         Me.cmdSendEmailComplete.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success
         Me.cmdSendEmailComplete.Appearance.Options.UseBackColor = True
         Me.cmdSendEmailComplete.ImageOptions.Image = CType(resources.GetObject("cmdSendEmailComplete.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSendEmailComplete.Location = New System.Drawing.Point(309, 380)
+        Me.cmdSendEmailComplete.Location = New System.Drawing.Point(299, 380)
         Me.cmdSendEmailComplete.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSendEmailComplete.Name = "cmdSendEmailComplete"
-        Me.cmdSendEmailComplete.Size = New System.Drawing.Size(538, 40)
+        Me.cmdSendEmailComplete.Size = New System.Drawing.Size(548, 40)
         Me.cmdSendEmailComplete.StyleController = Me.LayoutControl2
-        Me.cmdSendEmailComplete.TabIndex = 52
+        Me.cmdSendEmailComplete.TabIndex = 5
         Me.cmdSendEmailComplete.Text = "Αποστολή Email Ολοκλήρωσης Ενημέρωσης Εκκρεμοτήτων"
         '
         'cmdDefEmail
@@ -981,7 +982,7 @@ Partial Class frmInstEllipse
         Me.cmdDefEmail.Name = "cmdDefEmail"
         Me.cmdDefEmail.Size = New System.Drawing.Size(283, 38)
         Me.cmdDefEmail.StyleController = Me.LayoutControl2
-        Me.cmdDefEmail.TabIndex = 51
+        Me.cmdDefEmail.TabIndex = 4
         Me.cmdDefEmail.Text = "Προεπιλεγμένο Κείμενο"
         '
         'PopupMenu1
@@ -1060,7 +1061,7 @@ Partial Class frmInstEllipse
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(157, 25)
         Me.LabelControl3.StyleController = Me.LayoutControl2
-        Me.LabelControl3.TabIndex = 49
+        Me.LabelControl3.TabIndex = 1
         Me.LabelControl3.Text = "Ιστορικό Email"
         '
         'cmdSendApointmentEmail
@@ -1071,7 +1072,7 @@ Partial Class frmInstEllipse
         Me.cmdSendApointmentEmail.Name = "cmdSendApointmentEmail"
         Me.cmdSendApointmentEmail.Size = New System.Drawing.Size(376, 40)
         Me.cmdSendApointmentEmail.StyleController = Me.LayoutControl2
-        Me.cmdSendApointmentEmail.TabIndex = 6
+        Me.cmdSendApointmentEmail.TabIndex = 7
         Me.cmdSendApointmentEmail.Text = "Αποστολή Email Ενημέρωσης Ραντεβού"
         '
         'cmdSendEmail
@@ -1084,7 +1085,7 @@ Partial Class frmInstEllipse
         Me.cmdSendEmail.Name = "cmdSendEmail"
         Me.cmdSendEmail.Size = New System.Drawing.Size(417, 40)
         Me.cmdSendEmail.StyleController = Me.LayoutControl2
-        Me.cmdSendEmail.TabIndex = 5
+        Me.cmdSendEmail.TabIndex = 6
         Me.cmdSendEmail.Text = "Αποστολή Email Ενημέρωσης Εκκρεμοτήτων"
         '
         'txtBody
@@ -1093,7 +1094,7 @@ Partial Class frmInstEllipse
         Me.txtBody.Name = "txtBody"
         Me.txtBody.Size = New System.Drawing.Size(1561, 280)
         Me.txtBody.StyleController = Me.LayoutControl2
-        Me.txtBody.TabIndex = 4
+        Me.txtBody.TabIndex = 3
         '
         'txtTo
         '
@@ -1101,7 +1102,7 @@ Partial Class frmInstEllipse
         Me.txtTo.Name = "txtTo"
         Me.txtTo.Size = New System.Drawing.Size(1561, 38)
         Me.txtTo.StyleController = Me.LayoutControl2
-        Me.txtTo.TabIndex = 2
+        Me.txtTo.TabIndex = 0
         '
         'grdMain
         '
@@ -1112,8 +1113,9 @@ Partial Class frmInstEllipse
         Me.grdMain.MainView = Me.GridView3
         Me.grdMain.Margin = New System.Windows.Forms.Padding(5)
         Me.grdMain.Name = "grdMain"
+        Me.grdMain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.txtImageAttachment})
         Me.grdMain.Size = New System.Drawing.Size(1636, 732)
-        Me.grdMain.TabIndex = 7
+        Me.grdMain.TabIndex = 8
         Me.grdMain.UseEmbeddedNavigator = True
         Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3, Me.GridView2})
         '
@@ -1124,7 +1126,7 @@ Partial Class frmInstEllipse
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colcode1, Me.colinstID, Me.colinstEllipseID, Me.colemailFrom, Me.colemailTo, Me.colemailSubject, Me.colemailBody, Me.colDateOfEmail, Me.colcreatedOn, Me.colcreatedBy})
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID1, Me.colcode1, Me.colinstID, Me.colinstEllipseID, Me.colemailFrom, Me.colemailTo, Me.colemailSubject, Me.colemailBody, Me.colDateOfEmail, Me.colcreatedOn, Me.colcreatedBy, Me.ColAttchment})
         Me.GridView3.DetailHeight = 619
         Me.GridView3.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
         Me.GridView3.GridControl = Me.grdMain
@@ -1244,6 +1246,25 @@ Partial Class frmInstEllipse
         Me.colcreatedBy.VisibleIndex = 10
         Me.colcreatedBy.Width = 131
         '
+        'ColAttchment
+        '
+        Me.ColAttchment.Caption = "Επισυναπτόμενο"
+        Me.ColAttchment.FieldName = "imageCell"
+        Me.ColAttchment.ImageOptions.Alignment = System.Drawing.StringAlignment.Center
+        Me.ColAttchment.MinWidth = 35
+        Me.ColAttchment.Name = "ColAttchment"
+        Me.ColAttchment.OptionsColumn.AllowEdit = False
+        Me.ColAttchment.OptionsColumn.ReadOnly = True
+        Me.ColAttchment.Visible = True
+        Me.ColAttchment.VisibleIndex = 11
+        Me.ColAttchment.Width = 131
+        '
+        'txtImageAttachment
+        '
+        Me.txtImageAttachment.AutoHeight = False
+        Me.txtImageAttachment.ContextImageOptions.Image = CType(resources.GetObject("txtImageAttachment.ContextImageOptions.Image"), System.Drawing.Image)
+        Me.txtImageAttachment.Name = "txtImageAttachment"
+        '
         'GridView2
         '
         Me.GridView2.DetailHeight = 619
@@ -1268,13 +1289,13 @@ Partial Class frmInstEllipse
         Me.txtSubject.Name = "txtSubject"
         Me.txtSubject.Size = New System.Drawing.Size(1561, 38)
         Me.txtSubject.StyleController = Me.LayoutControl2
-        Me.txtSubject.TabIndex = 3
+        Me.txtSubject.TabIndex = 2
         '
         'LayoutControlGroup2
         '
         Me.LayoutControlGroup2.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup2.GroupBordersVisible = False
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem12, Me.LayoutControlItem17, Me.EmptySpaceItem3, Me.LayoutControlItem13, Me.LayoutControlItem22})
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem12, Me.LayoutControlItem17, Me.LayoutControlItem13, Me.LayoutControlItem22})
         Me.LayoutControlGroup2.Name = "Root"
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(1660, 1197)
         Me.LayoutControlGroup2.TextVisible = False
@@ -1344,14 +1365,6 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem17.TextVisible = False
         '
-        'EmptySpaceItem3
-        '
-        Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(287, 368)
-        Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(10, 44)
-        Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
-        '
         'LayoutControlItem13
         '
         Me.LayoutControlItem13.Control = Me.cmdSendEmail
@@ -1364,9 +1377,9 @@ Partial Class frmInstEllipse
         'LayoutControlItem22
         '
         Me.LayoutControlItem22.Control = Me.cmdSendEmailComplete
-        Me.LayoutControlItem22.Location = New System.Drawing.Point(297, 368)
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(287, 368)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
-        Me.LayoutControlItem22.Size = New System.Drawing.Size(542, 44)
+        Me.LayoutControlItem22.Size = New System.Drawing.Size(552, 44)
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem22.TextVisible = False
         '
@@ -1449,6 +1462,7 @@ Partial Class frmInstEllipse
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.INSTMAILBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtImageAttachment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtSubject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1459,7 +1473,6 @@ Partial Class frmInstEllipse
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1557,7 +1570,6 @@ Partial Class frmInstEllipse
     Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
     Friend WithEvents cmdDefEmail As DevExpress.XtraEditors.DropDownButton
     Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents txtInstellipseFilenameComplete As DevExpress.XtraEditors.ButtonEdit
     Friend WithEvents LfInstEllipseName1 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents INSTMAILBindingSource As BindingSource
@@ -1578,4 +1590,6 @@ Partial Class frmInstEllipse
     Friend WithEvents DefInstComplete As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents cmdSendEmailComplete As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem22 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents ColAttchment As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents txtImageAttachment As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
 End Class

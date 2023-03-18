@@ -1,7 +1,10 @@
-﻿Imports System.Net.Mail
+﻿Imports MarkupConverter.RtfToHtmlConverter
+Imports System.Net.Mail
 Imports System.Data.SqlClient
 Imports DevExpress.XtraEditors
 Imports DevExpress.DataAccess
+Imports System.IO
+Imports System.Text
 
 Public Class SendEmail
     Private EmailUserName As String
@@ -37,8 +40,8 @@ Public Class SendEmail
 
             'If txtCC.Text <> "" Then e_mail.CC.Add(txtCC.Text)
             e_mail.Subject = Subject
-            e_mail.IsBodyHtml = True
-            Body.Replace("\n", "<br />")
+            e_mail.IsBodyHtml = False
+            'Body.Replace("\n", "<br />")
             e_mail.Body = Body
             e_mail.Headers.Add("Disposition-Notification-To", EmailAccount)
 
@@ -67,11 +70,12 @@ Public Class SendEmail
             Return False
         End Try
     End Function
+
     Private Sub getEmailProperties(ByVal EmailAccount As String)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            Dim sSQL As String = "select * FROM MAILS where ID= " & toSQLValueS(EmailAccount)
+            Dim sSQL As String = "select * FROM MAILS where un= " & toSQLValueS(EmailAccount)
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then

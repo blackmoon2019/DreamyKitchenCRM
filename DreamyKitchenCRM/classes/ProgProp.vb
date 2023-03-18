@@ -274,6 +274,10 @@ Public Class ProgProp
         ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
 
         End If
+        Catch ex As Exception
+        XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
     End Sub
     Public Sub SetProgPROSF(ByVal control As DevExpress.XtraLayout.LayoutControl)
         Dim sSQL As New System.Text.StringBuilder
@@ -347,30 +351,19 @@ Public Class ProgProp
         Dim sSQL As String
         Dim cmd As SqlCommand
         Try
-            sSQL = "Update PRM set val = '" & sValue & "' where prm= 'ELLIPSE_BODY_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue2 & "' where prm= 'INSTALLATIONS_EMAIL'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue3 & "' where prm= 'ELLIPSE_SUBJECT_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue4 & "' where prm= 'INSTALLATIONS_EMAIL_SUP'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue5 & "' where prm= 'ELLIPSE_SUBJECT_SUP_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue6 & "' where prm= 'ELLIPSE_BODY_SUP_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue7 & "' where prm= 'ELLIPSE_BODY_INF_APPOINTMENT'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue8 & "' where prm= 'INSTALLATIONS_SUBJECT_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue9 & "' where prm= 'INSTALLATIONS_BODY_INF_APPOINTMENT'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue10 & "' where prm= 'ELLIPSE_SUBJECT_INF_APPOINTMENT'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue11 & "' where prm= 'ELLIPSE_SUBJECT_COMPLETE_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
-            sSQL = "Update PRM set val = '" & sValue12 & "' where prm= 'ELLIPSE_BODY_COMPLETE_INF'"
-            cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+
+            If sValue.Length > 0 Then sSQL = "Update PRM set val = '" & sValue & "' where prm= 'ELLIPSE_BODY_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue2.Length > 0 Then sSQL = "Update PRM set val = '" & sValue2 & "' where prm= 'INSTALLATIONS_EMAIL'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue3.Length > 0 Then sSQL = "Update PRM set val = '" & sValue3 & "' where prm= 'ELLIPSE_SUBJECT_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue4.Length > 0 Then sSQL = "Update PRM set val = '" & sValue4 & "' where prm= 'INSTALLATIONS_EMAIL_SUP'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue5.Length > 0 Then sSQL = "Update PRM set val = '" & sValue5 & "' where prm= 'ELLIPSE_SUBJECT_SUP_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue6.Length > 0 Then sSQL = "Update PRM set val = '" & sValue6 & "' where prm= 'ELLIPSE_BODY_SUP_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue7.Length > 0 Then sSQL = "Update PRM set val = '" & sValue7 & "' where prm= 'ELLIPSE_BODY_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue8.Length > 0 Then sSQL = "Update PRM set val = '" & sValue8 & "' where prm= 'INSTALLATIONS_SUBJECT_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue9.Length > 0 Then sSQL = "Update PRM set val = '" & sValue9 & "' where prm= 'INSTALLATIONS_BODY_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue10.Length > 0 Then sSQL = "Update PRM set val = '" & sValue10 & "' where prm= 'ELLIPSE_SUBJECT_INF_APPOINTMENT'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue11.Length > 0 Then sSQL = "Update PRM set val = '" & sValue11 & "' where prm= 'ELLIPSE_SUBJECT_COMPLETE_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+            If sValue12.Length > 0 Then sSQL = "Update PRM set val = '" & sValue12 & "' where prm= 'ELLIPSE_BODY_COMPLETE_INF'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
