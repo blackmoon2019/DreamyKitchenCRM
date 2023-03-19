@@ -1987,6 +1987,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\scaffolding.png" />
+    <None Include="Resources\icons8-construction-401.png" />
     <None Include="Resources\icons8-bank-card-missing-16.png" />
     <None Include="Resources\icons8-missing-16.png" />
     <None Include="Resources\icons8-invoice-batch-40.png" />

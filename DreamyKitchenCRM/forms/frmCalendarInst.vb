@@ -348,10 +348,10 @@ Public Class frmCalendarInst
     Private Sub SchedulerControl1_InitAppointmentImages(sender As Object, e As AppointmentImagesEventArgs) Handles SchedulerControl1.InitAppointmentImages
 
         Dim info As AppointmentImageInfo = New AppointmentImageInfo()
-        If e.Appointment.CustomFields.Item("IsInst") = True Then info.Image = SvgImageCollection1.GetImage(2)
-        If e.Appointment.CustomFields.Item("IsEllipse") = True Then info.Image = SvgImageCollection1.GetImage(1)
-        If e.Appointment.CustomFields.Item("IsDelivery") = True Then info.Image = SvgImageCollection1.GetImage(0)
-        If e.Appointment.CustomFields.Item("IsProjectJob") = True Then info.Image = SvgImageCollection1.GetImage(3)
+        If e.Appointment.CustomFields.Item("IsInst") = True Then info.Image = ImageCollection1.Images.Item(3)
+        If e.Appointment.CustomFields.Item("IsEllipse") = True Then info.Image = ImageCollection1.Images.Item(0)
+        If e.Appointment.CustomFields.Item("IsDelivery") = True Then info.Image = ImageCollection1.Images.Item(2)
+        If e.Appointment.CustomFields.Item("IsProjectJob") = True Then info.Image = ImageCollection1.Images.Item(1)
         e.ImageInfoList.Add(info)
     End Sub
     Private Sub SchedulerControl1_InitAppointmentDisplayText(sender As Object, e As AppointmentDisplayTextEventArgs) Handles SchedulerControl1.InitAppointmentDisplayText

@@ -362,7 +362,7 @@ Public Class frmParameters
         Me.Close()
     End Sub
 
-    Private Sub SimpleButton5_Click(sender As Object, e As EventArgs) Handles SimpleButton5.Click
+    Private Sub cmdSaveInstEmail_Click(sender As Object, e As EventArgs) Handles cmdSaveInstEmail.Click
         Prog_Prop.SetProgInstEmail(ELLIPSE_BODY_INF.Text, INSTALLATIONS_EMAIL.Text, ELLIPSE_SUBJECT_INF.Text, INSTALLATIONS_EMAIL_SUP.Text,
                                    ELLIPSE_SUBJECT_SUP_INF.Text, ELLIPSE_BODY_SUP_INF.Text, ELLIPSE_BODY_INF_APPOINTMENT.Text, INSTALLATIONS_SUBJECT_INF.Text,
                                    INSTALLATIONS_BODY_INF_APPOINTMENT.Text, ELLIPSE_SUBJECT_INF_APPOINTMENT.Text, ELLIPSE_SUBJECT_COMPLETE_INF.Text,
@@ -371,7 +371,7 @@ Public Class frmParameters
         XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
-    Private Sub SimpleButton4_Click(sender As Object, e As EventArgs) Handles SimpleButton4.Click
+    Private Sub cmdExitInstEmail_Click(sender As Object, e As EventArgs) Handles cmdExitInstEmail.Click
         Me.Close()
     End Sub
 End Class

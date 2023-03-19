@@ -580,6 +580,7 @@ Public Class frmInstEllipse
                 sEmailTo = txtTo.EditValue
                 sBody = txtBody.EditValue
                 sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
+                sBody = sBody.Replace("{INST_DATE_DELIVERED}", cboINST.GetColumnValue("dtDeliverDate").ToString())
                 sBody = sBody.Replace("{INST_ELLIPSE_TIME_FROM}", txtTmINFrom.Text)
                 sBody = sBody.Replace("{INST_ELLIPSE_TIME_TO}", txtTmINTo.Text)
                 sSubject = txtSubject.EditValue
@@ -591,8 +592,8 @@ Public Class frmInstEllipse
                 My.Computer.FileSystem.CopyFile(sFile, ProgProps.ServerPath & Path.GetFileName(sFile), True)
             End If
 
-            'sEmailTo = "dreamykitchen@gmail.com"
-            sEmailTo = "johnmavroselinos@gmail.com"
+            sEmailTo = "dreamykitchen@gmail.com"
+            'sEmailTo = "johnmavroselinos@gmail.com"
 
 
             If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
@@ -699,6 +700,7 @@ Public Class frmInstEllipse
     Private Sub DefInstAppointment_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInstAppointment.ItemClick
         txtBody.EditValue = ProgProps.InstEllipseInfAppointmentBody
         txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
+        txtBody.EditValue = txtBody.EditValue.Replace("{INST_DATE_DELIVERED}", cboINST.GetColumnValue("dtDeliverDate").ToString)
         txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_TIME_FROM}", txtTmINFrom.Text)
         txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_TIME_TO}", txtTmINTo.Text)
         txtSubject.EditValue = ProgProps.InstEllipseInfAppointmentSubject

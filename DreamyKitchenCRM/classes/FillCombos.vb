@@ -1050,9 +1050,9 @@ Public Class FillCombos
     End Sub
     Public Sub INST(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,grmonth,cctName,SerName ,SalerName,cmt,cusID,email,transhID from vw_INST where completed=0   " &
+            Dim cmd As SqlCommand = New SqlCommand("Select id,grmonth,cctName,SerName ,SalerName,cmt,cusID,email,transhID,dtDeliverDate from vw_INST where completed=0   " &
                                                    "UNION " &
-                                                   "Select id,null As grmonth,'CRM' As cctName,null As SerName ,null As SalerName,cmt,cusID,null As email,null as transhID from INST where id='00000001-0001-0001-0001-000000000001' order by grmonth,Sername ", CNDB)
+                                                   "Select id,null As grmonth,'CRM' As cctName,null As SerName ,null As SalerName,cmt,cusID,null As email,null as transhID,dtDeliverDate from INST where id='00000001-0001-0001-0001-000000000001' order by grmonth,Sername ", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
 
             CtrlCombo.Properties.DataSource = sdr
@@ -1076,6 +1076,11 @@ Public Class FillCombos
             CtrlCombo.Properties.Columns(5).Visible = True
             CtrlCombo.Properties.Columns(5).Caption = "Σχόλια"
             CtrlCombo.Properties.Columns(5).Width = 400
+            CtrlCombo.Properties.Columns(6).Visible = False
+            CtrlCombo.Properties.Columns(7).Visible = False
+            CtrlCombo.Properties.Columns(8).Visible = False
+            CtrlCombo.Properties.Columns(8).FormatType = DevExpress.Utils.FormatType.DateTime
+            CtrlCombo.Properties.Columns(8).FormatString = "dd/MM/yyyy"
             Dim s As Size
             s.Width = 1000 : s.Height = 300
             CtrlCombo.Properties.PopupFormMinSize = s

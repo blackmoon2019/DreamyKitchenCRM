@@ -493,6 +493,16 @@ Namespace My.Resources
         '''<summary>
         '''  Looks up a localized resource of type System.Drawing.Bitmap.
         '''</summary>
+        Friend ReadOnly Property icons8_construction_401() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("icons8-construction-401", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
         Friend ReadOnly Property icons8_construction_48() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("icons8-construction-48", resourceCulture)
@@ -1536,6 +1546,16 @@ Namespace My.Resources
         Friend ReadOnly Property rsz_user_arrow_right_icon() As System.Drawing.Bitmap
             Get
                 Dim obj As Object = ResourceManager.GetObject("rsz_user-arrow-right-icon", resourceCulture)
+                Return CType(obj,System.Drawing.Bitmap)
+            End Get
+        End Property
+        
+        '''<summary>
+        '''  Looks up a localized resource of type System.Drawing.Bitmap.
+        '''</summary>
+        Friend ReadOnly Property scaffolding() As System.Drawing.Bitmap
+            Get
+                Dim obj As Object = ResourceManager.GetObject("scaffolding", resourceCulture)
                 Return CType(obj,System.Drawing.Bitmap)
             End Get
         End Property

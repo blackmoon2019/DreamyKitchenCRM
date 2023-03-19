@@ -23,9 +23,9 @@ Partial Class frmCalendarInst
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim TimeRuler1 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
-        Dim TimeRuler2 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
-        Dim TimeRuler3 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler28 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler29 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
+        Dim TimeRuler30 As DevExpress.XtraScheduler.TimeRuler = New DevExpress.XtraScheduler.TimeRuler()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCalendarInst))
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -108,7 +108,7 @@ Partial Class frmCalendarInst
         Me.DreamyKitchenAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_SERTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SERTableAdapter()
         Me.Vw_INSTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_INSTTableAdapter()
-        Me.SvgImageCollection1 = New DevExpress.Utils.SvgImageCollection(Me.components)
+        Me.ImageCollection1 = New DevExpress.Utils.ImageCollection(Me.components)
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwINSTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -127,7 +127,7 @@ Partial Class frmCalendarInst
         CType(Me.PanelResults, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.PanelResults.SuspendLayout()
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.SvgImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'barDockControlTop
@@ -352,12 +352,12 @@ Partial Class frmCalendarInst
         Me.SchedulerControl1.Start = New Date(2020, 10, 5, 0, 0, 0, 0)
         Me.SchedulerControl1.TabIndex = 11
         Me.SchedulerControl1.Text = "SchedulerControl1"
-        Me.SchedulerControl1.Views.DayView.TimeRulers.Add(TimeRuler1)
+        Me.SchedulerControl1.Views.DayView.TimeRulers.Add(TimeRuler28)
         Me.SchedulerControl1.Views.FullWeekView.Enabled = True
-        Me.SchedulerControl1.Views.FullWeekView.TimeRulers.Add(TimeRuler2)
+        Me.SchedulerControl1.Views.FullWeekView.TimeRulers.Add(TimeRuler29)
         Me.SchedulerControl1.Views.MonthView.AppointmentDisplayOptions.AppointmentAutoHeight = True
         Me.SchedulerControl1.Views.WeekView.Enabled = False
-        Me.SchedulerControl1.Views.WorkWeekView.TimeRulers.Add(TimeRuler3)
+        Me.SchedulerControl1.Views.WorkWeekView.TimeRulers.Add(TimeRuler30)
         Me.SchedulerControl1.Views.YearView.UseOptimizedScrolling = False
         '
         'SchedulerDataStorage1
@@ -745,12 +745,13 @@ Partial Class frmCalendarInst
         '
         Me.Vw_INSTTableAdapter.ClearBeforeFill = True
         '
-        'SvgImageCollection1
+        'ImageCollection1
         '
-        Me.SvgImageCollection1.Add("shipment", "image://svgimages/outlook inspired/shipment.svg")
-        Me.SvgImageCollection1.Add("actions_settings", "image://svgimages/icon builder/actions_settings.svg")
-        Me.SvgImageCollection1.Add("switchtimescalesto", "image://svgimages/scheduling/switchtimescalesto.svg")
-        Me.SvgImageCollection1.Add("bo_project", "image://svgimages/business objects/bo_project.svg")
+        Me.ImageCollection1.ImageStream = CType(resources.GetObject("ImageCollection1.ImageStream"), DevExpress.Utils.ImageCollectionStreamer)
+        Me.ImageCollection1.Images.SetKeyName(0, "puzzle.png")
+        Me.ImageCollection1.Images.SetKeyName(1, "maintenance.png")
+        Me.ImageCollection1.Images.SetKeyName(2, "delivery-truck.png")
+        Me.ImageCollection1.Images.SetKeyName(3, "settings(1).png")
         '
         'frmCalendarInst
         '
@@ -786,7 +787,7 @@ Partial Class frmCalendarInst
         CType(Me.PanelResults, System.ComponentModel.ISupportInitialize).EndInit()
         Me.PanelResults.ResumeLayout(False)
         CType(Me.SchedulerBarController1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.SvgImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -869,8 +870,8 @@ Partial Class frmCalendarInst
     Friend WithEvents colSerName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcolor As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcompleted As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents SvgImageCollection1 As DevExpress.Utils.SvgImageCollection
     Friend WithEvents BBEllipse As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarEditItem1 As DevExpress.XtraBars.BarEditItem
     Friend WithEvents cboCalendars As DevExpress.XtraEditors.Repository.RepositoryItemCheckedComboBoxEdit
+    Friend WithEvents ImageCollection1 As DevExpress.Utils.ImageCollection
 End Class
