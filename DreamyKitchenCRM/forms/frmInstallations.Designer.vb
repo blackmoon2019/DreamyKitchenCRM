@@ -20,13 +20,13 @@ Partial Class frmInstallations
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstallations))
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.grdMain = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -107,6 +107,7 @@ Partial Class frmInstallations
         Me.colDateOfEmail = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedOn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colEmailModeDescr = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridView4 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.txtSubject = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -120,7 +121,6 @@ Partial Class frmInstallations
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.INST_MAILTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.INST_MAILTableAdapter()
-        Me.colEmailModeDescr = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -226,14 +226,14 @@ Partial Class frmInstallations
         '
         Me.grdMain.Cursor = System.Windows.Forms.Cursors.Default
         Me.grdMain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
-        GridLevelNode2.LevelTemplate = Me.GridView2
-        GridLevelNode2.RelationName = "Level1"
-        Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        GridLevelNode1.LevelTemplate = Me.GridView2
+        GridLevelNode1.RelationName = "Level1"
+        Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.grdMain.Location = New System.Drawing.Point(12, 12)
         Me.grdMain.MainView = Me.GridView1
         Me.grdMain.Margin = New System.Windows.Forms.Padding(5)
         Me.grdMain.Name = "grdMain"
-        Me.grdMain.Size = New System.Drawing.Size(1341, 1050)
+        Me.grdMain.Size = New System.Drawing.Size(1341, 992)
         Me.grdMain.TabIndex = 7
         Me.grdMain.UseEmbeddedNavigator = True
         Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
@@ -338,8 +338,8 @@ Partial Class frmInstallations
         Me.txtInstFilename.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInstFilename.Name = "txtInstFilename"
         Me.txtInstFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
-        Me.txtInstFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.txtInstFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtInstFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtInstFilename.Size = New System.Drawing.Size(966, 38)
         Me.txtInstFilename.StyleController = Me.LayoutControl1
@@ -869,7 +869,7 @@ Partial Class frmInstallations
         Me.TabNavigationPage2.Caption = "Εκκρεμότητες"
         Me.TabNavigationPage2.Controls.Add(Me.LayoutControl2)
         Me.TabNavigationPage2.Name = "TabNavigationPage2"
-        Me.TabNavigationPage2.Size = New System.Drawing.Size(1365, 1074)
+        Me.TabNavigationPage2.Size = New System.Drawing.Size(1365, 1016)
         '
         'LayoutControl2
         '
@@ -878,7 +878,7 @@ Partial Class frmInstallations
         Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup1
-        Me.LayoutControl2.Size = New System.Drawing.Size(1365, 1074)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1365, 1016)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -888,7 +888,7 @@ Partial Class frmInstallations
         Me.LayoutControlGroup1.GroupBordersVisible = False
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9})
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1365, 1074)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1365, 1016)
         Me.LayoutControlGroup1.TextVisible = False
         '
         'LayoutControlItem9
@@ -896,7 +896,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem9.Control = Me.grdMain
         Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(1345, 1054)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(1345, 996)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem9.TextVisible = False
         '
@@ -1127,6 +1127,15 @@ Partial Class frmInstallations
         Me.colcreatedBy.VisibleIndex = 10
         Me.colcreatedBy.Width = 131
         '
+        'colEmailModeDescr
+        '
+        Me.colEmailModeDescr.FieldName = "EmailModeDescr"
+        Me.colEmailModeDescr.MinWidth = 35
+        Me.colEmailModeDescr.Name = "colEmailModeDescr"
+        Me.colEmailModeDescr.Visible = True
+        Me.colEmailModeDescr.VisibleIndex = 11
+        Me.colEmailModeDescr.Width = 131
+        '
         'GridView4
         '
         Me.GridView4.DetailHeight = 619
@@ -1247,15 +1256,6 @@ Partial Class frmInstallations
         'INST_MAILTableAdapter
         '
         Me.INST_MAILTableAdapter.ClearBeforeFill = True
-        '
-        'colEmailModeDescr
-        '
-        Me.colEmailModeDescr.FieldName = "EmailModeDescr"
-        Me.colEmailModeDescr.MinWidth = 35
-        Me.colEmailModeDescr.Name = "colEmailModeDescr"
-        Me.colEmailModeDescr.Visible = True
-        Me.colEmailModeDescr.VisibleIndex = 11
-        Me.colEmailModeDescr.Width = 131
         '
         'frmInstallations
         '

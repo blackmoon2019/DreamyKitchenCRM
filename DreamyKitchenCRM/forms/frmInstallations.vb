@@ -426,7 +426,7 @@ Public Class frmInstallations
             sdr = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
                 If sdr.IsDBNull(sdr.GetOrdinal("fInstName")) = False Then
-                    Dim sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
+                    Dim sFilename = Path.GetFileName(sdr.GetString(sdr.GetOrdinal("fInstName")))
                     Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
                     Dim b As Byte()
                     b = DirectCast(sdr("fInst"), Byte())

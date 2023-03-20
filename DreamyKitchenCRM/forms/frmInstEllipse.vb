@@ -489,7 +489,7 @@ Public Class frmInstEllipse
                         sdr = Cmd.ExecuteReader()
                         If (sdr.Read() = True) Then
                             If sdr.IsDBNull(sdr.GetOrdinal("fInstEllipseName")) = False Then
-                                Dim sFilename = sdr.GetString(sdr.GetOrdinal("fInstEllipseName"))
+                                Dim sFilename = Path.GetFileName(sdr.GetString(sdr.GetOrdinal("fInstEllipseName")))
                                 Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
                                 Dim b As Byte()
                                 b = DirectCast(sdr("fInstEllipse"), Byte())
@@ -904,7 +904,7 @@ Public Class frmInstEllipse
                         sdr = Cmd.ExecuteReader()
                         If (sdr.Read() = True) Then
                             If sdr.IsDBNull(sdr.GetOrdinal("fInstEllipseNameComplete")) = False Then
-                                Dim sFilename = sdr.GetString(sdr.GetOrdinal("fInstEllipseNameComplete"))
+                                Dim sFilename = Path.GetFileName(sdr.GetString(sdr.GetOrdinal("fInstEllipseNameComplete")))
                                 Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
                                 Dim b As Byte()
                                 b = DirectCast(sdr("fInstEllipseComplete"), Byte())

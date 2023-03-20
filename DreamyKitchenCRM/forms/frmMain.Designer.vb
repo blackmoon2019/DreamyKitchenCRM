@@ -721,7 +721,7 @@ Partial Class frmMain
         '
         'BBEllipse
         '
-        Me.BBEllipse.Caption = "Ελλείψεις Τοποθετήσεων"
+        Me.BBEllipse.Caption = "Εκρεμότητες Τοποθετήσεων"
         Me.BBEllipse.Id = 68
         Me.BBEllipse.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_bank_card_missing_40
         Me.BBEllipse.Name = "BBEllipse"
@@ -1163,7 +1163,6 @@ Partial Class frmMain
         Me.RibbonPageGroup11.ItemLinks.Add(Me.BBStatistics2)
         Me.RibbonPageGroup11.ItemLinks.Add(Me.BBCalendarInst)
         Me.RibbonPageGroup11.ItemLinks.Add(Me.BBPersonalCalendar)
-        Me.RibbonPageGroup11.ItemLinks.Add(Me.BBProjectJobs)
         Me.RibbonPageGroup11.ItemLinks.Add(Me.BBNotes2)
         Me.RibbonPageGroup11.ItemLinks.Add(Me.BBCusStatistics1)
         Me.RibbonPageGroup11.ItemLinks.Add(Me.BBPersonalCalendarStatus)
@@ -1223,6 +1222,7 @@ Partial Class frmMain
         Me.RibbonPageGroup24.ItemLinks.Add(Me.BBTransConstr)
         Me.RibbonPageGroup24.ItemLinks.Add(Me.BBEpopteiaTrans)
         Me.RibbonPageGroup24.ItemLinks.Add(Me.BBEllipse)
+        Me.RibbonPageGroup24.ItemLinks.Add(Me.BBProjectJobs)
         Me.RibbonPageGroup24.Name = "RibbonPageGroup24"
         Me.RibbonPageGroup24.Text = "Ιδιότητες Έργων"
         '

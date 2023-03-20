@@ -568,8 +568,14 @@ Public Class frmScroller
             popSaveAsView.EditValue = BarViews.EditValue
             If BarViews.EditValue <> "" Then
                 'grdMain.DefaultView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
-                GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
-                If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
+                If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue) = True Then
+                    GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
+                End If
+                If sDataDetail <> "" Then
+                    If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue) = True Then
+                        GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
+                    End If
+                End If
                 CurrentView = BarViews.EditValue
                 popSaveView.Enabled = True
                 popDeleteView.Enabled = True
@@ -646,11 +652,13 @@ Public Class frmScroller
             End If
             GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             If sDataDetail <> "" Then
-                My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue)
+                If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue) = True Then
+                    My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue)
+                End If
                 GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
-            End If
-            'GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
-            XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
+                'GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
+                XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     'Επαναφορά Default όψης
