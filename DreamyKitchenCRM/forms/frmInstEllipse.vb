@@ -684,6 +684,7 @@ Public Class frmInstEllipse
     Private Sub DefInst_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInst.ItemClick
         If sComeFrom = 0 Then
             txtBody.EditValue = ProgProps.InstEllipseInfBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtDateDelivered.Text)
+            txtBody.EditValue = ProgProps.InstEllipseInfBody.Replace("{INST_DATE_DELIVERED}", dtDateDelivered.Text)
             txtSubject.EditValue = ProgProps.InstEllipseInfSubject
         Else
             txtBody.EditValue = ProgProps.InstEllipseInfBodySup.Replace("{CUS}", cboCUS.Text)

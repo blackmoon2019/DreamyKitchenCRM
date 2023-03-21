@@ -33,7 +33,7 @@ Public Class frmCalendarInst
             sSQL = "Select * FROM(
                 select '0' as CalendarType,NULL AS EllipseID ,dtDeliverDate,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST where dtDeliverDate  is NOT null 
                 union
-                Select '1' as CalendarType,IE.ID AS EllipseID ,DateDelivered,cctName,vw_INST.ID,color,SerName,tmINFrom,tmINTo,vw_INST.cmt,vw_INST.code,SerCode,IE.completed,SalerName from vw_INST INNER JOIN INST_ELLIPSE IE ON IE.instID = vw_INST.ID  where comefrom=0 and IE.DateDelivered IS NOT NULL
+                Select '1' as CalendarType,IE.ID AS EllipseID ,DateDelivered,cctName,vw_INST.ID,IE.color,IE.SerName,tmINFrom,tmINTo,vw_INST.cmt,vw_INST.code,IE.SerCode,IE.completed,IE.SalerName from vw_INST INNER JOIN vw_INST_ELLIPSE IE ON IE.instID = vw_INST.ID  where comefrom=0 and IE.DateDelivered IS NOT NULL
                 union
                 Select '2' as CalendarType,NULL AS EllipseID ,dtParadosis,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST  where   dtParadosis IS NOT NULL
                 union
@@ -155,7 +155,7 @@ Public Class frmCalendarInst
         sSQL = "Select * FROM(
                 select '0' as CalendarType,NULL AS EllipseID ,dtDeliverDate,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST where dtDeliverDate  is NOT null 
                 union
-                Select '1' as CalendarType,IE.ID AS EllipseID ,DateDelivered,cctName,vw_INST.ID,color,SerName,tmINFrom,tmINTo,vw_INST.cmt,vw_INST.code,SerCode,IE.completed,SalerName from vw_INST INNER JOIN INST_ELLIPSE IE ON IE.instID = vw_INST.ID  where comefrom=0 and IE.DateDelivered IS NOT NULL
+                Select '1' as CalendarType,IE.ID AS EllipseID ,DateDelivered,cctName,vw_INST.ID,IE.color,IE.SerName,tmINFrom,tmINTo,vw_INST.cmt,vw_INST.code,IE.SerCode,IE.completed,IE.SalerName from vw_INST INNER JOIN vw_INST_ELLIPSE IE ON IE.instID = vw_INST.ID  where comefrom=0 and IE.DateDelivered IS NOT NULL
                 union
                 Select '2' as CalendarType,NULL AS EllipseID ,dtParadosis,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST  where   dtParadosis IS NOT NULL
                 union
