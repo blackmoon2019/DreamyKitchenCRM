@@ -592,7 +592,7 @@ Public Class frmInstEllipse
                 My.Computer.FileSystem.CopyFile(sFile, ProgProps.ServerPath & Path.GetFileName(sFile), True)
             End If
 
-            sEmailTo = "dreamykitchen@gmail.com"
+            'sEmailTo = "dreamykitchen@gmail.com"
             'sEmailTo = "johnmavroselinos@gmail.com"
 
 

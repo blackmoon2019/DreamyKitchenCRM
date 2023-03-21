@@ -586,8 +586,8 @@ Public Class frmInstallations
             sSubject = txtSubject.EditValue
             sBody = sBody.Replace("{INST_DATE_DELIVERED}", Date.Now.Date)
 
-            sEmailTo = "dreamykitchen@gmail.com"
-            sEmailTo = "johnmavroselinos@gmail.com"
+            ' sEmailTo = "dreamykitchen@gmail.com"
+            ' sEmailTo = "johnmavroselinos@gmail.com"
 
 
             If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
@@ -618,5 +618,9 @@ Public Class frmInstallations
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
 
+    End Sub
+
+    Private Sub cmdExit_Click_1(sender As Object, e As EventArgs) Handles cmdExit.Click
+        Me.Close()
     End Sub
 End Class

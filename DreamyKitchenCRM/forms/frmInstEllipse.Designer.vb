@@ -20,7 +20,6 @@ Partial Class frmInstEllipse
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstEllipse))
         Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
@@ -31,6 +30,7 @@ Partial Class frmInstEllipse
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstEllipse))
         Me.INSTELLIPSEJOBSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DmDataSet = New DreamyKitchenCRM.DMDataSet()
         Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -256,9 +256,9 @@ Partial Class frmInstEllipse
         Me.TabPane1.Location = New System.Drawing.Point(0, 0)
         Me.TabPane1.Name = "TabPane1"
         Me.TabPane1.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.TabNavigationPage1, Me.TabNavigationPage2})
-        Me.TabPane1.RegularSize = New System.Drawing.Size(1660, 1364)
+        Me.TabPane1.RegularSize = New System.Drawing.Size(1660, 1413)
         Me.TabPane1.SelectedPage = Me.TabNavigationPage1
-        Me.TabPane1.Size = New System.Drawing.Size(1660, 1364)
+        Me.TabPane1.Size = New System.Drawing.Size(1660, 1413)
         Me.TabPane1.TabIndex = 0
         Me.TabPane1.Text = "Εκκρεμότητες"
         '
@@ -267,7 +267,7 @@ Partial Class frmInstEllipse
         Me.TabNavigationPage1.Caption = "Εκκρεμότητες"
         Me.TabNavigationPage1.Controls.Add(Me.LayoutControl1)
         Me.TabNavigationPage1.Name = "TabNavigationPage1"
-        Me.TabNavigationPage1.Size = New System.Drawing.Size(1660, 1306)
+        Me.TabNavigationPage1.Size = New System.Drawing.Size(1660, 1355)
         '
         'LayoutControl1
         '
@@ -299,14 +299,14 @@ Partial Class frmInstEllipse
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1226, 296, 829, 792)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1660, 1306)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1660, 1355)
         Me.LayoutControl1.TabIndex = 11
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'cmdViewOrder
         '
         Me.cmdViewOrder.ImageOptions.Image = CType(resources.GetObject("cmdViewOrder.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdViewOrder.Location = New System.Drawing.Point(453, 1254)
+        Me.cmdViewOrder.Location = New System.Drawing.Point(453, 1303)
         Me.cmdViewOrder.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdViewOrder.Name = "cmdViewOrder"
         Me.cmdViewOrder.Size = New System.Drawing.Size(231, 40)
@@ -317,7 +317,7 @@ Partial Class frmInstEllipse
         'cmdNewInstEllipse
         '
         Me.cmdNewInstEllipse.ImageOptions.Image = CType(resources.GetObject("cmdNewInstEllipse.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdNewInstEllipse.Location = New System.Drawing.Point(12, 1254)
+        Me.cmdNewInstEllipse.Location = New System.Drawing.Point(12, 1303)
         Me.cmdNewInstEllipse.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdNewInstEllipse.Name = "cmdNewInstEllipse"
         Me.cmdNewInstEllipse.Size = New System.Drawing.Size(161, 40)
@@ -328,7 +328,7 @@ Partial Class frmInstEllipse
         'cmdConvertToOrder
         '
         Me.cmdConvertToOrder.ImageOptions.Image = CType(resources.GetObject("cmdConvertToOrder.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdConvertToOrder.Location = New System.Drawing.Point(177, 1254)
+        Me.cmdConvertToOrder.Location = New System.Drawing.Point(177, 1303)
         Me.cmdConvertToOrder.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdConvertToOrder.Name = "cmdConvertToOrder"
         Me.cmdConvertToOrder.Size = New System.Drawing.Size(272, 40)
@@ -339,7 +339,7 @@ Partial Class frmInstEllipse
         'cmdPrintAll
         '
         Me.cmdPrintAll.ImageOptions.Image = CType(resources.GetObject("cmdPrintAll.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdPrintAll.Location = New System.Drawing.Point(688, 1254)
+        Me.cmdPrintAll.Location = New System.Drawing.Point(688, 1303)
         Me.cmdPrintAll.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdPrintAll.Name = "cmdPrintAll"
         Me.cmdPrintAll.Size = New System.Drawing.Size(190, 40)
@@ -353,7 +353,7 @@ Partial Class frmInstEllipse
         Me.LabelControl2.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.LabelControl2.Appearance.Options.UseFont = True
         Me.LabelControl2.Appearance.Options.UseForeColor = True
-        Me.LabelControl2.Location = New System.Drawing.Point(12, 746)
+        Me.LabelControl2.Location = New System.Drawing.Point(12, 798)
         Me.LabelControl2.Name = "LabelControl2"
         Me.LabelControl2.Size = New System.Drawing.Size(262, 25)
         Me.LabelControl2.StyleController = Me.LayoutControl1
@@ -370,10 +370,10 @@ Partial Class frmInstEllipse
         Me.GridControl1.EmbeddedNavigator.Buttons.NextPage.Visible = False
         Me.GridControl1.EmbeddedNavigator.Buttons.Prev.Visible = False
         Me.GridControl1.EmbeddedNavigator.Buttons.PrevPage.Visible = False
-        Me.GridControl1.Location = New System.Drawing.Point(12, 775)
+        Me.GridControl1.Location = New System.Drawing.Point(12, 827)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Name = "GridControl1"
-        Me.GridControl1.Size = New System.Drawing.Size(1636, 475)
+        Me.GridControl1.Size = New System.Drawing.Size(1636, 472)
         Me.GridControl1.TabIndex = 14
         Me.GridControl1.UseEmbeddedNavigator = True
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
@@ -457,7 +457,7 @@ Partial Class frmInstEllipse
         Me.chkSER.Location = New System.Drawing.Point(25, 256)
         Me.chkSER.Margin = New System.Windows.Forms.Padding(5)
         Me.chkSER.Name = "chkSER"
-        Me.chkSER.Size = New System.Drawing.Size(1610, 243)
+        Me.chkSER.Size = New System.Drawing.Size(1610, 266)
         Me.chkSER.SortOrder = System.Windows.Forms.SortOrder.Ascending
         Me.chkSER.StyleController = Me.LayoutControl1
         Me.chkSER.TabIndex = 5
@@ -466,7 +466,7 @@ Partial Class frmInstEllipse
         'chkCompleted
         '
         Me.chkCompleted.EditValue = CType(0, Byte)
-        Me.chkCompleted.Location = New System.Drawing.Point(1470, 503)
+        Me.chkCompleted.Location = New System.Drawing.Point(1470, 526)
         Me.chkCompleted.Margin = New System.Windows.Forms.Padding(5)
         Me.chkCompleted.Name = "chkCompleted"
         Me.chkCompleted.Properties.Caption = "Ολοκληρώθηκε"
@@ -481,7 +481,7 @@ Partial Class frmInstEllipse
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_30
-        Me.cmdExit.Location = New System.Drawing.Point(1512, 1254)
+        Me.cmdExit.Location = New System.Drawing.Point(1512, 1303)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(136, 39)
@@ -492,7 +492,7 @@ Partial Class frmInstEllipse
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = CType(resources.GetObject("cmdSave.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSave.Location = New System.Drawing.Point(1344, 1254)
+        Me.cmdSave.Location = New System.Drawing.Point(1344, 1303)
         Me.cmdSave.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(164, 40)
@@ -517,7 +517,7 @@ Partial Class frmInstEllipse
         'dtDateDelivered
         '
         Me.dtDateDelivered.EditValue = Nothing
-        Me.dtDateDelivered.Location = New System.Drawing.Point(199, 503)
+        Me.dtDateDelivered.Location = New System.Drawing.Point(199, 526)
         Me.dtDateDelivered.Margin = New System.Windows.Forms.Padding(5)
         Me.dtDateDelivered.Name = "dtDateDelivered"
         Me.dtDateDelivered.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -530,10 +530,10 @@ Partial Class frmInstEllipse
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(25, 571)
+        Me.txtComments.Location = New System.Drawing.Point(25, 594)
         Me.txtComments.Margin = New System.Windows.Forms.Padding(5)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(1610, 74)
+        Me.txtComments.Size = New System.Drawing.Size(1610, 103)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 11
         Me.txtComments.Tag = "cmt,0,1,2"
@@ -556,7 +556,7 @@ Partial Class frmInstEllipse
         'txtTmINFrom
         '
         Me.txtTmINFrom.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.txtTmINFrom.Location = New System.Drawing.Point(660, 503)
+        Me.txtTmINFrom.Location = New System.Drawing.Point(660, 526)
         Me.txtTmINFrom.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTmINFrom.Name = "txtTmINFrom"
         Me.txtTmINFrom.Properties.BeepOnError = True
@@ -572,7 +572,7 @@ Partial Class frmInstEllipse
         'txtTmINTo
         '
         Me.txtTmINTo.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.txtTmINTo.Location = New System.Drawing.Point(845, 503)
+        Me.txtTmINTo.Location = New System.Drawing.Point(845, 526)
         Me.txtTmINTo.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTmINTo.Name = "txtTmINTo"
         Me.txtTmINTo.Properties.BeepOnError = True
@@ -623,7 +623,7 @@ Partial Class frmInstEllipse
         'dtReceipt
         '
         Me.dtReceipt.EditValue = Nothing
-        Me.dtReceipt.Location = New System.Drawing.Point(1153, 503)
+        Me.dtReceipt.Location = New System.Drawing.Point(1153, 526)
         Me.dtReceipt.Margin = New System.Windows.Forms.Padding(5)
         Me.dtReceipt.Name = "dtReceipt"
         Me.dtReceipt.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -635,7 +635,7 @@ Partial Class frmInstEllipse
         '
         'txtInstellipseFilename
         '
-        Me.txtInstellipseFilename.Location = New System.Drawing.Point(371, 649)
+        Me.txtInstellipseFilename.Location = New System.Drawing.Point(371, 701)
         Me.txtInstellipseFilename.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInstellipseFilename.Name = "txtInstellipseFilename"
         Me.txtInstellipseFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -649,7 +649,7 @@ Partial Class frmInstEllipse
         '
         'txtInstellipseFilenameComplete
         '
-        Me.txtInstellipseFilenameComplete.Location = New System.Drawing.Point(371, 691)
+        Me.txtInstellipseFilenameComplete.Location = New System.Drawing.Point(371, 743)
         Me.txtInstellipseFilenameComplete.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInstellipseFilenameComplete.Name = "txtInstellipseFilenameComplete"
         Me.txtInstellipseFilenameComplete.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -667,15 +667,15 @@ Partial Class frmInstEllipse
         Me.Root.GroupBordersVisible = False
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem8, Me.LayoutControlGroup1, Me.LayoutControlItem10, Me.LayoutControlItem3, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem9, Me.EmptySpaceItem2, Me.LayoutControlItem11, Me.LayoutControlItem21})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1660, 1306)
+        Me.Root.Size = New System.Drawing.Size(1660, 1355)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.GridControl1
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 763)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 815)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(1640, 479)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(1640, 476)
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
         '
@@ -686,7 +686,7 @@ Partial Class frmInstEllipse
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LInst, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem6, Me.LayoutControlItem7, Me.LdtDateDelivered, Me.LTmINFrom, Me.LTmINTo, Me.LayoutControlItem5, Me.LayoutControlItem14, Me.LCus, Me.LTransh, Me.LdtReceipt, Me.LfInstEllipseName, Me.LfInstEllipseName1})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1640, 734)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1640, 786)
         Me.LayoutControlGroup1.Text = " "
         '
         'LInst
@@ -728,7 +728,7 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem6.Control = Me.chkSER
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 195)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(1614, 247)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(1614, 270)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem6.TextVisible = False
         '
@@ -746,7 +746,7 @@ Partial Class frmInstEllipse
         Me.LdtDateDelivered.Control = Me.dtDateDelivered
         Me.LdtDateDelivered.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LdtDateDelivered.CustomizationFormText = "Ημερ/νία Διεκπεραίωσης"
-        Me.LdtDateDelivered.Location = New System.Drawing.Point(0, 442)
+        Me.LdtDateDelivered.Location = New System.Drawing.Point(0, 465)
         Me.LdtDateDelivered.Name = "LdtDateDelivered"
         Me.LdtDateDelivered.Size = New System.Drawing.Size(439, 42)
         Me.LdtDateDelivered.Tag = ""
@@ -760,7 +760,7 @@ Partial Class frmInstEllipse
         Me.LTmINFrom.Control = Me.txtTmINFrom
         Me.LTmINFrom.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LTmINFrom.CustomizationFormText = "Από"
-        Me.LTmINFrom.Location = New System.Drawing.Point(439, 442)
+        Me.LTmINFrom.Location = New System.Drawing.Point(439, 465)
         Me.LTmINFrom.Name = "LTmINFrom"
         Me.LTmINFrom.Size = New System.Drawing.Size(340, 42)
         Me.LTmINFrom.Text = "Ώρα Άφιξης(Διάστημα)"
@@ -773,7 +773,7 @@ Partial Class frmInstEllipse
         Me.LTmINTo.Control = Me.txtTmINTo
         Me.LTmINTo.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LTmINTo.CustomizationFormText = "Έως"
-        Me.LTmINTo.Location = New System.Drawing.Point(779, 442)
+        Me.LTmINTo.Location = New System.Drawing.Point(779, 465)
         Me.LTmINTo.Name = "LTmINTo"
         Me.LTmINTo.Size = New System.Drawing.Size(168, 42)
         Me.LTmINTo.Text = "Έως"
@@ -784,7 +784,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.chkCompleted
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(1445, 442)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(1445, 465)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(169, 42)
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
@@ -796,9 +796,9 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Σχόλια"
         Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 484)
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 507)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(1614, 104)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(1614, 133)
         Me.LayoutControlItem14.Tag = ""
         Me.LayoutControlItem14.Text = "Σχόλια"
         Me.LayoutControlItem14.TextLocation = DevExpress.Utils.Locations.Top
@@ -833,7 +833,7 @@ Partial Class frmInstEllipse
         Me.LdtReceipt.Control = Me.dtReceipt
         Me.LdtReceipt.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LdtReceipt.CustomizationFormText = "Ημερ/νία Παραγγελίας"
-        Me.LdtReceipt.Location = New System.Drawing.Point(947, 442)
+        Me.LdtReceipt.Location = New System.Drawing.Point(947, 465)
         Me.LdtReceipt.Name = "LdtReceipt"
         Me.LdtReceipt.Size = New System.Drawing.Size(498, 42)
         Me.LdtReceipt.Text = "Ημερ/νία Παραλαβής"
@@ -846,7 +846,7 @@ Partial Class frmInstEllipse
         Me.LfInstEllipseName.Control = Me.txtInstellipseFilename
         Me.LfInstEllipseName.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LfInstEllipseName.CustomizationFormText = "Έντυπο Ολοκλήρωσης Τοποθέτησης"
-        Me.LfInstEllipseName.Location = New System.Drawing.Point(0, 588)
+        Me.LfInstEllipseName.Location = New System.Drawing.Point(0, 640)
         Me.LfInstEllipseName.Name = "LfInstEllipseName"
         Me.LfInstEllipseName.Size = New System.Drawing.Size(1614, 42)
         Me.LfInstEllipseName.Text = "Έντυπο Εκκρεμοτήτων(Υπογεγραμμένο)"
@@ -857,7 +857,7 @@ Partial Class frmInstEllipse
         Me.LfInstEllipseName1.Control = Me.txtInstellipseFilenameComplete
         Me.LfInstEllipseName1.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LfInstEllipseName1.CustomizationFormText = "Έντυπο Ολοκλήρωσης Τοποθέτησης"
-        Me.LfInstEllipseName1.Location = New System.Drawing.Point(0, 630)
+        Me.LfInstEllipseName1.Location = New System.Drawing.Point(0, 682)
         Me.LfInstEllipseName1.Name = "LfInstEllipseName1"
         Me.LfInstEllipseName1.Size = New System.Drawing.Size(1614, 42)
         Me.LfInstEllipseName1.Text = "Έντυπο Ολοκλήρωσης(Υπογεγραμμένο)"
@@ -866,7 +866,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem10
         '
         Me.LayoutControlItem10.Control = Me.LabelControl2
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 734)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 786)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Size = New System.Drawing.Size(1640, 29)
         Me.LayoutControlItem10.Text = "Εκκρεμότητες"
@@ -876,7 +876,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.cmdSave
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(1332, 1242)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(1332, 1291)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(168, 44)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
@@ -885,7 +885,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.cmdExit
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(1500, 1242)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(1500, 1291)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(140, 44)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
@@ -894,7 +894,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.cmdConvertToOrder
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(165, 1242)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(165, 1291)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(276, 44)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
@@ -903,7 +903,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.cmdNewInstEllipse
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 1242)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 1291)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(165, 44)
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(0, 0)
@@ -912,7 +912,7 @@ Partial Class frmInstEllipse
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(870, 1242)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(870, 1291)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(462, 44)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
@@ -920,7 +920,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.cmdPrintAll
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(676, 1242)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(676, 1291)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(194, 44)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
@@ -929,7 +929,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem21
         '
         Me.LayoutControlItem21.Control = Me.cmdViewOrder
-        Me.LayoutControlItem21.Location = New System.Drawing.Point(441, 1242)
+        Me.LayoutControlItem21.Location = New System.Drawing.Point(441, 1291)
         Me.LayoutControlItem21.Name = "LayoutControlItem21"
         Me.LayoutControlItem21.Size = New System.Drawing.Size(235, 44)
         Me.LayoutControlItem21.TextSize = New System.Drawing.Size(0, 0)
@@ -940,7 +940,7 @@ Partial Class frmInstEllipse
         Me.TabNavigationPage2.Caption = "Email"
         Me.TabNavigationPage2.Controls.Add(Me.LayoutControl2)
         Me.TabNavigationPage2.Name = "TabNavigationPage2"
-        Me.TabNavigationPage2.Size = New System.Drawing.Size(1660, 1197)
+        Me.TabNavigationPage2.Size = New System.Drawing.Size(1660, 1355)
         '
         'LayoutControl2
         '
@@ -957,7 +957,7 @@ Partial Class frmInstEllipse
         Me.LayoutControl2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl2.Name = "LayoutControl2"
         Me.LayoutControl2.Root = Me.LayoutControlGroup2
-        Me.LayoutControl2.Size = New System.Drawing.Size(1660, 1197)
+        Me.LayoutControl2.Size = New System.Drawing.Size(1660, 1355)
         Me.LayoutControl2.TabIndex = 9
         Me.LayoutControl2.Text = "LayoutControl2"
         '
@@ -966,7 +966,7 @@ Partial Class frmInstEllipse
         Me.cmdSendEmailComplete.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success
         Me.cmdSendEmailComplete.Appearance.Options.UseBackColor = True
         Me.cmdSendEmailComplete.ImageOptions.Image = CType(resources.GetObject("cmdSendEmailComplete.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSendEmailComplete.Location = New System.Drawing.Point(299, 380)
+        Me.cmdSendEmailComplete.Location = New System.Drawing.Point(299, 421)
         Me.cmdSendEmailComplete.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSendEmailComplete.Name = "cmdSendEmailComplete"
         Me.cmdSendEmailComplete.Size = New System.Drawing.Size(548, 40)
@@ -978,7 +978,7 @@ Partial Class frmInstEllipse
         '
         Me.cmdDefEmail.DropDownControl = Me.PopupMenu1
         Me.cmdDefEmail.ImageOptions.Image = CType(resources.GetObject("cmdDefEmail.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdDefEmail.Location = New System.Drawing.Point(12, 380)
+        Me.cmdDefEmail.Location = New System.Drawing.Point(12, 421)
         Me.cmdDefEmail.MenuManager = Me.BarManager1
         Me.cmdDefEmail.Name = "cmdDefEmail"
         Me.cmdDefEmail.Size = New System.Drawing.Size(283, 38)
@@ -1032,7 +1032,7 @@ Partial Class frmInstEllipse
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1364)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1413)
         Me.barDockControlBottom.Manager = Me.BarManager1
         Me.barDockControlBottom.Size = New System.Drawing.Size(1660, 0)
         '
@@ -1042,7 +1042,7 @@ Partial Class frmInstEllipse
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
         Me.barDockControlLeft.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 1364)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(0, 1413)
         '
         'barDockControlRight
         '
@@ -1050,7 +1050,7 @@ Partial Class frmInstEllipse
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
         Me.barDockControlRight.Location = New System.Drawing.Point(1660, 0)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 1364)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 1413)
         '
         'LabelControl3
         '
@@ -1058,7 +1058,7 @@ Partial Class frmInstEllipse
         Me.LabelControl3.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer))
         Me.LabelControl3.Appearance.Options.UseFont = True
         Me.LabelControl3.Appearance.Options.UseForeColor = True
-        Me.LabelControl3.Location = New System.Drawing.Point(12, 424)
+        Me.LabelControl3.Location = New System.Drawing.Point(12, 465)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(157, 25)
         Me.LabelControl3.StyleController = Me.LayoutControl2
@@ -1068,7 +1068,7 @@ Partial Class frmInstEllipse
         'cmdSendApointmentEmail
         '
         Me.cmdSendApointmentEmail.ImageOptions.Image = CType(resources.GetObject("cmdSendApointmentEmail.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSendApointmentEmail.Location = New System.Drawing.Point(1272, 380)
+        Me.cmdSendApointmentEmail.Location = New System.Drawing.Point(1272, 421)
         Me.cmdSendApointmentEmail.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSendApointmentEmail.Name = "cmdSendApointmentEmail"
         Me.cmdSendApointmentEmail.Size = New System.Drawing.Size(376, 40)
@@ -1081,7 +1081,7 @@ Partial Class frmInstEllipse
         Me.cmdSendEmail.Appearance.BackColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question
         Me.cmdSendEmail.Appearance.Options.UseBackColor = True
         Me.cmdSendEmail.ImageOptions.Image = CType(resources.GetObject("cmdSendEmail.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSendEmail.Location = New System.Drawing.Point(851, 380)
+        Me.cmdSendEmail.Location = New System.Drawing.Point(851, 421)
         Me.cmdSendEmail.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSendEmail.Name = "cmdSendEmail"
         Me.cmdSendEmail.Size = New System.Drawing.Size(417, 40)
@@ -1093,7 +1093,7 @@ Partial Class frmInstEllipse
         '
         Me.txtBody.Location = New System.Drawing.Point(87, 96)
         Me.txtBody.Name = "txtBody"
-        Me.txtBody.Size = New System.Drawing.Size(1561, 280)
+        Me.txtBody.Size = New System.Drawing.Size(1561, 321)
         Me.txtBody.StyleController = Me.LayoutControl2
         Me.txtBody.TabIndex = 3
         '
@@ -1110,12 +1110,12 @@ Partial Class frmInstEllipse
         Me.grdMain.Cursor = System.Windows.Forms.Cursors.Default
         Me.grdMain.DataSource = Me.INSTMAILBindingSource
         Me.grdMain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
-        Me.grdMain.Location = New System.Drawing.Point(12, 453)
+        Me.grdMain.Location = New System.Drawing.Point(12, 494)
         Me.grdMain.MainView = Me.GridView3
         Me.grdMain.Margin = New System.Windows.Forms.Padding(5)
         Me.grdMain.Name = "grdMain"
         Me.grdMain.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.txtImageAttachment})
-        Me.grdMain.Size = New System.Drawing.Size(1636, 732)
+        Me.grdMain.Size = New System.Drawing.Size(1636, 849)
         Me.grdMain.TabIndex = 8
         Me.grdMain.UseEmbeddedNavigator = True
         Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3, Me.GridView2})
@@ -1298,15 +1298,15 @@ Partial Class frmInstEllipse
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem15, Me.LayoutControlItem16, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem12, Me.LayoutControlItem17, Me.LayoutControlItem13, Me.LayoutControlItem22})
         Me.LayoutControlGroup2.Name = "Root"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1660, 1197)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1660, 1355)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem15
         '
         Me.LayoutControlItem15.Control = Me.grdMain
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 441)
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 482)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(1640, 736)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(1640, 853)
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem15.TextVisible = False
         '
@@ -1324,7 +1324,7 @@ Partial Class frmInstEllipse
         Me.LayoutControlItem18.Control = Me.txtBody
         Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 84)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(1640, 284)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(1640, 325)
         Me.LayoutControlItem18.Text = "Κείμενο"
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(63, 23)
         '
@@ -1342,7 +1342,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem20
         '
         Me.LayoutControlItem20.Control = Me.LabelControl3
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 412)
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 453)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
         Me.LayoutControlItem20.Size = New System.Drawing.Size(1640, 29)
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(0, 0)
@@ -1351,7 +1351,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.cmdSendApointmentEmail
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(1260, 368)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(1260, 409)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Size = New System.Drawing.Size(380, 44)
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
@@ -1360,7 +1360,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem17
         '
         Me.LayoutControlItem17.Control = Me.cmdDefEmail
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 368)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 409)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
         Me.LayoutControlItem17.Size = New System.Drawing.Size(287, 44)
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
@@ -1369,7 +1369,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem13
         '
         Me.LayoutControlItem13.Control = Me.cmdSendEmail
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(839, 368)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(839, 409)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
         Me.LayoutControlItem13.Size = New System.Drawing.Size(421, 44)
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(0, 0)
@@ -1378,7 +1378,7 @@ Partial Class frmInstEllipse
         'LayoutControlItem22
         '
         Me.LayoutControlItem22.Control = Me.cmdSendEmailComplete
-        Me.LayoutControlItem22.Location = New System.Drawing.Point(287, 368)
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(287, 409)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
         Me.LayoutControlItem22.Size = New System.Drawing.Size(552, 44)
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(0, 0)
@@ -1392,7 +1392,7 @@ Partial Class frmInstEllipse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1660, 1364)
+        Me.ClientSize = New System.Drawing.Size(1660, 1413)
         Me.Controls.Add(Me.TabPane1)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
