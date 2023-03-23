@@ -109,33 +109,35 @@ Public Class frmCalendarInst
                 form1.Mode = FormMode.EditRecord
             Next i
         End If
-
-        If apt.CustomFields.Item("IsInst") = True Or apt.CustomFields.Item("IsDelivery") = True Then
+        If apt IsNot Nothing Then
+            If apt.CustomFields.Item("IsInst") = True Or apt.CustomFields.Item("IsDelivery") = True Then
+                form1.ShowDialog()
+                Exit Sub
+            End If
+            If apt.CustomFields.Item("IsEllipse") = True Then
+                Dim frmInstEllipse As frmInstEllipse = New frmInstEllipse()
+                frmInstEllipse.ID = apt.CustomFields.Item("EllipseID").ToString
+                frmInstEllipse.INST_ID = apt.Id
+                frmInstEllipse.Text = "Εκκρεμότητες Έργων"
+                frmInstEllipse.Mode = FormMode.EditRecord
+                frmInstEllipse.CalledFromControl = False
+                frmInstEllipse.ShowDialog()
+                form1.Dispose()
+                form1 = Nothing
+            End If
+            If apt.CustomFields.Item("IsProjectJob") = True Then
+                Dim frmProjectJobs As frmProjectJobs = New frmProjectJobs()
+                frmProjectJobs.ID = apt.CustomFields.Item("ProjectJobID").ToString
+                frmProjectJobs.Text = "Εργασίες"
+                frmProjectJobs.Mode = FormMode.EditRecord
+                frmProjectJobs.CalledFromControl = False
+                frmProjectJobs.ShowDialog()
+                form1.Dispose()
+                form1 = Nothing
+            End If
+        Else
             form1.ShowDialog()
-            Exit Sub
         End If
-        If apt.CustomFields.Item("IsEllipse") = True Then
-            Dim frmInstEllipse As frmInstEllipse = New frmInstEllipse()
-            frmInstEllipse.ID = apt.CustomFields.Item("EllipseID").ToString
-            frmInstEllipse.INST_ID = apt.Id
-            frmInstEllipse.Text = "Εκκρεμότητες Έργων"
-            frmInstEllipse.Mode = FormMode.EditRecord
-            frmInstEllipse.CalledFromControl = False
-            frmInstEllipse.ShowDialog()
-            form1.Dispose()
-            form1 = Nothing
-        End If
-        If apt.CustomFields.Item("IsProjectJob") = True Then
-            Dim frmProjectJobs As frmProjectJobs = New frmProjectJobs()
-            frmProjectJobs.ID = apt.CustomFields.Item("ProjectJobID").ToString
-            frmProjectJobs.Text = "Εργασίες"
-            frmProjectJobs.Mode = FormMode.EditRecord
-            frmProjectJobs.CalledFromControl = False
-            frmProjectJobs.ShowDialog()
-            form1.Dispose()
-            form1 = Nothing
-        End If
-
         'SetCalendarFilter()
     End Sub
     Private Sub SetCalendarFilter(Optional ByVal sWhere As String = "")
