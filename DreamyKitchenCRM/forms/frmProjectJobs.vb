@@ -96,7 +96,7 @@ Public Class frmProjectJobs
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc,instdtDeliverDate
                         from vw_TRANSH t
-                        where  completed = 0 and T.cusid = " & sCusID & "order by description")
+                        where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
     End Sub
 
