@@ -231,6 +231,7 @@ Public Class frmCUSPrivateAgreement
         txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
         txtAFM.EditValue = cboCUS.GetColumnValue("afm")
         cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
+
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
@@ -314,6 +315,9 @@ Public Class frmCUSPrivateAgreement
                 If sdr.IsDBNull(sdr.GetOrdinal("AREAS_Name")) = False Then txtArea.EditValue = sdr.GetString(sdr.GetOrdinal("AREAS_Name")) Else txtArea.EditValue = Nothing
                 If sdr.IsDBNull(sdr.GetOrdinal("DOY_Name")) = False Then txtDOY.EditValue = sdr.GetString(sdr.GetOrdinal("DOY_Name")) Else txtDOY.EditValue = Nothing
                 If sdr.IsDBNull(sdr.GetOrdinal("afm")) = False Then txtAFM.EditValue = sdr.GetString(sdr.GetOrdinal("afm")) Else txtAFM.EditValue = Nothing
+                Dim sADSQL As New System.Text.StringBuilder
+                If cboADR.EditValue IsNot Nothing Then sADSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR WHERE ID = " & toSQLValueS(cboADR.EditValue.ToString))
+                FillCbo.ADR(cboADR, sADSQL)
                 If sdr.IsDBNull(sdr.GetOrdinal("AdrID")) = False Then cboADR.EditValue = sdr.GetGuid(sdr.GetOrdinal("AdrID")) Else cboADR.EditValue = Nothing
             End If
             sdr.Close()
