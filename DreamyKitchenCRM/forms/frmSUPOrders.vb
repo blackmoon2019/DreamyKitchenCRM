@@ -73,7 +73,19 @@ Public Class frmSUPOrders
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from SUP_ORDERS where id = " & toSQLValueS(sID))
+                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,supOrderID,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where supOrderID = '" & sID & "'")
+                Dim C As New GridColumn
+                C.Name = "ICO"
+                C.Caption = ""
+                C.Visible = True
+                Dim textEdit As New RepositoryItemTextEdit()
+                textEdit.ContextImageOptions.Image = My.Resources.AddFile_16x16
+                C.ColumnEdit = textEdit
+                GridControl1.RepositoryItems.Add(textEdit)
+                C.VisibleIndex = 0
+                GridView1.Columns.Add(C)
         End Select
+        LoadForms.RestoreLayoutFromXml(GridView1, "vw_SUP_ORDERS_F_def.xml")
 
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -198,9 +210,14 @@ Public Class frmSUPOrders
                         sID = sGuid
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "SUP_ORDERS", LayoutControl1,,, sID, True)
-                        'sGuid = sID
+                        sGuid = sID
                 End Select
-
+                If txtFileNames.Text <> "" Then
+                    sResult = DBQ.InsertDataFiles(XtraOpenFileDialog1, sGuid, "SUP_ORDERS_F")
+                    LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,supOrderID,files,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where supOrderID = '" & sGuid & "'")
+                    LoadForms.RestoreLayoutFromXml(GridView1, "vw_SUP_ORDERS_F.xml")
+                End If
+                LoadForms.RestoreLayoutFromXml(GridView1, "vw_SUP_ORDERS_F.xml")
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm
                     form.LoadRecords("vw_SUP_ORDERS")
@@ -220,5 +237,91 @@ Public Class frmSUPOrders
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Delete : DeleteRecord() 'If UserProps.AllowDelete = True Then DeleteRecord()
+        End Select
+    End Sub
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "vw_SUP_ORDERS_F.xml",, "select top 1 [filename], [RealName], [code], [comefrom], [extension], [modifiedOn], [createdOn], [ID], [supOrderID]  from vw_SUP_ORDERS_F")
+    End Sub
+    Private Sub DeleteRecord()
+        Dim sSQL As String
+        Try
+            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                sSQL = "DELETE FROM SUP_ORDERS_F WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,supOrderID,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where cctID = '" & sID & "'")
+                LoadForms.RestoreLayoutFromXml(GridView1, "vw_SUP_ORDERS_F.xml")
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
+        Try
+            Dim sFilename = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename")
+            'Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
+            Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+            Dim b() As Byte = GetFile(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
+            fs.Write(b, 0, b.Length)
+            fs.Close()
+            ShellExecute(ProgProps.TempFolderPath & sFilename)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub ShellExecute(ByVal File As String)
+        Dim myProcess As New Process
+        myProcess.StartInfo.FileName = File
+        myProcess.StartInfo.UseShellExecute = True
+        myProcess.StartInfo.RedirectStandardOutput = False
+        myProcess.Start()
+        myProcess.Dispose()
+    End Sub
+
+    Private Function GetFile(ByVal sRowID As String) As Byte()
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Dim bytes As Byte()
+
+        sSQL = "Select  files From vw_SUP_ORDERS_F WHERE ID = " & toSQLValueS(sRowID)
+        cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
+        If sdr.Read() = True Then
+            bytes = DirectCast(sdr("files"), Byte())
+            Return bytes
+        End If
+        sdr.Close()
+
+    End Function
+    Private Sub txtFileNames_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtFileNames.ButtonClick
+        If e.Button.Index = 0 Then
+            FilesSelection()
+        Else
+            txtFileNames.EditValue = Nothing
+        End If
+    End Sub
+    Private Sub FilesSelection()
+
+        'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+        XtraOpenFileDialog1.FilterIndex = 1
+        XtraOpenFileDialog1.InitialDirectory = "C:\"
+        XtraOpenFileDialog1.Title = "Open File"
+        XtraOpenFileDialog1.CheckFileExists = False
+        XtraOpenFileDialog1.Multiselect = True
+        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
+        If result = DialogResult.OK Then
+            txtFileNames.EditValue = ""
+            For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
+                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I).Replace("'", "")
+            Next I
+        End If
     End Sub
 End Class
