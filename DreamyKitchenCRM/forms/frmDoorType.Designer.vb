@@ -299,7 +299,7 @@ Partial Class frmDoorType
         Me.cboKasa.Name = "cboKasa"
         Me.cboKasa.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboKasa.Properties.Items.AddRange(New Object() {"13", "15", "18", "24"})
-        Me.cboKasa.Properties.Tag = "opening"
+        Me.cboKasa.Properties.Tag = "0"
         Me.cboKasa.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboKasa.Size = New System.Drawing.Size(680, 38)
         Me.cboKasa.StyleController = Me.LayoutControl1

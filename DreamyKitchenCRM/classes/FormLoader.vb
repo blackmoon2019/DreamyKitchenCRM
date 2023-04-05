@@ -256,6 +256,7 @@ NextItem:
                     cbo.EditValue = Convert.ToInt32(sValue)
                 End If
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+
                 Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                 cbo = Ctrl
                 If sValue = "False" Or sValue = "True" Then

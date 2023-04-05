@@ -491,7 +491,7 @@ NextItem:
                                         End If
 
                                     End If
-                                        IsFirstField = False
+                                    IsFirstField = False
                                 End If
                             End If
                         End If
@@ -564,7 +564,7 @@ NextItem:
                                         Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                         cbo = Ctrl
                                         If cbo.EditValue <> Nothing Then
-                                            If cbo.EditValue = "False" Or cbo.EditValue = "True" Then
+                                            If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                                 sSQL.Append(cbo.SelectedIndex)
                                             Else
                                                 If cbo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then

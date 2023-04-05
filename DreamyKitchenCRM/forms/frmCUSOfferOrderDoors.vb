@@ -10,6 +10,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
 
 Public Class frmCUSOfferOrderDoors
+    Private ManageCbo As New CombosManager
     Private sID As String
     Private sIsOrder As Boolean
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
@@ -490,14 +491,14 @@ Public Class frmCUSOfferOrderDoors
         frmDoorType.Show()
     End Sub
 
-    Private Sub cboDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDoorType.EditValue = Nothing : ManageDoorType(cboDoorType)
             Case 2 : If cboDoorType.EditValue <> Nothing Then ManageDoorType(cboDoorType)
             Case 3 : cboDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType2.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDoorType2.EditValue = Nothing : ManageDoorType(cboDoorType2)
             Case 2 : If cboDoorType2.EditValue <> Nothing Then ManageDoorType(cboDoorType2)
@@ -505,28 +506,28 @@ Public Class frmCUSOfferOrderDoors
         End Select
     End Sub
 
-    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType3.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDoorType3.EditValue = Nothing : ManageDoorType(cboDoorType3)
             Case 2 : If cboDoorType3.EditValue <> Nothing Then ManageDoorType(cboDoorType3)
             Case 3 : cboDoorType3.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType4_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType4.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDoorType4.EditValue = Nothing : ManageDoorType(cboDoorType4)
             Case 2 : If cboDoorType4.EditValue <> Nothing Then ManageDoorType(cboDoorType4)
             Case 3 : cboDoorType4.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType5_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType5.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDoorType5.EditValue = Nothing : ManageDoorType(cboDoorType5)
             Case 2 : If cboDoorType5.EditValue <> Nothing Then ManageDoorType(cboDoorType5)
             Case 3 : cboDoorType5.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType6_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType6.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDoorType6.EditValue = Nothing : ManageDoorType(cboDoorType6)
             Case 2 : If cboDoorType6.EditValue <> Nothing Then ManageDoorType(cboDoorType6)
@@ -597,5 +598,13 @@ Public Class frmCUSOfferOrderDoors
 
     Private Sub cboKasa1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboKasa1.SelectedIndexChanged
 
+    End Sub
+
+    Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
+            Case 3 : cboTRANSH.EditValue = Nothing
+        End Select
     End Sub
 End Class
