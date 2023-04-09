@@ -2,6 +2,7 @@
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraEditors
 Imports System.IO
+Imports DevExpress.XtraRichEdit.Import.Html
 
 Public Class DBQueries
     Public Enum InsertMode
@@ -30,15 +31,16 @@ Public Class DBQueries
 
                 sSQL.Clear()
                 Select Case sTable
-                    Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
-                    Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
-                    Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
-                    Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
+                    Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
+                    Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,[files])")
+                    Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
+                    Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
+                    Case "SUP_ORDERS_F" : sSQL.AppendLine("INSERT INTO SUP_ORDERS_F (supOrderID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                 End Select
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
                 Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))
                 Dim FileName As String = Path.GetFileName(control.FileNames(i))
-                My.Computer.FileSystem.CopyFile(control.FileNames(i), ProgProps.ServerPath & FileName, True)
+                ' My.Computer.FileSystem.CopyFile(control.FileNames(i), ProgProps.ServerPath & FileName, True)
 
                 sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
                 sSQL.AppendLine(toSQLValueS(control.SafeFileNames(i).ToString) & ",")
@@ -47,12 +49,13 @@ Public Class DBQueries
                 sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
                 If sTable = "CCT_F" Then sSQL.AppendLine(",0")
                 'If sTable = "TRANSH" Then sSQL.AppendLine(",1")
-                sSQL.Append(",files.* ")
-                sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(ProgProps.ServerPath & FileName) & ", SINGLE_BLOB) files")
-
+                'sSQL.Append(",files.* ")
+                'sSQL.AppendLine("FROM OPENROWSET (BULK " & toSQLValueS(ProgProps.ServerPath & FileName) & ", SINGLE_BLOB) files")
+                sSQL.Append(",@files ")
 
                 'Εκτέλεση QUERY
                 Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    oCmd.Parameters.AddWithValue("files", SqlDbType.VarBinary).Value = File.ReadAllBytes(control.FileNames(i))
                     oCmd.ExecuteNonQuery()
                 End Using
 

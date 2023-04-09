@@ -192,7 +192,7 @@ Public Class frmParameters
                 LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml")
                 GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("price").OptionsColumn.AllowEdit = False
             Case 3 : Prog_Prop.GetProgPROSF(LayoutControl4)
-            Case 4 : Prog_Prop.GetProgEmailInst(LayoutControl5)
+            Case 4 : Prog_Prop.GetProgEmailInst(LayoutControl5) : Prog_Prop.GetProgEmailSup(LayoutControlItem76) : SUP_ORDERS_MAIL.EditValue = ProgProps.EmailOrders
             Case Else
         End Select
     End Sub
@@ -362,12 +362,14 @@ Public Class frmParameters
         Me.Close()
     End Sub
 
-    Private Sub cmdSaveInstEmail_Click(sender As Object, e As EventArgs) Handles cmdSaveInstEmail.Click
+    Private Sub cmdSaveInstEmail_Click(sender As Object, e As EventArgs) Handles cmdSaveEmail.Click
         Prog_Prop.SetProgInstEmail(ELLIPSE_BODY_INF.Text, INSTALLATIONS_EMAIL.Text, ELLIPSE_SUBJECT_INF.Text, INSTALLATIONS_EMAIL_SUP.Text,
                                    ELLIPSE_SUBJECT_SUP_INF.Text, ELLIPSE_BODY_SUP_INF.Text, ELLIPSE_BODY_INF_APPOINTMENT.Text, INSTALLATIONS_SUBJECT_INF.Text,
                                    INSTALLATIONS_BODY_INF_APPOINTMENT.Text, ELLIPSE_SUBJECT_INF_APPOINTMENT.Text, ELLIPSE_SUBJECT_COMPLETE_INF.Text,
                                    ELLIPSE_BODY_COMPLETE_INF.Text)
         Prog_Prop.GetProgEmailInst(LayoutControl5)
+        Prog_Prop.SetProgSupEmail(SUP_ORDERS_MAIL.Text)
+        Prog_Prop.GetProgEmailSup(LayoutControlItem76)
         XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 

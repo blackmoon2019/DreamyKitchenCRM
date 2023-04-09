@@ -43,6 +43,7 @@ Module Main
         Public ProgTitle As String
         Public VAT As Integer
         Public Decimals As Integer
+        Public EmailOrders As String
         Public SupportEmail As String
         Public InstEllipseInfBody As String
         Public InstEllipseInfAppointmentBody As String

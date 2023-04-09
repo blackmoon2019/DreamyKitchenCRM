@@ -13819,6 +13819,8 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnbal As Global.System.Data.DataColumn
         
+        Private columnemail As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -13895,6 +13897,14 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property emailColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnemail
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -13931,9 +13941,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function Addvw_SUPRow(ByVal ID As System.Guid, ByVal code As Integer, ByVal Fullname As String, ByVal ttl As String, ByVal bal As Decimal) As vw_SUPRow
+        Public Overloads Function Addvw_SUPRow(ByVal ID As System.Guid, ByVal code As Integer, ByVal Fullname As String, ByVal ttl As String, ByVal bal As Decimal, ByVal email As String) As vw_SUPRow
             Dim rowvw_SUPRow As vw_SUPRow = CType(Me.NewRow,vw_SUPRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, Fullname, ttl, bal}
+            Dim columnValuesArray() As Object = New Object() {ID, code, Fullname, ttl, bal, email}
             rowvw_SUPRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_SUPRow)
             Return rowvw_SUPRow
@@ -13967,6 +13977,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnFullname = MyBase.Columns("Fullname")
             Me.columnttl = MyBase.Columns("ttl")
             Me.columnbal = MyBase.Columns("bal")
+            Me.columnemail = MyBase.Columns("email")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -13982,6 +13993,8 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columnttl)
             Me.columnbal = New Global.System.Data.DataColumn("bal", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnbal)
+            Me.columnemail = New Global.System.Data.DataColumn("email", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnemail)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -13989,6 +14002,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnFullname.AllowDBNull = false
             Me.columnFullname.MaxLength = 200
             Me.columnttl.MaxLength = 300
+            Me.columnemail.MaxLength = 50
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -29081,6 +29095,21 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property email() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_SUP.emailColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'email' in table 'vw_SUP' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_SUP.emailColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsttlNull() As Boolean
             Return Me.IsNull(Me.tablevw_SUP.ttlColumn)
         End Function
@@ -29101,6 +29130,18 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetbalNull()
             Me(Me.tablevw_SUP.balColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsemailNull() As Boolean
+            Return Me.IsNull(Me.tablevw_SUP.emailColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetemailNull()
+            Me(Me.tablevw_SUP.emailColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -42223,6 +42264,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("Fullname", "Fullname")
             tableMapping.ColumnMappings.Add("ttl", "ttl")
             tableMapping.ColumnMappings.Add("bal", "bal")
+            tableMapping.ColumnMappings.Add("email", "email")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -42239,7 +42281,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, code, Fullname, ttl, bal"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_SUP order by Fullname"
+            Me._commandCollection(0).CommandText = "SELECT ID, code, Fullname, ttl, bal, email"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_SUP"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORDER BY Fullname"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

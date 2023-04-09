@@ -991,11 +991,12 @@ WHERE        (cusID = @cusID)</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_SUPTableAdapter" GeneratorDataComponentClassName="vw_SUPTableAdapter" Name="vw_SUP" UserDataComponentName="vw_SUPTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_SUP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenUAT.dbo.vw_SUP" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, code, Fullname, ttl, bal
-FROM   vw_SUP order by Fullname</CommandText>
+                    <CommandText>SELECT ID, code, Fullname, ttl, bal, email
+FROM   vw_SUP
+ORDER BY Fullname</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -1007,6 +1008,7 @@ FROM   vw_SUP order by Fullname</CommandText>
               <Mapping SourceColumn="Fullname" DataSetColumn="Fullname" />
               <Mapping SourceColumn="ttl" DataSetColumn="ttl" />
               <Mapping SourceColumn="bal" DataSetColumn="bal" />
+              <Mapping SourceColumn="email" DataSetColumn="email" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -2914,6 +2916,13 @@ SELECT ID, code, server, un, pwd, port, ssl, modifiedBy, modifiedOn, createdOn, 
                 </xs:simpleType>
               </xs:element>
               <xs:element name="bal" msprop:Generator_ColumnPropNameInTable="balColumn" msprop:Generator_ColumnPropNameInRow="bal" msprop:Generator_UserColumnName="bal" msprop:Generator_ColumnVarNameInTable="columnbal" type="xs:decimal" minOccurs="0" />
+              <xs:element name="email" msprop:Generator_ColumnPropNameInRow="email" msprop:Generator_ColumnPropNameInTable="emailColumn" msprop:Generator_ColumnVarNameInTable="columnemail" msprop:Generator_UserColumnName="email" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -3606,72 +3615,72 @@ SELECT ID, code, server, un, pwd, port, ssl, modifiedBy, modifiedOn, createdOn, 
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="TRANSH_F" msprop:Generator_RowClassName="TRANSH_FRow" msprop:Generator_RowEvHandlerName="TRANSH_FRowChangeEventHandler" msprop:Generator_RowDeletedName="TRANSH_FRowDeleted" msprop:Generator_RowDeletingName="TRANSH_FRowDeleting" msprop:Generator_RowEvArgName="TRANSH_FRowChangeEvent" msprop:Generator_TablePropName="TRANSH_F" msprop:Generator_RowChangedName="TRANSH_FRowChanged" msprop:Generator_UserTableName="TRANSH_F" msprop:Generator_RowChangingName="TRANSH_FRowChanging" msprop:Generator_TableClassName="TRANSH_FDataTable" msprop:Generator_TableVarName="tableTRANSH_F">
+        <xs:element name="TRANSH_F" msprop:Generator_RowEvHandlerName="TRANSH_FRowChangeEventHandler" msprop:Generator_RowDeletedName="TRANSH_FRowDeleted" msprop:Generator_RowDeletingName="TRANSH_FRowDeleting" msprop:Generator_RowEvArgName="TRANSH_FRowChangeEvent" msprop:Generator_TablePropName="TRANSH_F" msprop:Generator_RowChangedName="TRANSH_FRowChanged" msprop:Generator_UserTableName="TRANSH_F" msprop:Generator_RowChangingName="TRANSH_FRowChanging" msprop:Generator_RowClassName="TRANSH_FRow" msprop:Generator_TableClassName="TRANSH_FDataTable" msprop:Generator_TableVarName="tableTRANSH_F">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" />
-              <xs:element name="code" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnVarNameInTable="columncode" type="xs:int" />
-              <xs:element name="transhID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="transhID" msprop:Generator_ColumnPropNameInTable="transhIDColumn" msprop:Generator_ColumnPropNameInRow="transhID" msprop:Generator_ColumnVarNameInTable="columntranshID" type="xs:string" minOccurs="0" />
-              <xs:element name="filename" msprop:Generator_UserColumnName="filename" msprop:Generator_ColumnPropNameInTable="filenameColumn" msprop:Generator_ColumnPropNameInRow="filename" msprop:Generator_ColumnVarNameInTable="columnfilename" minOccurs="0">
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" />
+              <xs:element name="code" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_UserColumnName="code" msprop:Generator_ColumnVarNameInTable="columncode" type="xs:int" />
+              <xs:element name="transhID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="transhIDColumn" msprop:Generator_ColumnPropNameInRow="transhID" msprop:Generator_UserColumnName="transhID" msprop:Generator_ColumnVarNameInTable="columntranshID" type="xs:string" minOccurs="0" />
+              <xs:element name="filename" msprop:Generator_ColumnPropNameInTable="filenameColumn" msprop:Generator_ColumnPropNameInRow="filename" msprop:Generator_UserColumnName="filename" msprop:Generator_ColumnVarNameInTable="columnfilename" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="comefrom" msprop:Generator_UserColumnName="comefrom" msprop:Generator_ColumnPropNameInTable="comefromColumn" msprop:Generator_ColumnPropNameInRow="comefrom" msprop:Generator_ColumnVarNameInTable="columncomefrom" minOccurs="0">
+              <xs:element name="comefrom" msprop:Generator_ColumnPropNameInTable="comefromColumn" msprop:Generator_ColumnPropNameInRow="comefrom" msprop:Generator_UserColumnName="comefrom" msprop:Generator_ColumnVarNameInTable="columncomefrom" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="400" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="extension" msprop:Generator_UserColumnName="extension" msprop:Generator_ColumnPropNameInTable="extensionColumn" msprop:Generator_ColumnPropNameInRow="extension" msprop:Generator_ColumnVarNameInTable="columnextension" minOccurs="0">
+              <xs:element name="extension" msprop:Generator_ColumnPropNameInTable="extensionColumn" msprop:Generator_ColumnPropNameInRow="extension" msprop:Generator_UserColumnName="extension" msprop:Generator_ColumnVarNameInTable="columnextension" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="10" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_UserColumnName="modifiedBy" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_UserColumnName="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_UserColumnName="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_UserColumnName="createdBy" msprop:Generator_ColumnVarNameInTable="columncreatedBy" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="MAILS" msprop:Generator_RowClassName="MAILSRow" msprop:Generator_RowEvHandlerName="MAILSRowChangeEventHandler" msprop:Generator_RowDeletedName="MAILSRowDeleted" msprop:Generator_RowDeletingName="MAILSRowDeleting" msprop:Generator_RowEvArgName="MAILSRowChangeEvent" msprop:Generator_TablePropName="MAILS" msprop:Generator_RowChangedName="MAILSRowChanged" msprop:Generator_UserTableName="MAILS" msprop:Generator_RowChangingName="MAILSRowChanging" msprop:Generator_TableClassName="MAILSDataTable" msprop:Generator_TableVarName="tableMAILS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" />
+              <xs:element name="code" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_UserColumnName="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnVarNameInTable="columncode" type="xs:int" />
+              <xs:element name="server" msprop:Generator_UserColumnName="server" msprop:Generator_ColumnPropNameInTable="serverColumn" msprop:Generator_ColumnPropNameInRow="server" msprop:Generator_ColumnVarNameInTable="columnserver" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="un" msprop:Generator_UserColumnName="un" msprop:Generator_ColumnPropNameInTable="unColumn" msprop:Generator_ColumnPropNameInRow="un" msprop:Generator_ColumnVarNameInTable="columnun" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="pwd" msprop:Generator_UserColumnName="pwd" msprop:Generator_ColumnPropNameInTable="pwdColumn" msprop:Generator_ColumnPropNameInRow="pwd" msprop:Generator_ColumnVarNameInTable="columnpwd" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="port" msprop:Generator_UserColumnName="port" msprop:Generator_ColumnPropNameInTable="portColumn" msprop:Generator_ColumnPropNameInRow="port" msprop:Generator_ColumnVarNameInTable="columnport" type="xs:int" minOccurs="0" />
+              <xs:element name="ssl" msprop:Generator_UserColumnName="ssl" msprop:Generator_ColumnPropNameInTable="sslColumn" msprop:Generator_ColumnPropNameInRow="ssl" msprop:Generator_ColumnVarNameInTable="columnssl" type="xs:boolean" minOccurs="0" />
               <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" type="xs:string" minOccurs="0" />
               <xs:element name="modifiedOn" msprop:Generator_UserColumnName="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" type="xs:dateTime" minOccurs="0" />
               <xs:element name="createdOn" msprop:Generator_UserColumnName="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" type="xs:dateTime" minOccurs="0" />
               <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnVarNameInTable="columncreatedBy" type="xs:string" minOccurs="0" />
-            </xs:sequence>
-          </xs:complexType>
-        </xs:element>
-        <xs:element name="MAILS" msprop:Generator_RowEvHandlerName="MAILSRowChangeEventHandler" msprop:Generator_RowDeletedName="MAILSRowDeleted" msprop:Generator_RowDeletingName="MAILSRowDeleting" msprop:Generator_RowEvArgName="MAILSRowChangeEvent" msprop:Generator_TablePropName="MAILS" msprop:Generator_RowChangedName="MAILSRowChanged" msprop:Generator_RowChangingName="MAILSRowChanging" msprop:Generator_TableClassName="MAILSDataTable" msprop:Generator_RowClassName="MAILSRow" msprop:Generator_TableVarName="tableMAILS" msprop:Generator_UserTableName="MAILS">
-          <xs:complexType>
-            <xs:sequence>
-              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:string" />
-              <xs:element name="code" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_UserColumnName="code" type="xs:int" />
-              <xs:element name="server" msprop:Generator_ColumnPropNameInRow="server" msprop:Generator_ColumnPropNameInTable="serverColumn" msprop:Generator_ColumnVarNameInTable="columnserver" msprop:Generator_UserColumnName="server" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="un" msprop:Generator_ColumnPropNameInRow="un" msprop:Generator_ColumnPropNameInTable="unColumn" msprop:Generator_ColumnVarNameInTable="columnun" msprop:Generator_UserColumnName="un" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="pwd" msprop:Generator_ColumnPropNameInRow="pwd" msprop:Generator_ColumnPropNameInTable="pwdColumn" msprop:Generator_ColumnVarNameInTable="columnpwd" msprop:Generator_UserColumnName="pwd" minOccurs="0">
-                <xs:simpleType>
-                  <xs:restriction base="xs:string">
-                    <xs:maxLength value="100" />
-                  </xs:restriction>
-                </xs:simpleType>
-              </xs:element>
-              <xs:element name="port" msprop:Generator_ColumnPropNameInRow="port" msprop:Generator_ColumnPropNameInTable="portColumn" msprop:Generator_ColumnVarNameInTable="columnport" msprop:Generator_UserColumnName="port" type="xs:int" minOccurs="0" />
-              <xs:element name="ssl" msprop:Generator_ColumnPropNameInRow="ssl" msprop:Generator_ColumnPropNameInTable="sslColumn" msprop:Generator_ColumnVarNameInTable="columnssl" msprop:Generator_UserColumnName="ssl" type="xs:boolean" minOccurs="0" />
-              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" minOccurs="0" />
-              <xs:element name="modifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="createdOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

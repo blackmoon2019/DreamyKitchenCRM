@@ -1,32 +1,37 @@
 ﻿Imports System.Data.SqlClient
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
+Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
 Public Class frmSUPOrders
-    Private sID As String
-    Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
-    Private Frm As DevExpress.XtraEditors.XtraForm
-    Public Mode As Byte
+    Private ManageCbo As New CombosManager
     Private Valid As New ValidateControls
-    Private FScrollerExist As Boolean = False
-    Private Log As New Transactions
     Private FillCbo As New FillCombos
     Private DBQ As New DBQueries
     Private LoadForms As New FormLoader
     Private Cls As New ClearControls
+    Private UserPermissions As New CheckPermissions
+    Private Prog_Prop As New ProgProp
+
+    Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
+    Private Frm As DevExpress.XtraEditors.XtraForm
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
+
+    Private sID As String
+    Public Mode As Byte
+    Private FScrollerExist As Boolean = False
     Private CalledFromCtrl As Boolean
     Private WorkingTime As Integer
     Private AgreementSalary As Double
-    Private UserPermissions As New CheckPermissions
-    Private Prog_Prop As New ProgProp
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
@@ -61,6 +66,8 @@ Public Class frmSUPOrders
         Me.Close()
     End Sub
     Private Sub frmSUPOrders_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
         Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SUP' table. You can move, or remove it, as needed.
@@ -73,22 +80,24 @@ Public Class frmSUPOrders
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from SUP_ORDERS where id = " & toSQLValueS(sID))
+                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,supOrderID,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where supOrderID = '" & sID & "'")
         End Select
+        LoadForms.RestoreLayoutFromXml(GridView1, "vw_SUP_ORDERS_F_def.xml")
 
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboEMP.EditValue = Nothing : ManageEMP()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboEMP.EditValue <> Nothing Then ManageEMP()
-            Case 3 : cboEMP.EditValue = Nothing
+            Case 1 : ManageCbo.ManageSup(cboSUP, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageSup(cboSUP, FormMode.EditRecord)
+            Case 3 : cboSUP.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS)
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
@@ -107,82 +116,19 @@ Public Class frmSUPOrders
     End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageTRANSH()
-        Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Χρεωπιστώσεις Πελατών"
-        form1.CallerControl = cboTRANSH
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboTRANSH.EditValue <> Nothing Then
-            form1.ID = cboTRANSH.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
-
 
     Private Sub cboSUP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboSUP.EditValue = Nothing : ManageSup()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboSUP.EditValue <> Nothing Then ManageSup()
+            Case 1 : ManageCbo.ManageSup(cboSUP, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageSup(cboSUP, FormMode.EditRecord)
             Case 3 : cboSUP.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageCus()
-        Dim form1 As frmCustomers = New frmCustomers()
-        form1.Text = "Πελάτες"
-        form1.CallerControl = cboCUS
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
-            form1.ID = cboCUS.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-
-    End Sub
-
-    Private Sub ManageEMP()
-        Dim form1 As frmEMP = New frmEMP()
-        form1.Text = "Προσωπικό"
-        form1.CallerControl = cboEMP
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboEMP.EditValue <> Nothing Then
-            form1.ID = cboEMP.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
-    Private Sub ManageSup()
-        Dim form1 As frmSUP = New frmSUP()
-        form1.Text = "Προμηθευτές"
-        form1.CallerControl = cboSUP
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboSUP.EditValue <> Nothing Then
-            form1.ID = cboSUP.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-
-    End Sub
-
     Private Sub frmSUPOrders_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
@@ -198,9 +144,14 @@ Public Class frmSUPOrders
                         sID = sGuid
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "SUP_ORDERS", LayoutControl1,,, sID, True)
-                        'sGuid = sID
+                        sGuid = sID
                 End Select
-
+                If txtFileNames.Text <> "" Then
+                    sResult = DBQ.InsertDataFiles(XtraOpenFileDialog1, sGuid, "SUP_ORDERS_F")
+                    LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,supOrderID,files,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where supOrderID = '" & sGuid & "'")
+                    LoadForms.RestoreLayoutFromXml(GridView1, "vw_SUP_ORDERS_F.xml")
+                End If
+                LoadForms.RestoreLayoutFromXml(GridView1, "vw_SUP_ORDERS_F_def.xml")
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm
                     form.LoadRecords("vw_SUP_ORDERS")
@@ -209,7 +160,7 @@ Public Class frmSUPOrders
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
-
+                    txtFileNames.EditValue = Nothing
                     'If Mode = FormMode.NewRecord Then
                     '    Cls.ClearCtrls(LayoutControl1)
                     '    txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
@@ -220,5 +171,167 @@ Public Class frmSUPOrders
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Delete : DeleteRecord() 'If UserProps.AllowDelete = True Then DeleteRecord()
+        End Select
+    End Sub
+    Private Sub DeleteRecord()
+        Dim sSQL As String
+        Try
+            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                sSQL = "DELETE FROM SUP_ORDERS_F WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,supOrderID,filename,comefrom,createdon,realname From vw_SUP_ORDERS_F where supOrderID = '" & sID & "'")
+                LoadForms.RestoreLayoutFromXml(GridView1, "vw_SUP_ORDERS_F_def.xml")
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
+        Try
+            Dim sFilename = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename")
+            'Dim fs As IO.FileStream = New IO.FileStream(Application.StartupPath & "\" & sFilename, IO.FileMode.Create)
+            Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+            Dim b() As Byte = GetFile(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
+            fs.Write(b, 0, b.Length)
+            fs.Close()
+            ShellExecute(ProgProps.TempFolderPath & sFilename)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub ShellExecute(ByVal File As String)
+        Dim myProcess As New Process
+        myProcess.StartInfo.FileName = File
+        myProcess.StartInfo.UseShellExecute = True
+        myProcess.StartInfo.RedirectStandardOutput = False
+        myProcess.Start()
+        myProcess.Dispose()
+    End Sub
+
+    Private Function GetFile(ByVal sRowID As String) As Byte()
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Dim bytes As Byte()
+
+        sSQL = "Select  files From vw_SUP_ORDERS_F WHERE ID = " & toSQLValueS(sRowID)
+        cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
+        If sdr.Read() = True Then
+            bytes = DirectCast(sdr("files"), Byte())
+            Return bytes
+        End If
+        sdr.Close()
+
+    End Function
+    Private Sub txtFileNames_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtFileNames.ButtonClick
+        If e.Button.Index = 0 Then
+            FilesSelection()
+        Else
+            txtFileNames.EditValue = Nothing
+        End If
+    End Sub
+    Private Sub FilesSelection()
+
+        'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+        XtraOpenFileDialog1.FilterIndex = 1
+        XtraOpenFileDialog1.InitialDirectory = "C:\"
+        XtraOpenFileDialog1.Title = "Open File"
+        XtraOpenFileDialog1.CheckFileExists = False
+        XtraOpenFileDialog1.Multiselect = True
+        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
+        If result = DialogResult.OK Then
+            txtFileNames.EditValue = ""
+            For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
+                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I).Replace("'", "")
+            Next I
+        End If
+    End Sub
+
+    Private Sub cmdSendEmail_Click(sender As Object, e As EventArgs) Handles cmdSendEmail.Click
+        ValidateEmail()
+    End Sub
+    Private Sub ValidateEmail()
+        If txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If txtTo.Text = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email με όλα τα επισυναπτόμενα αρχεία ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            SendEmail()
+            Me.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Me.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(sID))
+        End If
+    End Sub
+    Private Sub SendEmail()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim Emails As New SendEmail
+        Dim statusMsg As String = ""
+        Dim sEmailTo As String
+        Dim sSubject As String
+        Dim sBody As String
+        Dim sFile As String = ""
+        Dim sSQL As String
+        Try
+
+
+
+            sEmailTo = txtTo.EditValue
+            sBody = txtBody.EditValue
+            sSubject = txtSubject.EditValue
+
+            sEmailTo = "dreamykitchen@gmail.com"
+            'sEmailTo = "johnmavroselinos@gmail.com"
+
+            Dim Attachments As New Dictionary(Of String, String) : Attachments.Add(sID, "SUP_ORDERS_F")
+            If Emails.SendEmail(ProgProps.EmailOrders, sSubject, sBody, sEmailTo, sFile, statusMsg, Attachments) = True Then
+                sSQL = "Update SUP_ORDERS SET email = 1,DateOfEmail=getdate() WHERE ID = " & toSQLValueS(sID)
+
+
+                Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
+
+                ' Εισαγωγή ιστορικού email
+                sSQL = "INSERT INTO SUP_ORDERS_MAIL (supOrderID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn])  
+                        values (" & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.SupportEmail.ToString) & "," &
+                                    toSQLValue(txtTo) & "," & toSQLValue(txtSubject) & "," &
+                                    toSQLValue(txtBody) & ",getdate(), " &
+                                    toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+
+
+                XtraMessageBox.Show("Το email στάλθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα με σφάλμα " & statusMsg, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
+        Select Case TabPane1.SelectedPageIndex
+            Case 0
+            Case 1
+                Me.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Me.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(sID))
+                Prog_Prop.GetProgEmailSup()
+                LoadForms.RestoreLayoutFromXml(GridView2, "SUP_ORDERS_MAIL_def.xml")
+                txtTo.EditValue = cboSUP.GetColumnValue("email")
+        End Select
+
+    End Sub
+
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "vw_SUP_ORDERS_F_def.xml",, "select top 1 [filename], [RealName], [code], [comefrom], [extension], [modifiedOn], [createdOn], [ID], [supOrderID]  from vw_SUP_ORDERS_F")
+    End Sub
+
+    Private Sub GridView2_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "SUP_ORDERS_MAIL_def.xml",, "select top 1 [ID], [code], [supOrderID], [emailFrom], [emailTo], [emailSubject], [emailBody], [DateOfEmail], [createdOn], [createdBy]  from SUP_ORDERS_MAIL")
     End Sub
 End Class

@@ -5,6 +5,7 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.DataAccess
 Imports System.IO
 Imports System.Text
+Imports DevExpress.DataAccess.Native
 
 Public Class SendEmail
     Private EmailUserName As String
@@ -12,7 +13,7 @@ Public Class SendEmail
     Private EmailPort As Integer
     Private EmailSSL As Boolean
     Private EmailServer As String
-    Public Function SendEmail(ByVal EmailAccount As String, ByVal Subject As String, ByVal Body As String, ByVal sToEmail As String, ByVal sFile As String, ByRef statusMsg As String) As Boolean
+    Public Function SendEmail(ByVal EmailAccount As String, ByVal Subject As String, ByVal Body As String, ByVal sToEmail As String, ByVal sAttachment As String, ByRef statusMsg As String, Optional ByVal GetAttachmentsFromTable As Dictionary(Of String, String) = Nothing) As Boolean
         Try
             Dim Smtp_Server As New SmtpClient
             Dim e_mail As New MailMessage()
@@ -47,16 +48,31 @@ Public Class SendEmail
 
             e_mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnSuccess
             Dim myMailHTMLBody = "<html><head></head><body>" & Body & " </body></html>"
-            If sFile <> "" Then
-                If System.IO.File.Exists(sFile) Then
-                    Dim data As System.Net.Mail.Attachment = New System.Net.Mail.Attachment(sFile)
+            If sAttachment <> "" Then
+                If System.IO.File.Exists(sAttachment) Then
+                    Dim data As System.Net.Mail.Attachment = New System.Net.Mail.Attachment(sAttachment)
                     e_mail.Attachments.Add(data)
                     Smtp_Server.Send(e_mail)
                 Else
-                    statusMsg = "Δεν βρέθηκε το αρχείο " & sFile
+                    statusMsg = "Δεν βρέθηκε το αρχείο " & sAttachment
                     'XtraMessageBox.Show("Δεν βρέθηκε το αρχείο " & sFile, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return False
                 End If
+            ElseIf GetAttachmentsFromTable IsNot Nothing Then
+                Dim sSQL As String = "select files,filename FROM " & GetAttachmentsFromTable.Values(0).ToString & "  where supOrderID = " & toSQLValueS(GetAttachmentsFromTable.Keys(0).ToString)
+                Dim cmd As SqlCommand
+                Dim sdr As SqlDataReader
+                cmd = New SqlCommand(sSQL, CNDB)
+                sdr = cmd.ExecuteReader()
+                Dim vAttachment As Byte()
+                While sdr.Read()
+                    vAttachment = sdr.GetSqlBinary(sdr.GetOrdinal("files"))
+                    Dim ContentStream As New MemoryStream
+                    ContentStream.Write(vAttachment, 0, vAttachment.Length)
+                    Dim data As System.Net.Mail.Attachment = New System.Net.Mail.Attachment(ContentStream, sdr.GetString(sdr.GetOrdinal("filename")))
+                    e_mail.Attachments.Add(data)
+                End While
+                Smtp_Server.Send(e_mail)
             Else
                 Smtp_Server.Send(e_mail)
             End If

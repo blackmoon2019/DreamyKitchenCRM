@@ -232,6 +232,8 @@ Public Class ProgProp
                         cbo.EditValue = Convert.ToInt32(sValue)
                     Else
                         cbo.EditValue = sValue
+                        Dim sVal = cbo.Properties.GetKeyValueByDisplayText(sValue)
+                        If sVal IsNot Nothing Then cbo.EditValue = sVal
                     End If
                 End If
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
@@ -376,4 +378,29 @@ Public Class ProgProp
         End Try
     End Sub
 
+    Public Sub SetProgSupEmail(ByVal sValue As String)
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Try
+
+            If sValue.Length > 0 Then sSQL = "Update PRM set val = '" & sValue & "' where prm= 'SUP_ORDERS_EMAIL'" : cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Function GetProgEmailSup(Optional ByVal LItem As LayoutControlItem = Nothing) As String
+
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "select val FROM PRM where prm= 'SUP_ORDERS_EMAIL' "
+            cmd = New SqlCommand(sSQL, CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then ProgProps.EmailOrders = sdr.GetString(sdr.GetOrdinal("VAL")) : If LItem IsNot Nothing Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
+            Return ProgProps.EmailOrders
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
 End Class

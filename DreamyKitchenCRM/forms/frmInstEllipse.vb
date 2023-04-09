@@ -24,6 +24,7 @@ Public Class frmInstEllipse
     Private FScrollerExist As Boolean = False
     Private Log As New Transactions
     Private FillCbo As New FillCombos
+    Private ManageCbo As New CombosManager
     Private DBQ As New DBQueries
     Private LoadForms As New FormLoader
     Private Cls As New ClearControls
@@ -81,6 +82,10 @@ Public Class frmInstEllipse
     End Sub
 
     Private Sub frmInstEllipse_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_ORDER_MANAGERS' table. You can move, or remove it, as needed.
+        Me.Vw_ORDER_MANAGERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_ORDER_MANAGERS)
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SUP' table. You can move, or remove it, as needed.
+        Me.Vw_SUPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SUP)
         Me.CCT_TRANSHTableAdapter.Fill(Me.DmDataSet.CCT_TRANSH)
         AddHandler GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
 
@@ -181,22 +186,6 @@ Public Class frmInstEllipse
     Private Sub frmInstEllipse_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
-    Private Sub ManageINST()
-        Dim form1 As frmInstallations = New frmInstallations()
-        form1.Text = "Μισθοδοσία Τοποθετών"
-        form1.CallerControl = cboINST
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboINST.EditValue <> Nothing Then
-            form1.ID = cboINST.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New POINT(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-
-    End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
@@ -214,9 +203,13 @@ Public Class frmInstEllipse
                         If sComeFrom = 0 Then
                             If ValidateRecord() Then sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
                         Else
+                            If sComeFrom = 1 And cboSUP.EditValue = Nothing Then
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Exit Sub
+                            End If
                             sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
                         End If
-                        If sResult = True Then
+                            If sResult = True Then
                             ' Διαγραφή όλων των συνεργείων πάντα στην επεξεργασία εγγραφής
                             sSQL = "DELETE FROM INST_ELLIPSE_SER where instEllipseID = '" & sID & "'"
                             Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -267,6 +260,10 @@ Public Class frmInstEllipse
             XtraMessageBox.Show("Έχετε ολοκληρώσει όλες τις εργασίες και δεν έχετε επισυνάψει το έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
+        If sComeFrom = 1 And cboSUP.EditValue = Nothing Then
+            XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End If
         Return True
     End Function
     Private Function CheckIfTimeisValid() As Boolean
@@ -311,14 +308,6 @@ Public Class frmInstEllipse
             Return True
         End If
     End Function
-    Private Sub cboINST_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboINST.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboINST.EditValue = Nothing : ManageINST()
-            Case 2 : If cboINST.EditValue <> Nothing Then ManageINST()
-            Case 3 : cboINST.EditValue = Nothing
-        End Select
-
-    End Sub
     Private Sub GridView1_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView1.InvalidRowException
         e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
     End Sub
@@ -965,6 +954,10 @@ Public Class frmInstEllipse
                 XtraMessageBox.Show("Όλες οι εκρεμμότητες είναι ολοκληρωμένες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
+            If cboSUP.EditValue = Nothing Then
+                XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
             If HasConnectedOrder Then
                 Using oCmd As New SqlCommand("CloneINSTELLIPSEJOBS", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
@@ -987,6 +980,8 @@ Public Class frmInstEllipse
                     Using oCmd As New SqlCommand("cloneINSTELLIPSE", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
                         oCmd.Parameters.AddWithValue("@InstEllipseID", sID)
+                        oCmd.Parameters.AddWithValue("@supID", cboSUP.EditValue.ToString)
+                        oCmd.Parameters.AddWithValue("@empID", cboEMP.EditValue.ToString)
                         oCmd.ExecuteNonQuery()
                     End Using
                     XtraMessageBox.Show("Η παραγγελία δημιουργήθηκε με επιτυχία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -1035,6 +1030,38 @@ Public Class frmInstEllipse
             End If
         End If
         sdr.Close()
+    End Sub
+
+    Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS)
+            Case 3 : cboCUS.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboSUP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageSup(cboSUP, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageSup(cboSUP, FormMode.EditRecord)
+            Case 3 : cboSUP.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
+            Case 3 : cboTRANSH.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboINST_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboINST.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageINST(cboINST, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageINST(cboINST, FormMode.EditRecord)
+            Case 3 : cboINST.EditValue = Nothing
+        End Select
+
     End Sub
 End Class
 'Private Sub ShowQuestionForm()
