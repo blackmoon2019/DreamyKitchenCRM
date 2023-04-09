@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Data.SqlClient
+Imports DevExpress.CodeParser
 Imports DevExpress.DataAccess
 Imports DevExpress.DataAccess.Native
 Imports DevExpress.PivotGrid.QueryMode
@@ -130,6 +131,41 @@ Public Class CombosManager
 
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
+    End Sub
+    Public Sub ManageEMP(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+            Dim form1 As frmEMP = New frmEMP()
+            If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+            form1.Text = "Προσωπικό"
+            form1.CallerControl = CallerControl
+            form1.CalledFromControl = True
+            form1.MdiParent = frmMain
+            If CallerControl.EditValue <> Nothing Then
+                form1.ID = CallerControl.EditValue.ToString
+                form1.Mode = FormMode.EditRecord
+            Else
+                form1.Mode = FormMode.NewRecord
+            End If
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+            form1.Show()
+        End If
+    End Sub
+    Public Sub ManageINST(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim form1 As frmInstallations = New frmInstallations()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        form1.Text = "Μισθοδοσία Τοποθετών"
+        form1.CallerControl = CallerControl
+        form1.CalledFromControl = True
+        form1.MdiParent = frmMain
+        If CallerControl.EditValue <> Nothing Then
+            form1.ID = CallerControl.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+
     End Sub
 
 End Class

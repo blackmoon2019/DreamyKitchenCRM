@@ -616,10 +616,6 @@ Public Class frmInstallations
         End Try
     End Sub
 
-    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
-
-    End Sub
-
     Private Sub cmdExit_Click_1(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
     End Sub
