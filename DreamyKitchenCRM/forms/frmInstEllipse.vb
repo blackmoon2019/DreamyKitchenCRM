@@ -209,7 +209,7 @@ Public Class frmInstEllipse
                             End If
                             sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
                         End If
-                            If sResult = True Then
+                        If sResult = True Then
                             ' Διαγραφή όλων των συνεργείων πάντα στην επεξεργασία εγγραφής
                             sSQL = "DELETE FROM INST_ELLIPSE_SER where instEllipseID = '" & sID & "'"
                             Using oCmd As New SqlCommand(sSQL, CNDB)

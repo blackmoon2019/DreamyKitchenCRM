@@ -371,11 +371,10 @@ Partial Class frmProjectJobs
         Me.LayoutControlItem13.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem13.CustomizationFormText = "Περιοχή"
         Me.LayoutControlItem13.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem13.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem13.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 126)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
         Me.LayoutControlItem13.Size = New System.Drawing.Size(839, 42)
-        Me.LayoutControlItem13.Tag = "1"
+        Me.LayoutControlItem13.Tag = ""
         Me.LayoutControlItem13.Text = "Έργο Πελάτη"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(235, 23)
         '
