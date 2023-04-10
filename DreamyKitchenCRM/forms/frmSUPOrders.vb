@@ -319,7 +319,7 @@ Public Class frmSUPOrders
         Select Case TabPane1.SelectedPageIndex
             Case 0
             Case 1
-                Me.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Me.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(sID))
+                If sID IsNot Nothing Then Me.SUP_ORDERS_MAILTableAdapter.FillBYSupOrderID(Me.DMDataSet.SUP_ORDERS_MAIL, System.Guid.Parse(sID))
                 Prog_Prop.GetProgEmailSup()
                 LoadForms.RestoreLayoutFromXml(GridView2, "SUP_ORDERS_MAIL_def.xml")
                 txtTo.EditValue = cboSUP.GetColumnValue("email")
