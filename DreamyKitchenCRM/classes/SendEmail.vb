@@ -67,8 +67,7 @@ Public Class SendEmail
                 Dim vAttachment As Byte()
                 While sdr.Read()
                     vAttachment = sdr.GetSqlBinary(sdr.GetOrdinal("files"))
-                    Dim ContentStream As New MemoryStream
-                    ContentStream.Write(vAttachment, 0, vAttachment.Length)
+                    Dim ContentStream As New MemoryStream(vAttachment)
                     Dim data As System.Net.Mail.Attachment = New System.Net.Mail.Attachment(ContentStream, sdr.GetString(sdr.GetOrdinal("filename")))
                     e_mail.Attachments.Add(data)
                 End While

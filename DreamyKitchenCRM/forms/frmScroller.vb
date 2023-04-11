@@ -626,10 +626,16 @@ Public Class frmScroller
                 End If
 
                 If sDataDetail <> "" Then
-                    If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & sender.EditValue) = True Then
+                    If GridView2.OptionsLayout.LayoutVersion <> "" Then
+                        Dim sVer As Integer = GridView2.OptionsLayout.LayoutVersion.Replace("v", "")
+                        GridView2.OptionsLayout.LayoutVersion = "v" & sVer + 1
+                    Else
+                        GridView2.OptionsLayout.LayoutVersion = "v1"
+                    End If
+                    If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & sender.EditValue) = True Then
                         GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & sender.EditValue, OptionsLayoutBase.FullLayout)
                     Else
-                        GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & sender.EditValue & "_" & UserProps.Code & ".xml", OptionsLayoutBase.FullLayout)
+                        GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & sender.EditValue, OptionsLayoutBase.FullLayout)
                     End If
                 End If
                 'grdMain.DefaultView.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & sender.EditValue & "_" & UserProps.Code & ".xml")
@@ -656,9 +662,9 @@ Public Class frmScroller
                     My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue)
                 End If
                 GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
-                End If
-                'GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
-                XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            End If
+            'GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
+            XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     'Επαναφορά Default όψης
@@ -745,10 +751,10 @@ Public Class frmScroller
                 itemColor.Tag = menu.Column.AbsoluteIndex
 
                 '4nd Custom Menu Item
-                menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveView, Nothing, Nothing, Nothing, Nothing))
+                'menu.Items.Add(New DXMenuItem("Αποθήκευση όψης", AddressOf OnSaveView, Nothing, Nothing, Nothing, Nothing))
 
-                '5nd Custom Menu Item
-                menu.Items.Add(New DXMenuItem("Συγχρονισμός όψης από Server", AddressOf OnSyncView, Nothing, Nothing, Nothing, Nothing))
+                ''5nd Custom Menu Item
+                'menu.Items.Add(New DXMenuItem("Συγχρονισμός όψης από Server", AddressOf OnSyncView, Nothing, Nothing, Nothing, Nothing))
 
                 '6nd Custom Menu Item
                 menu.Items.Add(New DXMenuItem("Ενημέρωση πεδίων όψης από Βάση", AddressOf OnUpdateViewFromDB, Nothing, Nothing, Nothing, Nothing))
@@ -774,13 +780,20 @@ Public Class frmScroller
         End If
 
     End Sub
+
     'Συγχρονισμός όψης από Server
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
-        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
-            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml") = True Then
-                My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml", Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", True)
-                GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = True Then
+                My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml", Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", True)
+                GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
+            End If
+            If sDataDetail <> "" Then
+                If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml") = True Then
+                    My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml", Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", True)
+                    GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+                End If
             End If
         End If
     End Sub
@@ -3144,13 +3157,20 @@ Public Class frmScroller
     End Sub
 
     Private Sub BBUpdateViewFileFromServer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdateViewFileFromServer.ItemClick
-        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
             If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = True Then
                 My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml", Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", True)
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
+            If sDataDetail <> "" Then
+                If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml") = True Then
+                    My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml", Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", True)
+                    GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
+                End If
+            End If
         End If
+
     End Sub
 
 

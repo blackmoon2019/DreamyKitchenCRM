@@ -285,7 +285,7 @@ Public Class frmSUPOrders
             sBody = txtBody.EditValue
             sSubject = txtSubject.EditValue
 
-            sEmailTo = "dreamykitchen@gmail.com"
+            'sEmailTo = "dreamykitchen@gmail.com"
             'sEmailTo = "johnmavroselinos@gmail.com"
 
             Dim Attachments As New Dictionary(Of String, String) : Attachments.Add(sID, "SUP_ORDERS_F")
