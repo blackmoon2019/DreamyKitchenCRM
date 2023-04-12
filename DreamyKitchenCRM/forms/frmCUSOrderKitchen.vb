@@ -14,6 +14,7 @@ Imports DevExpress.XtraReports.UI
 
 Public Class frmCUSOrderKitchen
     Private sID As String
+    Private sBaseCat As Integer
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -30,6 +31,12 @@ Public Class frmCUSOrderKitchen
     Private AgreementSalary As Double
     Private UserPermissions As New CheckPermissions
     Private Prog_Prop As New ProgProp
+    Public WriteOnly Property BaseCat As Integer
+        Set(value As Integer)
+            sBaseCat = value
+        End Set
+    End Property
+
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value

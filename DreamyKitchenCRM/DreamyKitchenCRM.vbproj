@@ -244,6 +244,12 @@
     <Compile Include="DreamyKitchenDataSet.vb">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="forms\frmBaseCat.Designer.vb">
+      <DependentUpon>frmBaseCat.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmBaseCat.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmBench.Designer.vb">
       <DependentUpon>frmBench.vb</DependentUpon>
     </Compile>
@@ -821,6 +827,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="forms\frmBaseCat.resx">
+      <DependentUpon>frmBaseCat.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmBench.resx">
       <DependentUpon>frmBench.vb</DependentUpon>
     </EmbeddedResource>
@@ -1987,6 +1996,11 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-logout-80.png" />
+    <None Include="Resources\icons8-close-window-80.png" />
+    <None Include="Resources\icons8-premium-80.png" />
+    <None Include="Resources\icons8-eco-driving-indicator-801.png" />
+    <None Include="Resources\icons8-eco-driving-indicator-80.png" />
     <None Include="Resources\scaffolding.png" />
     <None Include="Resources\icons8-construction-401.png" />
     <None Include="Resources\icons8-bank-card-missing-16.png" />

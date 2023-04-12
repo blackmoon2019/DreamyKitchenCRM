@@ -82,6 +82,19 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "BASE_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "BASE_CAT", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.BASE_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_BASE_CAT")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("BASE_CAT")
                             Case "EP_STATUS"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "EP_STATUS", sGuid)
@@ -502,6 +515,15 @@ Public Class frmGen
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "BASE_CAT"
+                                sResult = DBQ.UpdateData(LayoutControl1, "BASE_CAT", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.BASE_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_BASE_CAT")
+                                End If
                             Case "EP_STATUS"
                                 sResult = DBQ.UpdateData(LayoutControl1, "EP_STATUS", sID)
                                 If CalledFromCtrl Then
@@ -798,6 +820,12 @@ Public Class frmGen
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "BASE_CAT"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("BASE_CAT")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BASE_CAT where id ='" + sID + "'")
+                End If
             Case "EP_STATUS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("EP_STATUS")
