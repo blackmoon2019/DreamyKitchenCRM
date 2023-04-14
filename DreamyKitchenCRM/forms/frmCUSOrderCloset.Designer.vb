@@ -205,9 +205,8 @@ Partial Class frmCUSOrderCloset
         Me.Vw_COLORSPVCTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSPVCTableAdapter()
         Me.VwEQUIPMENTCLOSETBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_EQUIPMENT_CLOSETTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_EQUIPMENT_CLOSETTableAdapter()
-        Me.Vw_DOOR_TYPE1TableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPE1TableAdapter()
-        Me.Vw_DOOR_TYPEClosetTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEClosetTableAdapter()
-        Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEEpendisisClosetTableAdapter()
+        Me.Vw_DOOR_TYPEClosetTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPEClosetTableAdapter()
+        Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisClosetTableAdapter()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPane1.SuspendLayout()
         Me.TabNavigationPage1.SuspendLayout()
@@ -3170,12 +3169,13 @@ Partial Class frmCUSOrderCloset
     Friend WithEvents EmptySpaceItem5 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents DMDataSet As DMDataSet
+    Friend WithEvents DM_DOORTYPES As DM_DOORTYPES
     Friend WithEvents VwDOORTYPE1BindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPE1TableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPE1TableAdapter
+    Friend WithEvents Vw_DOOR_TYPE1TableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPE1TableAdapter
     Friend WithEvents VwDOORTYPEClosetBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEClosetTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEClosetTableAdapter
+    Friend WithEvents Vw_DOOR_TYPEClosetTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPEClosetTableAdapter
     Friend WithEvents VwDOORTYPEEpendisisClosetBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEEpendisisClosetTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEEpendisisClosetTableAdapter
+    Friend WithEvents Vw_DOOR_TYPEEpendisisClosetTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisClosetTableAdapter
     Friend WithEvents cboSides2 As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents cboSides3 As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents cboSides4 As DevExpress.XtraEditors.LookUpEdit

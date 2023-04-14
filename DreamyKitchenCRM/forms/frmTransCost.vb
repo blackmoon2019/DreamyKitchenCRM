@@ -353,41 +353,41 @@ Public Class frmTransCost
 
     Private Sub frmTransCost_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEDOORS' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEDOORSTableAdapter.Fill(Me.DMDataSet.vw_DOOR_TYPEDOORS)
+
         Try
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DMDataSet.vw_DOOR_TYPERafiaWall)
+            Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DM_DOORTYPES.vw_DOOR_TYPERafiaWall)
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPESpecialConstr' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPESpecialConstrTableAdapter.Fill(Me.DMDataSet.vw_DOOR_TYPESpecialConstr)
+            Me.Vw_DOOR_TYPESpecialConstrTableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPESpecialConstr)
             'TODO: This line of code loads data into the 'DMDataSet.vw_CONSTR_TYPE' table. You can move, or remove it, as needed.
             Me.Vw_CONSTR_TYPETableAdapter.Fill(Me.DMDataSet.vw_CONSTR_TYPE)
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEEpendisisCloset' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter.FillBYEpendisisCloset(Me.DMDataSet.vw_DOOR_TYPEEpendisisCloset)
+            Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter.FillBYEpendisisCloset(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisCloset)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BENCH' table. You can move, or remove it, as needed.
             Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresY' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPERafieresYTableAdapter.FillByRafieresY(Me.DMDataSet.vw_DOOR_TYPERafieresY)
+            Me.Vw_DOOR_TYPERafieresYTableAdapter.FillByRafieresY(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresY)
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaYpsila' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DMDataSet.vw_DOOR_TYPEPlainaYpsila)
+            Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DM_DOORTYPES.vw_DOOR_TYPEPlainaYpsila)
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresK' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPERafieresKTableAdapter.FillByRafieresK(Me.DMDataSet.vw_DOOR_TYPERafieresK)
+            Me.Vw_DOOR_TYPERafieresKTableAdapter.FillByRafieresK(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresK)
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaKremasta' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter.FillByPlainaKremasta(Me.DMDataSet.vw_DOOR_TYPEPlainaKremasta)
+            Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter.FillByEpendisisKremasta(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisKremasta)
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresV' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPERafieresVTableAdapter.FillByRafieresV(Me.DMDataSet.vw_DOOR_TYPERafieresV)
+            Me.Vw_DOOR_TYPERafieresVTableAdapter.FillByRafieresV(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresV)
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPETableAdapter.FillBYNisida(Me.DMDataSet.vw_DOOR_TYPE)
+            Me.Vw_DOOR_TYPETableAdapter.FillBYEpendisisNisida(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisNisida)
             'TODO: This line of code loads data into the 'DMDataSet.DOOR_TYPE' table. You can move, or remove it, as needed.
-            Me.DOOR_TYPETableAdapter.FillBYPlainaVaseos(Me.DMDataSet.DOOR_TYPE)
+            Me.DOOR_TYPETableAdapter.FillBYEpendisisVaseos(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisVaseos)
             'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE1' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPE1TableAdapter.FillBYErmaria(Me.DMDataSet.vw_DOOR_TYPE1)
+            Me.Vw_DOOR_TYPE1TableAdapter.FillBYErmaria(Me.DM_DOORTYPES.vw_DOOR_TYPE1)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
             Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
             Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
             Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
-            Me.Vw_DOOR_TYPEClosetTableAdapter.FillBYCloset(Me.DMDataSet.vw_DOOR_TYPECloset)
+            Me.Vw_DOOR_TYPEClosetTableAdapter.FillBYCloset(Me.DM_DOORTYPES.vw_DOOR_TYPECloset)
             Dim Prog_Prop As New ProgProp
             Prog_Prop.GetProgPROSF()
 

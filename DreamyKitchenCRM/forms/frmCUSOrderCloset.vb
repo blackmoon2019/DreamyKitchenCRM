@@ -62,9 +62,9 @@ Public Class frmCUSOrderCloset
 
     Private Sub frmCUSOrderCloset_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEEpendisisCloset' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter.FillBYEpendisisCloset(Me.DMDataSet.vw_DOOR_TYPEEpendisisCloset)
+        Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter.FillBYEpendisisCloset(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisCloset)
         'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE1' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPE1TableAdapter.FillBYErmaria(Me.DMDataSet.vw_DOOR_TYPE1)
+        Me.Vw_DOOR_TYPE1TableAdapter.FillBYErmaria(Me.DM_DOORTYPES.vw_DOOR_TYPE1)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_EQUIPMENT_CLOSET' table. You can move, or remove it, as needed.
         Me.Vw_EQUIPMENT_CLOSETTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EQUIPMENT_CLOSET)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSPVC' table. You can move, or remove it, as needed.

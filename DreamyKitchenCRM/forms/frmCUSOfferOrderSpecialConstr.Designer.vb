@@ -2304,6 +2304,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
     Friend WithEvents LayoutControlItem22 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem23 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem24 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents DM_DOORTYPES As DM_DOORTYPES
     Friend WithEvents DMDataSet As DMDataSet
     Friend WithEvents VwCONSTRTYPEBindingSource As BindingSource
     Friend WithEvents Vw_CONSTR_TYPETableAdapter As DMDataSetTableAdapters.vw_CONSTR_TYPETableAdapter

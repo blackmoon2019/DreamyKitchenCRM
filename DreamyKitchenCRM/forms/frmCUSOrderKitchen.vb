@@ -13,6 +13,7 @@ Imports DevExpress.XtraReports.UI
 
 
 Public Class frmCUSOrderKitchen
+    Private ManageCbo As New CombosManager
     Private sID As String
     Private sBaseCat As Integer
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
@@ -71,53 +72,40 @@ Public Class frmCUSOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaKremasta2hsSeiras' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEPlainaKremasta2hsSeirasTableAdapter.FillBYPlainaKremasta2hsSeiras(Me.DMDataSet.vw_DOOR_TYPEPlainaKremasta2hsSeiras)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DMDataSet.vw_DOOR_TYPERafiaWall)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresY' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresYTableAdapter.FillByRafieresY(Me.DMDataSet.vw_DOOR_TYPERafieresY)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresK' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresKTableAdapter.FillByRafieresK(Me.DMDataSet.vw_DOOR_TYPERafieresK)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresV' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresVTableAdapter.FillByRafieresV(Me.DMDataSet.vw_DOOR_TYPERafieresV)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaKremasta' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter.FillByPlainaKremasta(Me.DMDataSet.vw_DOOR_TYPEPlainaKremasta)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BENCH' table. You can move, or remove it, as needed.
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DM_DOORTYPES.vw_DOOR_TYPERafiaWall)
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPERafieresY' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPERafieresYTableAdapter.FillByRafieresY(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresY)
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPERafieresK' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPERafieresKTableAdapter.FillByRafieresK(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresK)
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPERafieresV' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPERafieresVTableAdapter.FillByRafieresV(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresV)
+        Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DM_DOORTYPES.vw_DOOR_TYPEPlainaYpsila)
+        Me.Vw_DOOR_TYPEEpendisis2hsSeirasTableAdapter.FillBYEpendisis2hsSeiras(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisis2hsSeiras)
+        Me.Vw_DOOR_TYPEEpendisisKremastaTableAdapter.FillByEpendisisKremasta(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisKremasta)
+        Me.Vw_DOOR_TYPEEpendisisNisidaTableAdapter.FillBYEpendisisNisida(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisNisida)
+        Me.Vw_DOOR_TYPEEpendisisVaseosTableAdapter.FillBYEpendisisVaseos(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisVaseos)
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
+        Me.BASE_CATTableAdapter.Fill(Me.DMDataSet.BASE_CAT)
         Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaYpsila' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DMDataSet.vw_DOOR_TYPEPlainaYpsila)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE1' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPE1TableAdapter.FillBYErmaria(Me.DMDataSet.vw_DOOR_TYPE1)
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPETableAdapter1.FillBYNisida(Me.DMDataSet.vw_DOOR_TYPE)
-        'TODO: This line of code loads data into the 'DMDataSet.DOOR_TYPE' table. You can move, or remove it, as needed.
-        Me.DOOR_TYPETableAdapter.FillBYPlainaVaseos(Me.DMDataSet.DOOR_TYPE)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
         Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
         Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DEVICES' table. You can move, or remove it, as needed.
-        'Me.Vw_DEVICESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DEVICES)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_EQUIPMENT' table. You can move, or remove it, as needed.
-        'Me.Vw_EQUIPMENTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_EQUIPMENT)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSGOLA' table. You can move, or remove it, as needed.
         Me.Vw_COLORSGOLATableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSGOLA)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSPVC' table. You can move, or remove it, as needed.
         Me.Vw_COLORSPVCTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSPVC)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
         Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
         Prog_Prop.GetProgPROSF()
 
         Select Case Mode
             Case FormMode.NewRecord
-                txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
-                cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
+                'txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
+                txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
+                cboEMP.EditValue = System.Guid.Parse(UserProps.EmpID.ToString.ToUpper)
                 txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
                 txtTransp.EditValue = ProgProps.KitchenTransp
                 txtMeasurement.EditValue = ProgProps.KitchenMeasurement
                 txtRemove.EditValue = ProgProps.KitchenRemove
-
+                cboBaseCat.EditValue = System.Guid.Parse(GetBaseCatID())
+                dtOrder.EditValue = Date.Now
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
                     "Select  e.ID,E.code,name,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked,
                      case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard " &
@@ -156,6 +144,28 @@ Public Class frmCUSOrderKitchen
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
+    Private Function GetBaseCatID() As String
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        Select Case sBaseCat
+            Case 1 'ECO
+                sSQL = "SELECT top 1 id as BaseCatID FROM BASE_CAT WHERE name = 'ECO' "
+            Case 2 'PREMIUM
+                sSQL = "SELECT top 1 id as BaseCatID FROM BASE_CAT WHERE name = 'PREMIUM' "
+
+        End Select
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim DBaseCatID As String
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("BaseCatID")) = False Then DBaseCatID = sdr.GetGuid(sdr.GetOrdinal("BaseCatID")).ToString Else DBaseCatID = Guid.Empty.ToString
+            If DBaseCatID <> "" Then Return DBaseCatID Else Return Guid.Empty.ToString
+        Else
+            Return Guid.Empty.ToString
+        End If
+        sdr.Close()
+    End Function
+
     Private Sub RepDefPrice_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles RepDefPrice.ButtonPressed
         Select Case e.Button.Index
             Case 0
@@ -168,106 +178,6 @@ Public Class frmCUSOrderKitchen
                 GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", sDefPrice)
             Case 1 : GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", "0.00")
         End Select
-    End Sub
-    Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cboEMP.EditValue = Nothing : ManageEMP()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then If cboEMP.EditValue <> Nothing Then ManageEMP()
-            Case 3 : cboEMP.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
-            Case 3 : cboCUS.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboVBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVBOXColors.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboVBOXColors.EditValue = Nothing : ManageColors(cboVBOXColors)
-            Case 2 : If cboVBOXColors.EditValue <> Nothing Then ManageColors(cboVBOXColors)
-            Case 3 : cboVBOXColors.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub ManageColors(ByVal CallerControl As LookUpEdit)
-        Dim frmColors As frmColors = New frmColors
-        Select Case CallerControl.Name
-            Case "cboGOLAColors" : frmColors.ColorCategory = "1FA658C9-A338-4805-B38F-7E6503A5CD25"
-            Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors" : frmColors.ColorCategory = "40C7BFFB-43EB-48FB-A467-74C0BCBE09FA"
-            Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors" : frmColors.ColorCategory = "1226147D-2FF2-4076-B24D-92ABC8FB4663"
-        End Select
-        frmColors.Text = "Χρώματα"
-        frmColors.CallerForm = "frmCUSOrderKitchen"
-        frmColors.CallerControlLKUP = CallerControl
-        frmColors.CalledFromControl = True
-        frmColors.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
-            frmColors.ID = CallerControl.EditValue.ToString
-            frmColors.Mode = FormMode.EditRecord
-        Else
-            frmColors.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
-        frmColors.Show()
-    End Sub
-
-    Private Sub ManageCus()
-        Dim form1 As frmCustomers = New frmCustomers()
-        form1.Text = "Πελάτες"
-        form1.CallerControl = cboCUS
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
-            form1.ID = cboCUS.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-
-    End Sub
-
-    Private Sub ManageEMP()
-        Dim form1 As frmEMP = New frmEMP()
-        form1.Text = "Προσωπικό"
-        form1.CallerControl = cboEMP
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboEMP.EditValue <> Nothing Then
-            form1.ID = cboEMP.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
-    Private Sub cboKBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKBOXColors.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboVBOXColors.EditValue = Nothing : ManageColors(cboKBOXColors)
-            Case 2 : If cboKBOXColors.EditValue <> Nothing Then ManageColors(cboKBOXColors)
-            Case 3 : cboKBOXColors.EditValue = Nothing
-        End Select
-    End Sub
-
-
-    Private Sub cboYBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYBOXColors.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboVBOXColors.EditValue = Nothing : ManageColors(cboYBOXColors)
-            Case 2 : If cboYBOXColors.EditValue <> Nothing Then ManageColors(cboYBOXColors)
-            Case 3 : cboYBOXColors.EditValue = Nothing
-        End Select
-    End Sub
-
-    Private Sub cboGOLAColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboGOLAColors.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboGOLAColors.EditValue = Nothing : ManageColors(cboGOLAColors)
-            Case 2 : If cboGOLAColors.EditValue <> Nothing Then ManageColors(cboGOLAColors)
-            Case 3 : cboGOLAColors.EditValue = Nothing
-        End Select
-
     End Sub
 
     Private Sub frmCUSOrderKitchen_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -282,10 +192,12 @@ Public Class frmCUSOrderKitchen
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sGuid, True, "dtDeliver", toSQLValueS(CDate(lblDate.Text).ToString("yyyyMMdd")))
+                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sGuid, True, "dtDeliver", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")))
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(lblDate.Text).ToString("yyyyMMdd")))
+                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")))
                         'sGuid = sID
                 End Select
 
@@ -337,9 +249,9 @@ Public Class frmCUSOrderKitchen
     End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        txtPhn.EditValue = cboCUS.GetColumnValue("phn")
-        txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
-        txtADR.EditValue = cboCUS.GetColumnValue("ADR_Name")
+        'txtPhn.EditValue = cboCUS.GetColumnValue("phn")
+        'txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
+        'txtADR.EditValue = cboCUS.GetColumnValue("ADR_Name")
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
@@ -351,18 +263,18 @@ Public Class frmCUSOrderKitchen
     End Sub
 
     Private Sub txtdtdaysOfDelivery_EditValueChanged(sender As Object, e As EventArgs) Handles txtdtdaysOfDelivery.EditValueChanged
-        If dtpresentation.EditValue Is Nothing Then Exit Sub
-        If dtpresentation.EditValue.ToString = "" Then Exit Sub
-        Dim FirstDate As Date = dtpresentation.EditValue
-        lblDate.Text = DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate)
+        If dtOrder.EditValue Is Nothing Then Exit Sub
+        If dtOrder.EditValue.ToString = "" Then Exit Sub
+        Dim FirstDate As Date = dtOrder.EditValue
+        lblDate.Text = "Ημερομηνία Παράδοσης: " & DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate).ToString("dd/MM/yyyy")
     End Sub
 
-    Private Sub dtpresentation_EditValueChanged(sender As Object, e As EventArgs) Handles dtpresentation.EditValueChanged
-        If dtpresentation.EditValue Is Nothing Then Exit Sub
-        If dtpresentation.EditValue.ToString = "" Then Exit Sub
-        Dim FirstDate As Date = dtpresentation.EditValue
+    Private Sub dtpresentation_EditValueChanged(sender As Object, e As EventArgs) Handles dtOrder.EditValueChanged
+        If dtOrder.EditValue Is Nothing Then Exit Sub
+        If dtOrder.EditValue.ToString = "" Then Exit Sub
+        Dim FirstDate As Date = dtOrder.EditValue
         If txtdtdaysOfDelivery.EditValue Is Nothing Then txtdtdaysOfDelivery.EditValue = 0
-        lblDate.Text = DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate)
+        lblDate.Text = "Ημερομηνία Παράδοσης: " & DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate).ToString("dd/MM/yyyy")
     End Sub
 
     Private Sub cboVType_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboVType.SelectedIndexChanged
@@ -374,14 +286,6 @@ Public Class frmCUSOrderKitchen
         End If
     End Sub
 
-    Private Sub cboYHeight_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboYHeight.SelectedIndexChanged
-        If cboYHeight.SelectedIndex = 3 Then
-            txtOtherHeight.ReadOnly = False
-        Else
-            txtOtherHeight.ReadOnly = True
-            txtOtherHeight.EditValue = Nothing
-        End If
-    End Sub
 
     Private Sub txtTotalErmariaVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalErmariaVat.EditValueChanged
         Dim TotalErmariaPrice As Double
@@ -451,6 +355,7 @@ Public Class frmCUSOrderKitchen
 
         report.Parameters.Item(0).Value = sID
         report.CreateDocument()
+        report.PrintingSystem.Document.ScaleFactor = 0.75
         Dim report2 As New RepCUSOrderKitchen2ndPage
 
         report2.Parameters.Item(0).Value = sID
@@ -464,25 +369,12 @@ Public Class frmCUSOrderKitchen
         printTool.ShowRibbonPreview()
     End Sub
 
-    Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
-    End Sub
-    Private Sub ManageTRANSH()
-        Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Χρεωπιστώσεις Πελατών"
-        form1.CallerControl = cboTRANSH
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboTRANSH.EditValue <> Nothing Then
-            form1.ID = cboTRANSH.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
     End Sub
 
     Private Sub cmdSaveEquipDev_Click(sender As Object, e As EventArgs) Handles cmdSaveEquipDev.Click
@@ -511,159 +403,180 @@ Public Class frmCUSOrderKitchen
         '    txtPartofVat.EditValue = 0
         'End If
     End Sub
+    Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageEMP(cboEMP, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageEMP(cboEMP, FormMode.EditRecord)
+            Case 3 : cboEMP.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS)
+            Case 3 : cboCUS.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboVBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVBOXColors.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageColors(cboVBOXColors, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageColors(cboVBOXColors, FormMode.EditRecord)
+            Case 3 : cboVBOXColors.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboKBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKBOXColors.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageColors(cboKBOXColors, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageColors(cboKBOXColors, FormMode.EditRecord)
+            Case 3 : cboKBOXColors.EditValue = Nothing
+        End Select
+    End Sub
+
+
+    Private Sub cboYBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYBOXColors.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageColors(cboYBOXColors, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageColors(cboYBOXColors, FormMode.EditRecord)
+            Case 3 : cboYBOXColors.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboGOLAColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboGOLAColors.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageColors(cboGOLAColors, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageColors(cboGOLAColors, FormMode.EditRecord)
+            Case 3 : cboGOLAColors.EditValue = Nothing
+        End Select
+    End Sub
 
     Private Sub cboVDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboVDoorType.EditValue = Nothing : ManageDoorType(cboVDoorType)
-            Case 2 : If cboVDoorType.EditValue <> Nothing Then ManageDoorType(cboVDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboVDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboVDoorType, FormMode.EditRecord)
             Case 3 : cboVDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboKDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboKDoorType.EditValue = Nothing : ManageDoorType(cboKDoorType)
-            Case 2 : If cboKDoorType.EditValue <> Nothing Then ManageDoorType(cboKDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboKDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboKDoorType, FormMode.EditRecord)
             Case 3 : cboKDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboYDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboYDoorType.EditValue = Nothing : ManageDoorType(cboYDoorType)
-            Case 2 : If cboYDoorType.EditValue <> Nothing Then ManageDoorType(cboYDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboYDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboYDoorType, FormMode.EditRecord)
             Case 3 : cboYDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVDoorType1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboVDoorType1.EditValue = Nothing : ManageDoorType(cboVDoorType1)
-            Case 2 : If cboVDoorType1.EditValue <> Nothing Then ManageDoorType(cboVDoorType1)
+            Case 1 : ManageCbo.ManageDoorType(cboVDoorType1, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboVDoorType1, FormMode.EditRecord)
             Case 3 : cboVDoorType1.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboKDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKDoorType1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboKDoorType1.EditValue = Nothing : ManageDoorType(cboKDoorType1)
-            Case 2 : If cboKDoorType1.EditValue <> Nothing Then ManageDoorType(cboKDoorType1)
+            Case 1 : ManageCbo.ManageDoorType(cboKDoorType1, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboKDoorType1, FormMode.EditRecord)
             Case 3 : cboKDoorType1.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboYDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYDoorType1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboYDoorType1.EditValue = Nothing : ManageDoorType(cboYDoorType1)
-            Case 2 : If cboYDoorType1.EditValue <> Nothing Then ManageDoorType(cboYDoorType1)
+            Case 1 : ManageCbo.ManageDoorType(cboYDoorType1, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboYDoorType1, FormMode.EditRecord)
             Case 3 : cboYDoorType1.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVependisisDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboVependisisDoorType.EditValue = Nothing : ManageDoorType(cboVependisisDoorType)
-            Case 2 : If cboVependisisDoorType.EditValue <> Nothing Then ManageDoorType(cboVependisisDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboVependisisDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboVependisisDoorType, FormMode.EditRecord)
             Case 3 : cboVependisisDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboKependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKependisisDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboKependisisDoorType.EditValue = Nothing : ManageDoorType(cboKependisisDoorType)
-            Case 2 : If cboKependisisDoorType.EditValue <> Nothing Then ManageDoorType(cboKependisisDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboKependisisDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboKependisisDoorType, FormMode.EditRecord)
             Case 3 : cboKependisisDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboSndEpendisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSndEpendisisDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboSndEpendisisDoorType.EditValue = Nothing : ManageDoorType(cboSndEpendisisDoorType)
-            Case 2 : If cboSndEpendisisDoorType.EditValue <> Nothing Then ManageDoorType(cboSndEpendisisDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboSndEpendisisDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboSndEpendisisDoorType, FormMode.EditRecord)
             Case 3 : cboSndEpendisisDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboNependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboNependisisDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboNependisisDoorType.EditValue = Nothing : ManageDoorType(cboNependisisDoorType)
-            Case 2 : If cboNependisisDoorType.EditValue <> Nothing Then ManageDoorType(cboNependisisDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboNependisisDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboNependisisDoorType, FormMode.EditRecord)
             Case 3 : cboNependisisDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVRafieraDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboVRafieraDoorType.EditValue = Nothing : ManageDoorType(cboVRafieraDoorType)
-            Case 2 : If cboVRafieraDoorType.EditValue <> Nothing Then ManageDoorType(cboVRafieraDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboVRafieraDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboVRafieraDoorType, FormMode.EditRecord)
             Case 3 : cboVRafieraDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboYRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYRafieraDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboYRafieraDoorType.EditValue = Nothing : ManageDoorType(cboYRafieraDoorType)
-            Case 2 : If cboYRafieraDoorType.EditValue <> Nothing Then ManageDoorType(cboYRafieraDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboYRafieraDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboYRafieraDoorType, FormMode.EditRecord)
             Case 3 : cboYRafieraDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboKRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKRafieraDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboKRafieraDoorType.EditValue = Nothing : ManageDoorType(cboKRafieraDoorType)
-            Case 2 : If cboKRafieraDoorType.EditValue <> Nothing Then ManageDoorType(cboYRafieraDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboKRafieraDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboKRafieraDoorType, FormMode.EditRecord)
             Case 3 : cboKRafieraDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBenchType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBenchType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboBenchType.EditValue = Nothing : ManageBENCH(cboBenchType)
-            Case 2 : If cboBenchType.EditValue <> Nothing Then ManageBENCH(cboBenchType)
+            Case 1 : ManageCbo.ManageBENCH(cboBenchType, Me, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageBENCH(cboBenchType, Me, FormMode.EditRecord)
             Case 3 : cboBenchType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBenchType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBenchType2.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboBenchType2.EditValue = Nothing : ManageBENCH(cboBenchType2)
-            Case 2 : If cboBenchType2.EditValue <> Nothing Then ManageBENCH(cboBenchType2)
+            Case 1 : ManageCbo.ManageBENCH(cboBenchType2, Me, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageBENCH(cboBenchType2, Me, FormMode.EditRecord)
             Case 3 : cboBenchType2.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBack_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBack.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboBack.EditValue = Nothing : ManageBENCH(cboBack)
-            Case 2 : If cboBack.EditValue <> Nothing Then ManageBENCH(cboBack)
+            Case 1 : ManageCbo.ManageBENCH(cboBack, Me, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageBENCH(cboBack, Me, FormMode.EditRecord)
             Case 3 : cboBack.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboKWallRafiaDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKWallRafiaDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboKWallRafiaDoorType.EditValue = Nothing : ManageDoorType(cboKWallRafiaDoorType)
-            Case 2 : If cboKWallRafiaDoorType.EditValue <> Nothing Then ManageDoorType(cboKWallRafiaDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboKWallRafiaDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboKWallRafiaDoorType, FormMode.EditRecord)
             Case 3 : cboKWallRafiaDoorType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboPependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPependisisDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboPependisisDoorType.EditValue = Nothing : ManageDoorType(cboPependisisDoorType)
-            Case 2 : If cboPependisisDoorType.EditValue <> Nothing Then ManageDoorType(cboPependisisDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboPependisisDoorType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageDoorType(cboPependisisDoorType, FormMode.EditRecord)
             Case 3 : cboPependisisDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageDoorType(ByVal CallerControl As LookUpEdit)
-        Dim frmDoorType As frmDoorType = New frmDoorType
-        frmDoorType.Text = "Κατηγορία Πόρτας"
-        frmDoorType.CallerControl = CallerControl
-        frmDoorType.CalledFromControl = True
-        If CallerControl.EditValue <> Nothing Then frmDoorType.ID = CallerControl.EditValue.ToString
-        frmDoorType.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then frmDoorType.Mode = FormMode.EditRecord Else frmDoorType.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(frmDoorType.Parent.ClientRectangle.Width / 2 - frmDoorType.Width / 2), CInt(frmDoorType.Parent.ClientRectangle.Height / 2 - frmDoorType.Height / 2)))
-        frmDoorType.Show()
-    End Sub
-    Private Sub ManageBENCH(ByVal CallerControl As LookUpEdit)
-        Dim frmBench As frmBench = New frmBench
-        frmBench.CallerForm = Me.Name
-        frmBench.CallerControl = CallerControl
-        frmBench.CalledFromControl = True
-        frmBench.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
-            frmBench.ID = CallerControl.EditValue.ToString
-            frmBench.Mode = FormMode.EditRecord
-        Else
-            frmBench.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
-        frmBench.Show()
-    End Sub
+
     Private Sub cbovType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVType.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboVType.EditValue = Nothing : cboVBOXColors.EditValue = Nothing
@@ -679,37 +592,47 @@ Public Class frmCUSOrderKitchen
             Case 1 : cboYType.EditValue = Nothing : cboYBOXColors.EditValue = Nothing
         End Select
     End Sub
-
-    Private Sub cboYType_EditValueChanged(sender As Object, e As EventArgs) Handles cboYType.EditValueChanged
-        LoadDoorType(cboYType, cboYBOXColors, cboYDoorType) : LoadDoorType(cboYType, cboYBOXColors, cboYDoorType1)
-    End Sub
-    Private Sub cboKType_EditValueChanged(sender As Object, e As EventArgs) Handles cboKType.EditValueChanged
-        LoadDoorType(cboKType, cboKBOXColors, cboKDoorType) : LoadDoorType(cboKType, cboKBOXColors, cboKDoorType1)
-    End Sub
-    Private Sub cboVType_EditValueChanged(sender As Object, e As EventArgs) Handles cboVType.EditValueChanged
-        LoadDoorType(cboVType, cboVBOXColors, cboVDoorType) : LoadDoorType(cboVType, cboVBOXColors, cboVDoorType1)
-    End Sub
     Private Sub cboVBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboVBOXColors.EditValueChanged
-        LoadDoorType(cboVType, cboVBOXColors, cboVDoorType) : LoadDoorType(cboVType, cboVBOXColors, cboVDoorType1)
-        LoadDoorType(cboVType, cboVBOXColors, cboVependisisDoorType) : LoadDoorType(cboVType, cboVBOXColors, cboNependisisDoorType)
+        If Me.IsActive = False Then Exit Sub
+        If cboVType.SelectedIndex = -1 Or cboVBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaVTableAdapter.FillBYErmariaV(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaV, cboVType.SelectedIndex, System.Guid.Parse(cboVBOXColors.EditValue.ToString))
     End Sub
     Private Sub cboKBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboKBOXColors.EditValueChanged
-        LoadDoorType(cboKType, cboKBOXColors, cboKDoorType) : LoadDoorType(cboKType, cboKBOXColors, cboKDoorType1)
-        LoadDoorType(cboKType, cboKBOXColors, cboKependisisDoorType) : LoadDoorType(cboKType, cboKBOXColors, cboSndEpendisisDoorType)
+        If Me.IsActive = False Then Exit Sub
+        If cboKType.SelectedIndex = -1 Or cboKBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaKTableAdapter.FillBYErmariaK(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaK, cboKType.SelectedIndex, System.Guid.Parse(cboKBOXColors.EditValue.ToString))
     End Sub
     Private Sub cboYBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboYBOXColors.EditValueChanged
-        LoadDoorType(cboYType, cboYBOXColors, cboYDoorType) : LoadDoorType(cboYType, cboYBOXColors, cboYDoorType1)
+        If Me.IsActive = False Then Exit Sub
+        If cboYType.SelectedIndex = -1 Or cboYBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaYTableAdapter.FillBYErmariaY(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaY, cboYType.SelectedIndex, System.Guid.Parse(cboYBOXColors.EditValue.ToString))
     End Sub
 
-    Private Sub LoadDoorType(ByVal cboEdit As ComboBoxEdit, ByVal lkupEditColor As LookUpEdit, ByVal lkupEditDoorType As LookUpEdit)
-        If Me.IsActive = False Then Exit Sub
-        If cboEdit.SelectedIndex = -1 Or lkupEditColor.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPE1TableAdapter.FillByTypeAndDoorColor(Me.DMDataSet.vw_DOOR_TYPE1, cboEdit.SelectedIndex, System.Guid.Parse(lkupEditColor.EditValue.ToString))
-        'Dim sSQL = New System.Text.StringBuilder
-        'sSQL.AppendLine("Select id,name,price from vw_DOOR_TYPE where type = " & cboEdit.SelectedIndex & " and doorColorID = " & toSQLValueS(lkupEditColor.EditValue.ToString))
-        'FillCbo.DOOR_TYPE(lkupEditDoorType, sSQL)
-        'lkupEditDoorType.Enabled = True
+    Private Sub cboYType_EditValueChanged(sender As Object, e As EventArgs) Handles cboYType.EditValueChanged
+        'If Me.IsActive = False Then Exit Sub
+        If cboYType.SelectedIndex = -1 Or cboYBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaYTableAdapter.FillBYErmariaY(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaY, cboYType.SelectedIndex, System.Guid.Parse(cboYBOXColors.EditValue.ToString))
     End Sub
+    Private Sub cboKType_EditValueChanged(sender As Object, e As EventArgs) Handles cboKType.EditValueChanged
+        'If Me.IsActive = False Then Exit Sub
+        If cboKType.SelectedIndex = -1 Or cboKBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaKTableAdapter.FillBYErmariaK(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaK, cboKType.SelectedIndex, System.Guid.Parse(cboKBOXColors.EditValue.ToString))
+    End Sub
+    Private Sub cboVType_EditValueChanged(sender As Object, e As EventArgs) Handles cboVType.EditValueChanged
+        'If Me.IsActive = False Then Exit Sub
+        If cboVType.SelectedIndex = -1 Or cboVBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaVTableAdapter.FillBYErmariaV(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaV, cboVType.SelectedIndex, System.Guid.Parse(cboVBOXColors.EditValue.ToString))
+    End Sub
+
+    'Private Sub LoadDoorType(ByVal cboEdit As ComboBoxEdit, ByVal lkupEditColor As LookUpEdit, ByVal lkupEditDoorType As LookUpEdit, ByVal doorCatID As String)
+    '    If Me.IsActive = False Then Exit Sub
+    '    If cboEdit.SelectedIndex = -1 Or lkupEditColor.EditValue = Nothing Then Exit Sub
+    '    'Me.Vw_DOOR_TYPE1TableAdapter.FillByTypeAndDoorColor(Me.DMDataSet.vw_DOOR_TYPE1, cboEdit.SelectedIndex, System.Guid.Parse(lkupEditColor.EditValue.ToString))
+    '    Dim sSQL = New System.Text.StringBuilder
+    '    sSQL.AppendLine("Select id,name,price from vw_DOOR_TYPE where doorCatID = " & toSQLValueS(doorCatID) & "  and type = " & cboEdit.SelectedIndex & " and doorColorID = " & toSQLValueS(lkupEditColor.EditValue.ToString) & " ORDER BY cat, dimName ")
+    '    FillCbo.DOOR_TYPE(lkupEditDoorType, sSQL)
+    '    'lkupEditDoorType.Enabled = True
+    'End Sub
 
     Private Sub cboBaza_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBaza.ButtonClick
         Select Case e.Button.Index
@@ -745,11 +668,7 @@ Public Class frmCUSOrderKitchen
         End Select
     End Sub
 
-    Private Sub cbobenchThickness_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbobenchThickness.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cbobenchThickness.EditValue = Nothing
-        End Select
-    End Sub
+
 
     Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
         If e.Column.FieldName <> "QTY" Then Exit Sub

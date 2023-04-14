@@ -236,6 +236,11 @@
     <Compile Include="DMDataSet.vb">
       <DependentUpon>DMDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DM_DOORTYPES.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DM_DOORTYPES.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DreamyKitchenDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1131,6 +1136,17 @@
     </None>
     <None Include="DMDataSet.xss">
       <DependentUpon>DMDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DM_DOORTYPES.xsc">
+      <DependentUpon>DM_DOORTYPES.xsd</DependentUpon>
+    </None>
+    <None Include="DM_DOORTYPES.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DM_DOORTYPES.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DM_DOORTYPES.xss">
+      <DependentUpon>DM_DOORTYPES.xsd</DependentUpon>
     </None>
     <None Include="DreamyKitchenCRM.exe.config" />
     <None Include="DreamyKitchenDataSet.xsc">

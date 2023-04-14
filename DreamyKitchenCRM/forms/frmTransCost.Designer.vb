@@ -685,21 +685,21 @@ Partial Class frmTransCost
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
-        Me.Vw_DOOR_TYPE1TableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPE1TableAdapter()
-        Me.DOOR_TYPETableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.DOOR_TYPETableAdapter()
-        Me.Vw_DOOR_TYPETableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPETableAdapter()
-        Me.Vw_DOOR_TYPERafieresVTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresVTableAdapter()
-        Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEPlainaKremastaTableAdapter()
-        Me.Vw_DOOR_TYPERafieresKTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresKTableAdapter()
-        Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter()
-        Me.Vw_DOOR_TYPERafieresYTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafieresYTableAdapter()
+        Me.Vw_DOOR_TYPE1TableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPE1TableAdapter()
+        Me.DOOR_TYPETableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisVaseosTableAdapter()
+        Me.Vw_DOOR_TYPETableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisNisidaTableAdapter()
+        Me.Vw_DOOR_TYPERafieresVTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPERafieresVTableAdapter()
+        Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisKremastaTableAdapter()
+        Me.Vw_DOOR_TYPERafieresKTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPERafieresKTableAdapter()
+        Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter()
+        Me.Vw_DOOR_TYPERafieresYTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPERafieresYTableAdapter()
         Me.Vw_BENCHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BENCHTableAdapter()
-        Me.Vw_DOOR_TYPEClosetTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEClosetTableAdapter()
-        Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEEpendisisClosetTableAdapter()
+        Me.Vw_DOOR_TYPEClosetTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPEClosetTableAdapter()
+        Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisClosetTableAdapter()
         Me.Vw_CONSTR_TYPETableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_CONSTR_TYPETableAdapter()
-        Me.Vw_DOOR_TYPESpecialConstrTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPESpecialConstrTableAdapter()
-        Me.Vw_DOOR_TYPERafiaWallTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPERafiaWallTableAdapter()
-        Me.Vw_DOOR_TYPEDOORSTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_DOOR_TYPEDOORSTableAdapter()
+        Me.Vw_DOOR_TYPESpecialConstrTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPESpecialConstrTableAdapter()
+        Me.Vw_DOOR_TYPERafiaWallTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPERafiaWallTableAdapter()
+        Me.Vw_DOOR_TYPEDOORSTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisNisidaTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit
         Me.LayoutControl1.SuspendLayout
         CType(Me.Maintab, System.ComponentModel.ISupportInitialize).BeginInit
@@ -11818,22 +11818,23 @@ Partial Class frmTransCost
     Friend WithEvents colRealName As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents coldefPrice As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents DMDataSet As DMDataSet
+    Friend WithEvents DM_DOORTYPES As DM_DOORTYPES
     Friend WithEvents VwDOORTYPE1BindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPE1TableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPE1TableAdapter
+    Friend WithEvents Vw_DOOR_TYPE1TableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPE1TableAdapter
     Friend WithEvents DOORTYPEBindingSource As BindingSource
-    Friend WithEvents DOOR_TYPETableAdapter As DMDataSetTableAdapters.DOOR_TYPETableAdapter
+    Friend WithEvents DOOR_TYPETableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisVaseosTableAdapter
     Friend WithEvents VwDOORTYPEBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPETableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPETableAdapter
+    Friend WithEvents Vw_DOOR_TYPETableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisNisidaTableAdapter
     Friend WithEvents VwDOORTYPERafieresVBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPERafieresVTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPERafieresVTableAdapter
+    Friend WithEvents Vw_DOOR_TYPERafieresVTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPERafieresVTableAdapter
     Friend WithEvents VwDOORTYPEPlainaKremastaBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEPlainaKremastaTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaKremastaTableAdapter
+    Friend WithEvents Vw_DOOR_TYPEPlainaKremastaTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisKremastaTableAdapter
     Friend WithEvents VwDOORTYPERafieresKBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPERafieresKTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPERafieresKTableAdapter
+    Friend WithEvents Vw_DOOR_TYPERafieresKTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPERafieresKTableAdapter
     Friend WithEvents VwDOORTYPEPlainaYpsilaBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter
+    Friend WithEvents Vw_DOOR_TYPEPlainaYpsilaTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter
     Friend WithEvents VwDOORTYPERafieresYBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPERafieresYTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPERafieresYTableAdapter
+    Friend WithEvents Vw_DOOR_TYPERafieresYTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPERafieresYTableAdapter
     Friend WithEvents txtKRafPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem98 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtVRafPrice As DevExpress.XtraEditors.TextEdit
@@ -12042,9 +12043,9 @@ Partial Class frmTransCost
     Friend WithEvents LayoutControlItem189 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem40 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents VwDOORTYPEClosetBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEClosetTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEClosetTableAdapter
+    Friend WithEvents Vw_DOOR_TYPEClosetTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPEClosetTableAdapter
     Friend WithEvents VwDOORTYPEEpendisisClosetBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEEpendisisClosetTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEEpendisisClosetTableAdapter
+    Friend WithEvents Vw_DOOR_TYPEEpendisisClosetTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisClosetTableAdapter
     Friend WithEvents XtraTabPage6 As DevExpress.XtraTab.XtraTabPage
     Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
     Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
@@ -12168,7 +12169,7 @@ Partial Class frmTransCost
     Friend WithEvents VwCONSTRTYPEBindingSource As BindingSource
     Friend WithEvents Vw_CONSTR_TYPETableAdapter As DMDataSetTableAdapters.vw_CONSTR_TYPETableAdapter
     Friend WithEvents VwDOORTYPESpecialConstrBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPESpecialConstrTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPESpecialConstrTableAdapter
+    Friend WithEvents Vw_DOOR_TYPESpecialConstrTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPESpecialConstrTableAdapter
     Friend WithEvents cboKcctOrders As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem235 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlGroup28 As DevExpress.XtraLayout.LayoutControlGroup
@@ -12192,7 +12193,7 @@ Partial Class frmTransCost
     Friend WithEvents txtWTotRafPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem245 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents VwDOORTYPERafiaWallBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPERafiaWallTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPERafiaWallTableAdapter
+    Friend WithEvents Vw_DOOR_TYPERafiaWallTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPERafiaWallTableAdapter
     Friend WithEvents txtTotalSalerProfit As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtTotalCompanyProfit As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem247 As DevExpress.XtraLayout.LayoutControlItem
@@ -12211,5 +12212,5 @@ Partial Class frmTransCost
     Friend WithEvents EmptySpaceItem41 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem42 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents VwDOORTYPEDOORSBindingSource As BindingSource
-    Friend WithEvents Vw_DOOR_TYPEDOORSTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEDOORSTableAdapter
+    Friend WithEvents Vw_DOOR_TYPEDOORSTableAdapter As DM_DOORTYPESTableAdapters.vw_DOOR_TYPEEpendisisNisidaTableAdapter
 End Class

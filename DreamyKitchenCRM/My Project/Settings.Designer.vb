@@ -91,7 +91,7 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchenuat;Persist Security Info"& _ 
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchenUAT;Persist Security Info"& _ 
             "=True;User ID=sa;Password=Dr3@mySA;MultipleActiveResultSets=True")>  _
         Public ReadOnly Property DreamyKitchenConnectionStringRemotely() As String
             Get
