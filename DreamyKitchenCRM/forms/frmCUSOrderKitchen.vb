@@ -355,7 +355,8 @@ Public Class frmCUSOrderKitchen
 
         report.Parameters.Item(0).Value = sID
         report.CreateDocument()
-        report.PrintingSystem.Document.ScaleFactor = 0.75
+        'report.PrintingSystem.Document.ScaleFactor = 0.75
+
         Dim report2 As New RepCUSOrderKitchen2ndPage
 
         report2.Parameters.Item(0).Value = sID

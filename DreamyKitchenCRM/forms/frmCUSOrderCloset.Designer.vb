@@ -490,7 +490,7 @@ Partial Class frmCUSOrderCloset
         'cboBOXColors6
         '
         Me.cboBOXColors6.EditValue = ""
-        Me.cboBOXColors6.Location = New System.Drawing.Point(395, 689)
+        Me.cboBOXColors6.Location = New System.Drawing.Point(467, 689)
         Me.cboBOXColors6.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBOXColors6.Name = "cboBOXColors6"
         Me.cboBOXColors6.Properties.AllowMouseWheel = False
@@ -500,7 +500,7 @@ Partial Class frmCUSOrderCloset
         Me.cboBOXColors6.Properties.DisplayMember = "name"
         Me.cboBOXColors6.Properties.NullText = ""
         Me.cboBOXColors6.Properties.ValueMember = "ID"
-        Me.cboBOXColors6.Size = New System.Drawing.Size(190, 38)
+        Me.cboBOXColors6.Size = New System.Drawing.Size(118, 38)
         Me.cboBOXColors6.StyleController = Me.LayoutControl1
         Me.cboBOXColors6.TabIndex = 70
         Me.cboBOXColors6.Tag = "BoxColorID6,0,1,2"
@@ -523,7 +523,7 @@ Partial Class frmCUSOrderCloset
         'cboBOXColors5
         '
         Me.cboBOXColors5.EditValue = ""
-        Me.cboBOXColors5.Location = New System.Drawing.Point(395, 647)
+        Me.cboBOXColors5.Location = New System.Drawing.Point(467, 647)
         Me.cboBOXColors5.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBOXColors5.Name = "cboBOXColors5"
         Me.cboBOXColors5.Properties.AllowMouseWheel = False
@@ -533,7 +533,7 @@ Partial Class frmCUSOrderCloset
         Me.cboBOXColors5.Properties.DisplayMember = "name"
         Me.cboBOXColors5.Properties.NullText = ""
         Me.cboBOXColors5.Properties.ValueMember = "ID"
-        Me.cboBOXColors5.Size = New System.Drawing.Size(190, 38)
+        Me.cboBOXColors5.Size = New System.Drawing.Size(118, 38)
         Me.cboBOXColors5.StyleController = Me.LayoutControl1
         Me.cboBOXColors5.TabIndex = 69
         Me.cboBOXColors5.Tag = "BoxColorID5,0,1,2"
@@ -541,7 +541,7 @@ Partial Class frmCUSOrderCloset
         'cboBOXColors4
         '
         Me.cboBOXColors4.EditValue = ""
-        Me.cboBOXColors4.Location = New System.Drawing.Point(395, 605)
+        Me.cboBOXColors4.Location = New System.Drawing.Point(467, 605)
         Me.cboBOXColors4.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBOXColors4.Name = "cboBOXColors4"
         Me.cboBOXColors4.Properties.AllowMouseWheel = False
@@ -551,7 +551,7 @@ Partial Class frmCUSOrderCloset
         Me.cboBOXColors4.Properties.DisplayMember = "name"
         Me.cboBOXColors4.Properties.NullText = ""
         Me.cboBOXColors4.Properties.ValueMember = "ID"
-        Me.cboBOXColors4.Size = New System.Drawing.Size(190, 38)
+        Me.cboBOXColors4.Size = New System.Drawing.Size(118, 38)
         Me.cboBOXColors4.StyleController = Me.LayoutControl1
         Me.cboBOXColors4.TabIndex = 68
         Me.cboBOXColors4.Tag = "BoxColorID4,0,1,2"
@@ -559,7 +559,7 @@ Partial Class frmCUSOrderCloset
         'cboBOXColors3
         '
         Me.cboBOXColors3.EditValue = ""
-        Me.cboBOXColors3.Location = New System.Drawing.Point(395, 563)
+        Me.cboBOXColors3.Location = New System.Drawing.Point(467, 563)
         Me.cboBOXColors3.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBOXColors3.Name = "cboBOXColors3"
         Me.cboBOXColors3.Properties.AllowMouseWheel = False
@@ -569,7 +569,7 @@ Partial Class frmCUSOrderCloset
         Me.cboBOXColors3.Properties.DisplayMember = "name"
         Me.cboBOXColors3.Properties.NullText = ""
         Me.cboBOXColors3.Properties.ValueMember = "ID"
-        Me.cboBOXColors3.Size = New System.Drawing.Size(190, 38)
+        Me.cboBOXColors3.Size = New System.Drawing.Size(118, 38)
         Me.cboBOXColors3.StyleController = Me.LayoutControl1
         Me.cboBOXColors3.TabIndex = 67
         Me.cboBOXColors3.Tag = "BoxColorID3,0,1,2"
@@ -577,7 +577,7 @@ Partial Class frmCUSOrderCloset
         'cboBOXColors2
         '
         Me.cboBOXColors2.EditValue = ""
-        Me.cboBOXColors2.Location = New System.Drawing.Point(395, 521)
+        Me.cboBOXColors2.Location = New System.Drawing.Point(467, 521)
         Me.cboBOXColors2.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBOXColors2.Name = "cboBOXColors2"
         Me.cboBOXColors2.Properties.AllowMouseWheel = False
@@ -587,7 +587,7 @@ Partial Class frmCUSOrderCloset
         Me.cboBOXColors2.Properties.DisplayMember = "name"
         Me.cboBOXColors2.Properties.NullText = ""
         Me.cboBOXColors2.Properties.ValueMember = "ID"
-        Me.cboBOXColors2.Size = New System.Drawing.Size(190, 38)
+        Me.cboBOXColors2.Size = New System.Drawing.Size(118, 38)
         Me.cboBOXColors2.StyleController = Me.LayoutControl1
         Me.cboBOXColors2.TabIndex = 66
         Me.cboBOXColors2.Tag = "BoxColorID2,0,1,2"
@@ -715,7 +715,7 @@ Partial Class frmCUSOrderCloset
         Me.txtCode.Size = New System.Drawing.Size(157, 38)
         Me.txtCode.StyleController = Me.LayoutControl1
         Me.txtCode.TabIndex = 4
-        Me.txtCode.Tag = "code,0"
+        Me.txtCode.Tag = "arProt,0,1,2"
         '
         'txtPhn
         '
@@ -840,7 +840,7 @@ Partial Class frmCUSOrderCloset
         'cboBOXColors
         '
         Me.cboBOXColors.EditValue = ""
-        Me.cboBOXColors.Location = New System.Drawing.Point(395, 479)
+        Me.cboBOXColors.Location = New System.Drawing.Point(467, 479)
         Me.cboBOXColors.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBOXColors.Name = "cboBOXColors"
         Me.cboBOXColors.Properties.AllowMouseWheel = False
@@ -850,7 +850,7 @@ Partial Class frmCUSOrderCloset
         Me.cboBOXColors.Properties.DisplayMember = "name"
         Me.cboBOXColors.Properties.NullText = ""
         Me.cboBOXColors.Properties.ValueMember = "ID"
-        Me.cboBOXColors.Size = New System.Drawing.Size(190, 38)
+        Me.cboBOXColors.Size = New System.Drawing.Size(118, 38)
         Me.cboBOXColors.StyleController = Me.LayoutControl1
         Me.cboBOXColors.TabIndex = 45
         Me.cboBOXColors.Tag = "BoxColorID,0,1,2"
@@ -1703,7 +1703,7 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem30.Name = "LayoutControlItem30"
         Me.LayoutControlItem30.Size = New System.Drawing.Size(730, 42)
         Me.LayoutControlItem30.Tag = "1"
-        Me.LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
+        Me.LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
         Me.LayoutControlItem30.TextSize = New System.Drawing.Size(232, 23)
         '
         'LayoutControlItem7
@@ -1725,7 +1725,7 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
         Me.LayoutControlItem4.Size = New System.Drawing.Size(394, 42)
-        Me.LayoutControlItem4.Text = "Κωδικός"
+        Me.LayoutControlItem4.Text = "Αρ. Παραγγελίας"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(232, 23)
         '
         'EmptySpaceItem1
@@ -1906,7 +1906,7 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Size = New System.Drawing.Size(537, 42)
-        Me.LayoutControlItem12.Text = "Πάχος Κουτιού"
+        Me.LayoutControlItem12.Text = "Πάχος Κασώματος"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(232, 23)
         '
         'LayoutControlItem54
@@ -1917,7 +1917,7 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem54.Location = New System.Drawing.Point(1259, 0)
         Me.LayoutControlItem54.Name = "LayoutControlItem54"
         Me.LayoutControlItem54.Size = New System.Drawing.Size(1046, 42)
-        Me.LayoutControlItem54.Text = "Πόδια"
+        Me.LayoutControlItem54.Text = "Πόδια Ερμαρίων"
         Me.LayoutControlItem54.TextSize = New System.Drawing.Size(232, 23)
         '
         'LayoutControlItem14
@@ -2132,9 +2132,9 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem21.Location = New System.Drawing.Point(308, 0)
         Me.LayoutControlItem21.Name = "LayoutControlItem21"
         Me.LayoutControlItem21.Size = New System.Drawing.Size(256, 42)
-        Me.LayoutControlItem21.Text = "Χρώμα"
+        Me.LayoutControlItem21.Text = "Χρώμα Κουτιού"
         Me.LayoutControlItem21.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem21.TextSize = New System.Drawing.Size(57, 23)
+        Me.LayoutControlItem21.TextSize = New System.Drawing.Size(129, 23)
         Me.LayoutControlItem21.TextToControlDistance = 5
         '
         'LayoutControlItem44
@@ -2143,9 +2143,9 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem44.Location = New System.Drawing.Point(308, 42)
         Me.LayoutControlItem44.Name = "LayoutControlItem44"
         Me.LayoutControlItem44.Size = New System.Drawing.Size(256, 42)
-        Me.LayoutControlItem44.Text = "Χρώμα"
+        Me.LayoutControlItem44.Text = "Χρώμα Κουτιού"
         Me.LayoutControlItem44.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem44.TextSize = New System.Drawing.Size(57, 23)
+        Me.LayoutControlItem44.TextSize = New System.Drawing.Size(129, 23)
         Me.LayoutControlItem44.TextToControlDistance = 5
         '
         'LayoutControlItem45
@@ -2154,9 +2154,9 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem45.Location = New System.Drawing.Point(308, 84)
         Me.LayoutControlItem45.Name = "LayoutControlItem45"
         Me.LayoutControlItem45.Size = New System.Drawing.Size(256, 42)
-        Me.LayoutControlItem45.Text = "Χρώμα"
+        Me.LayoutControlItem45.Text = "Χρώμα Κουτιού"
         Me.LayoutControlItem45.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem45.TextSize = New System.Drawing.Size(57, 23)
+        Me.LayoutControlItem45.TextSize = New System.Drawing.Size(129, 23)
         Me.LayoutControlItem45.TextToControlDistance = 5
         '
         'LayoutControlItem48
@@ -2165,9 +2165,9 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem48.Location = New System.Drawing.Point(308, 126)
         Me.LayoutControlItem48.Name = "LayoutControlItem48"
         Me.LayoutControlItem48.Size = New System.Drawing.Size(256, 42)
-        Me.LayoutControlItem48.Text = "Χρώμα"
+        Me.LayoutControlItem48.Text = "Χρώμα Κουτιού"
         Me.LayoutControlItem48.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem48.TextSize = New System.Drawing.Size(57, 23)
+        Me.LayoutControlItem48.TextSize = New System.Drawing.Size(129, 23)
         Me.LayoutControlItem48.TextToControlDistance = 5
         '
         'LayoutControlItem49
@@ -2176,9 +2176,9 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem49.Location = New System.Drawing.Point(308, 168)
         Me.LayoutControlItem49.Name = "LayoutControlItem49"
         Me.LayoutControlItem49.Size = New System.Drawing.Size(256, 42)
-        Me.LayoutControlItem49.Text = "Χρώμα"
+        Me.LayoutControlItem49.Text = "Χρώμα Κουτιού"
         Me.LayoutControlItem49.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem49.TextSize = New System.Drawing.Size(57, 23)
+        Me.LayoutControlItem49.TextSize = New System.Drawing.Size(129, 23)
         Me.LayoutControlItem49.TextToControlDistance = 5
         '
         'LayoutControlItem50
@@ -2187,9 +2187,9 @@ Partial Class frmCUSOrderCloset
         Me.LayoutControlItem50.Location = New System.Drawing.Point(308, 210)
         Me.LayoutControlItem50.Name = "LayoutControlItem50"
         Me.LayoutControlItem50.Size = New System.Drawing.Size(256, 42)
-        Me.LayoutControlItem50.Text = "Χρώμα"
+        Me.LayoutControlItem50.Text = "Χρώμα Κουτιού"
         Me.LayoutControlItem50.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem50.TextSize = New System.Drawing.Size(57, 23)
+        Me.LayoutControlItem50.TextSize = New System.Drawing.Size(129, 23)
         Me.LayoutControlItem50.TextToControlDistance = 5
         '
         'LayoutControlItem51
@@ -2802,10 +2802,6 @@ Partial Class frmCUSOrderCloset
         'Vw_EQUIPMENT_CLOSETTableAdapter
         '
         Me.Vw_EQUIPMENT_CLOSETTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_TYPE1TableAdapter
-        '
-        Me.Vw_DOOR_TYPE1TableAdapter.ClearBeforeFill = True
         '
         'Vw_DOOR_TYPEClosetTableAdapter
         '
