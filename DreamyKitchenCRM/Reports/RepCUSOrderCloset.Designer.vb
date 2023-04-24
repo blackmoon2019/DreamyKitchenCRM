@@ -38,9 +38,6 @@ Partial Public Class RepCUSOrderCloset
         Me.XrPictureBox1 = New DevExpress.XtraReports.UI.XRPictureBox()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
         Me.BottomMargin = New DevExpress.XtraReports.UI.BottomMarginBand()
-        Me.XrRichText2 = New DevExpress.XtraReports.UI.XRRichText()
-        Me.XrPictureBox2 = New DevExpress.XtraReports.UI.XRPictureBox()
-        Me.XrLabel41 = New DevExpress.XtraReports.UI.XRLabel()
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.OfferID = New DevExpress.XtraReports.Parameters.Parameter()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
@@ -113,18 +110,28 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
         Me.DetailReport = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail1 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel37 = New DevExpress.XtraReports.UI.XRLabel()
         Me.GroupHeader1 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.XrLabel36 = New DevExpress.XtraReports.UI.XRLabel()
         Me.DetailReport2 = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.Detail3 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel33 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel32 = New DevExpress.XtraReports.UI.XRLabel()
         Me.GroupHeader3 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrLabel7 = New DevExpress.XtraReports.UI.XRLabel()
-        CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).BeginInit()
+        Me.XrLabel38 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel81 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel91 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrCheckBox2 = New DevExpress.XtraReports.UI.XRCheckBox()
+        Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell32 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell33 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell34 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell35 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
@@ -182,56 +189,29 @@ Partial Public Class RepCUSOrderCloset
         'XrPictureBox1
         '
         Me.XrPictureBox1.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox1.ImageSource"))
-        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 15.36935!)
+        Me.XrPictureBox1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 15.36934!)
         Me.XrPictureBox1.Name = "XrPictureBox1"
-        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(275.8548!, 62.60684!)
+        Me.XrPictureBox1.SizeF = New System.Drawing.SizeF(275.8548!, 73.63065!)
         '
         'XrLabel1
         '
         Me.XrLabel1.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
         Me.XrLabel1.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(327.8494!, 20.36934!)
+        Me.XrLabel1.Multiline = True
         Me.XrLabel1.Name = "XrLabel1"
-        Me.XrLabel1.SizeF = New System.Drawing.SizeF(299.1506!, 52.19016!)
+        Me.XrLabel1.SizeF = New System.Drawing.SizeF(299.1506!, 68.63068!)
         Me.XrLabel1.StylePriority.UseFont = False
         Me.XrLabel1.StylePriority.UseForeColor = False
-        Me.XrLabel1.Text = "Δημιουργούμε το χώρο των ονείρων σας.                                            " &
-    "                           'Επιπλα Κουζίνας, Ντουλάπες Υπνοδωματίων, Πόρτες."
+        Me.XrLabel1.StylePriority.UseTextAlignment = False
+        Me.XrLabel1.Text = " Δημιουργούμε το χώρο των ονείρων σας." & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "'Επιπλα Κουζίνας, Ντουλάπες Υπνοδωματίων," &
+    " " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " Πόρτες,  Έπιπλα Μπάνιου"
+        Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
         '
         'BottomMargin
         '
-        Me.BottomMargin.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrRichText2, Me.XrPictureBox2, Me.XrLabel41})
         Me.BottomMargin.HeightF = 167.0271!
         Me.BottomMargin.Name = "BottomMargin"
-        '
-        'XrRichText2
-        '
-        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(161.4583!, 0!)
-        Me.XrRichText2.Name = "XrRichText2"
-        Me.XrRichText2.SerializableRtfString = resources.GetString("XrRichText2.SerializableRtfString")
-        Me.XrRichText2.SizeF = New System.Drawing.SizeF(318.75!, 27.08337!)
-        '
-        'XrPictureBox2
-        '
-        Me.XrPictureBox2.ImageSource = New DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("XrPictureBox2.ImageSource"))
-        Me.XrPictureBox2.LocationFloat = New DevExpress.Utils.PointFloat(161.625!, 39.47657!)
-        Me.XrPictureBox2.Name = "XrPictureBox2"
-        Me.XrPictureBox2.SizeF = New System.Drawing.SizeF(316.5833!, 77.60681!)
-        '
-        'XrLabel41
-        '
-        Me.XrLabel41.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
-        Me.XrLabel41.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(1.000032!, 132.078!)
-        Me.XrLabel41.Multiline = True
-        Me.XrLabel41.Name = "XrLabel41"
-        Me.XrLabel41.SizeF = New System.Drawing.SizeF(625.9999!, 34.94909!)
-        Me.XrLabel41.StylePriority.UseFont = False
-        Me.XrLabel41.StylePriority.UseForeColor = False
-        Me.XrLabel41.StylePriority.UseTextAlignment = False
-        Me.XrLabel41.Text = "DREAMY KITCHEN - Διεύθυνση: 25ης ΜΑρτίου, 5 Ταύρος, Τηλ/Fax:210 3410770" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "Web: dre" &
-    "amykitchen.gr, e-mail:info@dreamykitchen.gr"
-        Me.XrLabel41.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         '
         'Detail
         '
@@ -256,19 +236,21 @@ Partial Public Class RepCUSOrderCloset
         'PageHeader
         '
         Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel30, Me.XrTable2, Me.XrPanel3, Me.XrLabel3, Me.XrPanel1, Me.XrLabel2})
-        Me.PageHeader.HeightF = 567.868!
+        Me.PageHeader.HeightF = 526.0109!
         Me.PageHeader.Name = "PageHeader"
         '
         'XrLabel30
         '
-        Me.XrLabel30.BackColor = System.Drawing.Color.White
+        Me.XrLabel30.BackColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(206, Byte), Integer))
+        Me.XrLabel30.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel30.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel30.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(1.999878!, 385.6062!)
+        Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(0!, 332.0348!)
         Me.XrLabel30.Name = "XrLabel30"
         Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.XrLabel30.SizeF = New System.Drawing.SizeF(625.0001!, 20.83333!)
+        Me.XrLabel30.SizeF = New System.Drawing.SizeF(626.9999!, 31.61996!)
         Me.XrLabel30.StylePriority.UseBackColor = False
+        Me.XrLabel30.StylePriority.UseBorderColor = False
         Me.XrLabel30.StylePriority.UseFont = False
         Me.XrLabel30.StylePriority.UseForeColor = False
         Me.XrLabel30.StylePriority.UsePadding = False
@@ -282,7 +264,7 @@ Partial Public Class RepCUSOrderCloset
         Me.XrTable2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 406.4396!)
+        Me.XrTable2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 363.6548!)
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow7, Me.XrTableRow8, Me.XrTableRow9, Me.XrTableRow10, Me.XrTableRow11, Me.XrTableRow1, Me.XrTableRow2})
@@ -292,7 +274,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableRow7
         '
-        Me.XrTableRow7.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell17, Me.XrTableCell1, Me.XrTableCell18, Me.XrTableCell19})
+        Me.XrTableRow7.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell17, Me.XrTableCell1, Me.XrTableCell14, Me.XrTableCell18, Me.XrTableCell19})
         Me.XrTableRow7.Name = "XrTableRow7"
         Me.XrTableRow7.Weight = 1.0R
         '
@@ -322,7 +304,7 @@ Partial Public Class RepCUSOrderCloset
         Me.XrTableCell1.StylePriority.UseFont = False
         Me.XrTableCell1.StylePriority.UseForeColor = False
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
-        Me.XrTableCell1.Text = "Χρώμα Κουτιού"
+        Me.XrTableCell1.Text = "Χρώμα Κουτιών"
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell1.Weight = 1.2318046402115497R
         '
@@ -337,7 +319,7 @@ Partial Public Class RepCUSOrderCloset
         Me.XrTableCell18.StylePriority.UseFont = False
         Me.XrTableCell18.StylePriority.UseForeColor = False
         Me.XrTableCell18.StylePriority.UseTextAlignment = False
-        Me.XrTableCell18.Text = "Διάσταση"
+        Me.XrTableCell18.Text = "Κωδικός  Πόρτας"
         Me.XrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell18.Weight = 1.2318046402115497R
         '
@@ -352,13 +334,13 @@ Partial Public Class RepCUSOrderCloset
         Me.XrTableCell19.StylePriority.UseFont = False
         Me.XrTableCell19.StylePriority.UseForeColor = False
         Me.XrTableCell19.StylePriority.UseTextAlignment = False
-        Me.XrTableCell19.Text = "[Κωδ].[Πόρτας]-[Επενδύσεων]"
+        Me.XrTableCell19.Text = "Διαστάσεις"
         Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell19.Weight = 1.3927336672832114R
         '
         'XrTableRow8
         '
-        Me.XrTableRow8.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell20, Me.XrTableCell2, Me.XrTableCell21, Me.XrTableCell22})
+        Me.XrTableRow8.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell20, Me.XrTableCell2, Me.XrTableCell15, Me.XrTableCell21, Me.XrTableCell22})
         Me.XrTableRow8.Name = "XrTableRow8"
         Me.XrTableRow8.Weight = 1.0R
         '
@@ -407,7 +389,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableCell22
         '
-        Me.XrTableCell22.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Details1]")})
+        Me.XrTableCell22.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Dimension1]")})
         Me.XrTableCell22.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrTableCell22.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell22.Multiline = True
@@ -422,7 +404,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableRow9
         '
-        Me.XrTableRow9.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell23, Me.XrTableCell3, Me.XrTableCell24, Me.XrTableCell25})
+        Me.XrTableRow9.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell23, Me.XrTableCell3, Me.XrTableCell16, Me.XrTableCell24, Me.XrTableCell25})
         Me.XrTableRow9.Name = "XrTableRow9"
         Me.XrTableRow9.Weight = 1.0R
         '
@@ -471,7 +453,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableCell25
         '
-        Me.XrTableCell25.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Details2]")})
+        Me.XrTableCell25.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Dimension2]")})
         Me.XrTableCell25.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrTableCell25.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell25.Multiline = True
@@ -486,7 +468,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableRow10
         '
-        Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell26, Me.XrTableCell4, Me.XrTableCell27, Me.XrTableCell28})
+        Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell26, Me.XrTableCell4, Me.XrTableCell32, Me.XrTableCell27, Me.XrTableCell28})
         Me.XrTableRow10.Name = "XrTableRow10"
         Me.XrTableRow10.Weight = 1.0R
         '
@@ -535,7 +517,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableCell28
         '
-        Me.XrTableCell28.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Details3]")})
+        Me.XrTableCell28.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Dimension3]")})
         Me.XrTableCell28.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrTableCell28.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell28.Multiline = True
@@ -550,7 +532,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableRow11
         '
-        Me.XrTableRow11.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell29, Me.XrTableCell5, Me.XrTableCell30, Me.XrTableCell31})
+        Me.XrTableRow11.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell29, Me.XrTableCell5, Me.XrTableCell33, Me.XrTableCell30, Me.XrTableCell31})
         Me.XrTableRow11.Name = "XrTableRow11"
         Me.XrTableRow11.Weight = 1.0R
         '
@@ -599,7 +581,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableCell31
         '
-        Me.XrTableCell31.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Details4]")})
+        Me.XrTableCell31.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Dimension4]")})
         Me.XrTableCell31.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrTableCell31.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell31.Multiline = True
@@ -614,7 +596,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableRow1
         '
-        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6, Me.XrTableCell9, Me.XrTableCell7, Me.XrTableCell8})
+        Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell6, Me.XrTableCell9, Me.XrTableCell34, Me.XrTableCell7, Me.XrTableCell8})
         Me.XrTableRow1.Name = "XrTableRow1"
         Me.XrTableRow1.Weight = 1.0R
         '
@@ -662,7 +644,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableCell8
         '
-        Me.XrTableCell8.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Details5]")})
+        Me.XrTableCell8.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Dimension5]")})
         Me.XrTableCell8.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrTableCell8.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell8.Multiline = True
@@ -676,7 +658,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableRow2
         '
-        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell11, Me.XrTableCell10, Me.XrTableCell12, Me.XrTableCell13})
+        Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell11, Me.XrTableCell10, Me.XrTableCell35, Me.XrTableCell12, Me.XrTableCell13})
         Me.XrTableRow2.Name = "XrTableRow2"
         Me.XrTableRow2.Weight = 1.0R
         '
@@ -724,7 +706,7 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrTableCell13
         '
-        Me.XrTableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Details6]")})
+        Me.XrTableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Dimension6]")})
         Me.XrTableCell13.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrTableCell13.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell13.Multiline = True
@@ -738,25 +720,25 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrPanel3
         '
-        Me.XrPanel3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel10, Me.XrLabel24, Me.XrLabel25, Me.XrLabel28, Me.XrLabel8, Me.XrLabel9, Me.XrLabel26, Me.XrLabel27, Me.XrLabel6, Me.XrLabel4, Me.XrLabel29, Me.XrLabel11})
-        Me.XrPanel3.LocationFloat = New DevExpress.Utils.PointFloat(3.157516!, 223.2014!)
+        Me.XrPanel3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrCheckBox2, Me.XrLabel91, Me.XrLabel10, Me.XrLabel24, Me.XrLabel25, Me.XrLabel28, Me.XrLabel8, Me.XrLabel9, Me.XrLabel26, Me.XrLabel27, Me.XrLabel6, Me.XrLabel4, Me.XrLabel29, Me.XrLabel11})
+        Me.XrPanel3.LocationFloat = New DevExpress.Utils.PointFloat(3.157516!, 198.5229!)
         Me.XrPanel3.Name = "XrPanel3"
-        Me.XrPanel3.SizeF = New System.Drawing.SizeF(621.8428!, 147.619!)
+        Me.XrPanel3.SizeF = New System.Drawing.SizeF(621.8428!, 133.5118!)
         '
         'XrLabel10
         '
         Me.XrLabel10.CanShrink = True
         Me.XrLabel10.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(414.9218!, 86.61905!)
+        Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(1.84!, 92.0!)
         Me.XrLabel10.Name = "XrLabel10"
         Me.XrLabel10.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel10.SizeF = New System.Drawing.SizeF(82.66573!, 22.99988!)
+        Me.XrLabel10.SizeF = New System.Drawing.SizeF(140.8627!, 23.0!)
         Me.XrLabel10.StylePriority.UseFont = False
         Me.XrLabel10.StylePriority.UseForeColor = False
         Me.XrLabel10.StylePriority.UsePadding = False
         Me.XrLabel10.StylePriority.UseTextAlignment = False
-        Me.XrLabel10.Text = "Πόμολο:"
+        Me.XrLabel10.Text = "Πόμολa:"
         Me.XrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel24
@@ -766,11 +748,11 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel24.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[knob]")})
         Me.XrLabel24.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel24.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(497.5876!, 86.61899!)
+        Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(150.0169!, 92.0!)
         Me.XrLabel24.Multiline = True
         Me.XrLabel24.Name = "XrLabel24"
         Me.XrLabel24.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel24.SizeF = New System.Drawing.SizeF(112.4696!, 23.00003!)
+        Me.XrLabel24.SizeF = New System.Drawing.SizeF(465.8255!, 23.00006!)
         Me.XrLabel24.StylePriority.UseBorderColor = False
         Me.XrLabel24.StylePriority.UseBorders = False
         Me.XrLabel24.StylePriority.UseFont = False
@@ -784,10 +766,10 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel25.CanShrink = True
         Me.XrLabel25.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel25.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(246.912!, 10.00037!)
+        Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(1.84!, 32.0!)
         Me.XrLabel25.Name = "XrLabel25"
         Me.XrLabel25.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel25.SizeF = New System.Drawing.SizeF(80.66617!, 36.09518!)
+        Me.XrLabel25.SizeF = New System.Drawing.SizeF(140.8627!, 23.0!)
         Me.XrLabel25.StylePriority.UseFont = False
         Me.XrLabel25.StylePriority.UseForeColor = False
         Me.XrLabel25.StylePriority.UsePadding = False
@@ -802,11 +784,11 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel28.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_ORDERS_CLOSET].[boxThikness]")})
         Me.XrLabel28.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel28.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(350.7911!, 10.00021!)
+        Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(194.7514!, 32.45279!)
         Me.XrLabel28.Multiline = True
         Me.XrLabel28.Name = "XrLabel28"
         Me.XrLabel28.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel28.SizeF = New System.Drawing.SizeF(68.98148!, 23.00005!)
+        Me.XrLabel28.SizeF = New System.Drawing.SizeF(133.1718!, 23.00005!)
         Me.XrLabel28.StylePriority.UseBorderColor = False
         Me.XrLabel28.StylePriority.UseBorders = False
         Me.XrLabel28.StylePriority.UseFont = False
@@ -820,10 +802,10 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel8.CanShrink = True
         Me.XrLabel8.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(5.157295!, 10.00037!)
+        Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(1.84228!, 2.000031!)
         Me.XrLabel8.Name = "XrLabel8"
         Me.XrLabel8.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel8.SizeF = New System.Drawing.SizeF(81.66595!, 34.30957!)
+        Me.XrLabel8.SizeF = New System.Drawing.SizeF(140.8627!, 23.0!)
         Me.XrLabel8.StylePriority.UseFont = False
         Me.XrLabel8.StylePriority.UseForeColor = False
         Me.XrLabel8.StylePriority.UsePadding = False
@@ -838,11 +820,11 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_ORDERS_CLOSET].[boxThikness]")})
         Me.XrLabel9.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel9.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(86.82329!, 10.00035!)
+        Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(194.7515!, 2.000031!)
         Me.XrLabel9.Multiline = True
         Me.XrLabel9.Name = "XrLabel9"
         Me.XrLabel9.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel9.SizeF = New System.Drawing.SizeF(77.94577!, 23.00003!)
+        Me.XrLabel9.SizeF = New System.Drawing.SizeF(133.1718!, 23.00005!)
         Me.XrLabel9.StylePriority.UseBorderColor = False
         Me.XrLabel9.StylePriority.UseBorders = False
         Me.XrLabel9.StylePriority.UseFont = False
@@ -856,10 +838,10 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel26.CanShrink = True
         Me.XrLabel26.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(497.5876!, 10.00046!)
+        Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(1.84!, 62.0!)
         Me.XrLabel26.Name = "XrLabel26"
         Me.XrLabel26.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel26.SizeF = New System.Drawing.SizeF(51.18613!, 22.99989!)
+        Me.XrLabel26.SizeF = New System.Drawing.SizeF(140.8627!, 23.0!)
         Me.XrLabel26.StylePriority.UseFont = False
         Me.XrLabel26.StylePriority.UseForeColor = False
         Me.XrLabel26.StylePriority.UsePadding = False
@@ -874,11 +856,11 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel27.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_ORDERS_CLOSET].[Legs]")})
         Me.XrLabel27.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel27.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(548.7921!, 10.00035!)
+        Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(194.7514!, 61.99994!)
         Me.XrLabel27.Multiline = True
         Me.XrLabel27.Name = "XrLabel27"
         Me.XrLabel27.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel27.SizeF = New System.Drawing.SizeF(70.20776!, 23.00003!)
+        Me.XrLabel27.SizeF = New System.Drawing.SizeF(133.1718!, 23.00006!)
         Me.XrLabel27.StylePriority.UseBorderColor = False
         Me.XrLabel27.StylePriority.UseBorders = False
         Me.XrLabel27.StylePriority.UseFont = False
@@ -892,10 +874,10 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel6.CanShrink = True
         Me.XrLabel6.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(6.842484!, 86.61887!)
+        Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(334.1881!, 32.45279!)
         Me.XrLabel6.Name = "XrLabel6"
         Me.XrLabel6.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(81.66591!, 22.99994!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(140.8627!, 23.0!)
         Me.XrLabel6.StylePriority.UseFont = False
         Me.XrLabel6.StylePriority.UseForeColor = False
         Me.XrLabel6.StylePriority.UsePadding = False
@@ -910,11 +892,11 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([Drawers]=0,NULL,[Drawers])" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrLabel4.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel4.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(111.7214!, 86.61877!)
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(482.365!, 32.45279!)
         Me.XrLabel4.Multiline = True
         Me.XrLabel4.Name = "XrLabel4"
         Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(112.4696!, 23.00006!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(133.4774!, 23.00006!)
         Me.XrLabel4.StylePriority.UseBorderColor = False
         Me.XrLabel4.StylePriority.UseBorders = False
         Me.XrLabel4.StylePriority.UseFont = False
@@ -928,10 +910,10 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel29.CanShrink = True
         Me.XrLabel29.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel29.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel29.LocationFloat = New DevExpress.Utils.PointFloat(253.2452!, 86.61877!)
+        Me.XrLabel29.LocationFloat = New DevExpress.Utils.PointFloat(334.1881!, 2.000137!)
         Me.XrLabel29.Name = "XrLabel29"
         Me.XrLabel29.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel29.SizeF = New System.Drawing.SizeF(55.45903!, 22.99994!)
+        Me.XrLabel29.SizeF = New System.Drawing.SizeF(140.8627!, 23.0!)
         Me.XrLabel29.StylePriority.UseFont = False
         Me.XrLabel29.StylePriority.UseForeColor = False
         Me.XrLabel29.StylePriority.UsePadding = False
@@ -946,11 +928,11 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([shelves]=0,NULL,[shelves])" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrLabel11.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrLabel11.ForeColor = System.Drawing.Color.Gray
-        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(308.7041!, 86.61897!)
+        Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(482.365!, 2.000137!)
         Me.XrLabel11.Multiline = True
         Me.XrLabel11.Name = "XrLabel11"
         Me.XrLabel11.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel11.SizeF = New System.Drawing.SizeF(70.22626!, 23.00003!)
+        Me.XrLabel11.SizeF = New System.Drawing.SizeF(133.4774!, 23.00003!)
         Me.XrLabel11.StylePriority.UseBorderColor = False
         Me.XrLabel11.StylePriority.UseBorders = False
         Me.XrLabel11.StylePriority.UseFont = False
@@ -961,24 +943,26 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrLabel3
         '
-        Me.XrLabel3.BackColor = System.Drawing.Color.White
-        Me.XrLabel3.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel3.BackColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(206, Byte), Integer))
+        Me.XrLabel3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel3.Font = New System.Drawing.Font("Zona Pro", 11.14286!, System.Drawing.FontStyle.Bold)
         Me.XrLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 202.3681!)
+        Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 166.9029!)
         Me.XrLabel3.Name = "XrLabel3"
         Me.XrLabel3.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.XrLabel3.SizeF = New System.Drawing.SizeF(625.0001!, 20.83333!)
+        Me.XrLabel3.SizeF = New System.Drawing.SizeF(627.0!, 31.62!)
         Me.XrLabel3.StylePriority.UseBackColor = False
+        Me.XrLabel3.StylePriority.UseBorderColor = False
         Me.XrLabel3.StylePriority.UseFont = False
         Me.XrLabel3.StylePriority.UseForeColor = False
         Me.XrLabel3.StylePriority.UsePadding = False
         Me.XrLabel3.StylePriority.UseTextAlignment = False
-        Me.XrLabel3.Text = "Περιγραφή Κατασκευής"
+        Me.XrLabel3.Text = "Περιγραφή Ερμαρίων"
         Me.XrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'XrPanel1
         '
-        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel34, Me.XrLabel35, Me.XrLabel17, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel12, Me.XrLabel13, Me.XrLabel14, Me.XrLabel15, Me.XrLabel16, Me.XrLabel23})
+        Me.XrPanel1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel38, Me.XrLabel81, Me.XrLabel34, Me.XrLabel35, Me.XrLabel17, Me.XrLabel22, Me.XrLabel21, Me.XrLabel20, Me.XrLabel19, Me.XrLabel18, Me.XrLabel12, Me.XrLabel13, Me.XrLabel14, Me.XrLabel15, Me.XrLabel16, Me.XrLabel23})
         Me.XrPanel1.LocationFloat = New DevExpress.Utils.PointFloat(0.0001816523!, 36.94451!)
         Me.XrPanel1.Name = "XrPanel1"
         Me.XrPanel1.SizeF = New System.Drawing.SizeF(624.9998!, 125.9584!)
@@ -1002,11 +986,11 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel35.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[EmpName]")})
         Me.XrLabel35.Font = New System.Drawing.Font("Zona Pro Regular", 9.857143!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.XrLabel35.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(75.82351!, 102.9584!)
+        Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(75.8235!, 102.9584!)
         Me.XrLabel35.Multiline = True
         Me.XrLabel35.Name = "XrLabel35"
         Me.XrLabel35.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel35.SizeF = New System.Drawing.SizeF(362.4999!, 20.00002!)
+        Me.XrLabel35.SizeF = New System.Drawing.SizeF(271.949!, 20.00003!)
         Me.XrLabel35.StylePriority.UseBorderColor = False
         Me.XrLabel35.StylePriority.UseBorders = False
         Me.XrLabel35.StylePriority.UseFont = False
@@ -1023,7 +1007,7 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel17.SizeF = New System.Drawing.SizeF(159.1987!, 20.0!)
         Me.XrLabel17.StylePriority.UseFont = False
         Me.XrLabel17.StylePriority.UseForeColor = False
-        Me.XrLabel17.Text = "Ημ/νία Παρουσίασης:"
+        Me.XrLabel17.Text = "Ημ/νία Παραγγελίας:"
         '
         'XrLabel22
         '
@@ -1072,7 +1056,7 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel20.Multiline = True
         Me.XrLabel20.Name = "XrLabel20"
         Me.XrLabel20.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel20.SizeF = New System.Drawing.SizeF(100.0!, 20.00001!)
+        Me.XrLabel20.SizeF = New System.Drawing.SizeF(116.656!, 20.0!)
         Me.XrLabel20.StylePriority.UseBorderColor = False
         Me.XrLabel20.StylePriority.UseBorders = False
         Me.XrLabel20.StylePriority.UseFont = False
@@ -1107,11 +1091,11 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel18.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[CctName]")})
         Me.XrLabel18.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
         Me.XrLabel18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(75.82351!, 13.0!)
+        Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(75.8235!, 13.00001!)
         Me.XrLabel18.Multiline = True
         Me.XrLabel18.Name = "XrLabel18"
         Me.XrLabel18.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel18.SizeF = New System.Drawing.SizeF(250.188!, 23.0!)
+        Me.XrLabel18.SizeF = New System.Drawing.SizeF(271.949!, 23.0!)
         Me.XrLabel18.StylePriority.UseBorderColor = False
         Me.XrLabel18.StylePriority.UseBorders = False
         Me.XrLabel18.StylePriority.UseFont = False
@@ -1229,6 +1213,21 @@ Partial Public Class RepCUSOrderCloset
         Me.Detail1.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount
         Me.Detail1.Name = "Detail1"
         '
+        'XrLabel5
+        '
+        Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
+        Me.XrLabel5.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(207.0!, 0!)
+        Me.XrLabel5.Multiline = True
+        Me.XrLabel5.Name = "XrLabel5"
+        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel5.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
+        Me.XrLabel5.StylePriority.UseFont = False
+        Me.XrLabel5.StylePriority.UseForeColor = False
+        Me.XrLabel5.Text = "XrLabel5"
+        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        '
         'XrLabel37
         '
         Me.XrLabel37.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[EquipmentName]")})
@@ -1253,13 +1252,13 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrLabel36
         '
-        Me.XrLabel36.BackColor = System.Drawing.Color.White
+        Me.XrLabel36.BackColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(206, Byte), Integer))
         Me.XrLabel36.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel36.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(4.999817!, 3.000023!)
+        Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(0!, 3.000023!)
         Me.XrLabel36.Name = "XrLabel36"
         Me.XrLabel36.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.XrLabel36.SizeF = New System.Drawing.SizeF(622.0002!, 20.83333!)
+        Me.XrLabel36.SizeF = New System.Drawing.SizeF(626.9999!, 20.83333!)
         Me.XrLabel36.StylePriority.UseBackColor = False
         Me.XrLabel36.StylePriority.UseFont = False
         Me.XrLabel36.StylePriority.UseForeColor = False
@@ -1283,6 +1282,21 @@ Partial Public Class RepCUSOrderCloset
         Me.Detail3.MultiColumn.ColumnCount = 3
         Me.Detail3.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown
         Me.Detail3.Name = "Detail3"
+        '
+        'XrLabel7
+        '
+        Me.XrLabel7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
+        Me.XrLabel7.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(299.9046!, 0!)
+        Me.XrLabel7.Multiline = True
+        Me.XrLabel7.Name = "XrLabel7"
+        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel7.SizeF = New System.Drawing.SizeF(57.8681!, 23.0!)
+        Me.XrLabel7.StylePriority.UseFont = False
+        Me.XrLabel7.StylePriority.UseForeColor = False
+        Me.XrLabel7.Text = "XrLabel7"
+        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
         '
         'XrLabel33
         '
@@ -1323,50 +1337,173 @@ Partial Public Class RepCUSOrderCloset
         '
         'XrLabel31
         '
-        Me.XrLabel31.BackColor = System.Drawing.Color.White
+        Me.XrLabel31.BackColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(206, Byte), Integer))
         Me.XrLabel31.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel31.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(2.999842!, 0!)
+        Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel31.Name = "XrLabel31"
         Me.XrLabel31.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.XrLabel31.SizeF = New System.Drawing.SizeF(622.0002!, 20.83333!)
+        Me.XrLabel31.SizeF = New System.Drawing.SizeF(626.9999!, 20.83333!)
         Me.XrLabel31.StylePriority.UseBackColor = False
         Me.XrLabel31.StylePriority.UseFont = False
         Me.XrLabel31.StylePriority.UseForeColor = False
         Me.XrLabel31.StylePriority.UsePadding = False
         Me.XrLabel31.StylePriority.UseTextAlignment = False
-        Me.XrLabel31.Text = "Extra εξοπλισμός"
+        Me.XrLabel31.Text = "Extra εξοπλισμός που περιλαμβάνεται"
         Me.XrLabel31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
-        'XrLabel5
+        'XrLabel38
         '
-        Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
-        Me.XrLabel5.Font = New System.Drawing.Font("Zona Pro", 9.0!)
-        Me.XrLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(207.0!, 0!)
-        Me.XrLabel5.Multiline = True
-        Me.XrLabel5.Name = "XrLabel5"
-        Me.XrLabel5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel5.SizeF = New System.Drawing.SizeF(100.0!, 23.0!)
-        Me.XrLabel5.StylePriority.UseFont = False
-        Me.XrLabel5.StylePriority.UseForeColor = False
-        Me.XrLabel5.Text = "XrLabel5"
-        Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrLabel38.CanShrink = True
+        Me.XrLabel38.Font = New System.Drawing.Font("Zona Pro", 10.0!)
+        Me.XrLabel38.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel38.LocationFloat = New DevExpress.Utils.PointFloat(352.9486!, 102.9584!)
+        Me.XrLabel38.Name = "XrLabel38"
+        Me.XrLabel38.SizeF = New System.Drawing.SizeF(121.7719!, 20.00003!)
+        Me.XrLabel38.StylePriority.UseFont = False
+        Me.XrLabel38.StylePriority.UseForeColor = False
+        Me.XrLabel38.Text = "Αρ. Παραγγελίας:"
         '
-        'XrLabel7
+        'XrLabel81
         '
-        Me.XrLabel7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
-        Me.XrLabel7.Font = New System.Drawing.Font("Zona Pro", 9.0!)
-        Me.XrLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(299.9046!, 0!)
-        Me.XrLabel7.Multiline = True
-        Me.XrLabel7.Name = "XrLabel7"
-        Me.XrLabel7.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
-        Me.XrLabel7.SizeF = New System.Drawing.SizeF(57.8681!, 23.0!)
-        Me.XrLabel7.StylePriority.UseFont = False
-        Me.XrLabel7.StylePriority.UseForeColor = False
-        Me.XrLabel7.Text = "XrLabel7"
-        Me.XrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight
+        Me.XrLabel81.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel81.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
+        Me.XrLabel81.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[code]")})
+        Me.XrLabel81.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrLabel81.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel81.LocationFloat = New DevExpress.Utils.PointFloat(485.5223!, 102.9584!)
+        Me.XrLabel81.Multiline = True
+        Me.XrLabel81.Name = "XrLabel81"
+        Me.XrLabel81.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel81.SizeF = New System.Drawing.SizeF(133.4774!, 20.95842!)
+        Me.XrLabel81.StylePriority.UseBorderColor = False
+        Me.XrLabel81.StylePriority.UseBorders = False
+        Me.XrLabel81.StylePriority.UseFont = False
+        Me.XrLabel81.StylePriority.UseForeColor = False
+        Me.XrLabel81.StylePriority.UseTextAlignment = False
+        Me.XrLabel81.Text = "XrLabel23"
+        Me.XrLabel81.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        '
+        'XrLabel91
+        '
+        Me.XrLabel91.CanShrink = True
+        Me.XrLabel91.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel91.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel91.LocationFloat = New DevExpress.Utils.PointFloat(334.1881!, 61.99994!)
+        Me.XrLabel91.Name = "XrLabel91"
+        Me.XrLabel91.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel91.SizeF = New System.Drawing.SizeF(167.64!, 23.0!)
+        Me.XrLabel91.StylePriority.UseFont = False
+        Me.XrLabel91.StylePriority.UseForeColor = False
+        Me.XrLabel91.StylePriority.UsePadding = False
+        Me.XrLabel91.StylePriority.UseTextAlignment = False
+        Me.XrLabel91.Text = "Χωνευτό προφίλ για Led :"
+        Me.XrLabel91.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'XrCheckBox2
+        '
+        Me.XrCheckBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrCheckBox2.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrCheckBox2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HoodAlignment]")})
+        Me.XrCheckBox2.LocationFloat = New DevExpress.Utils.PointFloat(527.6947!, 59.99994!)
+        Me.XrCheckBox2.Name = "XrCheckBox2"
+        Me.XrCheckBox2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrCheckBox2.SizeF = New System.Drawing.SizeF(19.70566!, 22.99988!)
+        Me.XrCheckBox2.StylePriority.UseBorderColor = False
+        Me.XrCheckBox2.StylePriority.UseBorders = False
+        '
+        'XrTableCell14
+        '
+        Me.XrTableCell14.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.XrTableCell14.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell14.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell14.Multiline = True
+        Me.XrTableCell14.Name = "XrTableCell14"
+        Me.XrTableCell14.StylePriority.UseBackColor = False
+        Me.XrTableCell14.StylePriority.UseFont = False
+        Me.XrTableCell14.StylePriority.UseForeColor = False
+        Me.XrTableCell14.StylePriority.UseTextAlignment = False
+        Me.XrTableCell14.Text = "Χρώμα Ραφιών"
+        Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell14.Weight = 1.2318046402115497R
+        '
+        'XrTableCell15
+        '
+        Me.XrTableCell15.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell15.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell15.Multiline = True
+        Me.XrTableCell15.Name = "XrTableCell15"
+        Me.XrTableCell15.StylePriority.UseFont = False
+        Me.XrTableCell15.StylePriority.UseForeColor = False
+        Me.XrTableCell15.StylePriority.UseTextAlignment = False
+        Me.XrTableCell15.Text = "XrTableCell15"
+        Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell15.Weight = 1.2318046402115235R
+        '
+        'XrTableCell16
+        '
+        Me.XrTableCell16.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell16.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell16.Multiline = True
+        Me.XrTableCell16.Name = "XrTableCell16"
+        Me.XrTableCell16.StylePriority.UseFont = False
+        Me.XrTableCell16.StylePriority.UseForeColor = False
+        Me.XrTableCell16.StylePriority.UseTextAlignment = False
+        Me.XrTableCell16.Text = "XrTableCell16"
+        Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell16.Weight = 1.2318046402115235R
+        '
+        'XrTableCell32
+        '
+        Me.XrTableCell32.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell32.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell32.Multiline = True
+        Me.XrTableCell32.Name = "XrTableCell32"
+        Me.XrTableCell32.StylePriority.UseFont = False
+        Me.XrTableCell32.StylePriority.UseForeColor = False
+        Me.XrTableCell32.StylePriority.UseTextAlignment = False
+        Me.XrTableCell32.Text = "XrTableCell32"
+        Me.XrTableCell32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell32.Weight = 1.2318046402115235R
+        '
+        'XrTableCell33
+        '
+        Me.XrTableCell33.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell33.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell33.Multiline = True
+        Me.XrTableCell33.Name = "XrTableCell33"
+        Me.XrTableCell33.StylePriority.UseFont = False
+        Me.XrTableCell33.StylePriority.UseForeColor = False
+        Me.XrTableCell33.StylePriority.UseTextAlignment = False
+        Me.XrTableCell33.Text = "XrTableCell33"
+        Me.XrTableCell33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell33.Weight = 1.2318046402115235R
+        '
+        'XrTableCell34
+        '
+        Me.XrTableCell34.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell34.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell34.Multiline = True
+        Me.XrTableCell34.Name = "XrTableCell34"
+        Me.XrTableCell34.StylePriority.UseFont = False
+        Me.XrTableCell34.StylePriority.UseForeColor = False
+        Me.XrTableCell34.StylePriority.UseTextAlignment = False
+        Me.XrTableCell34.Text = "XrTableCell34"
+        Me.XrTableCell34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell34.Weight = 1.2318046402115235R
+        '
+        'XrTableCell35
+        '
+        Me.XrTableCell35.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell35.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell35.Multiline = True
+        Me.XrTableCell35.Name = "XrTableCell35"
+        Me.XrTableCell35.StylePriority.UseFont = False
+        Me.XrTableCell35.StylePriority.UseForeColor = False
+        Me.XrTableCell35.StylePriority.UseTextAlignment = False
+        Me.XrTableCell35.Text = "XrTableCell35"
+        Me.XrTableCell35.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell35.Weight = 1.2318046402115235R
         '
         'RepCUSOrderCloset
         '
@@ -1382,7 +1519,6 @@ Partial Public Class RepCUSOrderCloset
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "21.2"
-        CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
@@ -1462,9 +1598,6 @@ Partial Public Class RepCUSOrderCloset
     Friend WithEvents XrLabel31 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel32 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel33 As DevExpress.XtraReports.UI.XRLabel
-    Friend WithEvents XrRichText2 As DevExpress.XtraReports.UI.XRRichText
-    Friend WithEvents XrPictureBox2 As DevExpress.XtraReports.UI.XRPictureBox
-    Friend WithEvents XrLabel41 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents DetailReport2 As DevExpress.XtraReports.UI.DetailReportBand
     Friend WithEvents Detail3 As DevExpress.XtraReports.UI.DetailBand
     Friend WithEvents GroupHeader3 As DevExpress.XtraReports.UI.GroupHeaderBand
@@ -1479,4 +1612,15 @@ Partial Public Class RepCUSOrderCloset
     Friend WithEvents XrTableCell10 As DevExpress.XtraReports.UI.XRTableCell
     Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel7 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel38 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel81 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel91 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrCheckBox2 As DevExpress.XtraReports.UI.XRCheckBox
+    Friend WithEvents XrTableCell14 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell15 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell16 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell32 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell33 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell34 As DevExpress.XtraReports.UI.XRTableCell
+    Friend WithEvents XrTableCell35 As DevExpress.XtraReports.UI.XRTableCell
 End Class

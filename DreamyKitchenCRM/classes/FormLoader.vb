@@ -89,6 +89,7 @@ Public Class FormLoader
                 For Each item As BaseLayoutItem In control.Items
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
+                        'If LItem.ControlName.Contains("cboSides") Then Stop
                         If LItem.ControlName <> Nothing Then
                             'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                             If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
@@ -120,7 +121,7 @@ Public Class FormLoader
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα Προβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("0")))
                                 ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
-                                If LItem.Control.Visible = True Then
+                                If LItem.Control.Visible = True Or LItem.Control.Parent.Controls.Count > 1 Then
                                     If value <> Nothing Then
                                         TagV = TagValue(0).Replace("[", "").Replace("]", "")
                                         Console.WriteLine(TagV)

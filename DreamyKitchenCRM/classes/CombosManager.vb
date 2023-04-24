@@ -167,12 +167,13 @@ Public Class CombosManager
         form1.Show()
 
     End Sub
-    Public Sub ManageDoorType(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+    Public Sub ManageDoorType(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal DoorCatID As String = Nothing)
         Dim frmDoorType As frmDoorType = New frmDoorType
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
         frmDoorType.Text = "Κατηγορία Πόρτας"
         frmDoorType.CallerControl = CallerControl
         frmDoorType.CalledFromControl = True
+        frmDoorType.cboDoorCat.EditValue = DoorCatID
         If CallerControl.EditValue <> Nothing Then frmDoorType.ID = CallerControl.EditValue.ToString
         frmDoorType.MdiParent = frmMain
         If CallerControl.EditValue <> Nothing Then frmDoorType.Mode = FormMode.EditRecord Else frmDoorType.Mode = FormMode.NewRecord
@@ -200,7 +201,8 @@ Public Class CombosManager
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
         Select Case CallerControl.Name
             Case "cboGOLAColors" : frmColors.ColorCategory = "1FA658C9-A338-4805-B38F-7E6503A5CD25"
-            Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors" : frmColors.ColorCategory = "40C7BFFB-43EB-48FB-A467-74C0BCBE09FA"
+            Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors", "cboBOXColors", "cboBOXColors2",
+                 "cboBOXColors3", "cboBOXColors4", "cboBOXColors5", "cboBOXColors6" : frmColors.ColorCategory = "40C7BFFB-43EB-48FB-A467-74C0BCBE09FA"
             Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors" : frmColors.ColorCategory = "1226147D-2FF2-4076-B24D-92ABC8FB4663"
         End Select
         frmColors.Text = "Χρώματα"

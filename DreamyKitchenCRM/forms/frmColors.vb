@@ -157,9 +157,9 @@ Public Class frmColors
                                     'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
                                     frmCUSOrderCloset.Vw_COLORSBOXTableAdapter.Fill(frmCUSOrderCloset.DreamyKitchenDataSet.vw_COLORSBOX)
                                     CtrlComboLKUP.Properties.DataSource = frmCUSOrderCloset.VwCOLORSBOXBindingSource
-                                Case "cboPVCColors"
-                                    frmCUSOrderCloset.Vw_COLORSPVCTableAdapter.Fill(frmCUSOrderCloset.DreamyKitchenDataSet.vw_COLORSPVC)
-                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderCloset.VwCOLORSPVCBindingSource
+                                    'Case "cboPVCColors"
+                                    '    frmCUSOrderCloset.Vw_COLORSPVCTableAdapter.Fill(frmCUSOrderCloset.DreamyKitchenDataSet.vw_COLORSPVC)
+                                    '    CtrlComboLKUP.Properties.DataSource = frmCUSOrderCloset.VwCOLORSPVCBindingSource
                             End Select
 
                     End Select

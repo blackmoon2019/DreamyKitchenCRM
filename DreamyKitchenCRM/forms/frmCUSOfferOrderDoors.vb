@@ -151,9 +151,9 @@ Public Class frmCUSOfferOrderDoors
         form1.Show()
     End Sub
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        txtPhn.EditValue = cboCUS.GetColumnValue("phn")
-        txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
-        txtADR.EditValue = cboCUS.GetColumnValue("ADR_Name")
+        'txtPhn.EditValue = cboCUS.GetColumnValue("phn")
+        'txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
+        'txtADR.EditValue = cboCUS.GetColumnValue("ADR_Name")
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
@@ -346,7 +346,7 @@ Public Class frmCUSOfferOrderDoors
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
 
-    Private Sub cboVBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVBOXColors.ButtonClick
+    Private Sub cboVBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboVBOXColors.EditValue = Nothing : ManageColors(cboVBOXColors)
             Case 2 : If cboVBOXColors.EditValue <> Nothing Then ManageColors(cboVBOXColors)
