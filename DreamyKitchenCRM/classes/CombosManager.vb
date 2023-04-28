@@ -219,4 +219,23 @@ Public Class CombosManager
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
         frmColors.Show()
     End Sub
+    Public Sub ManageSpecialConstr(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim form1 As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        form1.Text = "Είδη Κατασκευής"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Είδος"
+        form1.DataTable = "CONSTR_TYPE"
+        form1.CallerControl = CallerControl
+        form1.CalledFromControl = True
+        If CallerControl.EditValue <> Nothing Then
+            form1.ID = CallerControl.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+        form1.MdiParent = frmMain
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
 End Class

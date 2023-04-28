@@ -25910,10 +25910,9 @@ Namespace DM_DOORTYPESTableAdapters
             Me._commandCollection(0).CommandText = "SELECT ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, "& _ 
                 "comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColo"& _ 
                 "rID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr FROM vw_DOOR_"& _ 
-                "TYPE WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086') AND (type = @typ"& _ 
-                "e) AND (doorColorID = @doorColorID) ORDER BY cat, dimName"
+                "TYPE WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086') AND (doorColorID"& _ 
+                " = @doorColorID) ORDER BY cat, dimName"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@type", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "type", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@doorColorID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "doorColorID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
@@ -25921,17 +25920,12 @@ Namespace DM_DOORTYPESTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function FillBYErmariaK(ByVal dataTable As DM_DOORTYPES.vw_DOOR_TYPEErmariaKDataTable, ByVal type As Global.System.Nullable(Of Integer), ByVal doorColorID As Global.System.Nullable(Of Global.System.Guid)) As Integer
+        Public Overloads Overridable Function FillBYErmariaK(ByVal dataTable As DM_DOORTYPES.vw_DOOR_TYPEErmariaKDataTable, ByVal doorColorID As Global.System.Nullable(Of Global.System.Guid)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (type.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(type.Value,Integer)
+            If (doorColorID.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(doorColorID.Value,System.Guid)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (doorColorID.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(doorColorID.Value,System.Guid)
-            Else
-                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -26111,10 +26105,9 @@ Namespace DM_DOORTYPESTableAdapters
             Me._commandCollection(0).CommandText = "SELECT ColorName, CustomCode, ID, Modifier, Price, cat, closetType, code, color, "& _ 
                 "comments, createdBy, createdOn, dimID, dimName, doorCatID, doorCatName, doorColo"& _ 
                 "rID, doorType, kasa, modifiedBy, modifiedOn, name, type, typeDescr FROM vw_DOOR_"& _ 
-                "TYPE WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086') AND (type = @typ"& _ 
-                "e) AND (doorColorID = @doorColorID) ORDER BY cat, dimName"
+                "TYPE WHERE (doorCatID = '53582708-BB28-4714-99AC-736AEF1D3086') AND (doorColorID"& _ 
+                " = @doorColorID) ORDER BY cat, dimName"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@type", Global.System.Data.SqlDbType.Int, 4, Global.System.Data.ParameterDirection.Input, 0, 0, "type", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@doorColorID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "doorColorID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
@@ -26122,17 +26115,12 @@ Namespace DM_DOORTYPESTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function FillBYErmariaY(ByVal dataTable As DM_DOORTYPES.vw_DOOR_TYPEErmariaYDataTable, ByVal type As Global.System.Nullable(Of Integer), ByVal doorColorID As Global.System.Nullable(Of Global.System.Guid)) As Integer
+        Public Overloads Overridable Function FillBYErmariaY(ByVal dataTable As DM_DOORTYPES.vw_DOOR_TYPEErmariaYDataTable, ByVal doorColorID As Global.System.Nullable(Of Global.System.Guid)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (type.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(type.Value,Integer)
+            If (doorColorID.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(doorColorID.Value,System.Guid)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
-            End If
-            If (doorColorID.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(1).Value = CType(doorColorID.Value,System.Guid)
-            Else
-                Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear

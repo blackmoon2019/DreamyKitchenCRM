@@ -583,14 +583,14 @@ Public Class frmCUSOrderKitchen
             Case 1 : cboVType.EditValue = Nothing : cboVBOXColors.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKType.ButtonClick
+    Private Sub cboKType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) 
         Select Case e.Button.Index
-            Case 1 : cboKType.EditValue = Nothing : cboKBOXColors.EditValue = Nothing
+            Case 1 : cboKBOXColors.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboyType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYType.ButtonClick
+    Private Sub cboyType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) 
         Select Case e.Button.Index
-            Case 1 : cboYType.EditValue = Nothing : cboYBOXColors.EditValue = Nothing
+            Case 1 : cboYBOXColors.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboVBOXColors.EditValueChanged
@@ -600,24 +600,24 @@ Public Class frmCUSOrderKitchen
     End Sub
     Private Sub cboKBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboKBOXColors.EditValueChanged
         If Me.IsActive = False Then Exit Sub
-        If cboKType.SelectedIndex = -1 Or cboKBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaKTableAdapter.FillBYErmariaK(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaK, cboKType.SelectedIndex, System.Guid.Parse(cboKBOXColors.EditValue.ToString))
+        If cboKBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaKTableAdapter.FillBYErmariaK(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaK, System.Guid.Parse(cboKBOXColors.EditValue.ToString))
     End Sub
     Private Sub cboYBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboYBOXColors.EditValueChanged
         If Me.IsActive = False Then Exit Sub
-        If cboYType.SelectedIndex = -1 Or cboYBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaYTableAdapter.FillBYErmariaY(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaY, cboYType.SelectedIndex, System.Guid.Parse(cboYBOXColors.EditValue.ToString))
+        If cboYBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaYTableAdapter.FillBYErmariaY(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaY, System.Guid.Parse(cboYBOXColors.EditValue.ToString))
     End Sub
 
-    Private Sub cboYType_EditValueChanged(sender As Object, e As EventArgs) Handles cboYType.EditValueChanged
+    Private Sub cboYType_EditValueChanged(sender As Object, e As EventArgs)
         'If Me.IsActive = False Then Exit Sub
-        If cboYType.SelectedIndex = -1 Or cboYBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaYTableAdapter.FillBYErmariaY(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaY, cboYType.SelectedIndex, System.Guid.Parse(cboYBOXColors.EditValue.ToString))
+        If cboYBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaYTableAdapter.FillBYErmariaY(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaY, System.Guid.Parse(cboYBOXColors.EditValue.ToString))
     End Sub
-    Private Sub cboKType_EditValueChanged(sender As Object, e As EventArgs) Handles cboKType.EditValueChanged
+    Private Sub cboKType_EditValueChanged(sender As Object, e As EventArgs)
         'If Me.IsActive = False Then Exit Sub
-        If cboKType.SelectedIndex = -1 Or cboKBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaKTableAdapter.FillBYErmariaK(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaK, cboKType.SelectedIndex, System.Guid.Parse(cboKBOXColors.EditValue.ToString))
+        If cboKBOXColors.EditValue = Nothing Then Exit Sub
+        Me.Vw_DOOR_TYPEErmariaKTableAdapter.FillBYErmariaK(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaK, System.Guid.Parse(cboKBOXColors.EditValue.ToString))
     End Sub
     Private Sub cboVType_EditValueChanged(sender As Object, e As EventArgs) Handles cboVType.EditValueChanged
         'If Me.IsActive = False Then Exit Sub

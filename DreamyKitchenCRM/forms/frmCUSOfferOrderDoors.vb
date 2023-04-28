@@ -69,10 +69,12 @@ Public Class frmCUSOfferOrderDoors
     End Sub
 
     Private Sub frmCUSOfferDoors_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPEDOORS' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPEDOORSTableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPEDOORS)
+        'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSDOORS' table. You can move, or remove it, as needed.
         Me.Vw_COLORSDOORSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSDOORS)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
-        Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
         Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
         Prog_Prop.GetProgPROSF()
@@ -88,7 +90,7 @@ Public Class frmCUSOfferOrderDoors
         End If
         Select Case Mode
             Case FormMode.NewRecord
-                txtCode.Text = IIf(sIsOrder = True, DBQ.GetNextId("CCT_ORDERS_DOOR"), DBQ.GetNextId("CCT_OFFERS_DOOR"))
+                txtarProt.Text = IIf(sIsOrder = True, DBQ.GetNextId("CCT_ORDERS_DOOR"), DBQ.GetNextId("CCT_OFFERS_DOOR"))
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
                 txtDescription.EditValue = ProgProps.DOOR_DESCRIPTION
@@ -105,51 +107,21 @@ Public Class frmCUSOfferOrderDoors
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cboEMP.EditValue = Nothing : ManageEMP()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then If cboEMP.EditValue <> Nothing Then ManageEMP()
+            Case 1 : ManageCbo.ManageEMP(cboEMP, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageEMP(cboEMP, FormMode.EditRecord)
             Case 3 : cboEMP.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS)
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub ManageCus()
-        Dim form1 As frmCustomers = New frmCustomers()
-        form1.Text = "Πελάτες"
-        form1.CallerControl = cboCUS
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
-            form1.ID = cboCUS.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
 
-    End Sub
 
-    Private Sub ManageEMP()
-        Dim form1 As frmEMP = New frmEMP()
-        form1.Text = "Προσωπικό"
-        form1.CallerControl = cboEMP
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboEMP.EditValue <> Nothing Then
-            form1.ID = cboEMP.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
         'txtPhn.EditValue = cboCUS.GetColumnValue("phn")
         'txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
@@ -167,7 +139,7 @@ Public Class frmCUSOfferOrderDoors
         If dtpresentation.EditValue Is Nothing Then Exit Sub
         If dtpresentation.EditValue.ToString = "" Then Exit Sub
         Dim FirstDate As Date = dtpresentation.EditValue
-        lblDate.Text = DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate)
+        lblDate.Text = "Ημερομηνία Παράδοσης: " & DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate).ToString("dd/MM/yyyy")
     End Sub
 
     Private Sub dtpresentation_EditValueChanged(sender As Object, e As EventArgs) Handles dtpresentation.EditValueChanged
@@ -175,7 +147,7 @@ Public Class frmCUSOfferOrderDoors
         If dtpresentation.EditValue.ToString = "" Then Exit Sub
         Dim FirstDate As Date = dtpresentation.EditValue
         If txtdtdaysOfDelivery.EditValue Is Nothing Then txtdtdaysOfDelivery.EditValue = 0
-        lblDate.Text = DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate)
+        lblDate.Text = "Ημερομηνία Παράδοσης: " & DateAdd("d", CDbl(txtdtdaysOfDelivery.EditValue.ToString), FirstDate).ToString("dd/MM/yyyy")
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
@@ -186,17 +158,17 @@ Public Class frmCUSOfferOrderDoors
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         If sIsOrder = True Then
-                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sGuid, True)
+                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sGuid)
                         Else
-                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_OFFERS_DOOR", LayoutControl1,,, sGuid, True)
+                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_OFFERS_DOOR", LayoutControl1,,, sGuid)
                         End If
 
                         sID = sGuid
                     Case FormMode.EditRecord
                         If sIsOrder = True Then
-                            sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sID, True)
+                            sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sID)
                         Else
-                            sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_OFFERS_DOOR", LayoutControl1,,, sID, True)
+                            sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_OFFERS_DOOR", LayoutControl1,,, sID)
                         End If
 
                         'sGuid = sID
@@ -346,13 +318,7 @@ Public Class frmCUSOfferOrderDoors
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
 
-    Private Sub cboVBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
-        Select Case e.Button.Index
-            Case 1 : cboVBOXColors.EditValue = Nothing : ManageColors(cboVBOXColors)
-            Case 2 : If cboVBOXColors.EditValue <> Nothing Then ManageColors(cboVBOXColors)
-            Case 3 : cboVBOXColors.EditValue = Nothing
-        End Select
-    End Sub
+
     Private Sub ManageColors(ByVal CallerControl As LookUpEdit)
         Dim frmColors As frmColors = New frmColors
 
@@ -493,44 +459,43 @@ Public Class frmCUSOfferOrderDoors
 
     Private Sub cboDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboDoorType.EditValue = Nothing : ManageDoorType(cboDoorType)
-            Case 2 : If cboDoorType.EditValue <> Nothing Then ManageDoorType(cboDoorType)
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType, FormMode.NewRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType, FormMode.EditRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
             Case 3 : cboDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType2.ButtonClick
+    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : cboDoorType2.EditValue = Nothing : ManageDoorType(cboDoorType2)
-            Case 2 : If cboDoorType2.EditValue <> Nothing Then ManageDoorType(cboDoorType2)
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType2, FormMode.NewRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType2, FormMode.EditRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
             Case 3 : cboDoorType2.EditValue = Nothing
         End Select
     End Sub
-
-    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType3.ButtonClick
+    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : cboDoorType3.EditValue = Nothing : ManageDoorType(cboDoorType3)
-            Case 2 : If cboDoorType3.EditValue <> Nothing Then ManageDoorType(cboDoorType3)
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType3, FormMode.NewRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType3, FormMode.EditRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
             Case 3 : cboDoorType3.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboDoorType4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType4.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboDoorType4.EditValue = Nothing : ManageDoorType(cboDoorType4)
-            Case 2 : If cboDoorType4.EditValue <> Nothing Then ManageDoorType(cboDoorType4)
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType4, FormMode.NewRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType4, FormMode.EditRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
             Case 3 : cboDoorType4.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboDoorType5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType5.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboDoorType5.EditValue = Nothing : ManageDoorType(cboDoorType5)
-            Case 2 : If cboDoorType5.EditValue <> Nothing Then ManageDoorType(cboDoorType5)
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType5, FormMode.NewRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType5, FormMode.EditRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
             Case 3 : cboDoorType5.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboDoorType6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType6.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboDoorType6.EditValue = Nothing : ManageDoorType(cboDoorType6)
-            Case 2 : If cboDoorType6.EditValue <> Nothing Then ManageDoorType(cboDoorType6)
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType6, FormMode.NewRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType6, FormMode.EditRecord, "E6733593-7DA0-4180-8951-B09315E1F13D")
             Case 3 : cboDoorType6.EditValue = Nothing
         End Select
     End Sub
@@ -592,13 +557,6 @@ Public Class frmCUSOfferOrderDoors
         LoadDoorType(cboType6, cboKasa6, cboDoorType6)
     End Sub
 
-    Private Sub cboType1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboType1.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub cboKasa1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboKasa1.SelectedIndexChanged
-
-    End Sub
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
