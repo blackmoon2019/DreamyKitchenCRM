@@ -62,12 +62,8 @@ Public Class frmCUSOrderCloset
     End Sub
 
     Private Sub frmCUSOrderCloset_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPERafiaCloset' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafiaClosetTableAdapter.FillByRafiaCloset(Me.DM_DOORTYPES.vw_DOOR_TYPERafiaCloset)
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPEEpendisisCloset' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter.FillBYEpendisisCloset(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisCloset)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
-        Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_V2' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
         'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
         Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
@@ -82,8 +78,6 @@ Public Class frmCUSOrderCloset
                 cboBackThikness.EditValue = ProgProps.CLOSET_BACK_THIKNESS
                 cboboxThikness.EditValue = ProgProps.CLOSET_BOX_THIKNESS
                 ' cboBOXColors.EditValue = System.Guid.Parse(ProgProps.CLOSET_BOX_COLOR.ToUpper)
-                cboLegs.EditValue = ProgProps.CLOSET_LEGS
-                txtshelves.EditValue = ProgProps.CLOSET_SHELVES
                 txtdrawers.EditValue = ProgProps.CLOSET_DRAWERS
                 txtTransp.EditValue = ProgProps.ClosetTransp
                 txtMeasurement.EditValue = ProgProps.ClosetMeasurement
