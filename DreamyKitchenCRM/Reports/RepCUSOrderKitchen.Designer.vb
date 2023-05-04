@@ -541,7 +541,7 @@ Partial Public Class RepCUSOrderKitchen
         Me.XrLabel9.StylePriority.UseForeColor = False
         Me.XrLabel9.StylePriority.UsePadding = False
         Me.XrLabel9.StylePriority.UseTextAlignment = False
-        Me.XrLabel9.Text = "Χρώμα κουτιού :"
+        Me.XrLabel9.Text = "Κωδικός Χρώμ. Κουτιών :"
         Me.XrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel11
@@ -1238,7 +1238,7 @@ Partial Public Class RepCUSOrderKitchen
         Me.XrLabel45.StylePriority.UseForeColor = False
         Me.XrLabel45.StylePriority.UsePadding = False
         Me.XrLabel45.StylePriority.UseTextAlignment = False
-        Me.XrLabel45.Text = "Χρώμα κουτιού :"
+        Me.XrLabel45.Text = "Κωδικός Χρώμ. Κουτιών :"
         Me.XrLabel45.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel95
@@ -1629,7 +1629,7 @@ Partial Public Class RepCUSOrderKitchen
         Me.XrLabel53.StylePriority.UseForeColor = False
         Me.XrLabel53.StylePriority.UsePadding = False
         Me.XrLabel53.StylePriority.UseTextAlignment = False
-        Me.XrLabel53.Text = "Χρώμα κουτιού :"
+        Me.XrLabel53.Text = "Κωδικός Χρώμ. Κουτιών :"
         Me.XrLabel53.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel50

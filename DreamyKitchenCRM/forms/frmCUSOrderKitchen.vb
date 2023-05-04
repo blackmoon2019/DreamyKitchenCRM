@@ -72,27 +72,16 @@ Public Class frmCUSOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DM_DOORTYPES.vw_DOOR_TYPERafiaWall)
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPERafieresY' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresYTableAdapter.FillByRafieresY(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresY)
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPERafieresK' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresKTableAdapter.FillByRafieresK(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresK)
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPERafieresV' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPERafieresVTableAdapter.FillByRafieresV(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresV)
-        Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DM_DOORTYPES.vw_DOOR_TYPEPlainaYpsila)
-        Me.Vw_DOOR_TYPEEpendisis2hsSeirasTableAdapter.FillBYEpendisis2hsSeiras(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisis2hsSeiras)
-        Me.Vw_DOOR_TYPEEpendisisKremastaTableAdapter.FillByEpendisisKremasta(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisKremasta)
-        Me.Vw_DOOR_TYPEEpendisisNisidaTableAdapter.FillBYEpendisisNisida(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisNisida)
-        Me.Vw_DOOR_TYPEEpendisisVaseosTableAdapter.FillBYEpendisisVaseos(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisVaseos)
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_BENCH_V2' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPE_BENCH_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_BENCH_V2)
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_V2' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
         Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
         Me.BASE_CATTableAdapter.Fill(Me.DMDataSet.BASE_CAT)
         Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
         Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
         Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
         Me.Vw_COLORSGOLATableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSGOLA)
-        Me.Vw_COLORSPVCTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSPVC)
-        Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
         Prog_Prop.GetProgPROSF()
 
         Select Case Mode
@@ -592,37 +581,6 @@ Public Class frmCUSOrderKitchen
         Select Case e.Button.Index
             Case 1 : cboYBOXColors.EditValue = Nothing
         End Select
-    End Sub
-    Private Sub cboVBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboVBOXColors.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
-        If cboVType.SelectedIndex = -1 Or cboVBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaVTableAdapter.FillBYErmariaV(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaV, cboVType.SelectedIndex, System.Guid.Parse(cboVBOXColors.EditValue.ToString))
-    End Sub
-    Private Sub cboKBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboKBOXColors.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
-        If cboKBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaKTableAdapter.FillBYErmariaK(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaK, System.Guid.Parse(cboKBOXColors.EditValue.ToString))
-    End Sub
-    Private Sub cboYBOXColors_EditValueChanged(sender As Object, e As EventArgs) Handles cboYBOXColors.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
-        If cboYBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaYTableAdapter.FillBYErmariaY(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaY, System.Guid.Parse(cboYBOXColors.EditValue.ToString))
-    End Sub
-
-    Private Sub cboYType_EditValueChanged(sender As Object, e As EventArgs)
-        'If Me.IsActive = False Then Exit Sub
-        If cboYBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaYTableAdapter.FillBYErmariaY(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaY, System.Guid.Parse(cboYBOXColors.EditValue.ToString))
-    End Sub
-    Private Sub cboKType_EditValueChanged(sender As Object, e As EventArgs)
-        'If Me.IsActive = False Then Exit Sub
-        If cboKBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaKTableAdapter.FillBYErmariaK(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaK, System.Guid.Parse(cboKBOXColors.EditValue.ToString))
-    End Sub
-    Private Sub cboVType_EditValueChanged(sender As Object, e As EventArgs) Handles cboVType.EditValueChanged
-        'If Me.IsActive = False Then Exit Sub
-        If cboVType.SelectedIndex = -1 Or cboVBOXColors.EditValue = Nothing Then Exit Sub
-        Me.Vw_DOOR_TYPEErmariaVTableAdapter.FillBYErmariaV(Me.DM_DOORTYPES.vw_DOOR_TYPEErmariaV, cboVType.SelectedIndex, System.Guid.Parse(cboVBOXColors.EditValue.ToString))
     End Sub
 
     'Private Sub LoadDoorType(ByVal cboEdit As ComboBoxEdit, ByVal lkupEditColor As LookUpEdit, ByVal lkupEditDoorType As LookUpEdit, ByVal doorCatID As String)

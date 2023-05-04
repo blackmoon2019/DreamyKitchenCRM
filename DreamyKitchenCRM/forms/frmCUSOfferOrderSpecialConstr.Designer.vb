@@ -64,6 +64,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.txtMeasurement = New DevExpress.XtraEditors.TextEdit()
         Me.txtRemove = New DevExpress.XtraEditors.TextEdit()
         Me.cboDoorType4 = New DevExpress.XtraEditors.LookUpEdit()
+        Me.VwDOORTYPESpecialConstrBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DM_DOORTYPES = New DreamyKitchenCRM.DM_DOORTYPES()
         Me.cboDoorType = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboDoorType2 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboDoorType3 = New DevExpress.XtraEditors.LookUpEdit()
@@ -136,8 +138,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_CONSTR_TYPETableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_CONSTR_TYPETableAdapter()
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
-        Me.VwDOORTYPESpecialConstrBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DM_DOORTYPES = New DreamyKitchenCRM.DM_DOORTYPES()
         Me.Vw_DOOR_TYPESpecialConstrTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPESpecialConstrTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -180,6 +180,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.txtMeasurement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtRemove.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDOORTYPESpecialConstrBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_DOORTYPES, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -249,8 +251,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPESpecialConstrBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DM_DOORTYPES, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -853,7 +853,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         'txtTotalSpecialPrice
         '
         Me.txtTotalSpecialPrice.EditValue = "0,00 €"
-        Me.txtTotalSpecialPrice.Location = New System.Drawing.Point(1695, 1096)
+        Me.txtTotalSpecialPrice.Location = New System.Drawing.Point(1695, 1116)
         Me.txtTotalSpecialPrice.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTotalSpecialPrice.Name = "txtTotalSpecialPrice"
         Me.txtTotalSpecialPrice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
@@ -1035,12 +1035,21 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboDoorType4.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
         Me.cboDoorType4.Properties.PopupSizeable = False
         Me.cboDoorType4.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest
-        Me.cboDoorType4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.cboDoorType4.Properties.ValueMember = "ID"
         Me.cboDoorType4.Size = New System.Drawing.Size(541, 38)
         Me.cboDoorType4.StyleController = Me.LayoutControl1
         Me.cboDoorType4.TabIndex = 49
         Me.cboDoorType4.Tag = "doorTypeID4,0,1,2"
+        '
+        'VwDOORTYPESpecialConstrBindingSource
+        '
+        Me.VwDOORTYPESpecialConstrBindingSource.DataMember = "vw_DOOR_TYPESpecialConstr"
+        Me.VwDOORTYPESpecialConstrBindingSource.DataSource = Me.DM_DOORTYPES
+        '
+        'DM_DOORTYPES
+        '
+        Me.DM_DOORTYPES.DataSetName = "DM_DOORTYPES"
+        Me.DM_DOORTYPES.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cboDoorType
         '
@@ -1057,7 +1066,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboDoorType.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
         Me.cboDoorType.Properties.PopupSizeable = False
         Me.cboDoorType.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest
-        Me.cboDoorType.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.cboDoorType.Properties.ValueMember = "ID"
         Me.cboDoorType.Size = New System.Drawing.Size(541, 38)
         Me.cboDoorType.StyleController = Me.LayoutControl1
@@ -1079,7 +1087,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboDoorType2.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
         Me.cboDoorType2.Properties.PopupSizeable = False
         Me.cboDoorType2.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest
-        Me.cboDoorType2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.cboDoorType2.Properties.ValueMember = "ID"
         Me.cboDoorType2.Size = New System.Drawing.Size(541, 38)
         Me.cboDoorType2.StyleController = Me.LayoutControl1
@@ -1101,7 +1108,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboDoorType3.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
         Me.cboDoorType3.Properties.PopupSizeable = False
         Me.cboDoorType3.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest
-        Me.cboDoorType3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.cboDoorType3.Properties.ValueMember = "ID"
         Me.cboDoorType3.Size = New System.Drawing.Size(541, 38)
         Me.cboDoorType3.StyleController = Me.LayoutControl1
@@ -1949,6 +1955,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem6.Location = New System.Drawing.Point(1426, 88)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(413, 84)
+        Me.LayoutControlItem6.Spacing = New DevExpress.XtraLayout.Utils.Padding(0, 0, 20, 0)
         Me.LayoutControlItem6.Text = "Συνολική Αξία με Φ.Π.Α"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(243, 23)
         '
@@ -1972,16 +1979,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
-        'VwDOORTYPESpecialConstrBindingSource
-        '
-        Me.VwDOORTYPESpecialConstrBindingSource.DataMember = "vw_DOOR_TYPESpecialConstr"
-        Me.VwDOORTYPESpecialConstrBindingSource.DataSource = Me.DM_DOORTYPES
-        '
-        'DM_DOORTYPES
-        '
-        Me.DM_DOORTYPES.DataSetName = "DM_DOORTYPES"
-        Me.DM_DOORTYPES.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'Vw_DOOR_TYPESpecialConstrTableAdapter
         '
         Me.Vw_DOOR_TYPESpecialConstrTableAdapter.ClearBeforeFill = True
@@ -1998,7 +1995,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.Text = "frmCUSOfferOrderSpecialConstr"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        Me.LayoutControl1.PerformLayout()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2038,6 +2034,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.txtMeasurement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtRemove.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDOORTYPESpecialConstrBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_DOORTYPES, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2107,8 +2105,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPESpecialConstrBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DM_DOORTYPES, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
