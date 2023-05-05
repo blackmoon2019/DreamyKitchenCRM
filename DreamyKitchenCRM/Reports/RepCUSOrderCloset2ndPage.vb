@@ -6,7 +6,7 @@ Public Class RepCUSOrderCloset2ndPage
     End Sub
 
 
-    Private Sub GroupHeader2_BeforePrint(sender As Object, e As PrintEventArgs) Handles GroupHeader2.BeforePrint
-        If Detail2.Report.RowCount = 0 Then e.Cancel = True
+    Private Sub GroupHeader2_BeforePrint(sender As Object, e As PrintEventArgs)
+        If Detail3.Report.RowCount = 0 Then e.Cancel = True
     End Sub
 End Class

@@ -1,10 +1,12 @@
 ﻿Imports System.Data.SqlClient
+Imports DevExpress.CodeParser
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid.Menu
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
 
@@ -84,21 +86,34 @@ Public Class frmCUSOrderCloset
                 txtRemove.EditValue = ProgProps.ClosetRemove
 
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "Select  e.ID,E.code,name,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, " &
-                    "case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY " &
+                    "Select  e.ID,E.code,name,price,e.price as defPrice,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, " &
+                    "case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard " &
                      "From vw_EQUIPMENT E where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62' ORDER BY NAME")
                 TabNavigationPage2.Enabled = False
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from CCT_ORDERS_CLOSET where id = " & toSQLValueS(sID))
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "select e.ID,e.code,e.name,price,e.price as defPrice,
+                    "select e.ID,e.code,e.name,
+                    isnull((select price from CCT_ORDERS_CLOSET_EQUIPMENT EQ where eq.cctOrdersClosetID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),e.price ) as price,
+                    e.price as defPrice,
                     CAST(CASE WHEN (select eq.ID 
                     from CCT_ORDERS_CLOSET_EQUIPMENT EQ 
                     where eq.cctOrdersClosetID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
-                    isnull((select qty from CCT_ORDERS_CLOSET_EQUIPMENT EQ where eq.cctOrdersClosetID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as QTY
+                    isnull((select qty from CCT_ORDERS_CLOSET_EQUIPMENT EQ where eq.cctOrdersClosetID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as QTY,standard
                     from EQUIPMENT E
                     where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62'
                     ORDER BY NAME")
+
+
+                'LoadForms.LoadDataToGrid(grdEquipment, GridView2,
+                '    "select e.ID,e.code,e.name,price,e.price as defPrice,
+                '    CAST(CASE WHEN (select eq.ID 
+                '    from CCT_ORDERS_CLOSET_EQUIPMENT EQ 
+                '    where eq.cctOrdersClosetID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
+                '    isnull((select qty from CCT_ORDERS_CLOSET_EQUIPMENT EQ where eq.cctOrdersClosetID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as QTY
+                '    from EQUIPMENT E
+                '    where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62'
+                '    ORDER BY NAME")
                 TabNavigationPage2.Enabled = True
 
         End Select
@@ -493,4 +508,22 @@ Public Class frmCUSOrderCloset
         End Select
     End Sub
 
+    Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
+
+    End Sub
+
+    Private Sub GridView2_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanging
+        If e.Column.FieldName = "checked" And e.Value = "false" Then
+            GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "QTY", 0)
+            GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", 0)
+        End If
+        If e.Column.FieldName = "checked" And e.Value = "true" Then
+            GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "QTY", 1)
+            GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice"))
+        End If
+        If e.Column.FieldName = "QTY" Then
+            Dim sTot As Decimal = e.Value * GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice")
+            GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", sTot)
+        End If
+    End Sub
 End Class

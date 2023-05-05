@@ -824,127 +824,127 @@ Public Class frmGen
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("BASE_CAT")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BASE_CAT where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BASE_CAT where id ='" + sID + "'",, True)
                 End If
             Case "EP_STATUS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("EP_STATUS")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EP_STATUS where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EP_STATUS where id ='" + sID + "'",, True)
                 End If
             Case "SCAN_FILE_NAMES"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("SCAN_FILE_NAMES")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SCAN_FILE_NAMES where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SCAN_FILE_NAMES where id ='" + sID + "'",, True)
                 End If
             Case "EQUIPMENT_CAT"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("EQUIPMENT_CAT")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EQUIPMENT_CAT where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EQUIPMENT_CAT where id ='" + sID + "'",, True)
                 End If
             Case "CONSTR_TYPE"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("CONSTR_TYPE")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_CONSTR_TYPE where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_CONSTR_TYPE where id ='" + sID + "'",, True)
                 End If
             Case "EQUIPMENT"
                 FillCbo.EQUIPMENT_CAT(cbo1)
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("EQUIPMENT")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EQUIPMENT where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EQUIPMENT where id ='" + sID + "'",, True)
                 End If
             Case "DEVICES"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("DEVICES")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DEVICES where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DEVICES where id ='" + sID + "'",, True)
                 End If
             Case "PAY"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("PAY")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_PAY where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_PAY where id ='" + sID + "'",, True)
                 End If
             Case "BUY_C"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("BUY_C")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BUY_C where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BUY_C where id ='" + sID + "'",, True)
                 End If
             Case "JOBS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("JOBS")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_JOBS where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_JOBS where id ='" + sID + "'",, True)
                 End If
             Case "CONSTR_CAT"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("CONSTR_CAT")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_CONSTR_CAT where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_CONSTR_CAT where id ='" + sID + "'",, True)
                 End If
             Case "EMP_M_S"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("EMP_M_S")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP_M_S where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP_M_S where id ='" + sID + "'",, True)
                 End If
             Case "SALER_CAL_STATUS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("SALER_CAL_STATUS")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SALER_CAL_STATUS where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SALER_CAL_STATUS where id ='" + sID + "'",, True)
                 End If
 
             Case "EMP_S"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("EMP_S")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP_S where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP_S where id ='" + sID + "'",, True)
                 End If
             Case "DOC_TYPES"
                 FillCbo.SUP(cbo1)
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("DOC_TYPES")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOC_TYPES  where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOC_TYPES  where id ='" + sID + "'",, True)
                 End If
             Case "DEP"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("DEP")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DEP where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DEP where id ='" + sID + "'",, True)
                 End If
 
             Case "BANKS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("BANKS")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BANKS where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_BANKS where id ='" + sID + "'",, True)
                 End If
 
             Case "SER"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("SER")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SER where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SER where id ='" + sID + "'",, True)
                 End If
             Case "COU"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("COU")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_COU where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_COU where id ='" + sID + "'",, True)
                 End If
             Case "AREAS"
                 FillCbo.COU(cbo1)
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("AREAS")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_AREAS where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_AREAS where id ='" + sID + "'",, True)
                 End If
             Case "ADR"
                 FillCbo.COU(cbo1)
@@ -953,73 +953,73 @@ Public Class frmGen
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("ADR")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_ADR where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_ADR where id ='" + sID + "'",, True)
                 End If
             Case "DOY"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("DOY")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOY where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOY where id ='" + sID + "'",, True)
                 End If
             Case "PRF"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("PRF")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_PRF where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_PRF where id ='" + sID + "'",, True)
                 End If
             Case "STATUS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("STATUS")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_STATUS where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_STATUS where id ='" + sID + "'",, True)
                 End If
             Case "SRC"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("SRC")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SOURCE where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SOURCE where id ='" + sID + "'",, True)
                 End If
             Case "SALERS"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("SALERS")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SALERS where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_SALERS where id ='" + sID + "'",, True)
                 End If
             Case "NOTES_L"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("NOTES_L")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_NOTES_L where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_NOTES_L where id ='" + sID + "'",, True)
                 End If
             Case "CAT_ERM"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("CAT_ERM")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_CAT_ERM where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_CAT_ERM where id ='" + sID + "'",, True)
                 End If
             Case "TECH_CAT"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("TECH_CAT")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_TECH_CAT where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_TECH_CAT where id ='" + sID + "'",, True)
                 End If
             Case "COLORS_CAT"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("COLORS_CAT")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_COLORS_CAT where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_COLORS_CAT where id ='" + sID + "'",, True)
                 End If
             Case "DIM"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("DIM")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DIM where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DIM where id ='" + sID + "'",, True)
                 End If
             Case "DOOR_CAT"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("DOOR_CAT")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOOR_CAT where id ='" + sID + "'")
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOOR_CAT where id ='" + sID + "'",, True)
                 End If
 
         End Select
@@ -1264,6 +1264,10 @@ Public Class frmGen
         Select Case e.Button.Index
             Case 1 : cbo1.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub frmGen_LocationChanged(sender As Object, e As EventArgs) Handles Me.LocationChanged
+
     End Sub
 
     'Private Sub cbo1_GotFocus(sender As Object, e As EventArgs) Handles cbo1.GotFocus
