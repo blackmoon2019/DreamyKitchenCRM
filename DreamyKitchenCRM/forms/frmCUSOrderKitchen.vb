@@ -10,12 +10,13 @@ Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
-
+Imports DevExpress.XtraRichEdit.Model
 
 Public Class frmCUSOrderKitchen
     Private ManageCbo As New CombosManager
     Private sID As String
     Private sBaseCat As Integer
+    Private sIsOrder As Boolean
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -37,7 +38,11 @@ Public Class frmCUSOrderKitchen
             sBaseCat = value
         End Set
     End Property
-
+    Public WriteOnly Property IsOrder As Boolean
+        Set(value As Boolean)
+            sIsOrder = value
+        End Set
+    End Property
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
@@ -84,6 +89,20 @@ Public Class frmCUSOrderKitchen
         Me.Vw_COLORSGOLATableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSGOLA)
         Prog_Prop.GetProgPROSF()
 
+        If sIsOrder = True Then
+            LayoutControlGroup1.Text = "Στοιχεία Παραγγελίας"
+            LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        Else
+            LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
+            LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LayoutControlItem1.Tag = 0
+            LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        End If
+
         Select Case Mode
             Case FormMode.NewRecord
                 'txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
@@ -100,11 +119,24 @@ Public Class frmCUSOrderKitchen
                      case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard " &
                      "From vw_EQUIPMENT E where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
                 TabNavigationPage2.Enabled = False
+                cmdConvertToOrder.Enabled = False
             Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from CCT_ORDERS_KITCHEN where id = " & toSQLValueS(sID))
+                Dim sFields As New Dictionary(Of String, String)
+                LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_KITCHEN.* " &
+                                                   "from CCT_ORDERS_KITCHEN " &
+                                                   " left join CCT_ORDERS_KITCHEN  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_KITCHEN.id where CCT_ORDERS_KITCHEN.id = " & toSQLValueS(sID), sFields)
+                If sFields("OrderID") = "" Then
+                    cmdConvertToOrder.Enabled = True
+                Else
+                    cmdConvertToOrder.Enabled = False
+                    cmdSave.Enabled = False
+                    cmdSaveEquipDev.Enabled = False
+                    LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                End If
+                sFields = Nothing
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
                     "select e.ID,e.code,e.name,
-                    isnull((select price from CCT_ORDERS_KITCHEN_EQUIPMENT EQ where eq.cctOrdersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),e.price ) as price,
+                    isnull((select price from CCT_ORDERS_KITCHEN_EQUIPMENT EQ where eq.cctOrdersKitchenID= " & toSQLValueS(sID) & " And eq.equipmentID=e.id),e.price ) as price,
                     e.price as defPrice,
                     CAST(CASE WHEN (select eq.ID 
                     from CCT_ORDERS_KITCHEN_EQUIPMENT EQ 
@@ -131,7 +163,7 @@ Public Class frmCUSOrderKitchen
         GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
         GridView1.OptionsMenu.ShowConditionalFormattingItem = True
         Me.CenterToScreen()
-        cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+
     End Sub
     Private Function GetBaseCatID() As String
         Dim Cmd As SqlCommand, sdr As SqlDataReader
@@ -204,6 +236,7 @@ Public Class frmCUSOrderKitchen
                         InsertSelectedRows(False)
                         LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
                         LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def")
+                        cmdConvertToOrder.Enabled = True
                     End If
                     Mode = FormMode.EditRecord
                     Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
@@ -289,10 +322,12 @@ Public Class frmCUSOrderKitchen
         Using oCmd As New SqlCommand(sSQL, CNDB)
             oCmd.ExecuteNonQuery()
         End Using
-        sSQL = "DELETE FROM CCT_ORDERS_KITCHEN_DEVICES WHERE cctOrdersKitchenID = " & toSQLValueS(sID)
-        Using oCmd As New SqlCommand(sSQL, CNDB)
-            oCmd.ExecuteNonQuery()
-        End Using
+        If sIsOrder = True Then
+            sSQL = "DELETE FROM CCT_ORDERS_KITCHEN_DEVICES WHERE cctOrdersKitchenID = " & toSQLValueS(sID)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        End If
         Dim Selected As Boolean
         Dim sPrice As Decimal
         For I = 0 To GridView2.RowCount - 1
@@ -310,22 +345,26 @@ Public Class frmCUSOrderKitchen
                 End Using
             End If
         Next
-        Dim DcodeIsEmpty As Boolean = False
-        For I = 0 To GridView1.RowCount - 1
-            Selected = GridView1.GetRowCellValue(I, "checked")
-            If Selected = True Then
-                If GridView1.GetRowCellValue(I, "dCode").ToString = "" Then DcodeIsEmpty = True
-                If GridView1.GetRowCellValue(I, "dCode").ToString.Length > 0 Then
-                    sSQL = "INSERT INTO CCT_ORDERS_KITCHEN_DEVICES(cctOrdersKitchenID,devicesID,dCode,Price,selected) " &
+        If sIsOrder = True Then
+            Dim DcodeIsEmpty As Boolean = False
+            For I = 0 To GridView1.RowCount - 1
+                Selected = GridView1.GetRowCellValue(I, "checked")
+                If Selected = True Then
+                    If GridView1.GetRowCellValue(I, "dCode").ToString = "" Then DcodeIsEmpty = True
+                    If GridView1.GetRowCellValue(I, "dCode").ToString.Length > 0 Then
+                        sSQL = "INSERT INTO CCT_ORDERS_KITCHEN_DEVICES(cctOrdersKitchenID,devicesID,dCode,Price,selected) " &
                     " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "dCode").ToString) & "," & toSQLValueS(GridView1.GetRowCellValue(I, "price").ToString, True) & ",1)"
-                    Using oCmd As New SqlCommand(sSQL, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    End If
                 End If
+            Next
+            If DcodeIsEmpty = True Then
+                If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            Else
+                If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
-        Next
-        If DcodeIsEmpty = True Then
-            If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         Else
             If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
@@ -572,12 +611,12 @@ Public Class frmCUSOrderKitchen
             Case 1 : cboVType.EditValue = Nothing : cboVBOXColors.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) 
+    Private Sub cboKType_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboKBOXColors.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboyType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) 
+    Private Sub cboyType_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
             Case 1 : cboYBOXColors.EditValue = Nothing
         End Select
@@ -629,17 +668,102 @@ Public Class frmCUSOrderKitchen
 
 
 
-    Private Sub GridView2_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView2.CellValueChanged
-        If e.Column.FieldName <> "QTY" Then Exit Sub
-        Dim sTot As Decimal = GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "QTY") * GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "price")
-        GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", sTot)
-    End Sub
-
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
             Case 1
                 LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
                 LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
         End Select
+    End Sub
+
+    Private Sub GridView2_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles GridView2.ValidatingEditor
+        Dim grdView As GridView = sender
+        If grdView.FocusedColumn.FieldName = "checked" Then
+            If CStr(e.Value) = "False" Then
+                GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "QTY", 0)
+            Else
+                GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "QTY", 1)
+                GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice"))
+            End If
+        End If
+        If grdView.FocusedColumn.FieldName = "QTY" Then
+            If CStr(e.Value) = "" Then Exit Sub
+            Dim sTot As Decimal = e.Value * GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice")
+            GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", sTot)
+        End If
+    End Sub
+
+    Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
+        Try
+            If XtraMessageBox.Show("Θέλετε να μετατραπή σε παραγγελία η προσφορά ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                Using oCmd As New SqlCommand("CovertToOrder", CNDB)
+                    oCmd.CommandType = CommandType.StoredProcedure
+                    oCmd.Parameters.AddWithValue("@OfferID", sID)
+                    oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
+                    oCmd.Parameters.AddWithValue("@Mode", 1)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                cmdConvertToOrder.Enabled = False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
+        txtDisc1.EditValue = ProgProps.CusDiscountKitchen
+        If ProgProps.CusDiscountKitchen > 0 Then
+            InitialPrice = txtInitialPrice1.EditValue
+            Disc = ProgProps.CusDiscountKitchen / 100
+            Discount = Disc * InitialPrice
+            FinalPrice = InitialPrice - Discount
+            txtInitialPrice1.EditValue = InitialPrice
+            txtDiscount1.EditValue = Discount
+            txtFinalPrice1.EditValue = FinalPrice
+        End If
+    End Sub
+
+    Private Sub txtInitialPrice2_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice2.EditValueChanged
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
+        txtDisc2.EditValue = ProgProps.CusDiscountKitchen
+        If ProgProps.CusDiscountKitchen > 0 Then
+            InitialPrice = txtInitialPrice2.EditValue
+            Disc = ProgProps.CusDiscountKitchen / 100
+            Discount = Disc * InitialPrice
+            FinalPrice = InitialPrice - Discount
+            txtInitialPrice2.EditValue = InitialPrice
+            txtDiscount2.EditValue = Discount
+            txtFinalPrice2.EditValue = FinalPrice
+        End If
+
+    End Sub
+
+    Private Sub txtInitialPrice3_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice3.EditValueChanged
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
+        txtDisc3.EditValue = ProgProps.CusDiscountKitchen
+        If ProgProps.CusDiscountKitchen > 0 Then
+            InitialPrice = txtInitialPrice3.EditValue
+            Disc = ProgProps.CusDiscountKitchen / 100
+            Discount = Disc * InitialPrice
+            FinalPrice = InitialPrice - Discount
+            txtInitialPrice3.EditValue = InitialPrice
+            txtDiscount3.EditValue = Discount
+            txtFinalPrice3.EditValue = FinalPrice
+        End If
+    End Sub
+
+    Private Sub txtInitialPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice4.EditValueChanged
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
+        txtDisc4.EditValue = ProgProps.CusDiscountKitchen
+        If ProgProps.CusDiscountKitchen > 0 Then
+            InitialPrice = txtInitialPrice4.EditValue
+            Disc = ProgProps.CusDiscountKitchen / 100
+            Discount = Disc * InitialPrice
+            FinalPrice = InitialPrice - Discount
+            txtInitialPrice4.EditValue = InitialPrice
+            txtDiscount4.EditValue = Discount
+            txtFinalPrice4.EditValue = FinalPrice
+        End If
     End Sub
 End Class

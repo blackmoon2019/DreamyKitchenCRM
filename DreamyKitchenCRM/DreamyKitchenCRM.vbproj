@@ -2012,6 +2012,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\ConvertToOrder24.png" />
     <None Include="Resources\icons8-logout-80.png" />
     <None Include="Resources\icons8-close-window-80.png" />
     <None Include="Resources\icons8-premium-80.png" />

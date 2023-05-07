@@ -89,9 +89,18 @@ Public Class frmScroller
                 sItem.Name = "ViewCusMov"
                 PopupMenuRows.AddItem(sItem)
             End If
+            Select Case sDataTable
+                Case "vw_INST_ELLIPSE"
+                    ' Το κουμπί απενεργοποιείται γιατί θα πρέπει να μπεί μέσα από την έλλεψη και να πατήσει μετατροπή σε παραγγελία
+                    BarNewRec.Enabled = False
+                Case "vw_CCT_ORDERS_KITCHEN", "vw_CCT_ORDERS_CLOSET"
+                    If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                        ' Το κουμπί απενεργοποιείται γιατί θα πρέπει να μπεί μέσα από την προσφορά και να πατήσει μετατροπή σε παραγγελία
+                        BarNewRec.Enabled = False
+                    End If
+
+            End Select
             If sDataTable = "vw_INST_ELLIPSE" Then
-                ' Το κουμπί απενεργοποιείται γιατί θα πρέπει να μπεί μέσα από την έλλεψη και να πατήσει μετατροπή σε παραγγελία
-                BarNewRec.Enabled = False
             End If
             GridView1.OptionsBehavior.AutoExpandAllGroups = True
             GridView1.OptionsMenu.ShowFooterItem = True
@@ -1031,7 +1040,13 @@ Public Class frmScroller
                 frmCUSOrderCloset.Show()
             Case "vw_CCT_ORDERS_KITCHEN"
                 Dim frmCUSOrderKitchen As frmCUSOrderKitchen = New frmCUSOrderKitchen()
-                frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                    frmCUSOrderKitchen.IsOrder = 1
+                Else
+                    frmCUSOrderKitchen.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
+                    frmCUSOrderKitchen.IsOrder = 0
+                End If
                 frmCUSOrderKitchen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmCUSOrderKitchen.MdiParent = frmMain
                 frmCUSOrderKitchen.Mode = FormMode.EditRecord
@@ -2006,7 +2021,13 @@ Public Class frmScroller
                 If frmBaseCat.BaseCat = 3 Then Exit Sub
                 Dim frmCUSOrderKitchen As frmCUSOrderKitchen = New frmCUSOrderKitchen()
                 frmCUSOrderKitchen.BaseCat = frmBaseCat.BaseCat
-                frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                    frmCUSOrderKitchen.IsOrder = 1
+                Else
+                    frmCUSOrderKitchen.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
+                    frmCUSOrderKitchen.IsOrder = 0
+                End If
                 frmCUSOrderKitchen.MdiParent = frmMain
                 frmCUSOrderKitchen.Mode = FormMode.NewRecord
                 frmCUSOrderKitchen.Scroller = GridView1

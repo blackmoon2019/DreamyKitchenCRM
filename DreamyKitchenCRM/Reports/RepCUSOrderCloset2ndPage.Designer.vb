@@ -216,27 +216,27 @@ Partial Public Class RepCUSOrderCloset2ndPage
         '
         Me.XrLabel43.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel43.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 213.4226!)
+        Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 221.4226!)
         Me.XrLabel43.Name = "XrLabel43"
         Me.XrLabel43.SizeF = New System.Drawing.SizeF(503.0553!, 32.7083!)
         Me.XrLabel43.StylePriority.UseFont = False
         Me.XrLabel43.StylePriority.UseForeColor = False
         Me.XrLabel43.StylePriority.UseTextAlignment = False
-        Me.XrLabel43.Text = "Εξόφληση: Με την παράδοση των εμπορευμάτων στο χώρο σας και πριν την έναρξη της τ" &
-    "οποθέτησης"
+        Me.XrLabel43.Text = "Εξόφληση 50% : Με την παράδοση των εμπορευμάτων στο χώρο σας και πριν την έναρξη " &
+    "της τοποθέτησης."
         Me.XrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel42
         '
         Me.XrLabel42.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
         Me.XrLabel42.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
-        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 191.4583!)
+        Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(31.87503!, 199.4583!)
         Me.XrLabel42.Name = "XrLabel42"
-        Me.XrLabel42.SizeF = New System.Drawing.SizeF(480.3571!, 16.96426!)
+        Me.XrLabel42.SizeF = New System.Drawing.SizeF(503.0553!, 16.96426!)
         Me.XrLabel42.StylePriority.UseFont = False
         Me.XrLabel42.StylePriority.UseForeColor = False
         Me.XrLabel42.StylePriority.UseTextAlignment = False
-        Me.XrLabel42.Text = "Προκαταβολή: Με την υπογραφή του ιδιωτικού συμφωνητικού 50%"
+        Me.XrLabel42.Text = "Προκαταβολή 50% : Με την υπογραφή του ιδιωτικού συμφωνητικού."
         Me.XrLabel42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         '
         'XrLabel11
@@ -392,8 +392,7 @@ Partial Public Class RepCUSOrderCloset2ndPage
         '
         'XrLabel2
         '
-        Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([visibleVat]=True,'Συνολική αξία ντουλαπών με Φ.Π.Α','Συνολική αξία ντουλαπών" &
-                    " προ Φ.Π.Α')" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([visibleVat]=True,'Συνολική αξία με Φ.Π.Α','Συνολική αξία προ Φ.Π.Α')" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrLabel2.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
         Me.XrLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(3.999983!, 82.00002!)
@@ -407,11 +406,13 @@ Partial Public Class RepCUSOrderCloset2ndPage
         '
         'XrLabel41
         '
+        Me.XrLabel41.BackColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(206, Byte), Integer))
         Me.XrLabel41.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel41.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrLabel41.ForeColor = System.Drawing.Color.Black
         Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(0!, 164.9286!)
         Me.XrLabel41.Name = "XrLabel41"
-        Me.XrLabel41.SizeF = New System.Drawing.SizeF(627.0!, 18.07143!)
+        Me.XrLabel41.SizeF = New System.Drawing.SizeF(625.0!, 20.35719!)
+        Me.XrLabel41.StylePriority.UseBackColor = False
         Me.XrLabel41.StylePriority.UseFont = False
         Me.XrLabel41.StylePriority.UseForeColor = False
         Me.XrLabel41.StylePriority.UseTextAlignment = False
