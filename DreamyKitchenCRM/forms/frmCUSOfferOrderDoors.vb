@@ -69,8 +69,8 @@ Public Class frmCUSOfferOrderDoors
     End Sub
 
     Private Sub frmCUSOfferDoors_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPEDOORS' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPEDOORSTableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPEDOORS)
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_V2' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
         'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
         Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSDOORS' table. You can move, or remove it, as needed.
@@ -80,17 +80,25 @@ Public Class frmCUSOfferOrderDoors
         Prog_Prop.GetProgPROSF()
 
         If sIsOrder = True Then
-            LayoutControlItem41.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            ' LayoutControlItem41.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem53.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem54.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem55.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem69.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem70.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem72.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LayoutControlGroup1.Text = "Στοιχεία Παραγγελίας"
+            LayoutControlGroup4.Text = "Στοιχεία Παραγγελίας"
+            LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
+        Else
+            LayoutControlItem41.Tag = 0
+            LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
+            LayoutControlGroup4.Text = "Στοιχεία Προσφοράς"
+            LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
         End If
         Select Case Mode
             Case FormMode.NewRecord
-                txtarProt.Text = IIf(sIsOrder = True, DBQ.GetNextId("CCT_ORDERS_DOOR"), DBQ.GetNextId("CCT_OFFERS_DOOR"))
+                txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_DOOR")
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
                 txtDescription.EditValue = ProgProps.DOOR_DESCRIPTION
@@ -99,11 +107,24 @@ Public Class frmCUSOfferOrderDoors
                 txtTransp.EditValue = ProgProps.DoorTransp
                 txtMeasurement.EditValue = ProgProps.DoorMeasurement
                 txtRemove.EditValue = ProgProps.DoorRemove
+                cmdConvertToOrder.Enabled = False
             Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, IIf(sIsOrder = True, "Select * from CCT_ORDERS_DOOR where id ='" + sID + "'", "Select * from CCT_OFFERS_DOOR where id ='" + sID + "'"))
+                Dim sFields As New Dictionary(Of String, String)
+                LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_DOOR.* " &
+                                                   " from CCT_ORDERS_DOOR " &
+                                                   " left join CCT_ORDERS_DOOR  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_DOOR.id " &
+                                                   " where CCT_ORDERS_DOOR.id = " & toSQLValueS(sID), sFields)
+                If sFields("OrderID") = "" Then
+                    cmdConvertToOrder.Enabled = True
+                Else
+                    cmdConvertToOrder.Enabled = False
+                    cmdSave.Enabled = False
+                    LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                End If
+                sFields = Nothing
+
         End Select
         Me.CenterToScreen()
-        cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
@@ -157,39 +178,24 @@ Public Class frmCUSOfferOrderDoors
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        If sIsOrder = True Then
-                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sGuid)
-                        Else
-                            sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_OFFERS_DOOR", LayoutControl1,,, sGuid)
-                        End If
-
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sGuid,, "isOrder", IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
-                        If sIsOrder = True Then
-                            sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sID)
-                        Else
-                            sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_OFFERS_DOOR", LayoutControl1,,, sID)
-                        End If
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sID,,,,, "isOrder=" & IIf(sIsOrder = True, 1, 0))
 
                         'sGuid = sID
                 End Select
 
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm
-                    If sIsOrder = True Then
-                        form.LoadRecords("vw_CCT_ORDERS_DOOR")
-                    Else
-                        form.LoadRecords("vw_CCT_OFFERS_DOOR")
-                    End If
-
+                    form.LoadRecords("vw_CCT_ORDERS_DOOR")
                 End If
 
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then
-                        '    Cls.ClearCtrls(LayoutControl1)
-                        '    txtCode.Text = DBQ.GetNextId("CCT_OFFERS_DOOR")
                         Mode = FormMode.EditRecord
+                        cmdConvertToOrder.Enabled = True
                     End If
                     If sIsOrder Then
                         Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
@@ -500,69 +506,29 @@ Public Class frmCUSOfferOrderDoors
         End Select
     End Sub
 
-    Private Sub LoadDoorType(ByVal cboEdit As ComboBoxEdit, ByVal cboKasa As ComboBoxEdit, ByVal lkupEditDoorType As LookUpEdit)
-        If cboEdit.SelectedIndex = -1 Or cboKasa.EditValue = -1 Then Exit Sub
-        Dim sSQL = New System.Text.StringBuilder
-        sSQL.AppendLine("Select id,name,price from vw_DOOR_TYPE where doorCatID='E6733593-7DA0-4180-8951-B09315E1F13D' and doorType = " & cboEdit.SelectedIndex & " and kasa = " & cboKasa.SelectedIndex)
-        FillCbo.DOOR_TYPE(lkupEditDoorType, sSQL)
-        'If Me.IsActive = False Then Exit Sub
-        'If cboEdit.SelectedIndex = -1 Or lkupEditDoorType.EditValue = Nothing Then Exit Sub
-        'Me.Vw_DOOR_TYPEDOORSTableAdapter.Fill(Me.DMDataSet.vw_DOOR_TYPEDOORS, cboEdit.SelectedIndex, cboKasa.SelectedIndex)
-    End Sub
-
-
-    Private Sub cboType1_EditValueChanged(sender As Object, e As EventArgs) Handles cboType1.EditValueChanged
-        LoadDoorType(cboType1, cboKasa1, cboDoorType)
-    End Sub
-
-    Private Sub cboType2_EditValueChanged(sender As Object, e As EventArgs) Handles cboType2.EditValueChanged
-        LoadDoorType(cboType2, cboKasa2, cboDoorType2)
-    End Sub
-
-    Private Sub cboType3_EditValueChanged(sender As Object, e As EventArgs) Handles cboType3.EditValueChanged
-        LoadDoorType(cboType3, cboKasa3, cboDoorType3)
-    End Sub
-
-    Private Sub cboType4_EditValueChanged(sender As Object, e As EventArgs) Handles cboType4.EditValueChanged
-        LoadDoorType(cboType4, cboKasa4, cboDoorType4)
-    End Sub
-
-    Private Sub cboType5_EditValueChanged(sender As Object, e As EventArgs) Handles cboType5.EditValueChanged
-        LoadDoorType(cboType5, cboKasa5, cboDoorType5)
-    End Sub
-
-    Private Sub cboType6_EditValueChanged(sender As Object, e As EventArgs) Handles cboType6.EditValueChanged
-        LoadDoorType(cboType6, cboKasa6, cboDoorType6)
-    End Sub
-    Private Sub cboKasa1_EditValueChanged(sender As Object, e As EventArgs) Handles cboKasa1.EditValueChanged
-        LoadDoorType(cboType1, cboKasa1, cboDoorType)
-    End Sub
-    Private Sub cboKasa2_EditValueChanged(sender As Object, e As EventArgs) Handles cboKasa2.EditValueChanged
-        LoadDoorType(cboType2, cboKasa2, cboDoorType2)
-    End Sub
-
-    Private Sub cboKasa3_EditValueChanged(sender As Object, e As EventArgs) Handles cboKasa3.EditValueChanged
-        LoadDoorType(cboType3, cboKasa3, cboDoorType3)
-    End Sub
-
-    Private Sub cboKasa4_EditValueChanged(sender As Object, e As EventArgs) Handles cboKasa4.EditValueChanged
-        LoadDoorType(cboType4, cboKasa4, cboDoorType4)
-    End Sub
-
-    Private Sub cboKasa5_EditValueChanged(sender As Object, e As EventArgs) Handles cboKasa5.EditValueChanged
-        LoadDoorType(cboType5, cboKasa5, cboDoorType5)
-    End Sub
-
-    Private Sub cboKasa6_EditValueChanged(sender As Object, e As EventArgs) Handles cboKasa6.EditValueChanged
-        LoadDoorType(cboType6, cboKasa6, cboDoorType6)
-    End Sub
-
-
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
             Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
+        Try
+            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
+                    oCmd.CommandType = CommandType.StoredProcedure
+                    oCmd.Parameters.AddWithValue("@OfferID", sID)
+                    oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
+                    oCmd.Parameters.AddWithValue("@Mode", 3)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                cmdConvertToOrder.Enabled = False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class

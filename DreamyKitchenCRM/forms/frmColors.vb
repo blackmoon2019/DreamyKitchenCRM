@@ -129,8 +129,8 @@ Public Class frmColors
                         Case "frmCUSOrderKitchen"
                             Select Case CtrlComboLKUP.Name
                                 Case "cboGOLAColors"
-                                    frmCUSOrderKitchen.Vw_COLORSGOLATableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSGOLA)
-                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderKitchen.VwCOLORSGOLABindingSource
+                                    frmCUSOfferOrderKitchen.Vw_COLORSGOLATableAdapter.Fill(frmCUSOfferOrderKitchen.DreamyKitchenDataSet.vw_COLORSGOLA)
+                                    CtrlComboLKUP.Properties.DataSource = frmCUSOfferOrderKitchen.VwCOLORSGOLABindingSource
                                 Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors"
                                     'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
                                     'frmCUSOrderKitchen.Vw_COLORSBOXTableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSBOX)

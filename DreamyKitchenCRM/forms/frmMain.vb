@@ -819,7 +819,8 @@ Public Class frmMain
     Private Sub BBDoors_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBDoors.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Προσφοράς Πελατών(Πόρτες)"
-        form.DataTable = "vw_CCT_OFFERS_DOOR"
+        form.DataTable = "vw_CCT_ORDERS_DOOR"
+        form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -879,6 +880,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
         form.DataTable = "vw_CCT_ORDERS_DOOR"
+        form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
         form.Show()
     End Sub

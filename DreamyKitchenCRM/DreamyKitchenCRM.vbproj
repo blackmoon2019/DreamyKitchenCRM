@@ -351,16 +351,16 @@
     <Compile Include="forms\frmCUSOfferCloset.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmCUSOrderCloset.Designer.vb">
-      <DependentUpon>frmCUSOrderCloset.vb</DependentUpon>
+    <Compile Include="forms\frmCUSOfferOrderCloset.Designer.vb">
+      <DependentUpon>frmCUSOfferOrderCloset.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmCUSOrderCloset.vb">
+    <Compile Include="forms\frmCUSOfferOrderCloset.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmCUSOrderKitchen.Designer.vb">
-      <DependentUpon>frmCUSOrderKitchen.vb</DependentUpon>
+    <Compile Include="forms\frmCUSOfferOrderKitchen.Designer.vb">
+      <DependentUpon>frmCUSOfferOrderKitchen.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmCUSOrderKitchen.vb">
+    <Compile Include="forms\frmCUSOfferOrderKitchen.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmCustomers.Designer.vb">
@@ -884,11 +884,11 @@
     <EmbeddedResource Include="forms\frmCUSOfferCloset.resx">
       <DependentUpon>frmCUSOfferCloset.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmCUSOrderCloset.resx">
-      <DependentUpon>frmCUSOrderCloset.vb</DependentUpon>
+    <EmbeddedResource Include="forms\frmCUSOfferOrderCloset.resx">
+      <DependentUpon>frmCUSOfferOrderCloset.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmCUSOrderKitchen.resx">
-      <DependentUpon>frmCUSOrderKitchen.vb</DependentUpon>
+    <EmbeddedResource Include="forms\frmCUSOfferOrderKitchen.resx">
+      <DependentUpon>frmCUSOfferOrderKitchen.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmCustomers.resx">
       <DependentUpon>frmCustomers.vb</DependentUpon>

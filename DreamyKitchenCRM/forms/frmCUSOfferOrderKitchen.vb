@@ -12,7 +12,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
 Imports DevExpress.XtraRichEdit.Model
 
-Public Class frmCUSOrderKitchen
+Public Class frmCUSOfferOrderKitchen
     Private ManageCbo As New CombosManager
     Private sID As String
     Private sBaseCat As Integer
@@ -91,12 +91,14 @@ Public Class frmCUSOrderKitchen
 
         If sIsOrder = True Then
             LayoutControlGroup1.Text = "Στοιχεία Παραγγελίας"
+            LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
             LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Else
             LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
+            LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
             LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem1.Tag = 0
@@ -214,11 +216,11 @@ Public Class frmCUSOrderKitchen
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sGuid, True, "dtDeliver", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sGuid, True, "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
                         Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
                         'sGuid = sID
                 End Select
 
@@ -695,8 +697,8 @@ Public Class frmCUSOrderKitchen
 
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
         Try
-            If XtraMessageBox.Show("Θέλετε να μετατραπή σε παραγγελία η προσφορά ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                Using oCmd As New SqlCommand("CovertToOrder", CNDB)
+            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.AddWithValue("@OfferID", sID)
                     oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)

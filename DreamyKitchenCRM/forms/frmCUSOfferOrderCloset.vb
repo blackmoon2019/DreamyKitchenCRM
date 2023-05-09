@@ -10,7 +10,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
 
-Public Class frmCUSOrderCloset
+Public Class frmCUSOfferOrderCloset
     Private ManageCbo As New CombosManager
     Private sID As String
     Private sIsOrder As Boolean
@@ -84,8 +84,10 @@ Public Class frmCUSOrderCloset
             LayoutControlGroup11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlGroup12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlGroup13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
         Else
             LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
+            LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
             LayoutControlGroup10.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlItem1.Tag = 0
         End If
@@ -97,8 +99,23 @@ Public Class frmCUSOrderCloset
                 txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
                 cboBackThikness.EditValue = ProgProps.CLOSET_BACK_THIKNESS
                 cboboxThikness.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                ' cboBOXColors.EditValue = System.Guid.Parse(ProgProps.CLOSET_BOX_COLOR.ToUpper)
                 txtdrawers.EditValue = ProgProps.CLOSET_DRAWERS
+                cboBackThikness2.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                cboboxThikness2.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                txtdrawers2.EditValue = ProgProps.CLOSET_DRAWERS
+                cboBackThikness3.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                cboboxThikness3.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                txtdrawers3.EditValue = ProgProps.CLOSET_DRAWERS
+                cboBackThikness4.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                cboboxThikness4.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                txtdrawers4.EditValue = ProgProps.CLOSET_DRAWERS
+                cboBackThikness5.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                cboboxThikness5.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                txtdrawers5.EditValue = ProgProps.CLOSET_DRAWERS
+                cboBackThikness6.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                cboboxThikness6.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                txtdrawers6.EditValue = ProgProps.CLOSET_DRAWERS
+
                 txtTransp.EditValue = ProgProps.ClosetTransp
                 txtMeasurement.EditValue = ProgProps.ClosetMeasurement
                 txtRemove.EditValue = ProgProps.ClosetRemove
@@ -228,10 +245,10 @@ Public Class frmCUSOrderCloset
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sGuid)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sGuid,, "isOrder", IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sID)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sID,,,,, "isOrder=" & IIf(sIsOrder = True, 1, 0))
                         'sGuid = sID
                 End Select
 
@@ -560,8 +577,8 @@ Public Class frmCUSOrderCloset
     End Sub
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
         Try
-            If XtraMessageBox.Show("Θέλετε να μετατραπή σε παραγγελία η προσφορά ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                Using oCmd As New SqlCommand("CovertToOrder", CNDB)
+            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.AddWithValue("@OfferID", sID)
                     oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)

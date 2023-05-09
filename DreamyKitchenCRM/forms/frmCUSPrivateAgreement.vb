@@ -498,7 +498,7 @@ Public Class frmCUSPrivateAgreement
             End If
             sdr.Close()
             If oID = "" Then Exit Sub
-            Dim frmCUSOrderCloset As frmCUSOrderCloset = New frmCUSOrderCloset()
+            Dim frmCUSOrderCloset As frmCUSOfferOrderCloset = New frmCUSOfferOrderCloset()
             frmCUSOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
             frmCUSOrderCloset.ID = oID
             frmCUSOrderCloset.MdiParent = frmMain
@@ -547,7 +547,7 @@ Public Class frmCUSPrivateAgreement
             End If
             sdr.Close()
             If oID = "" Then Exit Sub
-            Dim frmCUSOrderKitchen As frmCUSOrderKitchen = New frmCUSOrderKitchen()
+            Dim frmCUSOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
             frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
             frmCUSOrderKitchen.ID = oID
             frmCUSOrderKitchen.MdiParent = frmMain
