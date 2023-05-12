@@ -7,6 +7,7 @@ Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
 
 Public Class frmCUSOfferOrderSpecialConstr
@@ -69,6 +70,8 @@ Public Class frmCUSOfferOrderSpecialConstr
         Me.Close()
     End Sub
     Private Sub frmCUSOfferSpecialConstr_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_V2' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
         'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
         Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DM_DOORTYPES1.vw_DOOR_TYPESpecialConstr' table. You can move, or remove it, as needed.
@@ -79,29 +82,45 @@ Public Class frmCUSOfferOrderSpecialConstr
         Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
         Prog_Prop.GetProgPROSF()
 
+
         If sIsOrder = True Then
-            LayoutControlItem11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LayoutControlGroup2.Text = "Στοιχεία Παραγγελίας"
             LayoutControlItem12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem15.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem50.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem57.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem72.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
+        Else
+            LayoutControlGroup2.Text = "Στοιχεία Προσφοράς"
+            LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
+            LayoutControlItem11.Tag = 0
         End If
         Select Case Mode
             Case FormMode.NewRecord
-                txtarProt.Text = DBQ.GetNextId(IIf(sIsOrder = False, "CCT_OFFERS_SPECIAL_CONSTR", "CCT_ORDERS_SPECIAL_CONSTR"))
+                txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_SPECIAL_CONSTR")
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
                 txtnotes.EditValue = ProgProps.CUS_NOTES
                 txtTransp.EditValue = ProgProps.SCTransp
                 txtMeasurement.EditValue = ProgProps.SCMeasurement
                 txtRemove.EditValue = ProgProps.SCRemove
+                cmdConvertToOrder.Enabled = False
             Case FormMode.EditRecord
+                Dim sFields As New Dictionary(Of String, String)
+                LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_SPECIAL_CONSTR.* " &
+                                                   " from CCT_ORDERS_SPECIAL_CONSTR " &
+                                                   " left join CCT_ORDERS_SPECIAL_CONSTR  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_SPECIAL_CONSTR.id " &
+                                                   " where CCT_ORDERS_SPECIAL_CONSTR.id = " & toSQLValueS(sID), sFields)
                 If sIsOrder = False Then
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT_OFFERS_SPECIAL_CONSTR where id ='" + sID + "'")
+                    If sFields("OrderID") <> "" Then
+                        cmdConvertToOrder.Enabled = False
+                        cmdSave.Enabled = False
+                        LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                    End If
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from CCT_ORDERS_SPECIAL_CONSTR where id ='" + sID + "'")
+                    cmdConvertToOrder.Enabled = False
                 End If
         End Select
         Me.CenterToScreen()
@@ -115,16 +134,16 @@ Public Class frmCUSOfferOrderSpecialConstr
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, IIf(sIsOrder = False, "CCT_OFFERS_SPECIAL_CONSTR", "CCT_ORDERS_SPECIAL_CONSTR"), LayoutControl1,,, sGuid)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sGuid,, "isOrder", IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, IIf(sIsOrder = False, "CCT_OFFERS_SPECIAL_CONSTR", "CCT_ORDERS_SPECIAL_CONSTR"), LayoutControl1,,, sID)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sID,,,,, "isOrder=" & IIf(sIsOrder = True, 1, 0))
                         'sGuid = sID
                 End Select
 
                 If FScrollerExist = True Then
                     Dim form As frmScroller = Frm
-                    form.LoadRecords(IIf(sIsOrder = False, "CCT_OFFERS_SPECIAL_CONSTR", "CCT_ORDERS_SPECIAL_CONSTR"))
+                    form.LoadRecords("CCT_ORDERS_SPECIAL_CONSTR")
                 End If
 
                 If sResult = True Then
@@ -400,4 +419,22 @@ Public Class frmCUSOfferOrderSpecialConstr
         End Select
     End Sub
 
+    Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
+        Try
+            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
+                    oCmd.CommandType = CommandType.StoredProcedure
+                    oCmd.Parameters.AddWithValue("@OfferID", sID)
+                    oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
+                    oCmd.Parameters.AddWithValue("@Mode", 1)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False
+                LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class

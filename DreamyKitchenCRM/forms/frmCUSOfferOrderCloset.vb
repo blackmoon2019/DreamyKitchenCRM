@@ -131,15 +131,19 @@ Public Class frmCUSOfferOrderCloset
                 LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_CLOSET.* " &
                                                    " from CCT_ORDERS_CLOSET " &
                                                    " left join CCT_ORDERS_CLOSET  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_CLOSET.id " &
-                                                   " where CCT_ORDERS_CLOSET.id = " & toSQLValueS(sID), sFields)
-                If sFields("OrderID") = "" Then
-                    cmdConvertToOrder.Enabled = True
+                                                   " where CCT_ORDERS_DOOR.id = " & toSQLValueS(sID), sFields)
+                If sIsOrder = False Then
+                    If sFields("OrderID") <> "" Then
+                        cmdConvertToOrder.Enabled = False
+                        cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
+                        LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                    End If
                 Else
                     cmdConvertToOrder.Enabled = False
-                    cmdSave.Enabled = False
-                    cmdSaveEquipDev.Enabled = False
-                    LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                 End If
+
+
+
                 sFields = Nothing
 
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
@@ -586,7 +590,8 @@ Public Class frmCUSOfferOrderCloset
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                cmdConvertToOrder.Enabled = False
+                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False
+                LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

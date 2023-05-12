@@ -828,7 +828,8 @@ Public Class frmMain
     Private Sub BBSpecialConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSpecialConstr.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Προσφοράς Πελατών(Ειδικές Κατασκευές)"
-        form.DataTable = "vw_CCT_OFFERS_SPECIAL_CONSTR"
+        form.DataTable = "vw_CCT_ORDERS_SPECIAL_CONSTR"
+        form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -897,6 +898,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Παραγγελίας Πελατών(Ειδικές Κατασκευές)"
         form.DataTable = "vw_CCT_ORDERS_SPECIAL_CONSTR"
+        form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
         form.Show()
     End Sub

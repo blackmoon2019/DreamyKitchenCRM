@@ -114,13 +114,17 @@ Public Class frmCUSOfferOrderDoors
                                                    " from CCT_ORDERS_DOOR " &
                                                    " left join CCT_ORDERS_DOOR  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_DOOR.id " &
                                                    " where CCT_ORDERS_DOOR.id = " & toSQLValueS(sID), sFields)
-                If sFields("OrderID") = "" Then
-                    cmdConvertToOrder.Enabled = True
+                If sIsOrder = False Then
+                    If sFields("OrderID") <> "" Then
+                        cmdConvertToOrder.Enabled = False
+                        cmdSave.Enabled = False
+                        LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                    End If
                 Else
                     cmdConvertToOrder.Enabled = False
-                    cmdSave.Enabled = False
-                    LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                 End If
+
+
                 sFields = Nothing
 
         End Select
@@ -525,7 +529,8 @@ Public Class frmCUSOfferOrderDoors
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                cmdConvertToOrder.Enabled = False
+                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False
+                LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

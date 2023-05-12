@@ -683,6 +683,10 @@ Partial Class frmCUSOfferOrderCloset
         '
         'LabelControl1
         '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.142858!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.LabelControl1.Appearance.Options.UseFont = True
+        Me.LabelControl1.Appearance.Options.UseForeColor = True
         Me.LabelControl1.Location = New System.Drawing.Point(420, 1135)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(113, 23)
@@ -1331,6 +1335,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboBOXColors.Properties.PopupFilterMode = DevExpress.XtraEditors.PopupFilterMode.Contains
         Me.cboBOXColors.Properties.PopupFormMinSize = New System.Drawing.Size(600, 300)
         Me.cboBOXColors.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest
+        Me.cboBOXColors.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.Standard
         Me.cboBOXColors.Properties.ValueMember = "ID"
         Me.cboBOXColors.Size = New System.Drawing.Size(446, 38)
         Me.cboBOXColors.StyleController = Me.LayoutControl1
@@ -4379,7 +4384,7 @@ Partial Class frmCUSOfferOrderCloset
         '
         Me.Vw_DOOR_TYPE_V2TableAdapter.ClearBeforeFill = True
         '
-        'frmCUSOrderCloset
+        'frmCUSOfferOrderCloset
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
@@ -4388,7 +4393,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.Controls.Add(Me.TabPane1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(3, 4, 3, 4)
-        Me.Name = "frmCUSOrderCloset"
+        Me.Name = "frmCUSOfferOrderCloset"
         Me.Text = "frmCUSOrderCloset"
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPane1.ResumeLayout(False)

@@ -22,6 +22,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSOfferOrderDoors))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.chkVatVisible = New DevExpress.XtraEditors.CheckEdit()
         Me.cmdPrintOffer = New DevExpress.XtraEditors.SimpleButton()
         Me.lblDate = New DevExpress.XtraEditors.LabelControl()
@@ -85,6 +86,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtMeasurement = New DevExpress.XtraEditors.TextEdit()
         Me.txtRemove = New DevExpress.XtraEditors.TextEdit()
         Me.cboDoorType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.VwDOORTYPEV2BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DM_DOORTYPES = New DreamyKitchenCRM.DM_DOORTYPES()
         Me.cboDoorType2 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboDoorType3 = New DevExpress.XtraEditors.LookUpEdit()
@@ -92,6 +94,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboDoorType5 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboDoorType6 = New DevExpress.XtraEditors.LookUpEdit()
         Me.txtExtraTransp = New DevExpress.XtraEditors.TextEdit()
+        Me.cmdConvertToOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -105,7 +108,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem31 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem47 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem48 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem14 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem40 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem32 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -174,15 +176,13 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem35 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem14 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.VwCOLORSDOORSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_COLORSDOORSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSDOORSTableAdapter()
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
-        Me.cmdConvertToOrder = New DevExpress.XtraEditors.SimpleButton()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
-        Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.VwDOORTYPEV2BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_DOOR_TYPE_V2TableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPE_V2TableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -246,6 +246,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtMeasurement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtRemove.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDOORTYPEV2BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DM_DOORTYPES, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -266,7 +267,6 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -335,10 +335,10 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDOORTYPEV2BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -419,6 +419,18 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControl1.Size = New System.Drawing.Size(1885, 1244)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'LabelControl1
+        '
+        Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.142858!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.LabelControl1.Appearance.Options.UseFont = True
+        Me.LabelControl1.Appearance.Options.UseForeColor = True
+        Me.LabelControl1.Location = New System.Drawing.Point(420, 1193)
+        Me.LabelControl1.Name = "LabelControl1"
+        Me.LabelControl1.Size = New System.Drawing.Size(113, 23)
+        Me.LabelControl1.StyleController = Me.LayoutControl1
+        Me.LabelControl1.TabIndex = 66
         '
         'chkVatVisible
         '
@@ -1410,6 +1422,11 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboDoorType.TabIndex = 49
         Me.cboDoorType.Tag = "doorTypeID,0,1,2"
         '
+        'VwDOORTYPEV2BindingSource
+        '
+        Me.VwDOORTYPEV2BindingSource.DataMember = "vw_DOOR_TYPE_V2"
+        Me.VwDOORTYPEV2BindingSource.DataSource = Me.DM_DOORTYPES
+        '
         'DM_DOORTYPES
         '
         Me.DM_DOORTYPES.DataSetName = "DM_DOORTYPES"
@@ -1539,6 +1556,16 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtExtraTransp.TabIndex = 42
         Me.txtExtraTransp.Tag = "ExtraTransp,0,1,2"
         Me.txtExtraTransp.Visible = False
+        '
+        'cmdConvertToOrder
+        '
+        Me.cmdConvertToOrder.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.ConvertToOrder24
+        Me.cmdConvertToOrder.Location = New System.Drawing.Point(1298, 1193)
+        Me.cmdConvertToOrder.Name = "cmdConvertToOrder"
+        Me.cmdConvertToOrder.Size = New System.Drawing.Size(261, 39)
+        Me.cmdConvertToOrder.StyleController = Me.LayoutControl1
+        Me.cmdConvertToOrder.TabIndex = 65
+        Me.cmdConvertToOrder.Text = "Μετατροπή σε Παραγγελία"
         '
         'Root
         '
@@ -1682,14 +1709,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem48.Size = New System.Drawing.Size(102, 43)
         Me.LayoutControlItem48.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem48.TextVisible = False
-        '
-        'EmptySpaceItem14
-        '
-        Me.EmptySpaceItem14.AllowHotTrack = False
-        Me.EmptySpaceItem14.Location = New System.Drawing.Point(525, 1181)
-        Me.EmptySpaceItem14.Name = "EmptySpaceItem14"
-        Me.EmptySpaceItem14.Size = New System.Drawing.Size(761, 43)
-        Me.EmptySpaceItem14.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem40
         '
@@ -2577,6 +2596,32 @@ Partial Class frmCUSOfferOrderDoors
         Me.EmptySpaceItem4.Size = New System.Drawing.Size(393, 46)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
+        'LayoutControlItem7
+        '
+        Me.LayoutControlItem7.Control = Me.cmdConvertToOrder
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(1286, 1181)
+        Me.LayoutControlItem7.Name = "LayoutControlItem7"
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(265, 43)
+        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem7.TextVisible = False
+        '
+        'EmptySpaceItem14
+        '
+        Me.EmptySpaceItem14.AllowHotTrack = False
+        Me.EmptySpaceItem14.Location = New System.Drawing.Point(525, 1181)
+        Me.EmptySpaceItem14.Name = "EmptySpaceItem14"
+        Me.EmptySpaceItem14.Size = New System.Drawing.Size(761, 43)
+        Me.EmptySpaceItem14.TextSize = New System.Drawing.Size(0, 0)
+        '
+        'LayoutControlItem8
+        '
+        Me.LayoutControlItem8.Control = Me.LabelControl1
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(408, 1181)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(117, 43)
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem8.TextVisible = False
+        '
         'VwCOLORSDOORSBindingSource
         '
         Me.VwCOLORSDOORSBindingSource.DataMember = "vw_COLORSDOORS"
@@ -2593,47 +2638,6 @@ Partial Class frmCUSOfferOrderDoors
         'CCT_TRANSHTableAdapter
         '
         Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
-        '
-        'cmdConvertToOrder
-        '
-        Me.cmdConvertToOrder.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.ConvertToOrder24
-        Me.cmdConvertToOrder.Location = New System.Drawing.Point(1298, 1193)
-        Me.cmdConvertToOrder.Name = "cmdConvertToOrder"
-        Me.cmdConvertToOrder.Size = New System.Drawing.Size(261, 39)
-        Me.cmdConvertToOrder.StyleController = Me.LayoutControl1
-        Me.cmdConvertToOrder.TabIndex = 65
-        Me.cmdConvertToOrder.Text = "Μετατροπή σε Παραγγελία"
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.cmdConvertToOrder
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(1286, 1181)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(265, 43)
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem7.TextVisible = False
-        '
-        'LabelControl1
-        '
-        Me.LabelControl1.Location = New System.Drawing.Point(420, 1193)
-        Me.LabelControl1.Name = "LabelControl1"
-        Me.LabelControl1.Size = New System.Drawing.Size(113, 23)
-        Me.LabelControl1.StyleController = Me.LayoutControl1
-        Me.LabelControl1.TabIndex = 66
-        '
-        'LayoutControlItem8
-        '
-        Me.LayoutControlItem8.Control = Me.LabelControl1
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(408, 1181)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(117, 43)
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem8.TextVisible = False
-        '
-        'VwDOORTYPEV2BindingSource
-        '
-        Me.VwDOORTYPEV2BindingSource.DataMember = "vw_DOOR_TYPE_V2"
-        Me.VwDOORTYPEV2BindingSource.DataSource = Me.DM_DOORTYPES
         '
         'Vw_DOOR_TYPE_V2TableAdapter
         '
@@ -2711,6 +2715,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtMeasurement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtRemove.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDOORTYPEV2BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DM_DOORTYPES, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2731,7 +2736,6 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2800,10 +2804,10 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDOORTYPEV2BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
