@@ -1562,4 +1562,27 @@ NextItem:
             Return False
         End Try
     End Function
+    Public Function InsertNewDoorType(ByVal Lkup As DevExpress.XtraEditors.LookUpEdit, ByVal sValue As String) As String
+        Try
+            If XtraMessageBox.Show("Βρέθηκε καινούριος Κωδικός. Να προστεθεί?", "Επιβεβαίωση", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
+                Dim sSQL = New System.Text.StringBuilder
+                Dim sDoorTypeID = System.Guid.NewGuid.ToString
+                sSQL.AppendLine("INSERT INTO DOOR_TYPE (ID,Name, Cat,description,doorCatID) ")
+                sSQL.AppendLine("VALUES (")
+                sSQL.AppendLine(toSQLValueS(sDoorTypeID) & ",")
+                sSQL.AppendLine(toSQLValueS(sValue) & ",")
+                sSQL.AppendLine(0 & ",")
+                sSQL.AppendLine("'ΛΑΚΑ',")
+                sSQL.AppendLine("'DE86FD16-2154-4E2A-B025-4D34BDF8C808'" & ")")
+                Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                Return sDoorTypeID
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+
+    End Function
 End Class

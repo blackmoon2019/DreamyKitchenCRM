@@ -1096,17 +1096,6 @@ Public Class frmScroller
                 frmCUSOfferOrderDoors.FormScrollerExist = True
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderDoors), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderDoors.Show()
-            Case "vw_CCT_OFFERS"
-                Dim frmCUSOffer As frmCUSOfferKitchen = New frmCUSOfferKitchen()
-                frmCUSOffer.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
-                frmCUSOffer.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmCUSOffer.MdiParent = frmMain
-                frmCUSOffer.Mode = FormMode.EditRecord
-                frmCUSOffer.Scroller = GridView1
-                frmCUSOffer.FormScroller = Me
-                frmCUSOffer.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOffer.Show()
             Case "vw_SUP_PAYMENTS_H"
                 Dim frmSUPKal As frmSUPKal = New frmSUPKal()
                 frmSUPKal.Text = "Πληρωμές Παραστατικών Προμηθευτών"
@@ -2064,26 +2053,6 @@ Public Class frmScroller
                 frmCUSOfferOrderDoors.FormScrollerExist = True
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderDoors), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderDoors.Show()
-            Case "vw_CCT_OFFERS_CLOSET"
-                Dim frmCUSOfferCloset As frmCUSOfferCloset = New frmCUSOfferCloset()
-                frmCUSOfferCloset.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπες)"
-                frmCUSOfferCloset.MdiParent = frmMain
-                frmCUSOfferCloset.Mode = FormMode.NewRecord
-                frmCUSOfferCloset.Scroller = GridView1
-                frmCUSOfferCloset.FormScroller = Me
-                frmCUSOfferCloset.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOfferCloset.Show()
-            Case "vw_CCT_OFFERS"
-                Dim frmCUSOffer As frmCUSOfferKitchen = New frmCUSOfferKitchen()
-                frmCUSOffer.Text = "Έντυπο Προσφοράς Πελατών"
-                frmCUSOffer.MdiParent = frmMain
-                frmCUSOffer.Mode = FormMode.NewRecord
-                frmCUSOffer.Scroller = GridView1
-                frmCUSOffer.FormScroller = Me
-                frmCUSOffer.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOffer.Show()
             Case "vw_SUP_PAYMENTS_H"
                 Dim frmSUPKal As frmSUPKal = New frmSUPKal()
                 frmSUPKal.Text = "Πληρωμές Παραστατικών Προμηθευτών"

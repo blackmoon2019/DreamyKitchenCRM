@@ -164,7 +164,15 @@ Module Main
             If col.FieldName.Contains(sExclude) Then col.Visible = False
         Next
     End Sub
+    Public Sub GetFileFromServer(ByVal sFile As String)
+        Try
+            Dim ServerFile As String = ProgProps.ServerViewsPath & "DSGNS\DEF\" & System.IO.Path.GetFileName(sFile)
+            My.Computer.FileSystem.CopyFile(ServerFile, sFile, True)
+        Catch ex As Exception
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
 
+    End Sub
     Public Sub GetNewestFileFromServer(ByVal sFile As String)
         Try
             Dim LastModifiedF1 As Date, LastModifiedF2 As Date

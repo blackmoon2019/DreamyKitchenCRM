@@ -866,6 +866,10 @@ NextItem:
                 GridView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
             End If
             GridView.OptionsBehavior.AlignGroupSummaryInGroupRow = DefaultBoolean.False
+            If GridView.Columns.Count = 0 Then
+                GetFileFromServer(Application.StartupPath & "\DSGNS\DEF\" & sXMLName)
+                GridView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
+            End If
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

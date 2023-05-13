@@ -437,4 +437,45 @@ Public Class frmCUSOfferOrderSpecialConstr
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Sub cboDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboDoorType2_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType2.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboDoorType2.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+    Private Sub cboDoorType3_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType3.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboDoorType3.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+    Private Sub cboDoorType4_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType4.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboDoorType4.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
 End Class
