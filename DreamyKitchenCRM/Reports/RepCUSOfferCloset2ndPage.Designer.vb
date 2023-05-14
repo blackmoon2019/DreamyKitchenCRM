@@ -27,6 +27,8 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(RepCUSOfferCloset2ndPage))
         Dim CustomSqlQuery3 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
         Dim QueryParameter3 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
+        Dim CustomSqlQuery4 As DevExpress.DataAccess.Sql.CustomSqlQuery = New DevExpress.DataAccess.Sql.CustomSqlQuery()
+        Dim QueryParameter4 As DevExpress.DataAccess.Sql.QueryParameter = New DevExpress.DataAccess.Sql.QueryParameter()
         Dim MasterDetailInfo1 As DevExpress.DataAccess.Sql.MasterDetailInfo = New DevExpress.DataAccess.Sql.MasterDetailInfo()
         Dim RelationColumnInfo1 As DevExpress.DataAccess.Sql.RelationColumnInfo = New DevExpress.DataAccess.Sql.RelationColumnInfo()
         Dim MasterDetailInfo2 As DevExpress.DataAccess.Sql.MasterDetailInfo = New DevExpress.DataAccess.Sql.MasterDetailInfo()
@@ -165,7 +167,15 @@ Partial Public Class RepCUSOfferCloset2ndPage
         QueryParameter3.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
         CustomSqlQuery3.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter3})
         CustomSqlQuery3.Sql = resources.GetString("CustomSqlQuery3.Sql")
-        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1, CustomSqlQuery2, CustomSqlQuery3})
+        CustomSqlQuery4.MetaSerializable = "<Meta X=""20"" Y=""20"" Width=""174"" Height=""1692"" />"
+        CustomSqlQuery4.Name = "PRM"
+        QueryParameter4.Name = "OfferID"
+        QueryParameter4.Type = GetType(DevExpress.DataAccess.Expression)
+        QueryParameter4.Value = New DevExpress.DataAccess.Expression("?OfferID", GetType(System.Guid))
+        CustomSqlQuery4.Parameters.AddRange(New DevExpress.DataAccess.Sql.QueryParameter() {QueryParameter4})
+        CustomSqlQuery4.Sql = "select ""PRM"".""val""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "  from ""dbo"".""PRM"" ""PRM""" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " where  ""PRM"".""prm"" = 'CUS_DISCOUNT" &
+    "_CLOSET'"
+        Me.SqlDataSource1.Queries.AddRange(New DevExpress.DataAccess.Sql.SqlQuery() {CustomSqlQuery1, CustomSqlQuery2, CustomSqlQuery3, CustomSqlQuery4})
         MasterDetailInfo1.DetailQueryName = "vw_CCT_ORDERS_CLOSET"
         RelationColumnInfo1.NestedKeyColumn = "ID"
         RelationColumnInfo1.ParentKeyColumn = "cctOrdersCLOSETID"
@@ -1107,7 +1117,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         'Detail1
         '
         Me.Detail1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable5})
-        Me.Detail1.HeightF = 18.45238!
+        Me.Detail1.HeightF = 22.0!
         Me.Detail1.MultiColumn.ColumnCount = 3
         Me.Detail1.MultiColumn.ColumnSpacing = 5.0!
         Me.Detail1.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown
@@ -1124,7 +1134,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTable5.Name = "XrTable5"
         Me.XrTable5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrTable5.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow5})
-        Me.XrTable5.SizeF = New System.Drawing.SizeF(721.9999!, 18.45238!)
+        Me.XrTable5.SizeF = New System.Drawing.SizeF(721.9999!, 22.0!)
         Me.XrTable5.StylePriority.UseBorderColor = False
         Me.XrTable5.StylePriority.UseBorders = False
         Me.XrTable5.StylePriority.UseForeColor = False
@@ -1133,7 +1143,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         Me.XrTableRow5.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell45, Me.XrTableCell46})
         Me.XrTableRow5.Name = "XrTableRow5"
-        Me.XrTableRow5.Weight = 1.0R
+        Me.XrTableRow5.Weight = 1.1922581760180337R
         '
         'XrTableCell45
         '
@@ -1166,7 +1176,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         'GroupHeader1
         '
         Me.GroupHeader1.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable4, Me.XrLabel36})
-        Me.GroupHeader1.HeightF = 39.80957!
+        Me.GroupHeader1.HeightF = 43.35718!
         Me.GroupHeader1.Name = "GroupHeader1"
         '
         'XrTable4
@@ -1180,7 +1190,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTable4.Name = "XrTable4"
         Me.XrTable4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrTable4.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow4})
-        Me.XrTable4.SizeF = New System.Drawing.SizeF(721.9999!, 18.45238!)
+        Me.XrTable4.SizeF = New System.Drawing.SizeF(721.9999!, 22.0!)
         Me.XrTable4.StylePriority.UseBorderColor = False
         Me.XrTable4.StylePriority.UseBorders = False
         Me.XrTable4.StylePriority.UseForeColor = False
@@ -1189,7 +1199,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell43, Me.XrTableCell44})
         Me.XrTableRow4.Name = "XrTableRow4"
-        Me.XrTableRow4.Weight = 1.0R
+        Me.XrTableRow4.Weight = 1.1922581760180337R
         '
         'XrTableCell43
         '
@@ -1249,7 +1259,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         'Detail3
         '
         Me.Detail3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable1})
-        Me.Detail3.HeightF = 18.45238!
+        Me.Detail3.HeightF = 22.0!
         Me.Detail3.Name = "Detail3"
         '
         'XrTable1
@@ -1263,7 +1273,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTable1.Name = "XrTable1"
         Me.XrTable1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrTable1.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow1})
-        Me.XrTable1.SizeF = New System.Drawing.SizeF(721.9999!, 18.45238!)
+        Me.XrTable1.SizeF = New System.Drawing.SizeF(721.9999!, 22.0!)
         Me.XrTable1.StylePriority.UseBorderColor = False
         Me.XrTable1.StylePriority.UseBorders = False
         Me.XrTable1.StylePriority.UseForeColor = False
@@ -1272,7 +1282,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         Me.XrTableRow1.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell1, Me.XrTableCell2, Me.XrTableCell3})
         Me.XrTableRow1.Name = "XrTableRow1"
-        Me.XrTableRow1.Weight = 1.0R
+        Me.XrTableRow1.Weight = 1.1922581760180337R
         '
         'XrTableCell1
         '
@@ -1286,7 +1296,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
         Me.XrTableCell1.Text = "XrTableCell1"
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell1.Weight = 1.0R
+        Me.XrTableCell1.Weight = 1.4999994731080237R
         '
         'XrTableCell2
         '
@@ -1300,7 +1310,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "XrTableCell2"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell2.Weight = 1.0R
+        Me.XrTableCell2.Weight = 0.81817355172570183R
         '
         'XrTableCell3
         '
@@ -1315,12 +1325,12 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell3.Text = "XrTableCell3"
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell3.TextFormatString = "{0:C}"
-        Me.XrTableCell3.Weight = 0.9917127057850379R
+        Me.XrTableCell3.Weight = 0.67353968095131234R
         '
         'GroupHeader3
         '
         Me.GroupHeader3.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrTable2, Me.XrLabel31})
-        Me.GroupHeader3.HeightF = 39.80957!
+        Me.GroupHeader3.HeightF = 43.35719!
         Me.GroupHeader3.Name = "GroupHeader3"
         '
         'XrTable2
@@ -1334,7 +1344,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTable2.Name = "XrTable2"
         Me.XrTable2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96.0!)
         Me.XrTable2.Rows.AddRange(New DevExpress.XtraReports.UI.XRTableRow() {Me.XrTableRow2})
-        Me.XrTable2.SizeF = New System.Drawing.SizeF(721.9999!, 18.45238!)
+        Me.XrTable2.SizeF = New System.Drawing.SizeF(721.9999!, 22.0!)
         Me.XrTable2.StylePriority.UseBorderColor = False
         Me.XrTable2.StylePriority.UseBorders = False
         Me.XrTable2.StylePriority.UseForeColor = False
@@ -1343,7 +1353,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell4, Me.XrTableCell5, Me.XrTableCell6})
         Me.XrTableRow2.Name = "XrTableRow2"
-        Me.XrTableRow2.Weight = 1.0R
+        Me.XrTableRow2.Weight = 1.1922581760180337R
         '
         'XrTableCell4
         '
@@ -1358,7 +1368,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell4.StylePriority.UseTextAlignment = False
         Me.XrTableCell4.Text = "Περιγραφή"
         Me.XrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell4.Weight = 1.0R
+        Me.XrTableCell4.Weight = 1.4999994731080237R
         '
         'XrTableCell5
         '
@@ -1373,7 +1383,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell5.StylePriority.UseTextAlignment = False
         Me.XrTableCell5.Text = "Τεμάχια"
         Me.XrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell5.Weight = 1.0R
+        Me.XrTableCell5.Weight = 0.81817355172570183R
         '
         'XrTableCell6
         '
@@ -1388,7 +1398,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "Τιμή"
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell6.Weight = 0.9917127057850379R
+        Me.XrTableCell6.Weight = 0.67353968095131234R
         '
         'XrLabel31
         '

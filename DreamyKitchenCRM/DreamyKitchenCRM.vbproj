@@ -674,22 +674,10 @@
     <Compile Include="Reports\RepCUSAnalysis.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\RepCUSOfferCloset3ndPage_old.Designer.vb">
-      <DependentUpon>RepCUSOfferCloset3ndPage_old.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\RepCUSOfferCloset3ndPage_old.vb">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Reports\RepCUSOfferDoors.Designer.vb">
       <DependentUpon>RepCUSOfferDoors.vb</DependentUpon>
     </Compile>
     <Compile Include="Reports\RepCUSOfferDoors.vb">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\RepCUSOfferCloset_old.Designer.vb">
-      <DependentUpon>RepCUSOfferCloset_old.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\RepCUSOfferCloset_old.vb">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RepCUSOfferKitchen.Designer.vb">
@@ -1050,14 +1038,8 @@
     <EmbeddedResource Include="Reports\RepCUSAnalysis.resx">
       <DependentUpon>RepCUSAnalysis.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RepCUSOfferCloset3ndPage_old.resx">
-      <DependentUpon>RepCUSOfferCloset3ndPage_old.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSOfferDoors.resx">
       <DependentUpon>RepCUSOfferDoors.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\RepCUSOfferCloset_old.resx">
-      <DependentUpon>RepCUSOfferCloset_old.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSOfferKitchen.resx">
       <DependentUpon>RepCUSOfferKitchen.vb</DependentUpon>

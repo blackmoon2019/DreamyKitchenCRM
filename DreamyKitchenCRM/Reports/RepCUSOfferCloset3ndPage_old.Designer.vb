@@ -681,7 +681,7 @@ Partial Public Class RepCUSOfferCloset3ndPage_old
         Me.XrLabel40.Text = resources.GetString("XrLabel40.Text")
         Me.XrLabel40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
-        'RepCUSOfferCloset3ndPage
+        'RepCUSOfferCloset3ndPage_old
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail, Me.PageHeader, Me.ReportFooter})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
