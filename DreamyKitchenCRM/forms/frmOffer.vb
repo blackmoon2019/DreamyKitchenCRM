@@ -1131,7 +1131,7 @@ Public Class frmOffer
         'myParameter.Visible = False
         report.Parameters.Item(0).Value = sID
         report.CreateDocument()
-        Dim report2 As New Rep_Offer2ndPage
+        Dim report2 As New RepCUSOfferKitchen2ndPage
         'report3.Parameters.Item(0).Value = sID
         report2.CreateDocument()
         report.ModifyDocument(Sub(x)

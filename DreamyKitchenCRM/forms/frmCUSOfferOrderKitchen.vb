@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports DevExpress.DataAccess
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
@@ -176,10 +177,10 @@ Public Class frmCUSOfferOrderKitchen
         sdr = Cmd.ExecuteReader()
         Dim DBaseCatID As String
         If (sdr.Read() = True) Then
-            If sdr.IsDBNull(sdr.GetOrdinal("BaseCatID")) = False Then DBaseCatID = sdr.GetGuid(sdr.GetOrdinal("BaseCatID")).ToString Else DBaseCatID = GUID.Empty.ToString
-            If DBaseCatID <> "" Then Return DBaseCatID Else Return GUID.Empty.ToString
+            If sdr.IsDBNull(sdr.GetOrdinal("BaseCatID")) = False Then DBaseCatID = sdr.GetGuid(sdr.GetOrdinal("BaseCatID")).ToString Else DBaseCatID = Guid.Empty.ToString
+            If DBaseCatID <> "" Then Return DBaseCatID Else Return Guid.Empty.ToString
         Else
-            Return GUID.Empty.ToString
+            Return Guid.Empty.ToString
         End If
         sdr.Close()
     End Function
@@ -272,7 +273,7 @@ Public Class frmCUSOfferOrderKitchen
         'txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
         'txtADR.EditValue = cboCUS.GetColumnValue("ADR_Name")
         Dim sCusID As String
-        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(GUID.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
+        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
@@ -376,23 +377,45 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
-        Dim report As New RepCUSOrderKitchen()
+        If sIsOrder = True Then
+            Dim report As New RepCUSOrderKitchen()
 
-        report.Parameters.Item(0).Value = sID
-        report.CreateDocument()
-        'report.PrintingSystem.Document.ScaleFactor = 0.75
+            report.Parameters.Item(0).Value = sID
+            report.CreateDocument()
+            'report.PrintingSystem.Document.ScaleFactor = 0.75
 
-        Dim report2 As New RepCUSOrderKitchen2ndPage
+            Dim report2 As New RepCUSOrderKitchen2ndPage
 
-        report2.Parameters.Item(0).Value = sID
-        report2.Parameters.Item(1).Value = sID
-        report2.Parameters.Item(2).Value = sID
-        report2.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report2.Pages)
-                              End Sub)
-        Dim printTool As New ReportPrintTool(report)
-        printTool.ShowRibbonPreview()
+            report2.Parameters.Item(0).Value = sID
+            report2.Parameters.Item(1).Value = sID
+            report2.Parameters.Item(2).Value = sID
+            report2.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report2.Pages)
+                                  End Sub)
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        Else
+            Dim report As New RepCUSOfferKitchen()
+
+            report.Parameters.Item(0).Value = sID
+            report.CreateDocument()
+            Dim report2 As New RepCUSOfferKitchen2ndPage
+
+            report2.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report2.Pages)
+                                  End Sub)
+            Dim report3 As New RepCUSOfferKitchen3ndPage
+            report3.Parameters.Item(0).Value = sID
+            report3.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report3.Pages)
+                                  End Sub)
+
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        End If
     End Sub
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
@@ -421,6 +444,12 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
 
     Private Sub chkVatVisible_CheckedChanged(sender As Object, e As EventArgs) Handles chkVatVisible.CheckedChanged
+        Dim cmd As SqlCommand
+        If chkVatVisible.Checked = True Then
+            cmd = New SqlCommand("Update CCT_ORDERS_KITCHEN set visibleVAT = 1 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
+        Else
+            cmd = New SqlCommand("Update CCT_ORDERS_KITCHEN set visibleVAT = 0 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
+        End If
         'Dim ProFPA As Double = DbnullToZero(txtTotalErmariaVat)
         'Dim MeFPA As Double = DbnullToZero(txtTotalErmariaPice)
         'If chkVatVisible.Checked = True Then

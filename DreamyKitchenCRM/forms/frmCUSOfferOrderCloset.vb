@@ -131,7 +131,7 @@ Public Class frmCUSOfferOrderCloset
                 LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_CLOSET.* " &
                                                    " from CCT_ORDERS_CLOSET " &
                                                    " left join CCT_ORDERS_CLOSET  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_CLOSET.id " &
-                                                   " where CCT_ORDERS_DOOR.id = " & toSQLValueS(sID), sFields)
+                                                   " where CCT_ORDERS_CLOSET.id = " & toSQLValueS(sID), sFields)
                 If sIsOrder = False Then
                     If sFields("OrderID") <> "" Then
                         cmdConvertToOrder.Enabled = False
@@ -305,19 +305,40 @@ Public Class frmCUSOfferOrderCloset
     End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
-        Dim report As New RepCUSOrderCloset()
+        If sIsOrder = True Then
+            Dim report As New RepCUSOrderCloset()
 
-        report.Parameters.Item(0).Value = sID
-        report.CreateDocument()
-        Dim report2 As New RepCUSOrderCloset2ndPage
+            report.Parameters.Item(0).Value = sID
+            report.CreateDocument()
+            Dim report2 As New RepCUSOrderCloset2ndPage
 
-        report2.Parameters.Item(0).Value = sID
-        report2.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report2.Pages)
-                              End Sub)
-        Dim printTool As New ReportPrintTool(report)
-        printTool.ShowRibbonPreview()
+            report2.Parameters.Item(0).Value = sID
+            report2.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report2.Pages)
+                                  End Sub)
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        Else
+            Dim report As New RepCUSOfferCloset()
+
+            report.Parameters.Item(0).Value = sID
+            report.CreateDocument()
+            Dim report2 As New RepCUSOfferCloset2ndPage
+
+            report2.Parameters.Item(0).Value = sID
+            report2.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report2.Pages)
+                                  End Sub)
+            Dim report3 As New RepCUSOfferCloset3ndPage
+            report3.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report3.Pages)
+                                  End Sub)
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        End If
     End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
@@ -692,6 +713,19 @@ Public Class frmCUSOfferOrderCloset
             txtFinalPrice4.EditValue = FinalPrice
         End If
     End Sub
+    Private Sub txtInitialPrice5_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice5.EditValueChanged
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
+        txtDisc5.EditValue = ProgProps.CusDiscountCloset
+        If ProgProps.CusDiscountCloset > 0 Then
+            InitialPrice = txtInitialPrice5.EditValue
+            Disc = ProgProps.CusDiscountCloset / 100
+            Discount = Disc * InitialPrice
+            FinalPrice = InitialPrice - Discount
+            txtInitialPrice5.EditValue = InitialPrice
+            txtDiscount5.EditValue = Discount
+            txtFinalPrice5.EditValue = FinalPrice
+        End If
+    End Sub
     Private Sub cboDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
             Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
@@ -936,6 +970,14 @@ Public Class frmCUSOfferOrderCloset
                 cboShelves6.EditValue = System.Guid.Parse(sDoorTypeID)
             End If
             e.Handled = True
+        End If
+    End Sub
+    Private Sub chkVatVisible_CheckedChanged(sender As Object, e As EventArgs) Handles chkVatVisible.CheckedChanged
+        Dim cmd As SqlCommand
+        If chkVatVisible.Checked = True Then
+            cmd = New SqlCommand("Update CCT_ORDERS_CLOSET set visibleVAT = 1 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
+        Else
+            cmd = New SqlCommand("Update CCT_ORDERS_CLOSET set visibleVAT = 0 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
         End If
     End Sub
 End Class
