@@ -134,10 +134,10 @@ Public Class frmCUSOfferOrderSpecialConstr
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sGuid,, "isOrder", IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sGuid, True, "isOrder", IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sID,,,,, "isOrder=" & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sID, True,,,, "isOrder=" & IIf(sIsOrder = True, 1, 0))
                         'sGuid = sID
                 End Select
 
@@ -364,14 +364,14 @@ Public Class frmCUSOfferOrderSpecialConstr
             Case 3 : cboDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType2.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboDoorType2, FormMode.NewRecord, "CF47FAEE-7CD7-49AD-9455-3BC69D438DE9")
             Case 2 : ManageCbo.ManageDoorType(cboDoorType2, FormMode.EditRecord, "CF47FAEE-7CD7-49AD-9455-3BC69D438DE9")
             Case 3 : cboDoorType2.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType3.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboDoorType3, FormMode.NewRecord, "CF47FAEE-7CD7-49AD-9455-3BC69D438DE9")
             Case 2 : ManageCbo.ManageDoorType(cboDoorType3, FormMode.EditRecord, "CF47FAEE-7CD7-49AD-9455-3BC69D438DE9")
@@ -476,6 +476,14 @@ Public Class frmCUSOfferOrderSpecialConstr
                 cboDoorType4.EditValue = System.Guid.Parse(sDoorTypeID)
             End If
             e.Handled = True
+        End If
+    End Sub
+    Private Sub chkVatVisible_CheckedChanged(sender As Object, e As EventArgs) Handles chkVatVisible.CheckedChanged
+        Dim cmd As SqlCommand
+        If chkVatVisible.Checked = True Then
+            cmd = New SqlCommand("Update CCT_ORDERS_SPECIAL_CONSTR set visibleVAT = 1 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
+        Else
+            cmd = New SqlCommand("Update CCT_ORDERS_SPECIAL_CONSTR set visibleVAT = 0 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
         End If
     End Sub
 End Class

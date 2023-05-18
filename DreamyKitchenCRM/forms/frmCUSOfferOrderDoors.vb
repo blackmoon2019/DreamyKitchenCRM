@@ -567,4 +567,13 @@ Public Class frmCUSOfferOrderDoors
             e.Handled = True
         End If
     End Sub
+    Private Sub chkVatVisible_CheckedChanged(sender As Object, e As EventArgs) Handles chkVatVisible.CheckedChanged
+        Dim cmd As SqlCommand
+        If chkVatVisible.Checked = True Then
+            cmd = New SqlCommand("Update CCT_ORDERS_DOOR set visibleVAT = 1 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
+        Else
+            cmd = New SqlCommand("Update CCT_ORDERS_DOOR set visibleVAT = 0 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
+        End If
+    End Sub
+
 End Class
