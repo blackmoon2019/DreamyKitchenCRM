@@ -284,7 +284,7 @@ Partial Public Class RepCUSOfferCloset
         '
         Me.XrLabel93.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel93.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel93.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Side5Name]")})
+        Me.XrLabel93.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Ependisis5Name]")})
         Me.XrLabel93.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrLabel93.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel93.LocationFloat = New DevExpress.Utils.PointFloat(156.0413!, 134.0!)
@@ -682,7 +682,7 @@ Partial Public Class RepCUSOfferCloset
         '
         Me.XrLabel7.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Side4Name]")})
+        Me.XrLabel7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Ependisis4Name]")})
         Me.XrLabel7.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrLabel7.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(156.0413!, 133.9999!)
@@ -1080,7 +1080,7 @@ Partial Public Class RepCUSOfferCloset
         '
         Me.XrLabel61.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel61.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel61.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Side3Name]")})
+        Me.XrLabel61.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Ependisis3Name]")})
         Me.XrLabel61.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrLabel61.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel61.LocationFloat = New DevExpress.Utils.PointFloat(156.0413!, 134.0!)
@@ -1478,7 +1478,7 @@ Partial Public Class RepCUSOfferCloset
         '
         Me.XrLabel24.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel24.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel24.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Side2Name]")})
+        Me.XrLabel24.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Ependisis2Name]")})
         Me.XrLabel24.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrLabel24.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(156.0413!, 134.0!)
@@ -1843,12 +1843,12 @@ Partial Public Class RepCUSOfferCloset
         '
         Me.XrLabel30.BackColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(206, Byte), Integer))
         Me.XrLabel30.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
-        Me.XrLabel30.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel30.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel30.Font = New System.Drawing.Font("Zona Pro", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel30.ForeColor = System.Drawing.Color.Black
         Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(0!, 166.9029!)
         Me.XrLabel30.Name = "XrLabel30"
         Me.XrLabel30.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)
-        Me.XrLabel30.SizeF = New System.Drawing.SizeF(725.0!, 31.61996!)
+        Me.XrLabel30.SizeF = New System.Drawing.SizeF(725.0!, 25.0!)
         Me.XrLabel30.StylePriority.UseBackColor = False
         Me.XrLabel30.StylePriority.UseBorderColor = False
         Me.XrLabel30.StylePriority.UseFont = False
@@ -1895,7 +1895,7 @@ Partial Public Class RepCUSOfferCloset
         '
         Me.XrLabel11.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Side1Name]")})
+        Me.XrLabel11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Ependisis1Name]")})
         Me.XrLabel11.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
         Me.XrLabel11.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(156.0413!, 134.0!)
@@ -2528,7 +2528,7 @@ Partial Public Class RepCUSOfferCloset
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "e4273d18-61e5-440a-b309-f7eeaea25b57"
+        Me.OfferID.ValueInfo = "ecef0a62-5dca-4d52-b01e-6d9c3af1a946"
         DynamicListLookUpSettings1.DataMember = "vw_CCT_ORDERS_CLOSET"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"

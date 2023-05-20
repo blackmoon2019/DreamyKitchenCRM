@@ -145,8 +145,8 @@ Partial Public Class RepCUSOfferKitchen3ndPage
         '
         Me.XrLabel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer))
         Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(Len([notes])=0,false,true)")})
-        Me.XrLabel2.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrLabel2.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.ForeColor = System.Drawing.Color.Black
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(1.000032!, 162.6132!)
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.SizeF = New System.Drawing.SizeF(723.9999!, 25.0!)
@@ -621,7 +621,7 @@ Partial Public Class RepCUSOfferKitchen3ndPage
         Me.XrLabel6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(0!, 79.21429!)
         Me.XrLabel6.Name = "XrLabel6"
-        Me.XrLabel6.SizeF = New System.Drawing.SizeF(724.9999!, 34.14286!)
+        Me.XrLabel6.SizeF = New System.Drawing.SizeF(724.9999!, 18.07144!)
         Me.XrLabel6.StylePriority.UseFont = False
         Me.XrLabel6.StylePriority.UseForeColor = False
         Me.XrLabel6.StylePriority.UseTextAlignment = False
@@ -698,8 +698,8 @@ Partial Public Class RepCUSOfferKitchen3ndPage
         'XrLabel41
         '
         Me.XrLabel41.BackColor = System.Drawing.Color.FromArgb(CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer))
-        Me.XrLabel41.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel41.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrLabel41.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel41.ForeColor = System.Drawing.Color.Black
         Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(0!, 142.7679!)
         Me.XrLabel41.Name = "XrLabel41"
         Me.XrLabel41.SizeF = New System.Drawing.SizeF(724.0!, 25.0!)
@@ -713,8 +713,8 @@ Partial Public Class RepCUSOfferKitchen3ndPage
         'XrLabel39
         '
         Me.XrLabel39.BackColor = System.Drawing.Color.FromArgb(CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer), CType(CType(217, Byte), Integer))
-        Me.XrLabel39.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.XrLabel39.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
+        Me.XrLabel39.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel39.ForeColor = System.Drawing.Color.Black
         Me.XrLabel39.LocationFloat = New DevExpress.Utils.PointFloat(1.000032!, 0!)
         Me.XrLabel39.Name = "XrLabel39"
         Me.XrLabel39.SizeF = New System.Drawing.SizeF(723.9999!, 25.0!)

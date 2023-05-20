@@ -3,6 +3,7 @@ Imports DevExpress.XtraLayout
 Imports DevExpress.XtraEditors
 Imports System.IO
 Imports DevExpress.XtraRichEdit.Import.Html
+Imports Org.BouncyCastle.Asn1.X500
 
 Public Class DBQueries
     Public Enum InsertMode
@@ -1105,6 +1106,39 @@ NextItem:
             sSQL.AppendLine("UPDATE " & sTable & " SET ")
             If ExtraFieldsAndValues.Length > 0 Then sSQL.AppendLine(ExtraFieldsAndValues) : IsFirstField = False
             For Each item As BaseLayoutItem In control.Items
+                'Γίνεται διαχείριση όταν υπάρχει TabbedControlGroup  με Controls
+                'If TypeOf item Is TabbedControlGroup Then
+                '    Dim LTabedItem As TabbedControlGroup = CType(item, TabbedControlGroup)
+                '    For Each Tabeditem As LayoutControlItem In LTabedItem.SelectedTabPage.Items
+                '        If TypeOf Tabeditem.Control Is DevExpress.XtraEditors.TextEdit Then
+                '            Dim txt As DevExpress.XtraEditors.TextEdit
+                '            txt = Tabeditem.Control
+                '            If txt.Tag <> "" Then
+                '                'Βάζω τις τιμές του TAG σε array
+                '                TagValue = txt.Tag.ToString.Split(",")
+                '                'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
+                '                Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
+                '                ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
+                '                If IgnoreVisibility = True Then
+                '                    If txt.Visible = False Then GoTo NextItem
+                '                End If
+                '                'If LItem.Control.Visible = True 
+                '                If value <> Nothing Then
+                '                    ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
+                '                    sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
+                '                    ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
+                '                    ' Αλλιώς το παίρνουμε όταν είναι text και αλλιώς όταν είναι LookupEdit
+                '                End If
+                '                If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                '                    sSQL.Append(toSQLValueS(txt.EditValue, True))
+                '                Else
+                '                    sSQL.Append(toSQLValueS(txt.Text.Replace("%", "")))
+                '                End If
+                '            End If
+                '        End If
+                '    Next
+
+                'End If
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
                     If LItem.ControlName <> Nothing Then

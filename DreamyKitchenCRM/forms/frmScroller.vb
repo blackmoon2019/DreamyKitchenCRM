@@ -1992,7 +1992,6 @@ Public Class frmScroller
                     frmCUSOfferOrderCloset.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
                     frmCUSOfferOrderCloset.IsOrder = 0
                 End If
-                frmCUSOfferOrderCloset.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmCUSOfferOrderCloset.MdiParent = frmMain
                 frmCUSOfferOrderCloset.Mode = FormMode.NewRecord
                 frmCUSOfferOrderCloset.Scroller = GridView1

@@ -129,6 +129,7 @@ Public Class frmCUSOfferOrderKitchen
                     End If
                 Else
                     cmdConvertToOrder.Enabled = False
+                    If sFields("CreatedFromOfferID") <> "" Then cboCUS.Enabled = False
                 End If
                 sFields = Nothing
 
@@ -737,7 +738,7 @@ Public Class frmCUSOfferOrderKitchen
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False
+                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
                 LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception
