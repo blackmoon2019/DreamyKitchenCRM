@@ -946,4 +946,48 @@ Public Class frmCUSOfferOrderKitchen
             e.Handled = True
         End If
     End Sub
+
+    Private Sub cboVBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVBOXColors.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboVBOXColors, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboVBOXColors.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboKBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKBOXColors.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboKBOXColors, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboKBOXColors.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboYBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYBOXColors.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboYBOXColors, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboYBOXColors.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboGOLAColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboGOLAColors.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboGOLAColors, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboGOLAColors.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
 End Class

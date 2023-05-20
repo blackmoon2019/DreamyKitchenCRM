@@ -85,6 +85,7 @@ Public Class frmCUSOfferOrderSpecialConstr
 
         If sIsOrder = True Then
             LayoutControlGroup2.Text = "Στοιχεία Παραγγελίας"
+            LayoutControlGroup1.Text = "Στοιχεία Παραγγελίας"
             LayoutControlItem12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem15.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -93,6 +94,7 @@ Public Class frmCUSOfferOrderSpecialConstr
             LayoutControlItem72.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
         Else
+            LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
             LayoutControlGroup2.Text = "Στοιχεία Προσφοράς"
             LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
             LayoutControlItem4.Text = "Αρ. Προσφοράς"

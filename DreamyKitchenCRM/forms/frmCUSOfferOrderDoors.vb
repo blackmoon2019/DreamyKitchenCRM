@@ -447,14 +447,14 @@ Public Class frmCUSOfferOrderDoors
             Case 3 : cboDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType2.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboDoorType2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageDoorType(cboDoorType2, FormMode.EditRecord)
             Case 3 : cboDoorType2.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType3.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboDoorType3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageDoorType(cboDoorType3, FormMode.EditRecord)
@@ -522,7 +522,7 @@ Public Class frmCUSOfferOrderDoors
 
     Private Sub cboDoorType2_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType2.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType2, e.DisplayValue)
             If sDoorTypeID <> "" Then
                 Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
                 cboDoorType2.EditValue = System.Guid.Parse(sDoorTypeID)
@@ -532,7 +532,7 @@ Public Class frmCUSOfferOrderDoors
     End Sub
     Private Sub cboDoorType3_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType3.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType3, e.DisplayValue)
             If sDoorTypeID <> "" Then
                 Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
                 cboDoorType3.EditValue = System.Guid.Parse(sDoorTypeID)
@@ -542,7 +542,7 @@ Public Class frmCUSOfferOrderDoors
     End Sub
     Private Sub cboDoorType4_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType4.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType4, e.DisplayValue)
             If sDoorTypeID <> "" Then
                 Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
                 cboDoorType4.EditValue = System.Guid.Parse(sDoorTypeID)
@@ -552,7 +552,7 @@ Public Class frmCUSOfferOrderDoors
     End Sub
     Private Sub cboDoorType5_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType5.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType5, e.DisplayValue)
             If sDoorTypeID <> "" Then
                 Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
                 cboDoorType5.EditValue = System.Guid.Parse(sDoorTypeID)
@@ -562,7 +562,7 @@ Public Class frmCUSOfferOrderDoors
     End Sub
     Private Sub cboDoorType6_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType6.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType, e.DisplayValue)
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboDoorType6, e.DisplayValue)
             If sDoorTypeID <> "" Then
                 Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
                 cboDoorType6.EditValue = System.Guid.Parse(sDoorTypeID)

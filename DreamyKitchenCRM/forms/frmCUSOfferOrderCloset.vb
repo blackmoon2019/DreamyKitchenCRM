@@ -384,14 +384,14 @@ Public Class frmCUSOfferOrderCloset
             Case 3 : cboBOXColors.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboBOXColors2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboBOXColors2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors2.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboBOXColors2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageDoorType(cboBOXColors2, FormMode.EditRecord)
             Case 3 : cboBOXColors2.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboBOXColors3_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboBOXColors3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors3.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboBOXColors3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageDoorType(cboBOXColors3, FormMode.EditRecord)
@@ -427,14 +427,14 @@ Public Class frmCUSOfferOrderCloset
             Case 3 : cboDoorType.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType2.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboDoorType8, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageDoorType(cboDoorType8, FormMode.EditRecord)
             Case 3 : cboDoorType8.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType3.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboDoorType9, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageDoorType(cboDoorType9, FormMode.EditRecord)
@@ -469,14 +469,14 @@ Public Class frmCUSOfferOrderCloset
             Case 3 : cboDoorType7.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType8_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType8_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType8.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboDoorType2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageDoorType(cboDoorType2, FormMode.EditRecord)
             Case 3 : cboDoorType2.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorType9_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
+    Private Sub cboDoorType9_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType9.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboDoorType3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageDoorType(cboDoorType3, FormMode.EditRecord)
@@ -987,6 +987,72 @@ Public Class frmCUSOfferOrderCloset
             cmd = New SqlCommand("Update CCT_ORDERS_CLOSET set visibleVAT = 1 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
         Else
             cmd = New SqlCommand("Update CCT_ORDERS_CLOSET set visibleVAT = 0 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
+        End If
+    End Sub
+
+    Private Sub cboBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboBOXColors, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboBOXColors.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboBOXColors2_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors2.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboBOXColors2, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboBOXColors2.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboBOXColors3_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors3.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboBOXColors3, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboBOXColors3.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboBOXColors4_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors4.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboBOXColors4, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboBOXColors4.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboBOXColors5_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors5.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboBOXColors5, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboBOXColors5.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboBOXColors6_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors6.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboBOXColors6, e.DisplayValue)
+            If sDoorTypeID <> "" Then
+                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+                cboBOXColors6.EditValue = System.Guid.Parse(sDoorTypeID)
+            End If
+            e.Handled = True
         End If
     End Sub
 End Class

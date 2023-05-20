@@ -1169,7 +1169,7 @@ Partial Public Class RepCUSOfferKitchen
         '
         Me.XrLabel81.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel81.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel81.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[code]")})
+        Me.XrLabel81.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[arProt]")})
         Me.XrLabel81.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
         Me.XrLabel81.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel81.LocationFloat = New DevExpress.Utils.PointFloat(547.5133!, 102.9584!)
