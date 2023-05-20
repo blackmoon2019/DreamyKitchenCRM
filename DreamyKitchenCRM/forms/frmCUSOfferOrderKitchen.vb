@@ -93,6 +93,7 @@ Public Class frmCUSOfferOrderKitchen
         Else
             LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
             LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
+            LayoutControlItem28.Text = "Αρ. Προσφοράς"
             LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             LayoutControlItem1.Tag = 0
@@ -235,34 +236,35 @@ Public Class frmCUSOfferOrderKitchen
                         InsertSelectedRows(False)
                         LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
                         LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def")
-                        cmdConvertToOrder.Enabled = True
+                        If sIsOrder = False Then cmdConvertToOrder.Enabled = True
                     End If
-                    Mode = FormMode.EditRecord
-                    Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
-                    HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
-                    HasCloset = cboTRANSH.GetColumnValue("Iscloset")
-                    HasDoors = cboTRANSH.GetColumnValue("Isdoors")
-                    HasSc = cboTRANSH.GetColumnValue("Issc")
-                    If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                        XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        Exit Sub
-                    End If
-                    ' Δημιουργία/Ενημέρωση Κοστολόγησης
-                    Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
-                        oCmd.CommandType = CommandType.StoredProcedure
-                        oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
-                        oCmd.Parameters.AddWithValue("@cctOrderKitchenID", sID)
-                        oCmd.Parameters.AddWithValue("@Mode", 1)
-                        oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
-                        oCmd.ExecuteNonQuery()
-                    End Using
 
-                    'If Mode = FormMode.NewRecord Then
-                    '    Cls.ClearCtrls(LayoutControl1)
-                    '    txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
-                    'End If
+                    Mode = FormMode.EditRecord
+                        Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
+                        HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
+                        HasCloset = cboTRANSH.GetColumnValue("Iscloset")
+                        HasDoors = cboTRANSH.GetColumnValue("Isdoors")
+                        HasSc = cboTRANSH.GetColumnValue("Issc")
+                        If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
+                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Exit Sub
+                        End If
+                        ' Δημιουργία/Ενημέρωση Κοστολόγησης
+                        Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
+                            oCmd.CommandType = CommandType.StoredProcedure
+                            oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                            oCmd.Parameters.AddWithValue("@cctOrderKitchenID", sID)
+                            oCmd.Parameters.AddWithValue("@Mode", 1)
+                            oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+
+                        'If Mode = FormMode.NewRecord Then
+                        '    Cls.ClearCtrls(LayoutControl1)
+                        '    txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
+                        'End If
+                    End If
                 End If
-            End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

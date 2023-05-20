@@ -5,6 +5,7 @@ Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
@@ -84,10 +85,12 @@ Public Class frmCUSOfferOrderCloset
             LayoutControlGroup11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlGroup12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlGroup13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            LayoutControlGroup15.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
         Else
             LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
             LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
+            LayoutControlItem4.Text = "Αρ. Προσφοράς"
             LayoutControlGroup10.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             LayoutControlItem1.Tag = 0
         End If
@@ -140,6 +143,7 @@ Public Class frmCUSOfferOrderCloset
                     End If
                 Else
                     cmdConvertToOrder.Enabled = False
+                    If sFields("CreatedFromOfferID") <> "" Then cboCUS.Enabled = False
                 End If
 
 
@@ -182,10 +186,12 @@ Public Class frmCUSOfferOrderCloset
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sGuid,, "isOrder", IIf(sIsOrder = True, 1, 0))
+                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sGuid, True, "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sID,,,,, "isOrder=" & IIf(sIsOrder = True, 1, 0))
+                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
                         'sGuid = sID
                 End Select
 
@@ -196,10 +202,13 @@ Public Class frmCUSOfferOrderCloset
 
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Mode = FormMode.EditRecord
-                    TabNavigationPage2.Enabled = True
-                    cmdConvertToOrder.Enabled = True
+                    If Mode = FormMode.NewRecord Then
+                        TabNavigationPage2.Enabled = True
+                        If sIsOrder = False Then cmdConvertToOrder.Enabled = True
+                    End If
 
+
+                    Mode = FormMode.EditRecord
                     Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
                     HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
                     HasCloset = cboTRANSH.GetColumnValue("Iscloset")
@@ -650,7 +659,7 @@ Public Class frmCUSOfferOrderCloset
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False
+                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
                 LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception

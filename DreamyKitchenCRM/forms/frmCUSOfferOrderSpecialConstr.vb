@@ -95,6 +95,7 @@ Public Class frmCUSOfferOrderSpecialConstr
         Else
             LayoutControlGroup2.Text = "Στοιχεία Προσφοράς"
             LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
+            LayoutControlItem4.Text = "Αρ. Προσφοράς"
             LayoutControlItem11.Tag = 0
         End If
         Select Case Mode
@@ -134,10 +135,12 @@ Public Class frmCUSOfferOrderSpecialConstr
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sGuid, True, "isOrder", IIf(sIsOrder = True, 1, 0))
+                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sGuid, True, "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sID, True,,,, "isOrder=" & IIf(sIsOrder = True, 1, 0))
+                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
                         'sGuid = sID
                 End Select
 
@@ -426,7 +429,7 @@ Public Class frmCUSOfferOrderSpecialConstr
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.AddWithValue("@OfferID", sID)
                     oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
-                    oCmd.Parameters.AddWithValue("@Mode", 1)
+                    oCmd.Parameters.AddWithValue("@Mode", 4)
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)

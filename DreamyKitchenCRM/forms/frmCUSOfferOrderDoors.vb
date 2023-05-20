@@ -92,6 +92,7 @@ Public Class frmCUSOfferOrderDoors
             LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
         Else
             LayoutControlItem41.Tag = 0
+            LayoutControlItem4.Text = "Αρ. Προσφοράς"
             LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
             LayoutControlGroup4.Text = "Στοιχεία Προσφοράς"
             LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
@@ -182,10 +183,12 @@ Public Class frmCUSOfferOrderDoors
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sGuid,, "isOrder", IIf(sIsOrder = True, 1, 0))
+                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sGuid, True, "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sID,,,,, "isOrder=" & IIf(sIsOrder = True, 1, 0))
+                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
 
                         'sGuid = sID
                 End Select

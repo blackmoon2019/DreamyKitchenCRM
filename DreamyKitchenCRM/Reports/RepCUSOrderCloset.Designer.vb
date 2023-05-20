@@ -245,7 +245,7 @@ Partial Public Class RepCUSOrderCloset
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "ecef0a62-5dca-4d52-b01e-6d9c3af1a946"
+        Me.OfferID.ValueInfo = "e5dc6b8c-18ae-46fe-b4cd-87059cdbfd0c"
         DynamicListLookUpSettings1.DataMember = "vw_CCT_ORDERS_CLOSET"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
@@ -557,7 +557,7 @@ Partial Public Class RepCUSOrderCloset
         '
         Me.XrCheckBox5.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox5.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrCheckBox5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HoodAlignment]")})
+        Me.XrCheckBox5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[LedProfil5]")})
         Me.XrCheckBox5.LocationFloat = New DevExpress.Utils.PointFloat(594.1367!, 31.61913!)
         Me.XrCheckBox5.Name = "XrCheckBox5"
         Me.XrCheckBox5.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -955,7 +955,7 @@ Partial Public Class RepCUSOrderCloset
         '
         Me.XrCheckBox4.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox4.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrCheckBox4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HoodAlignment]")})
+        Me.XrCheckBox4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[LedProfil4]")})
         Me.XrCheckBox4.LocationFloat = New DevExpress.Utils.PointFloat(594.1367!, 31.61913!)
         Me.XrCheckBox4.Name = "XrCheckBox4"
         Me.XrCheckBox4.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -1353,7 +1353,7 @@ Partial Public Class RepCUSOrderCloset
         '
         Me.XrCheckBox3.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox3.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrCheckBox3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HoodAlignment]")})
+        Me.XrCheckBox3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[LedProfil3]")})
         Me.XrCheckBox3.LocationFloat = New DevExpress.Utils.PointFloat(594.1367!, 31.61913!)
         Me.XrCheckBox3.Name = "XrCheckBox3"
         Me.XrCheckBox3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -1751,7 +1751,7 @@ Partial Public Class RepCUSOrderCloset
         '
         Me.XrCheckBox1.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox1.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrCheckBox1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HoodAlignment]")})
+        Me.XrCheckBox1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[LedProfil2]")})
         Me.XrCheckBox1.LocationFloat = New DevExpress.Utils.PointFloat(594.1367!, 31.61913!)
         Me.XrCheckBox1.Name = "XrCheckBox1"
         Me.XrCheckBox1.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -2168,7 +2168,7 @@ Partial Public Class RepCUSOrderCloset
         '
         Me.XrCheckBox2.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox2.Borders = DevExpress.XtraPrinting.BorderSide.None
-        Me.XrCheckBox2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[HoodAlignment]")})
+        Me.XrCheckBox2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "[LedProfil]")})
         Me.XrCheckBox2.LocationFloat = New DevExpress.Utils.PointFloat(594.1367!, 31.61913!)
         Me.XrCheckBox2.Name = "XrCheckBox2"
         Me.XrCheckBox2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -2478,7 +2478,7 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel14.SizeF = New System.Drawing.SizeF(150.0369!, 20.0!)
         Me.XrLabel14.StylePriority.UseFont = False
         Me.XrLabel14.StylePriority.UseForeColor = False
-        Me.XrLabel14.Text = "Ημέρες Παράδοσης: "
+        Me.XrLabel14.Text = "Ημ. Παράδοσης: "
         '
         'XrLabel15
         '
@@ -2508,7 +2508,7 @@ Partial Public Class RepCUSOrderCloset
         '
         Me.XrLabel23.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel23.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel23.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[daysofdeliver]")})
+        Me.XrLabel23.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[dtDeliver]")})
         Me.XrLabel23.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
         Me.XrLabel23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(585.839!, 70.99996!)
@@ -2523,6 +2523,7 @@ Partial Public Class RepCUSOrderCloset
         Me.XrLabel23.StylePriority.UseTextAlignment = False
         Me.XrLabel23.Text = "XrLabel23"
         Me.XrLabel23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter
+        Me.XrLabel23.TextFormatString = "{0:d}"
         '
         'XrLabel2
         '
