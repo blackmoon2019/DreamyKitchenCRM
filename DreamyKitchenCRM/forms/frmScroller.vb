@@ -89,9 +89,18 @@ Public Class frmScroller
                 sItem.Name = "ViewCusMov"
                 PopupMenuRows.AddItem(sItem)
             End If
+            Select Case sDataTable
+                Case "vw_INST_ELLIPSE"
+                    ' Το κουμπί απενεργοποιείται γιατί θα πρέπει να μπεί μέσα από την έλλεψη και να πατήσει μετατροπή σε παραγγελία
+                    BarNewRec.Enabled = False
+                Case "vw_CCT_ORDERS_KITCHEN", "vw_CCT_ORDERS_CLOSET", "vw_CCT_ORDERS_DOOR", "vw_CCT_ORDERS_SPECIAL_CONSTR"
+                    If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                        ' Το κουμπί απενεργοποιείται γιατί θα πρέπει να μπεί μέσα από την προσφορά και να πατήσει μετατροπή σε παραγγελία
+                        BarNewRec.Enabled = False
+                    End If
+
+            End Select
             If sDataTable = "vw_INST_ELLIPSE" Then
-                ' Το κουμπί απενεργοποιείται γιατί θα πρέπει να μπεί μέσα από την έλλεψη και να πατήσει μετατροπή σε παραγγελία
-                BarNewRec.Enabled = False
             End If
             GridView1.OptionsBehavior.AutoExpandAllGroups = True
             GridView1.OptionsMenu.ShowFooterItem = True
@@ -227,6 +236,7 @@ Public Class frmScroller
                     Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_ELLIPSE"
                         Dim Cmd As SqlCommand, sdr As SqlDataReader
                         sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
@@ -416,6 +426,7 @@ Public Class frmScroller
                     Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_ELLIPSE"
                         Dim Cmd As SqlCommand, sdr As SqlDataReader
                         sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(selectedRowHandle, "instID").ToString) & " and createdOn> " & toSQLValueS(CDate(GridView1.GetRowCellValue(selectedRowHandle, "createdOn")).ToString("yyyyMMdd"))
@@ -949,6 +960,19 @@ Public Class frmScroller
         Dim frmGen As frmGen = New frmGen()
         If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") Is Nothing Then Exit Sub
         Select Case sDataTable
+            Case "vw_BASE_CAT"
+                frmGen.Text = "Τύποι Κατασκευής"
+                frmGen.MdiParent = frmMain
+                frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmGen.Mode = FormMode.EditRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "BASE_CAT"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Κεντρικές Κατηγορίες Ερμαρίων"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_DMVER"
                 Dim frmVersions As frmVersions = New frmVersions()
                 frmVersions.Text = "Εκδόσεις"
@@ -1004,59 +1028,65 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmPrivateAgreement), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmPrivateAgreement.Show()
             Case "vw_CCT_ORDERS_CLOSET"
-                Dim frmCUSOrderCloset As frmCUSOrderCloset = New frmCUSOrderCloset()
-                frmCUSOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
-                frmCUSOrderCloset.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmCUSOrderCloset.MdiParent = frmMain
-                frmCUSOrderCloset.Mode = FormMode.EditRecord
-                frmCUSOrderCloset.Scroller = GridView1
-                frmCUSOrderCloset.FormScroller = Me
-                frmCUSOrderCloset.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOrderCloset.Show()
-            Case "vw_CCT_ORDERS_KITCHEN"
-                Dim frmCUSOrderKitchen As frmCUSOrderKitchen = New frmCUSOrderKitchen()
-                frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
-                frmCUSOrderKitchen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmCUSOrderKitchen.MdiParent = frmMain
-                frmCUSOrderKitchen.Mode = FormMode.EditRecord
-                frmCUSOrderKitchen.Scroller = GridView1
-                frmCUSOrderKitchen.FormScroller = Me
-                frmCUSOrderKitchen.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOrderKitchen.Show()
-            Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
-                Dim frmCUSOfferSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
-                frmCUSOfferSpecialConstr.Text = "Έντυπο Παραγγελίας Πελατών(Έπιπλο Μπάνιου)"
-                frmCUSOfferSpecialConstr.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmCUSOfferSpecialConstr.MdiParent = frmMain
-                frmCUSOfferSpecialConstr.IsOrder = True
-                frmCUSOfferSpecialConstr.Mode = FormMode.EditRecord
-                frmCUSOfferSpecialConstr.Scroller = GridView1
-                frmCUSOfferSpecialConstr.FormScroller = Me
-                frmCUSOfferSpecialConstr.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferSpecialConstr), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOfferSpecialConstr.Show()
-            Case "vw_CCT_OFFERS_SPECIAL_CONSTR"
-                Dim frmCUSOfferSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
-                frmCUSOfferSpecialConstr.Text = "Έντυπο Προσφοράς Πελατών(Έπιπλο Μπάνιου)"
-                frmCUSOfferSpecialConstr.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmCUSOfferSpecialConstr.IsOrder = False
-                frmCUSOfferSpecialConstr.MdiParent = frmMain
-                frmCUSOfferSpecialConstr.Mode = FormMode.EditRecord
-                frmCUSOfferSpecialConstr.Scroller = GridView1
-                frmCUSOfferSpecialConstr.FormScroller = Me
-                frmCUSOfferSpecialConstr.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferSpecialConstr), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOfferSpecialConstr.Show()
-            Case "vw_CCT_OFFERS_DOOR", "vw_CCT_ORDERS_DOOR"
-                Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
-                If sDataTable = "vw_CCT_OFFERS_DOOR" Then
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Πόρτες)"
-                    frmCUSOfferOrderDoors.IsOrder = False
+                Dim frmCUSOfferOrderCloset As frmCUSOfferOrderCloset = New frmCUSOfferOrderCloset()
+                frmCUSOfferOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOfferOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderCloset.IsOrder = 1
                 Else
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
-                    frmCUSOfferOrderDoors.IsOrder = True
+                    frmCUSOfferOrderCloset.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderCloset.IsOrder = 0
+                End If
+                frmCUSOfferOrderCloset.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmCUSOfferOrderCloset.MdiParent = frmMain
+                frmCUSOfferOrderCloset.Mode = FormMode.EditRecord
+                frmCUSOfferOrderCloset.Scroller = GridView1
+                frmCUSOfferOrderCloset.FormScroller = Me
+                frmCUSOfferOrderCloset.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCUSOfferOrderCloset.Show()
+            Case "vw_CCT_ORDERS_KITCHEN"
+                Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOfferOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                    frmCUSOfferOrderKitchen.IsOrder = 1
+                Else
+                    frmCUSOfferOrderKitchen.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
+                    frmCUSOfferOrderKitchen.IsOrder = 0
+                End If
+                frmCUSOfferOrderKitchen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmCUSOfferOrderKitchen.MdiParent = frmMain
+                frmCUSOfferOrderKitchen.Mode = FormMode.EditRecord
+                frmCUSOfferOrderKitchen.Scroller = GridView1
+                frmCUSOfferOrderKitchen.FormScroller = Me
+                frmCUSOfferOrderKitchen.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCUSOfferOrderKitchen.Show()
+            Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
+                Dim frmCUSOfferOrderSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOfferOrderSpecialConstr.Text = "Έντυπο Προσφοράς Πελατών(Έπιπλο Μπάνιου)"
+                    frmCUSOfferOrderSpecialConstr.IsOrder = 1
+                Else
+                    frmCUSOfferOrderSpecialConstr.Text = "Έντυπο Προσφοράς Πελατών(Έπιπλο Μπάνιου)"
+                    frmCUSOfferOrderSpecialConstr.IsOrder = 0
+                End If
+                frmCUSOfferOrderSpecialConstr.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmCUSOfferOrderSpecialConstr.MdiParent = frmMain
+                frmCUSOfferOrderSpecialConstr.Mode = FormMode.EditRecord
+                frmCUSOfferOrderSpecialConstr.Scroller = GridView1
+                frmCUSOfferOrderSpecialConstr.FormScroller = Me
+                frmCUSOfferOrderSpecialConstr.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderSpecialConstr), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCUSOfferOrderSpecialConstr.Show()
+            Case "vw_CCT_ORDERS_DOOR"
+                Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.IsOrder = 1
+                Else
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.IsOrder = 0
                 End If
                 frmCUSOfferOrderDoors.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmCUSOfferOrderDoors.MdiParent = frmMain
@@ -1066,28 +1096,6 @@ Public Class frmScroller
                 frmCUSOfferOrderDoors.FormScrollerExist = True
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderDoors), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderDoors.Show()
-            Case "vw_CCT_OFFERS_CLOSET"
-                Dim frmCUSOfferCloset As frmCUSOfferCloset = New frmCUSOfferCloset()
-                frmCUSOfferCloset.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπες)"
-                frmCUSOfferCloset.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmCUSOfferCloset.MdiParent = frmMain
-                frmCUSOfferCloset.Mode = FormMode.EditRecord
-                frmCUSOfferCloset.Scroller = GridView1
-                frmCUSOfferCloset.FormScroller = Me
-                frmCUSOfferCloset.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOfferCloset.Show()
-            Case "vw_CCT_OFFERS"
-                Dim frmCUSOffer As frmCUSOfferKitchen = New frmCUSOfferKitchen()
-                frmCUSOffer.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
-                frmCUSOffer.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmCUSOffer.MdiParent = frmMain
-                frmCUSOffer.Mode = FormMode.EditRecord
-                frmCUSOffer.Scroller = GridView1
-                frmCUSOffer.FormScroller = Me
-                frmCUSOffer.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOffer.Show()
             Case "vw_SUP_PAYMENTS_H"
                 Dim frmSUPKal As frmSUPKal = New frmSUPKal()
                 frmSUPKal.Text = "Πληρωμές Παραστατικών Προμηθευτών"
@@ -1896,6 +1904,18 @@ Public Class frmScroller
     Private Sub NewRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_BASE_CAT"
+                frmGen.Text = "Τύποι Κατασκευής"
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.NewRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "BASE_CAT"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Κεντρικές Κατηγορίες Ερμαρίων"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_DMVER"
                 Dim frmVersions As frmVersions = New frmVersions()
                 frmVersions.Text = "Εκδόσεις"
@@ -1963,55 +1983,67 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmPrivateAgreement), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmPrivateAgreement.Show()
             Case "vw_CCT_ORDERS_CLOSET"
-                Dim frmCUSOrderCloset As frmCUSOrderCloset = New frmCUSOrderCloset()
-                frmCUSOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
-                frmCUSOrderCloset.MdiParent = frmMain
-                frmCUSOrderCloset.Mode = FormMode.NewRecord
-                frmCUSOrderCloset.Scroller = GridView1
-                frmCUSOrderCloset.FormScroller = Me
-                frmCUSOrderCloset.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOrderCloset.Show()
-            Case "vw_CCT_ORDERS_KITCHEN"
-                Dim frmCUSOrderKitchen As frmCUSOrderKitchen = New frmCUSOrderKitchen()
-                frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
-                frmCUSOrderKitchen.MdiParent = frmMain
-                frmCUSOrderKitchen.Mode = FormMode.NewRecord
-                frmCUSOrderKitchen.Scroller = GridView1
-                frmCUSOrderKitchen.FormScroller = Me
-                frmCUSOrderKitchen.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOrderKitchen.Show()
-            Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
-                Dim frmCUSOfferSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
-                frmCUSOfferSpecialConstr.Text = "Έντυπο Παραγγελίας Πελατών(Έπιπλο Μπάνιου)"
-                frmCUSOfferSpecialConstr.MdiParent = frmMain
-                frmCUSOfferSpecialConstr.IsOrder = True
-                frmCUSOfferSpecialConstr.Mode = FormMode.NewRecord
-                frmCUSOfferSpecialConstr.Scroller = GridView1
-                frmCUSOfferSpecialConstr.FormScroller = Me
-                frmCUSOfferSpecialConstr.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferSpecialConstr), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOfferSpecialConstr.Show()
-            Case "vw_CCT_OFFERS_SPECIAL_CONSTR"
-                Dim frmCUSOfferSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
-                frmCUSOfferSpecialConstr.Text = "Έντυπο Προσφοράς Πελατών(Έπιπλο Μπάνιου)"
-                frmCUSOfferSpecialConstr.IsOrder = False
-                frmCUSOfferSpecialConstr.MdiParent = frmMain
-                frmCUSOfferSpecialConstr.Mode = FormMode.NewRecord
-                frmCUSOfferSpecialConstr.Scroller = GridView1
-                frmCUSOfferSpecialConstr.FormScroller = Me
-                frmCUSOfferSpecialConstr.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferSpecialConstr), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOfferSpecialConstr.Show()
-            Case "vw_CCT_OFFERS_DOOR", "vw_CCT_ORDERS_DOOR"
-                Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
-                If sDataTable = "vw_CCT_OFFERS_DOOR" Then
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Πόρτες)"
-                    frmCUSOfferOrderDoors.IsOrder = False
+                Dim frmCUSOfferOrderCloset As frmCUSOfferOrderCloset = New frmCUSOfferOrderCloset()
+                frmCUSOfferOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOfferOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderCloset.IsOrder = 1
                 Else
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
-                    frmCUSOfferOrderDoors.IsOrder = True
+                    frmCUSOfferOrderCloset.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderCloset.IsOrder = 0
+                End If
+                frmCUSOfferOrderCloset.MdiParent = frmMain
+                frmCUSOfferOrderCloset.Mode = FormMode.NewRecord
+                frmCUSOfferOrderCloset.Scroller = GridView1
+                frmCUSOfferOrderCloset.FormScroller = Me
+                frmCUSOfferOrderCloset.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCUSOfferOrderCloset.Show()
+            Case "vw_CCT_ORDERS_KITCHEN"
+                Dim frmBaseCat As frmBaseCat = New frmBaseCat
+                frmBaseCat.Text = "Τύποι Κατασκευής"
+                frmBaseCat.ShowDialog()
+                If frmBaseCat.BaseCat = 3 Then Exit Sub
+                Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
+                frmCUSOfferOrderKitchen.BaseCat = frmBaseCat.BaseCat
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOfferOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                    frmCUSOfferOrderKitchen.IsOrder = 1
+                Else
+                    frmCUSOfferOrderKitchen.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
+                    frmCUSOfferOrderKitchen.IsOrder = 0
+                End If
+                frmCUSOfferOrderKitchen.MdiParent = frmMain
+                frmCUSOfferOrderKitchen.Mode = FormMode.NewRecord
+                frmCUSOfferOrderKitchen.Scroller = GridView1
+                frmCUSOfferOrderKitchen.FormScroller = Me
+                frmCUSOfferOrderKitchen.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCUSOfferOrderKitchen.Show()
+            Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
+                Dim frmCUSOfferOrderSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOfferOrderSpecialConstr.Text = "Έντυπο Παραγγελίας Πελατών(Έπιπλο Μπάνιου)"
+                    frmCUSOfferOrderSpecialConstr.IsOrder = 1
+                Else
+                    frmCUSOfferOrderSpecialConstr.Text = "Έντυπο Προσφοράς Πελατών(Έπιπλο Μπάνιου)"
+                    frmCUSOfferOrderSpecialConstr.IsOrder = 0
+                End If
+                frmCUSOfferOrderSpecialConstr.MdiParent = frmMain
+                frmCUSOfferOrderSpecialConstr.Mode = FormMode.NewRecord
+                frmCUSOfferOrderSpecialConstr.Scroller = GridView1
+                frmCUSOfferOrderSpecialConstr.FormScroller = Me
+                frmCUSOfferOrderSpecialConstr.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderSpecialConstr), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmCUSOfferOrderSpecialConstr.Show()
+            Case "vw_CCT_ORDERS_DOOR"
+                Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
+                If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.IsOrder = 1
+                Else
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.IsOrder = 0
                 End If
                 frmCUSOfferOrderDoors.MdiParent = frmMain
                 frmCUSOfferOrderDoors.Mode = FormMode.NewRecord
@@ -2020,26 +2052,6 @@ Public Class frmScroller
                 frmCUSOfferOrderDoors.FormScrollerExist = True
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderDoors), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderDoors.Show()
-            Case "vw_CCT_OFFERS_CLOSET"
-                Dim frmCUSOfferCloset As frmCUSOfferCloset = New frmCUSOfferCloset()
-                frmCUSOfferCloset.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπες)"
-                frmCUSOfferCloset.MdiParent = frmMain
-                frmCUSOfferCloset.Mode = FormMode.NewRecord
-                frmCUSOfferCloset.Scroller = GridView1
-                frmCUSOfferCloset.FormScroller = Me
-                frmCUSOfferCloset.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOfferCloset.Show()
-            Case "vw_CCT_OFFERS"
-                Dim frmCUSOffer As frmCUSOfferKitchen = New frmCUSOfferKitchen()
-                frmCUSOffer.Text = "Έντυπο Προσφοράς Πελατών"
-                frmCUSOffer.MdiParent = frmMain
-                frmCUSOffer.Mode = FormMode.NewRecord
-                frmCUSOffer.Scroller = GridView1
-                frmCUSOffer.FormScroller = Me
-                frmCUSOffer.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmCUSOffer.Show()
             Case "vw_SUP_PAYMENTS_H"
                 Dim frmSUPKal As frmSUPKal = New frmSUPKal()
                 frmSUPKal.Text = "Πληρωμές Παραστατικών Προμηθευτών"

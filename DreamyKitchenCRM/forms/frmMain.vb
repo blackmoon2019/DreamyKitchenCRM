@@ -801,14 +801,16 @@ Public Class frmMain
     Private Sub BBcctOffer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBcctOffer.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
-        form.DataTable = "vw_CCT_OFFERS"
+        form.DataTable = "vw_CCT_ORDERS_KITCHEN"
+        form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
         form.Show()
     End Sub
     Private Sub BBCloset_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCloset.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
-        form.DataTable = "vw_CCT_OFFERS_CLOSET"
+        form.DataTable = "vw_CCT_ORDERS_CLOSET"
+        form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
         form.Show()
 
@@ -817,7 +819,8 @@ Public Class frmMain
     Private Sub BBDoors_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBDoors.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Προσφοράς Πελατών(Πόρτες)"
-        form.DataTable = "vw_CCT_OFFERS_DOOR"
+        form.DataTable = "vw_CCT_ORDERS_DOOR"
+        form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -825,7 +828,8 @@ Public Class frmMain
     Private Sub BBSpecialConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSpecialConstr.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Προσφοράς Πελατών(Ειδικές Κατασκευές)"
-        form.DataTable = "vw_CCT_OFFERS_SPECIAL_CONSTR"
+        form.DataTable = "vw_CCT_ORDERS_SPECIAL_CONSTR"
+        form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -834,6 +838,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνας)"
         form.DataTable = "vw_CCT_ORDERS_KITCHEN"
+        form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -867,6 +872,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπας)"
         form.DataTable = "vw_CCT_ORDERS_CLOSET"
+        form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -875,6 +881,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
         form.DataTable = "vw_CCT_ORDERS_DOOR"
+        form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -891,6 +898,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Έντυπο Παραγγελίας Πελατών(Ειδικές Κατασκευές)"
         form.DataTable = "vw_CCT_ORDERS_SPECIAL_CONSTR"
+        form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -1031,6 +1039,14 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Εργασίες"
         form.DataTable = "vw_PROJECT_JOBS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBBaseCatERP_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBBaseCatERP.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τύποι Κατασκευής"
+        form.DataTable = "vw_BASE_CAT"
         form.MdiParent = Me
         form.Show()
     End Sub

@@ -167,5 +167,75 @@ Public Class CombosManager
         form1.Show()
 
     End Sub
-
+    Public Sub ManageDoorType(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal DoorCatID As String = Nothing)
+        Dim frmDoorType As frmDoorType = New frmDoorType
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        frmDoorType.Text = "Κατηγορία Πόρτας"
+        frmDoorType.CallerControl = CallerControl
+        frmDoorType.CalledFromControl = True
+        frmDoorType.cboDoorCat.EditValue = DoorCatID
+        If CallerControl.EditValue <> Nothing Then frmDoorType.ID = CallerControl.EditValue.ToString
+        frmDoorType.MdiParent = frmMain
+        If CallerControl.EditValue <> Nothing Then frmDoorType.Mode = FormMode.EditRecord Else frmDoorType.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(frmDoorType.Parent.ClientRectangle.Width / 2 - frmDoorType.Width / 2), CInt(frmDoorType.Parent.ClientRectangle.Height / 2 - frmDoorType.Height / 2)))
+        frmDoorType.Show()
+    End Sub
+    Public Sub ManageBENCH(ByVal CallerControl As LookUpEdit, ByVal FrmCaller As DevExpress.XtraEditors.XtraForm, ByVal FrmMode As Byte)
+        Dim frmBench As frmBench = New frmBench
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        frmBench.CallerForm = FrmCaller.Name
+        frmBench.CallerControl = CallerControl
+        frmBench.CalledFromControl = True
+        frmBench.MdiParent = frmMain
+        If CallerControl.EditValue <> Nothing Then
+            frmBench.ID = CallerControl.EditValue.ToString
+            frmBench.Mode = FormMode.EditRecord
+        Else
+            frmBench.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
+        frmBench.Show()
+    End Sub
+    Public Sub ManageColors(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim frmColors As frmColors = New frmColors
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Select Case CallerControl.Name
+            Case "cboGOLAColors" : frmColors.ColorCategory = "1FA658C9-A338-4805-B38F-7E6503A5CD25"
+            Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors", "cboBOXColors", "cboBOXColors2",
+                 "cboBOXColors3", "cboBOXColors4", "cboBOXColors5", "cboBOXColors6" : frmColors.ColorCategory = "40C7BFFB-43EB-48FB-A467-74C0BCBE09FA"
+            Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors" : frmColors.ColorCategory = "1226147D-2FF2-4076-B24D-92ABC8FB4663"
+        End Select
+        frmColors.Text = "Χρώματα"
+        frmColors.CallerForm = "frmCUSOrderKitchen"
+        frmColors.CallerControlLKUP = CallerControl
+        frmColors.CalledFromControl = True
+        frmColors.MdiParent = frmMain
+        If CallerControl.EditValue <> Nothing Then
+            frmColors.ID = CallerControl.EditValue.ToString
+            frmColors.Mode = FormMode.EditRecord
+        Else
+            frmColors.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
+        frmColors.Show()
+    End Sub
+    Public Sub ManageSpecialConstr(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim form1 As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        form1.Text = "Είδη Κατασκευής"
+        form1.L1.Text = "Κωδικός"
+        form1.L2.Text = "Είδος"
+        form1.DataTable = "CONSTR_TYPE"
+        form1.CallerControl = CallerControl
+        form1.CalledFromControl = True
+        If CallerControl.EditValue <> Nothing Then
+            form1.ID = CallerControl.EditValue.ToString
+            form1.Mode = FormMode.EditRecord
+        Else
+            form1.Mode = FormMode.NewRecord
+        End If
+        form1.MdiParent = frmMain
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+        form1.Show()
+    End Sub
 End Class

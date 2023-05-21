@@ -99,14 +99,6 @@ Public Class frmColors
                 If CalledFromCtrl Then
                     Dim sSQL As New System.Text.StringBuilder
                     Select Case CallerFormName
-                        Case "frmCUSOffer"
-                            If CtrlComboLKUP.Name.Contains("PVC") Then
-                                frmCUSOfferKitchen.Vw_COLORSPVCTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSPVC)
-                                CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSPVCBindingSource
-                            Else
-                                frmCUSOfferKitchen.Vw_COLORSBOXTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSBOX)
-                                CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSBOXBindingSource
-                            End If
                         Case "frmErmaria"
                             Select Case CtrlCombo.Name
                                 Case "cboPVCColors"
@@ -129,24 +121,15 @@ Public Class frmColors
                         Case "frmCUSOrderKitchen"
                             Select Case CtrlComboLKUP.Name
                                 Case "cboGOLAColors"
-                                    frmCUSOrderKitchen.Vw_COLORSGOLATableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSGOLA)
-                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderKitchen.VwCOLORSGOLABindingSource
+                                    frmCUSOfferOrderKitchen.Vw_COLORSGOLATableAdapter.Fill(frmCUSOfferOrderKitchen.DreamyKitchenDataSet.vw_COLORSGOLA)
+                                    CtrlComboLKUP.Properties.DataSource = frmCUSOfferOrderKitchen.VwCOLORSGOLABindingSource
                                 Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors"
                                     'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
-                                    frmCUSOrderKitchen.Vw_COLORSBOXTableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSBOX)
-                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderKitchen.VwCOLORSBOXBindingSource
+                                    'frmCUSOrderKitchen.Vw_COLORSBOXTableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSBOX)
+                                   ' CtrlComboLKUP.Properties.DataSource = frmCUSOrderKitchen.VwCOLORSBOXBindingSource
                                 Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors"
-                                    frmCUSOrderKitchen.Vw_COLORSPVCTableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSPVC)
-                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderKitchen.VwCOLORSPVCBindingSource
-                            End Select
-                        Case "frmCUSOfferKitchen"
-                            Select Case CtrlComboLKUP.Name
-                                Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors"
-                                    frmCUSOfferKitchen.Vw_COLORSBOXTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSBOX)
-                                    CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSBOXBindingSource
-                                Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors"
-                                    frmCUSOfferKitchen.Vw_COLORSPVCTableAdapter.Fill(frmCUSOfferKitchen.DreamyKitchenDataSet.vw_COLORSPVC)
-                                    CtrlComboLKUP.Properties.DataSource = frmCUSOfferKitchen.VwCOLORSPVCBindingSource
+                                    'frmCUSOrderKitchen.Vw_COLORSPVCTableAdapter.Fill(frmCUSOrderKitchen.DreamyKitchenDataSet.vw_COLORSPVC)
+                                    'CtrlComboLKUP.Properties.DataSource = frmCUSOrderKitchen.VwCOLORSPVCBindingSource
                             End Select
                         Case "frmCUSOfferOrderDoors"
                             frmCUSOfferOrderDoors.Vw_COLORSDOORSTableAdapter.Fill(frmCUSOfferOrderDoors.DreamyKitchenDataSet.vw_COLORSDOORS)
@@ -155,11 +138,11 @@ Public Class frmColors
                             Select Case CtrlComboLKUP.Name
                                 Case "cboBOXColors"
                                     'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
-                                    frmCUSOrderCloset.Vw_COLORSBOXTableAdapter.Fill(frmCUSOrderCloset.DreamyKitchenDataSet.vw_COLORSBOX)
-                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderCloset.VwCOLORSBOXBindingSource
-                                Case "cboPVCColors"
-                                    frmCUSOrderCloset.Vw_COLORSPVCTableAdapter.Fill(frmCUSOrderCloset.DreamyKitchenDataSet.vw_COLORSPVC)
-                                    CtrlComboLKUP.Properties.DataSource = frmCUSOrderCloset.VwCOLORSPVCBindingSource
+                                    'frmCUSOrderCloset.Vw_COLORSBOXTableAdapter.Fill(frmCUSOrderCloset.DreamyKitchenDataSet.vw_COLORSBOX)
+                                    'CtrlComboLKUP.Properties.DataSource = frmCUSOrderCloset.VwCOLORSBOXBindingSource
+                                    'Case "cboPVCColors"
+                                    '    frmCUSOrderCloset.Vw_COLORSPVCTableAdapter.Fill(frmCUSOrderCloset.DreamyKitchenDataSet.vw_COLORSPVC)
+                                    '    CtrlComboLKUP.Properties.DataSource = frmCUSOrderCloset.VwCOLORSPVCBindingSource
                             End Select
 
                     End Select

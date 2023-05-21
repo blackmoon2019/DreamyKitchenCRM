@@ -16,7 +16,8 @@ Public Class FormLoader
     Private DbTblName As String
     Private DbQuery As String
 
-    Public Function LoadForm(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sSQL As String, Optional ByRef dictionary As Dictionary(Of String, String) = Nothing) As Boolean
+    Public Function LoadForm(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sSQL As String, Optional ByRef dictionary As Dictionary(Of String, String) = Nothing,
+                             Optional ByVal CheckVisibility As Boolean = False) As Boolean
 
         Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
         Dim sdr As SqlDataReader = cmd.ExecuteReader()
@@ -89,6 +90,7 @@ Public Class FormLoader
                 For Each item As BaseLayoutItem In control.Items
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
+                        'If LItem.ControlName.Contains("cboSides") Then Stop
                         If LItem.ControlName <> Nothing Then
                             'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                             If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
@@ -120,40 +122,42 @@ Public Class FormLoader
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα Προβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("0")))
                                 ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
-                                If LItem.Control.Visible = True Then
-                                    If value <> Nothing Then
-                                        TagV = TagValue(0).Replace("[", "").Replace("]", "")
-                                        Console.WriteLine(TagV)
-                                        sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
-                                        Dim index = sdr.GetOrdinal(TagV)
-                                        Console.WriteLine(sdr.GetDataTypeName(index))
-                                        Select Case sdr.GetDataTypeName(index)
-                                            Case "nvarchar"
-                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal(TagV)))
-                                            Case "int"
-                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetInt32(sdr.GetOrdinal(TagV)))
-                                            Case "uniqueidentifier"
-                                                'If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, (sdr.GetOrdinal(TagV)).ToString)
-                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetGuid(sdr.GetOrdinal(TagV)).ToString)
-                                            Case "bit"
-                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetBoolean(sdr.GetOrdinal(TagV)))
-                                            Case "decimal"
-                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDecimal(sdr.GetOrdinal(TagV)))
-                                            Case "datetime"
-                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
-                                            Case "date"
-                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
-                                            Case "varbinary"
-                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
-                                                    Dim pic As DevExpress.XtraEditors.PictureEdit
-                                                    Dim bytes As Byte()
-                                                    pic = LItem.Control
-                                                    bytes = DirectCast(sdr(TagV), Byte())
-                                                    pic.EditValue = bytes
-                                                End If
-                                        End Select
-                                    End If
+                                If CheckVisibility = True Then
+                                    If LItem.Control.Visible = False Then GoTo NextItem
                                 End If
+                                If value <> Nothing Then
+                                    TagV = TagValue(0).Replace("[", "").Replace("]", "")
+                                    Console.WriteLine(TagV)
+                                    sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
+                                    Dim index = sdr.GetOrdinal(TagV)
+                                    Console.WriteLine(sdr.GetDataTypeName(index))
+                                    Select Case sdr.GetDataTypeName(index)
+                                        Case "nvarchar"
+                                            If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal(TagV)))
+                                        Case "int"
+                                            If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetInt32(sdr.GetOrdinal(TagV)))
+                                        Case "uniqueidentifier"
+                                            'If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, (sdr.GetOrdinal(TagV)).ToString)
+                                            If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetGuid(sdr.GetOrdinal(TagV)).ToString)
+                                        Case "bit"
+                                            If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetBoolean(sdr.GetOrdinal(TagV)))
+                                        Case "decimal"
+                                            If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDecimal(sdr.GetOrdinal(TagV)))
+                                        Case "datetime"
+                                            If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                        Case "date"
+                                            If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                        Case "varbinary"
+                                            If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
+                                                Dim pic As DevExpress.XtraEditors.PictureEdit
+                                                Dim bytes As Byte()
+                                                pic = LItem.Control
+                                                bytes = DirectCast(sdr(TagV), Byte())
+                                                pic.EditValue = bytes
+                                            End If
+                                    End Select
+                                End If
+NextItem:
                             End If
                         End If
                     End If
