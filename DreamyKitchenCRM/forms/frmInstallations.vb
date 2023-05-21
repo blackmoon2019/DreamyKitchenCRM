@@ -393,11 +393,12 @@ Public Class frmInstallations
         End Select
 
     End Sub
+    'Έλεγχος αν υπάρχει εκκρεμότητα ανολοκλήρωτη
     Private Function CheckIfExistInstEllipse() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim EllipseID As String = ""
         Try
-            Cmd = New SqlCommand("Select TOP 1 ID FROM INST_ELLIPSE IE WHERE IE.instID= " & toSQLValueS(sID), CNDB)
+            Cmd = New SqlCommand("Select TOP 1 ID FROM INST_ELLIPSE IE WHERE completed = 0 and IE.instID= " & toSQLValueS(sID), CNDB)
             sdr = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
                 EllipseID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString.ToUpper
