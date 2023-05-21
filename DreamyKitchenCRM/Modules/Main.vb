@@ -171,7 +171,6 @@ Module Main
         Catch ex As Exception
             DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-
     End Sub
     Public Sub GetNewestFileFromServer(ByVal sFile As String)
         Try
