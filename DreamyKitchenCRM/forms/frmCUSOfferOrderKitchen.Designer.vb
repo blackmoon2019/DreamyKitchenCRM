@@ -21,8 +21,8 @@ Partial Class frmCUSOfferOrderKitchen
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSOfferOrderKitchen))
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Me.coldCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
@@ -36,8 +36,8 @@ Partial Class frmCUSOfferOrderKitchen
         Me.lblDate = New DevExpress.XtraEditors.LabelControl()
         Me.txtdtdaysOfDelivery = New DevExpress.XtraEditors.TextEdit()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
-        Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
+        Me.VwCCTBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.dtOrder = New DevExpress.XtraEditors.DateEdit()
         Me.txtKFinalHeight = New DevExpress.XtraEditors.TextEdit()
         Me.txtΥHeight = New DevExpress.XtraEditors.TextEdit()
@@ -47,7 +47,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtTotalErmariaPice = New DevExpress.XtraEditors.TextEdit()
         Me.cboEMP = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.cboVBOXColors = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwDOORTYPEV2BindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DM_DOORTYPES = New DreamyKitchenCRM.DM_DOORTYPES()
@@ -93,6 +92,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtTransp = New DevExpress.XtraEditors.TextEdit()
         Me.cboBaseCat = New DevExpress.XtraEditors.LookUpEdit()
         Me.BASECATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
         Me.cboLegs1 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboBenchType1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cbobenchThickness = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -220,6 +220,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem84 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem85 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem86 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwBENCHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
@@ -274,8 +275,8 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.cboVType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCCTBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtOrder.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKFinalHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -286,7 +287,6 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.txtTotalErmariaPice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDOORTYPEV2BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DM_DOORTYPES, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -332,6 +332,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.txtTransp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboBaseCat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BASECATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboLegs1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboBenchType1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cbobenchThickness.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -458,6 +459,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem84, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem85, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem86, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -740,7 +742,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.cboCUS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCUS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCUS.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Όνομα", 91, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CouID", "Cou ID", 73, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AreaID", "Area ID", 79, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AdrID", "Adr ID", 70, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SourceID", "Source ID", 99, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SalerID", "Saler ID", 83, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("DoyID", "Doy ID", 73, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PrfID", "Prf ID", 64, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("phn", "Τηλέφωνο", 48, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("mob", "mob", 52, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("fax", "fax", 40, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 59, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("afm", "afm", 47, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cmt", "cmt", 46, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "name", 62, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("COU_Name", "COU_Name", 110, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SRC_Name", "SRC_Name", 108, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AREAS_Name", "AREAS_Name", 130, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ADR_Name", "ADR_Name", 110, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PRF_Name", "PRF_Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SALERS_Name", "SALERS_Name", 139, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("color", "color", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ar", "Ar", 33, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tk", "tk", 31, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdby_Realname", "createdby_Realname", 191, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("HasFiles", "Has Files", 88, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboCUS.Properties.DataSource = Me.CCTTRANSHBindingSource
+        Me.cboCUS.Properties.DataSource = Me.VwCCTBindingSource1
         Me.cboCUS.Properties.DisplayMember = "Fullname"
         Me.cboCUS.Properties.NullText = ""
         Me.cboCUS.Properties.PopupSizeable = False
@@ -750,15 +752,15 @@ Partial Class frmCUSOfferOrderKitchen
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
         '
-        'CCTTRANSHBindingSource
+        'VwCCTBindingSource1
         '
-        Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
-        Me.CCTTRANSHBindingSource.DataSource = Me.DMDataSet
+        Me.VwCCTBindingSource1.DataMember = "vw_CCT"
+        Me.VwCCTBindingSource1.DataSource = Me.DreamyKitchenDataSet
         '
-        'DMDataSet
+        'DreamyKitchenDataSet
         '
-        Me.DMDataSet.DataSetName = "DMDataSet"
-        Me.DMDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'dtOrder
         '
@@ -922,11 +924,6 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.VwSALERSBindingSource.DataMember = "vw_SALERS"
         Me.VwSALERSBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cboVBOXColors
         '
@@ -1728,6 +1725,11 @@ Partial Class frmCUSOfferOrderKitchen
         Me.BASECATBindingSource.DataMember = "BASE_CAT"
         Me.BASECATBindingSource.DataSource = Me.DMDataSet
         '
+        'DMDataSet
+        '
+        Me.DMDataSet.DataSetName = "DMDataSet"
+        Me.DMDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'cboLegs1
         '
         Me.cboLegs1.Location = New System.Drawing.Point(1476, 659)
@@ -2443,6 +2445,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem21
         '
+        Me.LayoutControlItem21.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem21.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem21.Control = Me.cboVBOXColors
         Me.LayoutControlItem21.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem21.CustomizationFormText = "Κωδικός Χρώμ. Κουτιών"
@@ -2456,6 +2460,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem49
         '
+        Me.LayoutControlItem49.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem49.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem49.Control = Me.txtVFinalHeight
         Me.LayoutControlItem49.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem49.CustomizationFormText = "Τελικό Ύψος (cm)"
@@ -2470,6 +2476,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem51
         '
+        Me.LayoutControlItem51.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem51.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem51.Control = Me.cboVType
         Me.LayoutControlItem51.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlItem51.Name = "LayoutControlItem51"
@@ -2494,6 +2502,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem54
         '
+        Me.LayoutControlItem54.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem54.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem54.Control = Me.cboLegs
         Me.LayoutControlItem54.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem54.CustomizationFormText = "Πόδια Ερμαρίου"
@@ -2610,6 +2620,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem3
         '
+        Me.LayoutControlItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem3.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem3.Control = Me.txtKHeight
         Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem3.CustomizationFormText = "Ύψος (cm)"
@@ -2624,6 +2636,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem5
         '
+        Me.LayoutControlItem5.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem5.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem5.Control = Me.cboKBOXColors
         Me.LayoutControlItem5.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem5.CustomizationFormText = "Κωδικός Χρώμ. Κουτιών"
@@ -2637,6 +2651,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem11
         '
+        Me.LayoutControlItem11.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem11.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem11.Control = Me.txtKFinalHeight
         Me.LayoutControlItem11.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem11.CustomizationFormText = "Τελικό Ύψος (cm)"
@@ -2651,6 +2667,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem50
         '
+        Me.LayoutControlItem50.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem50.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem50.Control = Me.txtKHeight2
         Me.LayoutControlItem50.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem50.CustomizationFormText = "Ύψος (cm)"
@@ -2799,6 +2817,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem10
         '
+        Me.LayoutControlItem10.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem10.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem10.Control = Me.txtΥHeight
         Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem10.CustomizationFormText = "Ύψος (cm)"
@@ -2813,6 +2833,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem14
         '
+        Me.LayoutControlItem14.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem14.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem14.Control = Me.cboYBOXColors
         Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem14.CustomizationFormText = "Κωδικός Χρώμ. Κουτιών"
@@ -2826,6 +2848,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem16
         '
+        Me.LayoutControlItem16.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem16.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem16.Control = Me.txtYFinalHeight
         Me.LayoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem16.CustomizationFormText = "Τελικό Ύψος (cm)"
@@ -2905,6 +2929,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem4
         '
+        Me.LayoutControlItem4.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem4.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem4.Control = Me.cboLegs1
         Me.LayoutControlItem4.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem4.CustomizationFormText = "Πόδια Ερμαρίου"
@@ -2930,6 +2956,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem66
         '
+        Me.LayoutControlItem66.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem66.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem66.Control = Me.cboBenchType
         Me.LayoutControlItem66.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem66.CustomizationFormText = "Κωδικός Πάγκου Ερμαρίων"
@@ -2943,6 +2971,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem68
         '
+        Me.LayoutControlItem68.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem68.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem68.Control = Me.cboBenchType2
         Me.LayoutControlItem68.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem68.CustomizationFormText = "Κωδικός Πάγκου Τραπεζιού"
@@ -2956,6 +2986,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem12
         '
+        Me.LayoutControlItem12.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem12.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem12.Control = Me.cbobenchThickness
         Me.LayoutControlItem12.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem12.CustomizationFormText = "Πάχος"
@@ -2969,6 +3001,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem67
         '
+        Me.LayoutControlItem67.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem67.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem67.Control = Me.cboBack
         Me.LayoutControlItem67.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem67.CustomizationFormText = "Κωδικός Πάγκου Πλάτης"
@@ -2982,6 +3016,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem13
         '
+        Me.LayoutControlItem13.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem13.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem13.Control = Me.cbobenchThickness2
         Me.LayoutControlItem13.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem13.CustomizationFormText = "Πάχος"
@@ -2995,6 +3031,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem7
         '
+        Me.LayoutControlItem7.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem7.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem7.Control = Me.cboBenchType1
         Me.LayoutControlItem7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem7.CustomizationFormText = "Κωδικός Πάγκου Νησίδας"
@@ -3008,6 +3046,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem17
         '
+        Me.LayoutControlItem17.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem17.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem17.Control = Me.cbobenchThickness3
         Me.LayoutControlItem17.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem17.CustomizationFormText = "Πάχος"
@@ -3021,6 +3061,8 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControlItem8
         '
+        Me.LayoutControlItem8.AppearanceItemCaption.ForeColor = System.Drawing.Color.Red
+        Me.LayoutControlItem8.AppearanceItemCaption.Options.UseForeColor = True
         Me.LayoutControlItem8.Control = Me.cbobenchThickness1
         Me.LayoutControlItem8.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem8.CustomizationFormText = "Πάχος"
@@ -3474,6 +3516,11 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem86.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem86.TextVisible = False
         '
+        'CCTTRANSHBindingSource
+        '
+        Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
+        Me.CCTTRANSHBindingSource.DataSource = Me.DMDataSet
+        '
         'VwBENCHBindingSource
         '
         Me.VwBENCHBindingSource.DataMember = "vw_BENCH"
@@ -3555,15 +3602,15 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.coldCode, Me.GridColumn3, Me.colchecked})
         Me.GridView1.FixedLineWidth = 3
-        GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Column = Me.coldCode
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.White
-        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
-        FormatConditionRuleExpression1.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
-        FormatConditionRuleExpression1.PredefinedName = "Red Text"
-        GridFormatRule1.Rule = FormatConditionRuleExpression1
-        Me.GridView1.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Column = Me.coldCode
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.White
+        FormatConditionRuleExpression2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression2.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
+        FormatConditionRuleExpression2.PredefinedName = "Red Text"
+        GridFormatRule2.Rule = FormatConditionRuleExpression2
+        Me.GridView1.FormatRules.Add(GridFormatRule2)
         Me.GridView1.GridControl = Me.grdDevices
         Me.GridView1.LevelIndent = 0
         Me.GridView1.Name = "GridView1"
@@ -3913,8 +3960,8 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.cboVType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCCTBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtOrder.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKFinalHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3925,7 +3972,6 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.txtTotalErmariaPice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDOORTYPEV2BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DM_DOORTYPES, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3971,6 +4017,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.txtTransp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboBaseCat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BASECATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboLegs1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboBenchType1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cbobenchThickness.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4097,6 +4144,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem84, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem85, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem86, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4364,5 +4412,6 @@ Partial Class frmCUSOfferOrderKitchen
     Friend WithEvents LayoutControlItem85 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LayoutControlItem86 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents VwCCTBindingSource1 As BindingSource
     '    Friend WithEvents Vw_DOOR_TYPEPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter
 End Class

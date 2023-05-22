@@ -235,7 +235,7 @@ Public Class frmCUSPrivateAgreement
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
                         from vw_TRANSH t
                         where  completed = 0 and T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
@@ -394,7 +394,13 @@ Public Class frmCUSPrivateAgreement
                 chkHasDoors.Checked = False : chkHasSC.Checked = False : txtGenTot.EditValue = 0
                 txtPosoParastatikou.EditValue = 0 : txtDevices.EditValue = 0 : txtExtraInst.EditValue = 0 : txtExtraTransp.EditValue = 0
                 txtPayinAdvance.EditValue = 0 : txtPayinAdvanceBank.EditValue = 0 : txtPayinAdvanceCash.EditValue = 0
+                txtArProt.EditValue = Nothing
                 Exit Sub
+            Else
+                txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtKitchen").ToString.Length > 0, cboTRANSH.GetColumnValue("ArProtKitchen") & " ", "")
+                txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtCloset").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtCloset"), "")
+                txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtDoor").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtDoor"), "")
+                txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtSpecialContr").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtSpecialContr"), "")
             End If
             cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=0 and paytype=1  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
             sdr = cmd.ExecuteReader()

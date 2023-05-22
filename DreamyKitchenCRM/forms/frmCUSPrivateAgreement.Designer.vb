@@ -25,6 +25,8 @@ Partial Class frmCUSPrivateAgreement
         Me.lblCash = New DevExpress.XtraEditors.LabelControl()
         Me.chkVatVisible = New DevExpress.XtraEditors.CheckEdit()
         Me.cboInvoiceType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.VwINVTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.chkHasSC = New DevExpress.XtraEditors.CheckEdit()
         Me.lblBank = New DevExpress.XtraEditors.LabelControl()
         Me.chkHasDoors = New DevExpress.XtraEditors.CheckEdit()
@@ -35,6 +37,7 @@ Partial Class frmCUSPrivateAgreement
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
         Me.txtFatherName = New DevExpress.XtraEditors.TextEdit()
         Me.txtArea = New DevExpress.XtraEditors.TextEdit()
@@ -45,7 +48,7 @@ Partial Class frmCUSPrivateAgreement
         Me.dtpresentation = New DevExpress.XtraEditors.DateEdit()
         Me.txtTotalVatPrice = New DevExpress.XtraEditors.TextEdit()
         Me.TxtTotalVat = New DevExpress.XtraEditors.TextEdit()
-        Me.txtArea1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtArProt = New DevExpress.XtraEditors.TextEdit()
         Me.txtPayinAdvance = New DevExpress.XtraEditors.TextEdit()
         Me.cboTRANSH = New DevExpress.XtraEditors.LookUpEdit()
         Me.txtPartofVat = New DevExpress.XtraEditors.TextEdit()
@@ -105,9 +108,6 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem31 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.VwINVTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
-        Me.DreamyKitchenDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.Vw_BANKSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BANKSTableAdapter()
@@ -116,12 +116,15 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboInvoiceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasDoors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasKitchen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasCloset.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFatherName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -133,7 +136,7 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotalVatPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TxtTotalVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtArea1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtArProt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPayinAdvance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtPartofVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -193,9 +196,6 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -221,7 +221,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControl1.Controls.Add(Me.dtpresentation)
         Me.LayoutControl1.Controls.Add(Me.txtTotalVatPrice)
         Me.LayoutControl1.Controls.Add(Me.TxtTotalVat)
-        Me.LayoutControl1.Controls.Add(Me.txtArea1)
+        Me.LayoutControl1.Controls.Add(Me.txtArProt)
         Me.LayoutControl1.Controls.Add(Me.txtPayinAdvance)
         Me.LayoutControl1.Controls.Add(Me.cboTRANSH)
         Me.LayoutControl1.Controls.Add(Me.txtPartofVat)
@@ -290,6 +290,16 @@ Partial Class frmCUSPrivateAgreement
         Me.cboInvoiceType.StyleController = Me.LayoutControl1
         Me.cboInvoiceType.TabIndex = 70
         Me.cboInvoiceType.Tag = "invType,0,1,2"
+        '
+        'VwINVTYPESBindingSource
+        '
+        Me.VwINVTYPESBindingSource.DataMember = "vw_INVTYPES"
+        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'chkHasSC
         '
@@ -417,6 +427,11 @@ Partial Class frmCUSPrivateAgreement
         '
         Me.VwCCTBindingSource.DataMember = "vw_CCT"
         Me.VwCCTBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
+        '
+        'DreamyKitchenDataSetBindingSource
+        '
+        Me.DreamyKitchenDataSetBindingSource.DataSource = Me.DreamyKitchenDataSet
+        Me.DreamyKitchenDataSetBindingSource.Position = 0
         '
         'txtCode
         '
@@ -561,16 +576,17 @@ Partial Class frmCUSPrivateAgreement
         Me.TxtTotalVat.Tag = "Price,0,1,2"
         Me.TxtTotalVat.Visible = False
         '
-        'txtArea1
+        'txtArProt
         '
-        Me.txtArea1.Location = New System.Drawing.Point(831, 103)
-        Me.txtArea1.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtArea1.Name = "txtArea1"
-        Me.txtArea1.Properties.UseReadOnlyAppearance = False
-        Me.txtArea1.Size = New System.Drawing.Size(295, 38)
-        Me.txtArea1.StyleController = Me.LayoutControl1
-        Me.txtArea1.TabIndex = 23
-        Me.txtArea1.Tag = "arProt,0,1,2"
+        Me.txtArProt.Location = New System.Drawing.Point(831, 103)
+        Me.txtArProt.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtArProt.Name = "txtArProt"
+        Me.txtArProt.Properties.ReadOnly = True
+        Me.txtArProt.Properties.UseReadOnlyAppearance = False
+        Me.txtArProt.Size = New System.Drawing.Size(295, 38)
+        Me.txtArProt.StyleController = Me.LayoutControl1
+        Me.txtArProt.TabIndex = 23
+        Me.txtArProt.Tag = "arProt,0,1,2"
         '
         'txtPayinAdvance
         '
@@ -1057,7 +1073,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'LayoutControlItem10
         '
-        Me.LayoutControlItem10.Control = Me.txtArea1
+        Me.LayoutControlItem10.Control = Me.txtArProt
         Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem10.CustomizationFormText = "Κινητό"
         Me.LayoutControlItem10.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
@@ -1065,7 +1081,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
         Me.LayoutControlItem10.Size = New System.Drawing.Size(588, 42)
         Me.LayoutControlItem10.Tag = "1"
-        Me.LayoutControlItem10.Text = "Αρ. Πρωτοκόλου"
+        Me.LayoutControlItem10.Text = "Αρ. Παραγγελιών"
         Me.LayoutControlItem10.TextLocation = DevExpress.Utils.Locations.Left
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(288, 23)
         '
@@ -1392,21 +1408,6 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem27.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem27.TextVisible = False
         '
-        'VwINVTYPESBindingSource
-        '
-        Me.VwINVTYPESBindingSource.DataMember = "vw_INVTYPES"
-        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'DreamyKitchenDataSetBindingSource
-        '
-        Me.DreamyKitchenDataSetBindingSource.DataSource = Me.DreamyKitchenDataSet
-        Me.DreamyKitchenDataSetBindingSource.Position = 0
-        '
         'Vw_SALERSTableAdapter
         '
         Me.Vw_SALERSTableAdapter.ClearBeforeFill = True
@@ -1434,15 +1435,17 @@ Partial Class frmCUSPrivateAgreement
         Me.Text = "frmCUSPrivateAgreement"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        Me.LayoutControl1.PerformLayout()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboInvoiceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasDoors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasKitchen.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasCloset.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFatherName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1454,7 +1457,7 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotalVatPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TxtTotalVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtArea1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtArProt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPayinAdvance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtPartofVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1514,9 +1517,6 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1558,7 +1558,7 @@ Partial Class frmCUSPrivateAgreement
     Friend WithEvents TxtTotalVat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem34 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem42 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents txtArea1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtArProt As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtPayinAdvance As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem

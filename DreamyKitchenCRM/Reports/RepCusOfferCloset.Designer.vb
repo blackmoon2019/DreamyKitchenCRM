@@ -2530,7 +2530,7 @@ Partial Public Class RepCUSOfferCloset
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "ecef0a62-5dca-4d52-b01e-6d9c3af1a946"
+        Me.OfferID.ValueInfo = "cbbaacd8-d25d-4418-a217-f2a096021680"
         DynamicListLookUpSettings1.DataMember = "vw_CCT_ORDERS_CLOSET"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
