@@ -123,9 +123,6 @@
   <metadata name="DreamyKitchenDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="DreamyKitchenDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="VwCOLORSPVCBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1014, 17</value>
   </metadata>
@@ -141,41 +138,7 @@
   <metadata name="Vw_BENCHTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>2021, 17</value>
   </metadata>
-  <metadata name="MAILSBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 69</value>
-  </metadata>
-  <metadata name="DreamyKitchenDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2322, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="cmdExitInstEmail.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAS5JREFUSEtj
-        QAcNM89wFU87bEw2nnlMA2oUdgBSVDvv1Mf+zTdek4Mr5568CzUKOwBZAFJ46MX//+TgqnmnHkKNwg5G
-        ngV7Hv7+f+DpPzif6hasvvThf/7M0//3P/0L5jcvv/AEahR2QI4FYU17/hfMOgP2yebrn79DjcIOyLEg
-        e9q5/6ULbv7PnXHq/6YbX35CjcIOyLWge/sHsCWZU0/888zdxg41DhMgW9Cx8db/ikWX8OKC2Wf+Z02F
-        WADCxfOu/Q9p2LU3Le0MK9RIVIBsQULP4f/1q54QxM0bXsItAOGCude+BTfu3ofVEqpZ0ECEBTQPImIw
-        eiTnTj/1F6fhIECuBSDDC4F5YcvNr9RPpjTPaEVzzsLLoxZqFxU0L+zQ8QixgKaVPnWbLQwMAA1uLO8q
-        UNCrAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="cmdSaveInstEmail.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAppJREFUSEvF
-        k+tPUmEcx/kj6k3/QG/qVb3oH7CtmrZWssVlI8zWetHNTcts6dYUMlvAMC4KltESui0vObpMiTEuB1CC
-        IyIndBY3QzGyq+f8Os9RUYwDDtz6bZ+d53nxfD/PeZ7fwzkmc+0RqccbN8JVuDVHO5xvTii8fq7Mg7PB
-        U/rMJ5VeU/UdbC+HrfgKb32fMwkjU5ksV4xB4HWOg975FXpcmYJcMgThsgGfqVI49q9G5hYSoNBImspy
-        8yUBZ3pwGApTeWkemAWtfZEZNz0LQzhFQt2jielKufvAaux6lSIQqnwgNceZMRKgNayS7RJkJYZNku0U
-        IKZSy3DhAR6pkFp3sQpa+z9CTbf/n+B8ND7JFSB01vjCwTb7PlYBmos0PjhNS2p17Fw1hcGEzeWsRRQV
-        lMv/E6BvOdgiS4UFF3v90O9JlMw102RhQccQAeVU+yCxNUEq8xtCsW9FCUYz0Gv9DDfot3D9KQE1dGep
-        R6OgGY2lCwrQwkFvoiAmexTO6gPQMvwF7mHLoMJIhra3aRB34+QRiVPAKihWJEVBgzEEd20/s8Eb6XT+
-        Ab4q8OlQq2VnXoEtNA+yYYKVhscT0PxqLm/4a4IC2yyd9f47cBXe+yX9QcsLIudY1jDT4SQFYJmhmLlA
-        HfhQ0h2cfxhkAro8JPgSdNd4V3aOwkemV8IRp3RBIq+gWBfV0+ePAvR0cHIJYP4HupfccIRQi+MlHVGf
-        IwaSd4s5ks3hcvsvqFaODXC4Sk9d+2BkocsSnTun85HPsThVDKMjRtXqcaZbUJjGvR68hlg/maySunZz
-        Km9jO9CjQFRI7IKtcvgW1sRT+ROoWzYGo52j8OPyMTHzDsop1OeoFflq3CfqDhJCbQBHx8LsnCkO5y9j
-        M8srxWrdvQAAAABJRU5ErkJggg==
-</value>
-  </data>
   <data name="SimpleButton1.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAS5JREFUSEtj
@@ -250,6 +213,12 @@
         M8srxWrdvQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="VwDOORTYPEV2BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>766, 69</value>
+  </metadata>
+  <metadata name="DM_DOORTYPES.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>537, 69</value>
+  </metadata>
   <data name="LayoutControlItem26.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -259,7 +228,7 @@
         eJaJw5G9QfFCAE0iSJ9A5bowAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="LayoutControlItem11.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="LayoutControlItem5.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
         JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAB3RJTUUH5AkWETM3aFGQfgAAAIZJREFU
@@ -268,7 +237,7 @@
         eJaJw5G9QfFCAE0iSJ9A5bowAAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="LayoutControlItem5.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="LayoutControlItem11.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
         JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAAB3RJTUUH5AkWETM3aFGQfgAAAIZJREFU
@@ -333,11 +302,45 @@
         M8srxWrdvQAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="MAILSBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 69</value>
+  </metadata>
   <metadata name="DreamyKitchenDataSet1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>2322, 17</value>
   </metadata>
+  <data name="cmdExitInstEmail.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAS5JREFUSEtj
+        QAcNM89wFU87bEw2nnlMA2oUdgBSVDvv1Mf+zTdek4Mr5568CzUKOwBZAFJ46MX//+TgqnmnHkKNwg5G
+        ngV7Hv7+f+DpPzif6hasvvThf/7M0//3P/0L5jcvv/AEahR2QI4FYU17/hfMOgP2yebrn79DjcIOyLEg
+        e9q5/6ULbv7PnXHq/6YbX35CjcIOyLWge/sHsCWZU0/888zdxg41DhMgW9Cx8db/ikWX8OKC2Wf+Z02F
+        WADCxfOu/Q9p2LU3Le0MK9RIVIBsQULP4f/1q54QxM0bXsItAOGCude+BTfu3ofVEqpZ0ECEBTQPImIw
+        eiTnTj/1F6fhIECuBSDDC4F5YcvNr9RPpjTPaEVzzsLLoxZqFxU0L+zQ8QixgKaVPnWbLQwMAA1uLO8q
+        UNCrAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="cmdSaveEmail.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAppJREFUSEvF
+        k+tPUmEcx/kj6k3/QG/qVb3oH7CtmrZWssVlI8zWetHNTcts6dYUMlvAMC4KltESui0vObpMiTEuB1CC
+        IyIndBY3QzGyq+f8Os9RUYwDDtz6bZ+d53nxfD/PeZ7fwzkmc+0RqccbN8JVuDVHO5xvTii8fq7Mg7PB
+        U/rMJ5VeU/UdbC+HrfgKb32fMwkjU5ksV4xB4HWOg975FXpcmYJcMgThsgGfqVI49q9G5hYSoNBImspy
+        8yUBZ3pwGApTeWkemAWtfZEZNz0LQzhFQt2jielKufvAaux6lSIQqnwgNceZMRKgNayS7RJkJYZNku0U
+        IKZSy3DhAR6pkFp3sQpa+z9CTbf/n+B8ND7JFSB01vjCwTb7PlYBmos0PjhNS2p17Fw1hcGEzeWsRRQV
+        lMv/E6BvOdgiS4UFF3v90O9JlMw102RhQccQAeVU+yCxNUEq8xtCsW9FCUYz0Gv9DDfot3D9KQE1dGep
+        R6OgGY2lCwrQwkFvoiAmexTO6gPQMvwF7mHLoMJIhra3aRB34+QRiVPAKihWJEVBgzEEd20/s8Eb6XT+
+        Ab4q8OlQq2VnXoEtNA+yYYKVhscT0PxqLm/4a4IC2yyd9f47cBXe+yX9QcsLIudY1jDT4SQFYJmhmLlA
+        HfhQ0h2cfxhkAro8JPgSdNd4V3aOwkemV8IRp3RBIq+gWBfV0+ePAvR0cHIJYP4HupfccIRQi+MlHVGf
+        IwaSd4s5ks3hcvsvqFaODXC4Sk9d+2BkocsSnTun85HPsThVDKMjRtXqcaZbUJjGvR68hlg/maySunZz
+        Km9jO9CjQFRI7IKtcvgW1sRT+ROoWzYGo52j8OPyMTHzDsop1OeoFflq3CfqDhJCbQBHx8LsnCkO5y9j
+        M8srxWrdvQAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="MAILSTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>282, 69</value>
+  </metadata>
+  <metadata name="Vw_DOOR_TYPE_V2TableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1132, 69</value>
   </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>191</value>

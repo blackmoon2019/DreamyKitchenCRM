@@ -545,7 +545,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell36.StylePriority.UseTextAlignment = False
         Me.XrTableCell36.Text = "Τύπος"
         Me.XrTableCell36.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell36.Weight = 1.5719899915187117R
+        Me.XrTableCell36.Weight = 1.3416313471782335R
         '
         'XrTableCell1
         '
@@ -560,7 +560,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell1.StylePriority.UseTextAlignment = False
         Me.XrTableCell1.Text = "Διαστάσεις"
         Me.XrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell1.Weight = 1.5719899915187117R
+        Me.XrTableCell1.Weight = 1.5293308942031263R
         '
         'XrTableCell2
         '
@@ -575,7 +575,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell2.StylePriority.UseTextAlignment = False
         Me.XrTableCell2.Text = "Φορά"
         Me.XrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell2.Weight = 1.37786890297274R
+        Me.XrTableCell2.Weight = 1.2413597040785604R
         '
         'XrTableCell3
         '
@@ -590,7 +590,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell3.StylePriority.UseTextAlignment = False
         Me.XrTableCell3.Text = "Πάχος Κάσας"
         Me.XrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell3.Weight = 0.73668768389102046R
+        Me.XrTableCell3.Weight = 0.97557943808813R
         '
         'XrTableCell43
         '
@@ -605,7 +605,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell43.StylePriority.UseTextAlignment = False
         Me.XrTableCell43.Text = "Κωδικός Πόρτας"
         Me.XrTableCell43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell43.Weight = 1.2848700873593313R
+        Me.XrTableCell43.Weight = 1.455505273712465R
         '
         'XrTableCell50
         '
@@ -674,7 +674,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell37.StylePriority.UseTextAlignment = False
         Me.XrTableCell37.Text = "XrTableCell37"
         Me.XrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell37.Weight = 1.5719899915187117R
+        Me.XrTableCell37.Weight = 1.3416313471782335R
         '
         'XrTableCell6
         '
@@ -690,7 +690,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell6.StylePriority.UseTextAlignment = False
         Me.XrTableCell6.Text = "XrTableCell6"
         Me.XrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell6.Weight = 1.5719899915187117R
+        Me.XrTableCell6.Weight = 1.5293308942031263R
         '
         'XrTableCell7
         '
@@ -706,7 +706,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell7.StylePriority.UseTextAlignment = False
         Me.XrTableCell7.Text = "XrTableCell7"
         Me.XrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell7.Weight = 1.37786890297274R
+        Me.XrTableCell7.Weight = 1.2413597040785604R
         '
         'XrTableCell8
         '
@@ -723,7 +723,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell8.Text = "XrTableCell8"
         Me.XrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell8.TextFormatString = "{0}cm"
-        Me.XrTableCell8.Weight = 0.73668768389102046R
+        Me.XrTableCell8.Weight = 0.97557943808813R
         '
         'XrTableCell44
         '
@@ -739,7 +739,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell44.StylePriority.UseTextAlignment = False
         Me.XrTableCell44.Text = "XrTableCell44"
         Me.XrTableCell44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell44.Weight = 1.2848700873593313R
+        Me.XrTableCell44.Weight = 1.455505273712465R
         '
         'XrTableCell51
         '
@@ -812,7 +812,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell38.StylePriority.UseTextAlignment = False
         Me.XrTableCell38.Text = "XrTableCell38"
         Me.XrTableCell38.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell38.Weight = 1.5719899915187117R
+        Me.XrTableCell38.Weight = 1.3416313471782335R
         '
         'XrTableCell11
         '
@@ -828,7 +828,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell11.StylePriority.UseTextAlignment = False
         Me.XrTableCell11.Text = "XrTableCell11"
         Me.XrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell11.Weight = 1.5719899915187117R
+        Me.XrTableCell11.Weight = 1.5293308942031263R
         '
         'XrTableCell12
         '
@@ -844,7 +844,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell12.StylePriority.UseTextAlignment = False
         Me.XrTableCell12.Text = "XrTableCell12"
         Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell12.Weight = 1.37786890297274R
+        Me.XrTableCell12.Weight = 1.2413597040785604R
         '
         'XrTableCell13
         '
@@ -861,7 +861,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell13.Text = "XrTableCell13"
         Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell13.TextFormatString = "{0}cm"
-        Me.XrTableCell13.Weight = 0.73668768389102046R
+        Me.XrTableCell13.Weight = 0.97557943808813R
         '
         'XrTableCell45
         '
@@ -877,7 +877,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell45.StylePriority.UseTextAlignment = False
         Me.XrTableCell45.Text = "XrTableCell45"
         Me.XrTableCell45.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell45.Weight = 1.2848700873593313R
+        Me.XrTableCell45.Weight = 1.455505273712465R
         '
         'XrTableCell52
         '
@@ -950,7 +950,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell39.StylePriority.UseTextAlignment = False
         Me.XrTableCell39.Text = "XrTableCell39"
         Me.XrTableCell39.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell39.Weight = 1.5719899915187117R
+        Me.XrTableCell39.Weight = 1.3416313471782335R
         '
         'XrTableCell16
         '
@@ -966,7 +966,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell16.StylePriority.UseTextAlignment = False
         Me.XrTableCell16.Text = "XrTableCell16"
         Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell16.Weight = 1.5719899915187117R
+        Me.XrTableCell16.Weight = 1.5293308942031263R
         '
         'XrTableCell17
         '
@@ -982,7 +982,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell17.StylePriority.UseTextAlignment = False
         Me.XrTableCell17.Text = "XrTableCell17"
         Me.XrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell17.Weight = 1.37786890297274R
+        Me.XrTableCell17.Weight = 1.2413597040785604R
         '
         'XrTableCell18
         '
@@ -999,7 +999,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell18.Text = "XrTableCell18"
         Me.XrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell18.TextFormatString = "{0}cm"
-        Me.XrTableCell18.Weight = 0.73668768389102046R
+        Me.XrTableCell18.Weight = 0.97557943808813R
         '
         'XrTableCell46
         '
@@ -1015,7 +1015,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell46.StylePriority.UseTextAlignment = False
         Me.XrTableCell46.Text = "XrTableCell46"
         Me.XrTableCell46.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell46.Weight = 1.2848700873593313R
+        Me.XrTableCell46.Weight = 1.455505273712465R
         '
         'XrTableCell53
         '
@@ -1088,7 +1088,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell40.StylePriority.UseTextAlignment = False
         Me.XrTableCell40.Text = "XrTableCell40"
         Me.XrTableCell40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell40.Weight = 1.5719899915187117R
+        Me.XrTableCell40.Weight = 1.3416313471782335R
         '
         'XrTableCell21
         '
@@ -1104,7 +1104,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell21.StylePriority.UseTextAlignment = False
         Me.XrTableCell21.Text = "XrTableCell21"
         Me.XrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell21.Weight = 1.5719899915187117R
+        Me.XrTableCell21.Weight = 1.5293308942031263R
         '
         'XrTableCell22
         '
@@ -1120,7 +1120,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell22.StylePriority.UseTextAlignment = False
         Me.XrTableCell22.Text = "XrTableCell22"
         Me.XrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell22.Weight = 1.37786890297274R
+        Me.XrTableCell22.Weight = 1.2413597040785604R
         '
         'XrTableCell23
         '
@@ -1137,7 +1137,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell23.Text = "XrTableCell23"
         Me.XrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell23.TextFormatString = "{0}cm"
-        Me.XrTableCell23.Weight = 0.73668768389102046R
+        Me.XrTableCell23.Weight = 0.97557943808813R
         '
         'XrTableCell47
         '
@@ -1153,7 +1153,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell47.StylePriority.UseTextAlignment = False
         Me.XrTableCell47.Text = "XrTableCell47"
         Me.XrTableCell47.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell47.Weight = 1.2848700873593313R
+        Me.XrTableCell47.Weight = 1.455505273712465R
         '
         'XrTableCell54
         '
@@ -1226,7 +1226,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell41.StylePriority.UseTextAlignment = False
         Me.XrTableCell41.Text = "XrTableCell41"
         Me.XrTableCell41.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell41.Weight = 1.5719899915187117R
+        Me.XrTableCell41.Weight = 1.3416313471782335R
         '
         'XrTableCell26
         '
@@ -1242,7 +1242,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell26.StylePriority.UseTextAlignment = False
         Me.XrTableCell26.Text = "XrTableCell26"
         Me.XrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell26.Weight = 1.5719899915187117R
+        Me.XrTableCell26.Weight = 1.5293308942031263R
         '
         'XrTableCell27
         '
@@ -1258,7 +1258,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell27.StylePriority.UseTextAlignment = False
         Me.XrTableCell27.Text = "XrTableCell27"
         Me.XrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell27.Weight = 1.37786890297274R
+        Me.XrTableCell27.Weight = 1.2413597040785604R
         '
         'XrTableCell28
         '
@@ -1275,7 +1275,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell28.Text = "XrTableCell28"
         Me.XrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell28.TextFormatString = "{0}cm"
-        Me.XrTableCell28.Weight = 0.73668768389102046R
+        Me.XrTableCell28.Weight = 0.97557943808813R
         '
         'XrTableCell48
         '
@@ -1291,7 +1291,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell48.StylePriority.UseTextAlignment = False
         Me.XrTableCell48.Text = "XrTableCell48"
         Me.XrTableCell48.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell48.Weight = 1.2848700873593313R
+        Me.XrTableCell48.Weight = 1.455505273712465R
         '
         'XrTableCell55
         '
@@ -1364,7 +1364,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell42.StylePriority.UseTextAlignment = False
         Me.XrTableCell42.Text = "XrTableCell42"
         Me.XrTableCell42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell42.Weight = 1.5719899915187117R
+        Me.XrTableCell42.Weight = 1.3416313471782335R
         '
         'XrTableCell31
         '
@@ -1380,7 +1380,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell31.StylePriority.UseTextAlignment = False
         Me.XrTableCell31.Text = "XrTableCell31"
         Me.XrTableCell31.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell31.Weight = 1.5719899915187117R
+        Me.XrTableCell31.Weight = 1.5293308942031263R
         '
         'XrTableCell32
         '
@@ -1396,7 +1396,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell32.StylePriority.UseTextAlignment = False
         Me.XrTableCell32.Text = "XrTableCell32"
         Me.XrTableCell32.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell32.Weight = 1.37786890297274R
+        Me.XrTableCell32.Weight = 1.2413597040785604R
         '
         'XrTableCell33
         '
@@ -1413,7 +1413,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell33.Text = "XrTableCell33"
         Me.XrTableCell33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell33.TextFormatString = "{0}cm"
-        Me.XrTableCell33.Weight = 0.73668768389102046R
+        Me.XrTableCell33.Weight = 0.97557943808813R
         '
         'XrTableCell49
         '
@@ -1429,7 +1429,7 @@ Partial Public Class RepCUSOrderDoors
         Me.XrTableCell49.StylePriority.UseTextAlignment = False
         Me.XrTableCell49.Text = "XrTableCell49"
         Me.XrTableCell49.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell49.Weight = 1.2848700873593313R
+        Me.XrTableCell49.Weight = 1.455505273712465R
         '
         'XrTableCell56
         '

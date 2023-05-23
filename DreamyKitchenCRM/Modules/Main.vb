@@ -77,16 +77,16 @@ Module Main
         Public CusDiscountCloset As Integer
         Public CusDiscountDoors As Integer
         Public CusDiscountSpecial As Integer
-        Public V_HEIGHT As Double
-        Public K_HEIGHT As Double
-        Public Y_HEIGHT As Double
+        Public V_HEIGHT As String
+        Public K_HEIGHT As String
+        Public Y_HEIGHT As String
         Public V_BOX_COLOR As String
         Public K_BOX_COLOR As String
         Public Y_BOX_COLOR As String
         Public V_PVC_COLOR As String
         Public K_PVC_COLOR As String
         Public Y_PVC_COLOR As String
-        Public LEGS As Integer
+        Public LEGS As String
         Public K_FINAL_HEIGHT As Double
         Public Y_FINAL_HEIGHT As Double
         Public BENCH As String

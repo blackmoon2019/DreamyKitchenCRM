@@ -174,7 +174,7 @@ Public Class DBQueries
     End Sub
     'Η InsertData χρησιμοποιείται για να αποθηκεύσει Data για ένα LayoutContol
     Private Function InsertData2(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sTable As String, Optional ByVal sGuid As String = "",
-                                Optional ByVal IgnoreVisibility As Boolean = False,
+                                Optional ByVal CheckVisibility As Boolean = False,
                                 Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "") As Boolean
         Dim sSQLF As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim sSQLV As New System.Text.StringBuilder ' Το 2ο StringField αφορά τις τιμές
@@ -228,7 +228,7 @@ Public Class DBQueries
                             'Ψάχνω αν το πεδίο έχει δικάιωμα καταχώρησης
                             Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("1")))
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
-                            If IgnoreVisibility = True Then
+                            If CheckVisibility = True Then
                                 If LItem.Control.Visible = False Then GoTo NextItem
                             End If
 
@@ -678,22 +678,22 @@ NextItem:
     End Function
     Public Function InsertNewData(ByVal Mode As InsertMode, ByVal sTable As String, Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing,
                                  Optional ByVal controls As List(Of Control) = Nothing, Optional ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup = Nothing,
-                                 Optional ByVal sGuid As String = "", Optional ByVal IgnoreVisibility As Boolean = False,
+                                 Optional ByVal sGuid As String = "", Optional ByVal CheckVisibility As Boolean = False,
                                  Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "", Optional ExceptFields As List(Of String) = Nothing) As Boolean
         Select Case Mode
             Case 1
-                Return InsertData2(control, sTable, sGuid, IgnoreVisibility, ExtraFields, ExtraValues)
+                Return InsertData2(control, sTable, sGuid, CheckVisibility, ExtraFields, ExtraValues)
             Case 2
-                Return InsertDataNew(controls, sTable, sGuid, IgnoreVisibility, ExtraFields, ExtraValues)
+                Return InsertDataNew(controls, sTable, sGuid, CheckVisibility, ExtraFields, ExtraValues)
             Case 3
-                Return InsertDataGRP(GRP, sTable, sGuid, IgnoreVisibility, ExtraFields, ExtraValues, ExceptFields)
+                Return InsertDataGRP(GRP, sTable, sGuid, CheckVisibility, ExtraFields, ExtraValues, ExceptFields)
 
         End Select
     End Function
     'Η InsertDataNew χρησιμοποιείται για να αποθηκεύση Data από περισσότερα τους ενός LayoutContol
     'Του στέλνεις Πολλά LayoutContols και κάνει Loop τα LayoutItems
     Private Function InsertDataNew(ByVal controls As List(Of Control), ByVal sTable As String, Optional ByVal sGuid As String = "",
-                                   Optional ByVal IgnoreVisibility As Boolean = False,
+                                   Optional ByVal CheckVisibility As Boolean = False,
                                    Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "") As Boolean
         Dim sSQLF As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim sSQLV As New System.Text.StringBuilder ' Το 2ο StringField αφορά τις τιμές
@@ -748,7 +748,7 @@ NextItem:
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα καταχώρησης
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("1")))
                                 ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
-                                If IgnoreVisibility = True Then
+                                If CheckVisibility = True Then
                                     If LItem.Control.Visible = False Then GoTo NextItem
                                 End If
 
@@ -826,7 +826,7 @@ NextItem:
     'Η InsertDataGRP χρησιμοποιείται για να αποθηκεύσει Data τους ενός LayoutGroupContol
     'Του στέλνεις 1 LayoutGroupContol και κάνει Loop τα LayoutItems
     Private Function InsertDataGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sTable As String, Optional ByVal sGuid As String = "",
-                                   Optional ByVal IgnoreVisibility As Boolean = False,
+                                   Optional ByVal CheckVisibility As Boolean = False,
                                    Optional ByVal ExtraFields As String = "", Optional ByVal ExtraValues As String = "",
                                    Optional ExceptFields As List(Of String) = Nothing) As Boolean
         Dim sSQLF As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
@@ -887,7 +887,7 @@ NextItem:
                             'Ψάχνω αν το πεδίο έχει δικάιωμα καταχώρησης
                             Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("1")))
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
-                            If IgnoreVisibility = True Then
+                            If CheckVisibility = True Then
                                 If LItem.Control.Visible = False Then GoTo NextItem
                             End If
 
@@ -1075,23 +1075,23 @@ NextItem:
     End Function
     Public Function UpdateNewData(ByVal Mode As InsertMode, ByVal sTable As String, Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing,
                                   Optional ByVal controls As List(Of Control) = Nothing, Optional ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup = Nothing,
-                                  Optional ByVal sGuid As String = "", Optional ByVal IgnoreVisibility As Boolean = False,
+                                  Optional ByVal sGuid As String = "", Optional ByVal CheckVisibility As Boolean = False,
                                   Optional GRD As DevExpress.XtraGrid.Views.Grid.GridView = Nothing,
                                   Optional ByVal FieldsToBeUpdate As List(Of String) = Nothing,
                                   Optional ExceptFields As List(Of String) = Nothing,
                                   Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
         Select Case Mode
             Case 1
-                Return UpdateData2(control, sTable, sGuid, IgnoreVisibility, ExtraFieldsAndValues)
+                Return UpdateData2(control, sTable, sGuid, CheckVisibility, ExtraFieldsAndValues)
             Case 2
-                Return UpdateDataNew(controls, sTable, sGuid, IgnoreVisibility)
+                Return UpdateDataNew(controls, sTable, sGuid, CheckVisibility)
             Case 3
-                Return UpdateDataGRP(GRP, sTable, sGuid, IgnoreVisibility, ExceptFields, ExtraFieldsAndValues)
+                Return UpdateDataGRP(GRP, sTable, sGuid, CheckVisibility, ExceptFields, ExtraFieldsAndValues)
             Case 4
-                Return UpdateDataGRD(GRD, sTable, sGuid, FieldsToBeUpdate, IgnoreVisibility)
+                Return UpdateDataGRD(GRD, sTable, sGuid, FieldsToBeUpdate, CheckVisibility)
         End Select
     End Function
-    Private Function UpdateData2(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sTable As String, ByVal sID As String, Optional ByVal IgnoreVisibility As Boolean = False, Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
+    Private Function UpdateData2(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sTable As String, ByVal sID As String, Optional ByVal CheckVisibility As Boolean = False, Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
         Dim sSQL As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim IsFirstField As Boolean = True
         Dim TagValue As String()
@@ -1171,7 +1171,7 @@ NextItem:
                             'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                             Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
-                            If IgnoreVisibility = True Then
+                            If CheckVisibility = True Then
                                 If LItem.Control.Visible = False Then GoTo NextItem
                             End If
                             'If LItem.Control.Visible = True 
@@ -1281,7 +1281,7 @@ NextItem:
             Return False
         End Try
     End Function
-    Private Function UpdateDataNew(ByVal controls As List(Of Control), ByVal sTable As String, ByVal sID As String, Optional ByVal IgnoreVisibility As Boolean = False) As Boolean
+    Private Function UpdateDataNew(ByVal controls As List(Of Control), ByVal sTable As String, ByVal sID As String, Optional ByVal CheckVisibility As Boolean = False) As Boolean
         Dim sSQL As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim IsFirstField As Boolean = True
         Dim TagValue As String()
@@ -1326,7 +1326,7 @@ NextItem:
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
                                 ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
-                                If IgnoreVisibility = True Then
+                                If CheckVisibility = True Then
                                     If LItem.Control.Visible = False Then GoTo NextItem
                                 End If
                                 'If LItem.Control.Visible = True 
@@ -1400,7 +1400,7 @@ NextItem:
         End Try
     End Function
     Private Function UpdateDataGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sTable As String, ByVal sID As String,
-                                   Optional ByVal IgnoreVisibility As Boolean = False, Optional ExceptFields As List(Of String) = Nothing,
+                                   Optional ByVal CheckVisibility As Boolean = False, Optional ExceptFields As List(Of String) = Nothing,
                                    Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
         Dim sSQL As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim IsFirstField As Boolean = True
@@ -1448,7 +1448,7 @@ NextItem:
                             'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                             Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
-                            If IgnoreVisibility = True Then
+                            If CheckVisibility = True Then
                                 If LItem.Control.Visible = False Then GoTo NextItem
                             End If
                             'If LItem.Control.Visible = True 
@@ -1558,7 +1558,7 @@ NextItem:
         End Try
     End Function
     'Διαβάζει τις στήλες ενός GRID δυναμικά και τα πεδία ενός LayoutControlGroup δυναμικά και κάνει Update
-    Public Function UpdateDataGRD(ByVal GRD As DevExpress.XtraGrid.Views.Grid.GridView, ByVal sTable As String, ByVal sID As String, ByVal FieldsToBeUpdate As List(Of String), Optional ByVal IgnoreVisibility As Boolean = False)
+    Public Function UpdateDataGRD(ByVal GRD As DevExpress.XtraGrid.Views.Grid.GridView, ByVal sTable As String, ByVal sID As String, ByVal FieldsToBeUpdate As List(Of String), Optional ByVal CheckVisibility As Boolean = False)
         Dim sSQL As New System.Text.StringBuilder
         Dim sDate As DateTime
         Try

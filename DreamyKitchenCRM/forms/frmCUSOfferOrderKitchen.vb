@@ -111,6 +111,22 @@ Public Class frmCUSOfferOrderKitchen
                 txtRemove.EditValue = ProgProps.KitchenRemove
                 cboBaseCat.EditValue = System.Guid.Parse(GetBaseCatID())
                 dtOrder.EditValue = Date.Now
+
+                If sIsOrder = False Then
+                    txtVFinalHeight.EditValue = ProgProps.V_HEIGHT
+                    txtKHeight.EditValue = ProgProps.K_HEIGHT
+                    txtKFinalHeight.EditValue = ProgProps.K_FINAL_HEIGHT
+                    txtYHeight.EditValue = ProgProps.Y_HEIGHT
+                    txtYFinalHeight.EditValue = ProgProps.Y_FINAL_HEIGHT
+                    cboVBOXColors.EditValue = System.Guid.Parse(ProgProps.V_BOX_COLOR)
+                    cboKBOXColors.EditValue = System.Guid.Parse(ProgProps.K_BOX_COLOR)
+                    cboYBOXColors.EditValue = System.Guid.Parse(ProgProps.Y_BOX_COLOR)
+                    cboLegs.EditValue = ProgProps.LEGS
+                    cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
+                    txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
+                    txtNotes.EditValue = ProgProps.CUS_NOTES
+                End If
+
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
                     "Select  e.ID,E.code,name,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked,
                      case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard " &
@@ -214,11 +230,11 @@ Public Class frmCUSOfferOrderKitchen
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sGuid, True, "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sGuid, , "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
                         Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", LayoutControl1,,, sID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
                         'sGuid = sID
                 End Select
 

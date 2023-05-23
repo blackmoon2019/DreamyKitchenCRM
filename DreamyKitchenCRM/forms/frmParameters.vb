@@ -13,6 +13,7 @@ Imports DevExpress.XtraNavBar
 
 Public Class frmParameters
     Private sID As String
+    Private ManageCbo As New CombosManager
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -37,6 +38,8 @@ Public Class frmParameters
     End Property
 
     Private Sub frmParameters_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_V2' table. You can move, or remove it, as needed.
+        Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet1.MAILS' table. You can move, or remove it, as needed.
         Me.MAILSTableAdapter.Fill(Me.DreamyKitchenDataSet1.MAILS)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BENCH' table. You can move, or remove it, as needed.
@@ -62,91 +65,35 @@ Public Class frmParameters
     Private Sub navGen_LinkClicked(sender As Object, e As NavBarLinkEventArgs)
     End Sub
 
+    Private Sub V_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles V_BOX_COLOR.ButtonClick
 
-    Private Sub cboBENCH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles BENCH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : BENCH.EditValue = Nothing : ManageBENCH()
-            Case 2 : If BENCH.EditValue <> Nothing Then ManageBENCH()
-            Case 3 : BENCH.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboVBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles V_BOX_COLOR.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : V_BOX_COLOR.EditValue = Nothing : ManageColors(V_BOX_COLOR)
-            Case 2 : If V_BOX_COLOR.EditValue <> Nothing Then ManageColors(V_BOX_COLOR)
+            Case 1 : ManageCbo.ManageDoorType(V_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageDoorType(V_BOX_COLOR, FormMode.EditRecord)
             Case 3 : V_BOX_COLOR.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageColors(ByVal CallerControl As LookUpEdit)
-        Dim frmColors As frmColors = New frmColors
-        frmColors.Text = "Χρώματα"
-        frmColors.CallerForm = "frmColors"
-        frmColors.CallerControlLKUP = CallerControl
-        frmColors.CalledFromControl = True
-        frmColors.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
-            frmColors.ID = CallerControl.EditValue.ToString
-            frmColors.Mode = FormMode.EditRecord
-        Else
-            frmColors.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
-        frmColors.Show()
-    End Sub
-    Private Sub ManageBENCH()
-        Dim frmBench As frmBench = New frmBench
-        frmBench.CallerForm = "frmOffer"
-        frmBench.CallerControl = BENCH
-        frmBench.CalledFromControl = True
-        frmBench.MdiParent = frmMain
-        If BENCH.EditValue <> Nothing Then
-            frmBench.ID = BENCH.EditValue.ToString
-            frmBench.Mode = FormMode.EditRecord
-        Else
-            frmBench.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
-        frmBench.Show()
-    End Sub
 
-    Private Sub cboVPVCColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles V_PVC_COLOR.ButtonClick
+
+
+    Private Sub K_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles K_BOX_COLOR.ButtonClick
         Select Case e.Button.Index
-            Case 1 : V_BOX_COLOR.EditValue = Nothing : ManageColors(V_PVC_COLOR)
-            Case 2 : If V_PVC_COLOR.EditValue <> Nothing Then ManageColors(V_PVC_COLOR)
-            Case 3 : V_PVC_COLOR.EditValue = Nothing
-        End Select
-    End Sub
-    Private Sub cboKBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles K_BOX_COLOR.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : V_BOX_COLOR.EditValue = Nothing : ManageColors(K_BOX_COLOR)
-            Case 2 : If K_BOX_COLOR.EditValue <> Nothing Then ManageColors(K_BOX_COLOR)
+            Case 1 : ManageCbo.ManageDoorType(K_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageDoorType(K_BOX_COLOR, FormMode.EditRecord)
             Case 3 : K_BOX_COLOR.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub cboKPVCColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles K_PVC_COLOR.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : V_BOX_COLOR.EditValue = Nothing : ManageColors(K_PVC_COLOR)
-            Case 2 : If K_PVC_COLOR.EditValue <> Nothing Then ManageColors(K_PVC_COLOR)
-            Case 3 : K_PVC_COLOR.EditValue = Nothing
-        End Select
-    End Sub
 
-    Private Sub cboYBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles Y_BOX_COLOR.ButtonClick
+    Private Sub Y_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles Y_BOX_COLOR.ButtonClick
         Select Case e.Button.Index
-            Case 1 : V_BOX_COLOR.EditValue = Nothing : ManageColors(Y_BOX_COLOR)
-            Case 2 : If Y_BOX_COLOR.EditValue <> Nothing Then ManageColors(Y_BOX_COLOR)
+            Case 1 : ManageCbo.ManageDoorType(Y_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageDoorType(Y_BOX_COLOR, FormMode.EditRecord)
             Case 3 : Y_BOX_COLOR.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub cboYPVCColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles Y_PVC_COLOR.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : V_BOX_COLOR.EditValue = Nothing : ManageColors(Y_PVC_COLOR)
-            Case 2 : If Y_PVC_COLOR.EditValue <> Nothing Then ManageColors(Y_PVC_COLOR)
-            Case 3 : Y_PVC_COLOR.EditValue = Nothing
-        End Select
-    End Sub
+
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Prog_Prop.SetProgPROSF(LayoutControl3)
@@ -375,5 +322,34 @@ Public Class frmParameters
 
     Private Sub cmdExitInstEmail_Click(sender As Object, e As EventArgs) Handles cmdExitInstEmail.Click
         Me.Close()
+    End Sub
+
+    Private Sub V_HEIGHT_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles V_HEIGHT.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : V_HEIGHT.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub K_HEIGHT_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles K_HEIGHT.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : K_HEIGHT.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub Y_HEIGHT_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles Y_HEIGHT.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : Y_HEIGHT.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub legs_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles LEGS.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : LEGS.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub CLOSET_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles CLOSET_BOX_COLOR.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageDoorType(CLOSET_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageDoorType(CLOSET_BOX_COLOR, FormMode.EditRecord)
+            Case 3 : CLOSET_BOX_COLOR.EditValue = Nothing
+        End Select
     End Sub
 End Class

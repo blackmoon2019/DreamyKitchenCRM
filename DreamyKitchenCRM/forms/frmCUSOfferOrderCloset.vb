@@ -102,28 +102,38 @@ Public Class frmCUSOfferOrderCloset
                 txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_CLOSET")
                 cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
-                cboBackThikness.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                cboboxThikness.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                txtdrawers.EditValue = ProgProps.CLOSET_DRAWERS
-                cboBackThikness2.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                cboboxThikness2.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                txtdrawers2.EditValue = ProgProps.CLOSET_DRAWERS
-                cboBackThikness3.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                cboboxThikness3.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                txtdrawers3.EditValue = ProgProps.CLOSET_DRAWERS
-                cboBackThikness4.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                cboboxThikness4.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                txtdrawers4.EditValue = ProgProps.CLOSET_DRAWERS
-                cboBackThikness5.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                cboboxThikness5.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                txtdrawers5.EditValue = ProgProps.CLOSET_DRAWERS
-                cboBackThikness6.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                cboboxThikness6.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                txtdrawers6.EditValue = ProgProps.CLOSET_DRAWERS
+                If sIsOrder = True Then
+                    txtdrawers.EditValue = ProgProps.CLOSET_DRAWERS
+                    cboBackThikness2.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                    cboboxThikness2.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                    txtdrawers2.EditValue = ProgProps.CLOSET_DRAWERS
+                    cboBackThikness3.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                    cboboxThikness3.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                    txtdrawers3.EditValue = ProgProps.CLOSET_DRAWERS
+                    cboBackThikness4.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                    cboboxThikness4.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                    txtdrawers4.EditValue = ProgProps.CLOSET_DRAWERS
+                    cboBackThikness5.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                    cboboxThikness5.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                    txtdrawers5.EditValue = ProgProps.CLOSET_DRAWERS
+                    cboBackThikness6.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                    cboboxThikness6.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                    txtdrawers6.EditValue = ProgProps.CLOSET_DRAWERS
+                    txtTransp.EditValue = ProgProps.ClosetTransp
+                    txtMeasurement.EditValue = ProgProps.ClosetMeasurement
+                    txtRemove.EditValue = ProgProps.ClosetRemove
+                    cboBackThikness.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+                    cboboxThikness.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+                Else
+                    txtNotes.EditValue = ProgProps.CUS_NOTES
+                    txtdrawers.EditValue = ProgProps.DRAWERS
+                    txtdrawers2.EditValue = ProgProps.DRAWERS
+                    txtdrawers3.EditValue = ProgProps.DRAWERS
+                    txtdrawers4.EditValue = ProgProps.DRAWERS
+                    txtdrawers5.EditValue = ProgProps.DRAWERS
+                    txtdrawers6.EditValue = ProgProps.DRAWERS
+                End If
 
-                txtTransp.EditValue = ProgProps.ClosetTransp
-                txtMeasurement.EditValue = ProgProps.ClosetMeasurement
-                txtRemove.EditValue = ProgProps.ClosetRemove
 
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
                     "Select  e.ID,E.code,name,price,e.price as defPrice,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, " &
@@ -189,11 +199,11 @@ Public Class frmCUSOfferOrderCloset
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sGuid, True, "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sGuid, , "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
                         sID = sGuid
                     Case FormMode.EditRecord
                         Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sID, True,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sID,,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
                         'sGuid = sID
                 End Select
 
@@ -203,12 +213,12 @@ Public Class frmCUSOfferOrderCloset
                 End If
 
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then
                         TabNavigationPage2.Enabled = True
                         If sIsOrder = False Then cmdConvertToOrder.Enabled = True
+                        InsertSelectedRows(False)
                     End If
-
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                     Mode = FormMode.EditRecord
                     Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
@@ -290,7 +300,7 @@ Public Class frmCUSOfferOrderCloset
             Case 1 : GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", "0.00")
         End Select
     End Sub
-    Private Sub InsertSelectedRows()
+    Private Sub InsertSelectedRows(Optional ByVal msg As Boolean = True)
         Dim sSQL As String
         Dim I As Integer
         sSQL = "DELETE FROM CCT_ORDERS_CLOSET_EQUIPMENT WHERE cctOrdersClosetID = " & toSQLValueS(sID)
@@ -308,7 +318,7 @@ Public Class frmCUSOfferOrderCloset
                 End Using
             End If
         Next
-        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
