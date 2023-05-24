@@ -136,11 +136,13 @@ Public Class frmCUSOfferOrderCloset
 
 
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "Select  e.ID,E.code,name,price,e.price as defPrice,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, " &
-                    "case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard " &
-                     "From vw_EQUIPMENT E where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62' ORDER BY NAME")
+                    "Select  e.ID,E.code,name,price,e.price as defPrice,
+                    cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, 
+                    case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard 
+                    From vw_EQUIPMENT E where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62' ORDER BY NAME")
                 TabNavigationPage2.Enabled = False
-                cmdConvertToOrder.Enabled = False
+                'cmdConvertToOrder.Enabled = False
+                LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
                 LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_CLOSET.* " &
@@ -149,12 +151,14 @@ Public Class frmCUSOfferOrderCloset
                                                    " where CCT_ORDERS_CLOSET.id = " & toSQLValueS(sID), sFields)
                 If sIsOrder = False Then
                     If sFields("OrderID") <> "" Then
-                        cmdConvertToOrder.Enabled = False
+                        'cmdConvertToOrder.Enabled = False
+                        LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                         cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
                         LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                     End If
                 Else
-                    cmdConvertToOrder.Enabled = False
+                    'cmdConvertToOrder.Enabled = False
+                    LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                     If sFields("CreatedFromOfferID") <> "" Then cboCUS.Enabled = False
                 End If
 
@@ -179,7 +183,7 @@ Public Class frmCUSOfferOrderCloset
         End Select
         LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_CLOSET_EQUIPMENT_def.xml")
         GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
-        GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
+        'GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
         Me.CenterToScreen()
 
 
@@ -215,7 +219,7 @@ Public Class frmCUSOfferOrderCloset
                 If sResult = True Then
                     If Mode = FormMode.NewRecord Then
                         TabNavigationPage2.Enabled = True
-                        If sIsOrder = False Then cmdConvertToOrder.Enabled = True
+                        If sIsOrder = False Then cmdConvertToOrder.Enabled = True : LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                         InsertSelectedRows(False)
                     End If
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -671,7 +675,9 @@ Public Class frmCUSOfferOrderCloset
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
+                'cmdConvertToOrder.Enabled = False
+                cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
+                LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception

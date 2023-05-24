@@ -31,8 +31,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
-        Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
+        Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.txtarProt = New DevExpress.XtraEditors.TextEdit()
         Me.dtpresentation = New DevExpress.XtraEditors.DateEdit()
         Me.txtInitialPrice1 = New DevExpress.XtraEditors.TextEdit()
@@ -53,7 +53,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.txtFinalPrice4 = New DevExpress.XtraEditors.TextEdit()
         Me.cboEMP = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
         Me.txtDescription = New DevExpress.XtraEditors.MemoEdit()
         Me.txtnotes = New DevExpress.XtraEditors.MemoEdit()
@@ -73,6 +72,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboDoorType3 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboScpecialConstr1 = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwCONSTRTYPEBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
         Me.cboScpecialConstr3 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboScpecialConstr2 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboScpecialConstr4 = New DevExpress.XtraEditors.LookUpEdit()
@@ -140,21 +140,21 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.EmptySpaceItem3 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwDOORTYPESpecialConstrBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_CONSTR_TYPETableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_CONSTR_TYPETableAdapter()
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
         Me.Vw_DOOR_TYPESpecialConstrTableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPESpecialConstrTableAdapter()
         Me.Vw_DOOR_TYPE_V2TableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPE_V2TableAdapter()
-        Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtarProt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -176,7 +176,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.txtFinalPrice4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtnotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -196,6 +195,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.cboDoorType3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboScpecialConstr1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCONSTRTYPEBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboScpecialConstr3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboScpecialConstr2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboScpecialConstr4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -263,8 +263,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDOORTYPESpecialConstrBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -444,15 +444,15 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
         '
-        'CCTTRANSHBindingSource
+        'VwCCTBindingSource
         '
-        Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
-        Me.CCTTRANSHBindingSource.DataSource = Me.DMDataSet
+        Me.VwCCTBindingSource.DataMember = "vw_CCT"
+        Me.VwCCTBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
-        'DMDataSet
+        'DreamyKitchenDataSet
         '
-        Me.DMDataSet.DataSetName = "DMDataSet"
-        Me.DMDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'txtarProt
         '
@@ -853,11 +853,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.VwSALERSBindingSource.DataMember = "vw_SALERS"
         Me.VwSALERSBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'txtComments
         '
         Me.txtComments.Location = New System.Drawing.Point(656, 315)
@@ -1175,6 +1170,11 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         Me.VwCONSTRTYPEBindingSource.DataMember = "vw_CONSTR_TYPE"
         Me.VwCONSTRTYPEBindingSource.DataSource = Me.DMDataSet
+        '
+        'DMDataSet
+        '
+        Me.DMDataSet.DataSetName = "DMDataSet"
+        Me.DMDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cboScpecialConstr3
         '
@@ -2017,6 +2017,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem7.Location = New System.Drawing.Point(1351, 1181)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(265, 43)
+        Me.LayoutControlItem7.Text = "LSave"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
         '
@@ -2028,6 +2029,11 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem8.Size = New System.Drawing.Size(139, 43)
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem8.TextVisible = False
+        '
+        'CCTTRANSHBindingSource
+        '
+        Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
+        Me.CCTTRANSHBindingSource.DataSource = Me.DMDataSet
         '
         'VwDOORTYPESpecialConstrBindingSource
         '
@@ -2054,11 +2060,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         Me.Vw_DOOR_TYPE_V2TableAdapter.ClearBeforeFill = True
         '
-        'VwCCTBindingSource
-        '
-        Me.VwCCTBindingSource.DataMember = "vw_CCT"
-        Me.VwCCTBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'Vw_CCTTableAdapter
         '
         Me.Vw_CCTTableAdapter.ClearBeforeFill = True
@@ -2078,8 +2079,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtarProt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2101,7 +2102,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.txtFinalPrice4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtnotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2121,6 +2121,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.cboDoorType3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboScpecialConstr1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCONSTRTYPEBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboScpecialConstr3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboScpecialConstr2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboScpecialConstr4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2188,8 +2189,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.EmptySpaceItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDOORTYPESpecialConstrBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -1422,7 +1422,7 @@ Partial Public Class RepCUSOfferKitchen
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "c0caa2da-5393-4d54-8a7e-5dea1ad83fa1"
+        Me.OfferID.ValueInfo = "a611ca9f-dd1c-4962-9245-a4a600169b76"
         DynamicListLookUpSettings1.DataMember = "vw_CCT_ORDERS_KITCHEN"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"

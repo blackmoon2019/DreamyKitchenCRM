@@ -46,6 +46,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell17 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell18 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell12 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell47 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell19 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell32 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell7 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -53,6 +54,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell20 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell21 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell13 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell48 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell22 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell33 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell8 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -60,6 +62,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell23 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell24 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell14 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell49 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell25 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell34 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell9 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -67,6 +70,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell26 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell27 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell15 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell50 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell28 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell35 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell10 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -74,6 +78,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell29 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell30 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell16 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell51 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell31 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell36 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell11 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -81,6 +86,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell37 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell38 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell39 = New DevExpress.XtraReports.UI.XRTableCell()
+        Me.XrTableCell52 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell40 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell41 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrTableCell42 = New DevExpress.XtraReports.UI.XRTableCell()
@@ -126,12 +132,6 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell6 = New DevExpress.XtraReports.UI.XRTableCell()
         Me.XrLabel31 = New DevExpress.XtraReports.UI.XRLabel()
         Me.OfferID = New DevExpress.XtraReports.Parameters.Parameter()
-        Me.XrTableCell47 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell48 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell49 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell50 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell51 = New DevExpress.XtraReports.UI.XRTableCell()
-        Me.XrTableCell52 = New DevExpress.XtraReports.UI.XRTableCell()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -301,6 +301,21 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell12.Weight = 1.4954576255341079R
         '
+        'XrTableCell47
+        '
+        Me.XrTableCell47.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
+        Me.XrTableCell47.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell47.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell47.Multiline = True
+        Me.XrTableCell47.Name = "XrTableCell47"
+        Me.XrTableCell47.StylePriority.UseBackColor = False
+        Me.XrTableCell47.StylePriority.UseFont = False
+        Me.XrTableCell47.StylePriority.UseForeColor = False
+        Me.XrTableCell47.StylePriority.UseTextAlignment = False
+        Me.XrTableCell47.Text = "Αρχική Τιμή"
+        Me.XrTableCell47.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell47.Weight = 0.95157520868492274R
+        '
         'XrTableCell19
         '
         Me.XrTableCell19.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
@@ -403,6 +418,21 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell13.Weight = 1.4954576255341081R
         '
+        'XrTableCell48
+        '
+        Me.XrTableCell48.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice1]")})
+        Me.XrTableCell48.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell48.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell48.Multiline = True
+        Me.XrTableCell48.Name = "XrTableCell48"
+        Me.XrTableCell48.StylePriority.UseFont = False
+        Me.XrTableCell48.StylePriority.UseForeColor = False
+        Me.XrTableCell48.StylePriority.UseTextAlignment = False
+        Me.XrTableCell48.Text = "XrTableCell48"
+        Me.XrTableCell48.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell48.TextFormatString = "{0:C}"
+        Me.XrTableCell48.Weight = 0.95157520868492274R
+        '
         'XrTableCell22
         '
         Me.XrTableCell22.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelDiscount1]")})
@@ -497,6 +527,21 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell14.Text = "XrTableCell14"
         Me.XrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell14.Weight = 1.4954576255341081R
+        '
+        'XrTableCell49
+        '
+        Me.XrTableCell49.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice2]")})
+        Me.XrTableCell49.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell49.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell49.Multiline = True
+        Me.XrTableCell49.Name = "XrTableCell49"
+        Me.XrTableCell49.StylePriority.UseFont = False
+        Me.XrTableCell49.StylePriority.UseForeColor = False
+        Me.XrTableCell49.StylePriority.UseTextAlignment = False
+        Me.XrTableCell49.Text = "XrTableCell49"
+        Me.XrTableCell49.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell49.TextFormatString = "{0:C}"
+        Me.XrTableCell49.Weight = 0.95157520868492274R
         '
         'XrTableCell25
         '
@@ -593,6 +638,21 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell15.Weight = 1.4954576255341081R
         '
+        'XrTableCell50
+        '
+        Me.XrTableCell50.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice3]")})
+        Me.XrTableCell50.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell50.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell50.Multiline = True
+        Me.XrTableCell50.Name = "XrTableCell50"
+        Me.XrTableCell50.StylePriority.UseFont = False
+        Me.XrTableCell50.StylePriority.UseForeColor = False
+        Me.XrTableCell50.StylePriority.UseTextAlignment = False
+        Me.XrTableCell50.Text = "XrTableCell50"
+        Me.XrTableCell50.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell50.TextFormatString = "{0:C}"
+        Me.XrTableCell50.Weight = 0.95157520868492274R
+        '
         'XrTableCell28
         '
         Me.XrTableCell28.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelDiscount3]")})
@@ -688,6 +748,21 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell16.Weight = 1.4954576255341081R
         '
+        'XrTableCell51
+        '
+        Me.XrTableCell51.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice4]")})
+        Me.XrTableCell51.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell51.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell51.Multiline = True
+        Me.XrTableCell51.Name = "XrTableCell51"
+        Me.XrTableCell51.StylePriority.UseFont = False
+        Me.XrTableCell51.StylePriority.UseForeColor = False
+        Me.XrTableCell51.StylePriority.UseTextAlignment = False
+        Me.XrTableCell51.Text = "XrTableCell51"
+        Me.XrTableCell51.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell51.TextFormatString = "{0:C}"
+        Me.XrTableCell51.Weight = 0.95157520868492274R
+        '
         'XrTableCell31
         '
         Me.XrTableCell31.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelDiscount4]")})
@@ -781,6 +856,21 @@ Partial Public Class RepCUSOfferCloset2ndPage
         Me.XrTableCell39.Text = "XrTableCell39"
         Me.XrTableCell39.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell39.Weight = 1.4954576255341081R
+        '
+        'XrTableCell52
+        '
+        Me.XrTableCell52.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice5]")})
+        Me.XrTableCell52.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrTableCell52.ForeColor = System.Drawing.Color.Gray
+        Me.XrTableCell52.Multiline = True
+        Me.XrTableCell52.Name = "XrTableCell52"
+        Me.XrTableCell52.StylePriority.UseFont = False
+        Me.XrTableCell52.StylePriority.UseForeColor = False
+        Me.XrTableCell52.StylePriority.UseTextAlignment = False
+        Me.XrTableCell52.Text = "XrTableCell52"
+        Me.XrTableCell52.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        Me.XrTableCell52.TextFormatString = "{0:C}"
+        Me.XrTableCell52.Weight = 0.95157520868492274R
         '
         'XrTableCell40
         '
@@ -1341,96 +1431,6 @@ Partial Public Class RepCUSOfferCloset2ndPage
         DynamicListLookUpSettings1.ValueMember = "ID"
         Me.OfferID.ValueSourceSettings = DynamicListLookUpSettings1
         Me.OfferID.Visible = False
-        '
-        'XrTableCell47
-        '
-        Me.XrTableCell47.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        Me.XrTableCell47.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!, System.Drawing.FontStyle.Bold)
-        Me.XrTableCell47.ForeColor = System.Drawing.Color.Gray
-        Me.XrTableCell47.Multiline = True
-        Me.XrTableCell47.Name = "XrTableCell47"
-        Me.XrTableCell47.StylePriority.UseBackColor = False
-        Me.XrTableCell47.StylePriority.UseFont = False
-        Me.XrTableCell47.StylePriority.UseForeColor = False
-        Me.XrTableCell47.StylePriority.UseTextAlignment = False
-        Me.XrTableCell47.Text = "Αρχική Τιμή"
-        Me.XrTableCell47.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell47.Weight = 0.95157520868492274R
-        '
-        'XrTableCell48
-        '
-        Me.XrTableCell48.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice1]")})
-        Me.XrTableCell48.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
-        Me.XrTableCell48.ForeColor = System.Drawing.Color.Gray
-        Me.XrTableCell48.Multiline = True
-        Me.XrTableCell48.Name = "XrTableCell48"
-        Me.XrTableCell48.StylePriority.UseFont = False
-        Me.XrTableCell48.StylePriority.UseForeColor = False
-        Me.XrTableCell48.StylePriority.UseTextAlignment = False
-        Me.XrTableCell48.Text = "XrTableCell48"
-        Me.XrTableCell48.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell48.TextFormatString = "{0:C}"
-        Me.XrTableCell48.Weight = 0.95157520868492274R
-        '
-        'XrTableCell49
-        '
-        Me.XrTableCell49.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice2]")})
-        Me.XrTableCell49.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
-        Me.XrTableCell49.ForeColor = System.Drawing.Color.Gray
-        Me.XrTableCell49.Multiline = True
-        Me.XrTableCell49.Name = "XrTableCell49"
-        Me.XrTableCell49.StylePriority.UseFont = False
-        Me.XrTableCell49.StylePriority.UseForeColor = False
-        Me.XrTableCell49.StylePriority.UseTextAlignment = False
-        Me.XrTableCell49.Text = "XrTableCell49"
-        Me.XrTableCell49.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell49.TextFormatString = "{0:C}"
-        Me.XrTableCell49.Weight = 0.95157520868492274R
-        '
-        'XrTableCell50
-        '
-        Me.XrTableCell50.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice3]")})
-        Me.XrTableCell50.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
-        Me.XrTableCell50.ForeColor = System.Drawing.Color.Gray
-        Me.XrTableCell50.Multiline = True
-        Me.XrTableCell50.Name = "XrTableCell50"
-        Me.XrTableCell50.StylePriority.UseFont = False
-        Me.XrTableCell50.StylePriority.UseForeColor = False
-        Me.XrTableCell50.StylePriority.UseTextAlignment = False
-        Me.XrTableCell50.Text = "XrTableCell50"
-        Me.XrTableCell50.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell50.TextFormatString = "{0:C}"
-        Me.XrTableCell50.Weight = 0.95157520868492274R
-        '
-        'XrTableCell51
-        '
-        Me.XrTableCell51.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice4]")})
-        Me.XrTableCell51.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
-        Me.XrTableCell51.ForeColor = System.Drawing.Color.Gray
-        Me.XrTableCell51.Multiline = True
-        Me.XrTableCell51.Name = "XrTableCell51"
-        Me.XrTableCell51.StylePriority.UseFont = False
-        Me.XrTableCell51.StylePriority.UseForeColor = False
-        Me.XrTableCell51.StylePriority.UseTextAlignment = False
-        Me.XrTableCell51.Text = "XrTableCell51"
-        Me.XrTableCell51.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell51.TextFormatString = "{0:C}"
-        Me.XrTableCell51.Weight = 0.95157520868492274R
-        '
-        'XrTableCell52
-        '
-        Me.XrTableCell52.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelInitialPrice5]")})
-        Me.XrTableCell52.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
-        Me.XrTableCell52.ForeColor = System.Drawing.Color.Gray
-        Me.XrTableCell52.Multiline = True
-        Me.XrTableCell52.Name = "XrTableCell52"
-        Me.XrTableCell52.StylePriority.UseFont = False
-        Me.XrTableCell52.StylePriority.UseForeColor = False
-        Me.XrTableCell52.StylePriority.UseTextAlignment = False
-        Me.XrTableCell52.Text = "XrTableCell52"
-        Me.XrTableCell52.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
-        Me.XrTableCell52.TextFormatString = "{0:C}"
-        Me.XrTableCell52.Weight = 0.95157520868492274R
         '
         'RepCUSOfferCloset2ndPage
         '

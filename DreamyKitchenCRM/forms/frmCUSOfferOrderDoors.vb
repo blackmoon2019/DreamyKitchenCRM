@@ -110,7 +110,8 @@ Public Class frmCUSOfferOrderDoors
                 txtTransp.EditValue = ProgProps.DoorTransp
                 txtMeasurement.EditValue = ProgProps.DoorMeasurement
                 txtRemove.EditValue = ProgProps.DoorRemove
-                cmdConvertToOrder.Enabled = False
+                'cmdConvertToOrder.Enabled = False
+                LayoutControlItem7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
                 LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_DOOR.* " &
@@ -119,12 +120,14 @@ Public Class frmCUSOfferOrderDoors
                                                    " where CCT_ORDERS_DOOR.id = " & toSQLValueS(sID), sFields)
                 If sIsOrder = False Then
                     If sFields("OrderID") <> "" Then
-                        cmdConvertToOrder.Enabled = False
+                        'cmdConvertToOrder.Enabled = False
+                        LayoutControlItem7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                         cmdSave.Enabled = False
                         LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                     End If
                 Else
-                    cmdConvertToOrder.Enabled = False
+                    'cmdConvertToOrder.Enabled = False
+                    LayoutControlItem7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 End If
 
 
@@ -203,7 +206,8 @@ Public Class frmCUSOfferOrderDoors
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then
                         Mode = FormMode.EditRecord
-                        cmdConvertToOrder.Enabled = True
+                        'cmdConvertToOrder.Enabled = True
+                        LayoutControlItem7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                     End If
                     If sIsOrder Then
                         Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
@@ -503,7 +507,9 @@ Public Class frmCUSOfferOrderDoors
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False
+                'cmdConvertToOrder.Enabled = False
+                cmdSave.Enabled = False
+                LayoutControlItem7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception

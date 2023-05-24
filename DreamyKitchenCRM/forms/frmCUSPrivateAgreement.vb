@@ -507,6 +507,7 @@ Public Class frmCUSPrivateAgreement
             Dim frmCUSOrderCloset As frmCUSOfferOrderCloset = New frmCUSOfferOrderCloset()
             frmCUSOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
             frmCUSOrderCloset.ID = oID
+            frmCUSOrderCloset.IsOrder = True
             frmCUSOrderCloset.MdiParent = frmMain
             frmCUSOrderCloset.Mode = FormMode.EditRecord
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderCloset), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
@@ -532,6 +533,7 @@ Public Class frmCUSPrivateAgreement
             frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
             frmCUSOfferOrderDoors.IsOrder = True
             frmCUSOfferOrderDoors.ID = oID
+            frmCUSOfferOrderDoors.IsOrder = True
             frmCUSOfferOrderDoors.MdiParent = frmMain
             frmCUSOfferOrderDoors.Mode = FormMode.EditRecord
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderDoors), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
@@ -556,6 +558,7 @@ Public Class frmCUSPrivateAgreement
             Dim frmCUSOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
             frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
             frmCUSOrderKitchen.ID = oID
+            frmCUSOrderKitchen.IsOrder = True
             frmCUSOrderKitchen.MdiParent = frmMain
             frmCUSOrderKitchen.Mode = FormMode.EditRecord
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderKitchen), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))

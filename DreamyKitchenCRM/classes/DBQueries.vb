@@ -1165,6 +1165,7 @@ NextItem:
                             Next i
                         End If
                         ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
+                        'If LItem.Control.Tag = "PependisisDoorTypeID2,0,1,2" Then Stop
                         If LItem.Control.Tag <> "" Then
                             'Βάζω τις τιμές του TAG σε array
                             TagValue = LItem.Control.Tag.ToString.Split(",")

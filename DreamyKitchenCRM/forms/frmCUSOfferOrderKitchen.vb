@@ -128,11 +128,14 @@ Public Class frmCUSOfferOrderKitchen
                 End If
 
                 LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "Select  e.ID,E.code,name,price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked,
-                     case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard " &
-                     "From vw_EQUIPMENT E where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
+                    "Select  e.ID,E.code,name,e.price as defPrice,
+                     price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked,
+                     case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard 
+                     From vw_EQUIPMENT E 
+                     where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
                 TabNavigationPage2.Enabled = False
-                cmdConvertToOrder.Enabled = False
+                'cmdConvertToOrder.Enabled = False
+                LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
                 LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_KITCHEN.* " &
@@ -140,12 +143,14 @@ Public Class frmCUSOfferOrderKitchen
                                                    " left join CCT_ORDERS_KITCHEN  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_KITCHEN.id where CCT_ORDERS_KITCHEN.id = " & toSQLValueS(sID), sFields)
                 If sIsOrder = False Then
                     If sFields("OrderID") <> "" Then
-                        cmdConvertToOrder.Enabled = False
+                        'cmdConvertToOrder.Enabled = False
+                        LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                         cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
                         LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                     End If
                 Else
-                    cmdConvertToOrder.Enabled = False
+                    'cmdConvertToOrder.Enabled = False
+                    LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                     If sFields("CreatedFromOfferID") <> "" Then cboCUS.Enabled = False
                 End If
                 sFields = Nothing
@@ -159,6 +164,7 @@ Public Class frmCUSOfferOrderKitchen
                     where eq.cctOrdersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
                     isnull((select qty from CCT_ORDERS_KITCHEN_EQUIPMENT EQ where eq.cctOrdersKitchenID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as QTY,standard
                     from EQUIPMENT E
+                    where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' 
                     ORDER BY NAME")
                 TabNavigationPage2.Enabled = True
 
@@ -252,7 +258,7 @@ Public Class frmCUSOfferOrderKitchen
                         InsertSelectedRows(False)
                         LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
                         LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def")
-                        If sIsOrder = False Then cmdConvertToOrder.Enabled = True
+                        If sIsOrder = False Then cmdConvertToOrder.Enabled = True : LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                     End If
 
                     Mode = FormMode.EditRecord
@@ -350,11 +356,12 @@ Public Class frmCUSOfferOrderKitchen
         For I = 0 To GridView2.RowCount - 1
             Selected = GridView2.GetRowCellValue(I, "checked")
             If Selected = True Then
-                If GridView2.GetRowCellValue(I, "price") = 0 Then
-                    sPrice = GridView2.GetRowCellValue(I, "defPrice")
-                Else
-                    sPrice = GridView2.GetRowCellValue(I, "price")
-                End If
+                'If GridView2.GetRowCellValue(I, "price") = 0 Then
+                '    sPrice = GridView2.GetRowCellValue(I, "defPrice")
+                'Else
+                '    sPrice = GridView2.GetRowCellValue(I, "price")
+                'End If
+                sPrice = GridView2.GetRowCellValue(I, "price")
                 sSQL = "INSERT INTO CCT_ORDERS_KITCHEN_EQUIPMENT(cctOrdersKitchenID,equipmentID,price,selected,qty) " &
                         " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(sPrice.ToString, True) & ",1," & toSQLValueS(GridView2.GetRowCellValue(I, "QTY").ToString, True) & ")"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -657,7 +664,14 @@ Public Class frmCUSOfferOrderKitchen
             Case 3 : cboPependisisDoorType.EditValue = Nothing
         End Select
     End Sub
+    Private Sub cboPependisisDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPependisisDoorType2.ButtonClick
 
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageDoorType(cboPependisisDoorType2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageDoorType(cboPependisisDoorType2, FormMode.EditRecord)
+            Case 3 : cboPependisisDoorType2.EditValue = Nothing
+        End Select
+    End Sub
     Private Sub cbovType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVType.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboVType.EditValue = Nothing : cboVBOXColors.EditValue = Nothing
@@ -756,7 +770,9 @@ Public Class frmCUSOfferOrderKitchen
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                cmdConvertToOrder.Enabled = False : cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
+                'cmdConvertToOrder.Enabled = False
+                cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
+                LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception

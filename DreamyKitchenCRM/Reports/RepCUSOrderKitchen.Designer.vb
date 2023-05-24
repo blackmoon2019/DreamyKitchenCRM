@@ -120,6 +120,7 @@ Partial Public Class RepCUSOrderKitchen
         Me.XrLabel48 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel49 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel46 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel58 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me, System.ComponentModel.ISupportInitialize).BeginInit()
         '
         'SqlDataSource1
@@ -1383,7 +1384,7 @@ Partial Public Class RepCUSOrderKitchen
         Me.XrLabel106.Multiline = True
         Me.XrLabel106.Name = "XrLabel106"
         Me.XrLabel106.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
-        Me.XrLabel106.SizeF = New System.Drawing.SizeF(539.3572!, 22.99994!)
+        Me.XrLabel106.SizeF = New System.Drawing.SizeF(270.8892!, 22.99994!)
         Me.XrLabel106.StylePriority.UseBorderColor = False
         Me.XrLabel106.StylePriority.UseBorders = False
         Me.XrLabel106.StylePriority.UseFont = False
@@ -1644,7 +1645,7 @@ Partial Public Class RepCUSOrderKitchen
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel51, Me.XrLabel57, Me.XrLabel48, Me.XrLabel49, Me.XrLabel46, Me.XrLabel107, Me.XrLabel44, Me.XrLabel50, Me.XrLabel53, Me.XrLabel55, Me.XrLabel56, Me.XrLabel64, Me.XrLabel97, Me.XrLabel98, Me.XrLabel99, Me.XrLabel101, Me.XrLabel102, Me.XrLabel103, Me.XrLabel105, Me.XrLabel106, Me.XrLabel43, Me.XrLabel42, Me.XrLabel41, Me.XrLabel40, Me.XrLabel38, Me.XrLabel37, Me.XrLabel96, Me.XrLabel95, Me.XrLabel45, Me.XrLabel85, Me.XrLabel86, Me.XrLabel87, Me.XrLabel88, Me.XrLabel89, Me.XrLabel90, Me.XrLabel91, Me.XrLabel92, Me.XrLabel93, Me.XrLabel94, Me.XrLabel36, Me.XrLabel10, Me.XrLabel4, Me.XrLabel6, Me.XrLabel8, Me.XrLabel47, Me.XrLabel24, Me.XrLabel26, Me.XrLabel29, Me.XrLabel31, Me.XrLabel33, Me.XrLabel84, Me.XrLabel83, Me.XrLabel82, Me.XrLabel34, Me.XrLabel66, Me.XrLabel39, Me.XrCheckBox2, Me.XrCheckBox1, Me.XrLabel35, Me.XrLabel52, Me.XrLabel54, Me.XrLabel32, Me.XrLabel30, Me.XrLabel27, Me.XrLabel25, Me.XrLabel11, Me.XrLabel9, Me.XrLabel7, Me.XrLabel28, Me.XrLabel3, Me.XrPanel1, Me.XrLabel2})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel58, Me.XrLabel51, Me.XrLabel57, Me.XrLabel48, Me.XrLabel49, Me.XrLabel46, Me.XrLabel107, Me.XrLabel44, Me.XrLabel50, Me.XrLabel53, Me.XrLabel55, Me.XrLabel56, Me.XrLabel64, Me.XrLabel97, Me.XrLabel98, Me.XrLabel99, Me.XrLabel101, Me.XrLabel102, Me.XrLabel103, Me.XrLabel105, Me.XrLabel106, Me.XrLabel43, Me.XrLabel42, Me.XrLabel41, Me.XrLabel40, Me.XrLabel38, Me.XrLabel37, Me.XrLabel96, Me.XrLabel95, Me.XrLabel45, Me.XrLabel85, Me.XrLabel86, Me.XrLabel87, Me.XrLabel88, Me.XrLabel89, Me.XrLabel90, Me.XrLabel91, Me.XrLabel92, Me.XrLabel93, Me.XrLabel94, Me.XrLabel36, Me.XrLabel10, Me.XrLabel4, Me.XrLabel6, Me.XrLabel8, Me.XrLabel47, Me.XrLabel24, Me.XrLabel26, Me.XrLabel29, Me.XrLabel31, Me.XrLabel33, Me.XrLabel84, Me.XrLabel83, Me.XrLabel82, Me.XrLabel34, Me.XrLabel66, Me.XrLabel39, Me.XrCheckBox2, Me.XrCheckBox1, Me.XrLabel35, Me.XrLabel52, Me.XrLabel54, Me.XrLabel32, Me.XrLabel30, Me.XrLabel27, Me.XrLabel25, Me.XrLabel11, Me.XrLabel9, Me.XrLabel7, Me.XrLabel28, Me.XrLabel3, Me.XrPanel1, Me.XrLabel2})
         Me.PageHeader.HeightF = 975.3572!
         Me.PageHeader.Name = "PageHeader"
         '
@@ -1747,6 +1748,26 @@ Partial Public Class RepCUSOrderKitchen
         Me.XrLabel46.StylePriority.UseTextAlignment = False
         Me.XrLabel46.Text = "XrLabel45"
         Me.XrLabel46.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
+        'XrLabel58
+        '
+        Me.XrLabel58.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel58.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
+        Me.XrLabel58.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PependisisDoorTypeName2]")})
+        Me.XrLabel58.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel58.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
+        Me.XrLabel58.LocationFloat = New DevExpress.Utils.PointFloat(448.532!, 945.0!)
+        Me.XrLabel58.Multiline = True
+        Me.XrLabel58.Name = "XrLabel58"
+        Me.XrLabel58.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
+        Me.XrLabel58.SizeF = New System.Drawing.SizeF(268.4684!, 22.99994!)
+        Me.XrLabel58.StylePriority.UseBorderColor = False
+        Me.XrLabel58.StylePriority.UseBorders = False
+        Me.XrLabel58.StylePriority.UseFont = False
+        Me.XrLabel58.StylePriority.UseForeColor = False
+        Me.XrLabel58.StylePriority.UseTextAlignment = False
+        Me.XrLabel58.Text = "XrLabel45"
+        Me.XrLabel58.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'RepCUSOrderKitchen
         '
@@ -1862,4 +1883,5 @@ Partial Public Class RepCUSOrderKitchen
     Friend WithEvents XrLabel49 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel51 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel57 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel58 As DevExpress.XtraReports.UI.XRLabel
 End Class
