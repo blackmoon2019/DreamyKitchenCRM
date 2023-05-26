@@ -259,6 +259,7 @@ NextItem:
                 Else
                     cbo.EditValue = Convert.ToInt32(sValue)
                 End If
+                cbo.Properties.AllowMouseWheel = False
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
 
                 Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
@@ -272,6 +273,7 @@ NextItem:
                 Else
                     cbo.EditValue = sValue
                 End If
+                cbo.Properties.AllowMouseWheel = False
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
                 Dim dt As DevExpress.XtraEditors.DateEdit
                 dt = Ctrl
