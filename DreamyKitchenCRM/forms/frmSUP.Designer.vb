@@ -205,6 +205,7 @@ Partial Class frmSUP
         Me.cboDOY.Location = New System.Drawing.Point(202, 502)
         Me.cboDOY.Margin = New System.Windows.Forms.Padding(5)
         Me.cboDOY.Name = "cboDOY"
+        Me.cboDOY.Properties.AllowMouseWheel = False
         Me.cboDOY.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboDOY.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboDOY.Properties.NullText = ""
@@ -234,6 +235,7 @@ Partial Class frmSUP
         Me.cboAREAS.Location = New System.Drawing.Point(202, 229)
         Me.cboAREAS.Margin = New System.Windows.Forms.Padding(5)
         Me.cboAREAS.Name = "cboAREAS"
+        Me.cboAREAS.Properties.AllowMouseWheel = False
         Me.cboAREAS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboAREAS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboAREAS.Properties.NullText = ""
@@ -258,6 +260,7 @@ Partial Class frmSUP
         Me.cboADR.Location = New System.Drawing.Point(202, 313)
         Me.cboADR.Margin = New System.Windows.Forms.Padding(5)
         Me.cboADR.Name = "cboADR"
+        Me.cboADR.Properties.AllowMouseWheel = False
         Me.cboADR.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboADR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboADR.Properties.NullText = ""
@@ -272,6 +275,7 @@ Partial Class frmSUP
         Me.cboCOU.Location = New System.Drawing.Point(202, 187)
         Me.cboCOU.Margin = New System.Windows.Forms.Padding(5)
         Me.cboCOU.Name = "cboCOU"
+        Me.cboCOU.Properties.AllowMouseWheel = False
         Me.cboCOU.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCOU.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCOU.Properties.NullText = ""
@@ -356,6 +360,7 @@ Partial Class frmSUP
         Me.cboPRF.Location = New System.Drawing.Point(202, 460)
         Me.cboPRF.Margin = New System.Windows.Forms.Padding(5)
         Me.cboPRF.Name = "cboPRF"
+        Me.cboPRF.Properties.AllowMouseWheel = False
         Me.cboPRF.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboPRF.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboPRF.Properties.NullText = ""
@@ -370,6 +375,7 @@ Partial Class frmSUP
         Me.cboPAY.Location = New System.Drawing.Point(817, 284)
         Me.cboPAY.Margin = New System.Windows.Forms.Padding(5)
         Me.cboPAY.Name = "cboPAY"
+        Me.cboPAY.Properties.AllowMouseWheel = False
         Me.cboPAY.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboPAY.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboPAY.Properties.NullText = ""

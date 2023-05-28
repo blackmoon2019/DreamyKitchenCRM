@@ -170,19 +170,25 @@ Public Class frmConstrunction
                     oCmd.ExecuteNonQuery()
                 End Using
 
-
-
+                If cboTRANSH.EditValue IsNot Nothing Then
+                    ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                    Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
                 If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_CONSTR")
-                End If
+                        Dim form As frmScroller = Frm
+                        form.LoadRecords("vw_CONSTR")
+                    End If
 
-                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                If Mode = FormMode.NewRecord Then
-                    Cls.ClearCtrls(LayoutControl1)
-                    txtCode.Text = DBQ.GetNextId("CONSTR")
+                    If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    If Mode = FormMode.NewRecord Then
+                        Cls.ClearCtrls(LayoutControl1)
+                        txtCode.Text = DBQ.GetNextId("CONSTR")
+                    End If
                 End If
-            End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)

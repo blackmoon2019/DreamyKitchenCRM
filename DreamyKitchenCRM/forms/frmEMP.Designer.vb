@@ -53,6 +53,7 @@ Partial Class frmEMP
         Me.txtProfitPerc2 = New DevExpress.XtraEditors.TextEdit()
         Me.txtProfitPerc3 = New DevExpress.XtraEditors.TextEdit()
         Me.txtProfitPerc4 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtSalary1 = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -82,6 +83,7 @@ Partial Class frmEMP
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem29 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlGroup5 = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -93,8 +95,6 @@ Partial Class frmEMP
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
-        Me.txtSalary1 = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem29 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chktotOpen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -129,6 +129,7 @@ Partial Class frmEMP
         CType(Me.txtProfitPerc2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtProfitPerc3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtProfitPerc4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtSalary1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -158,6 +159,7 @@ Partial Class frmEMP
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -166,8 +168,6 @@ Partial Class frmEMP
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtSalary1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -282,6 +282,7 @@ Partial Class frmEMP
         Me.cboDOY.Location = New System.Drawing.Point(285, 501)
         Me.cboDOY.Margin = New System.Windows.Forms.Padding(5)
         Me.cboDOY.Name = "cboDOY"
+        Me.cboDOY.Properties.AllowMouseWheel = False
         Me.cboDOY.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboDOY.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboDOY.Properties.NullText = ""
@@ -311,6 +312,7 @@ Partial Class frmEMP
         Me.cboAREAS.Location = New System.Drawing.Point(285, 187)
         Me.cboAREAS.Margin = New System.Windows.Forms.Padding(5)
         Me.cboAREAS.Name = "cboAREAS"
+        Me.cboAREAS.Properties.AllowMouseWheel = False
         Me.cboAREAS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboAREAS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboAREAS.Properties.NullText = ""
@@ -335,6 +337,7 @@ Partial Class frmEMP
         Me.cboADR.Location = New System.Drawing.Point(285, 271)
         Me.cboADR.Margin = New System.Windows.Forms.Padding(5)
         Me.cboADR.Name = "cboADR"
+        Me.cboADR.Properties.AllowMouseWheel = False
         Me.cboADR.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboADR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboADR.Properties.NullText = ""
@@ -349,6 +352,7 @@ Partial Class frmEMP
         Me.cboCOU.Location = New System.Drawing.Point(285, 145)
         Me.cboCOU.Margin = New System.Windows.Forms.Padding(5)
         Me.cboCOU.Name = "cboCOU"
+        Me.cboCOU.Properties.AllowMouseWheel = False
         Me.cboCOU.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCOU.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCOU.Properties.NullText = ""
@@ -433,6 +437,7 @@ Partial Class frmEMP
         Me.cboPRF.Location = New System.Drawing.Point(285, 459)
         Me.cboPRF.Margin = New System.Windows.Forms.Padding(5)
         Me.cboPRF.Name = "cboPRF"
+        Me.cboPRF.Properties.AllowMouseWheel = False
         Me.cboPRF.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboPRF.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboPRF.Properties.NullText = ""
@@ -458,6 +463,7 @@ Partial Class frmEMP
         Me.cboDEP.Location = New System.Drawing.Point(954, 333)
         Me.cboDEP.Margin = New System.Windows.Forms.Padding(5)
         Me.cboDEP.Name = "cboDEP"
+        Me.cboDEP.Properties.AllowMouseWheel = False
         Me.cboDEP.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboDEP.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboDEP.Properties.NullText = ""
@@ -555,6 +561,7 @@ Partial Class frmEMP
         Me.cboJobs.Location = New System.Drawing.Point(954, 375)
         Me.cboJobs.Margin = New System.Windows.Forms.Padding(5)
         Me.cboJobs.Name = "cboJobs"
+        Me.cboJobs.Properties.AllowMouseWheel = False
         Me.cboJobs.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboJobs.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboJobs.Properties.NullText = ""
@@ -631,6 +638,25 @@ Partial Class frmEMP
         Me.txtProfitPerc4.StyleController = Me.LayoutControl1
         Me.txtProfitPerc4.TabIndex = 52
         Me.txtProfitPerc4.Tag = "profitPercSC,0,1,2"
+        '
+        'txtSalary1
+        '
+        Me.txtSalary1.EditValue = "0,00 €"
+        Me.txtSalary1.Location = New System.Drawing.Point(954, 459)
+        Me.txtSalary1.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtSalary1.Name = "txtSalary1"
+        Me.txtSalary1.Properties.DisplayFormat.FormatString = "c"
+        Me.txtSalary1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtSalary1.Properties.EditFormat.FormatString = "n2"
+        Me.txtSalary1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtSalary1.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtSalary1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtSalary1.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtSalary1.Properties.Tag = "BenchExtraPrice"
+        Me.txtSalary1.Size = New System.Drawing.Size(453, 38)
+        Me.txtSalary1.StyleController = Me.LayoutControl1
+        Me.txtSalary1.TabIndex = 42
+        Me.txtSalary1.Tag = "contract_salary,0,1,2"
         '
         'Root
         '
@@ -951,6 +977,18 @@ Partial Class frmEMP
         Me.LayoutControlItem22.Text = "Θέση Εργασίας"
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(248, 23)
         '
+        'LayoutControlItem29
+        '
+        Me.LayoutControlItem29.Control = Me.txtSalary1
+        Me.LayoutControlItem29.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem29.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem29.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem29.Location = New System.Drawing.Point(0, 126)
+        Me.LayoutControlItem29.Name = "LayoutControlItem29"
+        Me.LayoutControlItem29.Size = New System.Drawing.Size(717, 42)
+        Me.LayoutControlItem29.Text = "Μισθός Σύμβασης"
+        Me.LayoutControlItem29.TextSize = New System.Drawing.Size(248, 23)
+        '
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.chktotOpen
@@ -1059,37 +1097,6 @@ Partial Class frmEMP
         Me.XtraOpenFileDialog1.Multiselect = True
         Me.XtraOpenFileDialog1.Title = "Επιλογή αρχείων"
         '
-        'txtSalary1
-        '
-        Me.txtSalary1.EditValue = "0,00 €"
-        Me.txtSalary1.Location = New System.Drawing.Point(954, 459)
-        Me.txtSalary1.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtSalary1.Name = "txtSalary1"
-        Me.txtSalary1.Properties.DisplayFormat.FormatString = "c"
-        Me.txtSalary1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtSalary1.Properties.EditFormat.FormatString = "n2"
-        Me.txtSalary1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtSalary1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtSalary1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtSalary1.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtSalary1.Properties.Tag = "BenchExtraPrice"
-        Me.txtSalary1.Size = New System.Drawing.Size(453, 38)
-        Me.txtSalary1.StyleController = Me.LayoutControl1
-        Me.txtSalary1.TabIndex = 42
-        Me.txtSalary1.Tag = "contract_salary,0,1,2"
-        '
-        'LayoutControlItem29
-        '
-        Me.LayoutControlItem29.Control = Me.txtSalary1
-        Me.LayoutControlItem29.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem29.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem29.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem29.Location = New System.Drawing.Point(0, 126)
-        Me.LayoutControlItem29.Name = "LayoutControlItem29"
-        Me.LayoutControlItem29.Size = New System.Drawing.Size(717, 42)
-        Me.LayoutControlItem29.Text = "Μισθός Σύμβασης"
-        Me.LayoutControlItem29.TextSize = New System.Drawing.Size(248, 23)
-        '
         'frmEMP
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -1137,6 +1144,7 @@ Partial Class frmEMP
         CType(Me.txtProfitPerc2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtProfitPerc3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtProfitPerc4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtSalary1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1166,6 +1174,7 @@ Partial Class frmEMP
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1174,8 +1183,6 @@ Partial Class frmEMP
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtSalary1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -303,12 +303,6 @@
     <Compile Include="forms\frmCatSubErm.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmCloneOffer.Designer.vb">
-      <DependentUpon>frmCloneOffer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmCloneOffer.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\frmColors.Designer.vb">
       <DependentUpon>frmColors.vb</DependentUpon>
     </Compile>
@@ -393,12 +387,6 @@
     <Compile Include="forms\frmEpopteiaChart.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmErmaria.Designer.vb">
-      <DependentUpon>frmErmaria.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmErmaria.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\frmGen.Designer.vb">
       <DependentUpon>frmGen.vb</DependentUpon>
     </Compile>
@@ -453,12 +441,6 @@
     <Compile Include="forms\frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmMech.Designer.vb">
-      <DependentUpon>frmMech.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmMech.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="forms\frmNotes.Designer.vb">
       <DependentUpon>frmNotes.vb</DependentUpon>
     </Compile>
@@ -469,24 +451,6 @@
       <DependentUpon>frmNotesScroller.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmNotesScroller.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\frmOffer.Designer.vb">
-      <DependentUpon>frmOffer.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmOffer.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\frmOfferDet.Designer.vb">
-      <DependentUpon>frmOfferDet.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmOfferDet.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\frmOFFTotal.Designer.vb">
-      <DependentUpon>frmOFFTotal.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmOFFTotal.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmParameters.designer.vb">
@@ -649,12 +613,6 @@
       <DependentUpon>WaitForm.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\WaitForm.vb">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="forms\frmErmDoorTypes.Designer.vb">
-      <DependentUpon>frmErmDoorTypes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="forms\frmErmDoorTypes.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmServices.Designer.vb">
@@ -853,9 +811,6 @@
     <EmbeddedResource Include="forms\frmCatSubErm.resx">
       <DependentUpon>frmCatSubErm.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmCloneOffer.resx">
-      <DependentUpon>frmCloneOffer.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmColors.resx">
       <DependentUpon>frmColors.vb</DependentUpon>
     </EmbeddedResource>
@@ -899,9 +854,6 @@
     <EmbeddedResource Include="forms\frmEpopteiaChart.resx">
       <DependentUpon>frmEpopteiaChart.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmErmaria.resx">
-      <DependentUpon>frmErmaria.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmGen.resx">
       <DependentUpon>frmGen.vb</DependentUpon>
     </EmbeddedResource>
@@ -929,23 +881,11 @@
     <EmbeddedResource Include="forms\frmMain.resx">
       <DependentUpon>frmMain.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmMech.resx">
-      <DependentUpon>frmMech.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmNotes.resx">
       <DependentUpon>frmNotes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmNotesScroller.resx">
       <DependentUpon>frmNotesScroller.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmOffer.resx">
-      <DependentUpon>frmOffer.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmOfferDet.resx">
-      <DependentUpon>frmOfferDet.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmOFFTotal.resx">
-      <DependentUpon>frmOFFTotal.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmParameters.resx">
       <DependentUpon>frmParameters.vb</DependentUpon>
@@ -1028,9 +968,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\WaitForm.resx">
       <DependentUpon>WaitForm.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmErmDoorTypes.resx">
-      <DependentUpon>frmErmDoorTypes.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmServices.resx">
       <DependentUpon>frmServices.vb</DependentUpon>

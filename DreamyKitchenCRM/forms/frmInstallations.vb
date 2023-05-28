@@ -145,7 +145,14 @@ Public Class frmInstallations
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
+                        ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                        Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+                            oCmd.CommandType = CommandType.StoredProcedure
+                            oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
+                            oCmd.ExecuteNonQuery()
+                        End Using
                     End If
+
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
                 Dim sSQL2 As String

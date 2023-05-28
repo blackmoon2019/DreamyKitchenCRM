@@ -1578,16 +1578,16 @@ Public Class frmScroller
                 frmEpendisis.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEpendisis), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmEpendisis.Show()
-            Case "vw_OFF"
-                Dim frmoffer As frmOffer = New frmOffer
-                frmoffer.Text = "Προσφορές"
-                frmoffer.MdiParent = frmMain
-                frmoffer.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmoffer.Mode = FormMode.EditRecord
-                frmoffer.Scroller = GridView1
-                frmoffer.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmoffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmoffer.Show()
+            'Case "vw_OFF"
+            '    Dim frmoffer As frmOffer = New frmOffer
+            '    frmoffer.Text = "Προσφορές"
+            '    frmoffer.MdiParent = frmMain
+            '    frmoffer.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+            '    frmoffer.Mode = FormMode.EditRecord
+            '    frmoffer.Scroller = GridView1
+            '    frmoffer.FormScroller = Me
+            '    frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmoffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+            '    frmoffer.Show()
             Case "vw_COLORS"
                 Dim frmColors As frmColors = New frmColors
                 frmColors.Text = "Χρώματα"
@@ -1842,16 +1842,16 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_ERM"
-                Dim frmErmaria As frmErmaria = New frmErmaria
-                frmErmaria.Text = "Ερμάρια"
-                frmErmaria.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmErmaria.MdiParent = frmMain
-                frmErmaria.Mode = FormMode.EditRecord
-                frmErmaria.Scroller = GridView1
-                frmErmaria.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmErmaria), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmErmaria.Show()
+            'Case "vw_ERM"
+            '    Dim frmErmaria As frmErmaria = New frmErmaria
+            '    frmErmaria.Text = "Ερμάρια"
+            '    frmErmaria.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+            '    frmErmaria.MdiParent = frmMain
+            '    frmErmaria.Mode = FormMode.EditRecord
+            '    frmErmaria.Scroller = GridView1
+            '    frmErmaria.FormScroller = Me
+            '    frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmErmaria), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+            '    frmErmaria.Show()
             Case "vw_BENCH"
                 Dim frmBench As frmBench = New frmBench
                 frmBench.Text = "Πάγκοι"
@@ -2480,15 +2480,15 @@ Public Class frmScroller
                 frmEpendisis.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEpendisis), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmEpendisis.Show()
-            Case "vw_OFF"
-                Dim frmOffer As frmOffer = New frmOffer
-                frmOffer.Text = "Προσφορές"
-                frmOffer.MdiParent = frmMain
-                frmOffer.Mode = FormMode.NewRecord
-                frmOffer.Scroller = GridView1
-                frmOffer.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmOffer.Show()
+            'Case "vw_OFF"
+            '    Dim frmOffer As frmOffer = New frmOffer
+            '    frmOffer.Text = "Προσφορές"
+            '    frmOffer.MdiParent = frmMain
+            '    frmOffer.Mode = FormMode.NewRecord
+            '    frmOffer.Scroller = GridView1
+            '    frmOffer.FormScroller = Me
+            '    frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmOffer), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+            '    frmOffer.Show()
             Case "vw_COLORS"
                 Dim frmColors As frmColors = New frmColors
                 frmColors.Text = "Χρώματα"
@@ -2722,15 +2722,15 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_ERM"
-                Dim frmErmaria As frmErmaria = New frmErmaria
-                frmErmaria.Text = "Ερμάρια"
-                frmErmaria.MdiParent = frmMain
-                frmErmaria.Mode = FormMode.NewRecord
-                frmErmaria.Scroller = GridView1
-                frmErmaria.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmErmaria), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmErmaria.Show()
+            'Case "vw_ERM"
+            '    Dim frmErmaria As frmErmaria = New frmErmaria
+            '    frmErmaria.Text = "Ερμάρια"
+            '    frmErmaria.MdiParent = frmMain
+            '    frmErmaria.Mode = FormMode.NewRecord
+            '    frmErmaria.Scroller = GridView1
+            '    frmErmaria.FormScroller = Me
+            '    frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmErmaria), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+            '    frmErmaria.Show()
             Case "vw_BENCH"
                 Dim frmBench As frmBench = New frmBench
                 frmBench.Text = "Πάγκοι"
@@ -2740,15 +2740,15 @@ Public Class frmScroller
                 frmBench.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmBench.Show()
-            Case "vw_MECH"
-                Dim frmMech As frmMech = New frmMech
-                frmMech.Text = "Μηχανισμοί"
-                frmMech.MdiParent = frmMain
-                frmMech.Mode = FormMode.NewRecord
-                frmMech.Scroller = GridView1
-                frmMech.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmMech), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmMech.Show()
+            'Case "vw_MECH"
+            '    Dim frmMech As frmMech = New frmMech
+            '    frmMech.Text = "Μηχανισμοί"
+            '    frmMech.MdiParent = frmMain
+            '    frmMech.Mode = FormMode.NewRecord
+            '    frmMech.Scroller = GridView1
+            '    frmMech.FormScroller = Me
+            '    frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmMech), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+            '    frmMech.Show()
             Case "vw_TECH_CAT"
                 frmGen.Text = "Κατηγορίες Τεχνικής Υποστήριξης"
                 frmGen.MdiParent = frmMain

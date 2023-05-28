@@ -20,16 +20,11 @@ Public Class frmCUSOfferOrderCloset
     Public Mode As Byte
     Private Valid As New ValidateControls
     Private FScrollerExist As Boolean = False
-    Private Log As New Transactions
     Private FillCbo As New FillCombos
     Private DBQ As New DBQueries
     Private LoadForms As New FormLoader
-    Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
-    Private WorkingTime As Integer
-    Private AgreementSalary As Double
-    Private UserPermissions As New CheckPermissions
     Private Prog_Prop As New ProgProp
     Public WriteOnly Property ID As String
         Set(value As String)

@@ -15,6 +15,13 @@ Public Class FormLoader
     Private XMLName As String
     Private DbTblName As String
     Private DbQuery As String
+    'Public Function CheckIfRecordIsInUse(ByVal sID As String, sTable As String) As Boolean
+    '    Dim cmd As SqlCommand = New SqlCommand("select top 1 ID from LOCK where id = " & toSQLValueS(sID), CNDB)
+    '    Dim sdr As SqlDataReader = cmd.ExecuteReader()
+
+    'End Function
+
+
 
     Public Function LoadForm(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sSQL As String, Optional ByRef dictionary As Dictionary(Of String, String) = Nothing,
                              Optional ByVal CheckVisibility As Boolean = False) As Boolean

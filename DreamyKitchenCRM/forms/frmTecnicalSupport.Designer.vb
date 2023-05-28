@@ -21,6 +21,7 @@ Partial Class frmTecnicalSupport
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.chkIsBilled = New DevExpress.XtraEditors.CheckEdit()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
         Me.VwTECHSUPFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
@@ -77,18 +78,18 @@ Partial Class frmTecnicalSupport
         Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         Me.Vw_TECH_SUP_FTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_TECH_SUP_FTableAdapter()
-        Me.chkIsBilled = New DevExpress.XtraEditors.CheckEdit()
-        Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.chkIsBilled.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwTECHSUPFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,14 +140,13 @@ Partial Class frmTecnicalSupport
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkIsBilled.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -188,6 +188,26 @@ Partial Class frmTecnicalSupport
         Me.LayoutControl1.Size = New System.Drawing.Size(2243, 1300)
         Me.LayoutControl1.TabIndex = 1
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'chkIsBilled
+        '
+        Me.chkIsBilled.EditValue = CType(0, Byte)
+        Me.chkIsBilled.Enabled = False
+        Me.chkIsBilled.Location = New System.Drawing.Point(1888, 12)
+        Me.chkIsBilled.Margin = New System.Windows.Forms.Padding(5)
+        Me.chkIsBilled.Name = "chkIsBilled"
+        Me.chkIsBilled.Properties.Appearance.BackColor = System.Drawing.Color.LightSlateGray
+        Me.chkIsBilled.Properties.Appearance.ForeColor = System.Drawing.Color.White
+        Me.chkIsBilled.Properties.Appearance.Options.UseBackColor = True
+        Me.chkIsBilled.Properties.Appearance.Options.UseForeColor = True
+        Me.chkIsBilled.Properties.Caption = "Τιμολογήθηκε"
+        Me.chkIsBilled.Properties.Tag = "dimChanged"
+        Me.chkIsBilled.Properties.ValueChecked = CType(1, Byte)
+        Me.chkIsBilled.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chkIsBilled.Size = New System.Drawing.Size(343, 35)
+        Me.chkIsBilled.StyleController = Me.LayoutControl1
+        Me.chkIsBilled.TabIndex = 58
+        Me.chkIsBilled.Tag = "isBilled,0,1,2"
         '
         'GridControl1
         '
@@ -374,6 +394,7 @@ Partial Class frmTecnicalSupport
         Me.cboCategory.Location = New System.Drawing.Point(123, 222)
         Me.cboCategory.Margin = New System.Windows.Forms.Padding(5)
         Me.cboCategory.Name = "cboCategory"
+        Me.cboCategory.Properties.AllowMouseWheel = False
         Me.cboCategory.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCategory.Properties.NullText = ""
@@ -810,18 +831,6 @@ Partial Class frmTecnicalSupport
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem20.TextVisible = False
         '
-        'LayoutControlItem21
-        '
-        Me.LayoutControlItem21.Control = Me.txtBuildVersion
-        Me.LayoutControlItem21.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem21.CustomizationFormText = "Θέμα"
-        Me.LayoutControlItem21.Enabled = False
-        Me.LayoutControlItem21.Location = New System.Drawing.Point(1301, 42)
-        Me.LayoutControlItem21.Name = "LayoutControlItem21"
-        Me.LayoutControlItem21.Size = New System.Drawing.Size(922, 42)
-        Me.LayoutControlItem21.Text = "Έκδοση"
-        Me.LayoutControlItem21.TextSize = New System.Drawing.Size(99, 23)
-        '
         'LayoutControlItem19
         '
         Me.LayoutControlItem19.Control = Me.SimpleButton1
@@ -872,30 +881,6 @@ Partial Class frmTecnicalSupport
         Me.LayoutControlItem25.Text = "Αρχεία"
         Me.LayoutControlItem25.TextSize = New System.Drawing.Size(99, 23)
         '
-        'Vw_TECH_SUP_FTableAdapter
-        '
-        Me.Vw_TECH_SUP_FTableAdapter.ClearBeforeFill = True
-        '
-        'chkIsBilled
-        '
-        Me.chkIsBilled.EditValue = CType(0, Byte)
-        Me.chkIsBilled.Enabled = False
-        Me.chkIsBilled.Location = New System.Drawing.Point(1888, 12)
-        Me.chkIsBilled.Margin = New System.Windows.Forms.Padding(5)
-        Me.chkIsBilled.Name = "chkIsBilled"
-        Me.chkIsBilled.Properties.Appearance.BackColor = System.Drawing.Color.LightSlateGray
-        Me.chkIsBilled.Properties.Appearance.ForeColor = System.Drawing.Color.White
-        Me.chkIsBilled.Properties.Appearance.Options.UseBackColor = True
-        Me.chkIsBilled.Properties.Appearance.Options.UseForeColor = True
-        Me.chkIsBilled.Properties.Caption = "Τιμολογήθηκε"
-        Me.chkIsBilled.Properties.Tag = "dimChanged"
-        Me.chkIsBilled.Properties.ValueChecked = CType(1, Byte)
-        Me.chkIsBilled.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkIsBilled.Size = New System.Drawing.Size(343, 35)
-        Me.chkIsBilled.StyleController = Me.LayoutControl1
-        Me.chkIsBilled.TabIndex = 58
-        Me.chkIsBilled.Tag = "isBilled,0,1,2"
-        '
         'LayoutControlItem24
         '
         Me.LayoutControlItem24.Control = Me.chkIsBilled
@@ -904,6 +889,22 @@ Partial Class frmTecnicalSupport
         Me.LayoutControlItem24.Size = New System.Drawing.Size(347, 42)
         Me.LayoutControlItem24.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem24.TextVisible = False
+        '
+        'LayoutControlItem21
+        '
+        Me.LayoutControlItem21.Control = Me.txtBuildVersion
+        Me.LayoutControlItem21.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem21.CustomizationFormText = "Θέμα"
+        Me.LayoutControlItem21.Enabled = False
+        Me.LayoutControlItem21.Location = New System.Drawing.Point(1301, 42)
+        Me.LayoutControlItem21.Name = "LayoutControlItem21"
+        Me.LayoutControlItem21.Size = New System.Drawing.Size(922, 42)
+        Me.LayoutControlItem21.Text = "Έκδοση"
+        Me.LayoutControlItem21.TextSize = New System.Drawing.Size(99, 23)
+        '
+        'Vw_TECH_SUP_FTableAdapter
+        '
+        Me.Vw_TECH_SUP_FTableAdapter.ClearBeforeFill = True
         '
         'frmTecnicalSupport
         '
@@ -917,6 +918,7 @@ Partial Class frmTecnicalSupport
         Me.Text = "frmTecnicalSupport"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.chkIsBilled.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwTECHSUPFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
@@ -967,14 +969,13 @@ Partial Class frmTecnicalSupport
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkIsBilled.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

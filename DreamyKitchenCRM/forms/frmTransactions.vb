@@ -136,9 +136,22 @@ Public Class frmTransactions
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
+                        ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                        Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+                            oCmd.CommandType = CommandType.StoredProcedure
+                            oCmd.Parameters.AddWithValue("@transhID", sID)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, LayoutControlGroup1, sID,,,,, "bal=" & toSQLValueS(txtBal.EditValue.ToString, True))
                         sGuid = sID
+                        ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                        Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+                            oCmd.CommandType = CommandType.StoredProcedure
+                            oCmd.Parameters.AddWithValue("@transhID", sGuid)
+                            oCmd.ExecuteNonQuery()
+                        End Using
                         'sSQL.Clear()
                         'sSQL.AppendLine("UPDATE EMP_T SET CUSID = " & toSQLValueS(cboCUS.EditValue.ToString) & ",")
                         'sSQL.AppendLine("EMPID = " & toSQLValueS(cboSaler.EditValue.ToString) & ",")
@@ -157,6 +170,7 @@ Public Class frmTransactions
                 'Καθαρισμός Controls
                 'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
                 'dtDTS.EditValue = DateTime.Now
+
                 If txtInvoiceFilename.Text <> "" Then
                     sResultF = DBQ.InsertDataFiles(XtraOpenFileDialog1, sID, "TRANSH_F")
                     Me.TRANSH_FTableAdapter.FillByTanshID(Me.DreamyKitchenDataSet.TRANSH_F, System.Guid.Parse(sID))

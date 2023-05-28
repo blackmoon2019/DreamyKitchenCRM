@@ -99,25 +99,25 @@ Public Class frmColors
                 If CalledFromCtrl Then
                     Dim sSQL As New System.Text.StringBuilder
                     Select Case CallerFormName
-                        Case "frmErmaria"
-                            Select Case CtrlCombo.Name
-                                Case "cboPVCColors"
-                                    frmErmaria.Vw_COLORSPVCTableAdapter.Fill(frmErmaria.DreamyKitchenDataSet.vw_COLORSPVC)
-                                    CtrlCombo.Properties.DataSource = frmErmaria.VwCOLORSPVCBindingSource
-                                Case "cboBOXColors"
-                                    frmErmaria.Vw_COLORSBOXTableAdapter.Fill(frmErmaria.DreamyKitchenDataSet.vw_COLORSBOX)
-                                    CtrlCombo.Properties.DataSource = frmErmaria.VwCOLORSBOXBindingSource
-                            End Select
-                        Case "frmOffer"
-                            Select Case CtrlCombo.Name
-                                Case "cboPVCColors"
-                                    frmOffer.Vw_COLORSPVCTableAdapter.Fill(frmOffer.DreamyKitchenDataSet.vw_COLORSPVC)
-                                    CtrlCombo.Properties.DataSource = frmOffer.VwCOLORSPVCBindingSource
-                                Case "cboBOXColors"
-                                    'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
-                                    frmOffer.Vw_COLORSBOXTableAdapter.Fill(frmOffer.DreamyKitchenDataSet.vw_COLORSBOX)
-                                    CtrlCombo.Properties.DataSource = frmOffer.VwCOLORSBOXBindingSource
-                            End Select
+                        'Case "frmErmaria"
+                        '    Select Case CtrlCombo.Name
+                        '        Case "cboPVCColors"
+                        '            frmErmaria.Vw_COLORSPVCTableAdapter.Fill(frmErmaria.DreamyKitchenDataSet.vw_COLORSPVC)
+                        '            CtrlCombo.Properties.DataSource = frmErmaria.VwCOLORSPVCBindingSource
+                        '        Case "cboBOXColors"
+                        '            frmErmaria.Vw_COLORSBOXTableAdapter.Fill(frmErmaria.DreamyKitchenDataSet.vw_COLORSBOX)
+                        '            CtrlCombo.Properties.DataSource = frmErmaria.VwCOLORSBOXBindingSource
+                        '    End Select
+                        'Case "frmOffer"
+                        '    Select Case CtrlCombo.Name
+                        '        Case "cboPVCColors"
+                        '            frmOffer.Vw_COLORSPVCTableAdapter.Fill(frmOffer.DreamyKitchenDataSet.vw_COLORSPVC)
+                        '            CtrlCombo.Properties.DataSource = frmOffer.VwCOLORSPVCBindingSource
+                        '        Case "cboBOXColors"
+                        '            'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
+                        '            frmOffer.Vw_COLORSBOXTableAdapter.Fill(frmOffer.DreamyKitchenDataSet.vw_COLORSBOX)
+                        '            CtrlCombo.Properties.DataSource = frmOffer.VwCOLORSBOXBindingSource
+                        '    End Select
                         Case "frmCUSOrderKitchen"
                             Select Case CtrlComboLKUP.Name
                                 Case "cboGOLAColors"

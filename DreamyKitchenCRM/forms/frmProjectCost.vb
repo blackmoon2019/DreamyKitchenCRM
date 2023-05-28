@@ -175,17 +175,17 @@ Public Class frmProjectCost
     Private Function TotalBuy() As Double
         Dim Kitchen As Double, Closet As Double, general As Double, Materials As Double, Doors As Double
         Dim Varnishes As Double, ExtraCus As Double, Transportation As Double, ConstrPayroll As Double
-        Dim InstPayroll As Double, salerProfit As Double, Total As Double, DebitCost As Double, Glasses As Double, measurement As Double
+        Dim InstPayroll As Double, salerProfit As Double, Total As Double, DebitCost As Double, Glasses As Double, measurement As Double, DevicesBuy As Double
         Kitchen = DbnullToZero(txtkitchen) : Closet = DbnullToZero(txtcloset) : general = DbnullToZero(txtgeneral)
         Materials = DbnullToZero(txtmaterials) : Varnishes = DbnullToZero(txtvarnishes) : ExtraCus = DbnullToZero(txtextraCus)
         Transportation = DbnullToZero(txttransportation) : ConstrPayroll = DbnullToZero(txtConstrPayroll) : Glasses = DbnullToZero(txtglasses) : measurement = DbnullToZero(txtmeasurement)
-        Doors = DbnullToZero(txtdoors) : InstPayroll = DbnullToZero(txtInstPayroll) : salerProfit = DbnullToZero(txtSalerProfit)
-        DebitCost = DbnullToZero(txtDebitCost)
-        Total = Kitchen + Closet + general + Materials + Varnishes + ExtraCus + Transportation + ConstrPayroll + Doors + InstPayroll + salerProfit + Glasses + measurement
+        Doors = DbnullToZero(txtdoors) : InstPayroll = DbnullToZero(txtInstPayroll) : salerProfit = DbnullToZero(txtSalerProfit) : DevicesBuy = DbnullToZero(txtDevicesBuy)
+        DebitCost = DbnullToZero(txtTotAmt)
+        Total = Kitchen + Closet + general + Materials + Varnishes + ExtraCus + Transportation + ConstrPayroll + Doors + InstPayroll + salerProfit + Glasses + measurement + DevicesBuy
         Dim TotAmt As Double, TotBuy As Double, MixProfit As Double
         TotAmt = DbnullToZero(txtTotAmt) : TotBuy = DbnullToZero(txtTotBuy)
         txtMixProfit.EditValue = DebitCost - TotBuy : MixProfit = DbnullToZero(txtMixProfit)
-        txtMixProfitPerc.EditValue = (MixProfit / DebitCost) * 100
+        txtMixProfitPerc.EditValue = ((TotAmt - TotBuy) / TotAmt) * 100
         Return Total
     End Function
 

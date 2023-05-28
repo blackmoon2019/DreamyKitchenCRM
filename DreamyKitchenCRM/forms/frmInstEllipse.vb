@@ -107,7 +107,8 @@ Public Class frmInstEllipse
                 Else
                     ConnectedOrderID = sID
                 End If
-                txtInstellipseFilename.Enabled = True
+                'txtInstellipseFilename.Enabled = True
+                txtInstellipseFilename.ReadOnly = False
                 GridControl1.ForceInitialize()
                 If GridView1.DataRowCount = 0 Then cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False : cmdSendApointmentEmail.Enabled = False : cmdDefEmail.Enabled = False
         End Select
@@ -117,18 +118,34 @@ Public Class frmInstEllipse
             LayoutControlGroup1.Text = "Αφορά Προμηθευτή"
             chkSER.Enabled = False : LdtDateDelivered.Enabled = False : LTmINFrom.Enabled = False : LTmINTo.Enabled = False
             '  cboINST.EditValue = System.Guid.Parse("00000001-0001-0001-0001-000000000001")
-            cmdNewInstEllipse.Enabled = False : txtInstellipseFilename.Enabled = False : txtInstellipseFilenameComplete.Enabled = False : GridView1.OptionsBehavior.Editable = False
+            cmdNewInstEllipse.Enabled = False
+            'txtInstellipseFilename.Enabled = False : txtInstellipseFilenameComplete.Enabled = False
+            DisabletxtInstellipseFilename() : DisabletxtInstellipseFilenameComplete()
+            GridView1.OptionsBehavior.Editable = False
             cmdViewOrder.Enabled = False : cmdConvertToOrder.Enabled = False
         Else
             LayoutControlGroup1.Text = "Αφορά Πελάτη"
             LCus.Enabled = False : LTransh.Enabled = False
-            If dtDateDelivered.EditValue IsNot Nothing And txtInstellipseFilename.EditValue IsNot Nothing Then txtInstellipseFilename.Enabled = False
+            If dtDateDelivered.EditValue IsNot Nothing And txtInstellipseFilename.EditValue IsNot Nothing Then DisabletxtInstellipseFilename() 'txtInstellipseFilename.Enabled = False
         End If
 
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
     End Sub
+    Private Sub DisabletxtInstellipseFilename()
+        txtInstellipseFilename.ReadOnly = True
+        txtInstellipseFilename.Properties.Buttons.Item(0).Enabled = False
+        txtInstellipseFilename.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilename.Properties.Buttons.Item(2).Enabled = False
+    End Sub
+    Private Sub DisabletxtInstellipseFilenameComplete()
+        txtInstellipseFilenameComplete.ReadOnly = True
+        txtInstellipseFilenameComplete.Properties.Buttons.Item(0).Enabled = False
+        txtInstellipseFilenameComplete.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilenameComplete.Properties.Buttons.Item(2).Enabled = False
+    End Sub
+
     Private Function CheckIfHasConnectedOrder() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String
@@ -172,7 +189,7 @@ Public Class frmInstEllipse
         txtCode.Text = DBQ.GetNextId("INST_ELLIPSE")
         If sINST_ID IsNot Nothing Then cboINST.EditValue = System.Guid.Parse(sINST_ID)
         FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.NewRecord)
-        cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False : cmdSendApointmentEmail.Enabled = False : cmdDefEmail.Enabled = False : txtInstellipseFilename.Enabled = True
+        cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False : cmdSendApointmentEmail.Enabled = False : cmdDefEmail.Enabled = False : txtInstellipseFilename.ReadOnly = False ' txtInstellipseFilename.Enabled = True
 
         '΅Εισαγωγή εγγραφής απευθείας στην βάση
         Dim sResult As Boolean = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", sComeFrom)
@@ -457,7 +474,7 @@ Public Class frmInstEllipse
                 End Using
                 If Mode = 1 Then
                     chkCompleted.CheckState = CheckState.Checked : GridView1.OptionsBehavior.Editable = False
-                    cmdNewInstEllipse.Enabled = False : txtInstellipseFilename.Enabled = False
+                    cmdNewInstEllipse.Enabled = False : DisabletxtInstellipseFilename() ' txtInstellipseFilename.Enabled = False
                 End If
                 XtraMessageBox.Show("Το αρχείο αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
@@ -848,7 +865,8 @@ Public Class frmInstEllipse
                 oCmd.ExecuteNonQuery()
             End Using
             Me.INST_ELLIPSE_JOBSTableAdapter.FillBYinstEllipseID(Me.DmDataSet.INST_ELLIPSE_JOBS, System.Guid.Parse(sID))
-            txtInstellipseFilename.Enabled = True
+            'txtInstellipseFilename.Enabled = True
+            txtInstellipseFilename.ReadOnly = False
             GridView1.OptionsBehavior.Editable = True
             Mode = FormMode.EditRecord
         Catch ex As Exception
@@ -926,7 +944,7 @@ Public Class frmInstEllipse
                         chkCompleted.CheckState = CheckState.Unchecked
                         GridView1.OptionsBehavior.Editable = True
                         txtInstellipseFilenameComplete.EditValue = Nothing
-                        cmdNewInstEllipse.Enabled = True : txtInstellipseFilename.Enabled = True
+                        cmdNewInstEllipse.Enabled = True : txtInstellipseFilename.ReadOnly = False ' txtInstellipseFilename.Enabled = True
                     End If
             End Select
         Catch ex As Exception

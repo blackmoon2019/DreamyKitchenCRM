@@ -43,6 +43,8 @@ Partial Class frmDoorType
         Me.VwDOORCATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboDoorType1 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txtNam1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtOInvTotalPrice1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtOInvTotalPrice2 = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -62,13 +64,11 @@ Partial Class frmDoorType
         Me.LayoutControlItem52 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
         Me.Vw_DIMTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DIMTableAdapter()
         Me.Vw_DOOR_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DOOR_CATTableAdapter()
-        Me.txtOInvTotalPrice1 = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtOInvTotalPrice2 = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboDoorColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,6 +90,8 @@ Partial Class frmDoorType
         CType(Me.VwDOORCATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDoorType1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNam1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtOInvTotalPrice1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtOInvTotalPrice2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,9 +111,7 @@ Partial Class frmDoorType
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtOInvTotalPrice1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtOInvTotalPrice2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -151,6 +151,7 @@ Partial Class frmDoorType
         Me.cboDoorColor.Location = New System.Drawing.Point(254, 222)
         Me.cboDoorColor.Margin = New System.Windows.Forms.Padding(5)
         Me.cboDoorColor.Name = "cboDoorColor"
+        Me.cboDoorColor.Properties.AllowMouseWheel = False
         Me.cboDoorColor.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboDoorColor.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Χρώμα", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("photo", "photo", 63, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.cboDoorColor.Properties.DataSource = Me.VwCOLORSBOXBindingSource
@@ -342,6 +343,7 @@ Partial Class frmDoorType
         Me.cboDim.Location = New System.Drawing.Point(254, 180)
         Me.cboDim.Margin = New System.Windows.Forms.Padding(5)
         Me.cboDim.Name = "cboDim"
+        Me.cboDim.Properties.AllowMouseWheel = False
         Me.cboDim.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboDim.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Διάσταση", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.cboDim.Properties.DataSource = Me.VwDIMBindingSource
@@ -364,6 +366,7 @@ Partial Class frmDoorType
         Me.cboDoorCat.Location = New System.Drawing.Point(254, 54)
         Me.cboDoorCat.Margin = New System.Windows.Forms.Padding(5)
         Me.cboDoorCat.Name = "cboDoorCat"
+        Me.cboDoorCat.Properties.AllowMouseWheel = False
         Me.cboDoorCat.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboDoorCat.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Κατηγορία", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.cboDoorCat.Properties.DataSource = Me.VwDOORCATBindingSource
@@ -404,6 +407,42 @@ Partial Class frmDoorType
         Me.txtNam1.StyleController = Me.LayoutControl1
         Me.txtNam1.TabIndex = 9
         Me.txtNam1.Tag = "description,0,1,2"
+        '
+        'txtOInvTotalPrice1
+        '
+        Me.txtOInvTotalPrice1.EditValue = "0,00 €"
+        Me.txtOInvTotalPrice1.Location = New System.Drawing.Point(254, 474)
+        Me.txtOInvTotalPrice1.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtOInvTotalPrice1.Name = "txtOInvTotalPrice1"
+        Me.txtOInvTotalPrice1.Properties.DisplayFormat.FormatString = "c"
+        Me.txtOInvTotalPrice1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtOInvTotalPrice1.Properties.EditFormat.FormatString = "n2"
+        Me.txtOInvTotalPrice1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtOInvTotalPrice1.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtOInvTotalPrice1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtOInvTotalPrice1.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtOInvTotalPrice1.Size = New System.Drawing.Size(670, 38)
+        Me.txtOInvTotalPrice1.StyleController = Me.LayoutControl1
+        Me.txtOInvTotalPrice1.TabIndex = 42
+        Me.txtOInvTotalPrice1.Tag = "WholeSalePrice,0,1,2"
+        '
+        'txtOInvTotalPrice2
+        '
+        Me.txtOInvTotalPrice2.EditValue = "0,00 €"
+        Me.txtOInvTotalPrice2.Location = New System.Drawing.Point(254, 516)
+        Me.txtOInvTotalPrice2.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtOInvTotalPrice2.Name = "txtOInvTotalPrice2"
+        Me.txtOInvTotalPrice2.Properties.DisplayFormat.FormatString = "c"
+        Me.txtOInvTotalPrice2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtOInvTotalPrice2.Properties.EditFormat.FormatString = "n2"
+        Me.txtOInvTotalPrice2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtOInvTotalPrice2.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtOInvTotalPrice2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtOInvTotalPrice2.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtOInvTotalPrice2.Size = New System.Drawing.Size(670, 38)
+        Me.txtOInvTotalPrice2.StyleController = Me.LayoutControl1
+        Me.txtOInvTotalPrice2.TabIndex = 42
+        Me.txtOInvTotalPrice2.Tag = "SheetPrice,0,1,2"
         '
         'Root
         '
@@ -613,36 +652,6 @@ Partial Class frmDoorType
         Me.LayoutControlItem11.Text = "Κεντρική Περιγραφή Υλικού"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(230, 23)
         '
-        'Vw_COLORSBOXTableAdapter
-        '
-        Me.Vw_COLORSBOXTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DIMTableAdapter
-        '
-        Me.Vw_DIMTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_DOOR_CATTableAdapter
-        '
-        Me.Vw_DOOR_CATTableAdapter.ClearBeforeFill = True
-        '
-        'txtOInvTotalPrice1
-        '
-        Me.txtOInvTotalPrice1.EditValue = "0,00 €"
-        Me.txtOInvTotalPrice1.Location = New System.Drawing.Point(254, 474)
-        Me.txtOInvTotalPrice1.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtOInvTotalPrice1.Name = "txtOInvTotalPrice1"
-        Me.txtOInvTotalPrice1.Properties.DisplayFormat.FormatString = "c"
-        Me.txtOInvTotalPrice1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtOInvTotalPrice1.Properties.EditFormat.FormatString = "n2"
-        Me.txtOInvTotalPrice1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtOInvTotalPrice1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtOInvTotalPrice1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtOInvTotalPrice1.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtOInvTotalPrice1.Size = New System.Drawing.Size(670, 38)
-        Me.txtOInvTotalPrice1.StyleController = Me.LayoutControl1
-        Me.txtOInvTotalPrice1.TabIndex = 42
-        Me.txtOInvTotalPrice1.Tag = "WholeSalePrice,0,1,2"
-        '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.txtOInvTotalPrice1
@@ -656,24 +665,6 @@ Partial Class frmDoorType
         Me.LayoutControlItem12.Text = "Τιμή Χονδρικής"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(230, 23)
         '
-        'txtOInvTotalPrice2
-        '
-        Me.txtOInvTotalPrice2.EditValue = "0,00 €"
-        Me.txtOInvTotalPrice2.Location = New System.Drawing.Point(254, 516)
-        Me.txtOInvTotalPrice2.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtOInvTotalPrice2.Name = "txtOInvTotalPrice2"
-        Me.txtOInvTotalPrice2.Properties.DisplayFormat.FormatString = "c"
-        Me.txtOInvTotalPrice2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtOInvTotalPrice2.Properties.EditFormat.FormatString = "n2"
-        Me.txtOInvTotalPrice2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtOInvTotalPrice2.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtOInvTotalPrice2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtOInvTotalPrice2.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtOInvTotalPrice2.Size = New System.Drawing.Size(670, 38)
-        Me.txtOInvTotalPrice2.StyleController = Me.LayoutControl1
-        Me.txtOInvTotalPrice2.TabIndex = 42
-        Me.txtOInvTotalPrice2.Tag = "SheetPrice,0,1,2"
-        '
         'LayoutControlItem13
         '
         Me.LayoutControlItem13.Control = Me.txtOInvTotalPrice2
@@ -686,6 +677,18 @@ Partial Class frmDoorType
         Me.LayoutControlItem13.Size = New System.Drawing.Size(916, 42)
         Me.LayoutControlItem13.Text = "Τιμή Φύλλου"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(230, 23)
+        '
+        'Vw_COLORSBOXTableAdapter
+        '
+        Me.Vw_COLORSBOXTableAdapter.ClearBeforeFill = True
+        '
+        'Vw_DIMTableAdapter
+        '
+        Me.Vw_DIMTableAdapter.ClearBeforeFill = True
+        '
+        'Vw_DOOR_CATTableAdapter
+        '
+        Me.Vw_DOOR_CATTableAdapter.ClearBeforeFill = True
         '
         'frmDoorType
         '
@@ -720,6 +723,8 @@ Partial Class frmDoorType
         CType(Me.VwDOORCATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDoorType1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNam1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtOInvTotalPrice1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtOInvTotalPrice2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -739,9 +744,7 @@ Partial Class frmDoorType
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtOInvTotalPrice1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtOInvTotalPrice2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
