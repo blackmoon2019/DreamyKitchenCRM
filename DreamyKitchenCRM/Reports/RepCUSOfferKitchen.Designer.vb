@@ -824,7 +824,7 @@ Partial Public Class RepCUSOfferKitchen
         Me.XrTableCell15.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
         Me.XrTableCell15.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_ORDERS_KITCHEN].[KHeight]")})
+        Me.XrTableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_ORDERS_KITCHEN].[KHeight] + ' / ' + [vw_CCT_ORDERS_KITCHEN].[KHeight2] ")})
         Me.XrTableCell15.Font = New System.Drawing.Font("Zona Pro", 9.0!)
         Me.XrTableCell15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrTableCell15.Multiline = True

@@ -136,6 +136,7 @@ Partial Class frmMain
         Me.BBinvBuyTypes = New DevExpress.XtraBars.BarButtonItem()
         Me.BBBulkInsertInvoices = New DevExpress.XtraBars.BarButtonItem()
         Me.BBProjectJobs = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBBaseCatERP = New DevExpress.XtraBars.BarButtonItem()
         Me.bbProjects = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -183,7 +184,6 @@ Partial Class frmMain
         Me.AlertControl1 = New DevExpress.XtraBars.Alerter.AlertControl(Me.components)
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.BBBaseCatERP = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -809,7 +809,7 @@ Partial Class frmMain
         '
         'BBNotes2
         '
-        Me.BBNotes2.Caption = "Σημειώματα"
+        Me.BBNotes2.Caption = "Μηνύματα"
         Me.BBNotes2.Id = 79
         Me.BBNotes2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_notes_40
         Me.BBNotes2.Name = "BBNotes2"
@@ -1136,6 +1136,13 @@ Partial Class frmMain
         Me.BBProjectJobs.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_construction_401
         Me.BBProjectJobs.Name = "BBProjectJobs"
         Me.BBProjectJobs.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBBaseCatERP
+        '
+        Me.BBBaseCatERP.Caption = "Τύποι Κατασκευής"
+        Me.BBBaseCatERP.Id = 120
+        Me.BBBaseCatERP.Name = "BBBaseCatERP"
+        Me.BBBaseCatERP.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'bbProjects
         '
@@ -1502,13 +1509,6 @@ Partial Class frmMain
         '
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 1000
-        '
-        'BBBaseCatERP
-        '
-        Me.BBBaseCatERP.Caption = "Τύποι Κατασκευής"
-        Me.BBBaseCatERP.Id = 120
-        Me.BBBaseCatERP.Name = "BBBaseCatERP"
-        Me.BBBaseCatERP.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
         'frmMain
         '
