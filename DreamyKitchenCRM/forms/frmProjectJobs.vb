@@ -71,7 +71,7 @@ Public Class frmProjectJobs
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine(" Select C.id,C.Fullname,'00000000-0000-0000-0000-000000000000' as SalerID,phn,AdrID,email " &
                             "from vw_CCT C " &
-                            "inner join vw_TRANSH T On C.ID = T.cusID  " &
+                            "left join vw_TRANSH T On C.ID = T.cusID  " &
                             "order by Fullname")
 
         FillCbo.CUS(cboCUS, sSQL)
