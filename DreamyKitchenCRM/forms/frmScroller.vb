@@ -291,7 +291,6 @@ Public Class frmScroller
                     Case "vw_AGREEMENT" : sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_EP_STATUS" : sSQL = "DELETE FROM EP_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANS_CONSTR" : sSQL = "DELETE FROM TRANS_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_TRANSCOST" : sSQL = "DELETE FROM TRANSCOST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DOC_TYPES" : sSQL = "DELETE FROM DOC_TYPES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DMVER" : sSQL = "DELETE FROM DMVER WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -483,7 +482,6 @@ Public Class frmScroller
                     Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_DOC_TYPES" : sSQL = "DELETE FROM DOC_TYPES WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_DMVER" : sSQL = "DELETE FROM DMVER WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
-                    Case "vw_TRANSCOST" : sSQL = "DELETE FROM TRANSCOST WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_SUP_PAYMENTS_H"
                         ' Επαναφορά τιμολογίων σε απλήρωτα όπου αυτό χρειάζεται
                         sSQL = "UPDATE BUY	SET PAID=0	FROM BUY INNER JOIN	SUP_PAYMENTS_D SD ON SD.buyID=BUY.ID WHERE SD.supPaymentHID= '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -983,17 +981,6 @@ Public Class frmScroller
                 frmVersions.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVersions), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmVersions.Show()
-            Case "vw_TRANSCOST"
-                Dim frmTransCost As frmTransCost = New frmTransCost()
-                frmTransCost.Text = "Κοστολόγηση Έργων"
-                frmTransCost.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmTransCost.MdiParent = frmMain
-                frmTransCost.Mode = FormMode.EditRecord
-                frmTransCost.Scroller = GridView1
-                frmTransCost.FormScroller = Me
-                frmTransCost.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmTransCost), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmTransCost.Show()
             Case "vw_TRANS_CONSTR"
                 Dim frmTransConstr As frmTransConstr = New frmTransConstr()
                 frmTransConstr.Text = "Κλείσιμο Κατασκευής"
@@ -1065,7 +1052,7 @@ Public Class frmScroller
             Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
                 Dim frmCUSOfferOrderSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
                 If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
-                    frmCUSOfferOrderSpecialConstr.Text = "Έντυπο Προσφοράς Πελατών(Έπιπλο Μπάνιου)"
+                    frmCUSOfferOrderSpecialConstr.Text = "Έντυπο Παραγγελίας Πελατών(Έπιπλο Μπάνιου)"
                     frmCUSOfferOrderSpecialConstr.IsOrder = 1
                 Else
                     frmCUSOfferOrderSpecialConstr.Text = "Έντυπο Προσφοράς Πελατών(Έπιπλο Μπάνιου)"
@@ -1925,16 +1912,6 @@ Public Class frmScroller
                 frmVersions.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVersions), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmVersions.Show()
-            Case "vw_TRANSCOST"
-                Dim frmTransCost As frmTransCost = New frmTransCost()
-                frmTransCost.Text = "Κοστολόγηση Έργων"
-                frmTransCost.MdiParent = frmMain
-                frmTransCost.Mode = FormMode.NewRecord
-                frmTransCost.Scroller = GridView1
-                frmTransCost.FormScroller = Me
-                frmTransCost.FormScrollerExist = True
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmTransCost), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmTransCost.Show()
             Case "vw_EP_STATUS"
                 frmGen.Text = "Status Εποπτείας"
                 frmGen.MdiParent = frmMain

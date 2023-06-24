@@ -242,15 +242,6 @@ Public Class frmCUSOfferOrderCloset
                     End If
                     sdr.Close()
                     cmd.Dispose()
-                    ' Δημιουργία/Ενημέρωση Κοστολόγησης
-                    Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
-                        oCmd.CommandType = CommandType.StoredProcedure
-                        oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
-                        oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse(cctOrderKitchen))
-                        oCmd.Parameters.AddWithValue("@Mode", 2)
-                        oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
-                        oCmd.ExecuteNonQuery()
-                    End Using
                 End If
             End If
 

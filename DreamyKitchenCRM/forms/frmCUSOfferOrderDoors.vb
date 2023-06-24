@@ -250,7 +250,8 @@ Public Class frmCUSOfferOrderDoors
         End Try
     End Sub
     Private Function TotalPrice() As Double
-        Dim Price1 As Double, Price2 As Double, Price3 As Double, Price4 As Double, Price5 As Double, Price6 As Double
+        Dim Price1 As Double, Price2 As Double, Price3 As Double, Price4 As Double, Price5 As Double, Price6 As Double, Price7 As Double, Price8 As Double, Price9 As Double, Price10 As Double
+
         Dim Total As Double
         Price1 = DbnullToZero(txtPrice1)
         Price2 = DbnullToZero(txtPrice2)
@@ -258,11 +259,15 @@ Public Class frmCUSOfferOrderDoors
         Price4 = DbnullToZero(txtPrice4)
         Price5 = DbnullToZero(txtPrice5)
         Price6 = DbnullToZero(txtPrice6)
-        Total = Price1 + Price2 + Price3 + Price4 + Price5 + Price6
+        Price7 = DbnullToZero(txtPrice7)
+        Price8 = DbnullToZero(txtPrice8)
+        Price9 = DbnullToZero(txtPrice9)
+        Price10 = DbnullToZero(txtPrice10)
+        Total = Price1 + Price2 + Price3 + Price4 + Price5 + Price6 + Price7 + Price8 + Price9 + Price10
         Return Total
     End Function
     Private Function TotalVatPrice() As Double
-        Dim Price1 As Double, Price2 As Double, Price3 As Double, Price4 As Double, Price5 As Double, Price6 As Double
+        Dim Price1 As Double, Price2 As Double, Price3 As Double, Price4 As Double, Price5 As Double, Price6 As Double, Price7 As Double, Price8 As Double, Price9 As Double, Price10 As Double
         Dim Total As Double
         Price1 = DbnullToZero(txtvatPrice1)
         Price2 = DbnullToZero(txtVatPrice2)
@@ -270,7 +275,11 @@ Public Class frmCUSOfferOrderDoors
         Price4 = DbnullToZero(txtVatPrice4)
         Price5 = DbnullToZero(txtVatPrice5)
         Price6 = DbnullToZero(txtVatPrice6)
-        Total = Price1 + Price2 + Price3 + Price4 + Price5 + Price6
+        Price7 = DbnullToZero(txtVatPrice7)
+        Price8 = DbnullToZero(txtVatPrice9)
+        Price9 = DbnullToZero(txtVatPrice9)
+        Price10 = DbnullToZero(txtVatPrice10)
+        Total = Price1 + Price2 + Price3 + Price4 + Price5 + Price6 + Price7 + Price8 + Price9 + Price10
         Return Total
     End Function
 
@@ -315,7 +324,30 @@ Public Class frmCUSOfferOrderDoors
         txtPrice6.EditValue = Price * (ProgProps.VAT / 100) + Price
         txtTotalVatPrice.EditValue = TotalVatPrice() : txtTotalPrice.EditValue = TotalPrice()
     End Sub
-
+    Private Sub txtVatPrice7_EditValueChanged(sender As Object, e As EventArgs) Handles txtVatPrice7.EditValueChanged
+        Dim Price As Double
+        Price = DbnullToZero(txtVatPrice7)
+        txtPrice7.EditValue = Price * (ProgProps.VAT / 100) + Price
+        txtTotalVatPrice.EditValue = TotalVatPrice() : txtTotalPrice.EditValue = TotalPrice()
+    End Sub
+    Private Sub txtVatPrice8_EditValueChanged(sender As Object, e As EventArgs) Handles txtVatPrice8.EditValueChanged
+        Dim Price As Double
+        Price = DbnullToZero(txtVatPrice8)
+        txtPrice8.EditValue = Price * (ProgProps.VAT / 100) + Price
+        txtTotalVatPrice.EditValue = TotalVatPrice() : txtTotalPrice.EditValue = TotalPrice()
+    End Sub
+    Private Sub txtVatPrice9_EditValueChanged(sender As Object, e As EventArgs) Handles txtVatPrice9.EditValueChanged
+        Dim Price As Double
+        Price = DbnullToZero(txtVatPrice9)
+        txtPrice9.EditValue = Price * (ProgProps.VAT / 100) + Price
+        txtTotalVatPrice.EditValue = TotalVatPrice() : txtTotalPrice.EditValue = TotalPrice()
+    End Sub
+    Private Sub txtVatPrice10_EditValueChanged(sender As Object, e As EventArgs) Handles txtVatPrice10.EditValueChanged
+        Dim Price As Double
+        Price = DbnullToZero(txtVatPrice10)
+        txtPrice10.EditValue = Price * (ProgProps.VAT / 100) + Price
+        txtTotalVatPrice.EditValue = TotalVatPrice() : txtTotalPrice.EditValue = TotalPrice()
+    End Sub
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
         If sIsOrder Then
             Dim report As New RepCUSOrderDoors()
@@ -372,7 +404,26 @@ Public Class frmCUSOfferOrderDoors
             Case 1 : cboFora6.EditValue = Nothing
         End Select
     End Sub
-
+    Private Sub cboFora7_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora7.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboFora7.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboFora8_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora8.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboFora8.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboFora9_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora9.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboFora9.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboFora10_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboFora10.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboFora10.EditValue = Nothing
+        End Select
+    End Sub
     Private Sub cboKasa1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa1.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboKasa1.EditValue = Nothing
@@ -406,6 +457,26 @@ Public Class frmCUSOfferOrderDoors
     Private Sub cboKasa6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa6.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboKasa6.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboKasa7_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa7.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboKasa7.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboKasa8_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa8.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboKasa8.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboKasa9_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa9.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboKasa9.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboKasa10_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKasa10.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboKasa10.EditValue = Nothing
         End Select
     End Sub
 
@@ -444,7 +515,26 @@ Public Class frmCUSOfferOrderDoors
             Case 1 : cboType6.EditValue = Nothing
         End Select
     End Sub
-
+    Private Sub cboType7_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType7.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboType7.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboType8_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType8.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboType8.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboType9_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType9.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboType9.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboType10_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboType10.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboType10.EditValue = Nothing
+        End Select
+    End Sub
     Private Sub cboDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageDoorType(cboDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
@@ -487,7 +577,34 @@ Public Class frmCUSOfferOrderDoors
             Case 3 : cboDoorType6.EditValue = Nothing
         End Select
     End Sub
-
+    Private Sub cboDoorType7_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType7.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType7, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType7, FormMode.EditRecord)
+            Case 3 : cboDoorType7.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboDoorType8_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType8.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType8, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType8, FormMode.EditRecord)
+            Case 3 : cboDoorType8.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboDoorType9_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType9.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType9, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType9, FormMode.EditRecord)
+            Case 3 : cboDoorType9.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cboDoorType10_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType10.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageDoorType(cboDoorType10, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageDoorType(cboDoorType10, FormMode.EditRecord)
+            Case 3 : cboDoorType10.EditValue = Nothing
+        End Select
+    End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)

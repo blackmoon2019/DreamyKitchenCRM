@@ -326,7 +326,7 @@ Public Class frmInstEllipse
         End If
     End Function
     Private Sub GridView1_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView1.InvalidRowException
-        e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
+        e.ExceptionMode =  DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
     End Sub
     Private Sub Grid_EmbeddedNavigator_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
         Select Case e.Button.ButtonType

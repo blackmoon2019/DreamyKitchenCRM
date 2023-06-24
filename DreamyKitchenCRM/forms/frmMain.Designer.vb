@@ -1209,6 +1209,7 @@ Partial Class frmMain
         Me.RibbonPageGroup25.ItemLinks.Add(Me.BBTransCost)
         Me.RibbonPageGroup25.Name = "RibbonPageGroup25"
         Me.RibbonPageGroup25.Text = "Κοστολόγηση Έργων"
+        Me.RibbonPageGroup25.Visible = False
         '
         'RibbonPageGroup21
         '

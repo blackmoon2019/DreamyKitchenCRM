@@ -271,21 +271,12 @@ Public Class frmCUSOfferOrderKitchen
                             XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                             Exit Sub
                         End If
-                        ' Δημιουργία/Ενημέρωση Κοστολόγησης
-                        Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
-                            oCmd.CommandType = CommandType.StoredProcedure
-                            oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
-                            oCmd.Parameters.AddWithValue("@cctOrderKitchenID", sID)
-                            oCmd.Parameters.AddWithValue("@Mode", 1)
-                            oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
-                            oCmd.ExecuteNonQuery()
-                        End Using
 
-                        'If Mode = FormMode.NewRecord Then
-                        '    Cls.ClearCtrls(LayoutControl1)
-                        '    txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
-                        'End If
-                    End If
+                    'If Mode = FormMode.NewRecord Then
+                    '    Cls.ClearCtrls(LayoutControl1)
+                    '    txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
+                    'End If
+                End If
                 End If
 
         Catch ex As Exception

@@ -946,13 +946,6 @@ Public Class frmMain
         form.Show()
     End Sub
 
-    Private Sub BBTransCost_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBTransCost.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κοστολόγηση Έργων"
-        form.DataTable = "vw_TRANSCOST"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
 
     Private Sub bbDimensionsCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDimensionsCat.ItemClick
         Dim form As frmScroller = New frmScroller()

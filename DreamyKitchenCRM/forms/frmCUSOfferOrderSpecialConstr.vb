@@ -112,7 +112,7 @@ Public Class frmCUSOfferOrderSpecialConstr
                 txtMeasurement.EditValue = ProgProps.SCMeasurement
                 txtRemove.EditValue = ProgProps.SCRemove
                 'cmdConvertToOrder.Enabled = False
-                LayoutControlItem7.Visibility = Utils.LayoutVisibility.Always
+                LayoutControlItem7.Visibility = Utils.LayoutVisibility.Never
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
                 LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_SPECIAL_CONSTR.* " &
@@ -122,17 +122,17 @@ Public Class frmCUSOfferOrderSpecialConstr
                 If sIsOrder = False Then
                     If sFields("OrderID") <> "" Then
                         'cmdConvertToOrder.Enabled = False
-                        LayoutControlItem7.Visibility = Utils.LayoutVisibility.Always
+                        LayoutControlItem7.Visibility = Utils.LayoutVisibility.Never
                         cmdSave.Enabled = False
                         LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                     End If
                 Else
-                    LayoutControlItem7.Visibility = Utils.LayoutVisibility.Always
+                    LayoutControlItem7.Visibility = Utils.LayoutVisibility.Never
                     'cmdConvertToOrder.Enabled = False
                 End If
         End Select
         Me.CenterToScreen()
-        cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        'cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
@@ -182,15 +182,6 @@ Public Class frmCUSOfferOrderSpecialConstr
                         End If
                         sdr.Close()
                         cmd.Dispose()
-                        ' Δημιουργία/Ενημέρωση Κοστολόγησης
-                        Using oCmd As New SqlCommand("usp_InsertOrUpdateTransCost", CNDB)
-                            oCmd.CommandType = CommandType.StoredProcedure
-                            oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
-                            oCmd.Parameters.AddWithValue("@cctOrderKitchenID", System.Guid.Parse(cctOrderKitchen))
-                            oCmd.Parameters.AddWithValue("@Mode", 4)
-                            oCmd.Parameters.AddWithValue("@UserID", UserProps.ID.ToString)
-                            oCmd.ExecuteNonQuery()
-                        End Using
                     End If
 
                     '    Cls.ClearCtrls(LayoutControl1)

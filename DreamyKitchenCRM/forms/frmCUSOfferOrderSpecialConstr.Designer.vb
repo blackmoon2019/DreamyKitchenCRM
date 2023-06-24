@@ -1282,6 +1282,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem1.Location = New System.Drawing.Point(1616, 1181)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(147, 43)
+        Me.LayoutControlItem1.Text = "LSave"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -2020,7 +2021,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem7.Location = New System.Drawing.Point(1351, 1181)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(265, 43)
-        Me.LayoutControlItem7.Text = "LSave"
+        Me.LayoutControlItem7.Text = "LConvertToOrder"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem7.TextVisible = False
         '
