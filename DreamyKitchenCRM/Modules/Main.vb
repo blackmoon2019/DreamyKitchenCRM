@@ -138,6 +138,7 @@ Module Main
                     Else
                         t = t.Replace(",", ".")
                         t = t.Replace(" €", "")
+                        t = t.Replace("€", "")
                         t = t.Replace("%", "")
                         Return t
                     End If

@@ -34,6 +34,7 @@ Public Class frmMain
             BBProjectCosts.Visibility = BarItemVisibility.Never
             bbProjects.Visible = False
         End If
+        ProjectAnalysis.Visible = True
 
 
     End Sub

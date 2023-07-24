@@ -276,7 +276,7 @@ Public Class frmCUSOfferOrderDoors
         Price5 = DbnullToZero(txtVatPrice5)
         Price6 = DbnullToZero(txtVatPrice6)
         Price7 = DbnullToZero(txtVatPrice7)
-        Price8 = DbnullToZero(txtVatPrice9)
+        Price8 = DbnullToZero(txtVatPrice8)
         Price9 = DbnullToZero(txtVatPrice9)
         Price10 = DbnullToZero(txtVatPrice10)
         Total = Price1 + Price2 + Price3 + Price4 + Price5 + Price6 + Price7 + Price8 + Price9 + Price10
