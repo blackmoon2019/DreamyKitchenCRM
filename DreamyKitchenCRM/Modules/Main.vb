@@ -2,10 +2,13 @@
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraGrid.Views.Grid
 
 Module Main
     Public CNDB As New SqlConnection()
     Public CNDB2 As New SqlConnection()
+    Public Const Company As String = "Dreamy Kitchen CRM"
+
     Enum FormMode
         NewRecord = 1
         EditRecord = 2
@@ -147,7 +150,7 @@ Module Main
                 Return "NULL" 'this will pass through any SQL statement without notice  
             End If
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Public Function DbnullToZero(t As DevExpress.XtraEditors.TextEdit) As Double
@@ -170,7 +173,7 @@ Module Main
             Dim ServerFile As String = ProgProps.ServerViewsPath & "DSGNS\DEF\" & System.IO.Path.GetFileName(sFile)
             My.Computer.FileSystem.CopyFile(ServerFile, sFile, True)
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub GetNewestFileFromServer(ByVal sFile As String)
@@ -192,11 +195,64 @@ Module Main
                 Loop Until LastModifiedF1 = LastModifiedF2
             End If
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
+    Public Sub ShellExecute(ByVal File As String)
+        Dim myProcess As New Process
+        myProcess.StartInfo.FileName = File
+        myProcess.StartInfo.UseShellExecute = True
+        myProcess.StartInfo.RedirectStandardOutput = False
+        myProcess.Start()
+        myProcess.Dispose()
+    End Sub
 
+    Public Function GetFile(ByVal sRowID As String, ByVal sTable As String, Optional ByRef sFileName As String = "") As Byte()
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Dim bytes As Byte()
+
+        sSQL = "Select filename, files From " & sTable & " WHERE ID = " & toSQLValueS(sRowID)
+        cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
+        If sdr.Read() = True Then
+            bytes = DirectCast(sdr("files"), Byte())
+            sFileName = sdr.GetString(sdr.GetOrdinal("filename").ToString).ToString
+            sdr.Close()
+            Return bytes
+        End If
+        sdr.Close()
+
+    End Function
+    Public Sub FilesSelection(ByVal XtraOpenFileDialog1 As XtraOpenFileDialog, ByVal txtFileNames As TextEdit)
+
+        'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+        XtraOpenFileDialog1.FilterIndex = 1
+        XtraOpenFileDialog1.InitialDirectory = "C:\"
+        XtraOpenFileDialog1.Title = "Open File"
+        XtraOpenFileDialog1.CheckFileExists = False
+        XtraOpenFileDialog1.Multiselect = True
+        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
+        If result = DialogResult.OK Then
+            txtFileNames.EditValue = ""
+            For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
+                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I).Replace("'", "")
+            Next I
+        End If
+    End Sub
+    Public Sub OpenFile(ByVal GridView1 As GridView)
+        Try
+            Dim sFilename = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename")
+            Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+            Dim b() As Byte = GetFile(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, "vw_CCT_F")
+            fs.Write(b, 0, b.Length)
+            fs.Close()
+            ShellExecute(ProgProps.TempFolderPath & sFilename)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     'Public Function FindItemByValChkListBox(ByVal sValue As String, ByVal chkList As DevExpress.XtraEditors.CheckedListBoxControl) As DevExpress.XtraEditors.Controls.CheckedListBoxItem
     '    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkList
 

@@ -66,25 +66,25 @@ Public Class frmCusMov
                     Case FormMode.NewRecord
                         If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
                             If dtReminder.Text.ToString = "" Then
-                                XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                         End If
                         If IsDBNull(cboSTATUS.GetColumnValue("RequiredSaler")) = False Then
                             If cboSTATUS.GetColumnValue("RequiredSaler") = True And cboSaler.EditValue = Nothing Then
-                                XtraMessageBox.Show("Δεν έχετε επιλέξει Πωλητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Πωλητή", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                         End If
                         If IsDBNull(cboSTATUS.GetColumnValue("RequiredCounter")) = False Then
                             If cboSTATUS.GetColumnValue("RequiredCounter") = True And cboCounter.EditValue = Nothing Then
-                                XtraMessageBox.Show("Δεν έχετε επιλέξει Επιμετρητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Επιμετρητή", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                         End If
                         If IsDBNull(cboSTATUS.GetColumnValue("RequiredAddress")) = False Then
                             If cboSTATUS.GetColumnValue("RequiredAddress") = True And IsDBNull(cboCUS.GetColumnValue("AdrID")) = True Then
-                                XtraMessageBox.Show("Δεν έχει συμπληρωθεί η διεύθυνση στον πελάτη", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν έχει συμπληρωθεί η διεύθυνση στον πελάτη", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                         End If
@@ -95,25 +95,25 @@ Public Class frmCusMov
                     Case FormMode.EditRecord
                         If cboSTATUS.GetColumnValue("allowschedule") <> Nothing Then
                             If dtReminder.Text.ToString = "" Then
-                                XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει ημερομηνία ειδοποίησης", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                         End If
                         If IsDBNull(cboSTATUS.GetColumnValue("RequiredSaler")) = False Then
                             If cboSTATUS.GetColumnValue("RequiredSaler") = True And cboSaler.EditValue = Nothing Then
-                                XtraMessageBox.Show("Δεν έχετε επιλέξει Πωλητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Πωλητή", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                         End If
                         If IsDBNull(cboSTATUS.GetColumnValue("RequiredCounter")) = False Then
                             If cboSTATUS.GetColumnValue("RequiredCounter") = True And cboCounter.EditValue = Nothing Then
-                                XtraMessageBox.Show("Δεν έχετε επιλέξει Επιμετρητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Επιμετρητή", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                         End If
                         If IsDBNull(cboSTATUS.GetColumnValue("RequiredAddress")) = False Then
                             If cboSTATUS.GetColumnValue("RequiredAddress") = True And IsDBNull(cboCUS.GetColumnValue("AdrID")) = True Then
-                                XtraMessageBox.Show("Δεν έχει συμπληρωθεί η διεύθυνση στον πελάτη", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν έχει συμπληρωθεί η διεύθυνση στον πελάτη", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                         End If
@@ -143,7 +143,7 @@ Public Class frmCusMov
                         End If
                     End If
 
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                     Mode = FormMode.EditRecord
                 End If
@@ -156,7 +156,7 @@ Public Class frmCusMov
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

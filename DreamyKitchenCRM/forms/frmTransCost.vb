@@ -467,7 +467,7 @@ Public Class frmTransCost
             Me.CenterToScreen()
             cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -651,7 +651,7 @@ Public Class frmTransCost
         Try
             If Valid.ValidateFormGRP(LayoutControlGroup1) Then
                 If CostPrices.AgreementID.ToString = "" Then
-                    XtraMessageBox.Show("Για να γίνει κοστολόγηση έργου πρέπει πρώτα να καταχωρηθεί Ιδ. Συμφωνητικό.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Για να γίνει κοστολόγηση έργου πρέπει πρώτα να καταχωρηθεί Ιδ. Συμφωνητικό.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
 
@@ -725,7 +725,7 @@ Public Class frmTransCost
 
                 If sResult = True Then
                     TileNavPane1.Enabled = True
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     '      Dim sSQL As New System.Text.StringBuilder
                     '     If CostPrices.Kitchen = True And Mode = FormMode.NewRecord Then Dim oCmd As New SqlCommand("INSERT INTO TRANSCOST_K (transCostID) SELECT " & toSQLValueS(sID), CNDB) : oCmd.ExecuteNonQuery()
                     If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
@@ -733,7 +733,7 @@ Public Class frmTransCost
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub UpdateEmpT()
@@ -749,7 +749,7 @@ Public Class frmTransCost
             End Using
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -790,7 +790,7 @@ Public Class frmTransCost
             Next
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -856,7 +856,7 @@ Public Class frmTransCost
             sdr.Close()
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
 
@@ -1026,7 +1026,7 @@ Public Class frmTransCost
             ' Γενικό σύνολο από όλα τα είδη πώλησης. Με ποσοστά
             CalculateGenTot()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("FillCostFromDB Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("FillCostFromDB Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -1081,7 +1081,7 @@ Public Class frmTransCost
             txtTotalSalerProfit.EditValue = CostPrices.SprofitK + CostPrices.SprofitC + CostPrices.SprofitSC
             txtTotalCompanyProfit.EditValue = CostPrices.CprofitK + CostPrices.CprofitC + CostPrices.CprofitSC
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("CalculateGenTot Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("CalculateGenTot Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub

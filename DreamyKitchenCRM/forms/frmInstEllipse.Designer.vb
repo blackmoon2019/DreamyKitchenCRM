@@ -653,7 +653,6 @@ Partial Class frmInstEllipse
         Me.txtTmINTo.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
         Me.txtTmINTo.Properties.UseMaskAsDisplayFormat = True
         Me.txtTmINTo.Size = New System.Drawing.Size(123, 38)
-        Me.txtTmINTo.StyleController = Me.LayoutControl1
         Me.txtTmINTo.TabIndex = 8
         Me.txtTmINTo.Tag = "tmINTo,0,1,2"
         '

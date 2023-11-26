@@ -104,7 +104,7 @@ Partial Public Class RepTransCostEQK
         'XrTableCell1
         '
         Me.XrTableCell1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[name]")})
-        Me.XrTableCell1.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
+        Me.XrTableCell1.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell1.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell1.Multiline = True
         Me.XrTableCell1.Name = "XrTableCell1"
@@ -119,7 +119,7 @@ Partial Public Class RepTransCostEQK
         'XrTableCell3
         '
         Me.XrTableCell3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[price]")})
-        Me.XrTableCell3.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
+        Me.XrTableCell3.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell3.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell3.Multiline = True
         Me.XrTableCell3.Name = "XrTableCell3"
@@ -134,7 +134,7 @@ Partial Public Class RepTransCostEQK
         'XrTableCell4
         '
         Me.XrTableCell4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[qty]")})
-        Me.XrTableCell4.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
+        Me.XrTableCell4.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell4.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell4.Multiline = True
         Me.XrTableCell4.Name = "XrTableCell4"
@@ -149,7 +149,7 @@ Partial Public Class RepTransCostEQK
         'XrTableCell5
         '
         Me.XrTableCell5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Total]")})
-        Me.XrTableCell5.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
+        Me.XrTableCell5.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell5.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell5.Multiline = True
         Me.XrTableCell5.Name = "XrTableCell5"
@@ -177,7 +177,7 @@ Partial Public Class RepTransCostEQK
         'XrLabel5
         '
         Me.XrLabel5.BackColor = System.Drawing.Color.White
-        Me.XrLabel5.Font = New System.Drawing.Font("Zona Pro", 12.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel5.Font = New DevExpress.Drawing.DXFont("Zona Pro", 12.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel5.Name = "XrLabel5"
@@ -220,7 +220,7 @@ Partial Public Class RepTransCostEQK
         'XrTableCell2
         '
         Me.XrTableCell2.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        Me.XrTableCell2.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell2.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrTableCell2.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell2.Multiline = True
         Me.XrTableCell2.Name = "XrTableCell2"
@@ -235,7 +235,7 @@ Partial Public Class RepTransCostEQK
         'XrTableCell7
         '
         Me.XrTableCell7.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        Me.XrTableCell7.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell7.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrTableCell7.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell7.Multiline = True
         Me.XrTableCell7.Name = "XrTableCell7"
@@ -250,7 +250,7 @@ Partial Public Class RepTransCostEQK
         'XrTableCell10
         '
         Me.XrTableCell10.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        Me.XrTableCell10.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell10.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrTableCell10.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell10.Multiline = True
         Me.XrTableCell10.Name = "XrTableCell10"
@@ -265,7 +265,7 @@ Partial Public Class RepTransCostEQK
         'XrTableCell12
         '
         Me.XrTableCell12.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        Me.XrTableCell12.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell12.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrTableCell12.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell12.Multiline = True
         Me.XrTableCell12.Name = "XrTableCell12"
@@ -306,7 +306,7 @@ Partial Public Class RepTransCostEQK
         'XrTableCell116
         '
         Me.XrTableCell116.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell116.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell116.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrTableCell116.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell116.Multiline = True
         Me.XrTableCell116.Name = "XrTableCell116"
@@ -322,7 +322,7 @@ Partial Public Class RepTransCostEQK
         '
         Me.XrTableCell117.BackColor = System.Drawing.Color.Transparent
         Me.XrTableCell117.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TotEQM]")})
-        Me.XrTableCell117.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrTableCell117.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrTableCell117.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell117.Multiline = True
         Me.XrTableCell117.Name = "XrTableCell117"
@@ -341,11 +341,11 @@ Partial Public Class RepTransCostEQK
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataMember = "TRANSCOST_EQ"
         Me.DataSource = Me.SqlDataSource1
-        Me.Font = New System.Drawing.Font("Zona Pro Regular", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 0, 0)
+        Me.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.999999!, DevExpress.Drawing.DXFontStyle.Regular, DevExpress.Drawing.DXGraphicsUnit.Point, New DevExpress.Drawing.DXFontAdditionalProperty() {New DevExpress.Drawing.DXFontAdditionalProperty("GdiCharSet", CType(161, Byte))})
+        Me.Margins = New DevExpress.Drawing.DXMargins(100, 100, 0, 0)
         Me.PageHeight = 1169
         Me.PageWidth = 827
-        Me.PaperKind = System.Drawing.Printing.PaperKind.A4
+        Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.TransCostID})
         Me.Version = "21.2"
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()

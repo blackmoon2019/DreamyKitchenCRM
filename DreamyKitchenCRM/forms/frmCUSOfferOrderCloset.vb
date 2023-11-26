@@ -217,7 +217,7 @@ Public Class frmCUSOfferOrderCloset
                         If sIsOrder = False Then cmdConvertToOrder.Enabled = True : LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                         InsertSelectedRows(False)
                     End If
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                     Mode = FormMode.EditRecord
                     Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
@@ -226,7 +226,7 @@ Public Class frmCUSOfferOrderCloset
                     HasDoors = cboTRANSH.GetColumnValue("Isdoors")
                     HasSc = cboTRANSH.GetColumnValue("Issc")
                     If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                        XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
                         Exit Sub
                     End If
                     Dim cmd As SqlCommand
@@ -246,7 +246,7 @@ Public Class frmCUSOfferOrderCloset
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
@@ -308,7 +308,7 @@ Public Class frmCUSOfferOrderCloset
                 End Using
             End If
         Next
-        If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
     End Sub
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
@@ -652,7 +652,7 @@ Public Class frmCUSOfferOrderCloset
     End Sub
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
         Try
-            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.AddWithValue("@OfferID", sID)
@@ -660,14 +660,14 @@ Public Class frmCUSOfferOrderCloset
                     oCmd.Parameters.AddWithValue("@Mode", 2)
                     oCmd.ExecuteNonQuery()
                 End Using
-                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'cmdConvertToOrder.Enabled = False
                 cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
                 LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged

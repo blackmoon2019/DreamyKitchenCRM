@@ -157,7 +157,7 @@ Public Class frmCUSOfferOrderSpecialConstr
                 End If
 
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
                     If sIsOrder Then
                         Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
@@ -166,7 +166,7 @@ Public Class frmCUSOfferOrderSpecialConstr
                         HasDoors = cboTRANSH.GetColumnValue("Isdoors")
                         HasSc = cboTRANSH.GetColumnValue("Issc")
                         If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
                             Exit Sub
                         End If
                         Dim cmd As SqlCommand
@@ -190,7 +190,7 @@ Public Class frmCUSOfferOrderSpecialConstr
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -422,7 +422,7 @@ Public Class frmCUSOfferOrderSpecialConstr
 
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
         Try
-            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.AddWithValue("@OfferID", sID)
@@ -430,14 +430,14 @@ Public Class frmCUSOfferOrderSpecialConstr
                     oCmd.Parameters.AddWithValue("@Mode", 4)
                     oCmd.ExecuteNonQuery()
                 End Using
-                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'cmdConvertToOrder.Enabled = False
                 cmdSave.Enabled = False
                 LayoutControlItem7.Visibility = Utils.LayoutVisibility.Always
                 LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub cboDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboDoorType.ProcessNewValue

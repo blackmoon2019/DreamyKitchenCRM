@@ -32,7 +32,7 @@ Public Class CheckForUpdates
                     If version1.CompareTo(version2) < 0 Then
 
                         XtraMessageBox.Show("Βρέθηκε νέα έκδοση του προγράμματος " & sExeVer & "." & vbCrLf &
-                                            "Θα πραγματοποιηθεί έξοδος του προγράμματος και έναρξη της αναβάθμισης", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                                            "Θα πραγματοποιηθεί έξοδος του προγράμματος και έναρξη της αναβάθμισης", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         sdr.Close()
 
                         Dim pHelp As New ProcessStartInfo
@@ -48,7 +48,7 @@ Public Class CheckForUpdates
             End If
             sdr.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
         Return False
@@ -88,7 +88,7 @@ Public Class CheckForUpdates
             End If
             sdr.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
         Return False

@@ -175,7 +175,7 @@ NextItem:
             Dim trace = New System.Diagnostics.StackTrace(ex, True)
             Dim line As String = Strings.Right(trace.ToString, 5)
 
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Public Function LoadFormGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sSQL As String, Optional ByVal IgnoreVisibility As Boolean = True) As Boolean
@@ -208,48 +208,48 @@ NextItem:
 
                                 'If LItem.Control.Visible = True Then
                                 If value <> Nothing Then
-                                        TagV = TagValue(0).Replace("[", "").Replace("]", "")
-                                        Console.WriteLine(TagV)
-                                        If sdr.GetSchemaTable().Select("ColumnName='" & TagV & "'").Length > 0 Then
-                                            sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
-                                            Dim index = sdr.GetOrdinal(TagV)
-                                            Console.WriteLine(sdr.GetDataTypeName(index))
-                                            Select Case sdr.GetDataTypeName(index)
-                                                Case "nvarchar"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal(TagV)))
-                                                Case "int"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetInt32(sdr.GetOrdinal(TagV)))
+                                    TagV = TagValue(0).Replace("[", "").Replace("]", "")
+                                    Console.WriteLine(TagV)
+                                    If sdr.GetSchemaTable().Select("ColumnName='" & TagV & "'").Length > 0 Then
+                                        sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
+                                        Dim index = sdr.GetOrdinal(TagV)
+                                        Console.WriteLine(sdr.GetDataTypeName(index))
+                                        Select Case sdr.GetDataTypeName(index)
+                                            Case "nvarchar"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal(TagV)))
+                                            Case "int"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetInt32(sdr.GetOrdinal(TagV)))
                                             Case "uniqueidentifier"
                                                 If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetGuid(sdr.GetOrdinal(TagV)).ToString)
                                             Case "bit"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetBoolean(sdr.GetOrdinal(TagV)))
-                                                Case "decimal"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDecimal(sdr.GetOrdinal(TagV)))
-                                                Case "datetime"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
-                                                Case "date"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
-                                                Case "varbinary"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
-                                                        Dim pic As DevExpress.XtraEditors.PictureEdit
-                                                        Dim bytes As Byte()
-                                                        pic = LItem.Control
-                                                        bytes = DirectCast(sdr(TagV), Byte())
-                                                        pic.EditValue = bytes
-                                                    End If
-                                            End Select
-                                        End If
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetBoolean(sdr.GetOrdinal(TagV)))
+                                            Case "decimal"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDecimal(sdr.GetOrdinal(TagV)))
+                                            Case "datetime"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                            Case "date"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                            Case "varbinary"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
+                                                    Dim pic As DevExpress.XtraEditors.PictureEdit
+                                                    Dim bytes As Byte()
+                                                    pic = LItem.Control
+                                                    bytes = DirectCast(sdr(TagV), Byte())
+                                                    pic.EditValue = bytes
+                                                End If
+                                        End Select
                                     End If
-NextItem:
-                                    'End If
                                 End If
+NextItem:
+                                'End If
+                            End If
                         End If
                     End If
                 Next
             End If
             sdr.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Private Sub SetValueToControl(ByVal LItem As LayoutControlItem, ByVal sValue As String)
@@ -273,7 +273,7 @@ NextItem:
                 cbo = Ctrl
                 If sValue = "False" Or sValue = "True" Then
                     If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
-                ElseIf cbo.Properties.tag = "String" Then
+                ElseIf cbo.Properties.Tag = "String" Then
                     cbo.EditValue = sValue
                 ElseIf IsNumeric(sValue) Then
                     cbo.SelectedIndex = sValue
@@ -321,7 +321,7 @@ NextItem:
 
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadDataToGrid(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
@@ -375,7 +375,7 @@ NextItem:
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadDataToVGrid(ByRef GRDControl As DevExpress.XtraVerticalGrid.VGridControl,
@@ -555,7 +555,7 @@ NextItem:
             'End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadColumnDescriptionNames(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
@@ -604,7 +604,7 @@ NextItem:
                 'If columnName.Length > 0 And GRDView.Columns.Item(columnName) IsNot Nothing Then GRDView.Columns.Item(columnName).Caption = columnNameValue
             Next
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub PopupMenuShow(ByVal e As Views.Grid.PopupMenuShowingEventArgs, ByVal GridView As GridView, ByVal sXMLName As String, Optional ByVal sTableName As String = "",
@@ -841,22 +841,6 @@ NextItem:
             End If
         End If
     End Sub
-    Public Function GetFile(ByVal sRowID As String, ByVal sTable As String) As Byte()
-        Dim sSQL As String
-        Dim cmd As SqlCommand
-        Dim sdr As SqlDataReader
-        Dim bytes As Byte()
-
-        sSQL = "Select  files From " & sTable & " WHERE ID = " & toSQLValueS(sRowID)
-        cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
-        If sdr.Read() = True Then
-            bytes = DirectCast(sdr("files"), Byte())
-            sdr.Close()
-            Return bytes
-        End If
-        sdr.Close()
-
-    End Function
 
     Friend Class MenuColumnInfo
         Public Sub New(ByVal column As GridColumn)
@@ -866,10 +850,6 @@ NextItem:
     End Class
     Public Sub RestoreLayoutFromXml(ByVal GridView As GridView, ByVal sXMLName As String)
         Try
-            'If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sXMLName) = False Then
-            '    GridView.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
-            'End If
-
             If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sXMLName) Then
                 GetNewestFileFromServer(Application.StartupPath & "\DSGNS\DEF\" & sXMLName)
                 GridView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
@@ -880,8 +860,9 @@ NextItem:
                 GridView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
             End If
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 End Class
 

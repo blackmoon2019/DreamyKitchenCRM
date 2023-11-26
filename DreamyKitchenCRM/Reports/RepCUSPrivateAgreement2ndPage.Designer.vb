@@ -98,7 +98,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         '
         'XrRichText3
         '
-        Me.XrRichText3.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.XrRichText3.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
         Me.XrRichText3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 94.49963!)
         Me.XrRichText3.Name = "XrRichText3"
         Me.XrRichText3.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -109,7 +109,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         'XrLabel6
         '
         Me.XrLabel6.BackColor = System.Drawing.Color.White
-        Me.XrLabel6.Font = New System.Drawing.Font("Zona Pro Light", 11.0!)
+        Me.XrLabel6.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!)
         Me.XrLabel6.ForeColor = System.Drawing.Color.Black
         Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(450.2381!, 72.71396!)
         Me.XrLabel6.Multiline = True
@@ -128,7 +128,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         '
         Me.XrLabel5.BackColor = System.Drawing.Color.White
         Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PayInAdvance]")})
-        Me.XrLabel5.Font = New System.Drawing.Font("Zona Pro Light", 11.0!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle))
+        Me.XrLabel5.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!, CType((DevExpress.Drawing.DXFontStyle.Bold Or DevExpress.Drawing.DXFontStyle.Underline), DevExpress.Drawing.DXFontStyle))
         Me.XrLabel5.ForeColor = System.Drawing.Color.Black
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(350.6191!, 72.71396!)
         Me.XrLabel5.Multiline = True
@@ -146,7 +146,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         'XrLabel4
         '
         Me.XrLabel4.BackColor = System.Drawing.Color.White
-        Me.XrLabel4.Font = New System.Drawing.Font("Zona Pro Light", 11.0!)
+        Me.XrLabel4.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!)
         Me.XrLabel4.ForeColor = System.Drawing.Color.Black
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(0!, 72.71396!)
         Me.XrLabel4.Multiline = True
@@ -164,7 +164,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         'XrLabel3
         '
         Me.XrLabel3.BackColor = System.Drawing.Color.White
-        Me.XrLabel3.Font = New System.Drawing.Font("Zona Pro Light", 11.0!)
+        Me.XrLabel3.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!)
         Me.XrLabel3.ForeColor = System.Drawing.Color.Black
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(326.9047!, 49.92825!)
         Me.XrLabel3.Multiline = True
@@ -183,7 +183,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         '
         Me.XrLabel1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([vw_AGREEMENT].[visibleVat]=True,'  συμπεριλαμβανομένου  ΦΠΑ   24%. ',' μη  σ" &
                     "υμπεριλαμβανομένου  ΦΠΑ   24%. ')" & Global.Microsoft.VisualBasic.ChrW(10))})
-        Me.XrLabel1.Font = New System.Drawing.Font("Zona Pro Light", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 49.92825!)
         Me.XrLabel1.Multiline = True
         Me.XrLabel1.Name = "XrLabel1"
@@ -199,7 +199,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         Me.XrLabel2.BackColor = System.Drawing.Color.White
         Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([vw_AGREEMENT].[visibleVat]=True,FormatString('{0:C2}',[VatPrice]),FormatStri" &
                     "ng('{0:C2}',[Price])) ")})
-        Me.XrLabel2.Font = New System.Drawing.Font("Zona Pro Light", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel2.ForeColor = System.Drawing.Color.Black
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(518.6667!, 30.35683!)
         Me.XrLabel2.Multiline = True
@@ -216,7 +216,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         '
         'XrRichText2
         '
-        Me.XrRichText2.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.XrRichText2.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
         Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrRichText2.Name = "XrRichText2"
         Me.XrRichText2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -261,11 +261,11 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataMember = "vw_AGREEMENT"
         Me.DataSource = Me.SqlDataSource1
-        Me.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 153, 100)
+        Me.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
+        Me.Margins = New DevExpress.Drawing.DXMargins(100, 100, 153, 100)
         Me.PageHeight = 1169
         Me.PageWidth = 827
-        Me.PaperKind = System.Drawing.Printing.PaperKind.A4
+        Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "21.2"

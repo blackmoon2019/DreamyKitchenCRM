@@ -106,7 +106,7 @@ Public Class frmInstM
     Private Sub OnSaveViewINSTM(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView3.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\INSTPERSER.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
     'Μετονομασία Στήλης Master
     Private Sub OnEditValueChangedOff(ByVal sender As System.Object, ByVal e As EventArgs)
@@ -206,7 +206,7 @@ Public Class frmInstM
                 End If
 
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Αν υπάρχει στην μισθοδοσία τοποθετών εγγραφή στο ίδιο έργο και με ίδιο ποσό γίνεται εξοφλημενη
                     sSQL = "Update INST Set paid=1 
                              From INST I
@@ -225,7 +225,7 @@ Public Class frmInstM
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

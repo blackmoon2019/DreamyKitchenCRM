@@ -55,7 +55,7 @@ Partial Public Class RepCUSOfferCloset3ndPage
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel1.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(288.9284!, 15.36934!)
         Me.XrLabel1.Multiline = True
@@ -81,7 +81,7 @@ Partial Public Class RepCUSOfferCloset3ndPage
         'XrLabel3
         '
         Me.XrLabel3.BackColor = System.Drawing.Color.White
-        Me.XrLabel3.Font = New System.Drawing.Font("Zona Pro", 11.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel3.Font = New DevExpress.Drawing.DXFont("Zona Pro", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(2.999987!, 113.8196!)
         Me.XrLabel3.Name = "XrLabel3"
@@ -98,11 +98,11 @@ Partial Public Class RepCUSOfferCloset3ndPage
         'RepCUSOfferCloset3ndPage
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail})
-        Me.Font = New System.Drawing.Font("Zona Pro Regular", 9.749999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.Margins = New System.Drawing.Printing.Margins(51, 51, 929, 167)
+        Me.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.749999!, DevExpress.Drawing.DXFontStyle.Regular, DevExpress.Drawing.DXGraphicsUnit.Point, New DevExpress.Drawing.DXFontAdditionalProperty() {New DevExpress.Drawing.DXFontAdditionalProperty("GdiCharSet", CType(161, Byte))})
+        Me.Margins = New DevExpress.Drawing.DXMargins(51, 51, 929, 167)
         Me.PageHeight = 1169
         Me.PageWidth = 827
-        Me.PaperKind = System.Drawing.Printing.PaperKind.A4
+        Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
         Me.Version = "21.2"
         CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()

@@ -153,7 +153,7 @@ Public Class frmInstallations
                         End Using
                     End If
 
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
                 Dim sSQL2 As String
                 If Mode = FormMode.EditRecord Then
@@ -176,13 +176,13 @@ Public Class frmInstallations
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Function CheckIfTimeisValid() As Boolean
-        If txtTmIN.Text = "00:00" Or txtTmOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+        If txtTmIN.Text = "00:00" Or txtTmOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
         Dim Hours As Long = DateDiff(DateInterval.Hour, txtTmIN.EditValue, txtTmOUT.EditValue)
-        If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+        If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
         Return True
     End Function
     Private Function CheckIfInstFExist() As Boolean
@@ -195,7 +195,7 @@ Public Class frmInstallations
             If (sdr.Read() = True) Then
                 If sdr.IsDBNull(sdr.GetOrdinal("fInstName")) = False Then sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
                 If sFilename = "" Then
-                    XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     sdr.Close()
                     Return False
                 Else
@@ -203,7 +203,7 @@ Public Class frmInstallations
                     Return True
                 End If
             Else
-                XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             End If
         Else
@@ -262,7 +262,7 @@ Public Class frmInstallations
     Private Sub frmInstallations_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         'If Mode <> FormMode.NewRecord Then Exit Sub
         If sEMP_T_ID Is Nothing Then Exit Sub
-        If XtraMessageBox.Show("Θέλετε να ενημερώσετε τους Τζίρους-Ποσοστά Έκθεσης?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να ενημερώσετε τους Τζίρους-Ποσοστά Έκθεσης?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
             frmSalerTziroi.ID = sEMP_T_ID
             frmSalerTziroi.MdiParent = frmMain
@@ -277,9 +277,9 @@ Public Class frmInstallations
 
     Private Sub cmdInstEllipse_Click(sender As Object, e As EventArgs) Handles cmdInstEllipse.Click
         'Έλεγχος για να δεί αν υπάρχει μη ολοκληρωμένη έλλειψη πριν ανοίξει καινούρια γιαυτην την τοποθέτηση 
-        If CheckIfHasInstNotCompleted() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν υπάρχει μη ολοκληρωμένη εκκρεμότητα.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If CheckIfHasInstNotCompleted() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν υπάρχει μη ολοκληρωμένη εκκρεμότητα.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         'Eλεγχος αν υπάρχει έντυπο ολοκλήρωσης
-        If CheckIfEllipseHasCompleteDocument() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή, έχουν ολοκληρωθεί όλες οι εκκρεμότητες.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If CheckIfEllipseHasCompleteDocument() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή, έχουν ολοκληρωθεί όλες οι εκκρεμότητες.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
 
         Dim frmInstEllipse As New frmInstEllipse
         frmInstEllipse.Text = "Εκκρεμότητες Έργων"
@@ -358,10 +358,10 @@ Public Class frmInstallations
                 End Using
                 chkCompleted.CheckState = CheckState.Checked : cmdInstEllipse.Enabled = False
 
-                XtraMessageBox.Show("Το αρχείο αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Το αρχείο αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 cmdInstEllipse.Enabled = False
             Catch ex As Exception
-                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
 
         End If
@@ -382,13 +382,13 @@ Public Class frmInstallations
                 If CheckIfExistInstEllipse() = False Then
                     FileSelect()
                 Else
-                    XtraMessageBox.Show("Δεν μπορείτε να ανεβάσετε έντυπο ολοκλήρωσης γιατί υπάρχουν εκκρεμότητες", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Δεν μπορείτε να ανεβάσετε έντυπο ολοκλήρωσης γιατί υπάρχουν εκκρεμότητες", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
 
             Case 1 : OpenFile()
 
             Case 2
-                If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     Dim sSQL As String
                     sSQL = "UPDATE INST SET completed = 0 ,fInstName =  NULL ,fInst =  NULL where ID = " & toSQLValueS(sID)
                     'Εκτέλεση QUERY
@@ -422,7 +422,7 @@ Public Class frmInstallations
             End If
         Catch ex As Exception
             Return False
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Function
@@ -445,7 +445,7 @@ Public Class frmInstallations
             End If
             sdr.Close()
         Catch exfs As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Finally
 
         End Try
@@ -518,7 +518,7 @@ Public Class frmInstallations
         Dim sSQL As String
         If e.KeyCode = Keys.Delete Then
             If UserProps.AllowDelete = False Then Exit Sub
-            If XtraMessageBox.Show("Θέλετε να διαγραφεί η εκκρεμότητα?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η εκκρεμότητα?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Dim Cmd As SqlCommand, sdr As SqlDataReader
                 sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE comefrom= 0 and instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
                                 " and DATEADD(ms, -DATEPART(ms, createdOn), createdOn)> " & toSQLValueS(DateTime.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "createdOn")).ToString("yyyy-MM-dd HH:mm:ss.fff"))
@@ -528,7 +528,7 @@ Public Class frmInstallations
                 If (sdr.Read() = True) Then
                     If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
                     If CountEllipse > 0 Then
-                        XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         sdr.Close()
                         Exit Sub
                     Else
@@ -548,7 +548,7 @@ Public Class frmInstallations
                         LoadRecords()
                     End If
                 Else
-                    XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     sdr.Close()
                     Exit Sub
                 End If
@@ -565,10 +565,10 @@ Public Class frmInstallations
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "INST_MAIL.xml", "vw_INST_MAIL")
     End Sub
     Private Sub ValidateEmail()
-        If txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If txtTo.Text = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             SendEmail()
             Me.INST_MAILTableAdapter.FillByinstID(Me.DMDataSet.INST_MAIL, System.Guid.Parse(sID))
         End If

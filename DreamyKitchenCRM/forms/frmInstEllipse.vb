@@ -194,7 +194,7 @@ Public Class frmInstEllipse
         '΅Εισαγωγή εγγραφής απευθείας στην βάση
         Dim sResult As Boolean = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", sComeFrom)
         If sResult = False Then
-            XtraMessageBox.Show("Υπήρξε πρόβλημα κατά την διαδικασία ανοίγματος εκκρεμότητας.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Υπήρξε πρόβλημα κατά την διαδικασία ανοίγματος εκκρεμότητας.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Me.Close()
         End If
         Mode = FormMode.EditRecord
@@ -221,7 +221,7 @@ Public Class frmInstEllipse
                             If ValidateRecord() Then sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
                         Else
                             If sComeFrom = 1 And cboSUP.EditValue = Nothing Then
-                                XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Exit Sub
                             End If
                             sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True)
@@ -246,11 +246,11 @@ Public Class frmInstEllipse
                     Next
                     FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.EditRecord, sID)
                     SaveButtonPressed = True : cmdNewInstEllipse.Enabled = True
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -258,36 +258,36 @@ Public Class frmInstEllipse
         GridControl1.ForceInitialize()
         If CheckIfTimeisValid() = False Then Return False
         If GridView1.DataRowCount = 0 Then
-            XtraMessageBox.Show("Δεν έχετε καταχωρήσει εκκρεμότητες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Δεν έχετε καταχωρήσει εκκρεμότητες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         If txtInstellipseFilename.EditValue = Nothing Then
-            XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων. Δεν μπορεί να αποθηκευθεί η εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         If dtDateDelivered.EditValue IsNot Nothing And chkSER.CheckedItemsCount = 0 Then
-            XtraMessageBox.Show("Έχετε επιλέξει ημερομηνία τοποθέτησης χωρίς να επιλέξετε συνεργείο. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Έχετε επιλέξει ημερομηνία τοποθέτησης χωρίς να επιλέξετε συνεργείο. Δεν μπορεί να αποθηκευθεί η εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         If chkCompleted.CheckState = CheckState.Checked And dtDateDelivered.EditValue = Nothing Then
-            XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την εκκρεμότητα χωρίς ημερομηνία τοποθέτησης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την εκκρεμότητα χωρίς ημερομηνία τοποθέτησης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         If CheckIfInstJobsAreCompleted() And txtInstellipseFilenameComplete.EditValue = Nothing Then
-            XtraMessageBox.Show("Έχετε ολοκληρώσει όλες τις εργασίες και δεν έχετε επισυνάψει το έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Έχετε ολοκληρώσει όλες τις εργασίες και δεν έχετε επισυνάψει το έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         If sComeFrom = 1 And cboSUP.EditValue = Nothing Then
-            XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         Return True
     End Function
     Private Function CheckIfTimeisValid() As Boolean
         If dtDateDelivered.EditValue IsNot Nothing Then
-            If txtTmINFrom.Text = "00:00" Or txtTmINTo.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+            If txtTmINFrom.Text = "00:00" Or txtTmINTo.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
             Dim Hours As Long = DateDiff(DateInterval.Hour, txtTmINFrom.EditValue, txtTmINTo.EditValue)
-            If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+            If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
         End If
         Return True
     End Function
@@ -310,7 +310,7 @@ Public Class frmInstEllipse
             If (sdr.Read() = True) Then
                 If sdr.IsDBNull(sdr.GetOrdinal("fInstEllipseName")) = False Then sFilename = sdr.GetString(sdr.GetOrdinal("fInstEllipseName"))
                 If sFilename = "" Then
-                    XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Εκκρεμότητα χωρίς να επισυνάψετε έντυπο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Εκκρεμότητα χωρίς να επισυνάψετε έντυπο", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     sdr.Close()
                     Return False
                 Else
@@ -318,7 +318,7 @@ Public Class frmInstEllipse
                     Return True
                 End If
             Else
-                XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Εκκρεμότητα χωρίς να επισυνάψετε έντυπο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Εκκρεμότητα χωρίς να επισυνάψετε έντυπο", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             End If
         Else
@@ -326,14 +326,14 @@ Public Class frmInstEllipse
         End If
     End Function
     Private Sub GridView1_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView1.InvalidRowException
-        e.ExceptionMode =  DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
+        e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
     End Sub
     Private Sub Grid_EmbeddedNavigator_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
         Select Case e.Button.ButtonType
             Case e.Button.ButtonType.Remove : DeleteRecord() : e.Handled = True
             Case e.Button.ButtonType.Append
                 If txtInstellipseFilename.EditValue = Nothing Then
-                    XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     e.Handled = True
                 End If
         End Select
@@ -345,7 +345,7 @@ Public Class frmInstEllipse
             Dim viewInfo As GridViewInfo = TryCast(sender.GetViewInfo(), GridViewInfo)
             If sender.FocusedRowHandle = viewInfo.RowsInfo.Last().RowHandle Then
                 If txtInstellipseFilename.EditValue = Nothing Then
-                    XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων. Δεν μπορεί να αποθηκευθεί η εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
                 GridView1.PostEditor() : GridView1.AddNewRow()
@@ -354,7 +354,7 @@ Public Class frmInstEllipse
     End Sub
     Private Sub DeleteRecord()
         If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
-        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             Dim sSQL As String = "DELETE FROM INST_ELLIPSE_JOBS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
@@ -434,7 +434,7 @@ Public Class frmInstEllipse
                 If sComeFrom = 0 Then cmdConvertToOrder.Enabled = True
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -476,9 +476,9 @@ Public Class frmInstEllipse
                     chkCompleted.CheckState = CheckState.Checked : GridView1.OptionsBehavior.Editable = False
                     cmdNewInstEllipse.Enabled = False : DisabletxtInstellipseFilename() ' txtInstellipseFilename.Enabled = False
                 End If
-                XtraMessageBox.Show("Το αρχείο αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Το αρχείο αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
             Catch ex As Exception
-                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             End Try
         End If
     End Sub
@@ -506,13 +506,13 @@ Public Class frmInstEllipse
                         End If
                         sdr.Close()
                     Catch exfs As Exception
-                        XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Finally
 
                     End Try
                 Case 2
                     If txtInstellipseFilename.EditValue = Nothing Then Exit Sub
-                    If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                         Dim sSQL As String
                         sSQL = "UPDATE INST_ELLIPSE SET fInstEllipseName =  NULL ,fInstEllipse =  NULL where ID = " & toSQLValueS(sID)
                         'Εκτέλεση QUERY
@@ -523,7 +523,7 @@ Public Class frmInstEllipse
                     End If
             End Select
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         End Try
 
@@ -650,7 +650,7 @@ Public Class frmInstEllipse
     Private Sub frmInstEllipse_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If sID = Nothing Then Exit Sub
         If SaveButtonPressed = False Then
-            If XtraMessageBox.Show("Θέλετε να σώσετε την εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then
+            If XtraMessageBox.Show("Θέλετε να σώσετε την εγγραφή?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then
                 Dim sSQL As String = "DELETE FROM INST_ELLIPSE WHERE ID = '" & sID & "'"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
@@ -725,21 +725,21 @@ Public Class frmInstEllipse
 
     Private Sub cmdNewInstEllipse_Click(sender As Object, e As EventArgs) Handles cmdNewInstEllipse.Click
         If GridView1.DataRowCount = 0 Then
-            XtraMessageBox.Show("Δεν έχετε καταχωρήσει εκκρεμότητες. Δεν μπορεί να δημιουργηθεί νέα εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Δεν έχετε καταχωρήσει εκκρεμότητες. Δεν μπορεί να δημιουργηθεί νέα εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
         If CheckIfInstJobsAreCompleted() Then
-            XtraMessageBox.Show("Όλες οι εκρεμμότητες είναι ολοκληρωμένες. Δεν μπορεί να δημιουργηθεί νέα εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Όλες οι εκρεμμότητες είναι ολοκληρωμένες. Δεν μπορεί να δημιουργηθεί νέα εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Exit Sub
         End If
         NewRecord()
     End Sub
     Private Sub ValidateEmail()
         If GridView1.RowCount = 0 Then XtraMessageBox.Show("Δεν υπάρχουν εκκρεμότητες προς αποστολή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If txtTo.Text = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             SendEmailExportReport()
             Me.INST_MAILTableAdapter.FillByinstEllipseID(Me.DmDataSet.INST_MAIL, System.Guid.Parse(sID))
         End If
@@ -753,7 +753,7 @@ Public Class frmInstEllipse
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
 
@@ -870,18 +870,18 @@ Public Class frmInstEllipse
             GridView1.OptionsBehavior.Editable = True
             Mode = FormMode.EditRecord
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub NewRecord()
         'Έλεγχος για να δεί αν υπάρχει μη ολοκληρωμένη έλλειψη πριν ανοίξει καινούρια γιαυτην την τοποθέτηση 
-        If CheckIfHasInstNotCompleted() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν υπάρχει μη ολοκληρωμένη εκκρεμότητα.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If CheckIfHasInstNotCompleted() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν υπάρχει μη ολοκληρωμένη εκκρεμότητα.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         'Eλεγχος αν υπάρχουν ολοκληρωμένες εκκρεμότητες για να συνεχίσει
-        '     If CheckIfHasCompletedInstJobs() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν όλες οι εργασίες-εκκρεμότητες είναι μη ολοκληρωμένες.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        '     If CheckIfHasCompletedInstJobs() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν όλες οι εργασίες-εκκρεμότητες είναι μη ολοκληρωμένες.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         'Eλεγχος αν στην έλλειψη έχει καταχωρηθεί ημερομηνία τοποθέτησης
-        'If CheckIfEllipseHasDateDelivered() = False Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν δεν έχει καταχωρηθεί Ημερ/νία Τοποθέτησης.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        'If CheckIfEllipseHasDateDelivered() = False Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή όταν δεν έχει καταχωρηθεί Ημερ/νία Τοποθέτησης.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         'Eλεγχος αν υπάρχει έντυπο ολοκλήρωσης
-        If CheckIfEllipseHasCompleteDocument() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή, έχουν ολοκληρωθεί όλες οι εκκρεμότητες.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If CheckIfEllipseHasCompleteDocument() = True Then XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε νέα εγγραφή, έχουν ολοκληρωθεί όλες οι εκκρεμότητες.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         ' Κάνει ολοκληρωμένη την ελλέιψη τις συγκεκριμένης τοποθέτησης
         If SetInstEllipseCompleted() = False Then Exit Sub
         sID = System.Guid.NewGuid.ToString
@@ -897,9 +897,9 @@ Public Class frmInstEllipse
             Select Case e.Button.Index
                 Case 0
                     'Έλεγχος για να δεί αν υπάρχει μη ολοκληρωμένη έλλειψη.Αν υπάρχει δεν μπορεί να επισυνάψει έντυπο ολοκλήρωσης
-                    'If CheckIfInstJobsAreCompleted() = False Then XtraMessageBox.Show("Δεν μπορείτε επισυνάψετε έντυπο ολοκλήρωσης όταν υπάρχει έστω και μια μη ολοκληρωμένη εκκρεμότητα.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                    'If CheckIfInstJobsAreCompleted() = False Then XtraMessageBox.Show("Δεν μπορείτε επισυνάψετε έντυπο ολοκλήρωσης όταν υπάρχει έστω και μια μη ολοκληρωμένη εκκρεμότητα.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
                     If CheckIfInstJobsAreCompleted() = False Then
-                        XtraMessageBox.Show("Δεν μπορείτε επισυνάψετε έντυπο ολοκλήρωσης όταν υπάρχει έστω και μια μη ολοκληρωμένη εκκρεμότητα.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        XtraMessageBox.Show("Δεν μπορείτε επισυνάψετε έντυπο ολοκλήρωσης όταν υπάρχει έστω και μια μη ολοκληρωμένη εκκρεμότητα.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     Else
                         FileSelect(1)
@@ -923,13 +923,13 @@ Public Class frmInstEllipse
                         End If
                         sdr.Close()
                     Catch exfs As Exception
-                        XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Finally
 
                     End Try
                 Case 2
                     If txtInstellipseFilenameComplete.EditValue = Nothing Then Exit Sub
-                    If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                         Dim sSQL As String
                         sSQL = "UPDATE INST_ELLIPSE SET fInstEllipseNameComplete =  NULL ,fInstEllipseComplete =  NULL where ID = " & toSQLValueS(sID)
                         'Εκτέλεση QUERY
@@ -948,7 +948,7 @@ Public Class frmInstEllipse
                     End If
             End Select
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         End Try
 
@@ -965,15 +965,15 @@ Public Class frmInstEllipse
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
         Try
             If SaveButtonPressed = False Then
-                XtraMessageBox.Show("Δεν έχετε αποθηκέυση την εκκρεμότητα. Παρακαλώ κάντε κλίκ στο  ""Αποθήκευση"".", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show("Δεν έχετε αποθηκέυση την εκκρεμότητα. Παρακαλώ κάντε κλίκ στο  ""Αποθήκευση"".", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
             If CheckIfInstJobsAreCompleted() Then
-                XtraMessageBox.Show("Όλες οι εκρεμμότητες είναι ολοκληρωμένες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show("Όλες οι εκρεμμότητες είναι ολοκληρωμένες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
             If cboSUP.EditValue = Nothing Then
-                XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Exit Sub
             End If
             If HasConnectedOrder Then
@@ -982,19 +982,19 @@ Public Class frmInstEllipse
                     oCmd.Parameters.AddWithValue("@InstEllipseID", sID)
                     oCmd.ExecuteNonQuery()
                 End Using
-                XtraMessageBox.Show("Η παραγγελία επαναδημιουργήθηκε με επιτυχία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Η παραγγελία επαναδημιουργήθηκε με επιτυχία.", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 If CheckIfHasConnectedOrder() = True Then cmdConvertToOrder.Text = "Ενημέρωση Παραγγελίας" : HasConnectedOrder = True : 
             Else
 
                 If GridView1.DataRowCount = 0 Then
-                    XtraMessageBox.Show("Δεν έχετε καταχωρήσει εκκρεμότητες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Δεν έχετε καταχωρήσει εκκρεμότητες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
                 If CheckIfHasInstJobsForOrder() = False Then
-                    XtraMessageBox.Show("Δεν έχετε επιλέξει εκκρεμότητες προς Παραγγελία. Δεν μπορεί να γίνει η μετατροπή.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Δεν έχετε επιλέξει εκκρεμότητες προς Παραγγελία. Δεν μπορεί να γίνει η μετατροπή.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
-                If XtraMessageBox.Show("Θέλετε να μετατραπούν οι εκκρεμότητες σε παραγγελία?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If XtraMessageBox.Show("Θέλετε να μετατραπούν οι εκκρεμότητες σε παραγγελία?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     Using oCmd As New SqlCommand("cloneINSTELLIPSE", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
                         oCmd.Parameters.AddWithValue("@InstEllipseID", sID)
@@ -1002,12 +1002,12 @@ Public Class frmInstEllipse
                         oCmd.Parameters.AddWithValue("@empID", cboEMP.EditValue.ToString)
                         oCmd.ExecuteNonQuery()
                     End Using
-                    XtraMessageBox.Show("Η παραγγελία δημιουργήθηκε με επιτυχία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η παραγγελία δημιουργήθηκε με επιτυχία.", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If CheckIfHasConnectedOrder() = True Then cmdConvertToOrder.Text = "Ενημέρωση Παραγγελίας" : HasConnectedOrder = True : 
                 End If
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub

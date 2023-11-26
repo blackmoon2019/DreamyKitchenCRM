@@ -112,7 +112,7 @@ Public Class frmTransactions
         Try
             If Valid.ValidateFormGRP(LayoutControlGroup1) Then
                 'If cboCUS.GetColumnValue("SalerID").ToString() = "00000000-0000-0000-0000-000000000000" Then
-                '    XtraMessageBox.Show("Παρακαλώ ορίστε πωλητή", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                '    XtraMessageBox.Show("Παρακαλώ ορίστε πωλητή", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 '    Exit Sub
                 'End If
                 ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
@@ -192,17 +192,17 @@ Public Class frmTransactions
                 End If
                 'Cls.ClearCtrls(LayoutControl1)
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     LayoutControlGroup2.Enabled = True
                     Mode = FormMode.EditRecord
                     txtInvoiceFilename.Text = ""
                 End If
                 If txtInvoiceFilename.Text <> "" Then
-                    If sResultF = False Then XtraMessageBox.Show("To Παραστατικό δεν αποθηκέυτηκε.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    If sResultF = False Then XtraMessageBox.Show("To Παραστατικό δεν αποθηκέυτηκε.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -262,29 +262,29 @@ Public Class frmTransactions
         Try
             If sTable = "TRANSH_F" Then
                 If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID") = Nothing Then Exit Sub
-                If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     sSQL = "DELETE FROM TRANSH_F WHERE ID = '" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString & "'"
 
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
-                    XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Me.TRANSH_FTableAdapter.FillByTanshID(Me.DreamyKitchenDataSet.TRANSH_F, System.Guid.Parse(sID))
                 End If
             Else
                 If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
-                If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     sSQL = "DELETE FROM TRANSD WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
 
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
-                    XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Me.Vw_TRANSDTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSD, System.Guid.Parse(sID))
                 End If
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -292,7 +292,7 @@ Public Class frmTransactions
         If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "filename") Is DBNull.Value Then Exit Sub
         Try
             Dim fs As System.IO.FileStream = New System.IO.FileStream(Application.StartupPath & "\" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "filename"), System.IO.FileMode.Create)
-            Dim b() As Byte = LoadForms.GetFile(GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString, "TRANSH_F")
+            Dim b() As Byte = GetFile(GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString, "TRANSH_F")
             fs.Write(b, 0, b.Length)
             fs.Close()
             ShellExecute(Application.StartupPath & "\" & GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "filename"))
@@ -359,7 +359,7 @@ Public Class frmTransactions
                 sGuid = System.Guid.NewGuid.ToString
                 sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSD",,, LayoutControlGroup2, sGuid,, "transhID", toSQLValueS(sID))
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Me.Vw_TRANSDTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSD, System.Guid.Parse(sID))
                     'Καθαρισμός Controls
                     Cls.ClearCtrlsGRP(LayoutControlGroup2)
@@ -373,7 +373,7 @@ Public Class frmTransactions
                 End If
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -411,7 +411,7 @@ Public Class frmTransactions
                 oCmd.ExecuteNonQuery()
             End Using
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -486,10 +486,10 @@ Public Class frmTransactions
     Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -498,7 +498,7 @@ Public Class frmTransactions
     End Sub
     'Συγχρονισμός όψης από Server
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
-        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
             If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml") = True Then
                 My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\TRANSD.xml", Application.StartupPath & "\DSGNS\DEF\TRANSD.xml", True)
@@ -536,7 +536,7 @@ Public Class frmTransactions
                 form.LoadRecords("vw_TRANSD")
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -549,7 +549,7 @@ Public Class frmTransactions
     End Sub
 
     Private Sub frmTransactions_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        If XtraMessageBox.Show("Θέλετε να περάσετε εγγραφή στην Μισθοδοσία Τοποθετών?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να περάσετε εγγραφή στην Μισθοδοσία Τοποθετών?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             Dim frmInstallations As New frmInstallations
             frmInstallations.Text = "Μισθοδοσία Τοποθετών"
             frmInstallations.MdiParent = frmMain
@@ -671,10 +671,10 @@ Public Class frmTransactions
     Private Sub OnSaveView2(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
                 GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -683,7 +683,7 @@ Public Class frmTransactions
     End Sub
     'Συγχρονισμός όψης από Server
     Private Sub OnSyncView2(ByVal sender As System.Object, ByVal e As EventArgs)
-        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
             If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml") = True Then
                 My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_TRANSH_F_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_TRANSH_F_def.xml", True)

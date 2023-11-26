@@ -183,7 +183,7 @@ Public Class frmConstrunction
                         form.LoadRecords("vw_CONSTR")
                     End If
 
-                    If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then
                         Cls.ClearCtrls(LayoutControl1)
                         txtCode.Text = DBQ.GetNextId("CONSTR")
@@ -191,7 +191,7 @@ Public Class frmConstrunction
                 End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub cboSER_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSER.ButtonClick
@@ -239,7 +239,7 @@ Public Class frmConstrunction
             Return duration.TotalMinutes
             Console.WriteLine(duration.TotalMinutes)
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
 
@@ -288,4 +288,6 @@ Public Class frmConstrunction
         txtOverWork.EditValue = OverWork
         ' txtExtraCost.EditValue = ExtraCost
     End Sub
+
+
 End Class

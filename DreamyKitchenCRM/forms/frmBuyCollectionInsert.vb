@@ -564,7 +564,7 @@ Public Class frmBuyCollectionInsert
         Dim ItemsCorrect As Integer = 0, ItemsWrong As Integer = 0
         Try
             If selectedRowHandles.Length = 0 Then Exit Sub
-            If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
             LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             ProgressBarControl1.EditValue = 0
             ProgressBarControl1.Properties.Step = 1

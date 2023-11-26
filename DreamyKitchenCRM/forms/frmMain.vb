@@ -49,7 +49,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
 
     End Sub
@@ -62,7 +62,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -104,7 +104,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -262,7 +262,7 @@ Public Class frmMain
             form10.Show()
             Timer1.Enabled = True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Timer1.Enabled = False
         End Try
     End Sub
@@ -290,7 +290,7 @@ Public Class frmMain
             sdr.Close()
             sdr = Nothing
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Timer1.Enabled = False
         End Try
     End Sub
@@ -326,7 +326,7 @@ Public Class frmMain
             form10.Show()
             Timer1.Enabled = True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Timer1.Enabled = False
         End Try
     End Sub
@@ -492,7 +492,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
     Private Sub BBInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInst.ItemClick
@@ -505,7 +505,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -533,7 +533,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -545,7 +545,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -557,7 +557,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -569,7 +569,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -581,7 +581,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -610,7 +610,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -624,7 +624,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -636,7 +636,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -665,7 +665,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -679,7 +679,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -989,7 +989,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -1009,7 +1009,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
