@@ -106,7 +106,7 @@ Public Class frmCUSPrivateAgreement
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 If txtPayinAdvance.EditValue = "0,00" Then
-                    XtraMessageBox.Show("Δεν έχετε συμπληρώσει στην προκαταβολη (Μετρητά,Τράπεζα ή και τα 2).", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Δεν έχετε συμπληρώσει στην προκαταβολη (Μετρητά,Τράπεζα ή και τα 2).", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
                 TotalPrice = 0
@@ -117,11 +117,11 @@ Public Class frmCUSPrivateAgreement
                 closeAmt = closeAmt + DbnullToZero(txtCloseCash)
                 TotalPrice = TotalPrice + closeAmt
                 If Math.Round(TotalPrice, 2) <> Math.Round(PayinAdvance, 2) Then
-                    XtraMessageBox.Show("Το σύνολο της προκαταβολής δεν είναι ίσο με τις επιμέρους", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    XtraMessageBox.Show("Το σύνολο της προκαταβολής δεν είναι ίσο με τις επιμέρους", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
                 PayinAdvance = txtPayinAdvanceBank.EditValue
                 If PayinAdvance <> "0" And cboBANK.EditValue = Nothing Then
-                    XtraMessageBox.Show("Έχετε συμπληρώσει προκαταβολή(Τράπεζα) χωρίς να βάλετε τράπεζα", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Έχετε συμπληρώσει προκαταβολή(Τράπεζα) χωρίς να βάλετε τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
                 Select Case Mode
@@ -189,7 +189,7 @@ Public Class frmCUSPrivateAgreement
                             oCmd.ExecuteNonQuery()
                         End Using
                     End If
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     cmdPrintOffer.Enabled = True
                     Dim cmd As SqlCommand
                     Dim sdr As SqlDataReader
@@ -204,7 +204,7 @@ Public Class frmCUSPrivateAgreement
                     End If
                     sdr.Close()
                     If ExistNegative > 0 Then
-                        XtraMessageBox.Show("Λανθασμένη κατανομή ποσών στον τρόπο πληρωμής", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        XtraMessageBox.Show("Λανθασμένη κατανομή ποσών στον τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Dim report As New RepCUSAnalysis
                         report.Parameters.Item(0).Value = cboTRANSH.EditValue.ToString
                         report.CreateDocument()
@@ -218,7 +218,7 @@ Public Class frmCUSPrivateAgreement
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -445,7 +445,7 @@ Public Class frmCUSPrivateAgreement
             End If
             sdr.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -513,7 +513,7 @@ Public Class frmCUSPrivateAgreement
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderCloset), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
             frmCUSOrderCloset.Show()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -539,7 +539,7 @@ Public Class frmCUSPrivateAgreement
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderDoors), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
             frmCUSOfferOrderDoors.Show()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -564,7 +564,7 @@ Public Class frmCUSPrivateAgreement
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderKitchen), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
             frmCUSOrderKitchen.Show()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -589,7 +589,7 @@ Public Class frmCUSPrivateAgreement
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferSpecialConstr), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
             frmCUSOfferSpecialConstr.Show()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

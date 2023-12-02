@@ -175,7 +175,7 @@ NextItem:
             Dim trace = New System.Diagnostics.StackTrace(ex, True)
             Dim line As String = Strings.Right(trace.ToString, 5)
 
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Public Function LoadFormGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sSQL As String, Optional ByVal IgnoreVisibility As Boolean = True) As Boolean
@@ -249,7 +249,7 @@ NextItem:
             End If
             sdr.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Private Sub SetValueToControl(ByVal LItem As LayoutControlItem, ByVal sValue As String)
@@ -321,7 +321,7 @@ NextItem:
 
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadDataToGrid(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
@@ -375,7 +375,7 @@ NextItem:
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadDataToVGrid(ByRef GRDControl As DevExpress.XtraVerticalGrid.VGridControl,
@@ -555,7 +555,7 @@ NextItem:
             'End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadColumnDescriptionNames(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
@@ -604,7 +604,7 @@ NextItem:
                 'If columnName.Length > 0 And GRDView.Columns.Item(columnName) IsNot Nothing Then GRDView.Columns.Item(columnName).Caption = columnNameValue
             Next
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub PopupMenuShow(ByVal e As Views.Grid.PopupMenuShowingEventArgs, ByVal GridView As GridView, ByVal sXMLName As String, Optional ByVal sTableName As String = "",
@@ -860,7 +860,7 @@ NextItem:
                 GridView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
             End If
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

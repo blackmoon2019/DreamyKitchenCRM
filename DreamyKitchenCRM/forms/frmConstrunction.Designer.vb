@@ -37,7 +37,6 @@ Partial Class frmConstrunction
         Me.txtExtraCost = New DevExpress.XtraEditors.TextEdit()
         Me.cboTRANSH = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -55,14 +54,15 @@ Partial Class frmConstrunction
         Me.Lcost1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LExtracost = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter()
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
+        Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSHTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.tmIN.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSER.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtDeliverDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtDeliverDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtDeliverDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOverWork.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -72,7 +72,6 @@ Partial Class frmConstrunction
         CType(Me.txtExtraCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -90,6 +89,7 @@ Partial Class frmConstrunction
         CType(Me.Lcost1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LExtracost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -342,12 +342,7 @@ Partial Class frmConstrunction
         'VwTRANSHBindingSource
         '
         Me.VwTRANSHBindingSource.DataMember = "vw_TRANSH"
-        Me.VwTRANSHBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.VwTRANSHBindingSource.DataSource = Me.DM_TRANS
         '
         'Root
         '
@@ -543,6 +538,11 @@ Partial Class frmConstrunction
         Me.LayoutControlItem13.Text = "Έργο Πελάτη"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(169, 23)
         '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'Vw_TRANSHTableAdapter
         '
         Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
@@ -573,7 +573,6 @@ Partial Class frmConstrunction
         CType(Me.txtExtraCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -591,6 +590,7 @@ Partial Class frmConstrunction
         CType(Me.Lcost1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LExtracost, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -628,6 +628,6 @@ Partial Class frmConstrunction
     Friend WithEvents cboTRANSH As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents VwTRANSHBindingSource As BindingSource
-    Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
-    Friend WithEvents Vw_TRANSHTableAdapter As DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter
+    Friend WithEvents DM_TRANS As DM_TRANS
+    Friend WithEvents Vw_TRANSHTableAdapter As DM_TRANSTableAdapters.vw_TRANSHTableAdapter
 End Class

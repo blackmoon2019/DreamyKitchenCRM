@@ -39,7 +39,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.lblDate = New DevExpress.XtraEditors.LabelControl()
         Me.txtdtdaysOfDelivery = New DevExpress.XtraEditors.TextEdit()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCCTBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.dtOrder = New DevExpress.XtraEditors.DateEdit()
         Me.txtKFinalHeight = New DevExpress.XtraEditors.TextEdit()
@@ -266,9 +265,10 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.Vw_BENCHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BENCHTableAdapter()
         Me.BASE_CATTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.BASE_CATTableAdapter()
-        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
         Me.Vw_DOOR_TYPE_V2TableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPE_V2TableAdapter()
         Me.Vw_DOOR_TYPE_BENCH_V2TableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPE_BENCH_V2TableAdapter()
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
+        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboPependisisDoorType2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -280,10 +280,9 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.cboVType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCCTBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtOrder.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtOrder.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKFinalHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtYHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtYFinalHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -484,6 +483,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'coldCode
@@ -779,7 +779,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.cboCUS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCUS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCUS.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Όνομα", 91, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CouID", "Cou ID", 73, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AreaID", "Area ID", 79, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AdrID", "Adr ID", 70, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SourceID", "Source ID", 99, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SalerID", "Saler ID", 83, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("DoyID", "Doy ID", 73, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PrfID", "Prf ID", 64, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("phn", "Τηλέφωνο", 48, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("mob", "mob", 52, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("fax", "fax", 40, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 59, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("afm", "afm", 47, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cmt", "cmt", 46, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "name", 62, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("COU_Name", "COU_Name", 110, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SRC_Name", "SRC_Name", 108, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AREAS_Name", "AREAS_Name", 130, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ADR_Name", "ADR_Name", 110, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PRF_Name", "PRF_Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SALERS_Name", "SALERS_Name", 139, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("color", "color", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ar", "Ar", 33, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tk", "tk", 31, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdby_Realname", "createdby_Realname", 191, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("HasFiles", "Has Files", 88, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
-        Me.cboCUS.Properties.DataSource = Me.VwCCTBindingSource1
         Me.cboCUS.Properties.DisplayMember = "Fullname"
         Me.cboCUS.Properties.NullText = ""
         Me.cboCUS.Properties.PopupSizeable = False
@@ -788,11 +787,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.cboCUS.StyleController = Me.LayoutControl1
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
-        '
-        'VwCCTBindingSource1
-        '
-        Me.VwCCTBindingSource1.DataMember = "vw_CCT"
-        Me.VwCCTBindingSource1.DataSource = Me.DreamyKitchenDataSet
         '
         'DreamyKitchenDataSet
         '
@@ -3561,7 +3555,7 @@ Partial Class frmCUSOfferOrderKitchen
         'CCTTRANSHBindingSource
         '
         Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
-        Me.CCTTRANSHBindingSource.DataSource = Me.DMDataSet
+        Me.CCTTRANSHBindingSource.DataSource = Me.DM_TRANS
         '
         'VwBENCHBindingSource
         '
@@ -3972,10 +3966,6 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.BASE_CATTableAdapter.ClearBeforeFill = True
         '
-        'CCT_TRANSHTableAdapter
-        '
-        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
-        '
         'Vw_DOOR_TYPE_V2TableAdapter
         '
         Me.Vw_DOOR_TYPE_V2TableAdapter.ClearBeforeFill = True
@@ -3983,6 +3973,15 @@ Partial Class frmCUSOfferOrderKitchen
         'Vw_DOOR_TYPE_BENCH_V2TableAdapter
         '
         Me.Vw_DOOR_TYPE_BENCH_V2TableAdapter.ClearBeforeFill = True
+        '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'CCT_TRANSHTableAdapter
+        '
+        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
         'frmCUSOfferOrderKitchen
         '
@@ -4005,7 +4004,6 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.cboVType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCCTBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtOrder.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4209,6 +4207,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4370,7 +4369,6 @@ Partial Class frmCUSOfferOrderKitchen
     Friend WithEvents BASECATBindingSource As BindingSource
     Friend WithEvents BASE_CATTableAdapter As DMDataSetTableAdapters.BASE_CATTableAdapter
     Friend WithEvents CCTTRANSHBindingSource As BindingSource
-    Friend WithEvents CCT_TRANSHTableAdapter As DMDataSetTableAdapters.CCT_TRANSHTableAdapter
     Friend WithEvents cboLegs1 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cboBenchType1 As DevExpress.XtraEditors.LookUpEdit
@@ -4456,8 +4454,9 @@ Partial Class frmCUSOfferOrderKitchen
     Friend WithEvents LayoutControlItem85 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LabelControl1 As DevExpress.XtraEditors.LabelControl
     Friend WithEvents LayoutControlItem86 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents VwCCTBindingSource1 As BindingSource
     Friend WithEvents cboPependisisDoorType2 As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem88 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents DM_TRANS As DM_TRANS
+    Friend WithEvents CCT_TRANSHTableAdapter As DM_TRANSTableAdapters.CCT_TRANSHTableAdapter
     '    Friend WithEvents Vw_DOOR_TYPEPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_DOOR_TYPEPlainaYpsilaTableAdapter
 End Class

@@ -59,7 +59,7 @@ Public Class frmCalendarInst
 
             LoadForms.RestoreLayoutFromXml(GridView1, "Inst.xml")
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -298,7 +298,7 @@ Public Class frmCalendarInst
     Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\Inst.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub SchedulerControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles SchedulerControl1.KeyDown

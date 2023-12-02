@@ -82,6 +82,19 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "TRANSH_C"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "TRANSH_C", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.TRANSH_C(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_TRANSH_C")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("BASE_CAT")
                             Case "BASE_CAT"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "BASE_CAT", sGuid)
@@ -515,6 +528,21 @@ Public Class frmGen
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "TRANSH_C"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.UpdateData(LayoutControl1, "TRANSH_C", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.TRANSH_C(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_TRANSH_C")
+                                End If
+
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("TRANSH_C")
+
                             Case "BASE_CAT"
                                 sResult = DBQ.UpdateData(LayoutControl1, "BASE_CAT", sID)
                                 If CalledFromCtrl Then
@@ -812,14 +840,21 @@ Public Class frmGen
 
                         End Select
                 End Select
-                If sResult Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If sResult Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "TRANSH_C"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("TRANSH_C")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_TRANSH_C where id ='" + sID + "'",, True)
+                End If
+
             Case "BASE_CAT"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("BASE_CAT")
@@ -1035,13 +1070,20 @@ Public Class frmGen
     Private Sub DeleteRecord()
         Dim sSQL As String
         Try
-            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 sSQL = "DELETE FROM " & sDataTable & " WHERE ID = " & toSQLValueS(sID)
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
 
                 Select Case sDataTable
+                    Case "TRANSH_C"
+                        If CalledFromCtrl Then
+                            FillCbo.TRANSH_C(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_TRANSH_C")
+                        End If
                     Case "EP_STATUS"
                         If CalledFromCtrl Then
                             FillCbo.EP_STATUS(CtrlCombo)
@@ -1247,10 +1289,10 @@ Public Class frmGen
                 txtCode.Text = DBQ.GetNextId(sDataTable)
                 If CalledFromCtrl Then CtrlCombo.EditValue = Nothing
 
-                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

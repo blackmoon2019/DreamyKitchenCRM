@@ -127,7 +127,7 @@ Public Class frmScroller
             GridView2.OptionsMenu.ShowGroupSortSummaryItems = True
             GridView2.OptionsMenu.ShowConditionalFormattingItem = True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub LoadConditionalFormatting()
@@ -163,11 +163,11 @@ Public Class frmScroller
             If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml") = False Then
                 GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
+                GridView1.OptionsLayout.LayoutVersion = "v1.1"
+                GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
             If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml") = False Then
-                If sDataDetail <> "" Then
-                    GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
-                End If
+                If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
 
             'Εαν δεν υπάρχει Folder Σχεδίου για το συγκεκριμένο πίνακα δημιουργεί
@@ -195,7 +195,7 @@ Public Class frmScroller
                 If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Διαγραφη Εγγραφής
@@ -204,7 +204,7 @@ Public Class frmScroller
         Dim sSQL2 As String
         Try
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
-            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Select Case sDataTable
                     Case "vw_USR" : sSQL = "DELETE FROM USR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_MAILS" : sSQL = "DELETE FROM MAILS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -237,6 +237,7 @@ Public Class frmScroller
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_ELLIPSE"
                         Dim Cmd As SqlCommand, sdr As SqlDataReader
                         sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
@@ -247,14 +248,14 @@ Public Class frmScroller
                         If (sdr.Read() = True) Then
                             If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
                             If CountEllipse > 0 Then
-                                XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 sdr.Close()
                                 Exit Sub
                             Else
                                 sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                             End If
                         Else
-                            XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             sdr.Close()
                             Exit Sub
                         End If
@@ -376,10 +377,10 @@ Public Class frmScroller
                     End Using
                 End If
                 LoadRecords()
-                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Διαγραφη Εγγραφών
@@ -389,7 +390,7 @@ Public Class frmScroller
         Dim selectedRowHandles As Int32() = GridView1.GetSelectedRows()
         Dim I As Integer
         Try
-            If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
             For I = 0 To selectedRowHandles.Length - 1
                 Dim selectedRowHandle As Int32 = selectedRowHandles(I)
 
@@ -426,6 +427,7 @@ Public Class frmScroller
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_ELLIPSE"
                         Dim Cmd As SqlCommand, sdr As SqlDataReader
                         sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(selectedRowHandle, "instID").ToString) & " and createdOn> " & toSQLValueS(CDate(GridView1.GetRowCellValue(selectedRowHandle, "createdOn")).ToString("yyyyMMdd"))
@@ -435,14 +437,14 @@ Public Class frmScroller
                         If (sdr.Read() = True) Then
                             If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
                             If CountEllipse > 0 Then
-                                XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 sdr.Close()
                                 Exit Sub
                             Else
                                 sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                             End If
                         Else
-                            XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             sdr.Close()
                             Exit Sub
                         End If
@@ -566,9 +568,9 @@ Public Class frmScroller
             Next
 
             LoadRecords()
-            XtraMessageBox.Show("Η εγγραφές διαγράφηκαν με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("Η εγγραφές διαγράφηκαν με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Επιλογή όψης
@@ -590,7 +592,7 @@ Public Class frmScroller
                 popDeleteView.Enabled = True
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Κλείσιμο Φόρμας
@@ -604,7 +606,7 @@ Public Class frmScroller
     End Sub
     'Διαγραφή όψης
     Private Sub popDeleteView_ItemClick(sender As Object, e As ItemClickEventArgs) Handles popDeleteView.ItemClick
-        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα όψη?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα όψη?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             If BarViews.EditValue <> "" Then
                 My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
                 If sDataDetail <> "" Then My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue)
@@ -651,7 +653,7 @@ Public Class frmScroller
                 CurrentView = BarViews.EditValue
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Αποθήκευση όψης
@@ -673,7 +675,7 @@ Public Class frmScroller
                 GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             End If
             'GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
-            XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     'Επαναφορά Default όψης
@@ -779,10 +781,10 @@ Public Class frmScroller
     Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
                 GridView2.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -920,7 +922,7 @@ Public Class frmScroller
                 End If
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             If GetVal Then sdr.Close()
         End Try
 
@@ -958,6 +960,19 @@ Public Class frmScroller
         Dim frmGen As frmGen = New frmGen()
         If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") Is Nothing Then Exit Sub
         Select Case sDataTable
+            Case "vw_TRANSH_C"
+                frmGen.Text = "Κατηγορίες Έργων"
+                frmGen.MdiParent = frmMain
+                frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmGen.Mode = FormMode.EditRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "TRANSH_C"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Κατηγορίες Έργων"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_BASE_CAT"
                 frmGen.Text = "Τύποι Κατασκευής"
                 frmGen.MdiParent = frmMain
@@ -1891,6 +1906,18 @@ Public Class frmScroller
     Private Sub NewRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_TRANSH_C"
+                frmGen.Text = "Κατηγορίες Έργων"
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.NewRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "TRANSH_C"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Κατηγορίες Έργων"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_BASE_CAT"
                 frmGen.Text = "Τύποι Κατασκευής"
                 frmGen.MdiParent = frmMain
@@ -2896,7 +2923,7 @@ Public Class frmScroller
             myCmd.Dispose()
             If CloseReader = True Then myReader.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         'If grdMain.DefaultView.DataRowCount <> 0 Then myReader.Close() 'myReader.Close()
     End Sub
@@ -2962,10 +2989,10 @@ Public Class frmScroller
 
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
         If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -3043,7 +3070,7 @@ Public Class frmScroller
                     End If
             End Select
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -3110,7 +3137,7 @@ Public Class frmScroller
             LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
             myReader.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub BBUpdateViewFromDB_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdateViewFromDB.ItemClick

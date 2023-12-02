@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraSplashScreen
 
@@ -12,6 +13,7 @@ Public Class Customers
     Private Mode As Byte
     Private CalledFromCtrl As Boolean
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
+    Private FillCbo As New FillCombos
 
 
     Public Sub Initialize(ByVal sFrm As frmCustomers, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal sFrmScr As DevExpress.XtraEditors.XtraForm)
@@ -21,25 +23,28 @@ Public Class Customers
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
         FrmScr = sFrmScr
+        FillCbo.COU(Frm.cboCOU) : FillCbo.SRC(Frm.cboSRC)
+        FillCbo.PRF(Frm.cboPRF) : FillCbo.DOY(Frm.cboDOY)
+
     End Sub
     Public Sub DeleteRecord()
         Dim sSQL As String
         Try
 
             If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
-            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 sSQL = "DELETE FROM CCT_F WHERE ID = '" & Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString & "'"
 
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
-                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 LoadForms.LoadDataToGrid(Frm.GridControl1, Frm.GridView1, "select ID,cctID,filename,comefrom,createdon,realname From vw_CCT_F where cctID = '" & ID & "'")
                 LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_CCT_F_def.xml")
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -75,11 +80,11 @@ Public Class Customers
                 End If
                 'Cls.ClearCtrls(LayoutControl1)
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                     Mode = FormMode.EditRecord
                     Frm.txtFileNames.Text = ""
-                    If XtraMessageBox.Show("Θέλετε να καταχωρήσετε κίνηση στον πελάτη?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    If XtraMessageBox.Show("Θέλετε να καταχωρήσετε κίνηση στον πελάτη?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                         Dim form1 As frmCusMov = New frmCusMov()
                         form1.Text = "Κινήσεις Πελατών"
                         form1.MdiParent = frmMain
@@ -93,7 +98,7 @@ Public Class Customers
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Function GetNextID() As Integer

@@ -15,13 +15,13 @@ Public Class ValidateControls
                             txt = Ctrl
                             If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
                                 If LItem.Control.Text.Replace(" €", "") = "0,00" Or LItem.Control.Text.Replace(" €", "") = "0" Or LItem.Control.Text.Replace(" €", "") = "0,000" Then
-                                    XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                     Return False
                                 End If
                             End If
                         End If
                         If LItem.Control.Text = "" Then
-                            XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         End If
 
@@ -29,7 +29,7 @@ Public Class ValidateControls
                             Dim chklst As DevExpress.XtraEditors.CheckedListBoxControl
                             chklst = Ctrl
                             If chklst.CheckedItems.Count = 0 Then
-                                XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Return False
                             End If
                         End If
@@ -52,13 +52,13 @@ Public Class ValidateControls
                             txt = Ctrl
                             If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
                                 If LItem.Control.Text.Replace(" €", "") = "0,00" Or LItem.Control.Text.Replace(" €", "") = "0" Or LItem.Control.Text.Replace(" €", "") = "0,000" Then
-                                    XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                     Return False
                                 End If
                             End If
                         End If
                         If LItem.Control.Text = "" Then
-                            XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            XtraMessageBox.Show("Υπάρχουν υποχρεωτικά πεδία που δεν έχετε συμπληρώσει.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         End If
                     End If

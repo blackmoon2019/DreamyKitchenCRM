@@ -107,7 +107,7 @@ Public Class frmSUPKal
                     oCmd.ExecuteNonQuery()
                 End Using
 
-                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                 If Mode = FormMode.NewRecord Then
                     Cls.ClearCtrls(LayoutControl1)
@@ -116,7 +116,7 @@ Public Class frmSUPKal
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub cboSUP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP.ButtonClick
@@ -267,10 +267,10 @@ Public Class frmSUPKal
     Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -279,7 +279,7 @@ Public Class frmSUPKal
     End Sub
     'Συγχρονισμός όψης από Server
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
-        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
             If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml") = True Then
                 My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", True)

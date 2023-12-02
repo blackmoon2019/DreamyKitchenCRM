@@ -98,7 +98,7 @@ Public Class frmParameters
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Prog_Prop.SetProgPROSF(LayoutControl3)
         Prog_Prop.GetProgPROSF()
-        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
@@ -170,7 +170,7 @@ Public Class frmParameters
     End Sub
     'Συγχρονισμός όψης από Server
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
-        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
             If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml") = True Then
                 My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", True)
@@ -182,10 +182,10 @@ Public Class frmParameters
     Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
                 GridView2.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_PRM_def.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -221,7 +221,7 @@ Public Class frmParameters
     End Sub
     'Συγχρονισμός όψης από Server
     Private Sub OnSyncViewCloset(ByVal sender As System.Object, ByVal e As EventArgs)
-        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
             If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml") = True Then
                 My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", True)
@@ -233,10 +233,10 @@ Public Class frmParameters
     Private Sub OnSaveViewCloset(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\CCT_ORDERS_KITCHEN_EQUIPMENT_CLOSET_PRM_def.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -277,7 +277,7 @@ Public Class frmParameters
                 End Using
             End If
         Next
-        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
     Private Sub InsertSelectedClosetRows()
         Dim sSQL As String
@@ -296,13 +296,13 @@ Public Class frmParameters
                 End Using
             End If
         Next
-        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub SimpleButton3_Click(sender As Object, e As EventArgs) Handles SimpleButton3.Click
         Prog_Prop.SetProgPROSF(LayoutControl4)
         Prog_Prop.GetProgPROSF()
-        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub SimpleButton2_Click_1(sender As Object, e As EventArgs) Handles SimpleButton2.Click
@@ -317,7 +317,7 @@ Public Class frmParameters
         Prog_Prop.GetProgEmailInst(LayoutControl5)
         Prog_Prop.SetProgSupEmail(SUP_ORDERS_MAIL.Text)
         Prog_Prop.GetProgEmailSup(LayoutControlItem76)
-        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
 
     Private Sub cmdExitInstEmail_Click(sender As Object, e As EventArgs) Handles cmdExitInstEmail.Click

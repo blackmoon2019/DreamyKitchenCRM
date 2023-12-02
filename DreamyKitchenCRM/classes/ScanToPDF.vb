@@ -82,7 +82,7 @@ Public Class ScanToPDF
             Dim trace = New Diagnostics.StackTrace(ex, True)
             Dim line As String = Right(trace.ToString, 5)
 
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         Finally
             CD = Nothing

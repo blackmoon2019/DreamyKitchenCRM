@@ -56,8 +56,10 @@ Public Class frmBUY
         Me.Close()
     End Sub
     Private Sub frmBUY_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DM_TRANS.CCT_TRANSH' table. You can move, or remove it, as needed.
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
-        Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
 
         'FillCbo.CUS(cboCUS)
         FillCbo.SUP(cboSUP)
@@ -75,7 +77,7 @@ Public Class frmBUY
                 Me.Vw_BUY_OTableAdapter.FillbyBuyID(Me.DMDataSet.vw_BUY_O, System.Guid.Parse(sID))
                 Dim sCusID As String
                 If cboCUS.EditValue Is Nothing Then sCusID = Guid.Empty.ToString Else sCusID = cboCUS.EditValue.ToString
-                Me.Vw_TRANSHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSH, System.Guid.Parse(sCusID))
+                Me.Vw_TRANSHTableAdapter.Fill(Me.DM_TRANS.vw_TRANSH, System.Guid.Parse(sCusID))
                 If cboSUP.EditValue IsNot Nothing Then Me.Vw_DOC_TYPESTableAdapter.FillBySupID(Me.DMDataSet.vw_DOC_TYPES, System.Guid.Parse(cboSUP.EditValue.ToString))
                 Multiplier = cboDocType.GetColumnValue("Vmultiplier") : If Multiplier = 0 Then Multiplier = 1
         End Select
@@ -106,7 +108,7 @@ Public Class frmBUY
                 'End If
 
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     LayoutControlItem25.Enabled = True
                     If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
 
@@ -151,7 +153,7 @@ Public Class frmBUY
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -167,7 +169,7 @@ Public Class frmBUY
         If Me.isFormPainted = False Then Exit Sub
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = Guid.Empty.ToString Else sCusID = cboCUS.EditValue.ToString
-        Me.Vw_TRANSHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_TRANSH, System.Guid.Parse(sCusID))
+        Me.Vw_TRANSHTableAdapter.Fill(Me.DM_TRANS.vw_TRANSH, System.Guid.Parse(sCusID))
     End Sub
 
     Private Sub frmBUY_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -280,7 +282,7 @@ Public Class frmBUY
     End Sub
     Private Sub DeleteRecord()
         If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
-        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             Dim sSQL As String = "DELETE FROM BUY_O WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
@@ -321,7 +323,7 @@ Public Class frmBUY
                 Me.Vw_BUY_OTableAdapter.FillbyBuyID(Me.DMDataSet.vw_BUY_O, System.Guid.Parse(sID))
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub Grid_EmbeddedNavigator_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
@@ -375,7 +377,7 @@ Public Class frmBUY
                 If sdr.IsDBNull(sdr.GetOrdinal("CountP")) = False Then CountP = sdr.GetInt32(sdr.GetOrdinal("CountP")) Else CountP = 0
                 If CountP > 0 Then
                     XtraMessageBox.Show("Δεν μπορείτε να μεταβάλετε ποσό παραστατικού όταν έχουν πραγματοποιηθεί πληρωμές. " & vbCrLf &
-                        "Πρέπει να σβήσετε τις πληρωμές και μετά να αλλάξετε το παραστατικό ή να σβήσετε όλο το παραστατικό.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        "Πρέπει να σβήσετε τις πληρωμές και μετά να αλλάξετε το παραστατικό ή να σβήσετε όλο το παραστατικό.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     e.Cancel = True
                 End If
             End If

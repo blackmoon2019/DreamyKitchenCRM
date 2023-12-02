@@ -41,7 +41,7 @@ Public Class frmMailSettings
 
             Me.CenterToScreen()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -113,7 +113,7 @@ Public Class frmMailSettings
                 Dim form As frmScroller = Frm
                 form.LoadRecords("vw_MAILS")
                 If sResult Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then
                         'Καθαρισμός Controls
                         Cls.ClearCtrls(LayoutControl1)
@@ -124,12 +124,12 @@ Public Class frmMailSettings
             '    values.Add(GridLookUpEdit1View.GetRowCellValue(rowHandle, "Realname"))
             'Next rowHandle
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
     Private Sub cmdCheckMail_Click(sender As Object, e As EventArgs) Handles cmdCheckMail.Click
-        Dim result = XtraInputBox.Show("Πληκτρολογήστε το Email που θα πάει το ΤΕΣΤ Email", Company, "Default")
+        Dim result = XtraInputBox.Show("Πληκτρολογήστε το Email που θα πάει το ΤΕΣΤ Email", ProgProps.ProgTitle, "Default")
         CheckEmail(result)
     End Sub
     Private Sub CheckEmail(ByVal sTO As String)

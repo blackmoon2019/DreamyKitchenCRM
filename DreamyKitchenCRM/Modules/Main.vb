@@ -1,13 +1,15 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Grid
 
 Module Main
     Public CNDB As New SqlConnection()
     Public CNDB2 As New SqlConnection()
-    Public Const Company As String = "Dreamy Kitchen CRM"
+    Public Const ProgTitle As String = "Dreamy Kitchen CRM"
 
     Enum FormMode
         NewRecord = 1
@@ -150,7 +152,7 @@ Module Main
                 Return "NULL" 'this will pass through any SQL statement without notice  
             End If
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Public Function DbnullToZero(t As DevExpress.XtraEditors.TextEdit) As Double
@@ -173,7 +175,7 @@ Module Main
             Dim ServerFile As String = ProgProps.ServerViewsPath & "DSGNS\DEF\" & System.IO.Path.GetFileName(sFile)
             My.Computer.FileSystem.CopyFile(ServerFile, sFile, True)
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub GetNewestFileFromServer(ByVal sFile As String)
@@ -195,7 +197,7 @@ Module Main
                 Loop Until LastModifiedF1 = LastModifiedF2
             End If
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -241,16 +243,19 @@ Module Main
             Next I
         End If
     End Sub
-    Public Sub OpenFile(ByVal GridView1 As GridView)
+    Public Sub OpenFile(ByVal grdView As GridView, ByVal sTable As String)
+        If grdView.GetRowCellValue(grdView.FocusedRowHandle, "filename") Is DBNull.Value Then Exit Sub
         Try
-            Dim sFilename = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "filename")
+            Dim sFilename = grdView.GetRowCellValue(grdView.FocusedRowHandle, "filename")
             Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
-            Dim b() As Byte = GetFile(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, "vw_CCT_F")
+            Dim b() As Byte = GetFile(grdView.GetRowCellValue(grdView.FocusedRowHandle, "ID").ToString, sTable)
             fs.Write(b, 0, b.Length)
             fs.Close()
             ShellExecute(ProgProps.TempFolderPath & sFilename)
+        Catch ex As IOException
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Public Function FindItemByValChkListBox(ByVal sValue As String, ByVal chkList As DevExpress.XtraEditors.CheckedListBoxControl) As DevExpress.XtraEditors.Controls.CheckedListBoxItem

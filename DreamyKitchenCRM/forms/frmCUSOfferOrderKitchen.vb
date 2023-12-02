@@ -71,11 +71,13 @@ Public Class frmCUSOfferOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DM_TRANS.CCT_TRANSH' table. You can move, or remove it, as needed.
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_BENCH_V2' table. You can move, or remove it, as needed.
         Me.Vw_DOOR_TYPE_BENCH_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_BENCH_V2)
         'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_V2' table. You can move, or remove it, as needed.
         Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-        Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
         Me.BASE_CATTableAdapter.Fill(Me.DMDataSet.BASE_CAT)
         Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
         Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
@@ -250,7 +252,7 @@ Public Class frmCUSOfferOrderKitchen
                 End If
 
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Καταχώρηση Εξοπλισμών
                     If Mode = FormMode.NewRecord Then
                         GridView1.PopulateColumns() : GridView2.PopulateColumns()
@@ -268,7 +270,7 @@ Public Class frmCUSOfferOrderKitchen
                         HasDoors = cboTRANSH.GetColumnValue("Isdoors")
                         HasSc = cboTRANSH.GetColumnValue("Issc")
                         If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
                             Exit Sub
                         End If
 
@@ -280,7 +282,7 @@ Public Class frmCUSOfferOrderKitchen
                 End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -376,12 +378,12 @@ Public Class frmCUSOfferOrderKitchen
                 End If
             Next
             If DcodeIsEmpty = True Then
-                If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", Company, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Else
-                If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Else
-            If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
 
     End Sub
@@ -456,7 +458,7 @@ Public Class frmCUSOfferOrderKitchen
             sSQL = "Update CCT_ORDERS_KITCHEN set TotalEquipmentPrice = " & toSQLValueS(txtTotalDevicesPrice.EditValue.ToString, True) & " where ID = " & toSQLValueS(sID)
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -752,7 +754,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
         Try
-            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.AddWithValue("@OfferID", sID)
@@ -760,14 +762,14 @@ Public Class frmCUSOfferOrderKitchen
                     oCmd.Parameters.AddWithValue("@Mode", 1)
                     oCmd.ExecuteNonQuery()
                 End Using
-                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'cmdConvertToOrder.Enabled = False
                 cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
                 LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged

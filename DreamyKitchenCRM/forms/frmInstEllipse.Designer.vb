@@ -36,7 +36,6 @@ Partial Class frmInstEllipse
         Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.INST_ELLIPSE_JOBSTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.INST_ELLIPSE_JOBSTableAdapter()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
-        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -152,6 +151,8 @@ Partial Class frmInstEllipse
         Me.INST_MAILTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.INST_MAILTableAdapter()
         Me.Vw_SUPTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SUPTableAdapter()
         Me.Vw_ORDER_MANAGERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_ORDER_MANAGERSTableAdapter()
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
+        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
         CType(Me.INSTELLIPSEJOBSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DmDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -170,16 +171,16 @@ Partial Class frmInstEllipse
         CType(Me.chkSER, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboINST.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtDateDelivered.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtDateDelivered.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtDateDelivered.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTmINFrom.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTmINTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtReceipt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtReceipt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtReceipt.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtInstellipseFilename.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtInstellipseFilenameComplete.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -234,6 +235,7 @@ Partial Class frmInstEllipse
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'INSTELLIPSEJOBSBindingSource
@@ -249,7 +251,7 @@ Partial Class frmInstEllipse
         'CCTTRANSHBindingSource
         '
         Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
-        Me.CCTTRANSHBindingSource.DataSource = Me.DmDataSet
+        Me.CCTTRANSHBindingSource.DataSource = Me.DM_TRANS
         '
         'INST_ELLIPSE_JOBSTableAdapter
         '
@@ -259,10 +261,6 @@ Partial Class frmInstEllipse
         '
         Me.XtraOpenFileDialog1.Multiselect = True
         Me.XtraOpenFileDialog1.Title = "Επιλογή αρχείων"
-        '
-        'CCT_TRANSHTableAdapter
-        '
-        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
         'TabPane1
         '
@@ -653,6 +651,7 @@ Partial Class frmInstEllipse
         Me.txtTmINTo.Properties.TimeEditStyle = DevExpress.XtraEditors.Repository.TimeEditStyle.TouchUI
         Me.txtTmINTo.Properties.UseMaskAsDisplayFormat = True
         Me.txtTmINTo.Size = New System.Drawing.Size(123, 38)
+        Me.txtTmINTo.StyleController = Me.LayoutControl1
         Me.txtTmINTo.TabIndex = 8
         Me.txtTmINTo.Tag = "tmINTo,0,1,2"
         '
@@ -1490,6 +1489,15 @@ Partial Class frmInstEllipse
         '
         Me.Vw_ORDER_MANAGERSTableAdapter.ClearBeforeFill = True
         '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'CCT_TRANSHTableAdapter
+        '
+        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
+        '
         'frmInstEllipse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -1586,6 +1594,7 @@ Partial Class frmInstEllipse
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -1595,7 +1604,6 @@ Partial Class frmInstEllipse
     Friend WithEvents INST_ELLIPSE_JOBSTableAdapter As DMDataSetTableAdapters.INST_ELLIPSE_JOBSTableAdapter
     Friend WithEvents XtraOpenFileDialog1 As DevExpress.XtraEditors.XtraOpenFileDialog
     Friend WithEvents CCTTRANSHBindingSource As BindingSource
-    Friend WithEvents CCT_TRANSHTableAdapter As DMDataSetTableAdapters.CCT_TRANSHTableAdapter
     Friend WithEvents TabPane1 As DevExpress.XtraBars.Navigation.TabPane
     Friend WithEvents TabNavigationPage1 As DevExpress.XtraBars.Navigation.TabNavigationPage
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
@@ -1711,4 +1719,6 @@ Partial Class frmInstEllipse
     Friend WithEvents LayoutControlItem23 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents VwORDERMANAGERSBindingSource As BindingSource
     Friend WithEvents Vw_ORDER_MANAGERSTableAdapter As DreamyKitchenDataSetTableAdapters.vw_ORDER_MANAGERSTableAdapter
+    Friend WithEvents DM_TRANS As DM_TRANS
+    Friend WithEvents CCT_TRANSHTableAdapter As DM_TRANSTableAdapters.CCT_TRANSHTableAdapter
 End Class

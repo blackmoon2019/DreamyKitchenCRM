@@ -20,20 +20,18 @@ Partial Class frmInstallations
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
-        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstallations))
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.grdMain = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
-        Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter()
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
@@ -121,11 +119,12 @@ Partial Class frmInstallations
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.INST_MAILTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.INST_MAILTableAdapter()
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
+        Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSHTableAdapter()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPane1.SuspendLayout()
         Me.TabNavigationPage1.SuspendLayout()
@@ -137,15 +136,15 @@ Partial Class frmInstallations
         CType(Me.chkPaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtDeliverDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtDeliverDate.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtDeliverDate.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtExtraCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtDeliverDate1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtDeliverDate1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtDeliverDate1.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkSER, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -202,6 +201,7 @@ Partial Class frmInstallations
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'GridView2
@@ -226,9 +226,9 @@ Partial Class frmInstallations
         '
         Me.grdMain.Cursor = System.Windows.Forms.Cursors.Default
         Me.grdMain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
-        GridLevelNode1.LevelTemplate = Me.GridView2
-        GridLevelNode1.RelationName = "Level1"
-        Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
+        GridLevelNode2.LevelTemplate = Me.GridView2
+        GridLevelNode2.RelationName = "Level1"
+        Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
         Me.grdMain.Location = New System.Drawing.Point(12, 12)
         Me.grdMain.MainView = Me.GridView1
         Me.grdMain.Margin = New System.Windows.Forms.Padding(5)
@@ -263,21 +263,12 @@ Partial Class frmInstallations
         'VwTRANSHBindingSource
         '
         Me.VwTRANSHBindingSource.DataMember = "vw_TRANSH"
-        Me.VwTRANSHBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        Me.VwTRANSHBindingSource.DataSource = Me.DM_TRANS
         '
         'XtraOpenFileDialog1
         '
         Me.XtraOpenFileDialog1.Multiselect = True
         Me.XtraOpenFileDialog1.Title = "Επιλογή αρχείων"
-        '
-        'Vw_TRANSHTableAdapter
-        '
-        Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
         '
         'TabPane1
         '
@@ -338,8 +329,8 @@ Partial Class frmInstallations
         Me.txtInstFilename.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInstFilename.Name = "txtInstFilename"
         Me.txtInstFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-        Me.txtInstFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
+        Me.txtInstFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtInstFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtInstFilename.Size = New System.Drawing.Size(966, 38)
         Me.txtInstFilename.StyleController = Me.LayoutControl1
@@ -1261,6 +1252,15 @@ Partial Class frmInstallations
         '
         Me.INST_MAILTableAdapter.ClearBeforeFill = True
         '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'Vw_TRANSHTableAdapter
+        '
+        Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
+        '
         'frmInstallations
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -1276,7 +1276,6 @@ Partial Class frmInstallations
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabPane1.ResumeLayout(False)
         Me.TabNavigationPage1.ResumeLayout(False)
@@ -1353,12 +1352,11 @@ Partial Class frmInstallations
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
-    Friend WithEvents DreamyKitchenDataSet As DreamyKitchenDataSet
     Friend WithEvents VwTRANSHBindingSource As BindingSource
-    Friend WithEvents Vw_TRANSHTableAdapter As DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter
     Friend WithEvents XtraOpenFileDialog1 As DevExpress.XtraEditors.XtraOpenFileDialog
     Friend WithEvents TabPane1 As DevExpress.XtraBars.Navigation.TabPane
     Friend WithEvents TabNavigationPage1 As DevExpress.XtraBars.Navigation.TabNavigationPage
@@ -1450,4 +1448,6 @@ Partial Class frmInstallations
     Friend WithEvents colcreatedBy As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents INST_MAILTableAdapter As DMDataSetTableAdapters.INST_MAILTableAdapter
     Friend WithEvents colEmailModeDescr As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DM_TRANS As DM_TRANS
+    Friend WithEvents Vw_TRANSHTableAdapter As DM_TRANSTableAdapters.vw_TRANSHTableAdapter
 End Class

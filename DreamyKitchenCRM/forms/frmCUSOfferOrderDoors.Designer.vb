@@ -153,15 +153,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem39 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup9 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.TabbedControlGroup1 = New DevExpress.XtraLayout.TabbedControlGroup()
-        Me.LayoutControlGroup17 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem97 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem98 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem99 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem100 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem101 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem102 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem103 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem104 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
@@ -244,6 +235,15 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem94 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem95 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem96 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlGroup17 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem97 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem98 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem99 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem100 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem101 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem102 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem103 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem104 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup10 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem69 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem70 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -263,9 +263,10 @@ Partial Class frmCUSOfferOrderDoors
         Me.VwCOLORSDOORSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_COLORSDOORSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSDOORSTableAdapter()
-        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.Vw_DOOR_TYPE_V2TableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPE_V2TableAdapter()
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
+        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -274,8 +275,8 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtarProt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDimension1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDimension2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDimension3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -394,15 +395,6 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlGroup17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem97, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem98, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem100, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem101, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem102, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem103, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem104, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -485,6 +477,15 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem94, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem95, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem96, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup17, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem97, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem98, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem100, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem101, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem102, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem103, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem104, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem69, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem70, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -502,6 +503,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -2579,130 +2581,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.TabbedControlGroup1.Size = New System.Drawing.Size(1839, 275)
         Me.TabbedControlGroup1.TabPages.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup2, Me.LayoutControlGroup3, Me.LayoutControlGroup5, Me.LayoutControlGroup6, Me.LayoutControlGroup7, Me.LayoutControlGroup8, Me.LayoutRootGroupForRestore, Me.LayoutControlGroup13, Me.LayoutControlGroup15, Me.LayoutControlGroup17})
         '
-        'LayoutControlGroup17
-        '
-        Me.LayoutControlGroup17.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem97, Me.LayoutControlItem98, Me.LayoutControlItem99, Me.LayoutControlItem100, Me.LayoutControlItem101, Me.LayoutControlItem102, Me.LayoutControlItem103, Me.LayoutControlItem104})
-        Me.LayoutControlGroup17.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlGroup17.Name = "LayoutControlGroup17"
-        Me.LayoutControlGroup17.Size = New System.Drawing.Size(1813, 208)
-        Me.LayoutControlGroup17.Text = "Πόρτα 10"
-        '
-        'LayoutControlItem97
-        '
-        Me.LayoutControlItem97.Control = Me.cboType10
-        Me.LayoutControlItem97.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem97.CustomizationFormText = "Είδος Πόρτας"
-        Me.LayoutControlItem97.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem97.Name = "LayoutControlItem97"
-        Me.LayoutControlItem97.Size = New System.Drawing.Size(380, 66)
-        Me.LayoutControlItem97.Text = "Τύπος Πόρτας"
-        Me.LayoutControlItem97.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem97.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem97.TextSize = New System.Drawing.Size(119, 23)
-        Me.LayoutControlItem97.TextToControlDistance = 1
-        '
-        'LayoutControlItem98
-        '
-        Me.LayoutControlItem98.Control = Me.cboKasa10
-        Me.LayoutControlItem98.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem98.CustomizationFormText = "Εμφανές Πλαϊνο"
-        Me.LayoutControlItem98.Location = New System.Drawing.Point(380, 0)
-        Me.LayoutControlItem98.Name = "LayoutControlItem98"
-        Me.LayoutControlItem98.Size = New System.Drawing.Size(424, 66)
-        Me.LayoutControlItem98.Text = "Πάχος Κάσας"
-        Me.LayoutControlItem98.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem98.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem98.TextSize = New System.Drawing.Size(110, 23)
-        Me.LayoutControlItem98.TextToControlDistance = 1
-        '
-        'LayoutControlItem99
-        '
-        Me.LayoutControlItem99.Control = Me.cboFora10
-        Me.LayoutControlItem99.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem99.CustomizationFormText = "Εμφανές Πλαϊνο"
-        Me.LayoutControlItem99.Location = New System.Drawing.Point(0, 66)
-        Me.LayoutControlItem99.Name = "LayoutControlItem99"
-        Me.LayoutControlItem99.Size = New System.Drawing.Size(804, 66)
-        Me.LayoutControlItem99.Text = "Φορά"
-        Me.LayoutControlItem99.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem99.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem99.TextSize = New System.Drawing.Size(45, 23)
-        Me.LayoutControlItem99.TextToControlDistance = 1
-        '
-        'LayoutControlItem100
-        '
-        Me.LayoutControlItem100.Control = Me.cboDoorType10
-        Me.LayoutControlItem100.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem100.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem100.Location = New System.Drawing.Point(804, 66)
-        Me.LayoutControlItem100.Name = "LayoutControlItem100"
-        Me.LayoutControlItem100.Size = New System.Drawing.Size(504, 66)
-        Me.LayoutControlItem100.Text = "Κωδικός Πόρτας"
-        Me.LayoutControlItem100.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem100.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem100.TextSize = New System.Drawing.Size(134, 23)
-        Me.LayoutControlItem100.TextToControlDistance = 1
-        '
-        'LayoutControlItem101
-        '
-        Me.LayoutControlItem101.Control = Me.txtVatPrice10
-        Me.LayoutControlItem101.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem101.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem101.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem101.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem101.Name = "LayoutControlItem101"
-        Me.LayoutControlItem101.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem101.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem101.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem101.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem101.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem101.TextToControlDistance = 1
-        '
-        'LayoutControlItem102
-        '
-        Me.LayoutControlItem102.Control = Me.txtPrice10
-        Me.LayoutControlItem102.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem102.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem102.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem102.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem102.Name = "LayoutControlItem102"
-        Me.LayoutControlItem102.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem102.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem102.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem102.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem102.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem102.TextToControlDistance = 1
-        '
-        'LayoutControlItem103
-        '
-        Me.LayoutControlItem103.Control = Me.txtDimension10
-        Me.LayoutControlItem103.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem103.CustomizationFormText = "Αριθμός"
-        Me.LayoutControlItem103.Location = New System.Drawing.Point(804, 0)
-        Me.LayoutControlItem103.Name = "LayoutControlItem103"
-        Me.LayoutControlItem103.Size = New System.Drawing.Size(1009, 66)
-        Me.LayoutControlItem103.Text = "Διάσταση"
-        Me.LayoutControlItem103.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem103.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem103.TextSize = New System.Drawing.Size(80, 23)
-        Me.LayoutControlItem103.TextToControlDistance = 1
-        '
-        'LayoutControlItem104
-        '
-        Me.LayoutControlItem104.Control = Me.txtKnobs10
-        Me.LayoutControlItem104.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem104.CustomizationFormText = "Πόμολα"
-        Me.LayoutControlItem104.Location = New System.Drawing.Point(1308, 66)
-        Me.LayoutControlItem104.MaxSize = New System.Drawing.Size(0, 46)
-        Me.LayoutControlItem104.MinSize = New System.Drawing.Size(309, 46)
-        Me.LayoutControlItem104.Name = "LayoutControlItem104"
-        Me.LayoutControlItem104.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
-        Me.LayoutControlItem104.Size = New System.Drawing.Size(505, 66)
-        Me.LayoutControlItem104.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem104.Text = "Πόμολα"
-        Me.LayoutControlItem104.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem104.TextSize = New System.Drawing.Size(232, 23)
-        '
         'LayoutControlGroup2
         '
         Me.LayoutControlGroup2.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger
@@ -3841,6 +3719,130 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem96.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem96.TextSize = New System.Drawing.Size(232, 23)
         '
+        'LayoutControlGroup17
+        '
+        Me.LayoutControlGroup17.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem97, Me.LayoutControlItem98, Me.LayoutControlItem99, Me.LayoutControlItem100, Me.LayoutControlItem101, Me.LayoutControlItem102, Me.LayoutControlItem103, Me.LayoutControlItem104})
+        Me.LayoutControlGroup17.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup17.Name = "LayoutControlGroup17"
+        Me.LayoutControlGroup17.Size = New System.Drawing.Size(1813, 208)
+        Me.LayoutControlGroup17.Text = "Πόρτα 10"
+        '
+        'LayoutControlItem97
+        '
+        Me.LayoutControlItem97.Control = Me.cboType10
+        Me.LayoutControlItem97.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem97.CustomizationFormText = "Είδος Πόρτας"
+        Me.LayoutControlItem97.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem97.Name = "LayoutControlItem97"
+        Me.LayoutControlItem97.Size = New System.Drawing.Size(380, 66)
+        Me.LayoutControlItem97.Text = "Τύπος Πόρτας"
+        Me.LayoutControlItem97.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem97.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem97.TextSize = New System.Drawing.Size(119, 23)
+        Me.LayoutControlItem97.TextToControlDistance = 1
+        '
+        'LayoutControlItem98
+        '
+        Me.LayoutControlItem98.Control = Me.cboKasa10
+        Me.LayoutControlItem98.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem98.CustomizationFormText = "Εμφανές Πλαϊνο"
+        Me.LayoutControlItem98.Location = New System.Drawing.Point(380, 0)
+        Me.LayoutControlItem98.Name = "LayoutControlItem98"
+        Me.LayoutControlItem98.Size = New System.Drawing.Size(424, 66)
+        Me.LayoutControlItem98.Text = "Πάχος Κάσας"
+        Me.LayoutControlItem98.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem98.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem98.TextSize = New System.Drawing.Size(110, 23)
+        Me.LayoutControlItem98.TextToControlDistance = 1
+        '
+        'LayoutControlItem99
+        '
+        Me.LayoutControlItem99.Control = Me.cboFora10
+        Me.LayoutControlItem99.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem99.CustomizationFormText = "Εμφανές Πλαϊνο"
+        Me.LayoutControlItem99.Location = New System.Drawing.Point(0, 66)
+        Me.LayoutControlItem99.Name = "LayoutControlItem99"
+        Me.LayoutControlItem99.Size = New System.Drawing.Size(804, 66)
+        Me.LayoutControlItem99.Text = "Φορά"
+        Me.LayoutControlItem99.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem99.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem99.TextSize = New System.Drawing.Size(45, 23)
+        Me.LayoutControlItem99.TextToControlDistance = 1
+        '
+        'LayoutControlItem100
+        '
+        Me.LayoutControlItem100.Control = Me.cboDoorType10
+        Me.LayoutControlItem100.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem100.CustomizationFormText = "Έργο Πελάτη"
+        Me.LayoutControlItem100.Location = New System.Drawing.Point(804, 66)
+        Me.LayoutControlItem100.Name = "LayoutControlItem100"
+        Me.LayoutControlItem100.Size = New System.Drawing.Size(504, 66)
+        Me.LayoutControlItem100.Text = "Κωδικός Πόρτας"
+        Me.LayoutControlItem100.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem100.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem100.TextSize = New System.Drawing.Size(134, 23)
+        Me.LayoutControlItem100.TextToControlDistance = 1
+        '
+        'LayoutControlItem101
+        '
+        Me.LayoutControlItem101.Control = Me.txtVatPrice10
+        Me.LayoutControlItem101.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem101.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem101.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem101.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem101.Name = "LayoutControlItem101"
+        Me.LayoutControlItem101.Size = New System.Drawing.Size(804, 76)
+        Me.LayoutControlItem101.Text = "Τιμή προ Φ.Π.Α"
+        Me.LayoutControlItem101.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem101.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem101.TextSize = New System.Drawing.Size(131, 23)
+        Me.LayoutControlItem101.TextToControlDistance = 1
+        '
+        'LayoutControlItem102
+        '
+        Me.LayoutControlItem102.Control = Me.txtPrice10
+        Me.LayoutControlItem102.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem102.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem102.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem102.Location = New System.Drawing.Point(804, 132)
+        Me.LayoutControlItem102.Name = "LayoutControlItem102"
+        Me.LayoutControlItem102.Size = New System.Drawing.Size(1009, 76)
+        Me.LayoutControlItem102.Text = "Τιμή με Φ.Π.Α"
+        Me.LayoutControlItem102.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
+        Me.LayoutControlItem102.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem102.TextSize = New System.Drawing.Size(120, 23)
+        Me.LayoutControlItem102.TextToControlDistance = 1
+        '
+        'LayoutControlItem103
+        '
+        Me.LayoutControlItem103.Control = Me.txtDimension10
+        Me.LayoutControlItem103.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem103.CustomizationFormText = "Αριθμός"
+        Me.LayoutControlItem103.Location = New System.Drawing.Point(804, 0)
+        Me.LayoutControlItem103.Name = "LayoutControlItem103"
+        Me.LayoutControlItem103.Size = New System.Drawing.Size(1009, 66)
+        Me.LayoutControlItem103.Text = "Διάσταση"
+        Me.LayoutControlItem103.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem103.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem103.TextSize = New System.Drawing.Size(80, 23)
+        Me.LayoutControlItem103.TextToControlDistance = 1
+        '
+        'LayoutControlItem104
+        '
+        Me.LayoutControlItem104.Control = Me.txtKnobs10
+        Me.LayoutControlItem104.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem104.CustomizationFormText = "Πόμολα"
+        Me.LayoutControlItem104.Location = New System.Drawing.Point(1308, 66)
+        Me.LayoutControlItem104.MaxSize = New System.Drawing.Size(0, 46)
+        Me.LayoutControlItem104.MinSize = New System.Drawing.Size(309, 46)
+        Me.LayoutControlItem104.Name = "LayoutControlItem104"
+        Me.LayoutControlItem104.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
+        Me.LayoutControlItem104.Size = New System.Drawing.Size(505, 66)
+        Me.LayoutControlItem104.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem104.Text = "Πόμολα"
+        Me.LayoutControlItem104.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem104.TextSize = New System.Drawing.Size(232, 23)
+        '
         'LayoutControlGroup10
         '
         Me.LayoutControlGroup10.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success
@@ -3999,7 +4001,7 @@ Partial Class frmCUSOfferOrderDoors
         'CCTTRANSHBindingSource
         '
         Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
-        Me.CCTTRANSHBindingSource.DataSource = Me.DMDataSet
+        Me.CCTTRANSHBindingSource.DataSource = Me.DM_TRANS
         '
         'DMDataSet
         '
@@ -4019,10 +4021,6 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.Vw_COLORSDOORSTableAdapter.ClearBeforeFill = True
         '
-        'CCT_TRANSHTableAdapter
-        '
-        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
-        '
         'Vw_CCTTableAdapter
         '
         Me.Vw_CCTTableAdapter.ClearBeforeFill = True
@@ -4030,6 +4028,15 @@ Partial Class frmCUSOfferOrderDoors
         'Vw_DOOR_TYPE_V2TableAdapter
         '
         Me.Vw_DOOR_TYPE_V2TableAdapter.ClearBeforeFill = True
+        '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'CCT_TRANSHTableAdapter
+        '
+        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
         'frmCUSOfferOrderDoors
         '
@@ -4169,15 +4176,6 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabbedControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlGroup17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem97, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem98, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem100, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem101, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem102, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem103, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem104, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4260,6 +4258,15 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem94, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem95, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem96, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup17, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem97, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem98, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem100, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem101, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem102, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem103, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem104, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem69, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem70, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4277,6 +4284,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4436,7 +4444,6 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents DMDataSet As DMDataSet
     Friend WithEvents CCTTRANSHBindingSource As BindingSource
-    Friend WithEvents CCT_TRANSHTableAdapter As DMDataSetTableAdapters.CCT_TRANSHTableAdapter
     Friend WithEvents DM_DOORTYPES As DM_DOORTYPES
     Friend WithEvents cmdConvertToOrder As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
@@ -4526,4 +4533,6 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents LayoutControlItem102 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem103 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem104 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents DM_TRANS As DM_TRANS
+    Friend WithEvents CCT_TRANSHTableAdapter As DM_TRANSTableAdapters.CCT_TRANSHTableAdapter
 End Class

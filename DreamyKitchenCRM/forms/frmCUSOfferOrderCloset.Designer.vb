@@ -295,9 +295,10 @@ Partial Class frmCUSOfferOrderCloset
         Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
-        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
         Me.Vw_DOOR_TYPE_V2TableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPE_V2TableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
+        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPane1.SuspendLayout()
         Me.TabNavigationPage1.SuspendLayout()
@@ -335,8 +336,8 @@ Partial Class frmCUSOfferOrderCloset
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtarProt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtpresentation.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtpresentation.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotalClosetVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotalClosetPice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -561,6 +562,7 @@ Partial Class frmCUSOfferOrderCloset
         CType(Me.RepDefPrice, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabPane1
@@ -4587,7 +4589,7 @@ Partial Class frmCUSOfferOrderCloset
         'CCTTRANSHBindingSource
         '
         Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
-        Me.CCTTRANSHBindingSource.DataSource = Me.DMDataSet
+        Me.CCTTRANSHBindingSource.DataSource = Me.DM_TRANS
         '
         'DMDataSet
         '
@@ -4598,10 +4600,6 @@ Partial Class frmCUSOfferOrderCloset
         '
         Me.Vw_SALERSTableAdapter.ClearBeforeFill = True
         '
-        'CCT_TRANSHTableAdapter
-        '
-        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
-        '
         'Vw_DOOR_TYPE_V2TableAdapter
         '
         Me.Vw_DOOR_TYPE_V2TableAdapter.ClearBeforeFill = True
@@ -4609,6 +4607,15 @@ Partial Class frmCUSOfferOrderCloset
         'Vw_CCTTableAdapter
         '
         Me.Vw_CCTTableAdapter.ClearBeforeFill = True
+        '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'CCT_TRANSHTableAdapter
+        '
+        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
         'frmCUSOfferOrderCloset
         '
@@ -4884,6 +4891,7 @@ Partial Class frmCUSOfferOrderCloset
         CType(Me.RepDefPrice, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -5040,7 +5048,6 @@ Partial Class frmCUSOfferOrderCloset
     Friend WithEvents Vw_SALERSTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter
     Friend WithEvents DMDataSet As DMDataSet
     Friend WithEvents CCTTRANSHBindingSource As BindingSource
-    Friend WithEvents CCT_TRANSHTableAdapter As DMDataSetTableAdapters.CCT_TRANSHTableAdapter
     Friend WithEvents LayoutControlGroup10 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents cboboxThikness2 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboBackThikness2 As DevExpress.XtraEditors.ComboBoxEdit
@@ -5166,4 +5173,6 @@ Partial Class frmCUSOfferOrderCloset
     Friend WithEvents LayoutControlItem108 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents VwCCTBindingSource As BindingSource
     Friend WithEvents Vw_CCTTableAdapter As DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter
+    Friend WithEvents DM_TRANS As DM_TRANS
+    Friend WithEvents CCT_TRANSHTableAdapter As DM_TRANSTableAdapters.CCT_TRANSHTableAdapter
 End Class

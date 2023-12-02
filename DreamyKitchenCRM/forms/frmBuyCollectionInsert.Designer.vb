@@ -126,10 +126,11 @@ Partial Class frmBuyCollectionInsert
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         Me.ImageCollection1 = New DevExpress.Utils.ImageCollection(Me.components)
         Me.Vw_BUYTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BUYTableAdapter()
-        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.CCT_TRANSHTableAdapter()
-        Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter()
         Me.KANELLOPOULOSTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.KANELLOPOULOSTableAdapter()
         Me.KANELLOPOULOS_OTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.KANELLOPOULOS_OTableAdapter()
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
+        Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSHTableAdapter()
+        Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
         CType(Me.RepCopyDelete, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DockManager1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.DockPanel1.SuspendLayout()
@@ -167,6 +168,7 @@ Partial Class frmBuyCollectionInsert
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwBUYBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'colkitchen
@@ -538,7 +540,7 @@ Partial Class frmBuyCollectionInsert
         'CCTTRANSHBindingSource
         '
         Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
-        Me.CCTTRANSHBindingSource.DataSource = Me.DMDataSet
+        Me.CCTTRANSHBindingSource.DataSource = Me.DM_TRANS
         '
         'coldtBuy
         '
@@ -582,7 +584,7 @@ Partial Class frmBuyCollectionInsert
         'VwTRANSHBindingSource
         '
         Me.VwTRANSHBindingSource.DataMember = "vw_TRANSH"
-        Me.VwTRANSHBindingSource.DataSource = Me.DreamyKitchenDataSet
+        Me.VwTRANSHBindingSource.DataSource = Me.DM_TRANS
         '
         'DreamyKitchenDataSet
         '
@@ -931,14 +933,6 @@ Partial Class frmBuyCollectionInsert
         '
         Me.Vw_BUYTableAdapter.ClearBeforeFill = True
         '
-        'CCT_TRANSHTableAdapter
-        '
-        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_TRANSHTableAdapter
-        '
-        Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
-        '
         'KANELLOPOULOSTableAdapter
         '
         Me.KANELLOPOULOSTableAdapter.ClearBeforeFill = True
@@ -946,6 +940,19 @@ Partial Class frmBuyCollectionInsert
         'KANELLOPOULOS_OTableAdapter
         '
         Me.KANELLOPOULOS_OTableAdapter.ClearBeforeFill = True
+        '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'Vw_TRANSHTableAdapter
+        '
+        Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
+        '
+        'CCT_TRANSHTableAdapter
+        '
+        Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
         'frmBuyCollectionInsert
         '
@@ -995,6 +1002,7 @@ Partial Class frmBuyCollectionInsert
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwBUYBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ImageCollection1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1044,9 +1052,7 @@ Partial Class frmBuyCollectionInsert
     Friend WithEvents Vw_BUYTableAdapter As DreamyKitchenDataSetTableAdapters.vw_BUYTableAdapter
     Friend WithEvents DMDataSet As DMDataSet
     Friend WithEvents CCTTRANSHBindingSource As BindingSource
-    Friend WithEvents CCT_TRANSHTableAdapter As DMDataSetTableAdapters.CCT_TRANSHTableAdapter
     Friend WithEvents VwTRANSHBindingSource As BindingSource
-    Friend WithEvents Vw_TRANSHTableAdapter As DreamyKitchenDataSetTableAdapters.vw_TRANSHTableAdapter
     Friend WithEvents KANELLOPOULOSBindingSource As BindingSource
     Friend WithEvents KANELLOPOULOSTableAdapter As DMDataSetTableAdapters.KANELLOPOULOSTableAdapter
     Friend WithEvents colnetAmount As DevExpress.XtraGrid.Columns.GridColumn
@@ -1074,4 +1080,7 @@ Partial Class frmBuyCollectionInsert
     Friend WithEvents colKanO As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents ReptxtO As DevExpress.XtraEditors.Repository.RepositoryItemTextEdit
     Friend WithEvents colDeltOrders As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents DM_TRANS As DM_TRANS
+    Friend WithEvents Vw_TRANSHTableAdapter As DM_TRANSTableAdapters.vw_TRANSHTableAdapter
+    Friend WithEvents CCT_TRANSHTableAdapter As DM_TRANSTableAdapters.CCT_TRANSHTableAdapter
 End Class

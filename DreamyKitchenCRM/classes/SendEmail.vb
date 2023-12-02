@@ -20,7 +20,7 @@ Public Class SendEmail
             Smtp_Server.UseDefaultCredentials = False
             getEmailProperties(EmailAccount)
             If EmailServer = "" Then
-                XtraMessageBox.Show("Δημιουργήθηκε πρόβλημα κατά την ανάγνωση των ρυθμίσεων του Email " & EmailAccount, Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show("Δημιουργήθηκε πρόβλημα κατά την ανάγνωση των ρυθμίσεων του Email " & EmailAccount, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             End If
             Smtp_Server.Credentials = New System.Net.NetworkCredential(EmailUserName, EmailPassword)

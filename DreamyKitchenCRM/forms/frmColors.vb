@@ -159,7 +159,7 @@ Public Class frmColors
                 txtCode.Text = DBQ.GetNextId("COLORS")
                 txtNam.Select()
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then
                         Cls.ClearCtrls(LayoutControl1)
                         txtCode.Text = DBQ.GetNextId("COLORS")
@@ -169,7 +169,7 @@ Public Class frmColors
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub

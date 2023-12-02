@@ -27,8 +27,10 @@ Public Class frmBuyCollectionInsert
     Private sCmt As String = ""
 
     Private Sub frmBuyCollectionInsert_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DM_TRANS.CCT_TRANSH' table. You can move, or remove it, as needed.
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
-        Me.CCT_TRANSHTableAdapter.Fill(Me.DMDataSet.CCT_TRANSH)
+        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BUY' table. You can move, or remove it, as needed.
         Me.KANELLOPOULOSTableAdapter.Fill(Me.DMDataSet.KANELLOPOULOS)
         LoadForms.RestoreLayoutFromXml(GridView5, "KANELLOPOULOS.xml")
@@ -564,7 +566,7 @@ Public Class frmBuyCollectionInsert
         Dim ItemsCorrect As Integer = 0, ItemsWrong As Integer = 0
         Try
             If selectedRowHandles.Length = 0 Then Exit Sub
-            If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", Company, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
             LayoutControlItem4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             ProgressBarControl1.EditValue = 0
             ProgressBarControl1.Properties.Step = 1

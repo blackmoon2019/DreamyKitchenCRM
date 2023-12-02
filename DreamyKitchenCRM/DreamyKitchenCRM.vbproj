@@ -225,6 +225,7 @@
     <Compile Include="classes\InitializeCalendar.vb" />
     <Compile Include="classes\Localization.vb" />
     <Compile Include="classes\ProgProp.vb" />
+    <Compile Include="classes\Projects.vb" />
     <Compile Include="classes\ScanToPDF.vb" />
     <Compile Include="classes\SendEmail.vb" />
     <Compile Include="classes\Transactions.vb" />
@@ -250,6 +251,11 @@
     </Compile>
     <Compile Include="DreamyKitchenDataSet.vb">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DM_TRANS.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DM_TRANS.xsd</DependentUpon>
     </Compile>
     <Compile Include="forms\frmBaseCat.Designer.vb">
       <DependentUpon>frmBaseCat.vb</DependentUpon>
@@ -1088,6 +1094,17 @@
     </None>
     <None Include="DreamyKitchenDataSet.xss">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DM_TRANS.xsc">
+      <DependentUpon>DM_TRANS.xsd</DependentUpon>
+    </None>
+    <None Include="DM_TRANS.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DM_TRANS.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DM_TRANS.xss">
+      <DependentUpon>DM_TRANS.xsd</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">

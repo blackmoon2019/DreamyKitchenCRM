@@ -20,7 +20,7 @@ Public Class frmLogin
         If UserProps.UNSave Is Nothing Then UserProps.UNSave = 2
         chkRememberUN.Checked = UserProps.UNSave
         If CNDB.ConnectionString.ToString = "" Then
-            If CN.OpenConnection = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα κατά την σύνδεση στο Dreamy Kitchen CRM", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            If CN.OpenConnection = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα κατά την σύνδεση στο Dreamy Kitchen CRM", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
 
             'Έλεγχος νέας έκδοσης
             If CheckFUpdate.FindNewVersion Then
@@ -126,7 +126,7 @@ Public Class frmLogin
                     If My.Computer.FileSystem.DirectoryExists(Application.StartupPath & "\TEMP\Pictures") = False Then My.Computer.FileSystem.CreateDirectory(Application.StartupPath & "\TEMP\Pictures")
                     ProgProps.TempFolderPath = Application.StartupPath & "\TEMP\"
                     ProgProps.TempPicturesFolderPath = Application.StartupPath & "\TEMP\Pictures\"
-                    XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, Company, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Καλως ήρθατε στο Dreamy Kitchen CRM " & UserProps.RealName, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
                 frmMain.Show()
                 Me.Close()
@@ -136,11 +136,11 @@ Public Class frmLogin
                 'frmEpopteiaChart.Show()
 
             Else
-                XtraMessageBox.Show("Πληκτρολογήσατε λάθος στοιχεία. Παρακαλώ προσπαθήστε ξανά.", Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                XtraMessageBox.Show("Πληκτρολογήσατε λάθος στοιχεία. Παρακαλώ προσπαθήστε ξανά.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
             sdr.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), Company, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub txtUN_KeyDown(sender As Object, e As KeyEventArgs) Handles cboUN.KeyDown

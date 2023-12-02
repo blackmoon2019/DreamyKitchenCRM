@@ -151,6 +151,23 @@ Public Class CombosManager
             Frm.Show()
         End If
     End Sub
+    Public Sub ManageSaler(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+            Dim Frm As frmEMP = New frmEMP()
+            Frm.Text = "Πωλητές"
+            Frm.CallerControl = CallerControl
+            Frm.CalledFromControl = True
+            Frm.MdiParent = frmMain
+            If CallerControl.EditValue <> Nothing Then
+                Frm.ID = CallerControl.EditValue.ToString
+                Frm.Mode = FormMode.EditRecord
+            Else
+                Frm.Mode = FormMode.NewRecord
+            End If
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+            Frm.Show()
+        End If
+    End Sub
     Public Sub ManageINST(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         Dim Frm As frmInstallations = New frmInstallations()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
@@ -166,7 +183,24 @@ Public Class CombosManager
         End If
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
-
+    End Sub
+    Public Sub ManageBank(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Τράπεζες"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Τράπεζα"
+        Frm.DataTable = "BANKS"
+        Frm.CalledFromControl = True
+        Frm.CallerControl = CallerControl
+        If CallerControl.EditValue <> Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
     End Sub
     Public Sub ManageDoorType(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal DoorCatID As String = Nothing)
         Dim Frm As frmDoorType = New frmDoorType
