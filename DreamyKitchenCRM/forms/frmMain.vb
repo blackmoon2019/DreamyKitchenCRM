@@ -1052,5 +1052,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBPayType_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayType.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τύποι Πληρωμής"
+        form.DataTable = "vw_PAY_TYPE"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

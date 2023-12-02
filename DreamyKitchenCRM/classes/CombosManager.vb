@@ -107,6 +107,21 @@ Public Class CombosManager
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
+    Public Sub ManagePAY_TYPE(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Τύποι Πληρωμής"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Τύπος Πληρωμής"
+        Frm.DataTable = "PAY_TYPE"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        If CallerControl.EditValue <> Nothing Then Frm.ID = CallerControl.EditValue.ToString
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue <> Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
     Public Sub ManageDOCTYPES(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         Dim Frm As frmGen = New frmGen()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing

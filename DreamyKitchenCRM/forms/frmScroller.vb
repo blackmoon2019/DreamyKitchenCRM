@@ -238,6 +238,7 @@ Public Class frmScroller
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_ELLIPSE"
                         Dim Cmd As SqlCommand, sdr As SqlDataReader
                         sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
@@ -428,6 +429,7 @@ Public Class frmScroller
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_ELLIPSE"
                         Dim Cmd As SqlCommand, sdr As SqlDataReader
                         sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(selectedRowHandle, "instID").ToString) & " and createdOn> " & toSQLValueS(CDate(GridView1.GetRowCellValue(selectedRowHandle, "createdOn")).ToString("yyyyMMdd"))
@@ -960,6 +962,19 @@ Public Class frmScroller
         Dim frmGen As frmGen = New frmGen()
         If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") Is Nothing Then Exit Sub
         Select Case sDataTable
+            Case "vw_PAY_TYPE"
+                frmGen.Text = "Τύποι Πληρωμής"
+                frmGen.MdiParent = frmMain
+                frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmGen.Mode = FormMode.EditRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "PAY_TYPE"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Τύποι Πληρωμής"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_TRANSH_C"
                 frmGen.Text = "Κατηγορίες Έργων"
                 frmGen.MdiParent = frmMain
@@ -1906,6 +1921,18 @@ Public Class frmScroller
     Private Sub NewRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_PAY_TYPE"
+                frmGen.Text = "Τύποι Πληρωμής"
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.NewRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "PAY_TYPE"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Τύποι Πληρωμής"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_TRANSH_C"
                 frmGen.Text = "Κατηγορίες Έργων"
                 frmGen.MdiParent = frmMain

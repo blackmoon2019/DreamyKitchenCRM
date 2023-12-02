@@ -20,11 +20,11 @@ Partial Class frmTransactions
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTransactions))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdPrintAll = New DevExpress.XtraEditors.SimpleButton()
@@ -63,10 +63,11 @@ Partial Class frmTransactions
         Me.colRealName = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colmodifiedOn = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedOn = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.colPayTypeDescr = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colPayTypeID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepositoryItemLookUpEdit2 = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.VwPAYTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.colpaid = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldepositor = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdSaveTransH = New DevExpress.XtraEditors.SimpleButton()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
         Me.dtCharge = New DevExpress.XtraEditors.DateEdit()
@@ -92,6 +93,7 @@ Partial Class frmTransactions
         Me.cboTransC = New DevExpress.XtraEditors.CheckedComboBoxEdit()
         Me.VwTRANSHCBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.MemoEdit1 = New DevExpress.XtraEditors.TextEdit()
+        Me.MemoEdit11 = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -128,6 +130,7 @@ Partial Class frmTransactions
         Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem30 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem7 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -138,10 +141,11 @@ Partial Class frmTransactions
         Me.VwSCANFILENAMESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_SCAN_FILE_NAMESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SCAN_FILE_NAMESTableAdapter()
         Me.DreamyKitchenDataSet2 = New DreamyKitchenCRM.DreamyKitchenDataSet()
-        Me.Vw_PAYTYPESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_PAYTYPESTableAdapter()
         Me.TRANSH_FTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.TRANSH_FTableAdapter()
         Me.Vw_TRANSDTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSDTableAdapter()
         Me.Vw_TRANSH_CTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSH_CTableAdapter()
+        Me.Vw_PAYTYPESTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_PAYTYPESTableAdapter()
+        Me.LayoutControlItem31 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -185,6 +189,7 @@ Partial Class frmTransactions
         CType(Me.cboTransC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwTRANSHCBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.MemoEdit11.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -221,15 +226,18 @@ Partial Class frmTransactions
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem30, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.cmdExit)
         Me.LayoutControl1.Controls.Add(Me.cmdPrintAll)
         Me.LayoutControl1.Controls.Add(Me.chkCompleted)
         Me.LayoutControl1.Controls.Add(Me.txtEMP_T_ID)
@@ -260,21 +268,23 @@ Partial Class frmTransactions
         Me.LayoutControl1.Controls.Add(Me.txtExtraCost)
         Me.LayoutControl1.Controls.Add(Me.cboTransC)
         Me.LayoutControl1.Controls.Add(Me.MemoEdit1)
-        Me.LayoutControl1.Location = New System.Drawing.Point(8, 11)
+        Me.LayoutControl1.Controls.Add(Me.MemoEdit11)
+        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1177, 502, 650, 400)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1873, 1405)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1882, 1460)
         Me.LayoutControl1.TabIndex = 0
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'cmdPrintAll
         '
-        Me.cmdPrintAll.Location = New System.Drawing.Point(613, 1295)
+        Me.cmdPrintAll.Location = New System.Drawing.Point(473, 1350)
         Me.cmdPrintAll.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdPrintAll.Name = "cmdPrintAll"
-        Me.cmdPrintAll.Size = New System.Drawing.Size(155, 39)
+        Me.cmdPrintAll.Size = New System.Drawing.Size(235, 39)
         Me.cmdPrintAll.StyleController = Me.LayoutControl1
         Me.cmdPrintAll.TabIndex = 61
         Me.cmdPrintAll.Text = "Έντυπα"
@@ -282,7 +292,7 @@ Partial Class frmTransactions
         'chkCompleted
         '
         Me.chkCompleted.EditValue = CType(0, Byte)
-        Me.chkCompleted.Location = New System.Drawing.Point(130, 1295)
+        Me.chkCompleted.Location = New System.Drawing.Point(126, 1350)
         Me.chkCompleted.Margin = New System.Windows.Forms.Padding(5)
         Me.chkCompleted.Name = "chkCompleted"
         Me.chkCompleted.Properties.Appearance.BackColor = System.Drawing.Color.SlateGray
@@ -297,14 +307,14 @@ Partial Class frmTransactions
         Me.chkCompleted.Properties.Tag = "completed,0,1,2"
         Me.chkCompleted.Properties.ValueChecked = CType(1, Byte)
         Me.chkCompleted.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkCompleted.Size = New System.Drawing.Size(227, 39)
+        Me.chkCompleted.Size = New System.Drawing.Size(228, 39)
         Me.chkCompleted.StyleController = Me.LayoutControl1
         Me.chkCompleted.TabIndex = 60
         Me.chkCompleted.Tag = "completed,0,1,2"
         '
         'txtEMP_T_ID
         '
-        Me.txtEMP_T_ID.Location = New System.Drawing.Point(25, 1295)
+        Me.txtEMP_T_ID.Location = New System.Drawing.Point(25, 1350)
         Me.txtEMP_T_ID.Margin = New System.Windows.Forms.Padding(5)
         Me.txtEMP_T_ID.Name = "txtEMP_T_ID"
         Me.txtEMP_T_ID.Properties.ReadOnly = True
@@ -317,13 +327,13 @@ Partial Class frmTransactions
         'chkCash
         '
         Me.chkCash.EditValue = CType(0, Byte)
-        Me.chkCash.Location = New System.Drawing.Point(961, 187)
+        Me.chkCash.Location = New System.Drawing.Point(936, 229)
         Me.chkCash.Margin = New System.Windows.Forms.Padding(5)
         Me.chkCash.Name = "chkCash"
         Me.chkCash.Properties.Caption = "Μετρητά"
         Me.chkCash.Properties.ValueChecked = CType(1, Byte)
         Me.chkCash.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkCash.Size = New System.Drawing.Size(887, 35)
+        Me.chkCash.Size = New System.Drawing.Size(921, 35)
         Me.chkCash.StyleController = Me.LayoutControl1
         Me.chkCash.TabIndex = 48
         Me.chkCash.Tag = "cash,0,1,2"
@@ -332,11 +342,11 @@ Partial Class frmTransactions
         '
         Me.GridControl2.DataSource = Me.TRANSHFBindingSource
         Me.GridControl2.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(8, 9, 8, 9)
-        Me.GridControl2.Location = New System.Drawing.Point(25, 892)
+        Me.GridControl2.Location = New System.Drawing.Point(25, 911)
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Margin = New System.Windows.Forms.Padding(5)
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(906, 399)
+        Me.GridControl2.Size = New System.Drawing.Size(881, 435)
         Me.GridControl2.TabIndex = 47
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -454,10 +464,10 @@ Partial Class frmTransactions
         'cmdSaveTransD
         '
         Me.cmdSaveTransD.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSaveTransD.Location = New System.Drawing.Point(1688, 694)
+        Me.cmdSaveTransD.Location = New System.Drawing.Point(1702, 724)
         Me.cmdSaveTransD.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSaveTransD.Name = "cmdSaveTransD"
-        Me.cmdSaveTransD.Size = New System.Drawing.Size(160, 39)
+        Me.cmdSaveTransD.Size = New System.Drawing.Size(155, 39)
         Me.cmdSaveTransD.StyleController = Me.LayoutControl1
         Me.cmdSaveTransD.TabIndex = 46
         Me.cmdSaveTransD.Text = "Αποθήκευση"
@@ -466,12 +476,12 @@ Partial Class frmTransactions
         '
         Me.GridControl1.DataSource = Me.VwTRANSDBindingSource
         Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(8, 9, 8, 9)
-        Me.GridControl1.Location = New System.Drawing.Point(948, 750)
+        Me.GridControl1.Location = New System.Drawing.Point(923, 780)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2})
-        Me.GridControl1.Size = New System.Drawing.Size(913, 597)
+        Me.GridControl1.Size = New System.Drawing.Size(947, 622)
         Me.GridControl1.TabIndex = 45
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -482,7 +492,7 @@ Partial Class frmTransactions
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.coltranshID, Me.colbankID, Me.colBankName, Me.colcash, Me.colamt, Me.colcmt, Me.coldtPay, Me.colRealName, Me.colmodifiedOn, Me.colcreatedOn, Me.colPayTypeDescr, Me.colpaid})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colID, Me.coltranshID, Me.colbankID, Me.colBankName, Me.colcash, Me.colamt, Me.colcmt, Me.coldtPay, Me.colRealName, Me.colmodifiedOn, Me.colcreatedOn, Me.colPayTypeID, Me.colpaid, Me.coldepositor})
         Me.GridView1.DetailHeight = 619
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.GroupSummary.AddRange(New DevExpress.XtraGrid.GridSummaryItem() {New DevExpress.XtraGrid.GridGroupSummaryItem(DevExpress.Data.SummaryItemType.Sum, "amt", Me.colamt, " Σύνολο {0:n2}€")})
@@ -576,7 +586,7 @@ Partial Class frmTransactions
         Me.colcmt.MinWidth = 33
         Me.colcmt.Name = "colcmt"
         Me.colcmt.Visible = True
-        Me.colcmt.VisibleIndex = 6
+        Me.colcmt.VisibleIndex = 5
         Me.colcmt.Width = 872
         '
         'coldtPay
@@ -611,31 +621,32 @@ Partial Class frmTransactions
         Me.colcreatedOn.Name = "colcreatedOn"
         Me.colcreatedOn.Width = 125
         '
-        'colPayTypeDescr
+        'colPayTypeID
         '
-        Me.colPayTypeDescr.Caption = "Τύπος Πληρωμής"
-        Me.colPayTypeDescr.ColumnEdit = Me.RepositoryItemLookUpEdit2
-        Me.colPayTypeDescr.FieldName = "PayType"
-        Me.colPayTypeDescr.MinWidth = 35
-        Me.colPayTypeDescr.Name = "colPayTypeDescr"
-        Me.colPayTypeDescr.Visible = True
-        Me.colPayTypeDescr.VisibleIndex = 4
-        Me.colPayTypeDescr.Width = 176
+        Me.colPayTypeID.Caption = "Τύπος Πληρωμής"
+        Me.colPayTypeID.ColumnEdit = Me.RepositoryItemLookUpEdit2
+        Me.colPayTypeID.FieldName = "PayTypeID"
+        Me.colPayTypeID.MinWidth = 35
+        Me.colPayTypeID.Name = "colPayTypeID"
+        Me.colPayTypeID.Visible = True
+        Me.colPayTypeID.VisibleIndex = 6
+        Me.colPayTypeID.Width = 131
         '
         'RepositoryItemLookUpEdit2
         '
         Me.RepositoryItemLookUpEdit2.AutoHeight = False
         Me.RepositoryItemLookUpEdit2.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.RepositoryItemLookUpEdit2.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PayType", "Pay Type", 91, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PayTypeDescr", "ΤΥΠΟΣ ΠΛΗΡΩΜΗΣ", 144, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepositoryItemLookUpEdit2.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Τύπος Πληρωμής", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.RepositoryItemLookUpEdit2.DataSource = Me.VwPAYTYPESBindingSource
-        Me.RepositoryItemLookUpEdit2.DisplayMember = "PayTypeDescr"
+        Me.RepositoryItemLookUpEdit2.DisplayMember = "name"
         Me.RepositoryItemLookUpEdit2.Name = "RepositoryItemLookUpEdit2"
-        Me.RepositoryItemLookUpEdit2.ValueMember = "PayType"
+        Me.RepositoryItemLookUpEdit2.NullText = ""
+        Me.RepositoryItemLookUpEdit2.ValueMember = "ID"
         '
         'VwPAYTYPESBindingSource
         '
         Me.VwPAYTYPESBindingSource.DataMember = "vw_PAYTYPES"
-        Me.VwPAYTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
+        Me.VwPAYTYPESBindingSource.DataSource = Me.DM_TRANS
         '
         'colpaid
         '
@@ -644,16 +655,26 @@ Partial Class frmTransactions
         Me.colpaid.MinWidth = 35
         Me.colpaid.Name = "colpaid"
         Me.colpaid.Visible = True
-        Me.colpaid.VisibleIndex = 5
+        Me.colpaid.VisibleIndex = 4
         Me.colpaid.Width = 131
+        '
+        'coldepositor
+        '
+        Me.coldepositor.Caption = "Καταθέτης"
+        Me.coldepositor.FieldName = "depositor"
+        Me.coldepositor.MinWidth = 35
+        Me.coldepositor.Name = "coldepositor"
+        Me.coldepositor.Visible = True
+        Me.coldepositor.VisibleIndex = 7
+        Me.coldepositor.Width = 131
         '
         'cmdSaveTransH
         '
         Me.cmdSaveTransH.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSaveTransH.Location = New System.Drawing.Point(772, 1295)
+        Me.cmdSaveTransH.Location = New System.Drawing.Point(712, 1350)
         Me.cmdSaveTransH.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSaveTransH.Name = "cmdSaveTransH"
-        Me.cmdSaveTransH.Size = New System.Drawing.Size(159, 39)
+        Me.cmdSaveTransH.Size = New System.Drawing.Size(194, 39)
         Me.cmdSaveTransH.StyleController = Me.LayoutControl1
         Me.cmdSaveTransH.TabIndex = 43
         Me.cmdSaveTransH.Text = "Αποθήκευση"
@@ -668,7 +689,7 @@ Partial Class frmTransactions
         Me.cboCUS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCUS.Properties.NullText = ""
         Me.cboCUS.Properties.PopupSizeable = False
-        Me.cboCUS.Size = New System.Drawing.Size(682, 38)
+        Me.cboCUS.Size = New System.Drawing.Size(657, 38)
         Me.cboCUS.StyleController = Me.LayoutControl1
         Me.cboCUS.TabIndex = 6
         Me.cboCUS.Tag = "cusID,0,1,2"
@@ -682,7 +703,7 @@ Partial Class frmTransactions
         Me.dtCharge.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtCharge.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtCharge.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtCharge.Size = New System.Drawing.Size(682, 38)
+        Me.dtCharge.Size = New System.Drawing.Size(657, 38)
         Me.dtCharge.StyleController = Me.LayoutControl1
         Me.dtCharge.TabIndex = 32
         Me.dtCharge.Tag = "dtCharge,0,1,2"
@@ -697,7 +718,7 @@ Partial Class frmTransactions
         Me.txtCodeH.Properties.Appearance.Options.UseBackColor = True
         Me.txtCodeH.Properties.Appearance.Options.UseFont = True
         Me.txtCodeH.Properties.ReadOnly = True
-        Me.txtCodeH.Size = New System.Drawing.Size(131, 38)
+        Me.txtCodeH.Size = New System.Drawing.Size(88, 38)
         Me.txtCodeH.StyleController = Me.LayoutControl1
         Me.txtCodeH.TabIndex = 4
         Me.txtCodeH.Tag = "code,0"
@@ -707,7 +728,7 @@ Partial Class frmTransactions
         Me.txtComments.Location = New System.Drawing.Point(249, 649)
         Me.txtComments.Margin = New System.Windows.Forms.Padding(5)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(682, 239)
+        Me.txtComments.Size = New System.Drawing.Size(657, 258)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
@@ -726,7 +747,7 @@ Partial Class frmTransactions
         Me.txtVatAmt.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtVatAmt.Properties.MaskSettings.Set("mask", "c2")
         Me.txtVatAmt.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatAmt.Size = New System.Drawing.Size(682, 38)
+        Me.txtVatAmt.Size = New System.Drawing.Size(657, 38)
         Me.txtVatAmt.StyleController = Me.LayoutControl1
         Me.txtVatAmt.TabIndex = 42
         Me.txtVatAmt.Tag = "vatamt,0,1,2"
@@ -734,7 +755,7 @@ Partial Class frmTransactions
         '
         'txtCodeD
         '
-        Me.txtCodeD.Location = New System.Drawing.Point(1185, 61)
+        Me.txtCodeD.Location = New System.Drawing.Point(1160, 61)
         Me.txtCodeD.Margin = New System.Windows.Forms.Padding(5)
         Me.txtCodeD.Name = "txtCodeD"
         Me.txtCodeD.Properties.Appearance.BackColor = System.Drawing.SystemColors.GradientInactiveCaption
@@ -742,7 +763,7 @@ Partial Class frmTransactions
         Me.txtCodeD.Properties.Appearance.Options.UseBackColor = True
         Me.txtCodeD.Properties.Appearance.Options.UseFont = True
         Me.txtCodeD.Properties.ReadOnly = True
-        Me.txtCodeD.Size = New System.Drawing.Size(162, 38)
+        Me.txtCodeD.Size = New System.Drawing.Size(303, 38)
         Me.txtCodeD.StyleController = Me.LayoutControl1
         Me.txtCodeD.TabIndex = 4
         Me.txtCodeD.Tag = "code,0"
@@ -750,13 +771,13 @@ Partial Class frmTransactions
         'dtPay
         '
         Me.dtPay.EditValue = Nothing
-        Me.dtPay.Location = New System.Drawing.Point(1185, 103)
+        Me.dtPay.Location = New System.Drawing.Point(1160, 103)
         Me.dtPay.Margin = New System.Windows.Forms.Padding(5)
         Me.dtPay.Name = "dtPay"
         Me.dtPay.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtPay.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
         Me.dtPay.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtPay.Size = New System.Drawing.Size(663, 38)
+        Me.dtPay.Size = New System.Drawing.Size(697, 38)
         Me.dtPay.StyleController = Me.LayoutControl1
         Me.dtPay.TabIndex = 32
         Me.dtPay.Tag = "dtPay,0,1,2"
@@ -764,7 +785,7 @@ Partial Class frmTransactions
         'txtamtD
         '
         Me.txtamtD.EditValue = "0,00 €"
-        Me.txtamtD.Location = New System.Drawing.Point(1185, 268)
+        Me.txtamtD.Location = New System.Drawing.Point(1160, 310)
         Me.txtamtD.Margin = New System.Windows.Forms.Padding(5)
         Me.txtamtD.Name = "txtamtD"
         Me.txtamtD.Properties.DisplayFormat.FormatString = "c"
@@ -775,7 +796,7 @@ Partial Class frmTransactions
         Me.txtamtD.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtamtD.Properties.MaskSettings.Set("mask", "c2")
         Me.txtamtD.Properties.Tag = "BenchExtraPrice"
-        Me.txtamtD.Size = New System.Drawing.Size(663, 38)
+        Me.txtamtD.Size = New System.Drawing.Size(697, 38)
         Me.txtamtD.StyleController = Me.LayoutControl1
         Me.txtamtD.TabIndex = 42
         Me.txtamtD.Tag = "amt,0,1,2"
@@ -783,17 +804,17 @@ Partial Class frmTransactions
         '
         'txtCMTD
         '
-        Me.txtCMTD.Location = New System.Drawing.Point(1185, 310)
+        Me.txtCMTD.Location = New System.Drawing.Point(1160, 352)
         Me.txtCMTD.Margin = New System.Windows.Forms.Padding(5)
         Me.txtCMTD.Name = "txtCMTD"
-        Me.txtCMTD.Size = New System.Drawing.Size(663, 380)
+        Me.txtCMTD.Size = New System.Drawing.Size(697, 368)
         Me.txtCMTD.StyleController = Me.LayoutControl1
         Me.txtCMTD.TabIndex = 17
         Me.txtCMTD.Tag = "cmt,0,1,2"
         '
         'cboBANK
         '
-        Me.cboBANK.Location = New System.Drawing.Point(1185, 145)
+        Me.cboBANK.Location = New System.Drawing.Point(1160, 145)
         Me.cboBANK.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBANK.Name = "cboBANK"
         Me.cboBANK.Properties.AllowMouseWheel = False
@@ -801,7 +822,7 @@ Partial Class frmTransactions
         Me.cboBANK.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboBANK.Properties.NullText = ""
         Me.cboBANK.Properties.PopupSizeable = False
-        Me.cboBANK.Size = New System.Drawing.Size(663, 38)
+        Me.cboBANK.Size = New System.Drawing.Size(697, 38)
         Me.cboBANK.StyleController = Me.LayoutControl1
         Me.cboBANK.TabIndex = 6
         Me.cboBANK.Tag = "bankID,0,1,2"
@@ -812,10 +833,10 @@ Partial Class frmTransactions
         Me.txtInvoiceFilename.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInvoiceFilename.Name = "txtInvoiceFilename"
         Me.txtInvoiceFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions2.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
-        Me.txtInvoiceFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions1.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
+        Me.txtInvoiceFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtInvoiceFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtInvoiceFilename.Size = New System.Drawing.Size(682, 38)
+        Me.txtInvoiceFilename.Size = New System.Drawing.Size(657, 38)
         Me.txtInvoiceFilename.StyleController = Me.LayoutControl1
         Me.txtInvoiceFilename.TabIndex = 6
         Me.txtInvoiceFilename.Tag = ""
@@ -833,9 +854,10 @@ Partial Class frmTransactions
         Me.txtTotAmt.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtTotAmt.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtTotAmt.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtTotAmt.Properties.ReadOnly = True
         Me.txtTotAmt.Properties.Tag = "BenchExtraPrice"
         Me.txtTotAmt.Properties.UseReadOnlyAppearance = False
-        Me.txtTotAmt.Size = New System.Drawing.Size(682, 38)
+        Me.txtTotAmt.Size = New System.Drawing.Size(657, 38)
         Me.txtTotAmt.StyleController = Me.LayoutControl1
         Me.txtTotAmt.TabIndex = 42
         Me.txtTotAmt.Tag = "Totamt,0,1,2"
@@ -855,7 +877,7 @@ Partial Class frmTransactions
         Me.txtAmtH.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtAmtH.Properties.MaskSettings.Set("mask", "c2")
         Me.txtAmtH.Properties.Tag = "BenchExtraPrice"
-        Me.txtAmtH.Size = New System.Drawing.Size(682, 38)
+        Me.txtAmtH.Size = New System.Drawing.Size(657, 38)
         Me.txtAmtH.StyleController = Me.LayoutControl1
         Me.txtAmtH.TabIndex = 42
         Me.txtAmtH.Tag = "amt,0,1,2"
@@ -864,7 +886,7 @@ Partial Class frmTransactions
         'txtBal
         '
         Me.txtBal.EditValue = "0,00 €"
-        Me.txtBal.Location = New System.Drawing.Point(1060, 1351)
+        Me.txtBal.Location = New System.Drawing.Point(1035, 1406)
         Me.txtBal.Margin = New System.Windows.Forms.Padding(5)
         Me.txtBal.Name = "txtBal"
         Me.txtBal.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
@@ -880,7 +902,7 @@ Partial Class frmTransactions
         Me.txtBal.Properties.MaskSettings.Set("mask", "c2")
         Me.txtBal.Properties.ReadOnly = True
         Me.txtBal.Properties.Tag = "OfferPrice"
-        Me.txtBal.Size = New System.Drawing.Size(801, 42)
+        Me.txtBal.Size = New System.Drawing.Size(657, 42)
         Me.txtBal.StyleController = Me.LayoutControl1
         Me.txtBal.TabIndex = 42
         Me.txtBal.Tag = ""
@@ -897,7 +919,7 @@ Partial Class frmTransactions
         Me.cboInvoiceType.Properties.NullText = ""
         Me.cboInvoiceType.Properties.PopupSizeable = False
         Me.cboInvoiceType.Properties.ValueMember = "invType"
-        Me.cboInvoiceType.Size = New System.Drawing.Size(682, 38)
+        Me.cboInvoiceType.Size = New System.Drawing.Size(657, 38)
         Me.cboInvoiceType.StyleController = Me.LayoutControl1
         Me.cboInvoiceType.TabIndex = 47
         Me.cboInvoiceType.Tag = "invType,0,1,2"
@@ -917,7 +939,7 @@ Partial Class frmTransactions
         Me.cboSaler.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboSaler.Properties.NullText = ""
         Me.cboSaler.Properties.PopupSizeable = False
-        Me.cboSaler.Size = New System.Drawing.Size(682, 38)
+        Me.cboSaler.Size = New System.Drawing.Size(657, 38)
         Me.cboSaler.StyleController = Me.LayoutControl1
         Me.cboSaler.TabIndex = 6
         Me.cboSaler.Tag = "empID,0,1,2"
@@ -936,7 +958,7 @@ Partial Class frmTransactions
         Me.txtDebitCost.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtDebitCost.Properties.MaskSettings.Set("mask", "c2")
         Me.txtDebitCost.Properties.Tag = "BenchExtraPrice"
-        Me.txtDebitCost.Size = New System.Drawing.Size(682, 38)
+        Me.txtDebitCost.Size = New System.Drawing.Size(657, 38)
         Me.txtDebitCost.StyleController = Me.LayoutControl1
         Me.txtDebitCost.TabIndex = 42
         Me.txtDebitCost.Tag = "DebitCost,0,1,2"
@@ -956,7 +978,7 @@ Partial Class frmTransactions
         Me.txtDevicesCost.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtDevicesCost.Properties.MaskSettings.Set("mask", "c2")
         Me.txtDevicesCost.Properties.Tag = "BenchExtraPrice"
-        Me.txtDevicesCost.Size = New System.Drawing.Size(682, 38)
+        Me.txtDevicesCost.Size = New System.Drawing.Size(657, 38)
         Me.txtDevicesCost.StyleController = Me.LayoutControl1
         Me.txtDevicesCost.TabIndex = 42
         Me.txtDevicesCost.Tag = "DevicesCost,0,1,2"
@@ -964,20 +986,20 @@ Partial Class frmTransactions
         '
         'cboPayType
         '
-        Me.cboPayType.Location = New System.Drawing.Point(1185, 226)
+        Me.cboPayType.Location = New System.Drawing.Point(1160, 268)
         Me.cboPayType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboPayType.Name = "cboPayType"
-        Me.cboPayType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboPayType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PayType", "Pay Type", 91, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PayTypeDescr", "ΤΥΠΟΣ ΠΛΗΡΩΜΗΣ", 144, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.cboPayType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboPayType.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Τύπος Πληρωμής", 62, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.cboPayType.Properties.DataSource = Me.VwPAYTYPESBindingSource
-        Me.cboPayType.Properties.DisplayMember = "PayTypeDescr"
+        Me.cboPayType.Properties.DisplayMember = "name"
         Me.cboPayType.Properties.NullText = ""
         Me.cboPayType.Properties.PopupSizeable = False
-        Me.cboPayType.Properties.ValueMember = "PayType"
-        Me.cboPayType.Size = New System.Drawing.Size(663, 38)
+        Me.cboPayType.Properties.ValueMember = "ID"
+        Me.cboPayType.Size = New System.Drawing.Size(697, 38)
         Me.cboPayType.StyleController = Me.LayoutControl1
         Me.cboPayType.TabIndex = 47
-        Me.cboPayType.Tag = "PayType,0,1,2"
+        Me.cboPayType.Tag = "PayTypeID,0,1,2"
         '
         'txtExtraCost
         '
@@ -994,7 +1016,7 @@ Partial Class frmTransactions
         Me.txtExtraCost.Properties.MaskSettings.Set("mask", "c2")
         Me.txtExtraCost.Properties.Tag = "BenchExtraPrice"
         Me.txtExtraCost.Properties.UseReadOnlyAppearance = False
-        Me.txtExtraCost.Size = New System.Drawing.Size(682, 38)
+        Me.txtExtraCost.Size = New System.Drawing.Size(657, 38)
         Me.txtExtraCost.StyleController = Me.LayoutControl1
         Me.txtExtraCost.TabIndex = 42
         Me.txtExtraCost.Tag = "extracost,0,1,2"
@@ -1009,7 +1031,7 @@ Partial Class frmTransactions
         Me.cboTransC.Properties.DataSource = Me.VwTRANSHCBindingSource
         Me.cboTransC.Properties.DisplayMember = "name"
         Me.cboTransC.Properties.ValueMember = "ID"
-        Me.cboTransC.Size = New System.Drawing.Size(682, 38)
+        Me.cboTransC.Size = New System.Drawing.Size(657, 38)
         Me.cboTransC.StyleController = Me.LayoutControl1
         Me.cboTransC.TabIndex = 17
         Me.cboTransC.Tag = ""
@@ -1024,18 +1046,28 @@ Partial Class frmTransactions
         Me.MemoEdit1.Location = New System.Drawing.Point(249, 187)
         Me.MemoEdit1.Margin = New System.Windows.Forms.Padding(5)
         Me.MemoEdit1.Name = "MemoEdit1"
-        Me.MemoEdit1.Size = New System.Drawing.Size(682, 38)
+        Me.MemoEdit1.Size = New System.Drawing.Size(657, 38)
         Me.MemoEdit1.StyleController = Me.LayoutControl1
         Me.MemoEdit1.TabIndex = 62
         Me.MemoEdit1.Tag = "description,0,1,2"
+        '
+        'MemoEdit11
+        '
+        Me.MemoEdit11.Location = New System.Drawing.Point(1160, 187)
+        Me.MemoEdit11.Margin = New System.Windows.Forms.Padding(5)
+        Me.MemoEdit11.Name = "MemoEdit11"
+        Me.MemoEdit11.Size = New System.Drawing.Size(697, 38)
+        Me.MemoEdit11.StyleController = Me.LayoutControl1
+        Me.MemoEdit11.TabIndex = 62
+        Me.MemoEdit11.Tag = "depositor,0,1,2"
         '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup1, Me.LayoutControlGroup2, Me.LayoutControlItem27, Me.EmptySpaceItem7, Me.LayoutControlItem3})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup1, Me.LayoutControlGroup2, Me.LayoutControlItem27, Me.EmptySpaceItem7, Me.LayoutControlItem3, Me.LayoutControlItem31})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(1873, 1405)
+        Me.Root.Size = New System.Drawing.Size(1882, 1460)
         Me.Root.TextVisible = False
         '
         'LayoutControlGroup1
@@ -1047,7 +1079,7 @@ Partial Class frmTransactions
         Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.EmptySpaceItem3, Me.LayoutControlItem2, Me.LayoutControlItem5, Me.LayoutControlItem1, Me.EmptySpaceItem1, Me.LayoutControlItem45, Me.LayoutControlItem15, Me.LayoutControlItem13, Me.LayoutControlItem18, Me.LayoutControlItem26, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem21, Me.LayoutControlItem22, Me.EmptySpaceItem5, Me.LayoutControlItem23, Me.LayoutControlItem25, Me.LayoutControlItem28, Me.LayoutControlItem12, Me.LayoutControlItem16, Me.LayoutControlItem14, Me.LayoutControlItem29})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(936, 1339)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(911, 1394)
         Me.LayoutControlGroup1.Text = "Στοιχεία Χρέωσης"
         '
         'LayoutControlItem4
@@ -1058,16 +1090,16 @@ Partial Class frmTransactions
         Me.LayoutControlItem4.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(359, 42)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(316, 42)
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(212, 23)
         '
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(359, 0)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(316, 0)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
-        Me.EmptySpaceItem3.Size = New System.Drawing.Size(551, 42)
+        Me.EmptySpaceItem3.Size = New System.Drawing.Size(569, 42)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem2
@@ -1078,7 +1110,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem2.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem2.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 210)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem2.Tag = "1"
         Me.LayoutControlItem2.Text = "Ημερ/νία "
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(212, 23)
@@ -1092,7 +1124,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem5.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem5.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem5.Tag = "1"
         Me.LayoutControlItem5.Text = "Πελάτης"
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(212, 23)
@@ -1100,18 +1132,18 @@ Partial Class frmTransactions
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.cmdSaveTransH
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(747, 1234)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(687, 1289)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(163, 43)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(198, 43)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(91, 1234)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(91, 1289)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(14, 43)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(10, 43)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem45
@@ -1122,7 +1154,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem45.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem45.Location = New System.Drawing.Point(0, 504)
         Me.LayoutControlItem45.Name = "LayoutControlItem45"
-        Me.LayoutControlItem45.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem45.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem45.Text = "ΦΠΑ Παραστατικού"
         Me.LayoutControlItem45.TextSize = New System.Drawing.Size(212, 23)
         '
@@ -1134,7 +1166,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem15.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 462)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem15.Text = "Ποσό Παραστατικού"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(212, 23)
         '
@@ -1147,7 +1179,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem13.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem13.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 378)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem13.Tag = "1"
         Me.LayoutControlItem13.Text = "Γενικό Σύνολο Πώλησης"
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(212, 23)
@@ -1155,7 +1187,7 @@ Partial Class frmTransactions
         'LayoutControlItem18
         '
         Me.LayoutControlItem18.Control = Me.txtEMP_T_ID
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 1234)
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 1289)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
         Me.LayoutControlItem18.Size = New System.Drawing.Size(91, 43)
         Me.LayoutControlItem18.Tag = ""
@@ -1171,7 +1203,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem26.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Me.LayoutControlItem26.Location = New System.Drawing.Point(0, 420)
         Me.LayoutControlItem26.Name = "LayoutControlItem26"
-        Me.LayoutControlItem26.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem26.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem26.Tag = "1"
         Me.LayoutControlItem26.Text = "Τύπος Παραστατικού"
         Me.LayoutControlItem26.TextSize = New System.Drawing.Size(212, 23)
@@ -1185,7 +1217,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem19.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 84)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem19.Tag = "1"
         Me.LayoutControlItem19.Text = "Κατηγορία Έργου"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(212, 23)
@@ -1199,7 +1231,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem20.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem20.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem20.Tag = "1"
         Me.LayoutControlItem20.Text = "Πωλητής"
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(212, 23)
@@ -1213,7 +1245,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem21.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem21.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem21.Location = New System.Drawing.Point(0, 252)
         Me.LayoutControlItem21.Name = "LayoutControlItem21"
-        Me.LayoutControlItem21.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem21.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem21.Text = "Πώληση Έργου"
         Me.LayoutControlItem21.TextSize = New System.Drawing.Size(212, 23)
         '
@@ -1226,33 +1258,33 @@ Partial Class frmTransactions
         Me.LayoutControlItem22.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem22.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem22.Location = New System.Drawing.Point(0, 294)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
-        Me.LayoutControlItem22.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem22.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem22.Text = "Πώληση Συσκευών"
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(212, 23)
         '
         'EmptySpaceItem5
         '
         Me.EmptySpaceItem5.AllowHotTrack = False
-        Me.EmptySpaceItem5.Location = New System.Drawing.Point(336, 1234)
+        Me.EmptySpaceItem5.Location = New System.Drawing.Point(333, 1289)
         Me.EmptySpaceItem5.Name = "EmptySpaceItem5"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(252, 43)
+        Me.EmptySpaceItem5.Size = New System.Drawing.Size(115, 43)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem23
         '
         Me.LayoutControlItem23.Control = Me.chkCompleted
-        Me.LayoutControlItem23.Location = New System.Drawing.Point(105, 1234)
+        Me.LayoutControlItem23.Location = New System.Drawing.Point(101, 1289)
         Me.LayoutControlItem23.Name = "LayoutControlItem23"
-        Me.LayoutControlItem23.Size = New System.Drawing.Size(231, 43)
+        Me.LayoutControlItem23.Size = New System.Drawing.Size(232, 43)
         Me.LayoutControlItem23.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem23.TextVisible = False
         '
         'LayoutControlItem25
         '
         Me.LayoutControlItem25.Control = Me.cmdPrintAll
-        Me.LayoutControlItem25.Location = New System.Drawing.Point(588, 1234)
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(448, 1289)
         Me.LayoutControlItem25.Name = "LayoutControlItem25"
-        Me.LayoutControlItem25.Size = New System.Drawing.Size(159, 43)
+        Me.LayoutControlItem25.Size = New System.Drawing.Size(239, 43)
         Me.LayoutControlItem25.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem25.TextVisible = False
         '
@@ -1264,7 +1296,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem28.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem28.Location = New System.Drawing.Point(0, 336)
         Me.LayoutControlItem28.Name = "LayoutControlItem28"
-        Me.LayoutControlItem28.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem28.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem28.Text = "Έξτρα Χρεώσεις"
         Me.LayoutControlItem28.TextSize = New System.Drawing.Size(212, 23)
         '
@@ -1276,16 +1308,16 @@ Partial Class frmTransactions
         Me.LayoutControlItem12.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 546)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem12.Text = "Αρχεία"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(212, 23)
         '
         'LayoutControlItem16
         '
         Me.LayoutControlItem16.Control = Me.GridControl2
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 831)
+        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 850)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(910, 403)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(885, 439)
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem16.TextVisible = False
         '
@@ -1297,7 +1329,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 588)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(910, 243)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(885, 262)
         Me.LayoutControlItem14.Text = "Σχόλια"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(212, 23)
         '
@@ -1306,7 +1338,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem29.Control = Me.MemoEdit1
         Me.LayoutControlItem29.Location = New System.Drawing.Point(0, 126)
         Me.LayoutControlItem29.Name = "LayoutControlItem29"
-        Me.LayoutControlItem29.Size = New System.Drawing.Size(910, 42)
+        Me.LayoutControlItem29.Size = New System.Drawing.Size(885, 42)
         Me.LayoutControlItem29.Text = "Περιγραφή"
         Me.LayoutControlItem29.TextSize = New System.Drawing.Size(212, 23)
         '
@@ -1314,10 +1346,10 @@ Partial Class frmTransactions
         '
         Me.LayoutControlGroup2.AppearanceGroup.BorderColor = System.Drawing.Color.FromArgb(CType(CType(0, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.LayoutControlGroup2.AppearanceGroup.Options.UseBorderColor = True
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10, Me.LayoutControlItem9, Me.LayoutControlItem7, Me.LayoutControlItem6, Me.EmptySpaceItem2, Me.LayoutControlItem8, Me.LayoutControlItem11, Me.EmptySpaceItem4, Me.LayoutControlItem17, Me.LayoutControlItem24})
-        Me.LayoutControlGroup2.Location = New System.Drawing.Point(936, 0)
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10, Me.LayoutControlItem9, Me.LayoutControlItem7, Me.LayoutControlItem6, Me.EmptySpaceItem2, Me.LayoutControlItem8, Me.LayoutControlItem11, Me.EmptySpaceItem4, Me.LayoutControlItem17, Me.LayoutControlItem24, Me.LayoutControlItem30})
+        Me.LayoutControlGroup2.Location = New System.Drawing.Point(911, 0)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(917, 738)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(951, 768)
         Me.LayoutControlGroup2.Text = "Στοιχεία Πίστωσης"
         '
         'LayoutControlItem10
@@ -1326,9 +1358,9 @@ Partial Class frmTransactions
         Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem10.CustomizationFormText = "Σχόλια"
         Me.LayoutControlItem10.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 249)
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 291)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(891, 384)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(925, 372)
         Me.LayoutControlItem10.Text = "Σχόλια"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(212, 23)
         '
@@ -1339,9 +1371,9 @@ Partial Class frmTransactions
         Me.LayoutControlItem9.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem9.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem9.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 207)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 249)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(891, 42)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(925, 42)
         Me.LayoutControlItem9.Tag = "1"
         Me.LayoutControlItem9.Text = "Ποσό"
         Me.LayoutControlItem9.TextSize = New System.Drawing.Size(212, 23)
@@ -1354,7 +1386,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem7.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem7.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 42)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(891, 42)
+        Me.LayoutControlItem7.Size = New System.Drawing.Size(925, 42)
         Me.LayoutControlItem7.Tag = "1"
         Me.LayoutControlItem7.Text = "Ημερ/νία"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(212, 23)
@@ -1367,16 +1399,16 @@ Partial Class frmTransactions
         Me.LayoutControlItem6.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(390, 42)
+        Me.LayoutControlItem6.Size = New System.Drawing.Size(531, 42)
         Me.LayoutControlItem6.Text = "Κωδικός"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(212, 23)
         '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(390, 0)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(531, 0)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(501, 42)
+        Me.EmptySpaceItem2.Size = New System.Drawing.Size(394, 42)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem8
@@ -1387,7 +1419,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem8.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 84)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(891, 42)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(925, 42)
         Me.LayoutControlItem8.Tag = ""
         Me.LayoutControlItem8.Text = "Τράπεζα"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(212, 23)
@@ -1395,26 +1427,26 @@ Partial Class frmTransactions
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.cmdSaveTransD
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(727, 633)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(766, 663)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
-        Me.LayoutControlItem11.Size = New System.Drawing.Size(164, 43)
+        Me.LayoutControlItem11.Size = New System.Drawing.Size(159, 43)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem11.TextVisible = False
         '
         'EmptySpaceItem4
         '
         Me.EmptySpaceItem4.AllowHotTrack = False
-        Me.EmptySpaceItem4.Location = New System.Drawing.Point(0, 633)
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(0, 663)
         Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
-        Me.EmptySpaceItem4.Size = New System.Drawing.Size(727, 43)
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(766, 43)
         Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem17
         '
         Me.LayoutControlItem17.Control = Me.chkCash
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 126)
+        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(891, 39)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(925, 39)
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem17.TextVisible = False
         '
@@ -1424,12 +1456,23 @@ Partial Class frmTransactions
         Me.LayoutControlItem24.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem24.CustomizationFormText = "Εμφανές Πλαϊνο"
         Me.LayoutControlItem24.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem24.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem24.Location = New System.Drawing.Point(0, 165)
+        Me.LayoutControlItem24.Location = New System.Drawing.Point(0, 207)
         Me.LayoutControlItem24.Name = "LayoutControlItem24"
-        Me.LayoutControlItem24.Size = New System.Drawing.Size(891, 42)
+        Me.LayoutControlItem24.Size = New System.Drawing.Size(925, 42)
         Me.LayoutControlItem24.Tag = "1"
         Me.LayoutControlItem24.Text = "Τύπος Πληρωμής"
         Me.LayoutControlItem24.TextSize = New System.Drawing.Size(212, 23)
+        '
+        'LayoutControlItem30
+        '
+        Me.LayoutControlItem30.Control = Me.MemoEdit11
+        Me.LayoutControlItem30.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem30.CustomizationFormText = "Περιγραφή"
+        Me.LayoutControlItem30.Location = New System.Drawing.Point(0, 126)
+        Me.LayoutControlItem30.Name = "LayoutControlItem30"
+        Me.LayoutControlItem30.Size = New System.Drawing.Size(925, 42)
+        Me.LayoutControlItem30.Text = "Καταθέτης"
+        Me.LayoutControlItem30.TextSize = New System.Drawing.Size(212, 23)
         '
         'LayoutControlItem27
         '
@@ -1444,9 +1487,9 @@ Partial Class frmTransactions
         Me.LayoutControlItem27.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem27.CustomizationFormText = "Υπόλοιπο"
         Me.LayoutControlItem27.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem27.Location = New System.Drawing.Point(936, 1339)
+        Me.LayoutControlItem27.Location = New System.Drawing.Point(911, 1394)
         Me.LayoutControlItem27.Name = "LayoutControlItem27"
-        Me.LayoutControlItem27.Size = New System.Drawing.Size(917, 46)
+        Me.LayoutControlItem27.Size = New System.Drawing.Size(773, 46)
         Me.LayoutControlItem27.Text = "Υπόλοιπο"
         Me.LayoutControlItem27.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem27.TextSize = New System.Drawing.Size(107, 28)
@@ -1455,17 +1498,17 @@ Partial Class frmTransactions
         'EmptySpaceItem7
         '
         Me.EmptySpaceItem7.AllowHotTrack = False
-        Me.EmptySpaceItem7.Location = New System.Drawing.Point(0, 1339)
+        Me.EmptySpaceItem7.Location = New System.Drawing.Point(0, 1394)
         Me.EmptySpaceItem7.Name = "EmptySpaceItem7"
-        Me.EmptySpaceItem7.Size = New System.Drawing.Size(936, 46)
+        Me.EmptySpaceItem7.Size = New System.Drawing.Size(911, 46)
         Me.EmptySpaceItem7.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.GridControl1
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(936, 738)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(911, 768)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(917, 601)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(951, 626)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
@@ -1473,10 +1516,11 @@ Partial Class frmTransactions
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(1707, 1405)
+        Me.cmdExit.Location = New System.Drawing.Point(1696, 1406)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(155, 50)
+        Me.cmdExit.Size = New System.Drawing.Size(174, 39)
+        Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 47
         Me.cmdExit.Text = "Έξοδος"
         '
@@ -1507,10 +1551,6 @@ Partial Class frmTransactions
         Me.DreamyKitchenDataSet2.DataSetName = "DreamyKitchenDataSet"
         Me.DreamyKitchenDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
-        'Vw_PAYTYPESTableAdapter
-        '
-        Me.Vw_PAYTYPESTableAdapter.ClearBeforeFill = True
-        '
         'TRANSH_FTableAdapter
         '
         Me.TRANSH_FTableAdapter.ClearBeforeFill = True
@@ -1523,13 +1563,25 @@ Partial Class frmTransactions
         '
         Me.Vw_TRANSH_CTableAdapter.ClearBeforeFill = True
         '
+        'Vw_PAYTYPESTableAdapter
+        '
+        Me.Vw_PAYTYPESTableAdapter.ClearBeforeFill = True
+        '
+        'LayoutControlItem31
+        '
+        Me.LayoutControlItem31.Control = Me.cmdExit
+        Me.LayoutControlItem31.Location = New System.Drawing.Point(1684, 1394)
+        Me.LayoutControlItem31.Name = "LayoutControlItem31"
+        Me.LayoutControlItem31.Size = New System.Drawing.Size(178, 46)
+        Me.LayoutControlItem31.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem31.TextVisible = False
+        '
         'frmTransactions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
         Me.ClientSize = New System.Drawing.Size(1882, 1460)
-        Me.Controls.Add(Me.cmdExit)
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(5)
@@ -1578,6 +1630,7 @@ Partial Class frmTransactions
         CType(Me.cboTransC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwTRANSHCBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.MemoEdit1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.MemoEdit11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1614,11 +1667,13 @@ Partial Class frmTransactions
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem30, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1711,9 +1766,6 @@ Partial Class frmTransactions
     Friend WithEvents cboPayType As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem24 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents DreamyKitchenDataSet2 As DreamyKitchenDataSet
-    Friend WithEvents VwPAYTYPESBindingSource As BindingSource
-    Friend WithEvents Vw_PAYTYPESTableAdapter As DreamyKitchenDataSetTableAdapters.vw_PAYTYPESTableAdapter
-    Friend WithEvents colPayTypeDescr As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents RepositoryItemLookUpEdit2 As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents colpaid As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents cmdPrintAll As DevExpress.XtraEditors.SimpleButton
@@ -1739,4 +1791,11 @@ Partial Class frmTransactions
     Friend WithEvents Vw_TRANSH_CTableAdapter As DM_TRANSTableAdapters.vw_TRANSH_CTableAdapter
     Friend WithEvents MemoEdit1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem29 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents VwPAYTYPESBindingSource As BindingSource
+    Friend WithEvents Vw_PAYTYPESTableAdapter As DM_TRANSTableAdapters.vw_PAYTYPESTableAdapter
+    Friend WithEvents colPayTypeID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents MemoEdit11 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem30 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents coldepositor As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents LayoutControlItem31 As DevExpress.XtraLayout.LayoutControlItem
 End Class

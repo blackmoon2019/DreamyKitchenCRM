@@ -4,7 +4,6 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraReports.UI
 
 Public Class frmTransactions
     Private Projects As New Projects
@@ -56,6 +55,8 @@ Public Class frmTransactions
     End Sub
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DM_TRANS.vw_PAYTYPES' table. You can move, or remove it, as needed.
+        Me.Vw_PAYTYPESTableAdapter.Fill(Me.DM_TRANS.vw_PAYTYPES)
         Projects.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, Frm)
 
 
@@ -79,6 +80,7 @@ Public Class frmTransactions
         End Select
         LoadForms.RestoreLayoutFromXml(GridView2, "vw_TRANSH_F_def.xml")
         LoadForms.RestoreLayoutFromXml(GridView1, "TRANSD.xml")
+
         Me.CenterToScreen()
         cmdSaveTransH.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         cmdSaveTransD.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -174,7 +176,7 @@ Public Class frmTransactions
 
             sSQL = "UPDATE [TRANSD] SET dtPay  = " & toSQLValueS(CDate(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "dtPay")).ToString("yyyyMMdd")) &
                 ",bankID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "bankID").ToString) &
-                ",PayType = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PayType").ToString) &
+                ",PayTypeID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "PayTypeID").ToString) &
                 ",cash = " & cash &
                 ",paid = " & Paid &
                 ",cmt = " & cmt &
@@ -194,7 +196,11 @@ Public Class frmTransactions
     End Sub
 
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "TRANSD.xml", "TRANSD")
+        Select Case e.MenuType
+            Case GridMenuType.Column : LoadForms.PopupMenuShow(e, GridView1, "TRANSD.xml", "TRANSD")
+            Case GridMenuType.User
+
+        End Select
     End Sub
 
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
@@ -212,24 +218,14 @@ Public Class frmTransactions
     End Sub
 
     Private Sub GridView1_CustomDrawFooterCell(sender As Object, e As FooterCellCustomDrawEventArgs) Handles GridView1.CustomDrawFooterCell
-        Dim sSQL As String
-        Try
-            txtBal.EditValue = GridView1.Columns("amt").SummaryItem.SummaryValue
-            If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
-            txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
-
-            If CalledFromCtrl = False Then
-                Dim form As frmScroller = Frm
-                form.DataTable = "vw_TRANSH"
-                form.LoadRecords("vw_TRANSD")
-            End If
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
+        If Me.IsActive = False Then Exit Sub
+        txtBal.EditValue = GridView1.Columns("amt").SummaryItem.SummaryValue
+        If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
+        txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
     End Sub
 
     Private Sub txtTotAmt_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotAmt.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         txtBal.EditValue = GridView1.Columns("amt").SummaryItem.SummaryValue
         If txtTotAmt.Text = "0,00 €" Then txtTotAmt.EditValue = "0.00"
         txtBal.EditValue = txtTotAmt.EditValue - txtBal.EditValue
@@ -270,12 +266,14 @@ Public Class frmTransactions
     End Sub
 
     Private Sub txtExtraCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraCost.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim ExtraCost As Double, Debit As Double, Devices As Double
         If txtExtraCost.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
         Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost) : ExtraCost = DbnullToZero(txtExtraCost)
         txtTotAmt.EditValue = Debit + Devices + ExtraCost
     End Sub
     Private Sub txtDebitCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDebitCost.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim Debit As Double, Devices As Double
         If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
         Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost)
@@ -283,6 +281,7 @@ Public Class frmTransactions
     End Sub
 
     Private Sub txtDevicesCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDevicesCost.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim Debit As Double, Devices As Double
         If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
         Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost)
@@ -290,4 +289,11 @@ Public Class frmTransactions
 
     End Sub
 
+    Private Sub cboPayType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPayType.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManagePAY_TYPE(cboPayType, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManagePAY_TYPE(cboPayType, FormMode.EditRecord)
+            Case 3 : cboPayType.EditValue = Nothing
+        End Select
+    End Sub
 End Class

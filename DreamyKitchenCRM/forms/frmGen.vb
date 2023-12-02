@@ -82,6 +82,20 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "PAY_TYPE"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "PAY_TYPE", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.PAY_TYPE(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_PAY_TYPE")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("PAY_TYPE")
+
                             Case "TRANSH_C"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "TRANSH_C", sGuid)
@@ -528,6 +542,21 @@ Public Class frmGen
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "PAY_TYPE"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.UpdateData(LayoutControl1, "PAY_TYPE", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.PAY_TYPE(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_PAY_TYPE")
+                                End If
+
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("PAY_TYPE")
+
                             Case "TRANSH_C"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.UpdateData(LayoutControl1, "TRANSH_C", sID)
@@ -848,13 +877,18 @@ Public Class frmGen
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "PAY_TYPE"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("PAY_TYPE")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_PAY_TYPE where id ='" + sID + "'",, True)
+                End If
             Case "TRANSH_C"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("TRANSH_C")
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_TRANSH_C where id ='" + sID + "'",, True)
                 End If
-
             Case "BASE_CAT"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("BASE_CAT")
@@ -1077,6 +1111,13 @@ Public Class frmGen
                 End Using
 
                 Select Case sDataTable
+                    Case "PAY_TYPE"
+                        If CalledFromCtrl Then
+                            FillCbo.PAY_TYPE(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_PAY_TYPE")
+                        End If
                     Case "TRANSH_C"
                         If CalledFromCtrl Then
                             FillCbo.TRANSH_C(CtrlCombo)
