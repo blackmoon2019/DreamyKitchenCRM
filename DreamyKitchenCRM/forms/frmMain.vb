@@ -1060,5 +1060,14 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBProject_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProject.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Έργα Πελατών"
+        form.DataTable = "vw_TRANSH_SMALL"
+        form.DataTableWhereCondition = " where completed = 0"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

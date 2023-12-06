@@ -139,6 +139,8 @@ Partial Class frmMain
         Me.BBProjectJobs = New DevExpress.XtraBars.BarButtonItem()
         Me.BBBaseCatERP = New DevExpress.XtraBars.BarButtonItem()
         Me.BBTransh_C = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBPayType = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBProject = New DevExpress.XtraBars.BarButtonItem()
         Me.bbProjects = New DevExpress.XtraBars.Ribbon.RibbonPage()
         Me.RibbonPageGroup1 = New DevExpress.XtraBars.Ribbon.RibbonPageGroup()
         Me.RibbonPage1 = New DevExpress.XtraBars.Ribbon.RibbonPage()
@@ -186,7 +188,6 @@ Partial Class frmMain
         Me.AlertControl1 = New DevExpress.XtraBars.Alerter.AlertControl(Me.components)
         Me.BarButtonItem3 = New DevExpress.XtraBars.BarButtonItem()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
-        Me.BBPayType = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.RibbonControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemCalcEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.RepositoryItemDateEdit1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -204,10 +205,10 @@ Partial Class frmMain
         'RibbonControl1
         '
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
-        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbTRANSH, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse, Me.bbConstrCat, Me.bbConstr, Me.BBPayrollConstr, Me.bbJobs, Me.BBScanFileNames, Me.BBStatistics2, Me.BBStatistics3, Me.BBProjectCosts, Me.BBUpdate, Me.BBNotes2, Me.BBPay, Me.BBSup, Me.BBBuy_C, Me.BBuy, Me.BBSupInvoicesPayment, Me.BBTransactions, Me.BBPrivateAgreement, Me.BBcctOffer, Me.BBParam, Me.BBCloset, Me.BBDoors, Me.BBSpecialConstr, Me.BBCCctOrdersKitchen, Me.BBEquipment, Me.BBDevices, Me.BBequipmentCat, Me.BBCCctOrdersCloset, Me.BBCCctDoorsCloset, Me.BBSpecialOrder, Me.BBEpStatus, Me.BarMdiChildrenListItem2, Me.BarDockingMenuItem1, Me.BBEpopteia, Me.BarSubItem1, Me.BBSupOrders, Me.BBEpopteiaTrans, Me.BBTransConstr, Me.BBEpopteiaTable, Me.BBEpopteiaChart, Me.BBTransCost, Me.bbDimensionsCat, Me.BBConstruct, Me.BBTechSup, Me.BBVer, Me.BBEMP_P, Me.BBOrderFormNumbers, Me.bbEmpConstrMov, Me.BBinvBuyTypes, Me.BBBulkInsertInvoices, Me.BBProjectJobs, Me.BBBaseCatERP, Me.BBTransh_C, Me.BBPayType})
+        Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒDoorType, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbTRANSH, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse, Me.bbConstrCat, Me.bbConstr, Me.BBPayrollConstr, Me.bbJobs, Me.BBScanFileNames, Me.BBStatistics2, Me.BBStatistics3, Me.BBProjectCosts, Me.BBUpdate, Me.BBNotes2, Me.BBPay, Me.BBSup, Me.BBBuy_C, Me.BBuy, Me.BBSupInvoicesPayment, Me.BBTransactions, Me.BBPrivateAgreement, Me.BBcctOffer, Me.BBParam, Me.BBCloset, Me.BBDoors, Me.BBSpecialConstr, Me.BBCCctOrdersKitchen, Me.BBEquipment, Me.BBDevices, Me.BBequipmentCat, Me.BBCCctOrdersCloset, Me.BBCCctDoorsCloset, Me.BBSpecialOrder, Me.BBEpStatus, Me.BarMdiChildrenListItem2, Me.BarDockingMenuItem1, Me.BBEpopteia, Me.BarSubItem1, Me.BBSupOrders, Me.BBEpopteiaTrans, Me.BBTransConstr, Me.BBEpopteiaTable, Me.BBEpopteiaChart, Me.BBTransCost, Me.bbDimensionsCat, Me.BBConstruct, Me.BBTechSup, Me.BBVer, Me.BBEMP_P, Me.BBOrderFormNumbers, Me.bbEmpConstrMov, Me.BBinvBuyTypes, Me.BBBulkInsertInvoices, Me.BBProjectJobs, Me.BBBaseCatERP, Me.BBTransh_C, Me.BBPayType, Me.BBProject})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
         Me.RibbonControl1.Margin = New System.Windows.Forms.Padding(5)
-        Me.RibbonControl1.MaxItemId = 123
+        Me.RibbonControl1.MaxItemId = 124
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.OptionsMenuMinWidth = 550
         Me.RibbonControl1.Pages.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPage() {Me.bbProjects, Me.RibbonPage1, Me.RibbonPage6, Me.RibbonPage8, Me.ProjectAnalysis, Me.EmpManage, Me.RibbonPage2, Me.RibbonPage7, Me.RibbonPage3, Me.RibbonPage4, Me.RibonSettings, Me.RibbonPage5})
@@ -631,7 +632,7 @@ Partial Class frmMain
         '
         Me.bbTRANSH.Caption = "Έργα Πελατών"
         Me.bbTRANSH.Id = 56
-        Me.bbTRANSH.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_cash_counter_80
+        Me.bbTRANSH.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.project_40
         Me.bbTRANSH.Name = "bbTRANSH"
         Me.bbTRANSH.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -1155,6 +1156,21 @@ Partial Class frmMain
         Me.BBTransh_C.Name = "BBTransh_C"
         Me.BBTransh_C.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
+        'BBPayType
+        '
+        Me.BBPayType.Caption = "Τύπος Πληρωμής"
+        Me.BBPayType.Id = 122
+        Me.BBPayType.Name = "BBPayType"
+        Me.BBPayType.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
+        'BBProject
+        '
+        Me.BBProject.Caption = "Έργα"
+        Me.BBProject.Id = 123
+        Me.BBProject.ImageOptions.Image = CType(resources.GetObject("BarButtonItem4.ImageOptions.Image"), System.Drawing.Image)
+        Me.BBProject.Name = "BBProject"
+        Me.BBProject.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
+        '
         'bbProjects
         '
         Me.bbProjects.Groups.AddRange(New DevExpress.XtraBars.Ribbon.RibbonPageGroup() {Me.RibbonPageGroup1})
@@ -1198,6 +1214,7 @@ Partial Class frmMain
         '
         'RibbonPageGroup18
         '
+        Me.RibbonPageGroup18.ItemLinks.Add(Me.BBProject)
         Me.RibbonPageGroup18.ItemLinks.Add(Me.BBcctOffer)
         Me.RibbonPageGroup18.ItemLinks.Add(Me.BBCloset)
         Me.RibbonPageGroup18.ItemLinks.Add(Me.BBDoors)
@@ -1524,13 +1541,6 @@ Partial Class frmMain
         Me.Timer2.Enabled = True
         Me.Timer2.Interval = 1000
         '
-        'BBPayType
-        '
-        Me.BBPayType.Caption = "Τύπος Πληρωμής"
-        Me.BBPayType.Id = 122
-        Me.BBPayType.Name = "BBPayType"
-        Me.BBPayType.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
-        '
         'frmMain
         '
         Me.AllowMdiBar = True
@@ -1731,4 +1741,5 @@ Partial Class frmMain
     Friend WithEvents BBBaseCatERP As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBTransh_C As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBPayType As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBProject As DevExpress.XtraBars.BarButtonItem
 End Class

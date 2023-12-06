@@ -178,7 +178,7 @@ NextItem:
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
-    Public Function LoadFormGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sSQL As String, Optional ByVal IgnoreVisibility As Boolean = True) As Boolean
+    Public Function LoadFormGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sSQL As String, Optional ByVal IgnoreVisibility As Boolean = True, Optional ByRef dictionary As Dictionary(Of String, String) = Nothing) As Boolean
 
         Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
         Dim sdr As SqlDataReader = cmd.ExecuteReader()
@@ -191,6 +191,63 @@ NextItem:
         Try
             sTable = sdr.GetSchemaTable()
             If (sdr.Read() = True) Then
+                ' Αυτό μπήκε αγια να φέρει όλα τα πεδία του view μαζί με τιμές 
+                If Not IsNothing(dictionary) Then
+                    For index As Integer = 0 To sdr.FieldCount - 1
+                        Select Case sdr.GetDataTypeName(index)
+                            Case "nvarchar"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetString(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "int"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetInt32(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "bigint"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetInt64(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "uniqueidentifier"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetGuid(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "bit"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetBoolean(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "decimal"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetDecimal(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "datetime"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetDateTime(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "date"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetDateTime(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "varbinary"
+                        End Select
+                    Next
+                End If
+
                 For Each item As BaseLayoutItem In GRP.Items
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)

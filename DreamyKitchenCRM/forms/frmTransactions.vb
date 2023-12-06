@@ -9,6 +9,7 @@ Public Class frmTransactions
     Private Projects As New Projects
     Private sID As String
     Private sEMP_T_ID As String
+    Private sProjectCostID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -22,6 +23,7 @@ Public Class frmTransactions
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
     Private ManageCbo As New CombosManager
+    Private TranshFieldAndValues As Dictionary(Of String, String)
 
 
 
@@ -64,14 +66,17 @@ Public Class frmTransactions
             Case FormMode.NewRecord
                 dtCharge.EditValue = DateTime.Now : dtPay.EditValue = DateTime.Now : LayoutControlGroup2.Enabled = False : txtCodeH.Text = Projects.GetNextID
             Case FormMode.EditRecord
-                LoadForms.LoadFormGRP(LayoutControlGroup1, "Select * from vw_TRANSH with(nolock) where id ='" + sID + "'")
+                TransHFieldAndValues = New Dictionary(Of String, String)
+                LoadForms.LoadFormGRP(LayoutControlGroup1, "Select * from vw_TRANSH with(nolock) where id ='" + sID + "'",, TranshFieldAndValues)
+                sEMP_T_ID = TranshFieldAndValues.Item("EmpTID").ToString
+                sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
                 Me.TRANSH_FTableAdapter.FillByTanshID(Me.DM_TRANS.TRANSH_F, System.Guid.Parse(sID))
                 Me.Vw_TRANSDTableAdapter.Fill(Me.DM_TRANS.vw_TRANSD, System.Guid.Parse(sID))
-                Dim cmd As SqlCommand = New SqlCommand("Select ID from TRANSC WHERE transhID = " & toSQLValueS(sID), CNDB)
+                Dim cmd As SqlCommand = New SqlCommand("Select transhCID from TRANSC WHERE transhID = " & toSQLValueS(sID), CNDB)
                 Dim sdr As SqlDataReader = cmd.ExecuteReader()
                 If sdr.HasRows Then
                     While sdr.Read()
-                        cboTransC.Properties.GetItems.Item(System.Guid.Parse(sdr("ID").ToString)).CheckState = CheckState.Checked
+                        cboTransC.Properties.GetItems.Item(System.Guid.Parse(sdr("transhCID").ToString)).CheckState = CheckState.Checked
                     End While
                 End If
                 sdr.Close()
@@ -295,5 +300,32 @@ Public Class frmTransactions
             Case 2 : ManageCbo.ManagePAY_TYPE(cboPayType, FormMode.EditRecord)
             Case 3 : cboPayType.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub bbEMP_T_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbEMP_T.ItemClick
+        Dim frmSalerTziroi As New frmSalerTziroi
+        frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
+        frmSalerTziroi.ID = sEMP_T_ID
+        frmSalerTziroi.MdiParent = frmMain
+        frmSalerTziroi.Mode = FormMode.EditRecord
+        frmSalerTziroi.Scroller = GridView1
+        frmSalerTziroi.FormScroller = Me
+        frmSalerTziroi.FormScrollerExist = True
+        frmSalerTziroi.CalledFromControl = False
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSalerTziroi), New Point(CInt(frmSalerTziroi.Parent.ClientRectangle.Width / 2 - frmSalerTziroi.Width / 2), CInt(frmSalerTziroi.Parent.ClientRectangle.Height / 2 - frmSalerTziroi.Height / 2)))
+        frmSalerTziroi.Show()
+
+    End Sub
+
+    Private Sub BBProjectCosts_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBProjectCosts.ItemClick
+        Dim frmProjectCost As New frmProjectCost
+        frmProjectCost.Text = "Ανάλυση Έργων"
+        frmProjectCost.ID = sProjectCostID
+        frmProjectCost.MdiParent = frmMain
+        frmProjectCost.Mode = FormMode.EditRecord
+        frmProjectCost.FormScroller = Me
+        frmProjectCost.CalledFromControl = False
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProjectCost), New Point(CInt(frmProjectCost.Parent.ClientRectangle.Width / 2 - frmProjectCost.Width / 2), CInt(frmProjectCost.Parent.ClientRectangle.Height / 2 - frmProjectCost.Height / 2)))
+        frmProjectCost.Show()
     End Sub
 End Class

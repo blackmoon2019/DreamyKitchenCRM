@@ -53,8 +53,8 @@ Partial Class frmSalerTziroi
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkPaid.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtPay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtPay.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtPay.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtsalePrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -435,7 +435,7 @@ Partial Class frmSalerTziroi
         Me.Lcost1.Location = New System.Drawing.Point(330, 210)
         Me.Lcost1.Name = "Lcost1"
         Me.Lcost1.Size = New System.Drawing.Size(310, 42)
-        Me.Lcost1.Text = "Τιμή Κανονική"
+        Me.Lcost1.Text = "Τιμή Τιμοκαταλόγου"
         Me.Lcost1.TextSize = New System.Drawing.Size(168, 23)
         '
         'Lcost3

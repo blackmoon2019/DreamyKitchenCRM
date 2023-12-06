@@ -172,7 +172,7 @@ Public Class frmConstrunction
 
                 If cboTRANSH.EditValue IsNot Nothing Then
                     ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
-                    Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+                    Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure
                         oCmd.Parameters.AddWithValue("@transhID", cboTRANSH.EditValue.ToString)
                         oCmd.ExecuteNonQuery()

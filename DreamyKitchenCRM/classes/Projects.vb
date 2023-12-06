@@ -1,15 +1,14 @@
-﻿Imports DevExpress.DashboardCommon
-Imports DevExpress.XtraEditors
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
 
 Public Class Projects
-    Private LoadForms As New FormLoader
     Private Valid As New ValidateControls
     Private DBQ As New DBQueries
     Private FrmScr As DevExpress.XtraEditors.XtraForm
     Private Frm As frmTransactions
+    Private Frm2 As frmProject
     Private ID As String
     Private Mode As Byte
     Private CalledFromCtrl As Boolean
@@ -36,6 +35,44 @@ Public Class Projects
         'Πωλητές
         FillCbo.SALERS(Frm.cboSaler)
     End Sub
+    Public Sub InitializeSmall(ByVal sFrm As frmProject, ByVal sID As String, ByVal sMode As Byte)
+        Frm2 = sFrm
+        ID = sID
+        Mode = sMode
+        Frm2.Vw_TRANSH_CTableAdapter.Fill(Frm2.DM_TRANS.vw_TRANSH_C)
+        'Πελάτες
+        FillCbo.CUS(Frm2.cboCUS)
+        'Πωλητές
+        FillCbo.SALERS(Frm2.cboSaler)
+    End Sub
+    Public Sub SaveRecordSmallH()
+        Dim sResult As Boolean
+        Try
+            If Valid.ValidateForm(Frm2.LayoutControl1) Then
+                ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
+                Select Case Mode
+                    Case FormMode.NewRecord
+                        ID = System.Guid.NewGuid.ToString
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID)
+                        ' Εαν πετύχει η καταχώρηση του έργου αλλά όχι των κατηγοριών τότε όλο το έργο διαγράφεται
+                        If sResult Then
+                            If Not SaveTRANSC_SMALL() Then DeleteRecord() : Exit Sub Else Frm2.txtCodeH.Text = DBQ.GetNextId("TRANSH")
+                        End If
+
+                    Case FormMode.EditRecord
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID)
+                        ' Καταχώρηση κατηγοριών 
+                        If sResult Then SaveTRANSC_SMALL()
+                End Select
+                If sResult = True Then
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Mode = FormMode.EditRecord
+                End If
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     Public Sub SaveRecordH()
         Dim sResult As Boolean, sResultF As Boolean
         Dim sSQL As New System.Text.StringBuilder
@@ -48,44 +85,38 @@ Public Class Projects
                         ID = System.Guid.NewGuid.ToString
                         sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, Frm.LayoutControlGroup1, ID,, "bal", toSQLValueS(Frm.txtBal.EditValue.ToString, True))
                         ' Εαν πετύχει η καταχώρηση του έργου αλλά όχι των κατηγοριών τότε όλο το έργο διαγράφεται
-                        If sResult Then If Not SaveTRANSC() Then DeleteRecord()
+                        If sResult Then
+                            If Not SaveTRANSC() Then
+                                DeleteRecord()
+                                Exit Sub
+                            Else
+                                Frm.txtCodeH.Text = DBQ.GetNextId("TRANSH")
+                            End If
+                        End If
 
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, Frm.LayoutControlGroup1, ID,,,,, "bal=" & toSQLValueS(Frm.txtBal.EditValue.ToString, True))
                         ' Καταχώρηση κατηγοριών 
-                        If sResult Then SaveTRANSC()
+                        If sResult Then
+                            If Not SaveTRANSC() Then
+                                ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
+                                If CheckIfClosedRecExist() Then
+                                    'Τζίροι ποσοστά
+                                    SaveEMP_T()
+                                    ' Ανάλυση έργου 
+                                    SaveProjectcost()
+                                End If
+                                Exit Sub
+                            End If
+                        End If
 
-                        '' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
-                        'Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
-                        '    oCmd.CommandType = CommandType.StoredProcedure
-                        '    oCmd.Parameters.AddWithValue("@transhID", sGuid)
-                        '    oCmd.ExecuteNonQuery()
-                        'End Using
-                        'sSQL.Clear()
-                        'sSQL.AppendLine("UPDATE EMP_T SET CUSID = " & toSQLValueS(cboCUS.EditValue.ToString) & ",")
-                        'sSQL.AppendLine("EMPID = " & toSQLValueS(cboSaler.EditValue.ToString) & ",")
-                        'sSQL.AppendLine("SALEPRICE = " & toSQLValueS(txtTotAmt.EditValue, True) & ",")
-                        'sSQL.AppendLine("MODIFIEDBY= " & toSQLValueS(UserProps.ID.ToString) & ",")
-                        'sSQL.AppendLine("MODIFIEDON= GETDATE(), ")
-                        'sSQL.AppendLine("DTPAY = " & toSQLValueS(CDate(dtPay.Text).ToString("yyyyMMdd")))
-
-
-                        'sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(sID))
-                        ''Εκτέλεση QUERY
-                        'Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                        '    oCmd.ExecuteNonQuery()
-                        'End Using
                 End Select
-                'Καθαρισμός Controls
-                'If Mode = FormMode.EditRecord Then Cls.ClearCtrls(LayoutControl1)
-                'dtDTS.EditValue = DateTime.Now
 
                 If Frm.txtInvoiceFilename.Text <> "" Then
                     sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, ID, "TRANSH_F")
                     Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
                 End If
-                Frm.txtCodeH.Text = DBQ.GetNextId("TRANSH")
-                Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
+
                 If CalledFromCtrl = True Then
                     FillCbo.TRANSH(CtrlCombo)
                     CtrlCombo.EditValue = System.Guid.Parse(ID)
@@ -137,21 +168,9 @@ Public Class Projects
     'Καταχώρηση Εγγραφής στους Τζίρους ποσοστά
     Private Sub SaveEMP_T()
         Try
-            Dim sSQL As New System.Text.StringBuilder
-            Dim sEMP_T_ID As String
-            sSQL.Clear()
-            sEMP_T_ID = System.Guid.NewGuid.ToString
-            sSQL.AppendLine("INSERT INTO EMP_T (ID,CUSID,EMPID,SALEPRICE,CREATEDBY,CREATEDON,TRANSHID)")
-            sSQL.AppendLine("Select " & toSQLValueS(sEMP_T_ID.ToString) & ",")
-            sSQL.AppendLine(toSQLValueS(Frm.cboCUS.EditValue.ToString) & ",")
-            sSQL.AppendLine(toSQLValueS(Frm.cboSaler.EditValue.ToString) & ",")
-            sSQL.AppendLine(toSQLValueS(Frm.txtTotAmt.EditValue, True) & ",")
-            sSQL.AppendLine(toSQLValueS(UserProps.ID.ToString) & ",")
-            sSQL.AppendLine("getdate(),")
-            sSQL.AppendLine(toSQLValueS(ID))
-
-            ''Εκτέλεση QUERY
-            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+            Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@transhID", ID)
                 oCmd.ExecuteNonQuery()
             End Using
         Catch ex As Exception
@@ -161,7 +180,7 @@ Public Class Projects
     ' Άνοιγμα ανάλυσης έργου αν δεν υπάρχει ή ενημέρωση ποσών
     Private Sub SaveProjectcost()
         Try
-            Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+            Using oCmd As New SqlCommand("usp_AddOrUpdateEmp_T", CNDB)
                 oCmd.CommandType = CommandType.StoredProcedure
                 oCmd.Parameters.AddWithValue("@transhID", ID)
                 oCmd.ExecuteNonQuery()
@@ -170,6 +189,27 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function CheckIfClosedRecExist() As Boolean
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Try
+            Dim CountClosed As Integer
+            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(ID)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
+                If CountClosed = 0 Then Return False Else Return True
+            Else
+                Return False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+
+    End Function
     ' Έλεγχος αν υπάρχει εγγραφή με τύπο πληρωμής "Κλείσιμο" ή δεν έχει καταχωρηθεί διπλή εγγραφή Κλεισίματος
     Private Function PayTypeValidations() As Boolean
         Dim sSQL As String
@@ -226,7 +266,34 @@ Public Class Projects
                 If Frm.cboTransC.EditValue <> Nothing Then
                     If CheckedItem.CheckState = CheckState.Checked Then
                         sSQL.Clear()
-                        sSQL.Append("INSERT INTO TRANSC(ID,TRANSHID,createdOn,createdBy)")
+                        sSQL.Append("INSERT INTO TRANSC(TRANSHCID,TRANSHID,createdOn,createdBy)")
+                        sSQL.Append("SELECT " & toSQLValueS(CheckedItem.Value.ToString) & "," & toSQLValueS(ID) & ",GETDATE()," & toSQLValueS(UserProps.ID.ToString))
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    End If
+                End If
+            Next
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην καταχώρηση κατηγοριών έργου!" & vbCrLf &
+                                String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    'Καταχώρηση Κατηγοριών έργου
+    Private Function SaveTRANSC_SMALL() As Boolean
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            Using oCmd As New SqlCommand("DELETE FROM TRANSC WHERE TRANSHID = " & toSQLValueS(ID), CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            For Each CheckedItem As CheckedListBoxItem In Frm2.cboTransC.Properties.GetItems
+                If Frm2.cboTransC.EditValue <> Nothing Then
+                    If CheckedItem.CheckState = CheckState.Checked Then
+                        sSQL.Clear()
+                        sSQL.Append("INSERT INTO TRANSC(TRANSHCID,TRANSHID,createdOn,createdBy)")
                         sSQL.Append("SELECT " & toSQLValueS(CheckedItem.Value.ToString) & "," & toSQLValueS(ID) & ",GETDATE()," & toSQLValueS(UserProps.ID.ToString))
                         'Εκτέλεση QUERY
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)

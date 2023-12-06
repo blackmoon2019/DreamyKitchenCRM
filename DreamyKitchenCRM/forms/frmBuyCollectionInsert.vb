@@ -387,7 +387,7 @@ Public Class frmBuyCollectionInsert
 
                             If sTranshID.Length > 0 Then
                                 ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
-                                Using oCmd As New SqlCommand("usp_CreateProjectcost", CNDB)
+                                Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
                                     oCmd.CommandType = CommandType.StoredProcedure
                                     oCmd.Parameters.AddWithValue("@transhID", sTranshID)
                                     oCmd.ExecuteNonQuery()

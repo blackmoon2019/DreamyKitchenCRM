@@ -238,6 +238,7 @@ Public Class frmScroller
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_TRANSH_SMALL" : sSQL = "DELETE FROM TRANSH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_ELLIPSE"
                         Dim Cmd As SqlCommand, sdr As SqlDataReader
@@ -428,6 +429,7 @@ Public Class frmScroller
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_TRANSH_SMALL" : sSQL = "DELETE FROM TRANSH WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_ELLIPSE"
@@ -962,6 +964,14 @@ Public Class frmScroller
         Dim frmGen As frmGen = New frmGen()
         If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") Is Nothing Then Exit Sub
         Select Case sDataTable
+            Case "vw_TRANSH_SMALL"
+                Dim frmProject As New frmProject
+                frmProject.Text = "Έργα Πελατών"
+                frmProject.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmProject.MdiParent = frmMain
+                frmProject.Mode = FormMode.EditRecord
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProject), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmProject.Show()
             Case "vw_PAY_TYPE"
                 frmGen.Text = "Τύποι Πληρωμής"
                 frmGen.MdiParent = frmMain
@@ -1921,6 +1931,14 @@ Public Class frmScroller
     Private Sub NewRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_TRANSH_SMALL"
+                Dim frmProject As New frmProject
+                frmProject.Text = "Έργα Πελατών"
+                frmProject.MdiParent = frmMain
+                frmProject.Mode = FormMode.NewRecord
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProject), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmProject.Show()
+
             Case "vw_PAY_TYPE"
                 frmGen.Text = "Τύποι Πληρωμής"
                 frmGen.MdiParent = frmMain
