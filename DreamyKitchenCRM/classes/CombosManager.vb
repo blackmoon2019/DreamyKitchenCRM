@@ -1,14 +1,4 @@
-﻿Imports System.ComponentModel
-Imports System.Data.SqlClient
-Imports System.Windows.Forms.VisualStyles.VisualStyleElement.Tab
-Imports DevExpress.CodeParser
-Imports DevExpress.DataAccess
-Imports DevExpress.DataAccess.Native
-Imports DevExpress.PivotGrid.QueryMode
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraGrid
-Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.Grid
 Public Class CombosManager
     Public Sub ManageCCT(ByVal FrmMode As Byte, ByVal isFromGrid As Boolean, Optional ByRef RecID As String = "", Optional ByVal CallerControl As LookUpEdit = Nothing, Optional ByVal grdView As GridView = Nothing)
@@ -53,6 +43,22 @@ Public Class CombosManager
             Frm.Show()
         End If
     End Sub
+    Public Sub ManageTRANSHSmall(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmProject = New frmProject()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Έργα Πελατών"
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue <> Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+
     Public Sub ManageSup(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             Dim Frm As frmSUP = New frmSUP()

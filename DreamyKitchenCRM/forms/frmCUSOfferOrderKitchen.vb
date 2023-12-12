@@ -5,6 +5,7 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraTabbedMdi
 
 Public Class frmCUSOfferOrderKitchen
     Private ManageCbo As New CombosManager
@@ -186,8 +187,8 @@ Public Class frmCUSOfferOrderKitchen
         GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
         GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
         GridView1.OptionsMenu.ShowConditionalFormattingItem = True
-        Me.CenterToScreen()
 
+        Me.CenterToScreen()
     End Sub
     Private Function GetBaseCatID() As String
         Dim Cmd As SqlCommand, sdr As SqlDataReader
@@ -264,14 +265,14 @@ Public Class frmCUSOfferOrderKitchen
                     End If
 
                     Mode = FormMode.EditRecord
-                        Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
-                        HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
-                        HasCloset = cboTRANSH.GetColumnValue("Iscloset")
-                        HasDoors = cboTRANSH.GetColumnValue("Isdoors")
-                        HasSc = cboTRANSH.GetColumnValue("Issc")
-                        If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                            Exit Sub
+                    Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
+                    HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
+                    HasCloset = cboTRANSH.GetColumnValue("Iscloset")
+                    HasDoors = cboTRANSH.GetColumnValue("Isdoors")
+                    HasSc = cboTRANSH.GetColumnValue("Issc")
+                    If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
+                        XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                        Exit Sub
                         End If
 
                     'If Mode = FormMode.NewRecord Then
@@ -295,7 +296,7 @@ Public Class frmCUSOfferOrderKitchen
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
-                        where  completed = 0 and T.cusid = " & sCusID & "order by description")
+                        where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
 
     End Sub
@@ -439,8 +440,8 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub

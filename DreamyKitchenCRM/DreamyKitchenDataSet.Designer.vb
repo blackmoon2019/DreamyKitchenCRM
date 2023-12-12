@@ -39571,7 +39571,8 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection(0).CommandText = "SELECT ID, code, Fullname, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn"& _ 
                 ", createdOn,  RealName, COU_Name, SRC_Name, AREAS_Name, ADR_Name, PRF_Name, SALE"& _ 
                 "RS_Name, color, CouID, AreaID, AdrID, SourceID, SalerID, DoyID, PrfID, Ar, tk, c"& _ 
-                "reatedby_Realname, HasFiles, FatherName, DOY_Name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_CCT"
+                "reatedby_Realname, HasFiles, FatherName, DOY_Name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_CCT order by Fullna"& _ 
+                "me"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

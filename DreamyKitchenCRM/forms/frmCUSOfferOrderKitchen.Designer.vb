@@ -39,7 +39,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.lblDate = New DevExpress.XtraEditors.LabelControl()
         Me.txtdtdaysOfDelivery = New DevExpress.XtraEditors.TextEdit()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.dtOrder = New DevExpress.XtraEditors.DateEdit()
         Me.txtKFinalHeight = New DevExpress.XtraEditors.TextEdit()
         Me.txtYHeight = New DevExpress.XtraEditors.TextEdit()
@@ -49,6 +48,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtTotalErmariaPice = New DevExpress.XtraEditors.TextEdit()
         Me.cboEMP = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.cboVBOXColors = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboKBOXColors = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboYBOXColors = New DevExpress.XtraEditors.LookUpEdit()
@@ -222,6 +222,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem85 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem86 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
         Me.VwBENCHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
@@ -267,7 +268,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.BASE_CATTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.BASE_CATTableAdapter()
         Me.Vw_DOOR_TYPE_V2TableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPE_V2TableAdapter()
         Me.Vw_DOOR_TYPE_BENCH_V2TableAdapter = New DreamyKitchenCRM.DM_DOORTYPESTableAdapters.vw_DOOR_TYPE_BENCH_V2TableAdapter()
-        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -280,7 +280,6 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.cboVType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtOrder.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtOrder.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKFinalHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -291,6 +290,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.txtTotalErmariaPice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboKBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboYBOXColors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -463,6 +463,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem85, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem86, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -483,7 +484,6 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'coldCode
@@ -592,13 +592,13 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(2407, 548, 1121, 1339)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1885, 1318)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1885, 1354)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
         'cboPependisisDoorType2
         '
-        Me.cboPependisisDoorType2.Location = New System.Drawing.Point(1476, 575)
+        Me.cboPependisisDoorType2.Location = New System.Drawing.Point(1476, 611)
         Me.cboPependisisDoorType2.Margin = New System.Windows.Forms.Padding(5)
         Me.cboPependisisDoorType2.Name = "cboPependisisDoorType2"
         Me.cboPependisisDoorType2.Properties.AllowMouseWheel = False
@@ -633,7 +633,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LabelControl1.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.LabelControl1.Appearance.Options.UseFont = True
         Me.LabelControl1.Appearance.Options.UseForeColor = True
-        Me.LabelControl1.Location = New System.Drawing.Point(427, 1267)
+        Me.LabelControl1.Location = New System.Drawing.Point(427, 1303)
         Me.LabelControl1.Name = "LabelControl1"
         Me.LabelControl1.Size = New System.Drawing.Size(113, 23)
         Me.LabelControl1.StyleController = Me.LayoutControl1
@@ -642,7 +642,7 @@ Partial Class frmCUSOfferOrderKitchen
         'chkVatVisible
         '
         Me.chkVatVisible.EditValue = CType(0, Byte)
-        Me.chkVatVisible.Location = New System.Drawing.Point(116, 1267)
+        Me.chkVatVisible.Location = New System.Drawing.Point(116, 1303)
         Me.chkVatVisible.Margin = New System.Windows.Forms.Padding(5)
         Me.chkVatVisible.Name = "chkVatVisible"
         Me.chkVatVisible.Properties.Caption = "Εμφάνιση ΦΠΑ στην εκτύπωση"
@@ -657,7 +657,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = CType(resources.GetObject("cmdExit.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdExit.Location = New System.Drawing.Point(1725, 1267)
+        Me.cmdExit.Location = New System.Drawing.Point(1725, 1303)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(148, 39)
@@ -668,7 +668,7 @@ Partial Class frmCUSOfferOrderKitchen
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = CType(resources.GetObject("cmdSave.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSave.Location = New System.Drawing.Point(1541, 1267)
+        Me.cmdSave.Location = New System.Drawing.Point(1541, 1303)
         Me.cmdSave.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(180, 39)
@@ -678,7 +678,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cmdPrintOffer
         '
-        Me.cmdPrintOffer.Location = New System.Drawing.Point(12, 1267)
+        Me.cmdPrintOffer.Location = New System.Drawing.Point(12, 1303)
         Me.cmdPrintOffer.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdPrintOffer.Name = "cmdPrintOffer"
         Me.cmdPrintOffer.Size = New System.Drawing.Size(100, 39)
@@ -689,7 +689,7 @@ Partial Class frmCUSOfferOrderKitchen
         'chkHangingOnDoors
         '
         Me.chkHangingOnDoors.EditValue = CType(0, Byte)
-        Me.chkHangingOnDoors.Location = New System.Drawing.Point(645, 659)
+        Me.chkHangingOnDoors.Location = New System.Drawing.Point(645, 695)
         Me.chkHangingOnDoors.Margin = New System.Windows.Forms.Padding(5)
         Me.chkHangingOnDoors.Name = "chkHangingOnDoors"
         Me.chkHangingOnDoors.Properties.Appearance.BackColor = System.Drawing.Color.LightSlateGray
@@ -708,7 +708,7 @@ Partial Class frmCUSOfferOrderKitchen
         'chkHoodAlignment
         '
         Me.chkHoodAlignment.EditValue = CType(0, Byte)
-        Me.chkHoodAlignment.Location = New System.Drawing.Point(885, 659)
+        Me.chkHoodAlignment.Location = New System.Drawing.Point(885, 695)
         Me.chkHoodAlignment.Margin = New System.Windows.Forms.Padding(5)
         Me.chkHoodAlignment.Name = "chkHoodAlignment"
         Me.chkHoodAlignment.Properties.Appearance.BackColor = System.Drawing.Color.LightSlateGray
@@ -726,7 +726,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboVType
         '
-        Me.cboVType.Location = New System.Drawing.Point(236, 365)
+        Me.cboVType.Location = New System.Drawing.Point(236, 401)
         Me.cboVType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboVType.Name = "cboVType"
         Me.cboVType.Properties.AllowMouseWheel = False
@@ -779,6 +779,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.cboCUS.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCUS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCUS.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Όνομα", 91, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CouID", "Cou ID", 73, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AreaID", "Area ID", 79, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AdrID", "Adr ID", 70, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SourceID", "Source ID", 99, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SalerID", "Saler ID", 83, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("DoyID", "Doy ID", 73, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PrfID", "Prf ID", 64, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("phn", "Τηλέφωνο", 48, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("mob", "mob", 52, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("fax", "fax", 40, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 59, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("afm", "afm", 47, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cmt", "cmt", 46, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "name", 62, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("COU_Name", "COU_Name", 110, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SRC_Name", "SRC_Name", 108, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AREAS_Name", "AREAS_Name", 130, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ADR_Name", "ADR_Name", 110, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PRF_Name", "PRF_Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SALERS_Name", "SALERS_Name", 139, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("color", "color", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ar", "Ar", 33, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tk", "tk", 31, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdby_Realname", "createdby_Realname", 191, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("HasFiles", "Has Files", 88, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.cboCUS.Properties.DataSource = Me.VwCCTBindingSource
         Me.cboCUS.Properties.DisplayMember = "Fullname"
         Me.cboCUS.Properties.NullText = ""
         Me.cboCUS.Properties.PopupSizeable = False
@@ -787,11 +788,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.cboCUS.StyleController = Me.LayoutControl1
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'dtOrder
         '
@@ -809,7 +805,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtKFinalHeight
         '
         Me.txtKFinalHeight.EditValue = "0,00 €"
-        Me.txtKFinalHeight.Location = New System.Drawing.Point(856, 323)
+        Me.txtKFinalHeight.Location = New System.Drawing.Point(856, 359)
         Me.txtKFinalHeight.Margin = New System.Windows.Forms.Padding(5)
         Me.txtKFinalHeight.Name = "txtKFinalHeight"
         Me.txtKFinalHeight.Properties.DisplayFormat.FormatString = "n"
@@ -827,7 +823,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtYHeight
         '
         Me.txtYHeight.EditValue = "0,00 €"
-        Me.txtYHeight.Location = New System.Drawing.Point(1476, 365)
+        Me.txtYHeight.Location = New System.Drawing.Point(1476, 401)
         Me.txtYHeight.Margin = New System.Windows.Forms.Padding(5)
         Me.txtYHeight.Name = "txtYHeight"
         Me.txtYHeight.Properties.DisplayFormat.FormatString = "n"
@@ -845,7 +841,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtYFinalHeight
         '
         Me.txtYFinalHeight.EditValue = "0,00 €"
-        Me.txtYFinalHeight.Location = New System.Drawing.Point(1476, 323)
+        Me.txtYFinalHeight.Location = New System.Drawing.Point(1476, 359)
         Me.txtYFinalHeight.Margin = New System.Windows.Forms.Padding(5)
         Me.txtYFinalHeight.Name = "txtYFinalHeight"
         Me.txtYFinalHeight.Properties.DisplayFormat.FormatString = "n"
@@ -863,7 +859,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtTotalErmariaVat
         '
         Me.txtTotalErmariaVat.EditValue = "0,00 €"
-        Me.txtTotalErmariaVat.Location = New System.Drawing.Point(1656, 1069)
+        Me.txtTotalErmariaVat.Location = New System.Drawing.Point(1656, 1105)
         Me.txtTotalErmariaVat.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTotalErmariaVat.Name = "txtTotalErmariaVat"
         Me.txtTotalErmariaVat.Properties.DisplayFormat.FormatString = "c"
@@ -884,7 +880,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtTotalDevicesPrice
         '
         Me.txtTotalDevicesPrice.EditValue = "0,00 €"
-        Me.txtTotalDevicesPrice.Location = New System.Drawing.Point(1656, 1157)
+        Me.txtTotalDevicesPrice.Location = New System.Drawing.Point(1656, 1193)
         Me.txtTotalDevicesPrice.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTotalDevicesPrice.Name = "txtTotalDevicesPrice"
         Me.txtTotalDevicesPrice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
@@ -910,7 +906,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtTotalErmariaPice
         '
         Me.txtTotalErmariaPice.EditValue = "0,00 €"
-        Me.txtTotalErmariaPice.Location = New System.Drawing.Point(1656, 1111)
+        Me.txtTotalErmariaPice.Location = New System.Drawing.Point(1656, 1147)
         Me.txtTotalErmariaPice.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTotalErmariaPice.Name = "txtTotalErmariaPice"
         Me.txtTotalErmariaPice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
@@ -957,10 +953,15 @@ Partial Class frmCUSOfferOrderKitchen
         Me.VwSALERSBindingSource.DataMember = "vw_SALERS"
         Me.VwSALERSBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'cboVBOXColors
         '
         Me.cboVBOXColors.EditValue = ""
-        Me.cboVBOXColors.Location = New System.Drawing.Point(236, 449)
+        Me.cboVBOXColors.Location = New System.Drawing.Point(236, 485)
         Me.cboVBOXColors.Margin = New System.Windows.Forms.Padding(5)
         Me.cboVBOXColors.Name = "cboVBOXColors"
         Me.cboVBOXColors.Properties.AllowMouseWheel = False
@@ -980,7 +981,7 @@ Partial Class frmCUSOfferOrderKitchen
         'cboKBOXColors
         '
         Me.cboKBOXColors.EditValue = ""
-        Me.cboKBOXColors.Location = New System.Drawing.Point(856, 407)
+        Me.cboKBOXColors.Location = New System.Drawing.Point(856, 443)
         Me.cboKBOXColors.Margin = New System.Windows.Forms.Padding(5)
         Me.cboKBOXColors.Name = "cboKBOXColors"
         Me.cboKBOXColors.Properties.AllowMouseWheel = False
@@ -1000,7 +1001,7 @@ Partial Class frmCUSOfferOrderKitchen
         'cboYBOXColors
         '
         Me.cboYBOXColors.EditValue = ""
-        Me.cboYBOXColors.Location = New System.Drawing.Point(1476, 407)
+        Me.cboYBOXColors.Location = New System.Drawing.Point(1476, 443)
         Me.cboYBOXColors.Margin = New System.Windows.Forms.Padding(5)
         Me.cboYBOXColors.Name = "cboYBOXColors"
         Me.cboYBOXColors.Properties.AllowMouseWheel = False
@@ -1020,7 +1021,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtKHeight2
         '
         Me.txtKHeight2.EditValue = "0,00 €"
-        Me.txtKHeight2.Location = New System.Drawing.Point(1045, 365)
+        Me.txtKHeight2.Location = New System.Drawing.Point(1045, 401)
         Me.txtKHeight2.Margin = New System.Windows.Forms.Padding(5)
         Me.txtKHeight2.Name = "txtKHeight2"
         Me.txtKHeight2.Properties.DisplayFormat.FormatString = "n"
@@ -1038,7 +1039,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtVFinalHeight
         '
         Me.txtVFinalHeight.EditValue = "0,00 €"
-        Me.txtVFinalHeight.Location = New System.Drawing.Point(236, 323)
+        Me.txtVFinalHeight.Location = New System.Drawing.Point(236, 359)
         Me.txtVFinalHeight.Margin = New System.Windows.Forms.Padding(5)
         Me.txtVFinalHeight.Name = "txtVFinalHeight"
         Me.txtVFinalHeight.Properties.DisplayFormat.FormatString = "n"
@@ -1056,7 +1057,7 @@ Partial Class frmCUSOfferOrderKitchen
         'cboGOLAColors
         '
         Me.cboGOLAColors.EditValue = ""
-        Me.cboGOLAColors.Location = New System.Drawing.Point(236, 407)
+        Me.cboGOLAColors.Location = New System.Drawing.Point(236, 443)
         Me.cboGOLAColors.Margin = New System.Windows.Forms.Padding(5)
         Me.cboGOLAColors.Name = "cboGOLAColors"
         Me.cboGOLAColors.Properties.AllowMouseWheel = False
@@ -1079,7 +1080,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboBaza
         '
-        Me.cboBaza.Location = New System.Drawing.Point(236, 659)
+        Me.cboBaza.Location = New System.Drawing.Point(236, 695)
         Me.cboBaza.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBaza.Name = "cboBaza"
         Me.cboBaza.Properties.AllowMouseWheel = False
@@ -1094,7 +1095,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboLegs
         '
-        Me.cboLegs.Location = New System.Drawing.Point(236, 701)
+        Me.cboLegs.Location = New System.Drawing.Point(236, 737)
         Me.cboLegs.Margin = New System.Windows.Forms.Padding(5)
         Me.cboLegs.Name = "cboLegs"
         Me.cboLegs.Properties.AllowMouseWheel = False
@@ -1109,7 +1110,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboVwater
         '
-        Me.cboVwater.Location = New System.Drawing.Point(236, 743)
+        Me.cboVwater.Location = New System.Drawing.Point(236, 779)
         Me.cboVwater.Margin = New System.Windows.Forms.Padding(5)
         Me.cboVwater.Name = "cboVwater"
         Me.cboVwater.Properties.AllowMouseWheel = False
@@ -1125,7 +1126,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtKHeight
         '
         Me.txtKHeight.EditValue = ""
-        Me.txtKHeight.Location = New System.Drawing.Point(856, 365)
+        Me.txtKHeight.Location = New System.Drawing.Point(856, 401)
         Me.txtKHeight.Margin = New System.Windows.Forms.Padding(5)
         Me.txtKHeight.Name = "txtKHeight"
         Me.txtKHeight.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1137,7 +1138,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboKwater
         '
-        Me.cboKwater.Location = New System.Drawing.Point(856, 617)
+        Me.cboKwater.Location = New System.Drawing.Point(856, 653)
         Me.cboKwater.Margin = New System.Windows.Forms.Padding(5)
         Me.cboKwater.Name = "cboKwater"
         Me.cboKwater.Properties.AllowMouseWheel = False
@@ -1152,7 +1153,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboLedProfil
         '
-        Me.cboLedProfil.Location = New System.Drawing.Point(856, 698)
+        Me.cboLedProfil.Location = New System.Drawing.Point(856, 734)
         Me.cboLedProfil.Margin = New System.Windows.Forms.Padding(5)
         Me.cboLedProfil.Name = "cboLedProfil"
         Me.cboLedProfil.Properties.AllowMouseWheel = False
@@ -1167,7 +1168,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboYwater
         '
-        Me.cboYwater.Location = New System.Drawing.Point(1476, 617)
+        Me.cboYwater.Location = New System.Drawing.Point(1476, 653)
         Me.cboYwater.Margin = New System.Windows.Forms.Padding(5)
         Me.cboYwater.Name = "cboYwater"
         Me.cboYwater.Properties.AllowMouseWheel = False
@@ -1197,7 +1198,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtExtraTransp
         '
         Me.txtExtraTransp.EditValue = "0,00 €"
-        Me.txtExtraTransp.Location = New System.Drawing.Point(1230, 1069)
+        Me.txtExtraTransp.Location = New System.Drawing.Point(1230, 1105)
         Me.txtExtraTransp.Margin = New System.Windows.Forms.Padding(5)
         Me.txtExtraTransp.Name = "txtExtraTransp"
         Me.txtExtraTransp.Properties.DisplayFormat.FormatString = "c"
@@ -1218,7 +1219,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtExtraInst
         '
         Me.txtExtraInst.EditValue = "0,00 €"
-        Me.txtExtraInst.Location = New System.Drawing.Point(1230, 1111)
+        Me.txtExtraInst.Location = New System.Drawing.Point(1230, 1147)
         Me.txtExtraInst.Margin = New System.Windows.Forms.Padding(5)
         Me.txtExtraInst.Name = "txtExtraInst"
         Me.txtExtraInst.Properties.DisplayFormat.FormatString = "c"
@@ -1239,7 +1240,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtPartofVat
         '
         Me.txtPartofVat.EditValue = "0,00 €"
-        Me.txtPartofVat.Location = New System.Drawing.Point(1230, 1153)
+        Me.txtPartofVat.Location = New System.Drawing.Point(1230, 1189)
         Me.txtPartofVat.Margin = New System.Windows.Forms.Padding(5)
         Me.txtPartofVat.Name = "txtPartofVat"
         Me.txtPartofVat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
@@ -1264,7 +1265,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtMeasurement
         '
         Me.txtMeasurement.EditValue = "0,00 €"
-        Me.txtMeasurement.Location = New System.Drawing.Point(795, 1069)
+        Me.txtMeasurement.Location = New System.Drawing.Point(795, 1105)
         Me.txtMeasurement.Margin = New System.Windows.Forms.Padding(5)
         Me.txtMeasurement.Name = "txtMeasurement"
         Me.txtMeasurement.Properties.DisplayFormat.FormatString = "c"
@@ -1284,7 +1285,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtRemove
         '
         Me.txtRemove.EditValue = "0,00 €"
-        Me.txtRemove.Location = New System.Drawing.Point(795, 1111)
+        Me.txtRemove.Location = New System.Drawing.Point(795, 1147)
         Me.txtRemove.Margin = New System.Windows.Forms.Padding(5)
         Me.txtRemove.Name = "txtRemove"
         Me.txtRemove.Properties.DisplayFormat.FormatString = "c"
@@ -1303,7 +1304,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboVependisisDoorType
         '
-        Me.cboVependisisDoorType.Location = New System.Drawing.Point(236, 575)
+        Me.cboVependisisDoorType.Location = New System.Drawing.Point(236, 611)
         Me.cboVependisisDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboVependisisDoorType.Name = "cboVependisisDoorType"
         Me.cboVependisisDoorType.Properties.AllowMouseWheel = False
@@ -1324,7 +1325,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboBenchType
         '
-        Me.cboBenchType.Location = New System.Drawing.Point(256, 889)
+        Me.cboBenchType.Location = New System.Drawing.Point(256, 925)
         Me.cboBenchType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBenchType.Name = "cboBenchType"
         Me.cboBenchType.Properties.AllowMouseWheel = False
@@ -1350,7 +1351,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboBack
         '
-        Me.cboBack.Location = New System.Drawing.Point(256, 931)
+        Me.cboBack.Location = New System.Drawing.Point(256, 967)
         Me.cboBack.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBack.Name = "cboBack"
         Me.cboBack.Properties.AllowMouseWheel = False
@@ -1371,7 +1372,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboBenchType2
         '
-        Me.cboBenchType2.Location = New System.Drawing.Point(1145, 889)
+        Me.cboBenchType2.Location = New System.Drawing.Point(1145, 925)
         Me.cboBenchType2.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBenchType2.Name = "cboBenchType2"
         Me.cboBenchType2.Properties.AllowMouseWheel = False
@@ -1392,7 +1393,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboNependisisDoorType
         '
-        Me.cboNependisisDoorType.Location = New System.Drawing.Point(236, 617)
+        Me.cboNependisisDoorType.Location = New System.Drawing.Point(236, 653)
         Me.cboNependisisDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboNependisisDoorType.Name = "cboNependisisDoorType"
         Me.cboNependisisDoorType.Properties.AllowMouseWheel = False
@@ -1413,7 +1414,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboVDoorType
         '
-        Me.cboVDoorType.Location = New System.Drawing.Point(236, 491)
+        Me.cboVDoorType.Location = New System.Drawing.Point(236, 527)
         Me.cboVDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboVDoorType.Name = "cboVDoorType"
         Me.cboVDoorType.Properties.AllowMouseWheel = False
@@ -1434,7 +1435,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboVDoorType1
         '
-        Me.cboVDoorType1.Location = New System.Drawing.Point(236, 533)
+        Me.cboVDoorType1.Location = New System.Drawing.Point(236, 569)
         Me.cboVDoorType1.Margin = New System.Windows.Forms.Padding(5)
         Me.cboVDoorType1.Name = "cboVDoorType1"
         Me.cboVDoorType1.Properties.AllowMouseWheel = False
@@ -1455,7 +1456,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboKDoorType
         '
-        Me.cboKDoorType.Location = New System.Drawing.Point(856, 449)
+        Me.cboKDoorType.Location = New System.Drawing.Point(856, 485)
         Me.cboKDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboKDoorType.Name = "cboKDoorType"
         Me.cboKDoorType.Properties.AllowMouseWheel = False
@@ -1476,7 +1477,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboKDoorType1
         '
-        Me.cboKDoorType1.Location = New System.Drawing.Point(856, 491)
+        Me.cboKDoorType1.Location = New System.Drawing.Point(856, 527)
         Me.cboKDoorType1.Margin = New System.Windows.Forms.Padding(5)
         Me.cboKDoorType1.Name = "cboKDoorType1"
         Me.cboKDoorType1.Properties.AllowMouseWheel = False
@@ -1497,7 +1498,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboYDoorType
         '
-        Me.cboYDoorType.Location = New System.Drawing.Point(1476, 449)
+        Me.cboYDoorType.Location = New System.Drawing.Point(1476, 485)
         Me.cboYDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboYDoorType.Name = "cboYDoorType"
         Me.cboYDoorType.Properties.AllowMouseWheel = False
@@ -1518,7 +1519,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboYDoorType1
         '
-        Me.cboYDoorType1.Location = New System.Drawing.Point(1476, 491)
+        Me.cboYDoorType1.Location = New System.Drawing.Point(1476, 527)
         Me.cboYDoorType1.Margin = New System.Windows.Forms.Padding(5)
         Me.cboYDoorType1.Name = "cboYDoorType1"
         Me.cboYDoorType1.Properties.AllowMouseWheel = False
@@ -1539,7 +1540,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboPependisisDoorType
         '
-        Me.cboPependisisDoorType.Location = New System.Drawing.Point(1476, 533)
+        Me.cboPependisisDoorType.Location = New System.Drawing.Point(1476, 569)
         Me.cboPependisisDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboPependisisDoorType.Name = "cboPependisisDoorType"
         Me.cboPependisisDoorType.Properties.AllowMouseWheel = False
@@ -1560,7 +1561,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboKependisisDoorType
         '
-        Me.cboKependisisDoorType.Location = New System.Drawing.Point(856, 533)
+        Me.cboKependisisDoorType.Location = New System.Drawing.Point(856, 569)
         Me.cboKependisisDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboKependisisDoorType.Name = "cboKependisisDoorType"
         Me.cboKependisisDoorType.Properties.AllowMouseWheel = False
@@ -1581,7 +1582,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboSndEpendisisDoorType
         '
-        Me.cboSndEpendisisDoorType.Location = New System.Drawing.Point(856, 575)
+        Me.cboSndEpendisisDoorType.Location = New System.Drawing.Point(856, 611)
         Me.cboSndEpendisisDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboSndEpendisisDoorType.Name = "cboSndEpendisisDoorType"
         Me.cboSndEpendisisDoorType.Properties.AllowMouseWheel = False
@@ -1602,7 +1603,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboVRafieraDoorType
         '
-        Me.cboVRafieraDoorType.Location = New System.Drawing.Point(236, 785)
+        Me.cboVRafieraDoorType.Location = New System.Drawing.Point(236, 821)
         Me.cboVRafieraDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboVRafieraDoorType.Name = "cboVRafieraDoorType"
         Me.cboVRafieraDoorType.Properties.AllowMouseWheel = False
@@ -1623,7 +1624,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboKRafieraDoorType
         '
-        Me.cboKRafieraDoorType.Location = New System.Drawing.Point(856, 740)
+        Me.cboKRafieraDoorType.Location = New System.Drawing.Point(856, 776)
         Me.cboKRafieraDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboKRafieraDoorType.Name = "cboKRafieraDoorType"
         Me.cboKRafieraDoorType.Properties.AllowMouseWheel = False
@@ -1644,7 +1645,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboYRafieraDoorType
         '
-        Me.cboYRafieraDoorType.Location = New System.Drawing.Point(1476, 659)
+        Me.cboYRafieraDoorType.Location = New System.Drawing.Point(1476, 695)
         Me.cboYRafieraDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboYRafieraDoorType.Name = "cboYRafieraDoorType"
         Me.cboYRafieraDoorType.Properties.AllowMouseWheel = False
@@ -1665,7 +1666,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboKWallRafiaDoorType
         '
-        Me.cboKWallRafiaDoorType.Location = New System.Drawing.Point(856, 782)
+        Me.cboKWallRafiaDoorType.Location = New System.Drawing.Point(856, 818)
         Me.cboKWallRafiaDoorType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboKWallRafiaDoorType.Name = "cboKWallRafiaDoorType"
         Me.cboKWallRafiaDoorType.Properties.AllowMouseWheel = False
@@ -1704,7 +1705,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtTransp
         '
         Me.txtTransp.EditValue = "0,00 €"
-        Me.txtTransp.Location = New System.Drawing.Point(795, 1153)
+        Me.txtTransp.Location = New System.Drawing.Point(795, 1189)
         Me.txtTransp.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTransp.Name = "txtTransp"
         Me.txtTransp.Properties.DisplayFormat.FormatString = "c"
@@ -1756,7 +1757,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboLegs1
         '
-        Me.cboLegs1.Location = New System.Drawing.Point(1476, 701)
+        Me.cboLegs1.Location = New System.Drawing.Point(1476, 737)
         Me.cboLegs1.Margin = New System.Windows.Forms.Padding(5)
         Me.cboLegs1.Name = "cboLegs1"
         Me.cboLegs1.Properties.AllowMouseWheel = False
@@ -1771,7 +1772,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cboBenchType1
         '
-        Me.cboBenchType1.Location = New System.Drawing.Point(1146, 931)
+        Me.cboBenchType1.Location = New System.Drawing.Point(1146, 967)
         Me.cboBenchType1.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBenchType1.Name = "cboBenchType1"
         Me.cboBenchType1.Properties.AllowMouseWheel = False
@@ -1792,7 +1793,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cbobenchThickness
         '
-        Me.cbobenchThickness.Location = New System.Drawing.Point(781, 889)
+        Me.cbobenchThickness.Location = New System.Drawing.Point(781, 925)
         Me.cbobenchThickness.Margin = New System.Windows.Forms.Padding(5)
         Me.cbobenchThickness.Name = "cbobenchThickness"
         Me.cbobenchThickness.Properties.AllowMouseWheel = False
@@ -1807,7 +1808,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cbobenchThickness1
         '
-        Me.cbobenchThickness1.Location = New System.Drawing.Point(1731, 889)
+        Me.cbobenchThickness1.Location = New System.Drawing.Point(1731, 925)
         Me.cbobenchThickness1.Margin = New System.Windows.Forms.Padding(5)
         Me.cbobenchThickness1.Name = "cbobenchThickness1"
         Me.cbobenchThickness1.Properties.AllowMouseWheel = False
@@ -1822,7 +1823,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cbobenchThickness2
         '
-        Me.cbobenchThickness2.Location = New System.Drawing.Point(782, 931)
+        Me.cbobenchThickness2.Location = New System.Drawing.Point(782, 967)
         Me.cbobenchThickness2.Margin = New System.Windows.Forms.Padding(5)
         Me.cbobenchThickness2.Name = "cbobenchThickness2"
         Me.cbobenchThickness2.Properties.AllowMouseWheel = False
@@ -1837,7 +1838,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'cbobenchThickness3
         '
-        Me.cbobenchThickness3.Location = New System.Drawing.Point(1731, 931)
+        Me.cbobenchThickness3.Location = New System.Drawing.Point(1731, 967)
         Me.cbobenchThickness3.Margin = New System.Windows.Forms.Padding(5)
         Me.cbobenchThickness3.Name = "cbobenchThickness3"
         Me.cbobenchThickness3.Properties.AllowMouseWheel = False
@@ -1855,14 +1856,14 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtNotes.Location = New System.Drawing.Point(230, 187)
         Me.txtNotes.Margin = New System.Windows.Forms.Padding(5)
         Me.txtNotes.Name = "txtNotes"
-        Me.txtNotes.Size = New System.Drawing.Size(1630, 70)
+        Me.txtNotes.Size = New System.Drawing.Size(1630, 106)
         Me.txtNotes.StyleController = Me.LayoutControl1
         Me.txtNotes.TabIndex = 17
         Me.txtNotes.Tag = "notes,0,1,2"
         '
         'txtTK14
         '
-        Me.txtTK14.Location = New System.Drawing.Point(333, 1115)
+        Me.txtTK14.Location = New System.Drawing.Point(333, 1151)
         Me.txtTK14.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTK14.Name = "txtTK14"
         Me.txtTK14.Properties.UseReadOnlyAppearance = False
@@ -1873,7 +1874,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'txtCou11
         '
-        Me.txtCou11.Location = New System.Drawing.Point(331, 1071)
+        Me.txtCou11.Location = New System.Drawing.Point(331, 1107)
         Me.txtCou11.Margin = New System.Windows.Forms.Padding(5)
         Me.txtCou11.Name = "txtCou11"
         Me.txtCou11.Properties.UseReadOnlyAppearance = False
@@ -1884,7 +1885,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'txtTK111
         '
-        Me.txtTK111.Location = New System.Drawing.Point(333, 1157)
+        Me.txtTK111.Location = New System.Drawing.Point(333, 1193)
         Me.txtTK111.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTK111.Name = "txtTK111"
         Me.txtTK111.Properties.UseReadOnlyAppearance = False
@@ -1895,7 +1896,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'txtTK121
         '
-        Me.txtTK121.Location = New System.Drawing.Point(333, 1199)
+        Me.txtTK121.Location = New System.Drawing.Point(333, 1235)
         Me.txtTK121.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTK121.Name = "txtTK121"
         Me.txtTK121.Properties.UseReadOnlyAppearance = False
@@ -1907,7 +1908,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtInitialPrice1
         '
         Me.txtInitialPrice1.EditValue = "0,00 €"
-        Me.txtInitialPrice1.Location = New System.Drawing.Point(783, 1069)
+        Me.txtInitialPrice1.Location = New System.Drawing.Point(783, 1105)
         Me.txtInitialPrice1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInitialPrice1.Name = "txtInitialPrice1"
         Me.txtInitialPrice1.Properties.DisplayFormat.FormatString = "c"
@@ -1928,7 +1929,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtInitialPrice2
         '
         Me.txtInitialPrice2.EditValue = "0,00 €"
-        Me.txtInitialPrice2.Location = New System.Drawing.Point(783, 1115)
+        Me.txtInitialPrice2.Location = New System.Drawing.Point(783, 1151)
         Me.txtInitialPrice2.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInitialPrice2.Name = "txtInitialPrice2"
         Me.txtInitialPrice2.Properties.DisplayFormat.FormatString = "c"
@@ -1949,7 +1950,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtInitialPrice3
         '
         Me.txtInitialPrice3.EditValue = "0,00 €"
-        Me.txtInitialPrice3.Location = New System.Drawing.Point(783, 1157)
+        Me.txtInitialPrice3.Location = New System.Drawing.Point(783, 1193)
         Me.txtInitialPrice3.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInitialPrice3.Name = "txtInitialPrice3"
         Me.txtInitialPrice3.Properties.DisplayFormat.FormatString = "c"
@@ -1970,7 +1971,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtInitialPrice4
         '
         Me.txtInitialPrice4.EditValue = "0,00 €"
-        Me.txtInitialPrice4.Location = New System.Drawing.Point(783, 1199)
+        Me.txtInitialPrice4.Location = New System.Drawing.Point(783, 1235)
         Me.txtInitialPrice4.Margin = New System.Windows.Forms.Padding(5)
         Me.txtInitialPrice4.Name = "txtInitialPrice4"
         Me.txtInitialPrice4.Properties.DisplayFormat.FormatString = "c"
@@ -1991,7 +1992,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDisc1
         '
         Me.txtDisc1.EditValue = "0%"
-        Me.txtDisc1.Location = New System.Drawing.Point(1060, 1069)
+        Me.txtDisc1.Location = New System.Drawing.Point(1060, 1105)
         Me.txtDisc1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDisc1.Name = "txtDisc1"
         Me.txtDisc1.Properties.DisplayFormat.FormatString = "c"
@@ -2013,7 +2014,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDisc2
         '
         Me.txtDisc2.EditValue = "0%"
-        Me.txtDisc2.Location = New System.Drawing.Point(1060, 1115)
+        Me.txtDisc2.Location = New System.Drawing.Point(1060, 1151)
         Me.txtDisc2.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDisc2.Name = "txtDisc2"
         Me.txtDisc2.Properties.DisplayFormat.FormatString = "c"
@@ -2035,7 +2036,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDisc3
         '
         Me.txtDisc3.EditValue = "0%"
-        Me.txtDisc3.Location = New System.Drawing.Point(1060, 1157)
+        Me.txtDisc3.Location = New System.Drawing.Point(1060, 1193)
         Me.txtDisc3.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDisc3.Name = "txtDisc3"
         Me.txtDisc3.Properties.DisplayFormat.FormatString = "c"
@@ -2057,7 +2058,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDisc4
         '
         Me.txtDisc4.EditValue = "0%"
-        Me.txtDisc4.Location = New System.Drawing.Point(1060, 1199)
+        Me.txtDisc4.Location = New System.Drawing.Point(1060, 1235)
         Me.txtDisc4.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDisc4.Name = "txtDisc4"
         Me.txtDisc4.Properties.DisplayFormat.FormatString = "c"
@@ -2079,7 +2080,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDiscount1
         '
         Me.txtDiscount1.EditValue = "0,00 €"
-        Me.txtDiscount1.Location = New System.Drawing.Point(1305, 1069)
+        Me.txtDiscount1.Location = New System.Drawing.Point(1305, 1105)
         Me.txtDiscount1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDiscount1.Name = "txtDiscount1"
         Me.txtDiscount1.Properties.DisplayFormat.FormatString = "c"
@@ -2101,7 +2102,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDiscount2
         '
         Me.txtDiscount2.EditValue = "0,00 €"
-        Me.txtDiscount2.Location = New System.Drawing.Point(1305, 1115)
+        Me.txtDiscount2.Location = New System.Drawing.Point(1305, 1151)
         Me.txtDiscount2.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDiscount2.Name = "txtDiscount2"
         Me.txtDiscount2.Properties.DisplayFormat.FormatString = "c"
@@ -2123,7 +2124,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDiscount3
         '
         Me.txtDiscount3.EditValue = "0,00 €"
-        Me.txtDiscount3.Location = New System.Drawing.Point(1305, 1157)
+        Me.txtDiscount3.Location = New System.Drawing.Point(1305, 1193)
         Me.txtDiscount3.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDiscount3.Name = "txtDiscount3"
         Me.txtDiscount3.Properties.DisplayFormat.FormatString = "c"
@@ -2145,7 +2146,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDiscount4
         '
         Me.txtDiscount4.EditValue = "0,00 €"
-        Me.txtDiscount4.Location = New System.Drawing.Point(1305, 1199)
+        Me.txtDiscount4.Location = New System.Drawing.Point(1305, 1235)
         Me.txtDiscount4.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDiscount4.Name = "txtDiscount4"
         Me.txtDiscount4.Properties.DisplayFormat.FormatString = "c"
@@ -2167,7 +2168,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtFinalPrice1
         '
         Me.txtFinalPrice1.EditValue = "0,00 €"
-        Me.txtFinalPrice1.Location = New System.Drawing.Point(1614, 1069)
+        Me.txtFinalPrice1.Location = New System.Drawing.Point(1614, 1105)
         Me.txtFinalPrice1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFinalPrice1.Name = "txtFinalPrice1"
         Me.txtFinalPrice1.Properties.DisplayFormat.FormatString = "c"
@@ -2189,7 +2190,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtFinalPrice2
         '
         Me.txtFinalPrice2.EditValue = "0,00 €"
-        Me.txtFinalPrice2.Location = New System.Drawing.Point(1614, 1115)
+        Me.txtFinalPrice2.Location = New System.Drawing.Point(1614, 1151)
         Me.txtFinalPrice2.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFinalPrice2.Name = "txtFinalPrice2"
         Me.txtFinalPrice2.Properties.DisplayFormat.FormatString = "c"
@@ -2211,7 +2212,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtFinalPrice3
         '
         Me.txtFinalPrice3.EditValue = "0,00 €"
-        Me.txtFinalPrice3.Location = New System.Drawing.Point(1614, 1157)
+        Me.txtFinalPrice3.Location = New System.Drawing.Point(1614, 1193)
         Me.txtFinalPrice3.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFinalPrice3.Name = "txtFinalPrice3"
         Me.txtFinalPrice3.Properties.DisplayFormat.FormatString = "c"
@@ -2233,7 +2234,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtFinalPrice4
         '
         Me.txtFinalPrice4.EditValue = "0,00 €"
-        Me.txtFinalPrice4.Location = New System.Drawing.Point(1614, 1199)
+        Me.txtFinalPrice4.Location = New System.Drawing.Point(1614, 1235)
         Me.txtFinalPrice4.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFinalPrice4.Name = "txtFinalPrice4"
         Me.txtFinalPrice4.Properties.DisplayFormat.FormatString = "c"
@@ -2255,7 +2256,7 @@ Partial Class frmCUSOfferOrderKitchen
         'cmdConvertToOrder
         '
         Me.cmdConvertToOrder.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.ConvertToOrder24
-        Me.cmdConvertToOrder.Location = New System.Drawing.Point(1272, 1267)
+        Me.cmdConvertToOrder.Location = New System.Drawing.Point(1272, 1303)
         Me.cmdConvertToOrder.Name = "cmdConvertToOrder"
         Me.cmdConvertToOrder.Size = New System.Drawing.Size(265, 39)
         Me.cmdConvertToOrder.StyleController = Me.LayoutControl1
@@ -2269,7 +2270,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup1, Me.LayoutControlItem2, Me.LayoutControlItem26, Me.LayoutControlItem27, Me.EmptySpaceItem3, Me.LayoutControlItem32, Me.LayoutControlGroup3, Me.LayoutControlGroup5, Me.LayoutControlGroup6, Me.LayoutControlGroup7, Me.LayoutControlGroup2, Me.LayoutControlItem85, Me.LayoutControlItem86})
         Me.Root.Name = "Root"
         Me.Root.OptionsItemText.TextToControlDistance = 1
-        Me.Root.Size = New System.Drawing.Size(1885, 1318)
+        Me.Root.Size = New System.Drawing.Size(1885, 1354)
         Me.Root.TextVisible = False
         '
         'LayoutControlGroup1
@@ -2280,7 +2281,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.OptionsItemText.TextToControlDistance = 1
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1865, 262)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1865, 298)
         Me.LayoutControlGroup1.Text = "Στοιχεία Παραγγελίας"
         '
         'LayoutControlItem30
@@ -2406,8 +2407,11 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem18.CustomizationFormText = "Σχόλια Προσφοράς"
         Me.LayoutControlItem18.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem18.Location = New System.Drawing.Point(0, 126)
+        Me.LayoutControlItem18.MaxSize = New System.Drawing.Size(0, 110)
+        Me.LayoutControlItem18.MinSize = New System.Drawing.Size(226, 110)
         Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(1839, 74)
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(1839, 110)
+        Me.LayoutControlItem18.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
         Me.LayoutControlItem18.Text = "Σχόλια Προσφοράς"
         Me.LayoutControlItem18.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem18.TextSize = New System.Drawing.Size(200, 23)
@@ -2416,7 +2420,7 @@ Partial Class frmCUSOfferOrderKitchen
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.cmdPrintOffer
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 1255)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 1291)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
         Me.LayoutControlItem2.Size = New System.Drawing.Size(104, 43)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
@@ -2425,7 +2429,7 @@ Partial Class frmCUSOfferOrderKitchen
         'LayoutControlItem26
         '
         Me.LayoutControlItem26.Control = Me.cmdSave
-        Me.LayoutControlItem26.Location = New System.Drawing.Point(1529, 1255)
+        Me.LayoutControlItem26.Location = New System.Drawing.Point(1529, 1291)
         Me.LayoutControlItem26.Name = "LayoutControlItem26"
         Me.LayoutControlItem26.Size = New System.Drawing.Size(184, 43)
         Me.LayoutControlItem26.TextSize = New System.Drawing.Size(0, 0)
@@ -2434,7 +2438,7 @@ Partial Class frmCUSOfferOrderKitchen
         'LayoutControlItem27
         '
         Me.LayoutControlItem27.Control = Me.cmdExit
-        Me.LayoutControlItem27.Location = New System.Drawing.Point(1713, 1255)
+        Me.LayoutControlItem27.Location = New System.Drawing.Point(1713, 1291)
         Me.LayoutControlItem27.Name = "LayoutControlItem27"
         Me.LayoutControlItem27.Size = New System.Drawing.Size(152, 43)
         Me.LayoutControlItem27.TextSize = New System.Drawing.Size(0, 0)
@@ -2443,7 +2447,7 @@ Partial Class frmCUSOfferOrderKitchen
         'EmptySpaceItem3
         '
         Me.EmptySpaceItem3.AllowHotTrack = False
-        Me.EmptySpaceItem3.Location = New System.Drawing.Point(532, 1255)
+        Me.EmptySpaceItem3.Location = New System.Drawing.Point(532, 1291)
         Me.EmptySpaceItem3.Name = "EmptySpaceItem3"
         Me.EmptySpaceItem3.Size = New System.Drawing.Size(728, 43)
         Me.EmptySpaceItem3.TextSize = New System.Drawing.Size(0, 0)
@@ -2451,7 +2455,7 @@ Partial Class frmCUSOfferOrderKitchen
         'LayoutControlItem32
         '
         Me.LayoutControlItem32.Control = Me.chkVatVisible
-        Me.LayoutControlItem32.Location = New System.Drawing.Point(104, 1255)
+        Me.LayoutControlItem32.Location = New System.Drawing.Point(104, 1291)
         Me.LayoutControlItem32.Name = "LayoutControlItem32"
         Me.LayoutControlItem32.Size = New System.Drawing.Size(311, 43)
         Me.LayoutControlItem32.TextSize = New System.Drawing.Size(0, 0)
@@ -2462,7 +2466,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlGroup3.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success
         Me.LayoutControlGroup3.AppearanceGroup.Options.UseBorderColor = True
         Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem21, Me.LayoutControlItem49, Me.LayoutControlItem51, Me.LayoutControlItem53, Me.LayoutControlItem54, Me.LayoutControlItem52, Me.LayoutControlItem24, Me.LayoutControlItem6, Me.LayoutControlItem73, Me.LayoutControlItem15, Me.LayoutControlItem33, Me.LayoutControlItem58})
-        Me.LayoutControlGroup3.Location = New System.Drawing.Point(0, 262)
+        Me.LayoutControlGroup3.Location = New System.Drawing.Point(0, 298)
         Me.LayoutControlGroup3.Name = "LayoutControlGroup3"
         Me.LayoutControlGroup3.Size = New System.Drawing.Size(620, 566)
         Me.LayoutControlGroup3.Text = "Βάσεως"
@@ -2636,7 +2640,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlGroup5.AppearanceGroup.Options.UseBorderColor = True
         Me.LayoutControlGroup5.CustomizationFormText = "Βάσεως"
         Me.LayoutControlGroup5.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem5, Me.LayoutControlItem11, Me.LayoutControlItem50, Me.LayoutControlItem57, Me.LayoutControlItem59, Me.LayoutControlItem23, Me.LayoutControlItem61, Me.LayoutControlItem45, Me.LayoutControlItem74, Me.LayoutControlItem56, Me.LayoutControlItem20, Me.LayoutControlItem65, Me.LayoutControlItem70})
-        Me.LayoutControlGroup5.Location = New System.Drawing.Point(620, 262)
+        Me.LayoutControlGroup5.Location = New System.Drawing.Point(620, 298)
         Me.LayoutControlGroup5.Name = "LayoutControlGroup5"
         Me.LayoutControlGroup5.OptionsItemText.TextToControlDistance = 3
         Me.LayoutControlGroup5.Size = New System.Drawing.Size(620, 566)
@@ -2833,7 +2837,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlGroup6.AppearanceGroup.Options.UseBorderColor = True
         Me.LayoutControlGroup6.CustomizationFormText = "Υψηλά"
         Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem10, Me.LayoutControlItem14, Me.LayoutControlItem16, Me.LayoutControlItem64, Me.LayoutControlItem36, Me.LayoutControlItem48, Me.LayoutControlItem41, Me.LayoutControlItem69, Me.LayoutControlItem4, Me.LayoutControlItem88})
-        Me.LayoutControlGroup6.Location = New System.Drawing.Point(1240, 262)
+        Me.LayoutControlGroup6.Location = New System.Drawing.Point(1240, 298)
         Me.LayoutControlGroup6.Name = "LayoutControlGroup6"
         Me.LayoutControlGroup6.OptionsItemText.TextToControlDistance = 3
         Me.LayoutControlGroup6.Size = New System.Drawing.Size(625, 566)
@@ -2983,7 +2987,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlGroup7.AppearanceGroup.Options.UseBorderColor = True
         Me.LayoutControlGroup7.CustomizationFormText = "Πάγκοι"
         Me.LayoutControlGroup7.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem66, Me.LayoutControlItem68, Me.LayoutControlItem12, Me.LayoutControlItem67, Me.LayoutControlItem13, Me.LayoutControlItem7, Me.LayoutControlItem17, Me.LayoutControlItem8})
-        Me.LayoutControlGroup7.Location = New System.Drawing.Point(0, 828)
+        Me.LayoutControlGroup7.Location = New System.Drawing.Point(0, 864)
         Me.LayoutControlGroup7.Name = "LayoutControlGroup7"
         Me.LayoutControlGroup7.OptionsItemText.TextToControlDistance = 3
         Me.LayoutControlGroup7.Size = New System.Drawing.Size(1865, 146)
@@ -3114,7 +3118,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlGroup2.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success
         Me.LayoutControlGroup2.AppearanceGroup.Options.UseBorderColor = True
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.TabbedControlGroup1})
-        Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 974)
+        Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 1010)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(1865, 281)
         Me.LayoutControlGroup2.Text = "Κοστολόγιο"
@@ -3536,7 +3540,7 @@ Partial Class frmCUSOfferOrderKitchen
         'LayoutControlItem85
         '
         Me.LayoutControlItem85.Control = Me.cmdConvertToOrder
-        Me.LayoutControlItem85.Location = New System.Drawing.Point(1260, 1255)
+        Me.LayoutControlItem85.Location = New System.Drawing.Point(1260, 1291)
         Me.LayoutControlItem85.Name = "LayoutControlItem85"
         Me.LayoutControlItem85.Size = New System.Drawing.Size(269, 43)
         Me.LayoutControlItem85.Text = "LSave"
@@ -3546,7 +3550,7 @@ Partial Class frmCUSOfferOrderKitchen
         'LayoutControlItem86
         '
         Me.LayoutControlItem86.Control = Me.LabelControl1
-        Me.LayoutControlItem86.Location = New System.Drawing.Point(415, 1255)
+        Me.LayoutControlItem86.Location = New System.Drawing.Point(415, 1291)
         Me.LayoutControlItem86.Name = "LayoutControlItem86"
         Me.LayoutControlItem86.Size = New System.Drawing.Size(117, 43)
         Me.LayoutControlItem86.TextSize = New System.Drawing.Size(0, 0)
@@ -3556,6 +3560,11 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
         Me.CCTTRANSHBindingSource.DataSource = Me.DM_TRANS
+        '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'VwBENCHBindingSource
         '
@@ -3575,9 +3584,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.TabPane1.Location = New System.Drawing.Point(0, 0)
         Me.TabPane1.Name = "TabPane1"
         Me.TabPane1.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.TabNavigationPage1, Me.TabNavigationPage2})
-        Me.TabPane1.RegularSize = New System.Drawing.Size(1885, 1376)
+        Me.TabPane1.RegularSize = New System.Drawing.Size(1885, 1412)
         Me.TabPane1.SelectedPage = Me.TabNavigationPage1
-        Me.TabPane1.Size = New System.Drawing.Size(1885, 1376)
+        Me.TabPane1.Size = New System.Drawing.Size(1885, 1412)
         Me.TabPane1.TabIndex = 60
         '
         'TabNavigationPage1
@@ -3586,7 +3595,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.TabNavigationPage1.Controls.Add(Me.LayoutControl1)
         Me.TabNavigationPage1.Name = "TabNavigationPage1"
         Me.TabNavigationPage1.PageText = "ΕΡΜΑΡΙΑ"
-        Me.TabNavigationPage1.Size = New System.Drawing.Size(1885, 1318)
+        Me.TabNavigationPage1.Size = New System.Drawing.Size(1885, 1354)
         '
         'TabNavigationPage2
         '
@@ -3974,11 +3983,6 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.Vw_DOOR_TYPE_BENCH_V2TableAdapter.ClearBeforeFill = True
         '
-        'DM_TRANS
-        '
-        Me.DM_TRANS.DataSetName = "DM_TRANS"
-        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'CCT_TRANSHTableAdapter
         '
         Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
@@ -3988,7 +3992,8 @@ Partial Class frmCUSOfferOrderKitchen
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.AutoSize = True
-        Me.ClientSize = New System.Drawing.Size(1885, 1376)
+        Me.CancelButton = Me.cmdExit
+        Me.ClientSize = New System.Drawing.Size(1885, 1412)
         Me.Controls.Add(Me.TabPane1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Name = "frmCUSOfferOrderKitchen"
@@ -4004,7 +4009,6 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.cboVType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtOrder.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtOrder.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKFinalHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4015,6 +4019,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.txtTotalErmariaPice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboKBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboYBOXColors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4187,6 +4192,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem85, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem86, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwBENCHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4207,7 +4213,6 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

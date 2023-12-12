@@ -169,6 +169,7 @@ Partial Class frmCalendar
         '
         '
         Me.SchedulerDataStorage1.Appointments.CustomFieldMappings.Add(New DevExpress.XtraScheduler.AppointmentCustomFieldMapping("SALERSName", "SALERS_Name"))
+        Me.SchedulerDataStorage1.EnableReminders = False
         '
         '
         '
@@ -860,6 +861,7 @@ Partial Class frmCalendar
         '
         Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
         Me.TableAdapterManager.Connection = Nothing
+        Me.TableAdapterManager.MAILSTableAdapter = Nothing
         Me.TableAdapterManager.UpdateOrder = DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
         '
         'frmCalendar

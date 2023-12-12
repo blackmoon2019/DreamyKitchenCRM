@@ -74,6 +74,8 @@ Public Class frmMain
                 XtraTabbedMdiManager1.ActiveFloatForm.Width = 520 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 136
             Case "frmCalendar"
                 XtraTabbedMdiManager1.SelectedPage.ShowCloseButton = DefaultBoolean.False
+            Case "frmCUSOfferOrderKitchen"
+                XtraTabbedMdiManager1.ActiveFloatForm.Width = 1133 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 770
         End Select
     End Sub
 
