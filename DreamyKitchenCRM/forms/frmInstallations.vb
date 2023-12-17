@@ -73,7 +73,7 @@ Public Class frmInstallations
     Private Sub frmInstallations_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_TRANSH' table. You can move, or remove it, as needed.
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine(" Select C.id,C.Fullname,'00000000-0000-0000-0000-000000000000' as SalerID,phn,AdrID,email " &
+        sSQL.AppendLine(" Select C.id,C.Fullname,'00000000-0000-0000-0000-000000000000' as SalerID,phn,C.AdrID,email " &
                             "from vw_CCT C " &
                             "inner join vw_TRANSH T On C.ID = T.cusID  " &
                             "where completed=0 " &

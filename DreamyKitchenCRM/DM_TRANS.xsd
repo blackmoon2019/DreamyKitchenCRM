@@ -175,7 +175,8 @@ SELECT ID, code, transhID, filename, comefrom, extension, modifiedBy, modifiedOn
               <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenDEV.dbo.vw_TRANSH" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription, AreaId, adrid, couid
+                    <CommandText>SELECT ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurchasePrice, 
+           benchProfit, dtAgreement, offerCusAcceptance, waitingForAgreement
 FROM   vw_TRANSH
 WHERE (cusID = @cusID)</CommandText>
                     <Parameters>
@@ -216,6 +217,12 @@ WHERE (cusID = @cusID)</CommandText>
               <Mapping SourceColumn="AreaId" DataSetColumn="AreaId" />
               <Mapping SourceColumn="adrid" DataSetColumn="adrid" />
               <Mapping SourceColumn="couid" DataSetColumn="couid" />
+              <Mapping SourceColumn="benchSalesPrice" DataSetColumn="benchSalesPrice" />
+              <Mapping SourceColumn="benchPurchasePrice" DataSetColumn="benchPurchasePrice" />
+              <Mapping SourceColumn="benchProfit" DataSetColumn="benchProfit" />
+              <Mapping SourceColumn="dtAgreement" DataSetColumn="dtAgreement" />
+              <Mapping SourceColumn="offerCusAcceptance" DataSetColumn="offerCusAcceptance" />
+              <Mapping SourceColumn="waitingForAgreement" DataSetColumn="waitingForAgreement" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -485,9 +492,15 @@ FROM   vw_PAYTYPES</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="AreaId" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="AreaId" msprop:Generator_ColumnPropNameInTable="AreaIdColumn" msprop:Generator_ColumnVarNameInTable="columnAreaId" msprop:Generator_UserColumnName="AreaId" type="xs:string" minOccurs="0" />
-              <xs:element name="adrid" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="adrid" msprop:Generator_ColumnPropNameInTable="adridColumn" msprop:Generator_ColumnVarNameInTable="columnadrid" msprop:Generator_UserColumnName="adrid" type="xs:string" minOccurs="0" />
-              <xs:element name="couid" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="couid" msprop:Generator_ColumnPropNameInTable="couidColumn" msprop:Generator_ColumnVarNameInTable="columncouid" msprop:Generator_UserColumnName="couid" type="xs:string" minOccurs="0" />
+              <xs:element name="AreaId" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="AreaId" msprop:Generator_ColumnPropNameInTable="AreaIdColumn" msprop:Generator_ColumnPropNameInRow="AreaId" msprop:Generator_ColumnVarNameInTable="columnAreaId" type="xs:string" minOccurs="0" />
+              <xs:element name="adrid" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="adrid" msprop:Generator_ColumnPropNameInTable="adridColumn" msprop:Generator_ColumnPropNameInRow="adrid" msprop:Generator_ColumnVarNameInTable="columnadrid" type="xs:string" minOccurs="0" />
+              <xs:element name="couid" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="couid" msprop:Generator_ColumnPropNameInTable="couidColumn" msprop:Generator_ColumnPropNameInRow="couid" msprop:Generator_ColumnVarNameInTable="columncouid" type="xs:string" minOccurs="0" />
+              <xs:element name="benchSalesPrice" msprop:Generator_ColumnPropNameInRow="benchSalesPrice" msprop:Generator_ColumnPropNameInTable="benchSalesPriceColumn" msprop:Generator_ColumnVarNameInTable="columnbenchSalesPrice" msprop:Generator_UserColumnName="benchSalesPrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="benchPurchasePrice" msprop:Generator_ColumnPropNameInRow="benchPurchasePrice" msprop:Generator_ColumnPropNameInTable="benchPurchasePriceColumn" msprop:Generator_ColumnVarNameInTable="columnbenchPurchasePrice" msprop:Generator_UserColumnName="benchPurchasePrice" type="xs:decimal" minOccurs="0" />
+              <xs:element name="benchProfit" msprop:Generator_ColumnPropNameInRow="benchProfit" msprop:Generator_ColumnPropNameInTable="benchProfitColumn" msprop:Generator_ColumnVarNameInTable="columnbenchProfit" msprop:Generator_UserColumnName="benchProfit" type="xs:decimal" minOccurs="0" />
+              <xs:element name="dtAgreement" msprop:Generator_ColumnPropNameInRow="dtAgreement" msprop:Generator_ColumnPropNameInTable="dtAgreementColumn" msprop:Generator_ColumnVarNameInTable="columndtAgreement" msprop:Generator_UserColumnName="dtAgreement" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="offerCusAcceptance" msprop:Generator_ColumnPropNameInRow="offerCusAcceptance" msprop:Generator_ColumnPropNameInTable="offerCusAcceptanceColumn" msprop:Generator_ColumnVarNameInTable="columnofferCusAcceptance" msprop:Generator_UserColumnName="offerCusAcceptance" type="xs:boolean" minOccurs="0" />
+              <xs:element name="waitingForAgreement" msprop:Generator_ColumnPropNameInRow="waitingForAgreement" msprop:Generator_ColumnPropNameInTable="waitingForAgreementColumn" msprop:Generator_ColumnVarNameInTable="columnwaitingForAgreement" msprop:Generator_UserColumnName="waitingForAgreement" type="xs:boolean" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

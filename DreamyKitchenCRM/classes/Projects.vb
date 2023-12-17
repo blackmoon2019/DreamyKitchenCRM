@@ -1,6 +1,9 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports DevExpress.Data.PivotGrid
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraRichEdit.UI
 Imports System.Data.SqlClient
 
 Public Class Projects
@@ -8,12 +11,17 @@ Public Class Projects
     Private DBQ As New DBQueries
     Private Frm As frmTransactions
     Private Frm2 As frmProject
+    Private LoadForms As New FormLoader
     Private ID As String
     Private Mode As Byte
     Private CalledFromCtrl As Boolean
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private FillCbo As New FillCombos
     Private Cls As New ClearControls
+    Private TranshFieldAndValues As Dictionary(Of String, String)
+    Private sEMP_T_ID As String = ""
+    Private sProjectCostID As String
+
 
 
     Public Sub Initialize(ByVal sFrm As frmTransactions, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
@@ -22,6 +30,7 @@ Public Class Projects
         Mode = sMode
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
+        Frm.Vw_PAYTYPESTableAdapter.Fill(Frm.DM_TRANS.vw_PAYTYPES)
         Frm.Vw_TRANSH_CTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSH_C)
         Frm.Vw_SCAN_FILE_NAMESTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SCAN_FILE_NAMES)
         Frm.Vw_INVTYPESTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_INVTYPES)
@@ -47,6 +56,86 @@ Public Class Projects
         FillCbo.SALERS(Frm2.cboSaler)
         'Νομοί
         FillCbo.COU(Frm2.cboCOU)
+    End Sub
+    Public Sub LoadForm()
+        Select Case Mode
+            Case FormMode.NewRecord
+                Frm.dtCharge.EditValue = DateTime.Now : Frm.dtPay.EditValue = DateTime.Now : Frm.LayoutControlGroup2.Enabled = False : Frm.txtCodeH.Text = GetNextID()
+            Case FormMode.EditRecord
+                Dim sSQL As New System.Text.StringBuilder
+                If Frm.cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(Frm.cboCOU.EditValue.ToString))
+                FillCbo.AREAS(Frm.cboAREAS, sSQL)
+
+                TranshFieldAndValues = New Dictionary(Of String, String)
+                LoadForms.LoadFormGRP(Frm.LayoutControlGroup1, "Select * from vw_TRANSH with(nolock) where id ='" + ID + "'",, TranshFieldAndValues)
+                Frm.txtBal.EditValue = TranshFieldAndValues.Item("bal")
+                sEMP_T_ID = TranshFieldAndValues.Item("EmpTID").ToString
+                sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
+                Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
+                Frm.Vw_TRANSDTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSD, System.Guid.Parse(ID))
+                Dim cmd As SqlCommand = New SqlCommand("Select transhCID from TRANSC WHERE transhID = " & toSQLValueS(ID), CNDB)
+                Dim sdr As SqlDataReader = cmd.ExecuteReader()
+                If sdr.HasRows Then
+                    While sdr.Read()
+                        Frm.cboTransC.Properties.GetItems.Item(System.Guid.Parse(sdr("transhCID").ToString)).CheckState = CheckState.Checked
+                    End While
+                End If
+                sdr.Close()
+                Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
+                Frm.dtPay.EditValue = DateTime.Now
+        End Select
+        LoadForms.RestoreLayoutFromXml(Frm.GridView2, "vw_TRANSH_F_def.xml")
+        LoadForms.RestoreLayoutFromXml(Frm.GridView1, "TRANSD.xml")
+        Frm.cmdSaveTransH.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        Frm.cmdSaveTransD.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+
+    End Sub
+    Public Sub LoadSalerTziroi()
+        Dim frmSalerTziroi As New frmSalerTziroi
+        frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
+        frmSalerTziroi.ID = sEMP_T_ID
+        frmSalerTziroi.MdiParent = frmMain
+        frmSalerTziroi.Mode = FormMode.EditRecord
+        frmSalerTziroi.Scroller = Frm.GridView1
+        frmSalerTziroi.FormScroller = Frm
+        frmSalerTziroi.FormScrollerExist = True
+        frmSalerTziroi.CalledFromControl = False
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmSalerTziroi), New Point(CInt(frmSalerTziroi.Parent.ClientRectangle.Width / 2 - frmSalerTziroi.Width / 2), CInt(frmSalerTziroi.Parent.ClientRectangle.Height / 2 - frmSalerTziroi.Height / 2)))
+        frmSalerTziroi.Show()
+
+    End Sub
+    Public Sub LoadProjectCost()
+        Dim frmProjectCost As New frmProjectCost
+        frmProjectCost.Text = "Ανάλυση Έργων"
+        frmProjectCost.ID = sProjectCostID
+        frmProjectCost.MdiParent = frmMain
+        frmProjectCost.Mode = FormMode.EditRecord
+        frmProjectCost.FormScroller = Frm
+        frmProjectCost.CalledFromControl = False
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProjectCost), New Point(CInt(frmProjectCost.Parent.ClientRectangle.Width / 2 - frmProjectCost.Width / 2), CInt(frmProjectCost.Parent.ClientRectangle.Height / 2 - frmProjectCost.Height / 2)))
+        frmProjectCost.Show()
+    End Sub
+    Public Sub LoadInstallations(Optional ByVal Ask As Boolean = False)
+        If Ask Then
+            If sEMP_T_ID = "" Then
+                If XtraMessageBox.Show("Θέλετε να περάσετε εγγραφή στην Μισθοδοσία Τοποθετών?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
+            Else
+                Exit Sub
+            End If
+        End If
+        Dim frmInstallations As New frmInstallations
+        frmInstallations.Text = "Μισθοδοσία Τοποθετών"
+        frmInstallations.MdiParent = frmMain
+        frmInstallations.Mode = FormMode.NewRecord
+        frmInstallations.Scroller = Frm.GridView1
+        frmInstallations.FormScroller = Frm
+        frmInstallations.TRANSH_ID = ID
+        frmInstallations.EMP_T_ID = sEMP_T_ID
+        frmInstallations.CalledFromControl = False
+        frmInstallations.cboSaler.EditValue = Frm.cboSaler.EditValue
+        frmInstallations.cboCUS.EditValue = Frm.cboCUS.EditValue
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstallations), New Point(CInt(frmInstallations.Parent.ClientRectangle.Width / 2 - frmInstallations.Width / 2), CInt(frmInstallations.Parent.ClientRectangle.Height / 2 - frmInstallations.Height / 2)))
+        frmInstallations.Show()
     End Sub
     Public Sub SaveRecordSmallH()
         Dim sResult As Boolean
@@ -84,12 +173,12 @@ Public Class Projects
         Dim sSQL As New System.Text.StringBuilder
 
         Try
-            If Valid.ValidateFormGRP(Frm.LayoutControlGroup1) Then
+            If Valid.ValidateForm(Frm.LayoutControl2) Then
                 ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
                 Select Case Mode
                     Case FormMode.NewRecord
                         ID = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, Frm.LayoutControlGroup1, ID,, "bal", toSQLValueS(Frm.txtBal.EditValue.ToString, True))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm.LayoutControl2,, , ID,, "bal", toSQLValueS(Frm.txtBal.EditValue.ToString, True))
                         ' Εαν πετύχει η καταχώρηση του έργου αλλά όχι των κατηγοριών τότε όλο το έργο διαγράφεται
                         If sResult Then
                             If Not SaveTRANSC() Then
@@ -101,7 +190,7 @@ Public Class Projects
                         End If
 
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSH",,, Frm.LayoutControlGroup1, ID,,,,, "bal=" & toSQLValueS(Frm.txtBal.EditValue.ToString, True))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm.LayoutControl2,,, ID,,,,, "bal=" & toSQLValueS(Frm.txtBal.EditValue.ToString, True))
                         ' Καταχώρηση κατηγοριών 
                         If sResult Then
                             If Not SaveTRANSC() Then
@@ -118,7 +207,7 @@ Public Class Projects
 
                 End Select
 
-                If Frm.txtInvoiceFilename.Text <> "" Then
+                If Frm.txtFiles.Text <> "" Then
                     sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, ID, "TRANSH_F")
                     Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
                 End If
@@ -132,9 +221,9 @@ Public Class Projects
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Frm.LayoutControlGroup2.Enabled = True
                     Mode = FormMode.EditRecord
-                    Frm.txtInvoiceFilename.Text = ""
+                    Frm.txtFiles.Text = ""
                 End If
-                If Frm.txtInvoiceFilename.Text <> "" Then
+                If Frm.txtFiles.Text <> "" Then
                     If sResultF = False Then XtraMessageBox.Show("To Παραστατικό δεν αποθηκέυτηκε.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             End If
@@ -146,11 +235,11 @@ Public Class Projects
         Dim sResult As Boolean
         Dim sGuid As String, sSQL As String
         Try
-            If Valid.ValidateFormGRP(Frm.LayoutControlGroup2) Then
+            If Valid.ValidateForm(Frm.LayoutControl3) Then
                 If PayTypeValidations() = False Then Exit Sub
                 If BalValidation() = False Then Exit Sub
                 sGuid = System.Guid.NewGuid.ToString
-                sResult = DBQ.InsertNewData(DBQueries.InsertMode.GroupLayoutControl, "TRANSD",,, Frm.LayoutControlGroup2, sGuid,, "transhID", toSQLValueS(ID))
+                sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSD", Frm.LayoutControl3,,, sGuid,, "transhID", toSQLValueS(ID))
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Frm.Vw_TRANSDTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSD, System.Guid.Parse(ID))
@@ -162,7 +251,7 @@ Public Class Projects
                     End If
 
                     'Καθαρισμός Controls
-                    Cls.ClearCtrlsGRP(Frm.LayoutControlGroup2)
+                    Cls.ClearCtrls(Frm.LayoutControl3)
                     Frm.dtPay.EditValue = DateTime.Now
                     Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
                 End If
@@ -171,6 +260,60 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Sub UpdateRecordD()
+        Dim cash As Byte, cmt As String, Paid As Byte
+        Try
+            Dim sSQL As String
+            If Not IsDBNull(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash")) Then
+                If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = True Then cash = 1 Else cash = 0
+            End If
+            If Not IsDBNull(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "paid")) Then
+                If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "paid") = True Then Paid = 1 Else Paid = 0
+            End If
+
+            If Not IsDBNull(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cmt")) Then
+                cmt = toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cmt"))
+            Else
+                cmt = "NULL"
+            End If
+
+            sSQL = "UPDATE [TRANSD] SET dtPay  = " & toSQLValueS(CDate(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay")).ToString("yyyyMMdd")) &
+                    ",bankID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "bankID").ToString) &
+                    ",PayTypeID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString) &
+                    ",cash = " & cash &
+                    ",paid = " & Paid &
+                    ",cmt = " & cmt &
+                    ",amt = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "amt"), True) &
+                    " WHERE ID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(Frm.txtBal.EditValue.ToString, True) & " WHERE ID = " & toSQLValueS(ID)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Function GetTransDAmt() As Double
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Try
+            Dim Bal As Double = 0
+            sSQL = "SELECT Bal FROM [TRANSH] WHERE ID =  " & toSQLValueS(ID)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("Bal")) = False Then Bal = sdr.GetDecimal(sdr.GetOrdinal("Bal")) Else Bal = 0
+            End If
+            Return Bal
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return 0
+        End Try
+    End Function
     'Καταχώρηση Εγγραφής στους Τζίρους ποσοστά
     Private Sub SaveEMP_T()
         Try
@@ -250,7 +393,9 @@ Public Class Projects
     End Function
     Private Function BalValidation() As Boolean
         Try
-            If Frm.txtamtD.EditValue > Frm.txtBal.EditValue Then
+            Dim amtD As Double, Bal As Double
+            amtD = Frm.txtamtD.EditValue : Bal = Frm.txtBal.EditValue
+            If amtD > Bal Then
                 XtraMessageBox.Show("Το σύνολο της Πίστωσης δεν μπορεί να ξεπερνάει την Χρέωση. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 Return False
             Else

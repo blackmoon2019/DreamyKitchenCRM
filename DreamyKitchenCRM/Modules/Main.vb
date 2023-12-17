@@ -172,6 +172,7 @@ Module Main
     End Sub
     Public Sub GetFileFromServer(ByVal sFile As String)
         Try
+            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\" & System.IO.Path.GetFileName(sFile)) = False Then Exit Sub
             Dim ServerFile As String = ProgProps.ServerViewsPath & "DSGNS\DEF\" & System.IO.Path.GetFileName(sFile)
             My.Computer.FileSystem.CopyFile(ServerFile, sFile, True)
         Catch ex As Exception

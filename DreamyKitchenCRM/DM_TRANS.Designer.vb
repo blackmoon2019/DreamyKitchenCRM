@@ -1743,6 +1743,18 @@ Partial Public Class DM_TRANS
         
         Private columncouid As Global.System.Data.DataColumn
         
+        Private columnbenchSalesPrice As Global.System.Data.DataColumn
+        
+        Private columnbenchPurchasePrice As Global.System.Data.DataColumn
+        
+        Private columnbenchProfit As Global.System.Data.DataColumn
+        
+        Private columndtAgreement As Global.System.Data.DataColumn
+        
+        Private columnofferCusAcceptance As Global.System.Data.DataColumn
+        
+        Private columnwaitingForAgreement As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -2019,6 +2031,54 @@ Partial Public Class DM_TRANS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property benchSalesPriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnbenchSalesPrice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property benchPurchasePriceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnbenchPurchasePrice
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property benchProfitColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnbenchProfit
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property dtAgreementColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndtAgreement
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property offerCusAcceptanceColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnofferCusAcceptance
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property waitingForAgreementColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnwaitingForAgreement
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2085,9 +2145,15 @@ Partial Public Class DM_TRANS
                     ByVal FullTranshDescription As String,  _
                     ByVal AreaId As System.Guid,  _
                     ByVal adrid As System.Guid,  _
-                    ByVal couid As System.Guid) As vw_TRANSHRow
+                    ByVal couid As System.Guid,  _
+                    ByVal benchSalesPrice As Decimal,  _
+                    ByVal benchPurchasePrice As Decimal,  _
+                    ByVal benchProfit As Decimal,  _
+                    ByVal dtAgreement As Date,  _
+                    ByVal offerCusAcceptance As Boolean,  _
+                    ByVal waitingForAgreement As Boolean) As vw_TRANSHRow
             Dim rowvw_TRANSHRow As vw_TRANSHRow = CType(Me.NewRow,vw_TRANSHRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription, AreaId, adrid, couid}
+            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurchasePrice, benchProfit, dtAgreement, offerCusAcceptance, waitingForAgreement}
             rowvw_TRANSHRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_TRANSHRow)
             Return rowvw_TRANSHRow
@@ -2140,6 +2206,12 @@ Partial Public Class DM_TRANS
             Me.columnAreaId = MyBase.Columns("AreaId")
             Me.columnadrid = MyBase.Columns("adrid")
             Me.columncouid = MyBase.Columns("couid")
+            Me.columnbenchSalesPrice = MyBase.Columns("benchSalesPrice")
+            Me.columnbenchPurchasePrice = MyBase.Columns("benchPurchasePrice")
+            Me.columnbenchProfit = MyBase.Columns("benchProfit")
+            Me.columndtAgreement = MyBase.Columns("dtAgreement")
+            Me.columnofferCusAcceptance = MyBase.Columns("offerCusAcceptance")
+            Me.columnwaitingForAgreement = MyBase.Columns("waitingForAgreement")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2205,6 +2277,18 @@ Partial Public Class DM_TRANS
             MyBase.Columns.Add(Me.columnadrid)
             Me.columncouid = New Global.System.Data.DataColumn("couid", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncouid)
+            Me.columnbenchSalesPrice = New Global.System.Data.DataColumn("benchSalesPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnbenchSalesPrice)
+            Me.columnbenchPurchasePrice = New Global.System.Data.DataColumn("benchPurchasePrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnbenchPurchasePrice)
+            Me.columnbenchProfit = New Global.System.Data.DataColumn("benchProfit", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnbenchProfit)
+            Me.columndtAgreement = New Global.System.Data.DataColumn("dtAgreement", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndtAgreement)
+            Me.columnofferCusAcceptance = New Global.System.Data.DataColumn("offerCusAcceptance", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnofferCusAcceptance)
+            Me.columnwaitingForAgreement = New Global.System.Data.DataColumn("waitingForAgreement", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnwaitingForAgreement)
             Me.columnID.AllowDBNull = false
             Me.columncode.AllowDBNull = false
             Me.columncusID.AllowDBNull = false
@@ -4515,6 +4599,96 @@ Partial Public Class DM_TRANS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property benchSalesPrice() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.benchSalesPriceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'benchSalesPrice' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.benchSalesPriceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property benchPurchasePrice() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.benchPurchasePriceColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'benchPurchasePrice' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.benchPurchasePriceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property benchProfit() As Decimal
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.benchProfitColumn),Decimal)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'benchProfit' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.benchProfitColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property dtAgreement() As Date
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.dtAgreementColumn),Date)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'dtAgreement' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.dtAgreementColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property offerCusAcceptance() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.offerCusAcceptanceColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'offerCusAcceptance' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.offerCusAcceptanceColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property waitingForAgreement() As Boolean
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.waitingForAgreementColumn),Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'waitingForAgreement' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.waitingForAgreementColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsGRMONTHNull() As Boolean
             Return Me.IsNull(Me.tablevw_TRANSH.GRMONTHColumn)
         End Function
@@ -4811,6 +4985,78 @@ Partial Public Class DM_TRANS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetcouidNull()
             Me(Me.tablevw_TRANSH.couidColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsbenchSalesPriceNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.benchSalesPriceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetbenchSalesPriceNull()
+            Me(Me.tablevw_TRANSH.benchSalesPriceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsbenchPurchasePriceNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.benchPurchasePriceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetbenchPurchasePriceNull()
+            Me(Me.tablevw_TRANSH.benchPurchasePriceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsbenchProfitNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.benchProfitColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetbenchProfitNull()
+            Me(Me.tablevw_TRANSH.benchProfitColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsdtAgreementNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.dtAgreementColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetdtAgreementNull()
+            Me(Me.tablevw_TRANSH.dtAgreementColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsofferCusAcceptanceNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.offerCusAcceptanceColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetofferCusAcceptanceNull()
+            Me(Me.tablevw_TRANSH.offerCusAcceptanceColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IswaitingForAgreementNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.waitingForAgreementColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetwaitingForAgreementNull()
+            Me(Me.tablevw_TRANSH.waitingForAgreementColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -6555,6 +6801,12 @@ Namespace DM_TRANSTableAdapters
             tableMapping.ColumnMappings.Add("AreaId", "AreaId")
             tableMapping.ColumnMappings.Add("adrid", "adrid")
             tableMapping.ColumnMappings.Add("couid", "couid")
+            tableMapping.ColumnMappings.Add("benchSalesPrice", "benchSalesPrice")
+            tableMapping.ColumnMappings.Add("benchPurchasePrice", "benchPurchasePrice")
+            tableMapping.ColumnMappings.Add("benchProfit", "benchProfit")
+            tableMapping.ColumnMappings.Add("dtAgreement", "dtAgreement")
+            tableMapping.ColumnMappings.Add("offerCusAcceptance", "offerCusAcceptance")
+            tableMapping.ColumnMappings.Add("waitingForAgreement", "waitingForAgreement")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -6574,8 +6826,9 @@ Namespace DM_TRANSTableAdapters
             Me._commandCollection(0).CommandText = "SELECT ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, crea"& _ 
                 "tedOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, E"& _ 
                 "mpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerP"& _ 
-                "rofit, FullTranshDescription, AreaId, adrid, couid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_TRANSH"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (cus"& _ 
-                "ID = @cusID)"
+                "rofit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurcha"& _ 
+                "sePrice, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           benchProfit, dtAgreement, offerCusAcceptance, waitingForAg"& _ 
+                "reement"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_TRANSH"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (cusID = @cusID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cusID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cusID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

@@ -29,11 +29,8 @@ Public Class CusOfferOrderKitchen
         sBaseCat = BaseCat
     End Sub
     Public Sub LoadForm()
-        'TODO: This line of code loads data into the 'DM_CCT.vw_COMP' table. You can move, or remove it, as needed.
         Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_BENCH_V2' table. You can move, or remove it, as needed.
         Frm.Vw_DOOR_TYPE_BENCH_V2TableAdapter.Fill(Frm.DM_DOORTYPES.vw_DOOR_TYPE_BENCH_V2)
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_V2' table. You can move, or remove it, as needed.
         Frm.Vw_DOOR_TYPE_V2TableAdapter.Fill(Frm.DM_DOORTYPES.vw_DOOR_TYPE_V2)
         Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
         Frm.BASE_CATTableAdapter.Fill(Frm.DMDataSet.BASE_CAT)

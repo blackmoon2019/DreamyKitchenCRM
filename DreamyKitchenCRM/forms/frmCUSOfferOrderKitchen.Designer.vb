@@ -21,8 +21,8 @@ Partial Class frmCUSOfferOrderKitchen
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSOfferOrderKitchen))
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Me.coldCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cboCompany = New DevExpress.XtraEditors.LookUpEdit()
@@ -3733,15 +3733,15 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.coldCode, Me.GridColumn3, Me.colchecked})
         Me.GridView1.FixedLineWidth = 3
-        GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Column = Me.coldCode
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.White
-        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
-        FormatConditionRuleExpression1.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
-        FormatConditionRuleExpression1.PredefinedName = "Red Text"
-        GridFormatRule1.Rule = FormatConditionRuleExpression1
-        Me.GridView1.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Column = Me.coldCode
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.White
+        FormatConditionRuleExpression2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression2.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
+        FormatConditionRuleExpression2.PredefinedName = "Red Text"
+        GridFormatRule2.Rule = FormatConditionRuleExpression2
+        Me.GridView1.FormatRules.Add(GridFormatRule2)
         Me.GridView1.GridControl = Me.grdDevices
         Me.GridView1.LevelIndent = 0
         Me.GridView1.Name = "GridView1"
