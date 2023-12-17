@@ -43,11 +43,14 @@ Public Class CombosManager
             Frm.Show()
         End If
     End Sub
-    Public Sub ManageTRANSHSmall(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+    Public Sub ManageTRANSHSmall(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, ByVal CusID As Guid)
         Dim Frm As frmProject = New frmProject()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
         Frm.Text = "Έργα Πελατών"
         Frm.MdiParent = frmMain
+        Frm.CusID = CusID
+        Frm.CalledFromControl = True
+        Frm.CallerControl = CallerControl
         If CallerControl.EditValue <> Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
@@ -315,22 +318,24 @@ Public Class CombosManager
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
-    Public Function ADRsSQL(ByVal cboCOU As LookUpEdit, ByVal cboAREAS As LookUpEdit, ByVal txtTK As TextEdit) As System.Text.StringBuilder
+    Public Function ADRsSQL(ByVal cboCOU As LookUpEdit, ByVal cboAREAS As LookUpEdit, Optional ByVal txtTK As TextEdit = Nothing) As System.Text.StringBuilder
         Dim sSQL As New System.Text.StringBuilder
         Dim CouID As String = ""
         Dim AreaID As String = ""
         If cboCOU.EditValue <> Nothing Then CouID = cboCOU.EditValue.ToString
         If cboAREAS.EditValue <> Nothing Then AreaID = cboAREAS.EditValue.ToString
         sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
-        If CouID.Length > 0 Or AreaID.Length > 0 Or txtTK.Text.Length > 0 Then sSQL.AppendLine(" where ")
+        If CouID.Length > 0 Or AreaID.Length > 0 Or txtTK IsNot Nothing Then sSQL.AppendLine(" where ")
         If CouID.Length > 0 Then sSQL.AppendLine(" couid = " & toSQLValueS(CouID))
         If AreaID.Length > 0 Then
             If CouID.Length > 0 Then sSQL.AppendLine(" AND ")
             sSQL.AppendLine(" AreaID = " & toSQLValueS(AreaID))
         End If
-        If txtTK.Text.Length > 0 Then
-            If CouID.Length > 0 Or AreaID.Length > 0 Then sSQL.AppendLine(" AND ")
-            sSQL.AppendLine(" TK = " & toSQLValue(txtTK))
+        If txtTK IsNot Nothing Then
+            If txtTK.Text.Length > 0 Then
+                If CouID.Length > 0 Or AreaID.Length > 0 Then sSQL.AppendLine(" AND ")
+                sSQL.AppendLine(" TK = " & toSQLValue(txtTK))
+            End If
         End If
         sSQL.AppendLine(" order by name ")
         Return sSQL

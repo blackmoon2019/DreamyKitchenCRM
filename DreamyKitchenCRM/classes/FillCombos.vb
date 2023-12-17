@@ -711,7 +711,7 @@ Public Class FillCombos
         Try
             If sSQL Is Nothing Then
                 sSQL = New System.Text.StringBuilder
-                sSQL.AppendLine("Select id,Fullname,'00000000-0000-0000-0000-000000000000' as SalerID,phn,AdrID,email from vw_CCT order by Fullname")
+                sSQL.AppendLine("Select id,Fullname,'00000000-0000-0000-0000-000000000000' as SalerID,phn,AdrID,email,isCompany from vw_CCT order by Fullname")
             End If
 
             Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)

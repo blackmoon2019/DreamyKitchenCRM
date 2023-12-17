@@ -1041,8 +1041,9 @@ FROM   vw_PAY</CommandText>
               <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenDEV.dbo.vw_CCT" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, code, Fullname, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn,  RealName, COU_Name, SRC_Name, AREAS_Name, ADR_Name, PRF_Name, SALERS_Name, color, CouID, AreaID, AdrID, SourceID, SalerID, DoyID, PrfID, Ar, tk, createdby_Realname, HasFiles, FatherName, DOY_Name
-FROM   vw_CCT order by Fullname</CommandText>
+                    <CommandText>SELECT ID, code, Fullname, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn, RealName, COU_Name, SRC_Name, AREAS_Name, ADR_Name, PRF_Name, SALERS_Name, color, CouID, AreaID, AdrID, SourceID, SalerID, DoyID, PrfID, Ar, tk, createdby_Realname, HasFiles, FatherName, DOY_Name, isCompany
+FROM   vw_CCT 
+ORDER BY Fullname</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -1082,6 +1083,7 @@ FROM   vw_CCT order by Fullname</CommandText>
               <Mapping SourceColumn="HasFiles" DataSetColumn="HasFiles" />
               <Mapping SourceColumn="FatherName" DataSetColumn="FatherName" />
               <Mapping SourceColumn="DOY_Name" DataSetColumn="DOY_Name" />
+              <Mapping SourceColumn="isCompany" DataSetColumn="isCompany" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -2881,6 +2883,7 @@ SELECT ID, code, server, un, pwd, port, ssl, modifiedBy, modifiedOn, createdOn, 
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="isCompany" msprop:Generator_UserColumnName="isCompany" msprop:Generator_ColumnPropNameInTable="isCompanyColumn" msprop:Generator_ColumnPropNameInRow="isCompany" msprop:Generator_ColumnVarNameInTable="columnisCompany" type="xs:boolean" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

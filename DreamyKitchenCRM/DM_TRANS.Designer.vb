@@ -1737,6 +1737,12 @@ Partial Public Class DM_TRANS
         
         Private columnFullTranshDescription As Global.System.Data.DataColumn
         
+        Private columnAreaId As Global.System.Data.DataColumn
+        
+        Private columnadrid As Global.System.Data.DataColumn
+        
+        Private columncouid As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -1989,6 +1995,30 @@ Partial Public Class DM_TRANS
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property AreaIdColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnAreaId
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property adridColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnadrid
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property couidColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncouid
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -2052,9 +2082,12 @@ Partial Public Class DM_TRANS
                     ByVal DebitCost As Decimal,  _
                     ByVal DevicesCost As Decimal,  _
                     ByVal salerProfit As Decimal,  _
-                    ByVal FullTranshDescription As String) As vw_TRANSHRow
+                    ByVal FullTranshDescription As String,  _
+                    ByVal AreaId As System.Guid,  _
+                    ByVal adrid As System.Guid,  _
+                    ByVal couid As System.Guid) As vw_TRANSHRow
             Dim rowvw_TRANSHRow As vw_TRANSHRow = CType(Me.NewRow,vw_TRANSHRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription}
+            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription, AreaId, adrid, couid}
             rowvw_TRANSHRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_TRANSHRow)
             Return rowvw_TRANSHRow
@@ -2104,6 +2137,9 @@ Partial Public Class DM_TRANS
             Me.columnDevicesCost = MyBase.Columns("DevicesCost")
             Me.columnsalerProfit = MyBase.Columns("salerProfit")
             Me.columnFullTranshDescription = MyBase.Columns("FullTranshDescription")
+            Me.columnAreaId = MyBase.Columns("AreaId")
+            Me.columnadrid = MyBase.Columns("adrid")
+            Me.columncouid = MyBase.Columns("couid")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -2163,6 +2199,12 @@ Partial Public Class DM_TRANS
             MyBase.Columns.Add(Me.columnsalerProfit)
             Me.columnFullTranshDescription = New Global.System.Data.DataColumn("FullTranshDescription", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFullTranshDescription)
+            Me.columnAreaId = New Global.System.Data.DataColumn("AreaId", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnAreaId)
+            Me.columnadrid = New Global.System.Data.DataColumn("adrid", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnadrid)
+            Me.columncouid = New Global.System.Data.DataColumn("couid", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncouid)
             Me.columnID.AllowDBNull = false
             Me.columncode.AllowDBNull = false
             Me.columncusID.AllowDBNull = false
@@ -4428,6 +4470,51 @@ Partial Public Class DM_TRANS
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property AreaId() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.AreaIdColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'AreaId' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.AreaIdColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property adrid() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.adridColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'adrid' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.adridColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property couid() As System.Guid
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_TRANSH.couidColumn),Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'couid' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.couidColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsGRMONTHNull() As Boolean
             Return Me.IsNull(Me.tablevw_TRANSH.GRMONTHColumn)
         End Function
@@ -4688,6 +4775,42 @@ Partial Public Class DM_TRANS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetFullTranshDescriptionNull()
             Me(Me.tablevw_TRANSH.FullTranshDescriptionColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsAreaIdNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.AreaIdColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetAreaIdNull()
+            Me(Me.tablevw_TRANSH.AreaIdColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsadridNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.adridColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetadridNull()
+            Me(Me.tablevw_TRANSH.adridColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IscouidNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.couidColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetcouidNull()
+            Me(Me.tablevw_TRANSH.couidColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -6429,6 +6552,9 @@ Namespace DM_TRANSTableAdapters
             tableMapping.ColumnMappings.Add("DevicesCost", "DevicesCost")
             tableMapping.ColumnMappings.Add("salerProfit", "salerProfit")
             tableMapping.ColumnMappings.Add("FullTranshDescription", "FullTranshDescription")
+            tableMapping.ColumnMappings.Add("AreaId", "AreaId")
+            tableMapping.ColumnMappings.Add("adrid", "adrid")
+            tableMapping.ColumnMappings.Add("couid", "couid")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -6445,11 +6571,11 @@ Namespace DM_TRANSTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedO"& _ 
-                "n, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, Sal"& _ 
-                "erID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost,"& _ 
-                " salerProfit, FullTranshDescription"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_TRANSH"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (cu"& _ 
-                "sID = @cusID)"
+            Me._commandCollection(0).CommandText = "SELECT ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, crea"& _ 
+                "tedOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, E"& _ 
+                "mpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerP"& _ 
+                "rofit, FullTranshDescription, AreaId, adrid, couid"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_TRANSH"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (cus"& _ 
+                "ID = @cusID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cusID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cusID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

@@ -220,6 +220,7 @@
     <Compile Include="classes\ClearControls.vb" />
     <Compile Include="classes\CN.vb" />
     <Compile Include="classes\CombosManager.vb" />
+    <Compile Include="classes\CusOfferOrderKitchen.vb" />
     <Compile Include="classes\Customers.vb" />
     <Compile Include="classes\DBQueries.vb" />
     <Compile Include="classes\FillCombos.vb" />
@@ -258,6 +259,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DM_TRANS.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DM_CCT.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DM_CCT.xsd</DependentUpon>
     </Compile>
     <Compile Include="forms\frmBaseCat.Designer.vb">
       <DependentUpon>frmBaseCat.vb</DependentUpon>
@@ -1116,6 +1122,17 @@
     </None>
     <None Include="DM_TRANS.xss">
       <DependentUpon>DM_TRANS.xsd</DependentUpon>
+    </None>
+    <None Include="DM_CCT.xsc">
+      <DependentUpon>DM_CCT.xsd</DependentUpon>
+    </None>
+    <None Include="DM_CCT.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DM_CCT.Designer.vb</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="DM_CCT.xss">
+      <DependentUpon>DM_CCT.xsd</DependentUpon>
     </None>
     <None Include="My Project\app.manifest" />
     <None Include="My Project\Application.myapp">

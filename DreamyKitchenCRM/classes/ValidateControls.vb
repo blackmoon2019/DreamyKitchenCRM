@@ -67,4 +67,16 @@ Public Class ValidateControls
         Next
         Return True
     End Function
+    Public Function ValiDationRules(ByVal FrmName As String, ByVal frm As Form) As Boolean
+        Select Case FrmName
+            Case "frmCUSOfferOrderKitchen"
+                Dim f As frmCUSOfferOrderKitchen = frm
+                ' 1st Rule
+                If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
+                    XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+                Return True
+        End Select
+    End Function
 End Class

@@ -76,13 +76,7 @@ Public Class frmCustomers
             txtFileNames.EditValue = Nothing
         End If
     End Sub
-    Private Sub cboCOU_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCOU.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : cboCOU.EditValue = Nothing : ManageCbo.ManageCOU(cboCOU, FormMode.NewRecord)
-            Case 2 : If cboCOU.EditValue <> Nothing Then ManageCbo.ManageCOU(cboCOU, FormMode.EditRecord)
-            Case 3 : cboCOU.EditValue = Nothing
-        End Select
-    End Sub
+
     Private Sub cboDOY_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDOY.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDOY.EditValue = Nothing : ManageCbo.ManageDOY(cboDOY, FormMode.NewRecord)
@@ -97,7 +91,13 @@ Public Class frmCustomers
             Case 3 : cboPRF.EditValue = Nothing
         End Select
     End Sub
-
+    Private Sub cboCOU_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCOU.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboCOU.EditValue = Nothing : ManageCbo.ManageCOU(cboCOU, FormMode.NewRecord)
+            Case 2 : If cboCOU.EditValue <> Nothing Then ManageCbo.ManageCOU(cboCOU, FormMode.EditRecord)
+            Case 3 : cboCOU.EditValue = Nothing
+        End Select
+    End Sub
     Private Sub cboAREAS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboAREAS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboAREAS.EditValue = Nothing : ManageCbo.ManageAREAS(cboAREAS, FormMode.NewRecord)

@@ -6,7 +6,6 @@ Imports System.Data.SqlClient
 Public Class Projects
     Private Valid As New ValidateControls
     Private DBQ As New DBQueries
-    Private FrmScr As DevExpress.XtraEditors.XtraForm
     Private Frm As frmTransactions
     Private Frm2 As frmProject
     Private ID As String
@@ -17,13 +16,12 @@ Public Class Projects
     Private Cls As New ClearControls
 
 
-    Public Sub Initialize(ByVal sFrm As frmTransactions, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal sFrmScr As DevExpress.XtraEditors.XtraForm)
+    Public Sub Initialize(ByVal sFrm As frmTransactions, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Frm = sFrm
         ID = sID
         Mode = sMode
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
-        FrmScr = sFrmScr
         Frm.Vw_TRANSH_CTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSH_C)
         Frm.Vw_SCAN_FILE_NAMESTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SCAN_FILE_NAMES)
         Frm.Vw_INVTYPESTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_INVTYPES)
@@ -34,16 +32,21 @@ Public Class Projects
         FillCbo.CUS(Frm.cboCUS)
         'Πωλητές
         FillCbo.SALERS(Frm.cboSaler)
+        'Νομοί
+        FillCbo.COU(Frm.cboCOU)
     End Sub
-    Public Sub InitializeSmall(ByVal sFrm As frmProject, ByVal sID As String, ByVal sMode As Byte)
-        Frm2 = sFrm
-        ID = sID
-        Mode = sMode
+    Public Sub InitializeSmall(ByVal sFrm As frmProject, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+        Frm2 = sFrm : ID = sID : Mode = sMode
         Frm2.Vw_TRANSH_CTableAdapter.Fill(Frm2.DM_TRANS.vw_TRANSH_C)
+
+        CalledFromCtrl = sCalledFromCtrl
+        CtrlCombo = sCtrlCombo
         'Πελάτες
         FillCbo.CUS(Frm2.cboCUS)
         'Πωλητές
         FillCbo.SALERS(Frm2.cboSaler)
+        'Νομοί
+        FillCbo.COU(Frm2.cboCOU)
     End Sub
     Public Sub SaveRecordSmallH()
         Dim sResult As Boolean
@@ -55,16 +58,18 @@ Public Class Projects
                         ID = System.Guid.NewGuid.ToString
                         sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID)
                         ' Εαν πετύχει η καταχώρηση του έργου αλλά όχι των κατηγοριών τότε όλο το έργο διαγράφεται
-                        If sResult Then
-                            If Not SaveTRANSC_SMALL() Then DeleteRecord() : Exit Sub Else Frm2.txtCodeH.Text = DBQ.GetNextId("TRANSH")
-                        End If
-
+                        If sResult Then If Not SaveTRANSC_SMALL() Then DeleteRecord() : Exit Sub Else Frm2.txtCodeH.Text = DBQ.GetNextId("TRANSH")
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID)
                         ' Καταχώρηση κατηγοριών 
                         If sResult Then SaveTRANSC_SMALL()
                 End Select
                 If sResult = True Then
+                    If CalledFromCtrl Then
+                        Dim sSQL As New System.Text.StringBuilder
+                        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc from vw_TRANSH t where  T.cusid = " & toSQLValueS(Frm2.cboCUS.EditValue.ToString) & "order by description")
+                        FillCbo.TRANSH(CtrlCombo, sSQL) : CtrlCombo.EditValue = System.Guid.Parse(ID)
+                    End If
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Mode = FormMode.EditRecord
                     If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Frm2.cmdOpenTransh.Enabled = True

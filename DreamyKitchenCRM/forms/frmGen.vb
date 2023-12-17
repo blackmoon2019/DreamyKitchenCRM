@@ -9,10 +9,10 @@ Public Class frmGen
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
+    Private CalledFromCtrl As Boolean
     Private Frm As DevExpress.XtraEditors.XtraForm
     Private FrmCaller As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
-    Private CalledFromCtrl As Boolean
     Private Valid As New ValidateControls
     Private Log As New Transactions
     Private DBQ As New DBQueries
@@ -537,8 +537,6 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("DOOR_CAT")
-
-
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable

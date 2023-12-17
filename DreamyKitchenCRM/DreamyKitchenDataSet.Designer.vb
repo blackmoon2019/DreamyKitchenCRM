@@ -14230,6 +14230,8 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnDOY_Name As Global.System.Data.DataColumn
         
+        Private columnisCompany As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -14530,6 +14532,14 @@ Partial Public Class DreamyKitchenDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property isCompanyColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnisCompany
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -14598,9 +14608,10 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal createdby_Realname As String,  _
                     ByVal HasFiles As Boolean,  _
                     ByVal FatherName As String,  _
-                    ByVal DOY_Name As String) As vw_CCTRow
+                    ByVal DOY_Name As String,  _
+                    ByVal isCompany As Boolean) As vw_CCTRow
             Dim rowvw_CCTRow As vw_CCTRow = CType(Me.NewRow,vw_CCTRow)
-            Dim columnValuesArray() As Object = New Object() {ID, Nothing, Fullname, CouID, AreaID, AdrID, SourceID, SalerID, DoyID, PrfID, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn, RealName, COU_Name, SRC_Name, AREAS_Name, ADR_Name, PRF_Name, SALERS_Name, color, Ar, tk, createdby_Realname, HasFiles, FatherName, DOY_Name}
+            Dim columnValuesArray() As Object = New Object() {ID, Nothing, Fullname, CouID, AreaID, AdrID, SourceID, SalerID, DoyID, PrfID, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn, RealName, COU_Name, SRC_Name, AREAS_Name, ADR_Name, PRF_Name, SALERS_Name, color, Ar, tk, createdby_Realname, HasFiles, FatherName, DOY_Name, isCompany}
             rowvw_CCTRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_CCTRow)
             Return rowvw_CCTRow
@@ -14662,6 +14673,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnHasFiles = MyBase.Columns("HasFiles")
             Me.columnFatherName = MyBase.Columns("FatherName")
             Me.columnDOY_Name = MyBase.Columns("DOY_Name")
+            Me.columnisCompany = MyBase.Columns("isCompany")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -14733,6 +14745,8 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columnFatherName)
             Me.columnDOY_Name = New Global.System.Data.DataColumn("DOY_Name", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnDOY_Name)
+            Me.columnisCompany = New Global.System.Data.DataColumn("isCompany", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnisCompany)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -14763,6 +14777,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnHasFiles.ReadOnly = true
             Me.columnFatherName.MaxLength = 100
             Me.columnDOY_Name.MaxLength = 50
+            Me.columnisCompany.AllowDBNull = false
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -28232,6 +28247,17 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property isCompany() As Boolean
+            Get
+                Return CType(Me(Me.tablevw_CCT.isCompanyColumn),Boolean)
+            End Get
+            Set
+                Me(Me.tablevw_CCT.isCompanyColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsCouIDNull() As Boolean
             Return Me.IsNull(Me.tablevw_CCT.CouIDColumn)
         End Function
@@ -39552,6 +39578,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("HasFiles", "HasFiles")
             tableMapping.ColumnMappings.Add("FatherName", "FatherName")
             tableMapping.ColumnMappings.Add("DOY_Name", "DOY_Name")
+            tableMapping.ColumnMappings.Add("isCompany", "isCompany")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -39569,10 +39596,10 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, code, Fullname, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn"& _ 
-                ", createdOn,  RealName, COU_Name, SRC_Name, AREAS_Name, ADR_Name, PRF_Name, SALE"& _ 
-                "RS_Name, color, CouID, AreaID, AdrID, SourceID, SalerID, DoyID, PrfID, Ar, tk, c"& _ 
-                "reatedby_Realname, HasFiles, FatherName, DOY_Name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_CCT order by Fullna"& _ 
-                "me"
+                ", createdOn, RealName, COU_Name, SRC_Name, AREAS_Name, ADR_Name, PRF_Name, SALER"& _ 
+                "S_Name, color, CouID, AreaID, AdrID, SourceID, SalerID, DoyID, PrfID, Ar, tk, cr"& _ 
+                "eatedby_Realname, HasFiles, FatherName, DOY_Name, isCompany"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_CCT "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"ORD"& _ 
+                "ER BY Fullname"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
