@@ -405,7 +405,7 @@ Partial Class frmCustomers
         Me.txtFileNames.Location = New System.Drawing.Point(149, 556)
         Me.txtFileNames.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFileNames.Name = "txtFileNames"
-        Me.txtFileNames.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.txtFileNames.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.txtFileNames.Size = New System.Drawing.Size(1266, 38)
         Me.txtFileNames.StyleController = Me.LayoutControl1
         Me.txtFileNames.TabIndex = 30

@@ -66,7 +66,7 @@ Public Class Customers
                         sGuid = ID
                 End Select
 
-                If Frm.txtFileNames.Text <> "" Then
+                If Frm.txtFileNames.Text <> "" And sResult = True Then
                     sResult = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, sGuid, "CCT_F")
                     LoadForms.LoadDataToGrid(Frm.GridControl1, Frm.GridView1, "select ID,cctID,files,filename,comefrom,createdon,realname From vw_CCT_F where isINVOICE = 0 AND cctID = '" & sGuid & "'")
                     LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_CCT_F_def.xml")

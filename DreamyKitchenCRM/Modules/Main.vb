@@ -228,14 +228,14 @@ Module Main
         sdr.Close()
 
     End Function
-    Public Sub FilesSelection(ByVal XtraOpenFileDialog1 As XtraOpenFileDialog, ByVal txtFileNames As TextEdit)
+    Public Sub FilesSelection(ByVal XtraOpenFileDialog1 As XtraOpenFileDialog, ByVal txtFileNames As TextEdit, Optional MultiSelect As Boolean = True)
 
         'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
         XtraOpenFileDialog1.FilterIndex = 1
         XtraOpenFileDialog1.InitialDirectory = "C:\"
         XtraOpenFileDialog1.Title = "Open File"
         XtraOpenFileDialog1.CheckFileExists = False
-        XtraOpenFileDialog1.Multiselect = True
+        XtraOpenFileDialog1.Multiselect = MultiSelect
         Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
         If result = DialogResult.OK Then
             txtFileNames.EditValue = ""
@@ -244,7 +244,7 @@ Module Main
             Next I
         End If
     End Sub
-    Public Sub OpenFile(ByVal grdView As GridView, ByVal sTable As String)
+    Public Sub OpenFileFromGrid(ByVal grdView As GridView, ByVal sTable As String)
         If grdView.GetRowCellValue(grdView.FocusedRowHandle, "filename") Is DBNull.Value Then Exit Sub
         Try
             Dim sFilename = grdView.GetRowCellValue(grdView.FocusedRowHandle, "filename")
@@ -265,8 +265,37 @@ Module Main
     '    Next
     'End Function
 
-End Module
+    Public Sub OpenFile(ByVal sTable As String, ByVal ID As String)
 
+        Try
+            Dim Cmd As SqlCommand, sdr As SqlDataReader
+            Dim sSQL As String
+            Select Case sTable
+                Case "CCT_ORDERS_KITCHEN_F" : sSQL = "SELECT files,filename  FROM CCT_ORDERS_KITCHEN_F WHERE cctOrdersKitchenID= " & toSQLValueS(ID)
+            End Select
+
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("filename")) = False Then
+                    Dim sFilename = Path.GetFileName(sdr.GetString(sdr.GetOrdinal("filename")))
+                    Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                    Dim b As Byte()
+                    b = DirectCast(sdr("files"), Byte())
+                    fs.Write(b, 0, b.Length)
+                    fs.Close()
+                    ShellExecute(ProgProps.TempFolderPath & sFilename)
+                End If
+            End If
+            sdr.Close()
+        Catch exfs As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+
+        End Try
+    End Sub
+
+End Module
 'Private Sub SetUserSettings()
 '    Dim cf As New XML_Serialization.User_Settings
 '    cf.user = New XML_Serialization.User() With {.ID = sUserCode}

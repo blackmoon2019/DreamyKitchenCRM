@@ -24,6 +24,23 @@ Public Class DBQueries
         Dim Code As Integer = cmd.ExecuteScalar()
         Return Code
     End Function
+    Public Function DeleteDataFiles(ByVal sTable As String, ByVal ID As String) As Boolean
+        Try
+            Dim sSQL As New System.Text.StringBuilder
+
+            Select Case sTable
+                Case "CCT_ORDERS_KITCHEN_F" : sSQL.AppendLine("DELETE FROM CCT_ORDERS_KITCHEN_F where cctOrdersKitchenID = " & toSQLValueS(ID))
+            End Select
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
     Public Function InsertDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal ID As String, ByVal sTable As String) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Dim i As Integer
@@ -37,6 +54,7 @@ Public Class DBQueries
                     Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "SUP_ORDERS_F" : sSQL.AppendLine("INSERT INTO SUP_ORDERS_F (supOrderID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
+                    Case "CCT_ORDERS_KITCHEN_F" : sSQL.AppendLine("INSERT INTO CCT_ORDERS_KITCHEN_F (cctOrdersKitchenID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                 End Select
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
                 Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))

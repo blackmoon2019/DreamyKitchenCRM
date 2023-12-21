@@ -30,6 +30,8 @@ Partial Class frmTransactions
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl2 = New DevExpress.XtraLayout.LayoutControl()
+        Me.chkwaitingForAgreement = New DevExpress.XtraEditors.CheckEdit()
+        Me.chkofferCusAcceptance = New DevExpress.XtraEditors.CheckEdit()
         Me.chkCompleted = New DevExpress.XtraEditors.CheckEdit()
         Me.cmdSaveTransH = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdPrintAll = New DevExpress.XtraEditors.SimpleButton()
@@ -54,6 +56,10 @@ Partial Class frmTransactions
         Me.txtVatAmt = New DevExpress.XtraEditors.TextEdit()
         Me.txtAmtH = New DevExpress.XtraEditors.TextEdit()
         Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
+        Me.txtbenchSalesPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.txtbenchPurchasePrice = New DevExpress.XtraEditors.TextEdit()
+        Me.txtbenchProfit = New DevExpress.XtraEditors.TextEdit()
+        Me.dtAgreement = New DevExpress.XtraEditors.DateEdit()
         Me.LayoutControlGroup1 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -70,6 +76,9 @@ Partial Class frmTransactions
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem6 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem39 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem38 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem40 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup4 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -79,6 +88,9 @@ Partial Class frmTransactions
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem45 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem36 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TabNavigationPage2 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
         Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
@@ -169,18 +181,6 @@ Partial Class frmTransactions
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
-        Me.txtbenchSalesPrice = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtbenchPurchasePrice = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem36 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtbenchProfit = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.chkofferCusAcceptance = New DevExpress.XtraEditors.CheckEdit()
-        Me.LayoutControlItem38 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.dtAgreement = New DevExpress.XtraEditors.DateEdit()
-        Me.LayoutControlItem39 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.chkwaitingForAgreement = New DevExpress.XtraEditors.CheckEdit()
-        Me.LayoutControlItem40 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -188,6 +188,8 @@ Partial Class frmTransactions
         Me.TabNavigationPage1.SuspendLayout()
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl2.SuspendLayout()
+        CType(Me.chkwaitingForAgreement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkofferCusAcceptance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCodeH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -211,6 +213,11 @@ Partial Class frmTransactions
         CType(Me.txtVatAmt.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtAmtH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtbenchSalesPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtbenchPurchasePrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtbenchProfit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtAgreement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dtAgreement.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,6 +234,9 @@ Partial Class frmTransactions
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -236,6 +246,9 @@ Partial Class frmTransactions
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem45, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabNavigationPage2.SuspendLayout()
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl3.SuspendLayout()
@@ -287,19 +300,6 @@ Partial Class frmTransactions
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtbenchSalesPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtbenchPurchasePrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtbenchProfit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkofferCusAcceptance.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtAgreement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dtAgreement.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkwaitingForAgreement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -378,6 +378,34 @@ Partial Class frmTransactions
         Me.LayoutControl2.Size = New System.Drawing.Size(1533, 1417)
         Me.LayoutControl2.TabIndex = 0
         Me.LayoutControl2.Text = "LayoutControl2"
+        '
+        'chkwaitingForAgreement
+        '
+        Me.chkwaitingForAgreement.EditValue = CType(0, Byte)
+        Me.chkwaitingForAgreement.Location = New System.Drawing.Point(768, 481)
+        Me.chkwaitingForAgreement.Margin = New System.Windows.Forms.Padding(5)
+        Me.chkwaitingForAgreement.Name = "chkwaitingForAgreement"
+        Me.chkwaitingForAgreement.Properties.Caption = "Αναμονή συμφωνητικού"
+        Me.chkwaitingForAgreement.Properties.ValueChecked = CType(1, Byte)
+        Me.chkwaitingForAgreement.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chkwaitingForAgreement.Size = New System.Drawing.Size(740, 35)
+        Me.chkwaitingForAgreement.StyleController = Me.LayoutControl2
+        Me.chkwaitingForAgreement.TabIndex = 69
+        Me.chkwaitingForAgreement.Tag = "waitingForAgreement,0,1,2"
+        '
+        'chkofferCusAcceptance
+        '
+        Me.chkofferCusAcceptance.EditValue = CType(0, Byte)
+        Me.chkofferCusAcceptance.Location = New System.Drawing.Point(25, 481)
+        Me.chkofferCusAcceptance.Margin = New System.Windows.Forms.Padding(5)
+        Me.chkofferCusAcceptance.Name = "chkofferCusAcceptance"
+        Me.chkofferCusAcceptance.Properties.Caption = "Αποδοχή προσφοράς από πελάτη"
+        Me.chkofferCusAcceptance.Properties.ValueChecked = CType(1, Byte)
+        Me.chkofferCusAcceptance.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chkofferCusAcceptance.Size = New System.Drawing.Size(739, 35)
+        Me.chkofferCusAcceptance.StyleController = Me.LayoutControl2
+        Me.chkofferCusAcceptance.TabIndex = 68
+        Me.chkofferCusAcceptance.Tag = "offerCusAcceptance,0,1,2"
         '
         'chkCompleted
         '
@@ -721,6 +749,80 @@ Partial Class frmTransactions
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
         '
+        'txtbenchSalesPrice
+        '
+        Me.txtbenchSalesPrice.EditValue = "0,00 €"
+        Me.txtbenchSalesPrice.Location = New System.Drawing.Point(731, 582)
+        Me.txtbenchSalesPrice.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtbenchSalesPrice.Name = "txtbenchSalesPrice"
+        Me.txtbenchSalesPrice.Properties.DisplayFormat.FormatString = "c"
+        Me.txtbenchSalesPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtbenchSalesPrice.Properties.EditFormat.FormatString = "n2"
+        Me.txtbenchSalesPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtbenchSalesPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtbenchSalesPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtbenchSalesPrice.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtbenchSalesPrice.Properties.Tag = "BenchExtraPrice"
+        Me.txtbenchSalesPrice.Size = New System.Drawing.Size(297, 38)
+        Me.txtbenchSalesPrice.StyleController = Me.LayoutControl2
+        Me.txtbenchSalesPrice.TabIndex = 42
+        Me.txtbenchSalesPrice.Tag = "benchSalesPrice,0,1,2"
+        Me.txtbenchSalesPrice.Visible = False
+        '
+        'txtbenchPurchasePrice
+        '
+        Me.txtbenchPurchasePrice.EditValue = "0,00 €"
+        Me.txtbenchPurchasePrice.Location = New System.Drawing.Point(249, 582)
+        Me.txtbenchPurchasePrice.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtbenchPurchasePrice.Name = "txtbenchPurchasePrice"
+        Me.txtbenchPurchasePrice.Properties.DisplayFormat.FormatString = "c"
+        Me.txtbenchPurchasePrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtbenchPurchasePrice.Properties.EditFormat.FormatString = "n2"
+        Me.txtbenchPurchasePrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtbenchPurchasePrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtbenchPurchasePrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtbenchPurchasePrice.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtbenchPurchasePrice.Properties.Tag = "BenchExtraPrice"
+        Me.txtbenchPurchasePrice.Size = New System.Drawing.Size(254, 38)
+        Me.txtbenchPurchasePrice.StyleController = Me.LayoutControl2
+        Me.txtbenchPurchasePrice.TabIndex = 42
+        Me.txtbenchPurchasePrice.Tag = "benchPurchasePrice,0,1,2"
+        Me.txtbenchPurchasePrice.Visible = False
+        '
+        'txtbenchProfit
+        '
+        Me.txtbenchProfit.EditValue = "0,00 €"
+        Me.txtbenchProfit.Location = New System.Drawing.Point(1256, 582)
+        Me.txtbenchProfit.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtbenchProfit.Name = "txtbenchProfit"
+        Me.txtbenchProfit.Properties.DisplayFormat.FormatString = "c"
+        Me.txtbenchProfit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtbenchProfit.Properties.EditFormat.FormatString = "n2"
+        Me.txtbenchProfit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtbenchProfit.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtbenchProfit.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtbenchProfit.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtbenchProfit.Properties.Tag = "BenchExtraPrice"
+        Me.txtbenchProfit.Size = New System.Drawing.Size(252, 38)
+        Me.txtbenchProfit.StyleController = Me.LayoutControl2
+        Me.txtbenchProfit.TabIndex = 42
+        Me.txtbenchProfit.Tag = "benchProfit,0,1,2"
+        Me.txtbenchProfit.Visible = False
+        '
+        'dtAgreement
+        '
+        Me.dtAgreement.EditValue = Nothing
+        Me.dtAgreement.Location = New System.Drawing.Point(249, 439)
+        Me.dtAgreement.Margin = New System.Windows.Forms.Padding(5)
+        Me.dtAgreement.Name = "dtAgreement"
+        Me.dtAgreement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtAgreement.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.dtAgreement.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.dtAgreement.Size = New System.Drawing.Size(1259, 38)
+        Me.dtAgreement.StyleController = Me.LayoutControl2
+        Me.dtAgreement.TabIndex = 32
+        Me.dtAgreement.Tag = "dtAgreement,0,1,2"
+        '
         'LayoutControlGroup1
         '
         Me.LayoutControlGroup1.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -894,6 +996,36 @@ Partial Class frmTransactions
         Me.EmptySpaceItem6.Size = New System.Drawing.Size(1084, 42)
         Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
         '
+        'LayoutControlItem39
+        '
+        Me.LayoutControlItem39.Control = Me.dtAgreement
+        Me.LayoutControlItem39.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem39.CustomizationFormText = "Ημερ/νία Ολοκλήρωσης"
+        Me.LayoutControlItem39.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem39.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem39.Location = New System.Drawing.Point(0, 378)
+        Me.LayoutControlItem39.Name = "LayoutControlItem39"
+        Me.LayoutControlItem39.Size = New System.Drawing.Size(1487, 42)
+        Me.LayoutControlItem39.Text = "Ημερ/νία  Συμφωνίας"
+        Me.LayoutControlItem39.TextSize = New System.Drawing.Size(212, 23)
+        '
+        'LayoutControlItem38
+        '
+        Me.LayoutControlItem38.Control = Me.chkofferCusAcceptance
+        Me.LayoutControlItem38.Location = New System.Drawing.Point(0, 420)
+        Me.LayoutControlItem38.Name = "LayoutControlItem38"
+        Me.LayoutControlItem38.Size = New System.Drawing.Size(743, 39)
+        Me.LayoutControlItem38.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem38.TextVisible = False
+        '
+        'LayoutControlItem40
+        '
+        Me.LayoutControlItem40.Control = Me.chkwaitingForAgreement
+        Me.LayoutControlItem40.Location = New System.Drawing.Point(743, 420)
+        Me.LayoutControlItem40.Name = "LayoutControlItem40"
+        Me.LayoutControlItem40.Size = New System.Drawing.Size(744, 39)
+        Me.LayoutControlItem40.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem40.TextVisible = False
+        '
         'LayoutControlItem14
         '
         Me.LayoutControlItem14.Control = Me.txtComments
@@ -1001,6 +1133,45 @@ Partial Class frmTransactions
         Me.LayoutControlItem45.Size = New System.Drawing.Size(1487, 42)
         Me.LayoutControlItem45.Text = "ΦΠΑ Παραστατικού"
         Me.LayoutControlItem45.TextSize = New System.Drawing.Size(212, 23)
+        '
+        'LayoutControlItem36
+        '
+        Me.LayoutControlItem36.Control = Me.txtbenchPurchasePrice
+        Me.LayoutControlItem36.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem36.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem36.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem36.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem36.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem36.Name = "LayoutControlItem36"
+        Me.LayoutControlItem36.Size = New System.Drawing.Size(482, 42)
+        Me.LayoutControlItem36.Text = "Τιμή Αγοράς Πάγκου"
+        Me.LayoutControlItem36.TextSize = New System.Drawing.Size(212, 23)
+        '
+        'LayoutControlItem18
+        '
+        Me.LayoutControlItem18.Control = Me.txtbenchSalesPrice
+        Me.LayoutControlItem18.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem18.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem18.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem18.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem18.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem18.Location = New System.Drawing.Point(482, 0)
+        Me.LayoutControlItem18.Name = "LayoutControlItem18"
+        Me.LayoutControlItem18.Size = New System.Drawing.Size(525, 42)
+        Me.LayoutControlItem18.Text = "Τιμή Πώλησης Πάγκου"
+        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(212, 23)
+        '
+        'LayoutControlItem37
+        '
+        Me.LayoutControlItem37.Control = Me.txtbenchProfit
+        Me.LayoutControlItem37.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem37.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem37.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem37.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem37.ImageOptions.Image"), System.Drawing.Image)
+        Me.LayoutControlItem37.Location = New System.Drawing.Point(1007, 0)
+        Me.LayoutControlItem37.Name = "LayoutControlItem37"
+        Me.LayoutControlItem37.Size = New System.Drawing.Size(480, 42)
+        Me.LayoutControlItem37.Text = "Κέρδος"
+        Me.LayoutControlItem37.TextSize = New System.Drawing.Size(212, 23)
         '
         'TabNavigationPage2
         '
@@ -1876,177 +2047,6 @@ Partial Class frmTransactions
         Me.barDockControlRight.Manager = Me.BarManager1
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 1545)
         '
-        'txtbenchSalesPrice
-        '
-        Me.txtbenchSalesPrice.EditValue = "0,00 €"
-        Me.txtbenchSalesPrice.Location = New System.Drawing.Point(731, 582)
-        Me.txtbenchSalesPrice.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtbenchSalesPrice.Name = "txtbenchSalesPrice"
-        Me.txtbenchSalesPrice.Properties.DisplayFormat.FormatString = "c"
-        Me.txtbenchSalesPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtbenchSalesPrice.Properties.EditFormat.FormatString = "n2"
-        Me.txtbenchSalesPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtbenchSalesPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtbenchSalesPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtbenchSalesPrice.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtbenchSalesPrice.Properties.Tag = "BenchExtraPrice"
-        Me.txtbenchSalesPrice.Size = New System.Drawing.Size(297, 38)
-        Me.txtbenchSalesPrice.StyleController = Me.LayoutControl2
-        Me.txtbenchSalesPrice.TabIndex = 42
-        Me.txtbenchSalesPrice.Tag = "benchSalesPrice,0,1,2"
-        Me.txtbenchSalesPrice.Visible = False
-        '
-        'LayoutControlItem18
-        '
-        Me.LayoutControlItem18.Control = Me.txtbenchSalesPrice
-        Me.LayoutControlItem18.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem18.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem18.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem18.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem18.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem18.Location = New System.Drawing.Point(482, 0)
-        Me.LayoutControlItem18.Name = "LayoutControlItem18"
-        Me.LayoutControlItem18.Size = New System.Drawing.Size(525, 42)
-        Me.LayoutControlItem18.Text = "Τιμή Πώλησης Πάγκου"
-        Me.LayoutControlItem18.TextSize = New System.Drawing.Size(212, 23)
-        '
-        'txtbenchPurchasePrice
-        '
-        Me.txtbenchPurchasePrice.EditValue = "0,00 €"
-        Me.txtbenchPurchasePrice.Location = New System.Drawing.Point(249, 582)
-        Me.txtbenchPurchasePrice.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtbenchPurchasePrice.Name = "txtbenchPurchasePrice"
-        Me.txtbenchPurchasePrice.Properties.DisplayFormat.FormatString = "c"
-        Me.txtbenchPurchasePrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtbenchPurchasePrice.Properties.EditFormat.FormatString = "n2"
-        Me.txtbenchPurchasePrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtbenchPurchasePrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtbenchPurchasePrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtbenchPurchasePrice.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtbenchPurchasePrice.Properties.Tag = "BenchExtraPrice"
-        Me.txtbenchPurchasePrice.Size = New System.Drawing.Size(254, 38)
-        Me.txtbenchPurchasePrice.StyleController = Me.LayoutControl2
-        Me.txtbenchPurchasePrice.TabIndex = 42
-        Me.txtbenchPurchasePrice.Tag = "benchPurchasePrice,0,1,2"
-        Me.txtbenchPurchasePrice.Visible = False
-        '
-        'LayoutControlItem36
-        '
-        Me.LayoutControlItem36.Control = Me.txtbenchPurchasePrice
-        Me.LayoutControlItem36.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem36.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem36.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem36.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem36.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem36.Name = "LayoutControlItem36"
-        Me.LayoutControlItem36.Size = New System.Drawing.Size(482, 42)
-        Me.LayoutControlItem36.Text = "Τιμή Αγοράς Πάγκου"
-        Me.LayoutControlItem36.TextSize = New System.Drawing.Size(212, 23)
-        '
-        'txtbenchProfit
-        '
-        Me.txtbenchProfit.EditValue = "0,00 €"
-        Me.txtbenchProfit.Location = New System.Drawing.Point(1256, 582)
-        Me.txtbenchProfit.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtbenchProfit.Name = "txtbenchProfit"
-        Me.txtbenchProfit.Properties.DisplayFormat.FormatString = "c"
-        Me.txtbenchProfit.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtbenchProfit.Properties.EditFormat.FormatString = "n2"
-        Me.txtbenchProfit.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtbenchProfit.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtbenchProfit.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtbenchProfit.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtbenchProfit.Properties.Tag = "BenchExtraPrice"
-        Me.txtbenchProfit.Size = New System.Drawing.Size(252, 38)
-        Me.txtbenchProfit.StyleController = Me.LayoutControl2
-        Me.txtbenchProfit.TabIndex = 42
-        Me.txtbenchProfit.Tag = "benchProfit,0,1,2"
-        Me.txtbenchProfit.Visible = False
-        '
-        'LayoutControlItem37
-        '
-        Me.LayoutControlItem37.Control = Me.txtbenchProfit
-        Me.LayoutControlItem37.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem37.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem37.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem37.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem37.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem37.Location = New System.Drawing.Point(1007, 0)
-        Me.LayoutControlItem37.Name = "LayoutControlItem37"
-        Me.LayoutControlItem37.Size = New System.Drawing.Size(480, 42)
-        Me.LayoutControlItem37.Text = "Κέρδος"
-        Me.LayoutControlItem37.TextSize = New System.Drawing.Size(212, 23)
-        '
-        'chkofferCusAcceptance
-        '
-        Me.chkofferCusAcceptance.EditValue = CType(0, Byte)
-        Me.chkofferCusAcceptance.Location = New System.Drawing.Point(25, 481)
-        Me.chkofferCusAcceptance.Margin = New System.Windows.Forms.Padding(5)
-        Me.chkofferCusAcceptance.Name = "chkofferCusAcceptance"
-        Me.chkofferCusAcceptance.Properties.Caption = "Αποδοχή προσφοράς από πελάτη"
-        Me.chkofferCusAcceptance.Properties.ValueChecked = CType(1, Byte)
-        Me.chkofferCusAcceptance.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkofferCusAcceptance.Size = New System.Drawing.Size(739, 35)
-        Me.chkofferCusAcceptance.StyleController = Me.LayoutControl2
-        Me.chkofferCusAcceptance.TabIndex = 68
-        Me.chkofferCusAcceptance.Tag = "offerCusAcceptance,0,1,2"
-        '
-        'LayoutControlItem38
-        '
-        Me.LayoutControlItem38.Control = Me.chkofferCusAcceptance
-        Me.LayoutControlItem38.Location = New System.Drawing.Point(0, 420)
-        Me.LayoutControlItem38.Name = "LayoutControlItem38"
-        Me.LayoutControlItem38.Size = New System.Drawing.Size(743, 39)
-        Me.LayoutControlItem38.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem38.TextVisible = False
-        '
-        'dtAgreement
-        '
-        Me.dtAgreement.EditValue = Nothing
-        Me.dtAgreement.Location = New System.Drawing.Point(249, 439)
-        Me.dtAgreement.Margin = New System.Windows.Forms.Padding(5)
-        Me.dtAgreement.Name = "dtAgreement"
-        Me.dtAgreement.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dtAgreement.Properties.CalendarTimeProperties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.dtAgreement.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.dtAgreement.Size = New System.Drawing.Size(1259, 38)
-        Me.dtAgreement.StyleController = Me.LayoutControl2
-        Me.dtAgreement.TabIndex = 32
-        Me.dtAgreement.Tag = "dtAgreement,0,1,2"
-        '
-        'LayoutControlItem39
-        '
-        Me.LayoutControlItem39.Control = Me.dtAgreement
-        Me.LayoutControlItem39.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem39.CustomizationFormText = "Ημερ/νία Ολοκλήρωσης"
-        Me.LayoutControlItem39.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem39.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem39.Location = New System.Drawing.Point(0, 378)
-        Me.LayoutControlItem39.Name = "LayoutControlItem39"
-        Me.LayoutControlItem39.Size = New System.Drawing.Size(1487, 42)
-        Me.LayoutControlItem39.Text = "Ημερ/νία  Συμφωνίας"
-        Me.LayoutControlItem39.TextSize = New System.Drawing.Size(212, 23)
-        '
-        'chkwaitingForAgreement
-        '
-        Me.chkwaitingForAgreement.EditValue = CType(0, Byte)
-        Me.chkwaitingForAgreement.Location = New System.Drawing.Point(768, 481)
-        Me.chkwaitingForAgreement.Margin = New System.Windows.Forms.Padding(5)
-        Me.chkwaitingForAgreement.Name = "chkwaitingForAgreement"
-        Me.chkwaitingForAgreement.Properties.Caption = "Αναμονή συμφωνητικού"
-        Me.chkwaitingForAgreement.Properties.ValueChecked = CType(1, Byte)
-        Me.chkwaitingForAgreement.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkwaitingForAgreement.Size = New System.Drawing.Size(740, 35)
-        Me.chkwaitingForAgreement.StyleController = Me.LayoutControl2
-        Me.chkwaitingForAgreement.TabIndex = 69
-        Me.chkwaitingForAgreement.Tag = "waitingForAgreement,0,1,2"
-        '
-        'LayoutControlItem40
-        '
-        Me.LayoutControlItem40.Control = Me.chkwaitingForAgreement
-        Me.LayoutControlItem40.Location = New System.Drawing.Point(743, 420)
-        Me.LayoutControlItem40.Name = "LayoutControlItem40"
-        Me.LayoutControlItem40.Size = New System.Drawing.Size(744, 39)
-        Me.LayoutControlItem40.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem40.TextVisible = False
-        '
         'frmTransactions
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -2069,6 +2069,8 @@ Partial Class frmTransactions
         Me.TabNavigationPage1.ResumeLayout(False)
         CType(Me.LayoutControl2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl2.ResumeLayout(False)
+        CType(Me.chkwaitingForAgreement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkofferCusAcceptance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkCompleted.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCodeH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSaler.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2092,6 +2094,11 @@ Partial Class frmTransactions
         CType(Me.txtVatAmt.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtAmtH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtbenchSalesPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtbenchPurchasePrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtbenchProfit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtAgreement.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dtAgreement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2108,6 +2115,9 @@ Partial Class frmTransactions
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2117,6 +2127,9 @@ Partial Class frmTransactions
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem45, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabNavigationPage2.ResumeLayout(False)
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl3.ResumeLayout(False)
@@ -2168,19 +2181,6 @@ Partial Class frmTransactions
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtbenchSalesPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtbenchPurchasePrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtbenchProfit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkofferCusAcceptance.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dtAgreement.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dtAgreement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkwaitingForAgreement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

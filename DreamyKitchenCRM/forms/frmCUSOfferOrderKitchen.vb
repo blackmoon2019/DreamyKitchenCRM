@@ -63,6 +63,8 @@ Public Class frmCUSOfferOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SUP' table. You can move, or remove it, as needed.
+        Me.Vw_SUPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SUP)
         CusOfferOrderKitchen.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder, sBaseCat)
         CusOfferOrderKitchen.LoadForm()
         Me.CenterToScreen()
@@ -88,7 +90,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
-        CusOfferOrderKitchen.SaveRecord()
+        CusOfferOrderKitchen.SaveRecord(sID)
     End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
@@ -695,6 +697,7 @@ Public Class frmCUSOfferOrderKitchen
                         from vw_TRANSH t
                         where  T.cusid = " & sCompID & "order by description")
         FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
     End Sub
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
@@ -709,7 +712,41 @@ Public Class frmCUSOfferOrderKitchen
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
             Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
-            Case 3 : cboCompany.EditValue = Nothing
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+        End Select
+    End Sub
+
+    Private Sub txtCUSOfferOrderFilename_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtCUSOfferOrderFilename.ButtonClick
+        Try
+            Select Case e.Button.Index
+                Case 0 : FilesSelection(XtraOpenFileDialog1, txtCUSOfferOrderFilename, False) : txtbenchSalesPrice.ReadOnly = False
+                Case 1 : OpenFile("CCT_ORDERS_KITCHEN_F", sID)
+                Case 2
+                    If txtCUSOfferOrderFilename.EditValue = Nothing Then Exit Sub
+                    If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                        DBQ.DeleteDataFiles("CCT_ORDERS_KITCHEN_F", sID)
+                        txtCUSOfferOrderFilename.EditValue = Nothing : txtbenchSalesPrice.EditValue = 0 : txtbenchSalesPrice.ReadOnly = True
+                    End If
+            End Select
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
+    Private Sub cboSup_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSup.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageSup(cboSup, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageSup(cboSup, FormMode.EditRecord)
+            Case 3 : cboSup.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboBaseCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBaseCat.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageBaseCat(cboBaseCat, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageBaseCat(cboBaseCat, FormMode.EditRecord)
+            Case 3 : cboBaseCat.EditValue = Nothing
         End Select
     End Sub
 End Class

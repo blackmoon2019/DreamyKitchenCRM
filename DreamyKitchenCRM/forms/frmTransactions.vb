@@ -129,7 +129,7 @@ Public Class frmTransactions
     End Sub
 
     Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.KeyDown
-        OpenFile(GridView2, "TRANSH_F")
+        OpenFileFromGrid(GridView2, "TRANSH_F")
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index

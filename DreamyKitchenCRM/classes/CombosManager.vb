@@ -226,6 +226,24 @@ Public Class CombosManager
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
+    Public Sub ManageBaseCat(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Τύποι Κατασκευών"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Τύπος"
+        Frm.DataTable = "BASE_CAT"
+        Frm.CalledFromControl = True
+        Frm.CallerControl = CallerControl
+        If CallerControl.EditValue <> Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
     Public Sub ManageDoorType(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal DoorCatID As String = Nothing)
         Dim Frm As frmDoorType = New frmDoorType
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing

@@ -1087,7 +1087,7 @@ Public Class frmScroller
                 frmCUSOfferOrderKitchen.Scroller = GridView1
                 frmCUSOfferOrderKitchen.FormScroller = Me
                 frmCUSOfferOrderKitchen.FormScrollerExist = True
-                frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 800
+                frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 850
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderKitchen.Show()
             Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
@@ -2050,12 +2050,12 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderCloset.Show()
             Case "vw_CCT_ORDERS_KITCHEN"
-                Dim frmBaseCat As frmBaseCat = New frmBaseCat
-                frmBaseCat.Text = "Τύποι Κατασκευής"
-                frmBaseCat.ShowDialog()
-                If frmBaseCat.BaseCat = 3 Then Exit Sub
+                'Dim frmBaseCat As frmBaseCat = New frmBaseCat
+                'frmBaseCat.Text = "Τύποι Κατασκευής"
+                'frmBaseCat.ShowDialog()
+                'If frmBaseCat.BaseCat = 3 Then Exit Sub
                 Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
-                frmCUSOfferOrderKitchen.BaseCat = frmBaseCat.BaseCat
+                'frmCUSOfferOrderKitchen.BaseCat = frmBaseCat.BaseCat
                 If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
                     frmCUSOfferOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
                     frmCUSOfferOrderKitchen.IsOrder = 1
@@ -2069,7 +2069,7 @@ Public Class frmScroller
                 frmCUSOfferOrderKitchen.FormScroller = Me
                 frmCUSOfferOrderKitchen.FormScrollerExist = True
                 frmMain.XtraTabbedMdiManager1.FloatOnDrag = DevExpress.Utils.DefaultBoolean.True
-                frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 800
+                frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 850
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
 
                 frmCUSOfferOrderKitchen.Show()

@@ -124,7 +124,7 @@ Public Class frmCustomers
     End Sub
 
     Private Sub GridControl1_DoubleClick(sender As Object, e As EventArgs) Handles GridControl1.DoubleClick
-        OpenFile(GridView1, "vw_CCT_F")
+        OpenFileFromGrid(GridView1, "vw_CCT_F")
     End Sub
     Private Sub cboCOU_EditValueChanged(sender As Object, e As EventArgs) Handles cboCOU.EditValueChanged
         Dim sSQL As New System.Text.StringBuilder
@@ -195,5 +195,9 @@ Public Class frmCustomers
             LDoy.Tag = "" : LDoy.ImageOptions.Image = Nothing
 
         End If
+    End Sub
+
+    Private Sub txtFileNames_EditValueChanged(sender As Object, e As EventArgs) Handles txtFileNames.EditValueChanged
+
     End Sub
 End Class

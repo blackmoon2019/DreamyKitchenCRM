@@ -27,6 +27,7 @@ Public Class CusOfferOrderKitchen
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
         sBaseCat = BaseCat
+        sIsOrder = IsOrder
     End Sub
     Public Sub LoadForm()
         Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
@@ -66,7 +67,7 @@ Public Class CusOfferOrderKitchen
                 Frm.txtTransp.EditValue = ProgProps.KitchenTransp
                 Frm.txtMeasurement.EditValue = ProgProps.KitchenMeasurement
                 Frm.txtRemove.EditValue = ProgProps.KitchenRemove
-                Frm.cboBaseCat.EditValue = System.Guid.Parse(GetBaseCatID())
+                'Frm.cboBaseCat.EditValue = System.Guid.Parse(GetBaseCatID())
                 Frm.dtOrder.EditValue = Date.Now
 
                 If sIsOrder = False Then
@@ -95,9 +96,11 @@ Public Class CusOfferOrderKitchen
                 Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
-                LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_KITCHEN.* " &
-                                                   "from CCT_ORDERS_KITCHEN " &
-                                                   " left join CCT_ORDERS_KITCHEN  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_KITCHEN.id where CCT_ORDERS_KITCHEN.id = " & toSQLValueS(ID), sFields)
+                LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[OFFER].*,OFFER_F.filename " &
+                                                       "from CCT_ORDERS_KITCHEN [OFFER]" &
+                                                       " left join CCT_ORDERS_KITCHEN  [ORDER] on [ORDER].CreatedFromOfferID =  [OFFER].id " &
+                                                       " left join CCT_ORDERS_KITCHEN_F  OFFER_F on OFFER_F.cctOrdersKitchenID =  [OFFER].ID " &
+                                                       "where [OFFER].id = " & toSQLValueS(ID), sFields)
                 If sIsOrder = False Then
                     If sFields("OrderID") <> "" Then
                         Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
@@ -135,6 +138,7 @@ Public Class CusOfferOrderKitchen
                         ORDER BY NAME")
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
+        If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
         Frm.GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
         Frm.GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
         Frm.GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
@@ -163,8 +167,8 @@ Public Class CusOfferOrderKitchen
         End If
         sdr.Close()
     End Function
-    Public Sub SaveRecord()
-        Dim sResult As Boolean
+    Public Sub SaveRecord(ByRef sID As String)
+        Dim sResult As Boolean, sResultF As Boolean
         Dim sGuid As String
         Try
             If Valid.ValiDationRules(Frm.Name, Frm) = False Then Exit Sub
@@ -174,12 +178,22 @@ Public Class CusOfferOrderKitchen
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
                         sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
-                        ID = sGuid
+                        ID = sGuid : sID = ID
                     Case FormMode.EditRecord
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, ID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
-                        'sGuid = sID
+                        sGuid = ID : sID = ID
                 End Select
+                If sResult = False Then Exit Sub
+                sResultF = DBQ.DeleteDataFiles("CCT_ORDERS_KITCHEN_F", sGuid)
+                If sResultF Then
+                    If Frm.txtCUSOfferOrderFilename.Text <> "" And sResult = True Then
+                        sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, sGuid, "CCT_ORDERS_KITCHEN_F")
+                        If sResultF = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
+                Else
+                    XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Καταχώρηση Εξοπλισμών
