@@ -1,4 +1,5 @@
 ﻿Imports System.ComponentModel
+Imports DevExpress.DataProcessing.InMemoryDataProcessor
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
@@ -60,14 +61,10 @@ Public Class frmTransactions
     End Sub
 
     Private Sub cmdSaveTransD_Click(sender As Object, e As EventArgs) Handles cmdSaveTransD.Click
-        Projects.SaveRecordD() : txtBal.Text = Projects.GetTransDAmt
-    End Sub
-
-    Private Sub GridView1CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
-        Projects.UpdateRecordD() : txtBal.Text = Projects.GetTransDAmt
+        Projects.SaveRecordD() : txtBal.Text = Projects.GetTranshBal
     End Sub
     Private Sub cmdSaveTransH_Click(sender As Object, e As EventArgs) Handles cmdSaveTransH.Click
-        Projects.SaveRecordH() : txtBal.Text = Projects.GetTransDAmt
+        Projects.SaveRecordH() : txtBal.Text = Projects.GetTranshBal
     End Sub
     Private Sub cboCOU_EditValueChanged(sender As Object, e As EventArgs) Handles cboCOU.EditValueChanged
         Dim sSQL As New System.Text.StringBuilder
@@ -169,7 +166,7 @@ Public Class frmTransactions
 
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
         Select Case e.KeyCode
-            Case Keys.Delete : Projects.DeleteRecordD() : txtBal.Text = Projects.GetTransDAmt
+            Case Keys.Delete : Projects.DeleteRecordD() : txtBal.Text = Projects.GetTranshBal
         End Select
     End Sub
 
@@ -180,8 +177,15 @@ Public Class frmTransactions
         End Select
 
     End Sub
-
-
+    Private Sub txtTotAmt_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotAmt.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        CalculateBal()
+    End Sub
+    Private Sub CalculateBal()
+        Dim dAmt As Double = 0
+        If GridView1.Columns.Item("amt").SummaryItem.SummaryValue IsNot Nothing Then dAmt = GridView1.Columns.Item("amt").SummaryItem.SummaryValue
+        txtBal.Text = txtTotAmt.EditValue - dAmt
+    End Sub
     Private Sub frmTransactions_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         Projects.LoadInstallations(True)
     End Sub
@@ -197,26 +201,16 @@ Public Class frmTransactions
 
     Private Sub txtExtraCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraCost.EditValueChanged
         If Me.IsActive = False Then Exit Sub
-        Dim ExtraCost As Double, Debit As Double, Devices As Double
-        If txtExtraCost.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
-        Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost) : ExtraCost = DbnullToZero(txtExtraCost)
-        txtTotAmt.EditValue = Debit + Devices + ExtraCost
+        CalculateTotAmt()
     End Sub
     Private Sub txtDebitCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDebitCost.EditValueChanged
         If Me.IsActive = False Then Exit Sub
-        Dim Debit As Double, Devices As Double
-        If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
-        Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost)
-        txtTotAmt.EditValue = Debit + Devices
+        CalculateTotAmt()
     End Sub
 
     Private Sub txtDevicesCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDevicesCost.EditValueChanged
         If Me.IsActive = False Then Exit Sub
-        Dim Debit As Double, Devices As Double
-        If txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
-        Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost)
-        txtTotAmt.EditValue = Debit + Devices
-
+        CalculateTotAmt()
     End Sub
 
     Private Sub cboPayType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPayType.ButtonClick
@@ -239,5 +233,37 @@ Public Class frmTransactions
         Projects.LoadInstallations()
     End Sub
 
+    Private Sub GridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView1.ValidateRow
+        GridView1.UpdateTotalSummary() : CalculateBal()
 
+        If Projects.UpdateRecordD() = False Then e.Valid = False
+        txtBal.Text = Projects.GetTranshBal
+
+    End Sub
+
+    Private Sub GridView1_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView1.InvalidRowException
+        e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
+    End Sub
+
+    Private Sub txtbenchSalesPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchSalesPrice.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        CalculateTotAmt() : CalculateBenchProfit()
+    End Sub
+    Private Sub CalculateTotAmt()
+        Dim ExtraCost As Double, Debit As Double, Devices As Double, BenchSalesPrice As Double
+        If txtExtraCost.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
+        Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost) : ExtraCost = DbnullToZero(txtExtraCost) : BenchSalesPrice = DbnullToZero(txtbenchSalesPrice)
+        txtTotAmt.EditValue = Debit + Devices + ExtraCost + BenchSalesPrice
+    End Sub
+
+    Private Sub txtbenchPurchasePrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchPurchasePrice.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        CalculateBenchProfit()
+    End Sub
+    Private Sub CalculateBenchProfit()
+        Dim benchPurchasePrice As Double, benchSalesPrice As Double
+        If txtbenchPurchasePrice.EditValue Is Nothing Or txtbenchSalesPrice.EditValue Is Nothing Then Exit Sub
+        benchPurchasePrice = DbnullToZero(txtbenchPurchasePrice) : benchSalesPrice = DbnullToZero(txtbenchSalesPrice)
+        txtbenchProfit.EditValue = benchPurchasePrice - benchSalesPrice
+    End Sub
 End Class

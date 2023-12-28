@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.Data.PivotGrid
+Imports DevExpress.Utils.Extensions
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Columns
@@ -67,8 +68,7 @@ Public Class Projects
                 FillCbo.AREAS(Frm.cboAREAS, sSQL)
 
                 TranshFieldAndValues = New Dictionary(Of String, String)
-                LoadForms.LoadFormGRP(Frm.LayoutControlGroup3, "Select * from vw_TRANSH with(nolock) where id ='" + ID + "'",, TranshFieldAndValues)
-                LoadForms.LoadFormGRP(Frm.LayoutControlGroup4, "Select * from vw_TRANSH with(nolock) where id ='" + ID + "'")
+                LoadForms.LoadFormGRP(Frm.LayoutControlGroup1, "Select * from vw_TRANSH with(nolock) where id ='" + ID + "'",, TranshFieldAndValues)
                 Frm.txtBal.EditValue = TranshFieldAndValues.Item("bal")
                 sEMP_T_ID = TranshFieldAndValues.Item("EmpTID").ToString
                 sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
@@ -175,6 +175,7 @@ Public Class Projects
 
         Try
             If Valid.ValidateForm(Frm.LayoutControl2) Then
+                If BenchValidation() = False Then Exit Sub
                 ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
                 Select Case Mode
                     Case FormMode.NewRecord
@@ -237,7 +238,7 @@ Public Class Projects
         Dim sGuid As String, sSQL As String
         Try
             If Valid.ValidateForm(Frm.LayoutControl3) Then
-                If PayTypeValidations() = False Then Exit Sub
+                If PayTypeValidations(Frm.cboPayType.EditValue.ToString) = False Then Exit Sub
                 If BalValidation() = False Then Exit Sub
                 sGuid = System.Guid.NewGuid.ToString
                 sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSD", Frm.LayoutControl3,,, sGuid,, "transhID", toSQLValueS(ID))
@@ -245,7 +246,9 @@ Public Class Projects
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Frm.Vw_TRANSDTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSD, System.Guid.Parse(ID))
                     If Frm.cboPayType.EditValue.ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" Then
-                        'Τζίροι ποσοστά
+                        If UpdateProjectFields(Frm.dtPay.EditValue.ToString, "0") = False Then
+                            XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End If                        'Τζίροι ποσοστά
                         SaveEMP_T()
                         ' Ανάλυση έργου 
                         SaveProjectcost()
@@ -261,10 +264,13 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public Sub UpdateRecordD()
+    Public Function UpdateRecordD() As Boolean
         Dim cash As Byte, cmt As String, Paid As Byte
         Try
             Dim sSQL As String
+            If Frm.GridView1.FocusedColumn.Name = "colPayTypeID" Then
+                If PayTypeValidations(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString) = False Then Return False
+            End If
             If Not IsDBNull(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash")) Then
                 If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = True Then cash = 1 Else cash = 0
             End If
@@ -289,21 +295,28 @@ Public Class Projects
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(Frm.txtBal.EditValue.ToString, True) & " WHERE ID = " & toSQLValueS(ID)
-            Using oCmd As New SqlCommand(sSQL, CNDB)
-                oCmd.ExecuteNonQuery()
-            End Using
-
+            If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" Then
+                If UpdateProjectFields(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay").ToString, Paid.ToString) = False Then
+                    XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
+                Frm.dtAgreement.EditValue = Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay")
+            End If
+            'sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(Frm.txtBal.EditValue.ToString, True) & " WHERE ID = " & toSQLValueS(ID)
+            'Using oCmd As New SqlCommand(sSQL, CNDB)
+            '    oCmd.ExecuteNonQuery()
+            'End Using
+            Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         End Try
-    End Sub
-    Public Function GetTransDAmt() As Double
+    End Function
+    Public Function GetTranshBal() As Double
         Dim sSQL As String
         Dim Cmd As SqlCommand
         Try
             Dim Bal As Double = 0
-            sSQL = "SELECT Bal FROM [TRANSH] WHERE ID =  " & toSQLValueS(ID)
+            sSQL = "SELECT isnull(Bal,0) as  Bal  FROM [TRANSH] WHERE ID =  " & toSQLValueS(ID)
             Cmd = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
@@ -313,6 +326,25 @@ Public Class Projects
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return 0
+        End Try
+    End Function
+    Private Function UpdateProjectFields(ByVal sdtPay As String, ByVal sPaid As String) As Boolean
+        Try
+            Dim sSQL As String
+            If sdtPay.Length > 0 Then
+                sSQL = "UPDATE [TRANSH] SET dtAgreement  = " & toSQLValueS(CDate(sdtPay).ToString("yyyyMMdd")) & ",offerCusAcceptance = " & toSQLValueS(sPaid) & " WHERE ID = " & toSQLValueS(ID)
+            Else
+                sSQL = "UPDATE [TRANSH] SET dtAgreement  = NULL,offerCusAcceptance = 0 WHERE ID = " & toSQLValueS(ID)
+            End If
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Frm.dtAgreement.EditValue = CDate(sdtPay).ToString("yyyyMMdd")
+            Frm.chkofferCusAcceptance.CheckState = sPaid
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         End Try
     End Function
     'Καταχώρηση Εγγραφής στους Τζίρους ποσοστά
@@ -339,6 +371,7 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    'Έλεγχος αν υπάρχει εγγραφή κλεισίματος
     Private Function CheckIfClosedRecExist() As Boolean
         Dim sSQL As String
         Dim Cmd As SqlCommand
@@ -360,18 +393,34 @@ Public Class Projects
 
 
     End Function
+    ' Έλεγχος αν έχει συμπληρωθεί Τιμή Πώλησης Πάγκου τότε πρέπει να έχει συμπληρωθεί υποχρεωτικά και η Τιμή Αγοράς Πάγκου
+    Private Function BenchValidation() As Boolean
+        Try
+            If Frm.txtbenchSalesPrice.EditValue = Nothing Then Return True
+            If Frm.txtbenchSalesPrice.EditValue <> 0 And Frm.txtbenchPurchasePrice.EditValue = 0 Then
+                XtraMessageBox.Show("Έχετε συμπληρώσει 'Τιμή Πώλησης Πάγκου' και δεν έχετε συμπληρώσει την 'Τιμή Αγοράς Πάγκου'", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
     ' Έλεγχος αν υπάρχει εγγραφή με τύπο πληρωμής "Κλείσιμο" ή δεν έχει καταχωρηθεί διπλή εγγραφή Κλεισίματος
-    Private Function PayTypeValidations() As Boolean
+    Private Function PayTypeValidations(ByVal sPayType As String) As Boolean
         Dim sSQL As String
         Dim Cmd As SqlCommand
         Try
             Dim CountClosed As Integer
+
             sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(ID)
             Cmd = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
                 If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
-                Select Case Frm.cboPayType.EditValue.ToString.ToUpper
+                Select Case sPayType.ToUpper
                     'Κλεισιμο
                     Case "90A295A1-D2A0-40B7-B260-A532B2C322AC"
                         If CountClosed > 0 Then
@@ -491,12 +540,22 @@ Public Class Projects
         Dim sSQL As String
         Try
             If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+            If ClosedRecordIsLast() = False Then Exit Sub
             If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 sSQL = "DELETE FROM TRANSD WHERE ID = '" & Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString & "'"
 
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
+
+                If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" Then
+                    If UpdateProjectFields("", "0") = False Then
+                        XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Else
+                        Frm.dtAgreement.EditValue = Nothing
+                    End If
+
+                End If
                 XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Frm.Vw_TRANSDTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSD, System.Guid.Parse(ID))
             End If
@@ -504,6 +563,16 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    'Έλεγχος αν πάει να διαγραφεί η εγγραφή του Κλεισίματος πριν από άλλες εγγραφές. Πάντα τελευταία πρέπει να διαγράφεται
+    Private Function ClosedRecordIsLast() As Boolean
+        If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" And Frm.GridView1.DataRowCount > 1 Then
+            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε εγγραφή 'Κλεισίματος' χωρίς να έχετε διαγράψει όλες τις άλλες εγγραφές", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        Else
+            Return True
+        End If
+
+    End Function
     Public Sub PrintedForms()
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader

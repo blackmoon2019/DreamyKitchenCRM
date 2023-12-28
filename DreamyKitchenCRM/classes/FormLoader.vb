@@ -250,7 +250,9 @@ NextItem:
                 End If
 
                 For Each item As BaseLayoutItem In GRP.Items
-                    If TypeOf item Is LayoutControlItem Then
+                    If TypeOf item Is DevExpress.XtraLayout.LayoutControlGroup Then
+                        LoadFormGRP(item, sSQL, IgnoreVisibility)
+                    ElseIf TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
                         If LItem.ControlName <> Nothing Then
                             ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE

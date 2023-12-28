@@ -195,6 +195,7 @@ Public Class CusOfferOrderKitchen
                     XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
                 If sResult = True Then
+                    If UpdateProjectFields() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του έργου.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Καταχώρηση Εξοπλισμών
                     If Mode = FormMode.NewRecord Then
@@ -223,6 +224,20 @@ Public Class CusOfferOrderKitchen
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function UpdateProjectFields() As Boolean
+        Try
+            Dim sSQL As String
+            If Frm.txtCUSOfferOrderFilename.EditValue = Nothing Then Return True
+            sSQL = "UPDATE TRANSH SET BENCHSALESPRICE = " & toSQLValue(Frm.txtbenchSalesPrice, True) & " WHERE ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
 
     Public Sub InsertSelectedRows(ByVal msg As Boolean)
         Dim sSQL As String
