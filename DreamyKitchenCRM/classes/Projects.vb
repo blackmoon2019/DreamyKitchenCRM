@@ -67,7 +67,8 @@ Public Class Projects
                 FillCbo.AREAS(Frm.cboAREAS, sSQL)
 
                 TranshFieldAndValues = New Dictionary(Of String, String)
-                LoadForms.LoadFormGRP(Frm.LayoutControlGroup1, "Select * from vw_TRANSH with(nolock) where id ='" + ID + "'",, TranshFieldAndValues)
+                LoadForms.LoadFormGRP(Frm.LayoutControlGroup3, "Select * from vw_TRANSH with(nolock) where id ='" + ID + "'",, TranshFieldAndValues)
+                LoadForms.LoadFormGRP(Frm.LayoutControlGroup4, "Select * from vw_TRANSH with(nolock) where id ='" + ID + "'")
                 Frm.txtBal.EditValue = TranshFieldAndValues.Item("bal")
                 sEMP_T_ID = TranshFieldAndValues.Item("EmpTID").ToString
                 sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString

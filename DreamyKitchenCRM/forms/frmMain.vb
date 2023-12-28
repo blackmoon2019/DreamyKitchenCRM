@@ -342,10 +342,10 @@ Public Class frmMain
         Me.Close()
     End Sub
 
-    Private Sub ΒΒDoorType_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒDoorType.ItemClick
+    Private Sub ΒΒVALUELISTITEM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒvalueListItem.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Κατηγορία Πόρτας"
-        form.DataTable = "vw_DOOR_TYPE"
+        form.DataTable = "vw_VALUELISTITEM"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -954,7 +954,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Κατηγορίες Υλικών"
         form.BarNewRec.Enabled = False
-        form.DataTable = "vw_DOOR_CAT"
+        form.DataTable = "vw_VALUELIST"
         form.MdiParent = Me
         form.Show()
     End Sub

@@ -38,8 +38,8 @@ Public Class frmParameters
     End Property
 
     Private Sub frmParameters_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DM_DOORTYPES.vw_DOOR_TYPE_V2' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+        'TODO: This line of code loads data into the 'DM_VALUELISTITEM.vw_VALUELISTITEM_V2' table. You can move, or remove it, as needed.
+        Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet1.MAILS' table. You can move, or remove it, as needed.
         Me.MAILSTableAdapter.Fill(Me.DreamyKitchenDataSet1.MAILS)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BENCH' table. You can move, or remove it, as needed.
@@ -68,8 +68,8 @@ Public Class frmParameters
     Private Sub V_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles V_BOX_COLOR.ButtonClick
 
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(V_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(V_BOX_COLOR, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(V_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(V_BOX_COLOR, FormMode.EditRecord)
             Case 3 : V_BOX_COLOR.EditValue = Nothing
         End Select
     End Sub
@@ -78,8 +78,8 @@ Public Class frmParameters
 
     Private Sub K_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles K_BOX_COLOR.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(K_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(K_BOX_COLOR, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(K_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(K_BOX_COLOR, FormMode.EditRecord)
             Case 3 : K_BOX_COLOR.EditValue = Nothing
         End Select
     End Sub
@@ -87,8 +87,8 @@ Public Class frmParameters
 
     Private Sub Y_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles Y_BOX_COLOR.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(Y_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(Y_BOX_COLOR, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(Y_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(Y_BOX_COLOR, FormMode.EditRecord)
             Case 3 : Y_BOX_COLOR.EditValue = Nothing
         End Select
     End Sub
@@ -347,8 +347,8 @@ Public Class frmParameters
 
     Private Sub CLOSET_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles CLOSET_BOX_COLOR.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(CLOSET_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(CLOSET_BOX_COLOR, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(CLOSET_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(CLOSET_BOX_COLOR, FormMode.EditRecord)
             Case 3 : CLOSET_BOX_COLOR.EditValue = Nothing
         End Select
     End Sub

@@ -414,7 +414,7 @@ Partial Public Class RepTransCostD
         'XrTableCell51
         '
         Me.XrTableCell51.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell51.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DdoorType1]")})
+        Me.XrTableCell51.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DVALUELISTITEM1]")})
         Me.XrTableCell51.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell51.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell51.Multiline = True
@@ -503,7 +503,7 @@ Partial Public Class RepTransCostD
         'XrTableCell52
         '
         Me.XrTableCell52.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell52.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DdoorType2]")})
+        Me.XrTableCell52.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DVALUELISTITEM2]")})
         Me.XrTableCell52.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell52.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell52.Multiline = True
@@ -592,7 +592,7 @@ Partial Public Class RepTransCostD
         'XrTableCell53
         '
         Me.XrTableCell53.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell53.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DdoorType3]")})
+        Me.XrTableCell53.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DVALUELISTITEM3]")})
         Me.XrTableCell53.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell53.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell53.Multiline = True
@@ -681,7 +681,7 @@ Partial Public Class RepTransCostD
         'XrTableCell54
         '
         Me.XrTableCell54.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell54.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DdoorType4]")})
+        Me.XrTableCell54.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DVALUELISTITEM4]")})
         Me.XrTableCell54.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell54.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell54.Multiline = True
@@ -770,7 +770,7 @@ Partial Public Class RepTransCostD
         'XrTableCell55
         '
         Me.XrTableCell55.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell55.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DdoorType5]")})
+        Me.XrTableCell55.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DVALUELISTITEM5]")})
         Me.XrTableCell55.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell55.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell55.Multiline = True
@@ -859,7 +859,7 @@ Partial Public Class RepTransCostD
         'XrTableCell56
         '
         Me.XrTableCell56.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell56.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DdoorType6]")})
+        Me.XrTableCell56.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DVALUELISTITEM6]")})
         Me.XrTableCell56.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell56.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell56.Multiline = True

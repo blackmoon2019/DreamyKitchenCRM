@@ -1111,7 +1111,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         '
         Me.XrLabel77.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel77.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
-        Me.XrLabel77.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_ORDERS_KITCHEN].[BenchNisidaDoorTypeName]")})
+        Me.XrLabel77.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_ORDERS_KITCHEN].[BenchNisidaVALUELISTITEMName]")})
         Me.XrLabel77.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel77.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel77.LocationFloat = New DevExpress.Utils.PointFloat(219.1655!, 61.29105!)

@@ -242,10 +242,13 @@
     <Compile Include="DMDataSet.vb">
       <DependentUpon>DMDataSet.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DM_DOORTYPES.Designer.vb">
+    <Compile Include="DM_VALUELISTITEM.Designer.vb">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DM_DOORTYPES.xsd</DependentUpon>
+      <DependentUpon>DM_VALUELISTITEM.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DM_VALUELISTITEM.vb">
+      <DependentUpon>DM_VALUELISTITEM.xsd</DependentUpon>
     </Compile>
     <Compile Include="DreamyKitchenDataSet.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -481,10 +484,10 @@
     <Compile Include="forms\frmPermissions.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="forms\frmDoorType.Designer.vb">
-      <DependentUpon>frmDoorType.vb</DependentUpon>
+    <Compile Include="forms\frmValueListItem.Designer.vb">
+      <DependentUpon>frmValueListItem.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmDoorType.vb">
+    <Compile Include="forms\frmValueListItem.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmPersonalNote.Designer.vb">
@@ -916,8 +919,9 @@
     <EmbeddedResource Include="forms\frmPermissions.resx">
       <DependentUpon>frmPermissions.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="forms\frmDoorType.resx">
-      <DependentUpon>frmDoorType.vb</DependentUpon>
+    <EmbeddedResource Include="forms\frmValueListItem.resx">
+      <DependentUpon>frmValueListItem.vb</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmPersonalNote.resx">
       <DependentUpon>frmPersonalNote.vb</DependentUpon>
@@ -1089,16 +1093,16 @@
     <None Include="DMDataSet.xss">
       <DependentUpon>DMDataSet.xsd</DependentUpon>
     </None>
-    <None Include="DM_DOORTYPES.xsc">
-      <DependentUpon>DM_DOORTYPES.xsd</DependentUpon>
+    <None Include="DM_VALUELISTITEM.xsc">
+      <DependentUpon>DM_VALUELISTITEM.xsd</DependentUpon>
     </None>
-    <None Include="DM_DOORTYPES.xsd">
+    <None Include="DM_VALUELISTITEM.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DM_DOORTYPES.Designer.vb</LastGenOutput>
+      <LastGenOutput>DM_VALUELISTITEM.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DM_DOORTYPES.xss">
-      <DependentUpon>DM_DOORTYPES.xsd</DependentUpon>
+    <None Include="DM_VALUELISTITEM.xss">
+      <DependentUpon>DM_VALUELISTITEM.xsd</DependentUpon>
     </None>
     <None Include="DreamyKitchenCRM.exe.config" />
     <None Include="DreamyKitchenDataSet.xsc">

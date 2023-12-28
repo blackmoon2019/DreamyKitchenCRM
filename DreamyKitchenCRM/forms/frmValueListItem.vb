@@ -1,7 +1,8 @@
 ﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
+Imports DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters
 
-Public Class frmDoorType
+Public Class frmValueListItem
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
@@ -13,6 +14,7 @@ Public Class frmDoorType
     Private LoadForms As New FormLoader
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
+    Private CtrlComboChecked As DevExpress.XtraEditors.CheckedComboBoxEdit
     Private CalledFromCtrl As Boolean
 
 
@@ -36,6 +38,12 @@ Public Class frmDoorType
             CtrlCombo = value
         End Set
     End Property
+    Public WriteOnly Property CallerControlChecked As DevExpress.XtraEditors.CheckedComboBoxEdit
+        Set(value As DevExpress.XtraEditors.CheckedComboBoxEdit)
+            CtrlComboChecked = value
+        End Set
+    End Property
+
     Public WriteOnly Property CalledFromControl As Boolean
         Set(value As Boolean)
             CalledFromCtrl = value
@@ -45,27 +53,39 @@ Public Class frmDoorType
         Me.Close()
     End Sub
 
-    Private Sub frmDoorType_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+    Private Sub frmVALUELISTITEM_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
 
-    Private Sub frmDoorType_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DOOR_CAT' table. You can move, or remove it, as needed.
-        Me.Vw_DOOR_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DOOR_CAT)
+    Private Sub frmVALUELISTITEM_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_VALUELIST' table. You can move, or remove it, as needed.
+        Me.vw_VALUELISTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_VALUELIST)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DIM' table. You can move, or remove it, as needed.
         Me.Vw_DIMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DIM)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
         Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
+
         Select Case Mode
             Case FormMode.NewRecord
-                txtCode.Text = DBQ.GetNextId("DOOR_TYPE")
+                txtCode.Text = DBQ.GetNextId("valueListItem")
             Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from DOOR_TYPE where id ='" + sID + "'")
+                LoadForms.LoadForm(LayoutControl1, "Select * from valueListItem where id ='" + sID + "'")
         End Select
+        ShowRequiredItems()
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
+    Private Sub ShowRequiredItems()
+        If cboValueList.EditValue = Nothing Then Exit Sub
+        Select Case cboValueList.EditValue.ToString.ToUpper
+            Case "3C68F058-6A47-4995-8B0C-26538F38580A" ' Μοντέλα Κουζίνας
+                LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+                LName.Tag = "1"
+                cboValueList.ReadOnly = True
+        End Select
 
+    End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
         Dim sGuid As String
@@ -74,23 +94,34 @@ Public Class frmDoorType
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertData(LayoutControl1, "DOOR_TYPE", sGuid)
+                        sResult = DBQ.InsertData(LayoutControl1, "valueListItem", sGuid)
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateData(LayoutControl1, "DOOR_TYPE", sID)
+                        sResult = DBQ.UpdateData(LayoutControl1, "valueListItem", sID)
                         sGuid = sID
                 End Select
                 If CalledFromCtrl Then
-                    FillCbo.DOOR_TYPE(CtrlCombo)
-                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                    If CtrlCombo IsNot Nothing Then
+                        FillCbo.valueListItem(CtrlCombo)
+                    Else
+                        Dim sSQL As System.Text.StringBuilder
+                        sSQL = New System.Text.StringBuilder
+                        sSQL.AppendLine("SELECT * FROM vw_VALUELISTITEM WHERE (valueListID = '3C68F058-6A47-4995-8B0C-26538F38580A')")
+                        Select Case cboValueList.EditValue.ToString.ToUpper
+                            ' Μοντέλα Κουζίνας
+                            Case "3C68F058-6A47-4995-8B0C-26538F38580A" : FillCbo.valueListItem(, sSQL, CtrlComboChecked)
+                        End Select
+
+                        '       CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                    End If
                 Else
                     Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_DOOR_TYPE")
+                    form.LoadRecords("vw_VALUELISTITEM")
                 End If
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then
                         Cls.ClearCtrls(LayoutControl1)
-                        txtCode.Text = DBQ.GetNextId("DOOR_TYPE")
+                        txtCode.Text = DBQ.GetNextId("valueListItem")
                         txtCustomCode.Select()
                     End If
                 End If
@@ -113,16 +144,16 @@ Public Class frmDoorType
         End Select
     End Sub
 
-    Private Sub cboDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType.ButtonClick
+    Private Sub cboVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboDoorType.EditValue = Nothing
+            Case 1 : cboVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboDoorCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorCat.ButtonClick
+    Private Sub cboValueList_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueList.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboDoorCat.EditValue = Nothing : ManageDoorCAT()
-            Case 2 : If cboDoorCat.EditValue <> Nothing Then ManageDoorCAT()
-            Case 3 : cboDoorCat.EditValue = Nothing
+            Case 1 : cboValueList.EditValue = Nothing : ManageDoorCAT()
+            Case 2 : If cboValueList.EditValue <> Nothing Then ManageDoorCAT()
+            Case 3 : cboValueList.EditValue = Nothing
         End Select
     End Sub
     Private Sub ManageDoorCAT()
@@ -131,11 +162,11 @@ Public Class frmDoorType
         form1.L1.Text = "Κωδικός"
         form1.L2.Text = "Κατηγορία"
         form1.DataTable = "DOOR_CAT"
-        form1.CallerControl = cboDoorCat
+        form1.CallerControl = cboValueList
         form1.CalledFromControl = True
-        If cboDoorCat.EditValue <> Nothing Then form1.ID = cboDoorCat.EditValue.ToString
+        If cboValueList.EditValue <> Nothing Then form1.ID = cboValueList.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboDoorCat.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboValueList.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -162,9 +193,9 @@ Public Class frmDoorType
         form1.Show()
     End Sub
 
-    Private Sub cboDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType1.ButtonClick
+    Private Sub cboVALUELISTITEM1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboDoorType1.EditValue = Nothing
+            Case 1 : cboVALUELISTITEM1.EditValue = Nothing
         End Select
 
     End Sub
@@ -182,7 +213,7 @@ Public Class frmDoorType
         Dim frmColors As frmColors = New frmColors
         frmColors.ColorCategory = "40C7BFFB-43EB-48FB-A467-74C0BCBE09FA"
         frmColors.Text = "Χρώματα"
-        frmColors.CallerForm = "frmDoorType"
+        frmColors.CallerForm = "frmVALUELISTITEM"
         frmColors.CallerControlLKUP = CallerControl
         frmColors.CalledFromControl = True
         frmColors.MdiParent = frmMain

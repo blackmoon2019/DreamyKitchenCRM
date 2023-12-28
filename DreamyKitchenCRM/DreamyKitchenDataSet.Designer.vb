@@ -37,7 +37,7 @@ Partial Public Class DreamyKitchenDataSet
     
     Private tablevw_OFFERS As vw_OFFERSDataTable
     
-    Private tablevw_DOOR_TYPE As vw_DOOR_TYPEDataTable
+    Private tablevw_ValueListItem As vw_ValueListItemDataTable
     
     Private tablevw_CAT_SUB_ERM As vw_CAT_SUB_ERMDataTable
     
@@ -49,7 +49,7 @@ Partial Public Class DreamyKitchenDataSet
     
     Private tablevw_OFF_SUBOFF As vw_OFF_SUBOFFDataTable
     
-    Private tablevw_OFFER_DOORTYPES As vw_OFFER_DOORTYPESDataTable
+    Private tablevw_OFFER_ValueListItemS As vw_OFFER_ValueListItemSDataTable
     
     Private tablevw_COLORSBAZA As vw_COLORSBAZADataTable
     
@@ -109,7 +109,7 @@ Partial Public Class DreamyKitchenDataSet
     
     Private tablevw_DIM As vw_DIMDataTable
     
-    Private tablevw_DOOR_CAT As vw_DOOR_CATDataTable
+    Private tablevw_VALUELIST As vw_VALUELISTDataTable
     
     Private tablevw_TECH_SUP As vw_TECH_SUPDataTable
     
@@ -162,8 +162,8 @@ Partial Public Class DreamyKitchenDataSet
             If (Not (ds.Tables("vw_OFFERS")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_OFFERSDataTable(ds.Tables("vw_OFFERS")))
             End If
-            If (Not (ds.Tables("vw_DOOR_TYPE")) Is Nothing) Then
-                MyBase.Tables.Add(New vw_DOOR_TYPEDataTable(ds.Tables("vw_DOOR_TYPE")))
+            If (Not (ds.Tables("vw_ValueListItem")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_ValueListItemDataTable(ds.Tables("vw_ValueListItem")))
             End If
             If (Not (ds.Tables("vw_CAT_SUB_ERM")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_CAT_SUB_ERMDataTable(ds.Tables("vw_CAT_SUB_ERM")))
@@ -180,8 +180,8 @@ Partial Public Class DreamyKitchenDataSet
             If (Not (ds.Tables("vw_OFF_SUBOFF")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_OFF_SUBOFFDataTable(ds.Tables("vw_OFF_SUBOFF")))
             End If
-            If (Not (ds.Tables("vw_OFFER_DOORTYPES")) Is Nothing) Then
-                MyBase.Tables.Add(New vw_OFFER_DOORTYPESDataTable(ds.Tables("vw_OFFER_DOORTYPES")))
+            If (Not (ds.Tables("vw_OFFER_ValueListItemS")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_OFFER_ValueListItemSDataTable(ds.Tables("vw_OFFER_ValueListItemS")))
             End If
             If (Not (ds.Tables("vw_COLORSBAZA")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_COLORSBAZADataTable(ds.Tables("vw_COLORSBAZA")))
@@ -270,8 +270,8 @@ Partial Public Class DreamyKitchenDataSet
             If (Not (ds.Tables("vw_DIM")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_DIMDataTable(ds.Tables("vw_DIM")))
             End If
-            If (Not (ds.Tables("vw_DOOR_CAT")) Is Nothing) Then
-                MyBase.Tables.Add(New vw_DOOR_CATDataTable(ds.Tables("vw_DOOR_CAT")))
+            If (Not (ds.Tables("vw_VALUELIST")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_VALUELISTDataTable(ds.Tables("vw_VALUELIST")))
             End If
             If (Not (ds.Tables("vw_TECH_SUP")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_TECH_SUPDataTable(ds.Tables("vw_TECH_SUP")))
@@ -360,9 +360,9 @@ Partial Public Class DreamyKitchenDataSet
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property vw_DOOR_TYPE() As vw_DOOR_TYPEDataTable
+    Public ReadOnly Property vw_ValueListItem() As vw_ValueListItemDataTable
         Get
-            Return Me.tablevw_DOOR_TYPE
+            Return Me.tablevw_ValueListItem
         End Get
     End Property
     
@@ -420,9 +420,9 @@ Partial Public Class DreamyKitchenDataSet
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property vw_OFFER_DOORTYPES() As vw_OFFER_DOORTYPESDataTable
+    Public ReadOnly Property vw_OFFER_ValueListItemS() As vw_OFFER_ValueListItemSDataTable
         Get
-            Return Me.tablevw_OFFER_DOORTYPES
+            Return Me.tablevw_OFFER_ValueListItemS
         End Get
     End Property
     
@@ -720,9 +720,9 @@ Partial Public Class DreamyKitchenDataSet
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
      Global.System.ComponentModel.Browsable(false),  _
      Global.System.ComponentModel.DesignerSerializationVisibility(Global.System.ComponentModel.DesignerSerializationVisibility.Content)>  _
-    Public ReadOnly Property vw_DOOR_CAT() As vw_DOOR_CATDataTable
+    Public ReadOnly Property vw_VALUELIST() As vw_VALUELISTDataTable
         Get
-            Return Me.tablevw_DOOR_CAT
+            Return Me.tablevw_VALUELIST
         End Get
     End Property
     
@@ -831,8 +831,8 @@ Partial Public Class DreamyKitchenDataSet
             If (Not (ds.Tables("vw_OFFERS")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_OFFERSDataTable(ds.Tables("vw_OFFERS")))
             End If
-            If (Not (ds.Tables("vw_DOOR_TYPE")) Is Nothing) Then
-                MyBase.Tables.Add(New vw_DOOR_TYPEDataTable(ds.Tables("vw_DOOR_TYPE")))
+            If (Not (ds.Tables("vw_ValueListItem")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_ValueListItemDataTable(ds.Tables("vw_ValueListItem")))
             End If
             If (Not (ds.Tables("vw_CAT_SUB_ERM")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_CAT_SUB_ERMDataTable(ds.Tables("vw_CAT_SUB_ERM")))
@@ -849,8 +849,8 @@ Partial Public Class DreamyKitchenDataSet
             If (Not (ds.Tables("vw_OFF_SUBOFF")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_OFF_SUBOFFDataTable(ds.Tables("vw_OFF_SUBOFF")))
             End If
-            If (Not (ds.Tables("vw_OFFER_DOORTYPES")) Is Nothing) Then
-                MyBase.Tables.Add(New vw_OFFER_DOORTYPESDataTable(ds.Tables("vw_OFFER_DOORTYPES")))
+            If (Not (ds.Tables("vw_OFFER_ValueListItemS")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_OFFER_ValueListItemSDataTable(ds.Tables("vw_OFFER_ValueListItemS")))
             End If
             If (Not (ds.Tables("vw_COLORSBAZA")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_COLORSBAZADataTable(ds.Tables("vw_COLORSBAZA")))
@@ -939,8 +939,8 @@ Partial Public Class DreamyKitchenDataSet
             If (Not (ds.Tables("vw_DIM")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_DIMDataTable(ds.Tables("vw_DIM")))
             End If
-            If (Not (ds.Tables("vw_DOOR_CAT")) Is Nothing) Then
-                MyBase.Tables.Add(New vw_DOOR_CATDataTable(ds.Tables("vw_DOOR_CAT")))
+            If (Not (ds.Tables("vw_VALUELIST")) Is Nothing) Then
+                MyBase.Tables.Add(New vw_VALUELISTDataTable(ds.Tables("vw_VALUELIST")))
             End If
             If (Not (ds.Tables("vw_TECH_SUP")) Is Nothing) Then
                 MyBase.Tables.Add(New vw_TECH_SUPDataTable(ds.Tables("vw_TECH_SUP")))
@@ -1016,10 +1016,10 @@ Partial Public Class DreamyKitchenDataSet
                 Me.tablevw_OFFERS.InitVars
             End If
         End If
-        Me.tablevw_DOOR_TYPE = CType(MyBase.Tables("vw_DOOR_TYPE"),vw_DOOR_TYPEDataTable)
+        Me.tablevw_ValueListItem = CType(MyBase.Tables("vw_ValueListItem"),vw_ValueListItemDataTable)
         If (initTable = true) Then
-            If (Not (Me.tablevw_DOOR_TYPE) Is Nothing) Then
-                Me.tablevw_DOOR_TYPE.InitVars
+            If (Not (Me.tablevw_ValueListItem) Is Nothing) Then
+                Me.tablevw_ValueListItem.InitVars
             End If
         End If
         Me.tablevw_CAT_SUB_ERM = CType(MyBase.Tables("vw_CAT_SUB_ERM"),vw_CAT_SUB_ERMDataTable)
@@ -1052,10 +1052,10 @@ Partial Public Class DreamyKitchenDataSet
                 Me.tablevw_OFF_SUBOFF.InitVars
             End If
         End If
-        Me.tablevw_OFFER_DOORTYPES = CType(MyBase.Tables("vw_OFFER_DOORTYPES"),vw_OFFER_DOORTYPESDataTable)
+        Me.tablevw_OFFER_ValueListItemS = CType(MyBase.Tables("vw_OFFER_ValueListItemS"),vw_OFFER_ValueListItemSDataTable)
         If (initTable = true) Then
-            If (Not (Me.tablevw_OFFER_DOORTYPES) Is Nothing) Then
-                Me.tablevw_OFFER_DOORTYPES.InitVars
+            If (Not (Me.tablevw_OFFER_ValueListItemS) Is Nothing) Then
+                Me.tablevw_OFFER_ValueListItemS.InitVars
             End If
         End If
         Me.tablevw_COLORSBAZA = CType(MyBase.Tables("vw_COLORSBAZA"),vw_COLORSBAZADataTable)
@@ -1232,10 +1232,10 @@ Partial Public Class DreamyKitchenDataSet
                 Me.tablevw_DIM.InitVars
             End If
         End If
-        Me.tablevw_DOOR_CAT = CType(MyBase.Tables("vw_DOOR_CAT"),vw_DOOR_CATDataTable)
+        Me.tablevw_VALUELIST = CType(MyBase.Tables("vw_VALUELIST"),vw_VALUELISTDataTable)
         If (initTable = true) Then
-            If (Not (Me.tablevw_DOOR_CAT) Is Nothing) Then
-                Me.tablevw_DOOR_CAT.InitVars
+            If (Not (Me.tablevw_VALUELIST) Is Nothing) Then
+                Me.tablevw_VALUELIST.InitVars
             End If
         End If
         Me.tablevw_TECH_SUP = CType(MyBase.Tables("vw_TECH_SUP"),vw_TECH_SUPDataTable)
@@ -1272,8 +1272,8 @@ Partial Public Class DreamyKitchenDataSet
         MyBase.Tables.Add(Me.tablevw_ERM)
         Me.tablevw_OFFERS = New vw_OFFERSDataTable()
         MyBase.Tables.Add(Me.tablevw_OFFERS)
-        Me.tablevw_DOOR_TYPE = New vw_DOOR_TYPEDataTable()
-        MyBase.Tables.Add(Me.tablevw_DOOR_TYPE)
+        Me.tablevw_ValueListItem = New vw_ValueListItemDataTable()
+        MyBase.Tables.Add(Me.tablevw_ValueListItem)
         Me.tablevw_CAT_SUB_ERM = New vw_CAT_SUB_ERMDataTable()
         MyBase.Tables.Add(Me.tablevw_CAT_SUB_ERM)
         Me.tablevw_SIDES = New vw_SIDESDataTable()
@@ -1284,8 +1284,8 @@ Partial Public Class DreamyKitchenDataSet
         MyBase.Tables.Add(Me.tablevw_OFFERS_TOTAL)
         Me.tablevw_OFF_SUBOFF = New vw_OFF_SUBOFFDataTable()
         MyBase.Tables.Add(Me.tablevw_OFF_SUBOFF)
-        Me.tablevw_OFFER_DOORTYPES = New vw_OFFER_DOORTYPESDataTable()
-        MyBase.Tables.Add(Me.tablevw_OFFER_DOORTYPES)
+        Me.tablevw_OFFER_ValueListItemS = New vw_OFFER_ValueListItemSDataTable()
+        MyBase.Tables.Add(Me.tablevw_OFFER_ValueListItemS)
         Me.tablevw_COLORSBAZA = New vw_COLORSBAZADataTable()
         MyBase.Tables.Add(Me.tablevw_COLORSBAZA)
         Me.tablevw_COLORSBACK = New vw_COLORSBACKDataTable()
@@ -1344,8 +1344,8 @@ Partial Public Class DreamyKitchenDataSet
         MyBase.Tables.Add(Me.tablevw_PAYTYPES)
         Me.tablevw_DIM = New vw_DIMDataTable()
         MyBase.Tables.Add(Me.tablevw_DIM)
-        Me.tablevw_DOOR_CAT = New vw_DOOR_CATDataTable()
-        MyBase.Tables.Add(Me.tablevw_DOOR_CAT)
+        Me.tablevw_VALUELIST = New vw_VALUELISTDataTable()
+        MyBase.Tables.Add(Me.tablevw_VALUELIST)
         Me.tablevw_TECH_SUP = New vw_TECH_SUPDataTable()
         MyBase.Tables.Add(Me.tablevw_TECH_SUP)
         Me.tableMAILS = New MAILSDataTable()
@@ -1390,7 +1390,7 @@ Partial Public Class DreamyKitchenDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Private Function ShouldSerializevw_DOOR_TYPE() As Boolean
+    Private Function ShouldSerializevw_ValueListItem() As Boolean
         Return false
     End Function
     
@@ -1426,7 +1426,7 @@ Partial Public Class DreamyKitchenDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Private Function ShouldSerializevw_OFFER_DOORTYPES() As Boolean
+    Private Function ShouldSerializevw_OFFER_ValueListItemS() As Boolean
         Return false
     End Function
     
@@ -1606,7 +1606,7 @@ Partial Public Class DreamyKitchenDataSet
     
     <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
      Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Private Function ShouldSerializevw_DOOR_CAT() As Boolean
+    Private Function ShouldSerializevw_VALUELIST() As Boolean
         Return false
     End Function
     
@@ -1699,7 +1699,7 @@ Partial Public Class DreamyKitchenDataSet
     Public Delegate Sub vw_OFFERSRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_OFFERSRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Delegate Sub vw_DOOR_TYPERowChangeEventHandler(ByVal sender As Object, ByVal e As vw_DOOR_TYPERowChangeEvent)
+    Public Delegate Sub vw_ValueListItemRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_ValueListItemRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Public Delegate Sub vw_CAT_SUB_ERMRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_CAT_SUB_ERMRowChangeEvent)
@@ -1717,7 +1717,7 @@ Partial Public Class DreamyKitchenDataSet
     Public Delegate Sub vw_OFF_SUBOFFRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_OFF_SUBOFFRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Delegate Sub vw_OFFER_DOORTYPESRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_OFFER_DOORTYPESRowChangeEvent)
+    Public Delegate Sub vw_OFFER_ValueListItemSRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_OFFER_ValueListItemSRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Public Delegate Sub vw_COLORSBAZARowChangeEventHandler(ByVal sender As Object, ByVal e As vw_COLORSBAZARowChangeEvent)
@@ -1807,7 +1807,7 @@ Partial Public Class DreamyKitchenDataSet
     Public Delegate Sub vw_DIMRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_DIMRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Delegate Sub vw_DOOR_CATRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_DOOR_CATRowChangeEvent)
+    Public Delegate Sub vw_VALUELISTRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_VALUELISTRowChangeEvent)
     
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
     Public Delegate Sub vw_TECH_SUPRowChangeEventHandler(ByVal sender As Object, ByVal e As vw_TECH_SUPRowChangeEvent)
@@ -3252,7 +3252,7 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columncatErmID As Global.System.Data.DataColumn
         
-        Private columnDoorTypeID As Global.System.Data.DataColumn
+        Private columnValueListItemID As Global.System.Data.DataColumn
         
         Private columncalcID As Global.System.Data.DataColumn
         
@@ -3429,9 +3429,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DoorTypeIDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ValueListItemIDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDoorTypeID
+                Return Me.columnValueListItemID
             End Get
         End Property
         
@@ -3560,7 +3560,7 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal BoxColorName As String,  _
                     ByVal BoxColorPhoto() As Byte,  _
                     ByVal catErmID As System.Guid,  _
-                    ByVal DoorTypeID As System.Guid,  _
+                    ByVal ValueListItemID As System.Guid,  _
                     ByVal calcID As System.Guid,  _
                     ByVal calcName As String,  _
                     ByVal calculations As String,  _
@@ -3571,7 +3571,7 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal photo3() As Byte,  _
                     ByVal photo1() As Byte) As vw_ERMRow
             Dim rowvw_ERMRow As vw_ERMRow = CType(Me.NewRow,vw_ERMRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, CustomCode, catErmName, height, doorName, cat, width, depth, door, Price, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, DoorTypeID, calcID, calcName, calculations, DoorPrice, catSubErmName, catSubErmID, photo2, photo3, photo1}
+            Dim columnValuesArray() As Object = New Object() {ID, code, CustomCode, catErmName, height, doorName, cat, width, depth, door, Price, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, ValueListItemID, calcID, calcName, calculations, DoorPrice, catSubErmName, catSubErmID, photo2, photo3, photo1}
             rowvw_ERMRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_ERMRow)
             Return rowvw_ERMRow
@@ -3615,7 +3615,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnBoxColorName = MyBase.Columns("BoxColorName")
             Me.columnBoxColorPhoto = MyBase.Columns("BoxColorPhoto")
             Me.columncatErmID = MyBase.Columns("catErmID")
-            Me.columnDoorTypeID = MyBase.Columns("DoorTypeID")
+            Me.columnValueListItemID = MyBase.Columns("ValueListItemID")
             Me.columncalcID = MyBase.Columns("calcID")
             Me.columncalcName = MyBase.Columns("calcName")
             Me.columncalculations = MyBase.Columns("calculations")
@@ -3660,8 +3660,8 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columnBoxColorPhoto)
             Me.columncatErmID = New Global.System.Data.DataColumn("catErmID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncatErmID)
-            Me.columnDoorTypeID = New Global.System.Data.DataColumn("DoorTypeID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDoorTypeID)
+            Me.columnValueListItemID = New Global.System.Data.DataColumn("ValueListItemID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnValueListItemID)
             Me.columncalcID = New Global.System.Data.DataColumn("calcID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncalcID)
             Me.columncalcName = New Global.System.Data.DataColumn("calcName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -3692,7 +3692,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnPVCcolorName.MaxLength = 250
             Me.columnBoxColorName.MaxLength = 250
             Me.columncatErmID.AllowDBNull = false
-            Me.columnDoorTypeID.AllowDBNull = false
+            Me.columnValueListItemID.AllowDBNull = false
             Me.columncalcName.MaxLength = 50
             Me.columncalculations.MaxLength = 100
             Me.columncatSubErmName.MaxLength = 250
@@ -3848,7 +3848,7 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnlegs As Global.System.Data.DataColumn
         
-        Private columnDoorTypeName As Global.System.Data.DataColumn
+        Private columnValueListItemName As Global.System.Data.DataColumn
         
         Private columnoffID As Global.System.Data.DataColumn
         
@@ -3860,7 +3860,7 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnPhoto As Global.System.Data.DataColumn
         
-        Private columnDoorTypeID As Global.System.Data.DataColumn
+        Private columnValueListItemID As Global.System.Data.DataColumn
         
         Private columncatSubErmID As Global.System.Data.DataColumn
         
@@ -3983,9 +3983,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DoorTypeNameColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ValueListItemNameColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDoorTypeName
+                Return Me.columnValueListItemName
             End Get
         End Property
         
@@ -4031,9 +4031,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DoorTypeIDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ValueListItemIDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDoorTypeID
+                Return Me.columnValueListItemID
             End Get
         End Property
         
@@ -4194,13 +4194,13 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal depth As Decimal,  _
                     ByVal door As Integer,  _
                     ByVal legs As Integer,  _
-                    ByVal DoorTypeName As String,  _
+                    ByVal ValueListItemName As String,  _
                     ByVal offID As System.Guid,  _
                     ByVal catErmID As System.Guid,  _
                     ByVal ermID As System.Guid,  _
                     ByVal OfferPrice As Decimal,  _
                     ByVal Photo() As Byte,  _
-                    ByVal DoorTypeID As System.Guid,  _
+                    ByVal ValueListItemID As System.Guid,  _
                     ByVal catSubErmID As System.Guid,  _
                     ByVal calculations As String,  _
                     ByVal DoorPrice As Decimal,  _
@@ -4216,7 +4216,7 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal opening As String,  _
                     ByVal side1 As String) As vw_OFFERSRow
             Dim rowvw_OFFERSRow As vw_OFFERSRow = CType(Me.NewRow,vw_OFFERSRow)
-            Dim columnValuesArray() As Object = New Object() {ID, qty, height, width, depth, door, legs, DoorTypeName, offID, catErmID, ermID, OfferPrice, Photo, DoorTypeID, catSubErmID, calculations, DoorPrice, CatSubErmName, CatErmName, HasMech, HasSides, side, subOffID, SubOFFName, SubOFFName1, ErmPrice, opening, side1}
+            Dim columnValuesArray() As Object = New Object() {ID, qty, height, width, depth, door, legs, ValueListItemName, offID, catErmID, ermID, OfferPrice, Photo, ValueListItemID, catSubErmID, calculations, DoorPrice, CatSubErmName, CatErmName, HasMech, HasSides, side, subOffID, SubOFFName, SubOFFName1, ErmPrice, opening, side1}
             rowvw_OFFERSRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_OFFERSRow)
             Return rowvw_OFFERSRow
@@ -4252,13 +4252,13 @@ Partial Public Class DreamyKitchenDataSet
             Me.columndepth = MyBase.Columns("depth")
             Me.columndoor = MyBase.Columns("door")
             Me.columnlegs = MyBase.Columns("legs")
-            Me.columnDoorTypeName = MyBase.Columns("DoorTypeName")
+            Me.columnValueListItemName = MyBase.Columns("ValueListItemName")
             Me.columnoffID = MyBase.Columns("offID")
             Me.columncatErmID = MyBase.Columns("catErmID")
             Me.columnermID = MyBase.Columns("ermID")
             Me.columnOfferPrice = MyBase.Columns("OfferPrice")
             Me.columnPhoto = MyBase.Columns("Photo")
-            Me.columnDoorTypeID = MyBase.Columns("DoorTypeID")
+            Me.columnValueListItemID = MyBase.Columns("ValueListItemID")
             Me.columncatSubErmID = MyBase.Columns("catSubErmID")
             Me.columncalculations = MyBase.Columns("calculations")
             Me.columnDoorPrice = MyBase.Columns("DoorPrice")
@@ -4292,8 +4292,8 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columndoor)
             Me.columnlegs = New Global.System.Data.DataColumn("legs", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnlegs)
-            Me.columnDoorTypeName = New Global.System.Data.DataColumn("DoorTypeName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDoorTypeName)
+            Me.columnValueListItemName = New Global.System.Data.DataColumn("ValueListItemName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnValueListItemName)
             Me.columnoffID = New Global.System.Data.DataColumn("offID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnoffID)
             Me.columncatErmID = New Global.System.Data.DataColumn("catErmID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
@@ -4304,8 +4304,8 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columnOfferPrice)
             Me.columnPhoto = New Global.System.Data.DataColumn("Photo", GetType(Byte()), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnPhoto)
-            Me.columnDoorTypeID = New Global.System.Data.DataColumn("DoorTypeID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDoorTypeID)
+            Me.columnValueListItemID = New Global.System.Data.DataColumn("ValueListItemID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnValueListItemID)
             Me.columncatSubErmID = New Global.System.Data.DataColumn("catSubErmID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncatSubErmID)
             Me.columncalculations = New Global.System.Data.DataColumn("calculations", GetType(String), Nothing, Global.System.Data.MappingType.Element)
@@ -4338,7 +4338,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
             Me.columnqty.AllowDBNull = false
-            Me.columnDoorTypeName.MaxLength = 250
+            Me.columnValueListItemName.MaxLength = 250
             Me.columnoffID.AllowDBNull = false
             Me.columnermID.AllowDBNull = false
             Me.columncalculations.AllowDBNull = false
@@ -4492,8 +4492,8 @@ Partial Public Class DreamyKitchenDataSet
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class vw_DOOR_TYPEDataTable
-        Inherits Global.System.Data.TypedTableBase(Of vw_DOOR_TYPERow)
+    Partial Public Class vw_ValueListItemDataTable
+        Inherits Global.System.Data.TypedTableBase(Of vw_ValueListItemRow)
         
         Private columnID As Global.System.Data.DataColumn
         
@@ -4505,7 +4505,7 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "vw_DOOR_TYPE"
+            Me.TableName = "vw_ValueListItem"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -4571,50 +4571,50 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As vw_DOOR_TYPERow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As vw_ValueListItemRow
             Get
-                Return CType(Me.Rows(index),vw_DOOR_TYPERow)
+                Return CType(Me.Rows(index),vw_ValueListItemRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_DOOR_TYPERowChanging As vw_DOOR_TYPERowChangeEventHandler
+        Public Event vw_ValueListItemRowChanging As vw_ValueListItemRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_DOOR_TYPERowChanged As vw_DOOR_TYPERowChangeEventHandler
+        Public Event vw_ValueListItemRowChanged As vw_ValueListItemRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_DOOR_TYPERowDeleting As vw_DOOR_TYPERowChangeEventHandler
+        Public Event vw_ValueListItemRowDeleting As vw_ValueListItemRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_DOOR_TYPERowDeleted As vw_DOOR_TYPERowChangeEventHandler
+        Public Event vw_ValueListItemRowDeleted As vw_ValueListItemRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Sub Addvw_DOOR_TYPERow(ByVal row As vw_DOOR_TYPERow)
+        Public Overloads Sub Addvw_ValueListItemRow(ByVal row As vw_ValueListItemRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function Addvw_DOOR_TYPERow(ByVal ID As System.Guid, ByVal name As String, ByVal Price As Decimal) As vw_DOOR_TYPERow
-            Dim rowvw_DOOR_TYPERow As vw_DOOR_TYPERow = CType(Me.NewRow,vw_DOOR_TYPERow)
+        Public Overloads Function Addvw_ValueListItemRow(ByVal ID As System.Guid, ByVal name As String, ByVal Price As Decimal) As vw_ValueListItemRow
+            Dim rowvw_ValueListItemRow As vw_ValueListItemRow = CType(Me.NewRow,vw_ValueListItemRow)
             Dim columnValuesArray() As Object = New Object() {ID, name, Price}
-            rowvw_DOOR_TYPERow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowvw_DOOR_TYPERow)
-            Return rowvw_DOOR_TYPERow
+            rowvw_ValueListItemRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowvw_ValueListItemRow)
+            Return rowvw_ValueListItemRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function FindByID(ByVal ID As System.Guid) As vw_DOOR_TYPERow
-            Return CType(Me.Rows.Find(New Object() {ID}),vw_DOOR_TYPERow)
+        Public Function FindByID(ByVal ID As System.Guid) As vw_ValueListItemRow
+            Return CType(Me.Rows.Find(New Object() {ID}),vw_ValueListItemRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As vw_DOOR_TYPEDataTable = CType(MyBase.Clone,vw_DOOR_TYPEDataTable)
+            Dim cln As vw_ValueListItemDataTable = CType(MyBase.Clone,vw_ValueListItemDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -4622,7 +4622,7 @@ Partial Public Class DreamyKitchenDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New vw_DOOR_TYPEDataTable()
+            Return New vw_ValueListItemDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4651,28 +4651,28 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function Newvw_DOOR_TYPERow() As vw_DOOR_TYPERow
-            Return CType(Me.NewRow,vw_DOOR_TYPERow)
+        Public Function Newvw_ValueListItemRow() As vw_ValueListItemRow
+            Return CType(Me.NewRow,vw_ValueListItemRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New vw_DOOR_TYPERow(builder)
+            Return New vw_ValueListItemRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(vw_DOOR_TYPERow)
+            Return GetType(vw_ValueListItemRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.vw_DOOR_TYPERowChangedEvent) Is Nothing) Then
-                RaiseEvent vw_DOOR_TYPERowChanged(Me, New vw_DOOR_TYPERowChangeEvent(CType(e.Row,vw_DOOR_TYPERow), e.Action))
+            If (Not (Me.vw_ValueListItemRowChangedEvent) Is Nothing) Then
+                RaiseEvent vw_ValueListItemRowChanged(Me, New vw_ValueListItemRowChangeEvent(CType(e.Row,vw_ValueListItemRow), e.Action))
             End If
         End Sub
         
@@ -4680,8 +4680,8 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.vw_DOOR_TYPERowChangingEvent) Is Nothing) Then
-                RaiseEvent vw_DOOR_TYPERowChanging(Me, New vw_DOOR_TYPERowChangeEvent(CType(e.Row,vw_DOOR_TYPERow), e.Action))
+            If (Not (Me.vw_ValueListItemRowChangingEvent) Is Nothing) Then
+                RaiseEvent vw_ValueListItemRowChanging(Me, New vw_ValueListItemRowChangeEvent(CType(e.Row,vw_ValueListItemRow), e.Action))
             End If
         End Sub
         
@@ -4689,8 +4689,8 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.vw_DOOR_TYPERowDeletedEvent) Is Nothing) Then
-                RaiseEvent vw_DOOR_TYPERowDeleted(Me, New vw_DOOR_TYPERowChangeEvent(CType(e.Row,vw_DOOR_TYPERow), e.Action))
+            If (Not (Me.vw_ValueListItemRowDeletedEvent) Is Nothing) Then
+                RaiseEvent vw_ValueListItemRowDeleted(Me, New vw_ValueListItemRowChangeEvent(CType(e.Row,vw_ValueListItemRow), e.Action))
             End If
         End Sub
         
@@ -4698,14 +4698,14 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.vw_DOOR_TYPERowDeletingEvent) Is Nothing) Then
-                RaiseEvent vw_DOOR_TYPERowDeleting(Me, New vw_DOOR_TYPERowChangeEvent(CType(e.Row,vw_DOOR_TYPERow), e.Action))
+            If (Not (Me.vw_ValueListItemRowDeletingEvent) Is Nothing) Then
+                RaiseEvent vw_ValueListItemRowDeleting(Me, New vw_ValueListItemRowChangeEvent(CType(e.Row,vw_ValueListItemRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub Removevw_DOOR_TYPERow(ByVal row As vw_DOOR_TYPERow)
+        Public Sub Removevw_ValueListItemRow(ByVal row As vw_ValueListItemRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -4732,7 +4732,7 @@ Partial Public Class DreamyKitchenDataSet
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "vw_DOOR_TYPEDataTable"
+            attribute2.FixedValue = "vw_ValueListItemDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -5845,7 +5845,7 @@ Partial Public Class DreamyKitchenDataSet
         
         Private columnoffID As Global.System.Data.DataColumn
         
-        Private columnDoorTypeID As Global.System.Data.DataColumn
+        Private columnValueListItemID As Global.System.Data.DataColumn
         
         Private columnNewPrice As Global.System.Data.DataColumn
         
@@ -5908,9 +5908,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DoorTypeIDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ValueListItemIDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDoorTypeID
+                Return Me.columnValueListItemID
             End Get
         End Property
         
@@ -6015,9 +6015,9 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function Addvw_OFFERS_TOTALRow(ByVal offID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal NewPrice As Decimal, ByVal ID As System.Guid, ByVal Price As Decimal, ByVal modifiedBy As System.Guid, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid, ByVal name As String) As vw_OFFERS_TOTALRow
+        Public Overloads Function Addvw_OFFERS_TOTALRow(ByVal offID As System.Guid, ByVal ValueListItemID As System.Guid, ByVal NewPrice As Decimal, ByVal ID As System.Guid, ByVal Price As Decimal, ByVal modifiedBy As System.Guid, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid, ByVal name As String) As vw_OFFERS_TOTALRow
             Dim rowvw_OFFERS_TOTALRow As vw_OFFERS_TOTALRow = CType(Me.NewRow,vw_OFFERS_TOTALRow)
-            Dim columnValuesArray() As Object = New Object() {offID, DoorTypeID, NewPrice, ID, Price, modifiedBy, modifiedOn, createdOn, createdBy, name}
+            Dim columnValuesArray() As Object = New Object() {offID, ValueListItemID, NewPrice, ID, Price, modifiedBy, modifiedOn, createdOn, createdBy, name}
             rowvw_OFFERS_TOTALRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_OFFERS_TOTALRow)
             Return rowvw_OFFERS_TOTALRow
@@ -6047,7 +6047,7 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Friend Sub InitVars()
             Me.columnoffID = MyBase.Columns("offID")
-            Me.columnDoorTypeID = MyBase.Columns("DoorTypeID")
+            Me.columnValueListItemID = MyBase.Columns("ValueListItemID")
             Me.columnNewPrice = MyBase.Columns("NewPrice")
             Me.columnID = MyBase.Columns("ID")
             Me.columnPrice = MyBase.Columns("Price")
@@ -6063,8 +6063,8 @@ Partial Public Class DreamyKitchenDataSet
         Private Sub InitClass()
             Me.columnoffID = New Global.System.Data.DataColumn("offID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnoffID)
-            Me.columnDoorTypeID = New Global.System.Data.DataColumn("DoorTypeID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDoorTypeID)
+            Me.columnValueListItemID = New Global.System.Data.DataColumn("ValueListItemID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnValueListItemID)
             Me.columnNewPrice = New Global.System.Data.DataColumn("NewPrice", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnNewPrice)
             Me.columnID = New Global.System.Data.DataColumn("ID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
@@ -6497,20 +6497,20 @@ Partial Public Class DreamyKitchenDataSet
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class vw_OFFER_DOORTYPESDataTable
-        Inherits Global.System.Data.TypedTableBase(Of vw_OFFER_DOORTYPESRow)
+    Partial Public Class vw_OFFER_ValueListItemSDataTable
+        Inherits Global.System.Data.TypedTableBase(Of vw_OFFER_ValueListItemSRow)
         
-        Private columnDoorTypeID As Global.System.Data.DataColumn
+        Private columnValueListItemID As Global.System.Data.DataColumn
         
-        Private columnDoorTypeName As Global.System.Data.DataColumn
+        Private columnValueListItemName As Global.System.Data.DataColumn
         
-        Private columnDoorTypeID2 As Global.System.Data.DataColumn
+        Private columnValueListItemID2 As Global.System.Data.DataColumn
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "vw_OFFER_DOORTYPES"
+            Me.TableName = "vw_OFFER_ValueListItemS"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -6543,25 +6543,25 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DoorTypeIDColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ValueListItemIDColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDoorTypeID
+                Return Me.columnValueListItemID
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DoorTypeNameColumn() As Global.System.Data.DataColumn
+        Public ReadOnly Property ValueListItemNameColumn() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDoorTypeName
+                Return Me.columnValueListItemName
             End Get
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property DoorTypeID2Column() As Global.System.Data.DataColumn
+        Public ReadOnly Property ValueListItemID2Column() As Global.System.Data.DataColumn
             Get
-                Return Me.columnDoorTypeID2
+                Return Me.columnValueListItemID2
             End Get
         End Property
         
@@ -6576,44 +6576,44 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As vw_OFFER_DOORTYPESRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As vw_OFFER_ValueListItemSRow
             Get
-                Return CType(Me.Rows(index),vw_OFFER_DOORTYPESRow)
+                Return CType(Me.Rows(index),vw_OFFER_ValueListItemSRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_OFFER_DOORTYPESRowChanging As vw_OFFER_DOORTYPESRowChangeEventHandler
+        Public Event vw_OFFER_ValueListItemSRowChanging As vw_OFFER_ValueListItemSRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_OFFER_DOORTYPESRowChanged As vw_OFFER_DOORTYPESRowChangeEventHandler
+        Public Event vw_OFFER_ValueListItemSRowChanged As vw_OFFER_ValueListItemSRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_OFFER_DOORTYPESRowDeleting As vw_OFFER_DOORTYPESRowChangeEventHandler
+        Public Event vw_OFFER_ValueListItemSRowDeleting As vw_OFFER_ValueListItemSRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_OFFER_DOORTYPESRowDeleted As vw_OFFER_DOORTYPESRowChangeEventHandler
+        Public Event vw_OFFER_ValueListItemSRowDeleted As vw_OFFER_ValueListItemSRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Sub Addvw_OFFER_DOORTYPESRow(ByVal row As vw_OFFER_DOORTYPESRow)
+        Public Overloads Sub Addvw_OFFER_ValueListItemSRow(ByVal row As vw_OFFER_ValueListItemSRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function Addvw_OFFER_DOORTYPESRow(ByVal DoorTypeID As System.Guid, ByVal DoorTypeName As String, ByVal DoorTypeID2 As System.Guid) As vw_OFFER_DOORTYPESRow
-            Dim rowvw_OFFER_DOORTYPESRow As vw_OFFER_DOORTYPESRow = CType(Me.NewRow,vw_OFFER_DOORTYPESRow)
-            Dim columnValuesArray() As Object = New Object() {DoorTypeID, DoorTypeName, DoorTypeID2}
-            rowvw_OFFER_DOORTYPESRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowvw_OFFER_DOORTYPESRow)
-            Return rowvw_OFFER_DOORTYPESRow
+        Public Overloads Function Addvw_OFFER_ValueListItemSRow(ByVal ValueListItemID As System.Guid, ByVal ValueListItemName As String, ByVal ValueListItemID2 As System.Guid) As vw_OFFER_ValueListItemSRow
+            Dim rowvw_OFFER_ValueListItemSRow As vw_OFFER_ValueListItemSRow = CType(Me.NewRow,vw_OFFER_ValueListItemSRow)
+            Dim columnValuesArray() As Object = New Object() {ValueListItemID, ValueListItemName, ValueListItemID2}
+            rowvw_OFFER_ValueListItemSRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowvw_OFFER_ValueListItemSRow)
+            Return rowvw_OFFER_ValueListItemSRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As vw_OFFER_DOORTYPESDataTable = CType(MyBase.Clone,vw_OFFER_DOORTYPESDataTable)
+            Dim cln As vw_OFFER_ValueListItemSDataTable = CType(MyBase.Clone,vw_OFFER_ValueListItemSDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -6621,53 +6621,53 @@ Partial Public Class DreamyKitchenDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New vw_OFFER_DOORTYPESDataTable()
+            Return New vw_OFFER_ValueListItemSDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Friend Sub InitVars()
-            Me.columnDoorTypeID = MyBase.Columns("DoorTypeID")
-            Me.columnDoorTypeName = MyBase.Columns("DoorTypeName")
-            Me.columnDoorTypeID2 = MyBase.Columns("DoorTypeID2")
+            Me.columnValueListItemID = MyBase.Columns("ValueListItemID")
+            Me.columnValueListItemName = MyBase.Columns("ValueListItemName")
+            Me.columnValueListItemID2 = MyBase.Columns("ValueListItemID2")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Private Sub InitClass()
-            Me.columnDoorTypeID = New Global.System.Data.DataColumn("DoorTypeID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDoorTypeID)
-            Me.columnDoorTypeName = New Global.System.Data.DataColumn("DoorTypeName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDoorTypeName)
-            Me.columnDoorTypeID2 = New Global.System.Data.DataColumn("DoorTypeID2", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnDoorTypeID2)
-            Me.columnDoorTypeName.MaxLength = 250
+            Me.columnValueListItemID = New Global.System.Data.DataColumn("ValueListItemID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnValueListItemID)
+            Me.columnValueListItemName = New Global.System.Data.DataColumn("ValueListItemName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnValueListItemName)
+            Me.columnValueListItemID2 = New Global.System.Data.DataColumn("ValueListItemID2", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnValueListItemID2)
+            Me.columnValueListItemName.MaxLength = 250
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function Newvw_OFFER_DOORTYPESRow() As vw_OFFER_DOORTYPESRow
-            Return CType(Me.NewRow,vw_OFFER_DOORTYPESRow)
+        Public Function Newvw_OFFER_ValueListItemSRow() As vw_OFFER_ValueListItemSRow
+            Return CType(Me.NewRow,vw_OFFER_ValueListItemSRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New vw_OFFER_DOORTYPESRow(builder)
+            Return New vw_OFFER_ValueListItemSRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(vw_OFFER_DOORTYPESRow)
+            Return GetType(vw_OFFER_ValueListItemSRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.vw_OFFER_DOORTYPESRowChangedEvent) Is Nothing) Then
-                RaiseEvent vw_OFFER_DOORTYPESRowChanged(Me, New vw_OFFER_DOORTYPESRowChangeEvent(CType(e.Row,vw_OFFER_DOORTYPESRow), e.Action))
+            If (Not (Me.vw_OFFER_ValueListItemSRowChangedEvent) Is Nothing) Then
+                RaiseEvent vw_OFFER_ValueListItemSRowChanged(Me, New vw_OFFER_ValueListItemSRowChangeEvent(CType(e.Row,vw_OFFER_ValueListItemSRow), e.Action))
             End If
         End Sub
         
@@ -6675,8 +6675,8 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.vw_OFFER_DOORTYPESRowChangingEvent) Is Nothing) Then
-                RaiseEvent vw_OFFER_DOORTYPESRowChanging(Me, New vw_OFFER_DOORTYPESRowChangeEvent(CType(e.Row,vw_OFFER_DOORTYPESRow), e.Action))
+            If (Not (Me.vw_OFFER_ValueListItemSRowChangingEvent) Is Nothing) Then
+                RaiseEvent vw_OFFER_ValueListItemSRowChanging(Me, New vw_OFFER_ValueListItemSRowChangeEvent(CType(e.Row,vw_OFFER_ValueListItemSRow), e.Action))
             End If
         End Sub
         
@@ -6684,8 +6684,8 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.vw_OFFER_DOORTYPESRowDeletedEvent) Is Nothing) Then
-                RaiseEvent vw_OFFER_DOORTYPESRowDeleted(Me, New vw_OFFER_DOORTYPESRowChangeEvent(CType(e.Row,vw_OFFER_DOORTYPESRow), e.Action))
+            If (Not (Me.vw_OFFER_ValueListItemSRowDeletedEvent) Is Nothing) Then
+                RaiseEvent vw_OFFER_ValueListItemSRowDeleted(Me, New vw_OFFER_ValueListItemSRowChangeEvent(CType(e.Row,vw_OFFER_ValueListItemSRow), e.Action))
             End If
         End Sub
         
@@ -6693,14 +6693,14 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.vw_OFFER_DOORTYPESRowDeletingEvent) Is Nothing) Then
-                RaiseEvent vw_OFFER_DOORTYPESRowDeleting(Me, New vw_OFFER_DOORTYPESRowChangeEvent(CType(e.Row,vw_OFFER_DOORTYPESRow), e.Action))
+            If (Not (Me.vw_OFFER_ValueListItemSRowDeletingEvent) Is Nothing) Then
+                RaiseEvent vw_OFFER_ValueListItemSRowDeleting(Me, New vw_OFFER_ValueListItemSRowChangeEvent(CType(e.Row,vw_OFFER_ValueListItemSRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub Removevw_OFFER_DOORTYPESRow(ByVal row As vw_OFFER_DOORTYPESRow)
+        Public Sub Removevw_OFFER_ValueListItemSRow(ByVal row As vw_OFFER_ValueListItemSRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -6727,7 +6727,7 @@ Partial Public Class DreamyKitchenDataSet
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "vw_OFFER_DOORTYPESDataTable"
+            attribute2.FixedValue = "vw_OFFER_ValueListItemSDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -18812,8 +18812,8 @@ Partial Public Class DreamyKitchenDataSet
     '''</summary>
     <Global.System.Serializable(),  _
      Global.System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")>  _
-    Partial Public Class vw_DOOR_CATDataTable
-        Inherits Global.System.Data.TypedTableBase(Of vw_DOOR_CATRow)
+    Partial Public Class vw_VALUELISTDataTable
+        Inherits Global.System.Data.TypedTableBase(Of vw_VALUELISTRow)
         
         Private columnID As Global.System.Data.DataColumn
         
@@ -18823,7 +18823,7 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
             MyBase.New
-            Me.TableName = "vw_DOOR_CAT"
+            Me.TableName = "vw_VALUELIST"
             Me.BeginInit
             Me.InitClass
             Me.EndInit
@@ -18881,50 +18881,50 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Default ReadOnly Property Item(ByVal index As Integer) As vw_DOOR_CATRow
+        Public Default ReadOnly Property Item(ByVal index As Integer) As vw_VALUELISTRow
             Get
-                Return CType(Me.Rows(index),vw_DOOR_CATRow)
+                Return CType(Me.Rows(index),vw_VALUELISTRow)
             End Get
         End Property
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_DOOR_CATRowChanging As vw_DOOR_CATRowChangeEventHandler
+        Public Event vw_VALUELISTRowChanging As vw_VALUELISTRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_DOOR_CATRowChanged As vw_DOOR_CATRowChangeEventHandler
+        Public Event vw_VALUELISTRowChanged As vw_VALUELISTRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_DOOR_CATRowDeleting As vw_DOOR_CATRowChangeEventHandler
+        Public Event vw_VALUELISTRowDeleting As vw_VALUELISTRowChangeEventHandler
         
         <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Event vw_DOOR_CATRowDeleted As vw_DOOR_CATRowChangeEventHandler
+        Public Event vw_VALUELISTRowDeleted As vw_VALUELISTRowChangeEventHandler
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Sub Addvw_DOOR_CATRow(ByVal row As vw_DOOR_CATRow)
+        Public Overloads Sub Addvw_VALUELISTRow(ByVal row As vw_VALUELISTRow)
             Me.Rows.Add(row)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function Addvw_DOOR_CATRow(ByVal ID As System.Guid, ByVal name As String) As vw_DOOR_CATRow
-            Dim rowvw_DOOR_CATRow As vw_DOOR_CATRow = CType(Me.NewRow,vw_DOOR_CATRow)
+        Public Overloads Function Addvw_VALUELISTRow(ByVal ID As System.Guid, ByVal name As String) As vw_VALUELISTRow
+            Dim rowvw_VALUELISTRow As vw_VALUELISTRow = CType(Me.NewRow,vw_VALUELISTRow)
             Dim columnValuesArray() As Object = New Object() {ID, name}
-            rowvw_DOOR_CATRow.ItemArray = columnValuesArray
-            Me.Rows.Add(rowvw_DOOR_CATRow)
-            Return rowvw_DOOR_CATRow
+            rowvw_VALUELISTRow.ItemArray = columnValuesArray
+            Me.Rows.Add(rowvw_VALUELISTRow)
+            Return rowvw_VALUELISTRow
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function FindByID(ByVal ID As System.Guid) As vw_DOOR_CATRow
-            Return CType(Me.Rows.Find(New Object() {ID}),vw_DOOR_CATRow)
+        Public Function FindByID(ByVal ID As System.Guid) As vw_VALUELISTRow
+            Return CType(Me.Rows.Find(New Object() {ID}),vw_VALUELISTRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Overrides Function Clone() As Global.System.Data.DataTable
-            Dim cln As vw_DOOR_CATDataTable = CType(MyBase.Clone,vw_DOOR_CATDataTable)
+            Dim cln As vw_VALUELISTDataTable = CType(MyBase.Clone,vw_VALUELISTDataTable)
             cln.InitVars
             Return cln
         End Function
@@ -18932,7 +18932,7 @@ Partial Public Class DreamyKitchenDataSet
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Function CreateInstance() As Global.System.Data.DataTable
-            Return New vw_DOOR_CATDataTable()
+            Return New vw_VALUELISTDataTable()
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -18957,28 +18957,28 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function Newvw_DOOR_CATRow() As vw_DOOR_CATRow
-            Return CType(Me.NewRow,vw_DOOR_CATRow)
+        Public Function Newvw_VALUELISTRow() As vw_VALUELISTRow
+            Return CType(Me.NewRow,vw_VALUELISTRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Function NewRowFromBuilder(ByVal builder As Global.System.Data.DataRowBuilder) As Global.System.Data.DataRow
-            Return New vw_DOOR_CATRow(builder)
+            Return New vw_VALUELISTRow(builder)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Function GetRowType() As Global.System.Type
-            Return GetType(vw_DOOR_CATRow)
+            Return GetType(vw_VALUELISTRow)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowChanged(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanged(e)
-            If (Not (Me.vw_DOOR_CATRowChangedEvent) Is Nothing) Then
-                RaiseEvent vw_DOOR_CATRowChanged(Me, New vw_DOOR_CATRowChangeEvent(CType(e.Row,vw_DOOR_CATRow), e.Action))
+            If (Not (Me.vw_VALUELISTRowChangedEvent) Is Nothing) Then
+                RaiseEvent vw_VALUELISTRowChanged(Me, New vw_VALUELISTRowChangeEvent(CType(e.Row,vw_VALUELISTRow), e.Action))
             End If
         End Sub
         
@@ -18986,8 +18986,8 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowChanging(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowChanging(e)
-            If (Not (Me.vw_DOOR_CATRowChangingEvent) Is Nothing) Then
-                RaiseEvent vw_DOOR_CATRowChanging(Me, New vw_DOOR_CATRowChangeEvent(CType(e.Row,vw_DOOR_CATRow), e.Action))
+            If (Not (Me.vw_VALUELISTRowChangingEvent) Is Nothing) Then
+                RaiseEvent vw_VALUELISTRowChanging(Me, New vw_VALUELISTRowChangeEvent(CType(e.Row,vw_VALUELISTRow), e.Action))
             End If
         End Sub
         
@@ -18995,8 +18995,8 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowDeleted(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleted(e)
-            If (Not (Me.vw_DOOR_CATRowDeletedEvent) Is Nothing) Then
-                RaiseEvent vw_DOOR_CATRowDeleted(Me, New vw_DOOR_CATRowChangeEvent(CType(e.Row,vw_DOOR_CATRow), e.Action))
+            If (Not (Me.vw_VALUELISTRowDeletedEvent) Is Nothing) Then
+                RaiseEvent vw_VALUELISTRowDeleted(Me, New vw_VALUELISTRowChangeEvent(CType(e.Row,vw_VALUELISTRow), e.Action))
             End If
         End Sub
         
@@ -19004,14 +19004,14 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Protected Overrides Sub OnRowDeleting(ByVal e As Global.System.Data.DataRowChangeEventArgs)
             MyBase.OnRowDeleting(e)
-            If (Not (Me.vw_DOOR_CATRowDeletingEvent) Is Nothing) Then
-                RaiseEvent vw_DOOR_CATRowDeleting(Me, New vw_DOOR_CATRowChangeEvent(CType(e.Row,vw_DOOR_CATRow), e.Action))
+            If (Not (Me.vw_VALUELISTRowDeletingEvent) Is Nothing) Then
+                RaiseEvent vw_VALUELISTRowDeleting(Me, New vw_VALUELISTRowChangeEvent(CType(e.Row,vw_VALUELISTRow), e.Action))
             End If
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub Removevw_DOOR_CATRow(ByVal row As vw_DOOR_CATRow)
+        Public Sub Removevw_VALUELISTRow(ByVal row As vw_VALUELISTRow)
             Me.Rows.Remove(row)
         End Sub
         
@@ -19038,7 +19038,7 @@ Partial Public Class DreamyKitchenDataSet
             type.Attributes.Add(attribute1)
             Dim attribute2 As Global.System.Xml.Schema.XmlSchemaAttribute = New Global.System.Xml.Schema.XmlSchemaAttribute()
             attribute2.Name = "tableTypeName"
-            attribute2.FixedValue = "vw_DOOR_CATDataTable"
+            attribute2.FixedValue = "vw_VALUELISTDataTable"
             type.Attributes.Add(attribute2)
             type.Particle = sequence
             Dim dsSchema As Global.System.Xml.Schema.XmlSchema = ds.GetSchemaSerializable
@@ -20721,12 +20721,12 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property DoorTypeID() As System.Guid
+        Public Property ValueListItemID() As System.Guid
             Get
-                Return CType(Me(Me.tablevw_ERM.DoorTypeIDColumn),Global.System.Guid)
+                Return CType(Me(Me.tablevw_ERM.ValueListItemIDColumn),Global.System.Guid)
             End Get
             Set
-                Me(Me.tablevw_ERM.DoorTypeIDColumn) = value
+                Me(Me.tablevw_ERM.ValueListItemIDColumn) = value
             End Set
         End Property
         
@@ -21192,16 +21192,16 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property DoorTypeName() As String
+        Public Property ValueListItemName() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablevw_OFFERS.DoorTypeNameColumn),String)
+                    Return CType(Me(Me.tablevw_OFFERS.ValueListItemNameColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DoorTypeName' in table 'vw_OFFERS' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ValueListItemName' in table 'vw_OFFERS' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablevw_OFFERS.DoorTypeNameColumn) = value
+                Me(Me.tablevw_OFFERS.ValueListItemNameColumn) = value
             End Set
         End Property
         
@@ -21274,16 +21274,16 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property DoorTypeID() As System.Guid
+        Public Property ValueListItemID() As System.Guid
             Get
                 Try 
-                    Return CType(Me(Me.tablevw_OFFERS.DoorTypeIDColumn),Global.System.Guid)
+                    Return CType(Me(Me.tablevw_OFFERS.ValueListItemIDColumn),Global.System.Guid)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DoorTypeID' in table 'vw_OFFERS' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ValueListItemID' in table 'vw_OFFERS' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablevw_OFFERS.DoorTypeIDColumn) = value
+                Me(Me.tablevw_OFFERS.ValueListItemIDColumn) = value
             End Set
         End Property
         
@@ -21547,14 +21547,14 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsDoorTypeNameNull() As Boolean
-            Return Me.IsNull(Me.tablevw_OFFERS.DoorTypeNameColumn)
+        Public Function IsValueListItemNameNull() As Boolean
+            Return Me.IsNull(Me.tablevw_OFFERS.ValueListItemNameColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetDoorTypeNameNull()
-            Me(Me.tablevw_OFFERS.DoorTypeNameColumn) = Global.System.Convert.DBNull
+        Public Sub SetValueListItemNameNull()
+            Me(Me.tablevw_OFFERS.ValueListItemNameColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -21595,14 +21595,14 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsDoorTypeIDNull() As Boolean
-            Return Me.IsNull(Me.tablevw_OFFERS.DoorTypeIDColumn)
+        Public Function IsValueListItemIDNull() As Boolean
+            Return Me.IsNull(Me.tablevw_OFFERS.ValueListItemIDColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetDoorTypeIDNull()
-            Me(Me.tablevw_OFFERS.DoorTypeIDColumn) = Global.System.Convert.DBNull
+        Public Sub SetValueListItemIDNull()
+            Me(Me.tablevw_OFFERS.ValueListItemIDColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -21741,26 +21741,26 @@ Partial Public Class DreamyKitchenDataSet
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class vw_DOOR_TYPERow
+    Partial Public Class vw_ValueListItemRow
         Inherits Global.System.Data.DataRow
         
-        Private tablevw_DOOR_TYPE As vw_DOOR_TYPEDataTable
+        Private tablevw_ValueListItem As vw_ValueListItemDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tablevw_DOOR_TYPE = CType(Me.Table,vw_DOOR_TYPEDataTable)
+            Me.tablevw_ValueListItem = CType(Me.Table,vw_ValueListItemDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property ID() As System.Guid
             Get
-                Return CType(Me(Me.tablevw_DOOR_TYPE.IDColumn),Global.System.Guid)
+                Return CType(Me(Me.tablevw_ValueListItem.IDColumn),Global.System.Guid)
             End Get
             Set
-                Me(Me.tablevw_DOOR_TYPE.IDColumn) = value
+                Me(Me.tablevw_ValueListItem.IDColumn) = value
             End Set
         End Property
         
@@ -21768,10 +21768,10 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property name() As String
             Get
-                Return CType(Me(Me.tablevw_DOOR_TYPE.nameColumn),String)
+                Return CType(Me(Me.tablevw_ValueListItem.nameColumn),String)
             End Get
             Set
-                Me(Me.tablevw_DOOR_TYPE.nameColumn) = value
+                Me(Me.tablevw_ValueListItem.nameColumn) = value
             End Set
         End Property
         
@@ -21780,26 +21780,26 @@ Partial Public Class DreamyKitchenDataSet
         Public Property Price() As Decimal
             Get
                 Try 
-                    Return CType(Me(Me.tablevw_DOOR_TYPE.PriceColumn),Decimal)
+                    Return CType(Me(Me.tablevw_ValueListItem.PriceColumn),Decimal)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'Price' in table 'vw_DOOR_TYPE' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Price' in table 'vw_ValueListItem' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablevw_DOOR_TYPE.PriceColumn) = value
+                Me(Me.tablevw_ValueListItem.PriceColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsPriceNull() As Boolean
-            Return Me.IsNull(Me.tablevw_DOOR_TYPE.PriceColumn)
+            Return Me.IsNull(Me.tablevw_ValueListItem.PriceColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetPriceNull()
-            Me(Me.tablevw_DOOR_TYPE.PriceColumn) = Global.System.Convert.DBNull
+            Me(Me.tablevw_ValueListItem.PriceColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -22344,16 +22344,16 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property DoorTypeID() As System.Guid
+        Public Property ValueListItemID() As System.Guid
             Get
                 Try 
-                    Return CType(Me(Me.tablevw_OFFERS_TOTAL.DoorTypeIDColumn),Global.System.Guid)
+                    Return CType(Me(Me.tablevw_OFFERS_TOTAL.ValueListItemIDColumn),Global.System.Guid)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DoorTypeID' in table 'vw_OFFERS_TOTAL' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ValueListItemID' in table 'vw_OFFERS_TOTAL' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablevw_OFFERS_TOTAL.DoorTypeIDColumn) = value
+                Me(Me.tablevw_OFFERS_TOTAL.ValueListItemIDColumn) = value
             End Set
         End Property
         
@@ -22483,14 +22483,14 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsDoorTypeIDNull() As Boolean
-            Return Me.IsNull(Me.tablevw_OFFERS_TOTAL.DoorTypeIDColumn)
+        Public Function IsValueListItemIDNull() As Boolean
+            Return Me.IsNull(Me.tablevw_OFFERS_TOTAL.ValueListItemIDColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetDoorTypeIDNull()
-            Me(Me.tablevw_OFFERS_TOTAL.DoorTypeIDColumn) = Global.System.Convert.DBNull
+        Public Sub SetValueListItemIDNull()
+            Me(Me.tablevw_OFFERS_TOTAL.ValueListItemIDColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -22623,97 +22623,100 @@ Partial Public Class DreamyKitchenDataSet
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class vw_OFFER_DOORTYPESRow
+    Partial Public Class vw_OFFER_ValueListItemSRow
         Inherits Global.System.Data.DataRow
         
-        Private tablevw_OFFER_DOORTYPES As vw_OFFER_DOORTYPESDataTable
+        Private tablevw_OFFER_ValueListItemS As vw_OFFER_ValueListItemSDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tablevw_OFFER_DOORTYPES = CType(Me.Table,vw_OFFER_DOORTYPESDataTable)
+            Me.tablevw_OFFER_ValueListItemS = CType(Me.Table,vw_OFFER_ValueListItemSDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property DoorTypeID() As System.Guid
+        Public Property ValueListItemID() As System.Guid
             Get
                 Try 
-                    Return CType(Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeIDColumn),Global.System.Guid)
+                    Return CType(Me(Me.tablevw_OFFER_ValueListItemS.ValueListItemIDColumn),Global.System.Guid)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DoorTypeID' in table 'vw_OFFER_DOORTYPES' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ValueListItemID' in table 'vw_OFFER_ValueListItemS' is DBNu"& _ 
+                            "ll.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeIDColumn) = value
+                Me(Me.tablevw_OFFER_ValueListItemS.ValueListItemIDColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property DoorTypeName() As String
+        Public Property ValueListItemName() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeNameColumn),String)
+                    Return CType(Me(Me.tablevw_OFFER_ValueListItemS.ValueListItemNameColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DoorTypeName' in table 'vw_OFFER_DOORTYPES' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ValueListItemName' in table 'vw_OFFER_ValueListItemS' is DB"& _ 
+                            "Null.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeNameColumn) = value
+                Me(Me.tablevw_OFFER_ValueListItemS.ValueListItemNameColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Property DoorTypeID2() As System.Guid
+        Public Property ValueListItemID2() As System.Guid
             Get
                 Try 
-                    Return CType(Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeID2Column),Global.System.Guid)
+                    Return CType(Me(Me.tablevw_OFFER_ValueListItemS.ValueListItemID2Column),Global.System.Guid)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'DoorTypeID2' in table 'vw_OFFER_DOORTYPES' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'ValueListItemID2' in table 'vw_OFFER_ValueListItemS' is DBN"& _ 
+                            "ull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeID2Column) = value
+                Me(Me.tablevw_OFFER_ValueListItemS.ValueListItemID2Column) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsDoorTypeIDNull() As Boolean
-            Return Me.IsNull(Me.tablevw_OFFER_DOORTYPES.DoorTypeIDColumn)
+        Public Function IsValueListItemIDNull() As Boolean
+            Return Me.IsNull(Me.tablevw_OFFER_ValueListItemS.ValueListItemIDColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetDoorTypeIDNull()
-            Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeIDColumn) = Global.System.Convert.DBNull
+        Public Sub SetValueListItemIDNull()
+            Me(Me.tablevw_OFFER_ValueListItemS.ValueListItemIDColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsDoorTypeNameNull() As Boolean
-            Return Me.IsNull(Me.tablevw_OFFER_DOORTYPES.DoorTypeNameColumn)
+        Public Function IsValueListItemNameNull() As Boolean
+            Return Me.IsNull(Me.tablevw_OFFER_ValueListItemS.ValueListItemNameColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetDoorTypeNameNull()
-            Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeNameColumn) = Global.System.Convert.DBNull
+        Public Sub SetValueListItemNameNull()
+            Me(Me.tablevw_OFFER_ValueListItemS.ValueListItemNameColumn) = Global.System.Convert.DBNull
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Function IsDoorTypeID2Null() As Boolean
-            Return Me.IsNull(Me.tablevw_OFFER_DOORTYPES.DoorTypeID2Column)
+        Public Function IsValueListItemID2Null() As Boolean
+            Return Me.IsNull(Me.tablevw_OFFER_ValueListItemS.ValueListItemID2Column)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub SetDoorTypeID2Null()
-            Me(Me.tablevw_OFFER_DOORTYPES.DoorTypeID2Column) = Global.System.Convert.DBNull
+        Public Sub SetValueListItemID2Null()
+            Me(Me.tablevw_OFFER_ValueListItemS.ValueListItemID2Column) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -31170,26 +31173,26 @@ Partial Public Class DreamyKitchenDataSet
     '''<summary>
     '''Represents strongly named DataRow class.
     '''</summary>
-    Partial Public Class vw_DOOR_CATRow
+    Partial Public Class vw_VALUELISTRow
         Inherits Global.System.Data.DataRow
         
-        Private tablevw_DOOR_CAT As vw_DOOR_CATDataTable
+        Private tablevw_VALUELIST As vw_VALUELISTDataTable
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Friend Sub New(ByVal rb As Global.System.Data.DataRowBuilder)
             MyBase.New(rb)
-            Me.tablevw_DOOR_CAT = CType(Me.Table,vw_DOOR_CATDataTable)
+            Me.tablevw_VALUELIST = CType(Me.Table,vw_VALUELISTDataTable)
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Property ID() As System.Guid
             Get
-                Return CType(Me(Me.tablevw_DOOR_CAT.IDColumn),Global.System.Guid)
+                Return CType(Me(Me.tablevw_VALUELIST.IDColumn),Global.System.Guid)
             End Get
             Set
-                Me(Me.tablevw_DOOR_CAT.IDColumn) = value
+                Me(Me.tablevw_VALUELIST.IDColumn) = value
             End Set
         End Property
         
@@ -31198,26 +31201,26 @@ Partial Public Class DreamyKitchenDataSet
         Public Property name() As String
             Get
                 Try 
-                    Return CType(Me(Me.tablevw_DOOR_CAT.nameColumn),String)
+                    Return CType(Me(Me.tablevw_VALUELIST.nameColumn),String)
                 Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'name' in table 'vw_DOOR_CAT' is DBNull.", e)
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'name' in table 'vw_VALUELIST' is DBNull.", e)
                 End Try
             End Get
             Set
-                Me(Me.tablevw_DOOR_CAT.nameColumn) = value
+                Me(Me.tablevw_VALUELIST.nameColumn) = value
             End Set
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsnameNull() As Boolean
-            Return Me.IsNull(Me.tablevw_DOOR_CAT.nameColumn)
+            Return Me.IsNull(Me.tablevw_VALUELIST.nameColumn)
         End Function
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetnameNull()
-            Me(Me.tablevw_DOOR_CAT.nameColumn) = Global.System.Convert.DBNull
+            Me(Me.tablevw_VALUELIST.nameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -31798,16 +31801,16 @@ Partial Public Class DreamyKitchenDataSet
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Class vw_DOOR_TYPERowChangeEvent
+    Public Class vw_ValueListItemRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As vw_DOOR_TYPERow
+        Private eventRow As vw_ValueListItemRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub New(ByVal row As vw_DOOR_TYPERow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As vw_ValueListItemRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -31815,7 +31818,7 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property Row() As vw_DOOR_TYPERow
+        Public ReadOnly Property Row() As vw_ValueListItemRow
             Get
                 Return Me.eventRow
             End Get
@@ -32014,16 +32017,16 @@ Partial Public Class DreamyKitchenDataSet
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Class vw_OFFER_DOORTYPESRowChangeEvent
+    Public Class vw_OFFER_ValueListItemSRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As vw_OFFER_DOORTYPESRow
+        Private eventRow As vw_OFFER_ValueListItemSRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub New(ByVal row As vw_OFFER_DOORTYPESRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As vw_OFFER_ValueListItemSRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -32031,7 +32034,7 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property Row() As vw_OFFER_DOORTYPESRow
+        Public ReadOnly Property Row() As vw_OFFER_ValueListItemSRow
             Get
                 Return Me.eventRow
             End Get
@@ -33094,16 +33097,16 @@ Partial Public Class DreamyKitchenDataSet
     '''Row event argument class
     '''</summary>
     <Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-    Public Class vw_DOOR_CATRowChangeEvent
+    Public Class vw_VALUELISTRowChangeEvent
         Inherits Global.System.EventArgs
         
-        Private eventRow As vw_DOOR_CATRow
+        Private eventRow As vw_VALUELISTRow
         
         Private eventAction As Global.System.Data.DataRowAction
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Sub New(ByVal row As vw_DOOR_CATRow, ByVal action As Global.System.Data.DataRowAction)
+        Public Sub New(ByVal row As vw_VALUELISTRow, ByVal action As Global.System.Data.DataRowAction)
             MyBase.New
             Me.eventRow = row
             Me.eventAction = action
@@ -33111,7 +33114,7 @@ Partial Public Class DreamyKitchenDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public ReadOnly Property Row() As vw_DOOR_CATRow
+        Public ReadOnly Property Row() As vw_VALUELISTRow
             Get
                 Return Me.eventRow
             End Get
@@ -34147,7 +34150,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("BoxColorName", "BoxColorName")
             tableMapping.ColumnMappings.Add("BoxColorPhoto", "BoxColorPhoto")
             tableMapping.ColumnMappings.Add("catErmID", "catErmID")
-            tableMapping.ColumnMappings.Add("DoorTypeID", "DoorTypeID")
+            tableMapping.ColumnMappings.Add("ValueListItemID", "ValueListItemID")
             tableMapping.ColumnMappings.Add("calcID", "calcID")
             tableMapping.ColumnMappings.Add("calcName", "calcName")
             tableMapping.ColumnMappings.Add("calculations", "calculations")
@@ -34174,58 +34177,59 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        ID, code, CustomCode, catErmName, height, doorName, cat, width, dep"& _ 
-                "th, door, Price, photo1, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, Do"& _ 
-                "orTypeID, calcID, calcName, calculations, DoorPrice, catSubErmName, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"          "& _ 
-                "               catSubErmID, photo2, photo3"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_ERM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE       "& _ 
-                " (catErmID = @catErmID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and visible=1"
+                "th, door, Price, photo1, PVCcolorName, BoxColorName, BoxColorPhoto, catErmID, Va"& _ 
+                "lueListItemID, calcID, calcName, calculations, DoorPrice, catSubErmName, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"     "& _ 
+                "                    catSubErmID, photo2, photo3"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_ERM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE  "& _ 
+                "      (catErmID = @catErmID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and visible=1"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
-                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
-                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
-                "3, width FROM vw_ERM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where visible=1"
+            Me._commandCollection(1).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, ValueListItemID, ID, P"& _ 
+                "VCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, c"& _ 
+                "atSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, "& _ 
+                "photo3, width FROM vw_ERM"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where visible=1"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
-                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
-                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
-                "3, width FROM vw_ERM WHERE (DoorTypeID = @DoorTypeID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and visible=1"
+            Me._commandCollection(2).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, ValueListItemID, ID, P"& _ 
+                "VCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, c"& _ 
+                "atSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, "& _ 
+                "photo3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (ValueListItemID = @V"& _ 
+                "alueListItemID) and visible=1"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DoorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "DoorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ValueListItemID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "ValueListItemID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(3) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(3).Connection = Me.Connection
-            Me._commandCollection(3).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
-                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
-                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
-                "3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID)"& _ 
-                " and visible=1"
+            Me._commandCollection(3).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, ValueListItemID, ID, P"& _ 
+                "VCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, c"& _ 
+                "atSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, "& _ 
+                "photo3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (catSubErmID = @catSu"& _ 
+                "bErmID) and visible=1"
             Me._commandCollection(3).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DoorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "DoorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(3).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catSubErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catSubErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(4).Connection = Me.Connection
-            Me._commandCollection(4).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
-                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
-                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
-                "3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (catSubErmID = @catSubErmI"& _ 
-                "D) and visible=1"
+            Me._commandCollection(4).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, ValueListItemID, ID, P"& _ 
+                "VCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, c"& _ 
+                "atSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, "& _ 
+                "photo3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (ValueListItemID = @V"& _ 
+                "alueListItemID) AND (catSubErmID = @catSubErmID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and visible=1"
             Me._commandCollection(4).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ValueListItemID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "ValueListItemID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(4).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catSubErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catSubErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(5) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(5).Connection = Me.Connection
-            Me._commandCollection(5).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, DoorTypeID, ID, PVCcol"& _ 
-                "orName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, catSub"& _ 
-                "ErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, photo"& _ 
-                "3, width FROM vw_ERM WHERE (catErmID = @catErmID) AND (DoorTypeID = @DoorTypeID)"& _ 
-                " AND (catSubErmID = @catSubErmID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and visible=1"
+            Me._commandCollection(5).CommandText = "SELECT BoxColorName, BoxColorPhoto, CustomCode, DoorPrice, ValueListItemID, ID, P"& _ 
+                "VCcolorName, Price, calcID, calcName, calculations, cat, catErmID, catErmName, c"& _ 
+                "atSubErmID, catSubErmName, code, depth, door, doorName, height, photo1, photo2, "& _ 
+                "photo3, width FROM vw_ERM WHERE (ValueListItemID = @ValueListItemID)"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"and visibl"& _ 
+                "e=1"
             Me._commandCollection(5).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@DoorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "DoorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
-            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@catSubErmID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "catSubErmID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(5).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ValueListItemID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "ValueListItemID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -34282,9 +34286,10 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByDoorType(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal DoorTypeID As System.Guid) As Integer
+        Public Overloads Overridable Function FillByErmAndDoor(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid, ByVal ValueListItemID As System.Guid) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(DoorTypeID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(ValueListItemID,System.Guid)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
             End If
@@ -34296,37 +34301,10 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByDoorType(ByVal DoorTypeID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
+        Public Overloads Overridable Function GetDataByErmAndDoor(ByVal catErmID As System.Guid, ByVal ValueListItemID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(2)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(DoorTypeID,System.Guid)
-            Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
-            Me.Adapter.Fill(dataTable)
-            Return dataTable
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByErmAndDoor(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid, ByVal DoorTypeID As System.Guid) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
-            Me.Adapter.SelectCommand.Parameters(1).Value = CType(DoorTypeID,System.Guid)
-            If (Me.ClearBeforeFill = true) Then
-                dataTable.Clear
-            End If
-            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
-            Return returnValue
-        End Function
-        
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
-         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
-         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByErmAndDoor(ByVal catErmID As System.Guid, ByVal DoorTypeID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(3)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
-            Me.Adapter.SelectCommand.Parameters(1).Value = CType(DoorTypeID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(ValueListItemID,System.Guid)
             Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -34337,7 +34315,7 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
         Public Overloads Overridable Function FillByErmAndSubCat(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid, ByVal catSubErmID As System.Guid) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
             Me.Adapter.SelectCommand.Parameters(1).Value = CType(catSubErmID,System.Guid)
             If (Me.ClearBeforeFill = true) Then
@@ -34352,7 +34330,7 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
         Public Overloads Overridable Function GetDataByErmAndSubCat(ByVal catErmID As System.Guid, ByVal catSubErmID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(4)
+            Me.Adapter.SelectCommand = Me.CommandCollection(3)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
             Me.Adapter.SelectCommand.Parameters(1).Value = CType(catSubErmID,System.Guid)
             Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
@@ -34364,10 +34342,10 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillByErmDoorAndSubCat(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal catSubErmID As System.Guid) As Integer
-            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+        Public Overloads Overridable Function FillByErmDoorAndSubCat(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal catErmID As System.Guid, ByVal ValueListItemID As System.Guid, ByVal catSubErmID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
-            Me.Adapter.SelectCommand.Parameters(1).Value = CType(DoorTypeID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(ValueListItemID,System.Guid)
             Me.Adapter.SelectCommand.Parameters(2).Value = CType(catSubErmID,System.Guid)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -34380,11 +34358,37 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
-        Public Overloads Overridable Function GetDataByErmDoorAndSubCat(ByVal catErmID As System.Guid, ByVal DoorTypeID As System.Guid, ByVal catSubErmID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
-            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+        Public Overloads Overridable Function GetDataByErmDoorAndSubCat(ByVal catErmID As System.Guid, ByVal ValueListItemID As System.Guid, ByVal catSubErmID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(4)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(catErmID,System.Guid)
-            Me.Adapter.SelectCommand.Parameters(1).Value = CType(DoorTypeID,System.Guid)
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(ValueListItemID,System.Guid)
             Me.Adapter.SelectCommand.Parameters(2).Value = CType(catSubErmID,System.Guid)
+            Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
+            Me.Adapter.Fill(dataTable)
+            Return dataTable
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
+        Public Overloads Overridable Function FillByValueListItem(ByVal dataTable As DreamyKitchenDataSet.vw_ERMDataTable, ByVal ValueListItemID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(ValueListItemID,System.Guid)
+            If (Me.ClearBeforeFill = true) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], false)>  _
+        Public Overloads Overridable Function GetDataByValueListItem(ByVal ValueListItemID As System.Guid) As DreamyKitchenDataSet.vw_ERMDataTable
+            Me.Adapter.SelectCommand = Me.CommandCollection(5)
+            Me.Adapter.SelectCommand.Parameters(0).Value = CType(ValueListItemID,System.Guid)
             Dim dataTable As DreamyKitchenDataSet.vw_ERMDataTable = New DreamyKitchenDataSet.vw_ERMDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
@@ -34525,13 +34529,13 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("depth", "depth")
             tableMapping.ColumnMappings.Add("door", "door")
             tableMapping.ColumnMappings.Add("legs", "legs")
-            tableMapping.ColumnMappings.Add("DoorTypeName", "DoorTypeName")
+            tableMapping.ColumnMappings.Add("ValueListItemName", "ValueListItemName")
             tableMapping.ColumnMappings.Add("offID", "offID")
             tableMapping.ColumnMappings.Add("catErmID", "catErmID")
             tableMapping.ColumnMappings.Add("ermID", "ermID")
             tableMapping.ColumnMappings.Add("OfferPrice", "OfferPrice")
             tableMapping.ColumnMappings.Add("Photo", "Photo")
-            tableMapping.ColumnMappings.Add("DoorTypeID", "DoorTypeID")
+            tableMapping.ColumnMappings.Add("ValueListItemID", "ValueListItemID")
             tableMapping.ColumnMappings.Add("catSubErmID", "catSubErmID")
             tableMapping.ColumnMappings.Add("calculations", "calculations")
             tableMapping.ColumnMappings.Add("DoorPrice", "DoorPrice")
@@ -34560,11 +34564,11 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, qty, height, width, depth, door, Photo, legs, DoorTypeName, off"& _ 
-                "ID, catErmID, ermID, OfferPrice, DoorTypeID, catSubErmID, calculations, DoorPric"& _ 
-                "e, CatSubErmName, CatErmName, HasMech, side, subOffID, SubOFFName, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"           "& _ 
-                "              ErmPrice, opening"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_OFFERS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (offID "& _ 
-                "= @OfferID)"
+            Me._commandCollection(0).CommandText = "SELECT        ID, qty, height, width, depth, door, Photo, legs, ValueListItemName"& _ 
+                ", offID, catErmID, ermID, OfferPrice, ValueListItemID, catSubErmID, calculations"& _ 
+                ", DoorPrice, CatSubErmName, CatErmName, HasMech, side, subOffID, SubOFFName, "&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&" "& _ 
+                "                        ErmPrice, opening"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_OFFERS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE     "& _ 
+                "   (offID = @OfferID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OfferID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "offID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -34605,7 +34609,7 @@ Namespace DreamyKitchenDataSetTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class vw_DOOR_TYPETableAdapter
+    Partial Public Class vw_ValueListItemTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
@@ -34722,7 +34726,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "vw_DOOR_TYPE"
+            tableMapping.DataSetTable = "vw_ValueListItem"
             tableMapping.ColumnMappings.Add("ID", "ID")
             tableMapping.ColumnMappings.Add("name", "name")
             tableMapping.ColumnMappings.Add("Price", "Price")
@@ -34742,11 +34746,11 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        ID, name, Price"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_DOOR_TYPE ORDER BY NAME"
+            Me._commandCollection(0).CommandText = "SELECT        ID, name, Price"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_ValueListItem ORDER BY NAME"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT ID, Price, name FROM vw_DOOR_TYPE"
+            Me._commandCollection(1).CommandText = "SELECT ID, Price, name FROM vw_ValueListItem"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -34754,7 +34758,7 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DreamyKitchenDataSet.vw_DOOR_TYPEDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As DreamyKitchenDataSet.vw_ValueListItemDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -34767,9 +34771,9 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData() As DreamyKitchenDataSet.vw_DOOR_TYPEDataTable
+        Public Overloads Overridable Function GetData() As DreamyKitchenDataSet.vw_ValueListItemDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            Dim dataTable As DreamyKitchenDataSet.vw_DOOR_TYPEDataTable = New DreamyKitchenDataSet.vw_DOOR_TYPEDataTable()
+            Dim dataTable As DreamyKitchenDataSet.vw_ValueListItemDataTable = New DreamyKitchenDataSet.vw_ValueListItemDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -34778,7 +34782,7 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, false)>  _
-        Public Overloads Overridable Function FillBy(ByVal dataTable As DreamyKitchenDataSet.vw_DOOR_TYPEDataTable) As Integer
+        Public Overloads Overridable Function FillBy(ByVal dataTable As DreamyKitchenDataSet.vw_ValueListItemDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear
@@ -35152,19 +35156,19 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT        name, height, width, Price, ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_SIDES"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE    "& _ 
-                "    (doorTypeID = @doorTypeID)"
+                "    (ValueListItemID = @ValueListItemID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@doorTypeID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "doorTypeID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ValueListItemID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "ValueListItemID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function FillSidesBydoorTypeID(ByVal dataTable As DreamyKitchenDataSet.vw_SIDESDataTable, ByVal doorTypeID As Global.System.Nullable(Of Global.System.Guid)) As Integer
+        Public Overloads Overridable Function FillSidesByValueListItemID(ByVal dataTable As DreamyKitchenDataSet.vw_SIDESDataTable, ByVal ValueListItemID As Global.System.Nullable(Of Global.System.Guid)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (doorTypeID.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(doorTypeID.Value,System.Guid)
+            If (ValueListItemID.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(ValueListItemID.Value,System.Guid)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             End If
@@ -35179,10 +35183,10 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetDataSidesBydoorTypeID(ByVal doorTypeID As Global.System.Nullable(Of Global.System.Guid)) As DreamyKitchenDataSet.vw_SIDESDataTable
+        Public Overloads Overridable Function GetDataSidesByValueListItemID(ByVal ValueListItemID As Global.System.Nullable(Of Global.System.Guid)) As DreamyKitchenDataSet.vw_SIDESDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
-            If (doorTypeID.HasValue = true) Then
-                Me.Adapter.SelectCommand.Parameters(0).Value = CType(doorTypeID.Value,System.Guid)
+            If (ValueListItemID.HasValue = true) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(ValueListItemID.Value,System.Guid)
             Else
                 Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
             End If
@@ -35507,7 +35511,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.SourceTable = "Table"
             tableMapping.DataSetTable = "vw_OFFERS_TOTAL"
             tableMapping.ColumnMappings.Add("offID", "offID")
-            tableMapping.ColumnMappings.Add("DoorTypeID", "DoorTypeID")
+            tableMapping.ColumnMappings.Add("ValueListItemID", "ValueListItemID")
             tableMapping.ColumnMappings.Add("NewPrice", "NewPrice")
             tableMapping.ColumnMappings.Add("ID", "ID")
             tableMapping.ColumnMappings.Add("Price", "Price")
@@ -35532,11 +35536,11 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT        OFF_TOTAL.ID, OFF_TOTAL.offID, OFF_TOTAL.DoorTypeID, OFF_TOTAL.Pric"& _ 
-                "e, OFF_TOTAL.NewPrice, OFF_TOTAL.modifiedBy, OFF_TOTAL.modifiedOn, OFF_TOTAL.cre"& _ 
-                "atedOn, OFF_TOTAL.createdBy, DOOR_TYPE.name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            OFF_TOTAL INNER JOI"& _ 
-                "N"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         DOOR_TYPE ON OFF_TOTAL.DoorTypeID = DOOR_TYPE.ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"wh"& _ 
-                "ere offID=@OffID"
+            Me._commandCollection(0).CommandText = "SELECT        OFF_TOTAL.ID, OFF_TOTAL.offID, OFF_TOTAL.ValueListItemID, OFF_TOTAL"& _ 
+                ".Price, OFF_TOTAL.NewPrice, OFF_TOTAL.modifiedBy, OFF_TOTAL.modifiedOn, OFF_TOTA"& _ 
+                "L.createdOn, OFF_TOTAL.createdBy, valueListItem.name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            OFF_TOTAL "& _ 
+                "INNER JOIN"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"                         valueListItem ON OFF_TOTAL.ValueListItemID "& _ 
+                "= valueListItem.ID"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"where offID=@OffID"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OffID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "offID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub
@@ -35771,7 +35775,7 @@ Namespace DreamyKitchenDataSetTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class vw_OFFER_DOORTYPES
+    Partial Public Class vw_OFFER_ValueListItemS
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
@@ -35888,10 +35892,10 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "vw_OFFER_DOORTYPES"
-            tableMapping.ColumnMappings.Add("DoorTypeID", "DoorTypeID")
-            tableMapping.ColumnMappings.Add("DoorTypeName", "DoorTypeName")
-            tableMapping.ColumnMappings.Add("DoorTypeID2", "DoorTypeID2")
+            tableMapping.DataSetTable = "vw_OFFER_ValueListItemS"
+            tableMapping.ColumnMappings.Add("ValueListItemID", "ValueListItemID")
+            tableMapping.ColumnMappings.Add("ValueListItemName", "ValueListItemName")
+            tableMapping.ColumnMappings.Add("ValueListItemID2", "ValueListItemID2")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         
@@ -35908,8 +35912,9 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT DISTINCT DoorTypeID, DoorTypeID AS DoorTypeID2, DoorTypeName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM        "& _ 
-                "    vw_OFFERS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (offID = @OffID) AND (subOffID = @subOffID)"
+            Me._commandCollection(0).CommandText = "SELECT DISTINCT ValueListItemID, ValueListItemID AS ValueListItemID2, ValueListIt"& _ 
+                "emName"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM            vw_OFFERS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE        (offID = @OffID) AND (subOffID ="& _ 
+                " @subOffID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@OffID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "offID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@subOffID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "subOffID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -35919,7 +35924,7 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DreamyKitchenDataSet.vw_OFFER_DOORTYPESDataTable, ByVal OffID As System.Guid, ByVal subOffID As Global.System.Nullable(Of Global.System.Guid)) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As DreamyKitchenDataSet.vw_OFFER_ValueListItemSDataTable, ByVal OffID As System.Guid, ByVal subOffID As Global.System.Nullable(Of Global.System.Guid)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(OffID,System.Guid)
             If (subOffID.HasValue = true) Then
@@ -35938,7 +35943,7 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], true)>  _
-        Public Overloads Overridable Function GetData(ByVal OffID As System.Guid, ByVal subOffID As Global.System.Nullable(Of Global.System.Guid)) As DreamyKitchenDataSet.vw_OFFER_DOORTYPESDataTable
+        Public Overloads Overridable Function GetData(ByVal OffID As System.Guid, ByVal subOffID As Global.System.Nullable(Of Global.System.Guid)) As DreamyKitchenDataSet.vw_OFFER_ValueListItemSDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             Me.Adapter.SelectCommand.Parameters(0).Value = CType(OffID,System.Guid)
             If (subOffID.HasValue = true) Then
@@ -35946,7 +35951,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             Else
                 Me.Adapter.SelectCommand.Parameters(1).Value = Global.System.DBNull.Value
             End If
-            Dim dataTable As DreamyKitchenDataSet.vw_OFFER_DOORTYPESDataTable = New DreamyKitchenDataSet.vw_OFFER_DOORTYPESDataTable()
+            Dim dataTable As DreamyKitchenDataSet.vw_OFFER_ValueListItemSDataTable = New DreamyKitchenDataSet.vw_OFFER_ValueListItemSDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
         End Function
@@ -41464,7 +41469,7 @@ Namespace DreamyKitchenDataSetTableAdapters
      Global.System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner"& _ 
         ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a"),  _
      Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")>  _
-    Partial Public Class vw_DOOR_CATTableAdapter
+    Partial Public Class vw_VALUELISTTableAdapter
         Inherits Global.System.ComponentModel.Component
         
         Private WithEvents _adapter As Global.System.Data.SqlClient.SqlDataAdapter
@@ -41581,7 +41586,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._adapter = New Global.System.Data.SqlClient.SqlDataAdapter()
             Dim tableMapping As Global.System.Data.Common.DataTableMapping = New Global.System.Data.Common.DataTableMapping()
             tableMapping.SourceTable = "Table"
-            tableMapping.DataSetTable = "vw_DOOR_CAT"
+            tableMapping.DataSetTable = "vw_VALUELIST"
             tableMapping.ColumnMappings.Add("ID", "ID")
             tableMapping.ColumnMappings.Add("name", "name")
             Me._adapter.TableMappings.Add(tableMapping)
@@ -41600,7 +41605,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_DOOR_CAT"
+            Me._commandCollection(0).CommandText = "SELECT ID, name"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_VALUELIST"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         
@@ -41608,7 +41613,7 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),  _
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, true)>  _
-        Public Overloads Overridable Function Fill(ByVal dataTable As DreamyKitchenDataSet.vw_DOOR_CATDataTable) As Integer
+        Public Overloads Overridable Function Fill(ByVal dataTable As DreamyKitchenDataSet.vw_VALUELISTDataTable) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(0)
             If (Me.ClearBeforeFill = true) Then
                 dataTable.Clear

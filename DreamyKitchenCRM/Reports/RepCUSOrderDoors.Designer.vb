@@ -692,14 +692,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow2
         '
         Me.XrTableRow2.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell37, Me.XrTableCell6, Me.XrTableCell7, Me.XrTableCell8, Me.XrTableCell44, Me.XrTableCell51, Me.XrTableCell9, Me.XrTableCell10})
-        Me.XrTableRow2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType1])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM1])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow2.Name = "XrTableRow2"
         Me.XrTableRow2.Weight = 0.92744456691063848R
         '
         'XrTableCell37
         '
         Me.XrTableCell37.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell37.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType1]")})
+        Me.XrTableCell37.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM1]")})
         Me.XrTableCell37.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell37.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell37.Multiline = True
@@ -764,7 +764,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell44
         '
         Me.XrTableCell44.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell44.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName]")})
+        Me.XrTableCell44.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName]")})
         Me.XrTableCell44.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell44.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell44.Multiline = True
@@ -830,14 +830,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow3
         '
         Me.XrTableRow3.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell38, Me.XrTableCell11, Me.XrTableCell12, Me.XrTableCell13, Me.XrTableCell45, Me.XrTableCell52, Me.XrTableCell14, Me.XrTableCell15})
-        Me.XrTableRow3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType2])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM2])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow3.Name = "XrTableRow3"
         Me.XrTableRow3.Weight = 0.92744454320071568R
         '
         'XrTableCell38
         '
         Me.XrTableCell38.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell38.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType2]")})
+        Me.XrTableCell38.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM2]")})
         Me.XrTableCell38.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell38.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell38.Multiline = True
@@ -902,7 +902,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell45
         '
         Me.XrTableCell45.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell45.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName2]")})
+        Me.XrTableCell45.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName2]")})
         Me.XrTableCell45.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell45.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell45.Multiline = True
@@ -968,14 +968,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow4
         '
         Me.XrTableRow4.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell39, Me.XrTableCell16, Me.XrTableCell17, Me.XrTableCell18, Me.XrTableCell46, Me.XrTableCell53, Me.XrTableCell19, Me.XrTableCell20})
-        Me.XrTableRow4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType3])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM3])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow4.Name = "XrTableRow4"
         Me.XrTableRow4.Weight = 0.92744454320071557R
         '
         'XrTableCell39
         '
         Me.XrTableCell39.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell39.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType3]")})
+        Me.XrTableCell39.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM3]")})
         Me.XrTableCell39.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell39.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell39.Multiline = True
@@ -1040,7 +1040,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell46
         '
         Me.XrTableCell46.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell46.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName3]")})
+        Me.XrTableCell46.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName3]")})
         Me.XrTableCell46.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell46.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell46.Multiline = True
@@ -1106,14 +1106,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow5
         '
         Me.XrTableRow5.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell40, Me.XrTableCell21, Me.XrTableCell22, Me.XrTableCell23, Me.XrTableCell47, Me.XrTableCell54, Me.XrTableCell24, Me.XrTableCell25})
-        Me.XrTableRow5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType4])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM4])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow5.Name = "XrTableRow5"
         Me.XrTableRow5.Weight = 0.92744454320071568R
         '
         'XrTableCell40
         '
         Me.XrTableCell40.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell40.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType4]")})
+        Me.XrTableCell40.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM4]")})
         Me.XrTableCell40.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell40.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell40.Multiline = True
@@ -1178,7 +1178,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell47
         '
         Me.XrTableCell47.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell47.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName4]")})
+        Me.XrTableCell47.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName4]")})
         Me.XrTableCell47.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell47.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell47.Multiline = True
@@ -1244,14 +1244,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow6
         '
         Me.XrTableRow6.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell41, Me.XrTableCell26, Me.XrTableCell27, Me.XrTableCell28, Me.XrTableCell48, Me.XrTableCell55, Me.XrTableCell29, Me.XrTableCell30})
-        Me.XrTableRow6.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType5])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow6.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM5])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow6.Name = "XrTableRow6"
         Me.XrTableRow6.Weight = 0.92744454320071568R
         '
         'XrTableCell41
         '
         Me.XrTableCell41.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell41.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType5]")})
+        Me.XrTableCell41.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM5]")})
         Me.XrTableCell41.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell41.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell41.Multiline = True
@@ -1316,7 +1316,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell48
         '
         Me.XrTableCell48.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell48.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName5]")})
+        Me.XrTableCell48.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName5]")})
         Me.XrTableCell48.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell48.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell48.Multiline = True
@@ -1382,14 +1382,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow7
         '
         Me.XrTableRow7.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell42, Me.XrTableCell31, Me.XrTableCell32, Me.XrTableCell33, Me.XrTableCell49, Me.XrTableCell56, Me.XrTableCell34, Me.XrTableCell35})
-        Me.XrTableRow7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType6])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM6])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow7.Name = "XrTableRow7"
         Me.XrTableRow7.Weight = 0.92744475547593241R
         '
         'XrTableCell42
         '
         Me.XrTableCell42.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell42.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType6]")})
+        Me.XrTableCell42.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM6]")})
         Me.XrTableCell42.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell42.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell42.Multiline = True
@@ -1454,7 +1454,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell49
         '
         Me.XrTableCell49.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell49.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName6]")})
+        Me.XrTableCell49.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName6]")})
         Me.XrTableCell49.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell49.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell49.Multiline = True
@@ -1520,14 +1520,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow8
         '
         Me.XrTableRow8.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell57, Me.XrTableCell58, Me.XrTableCell59, Me.XrTableCell60, Me.XrTableCell61, Me.XrTableCell62, Me.XrTableCell63, Me.XrTableCell64})
-        Me.XrTableRow8.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType7])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow8.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM7])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow8.Name = "XrTableRow8"
         Me.XrTableRow8.Weight = 0.92744475547593241R
         '
         'XrTableCell57
         '
         Me.XrTableCell57.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell57.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType7]")})
+        Me.XrTableCell57.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM7]")})
         Me.XrTableCell57.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell57.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell57.Multiline = True
@@ -1592,7 +1592,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell61
         '
         Me.XrTableCell61.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell61.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName7]")})
+        Me.XrTableCell61.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName7]")})
         Me.XrTableCell61.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell61.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell61.Multiline = True
@@ -1658,14 +1658,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow9
         '
         Me.XrTableRow9.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell65, Me.XrTableCell66, Me.XrTableCell67, Me.XrTableCell68, Me.XrTableCell69, Me.XrTableCell70, Me.XrTableCell71, Me.XrTableCell72})
-        Me.XrTableRow9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType8])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM8])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow9.Name = "XrTableRow9"
         Me.XrTableRow9.Weight = 0.92744475547593241R
         '
         'XrTableCell65
         '
         Me.XrTableCell65.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell65.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType8]")})
+        Me.XrTableCell65.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM8]")})
         Me.XrTableCell65.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell65.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell65.Multiline = True
@@ -1730,7 +1730,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell69
         '
         Me.XrTableCell69.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell69.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName8]")})
+        Me.XrTableCell69.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName8]")})
         Me.XrTableCell69.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell69.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell69.Multiline = True
@@ -1796,14 +1796,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow10
         '
         Me.XrTableRow10.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell73, Me.XrTableCell74, Me.XrTableCell75, Me.XrTableCell76, Me.XrTableCell77, Me.XrTableCell78, Me.XrTableCell79, Me.XrTableCell80})
-        Me.XrTableRow10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType9])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM9])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow10.Name = "XrTableRow10"
         Me.XrTableRow10.Weight = 0.92744475547593241R
         '
         'XrTableCell73
         '
         Me.XrTableCell73.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell73.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType9]")})
+        Me.XrTableCell73.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM9]")})
         Me.XrTableCell73.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell73.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell73.Multiline = True
@@ -1868,7 +1868,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell77
         '
         Me.XrTableCell77.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell77.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName9]")})
+        Me.XrTableCell77.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName9]")})
         Me.XrTableCell77.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell77.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell77.Multiline = True
@@ -1934,14 +1934,14 @@ Partial Public Class RepCUSOrderDoors
         'XrTableRow11
         '
         Me.XrTableRow11.Cells.AddRange(New DevExpress.XtraReports.UI.XRTableCell() {Me.XrTableCell81, Me.XrTableCell82, Me.XrTableCell83, Me.XrTableCell84, Me.XrTableCell85, Me.XrTableCell86, Me.XrTableCell87, Me.XrTableCell88})
-        Me.XrTableRow11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([doorType10])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableRow11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif(len([VALUELISTITEM10])>0,true,false)" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableRow11.Name = "XrTableRow11"
         Me.XrTableRow11.Weight = 0.92744475547593241R
         '
         'XrTableCell81
         '
         Me.XrTableCell81.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell81.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorType10]")})
+        Me.XrTableCell81.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEM10]")})
         Me.XrTableCell81.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell81.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell81.Multiline = True
@@ -2006,7 +2006,7 @@ Partial Public Class RepCUSOrderDoors
         'XrTableCell85
         '
         Me.XrTableCell85.BackColor = System.Drawing.Color.Transparent
-        Me.XrTableCell85.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName10]")})
+        Me.XrTableCell85.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName10]")})
         Me.XrTableCell85.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell85.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell85.Multiline = True

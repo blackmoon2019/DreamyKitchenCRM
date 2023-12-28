@@ -244,19 +244,33 @@ Public Class CombosManager
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
-    Public Sub ManageDoorType(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal DoorCatID As String = Nothing)
-        Dim Frm As frmDoorType = New frmDoorType
+    Public Sub ManageValueListItem(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal ValueListID As String = Nothing)
+        Dim Frm As frmValueListItem = New frmValueListItem
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
         Frm.Text = "Κατηγορία Πόρτας"
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
-        Frm.cboDoorCat.EditValue = DoorCatID
+        Frm.cboValueList.EditValue = ValueListID
         If CallerControl.EditValue <> Nothing Then Frm.ID = CallerControl.EditValue.ToString
         Frm.MdiParent = frmMain
         If CallerControl.EditValue <> Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
+    Public Sub ManageValueListItemChecked(ByVal CallerControl As CheckedComboBoxEdit, ByVal FrmMode As Byte, Optional ByVal ValueListID As String = Nothing)
+        Dim Frm As frmValueListItem = New frmValueListItem
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Μοντέλα Κουζίνας"
+        Frm.CallerControlChecked = CallerControl
+        Frm.CalledFromControl = True
+        Frm.cboValueList.EditValue = ValueListID
+        If CallerControl.EditValue <> Nothing Then Frm.ID = CallerControl.EditValue.ToString
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue <> Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+
     Public Sub ManageBENCH(ByVal CallerControl As LookUpEdit, ByVal FrmCaller As DevExpress.XtraEditors.XtraForm, ByVal FrmMode As Byte)
         Dim Frm As frmBench = New frmBench
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing

@@ -532,7 +532,7 @@ Public Class frmGen
                                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                                 Else
                                     Dim form As frmScroller = Frm
-                                    form.LoadRecords("vw_DOOR_CAT")
+                                    form.LoadRecords("vw_VALUELIST")
                                 End If
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
@@ -862,7 +862,7 @@ Public Class frmGen
                                 Else
                                     Dim form As New frmScroller
                                     form = Frm
-                                    form.LoadRecords("vw_DOOR_CAT")
+                                    form.LoadRecords("vw_VALUELIST")
                                 End If
 
                         End Select
@@ -1086,7 +1086,7 @@ Public Class frmGen
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("DOOR_CAT")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOOR_CAT where id ='" + sID + "'",, True)
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_VALUELIST where id ='" + sID + "'",, True)
                 End If
 
         End Select
@@ -1321,7 +1321,7 @@ Public Class frmGen
                             FillCbo.DOOR_CAT(CtrlCombo)
                         Else
                             Dim form As New frmScroller
-                            form.LoadRecords("vw_DOOR_CAT")
+                            form.LoadRecords("vw_VALUELIST")
                         End If
                 End Select
                 Cls.ClearCtrls(LayoutControl1)

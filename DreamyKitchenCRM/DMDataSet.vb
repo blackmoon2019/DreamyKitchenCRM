@@ -3,6 +3,6 @@ End Class
 
 Namespace DMDataSetTableAdapters
 
-    Partial Public Class DOOR_TYPE1TableAdapter
+    Partial Public Class VALUELISTITEM1TableAdapter
     End Class
 End Namespace

@@ -31,8 +31,8 @@ Public Class CusOfferOrderKitchen
     End Sub
     Public Sub LoadForm()
         Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
-        Frm.Vw_DOOR_TYPE_BENCH_V2TableAdapter.Fill(Frm.DM_DOORTYPES.vw_DOOR_TYPE_BENCH_V2)
-        Frm.Vw_DOOR_TYPE_V2TableAdapter.Fill(Frm.DM_DOORTYPES.vw_DOOR_TYPE_V2)
+        Frm.Vw_VALUELISTITEM_BENCH_V2TableAdapter.Fill(Frm.DM_VALUELISTITEM.vw_VALUELISTITEM_BENCH_V2)
+        Frm.Vw_VALUELISTITEM_V2TableAdapter.Fill(Frm.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
         Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
         Frm.BASE_CATTableAdapter.Fill(Frm.DMDataSet.BASE_CAT)
         Frm.Vw_BENCHTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_BENCH)
@@ -75,7 +75,7 @@ Public Class CusOfferOrderKitchen
                     Frm.txtKHeight.EditValue = ProgProps.K_HEIGHT
                     Frm.txtKFinalHeight.EditValue = ProgProps.K_FINAL_HEIGHT
                     Frm.txtYHeight.EditValue = ProgProps.Y_HEIGHT
-                    Frm.txtYFinalHeight.EditValue = ProgProps.Y_FINAL_HEIGHT
+                    Frm.txtYFinalHeight.EditValue = ProgProps.Y_FINAL_HEIGHT                                                                                           
                     Frm.cboVBOXColors.EditValue = System.Guid.Parse(ProgProps.V_BOX_COLOR)
                     Frm.cboKBOXColors.EditValue = System.Guid.Parse(ProgProps.K_BOX_COLOR)
                     Frm.cboYBOXColors.EditValue = System.Guid.Parse(ProgProps.Y_BOX_COLOR)

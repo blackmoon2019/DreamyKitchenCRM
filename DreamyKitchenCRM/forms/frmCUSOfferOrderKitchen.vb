@@ -63,6 +63,8 @@ Public Class frmCUSOfferOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DM_VALUELISTITEM1.vw_VALUELISTITEMModelKitchen' table. You can move, or remove it, as needed.
+        Me.Vw_VALUELISTITEMModelKitchenTableAdapter.Fill(Me.DM_VALUELISTITEM1.vw_VALUELISTITEMModelKitchen)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SUP' table. You can move, or remove it, as needed.
         Me.Vw_SUPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SUP)
         CusOfferOrderKitchen.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder, sBaseCat)
@@ -195,16 +197,16 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboVBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVBOXColors.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboVBOXColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboVBOXColors, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVBOXColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboVBOXColors, FormMode.EditRecord)
             Case 3 : cboVBOXColors.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboKBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKBOXColors.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboKBOXColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboKBOXColors, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboKBOXColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboKBOXColors, FormMode.EditRecord)
             Case 3 : cboKBOXColors.EditValue = Nothing
         End Select
     End Sub
@@ -212,159 +214,159 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboYBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYBOXColors.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboYBOXColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboYBOXColors, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboYBOXColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboYBOXColors, FormMode.EditRecord)
             Case 3 : cboYBOXColors.EditValue = Nothing
         End Select
     End Sub
 
     Private Sub cboGOLAColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboGOLAColors.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboGOLAColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboGOLAColors, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboGOLAColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboGOLAColors, FormMode.EditRecord)
             Case 3 : cboGOLAColors.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub cboVDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVDoorType.ButtonClick
+    Private Sub cboVVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboVDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboVDoorType, FormMode.EditRecord)
-            Case 3 : cboVDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboVVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboVVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboVVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKDoorType.ButtonClick
+    Private Sub cboKVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboKDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboKDoorType, FormMode.EditRecord)
-            Case 3 : cboKDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboKVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboKVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboKVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboYDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYDoorType.ButtonClick
+    Private Sub cboYVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboYDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboYDoorType, FormMode.EditRecord)
-            Case 3 : cboYDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboYVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboYVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboYVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVDoorType1.ButtonClick
+    Private Sub cboVVALUELISTITEM1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVVALUELISTITEM1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboVDoorType1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboVDoorType1, FormMode.EditRecord)
-            Case 3 : cboVDoorType1.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboVVALUELISTITEM1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboVVALUELISTITEM1, FormMode.EditRecord)
+            Case 3 : cboVVALUELISTITEM1.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKDoorType1.ButtonClick
+    Private Sub cboKVALUELISTITEM1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKVALUELISTITEM1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboKDoorType1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboKDoorType1, FormMode.EditRecord)
-            Case 3 : cboKDoorType1.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboKVALUELISTITEM1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboKVALUELISTITEM1, FormMode.EditRecord)
+            Case 3 : cboKVALUELISTITEM1.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboYDoorType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYDoorType1.ButtonClick
+    Private Sub cboYVALUELISTITEM1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYVALUELISTITEM1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboYDoorType1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboYDoorType1, FormMode.EditRecord)
-            Case 3 : cboYDoorType1.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboYVALUELISTITEM1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboYVALUELISTITEM1, FormMode.EditRecord)
+            Case 3 : cboYVALUELISTITEM1.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVependisisDoorType.ButtonClick
+    Private Sub cboVependisisVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVependisisVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboVependisisDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboVependisisDoorType, FormMode.EditRecord)
-            Case 3 : cboVependisisDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboVependisisVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboVependisisVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboVependisisVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKependisisDoorType.ButtonClick
+    Private Sub cboKependisisVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKependisisVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboKependisisDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboKependisisDoorType, FormMode.EditRecord)
-            Case 3 : cboKependisisDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboKependisisVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboKependisisVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboKependisisVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboSndEpendisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSndEpendisisDoorType.ButtonClick
+    Private Sub cboSndEpendisisVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSndEpendisisVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboSndEpendisisDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboSndEpendisisDoorType, FormMode.EditRecord)
-            Case 3 : cboSndEpendisisDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboSndEpendisisVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboSndEpendisisVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboSndEpendisisVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboNependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboNependisisDoorType.ButtonClick
+    Private Sub cboNependisisVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboNependisisVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboNependisisDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboNependisisDoorType, FormMode.EditRecord)
-            Case 3 : cboNependisisDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboNependisisVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboNependisisVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboNependisisVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVRafieraDoorType.ButtonClick
+    Private Sub cboVRafieraVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVRafieraVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboVRafieraDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboVRafieraDoorType, FormMode.EditRecord)
-            Case 3 : cboVRafieraDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboVRafieraVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboVRafieraVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboVRafieraVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboYRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYRafieraDoorType.ButtonClick
+    Private Sub cboYRafieraVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboYRafieraVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboYRafieraDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboYRafieraDoorType, FormMode.EditRecord)
-            Case 3 : cboYRafieraDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboYRafieraVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboYRafieraVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboYRafieraVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKRafieraDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKRafieraDoorType.ButtonClick
+    Private Sub cboKRafieraVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKRafieraVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboKRafieraDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboKRafieraDoorType, FormMode.EditRecord)
-            Case 3 : cboKRafieraDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboKRafieraVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboKRafieraVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboKRafieraVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBenchType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBenchType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboBenchType, FormMode.NewRecord, "D08B9371-F94A-48F9-8021-C1661120ED8C")
-            Case 2 : ManageCbo.ManageDoorType(cboBenchType, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboBenchType, FormMode.NewRecord, "D08B9371-F94A-48F9-8021-C1661120ED8C")
+            Case 2 : ManageCbo.ManageValueListItem(cboBenchType, FormMode.EditRecord)
             Case 3 : cboBenchType.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBenchType1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBenchType1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboBenchType1, FormMode.NewRecord, "D08B9371-F94A-48F9-8021-C1661120ED8C")
-            Case 2 : ManageCbo.ManageDoorType(cboBenchType1, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboBenchType1, FormMode.NewRecord, "D08B9371-F94A-48F9-8021-C1661120ED8C")
+            Case 2 : ManageCbo.ManageValueListItem(cboBenchType1, FormMode.EditRecord)
             Case 3 : cboBenchType1.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBenchType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBenchType2.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboBenchType2, FormMode.NewRecord, "D08B9371-F94A-48F9-8021-C1661120ED8C")
-            Case 2 : ManageCbo.ManageDoorType(cboBenchType2, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboBenchType2, FormMode.NewRecord, "D08B9371-F94A-48F9-8021-C1661120ED8C")
+            Case 2 : ManageCbo.ManageValueListItem(cboBenchType2, FormMode.EditRecord)
             Case 3 : cboBenchType2.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBack_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBack.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboBack, FormMode.NewRecord, "D08B9371-F94A-48F9-8021-C1661120ED8C")
-            Case 2 : ManageCbo.ManageDoorType(cboBack, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboBack, FormMode.NewRecord, "D08B9371-F94A-48F9-8021-C1661120ED8C")
+            Case 2 : ManageCbo.ManageValueListItem(cboBack, FormMode.EditRecord)
             Case 3 : cboBack.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboKWallRafiaDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKWallRafiaDoorType.ButtonClick
+    Private Sub cboKWallRafiaVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboKWallRafiaVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboKWallRafiaDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboKWallRafiaDoorType, FormMode.EditRecord)
-            Case 3 : cboKWallRafiaDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboKWallRafiaVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboKWallRafiaVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboKWallRafiaVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboPependisisDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPependisisDoorType.ButtonClick
+    Private Sub cboPependisisVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPependisisVALUELISTITEM.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboPependisisDoorType, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboPependisisDoorType, FormMode.EditRecord)
-            Case 3 : cboPependisisDoorType.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboPependisisVALUELISTITEM, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboPependisisVALUELISTITEM, FormMode.EditRecord)
+            Case 3 : cboPependisisVALUELISTITEM.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboPependisisDoorType2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPependisisDoorType2.ButtonClick
+    Private Sub cboPependisisVALUELISTITEM2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPependisisVALUELISTITEM2.ButtonClick
 
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageDoorType(cboPependisisDoorType2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageDoorType(cboPependisisDoorType2, FormMode.EditRecord)
-            Case 3 : cboPependisisDoorType2.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboPependisisVALUELISTITEM2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboPependisisVALUELISTITEM2, FormMode.EditRecord)
+            Case 3 : cboPependisisVALUELISTITEM2.EditValue = Nothing
         End Select
     End Sub
     Private Sub cbovType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVType.ButtonClick
@@ -502,144 +504,144 @@ Public Class frmCUSOfferOrderKitchen
         End If
     End Sub
 
-    Private Sub cboVDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVDoorType.ProcessNewValue
+    Private Sub cboVVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboVDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboVDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboVVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboVDoorType1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVDoorType1.ProcessNewValue
+    Private Sub cboVVALUELISTITEM1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVVALUELISTITEM1.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboVDoorType1, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboVDoorType1.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVVALUELISTITEM1, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboVVALUELISTITEM1.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboVependisisDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVependisisDoorType.ProcessNewValue
+    Private Sub cboVependisisVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVependisisVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboVependisisDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboVependisisDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVependisisVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboVependisisVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboNependisisDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboNependisisDoorType.ProcessNewValue
+    Private Sub cboNependisisVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboNependisisVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboNependisisDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboNependisisDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboNependisisVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboNependisisVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboKDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKDoorType.ProcessNewValue
+    Private Sub cboKVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboKDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboKDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboKVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboKDoorType1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKDoorType1.ProcessNewValue
+    Private Sub cboKVALUELISTITEM1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKVALUELISTITEM1.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboKDoorType1, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboKDoorType1.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKVALUELISTITEM1, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboKVALUELISTITEM1.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboKependisisDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKependisisDoorType.ProcessNewValue
+    Private Sub cboKependisisVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKependisisVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboKependisisDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboKependisisDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKependisisVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboKependisisVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboSndEpendisisDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboSndEpendisisDoorType.ProcessNewValue
+    Private Sub cboSndEpendisisVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboSndEpendisisVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboSndEpendisisDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboSndEpendisisDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboSndEpendisisVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboSndEpendisisVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboYDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYDoorType.ProcessNewValue
+    Private Sub cboYVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboYDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboYDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboYVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboYVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboYDoorType1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYDoorType1.ProcessNewValue
+    Private Sub cboYVALUELISTITEM1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYVALUELISTITEM1.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboYDoorType1, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboYDoorType1.EditValue = System.Guid.Parse(sDoorTypeID)
-            End If
-            e.Handled = True
-        End If
-    End Sub
-
-    Private Sub cboVRafieraDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVRafieraDoorType.ProcessNewValue
-        If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboVRafieraDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboVRafieraDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
-            End If
-            e.Handled = True
-        End If
-    End Sub
-    Private Sub cboKRafieraDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKRafieraDoorType.ProcessNewValue
-        If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboKRafieraDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboKRafieraDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboYVALUELISTITEM1, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboYVALUELISTITEM1.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
 
-    Private Sub cboYRafieraDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYRafieraDoorType.ProcessNewValue
+    Private Sub cboVRafieraVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVRafieraVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboYRafieraDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboYRafieraDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVRafieraVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboVRafieraVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboKWallRafiaDoorType_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKWallRafiaDoorType.ProcessNewValue
+    Private Sub cboKRafieraVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKRafieraVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboKWallRafiaDoorType, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboKWallRafiaDoorType.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKRafieraVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboKRafieraVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+
+    Private Sub cboYRafieraVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYRafieraVALUELISTITEM.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboYRafieraVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboYRafieraVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+            End If
+            e.Handled = True
+        End If
+    End Sub
+    Private Sub cboKWallRafiaVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKWallRafiaVALUELISTITEM.ProcessNewValue
+        If CStr(e.DisplayValue) <> String.Empty Then
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKWallRafiaVALUELISTITEM, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboKWallRafiaVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
@@ -647,10 +649,10 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboVBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVBOXColors.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboVBOXColors, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboVBOXColors.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVBOXColors, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboVBOXColors.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
@@ -658,10 +660,10 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboKBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKBOXColors.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboKBOXColors, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboKBOXColors.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKBOXColors, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboKBOXColors.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
@@ -669,10 +671,10 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboYBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYBOXColors.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboYBOXColors, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboYBOXColors.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboYBOXColors, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboYBOXColors.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
@@ -680,10 +682,10 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboGOLAColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboGOLAColors.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sDoorTypeID = DBQ.InsertNewDoorType(cboGOLAColors, e.DisplayValue)
-            If sDoorTypeID <> "" Then
-                Me.Vw_DOOR_TYPE_V2TableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPE_V2)
-                cboGOLAColors.EditValue = System.Guid.Parse(sDoorTypeID)
+            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboGOLAColors, e.DisplayValue)
+            If sVALUELISTITEMID <> "" Then
+                Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
+                cboGOLAColors.EditValue = System.Guid.Parse(sVALUELISTITEMID)
             End If
             e.Handled = True
         End If
@@ -747,6 +749,38 @@ Public Class frmCUSOfferOrderKitchen
             Case 1 : ManageCbo.ManageBaseCat(cboBaseCat, FormMode.NewRecord)
             Case 2 : ManageCbo.ManageBaseCat(cboBaseCat, FormMode.EditRecord)
             Case 3 : cboBaseCat.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboModel1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboModel1.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItemChecked(cboModel1, FormMode.NewRecord, "3C68F058-6A47-4995-8B0C-26538F38580A")
+            Case 2 : ManageCbo.ManageValueListItemChecked(cboModel1, FormMode.EditRecord)
+            Case 3 : cboModel1.SetEditValue(-1)
+        End Select
+    End Sub
+
+    Private Sub cboModel2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboModel2.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItemChecked(cboModel2, FormMode.NewRecord, "3C68F058-6A47-4995-8B0C-26538F38580A")
+            Case 2 : ManageCbo.ManageValueListItemChecked(cboModel2, FormMode.EditRecord)
+            Case 3 : cboModel2.SetEditValue(-1)
+        End Select
+    End Sub
+
+    Private Sub cboModel3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboModel3.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItemChecked(cboModel3, FormMode.NewRecord, "3C68F058-6A47-4995-8B0C-26538F38580A")
+            Case 2 : ManageCbo.ManageValueListItemChecked(cboModel3, FormMode.EditRecord)
+            Case 3 : cboModel3.SetEditValue(-1)
+        End Select
+    End Sub
+
+    Private Sub cboModel4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboModel4.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItemChecked(cboModel4, FormMode.NewRecord, "3C68F058-6A47-4995-8B0C-26538F38580A")
+            Case 2 : ManageCbo.ManageValueListItemChecked(cboModel4, FormMode.EditRecord)
+            Case 3 : cboModel4.SetEditValue(-1)
         End Select
     End Sub
 End Class

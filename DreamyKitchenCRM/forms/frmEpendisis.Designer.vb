@@ -27,7 +27,7 @@ Partial Class frmEpendisis
         Me.txtPricePerMeter = New DevExpress.XtraEditors.TextEdit()
         Me.txtCustomCode = New DevExpress.XtraEditors.TextEdit()
         Me.txtNam = New DevExpress.XtraEditors.TextEdit()
-        Me.cboDoorType = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cboValueListItem = New DevExpress.XtraEditors.LookUpEdit()
         Me.txtTotPrice = New DevExpress.XtraEditors.TextEdit()
         Me.txtHeight = New DevExpress.XtraEditors.TextEdit()
         Me.txtWidth = New DevExpress.XtraEditors.TextEdit()
@@ -50,7 +50,7 @@ Partial Class frmEpendisis
         CType(Me.txtPricePerMeter.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCustomCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboValueListItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTotPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtHeight.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtWidth.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -77,7 +77,7 @@ Partial Class frmEpendisis
         Me.LayoutControl1.Controls.Add(Me.txtPricePerMeter)
         Me.LayoutControl1.Controls.Add(Me.txtCustomCode)
         Me.LayoutControl1.Controls.Add(Me.txtNam)
-        Me.LayoutControl1.Controls.Add(Me.cboDoorType)
+        Me.LayoutControl1.Controls.Add(Me.cboValueListItem)
         Me.LayoutControl1.Controls.Add(Me.txtTotPrice)
         Me.LayoutControl1.Controls.Add(Me.txtHeight)
         Me.LayoutControl1.Controls.Add(Me.txtWidth)
@@ -170,19 +170,19 @@ Partial Class frmEpendisis
         Me.txtNam.TabIndex = 9
         Me.txtNam.Tag = "name,0,1,2"
         '
-        'cboDoorType
+        'cboValueListItem
         '
-        Me.cboDoorType.Location = New System.Drawing.Point(235, 68)
-        Me.cboDoorType.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
-        Me.cboDoorType.Name = "cboDoorType"
-        Me.cboDoorType.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboDoorType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboDoorType.Properties.NullText = ""
-        Me.cboDoorType.Properties.PopupSizeable = False
-        Me.cboDoorType.Size = New System.Drawing.Size(532, 38)
-        Me.cboDoorType.StyleController = Me.LayoutControl1
-        Me.cboDoorType.TabIndex = 21
-        Me.cboDoorType.Tag = "doorTypeID,0,1,2"
+        Me.cboValueListItem.Location = New System.Drawing.Point(235, 68)
+        Me.cboValueListItem.Margin = New System.Windows.Forms.Padding(5, 5, 5, 5)
+        Me.cboValueListItem.Name = "cboValueListItem"
+        Me.cboValueListItem.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboValueListItem.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboValueListItem.Properties.NullText = ""
+        Me.cboValueListItem.Properties.PopupSizeable = False
+        Me.cboValueListItem.Size = New System.Drawing.Size(532, 38)
+        Me.cboValueListItem.StyleController = Me.LayoutControl1
+        Me.cboValueListItem.TabIndex = 21
+        Me.cboValueListItem.Tag = "DoorTypeID,0,1,2"
         '
         'txtTotPrice
         '
@@ -285,7 +285,7 @@ Partial Class frmEpendisis
         '
         'LayoutControlItem7
         '
-        Me.LayoutControlItem7.Control = Me.cboDoorType
+        Me.LayoutControlItem7.Control = Me.cboValueListItem
         Me.LayoutControlItem7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem7.CustomizationFormText = "Κατηγορία"
         Me.LayoutControlItem7.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem7.ImageOptions.Image"), System.Drawing.Image)
@@ -403,7 +403,7 @@ Partial Class frmEpendisis
         CType(Me.txtPricePerMeter.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCustomCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNam.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboDoorType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboValueListItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTotPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtHeight.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtWidth.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -440,7 +440,7 @@ Partial Class frmEpendisis
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem56 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents cboDoorType As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents cboValueListItem As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtTotPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem

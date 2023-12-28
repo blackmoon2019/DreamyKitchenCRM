@@ -503,7 +503,7 @@ Partial Public Class Rep_offer
         ColumnExpression53.ColumnName = "catErmID"
         ColumnExpression53.Table = Table3
         Column53.Expression = ColumnExpression53
-        ColumnExpression54.ColumnName = "DoorTypeName"
+        ColumnExpression54.ColumnName = "VALUELISTITEMName"
         ColumnExpression54.Table = Table3
         Column54.Expression = ColumnExpression54
         ColumnExpression55.ColumnName = "benchExtraID"
@@ -536,7 +536,7 @@ Partial Public Class Rep_offer
         ColumnExpression64.ColumnName = "SelectedErmPicture"
         ColumnExpression64.Table = Table3
         Column64.Expression = ColumnExpression64
-        ColumnExpression65.ColumnName = "DoorTypeID"
+        ColumnExpression65.ColumnName = "VALUELISTITEMID"
         ColumnExpression65.Table = Table3
         Column65.Expression = ColumnExpression65
         ColumnExpression66.ColumnName = "calculations"
@@ -1675,7 +1675,7 @@ Partial Public Class Rep_offer
         '
         'XrLabel38
         '
-        Me.XrLabel38.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoorTypeName]")})
+        Me.XrLabel38.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName]")})
         Me.XrLabel38.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
         Me.XrLabel38.Multiline = True
         Me.XrLabel38.Name = "XrLabel38"

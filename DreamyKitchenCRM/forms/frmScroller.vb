@@ -222,7 +222,7 @@ Public Class frmScroller
                     Case "vw_CCT_M" : sSQL = "DELETE FROM CCT_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOOR_TYPE" : sSQL = "DELETE FROM DOOR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_VALUELISTITEM" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CAT_ERM" : sSQL = "DELETE FROM CAT_ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_ERM" : sSQL = "DELETE FROM ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BENCH" : sSQL = "DELETE FROM BENCH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -232,7 +232,7 @@ Public Class frmScroller
                     Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOOR_CAT" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_VALUELIST" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -414,7 +414,7 @@ Public Class frmScroller
                     Case "vw_CCT_M" : sSQL = "DELETE FROM CCT_M WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOOR_TYPE" : sSQL = "DELETE FROM DOOR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_VALUELISTITEM" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CAT_ERM" : sSQL = "DELETE FROM CAT_ERM WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_ERM" : sSQL = "DELETE FROM ERM WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BENCH" : sSQL = "DELETE FROM BENCH WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
@@ -424,7 +424,7 @@ Public Class frmScroller
                     Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOOR_CAT" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_VALUELIST" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
@@ -1582,7 +1582,7 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_DOOR_CAT"
+            Case "vw_VALUELIST"
                 frmGen.Text = "Κατηγορίες Διαστάσεων"
                 frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmGen.MdiParent = frmMain
@@ -1846,16 +1846,16 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_DOOR_TYPE"
-                Dim frmDoorType As frmDoorType = New frmDoorType
-                frmDoorType.Text = "Κατηγορία Πόρτας"
-                frmDoorType.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmDoorType.MdiParent = frmMain
-                frmDoorType.Mode = FormMode.EditRecord
-                frmDoorType.Scroller = GridView1
-                frmDoorType.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmDoorType.Show()
+            Case "vw_VALUELISTITEM"
+                Dim frmVALUELISTITEM As frmValueListItem = New frmValueListItem
+                frmVALUELISTITEM.Text = "Κατηγορία Πόρτας"
+                frmVALUELISTITEM.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmVALUELISTITEM.MdiParent = frmMain
+                frmVALUELISTITEM.Mode = FormMode.EditRecord
+                frmVALUELISTITEM.Scroller = GridView1
+                frmVALUELISTITEM.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVALUELISTITEM), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmVALUELISTITEM.Show()
 
             Case "vw_CAT_ERM"
                 frmGen.Text = "Κατηγορίες Ερμαριών"
@@ -2511,7 +2511,7 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_DOOR_CAT"
+            Case "vw_VALUELIST"
                 frmGen.Text = "Κατηγορίες Διαστάσεων"
                 frmGen.MdiParent = frmMain
                 frmGen.Mode = FormMode.NewRecord
@@ -2754,15 +2754,15 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_DOOR_TYPE"
-                Dim frmDoorType As frmDoorType = New frmDoorType
-                frmDoorType.Text = "Κατηγορία Πόρτας"
-                frmDoorType.MdiParent = frmMain
-                frmDoorType.Mode = FormMode.NewRecord
-                frmDoorType.Scroller = GridView1
-                frmDoorType.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmDoorType.Show()
+            Case "vw_VALUELISTITEM"
+                Dim frmVALUELISTITEM As frmValueListItem = New frmValueListItem
+                frmVALUELISTITEM.Text = "Κατηγορία Πόρτας"
+                frmVALUELISTITEM.MdiParent = frmMain
+                frmVALUELISTITEM.Mode = FormMode.NewRecord
+                frmVALUELISTITEM.Scroller = GridView1
+                frmVALUELISTITEM.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVALUELISTITEM), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmVALUELISTITEM.Show()
             Case "vw_CAT_ERM"
                 frmGen.Text = "Κατηγορίες Ερμαρίων"
                 frmGen.MdiParent = frmMain

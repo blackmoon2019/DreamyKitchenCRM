@@ -323,7 +323,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell12
         '
-        Me.XrTableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorTypeName1]")})
+        Me.XrTableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName1]")})
         Me.XrTableCell12.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell12.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell12.Multiline = True
@@ -417,7 +417,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell13
         '
-        Me.XrTableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorTypeName2]")})
+        Me.XrTableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName2]")})
         Me.XrTableCell13.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell13.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell13.Multiline = True
@@ -511,7 +511,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell14
         '
-        Me.XrTableCell14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorTypeName3]")})
+        Me.XrTableCell14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName3]")})
         Me.XrTableCell14.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell14.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell14.Multiline = True
@@ -605,7 +605,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell15
         '
-        Me.XrTableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorTypeName4]")})
+        Me.XrTableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName4]")})
         Me.XrTableCell15.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell15.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell15.Multiline = True

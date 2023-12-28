@@ -4,6 +4,7 @@ Imports DevExpress.XtraEditors
 Imports System.IO
 Imports DevExpress.XtraRichEdit.Import.Html
 Imports Org.BouncyCastle.Asn1.X500
+Imports DevExpress.XtraEditors.Controls
 
 Public Class DBQueries
     Public Enum InsertMode
@@ -280,6 +281,18 @@ Public Class DBQueries
                                             Exit For
                                         End If
                                     Next
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                    Dim cbo As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                    Dim sCheckedItems As New System.Text.StringBuilder
+                                    cbo = Ctrl
+                                    For Each CheckedItem As CheckedListBoxItem In cbo.Properties.GetItems
+                                        If CheckedItem.CheckState = CheckState.Checked Then
+                                            If sCheckedItems.Length = 0 Then sCheckedItems.Append("'") Else sCheckedItems.Append(";")
+                                            sCheckedItems.Append(CheckedItem.Value.ToString)
+                                        End If
+                                    Next
+                                    If sCheckedItems.Length > 0 Then sCheckedItems.Append("'") : sSQLV.Append(IIf(IsFirstField = True, "", ",") & sCheckedItems.ToString) Else  sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
@@ -1221,6 +1234,17 @@ NextItem:
                                             Exit For
                                         End If
                                     Next
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                    Dim cbo As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                    Dim sCheckedItems As New System.Text.StringBuilder
+                                    cbo = Ctrl
+                                    For Each CheckedItem As CheckedListBoxItem In cbo.Properties.GetItems
+                                        If CheckedItem.CheckState = CheckState.Checked Then
+                                            If sCheckedItems.Length = 0 Then sCheckedItems.Append("'") Else sCheckedItems.Append(";")
+                                            sCheckedItems.Append(CheckedItem.Value.ToString)
+                                        End If
+                                    Next
+                                    If sCheckedItems.Length > 0 Then sCheckedItems.Append("'") : sSQL.Append(sCheckedItems.ToString) Else sSQL.Append("NULL")
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
@@ -1615,14 +1639,14 @@ NextItem:
             Return False
         End Try
     End Function
-    Public Function InsertNewDoorType(ByVal Lkup As DevExpress.XtraEditors.LookUpEdit, ByVal sValue As String) As String
+    Public Function InsertNewVALUELISTITEM(ByVal Lkup As DevExpress.XtraEditors.LookUpEdit, ByVal sValue As String) As String
         Try
             If XtraMessageBox.Show("Βρέθηκε καινούριος Κωδικός. Να προστεθεί?", "Επιβεβαίωση", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 Dim sSQL = New System.Text.StringBuilder
-                Dim sDoorTypeID = System.Guid.NewGuid.ToString
-                sSQL.AppendLine("INSERT INTO DOOR_TYPE (ID,Name, Cat,description,doorCatID) ")
+                Dim sVALUELISTITEMID = System.Guid.NewGuid.ToString
+                sSQL.AppendLine("INSERT INTO valueListItem (ID,Name, Cat,description,ValueListID) ")
                 sSQL.AppendLine("VALUES (")
-                sSQL.AppendLine(toSQLValueS(sDoorTypeID) & ",")
+                sSQL.AppendLine(toSQLValueS(sVALUELISTITEMID) & ",")
                 sSQL.AppendLine(toSQLValueS(sValue) & ",")
                 sSQL.AppendLine(0 & ",")
                 sSQL.AppendLine("'ΛΑΚΑ',")
@@ -1630,7 +1654,7 @@ NextItem:
                 Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
-                Return sDoorTypeID
+                Return sVALUELISTITEMID
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

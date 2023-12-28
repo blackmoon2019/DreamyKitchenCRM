@@ -842,30 +842,36 @@ Public Class FillCombos
 
     End Sub
 
-    Public Sub DOOR_TYPE(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
+    Public Sub valueListItem(Optional CtrlCombo As DevExpress.XtraEditors.LookUpEdit = Nothing, Optional ByVal sSQL As System.Text.StringBuilder = Nothing, Optional CtrlCheckedCombo As DevExpress.XtraEditors.CheckedComboBoxEdit = Nothing)
         Try
             Dim sVal As String
             If sSQL Is Nothing Then
                 sSQL = New System.Text.StringBuilder
-                sSQL.AppendLine("Select id,name,price from vw_DOOR_TYPE order by code")
+                sSQL.AppendLine("Select id,name,price from vw_VALUELISTITEM order by code")
             End If
             Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
-            CtrlCombo.Properties.DataSource = sdr
-            CtrlCombo.Properties.DisplayMember = "name"
-            CtrlCombo.Properties.ValueMember = "id"
-            CtrlCombo.Properties.Columns.Clear()
-            CtrlCombo.Properties.ForceInitialize()
-            CtrlCombo.Properties.PopulateColumns()
-            CtrlCombo.Properties.Columns(0).Visible = False
-            CtrlCombo.Properties.Columns(1).Caption = "Κατηγορία Πόρτας"
-            CtrlCombo.Properties.Columns(2).Caption = "Τιμή"
-            CtrlCombo.Properties.Columns(2).FormatType = DevExpress.Utils.FormatType.Numeric
-            CtrlCombo.Properties.Columns(2).FormatString = "c2"
-            CtrlCombo.Properties.Columns(2).Width = 150
-            Dim s As Size
-            s.Width = 400 : s.Height = 300
-            CtrlCombo.Properties.PopupFormMinSize = s
+            If CtrlCombo IsNot Nothing Then
+                CtrlCombo.Properties.DataSource = sdr
+                CtrlCombo.Properties.DisplayMember = "name"
+                CtrlCombo.Properties.ValueMember = "id"
+                CtrlCombo.Properties.Columns.Clear()
+                CtrlCombo.Properties.ForceInitialize()
+                CtrlCombo.Properties.PopulateColumns()
+                CtrlCombo.Properties.Columns(0).Visible = False
+                CtrlCombo.Properties.Columns(1).Caption = "Κατηγορία Πόρτας"
+                CtrlCombo.Properties.Columns(2).Caption = "Τιμή"
+                CtrlCombo.Properties.Columns(2).FormatType = DevExpress.Utils.FormatType.Numeric
+                CtrlCombo.Properties.Columns(2).FormatString = "c2"
+                CtrlCombo.Properties.Columns(2).Width = 150
+                Dim s As Size
+                s.Width = 400 : s.Height = 300
+                CtrlCombo.Properties.PopupFormMinSize = s
+            Else
+                CtrlCheckedCombo.Properties.DataSource = sdr
+                CtrlCheckedCombo.Properties.DisplayMember = "name"
+                CtrlCheckedCombo.Properties.ValueMember = "id"
+            End If
             'CtrlCombo.EditValue = Nothing
             sdr.Close()
         Catch ex As Exception
@@ -1050,7 +1056,7 @@ Public Class FillCombos
     End Sub
     Public Sub DOOR_CAT(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
-            Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_DOOR_CAT order by name", CNDB)
+            Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_VALUELIST order by name", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
 
             CtrlCombo.Properties.DataSource = sdr
@@ -1386,15 +1392,15 @@ Public Class FillCombos
 
     End Sub
 
-    Public Sub FillCheckedListDoorTypes(CtrlList As DevExpress.XtraEditors.CheckedListBoxControl, ByVal mode As Byte, Optional ByVal sID As String = "")
+    Public Sub FillCheckedListVALUELISTITEMs(CtrlList As DevExpress.XtraEditors.CheckedListBoxControl, ByVal mode As Byte, Optional ByVal sID As String = "")
         Try
             Dim sSQL As String
             If mode = FormMode.NewRecord Then
-                sSQL = "Select id,name,price from [vw_DOOR_TYPE]"
+                sSQL = "Select id,name,price from [vw_VALUELISTITEM]"
             Else
                 sSQL = "Select id,name,price,
                        isnull((select case when OM.id is not null then 1 else 0 end as checked
-		               from vw_DOOR_TYPE DT where offerid = '" & sID & "' and OM.mechID = M.ID),0) as checked
+		               from vw_VALUELISTITEM DT where offerid = '" & sID & "' and OM.mechID = M.ID),0) as checked
                        from vw_MECH M"
             End If
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)

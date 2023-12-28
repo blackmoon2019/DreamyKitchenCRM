@@ -146,7 +146,7 @@
        "vw_CCT_ORDERS_KITCHEN"."BackName",
        "vw_CCT_ORDERS_KITCHEN"."BenchName",
        "vw_CCT_ORDERS_KITCHEN"."BenchName2",
-       "vw_CCT_ORDERS_KITCHEN"."BenchNisidaDoorTypeName",
+       "vw_CCT_ORDERS_KITCHEN"."BenchNisidaVALUELISTITEMName",
        "vw_CCT_ORDERS_KITCHEN"."Model1",
        "vw_CCT_ORDERS_KITCHEN"."Model2",
        "vw_CCT_ORDERS_KITCHEN"."Model3",
