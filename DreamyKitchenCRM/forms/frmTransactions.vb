@@ -1,9 +1,12 @@
 ﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
 Imports DevExpress.DataProcessing.InMemoryDataProcessor
+Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class frmTransactions
     Private Projects As New Projects
@@ -51,6 +54,7 @@ Public Class frmTransactions
     End Sub
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
+        AddHandler GridControl3.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
         Projects.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
         Projects.LoadForm()
         Me.CenterToScreen()
@@ -265,5 +269,108 @@ Public Class frmTransactions
         If txtbenchPurchasePrice.EditValue Is Nothing Or txtbenchSalesPrice.EditValue Is Nothing Then Exit Sub
         benchPurchasePrice = DbnullToZero(txtbenchPurchasePrice) : benchSalesPrice = DbnullToZero(txtbenchSalesPrice)
         txtbenchProfit.EditValue = benchPurchasePrice - benchSalesPrice
+    End Sub
+    Private Sub GridView3_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView3.InvalidRowException
+        e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
+    End Sub
+    Private Sub Grid_EmbeddedNavigator_ButtonClick(ByVal sender As Object, ByVal e As DevExpress.XtraEditors.NavigatorButtonClickEventArgs)
+        Select Case e.Button.ButtonType
+            Case e.Button.ButtonType.Remove : DeleteRecord() : e.Handled = True
+            Case e.Button.ButtonType.Append
+        End Select
+    End Sub
+    Private Sub GridView3_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView3.KeyDown
+        If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then DeleteRecord()
+        If e.KeyCode = Keys.Down And UserProps.AllowInsert Then
+            If sender.FocusedRowHandle < 0 Then Exit Sub
+            Dim viewInfo As GridViewInfo = TryCast(sender.GetViewInfo(), GridViewInfo)
+            If sender.FocusedRowHandle = viewInfo.RowsInfo.Last().RowHandle Then
+                GridView3.PostEditor() : GridView3.AddNewRow()
+            End If
+        End If
+    End Sub
+    Private Sub DeleteRecord()
+        If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            Dim sSQL As String = "DELETE FROM TRANS_EXTRA_CHARGES WHERE ID = '" & GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
+        End If
+    End Sub
+    Private Sub GridView3_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView3.ValidateRow
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.Clear()
+            If e.RowHandle = GridControl3.NewItemRowHandle Then
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "name").ToString = "" Then
+                    e.ErrorText = "Παρακαλώ συμπληρώστε περιγραφή"
+                    e.Valid = False
+                    Exit Sub
+                End If
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "amt").ToString = "0" Then
+                    e.ErrorText = "Παρακαλώ συμπληρώστε κόστος"
+                    e.Valid = False
+                    Exit Sub
+                End If
+
+                sSQL.AppendLine("INSERT INTO TRANS_EXTRA_CHARGES (transhID,name,amt,[modifiedBy],[createdby],[createdOn])")
+                sSQL.AppendLine("Select " & toSQLValueS(sID) & ",")
+                sSQL.AppendLine(toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "name").ToString) & ",")
+                sSQL.AppendLine(toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "amt"), True) & ",")
+                sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
+            Else
+                sSQL.AppendLine("UPDATE TRANS_EXTRA_CHARGES	SET name= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "name").ToString) & ",")
+                sSQL.AppendLine("amt= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "amt"), True) & ",")
+                sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+                sSQL.AppendLine("modifiedON = getdate() ")
+                sSQL.AppendLine("WHERE ID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString))
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
+            End If
+            sSQL.Clear()
+            sSQL.AppendLine("UPDATE TRANSH	SET extracost=(select sum(amt) from TRANS_EXTRA_CHARGES where transhID =  " & toSQLValueS(sID) & ") where ID = " & toSQLValueS(sID))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Dim cmd As SqlCommand = New SqlCommand("Select extracost from TRANSH WHERE ID = " & toSQLValueS(sID), CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            If sdr.HasRows Then
+                While sdr.Read()
+                    If sdr.IsDBNull(sdr.GetOrdinal("extracost")) = False Then txtExtraCost.EditValue = sdr.GetDecimal(sdr.GetOrdinal("extracost"))
+                End While
+            End If
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
+        If Me.IsActive = False Then Exit Sub
+        Select Case TabPane1.SelectedPageIndex
+            Case 0  'Projects.LoadForm()
+            Case 1
+            Case 2 : Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
+            Case Else
+        End Select
+    End Sub
+    Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "Vw_TRANS_EXTRA_CHARGES.xml", "Vw_TRANS_EXTRA_CHARGES")
+    End Sub
+
+
+
+    Private Sub chkreceiveDateAgreement_CheckStateChanged(sender As Object, e As EventArgs) Handles chkreceiveDateAgreement.CheckStateChanged
+        If chkreceiveDateAgreement.CheckState = CheckState.Checked Then dtreceiveDateAgreement.EditValue = Date.Now Else dtreceiveDateAgreement.EditValue = Nothing
     End Sub
 End Class

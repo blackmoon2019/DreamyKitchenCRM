@@ -31,6 +31,7 @@ Public Class Projects
         Mode = sMode
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
+
         Frm.Vw_PAYTYPESTableAdapter.Fill(Frm.DM_TRANS.vw_PAYTYPES)
         Frm.Vw_TRANSH_CTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSH_C)
         Frm.Vw_SCAN_FILE_NAMESTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SCAN_FILE_NAMES)
@@ -87,6 +88,7 @@ Public Class Projects
         End Select
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "vw_TRANSH_F_def.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "TRANSD.xml")
+        LoadForms.RestoreLayoutFromXml(Frm.GridView3, "Vw_TRANS_EXTRA_CHARGES.xml")
         Frm.cmdSaveTransH.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Frm.cmdSaveTransD.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
 
@@ -176,6 +178,7 @@ Public Class Projects
         Try
             If Valid.ValidateForm(Frm.LayoutControl2) Then
                 If BenchValidation() = False Then Exit Sub
+                If receiveAgreementValidation() = False Then Exit Sub
                 ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
                 Select Case Mode
                     Case FormMode.NewRecord
@@ -239,6 +242,7 @@ Public Class Projects
         Try
             If Valid.ValidateForm(Frm.LayoutControl3) Then
                 If PayTypeValidations(Frm.cboPayType.EditValue.ToString) = False Then Exit Sub
+                If receiveAgreementValidation() = False Then Exit Sub
                 If BalValidation() = False Then Exit Sub
                 sGuid = System.Guid.NewGuid.ToString
                 sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSD", Frm.LayoutControl3,,, sGuid,, "transhID", toSQLValueS(ID))
@@ -394,6 +398,27 @@ Public Class Projects
 
     End Function
     ' Έλεγχος αν έχει συμπληρωθεί Τιμή Πώλησης Πάγκου τότε πρέπει να έχει συμπληρωθεί υποχρεωτικά και η Τιμή Αγοράς Πάγκου
+    Private Function receiveAgreementValidation() As Boolean
+        Try
+            If Frm.dtreceiveDateAgreement.EditValue = Nothing And Frm.chkreceiveDateAgreement.CheckState = CheckState.Checked Then
+                XtraMessageBox.Show("Έχετε επιλέξει 'Παραλαβή Συμφωνητικού' χωρίς να βάλετε Ημερομηνία Παραλαβής.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            End If
+            If Frm.dtreceiveDateAgreement.EditValue IsNot Nothing And Frm.chkreceiveDateAgreement.CheckState = CheckState.Unchecked Then
+                XtraMessageBox.Show("Έχετε βάλει 'Ημερομηνία Παραλαβής' χωρίς να επιλέξετε 'Παραλαβή Συμφωνητικού'.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            End If
+            If Frm.chkwaitingForAgreement.CheckState = CheckState.Checked And Frm.chkreceiveDateAgreement.CheckState = CheckState.Unchecked Then
+                XtraMessageBox.Show("Δεν μπορείτε να κάνετε αλλαγές αν δεν έχετε παραλάβει το συμφωνητικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
     Private Function BenchValidation() As Boolean
         Try
             If Frm.txtbenchSalesPrice.EditValue = Nothing Then Return True
@@ -406,7 +431,6 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
-
     End Function
     ' Έλεγχος αν υπάρχει εγγραφή με τύπο πληρωμής "Κλείσιμο" ή δεν έχει καταχωρηθεί διπλή εγγραφή Κλεισίματος
     Private Function PayTypeValidations(ByVal sPayType As String) As Boolean

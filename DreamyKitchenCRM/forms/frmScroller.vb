@@ -291,7 +291,16 @@ Public Class frmScroller
                     Case "vw_EQUIPMENT_CAT" : sSQL = "DELETE FROM vw_EQUIPMENT_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_DEVICES" : sSQL = "DELETE FROM DEVICES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT_ORDERS_CLOSET" : sSQL = "DELETE FROM CCT_ORDERS_CLOSET WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_AGREEMENT" : sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_AGREEMENT"
+                        sSQL = "update TRANSH SET waitingForAgreement=0 where ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString)
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+
                     Case "vw_EP_STATUS" : sSQL = "DELETE FROM EP_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANS_CONSTR" : sSQL = "DELETE FROM TRANS_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -482,7 +491,15 @@ Public Class frmScroller
                     Case "vw_EQUIPMENT_CAT" : sSQL = "DELETE FROM vw_EQUIPMENT_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_DEVICES" : sSQL = "DELETE FROM DEVICES WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT_ORDERS_CLOSET" : sSQL = "DELETE FROM CCT_ORDERS_CLOSET WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
-                    Case "vw_AGREEMENT" : sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_AGREEMENT"
+                        sSQL = "update TRANSH SET waitingForAgreement=0 where ID = " & toSQLValueS(GridView1.GetRowCellValue(selectedRowHandle, "transhID").ToString)
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
                     Case "vw_EP_STATUS" : sSQL = "DELETE FROM EP_STATUS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANS_CONSTR" : sSQL = "DELETE FROM TRANS_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"

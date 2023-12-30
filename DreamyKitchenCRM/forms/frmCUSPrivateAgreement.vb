@@ -145,7 +145,7 @@ Public Class frmCUSPrivateAgreement
                     Dim PolisiErgou As Double = TotalPrice - txtDevices.EditValue
                     TotalPrice = TotalPrice + txtDevices.EditValue
 
-                    sSQL.AppendLine("update TRANSH SET invType = " & toSQLValueS(cboInvoiceType.EditValue.ToString) & ",  vatamt = " & toSQLValueS(txtPartofVat.EditValue.ToString, True) & ", " &
+                    sSQL.AppendLine("update TRANSH SET waitingForAgreement=1,invType = " & toSQLValueS(cboInvoiceType.EditValue.ToString) & ",  vatamt = " & toSQLValueS(txtPartofVat.EditValue.ToString, True) & ", " &
                                     " amt = " & toSQLValueS(txtPosoParastatikou.EditValue.ToString, True) & ",debitcost = " & toSQLValueS(PolisiErgou.ToString, True) & ", " &
                                     " DevicesCost = " & toSQLValueS(txtDevices.EditValue.ToString) & ",  totamt = " & toSQLValueS(txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
                     'Εκτέλεση QUERY
@@ -161,12 +161,12 @@ Public Class frmCUSPrivateAgreement
                     sSQL.Clear()
                     TotalPrice = txtPayinAdvanceCash.EditValue
                     If TotalPrice <> "0" Then
-                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,AMT,DTPAY,PAYTYPE,agreementID) ")
+                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,AMT,DTPAY,PAYTYPEID,agreementID) ")
                         sSQL.AppendLine("Select " & toSQLValueS(cboTRANSH.EditValue.ToString) & ",")
                         sSQL.AppendLine("1" & ",")
                         sSQL.AppendLine(toSQLValueS(txtPayinAdvanceCash.EditValue.ToString, True) & ",")
                         sSQL.AppendLine(toSQLValueS(CDate(dtpresentation.Text).ToString("yyyyMMdd")) & ",")
-                        sSQL.Append("0,")
+                        sSQL.Append("'27CF38F4-BD30-403C-8BC6-2D2A57501DEB',")
                         sSQL.AppendLine(toSQLValueS(sID))
                         'Εκτέλεση QUERY
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
@@ -176,13 +176,13 @@ Public Class frmCUSPrivateAgreement
                     sSQL.Clear()
                     TotalPrice = txtPayinAdvanceBank.EditValue
                     If TotalPrice <> "0" Then
-                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,BANKID,AMT,DTPAY,PAYTYPE,agreementID) ")
+                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,BANKID,AMT,DTPAY,PAYTYPEID,agreementID) ")
                         sSQL.AppendLine("Select " & toSQLValueS(cboTRANSH.EditValue.ToString) & ",")
                         sSQL.AppendLine("0" & ",")
                         sSQL.AppendLine(toSQLValueS(cboBANK.EditValue.ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(txtPayinAdvanceBank.EditValue.ToString, True) & ",")
                         sSQL.AppendLine(toSQLValueS(CDate(dtpresentation.Text).ToString("yyyyMMdd")) & ",")
-                        sSQL.Append("0,")
+                        sSQL.Append("'27CF38F4-BD30-403C-8BC6-2D2A57501DEB',")
                         sSQL.AppendLine(toSQLValueS(sID))
                         'Εκτέλεση QUERY
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
@@ -402,7 +402,7 @@ Public Class frmCUSPrivateAgreement
                 txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtDoor").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtDoor"), "")
                 txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtSpecialContr").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtSpecialContr"), "")
             End If
-            cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=0 and paytype=1  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
+            cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=0 and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
                 If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then txtClose.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt")) Else txtClose.EditValue = Nothing
@@ -411,7 +411,7 @@ Public Class frmCUSPrivateAgreement
                 txtClose.EditValue = "0"
             End If
             sdr.Close()
-            cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=1 and paytype=1  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
+            cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=1 and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
                 If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then txtCloseCash.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt")) Else txtCloseCash.EditValue = Nothing
