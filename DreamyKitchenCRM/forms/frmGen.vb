@@ -82,6 +82,19 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "FILE_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "FILE_CAT", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.FILE_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_FILE_CAT")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("FILE_CAT")
                             Case "PAY_TYPE"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "PAY_TYPE", sGuid)
@@ -540,6 +553,21 @@ Public Class frmGen
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "FILE_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.UpdateData(LayoutControl1, "FILE_CAT", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.FILE_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_FILE_CAT")
+                                End If
+
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("FILE_CAT")
+
                             Case "PAY_TYPE"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.UpdateData(LayoutControl1, "PAY_TYPE", sID)
@@ -875,6 +903,12 @@ Public Class frmGen
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "FILE_CAT"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("FILE_CAT")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_FILE_CAT where id ='" + sID + "'",, True)
+                End If
             Case "PAY_TYPE"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("PAY_TYPE")
@@ -1109,6 +1143,13 @@ Public Class frmGen
                 End Using
 
                 Select Case sDataTable
+                    Case "FILE_CAT"
+                        If CalledFromCtrl Then
+                            FillCbo.FILE_CAT(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_FILE_CAT")
+                        End If
                     Case "PAY_TYPE"
                         If CalledFromCtrl Then
                             FillCbo.PAY_TYPE(CtrlCombo)

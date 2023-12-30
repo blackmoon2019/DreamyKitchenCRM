@@ -54,6 +54,8 @@ Public Class frmTransactions
     End Sub
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
+        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         AddHandler GridControl3.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
         Projects.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
         Projects.LoadForm()
@@ -372,5 +374,9 @@ Public Class frmTransactions
 
     Private Sub chkreceiveDateAgreement_CheckStateChanged(sender As Object, e As EventArgs) Handles chkreceiveDateAgreement.CheckStateChanged
         If chkreceiveDateAgreement.CheckState = CheckState.Checked Then dtreceiveDateAgreement.EditValue = Date.Now Else dtreceiveDateAgreement.EditValue = Nothing
+    End Sub
+
+    Private Sub cmdSaveTransF_Click(sender As Object, e As EventArgs) Handles cmdSaveTransF.Click
+
     End Sub
 End Class

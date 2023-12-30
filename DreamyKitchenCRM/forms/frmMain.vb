@@ -1071,5 +1071,13 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBFileCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBFileCat.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κατηγορίες Αρχείων"
+        form.DataTable = "vw_FILE_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

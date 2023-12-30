@@ -147,10 +147,10 @@
         AAAAAElFTkSuQmCC
 </value>
   </data>
-  <data name="BarButtonItem4.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+  <data name="BBProject.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
-        EQAACxEBf2RfkQAAA1lJREFUWEftl99LFFEUx29hZH+ArmuhSQ/pQ0KBIK1RL0FIL5VPQSiRaz82rdXd
+        EAAACxABrSO9dQAAA1lJREFUWEftl99LFFEUx29hZH+ArmuhSQ/pQ0KBIK1RL0FIL5VPQSiRaz82rdXd
         GTMxf9BWUIqFkunqShBaEEH0nBkWqZGLSmFkkRUIpZZCbT9O93t3VtdpltzZ2RDaLxw4D+fO+ez5zr13
         lsUUU0w6ZC73ppsdXmtUosy7R2mjX+JBTi8hUipGKd31SuSITRffauaoQS3yDdVjIpCr1yc5vYNKG/0K
         BkyrekFbLn+Yb7C19ZNmjhrUIs84/1oEcvV6wwDxy/Hwja5xymqeFDnC4p7SzFGDWuSZ9RMikKvXGwYI
@@ -167,6 +167,9 @@
         AcMRh5KCACO7IaIlBXJ5wgXEd3Fkf4RiiikmPWLsN0AQnRHJAJ+oAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="PopupMenu1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1672, 17</value>
+  </metadata>
   <metadata name="XtraTabbedMdiManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>212, 17</value>
   </metadata>
