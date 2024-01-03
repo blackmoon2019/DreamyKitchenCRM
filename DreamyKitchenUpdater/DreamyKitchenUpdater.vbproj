@@ -88,9 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="classes\CN.vb" />
-    <Compile Include="forms\frmUpdate.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\frmUpdate.vb" />
     <Compile Include="forms\frmUpdate.Designer.vb">
       <DependentUpon>frmUpdate.vb</DependentUpon>
     </Compile>

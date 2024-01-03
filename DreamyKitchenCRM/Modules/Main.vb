@@ -112,6 +112,8 @@ Module Main
         Public CLOSET_LEGS As String
         Public CLOSET_PVC_COLOR As String
         Public CLOSET_SHELVES As String
+        Public REPORT_ECO As String
+        Public REPORT_PREMIUM As String
     End Structure
     Public ProgProps As PROG_PROPS
     Public Function toSQLValue(t As DevExpress.XtraEditors.TextEdit, Optional ByVal isnum As Boolean = False) As String

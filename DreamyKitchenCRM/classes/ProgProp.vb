@@ -75,7 +75,7 @@ Public Class ProgProp
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            sSQL = "select prm,val FROM PRM where grpName= 'PROSF' ORDER by prm"
+            sSQL = "select prm,val FROM PRM where grpName in('PROSF','REPORTS') ORDER by prm"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
             'If (sdr.Read() = True) Then
@@ -134,6 +134,8 @@ Public Class ProgProp
                             Case "CCOMPANY_PROFIT" : ProgProps.CCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "DCOMPANY_PROFIT" : ProgProps.DCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "SCCOMPANY_PROFIT" : ProgProps.SCCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "REPORT_ECO" : ProgProps.REPORT_ECO = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "REPORT_PREMIUM" : ProgProps.REPORT_PREMIUM = sdr.GetString(sdr.GetOrdinal("val"))
                         End Select
                     End If
                 Else

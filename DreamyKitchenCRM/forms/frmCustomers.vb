@@ -1,8 +1,5 @@
 ﻿Imports DevExpress.Utils
-Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraEditors.Repository
-Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class frmCustomers
@@ -128,7 +125,7 @@ Public Class frmCustomers
     End Sub
     Private Sub cboCOU_EditValueChanged(sender As Object, e As EventArgs) Handles cboCOU.EditValueChanged
         Dim sSQL As New System.Text.StringBuilder
-        If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
+        If cboCOU.EditValue IsNot Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
         FillCbo.AREAS(cboAREAS, sSQL)
         FillCbo.ADR(cboADR, ManageCbo.ADRsSQL(cboCOU, cboAREAS, txtTK))
     End Sub

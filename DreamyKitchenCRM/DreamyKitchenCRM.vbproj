@@ -227,6 +227,7 @@
     <Compile Include="classes\FormLoader.vb" />
     <Compile Include="classes\InitializeCalendar.vb" />
     <Compile Include="classes\Localization.vb" />
+    <Compile Include="classes\Parameters.vb" />
     <Compile Include="classes\ProgProp.vb" />
     <Compile Include="classes\Projects.vb" />
     <Compile Include="classes\ScanToPDF.vb" />
@@ -628,6 +629,12 @@
     <Compile Include="Reports\RepCUSOfferCloset3ndPage.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RepCUSOfferKitchen1stPage.Designer.vb">
+      <DependentUpon>RepCUSOfferKitchen1stPage.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSOfferKitchen1stPage.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RepTransCostD.Designer.vb">
       <DependentUpon>RepTransCostD.vb</DependentUpon>
     </Compile>
@@ -991,6 +998,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSOfferCloset3ndPage.resx">
       <DependentUpon>RepCUSOfferCloset3ndPage.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSOfferKitchen1stPage.resx">
+      <DependentUpon>RepCUSOfferKitchen1stPage.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepTransCostD.resx">
       <DependentUpon>RepTransCostD.vb</DependentUpon>

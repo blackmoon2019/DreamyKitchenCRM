@@ -335,21 +335,36 @@ Public Class CusOfferOrderKitchen
 
             report.Parameters.Item(0).Value = ID
             report.CreateDocument()
+            Dim report1 As New RepCUSOfferKitchen1stPage
+            If Frm.cboBaseCat.EditValue.ToString.ToUpper = "77F25E1D-CEE0-4E13-91B4-A84B640DBBDA" Then
+                report1.Parameters.Item(0).Value = "REPORT_ECO"
+                report1.XrLabel2.Text = "ECO"
+            ElseIf Frm.cboBaseCat.EditValue.ToString.ToUpper = "7F7273D1-CD5D-472F-83E2-D52F68B4530F" Then
+                report1.Parameters.Item(0).Value = "REPORT_PREMIUM"
+                report1.XrLabel2.Text = "PREMIUM"
+            End If
+
+            report1.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report1.Pages)
+                                  End Sub)
+
+
             Dim report2 As New RepCUSOfferKitchen2ndPage
 
-            report2.CreateDocument()
-            report.ModifyDocument(Sub(x)
-                                      x.AddPages(report2.Pages)
-                                  End Sub)
-            Dim report3 As New RepCUSOfferKitchen3ndPage
-            report3.Parameters.Item(0).Value = ID
-            report3.CreateDocument()
-            report.ModifyDocument(Sub(x)
-                                      x.AddPages(report3.Pages)
-                                  End Sub)
+                report2.CreateDocument()
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report2.Pages)
+                                      End Sub)
+                Dim report3 As New RepCUSOfferKitchen3ndPage
+                report3.Parameters.Item(0).Value = ID
+                report3.CreateDocument()
+                report.ModifyDocument(Sub(x)
+                                          x.AddPages(report3.Pages)
+                                      End Sub)
 
-            Dim printTool As New ReportPrintTool(report)
-            printTool.ShowRibbonPreview()
-        End If
+                Dim printTool As New ReportPrintTool(report)
+                printTool.ShowRibbonPreview()
+            End If
     End Sub
 End Class

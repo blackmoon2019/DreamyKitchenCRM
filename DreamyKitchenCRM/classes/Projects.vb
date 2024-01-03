@@ -1,10 +1,6 @@
-﻿Imports DevExpress.Data.PivotGrid
-Imports DevExpress.Utils.Extensions
-Imports DevExpress.XtraEditors
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraRichEdit.UI
 Imports System.Data.SqlClient
 
 Public Class Projects
