@@ -418,7 +418,25 @@ Public Class CombosManager
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
-
+    Public Sub ManageFCategory(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Κατηγορίες Αρχείων"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Κατηγορία"
+        Frm.DataTable = "FILE_CAT"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue <> Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
     Public Sub ManageDOY(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         Dim Frm As frmGen = New frmGen()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing

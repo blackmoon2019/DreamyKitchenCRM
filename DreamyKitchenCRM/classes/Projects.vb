@@ -171,8 +171,21 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
+        Dim sResultF As Boolean
+        If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.txtFiles.Text <> "" Then
+            Select Case sMode
+                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, ID, "TRANSH_F")
+                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, ID, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString)
+            End Select
+
+            Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
+        End If
+
+    End Sub
     Public Sub SaveRecordH()
-        Dim sResult As Boolean, sResultF As Boolean
+        Dim sResult As Boolean
         Dim sSQL As New System.Text.StringBuilder
 
         Try
@@ -212,10 +225,7 @@ Public Class Projects
 
                 End Select
 
-                If Frm.txtFiles.Text <> "" Then
-                    sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, ID, "TRANSH_F")
-                    Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
-                End If
+
 
                 If CalledFromCtrl = True Then
                     FillCbo.TRANSH(CtrlCombo)
@@ -227,9 +237,6 @@ Public Class Projects
                     Frm.LayoutControlGroup2.Enabled = True
                     Mode = FormMode.EditRecord
                     Frm.txtFiles.Text = ""
-                End If
-                If Frm.txtFiles.Text <> "" Then
-                    If sResultF = False Then XtraMessageBox.Show("To Παραστατικό δεν αποθηκέυτηκε.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
             End If
         Catch ex As Exception

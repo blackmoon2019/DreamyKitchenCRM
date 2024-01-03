@@ -21,11 +21,11 @@ Partial Class frmTransactions
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmTransactions))
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
@@ -158,6 +158,7 @@ Partial Class frmTransactions
         Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtFiles = New DevExpress.XtraEditors.ButtonEdit()
         Me.cboTanshFCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.VwFILECATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.LayoutControlGroup5 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -209,7 +210,6 @@ Partial Class frmTransactions
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
         Me.Vw_TRANS_EXTRA_CHARGESTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANS_EXTRA_CHARGESTableAdapter()
-        Me.VwFILECATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_FILE_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -324,6 +324,7 @@ Partial Class frmTransactions
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFiles.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTanshFCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -348,7 +349,6 @@ Partial Class frmTransactions
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -1486,7 +1486,7 @@ Partial Class frmTransactions
         '
         'colpaid
         '
-        Me.colpaid.Caption = "Πληρώθηκε"
+        Me.colpaid.Caption = "Παραλαβή Χρημάτων"
         Me.colpaid.FieldName = "paid"
         Me.colpaid.MinWidth = 35
         Me.colpaid.Name = "colpaid"
@@ -1927,8 +1927,8 @@ Partial Class frmTransactions
         Me.txtFiles.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFiles.Name = "txtFiles"
         Me.txtFiles.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions2.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
-        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions1.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
+        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtFiles.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtFiles.Size = New System.Drawing.Size(1400, 38)
         Me.txtFiles.StyleController = Me.LayoutControl4
@@ -1953,6 +1953,11 @@ Partial Class frmTransactions
         Me.cboTanshFCategory.StyleController = Me.LayoutControl4
         Me.cboTanshFCategory.TabIndex = 6
         Me.cboTanshFCategory.Tag = "fileCatID,0,1,2"
+        '
+        'VwFILECATBindingSource
+        '
+        Me.VwFILECATBindingSource.DataMember = "vw_FILE_CAT"
+        Me.VwFILECATBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'LayoutControlGroup5
         '
@@ -2394,11 +2399,6 @@ Partial Class frmTransactions
         '
         Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.ClearBeforeFill = True
         '
-        'VwFILECATBindingSource
-        '
-        Me.VwFILECATBindingSource.DataMember = "vw_FILE_CAT"
-        Me.VwFILECATBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'Vw_FILE_CATTableAdapter
         '
         Me.Vw_FILE_CATTableAdapter.ClearBeforeFill = True
@@ -2531,6 +2531,7 @@ Partial Class frmTransactions
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFiles.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTanshFCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2555,7 +2556,6 @@ Partial Class frmTransactions
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DreamyKitchenDataSet2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BarManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 

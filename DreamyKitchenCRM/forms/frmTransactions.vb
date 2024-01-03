@@ -109,16 +109,11 @@ Public Class frmTransactions
         Select Case e.Button.Index
             Case 0
                 Dim result = XtraInputBox.Show("Πληκτρολογήστε το πλήθος σελίδων που θα σκανάρετε", "Όνομα Αρχείου", "1")
-
                 ScanFile = New ScanToPDF
                 If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
                 txtFiles.EditValue = sFilename
-                If txtFiles.Text <> "" Then
-                    DBQ.InsertDataFilesFromScanner(sFilename, sID, "TRANSH_F")
-                    Me.TRANSH_FTableAdapter.FillByTanshID(Me.DM_TRANS.TRANSH_F, System.Guid.Parse(sID))
-                End If
+                If txtFiles.Text <> "" Then Projects.SaveRecordF(1, sFilename)
                 ScanFile = Nothing
-
             Case 1 : FilesSelection(XtraOpenFileDialog1, txtFiles)
 
             Case 2 : txtFiles.EditValue = Nothing
@@ -131,7 +126,7 @@ Public Class frmTransactions
         End Select
     End Sub
 
-    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.KeyDown
+    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
         OpenFileFromGrid(GridView2, "TRANSH_F")
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
@@ -198,7 +193,7 @@ Public Class frmTransactions
 
 
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "vw_TRANSH_F_def.xml",, "select top 1 [filename], [RealName], [code], [comefrom], [extension], [modifiedOn], [createdOn], [ID], [cctID], [isinvoice] from vw_TRANSH_F")
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "vw_TRANSH_F_def.xml", "vw_TRANSH_F")
     End Sub
 
     Private Sub cmdPrintAll_Click(sender As Object, e As EventArgs) Handles cmdPrintAll.Click
@@ -370,13 +365,21 @@ Public Class frmTransactions
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "Vw_TRANS_EXTRA_CHARGES.xml", "Vw_TRANS_EXTRA_CHARGES")
     End Sub
 
-
-
     Private Sub chkreceiveDateAgreement_CheckStateChanged(sender As Object, e As EventArgs) Handles chkreceiveDateAgreement.CheckStateChanged
         If chkreceiveDateAgreement.CheckState = CheckState.Checked Then dtreceiveDateAgreement.EditValue = Date.Now Else dtreceiveDateAgreement.EditValue = Nothing
     End Sub
 
     Private Sub cmdSaveTransF_Click(sender As Object, e As EventArgs) Handles cmdSaveTransF.Click
+        XtraOpenFileDialog1.Tag = cboTanshFCategory.EditValue.ToString
+        Projects.SaveRecordF(0)
+    End Sub
+
+    Private Sub cboTanshFCategory_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboTanshFCategory.ButtonPressed
+        Select Case e.Button.Index
+            Case 1 : cboTanshFCategory.EditValue = Nothing : ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.NewRecord)
+            Case 2 : If cboTanshFCategory.EditValue <> Nothing Then ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.EditRecord)
+            Case 3 : cboTanshFCategory.EditValue = Nothing
+        End Select
 
     End Sub
 End Class

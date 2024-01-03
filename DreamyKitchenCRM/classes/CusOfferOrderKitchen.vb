@@ -207,16 +207,17 @@ Public Class CusOfferOrderKitchen
                         If sIsOrder = False Then Frm.cmdConvertToOrder.Enabled = True : Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                     End If
                     Mode = FormMode.EditRecord
-                    Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
-                    HasKitchen = Frm.cboTRANSH.GetColumnValue("Iskitchen")
-                    HasCloset = Frm.cboTRANSH.GetColumnValue("Iscloset")
-                    HasDoors = Frm.cboTRANSH.GetColumnValue("Isdoors")
-                    HasSc = Frm.cboTRANSH.GetColumnValue("Issc")
-                    If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                        XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        Exit Sub
+                    If sIsOrder = True Then
+                        Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
+                        HasKitchen = Frm.cboTRANSH.GetColumnValue("Iskitchen")
+                        HasCloset = Frm.cboTRANSH.GetColumnValue("Iscloset")
+                        HasDoors = Frm.cboTRANSH.GetColumnValue("Isdoors")
+                        HasSc = Frm.cboTRANSH.GetColumnValue("Issc")
+                        If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
+                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                            Exit Sub
+                        End If
                     End If
-
                 End If
             End If
 
