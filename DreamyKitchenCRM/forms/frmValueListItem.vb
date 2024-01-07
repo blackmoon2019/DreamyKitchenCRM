@@ -79,6 +79,14 @@ Public Class frmValueListItem
         If cboValueList.EditValue = Nothing Then Exit Sub
         Select Case cboValueList.EditValue.ToString.ToUpper
             Case "3C68F058-6A47-4995-8B0C-26538F38580A" ' Μοντέλα Κουζίνας
+                Me.Text = "Μοντέλα Κουζίνας"
+                LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+                LName.Tag = "1"
+                cboValueList.ReadOnly = True
+            Case "CF691845-D6CC-4181-9760-6D15934C40B4"  ' Ντουλάπες
+                Me.Text = "Μοντέλα Ντουλαπών"
+                LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
                 LName.Tag = "1"
@@ -161,7 +169,7 @@ Public Class frmValueListItem
         form1.Text = "Κατηγορία Πόρτας"
         form1.L1.Text = "Κωδικός"
         form1.L2.Text = "Κατηγορία"
-        form1.DataTable = "DOOR_CAT"
+        form1.DataTable = "VALUELIST"
         form1.CallerControl = cboValueList
         form1.CalledFromControl = True
         If cboValueList.EditValue <> Nothing Then form1.ID = cboValueList.EditValue.ToString
@@ -193,9 +201,9 @@ Public Class frmValueListItem
         form1.Show()
     End Sub
 
-    Private Sub cboVALUELISTITEM1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM1.ButtonClick
+    Private Sub cboVALUELISTITEM1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboClosetType.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboVALUELISTITEM1.EditValue = Nothing
+            Case 1 : cboClosetType.EditValue = Nothing
         End Select
 
     End Sub

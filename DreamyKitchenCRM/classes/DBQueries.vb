@@ -1641,7 +1641,7 @@ NextItem:
             Return False
         End Try
     End Function
-    Public Function InsertNewVALUELISTITEM(ByVal Lkup As DevExpress.XtraEditors.LookUpEdit, ByVal sValue As String) As String
+    Public Function InsertNewValueListItem(ByVal Lkup As DevExpress.XtraEditors.LookUpEdit, ByVal sValue As String) As String
         Try
             If XtraMessageBox.Show("Βρέθηκε καινούριος Κωδικός. Να προστεθεί?", "Επιβεβαίωση", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 Dim sSQL = New System.Text.StringBuilder

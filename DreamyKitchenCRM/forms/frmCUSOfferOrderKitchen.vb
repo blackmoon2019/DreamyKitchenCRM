@@ -130,7 +130,6 @@ Public Class frmCUSOfferOrderKitchen
         End If
     End Sub
 
-
     Private Sub txtTotalErmariaVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalErmariaVat.EditValueChanged
         Dim TotalErmariaPrice As Double
         TotalErmariaPrice = (txtTotalErmariaVat.EditValue * (ProgProps.VAT / 100)) + txtTotalErmariaVat.EditValue
@@ -447,63 +446,86 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
         CusOfferOrderKitchen.ConvertToOrder()
     End Sub
-    Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
+    Private Sub ApplyDiscount(ByVal DiscMode As Integer, Optional ByVal DiscountChangedByUser As Boolean = False)
         Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc1.EditValue = ProgProps.CusDiscountKitchen
-        If ProgProps.CusDiscountKitchen > 0 Then
-            InitialPrice = txtInitialPrice1.EditValue
-            Disc = ProgProps.CusDiscountKitchen / 100
-            Discount = Disc * InitialPrice
-            FinalPrice = InitialPrice - Discount
-            txtInitialPrice1.EditValue = InitialPrice
-            txtDiscount1.EditValue = Discount
-            txtFinalPrice1.EditValue = FinalPrice
-        End If
+        If Me.IsActive = False Then Exit Sub
+        Select Case DiscMode
+            Case 1
+                If DiscountChangedByUser = False Then txtDisc1.EditValue = ProgProps.CusDiscountKitchen
+                If ProgProps.CusDiscountKitchen > 0 Then
+                    InitialPrice = txtInitialPrice1.EditValue
+                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc1.EditValue / 100
+                    Discount = Disc * InitialPrice
+                    FinalPrice = InitialPrice - Discount
+                    txtInitialPrice1.EditValue = InitialPrice
+                    txtDiscount1.EditValue = Discount
+                    txtFinalPrice1.EditValue = FinalPrice
+                End If
+            Case 2
+                If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountKitchen
+                If ProgProps.CusDiscountKitchen > 0 Then
+                    InitialPrice = txtInitialPrice2.EditValue
+                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc2.EditValue / 100
+                    Discount = Disc * InitialPrice
+                    FinalPrice = InitialPrice - Discount
+                    txtInitialPrice2.EditValue = InitialPrice
+                    txtDiscount2.EditValue = Discount
+                    txtFinalPrice2.EditValue = FinalPrice
+                End If
+            Case 3
+                If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountKitchen
+                If ProgProps.CusDiscountKitchen > 0 Then
+                    InitialPrice = txtInitialPrice3.EditValue
+                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc3.EditValue / 100
+                    Discount = Disc * InitialPrice
+                    FinalPrice = InitialPrice - Discount
+                    txtInitialPrice3.EditValue = InitialPrice
+                    txtDiscount3.EditValue = Discount
+                    txtFinalPrice3.EditValue = FinalPrice
+                End If
+            Case 4
+                If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountKitchen
+                If ProgProps.CusDiscountKitchen > 0 Then
+                    InitialPrice = txtInitialPrice4.EditValue
+                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc4.EditValue / 100
+                    Discount = Disc * InitialPrice
+                    FinalPrice = InitialPrice - Discount
+                    txtInitialPrice4.EditValue = InitialPrice
+                    txtDiscount4.EditValue = Discount
+                    txtFinalPrice4.EditValue = FinalPrice
+                End If
+        End Select
+    End Sub
+
+    Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
+        ApplyDiscount(1)
     End Sub
 
     Private Sub txtInitialPrice2_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice2.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc2.EditValue = ProgProps.CusDiscountKitchen
-        If ProgProps.CusDiscountKitchen > 0 Then
-            InitialPrice = txtInitialPrice2.EditValue
-            Disc = ProgProps.CusDiscountKitchen / 100
-            Discount = Disc * InitialPrice
-            FinalPrice = InitialPrice - Discount
-            txtInitialPrice2.EditValue = InitialPrice
-            txtDiscount2.EditValue = Discount
-            txtFinalPrice2.EditValue = FinalPrice
-        End If
-
+        ApplyDiscount(2)
     End Sub
 
     Private Sub txtInitialPrice3_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice3.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc3.EditValue = ProgProps.CusDiscountKitchen
-        If ProgProps.CusDiscountKitchen > 0 Then
-            InitialPrice = txtInitialPrice3.EditValue
-            Disc = ProgProps.CusDiscountKitchen / 100
-            Discount = Disc * InitialPrice
-            FinalPrice = InitialPrice - Discount
-            txtInitialPrice3.EditValue = InitialPrice
-            txtDiscount3.EditValue = Discount
-            txtFinalPrice3.EditValue = FinalPrice
-        End If
+        ApplyDiscount(3)
     End Sub
 
     Private Sub txtInitialPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice4.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc4.EditValue = ProgProps.CusDiscountKitchen
-        If ProgProps.CusDiscountKitchen > 0 Then
-            InitialPrice = txtInitialPrice4.EditValue
-            Disc = ProgProps.CusDiscountKitchen / 100
-            Discount = Disc * InitialPrice
-            FinalPrice = InitialPrice - Discount
-            txtInitialPrice4.EditValue = InitialPrice
-            txtDiscount4.EditValue = Discount
-            txtFinalPrice4.EditValue = FinalPrice
-        End If
+        ApplyDiscount(4)
+    End Sub
+    Private Sub txtDisc1_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc1.EditValueChanged
+        ApplyDiscount(1, True)
+    End Sub
+    Private Sub txtDisc2_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc2.EditValueChanged
+        ApplyDiscount(2, True)
     End Sub
 
+    Private Sub txtDisc3_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc3.EditValueChanged
+        ApplyDiscount(3, True)
+    End Sub
+
+    Private Sub txtDisc4_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc4.EditValueChanged
+        ApplyDiscount(4, True)
+    End Sub
     Private Sub cboVVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
             Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVVALUELISTITEM, e.DisplayValue)
@@ -783,4 +805,6 @@ Public Class frmCUSOfferOrderKitchen
             Case 3 : cboModel4.SetEditValue(-1)
         End Select
     End Sub
+
+
 End Class

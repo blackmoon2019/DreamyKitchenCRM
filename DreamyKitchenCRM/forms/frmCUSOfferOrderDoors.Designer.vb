@@ -40,13 +40,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtDimension4 = New DevExpress.XtraEditors.TextEdit()
         Me.txtDimension8 = New DevExpress.XtraEditors.TextEdit()
         Me.txtDimension5 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice1 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtTotalVatPrice = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice6 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice2 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice3 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice4 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice5 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtTotalDoorsVat = New DevExpress.XtraEditors.TextEdit()
         Me.cboEMP = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwSALERSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboFora1 = New DevExpress.XtraEditors.ComboBoxEdit()
@@ -64,13 +58,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtDescription = New DevExpress.XtraEditors.MemoEdit()
         Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
         Me.txtKnobs1 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtVatPrice1 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtVatPrice2 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtVatPrice3 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtVatPrice4 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtVatPrice5 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtVatPrice6 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtTotalPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.txtTotalDoorsPrice = New DevExpress.XtraEditors.TextEdit()
         Me.txtNotes = New DevExpress.XtraEditors.MemoEdit()
         Me.cboTRANSH = New DevExpress.XtraEditors.LookUpEdit()
         Me.txtTransp = New DevExpress.XtraEditors.TextEdit()
@@ -85,6 +73,8 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtMeasurement = New DevExpress.XtraEditors.TextEdit()
         Me.txtRemove = New DevExpress.XtraEditors.TextEdit()
         Me.cboValueListItem = New DevExpress.XtraEditors.LookUpEdit()
+        Me.VwVALUELISTITEMV2BindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DM_VALUELISTITEM = New DreamyKitchenCRM.DM_VALUELISTITEM()
         Me.cboVALUELISTITEM2 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboVALUELISTITEM3 = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboVALUELISTITEM4 = New DevExpress.XtraEditors.LookUpEdit()
@@ -101,34 +91,66 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboKasa7 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboFora7 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboVALUELISTITEM7 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.txtVatPrice7 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice7 = New DevExpress.XtraEditors.TextEdit()
         Me.txtDimension142 = New DevExpress.XtraEditors.TextEdit()
         Me.txtKnobs7 = New DevExpress.XtraEditors.TextEdit()
         Me.cboType8 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboKasa8 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboFora8 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboVALUELISTITEM8 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.txtVatPrice8 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice8 = New DevExpress.XtraEditors.TextEdit()
         Me.txtDimension141 = New DevExpress.XtraEditors.TextEdit()
         Me.txtKnobs8 = New DevExpress.XtraEditors.TextEdit()
         Me.cboType9 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboKasa9 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboFora9 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboVALUELISTITEM9 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.txtVatPrice9 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice9 = New DevExpress.XtraEditors.TextEdit()
         Me.txtDimension9 = New DevExpress.XtraEditors.TextEdit()
         Me.txtKnobs9 = New DevExpress.XtraEditors.TextEdit()
         Me.cboType10 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboKasa10 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboFora10 = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboVALUELISTITEM10 = New DevExpress.XtraEditors.LookUpEdit()
-        Me.txtVatPrice10 = New DevExpress.XtraEditors.TextEdit()
-        Me.txtPrice10 = New DevExpress.XtraEditors.TextEdit()
         Me.txtDimension10 = New DevExpress.XtraEditors.TextEdit()
         Me.txtKnobs10 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice1 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice2 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc2 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount2 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice2 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice3 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc3 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount3 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice3 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice4 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc4 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount4 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice4 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice5 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc5 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount5 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice5 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice6 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc6 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount6 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice6 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice7 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc7 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount7 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice7 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice8 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc8 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount8 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice8 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice9 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc9 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount9 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice9 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtInitialPrice10 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDisc10 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtDiscount10 = New DevExpress.XtraEditors.TextEdit()
+        Me.txtFinalPrice10 = New DevExpress.XtraEditors.TextEdit()
         Me.LayoutControlGroup12 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlGroup11 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
@@ -151,97 +173,117 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem39 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup9 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.TabbedControlGroup1 = New DevExpress.XtraLayout.TabbedControlGroup()
+        Me.LayoutControlGroup7 = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LayoutControlItem61 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem51 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem65 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem29 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem68 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem117 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem118 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem119 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup2 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem56 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem58 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem34 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem105 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost3 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem106 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem107 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem57 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem42 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem108 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem109 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem110 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup5 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem59 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem49 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem63 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem43 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem111 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem112 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem113 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup6 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem60 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem50 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem64 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem17 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem44 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem67 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlGroup7 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem61 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem51 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem65 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem45 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem29 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem68 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem114 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost4 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem115 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem116 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup8 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem62 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem52 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem66 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem20 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem36 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem28 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem71 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem120 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost6 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem121 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem122 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutRootGroupForRestore = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem81 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem82 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem83 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem84 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem85 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem86 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem87 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem88 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem123 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost7 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem124 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem125 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup13 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem73 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem74 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem75 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem76 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem77 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem78 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem79 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem80 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem126 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem127 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem128 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup15 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem89 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem90 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem91 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem92 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem93 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem94 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem95 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem96 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem129 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost9 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem130 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem131 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup17 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem97 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem98 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem99 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem100 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem101 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem102 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem103 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem104 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem132 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.Lcost10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem133 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem134 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup10 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem69 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem70 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -264,8 +306,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.Vw_COLORSDOORSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSDOORSTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
-        Me.VwVALUELISTITEMV2BindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DM_VALUELISTITEM = New DreamyKitchenCRM.DM_VALUELISTITEM()
         Me.Vw_VALUELISTITEM_V2TableAdapter = New DreamyKitchenCRM.DM_VALUELISTITEMTableAdapters.vw_VALUELISTITEM_V2TableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
@@ -283,13 +323,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtDimension4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDimension8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDimension5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalVatPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalDoorsVat.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFora1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -307,13 +341,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKnobs1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalDoorsPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTransp.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -328,6 +356,8 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtMeasurement.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtRemove.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboValueListItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwVALUELISTITEMV2BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_VALUELISTITEM, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVALUELISTITEM2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVALUELISTITEM3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVALUELISTITEM4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -343,34 +373,66 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.cboKasa7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFora7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVALUELISTITEM7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDimension142.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKnobs7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboType8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboKasa8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFora8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVALUELISTITEM8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDimension141.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKnobs8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboType9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboKasa9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFora9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVALUELISTITEM9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDimension9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKnobs9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboType10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboKasa10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboFora10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboVALUELISTITEM10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtVatPrice10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPrice10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtDimension10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtKnobs10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice2.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice3.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice5.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice6.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice7.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice8.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice9.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtInitialPrice10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDisc10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtDiscount10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFinalPrice10.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -393,97 +455,117 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TabbedControlGroup1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem61, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem51, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem65, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem68, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem117, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem118, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem119, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem58, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem34, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem105, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem106, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem107, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem57, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem42, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem108, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem109, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem110, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem59, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem49, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem63, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem43, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem111, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem112, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem113, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem60, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem50, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem64, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem44, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem67, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem61, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem51, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem65, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem45, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem68, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem114, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost4, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem115, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem116, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem62, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem66, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem71, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem120, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost6, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem121, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem122, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutRootGroupForRestore, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem81, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem82, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem83, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem84, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem85, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem86, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem87, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem88, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem123, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost7, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem124, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem125, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem73, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem74, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem75, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem76, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem77, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem78, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem79, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem80, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem126, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem127, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem128, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem89, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem90, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem91, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem92, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem93, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem94, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem95, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem96, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem129, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost9, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem130, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem131, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup17, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem97, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem98, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem100, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem101, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem102, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem103, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem104, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem132, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.Lcost10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem133, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem134, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup10, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem69, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem70, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -502,8 +584,6 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwVALUELISTITEMV2BindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DM_VALUELISTITEM, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -524,13 +604,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControl1.Controls.Add(Me.txtDimension4)
         Me.LayoutControl1.Controls.Add(Me.txtDimension8)
         Me.LayoutControl1.Controls.Add(Me.txtDimension5)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice1)
-        Me.LayoutControl1.Controls.Add(Me.txtTotalVatPrice)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice6)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice2)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice3)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice4)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice5)
+        Me.LayoutControl1.Controls.Add(Me.txtTotalDoorsVat)
         Me.LayoutControl1.Controls.Add(Me.cboEMP)
         Me.LayoutControl1.Controls.Add(Me.cboFora1)
         Me.LayoutControl1.Controls.Add(Me.cboFora2)
@@ -547,13 +621,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControl1.Controls.Add(Me.txtDescription)
         Me.LayoutControl1.Controls.Add(Me.txtComments)
         Me.LayoutControl1.Controls.Add(Me.txtKnobs1)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice1)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice2)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice3)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice4)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice5)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice6)
-        Me.LayoutControl1.Controls.Add(Me.txtTotalPrice)
+        Me.LayoutControl1.Controls.Add(Me.txtTotalDoorsPrice)
         Me.LayoutControl1.Controls.Add(Me.txtNotes)
         Me.LayoutControl1.Controls.Add(Me.cboTRANSH)
         Me.LayoutControl1.Controls.Add(Me.txtTransp)
@@ -584,34 +652,66 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControl1.Controls.Add(Me.cboKasa7)
         Me.LayoutControl1.Controls.Add(Me.cboFora7)
         Me.LayoutControl1.Controls.Add(Me.cboVALUELISTITEM7)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice7)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice7)
         Me.LayoutControl1.Controls.Add(Me.txtDimension142)
         Me.LayoutControl1.Controls.Add(Me.txtKnobs7)
         Me.LayoutControl1.Controls.Add(Me.cboType8)
         Me.LayoutControl1.Controls.Add(Me.cboKasa8)
         Me.LayoutControl1.Controls.Add(Me.cboFora8)
         Me.LayoutControl1.Controls.Add(Me.cboVALUELISTITEM8)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice8)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice8)
         Me.LayoutControl1.Controls.Add(Me.txtDimension141)
         Me.LayoutControl1.Controls.Add(Me.txtKnobs8)
         Me.LayoutControl1.Controls.Add(Me.cboType9)
         Me.LayoutControl1.Controls.Add(Me.cboKasa9)
         Me.LayoutControl1.Controls.Add(Me.cboFora9)
         Me.LayoutControl1.Controls.Add(Me.cboVALUELISTITEM9)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice9)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice9)
         Me.LayoutControl1.Controls.Add(Me.txtDimension9)
         Me.LayoutControl1.Controls.Add(Me.txtKnobs9)
         Me.LayoutControl1.Controls.Add(Me.cboType10)
         Me.LayoutControl1.Controls.Add(Me.cboKasa10)
         Me.LayoutControl1.Controls.Add(Me.cboFora10)
         Me.LayoutControl1.Controls.Add(Me.cboVALUELISTITEM10)
-        Me.LayoutControl1.Controls.Add(Me.txtVatPrice10)
-        Me.LayoutControl1.Controls.Add(Me.txtPrice10)
         Me.LayoutControl1.Controls.Add(Me.txtDimension10)
         Me.LayoutControl1.Controls.Add(Me.txtKnobs10)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice1)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc1)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount1)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice1)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice2)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc2)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount2)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice2)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice3)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc3)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount3)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice3)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice4)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc4)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount4)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice4)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice5)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc5)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount5)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice5)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice6)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc6)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount6)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice6)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice7)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc7)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount7)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice7)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice8)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc8)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount8)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice8)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice9)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc9)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount9)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice9)
+        Me.LayoutControl1.Controls.Add(Me.txtInitialPrice10)
+        Me.LayoutControl1.Controls.Add(Me.txtDisc10)
+        Me.LayoutControl1.Controls.Add(Me.txtDiscount10)
+        Me.LayoutControl1.Controls.Add(Me.txtFinalPrice10)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.HiddenItems.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup12, Me.LayoutControlGroup11})
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
@@ -835,161 +935,29 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtDimension5.TabIndex = 44
         Me.txtDimension5.Tag = "dimension5,0,1,2"
         '
-        'txtPrice1
+        'txtTotalDoorsVat
         '
-        Me.txtPrice1.EditValue = "0,00 €"
-        Me.txtPrice1.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice1.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice1.Name = "txtPrice1"
-        Me.txtPrice1.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice1.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice1.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice1.Properties.ReadOnly = True
-        Me.txtPrice1.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice1.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice1.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice1.StyleController = Me.LayoutControl1
-        Me.txtPrice1.TabIndex = 42
-        Me.txtPrice1.Tag = "Price1,0,1,2"
-        Me.txtPrice1.Visible = False
-        '
-        'txtTotalVatPrice
-        '
-        Me.txtTotalVatPrice.EditValue = "0,00 €"
-        Me.txtTotalVatPrice.Location = New System.Drawing.Point(1693, 1092)
-        Me.txtTotalVatPrice.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtTotalVatPrice.Name = "txtTotalVatPrice"
-        Me.txtTotalVatPrice.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
-        Me.txtTotalVatPrice.Properties.Appearance.Options.UseForeColor = True
-        Me.txtTotalVatPrice.Properties.DisplayFormat.FormatString = "c"
-        Me.txtTotalVatPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalVatPrice.Properties.EditFormat.FormatString = "n2"
-        Me.txtTotalVatPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalVatPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtTotalVatPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtTotalVatPrice.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtTotalVatPrice.Properties.ReadOnly = True
-        Me.txtTotalVatPrice.Properties.Tag = "BenchExtraPrice"
-        Me.txtTotalVatPrice.Properties.UseReadOnlyAppearance = False
-        Me.txtTotalVatPrice.Size = New System.Drawing.Size(167, 38)
-        Me.txtTotalVatPrice.StyleController = Me.LayoutControl1
-        Me.txtTotalVatPrice.TabIndex = 42
-        Me.txtTotalVatPrice.Tag = "TotalVatPrice,0,1,2"
-        Me.txtTotalVatPrice.Visible = False
-        '
-        'txtPrice6
-        '
-        Me.txtPrice6.EditValue = "0,00 €"
-        Me.txtPrice6.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice6.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice6.Name = "txtPrice6"
-        Me.txtPrice6.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice6.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice6.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice6.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice6.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice6.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice6.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice6.Properties.ReadOnly = True
-        Me.txtPrice6.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice6.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice6.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice6.StyleController = Me.LayoutControl1
-        Me.txtPrice6.TabIndex = 42
-        Me.txtPrice6.Tag = "Price6,0,1,2"
-        Me.txtPrice6.Visible = False
-        '
-        'txtPrice2
-        '
-        Me.txtPrice2.EditValue = "0,00 €"
-        Me.txtPrice2.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice2.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice2.Name = "txtPrice2"
-        Me.txtPrice2.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice2.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice2.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice2.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice2.Properties.ReadOnly = True
-        Me.txtPrice2.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice2.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice2.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice2.StyleController = Me.LayoutControl1
-        Me.txtPrice2.TabIndex = 42
-        Me.txtPrice2.Tag = "Price2,0,1,2"
-        Me.txtPrice2.Visible = False
-        '
-        'txtPrice3
-        '
-        Me.txtPrice3.EditValue = "0,00 €"
-        Me.txtPrice3.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice3.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice3.Name = "txtPrice3"
-        Me.txtPrice3.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice3.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice3.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice3.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice3.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice3.Properties.ReadOnly = True
-        Me.txtPrice3.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice3.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice3.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice3.StyleController = Me.LayoutControl1
-        Me.txtPrice3.TabIndex = 42
-        Me.txtPrice3.Tag = "Price3,0,1,2"
-        Me.txtPrice3.Visible = False
-        '
-        'txtPrice4
-        '
-        Me.txtPrice4.EditValue = "0,00 €"
-        Me.txtPrice4.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice4.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice4.Name = "txtPrice4"
-        Me.txtPrice4.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice4.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice4.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice4.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice4.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice4.Properties.ReadOnly = True
-        Me.txtPrice4.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice4.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice4.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice4.StyleController = Me.LayoutControl1
-        Me.txtPrice4.TabIndex = 42
-        Me.txtPrice4.Tag = "Price4,0,1,2"
-        Me.txtPrice4.Visible = False
-        '
-        'txtPrice5
-        '
-        Me.txtPrice5.EditValue = "0,00 €"
-        Me.txtPrice5.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice5.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice5.Name = "txtPrice5"
-        Me.txtPrice5.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice5.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice5.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice5.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice5.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice5.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice5.Properties.ReadOnly = True
-        Me.txtPrice5.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice5.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice5.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice5.StyleController = Me.LayoutControl1
-        Me.txtPrice5.TabIndex = 42
-        Me.txtPrice5.Tag = "Price5,0,1,2"
-        Me.txtPrice5.Visible = False
+        Me.txtTotalDoorsVat.EditValue = "0,00 €"
+        Me.txtTotalDoorsVat.Location = New System.Drawing.Point(1693, 1092)
+        Me.txtTotalDoorsVat.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtTotalDoorsVat.Name = "txtTotalDoorsVat"
+        Me.txtTotalDoorsVat.Properties.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer), CType(CType(40, Byte), Integer))
+        Me.txtTotalDoorsVat.Properties.Appearance.Options.UseForeColor = True
+        Me.txtTotalDoorsVat.Properties.DisplayFormat.FormatString = "c"
+        Me.txtTotalDoorsVat.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalDoorsVat.Properties.EditFormat.FormatString = "n2"
+        Me.txtTotalDoorsVat.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalDoorsVat.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtTotalDoorsVat.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtTotalDoorsVat.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtTotalDoorsVat.Properties.ReadOnly = True
+        Me.txtTotalDoorsVat.Properties.Tag = "BenchExtraPrice"
+        Me.txtTotalDoorsVat.Properties.UseReadOnlyAppearance = False
+        Me.txtTotalDoorsVat.Size = New System.Drawing.Size(167, 38)
+        Me.txtTotalDoorsVat.StyleController = Me.LayoutControl1
+        Me.txtTotalDoorsVat.TabIndex = 42
+        Me.txtTotalDoorsVat.Tag = "TotalVatPrice,0,1,2"
+        Me.txtTotalDoorsVat.Visible = False
         '
         'cboEMP
         '
@@ -1226,157 +1194,31 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtKnobs1.TabIndex = 44
         Me.txtKnobs1.Tag = "knobs,0,1,2"
         '
-        'txtVatPrice1
+        'txtTotalDoorsPrice
         '
-        Me.txtVatPrice1.EditValue = "0,00 €"
-        Me.txtVatPrice1.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice1.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice1.Name = "txtVatPrice1"
-        Me.txtVatPrice1.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice1.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice1.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice1.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice1.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice1.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice1.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice1.StyleController = Me.LayoutControl1
-        Me.txtVatPrice1.TabIndex = 42
-        Me.txtVatPrice1.Tag = "VatPrice1,0,1,2"
-        Me.txtVatPrice1.Visible = False
-        '
-        'txtVatPrice2
-        '
-        Me.txtVatPrice2.EditValue = "0,00 €"
-        Me.txtVatPrice2.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice2.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice2.Name = "txtVatPrice2"
-        Me.txtVatPrice2.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice2.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice2.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice2.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice2.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice2.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice2.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice2.StyleController = Me.LayoutControl1
-        Me.txtVatPrice2.TabIndex = 42
-        Me.txtVatPrice2.Tag = "VatPrice2,0,1,2"
-        Me.txtVatPrice2.Visible = False
-        '
-        'txtVatPrice3
-        '
-        Me.txtVatPrice3.EditValue = "0,00 €"
-        Me.txtVatPrice3.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice3.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice3.Name = "txtVatPrice3"
-        Me.txtVatPrice3.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice3.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice3.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice3.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice3.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice3.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice3.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice3.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice3.StyleController = Me.LayoutControl1
-        Me.txtVatPrice3.TabIndex = 42
-        Me.txtVatPrice3.Tag = "VatPrice3,0,1,2"
-        Me.txtVatPrice3.Visible = False
-        '
-        'txtVatPrice4
-        '
-        Me.txtVatPrice4.EditValue = "0,00 €"
-        Me.txtVatPrice4.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice4.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice4.Name = "txtVatPrice4"
-        Me.txtVatPrice4.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice4.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice4.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice4.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice4.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice4.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice4.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice4.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice4.StyleController = Me.LayoutControl1
-        Me.txtVatPrice4.TabIndex = 42
-        Me.txtVatPrice4.Tag = "VatPrice4,0,1,2"
-        Me.txtVatPrice4.Visible = False
-        '
-        'txtVatPrice5
-        '
-        Me.txtVatPrice5.EditValue = "0,00 €"
-        Me.txtVatPrice5.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice5.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice5.Name = "txtVatPrice5"
-        Me.txtVatPrice5.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice5.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice5.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice5.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice5.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice5.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice5.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice5.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice5.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice5.StyleController = Me.LayoutControl1
-        Me.txtVatPrice5.TabIndex = 42
-        Me.txtVatPrice5.Tag = "VatPrice5,0,1,2"
-        Me.txtVatPrice5.Visible = False
-        '
-        'txtVatPrice6
-        '
-        Me.txtVatPrice6.EditValue = "0,00 €"
-        Me.txtVatPrice6.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice6.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice6.Name = "txtVatPrice6"
-        Me.txtVatPrice6.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice6.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice6.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice6.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice6.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice6.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice6.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice6.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice6.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice6.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice6.StyleController = Me.LayoutControl1
-        Me.txtVatPrice6.TabIndex = 42
-        Me.txtVatPrice6.Tag = "VatPrice6,0,1,2"
-        Me.txtVatPrice6.Visible = False
-        '
-        'txtTotalPrice
-        '
-        Me.txtTotalPrice.EditValue = "0,00 €"
-        Me.txtTotalPrice.Location = New System.Drawing.Point(1693, 1134)
-        Me.txtTotalPrice.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtTotalPrice.Name = "txtTotalPrice"
-        Me.txtTotalPrice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
-        Me.txtTotalPrice.Properties.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight
-        Me.txtTotalPrice.Properties.Appearance.Options.UseFont = True
-        Me.txtTotalPrice.Properties.Appearance.Options.UseForeColor = True
-        Me.txtTotalPrice.Properties.DisplayFormat.FormatString = "c"
-        Me.txtTotalPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalPrice.Properties.EditFormat.FormatString = "n2"
-        Me.txtTotalPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtTotalPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtTotalPrice.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtTotalPrice.Properties.ReadOnly = True
-        Me.txtTotalPrice.Properties.Tag = "BenchExtraPrice"
-        Me.txtTotalPrice.Properties.UseReadOnlyAppearance = False
-        Me.txtTotalPrice.Size = New System.Drawing.Size(167, 42)
-        Me.txtTotalPrice.StyleController = Me.LayoutControl1
-        Me.txtTotalPrice.TabIndex = 42
-        Me.txtTotalPrice.Tag = "TotalPrice,0,1,2"
-        Me.txtTotalPrice.Visible = False
+        Me.txtTotalDoorsPrice.EditValue = "0,00 €"
+        Me.txtTotalDoorsPrice.Location = New System.Drawing.Point(1693, 1134)
+        Me.txtTotalDoorsPrice.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtTotalDoorsPrice.Name = "txtTotalDoorsPrice"
+        Me.txtTotalDoorsPrice.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.txtTotalDoorsPrice.Properties.Appearance.ForeColor = System.Drawing.SystemColors.MenuHighlight
+        Me.txtTotalDoorsPrice.Properties.Appearance.Options.UseFont = True
+        Me.txtTotalDoorsPrice.Properties.Appearance.Options.UseForeColor = True
+        Me.txtTotalDoorsPrice.Properties.DisplayFormat.FormatString = "c"
+        Me.txtTotalDoorsPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalDoorsPrice.Properties.EditFormat.FormatString = "n2"
+        Me.txtTotalDoorsPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalDoorsPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtTotalDoorsPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtTotalDoorsPrice.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtTotalDoorsPrice.Properties.ReadOnly = True
+        Me.txtTotalDoorsPrice.Properties.Tag = "BenchExtraPrice"
+        Me.txtTotalDoorsPrice.Properties.UseReadOnlyAppearance = False
+        Me.txtTotalDoorsPrice.Size = New System.Drawing.Size(167, 42)
+        Me.txtTotalDoorsPrice.StyleController = Me.LayoutControl1
+        Me.txtTotalDoorsPrice.TabIndex = 42
+        Me.txtTotalDoorsPrice.Tag = "TotalPrice,0,1,2"
+        Me.txtTotalDoorsPrice.Visible = False
         '
         'txtNotes
         '
@@ -1622,6 +1464,16 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboValueListItem.StyleController = Me.LayoutControl1
         Me.cboValueListItem.TabIndex = 49
         Me.cboValueListItem.Tag = "DoorTypeID,0,1,2"
+        '
+        'VwVALUELISTITEMV2BindingSource
+        '
+        Me.VwVALUELISTITEMV2BindingSource.DataMember = "vw_VALUELISTITEM_V2"
+        Me.VwVALUELISTITEMV2BindingSource.DataSource = Me.DM_VALUELISTITEM
+        '
+        'DM_VALUELISTITEM
+        '
+        Me.DM_VALUELISTITEM.DataSetName = "DM_VALUELISTITEM"
+        Me.DM_VALUELISTITEM.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cboVALUELISTITEM2
         '
@@ -1880,49 +1732,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboVALUELISTITEM7.TabIndex = 49
         Me.cboVALUELISTITEM7.Tag = "VALUELISTITEMID7,0,1,2"
         '
-        'txtVatPrice7
-        '
-        Me.txtVatPrice7.EditValue = "0,00 €"
-        Me.txtVatPrice7.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice7.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice7.Name = "txtVatPrice7"
-        Me.txtVatPrice7.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice7.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice7.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice7.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice7.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice7.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice7.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice7.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice7.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice7.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice7.StyleController = Me.LayoutControl1
-        Me.txtVatPrice7.TabIndex = 42
-        Me.txtVatPrice7.Tag = "VatPrice7,0,1,2"
-        Me.txtVatPrice7.Visible = False
-        '
-        'txtPrice7
-        '
-        Me.txtPrice7.EditValue = "0,00 €"
-        Me.txtPrice7.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice7.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice7.Name = "txtPrice7"
-        Me.txtPrice7.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice7.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice7.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice7.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice7.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice7.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice7.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice7.Properties.ReadOnly = True
-        Me.txtPrice7.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice7.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice7.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice7.StyleController = Me.LayoutControl1
-        Me.txtPrice7.TabIndex = 42
-        Me.txtPrice7.Tag = "Price7,0,1,2"
-        Me.txtPrice7.Visible = False
-        '
         'txtDimension142
         '
         Me.txtDimension142.Location = New System.Drawing.Point(842, 787)
@@ -2010,49 +1819,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboVALUELISTITEM8.StyleController = Me.LayoutControl1
         Me.cboVALUELISTITEM8.TabIndex = 49
         Me.cboVALUELISTITEM8.Tag = "VALUELISTITEMID8,0,1,2"
-        '
-        'txtVatPrice8
-        '
-        Me.txtVatPrice8.EditValue = "0,00 €"
-        Me.txtVatPrice8.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice8.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice8.Name = "txtVatPrice8"
-        Me.txtVatPrice8.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice8.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice8.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice8.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice8.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice8.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice8.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice8.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice8.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice8.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice8.StyleController = Me.LayoutControl1
-        Me.txtVatPrice8.TabIndex = 42
-        Me.txtVatPrice8.Tag = "VatPrice8,0,1,2"
-        Me.txtVatPrice8.Visible = False
-        '
-        'txtPrice8
-        '
-        Me.txtPrice8.EditValue = "0,00 €"
-        Me.txtPrice8.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice8.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice8.Name = "txtPrice8"
-        Me.txtPrice8.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice8.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice8.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice8.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice8.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice8.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice8.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice8.Properties.ReadOnly = True
-        Me.txtPrice8.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice8.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice8.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice8.StyleController = Me.LayoutControl1
-        Me.txtPrice8.TabIndex = 42
-        Me.txtPrice8.Tag = "Price8,0,1,2"
-        Me.txtPrice8.Visible = False
         '
         'txtDimension141
         '
@@ -2142,49 +1908,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboVALUELISTITEM9.TabIndex = 49
         Me.cboVALUELISTITEM9.Tag = "VALUELISTITEMID9,0,1,2"
         '
-        'txtVatPrice9
-        '
-        Me.txtVatPrice9.EditValue = "0,00 €"
-        Me.txtVatPrice9.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice9.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice9.Name = "txtVatPrice9"
-        Me.txtVatPrice9.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice9.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice9.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice9.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice9.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice9.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice9.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice9.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice9.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice9.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice9.StyleController = Me.LayoutControl1
-        Me.txtVatPrice9.TabIndex = 42
-        Me.txtVatPrice9.Tag = "VatPrice9,0,1,2"
-        Me.txtVatPrice9.Visible = False
-        '
-        'txtPrice9
-        '
-        Me.txtPrice9.EditValue = "0,00 €"
-        Me.txtPrice9.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice9.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice9.Name = "txtPrice9"
-        Me.txtPrice9.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice9.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice9.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice9.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice9.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice9.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice9.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice9.Properties.ReadOnly = True
-        Me.txtPrice9.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice9.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice9.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice9.StyleController = Me.LayoutControl1
-        Me.txtPrice9.TabIndex = 42
-        Me.txtPrice9.Tag = "Price9,0,1,2"
-        Me.txtPrice9.Visible = False
-        '
         'txtDimension9
         '
         Me.txtDimension9.Location = New System.Drawing.Point(842, 787)
@@ -2273,49 +1996,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboVALUELISTITEM10.TabIndex = 49
         Me.cboVALUELISTITEM10.Tag = "VALUELISTITEMID10,0,1,2"
         '
-        'txtVatPrice10
-        '
-        Me.txtVatPrice10.EditValue = "0,00 €"
-        Me.txtVatPrice10.Location = New System.Drawing.Point(38, 919)
-        Me.txtVatPrice10.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtVatPrice10.Name = "txtVatPrice10"
-        Me.txtVatPrice10.Properties.DisplayFormat.FormatString = "c"
-        Me.txtVatPrice10.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice10.Properties.EditFormat.FormatString = "n2"
-        Me.txtVatPrice10.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVatPrice10.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtVatPrice10.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtVatPrice10.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtVatPrice10.Properties.Tag = "BenchExtraPrice"
-        Me.txtVatPrice10.Properties.UseReadOnlyAppearance = False
-        Me.txtVatPrice10.Size = New System.Drawing.Size(800, 38)
-        Me.txtVatPrice10.StyleController = Me.LayoutControl1
-        Me.txtVatPrice10.TabIndex = 42
-        Me.txtVatPrice10.Tag = "VatPrice10,0,1,2"
-        Me.txtVatPrice10.Visible = False
-        '
-        'txtPrice10
-        '
-        Me.txtPrice10.EditValue = "0,00 €"
-        Me.txtPrice10.Location = New System.Drawing.Point(842, 919)
-        Me.txtPrice10.Margin = New System.Windows.Forms.Padding(5)
-        Me.txtPrice10.Name = "txtPrice10"
-        Me.txtPrice10.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPrice10.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice10.Properties.EditFormat.FormatString = "n2"
-        Me.txtPrice10.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPrice10.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPrice10.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPrice10.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPrice10.Properties.ReadOnly = True
-        Me.txtPrice10.Properties.Tag = "BenchExtraPrice"
-        Me.txtPrice10.Properties.UseReadOnlyAppearance = False
-        Me.txtPrice10.Size = New System.Drawing.Size(1005, 38)
-        Me.txtPrice10.StyleController = Me.LayoutControl1
-        Me.txtPrice10.TabIndex = 42
-        Me.txtPrice10.Tag = "Price10,0,1,2"
-        Me.txtPrice10.Visible = False
-        '
         'txtDimension10
         '
         Me.txtDimension10.Location = New System.Drawing.Point(842, 787)
@@ -2337,6 +2017,866 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtKnobs10.StyleController = Me.LayoutControl1
         Me.txtKnobs10.TabIndex = 44
         Me.txtKnobs10.Tag = "knobs10,0,1,2"
+        '
+        'txtInitialPrice1
+        '
+        Me.txtInitialPrice1.EditValue = "0,00 €"
+        Me.txtInitialPrice1.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice1.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice1.Name = "txtInitialPrice1"
+        Me.txtInitialPrice1.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice1.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice1.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice1.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice1.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice1.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice1.Size = New System.Drawing.Size(800, 38)
+        Me.txtInitialPrice1.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice1.TabIndex = 42
+        Me.txtInitialPrice1.Tag = "modelInitialPrice1,0,1,2"
+        Me.txtInitialPrice1.Visible = False
+        '
+        'txtDisc1
+        '
+        Me.txtDisc1.EditValue = "0%"
+        Me.txtDisc1.Location = New System.Drawing.Point(842, 919)
+        Me.txtDisc1.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc1.Name = "txtDisc1"
+        Me.txtDisc1.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc1.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc1.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc1.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc1.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc1.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc1.Size = New System.Drawing.Size(500, 38)
+        Me.txtDisc1.StyleController = Me.LayoutControl1
+        Me.txtDisc1.TabIndex = 42
+        Me.txtDisc1.Tag = "discount1,0,1,2"
+        Me.txtDisc1.Visible = False
+        '
+        'txtDiscount1
+        '
+        Me.txtDiscount1.EditValue = "0,00 €"
+        Me.txtDiscount1.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount1.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount1.Name = "txtDiscount1"
+        Me.txtDiscount1.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount1.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount1.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount1.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount1.Properties.ReadOnly = True
+        Me.txtDiscount1.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount1.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount1.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount1.StyleController = Me.LayoutControl1
+        Me.txtDiscount1.TabIndex = 42
+        Me.txtDiscount1.Tag = "modelDiscount1,0,1,2"
+        Me.txtDiscount1.Visible = False
+        '
+        'txtFinalPrice1
+        '
+        Me.txtFinalPrice1.EditValue = "0,00 €"
+        Me.txtFinalPrice1.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice1.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice1.Name = "txtFinalPrice1"
+        Me.txtFinalPrice1.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice1.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice1.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice1.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice1.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice1.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice1.Properties.ReadOnly = True
+        Me.txtFinalPrice1.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice1.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice1.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice1.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice1.TabIndex = 42
+        Me.txtFinalPrice1.Tag = "modelFinalPrice1,0,1,2"
+        Me.txtFinalPrice1.Visible = False
+        '
+        'txtInitialPrice2
+        '
+        Me.txtInitialPrice2.EditValue = "0,00 €"
+        Me.txtInitialPrice2.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice2.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice2.Name = "txtInitialPrice2"
+        Me.txtInitialPrice2.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice2.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice2.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice2.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice2.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice2.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice2.Size = New System.Drawing.Size(800, 38)
+        Me.txtInitialPrice2.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice2.TabIndex = 42
+        Me.txtInitialPrice2.Tag = "modelInitialPrice2,0,1,2"
+        Me.txtInitialPrice2.Visible = False
+        '
+        'txtDisc2
+        '
+        Me.txtDisc2.EditValue = "0%"
+        Me.txtDisc2.Location = New System.Drawing.Point(842, 919)
+        Me.txtDisc2.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc2.Name = "txtDisc2"
+        Me.txtDisc2.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc2.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc2.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc2.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc2.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc2.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc2.Size = New System.Drawing.Size(500, 38)
+        Me.txtDisc2.StyleController = Me.LayoutControl1
+        Me.txtDisc2.TabIndex = 42
+        Me.txtDisc2.Tag = "discount2,0,1,2"
+        Me.txtDisc2.Visible = False
+        '
+        'txtDiscount2
+        '
+        Me.txtDiscount2.EditValue = "0,00 €"
+        Me.txtDiscount2.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount2.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount2.Name = "txtDiscount2"
+        Me.txtDiscount2.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount2.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount2.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount2.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount2.Properties.ReadOnly = True
+        Me.txtDiscount2.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount2.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount2.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount2.StyleController = Me.LayoutControl1
+        Me.txtDiscount2.TabIndex = 42
+        Me.txtDiscount2.Tag = "modelDiscount2,0,1,2"
+        Me.txtDiscount2.Visible = False
+        '
+        'txtFinalPrice2
+        '
+        Me.txtFinalPrice2.EditValue = "0,00 €"
+        Me.txtFinalPrice2.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice2.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice2.Name = "txtFinalPrice2"
+        Me.txtFinalPrice2.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice2.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice2.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice2.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice2.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice2.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice2.Properties.ReadOnly = True
+        Me.txtFinalPrice2.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice2.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice2.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice2.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice2.TabIndex = 42
+        Me.txtFinalPrice2.Tag = "modelFinalPrice2,0,1,2"
+        Me.txtFinalPrice2.Visible = False
+        '
+        'txtInitialPrice3
+        '
+        Me.txtInitialPrice3.EditValue = "0,00 €"
+        Me.txtInitialPrice3.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice3.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice3.Name = "txtInitialPrice3"
+        Me.txtInitialPrice3.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice3.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice3.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice3.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice3.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice3.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice3.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice3.Size = New System.Drawing.Size(800, 38)
+        Me.txtInitialPrice3.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice3.TabIndex = 42
+        Me.txtInitialPrice3.Tag = "modelInitialPrice3,0,1,2"
+        Me.txtInitialPrice3.Visible = False
+        '
+        'txtDisc3
+        '
+        Me.txtDisc3.EditValue = "0%"
+        Me.txtDisc3.Location = New System.Drawing.Point(842, 919)
+        Me.txtDisc3.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc3.Name = "txtDisc3"
+        Me.txtDisc3.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc3.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc3.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc3.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc3.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc3.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc3.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc3.Size = New System.Drawing.Size(500, 38)
+        Me.txtDisc3.StyleController = Me.LayoutControl1
+        Me.txtDisc3.TabIndex = 42
+        Me.txtDisc3.Tag = "discount3,0,1,2"
+        Me.txtDisc3.Visible = False
+        '
+        'txtDiscount3
+        '
+        Me.txtDiscount3.EditValue = "0,00 €"
+        Me.txtDiscount3.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount3.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount3.Name = "txtDiscount3"
+        Me.txtDiscount3.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount3.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount3.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount3.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount3.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount3.Properties.ReadOnly = True
+        Me.txtDiscount3.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount3.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount3.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount3.StyleController = Me.LayoutControl1
+        Me.txtDiscount3.TabIndex = 42
+        Me.txtDiscount3.Tag = "modelDiscount3,0,1,2"
+        Me.txtDiscount3.Visible = False
+        '
+        'txtFinalPrice3
+        '
+        Me.txtFinalPrice3.EditValue = "0,00 €"
+        Me.txtFinalPrice3.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice3.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice3.Name = "txtFinalPrice3"
+        Me.txtFinalPrice3.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice3.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice3.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice3.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice3.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice3.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice3.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice3.Properties.ReadOnly = True
+        Me.txtFinalPrice3.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice3.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice3.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice3.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice3.TabIndex = 42
+        Me.txtFinalPrice3.Tag = "modelFinalPrice3,0,1,2"
+        Me.txtFinalPrice3.Visible = False
+        '
+        'txtInitialPrice4
+        '
+        Me.txtInitialPrice4.EditValue = "0,00 €"
+        Me.txtInitialPrice4.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice4.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice4.Name = "txtInitialPrice4"
+        Me.txtInitialPrice4.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice4.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice4.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice4.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice4.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice4.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice4.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice4.Size = New System.Drawing.Size(805, 38)
+        Me.txtInitialPrice4.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice4.TabIndex = 42
+        Me.txtInitialPrice4.Tag = "modelInitialPrice4,0,1,2"
+        Me.txtInitialPrice4.Visible = False
+        '
+        'txtDisc4
+        '
+        Me.txtDisc4.EditValue = "0%"
+        Me.txtDisc4.Location = New System.Drawing.Point(847, 919)
+        Me.txtDisc4.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc4.Name = "txtDisc4"
+        Me.txtDisc4.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc4.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc4.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc4.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc4.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc4.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc4.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc4.Size = New System.Drawing.Size(495, 38)
+        Me.txtDisc4.StyleController = Me.LayoutControl1
+        Me.txtDisc4.TabIndex = 42
+        Me.txtDisc4.Tag = "discount4,0,1,2"
+        Me.txtDisc4.Visible = False
+        '
+        'txtDiscount4
+        '
+        Me.txtDiscount4.EditValue = "0,00 €"
+        Me.txtDiscount4.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount4.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount4.Name = "txtDiscount4"
+        Me.txtDiscount4.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount4.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount4.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount4.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount4.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount4.Properties.ReadOnly = True
+        Me.txtDiscount4.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount4.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount4.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount4.StyleController = Me.LayoutControl1
+        Me.txtDiscount4.TabIndex = 42
+        Me.txtDiscount4.Tag = "modelDiscount4,0,1,2"
+        Me.txtDiscount4.Visible = False
+        '
+        'txtFinalPrice4
+        '
+        Me.txtFinalPrice4.EditValue = "0,00 €"
+        Me.txtFinalPrice4.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice4.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice4.Name = "txtFinalPrice4"
+        Me.txtFinalPrice4.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice4.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice4.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice4.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice4.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice4.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice4.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice4.Properties.ReadOnly = True
+        Me.txtFinalPrice4.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice4.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice4.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice4.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice4.TabIndex = 42
+        Me.txtFinalPrice4.Tag = "modelFinalPrice4,0,1,2"
+        Me.txtFinalPrice4.Visible = False
+        '
+        'txtInitialPrice5
+        '
+        Me.txtInitialPrice5.EditValue = "0,00 €"
+        Me.txtInitialPrice5.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice5.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice5.Name = "txtInitialPrice5"
+        Me.txtInitialPrice5.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice5.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice5.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice5.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice5.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice5.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice5.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice5.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice5.Size = New System.Drawing.Size(800, 38)
+        Me.txtInitialPrice5.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice5.TabIndex = 42
+        Me.txtInitialPrice5.Tag = "modelInitialPrice5,0,1,2"
+        Me.txtInitialPrice5.Visible = False
+        '
+        'txtDisc5
+        '
+        Me.txtDisc5.EditValue = "0%"
+        Me.txtDisc5.Location = New System.Drawing.Point(842, 919)
+        Me.txtDisc5.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc5.Name = "txtDisc5"
+        Me.txtDisc5.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc5.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc5.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc5.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc5.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc5.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc5.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc5.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc5.Size = New System.Drawing.Size(500, 38)
+        Me.txtDisc5.StyleController = Me.LayoutControl1
+        Me.txtDisc5.TabIndex = 42
+        Me.txtDisc5.Tag = "discount5,0,1,2"
+        Me.txtDisc5.Visible = False
+        '
+        'txtDiscount5
+        '
+        Me.txtDiscount5.EditValue = "0,00 €"
+        Me.txtDiscount5.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount5.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount5.Name = "txtDiscount5"
+        Me.txtDiscount5.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount5.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount5.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount5.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount5.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount5.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount5.Properties.ReadOnly = True
+        Me.txtDiscount5.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount5.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount5.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount5.StyleController = Me.LayoutControl1
+        Me.txtDiscount5.TabIndex = 42
+        Me.txtDiscount5.Tag = "modelDiscount5,0,1,2"
+        Me.txtDiscount5.Visible = False
+        '
+        'txtFinalPrice5
+        '
+        Me.txtFinalPrice5.EditValue = "0,00 €"
+        Me.txtFinalPrice5.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice5.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice5.Name = "txtFinalPrice5"
+        Me.txtFinalPrice5.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice5.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice5.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice5.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice5.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice5.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice5.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice5.Properties.ReadOnly = True
+        Me.txtFinalPrice5.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice5.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice5.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice5.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice5.TabIndex = 42
+        Me.txtFinalPrice5.Tag = "modelFinalPrice5,0,1,2"
+        Me.txtFinalPrice5.Visible = False
+        '
+        'txtInitialPrice6
+        '
+        Me.txtInitialPrice6.EditValue = "0,00 €"
+        Me.txtInitialPrice6.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice6.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice6.Name = "txtInitialPrice6"
+        Me.txtInitialPrice6.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice6.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice6.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice6.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice6.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice6.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice6.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice6.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice6.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice6.Size = New System.Drawing.Size(800, 38)
+        Me.txtInitialPrice6.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice6.TabIndex = 42
+        Me.txtInitialPrice6.Tag = "modelInitialPrice6,0,1,2"
+        Me.txtInitialPrice6.Visible = False
+        '
+        'txtDisc6
+        '
+        Me.txtDisc6.EditValue = "0%"
+        Me.txtDisc6.Location = New System.Drawing.Point(842, 919)
+        Me.txtDisc6.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc6.Name = "txtDisc6"
+        Me.txtDisc6.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc6.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc6.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc6.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc6.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc6.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc6.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc6.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc6.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc6.Size = New System.Drawing.Size(500, 38)
+        Me.txtDisc6.StyleController = Me.LayoutControl1
+        Me.txtDisc6.TabIndex = 42
+        Me.txtDisc6.Tag = "discount6,0,1,2"
+        Me.txtDisc6.Visible = False
+        '
+        'txtDiscount6
+        '
+        Me.txtDiscount6.EditValue = "0,00 €"
+        Me.txtDiscount6.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount6.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount6.Name = "txtDiscount6"
+        Me.txtDiscount6.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount6.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount6.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount6.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount6.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount6.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount6.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount6.Properties.ReadOnly = True
+        Me.txtDiscount6.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount6.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount6.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount6.StyleController = Me.LayoutControl1
+        Me.txtDiscount6.TabIndex = 42
+        Me.txtDiscount6.Tag = "modelDiscount6,0,1,2"
+        Me.txtDiscount6.Visible = False
+        '
+        'txtFinalPrice6
+        '
+        Me.txtFinalPrice6.EditValue = "0,00 €"
+        Me.txtFinalPrice6.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice6.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice6.Name = "txtFinalPrice6"
+        Me.txtFinalPrice6.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice6.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice6.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice6.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice6.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice6.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice6.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice6.Properties.ReadOnly = True
+        Me.txtFinalPrice6.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice6.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice6.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice6.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice6.TabIndex = 42
+        Me.txtFinalPrice6.Tag = "modelFinalPrice6,0,1,2"
+        Me.txtFinalPrice6.Visible = False
+        '
+        'txtInitialPrice7
+        '
+        Me.txtInitialPrice7.EditValue = "0,00 €"
+        Me.txtInitialPrice7.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice7.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice7.Name = "txtInitialPrice7"
+        Me.txtInitialPrice7.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice7.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice7.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice7.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice7.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice7.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice7.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice7.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice7.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice7.Size = New System.Drawing.Size(800, 38)
+        Me.txtInitialPrice7.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice7.TabIndex = 42
+        Me.txtInitialPrice7.Tag = "modelInitialPrice7,0,1,2"
+        Me.txtInitialPrice7.Visible = False
+        '
+        'txtDisc7
+        '
+        Me.txtDisc7.EditValue = "0%"
+        Me.txtDisc7.Location = New System.Drawing.Point(842, 919)
+        Me.txtDisc7.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc7.Name = "txtDisc7"
+        Me.txtDisc7.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc7.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc7.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc7.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc7.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc7.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc7.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc7.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc7.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc7.Size = New System.Drawing.Size(500, 38)
+        Me.txtDisc7.StyleController = Me.LayoutControl1
+        Me.txtDisc7.TabIndex = 42
+        Me.txtDisc7.Tag = "discount7,0,1,2"
+        Me.txtDisc7.Visible = False
+        '
+        'txtDiscount7
+        '
+        Me.txtDiscount7.EditValue = "0,00 €"
+        Me.txtDiscount7.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount7.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount7.Name = "txtDiscount7"
+        Me.txtDiscount7.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount7.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount7.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount7.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount7.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount7.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount7.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount7.Properties.ReadOnly = True
+        Me.txtDiscount7.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount7.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount7.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount7.StyleController = Me.LayoutControl1
+        Me.txtDiscount7.TabIndex = 42
+        Me.txtDiscount7.Tag = "modelDiscount7,0,1,2"
+        Me.txtDiscount7.Visible = False
+        '
+        'txtFinalPrice7
+        '
+        Me.txtFinalPrice7.EditValue = "0,00 €"
+        Me.txtFinalPrice7.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice7.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice7.Name = "txtFinalPrice7"
+        Me.txtFinalPrice7.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice7.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice7.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice7.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice7.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice7.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice7.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice7.Properties.ReadOnly = True
+        Me.txtFinalPrice7.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice7.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice7.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice7.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice7.TabIndex = 42
+        Me.txtFinalPrice7.Tag = "modelFinalPrice7,0,1,2"
+        Me.txtFinalPrice7.Visible = False
+        '
+        'txtInitialPrice8
+        '
+        Me.txtInitialPrice8.EditValue = "0,00 €"
+        Me.txtInitialPrice8.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice8.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice8.Name = "txtInitialPrice8"
+        Me.txtInitialPrice8.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice8.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice8.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice8.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice8.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice8.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice8.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice8.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice8.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice8.Size = New System.Drawing.Size(800, 38)
+        Me.txtInitialPrice8.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice8.TabIndex = 42
+        Me.txtInitialPrice8.Tag = "modelInitialPrice8,0,1,2"
+        Me.txtInitialPrice8.Visible = False
+        '
+        'txtDisc8
+        '
+        Me.txtDisc8.EditValue = "0%"
+        Me.txtDisc8.Location = New System.Drawing.Point(842, 919)
+        Me.txtDisc8.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc8.Name = "txtDisc8"
+        Me.txtDisc8.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc8.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc8.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc8.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc8.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc8.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc8.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc8.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc8.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc8.Size = New System.Drawing.Size(500, 38)
+        Me.txtDisc8.StyleController = Me.LayoutControl1
+        Me.txtDisc8.TabIndex = 42
+        Me.txtDisc8.Tag = "discount8,0,1,2"
+        Me.txtDisc8.Visible = False
+        '
+        'txtDiscount8
+        '
+        Me.txtDiscount8.EditValue = "0,00 €"
+        Me.txtDiscount8.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount8.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount8.Name = "txtDiscount8"
+        Me.txtDiscount8.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount8.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount8.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount8.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount8.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount8.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount8.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount8.Properties.ReadOnly = True
+        Me.txtDiscount8.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount8.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount8.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount8.StyleController = Me.LayoutControl1
+        Me.txtDiscount8.TabIndex = 42
+        Me.txtDiscount8.Tag = "modelDiscount8,0,1,2"
+        Me.txtDiscount8.Visible = False
+        '
+        'txtFinalPrice8
+        '
+        Me.txtFinalPrice8.EditValue = "0,00 €"
+        Me.txtFinalPrice8.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice8.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice8.Name = "txtFinalPrice8"
+        Me.txtFinalPrice8.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice8.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice8.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice8.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice8.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice8.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice8.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice8.Properties.ReadOnly = True
+        Me.txtFinalPrice8.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice8.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice8.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice8.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice8.TabIndex = 42
+        Me.txtFinalPrice8.Tag = "modelFinalPrice8,0,1,2"
+        Me.txtFinalPrice8.Visible = False
+        '
+        'txtInitialPrice9
+        '
+        Me.txtInitialPrice9.EditValue = "0,00 €"
+        Me.txtInitialPrice9.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice9.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice9.Name = "txtInitialPrice9"
+        Me.txtInitialPrice9.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice9.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice9.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice9.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice9.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice9.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice9.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice9.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice9.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice9.Size = New System.Drawing.Size(800, 38)
+        Me.txtInitialPrice9.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice9.TabIndex = 42
+        Me.txtInitialPrice9.Tag = "modelInitialPrice9,0,1,2"
+        Me.txtInitialPrice9.Visible = False
+        '
+        'txtDisc9
+        '
+        Me.txtDisc9.EditValue = "0%"
+        Me.txtDisc9.Location = New System.Drawing.Point(842, 919)
+        Me.txtDisc9.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc9.Name = "txtDisc9"
+        Me.txtDisc9.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc9.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc9.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc9.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc9.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc9.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc9.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc9.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc9.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc9.Size = New System.Drawing.Size(500, 38)
+        Me.txtDisc9.StyleController = Me.LayoutControl1
+        Me.txtDisc9.TabIndex = 42
+        Me.txtDisc9.Tag = "discount9,0,1,2"
+        Me.txtDisc9.Visible = False
+        '
+        'txtDiscount9
+        '
+        Me.txtDiscount9.EditValue = "0,00 €"
+        Me.txtDiscount9.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount9.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount9.Name = "txtDiscount9"
+        Me.txtDiscount9.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount9.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount9.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount9.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount9.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount9.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount9.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount9.Properties.ReadOnly = True
+        Me.txtDiscount9.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount9.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount9.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount9.StyleController = Me.LayoutControl1
+        Me.txtDiscount9.TabIndex = 42
+        Me.txtDiscount9.Tag = "modelDiscount9,0,1,2"
+        Me.txtDiscount9.Visible = False
+        '
+        'txtFinalPrice9
+        '
+        Me.txtFinalPrice9.EditValue = "0,00 €"
+        Me.txtFinalPrice9.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice9.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice9.Name = "txtFinalPrice9"
+        Me.txtFinalPrice9.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice9.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice9.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice9.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice9.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice9.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice9.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice9.Properties.ReadOnly = True
+        Me.txtFinalPrice9.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice9.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice9.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice9.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice9.TabIndex = 42
+        Me.txtFinalPrice9.Tag = "modelFinalPrice9,0,1,2"
+        Me.txtFinalPrice9.Visible = False
+        '
+        'txtInitialPrice10
+        '
+        Me.txtInitialPrice10.EditValue = "0,00 €"
+        Me.txtInitialPrice10.Location = New System.Drawing.Point(38, 919)
+        Me.txtInitialPrice10.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtInitialPrice10.Name = "txtInitialPrice10"
+        Me.txtInitialPrice10.Properties.DisplayFormat.FormatString = "c"
+        Me.txtInitialPrice10.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice10.Properties.EditFormat.FormatString = "n2"
+        Me.txtInitialPrice10.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtInitialPrice10.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtInitialPrice10.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtInitialPrice10.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtInitialPrice10.Properties.Tag = "BenchExtraPrice"
+        Me.txtInitialPrice10.Properties.UseReadOnlyAppearance = False
+        Me.txtInitialPrice10.Size = New System.Drawing.Size(800, 38)
+        Me.txtInitialPrice10.StyleController = Me.LayoutControl1
+        Me.txtInitialPrice10.TabIndex = 42
+        Me.txtInitialPrice10.Tag = "modelInitialPrice10,0,1,2"
+        Me.txtInitialPrice10.Visible = False
+        '
+        'txtDisc10
+        '
+        Me.txtDisc10.EditValue = "0%"
+        Me.txtDisc10.Location = New System.Drawing.Point(842, 919)
+        Me.txtDisc10.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDisc10.Name = "txtDisc10"
+        Me.txtDisc10.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDisc10.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc10.Properties.EditFormat.FormatString = "n2"
+        Me.txtDisc10.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDisc10.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDisc10.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDisc10.Properties.MaskSettings.Set("mask", "P0")
+        Me.txtDisc10.Properties.Tag = "BenchExtraPrice"
+        Me.txtDisc10.Properties.UseReadOnlyAppearance = False
+        Me.txtDisc10.Size = New System.Drawing.Size(500, 38)
+        Me.txtDisc10.StyleController = Me.LayoutControl1
+        Me.txtDisc10.TabIndex = 42
+        Me.txtDisc10.Tag = "discount10,0,1,2"
+        Me.txtDisc10.Visible = False
+        '
+        'txtDiscount10
+        '
+        Me.txtDiscount10.EditValue = "0,00 €"
+        Me.txtDiscount10.Location = New System.Drawing.Point(1346, 919)
+        Me.txtDiscount10.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtDiscount10.Name = "txtDiscount10"
+        Me.txtDiscount10.Properties.DisplayFormat.FormatString = "c"
+        Me.txtDiscount10.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount10.Properties.EditFormat.FormatString = "n2"
+        Me.txtDiscount10.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtDiscount10.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtDiscount10.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtDiscount10.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtDiscount10.Properties.ReadOnly = True
+        Me.txtDiscount10.Properties.Tag = "BenchExtraPrice"
+        Me.txtDiscount10.Properties.UseReadOnlyAppearance = False
+        Me.txtDiscount10.Size = New System.Drawing.Size(274, 38)
+        Me.txtDiscount10.StyleController = Me.LayoutControl1
+        Me.txtDiscount10.TabIndex = 42
+        Me.txtDiscount10.Tag = "modelDiscount10,0,1,2"
+        Me.txtDiscount10.Visible = False
+        '
+        'txtFinalPrice10
+        '
+        Me.txtFinalPrice10.EditValue = "0,00 €"
+        Me.txtFinalPrice10.Location = New System.Drawing.Point(1624, 919)
+        Me.txtFinalPrice10.Margin = New System.Windows.Forms.Padding(5)
+        Me.txtFinalPrice10.Name = "txtFinalPrice10"
+        Me.txtFinalPrice10.Properties.DisplayFormat.FormatString = "c"
+        Me.txtFinalPrice10.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice10.Properties.EditFormat.FormatString = "n2"
+        Me.txtFinalPrice10.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtFinalPrice10.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtFinalPrice10.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtFinalPrice10.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtFinalPrice10.Properties.ReadOnly = True
+        Me.txtFinalPrice10.Properties.Tag = "BenchExtraPrice"
+        Me.txtFinalPrice10.Properties.UseReadOnlyAppearance = False
+        Me.txtFinalPrice10.Size = New System.Drawing.Size(223, 38)
+        Me.txtFinalPrice10.StyleController = Me.LayoutControl1
+        Me.txtFinalPrice10.TabIndex = 42
+        Me.txtFinalPrice10.Tag = "modelFinalPrice10,0,1,2"
+        Me.txtFinalPrice10.Visible = False
         '
         'LayoutControlGroup12
         '
@@ -2571,12 +3111,170 @@ Partial Class frmCUSOfferOrderDoors
         Me.TabbedControlGroup1.Size = New System.Drawing.Size(1839, 275)
         Me.TabbedControlGroup1.TabPages.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup2, Me.LayoutControlGroup3, Me.LayoutControlGroup5, Me.LayoutControlGroup6, Me.LayoutControlGroup7, Me.LayoutControlGroup8, Me.LayoutRootGroupForRestore, Me.LayoutControlGroup13, Me.LayoutControlGroup15, Me.LayoutControlGroup17})
         '
+        'LayoutControlGroup7
+        '
+        Me.LayoutControlGroup7.CustomizationFormText = "Πόρτα 5"
+        Me.LayoutControlGroup7.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem61, Me.LayoutControlItem51, Me.LayoutControlItem10, Me.LayoutControlItem65, Me.LayoutControlItem29, Me.LayoutControlItem68, Me.LayoutControlItem117, Me.Lcost5, Me.LayoutControlItem118, Me.LayoutControlItem119})
+        Me.LayoutControlGroup7.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlGroup7.Name = "LayoutControlGroup7"
+        Me.LayoutControlGroup7.Size = New System.Drawing.Size(1813, 208)
+        Me.LayoutControlGroup7.Text = "Πόρτα 5"
+        '
+        'LayoutControlItem61
+        '
+        Me.LayoutControlItem61.Control = Me.cboType5
+        Me.LayoutControlItem61.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem61.CustomizationFormText = "Είδος Πόρτας"
+        Me.LayoutControlItem61.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem61.Name = "LayoutControlItem61"
+        Me.LayoutControlItem61.Size = New System.Drawing.Size(380, 66)
+        Me.LayoutControlItem61.Text = "Τύπος Πόρτας"
+        Me.LayoutControlItem61.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem61.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem61.TextSize = New System.Drawing.Size(119, 23)
+        Me.LayoutControlItem61.TextToControlDistance = 1
+        '
+        'LayoutControlItem51
+        '
+        Me.LayoutControlItem51.Control = Me.cboKasa5
+        Me.LayoutControlItem51.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem51.CustomizationFormText = "Εμφανές Πλαϊνο"
+        Me.LayoutControlItem51.Location = New System.Drawing.Point(380, 0)
+        Me.LayoutControlItem51.Name = "LayoutControlItem51"
+        Me.LayoutControlItem51.Size = New System.Drawing.Size(424, 66)
+        Me.LayoutControlItem51.Text = "Πάχος Κάσας"
+        Me.LayoutControlItem51.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem51.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem51.TextSize = New System.Drawing.Size(110, 23)
+        Me.LayoutControlItem51.TextToControlDistance = 1
+        '
+        'LayoutControlItem10
+        '
+        Me.LayoutControlItem10.Control = Me.cboFora5
+        Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem10.CustomizationFormText = "Εμφανές Πλαϊνο"
+        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 66)
+        Me.LayoutControlItem10.Name = "LayoutControlItem10"
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(804, 66)
+        Me.LayoutControlItem10.Text = "Φορά"
+        Me.LayoutControlItem10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem10.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(45, 23)
+        Me.LayoutControlItem10.TextToControlDistance = 1
+        '
+        'LayoutControlItem65
+        '
+        Me.LayoutControlItem65.Control = Me.cboVALUELISTITEM5
+        Me.LayoutControlItem65.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem65.CustomizationFormText = "Έργο Πελάτη"
+        Me.LayoutControlItem65.Location = New System.Drawing.Point(804, 66)
+        Me.LayoutControlItem65.Name = "LayoutControlItem65"
+        Me.LayoutControlItem65.Size = New System.Drawing.Size(504, 66)
+        Me.LayoutControlItem65.Text = "Κωδικός Πόρτας"
+        Me.LayoutControlItem65.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem65.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem65.TextSize = New System.Drawing.Size(134, 23)
+        Me.LayoutControlItem65.TextToControlDistance = 1
+        '
+        'LayoutControlItem29
+        '
+        Me.LayoutControlItem29.Control = Me.txtDimension5
+        Me.LayoutControlItem29.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem29.CustomizationFormText = "Πλάτη"
+        Me.LayoutControlItem29.Location = New System.Drawing.Point(804, 0)
+        Me.LayoutControlItem29.MaxSize = New System.Drawing.Size(0, 46)
+        Me.LayoutControlItem29.MinSize = New System.Drawing.Size(309, 46)
+        Me.LayoutControlItem29.Name = "LayoutControlItem29"
+        Me.LayoutControlItem29.Size = New System.Drawing.Size(1009, 66)
+        Me.LayoutControlItem29.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem29.Text = "Διάσταση"
+        Me.LayoutControlItem29.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem29.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem29.TextSize = New System.Drawing.Size(80, 23)
+        Me.LayoutControlItem29.TextToControlDistance = 1
+        '
+        'LayoutControlItem68
+        '
+        Me.LayoutControlItem68.Control = Me.txtKnobs5
+        Me.LayoutControlItem68.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem68.CustomizationFormText = "Πόμολα"
+        Me.LayoutControlItem68.Location = New System.Drawing.Point(1308, 66)
+        Me.LayoutControlItem68.MaxSize = New System.Drawing.Size(0, 46)
+        Me.LayoutControlItem68.MinSize = New System.Drawing.Size(309, 46)
+        Me.LayoutControlItem68.Name = "LayoutControlItem68"
+        Me.LayoutControlItem68.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
+        Me.LayoutControlItem68.Size = New System.Drawing.Size(505, 66)
+        Me.LayoutControlItem68.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
+        Me.LayoutControlItem68.Text = "Πόμολα"
+        Me.LayoutControlItem68.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem68.TextSize = New System.Drawing.Size(232, 23)
+        '
+        'LayoutControlItem117
+        '
+        Me.LayoutControlItem117.Control = Me.txtInitialPrice5
+        Me.LayoutControlItem117.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem117.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem117.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem117.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem117.Name = "LayoutControlItem117"
+        Me.LayoutControlItem117.Size = New System.Drawing.Size(804, 76)
+        Me.LayoutControlItem117.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem117.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem117.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem117.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem117.TextToControlDistance = 1
+        '
+        'Lcost5
+        '
+        Me.Lcost5.Control = Me.txtDisc5
+        Me.Lcost5.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost5.CustomizationFormText = "Έκπτωση"
+        Me.Lcost5.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost5.Location = New System.Drawing.Point(804, 132)
+        Me.Lcost5.Name = "Lcost5"
+        Me.Lcost5.Size = New System.Drawing.Size(504, 76)
+        Me.Lcost5.Text = "Έκπτωση"
+        Me.Lcost5.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost5.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost5.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost5.TextToControlDistance = 1
+        '
+        'LayoutControlItem118
+        '
+        Me.LayoutControlItem118.Control = Me.txtDiscount5
+        Me.LayoutControlItem118.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem118.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem118.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem118.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem118.Name = "LayoutControlItem118"
+        Me.LayoutControlItem118.Size = New System.Drawing.Size(278, 76)
+        Me.LayoutControlItem118.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem118.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem118.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem118.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem118.TextToControlDistance = 1
+        '
+        'LayoutControlItem119
+        '
+        Me.LayoutControlItem119.Control = Me.txtFinalPrice5
+        Me.LayoutControlItem119.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem119.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem119.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem119.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem119.Name = "LayoutControlItem119"
+        Me.LayoutControlItem119.Size = New System.Drawing.Size(227, 76)
+        Me.LayoutControlItem119.Text = "Τελική Τιμή"
+        Me.LayoutControlItem119.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem119.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem119.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem119.TextToControlDistance = 1
+        '
         'LayoutControlGroup2
         '
         Me.LayoutControlGroup2.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Danger
         Me.LayoutControlGroup2.AppearanceGroup.Options.UseBorderColor = True
         Me.LayoutControlGroup2.CustomizationFormText = "Πόρτα 1"
-        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem12, Me.EmptySpaceItem2, Me.LayoutControlItem56, Me.LayoutControlItem24, Me.LayoutControlItem58, Me.LayoutControlItem14, Me.LayoutControlItem34, Me.LayoutControlItem18, Me.LayoutControlItem37})
+        Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem12, Me.EmptySpaceItem2, Me.LayoutControlItem56, Me.LayoutControlItem24, Me.LayoutControlItem58, Me.LayoutControlItem18, Me.LayoutControlItem37, Me.LayoutControlItem105, Me.Lcost3, Me.LayoutControlItem106, Me.LayoutControlItem107})
         Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(1813, 208)
@@ -2646,36 +3344,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem58.TextSize = New System.Drawing.Size(45, 23)
         Me.LayoutControlItem58.TextToControlDistance = 1
         '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.txtVatPrice1
-        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem14.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(804, 66)
-        Me.LayoutControlItem14.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem14.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem14.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem14.TextToControlDistance = 1
-        '
-        'LayoutControlItem34
-        '
-        Me.LayoutControlItem34.Control = Me.txtPrice1
-        Me.LayoutControlItem34.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem34.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem34.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem34.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem34.Name = "LayoutControlItem34"
-        Me.LayoutControlItem34.Size = New System.Drawing.Size(1009, 66)
-        Me.LayoutControlItem34.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem34.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem34.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem34.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem34.TextToControlDistance = 1
-        '
         'LayoutControlItem18
         '
         Me.LayoutControlItem18.Control = Me.cboValueListItem
@@ -2706,10 +3374,70 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem37.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem37.TextSize = New System.Drawing.Size(232, 23)
         '
+        'LayoutControlItem105
+        '
+        Me.LayoutControlItem105.Control = Me.txtInitialPrice1
+        Me.LayoutControlItem105.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem105.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem105.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem105.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem105.Name = "LayoutControlItem105"
+        Me.LayoutControlItem105.Size = New System.Drawing.Size(804, 66)
+        Me.LayoutControlItem105.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem105.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem105.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem105.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem105.TextToControlDistance = 1
+        '
+        'Lcost3
+        '
+        Me.Lcost3.Control = Me.txtDisc1
+        Me.Lcost3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost3.CustomizationFormText = "Έκπτωση"
+        Me.Lcost3.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost3.Location = New System.Drawing.Point(804, 132)
+        Me.Lcost3.Name = "Lcost3"
+        Me.Lcost3.Size = New System.Drawing.Size(504, 66)
+        Me.Lcost3.Text = "Έκπτωση"
+        Me.Lcost3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost3.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost3.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost3.TextToControlDistance = 1
+        '
+        'LayoutControlItem106
+        '
+        Me.LayoutControlItem106.Control = Me.txtDiscount1
+        Me.LayoutControlItem106.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem106.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem106.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem106.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem106.Name = "LayoutControlItem106"
+        Me.LayoutControlItem106.Size = New System.Drawing.Size(278, 66)
+        Me.LayoutControlItem106.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem106.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem106.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem106.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem106.TextToControlDistance = 1
+        '
+        'LayoutControlItem107
+        '
+        Me.LayoutControlItem107.Control = Me.txtFinalPrice1
+        Me.LayoutControlItem107.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem107.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem107.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem107.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem107.Name = "LayoutControlItem107"
+        Me.LayoutControlItem107.Size = New System.Drawing.Size(227, 66)
+        Me.LayoutControlItem107.Text = "Τελική Τιμή"
+        Me.LayoutControlItem107.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem107.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem107.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem107.TextToControlDistance = 1
+        '
         'LayoutControlGroup3
         '
         Me.LayoutControlGroup3.CustomizationFormText = "Πόρτα 2"
-        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem57, Me.LayoutControlItem25, Me.LayoutControlItem3, Me.LayoutControlItem22, Me.LayoutControlItem15, Me.LayoutControlItem42, Me.LayoutControlItem23, Me.LayoutControlItem13})
+        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem57, Me.LayoutControlItem25, Me.LayoutControlItem3, Me.LayoutControlItem22, Me.LayoutControlItem23, Me.LayoutControlItem13, Me.LayoutControlItem108, Me.Lcost1, Me.LayoutControlItem109, Me.LayoutControlItem110})
         Me.LayoutControlGroup3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup3.Name = "LayoutControlGroup3"
         Me.LayoutControlGroup3.Size = New System.Drawing.Size(1813, 208)
@@ -2771,36 +3499,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(134, 23)
         Me.LayoutControlItem22.TextToControlDistance = 1
         '
-        'LayoutControlItem15
-        '
-        Me.LayoutControlItem15.Control = Me.txtVatPrice2
-        Me.LayoutControlItem15.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem15.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem15.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem15.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem15.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem15.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem15.TextToControlDistance = 1
-        '
-        'LayoutControlItem42
-        '
-        Me.LayoutControlItem42.Control = Me.txtPrice2
-        Me.LayoutControlItem42.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem42.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem42.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem42.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem42.Name = "LayoutControlItem42"
-        Me.LayoutControlItem42.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem42.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem42.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem42.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem42.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem42.TextToControlDistance = 1
-        '
         'LayoutControlItem23
         '
         Me.LayoutControlItem23.Control = Me.txtDimension2
@@ -2831,10 +3529,70 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem13.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(232, 23)
         '
+        'LayoutControlItem108
+        '
+        Me.LayoutControlItem108.Control = Me.txtInitialPrice2
+        Me.LayoutControlItem108.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem108.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem108.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem108.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem108.Name = "LayoutControlItem108"
+        Me.LayoutControlItem108.Size = New System.Drawing.Size(804, 76)
+        Me.LayoutControlItem108.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem108.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem108.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem108.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem108.TextToControlDistance = 1
+        '
+        'Lcost1
+        '
+        Me.Lcost1.Control = Me.txtDisc2
+        Me.Lcost1.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost1.CustomizationFormText = "Έκπτωση"
+        Me.Lcost1.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost1.Location = New System.Drawing.Point(804, 132)
+        Me.Lcost1.Name = "Lcost1"
+        Me.Lcost1.Size = New System.Drawing.Size(504, 76)
+        Me.Lcost1.Text = "Έκπτωση"
+        Me.Lcost1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost1.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost1.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost1.TextToControlDistance = 1
+        '
+        'LayoutControlItem109
+        '
+        Me.LayoutControlItem109.Control = Me.txtDiscount2
+        Me.LayoutControlItem109.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem109.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem109.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem109.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem109.Name = "LayoutControlItem109"
+        Me.LayoutControlItem109.Size = New System.Drawing.Size(278, 76)
+        Me.LayoutControlItem109.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem109.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem109.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem109.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem109.TextToControlDistance = 1
+        '
+        'LayoutControlItem110
+        '
+        Me.LayoutControlItem110.Control = Me.txtFinalPrice2
+        Me.LayoutControlItem110.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem110.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem110.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem110.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem110.Name = "LayoutControlItem110"
+        Me.LayoutControlItem110.Size = New System.Drawing.Size(227, 76)
+        Me.LayoutControlItem110.Text = "Τελική Τιμή"
+        Me.LayoutControlItem110.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem110.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem110.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem110.TextToControlDistance = 1
+        '
         'LayoutControlGroup5
         '
         Me.LayoutControlGroup5.CustomizationFormText = "Πόρτα 3"
-        Me.LayoutControlGroup5.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem59, Me.LayoutControlItem49, Me.LayoutControlItem5, Me.LayoutControlItem63, Me.LayoutControlItem16, Me.LayoutControlItem43, Me.LayoutControlItem26, Me.LayoutControlItem21})
+        Me.LayoutControlGroup5.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem59, Me.LayoutControlItem49, Me.LayoutControlItem5, Me.LayoutControlItem63, Me.LayoutControlItem26, Me.LayoutControlItem21, Me.LayoutControlItem111, Me.Lcost2, Me.LayoutControlItem112, Me.LayoutControlItem113})
         Me.LayoutControlGroup5.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup5.Name = "LayoutControlGroup5"
         Me.LayoutControlGroup5.Size = New System.Drawing.Size(1813, 208)
@@ -2896,36 +3654,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem63.TextSize = New System.Drawing.Size(134, 23)
         Me.LayoutControlItem63.TextToControlDistance = 1
         '
-        'LayoutControlItem16
-        '
-        Me.LayoutControlItem16.Control = Me.txtVatPrice3
-        Me.LayoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem16.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem16.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem16.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem16.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem16.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem16.TextToControlDistance = 1
-        '
-        'LayoutControlItem43
-        '
-        Me.LayoutControlItem43.Control = Me.txtPrice3
-        Me.LayoutControlItem43.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem43.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem43.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem43.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem43.Name = "LayoutControlItem43"
-        Me.LayoutControlItem43.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem43.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem43.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem43.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem43.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem43.TextToControlDistance = 1
-        '
         'LayoutControlItem26
         '
         Me.LayoutControlItem26.Control = Me.txtDimension3
@@ -2956,10 +3684,70 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem21.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem21.TextSize = New System.Drawing.Size(232, 23)
         '
+        'LayoutControlItem111
+        '
+        Me.LayoutControlItem111.Control = Me.txtInitialPrice3
+        Me.LayoutControlItem111.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem111.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem111.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem111.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem111.Name = "LayoutControlItem111"
+        Me.LayoutControlItem111.Size = New System.Drawing.Size(804, 76)
+        Me.LayoutControlItem111.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem111.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem111.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem111.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem111.TextToControlDistance = 1
+        '
+        'Lcost2
+        '
+        Me.Lcost2.Control = Me.txtDisc3
+        Me.Lcost2.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost2.CustomizationFormText = "Έκπτωση"
+        Me.Lcost2.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost2.Location = New System.Drawing.Point(804, 132)
+        Me.Lcost2.Name = "Lcost2"
+        Me.Lcost2.Size = New System.Drawing.Size(504, 76)
+        Me.Lcost2.Text = "Έκπτωση"
+        Me.Lcost2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost2.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost2.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost2.TextToControlDistance = 1
+        '
+        'LayoutControlItem112
+        '
+        Me.LayoutControlItem112.Control = Me.txtDiscount3
+        Me.LayoutControlItem112.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem112.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem112.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem112.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem112.Name = "LayoutControlItem112"
+        Me.LayoutControlItem112.Size = New System.Drawing.Size(278, 76)
+        Me.LayoutControlItem112.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem112.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem112.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem112.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem112.TextToControlDistance = 1
+        '
+        'LayoutControlItem113
+        '
+        Me.LayoutControlItem113.Control = Me.txtFinalPrice3
+        Me.LayoutControlItem113.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem113.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem113.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem113.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem113.Name = "LayoutControlItem113"
+        Me.LayoutControlItem113.Size = New System.Drawing.Size(227, 76)
+        Me.LayoutControlItem113.Text = "Τελική Τιμή"
+        Me.LayoutControlItem113.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem113.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem113.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem113.TextToControlDistance = 1
+        '
         'LayoutControlGroup6
         '
         Me.LayoutControlGroup6.CustomizationFormText = "Πόρτα 4"
-        Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem60, Me.LayoutControlItem50, Me.LayoutControlItem6, Me.LayoutControlItem64, Me.LayoutControlItem17, Me.LayoutControlItem44, Me.LayoutControlItem27, Me.LayoutControlItem67})
+        Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem60, Me.LayoutControlItem50, Me.LayoutControlItem6, Me.LayoutControlItem64, Me.LayoutControlItem27, Me.LayoutControlItem67, Me.LayoutControlItem114, Me.Lcost4, Me.LayoutControlItem115, Me.LayoutControlItem116})
         Me.LayoutControlGroup6.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup6.Name = "LayoutControlGroup6"
         Me.LayoutControlGroup6.Size = New System.Drawing.Size(1813, 208)
@@ -3021,36 +3809,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem64.TextSize = New System.Drawing.Size(134, 23)
         Me.LayoutControlItem64.TextToControlDistance = 1
         '
-        'LayoutControlItem17
-        '
-        Me.LayoutControlItem17.Control = Me.txtVatPrice4
-        Me.LayoutControlItem17.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem17.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem17.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem17.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem17.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem17.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem17.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem17.TextToControlDistance = 1
-        '
-        'LayoutControlItem44
-        '
-        Me.LayoutControlItem44.Control = Me.txtPrice4
-        Me.LayoutControlItem44.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem44.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem44.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem44.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem44.Name = "LayoutControlItem44"
-        Me.LayoutControlItem44.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem44.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem44.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem44.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem44.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem44.TextToControlDistance = 1
-        '
         'LayoutControlItem27
         '
         Me.LayoutControlItem27.Control = Me.txtDimension4
@@ -3081,138 +3839,70 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem67.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem67.TextSize = New System.Drawing.Size(232, 23)
         '
-        'LayoutControlGroup7
+        'LayoutControlItem114
         '
-        Me.LayoutControlGroup7.CustomizationFormText = "Πόρτα 5"
-        Me.LayoutControlGroup7.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem61, Me.LayoutControlItem51, Me.LayoutControlItem10, Me.LayoutControlItem65, Me.LayoutControlItem19, Me.LayoutControlItem45, Me.LayoutControlItem29, Me.LayoutControlItem68})
-        Me.LayoutControlGroup7.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlGroup7.Name = "LayoutControlGroup7"
-        Me.LayoutControlGroup7.Size = New System.Drawing.Size(1813, 208)
-        Me.LayoutControlGroup7.Text = "Πόρτα 5"
+        Me.LayoutControlItem114.Control = Me.txtInitialPrice4
+        Me.LayoutControlItem114.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem114.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem114.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem114.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem114.Name = "LayoutControlItem114"
+        Me.LayoutControlItem114.Size = New System.Drawing.Size(809, 76)
+        Me.LayoutControlItem114.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem114.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem114.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem114.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem114.TextToControlDistance = 1
         '
-        'LayoutControlItem61
+        'Lcost4
         '
-        Me.LayoutControlItem61.Control = Me.cboType5
-        Me.LayoutControlItem61.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem61.CustomizationFormText = "Είδος Πόρτας"
-        Me.LayoutControlItem61.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem61.Name = "LayoutControlItem61"
-        Me.LayoutControlItem61.Size = New System.Drawing.Size(380, 66)
-        Me.LayoutControlItem61.Text = "Τύπος Πόρτας"
-        Me.LayoutControlItem61.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem61.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem61.TextSize = New System.Drawing.Size(119, 23)
-        Me.LayoutControlItem61.TextToControlDistance = 1
+        Me.Lcost4.Control = Me.txtDisc4
+        Me.Lcost4.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost4.CustomizationFormText = "Έκπτωση"
+        Me.Lcost4.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost4.Location = New System.Drawing.Point(809, 132)
+        Me.Lcost4.Name = "Lcost4"
+        Me.Lcost4.Size = New System.Drawing.Size(499, 76)
+        Me.Lcost4.Text = "Έκπτωση"
+        Me.Lcost4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost4.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost4.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost4.TextToControlDistance = 1
         '
-        'LayoutControlItem51
+        'LayoutControlItem115
         '
-        Me.LayoutControlItem51.Control = Me.cboKasa5
-        Me.LayoutControlItem51.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem51.CustomizationFormText = "Εμφανές Πλαϊνο"
-        Me.LayoutControlItem51.Location = New System.Drawing.Point(380, 0)
-        Me.LayoutControlItem51.Name = "LayoutControlItem51"
-        Me.LayoutControlItem51.Size = New System.Drawing.Size(424, 66)
-        Me.LayoutControlItem51.Text = "Πάχος Κάσας"
-        Me.LayoutControlItem51.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem51.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem51.TextSize = New System.Drawing.Size(110, 23)
-        Me.LayoutControlItem51.TextToControlDistance = 1
+        Me.LayoutControlItem115.Control = Me.txtDiscount4
+        Me.LayoutControlItem115.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem115.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem115.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem115.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem115.Name = "LayoutControlItem115"
+        Me.LayoutControlItem115.Size = New System.Drawing.Size(278, 76)
+        Me.LayoutControlItem115.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem115.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem115.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem115.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem115.TextToControlDistance = 1
         '
-        'LayoutControlItem10
+        'LayoutControlItem116
         '
-        Me.LayoutControlItem10.Control = Me.cboFora5
-        Me.LayoutControlItem10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem10.CustomizationFormText = "Εμφανές Πλαϊνο"
-        Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 66)
-        Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(804, 66)
-        Me.LayoutControlItem10.Text = "Φορά"
-        Me.LayoutControlItem10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem10.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem10.TextSize = New System.Drawing.Size(45, 23)
-        Me.LayoutControlItem10.TextToControlDistance = 1
-        '
-        'LayoutControlItem65
-        '
-        Me.LayoutControlItem65.Control = Me.cboVALUELISTITEM5
-        Me.LayoutControlItem65.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem65.CustomizationFormText = "Έργο Πελάτη"
-        Me.LayoutControlItem65.Location = New System.Drawing.Point(804, 66)
-        Me.LayoutControlItem65.Name = "LayoutControlItem65"
-        Me.LayoutControlItem65.Size = New System.Drawing.Size(504, 66)
-        Me.LayoutControlItem65.Text = "Κωδικός Πόρτας"
-        Me.LayoutControlItem65.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem65.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem65.TextSize = New System.Drawing.Size(134, 23)
-        Me.LayoutControlItem65.TextToControlDistance = 1
-        '
-        'LayoutControlItem19
-        '
-        Me.LayoutControlItem19.Control = Me.txtVatPrice5
-        Me.LayoutControlItem19.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem19.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem19.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem19.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem19.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem19.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem19.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem19.TextToControlDistance = 1
-        '
-        'LayoutControlItem45
-        '
-        Me.LayoutControlItem45.Control = Me.txtPrice5
-        Me.LayoutControlItem45.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem45.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem45.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem45.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem45.Name = "LayoutControlItem45"
-        Me.LayoutControlItem45.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem45.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem45.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem45.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem45.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem45.TextToControlDistance = 1
-        '
-        'LayoutControlItem29
-        '
-        Me.LayoutControlItem29.Control = Me.txtDimension5
-        Me.LayoutControlItem29.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem29.CustomizationFormText = "Πλάτη"
-        Me.LayoutControlItem29.Location = New System.Drawing.Point(804, 0)
-        Me.LayoutControlItem29.MaxSize = New System.Drawing.Size(0, 46)
-        Me.LayoutControlItem29.MinSize = New System.Drawing.Size(309, 46)
-        Me.LayoutControlItem29.Name = "LayoutControlItem29"
-        Me.LayoutControlItem29.Size = New System.Drawing.Size(1009, 66)
-        Me.LayoutControlItem29.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem29.Text = "Διάσταση"
-        Me.LayoutControlItem29.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem29.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem29.TextSize = New System.Drawing.Size(80, 23)
-        Me.LayoutControlItem29.TextToControlDistance = 1
-        '
-        'LayoutControlItem68
-        '
-        Me.LayoutControlItem68.Control = Me.txtKnobs5
-        Me.LayoutControlItem68.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem68.CustomizationFormText = "Πόμολα"
-        Me.LayoutControlItem68.Location = New System.Drawing.Point(1308, 66)
-        Me.LayoutControlItem68.MaxSize = New System.Drawing.Size(0, 46)
-        Me.LayoutControlItem68.MinSize = New System.Drawing.Size(309, 46)
-        Me.LayoutControlItem68.Name = "LayoutControlItem68"
-        Me.LayoutControlItem68.Padding = New DevExpress.XtraLayout.Utils.Padding(0, 2, 2, 2)
-        Me.LayoutControlItem68.Size = New System.Drawing.Size(505, 66)
-        Me.LayoutControlItem68.SizeConstraintsType = DevExpress.XtraLayout.SizeConstraintsType.Custom
-        Me.LayoutControlItem68.Text = "Πόμολα"
-        Me.LayoutControlItem68.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem68.TextSize = New System.Drawing.Size(232, 23)
+        Me.LayoutControlItem116.Control = Me.txtFinalPrice4
+        Me.LayoutControlItem116.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem116.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem116.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem116.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem116.Name = "LayoutControlItem116"
+        Me.LayoutControlItem116.Size = New System.Drawing.Size(227, 76)
+        Me.LayoutControlItem116.Text = "Τελική Τιμή"
+        Me.LayoutControlItem116.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem116.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem116.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem116.TextToControlDistance = 1
         '
         'LayoutControlGroup8
         '
         Me.LayoutControlGroup8.CustomizationFormText = "Πόρτα 6"
-        Me.LayoutControlGroup8.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem62, Me.LayoutControlItem52, Me.LayoutControlItem11, Me.LayoutControlItem66, Me.LayoutControlItem20, Me.LayoutControlItem36, Me.LayoutControlItem28, Me.LayoutControlItem71})
+        Me.LayoutControlGroup8.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem62, Me.LayoutControlItem52, Me.LayoutControlItem11, Me.LayoutControlItem66, Me.LayoutControlItem28, Me.LayoutControlItem71, Me.LayoutControlItem120, Me.Lcost6, Me.LayoutControlItem121, Me.LayoutControlItem122})
         Me.LayoutControlGroup8.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup8.Name = "LayoutControlGroup8"
         Me.LayoutControlGroup8.Size = New System.Drawing.Size(1813, 208)
@@ -3274,36 +3964,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem66.TextSize = New System.Drawing.Size(134, 23)
         Me.LayoutControlItem66.TextToControlDistance = 1
         '
-        'LayoutControlItem20
-        '
-        Me.LayoutControlItem20.Control = Me.txtVatPrice6
-        Me.LayoutControlItem20.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem20.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem20.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem20.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem20.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem20.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem20.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem20.TextToControlDistance = 1
-        '
-        'LayoutControlItem36
-        '
-        Me.LayoutControlItem36.Control = Me.txtPrice6
-        Me.LayoutControlItem36.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem36.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem36.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem36.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem36.Name = "LayoutControlItem36"
-        Me.LayoutControlItem36.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem36.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem36.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem36.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem36.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem36.TextToControlDistance = 1
-        '
         'LayoutControlItem28
         '
         Me.LayoutControlItem28.Control = Me.txtDimension8
@@ -3334,10 +3994,70 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem71.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem71.TextSize = New System.Drawing.Size(232, 23)
         '
+        'LayoutControlItem120
+        '
+        Me.LayoutControlItem120.Control = Me.txtInitialPrice6
+        Me.LayoutControlItem120.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem120.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem120.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem120.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem120.Name = "LayoutControlItem120"
+        Me.LayoutControlItem120.Size = New System.Drawing.Size(804, 76)
+        Me.LayoutControlItem120.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem120.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem120.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem120.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem120.TextToControlDistance = 1
+        '
+        'Lcost6
+        '
+        Me.Lcost6.Control = Me.txtDisc6
+        Me.Lcost6.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost6.CustomizationFormText = "Έκπτωση"
+        Me.Lcost6.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost6.Location = New System.Drawing.Point(804, 132)
+        Me.Lcost6.Name = "Lcost6"
+        Me.Lcost6.Size = New System.Drawing.Size(504, 76)
+        Me.Lcost6.Text = "Έκπτωση"
+        Me.Lcost6.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost6.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost6.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost6.TextToControlDistance = 1
+        '
+        'LayoutControlItem121
+        '
+        Me.LayoutControlItem121.Control = Me.txtDiscount6
+        Me.LayoutControlItem121.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem121.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem121.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem121.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem121.Name = "LayoutControlItem121"
+        Me.LayoutControlItem121.Size = New System.Drawing.Size(278, 76)
+        Me.LayoutControlItem121.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem121.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem121.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem121.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem121.TextToControlDistance = 1
+        '
+        'LayoutControlItem122
+        '
+        Me.LayoutControlItem122.Control = Me.txtFinalPrice6
+        Me.LayoutControlItem122.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem122.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem122.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem122.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem122.Name = "LayoutControlItem122"
+        Me.LayoutControlItem122.Size = New System.Drawing.Size(227, 76)
+        Me.LayoutControlItem122.Text = "Τελική Τιμή"
+        Me.LayoutControlItem122.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem122.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem122.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem122.TextToControlDistance = 1
+        '
         'LayoutRootGroupForRestore
         '
         Me.LayoutRootGroupForRestore.GroupBordersVisible = False
-        Me.LayoutRootGroupForRestore.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem81, Me.LayoutControlItem82, Me.LayoutControlItem83, Me.LayoutControlItem84, Me.LayoutControlItem85, Me.LayoutControlItem86, Me.LayoutControlItem87, Me.LayoutControlItem88})
+        Me.LayoutRootGroupForRestore.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem81, Me.LayoutControlItem82, Me.LayoutControlItem83, Me.LayoutControlItem84, Me.LayoutControlItem87, Me.LayoutControlItem88, Me.LayoutControlItem123, Me.Lcost7, Me.LayoutControlItem124, Me.LayoutControlItem125})
         Me.LayoutRootGroupForRestore.Location = New System.Drawing.Point(0, 0)
         Me.LayoutRootGroupForRestore.Name = "LayoutRootGroupForRestore"
         Me.LayoutRootGroupForRestore.Size = New System.Drawing.Size(1813, 208)
@@ -3400,36 +4120,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem84.TextSize = New System.Drawing.Size(134, 23)
         Me.LayoutControlItem84.TextToControlDistance = 1
         '
-        'LayoutControlItem85
-        '
-        Me.LayoutControlItem85.Control = Me.txtVatPrice7
-        Me.LayoutControlItem85.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem85.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem85.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem85.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem85.Name = "LayoutControlItem85"
-        Me.LayoutControlItem85.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem85.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem85.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem85.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem85.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem85.TextToControlDistance = 1
-        '
-        'LayoutControlItem86
-        '
-        Me.LayoutControlItem86.Control = Me.txtPrice7
-        Me.LayoutControlItem86.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem86.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem86.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem86.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem86.Name = "LayoutControlItem86"
-        Me.LayoutControlItem86.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem86.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem86.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem86.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem86.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem86.TextToControlDistance = 1
-        '
         'LayoutControlItem87
         '
         Me.LayoutControlItem87.Control = Me.txtDimension142
@@ -3460,9 +4150,69 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem88.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem88.TextSize = New System.Drawing.Size(232, 23)
         '
+        'LayoutControlItem123
+        '
+        Me.LayoutControlItem123.Control = Me.txtInitialPrice7
+        Me.LayoutControlItem123.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem123.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem123.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem123.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem123.Name = "LayoutControlItem123"
+        Me.LayoutControlItem123.Size = New System.Drawing.Size(804, 76)
+        Me.LayoutControlItem123.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem123.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem123.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem123.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem123.TextToControlDistance = 1
+        '
+        'Lcost7
+        '
+        Me.Lcost7.Control = Me.txtDisc7
+        Me.Lcost7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost7.CustomizationFormText = "Έκπτωση"
+        Me.Lcost7.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost7.Location = New System.Drawing.Point(804, 132)
+        Me.Lcost7.Name = "Lcost7"
+        Me.Lcost7.Size = New System.Drawing.Size(504, 76)
+        Me.Lcost7.Text = "Έκπτωση"
+        Me.Lcost7.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost7.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost7.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost7.TextToControlDistance = 1
+        '
+        'LayoutControlItem124
+        '
+        Me.LayoutControlItem124.Control = Me.txtDiscount7
+        Me.LayoutControlItem124.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem124.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem124.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem124.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem124.Name = "LayoutControlItem124"
+        Me.LayoutControlItem124.Size = New System.Drawing.Size(278, 76)
+        Me.LayoutControlItem124.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem124.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem124.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem124.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem124.TextToControlDistance = 1
+        '
+        'LayoutControlItem125
+        '
+        Me.LayoutControlItem125.Control = Me.txtFinalPrice7
+        Me.LayoutControlItem125.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem125.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem125.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem125.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem125.Name = "LayoutControlItem125"
+        Me.LayoutControlItem125.Size = New System.Drawing.Size(227, 76)
+        Me.LayoutControlItem125.Text = "Τελική Τιμή"
+        Me.LayoutControlItem125.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem125.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem125.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem125.TextToControlDistance = 1
+        '
         'LayoutControlGroup13
         '
-        Me.LayoutControlGroup13.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem73, Me.LayoutControlItem74, Me.LayoutControlItem75, Me.LayoutControlItem76, Me.LayoutControlItem77, Me.LayoutControlItem78, Me.LayoutControlItem79, Me.LayoutControlItem80})
+        Me.LayoutControlGroup13.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem73, Me.LayoutControlItem74, Me.LayoutControlItem75, Me.LayoutControlItem76, Me.LayoutControlItem79, Me.LayoutControlItem80, Me.LayoutControlItem126, Me.Lcost8, Me.LayoutControlItem127, Me.LayoutControlItem128})
         Me.LayoutControlGroup13.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup13.Name = "LayoutControlGroup13"
         Me.LayoutControlGroup13.Size = New System.Drawing.Size(1813, 208)
@@ -3524,36 +4274,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem76.TextSize = New System.Drawing.Size(134, 23)
         Me.LayoutControlItem76.TextToControlDistance = 1
         '
-        'LayoutControlItem77
-        '
-        Me.LayoutControlItem77.Control = Me.txtVatPrice8
-        Me.LayoutControlItem77.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem77.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem77.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem77.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem77.Name = "LayoutControlItem77"
-        Me.LayoutControlItem77.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem77.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem77.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem77.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem77.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem77.TextToControlDistance = 1
-        '
-        'LayoutControlItem78
-        '
-        Me.LayoutControlItem78.Control = Me.txtPrice8
-        Me.LayoutControlItem78.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem78.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem78.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem78.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem78.Name = "LayoutControlItem78"
-        Me.LayoutControlItem78.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem78.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem78.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem78.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem78.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem78.TextToControlDistance = 1
-        '
         'LayoutControlItem79
         '
         Me.LayoutControlItem79.Control = Me.txtDimension141
@@ -3584,10 +4304,70 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem80.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem80.TextSize = New System.Drawing.Size(232, 23)
         '
+        'LayoutControlItem126
+        '
+        Me.LayoutControlItem126.Control = Me.txtInitialPrice8
+        Me.LayoutControlItem126.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem126.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem126.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem126.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem126.Name = "LayoutControlItem126"
+        Me.LayoutControlItem126.Size = New System.Drawing.Size(804, 76)
+        Me.LayoutControlItem126.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem126.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem126.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem126.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem126.TextToControlDistance = 1
+        '
+        'Lcost8
+        '
+        Me.Lcost8.Control = Me.txtDisc8
+        Me.Lcost8.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost8.CustomizationFormText = "Έκπτωση"
+        Me.Lcost8.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost8.Location = New System.Drawing.Point(804, 132)
+        Me.Lcost8.Name = "Lcost8"
+        Me.Lcost8.Size = New System.Drawing.Size(504, 76)
+        Me.Lcost8.Text = "Έκπτωση"
+        Me.Lcost8.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost8.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost8.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost8.TextToControlDistance = 1
+        '
+        'LayoutControlItem127
+        '
+        Me.LayoutControlItem127.Control = Me.txtDiscount8
+        Me.LayoutControlItem127.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem127.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem127.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem127.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem127.Name = "LayoutControlItem127"
+        Me.LayoutControlItem127.Size = New System.Drawing.Size(278, 76)
+        Me.LayoutControlItem127.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem127.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem127.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem127.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem127.TextToControlDistance = 1
+        '
+        'LayoutControlItem128
+        '
+        Me.LayoutControlItem128.Control = Me.txtFinalPrice8
+        Me.LayoutControlItem128.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem128.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem128.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem128.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem128.Name = "LayoutControlItem128"
+        Me.LayoutControlItem128.Size = New System.Drawing.Size(227, 76)
+        Me.LayoutControlItem128.Text = "Τελική Τιμή"
+        Me.LayoutControlItem128.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem128.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem128.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem128.TextToControlDistance = 1
+        '
         'LayoutControlGroup15
         '
         Me.LayoutControlGroup15.CustomizationFormText = "Πόρτα 9"
-        Me.LayoutControlGroup15.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem89, Me.LayoutControlItem90, Me.LayoutControlItem91, Me.LayoutControlItem92, Me.LayoutControlItem93, Me.LayoutControlItem94, Me.LayoutControlItem95, Me.LayoutControlItem96})
+        Me.LayoutControlGroup15.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem89, Me.LayoutControlItem90, Me.LayoutControlItem91, Me.LayoutControlItem92, Me.LayoutControlItem95, Me.LayoutControlItem96, Me.LayoutControlItem129, Me.Lcost9, Me.LayoutControlItem130, Me.LayoutControlItem131})
         Me.LayoutControlGroup15.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup15.Name = "LayoutControlGroup15"
         Me.LayoutControlGroup15.Size = New System.Drawing.Size(1813, 208)
@@ -3649,36 +4429,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem92.TextSize = New System.Drawing.Size(134, 23)
         Me.LayoutControlItem92.TextToControlDistance = 1
         '
-        'LayoutControlItem93
-        '
-        Me.LayoutControlItem93.Control = Me.txtVatPrice9
-        Me.LayoutControlItem93.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem93.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem93.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem93.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem93.Name = "LayoutControlItem93"
-        Me.LayoutControlItem93.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem93.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem93.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem93.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem93.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem93.TextToControlDistance = 1
-        '
-        'LayoutControlItem94
-        '
-        Me.LayoutControlItem94.Control = Me.txtPrice9
-        Me.LayoutControlItem94.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem94.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem94.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem94.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem94.Name = "LayoutControlItem94"
-        Me.LayoutControlItem94.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem94.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem94.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem94.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem94.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem94.TextToControlDistance = 1
-        '
         'LayoutControlItem95
         '
         Me.LayoutControlItem95.Control = Me.txtDimension9
@@ -3709,9 +4459,69 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem96.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem96.TextSize = New System.Drawing.Size(232, 23)
         '
+        'LayoutControlItem129
+        '
+        Me.LayoutControlItem129.Control = Me.txtInitialPrice9
+        Me.LayoutControlItem129.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem129.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem129.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem129.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem129.Name = "LayoutControlItem129"
+        Me.LayoutControlItem129.Size = New System.Drawing.Size(804, 76)
+        Me.LayoutControlItem129.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem129.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem129.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem129.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem129.TextToControlDistance = 1
+        '
+        'Lcost9
+        '
+        Me.Lcost9.Control = Me.txtDisc9
+        Me.Lcost9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost9.CustomizationFormText = "Έκπτωση"
+        Me.Lcost9.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost9.Location = New System.Drawing.Point(804, 132)
+        Me.Lcost9.Name = "Lcost9"
+        Me.Lcost9.Size = New System.Drawing.Size(504, 76)
+        Me.Lcost9.Text = "Έκπτωση"
+        Me.Lcost9.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost9.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost9.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost9.TextToControlDistance = 1
+        '
+        'LayoutControlItem130
+        '
+        Me.LayoutControlItem130.Control = Me.txtDiscount9
+        Me.LayoutControlItem130.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem130.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem130.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem130.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem130.Name = "LayoutControlItem130"
+        Me.LayoutControlItem130.Size = New System.Drawing.Size(278, 76)
+        Me.LayoutControlItem130.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem130.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem130.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem130.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem130.TextToControlDistance = 1
+        '
+        'LayoutControlItem131
+        '
+        Me.LayoutControlItem131.Control = Me.txtFinalPrice9
+        Me.LayoutControlItem131.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem131.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem131.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem131.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem131.Name = "LayoutControlItem131"
+        Me.LayoutControlItem131.Size = New System.Drawing.Size(227, 76)
+        Me.LayoutControlItem131.Text = "Τελική Τιμή"
+        Me.LayoutControlItem131.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem131.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem131.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem131.TextToControlDistance = 1
+        '
         'LayoutControlGroup17
         '
-        Me.LayoutControlGroup17.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem97, Me.LayoutControlItem98, Me.LayoutControlItem99, Me.LayoutControlItem100, Me.LayoutControlItem101, Me.LayoutControlItem102, Me.LayoutControlItem103, Me.LayoutControlItem104})
+        Me.LayoutControlGroup17.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem97, Me.LayoutControlItem98, Me.LayoutControlItem99, Me.LayoutControlItem100, Me.LayoutControlItem103, Me.LayoutControlItem104, Me.LayoutControlItem132, Me.Lcost10, Me.LayoutControlItem133, Me.LayoutControlItem134})
         Me.LayoutControlGroup17.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup17.Name = "LayoutControlGroup17"
         Me.LayoutControlGroup17.Size = New System.Drawing.Size(1813, 208)
@@ -3773,36 +4583,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem100.TextSize = New System.Drawing.Size(134, 23)
         Me.LayoutControlItem100.TextToControlDistance = 1
         '
-        'LayoutControlItem101
-        '
-        Me.LayoutControlItem101.Control = Me.txtVatPrice10
-        Me.LayoutControlItem101.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem101.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem101.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem101.Location = New System.Drawing.Point(0, 132)
-        Me.LayoutControlItem101.Name = "LayoutControlItem101"
-        Me.LayoutControlItem101.Size = New System.Drawing.Size(804, 76)
-        Me.LayoutControlItem101.Text = "Τιμή προ Φ.Π.Α"
-        Me.LayoutControlItem101.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
-        Me.LayoutControlItem101.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem101.TextSize = New System.Drawing.Size(131, 23)
-        Me.LayoutControlItem101.TextToControlDistance = 1
-        '
-        'LayoutControlItem102
-        '
-        Me.LayoutControlItem102.Control = Me.txtPrice10
-        Me.LayoutControlItem102.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem102.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem102.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem102.Location = New System.Drawing.Point(804, 132)
-        Me.LayoutControlItem102.Name = "LayoutControlItem102"
-        Me.LayoutControlItem102.Size = New System.Drawing.Size(1009, 76)
-        Me.LayoutControlItem102.Text = "Τιμή με Φ.Π.Α"
-        Me.LayoutControlItem102.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
-        Me.LayoutControlItem102.TextLocation = DevExpress.Utils.Locations.Top
-        Me.LayoutControlItem102.TextSize = New System.Drawing.Size(120, 23)
-        Me.LayoutControlItem102.TextToControlDistance = 1
-        '
         'LayoutControlItem103
         '
         Me.LayoutControlItem103.Control = Me.txtDimension10
@@ -3832,6 +4612,66 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem104.Text = "Πόμολα"
         Me.LayoutControlItem104.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem104.TextSize = New System.Drawing.Size(232, 23)
+        '
+        'LayoutControlItem132
+        '
+        Me.LayoutControlItem132.Control = Me.txtInitialPrice10
+        Me.LayoutControlItem132.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem132.CustomizationFormText = "Αρχική Τιμή"
+        Me.LayoutControlItem132.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem132.Location = New System.Drawing.Point(0, 132)
+        Me.LayoutControlItem132.Name = "LayoutControlItem132"
+        Me.LayoutControlItem132.Size = New System.Drawing.Size(804, 76)
+        Me.LayoutControlItem132.Text = "Αρχική Τιμή"
+        Me.LayoutControlItem132.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem132.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem132.TextSize = New System.Drawing.Size(97, 23)
+        Me.LayoutControlItem132.TextToControlDistance = 1
+        '
+        'Lcost10
+        '
+        Me.Lcost10.Control = Me.txtDisc10
+        Me.Lcost10.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.Lcost10.CustomizationFormText = "Έκπτωση"
+        Me.Lcost10.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.Lcost10.Location = New System.Drawing.Point(804, 132)
+        Me.Lcost10.Name = "Lcost10"
+        Me.Lcost10.Size = New System.Drawing.Size(504, 76)
+        Me.Lcost10.Text = "Έκπτωση"
+        Me.Lcost10.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.Lcost10.TextLocation = DevExpress.Utils.Locations.Top
+        Me.Lcost10.TextSize = New System.Drawing.Size(78, 23)
+        Me.Lcost10.TextToControlDistance = 1
+        '
+        'LayoutControlItem133
+        '
+        Me.LayoutControlItem133.Control = Me.txtDiscount10
+        Me.LayoutControlItem133.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem133.CustomizationFormText = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem133.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem133.Location = New System.Drawing.Point(1308, 132)
+        Me.LayoutControlItem133.Name = "LayoutControlItem133"
+        Me.LayoutControlItem133.Size = New System.Drawing.Size(278, 76)
+        Me.LayoutControlItem133.Text = "Ποσό Έκπτωσης"
+        Me.LayoutControlItem133.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem133.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem133.TextSize = New System.Drawing.Size(137, 23)
+        Me.LayoutControlItem133.TextToControlDistance = 1
+        '
+        'LayoutControlItem134
+        '
+        Me.LayoutControlItem134.Control = Me.txtFinalPrice10
+        Me.LayoutControlItem134.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem134.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem134.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem134.Location = New System.Drawing.Point(1586, 132)
+        Me.LayoutControlItem134.Name = "LayoutControlItem134"
+        Me.LayoutControlItem134.Size = New System.Drawing.Size(227, 76)
+        Me.LayoutControlItem134.Text = "Τελική Τιμή"
+        Me.LayoutControlItem134.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
+        Me.LayoutControlItem134.TextLocation = DevExpress.Utils.Locations.Top
+        Me.LayoutControlItem134.TextSize = New System.Drawing.Size(96, 23)
+        Me.LayoutControlItem134.TextToControlDistance = 1
         '
         'LayoutControlGroup10
         '
@@ -3884,7 +4724,7 @@ Partial Class frmCUSOfferOrderDoors
         '
         'LayoutControlItem38
         '
-        Me.LayoutControlItem38.Control = Me.txtTotalPrice
+        Me.LayoutControlItem38.Control = Me.txtTotalDoorsPrice
         Me.LayoutControlItem38.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem38.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem38.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
@@ -3935,7 +4775,7 @@ Partial Class frmCUSOfferOrderDoors
         '
         'LayoutControlItem35
         '
-        Me.LayoutControlItem35.Control = Me.txtTotalVatPrice
+        Me.LayoutControlItem35.Control = Me.txtTotalDoorsVat
         Me.LayoutControlItem35.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem35.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem35.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
@@ -4024,16 +4864,6 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
-        'VwVALUELISTITEMV2BindingSource
-        '
-        Me.VwVALUELISTITEMV2BindingSource.DataMember = "vw_VALUELISTITEM_V2"
-        Me.VwVALUELISTITEMV2BindingSource.DataSource = Me.DM_VALUELISTITEM
-        '
-        'DM_VALUELISTITEM
-        '
-        Me.DM_VALUELISTITEM.DataSetName = "DM_VALUELISTITEM"
-        Me.DM_VALUELISTITEM.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'Vw_VALUELISTITEM_V2TableAdapter
         '
         Me.Vw_VALUELISTITEM_V2TableAdapter.ClearBeforeFill = True
@@ -4050,7 +4880,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.Text = "Έντυπο Προσφοράς Πελάτη"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        Me.LayoutControl1.PerformLayout()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4065,13 +4894,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtDimension4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDimension8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDimension5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalVatPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalDoorsVat.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboEMP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSALERSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFora1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4089,13 +4912,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtDescription.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKnobs1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalDoorsPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTransp.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4110,6 +4927,8 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.txtMeasurement.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtRemove.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboValueListItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwVALUELISTITEMV2BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_VALUELISTITEM, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVALUELISTITEM2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVALUELISTITEM3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVALUELISTITEM4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4125,34 +4944,66 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.cboKasa7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFora7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVALUELISTITEM7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDimension142.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKnobs7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboType8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboKasa8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFora8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVALUELISTITEM8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDimension141.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKnobs8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboType9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboKasa9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFora9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVALUELISTITEM9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDimension9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKnobs9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboType10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboKasa10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboFora10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboVALUELISTITEM10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtVatPrice10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPrice10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtDimension10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtKnobs10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice2.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice3.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice4.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice5.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice6.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice7.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice8.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice9.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtInitialPrice10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDisc10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtDiscount10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFinalPrice10.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4175,97 +5026,117 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TabbedControlGroup1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem61, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem51, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem65, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem68, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem117, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem118, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem119, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem56, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem58, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem34, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem105, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem106, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem107, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem57, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem42, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem108, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem109, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem110, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem59, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem49, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem63, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem43, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem111, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem112, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem113, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem60, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem50, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem64, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem17, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem44, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem67, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlGroup7, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem61, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem51, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem65, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem45, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem29, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem68, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem114, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost4, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem115, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem116, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem62, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem52, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem66, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem20, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem28, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem71, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem120, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost6, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem121, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem122, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutRootGroupForRestore, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem81, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem82, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem83, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem84, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem85, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem86, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem87, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem88, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem123, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost7, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem124, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem125, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem73, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem74, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem75, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem76, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem77, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem78, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem79, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem80, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem126, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem127, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem128, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem89, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem90, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem91, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem92, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem93, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem94, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem95, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem96, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem129, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost9, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem130, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem131, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup17, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem97, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem98, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem100, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem101, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem102, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem103, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem104, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem132, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.Lcost10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem133, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem134, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup10, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem69, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem70, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4284,8 +5155,6 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCOLORSDOORSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwVALUELISTITEMV2BindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DM_VALUELISTITEM, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -4305,13 +5174,7 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents txtDimension4 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtDimension8 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtDimension5 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtTotalVatPrice As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice6 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice3 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice4 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtTotalDoorsVat As DevExpress.XtraEditors.TextEdit
     Friend WithEvents cboEMP As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
@@ -4348,13 +5211,7 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents LayoutControlItem33 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents txtKnobs1 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem37 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents txtVatPrice1 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtVatPrice2 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtVatPrice3 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtVatPrice4 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtVatPrice5 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtVatPrice6 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtTotalPrice As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtTotalDoorsPrice As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtNotes As DevExpress.XtraEditors.MemoEdit
     Friend WithEvents LayoutControlItem39 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents chkVatVisible As DevExpress.XtraEditors.CheckEdit
@@ -4386,11 +5243,9 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents LayoutControlGroup2 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem58 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem14 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem35 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem38 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem55 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem34 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem69 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem70 As DevExpress.XtraLayout.LayoutControlItem
@@ -4410,36 +5265,26 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents LayoutControlItem23 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem22 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem15 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem42 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem59 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem49 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem26 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem63 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem43 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem60 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem50 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem27 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem64 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem17 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem44 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem61 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem51 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem29 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem65 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem19 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem45 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem62 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem52 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem28 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem66 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem20 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem36 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlGroup10 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents EmptySpaceItem3 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
@@ -4469,8 +5314,6 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents cboKasa7 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboFora7 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboVALUELISTITEM7 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents txtVatPrice7 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice7 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtDimension142 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtKnobs7 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlGroup12 As DevExpress.XtraLayout.LayoutControlGroup
@@ -4479,24 +5322,18 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents LayoutControlItem82 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem83 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem84 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem85 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem86 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem87 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem88 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cboType8 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboKasa8 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboFora8 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboVALUELISTITEM8 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents txtVatPrice8 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice8 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtDimension141 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtKnobs8 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents cboType9 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboKasa9 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboFora9 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboVALUELISTITEM9 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents txtVatPrice9 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice9 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtDimension9 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtKnobs9 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlGroup15 As DevExpress.XtraLayout.LayoutControlGroup
@@ -4505,24 +5342,18 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents cboKasa10 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboFora10 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboVALUELISTITEM10 As DevExpress.XtraEditors.LookUpEdit
-    Friend WithEvents txtVatPrice10 As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPrice10 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtDimension10 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents txtKnobs10 As DevExpress.XtraEditors.TextEdit
     Friend WithEvents LayoutControlItem73 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem74 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem75 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem76 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem77 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem78 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem79 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem80 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem89 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem90 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem91 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem92 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem93 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem94 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem95 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem96 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlGroup17 As DevExpress.XtraLayout.LayoutControlGroup
@@ -4530,10 +5361,88 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents LayoutControlItem98 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem99 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem100 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem101 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem102 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem103 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem104 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents DM_TRANS As DM_TRANS
     Friend WithEvents CCT_TRANSHTableAdapter As DM_TRANSTableAdapters.CCT_TRANSHTableAdapter
+    Friend WithEvents txtInitialPrice1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice1 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem105 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost3 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem106 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem107 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtInitialPrice2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice2 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtInitialPrice3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice3 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtInitialPrice4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice4 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem114 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem108 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem109 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem110 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem111 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost2 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem112 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem113 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost4 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem115 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem116 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtInitialPrice5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice5 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem117 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost5 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem118 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem119 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtInitialPrice6 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc6 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount6 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice6 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtInitialPrice7 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc7 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount7 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice7 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtInitialPrice8 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc8 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount8 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice8 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtInitialPrice9 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc9 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount9 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice9 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtInitialPrice10 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDisc10 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtDiscount10 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents txtFinalPrice10 As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem132 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost10 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem133 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem134 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem120 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost6 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem121 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem122 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem123 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost7 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem124 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem125 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem126 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost8 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem127 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem128 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem129 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents Lcost9 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem130 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LayoutControlItem131 As DevExpress.XtraLayout.LayoutControlItem
 End Class

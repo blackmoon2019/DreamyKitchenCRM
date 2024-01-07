@@ -1,17 +1,9 @@
 ﻿Imports System.Data.SqlClient
-Imports DevExpress.CodeParser
-Imports DevExpress.Utils
-Imports DevExpress.Utils.Menu
-Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraEditors.Repository
-Imports DevExpress.XtraExport.Helpers
-Imports DevExpress.XtraGrid.Menu
-Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraReports.UI
 
 Public Class frmCUSOfferOrderCloset
+    Private CusOfferOrderCloset As New CusOfferOrderCloset
     Private ManageCbo As New CombosManager
     Private sID As String
     Private sIsOrder As Boolean
@@ -66,124 +58,9 @@ Public Class frmCUSOfferOrderCloset
     End Sub
 
     Private Sub frmCUSOrderCloset_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DM_TRANS.CCT_TRANSH' table. You can move, or remove it, as needed.
-        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
-        Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
-        'TODO: This line of code loads data into the 'DM_VALUELISTITEM.vw_VALUELISTITEM_V2' table. You can move, or remove it, as needed.
-        Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-        'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
-        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
-        Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
-        Prog_Prop.GetProgPROSF()
-
-        If sIsOrder = True Then
-            LayoutControlGroup1.Text = "Στοιχεία Παραγγελίας"
-            LayoutControlGroup3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            LayoutControlGroup11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            LayoutControlGroup12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            LayoutControlGroup13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            LayoutControlGroup15.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
-        Else
-            LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
-            LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
-            LayoutControlItem4.Text = "Αρ. Προσφοράς"
-            LayoutControlGroup10.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            LayoutControlItem1.Tag = 0
-        End If
-
-        Select Case Mode
-            Case FormMode.NewRecord
-                txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_CLOSET")
-                cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
-                txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
-                If sIsOrder = True Then
-                    txtdrawers.EditValue = ProgProps.CLOSET_DRAWERS
-                    cboBackThikness2.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                    cboboxThikness2.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                    txtdrawers2.EditValue = ProgProps.CLOSET_DRAWERS
-                    cboBackThikness3.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                    cboboxThikness3.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                    txtdrawers3.EditValue = ProgProps.CLOSET_DRAWERS
-                    cboBackThikness4.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                    cboboxThikness4.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                    txtdrawers4.EditValue = ProgProps.CLOSET_DRAWERS
-                    cboBackThikness5.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                    cboboxThikness5.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                    txtdrawers5.EditValue = ProgProps.CLOSET_DRAWERS
-                    cboBackThikness6.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                    cboboxThikness6.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                    txtdrawers6.EditValue = ProgProps.CLOSET_DRAWERS
-                    txtTransp.EditValue = ProgProps.ClosetTransp
-                    txtMeasurement.EditValue = ProgProps.ClosetMeasurement
-                    txtRemove.EditValue = ProgProps.ClosetRemove
-                    cboBackThikness.EditValue = ProgProps.CLOSET_BACK_THIKNESS
-                    cboboxThikness.EditValue = ProgProps.CLOSET_BOX_THIKNESS
-                Else
-                    txtNotes.EditValue = ProgProps.CUS_NOTES
-                    txtdrawers.EditValue = ProgProps.DRAWERS
-                    txtdrawers2.EditValue = ProgProps.DRAWERS
-                    txtdrawers3.EditValue = ProgProps.DRAWERS
-                    txtdrawers4.EditValue = ProgProps.DRAWERS
-                    txtdrawers5.EditValue = ProgProps.DRAWERS
-                    txtdrawers6.EditValue = ProgProps.DRAWERS
-                End If
-
-
-                LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "Select  e.ID,E.code,name,price,e.price as defPrice,
-                    cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, 
-                    case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard 
-                    From vw_EQUIPMENT E where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62' ORDER BY NAME")
-                TabNavigationPage2.Enabled = False
-                'cmdConvertToOrder.Enabled = False
-                LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Case FormMode.EditRecord
-                Dim sFields As New Dictionary(Of String, String)
-                LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_CLOSET.* " &
-                                                   " from CCT_ORDERS_CLOSET " &
-                                                   " left join CCT_ORDERS_CLOSET  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_CLOSET.id " &
-                                                   " where CCT_ORDERS_CLOSET.id = " & toSQLValueS(sID), sFields)
-                If sIsOrder = False Then
-                    If sFields("OrderID") <> "" Then
-                        'cmdConvertToOrder.Enabled = False
-                        LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                        cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
-                        LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
-                    End If
-                Else
-                    'cmdConvertToOrder.Enabled = False
-                    LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                    If sFields("CreatedFromOfferID") <> "" Then cboCUS.Enabled = False
-                End If
-
-
-
-                sFields = Nothing
-
-                LoadForms.LoadDataToGrid(grdEquipment, GridView2,
-                    "select e.ID,e.code,e.name,
-                    isnull((select price from CCT_ORDERS_CLOSET_EQUIPMENT EQ where eq.cctOrdersClosetID= " & toSQLValueS(sID) & " And eq.equipmentID=e.id),e.price ) as price,
-                    e.price as defPrice,
-                    CAST(CASE WHEN (select eq.ID 
-                    from CCT_ORDERS_CLOSET_EQUIPMENT EQ 
-                    where eq.cctOrdersClosetID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
-                    isnull((select qty from CCT_ORDERS_CLOSET_EQUIPMENT EQ where eq.cctOrdersClosetID= " & toSQLValueS(sID) & " and eq.equipmentID=e.id),0) as QTY,standard
-                    from EQUIPMENT E
-                    where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62'
-                    ORDER BY NAME")
-
-                TabNavigationPage2.Enabled = True
-
-        End Select
-        LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_CLOSET_EQUIPMENT_def.xml")
-        GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
-        'GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False
+        CusOfferOrderCloset.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder)
+        CusOfferOrderCloset.LoadForm()
         Me.CenterToScreen()
-
-
     End Sub
 
 
@@ -192,69 +69,9 @@ Public Class frmCUSOfferOrderCloset
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
-        Dim sResult As Boolean
-        Dim sGuid As String
-        Try
-            If Valid.ValidateForm(LayoutControl1) Then
-                Select Case Mode
-                    Case FormMode.NewRecord
-                        sGuid = System.Guid.NewGuid.ToString
-                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sGuid, , "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
-                        sID = sGuid
-                    Case FormMode.EditRecord
-                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", LayoutControl1,,, sID,,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
-                        'sGuid = sID
-                End Select
-
-                If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_CCT_ORDERS_CLOSET")
-                End If
-
-                If sResult = True Then
-                    If Mode = FormMode.NewRecord Then
-                        TabNavigationPage2.Enabled = True
-                        If sIsOrder = False Then cmdConvertToOrder.Enabled = True : LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                        InsertSelectedRows(False)
-                    End If
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-                    Mode = FormMode.EditRecord
-                    Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
-                    HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
-                    HasCloset = cboTRANSH.GetColumnValue("Iscloset")
-                    HasDoors = cboTRANSH.GetColumnValue("Isdoors")
-                    HasSc = cboTRANSH.GetColumnValue("Issc")
-                    If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                        XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        Exit Sub
-                    End If
-                    Dim cmd As SqlCommand
-                    Dim sdr As SqlDataReader
-                    Dim sSQL As String
-                    Dim cctOrderKitchen As String = "00000000-0000-0000-0000-000000000000"
-
-                    sSQL = "select ID from CCT_ORDERS_KITCHEN where transhID = " & (toSQLValueS(cboTRANSH.EditValue.ToString))
-                    cmd = New SqlCommand(sSQL, CNDB)
-                    sdr = cmd.ExecuteReader()
-                    If (sdr.Read() = True) Then
-                        If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then cctOrderKitchen = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
-                    End If
-                    sdr.Close()
-                    cmd.Dispose()
-                End If
-            End If
-
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        CusOfferOrderCloset.SaveRecord(sID)
     End Sub
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        'txtPhn.EditValue = cboCUS.GetColumnValue("phn")
-        'txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
-        'txtADR.EditValue = cboCUS.GetColumnValue("ADR_Name")
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
@@ -292,78 +109,25 @@ Public Class frmCUSOfferOrderCloset
             Case 1 : GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", "0.00")
         End Select
     End Sub
-    Private Sub InsertSelectedRows(Optional ByVal msg As Boolean = True)
-        Dim sSQL As String
-        Dim I As Integer
-        sSQL = "DELETE FROM CCT_ORDERS_CLOSET_EQUIPMENT WHERE cctOrdersClosetID = " & toSQLValueS(sID)
-        Using oCmd As New SqlCommand(sSQL, CNDB)
-            oCmd.ExecuteNonQuery()
-        End Using
-        Dim Selected As Boolean
-        For I = 0 To GridView2.RowCount - 1
-            Selected = GridView2.GetRowCellValue(I, "checked")
-            If Selected = True Then
-                sSQL = "INSERT INTO CCT_ORDERS_CLOSET_EQUIPMENT(cctOrdersClosetID,equipmentID,price,selected,qty) " &
-                    " VALUES ( " & toSQLValueS(sID) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(GridView2.GetRowCellValue(I, "price").ToString, True) & ",1," & toSQLValueS(GridView2.GetRowCellValue(I, "QTY").ToString, True) & ")"
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
-            End If
-        Next
-        If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-    End Sub
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "CCT_ORDERS_CLOSET_EQUIPMENT_def.xml", "vw_CCT_ORDERS_CLOSET_EQUIPMENT")
     End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
-        If sIsOrder = True Then
-            Dim report As New RepCUSOrderCloset()
-
-            report.Parameters.Item(0).Value = sID
-            report.CreateDocument()
-            Dim report2 As New RepCUSOrderCloset2ndPage
-
-            report2.Parameters.Item(0).Value = sID
-            report2.CreateDocument()
-            report.ModifyDocument(Sub(x)
-                                      x.AddPages(report2.Pages)
-                                  End Sub)
-            Dim printTool As New ReportPrintTool(report)
-            printTool.ShowRibbonPreview()
-        Else
-            Dim report As New RepCUSOfferCloset()
-
-            report.Parameters.Item(0).Value = sID
-            report.CreateDocument()
-            Dim report2 As New RepCUSOfferCloset2ndPage
-
-            report2.Parameters.Item(0).Value = sID
-            report2.CreateDocument()
-            report.ModifyDocument(Sub(x)
-                                      x.AddPages(report2.Pages)
-                                  End Sub)
-            Dim report3 As New RepCUSOfferCloset3ndPage
-            report3.CreateDocument()
-            report.ModifyDocument(Sub(x)
-                                      x.AddPages(report3.Pages)
-                                  End Sub)
-            Dim printTool As New ReportPrintTool(report)
-            printTool.ShowRibbonPreview()
-        End If
+        CusOfferOrderCloset.PrintOfferOrder()
     End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub
 
 
     Private Sub cmdSaveEquipDev_Click(sender As Object, e As EventArgs) Handles cmdSaveEquipDev.Click
-        InsertSelectedRows()
+        CusOfferOrderCloset.InsertSelectedRows()
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
@@ -379,8 +143,6 @@ Public Class frmCUSOfferOrderCloset
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
-
-
     Private Sub cboBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageValueListItem(cboBOXColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
@@ -424,88 +186,88 @@ Public Class frmCUSOfferOrderCloset
         End Select
     End Sub
 
-    Private Sub cboVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
+    Private Sub cboValueListItemID_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.EditRecord)
             Case 3 : cboValueListItem.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM2.ButtonClick
+    Private Sub cboValueListItemID2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem2.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM8, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM8, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM8.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem8, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem8, FormMode.EditRecord)
+            Case 3 : cboValueListItem8.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM3.ButtonClick
+    Private Sub cboValueListItemID3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem3.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM9, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM9, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM9.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem9, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem9, FormMode.EditRecord)
+            Case 3 : cboValueListItem9.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM4.ButtonClick
+    Private Sub cboValueListItemID4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem4.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM4, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM4.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem4, FormMode.EditRecord)
+            Case 3 : cboValueListItem4.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM5.ButtonClick
+    Private Sub cboValueListItemID5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem5.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM5, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM5.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem5, FormMode.EditRecord)
+            Case 3 : cboValueListItem5.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM6.ButtonClick
+    Private Sub cboValueListItemID6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem6.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM6, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM6.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem6, FormMode.EditRecord)
+            Case 3 : cboValueListItem6.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM7_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM7.ButtonClick
+    Private Sub cboValueListItemID7_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem7.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM7, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM7, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM7.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem7, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem7, FormMode.EditRecord)
+            Case 3 : cboValueListItem7.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM8_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM8.ButtonClick
+    Private Sub cboValueListItemID8_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem8.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM2, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM2.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem2, FormMode.EditRecord)
+            Case 3 : cboValueListItem2.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM9_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM9.ButtonClick
+    Private Sub cboValueListItemID9_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem9.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM3, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM3.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem3, FormMode.EditRecord)
+            Case 3 : cboValueListItem3.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM10_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM10.ButtonClick
+    Private Sub cboValueListItemID10_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem10.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM10, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM10, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM10.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem10, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem10, FormMode.EditRecord)
+            Case 3 : cboValueListItem10.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM11_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM11.ButtonClick
+    Private Sub cboValueListItemID11_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem11.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM11, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM11, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM11.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem11, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem11, FormMode.EditRecord)
+            Case 3 : cboValueListItem11.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM12_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM12.ButtonClick
+    Private Sub cboValueListItemID12_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem12.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM12, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM12, FormMode.EditRecord)
-            Case 3 : cboVALUELISTITEM12.EditValue = Nothing
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem12, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem12, FormMode.EditRecord)
+            Case 3 : cboValueListItem12.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboSides1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSides1.ButtonClick
@@ -634,8 +396,6 @@ Public Class frmCUSOfferOrderCloset
             Case 1 : cboClosetType6.EditValue = Nothing
         End Select
     End Sub
-
-
     Private Sub GridView2_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles GridView2.ValidatingEditor
         Dim grdView As GridView = sender
         If grdView.FocusedColumn.FieldName = "checked" Then
@@ -653,336 +413,347 @@ Public Class frmCUSOfferOrderCloset
         End If
     End Sub
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
-        Try
-            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
-                    oCmd.CommandType = CommandType.StoredProcedure
-                    oCmd.Parameters.AddWithValue("@OfferID", sID)
-                    oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
-                    oCmd.Parameters.AddWithValue("@Mode", 2)
-                    oCmd.ExecuteNonQuery()
-                End Using
-                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                'cmdConvertToOrder.Enabled = False
-                cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False
-                LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
-            End If
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        CusOfferOrderCloset.ConvertToOrder()
+    End Sub
+    Private Sub ApplyDiscount(ByVal DiscMode As Integer, Optional ByVal DiscountChangedByUser As Boolean = False)
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
+        If Me.IsActive = False Then Exit Sub
+        Select Case DiscMode
+            Case 1
+                If DiscountChangedByUser = False Then txtDisc1.EditValue = ProgProps.CusDiscountCloset
+                If ProgProps.CusDiscountCloset > 0 Then
+                    InitialPrice = txtInitialPrice1.EditValue
+                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc1.EditValue / 100
+                    Discount = Disc * InitialPrice
+                    FinalPrice = InitialPrice - Discount
+                    txtInitialPrice1.EditValue = InitialPrice
+                    txtDiscount1.EditValue = Discount
+                    txtFinalPrice1.EditValue = FinalPrice
+                End If
+            Case 2
+                If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountCloset
+                If ProgProps.CusDiscountCloset > 0 Then
+                    InitialPrice = txtInitialPrice2.EditValue
+                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc2.EditValue / 100
+                    Discount = Disc * InitialPrice
+                    FinalPrice = InitialPrice - Discount
+                    txtInitialPrice2.EditValue = InitialPrice
+                    txtDiscount2.EditValue = Discount
+                    txtFinalPrice2.EditValue = FinalPrice
+                End If
+            Case 3
+                If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountCloset
+                If ProgProps.CusDiscountCloset > 0 Then
+                    InitialPrice = txtInitialPrice3.EditValue
+                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc3.EditValue / 100
+                    Discount = Disc * InitialPrice
+                    FinalPrice = InitialPrice - Discount
+                    txtInitialPrice3.EditValue = InitialPrice
+                    txtDiscount3.EditValue = Discount
+                    txtFinalPrice3.EditValue = FinalPrice
+                End If
+            Case 4
+                If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountCloset
+                If ProgProps.CusDiscountCloset > 0 Then
+                    InitialPrice = txtInitialPrice4.EditValue
+                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc4.EditValue / 100
+                    Discount = Disc * InitialPrice
+                    FinalPrice = InitialPrice - Discount
+                    txtInitialPrice4.EditValue = InitialPrice
+                    txtDiscount4.EditValue = Discount
+                    txtFinalPrice4.EditValue = FinalPrice
+                End If
+            Case 5
+                If DiscountChangedByUser = False Then txtDisc5.EditValue = ProgProps.CusDiscountCloset
+                If ProgProps.CusDiscountCloset > 0 Then
+                    InitialPrice = txtInitialPrice5.EditValue
+                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc5.EditValue / 100
+                    Discount = Disc * InitialPrice
+                    FinalPrice = InitialPrice - Discount
+                    txtInitialPrice5.EditValue = InitialPrice
+                    txtDiscount5.EditValue = Discount
+                    txtFinalPrice5.EditValue = FinalPrice
+                End If
+        End Select
     End Sub
     Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc1.EditValue = ProgProps.CusDiscountCloset
-        If ProgProps.CusDiscountCloset > 0 Then
-            InitialPrice = txtInitialPrice1.EditValue
-            Disc = ProgProps.CusDiscountCloset / 100
-            Discount = Disc * InitialPrice
-            FinalPrice = InitialPrice - Discount
-            txtInitialPrice1.EditValue = InitialPrice
-            txtDiscount1.EditValue = Discount
-            txtFinalPrice1.EditValue = FinalPrice
-        End If
+        ApplyDiscount(1)
     End Sub
 
     Private Sub txtInitialPrice2_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice2.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc2.EditValue = ProgProps.CusDiscountCloset
-        If ProgProps.CusDiscountCloset > 0 Then
-            InitialPrice = txtInitialPrice2.EditValue
-            Disc = ProgProps.CusDiscountCloset / 100
-            Discount = Disc * InitialPrice
-            FinalPrice = InitialPrice - Discount
-            txtInitialPrice2.EditValue = InitialPrice
-            txtDiscount2.EditValue = Discount
-            txtFinalPrice2.EditValue = FinalPrice
-        End If
-
+        ApplyDiscount(2)
     End Sub
 
     Private Sub txtInitialPrice3_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice3.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc3.EditValue = ProgProps.CusDiscountCloset
-        If ProgProps.CusDiscountCloset > 0 Then
-            InitialPrice = txtInitialPrice3.EditValue
-            Disc = ProgProps.CusDiscountCloset / 100
-            Discount = Disc * InitialPrice
-            FinalPrice = InitialPrice - Discount
-            txtInitialPrice3.EditValue = InitialPrice
-            txtDiscount3.EditValue = Discount
-            txtFinalPrice3.EditValue = FinalPrice
-        End If
+        ApplyDiscount(3)
     End Sub
 
     Private Sub txtInitialPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice4.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc4.EditValue = ProgProps.CusDiscountCloset
-        If ProgProps.CusDiscountCloset > 0 Then
-            InitialPrice = txtInitialPrice4.EditValue
-            Disc = ProgProps.CusDiscountCloset / 100
-            Discount = Disc * InitialPrice
-            FinalPrice = InitialPrice - Discount
-            txtInitialPrice4.EditValue = InitialPrice
-            txtDiscount4.EditValue = Discount
-            txtFinalPrice4.EditValue = FinalPrice
-        End If
+        ApplyDiscount(4)
     End Sub
     Private Sub txtInitialPrice5_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice5.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc5.EditValue = ProgProps.CusDiscountCloset
-        If ProgProps.CusDiscountCloset > 0 Then
-            InitialPrice = txtInitialPrice5.EditValue
-            Disc = ProgProps.CusDiscountCloset / 100
-            Discount = Disc * InitialPrice
-            FinalPrice = InitialPrice - Discount
-            txtInitialPrice5.EditValue = InitialPrice
-            txtDiscount5.EditValue = Discount
-            txtFinalPrice5.EditValue = FinalPrice
-        End If
+        ApplyDiscount(5)
     End Sub
-    Private Sub cboVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem.ProcessNewValue
+    Private Sub txtDisc1_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc1.EditValueChanged
+        ApplyDiscount(1, True)
+    End Sub
+    Private Sub txtDisc2_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc2.EditValueChanged
+        ApplyDiscount(2, True)
+    End Sub
+
+    Private Sub txtDisc3_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc3.EditValueChanged
+        ApplyDiscount(3, True)
+    End Sub
+
+    Private Sub txtDisc4_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc4.EditValueChanged
+        ApplyDiscount(4, True)
+    End Sub
+    Private Sub txtDisc5_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc5.EditValueChanged
+        ApplyDiscount(5, True)
+    End Sub
+
+    Private Sub cboValueListItemID_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboValueListItem, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboValueListItem.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboVALUELISTITEM7_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM7.ProcessNewValue
+    Private Sub cboValueListItemID7_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem7.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM7, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem7, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM7.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem7.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboSides1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboSides1.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboSides1, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboSides1, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboSides1.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboSides1.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboShelves1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboShelves1.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboShelves1, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboShelves1, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboShelves1.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboShelves1.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
 
-    Private Sub cboVALUELISTITEM2_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM2.ProcessNewValue
+    Private Sub cboValueListItemID2_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem2.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM2, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem2, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM2.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem2.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboVALUELISTITEM8_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM8.ProcessNewValue
+    Private Sub cboValueListItemID8_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem8.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM8, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem8, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM8.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem8.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboSides2_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboSides2.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboSides2, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboSides2, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboSides2.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboSides2.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboShelves2_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboShelves2.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboShelves2, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboShelves2, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboShelves2.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboShelves2.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
 
-    Private Sub cboVALUELISTITEM3_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM3.ProcessNewValue
+    Private Sub cboValueListItemID3_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem3.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM3, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem3, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM3.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem3.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboVALUELISTITEM9_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM9.ProcessNewValue
+    Private Sub cboValueListItemID9_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem9.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM9, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem9, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM9.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem9.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboSides3_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboSides3.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboSides3, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboSides3, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboSides3.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboSides3.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboShelves3_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboShelves3.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboShelves3, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboShelves3, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboShelves3.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboShelves3.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
 
-    Private Sub cboVALUELISTITEM4_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM4.ProcessNewValue
+    Private Sub cboValueListItemID4_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem4.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM4, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem4, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM4.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem4.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboVALUELISTITEM10_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM10.ProcessNewValue
+    Private Sub cboValueListItemID10_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem10.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM10, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem10, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM10.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem10.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboSides4_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboSides4.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboSides4, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboSides4, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboSides4.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboSides4.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboShelves4_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboShelves4.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboShelves4, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboShelves4, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboShelves4.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboShelves4.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
 
-    Private Sub cboVALUELISTITEM5_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM5.ProcessNewValue
+    Private Sub cboValueListItemID5_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem5.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM5, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem5, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM5.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem5.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboVALUELISTITEM11_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM11.ProcessNewValue
+    Private Sub cboValueListItemID11_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem11.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM11, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem11, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM11.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem11.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboSides5_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboSides5.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboSides5, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboSides5, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboSides5.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboSides5.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboShelves5_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboShelves5.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboShelves5, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboShelves5, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboShelves5.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboShelves5.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
 
 
-    Private Sub cboVALUELISTITEM6_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM6.ProcessNewValue
+    Private Sub cboValueListItemID6_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem6.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM6, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem6, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM6.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem6.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
-    Private Sub cboVALUELISTITEM12_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM12.ProcessNewValue
+    Private Sub cboValueListItemID12_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem12.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVALUELISTITEM12, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboValueListItem12, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboVALUELISTITEM12.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboValueListItem12.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboSides6_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboSides6.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboSides6, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboSides6, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboSides6.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboSides6.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
     End Sub
     Private Sub cboShelves6_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboShelves6.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboShelves6, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboShelves6, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboShelves6.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboShelves6.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
@@ -998,10 +769,10 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboBOXColors, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboBOXColors, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboBOXColors.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboBOXColors.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
@@ -1009,10 +780,10 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboBOXColors2_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors2.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboBOXColors2, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboBOXColors2, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboBOXColors2.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboBOXColors2.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
@@ -1020,10 +791,10 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboBOXColors3_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors3.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboBOXColors3, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboBOXColors3, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboBOXColors3.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboBOXColors3.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
@@ -1031,10 +802,10 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboBOXColors4_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors4.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboBOXColors4, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboBOXColors4, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboBOXColors4.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboBOXColors4.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
@@ -1042,10 +813,10 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboBOXColors5_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors5.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboBOXColors5, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboBOXColors5, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboBOXColors5.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboBOXColors5.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
@@ -1053,12 +824,52 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboBOXColors6_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboBOXColors6.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboBOXColors6, e.DisplayValue)
-            If sVALUELISTITEMID <> "" Then
+            Dim sValueListItemID = DBQ.InsertNewValueListItem(cboBOXColors6, e.DisplayValue)
+            If sValueListItemID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-                cboBOXColors6.EditValue = System.Guid.Parse(sVALUELISTITEMID)
+                cboBOXColors6.EditValue = System.Guid.Parse(sValueListItemID)
             End If
             e.Handled = True
         End If
+    End Sub
+
+    Private Sub cboModel11_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboModel11.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItemChecked(cboModel11, FormMode.NewRecord, "AFDD6E1A-EBA3-4FE9-AB28-EDE277939F29")
+            Case 2 : ManageCbo.ManageValueListItemChecked(cboModel11, FormMode.EditRecord)
+            Case 3 : cboModel11.SetEditValue(-1)
+        End Select
+    End Sub
+
+    Private Sub cboModel21_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboModel21.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItemChecked(cboModel21, FormMode.NewRecord, "AFDD6E1A-EBA3-4FE9-AB28-EDE277939F29")
+            Case 2 : ManageCbo.ManageValueListItemChecked(cboModel21, FormMode.EditRecord)
+            Case 3 : cboModel21.SetEditValue(-1)
+        End Select
+    End Sub
+
+    Private Sub cboModel31_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboModel31.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItemChecked(cboModel31, FormMode.NewRecord, "AFDD6E1A-EBA3-4FE9-AB28-EDE277939F29")
+            Case 2 : ManageCbo.ManageValueListItemChecked(cboModel31, FormMode.EditRecord)
+            Case 3 : cboModel31.SetEditValue(-1)
+        End Select
+    End Sub
+
+    Private Sub cboModel41_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboModel41.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItemChecked(cboModel41, FormMode.NewRecord, "AFDD6E1A-EBA3-4FE9-AB28-EDE277939F29")
+            Case 2 : ManageCbo.ManageValueListItemChecked(cboModel41, FormMode.EditRecord)
+            Case 3 : cboModel41.SetEditValue(-1)
+        End Select
+    End Sub
+
+    Private Sub cboModel51_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboModel51.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItemChecked(cboModel51, FormMode.NewRecord, "AFDD6E1A-EBA3-4FE9-AB28-EDE277939F29")
+            Case 2 : ManageCbo.ManageValueListItemChecked(cboModel51, FormMode.EditRecord)
+            Case 3 : cboModel51.SetEditValue(-1)
+        End Select
     End Sub
 End Class

@@ -1074,7 +1074,7 @@ Public Class FillCombos
         End Try
 
     End Sub
-    Public Sub DOOR_CAT(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+    Public Sub VALUELIST(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
             Dim cmd As SqlCommand = New SqlCommand("Select id,Name from vw_VALUELIST order by name", CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()

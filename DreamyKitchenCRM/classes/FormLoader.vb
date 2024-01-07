@@ -332,9 +332,10 @@ NextItem:
                 cbo = Ctrl
                 If sValue.Length > 0 Then
                     Dim ValueList As String() = sValue.Split(";")
-
+                    Dim IsValidGuid As Guid
                     For Each Value As String In ValueList
-                        cbo.Properties.GetItems.Item(System.Guid.Parse(Value)).CheckState = CheckState.Checked
+                        Guid.TryParse(Value, IsValidGuid)
+                        If IsValidGuid <> Guid.Empty Then cbo.Properties.GetItems.Item(System.Guid.Parse(Value)).CheckState = CheckState.Checked
                     Next
                 End If
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
@@ -390,7 +391,10 @@ NextItem:
 
                 End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim trace = New System.Diagnostics.StackTrace(ex, True)
+            Dim line As String = Strings.Right(trace.ToString, 5)
+
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadDataToGrid(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,

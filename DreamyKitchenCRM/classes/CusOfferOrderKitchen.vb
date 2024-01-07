@@ -1,10 +1,5 @@
-﻿Imports DevExpress.XtraBars.Navigation
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraEditors.DXErrorProvider
-Imports DevExpress.XtraLayout
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraReports.UI
-Imports DreamyKitchenCRM.Main
 Imports System.Data.SqlClient
 
 Public Class CusOfferOrderKitchen
@@ -54,7 +49,6 @@ Public Class CusOfferOrderKitchen
             Frm.LayoutControlItem28.Text = "Αρ. Προσφοράς"
             Frm.LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            Frm.LayoutControlItem1.Tag = 0
             Frm.LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         End If
 

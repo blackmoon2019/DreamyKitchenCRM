@@ -537,11 +537,11 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("DIM")
-                            Case "DOOR_CAT"
+                            Case "VALUELIST"
                                 sGuid = System.Guid.NewGuid.ToString
-                                sResult = DBQ.InsertData(LayoutControl1, "DOOR_CAT", sGuid)
+                                sResult = DBQ.InsertData(LayoutControl1, "VALUELIST", sGuid)
                                 If CalledFromCtrl Then
-                                    FillCbo.DOOR_CAT(CtrlCombo)
+                                    FillCbo.VALUELIST(CtrlCombo)
                                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                                 Else
                                     Dim form As frmScroller = Frm
@@ -549,7 +549,7 @@ Public Class frmGen
                                 End If
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
-                                txtCode.Text = DBQ.GetNextId("DOOR_CAT")
+                                txtCode.Text = DBQ.GetNextId("VALUELIST")
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
@@ -882,10 +882,10 @@ Public Class frmGen
                                     form = Frm
                                     form.LoadRecords("vw_DIM")
                                 End If
-                            Case "DOOR_CAT"
-                                sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "DOOR_CAT", LayoutControl1,,, sID, True)
+                            Case "VALUELIST"
+                                sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "VALUELIST", LayoutControl1,,, sID, True)
                                 If CalledFromCtrl Then
-                                    FillCbo.DOOR_CAT(CtrlCombo)
+                                    FillCbo.VALUELIST(CtrlCombo)
                                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                                 Else
                                     Dim form As New frmScroller
@@ -1116,9 +1116,9 @@ Public Class frmGen
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_DIM where id ='" + sID + "'",, True)
                 End If
-            Case "DOOR_CAT"
+            Case "VALUELIST"
                 If Mode = FormMode.NewRecord Then
-                    txtCode.Text = DBQ.GetNextId("DOOR_CAT")
+                    txtCode.Text = DBQ.GetNextId("VALUELIST")
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_VALUELIST where id ='" + sID + "'",, True)
                 End If
@@ -1357,9 +1357,9 @@ Public Class frmGen
                             Dim form As New frmScroller
                             form.LoadRecords("vw_DIM")
                         End If
-                    Case "DOOR_CAT"
+                    Case "VALUELIST"
                         If CalledFromCtrl Then
-                            FillCbo.DOOR_CAT(CtrlCombo)
+                            FillCbo.VALUELIST(CtrlCombo)
                         Else
                             Dim form As New frmScroller
                             form.LoadRecords("vw_VALUELIST")
