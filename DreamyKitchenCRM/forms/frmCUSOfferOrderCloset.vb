@@ -10,7 +10,6 @@ Public Class frmCUSOfferOrderCloset
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
-    Private Valid As New ValidateControls
     Private FScrollerExist As Boolean = False
     Private FillCbo As New FillCombos
     Private DBQ As New DBQueries
@@ -58,6 +57,8 @@ Public Class frmCUSOfferOrderCloset
     End Sub
 
     Private Sub frmCUSOrderCloset_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DM_CCT.vw_COMP' table. You can move, or remove it, as needed.
+        Me.Vw_COMPTableAdapter.Fill(Me.DM_CCT.vw_COMP)
         CusOfferOrderCloset.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder)
         CusOfferOrderCloset.LoadForm()
         Me.CenterToScreen()
@@ -77,6 +78,7 @@ Public Class frmCUSOfferOrderCloset
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
+                        INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '3DAF9172-E9C4-402D-9BE7-4A3F64ABDAE4' 
                         where  completed = 0 and T.cusid = " & sCusID & "order by description")
         Dim sVal As String
         If cboTRANSH.EditValue IsNot Nothing Then sVal = cboTRANSH.EditValue.ToString
@@ -421,59 +423,49 @@ Public Class frmCUSOfferOrderCloset
         Select Case DiscMode
             Case 1
                 If DiscountChangedByUser = False Then txtDisc1.EditValue = ProgProps.CusDiscountCloset
-                If ProgProps.CusDiscountCloset > 0 Then
-                    InitialPrice = txtInitialPrice1.EditValue
-                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc1.EditValue / 100
-                    Discount = Disc * InitialPrice
-                    FinalPrice = InitialPrice - Discount
-                    txtInitialPrice1.EditValue = InitialPrice
-                    txtDiscount1.EditValue = Discount
-                    txtFinalPrice1.EditValue = FinalPrice
-                End If
+                InitialPrice = txtInitialPrice1.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc1.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice = InitialPrice - Discount
+                txtInitialPrice1.EditValue = InitialPrice
+                txtDiscount1.EditValue = Discount
+                txtFinalPrice1.EditValue = FinalPrice
             Case 2
                 If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountCloset
-                If ProgProps.CusDiscountCloset > 0 Then
-                    InitialPrice = txtInitialPrice2.EditValue
-                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc2.EditValue / 100
-                    Discount = Disc * InitialPrice
-                    FinalPrice = InitialPrice - Discount
-                    txtInitialPrice2.EditValue = InitialPrice
-                    txtDiscount2.EditValue = Discount
-                    txtFinalPrice2.EditValue = FinalPrice
-                End If
+                InitialPrice = txtInitialPrice2.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc2.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice = InitialPrice - Discount
+                txtInitialPrice2.EditValue = InitialPrice
+                txtDiscount2.EditValue = Discount
+                txtFinalPrice2.EditValue = FinalPrice
             Case 3
                 If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountCloset
-                If ProgProps.CusDiscountCloset > 0 Then
-                    InitialPrice = txtInitialPrice3.EditValue
-                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc3.EditValue / 100
-                    Discount = Disc * InitialPrice
-                    FinalPrice = InitialPrice - Discount
-                    txtInitialPrice3.EditValue = InitialPrice
-                    txtDiscount3.EditValue = Discount
-                    txtFinalPrice3.EditValue = FinalPrice
-                End If
+                InitialPrice = txtInitialPrice3.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc3.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice = InitialPrice - Discount
+                txtInitialPrice3.EditValue = InitialPrice
+                txtDiscount3.EditValue = Discount
+                txtFinalPrice3.EditValue = FinalPrice
             Case 4
                 If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountCloset
-                If ProgProps.CusDiscountCloset > 0 Then
-                    InitialPrice = txtInitialPrice4.EditValue
-                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc4.EditValue / 100
-                    Discount = Disc * InitialPrice
-                    FinalPrice = InitialPrice - Discount
-                    txtInitialPrice4.EditValue = InitialPrice
-                    txtDiscount4.EditValue = Discount
-                    txtFinalPrice4.EditValue = FinalPrice
-                End If
+                InitialPrice = txtInitialPrice4.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc4.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice = InitialPrice - Discount
+                txtInitialPrice4.EditValue = InitialPrice
+                txtDiscount4.EditValue = Discount
+                txtFinalPrice4.EditValue = FinalPrice
             Case 5
                 If DiscountChangedByUser = False Then txtDisc5.EditValue = ProgProps.CusDiscountCloset
-                If ProgProps.CusDiscountCloset > 0 Then
-                    InitialPrice = txtInitialPrice5.EditValue
-                    If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc5.EditValue / 100
-                    Discount = Disc * InitialPrice
-                    FinalPrice = InitialPrice - Discount
-                    txtInitialPrice5.EditValue = InitialPrice
-                    txtDiscount5.EditValue = Discount
-                    txtFinalPrice5.EditValue = FinalPrice
-                End If
+                InitialPrice = txtInitialPrice5.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc5.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice = InitialPrice - Discount
+                txtInitialPrice5.EditValue = InitialPrice
+                txtDiscount5.EditValue = Discount
+                txtFinalPrice5.EditValue = FinalPrice
         End Select
     End Sub
     Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
@@ -870,6 +862,32 @@ Public Class frmCUSOfferOrderCloset
             Case 1 : ManageCbo.ManageValueListItemChecked(cboModel51, FormMode.NewRecord, "AFDD6E1A-EBA3-4FE9-AB28-EDE277939F29")
             Case 2 : ManageCbo.ManageValueListItemChecked(cboModel51, FormMode.EditRecord)
             Case 3 : cboModel51.SetEditValue(-1)
+        End Select
+    End Sub
+    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
+        Dim sCompID As String
+        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+    End Sub
+
+    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue)
+            Case 3 : cboCompProject.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
         End Select
     End Sub
 End Class

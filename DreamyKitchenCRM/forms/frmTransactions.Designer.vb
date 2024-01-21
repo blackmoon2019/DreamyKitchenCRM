@@ -529,7 +529,7 @@ Partial Class frmTransactions
         Me.txtCodeH.Properties.Appearance.Options.UseBackColor = True
         Me.txtCodeH.Properties.Appearance.Options.UseFont = True
         Me.txtCodeH.Properties.ReadOnly = True
-        Me.txtCodeH.Size = New System.Drawing.Size(87, 38)
+        Me.txtCodeH.Size = New System.Drawing.Size(136, 38)
         Me.txtCodeH.StyleController = Me.LayoutControl2
         Me.txtCodeH.TabIndex = 4
         Me.txtCodeH.Tag = "code,0"
@@ -1071,16 +1071,16 @@ Partial Class frmTransactions
         Me.LayoutControlItem4.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(345, 42)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(394, 42)
         Me.LayoutControlItem4.Text = "Κωδικός"
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(242, 23)
         '
         'EmptySpaceItem6
         '
         Me.EmptySpaceItem6.AllowHotTrack = False
-        Me.EmptySpaceItem6.Location = New System.Drawing.Point(345, 0)
+        Me.EmptySpaceItem6.Location = New System.Drawing.Point(394, 0)
         Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
-        Me.EmptySpaceItem6.Size = New System.Drawing.Size(1142, 42)
+        Me.EmptySpaceItem6.Size = New System.Drawing.Size(1093, 42)
         Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem39
@@ -1290,7 +1290,7 @@ Partial Class frmTransactions
         Me.TabNavigationPage2.PageText = "Στοιχεία Πίστωσης"
         Me.TabNavigationPage2.Properties.AppearanceCaption.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success
         Me.TabNavigationPage2.Properties.AppearanceCaption.Options.UseBorderColor = True
-        Me.TabNavigationPage2.Size = New System.Drawing.Size(1533, 1417)
+        Me.TabNavigationPage2.Size = New System.Drawing.Size(1533, 1437)
         '
         'LayoutControl3
         '
@@ -1309,7 +1309,7 @@ Partial Class frmTransactions
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(2169, 264, 1137, 700)
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1533, 1417)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1533, 1437)
         Me.LayoutControl3.TabIndex = 0
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -1317,12 +1317,12 @@ Partial Class frmTransactions
         '
         Me.GridControl1.DataSource = Me.VwTRANSDBindingSource
         Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(8, 9, 8, 9)
-        Me.GridControl1.Location = New System.Drawing.Point(12, 475)
+        Me.GridControl1.Location = New System.Drawing.Point(12, 482)
         Me.GridControl1.MainView = Me.GridView1
         Me.GridControl1.Margin = New System.Windows.Forms.Padding(5)
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpEdit1, Me.RepositoryItemLookUpEdit2})
-        Me.GridControl1.Size = New System.Drawing.Size(1509, 930)
+        Me.GridControl1.Size = New System.Drawing.Size(1509, 943)
         Me.GridControl1.TabIndex = 10
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
@@ -1507,7 +1507,7 @@ Partial Class frmTransactions
         'cmdSaveTransD
         '
         Me.cmdSaveTransD.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSaveTransD.Location = New System.Drawing.Point(1296, 432)
+        Me.cmdSaveTransD.Location = New System.Drawing.Point(1296, 439)
         Me.cmdSaveTransD.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSaveTransD.Name = "cmdSaveTransD"
         Me.cmdSaveTransD.Size = New System.Drawing.Size(225, 39)
@@ -1625,7 +1625,7 @@ Partial Class frmTransactions
         Me.txtCMTD.Location = New System.Drawing.Point(180, 303)
         Me.txtCMTD.Margin = New System.Windows.Forms.Padding(5)
         Me.txtCMTD.Name = "txtCMTD"
-        Me.txtCMTD.Size = New System.Drawing.Size(1341, 125)
+        Me.txtCMTD.Size = New System.Drawing.Size(1341, 132)
         Me.txtCMTD.StyleController = Me.LayoutControl3
         Me.txtCMTD.TabIndex = 8
         Me.txtCMTD.Tag = "cmt,0,1,2"
@@ -1636,7 +1636,7 @@ Partial Class frmTransactions
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem7, Me.LayoutControlItem6, Me.LayoutControlItem8, Me.LayoutControlItem30, Me.LayoutControlItem17, Me.LayoutControlItem24, Me.LayoutControlItem9, Me.LayoutControlItem10, Me.LayoutControlItem3, Me.EmptySpaceItem1, Me.LayoutControlItem11, Me.EmptySpaceItem2})
         Me.LayoutControlGroup2.Name = "Root"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1533, 1417)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1533, 1437)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem7
@@ -1730,16 +1730,16 @@ Partial Class frmTransactions
         Me.LayoutControlItem10.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem10.Location = New System.Drawing.Point(0, 291)
         Me.LayoutControlItem10.Name = "LayoutControlItem10"
-        Me.LayoutControlItem10.Size = New System.Drawing.Size(1513, 129)
+        Me.LayoutControlItem10.Size = New System.Drawing.Size(1513, 136)
         Me.LayoutControlItem10.Text = "Σχόλια"
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(156, 23)
         '
         'LayoutControlItem3
         '
         Me.LayoutControlItem3.Control = Me.GridControl1
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 463)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 470)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(1513, 934)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(1513, 947)
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem3.TextVisible = False
         '
@@ -1754,7 +1754,7 @@ Partial Class frmTransactions
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.Control = Me.cmdSaveTransD
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(1284, 420)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(1284, 427)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(229, 43)
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(0, 0)
@@ -1763,7 +1763,7 @@ Partial Class frmTransactions
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 420)
+        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 427)
         Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
         Me.EmptySpaceItem2.Size = New System.Drawing.Size(1284, 43)
         Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
@@ -1775,7 +1775,7 @@ Partial Class frmTransactions
         Me.TabNavigationPage3.Name = "TabNavigationPage3"
         Me.TabNavigationPage3.Properties.AppearanceCaption.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Warning
         Me.TabNavigationPage3.Properties.AppearanceCaption.Options.UseBorderColor = True
-        Me.TabNavigationPage3.Size = New System.Drawing.Size(1533, 1417)
+        Me.TabNavigationPage3.Size = New System.Drawing.Size(1533, 1437)
         '
         'LayoutControl4
         '
@@ -1788,7 +1788,7 @@ Partial Class frmTransactions
         Me.LayoutControl4.Name = "LayoutControl4"
         Me.LayoutControl4.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(2210, 1039, 1137, 700)
         Me.LayoutControl4.Root = Me.LayoutControlGroup5
-        Me.LayoutControl4.Size = New System.Drawing.Size(1533, 1417)
+        Me.LayoutControl4.Size = New System.Drawing.Size(1533, 1437)
         Me.LayoutControl4.TabIndex = 0
         Me.LayoutControl4.Text = "LayoutControl4"
         '
@@ -1811,7 +1811,7 @@ Partial Class frmTransactions
         Me.GridControl2.MainView = Me.GridView2
         Me.GridControl2.Margin = New System.Windows.Forms.Padding(5)
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1509, 1266)
+        Me.GridControl2.Size = New System.Drawing.Size(1509, 1286)
         Me.GridControl2.TabIndex = 65
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView2})
         '
@@ -1965,7 +1965,7 @@ Partial Class frmTransactions
         Me.LayoutControlGroup5.GroupBordersVisible = False
         Me.LayoutControlGroup5.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem12, Me.LayoutControlItem16, Me.LayoutControlItem41, Me.LayoutControlItem42, Me.EmptySpaceItem3})
         Me.LayoutControlGroup5.Name = "Root"
-        Me.LayoutControlGroup5.Size = New System.Drawing.Size(1533, 1417)
+        Me.LayoutControlGroup5.Size = New System.Drawing.Size(1533, 1437)
         Me.LayoutControlGroup5.TextVisible = False
         '
         'LayoutControlItem12
@@ -1985,7 +1985,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem16.Control = Me.GridControl2
         Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 127)
         Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(1513, 1270)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(1513, 1290)
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem16.TextVisible = False
         '
@@ -2026,7 +2026,7 @@ Partial Class frmTransactions
         Me.TabNavigationPage4.Controls.Add(Me.LayoutControl5)
         Me.TabNavigationPage4.Name = "TabNavigationPage4"
         Me.TabNavigationPage4.PageText = "Εξτρά Χρεώσεις"
-        Me.TabNavigationPage4.Size = New System.Drawing.Size(1533, 1417)
+        Me.TabNavigationPage4.Size = New System.Drawing.Size(1533, 1437)
         '
         'LayoutControl5
         '
@@ -2035,7 +2035,7 @@ Partial Class frmTransactions
         Me.LayoutControl5.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl5.Name = "LayoutControl5"
         Me.LayoutControl5.Root = Me.LayoutControlGroup6
-        Me.LayoutControl5.Size = New System.Drawing.Size(1533, 1417)
+        Me.LayoutControl5.Size = New System.Drawing.Size(1533, 1437)
         Me.LayoutControl5.TabIndex = 0
         Me.LayoutControl5.Text = "LayoutControl5"
         '
@@ -2054,7 +2054,7 @@ Partial Class frmTransactions
         Me.GridControl3.MainView = Me.GridView3
         Me.GridControl3.Name = "GridControl3"
         Me.GridControl3.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemAmt})
-        Me.GridControl3.Size = New System.Drawing.Size(1509, 1393)
+        Me.GridControl3.Size = New System.Drawing.Size(1509, 1413)
         Me.GridControl3.TabIndex = 0
         Me.GridControl3.UseEmbeddedNavigator = True
         Me.GridControl3.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
@@ -2173,7 +2173,7 @@ Partial Class frmTransactions
         Me.LayoutControlGroup6.GroupBordersVisible = False
         Me.LayoutControlGroup6.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem43})
         Me.LayoutControlGroup6.Name = "LayoutControlGroup6"
-        Me.LayoutControlGroup6.Size = New System.Drawing.Size(1533, 1417)
+        Me.LayoutControlGroup6.Size = New System.Drawing.Size(1533, 1437)
         Me.LayoutControlGroup6.TextVisible = False
         '
         'LayoutControlItem43
@@ -2181,7 +2181,7 @@ Partial Class frmTransactions
         Me.LayoutControlItem43.Control = Me.GridControl3
         Me.LayoutControlItem43.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem43.Name = "LayoutControlItem43"
-        Me.LayoutControlItem43.Size = New System.Drawing.Size(1513, 1397)
+        Me.LayoutControlItem43.Size = New System.Drawing.Size(1513, 1417)
         Me.LayoutControlItem43.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem43.TextVisible = False
         '

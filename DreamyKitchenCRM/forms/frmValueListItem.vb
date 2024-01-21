@@ -84,7 +84,7 @@ Public Class frmValueListItem
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
                 LName.Tag = "1"
                 cboValueList.ReadOnly = True
-            Case "CF691845-D6CC-4181-9760-6D15934C40B4"  ' Ντουλάπες
+            Case "AFDD6E1A-EBA3-4FE9-AB28-EDE277939F29"  ' Ντουλάπες
                 Me.Text = "Μοντέλα Ντουλαπών"
                 LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -97,6 +97,7 @@ Public Class frmValueListItem
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
         Dim sGuid As String
+        Dim sValuelistItemID As String
         Try
             If Valid.ValidateForm(LayoutControl1) Then
                 Select Case Mode
@@ -128,9 +129,11 @@ Public Class frmValueListItem
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then
+                        sValuelistItemID = cboValueList.EditValue.ToString
                         Cls.ClearCtrls(LayoutControl1)
                         txtCode.Text = DBQ.GetNextId("valueListItem")
                         txtCustomCode.Select()
+                        cboValueList.EditValue = sValuelistItemID
                     End If
                 End If
             End If

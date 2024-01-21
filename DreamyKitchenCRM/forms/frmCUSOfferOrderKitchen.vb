@@ -101,6 +101,7 @@ Public Class frmCUSOfferOrderKitchen
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
+                        INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '60344B92-1925-42E9-8D0F-0525990B0D5F' 
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
 
@@ -444,6 +445,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
 
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
+
         CusOfferOrderKitchen.ConvertToOrder()
     End Sub
     Private Sub ApplyDiscount(ByVal DiscMode As Integer, Optional ByVal DiscountChangedByUser As Boolean = False)

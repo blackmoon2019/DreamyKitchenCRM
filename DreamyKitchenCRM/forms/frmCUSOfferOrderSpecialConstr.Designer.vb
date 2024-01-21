@@ -22,6 +22,11 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSOfferOrderSpecialConstr))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cboCompProject = New DevExpress.XtraEditors.LookUpEdit()
+        Me.cboCompany = New DevExpress.XtraEditors.LookUpEdit()
+        Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
+        Me.chkofferAccepted = New DevExpress.XtraEditors.CheckEdit()
         Me.LabelControl1 = New DevExpress.XtraEditors.LabelControl()
         Me.cmdConvertToOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.chkVatVisible = New DevExpress.XtraEditors.CheckEdit()
@@ -89,6 +94,9 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem31 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem47 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LofferAccepted = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LCompProject = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem48 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem14 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -149,8 +157,14 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
+        Me.Vw_COMPTableAdapter = New DreamyKitchenCRM.DM_CCTTableAdapters.vw_COMPTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.cboCompProject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.cboCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.chkofferAccepted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -213,6 +227,9 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LofferAccepted, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LCompProject, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -271,6 +288,9 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.cboCompProject)
+        Me.LayoutControl1.Controls.Add(Me.cboCompany)
+        Me.LayoutControl1.Controls.Add(Me.chkofferAccepted)
         Me.LayoutControl1.Controls.Add(Me.LabelControl1)
         Me.LayoutControl1.Controls.Add(Me.cmdConvertToOrder)
         Me.LayoutControl1.Controls.Add(Me.chkVatVisible)
@@ -329,6 +349,73 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'cboCompProject
+        '
+        Me.cboCompProject.Location = New System.Drawing.Point(1188, 145)
+        Me.cboCompProject.Margin = New System.Windows.Forms.Padding(5)
+        Me.cboCompProject.Name = "cboCompProject"
+        Me.cboCompProject.Properties.AllowMouseWheel = False
+        Me.cboCompProject.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboCompProject.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboCompProject.Properties.DisplayMember = "description"
+        Me.cboCompProject.Properties.NullText = ""
+        Me.cboCompProject.Properties.PopupSizeable = False
+        Me.cboCompProject.Properties.ValueMember = "ID"
+        Me.cboCompProject.Size = New System.Drawing.Size(672, 38)
+        Me.cboCompProject.StyleController = Me.LayoutControl1
+        Me.cboCompProject.TabIndex = 100
+        Me.cboCompProject.Tag = "compTrashID,0,1,2"
+        '
+        'cboCompany
+        '
+        Me.cboCompany.Location = New System.Drawing.Point(269, 145)
+        Me.cboCompany.Margin = New System.Windows.Forms.Padding(5)
+        Me.cboCompany.Name = "cboCompany"
+        Me.cboCompany.Properties.AllowMouseWheel = False
+        Me.cboCompany.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboCompany.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboCompany.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Όνομα", 91, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("CouID", "Cou ID", 73, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AreaID", "Area ID", 79, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AdrID", "Adr ID", 70, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SourceID", "Source ID", 99, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SalerID", "Saler ID", 83, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("DoyID", "Doy ID", 73, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PrfID", "Prf ID", 64, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("phn", "Τηλέφωνο", 48, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("mob", "mob", 52, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("fax", "fax", 40, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 59, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("afm", "afm", 47, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("cmt", "cmt", 46, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 113, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 117, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 108, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "name", 62, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("COU_Name", "COU_Name", 110, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SRC_Name", "SRC_Name", 108, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("AREAS_Name", "AREAS_Name", 130, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ADR_Name", "ADR_Name", 110, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("PRF_Name", "PRF_Name", 106, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("SALERS_Name", "SALERS_Name", 139, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("color", "color", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Ar", "Ar", 33, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("tk", "tk", 31, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdby_Realname", "createdby_Realname", 191, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("HasFiles", "Has Files", 88, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 104, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.cboCompany.Properties.DataSource = Me.VwCOMPBindingSource
+        Me.cboCompany.Properties.DisplayMember = "Fullname"
+        Me.cboCompany.Properties.NullText = ""
+        Me.cboCompany.Properties.PopupSizeable = False
+        Me.cboCompany.Properties.ValueMember = "ID"
+        Me.cboCompany.Size = New System.Drawing.Size(671, 38)
+        Me.cboCompany.StyleController = Me.LayoutControl1
+        Me.cboCompany.TabIndex = 99
+        Me.cboCompany.Tag = "compID,0,1,2"
+        '
+        'VwCOMPBindingSource
+        '
+        Me.VwCOMPBindingSource.DataMember = "vw_COMP"
+        Me.VwCOMPBindingSource.DataSource = Me.DM_CCT
+        '
+        'DM_CCT
+        '
+        Me.DM_CCT.DataSetName = "DM_CCT"
+        Me.DM_CCT.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'chkofferAccepted
+        '
+        Me.chkofferAccepted.EditValue = CType(0, Byte)
+        Me.chkofferAccepted.Location = New System.Drawing.Point(1598, 61)
+        Me.chkofferAccepted.Margin = New System.Windows.Forms.Padding(5)
+        Me.chkofferAccepted.Name = "chkofferAccepted"
+        Me.chkofferAccepted.Properties.Appearance.BackColor = System.Drawing.Color.RosyBrown
+        Me.chkofferAccepted.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold)
+        Me.chkofferAccepted.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.chkofferAccepted.Properties.Appearance.Options.UseBackColor = True
+        Me.chkofferAccepted.Properties.Appearance.Options.UseFont = True
+        Me.chkofferAccepted.Properties.Appearance.Options.UseForeColor = True
+        Me.chkofferAccepted.Properties.Caption = "Αποδοχή Προσφοράς"
+        Me.chkofferAccepted.Properties.Tag = "dimChanged"
+        Me.chkofferAccepted.Properties.ValueChecked = CType(1, Byte)
+        Me.chkofferAccepted.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chkofferAccepted.Size = New System.Drawing.Size(262, 35)
+        Me.chkofferAccepted.StyleController = Me.LayoutControl1
+        Me.chkofferAccepted.TabIndex = 75
+        Me.chkofferAccepted.Tag = "offerAccepted,0,1,2"
+        '
         'LabelControl1
         '
         Me.LabelControl1.Appearance.Font = New System.Drawing.Font("Tahoma", 8.142858!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(161, Byte))
@@ -381,7 +468,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.lblDate.Appearance.ForeColor = System.Drawing.SystemColors.Highlight
         Me.lblDate.Appearance.Options.UseFont = True
         Me.lblDate.Appearance.Options.UseForeColor = True
-        Me.lblDate.Location = New System.Drawing.Point(1443, 187)
+        Me.lblDate.Location = New System.Drawing.Point(1443, 229)
         Me.lblDate.Name = "lblDate"
         Me.lblDate.Size = New System.Drawing.Size(417, 25)
         Me.lblDate.StyleController = Me.LayoutControl1
@@ -391,7 +478,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         'txtdtdaysOfDelivery
         '
         Me.txtdtdaysOfDelivery.EditValue = "0"
-        Me.txtdtdaysOfDelivery.Location = New System.Drawing.Point(1188, 187)
+        Me.txtdtdaysOfDelivery.Location = New System.Drawing.Point(1188, 229)
         Me.txtdtdaysOfDelivery.Margin = New System.Windows.Forms.Padding(5)
         Me.txtdtdaysOfDelivery.Name = "txtdtdaysOfDelivery"
         Me.txtdtdaysOfDelivery.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
@@ -430,7 +517,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         'cboCUS
         '
-        Me.cboCUS.Location = New System.Drawing.Point(269, 145)
+        Me.cboCUS.Location = New System.Drawing.Point(269, 187)
         Me.cboCUS.Margin = New System.Windows.Forms.Padding(5)
         Me.cboCUS.Name = "cboCUS"
         Me.cboCUS.Properties.AllowMouseWheel = False
@@ -475,7 +562,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         'dtpresentation
         '
         Me.dtpresentation.EditValue = Nothing
-        Me.dtpresentation.Location = New System.Drawing.Point(269, 187)
+        Me.dtpresentation.Location = New System.Drawing.Point(269, 229)
         Me.dtpresentation.Margin = New System.Windows.Forms.Padding(5)
         Me.dtpresentation.Name = "dtpresentation"
         Me.dtpresentation.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -582,7 +669,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.txtDisc1.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtDisc1.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtDisc1.Properties.MaskSettings.Set("mask", "P0")
-        Me.txtDisc1.Properties.ReadOnly = True
         Me.txtDisc1.Properties.Tag = "BenchExtraPrice"
         Me.txtDisc1.Properties.UseReadOnlyAppearance = False
         Me.txtDisc1.Size = New System.Drawing.Size(187, 38)
@@ -604,7 +690,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.txtDisc2.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtDisc2.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtDisc2.Properties.MaskSettings.Set("mask", "P0")
-        Me.txtDisc2.Properties.ReadOnly = True
         Me.txtDisc2.Properties.Tag = "BenchExtraPrice"
         Me.txtDisc2.Properties.UseReadOnlyAppearance = False
         Me.txtDisc2.Size = New System.Drawing.Size(187, 38)
@@ -626,7 +711,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.txtDisc3.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtDisc3.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtDisc3.Properties.MaskSettings.Set("mask", "P0")
-        Me.txtDisc3.Properties.ReadOnly = True
         Me.txtDisc3.Properties.Tag = "BenchExtraPrice"
         Me.txtDisc3.Properties.UseReadOnlyAppearance = False
         Me.txtDisc3.Size = New System.Drawing.Size(187, 38)
@@ -648,7 +732,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.txtDisc4.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtDisc4.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtDisc4.Properties.MaskSettings.Set("mask", "P0")
-        Me.txtDisc4.Properties.ReadOnly = True
         Me.txtDisc4.Properties.Tag = "BenchExtraPrice"
         Me.txtDisc4.Properties.UseReadOnlyAppearance = False
         Me.txtDisc4.Size = New System.Drawing.Size(187, 38)
@@ -859,30 +942,30 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         'txtComments
         '
-        Me.txtComments.Location = New System.Drawing.Point(656, 315)
+        Me.txtComments.Location = New System.Drawing.Point(656, 357)
         Me.txtComments.Margin = New System.Windows.Forms.Padding(5)
         Me.txtComments.Name = "txtComments"
-        Me.txtComments.Size = New System.Drawing.Size(615, 432)
+        Me.txtComments.Size = New System.Drawing.Size(615, 390)
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
         '
         'txtDescription
         '
-        Me.txtDescription.Location = New System.Drawing.Point(25, 315)
+        Me.txtDescription.Location = New System.Drawing.Point(25, 357)
         Me.txtDescription.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDescription.Name = "txtDescription"
-        Me.txtDescription.Size = New System.Drawing.Size(627, 432)
+        Me.txtDescription.Size = New System.Drawing.Size(627, 390)
         Me.txtDescription.StyleController = Me.LayoutControl1
         Me.txtDescription.TabIndex = 17
         Me.txtDescription.Tag = "description,0,1,2"
         '
         'txtnotes
         '
-        Me.txtnotes.Location = New System.Drawing.Point(1275, 315)
+        Me.txtnotes.Location = New System.Drawing.Point(1275, 357)
         Me.txtnotes.Margin = New System.Windows.Forms.Padding(5)
         Me.txtnotes.Name = "txtnotes"
-        Me.txtnotes.Size = New System.Drawing.Size(585, 432)
+        Me.txtnotes.Size = New System.Drawing.Size(585, 390)
         Me.txtnotes.StyleController = Me.LayoutControl1
         Me.txtnotes.TabIndex = 17
         Me.txtnotes.Tag = "notes,0,1,2"
@@ -936,7 +1019,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         'cboTRANSH
         '
-        Me.cboTRANSH.Location = New System.Drawing.Point(1188, 145)
+        Me.cboTRANSH.Location = New System.Drawing.Point(1188, 187)
         Me.cboTRANSH.Margin = New System.Windows.Forms.Padding(5)
         Me.cboTRANSH.Name = "cboTRANSH"
         Me.cboTRANSH.Properties.AllowMouseWheel = False
@@ -1077,7 +1160,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboVALUELISTITEM4.Size = New System.Drawing.Size(541, 38)
         Me.cboVALUELISTITEM4.StyleController = Me.LayoutControl1
         Me.cboVALUELISTITEM4.TabIndex = 49
-        Me.cboVALUELISTITEM4.Tag = "VALUELISTITEMID4,0,1,2"
+        Me.cboVALUELISTITEM4.Tag = "doorTypeID4,0,1,2"
         '
         'VwVALUELISTITEMV2BindingSource
         '
@@ -1108,7 +1191,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboValueListItem.Size = New System.Drawing.Size(541, 38)
         Me.cboValueListItem.StyleController = Me.LayoutControl1
         Me.cboValueListItem.TabIndex = 49
-        Me.cboValueListItem.Tag = "VALUELISTITEMID1,0,1,2"
+        Me.cboValueListItem.Tag = "doorTypeID1,0,1,2"
         '
         'cboVALUELISTITEM2
         '
@@ -1150,7 +1233,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboVALUELISTITEM3.Size = New System.Drawing.Size(541, 38)
         Me.cboVALUELISTITEM3.StyleController = Me.LayoutControl1
         Me.cboVALUELISTITEM3.TabIndex = 49
-        Me.cboVALUELISTITEM3.Tag = "VALUELISTITEMID3,0,1,2"
+        Me.cboVALUELISTITEM3.Tag = "doorTypeID3,0,1,2"
         '
         'cboScpecialConstr1
         '
@@ -1293,11 +1376,11 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlGroup1.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question
         Me.LayoutControlGroup1.AppearanceGroup.Options.UseBorderColor = True
         Me.LayoutControlGroup1.CustomizationFormText = "Στοιχεία Προσφοράς/Παραγγελίας"
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem30, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem46, Me.LayoutControlItem31, Me.LayoutControlItem47, Me.LayoutControlItem11})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem30, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem46, Me.LayoutControlItem31, Me.LayoutControlItem47, Me.LayoutControlItem11, Me.LofferAccepted, Me.LayoutControlItem13, Me.LCompProject})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.OptionsItemText.TextToControlDistance = 1
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1865, 230)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1865, 272)
         Me.LayoutControlGroup1.Text = "Στοιχεία Προσφοράς/Παραγγελίας"
         '
         'LayoutControlItem9
@@ -1306,7 +1389,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem9.CustomizationFormText = "Νομός"
         Me.LayoutControlItem9.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem9.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 84)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 126)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(919, 42)
         Me.LayoutControlItem9.Tag = "1"
@@ -1320,7 +1403,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem30.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem30.CustomizationFormText = "Ημερ/νία Προσφοράς"
         Me.LayoutControlItem30.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem30.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem30.Location = New System.Drawing.Point(0, 126)
+        Me.LayoutControlItem30.Location = New System.Drawing.Point(0, 168)
         Me.LayoutControlItem30.Name = "LayoutControlItem30"
         Me.LayoutControlItem30.Size = New System.Drawing.Size(919, 42)
         Me.LayoutControlItem30.Tag = "1"
@@ -1343,7 +1426,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.EmptySpaceItem1.AllowHotTrack = False
         Me.EmptySpaceItem1.Location = New System.Drawing.Point(352, 0)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1487, 42)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(1221, 42)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem46
@@ -1364,7 +1447,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         Me.LayoutControlItem31.Control = Me.txtdtdaysOfDelivery
         Me.LayoutControlItem31.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem31.Location = New System.Drawing.Point(919, 126)
+        Me.LayoutControlItem31.Location = New System.Drawing.Point(919, 168)
         Me.LayoutControlItem31.Name = "LayoutControlItem31"
         Me.LayoutControlItem31.Size = New System.Drawing.Size(499, 42)
         Me.LayoutControlItem31.Tag = "1"
@@ -1374,7 +1457,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         'LayoutControlItem47
         '
         Me.LayoutControlItem47.Control = Me.lblDate
-        Me.LayoutControlItem47.Location = New System.Drawing.Point(1418, 126)
+        Me.LayoutControlItem47.Location = New System.Drawing.Point(1418, 168)
         Me.LayoutControlItem47.Name = "LayoutControlItem47"
         Me.LayoutControlItem47.Size = New System.Drawing.Size(421, 42)
         Me.LayoutControlItem47.TextSize = New System.Drawing.Size(0, 0)
@@ -1387,12 +1470,40 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem11.CustomizationFormText = "Περιοχή"
         Me.LayoutControlItem11.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem11.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem11.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem11.Location = New System.Drawing.Point(919, 84)
+        Me.LayoutControlItem11.Location = New System.Drawing.Point(919, 126)
         Me.LayoutControlItem11.Name = "LayoutControlItem11"
         Me.LayoutControlItem11.Size = New System.Drawing.Size(920, 42)
         Me.LayoutControlItem11.Tag = "1"
         Me.LayoutControlItem11.Text = "Έργο Πελάτη"
         Me.LayoutControlItem11.TextSize = New System.Drawing.Size(243, 23)
+        '
+        'LofferAccepted
+        '
+        Me.LofferAccepted.Control = Me.chkofferAccepted
+        Me.LofferAccepted.Location = New System.Drawing.Point(1573, 0)
+        Me.LofferAccepted.Name = "LofferAccepted"
+        Me.LofferAccepted.Size = New System.Drawing.Size(266, 42)
+        Me.LofferAccepted.Text = "Αποδοχή Προσφοράς"
+        Me.LofferAccepted.TextSize = New System.Drawing.Size(0, 0)
+        Me.LofferAccepted.TextVisible = False
+        '
+        'LayoutControlItem13
+        '
+        Me.LayoutControlItem13.Control = Me.cboCompany
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 84)
+        Me.LayoutControlItem13.Name = "LayoutControlItem13"
+        Me.LayoutControlItem13.Size = New System.Drawing.Size(919, 42)
+        Me.LayoutControlItem13.Text = "Εταιρία"
+        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(243, 23)
+        '
+        'LCompProject
+        '
+        Me.LCompProject.Control = Me.cboCompProject
+        Me.LCompProject.Location = New System.Drawing.Point(919, 84)
+        Me.LCompProject.Name = "LCompProject"
+        Me.LCompProject.Size = New System.Drawing.Size(920, 42)
+        Me.LCompProject.Text = "Έργο Εταιρίας"
+        Me.LCompProject.TextSize = New System.Drawing.Size(243, 23)
         '
         'LayoutControlItem48
         '
@@ -1426,9 +1537,9 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlGroup2.AppearanceGroup.Options.UseBorderColor = True
         Me.LayoutControlGroup2.CustomizationFormText = "Στοιχεία Προσφοράς/Παραγγελίας"
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem3, Me.LayoutControlItem14, Me.LayoutControlItem20})
-        Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 230)
+        Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 272)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1865, 522)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1865, 480)
         Me.LayoutControlGroup2.Text = "Στοιχεία Προσφοράς/Παραγγελίας"
         '
         'LayoutControlItem3
@@ -1439,7 +1550,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem3.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem3.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(631, 460)
+        Me.LayoutControlItem3.Size = New System.Drawing.Size(631, 418)
         Me.LayoutControlItem3.Text = "Περιγραφή"
         Me.LayoutControlItem3.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem3.TextSize = New System.Drawing.Size(243, 23)
@@ -1452,7 +1563,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem14.Location = New System.Drawing.Point(631, 0)
         Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(619, 460)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(619, 418)
         Me.LayoutControlItem14.Text = "Σχόλια"
         Me.LayoutControlItem14.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(243, 23)
@@ -1465,7 +1576,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem20.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem20.Location = New System.Drawing.Point(1250, 0)
         Me.LayoutControlItem20.Name = "LayoutControlItem20"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(589, 460)
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(589, 418)
         Me.LayoutControlItem20.Text = "Παρατηρήσεις"
         Me.LayoutControlItem20.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(243, 23)
@@ -2075,6 +2186,10 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
+        'Vw_COMPTableAdapter
+        '
+        Me.Vw_COMPTableAdapter.ClearBeforeFill = True
+        '
         'frmCUSOfferOrderSpecialConstr
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -2087,7 +2202,11 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.Text = "frmCUSOfferOrderSpecialConstr"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        Me.LayoutControl1.PerformLayout()
+        CType(Me.cboCompProject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.cboCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.chkofferAccepted.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtdtdaysOfDelivery.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2150,6 +2269,9 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem47, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LofferAccepted, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LCompProject, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -2336,4 +2458,13 @@ Partial Class frmCUSOfferOrderSpecialConstr
     Friend WithEvents Vw_CCTTableAdapter As DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter
     Friend WithEvents DM_TRANS As DM_TRANS
     Friend WithEvents CCT_TRANSHTableAdapter As DM_TRANSTableAdapters.CCT_TRANSHTableAdapter
+    Friend WithEvents chkofferAccepted As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LofferAccepted As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cboCompany As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cboCompProject As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LCompProject As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents DM_CCT As DM_CCT
+    Friend WithEvents VwCOMPBindingSource As BindingSource
+    Friend WithEvents Vw_COMPTableAdapter As DM_CCTTableAdapters.vw_COMPTableAdapter
 End Class

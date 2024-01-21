@@ -1,16 +1,8 @@
 ﻿Imports System.Data.SqlClient
-Imports DevExpress.Utils
-Imports DevExpress.Utils.Menu
-Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraEditors.Repository
-Imports DevExpress.XtraGrid.Columns
-Imports DevExpress.XtraGrid.Menu
-Imports DevExpress.XtraGrid.Views.Grid
-Imports DevExpress.XtraLayout
-Imports DevExpress.XtraReports.UI
 
 Public Class frmCUSOfferOrderSpecialConstr
+    Private CUSOfferOrderSpecialConstr As New CUSOfferOrderSpecialConstr
     Private sID As String
     Private ManageCbo As New CombosManager
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
@@ -70,130 +62,14 @@ Public Class frmCUSOfferOrderSpecialConstr
         Me.Close()
     End Sub
     Private Sub frmCUSOfferSpecialConstr_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DM_TRANS.CCT_TRANSH' table. You can move, or remove it, as needed.
-        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
-        Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
-        'TODO: This line of code loads data into the 'DM_VALUELISTITEM.vw_VALUELISTITEM_V2' table. You can move, or remove it, as needed.
-        Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-        'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
-        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
-        'TODO: This line of code loads data into the 'DM_VALUELISTITEM1.vw_VALUELISTITEMSpecialConstr' table. You can move, or remove it, as needed.
-        Me.Vw_VALUELISTITEMSpecialConstrTableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEMSpecialConstr)
-        'TODO: This line of code loads data into the 'DM_VALUELISTITEM1.vw_VALUELISTITEMSpecialConstr' table. You can move, or remove it, as needed.
-        Me.Vw_CONSTR_TYPETableAdapter.Fill(Me.DMDataSet.vw_CONSTR_TYPE)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
-        Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
-        Prog_Prop.GetProgPROSF()
-
-
-        If sIsOrder = True Then
-            LayoutControlGroup2.Text = "Στοιχεία Παραγγελίας"
-            LayoutControlGroup1.Text = "Στοιχεία Παραγγελίας"
-            LayoutControlItem12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            LayoutControlItem15.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            LayoutControlItem50.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            LayoutControlItem57.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            LayoutControlItem72.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
-        Else
-            LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
-            LayoutControlGroup2.Text = "Στοιχεία Προσφοράς"
-            LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
-            LayoutControlItem4.Text = "Αρ. Προσφοράς"
-            LayoutControlItem11.Tag = 0
-        End If
-        Select Case Mode
-            Case FormMode.NewRecord
-                txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_SPECIAL_CONSTR")
-                cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
-                txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
-                txtnotes.EditValue = ProgProps.CUS_NOTES
-                txtTransp.EditValue = ProgProps.SCTransp
-                txtMeasurement.EditValue = ProgProps.SCMeasurement
-                txtRemove.EditValue = ProgProps.SCRemove
-                'cmdConvertToOrder.Enabled = False
-                LayoutControlItem7.Visibility = Utils.LayoutVisibility.Never
-            Case FormMode.EditRecord
-                Dim sFields As New Dictionary(Of String, String)
-                LoadForms.LoadForm(LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_SPECIAL_CONSTR.* " &
-                                                   " from CCT_ORDERS_SPECIAL_CONSTR " &
-                                                   " left join CCT_ORDERS_SPECIAL_CONSTR  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_SPECIAL_CONSTR.id " &
-                                                   " where CCT_ORDERS_SPECIAL_CONSTR.id = " & toSQLValueS(sID), sFields)
-                If sIsOrder = False Then
-                    If sFields("OrderID") <> "" Then
-                        'cmdConvertToOrder.Enabled = False
-                        LayoutControlItem7.Visibility = Utils.LayoutVisibility.Never
-                        cmdSave.Enabled = False
-                        LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
-                    End If
-                Else
-                    LayoutControlItem7.Visibility = Utils.LayoutVisibility.Never
-                    'cmdConvertToOrder.Enabled = False
-                End If
-        End Select
+        'TODO: This line of code loads data into the 'DM_CCT.vw_COMP' table. You can move, or remove it, as needed.
+        Me.Vw_COMPTableAdapter.Fill(Me.DM_CCT.vw_COMP)
+        CUSOfferOrderSpecialConstr.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder)
+        CUSOfferOrderSpecialConstr.LoadForm()
         Me.CenterToScreen()
-        'cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
-        Dim sResult As Boolean
-        Dim sGuid As String
-        Try
-            If Valid.ValidateForm(LayoutControl1) Then
-                Select Case Mode
-                    Case FormMode.NewRecord
-                        sGuid = System.Guid.NewGuid.ToString
-                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sGuid, , "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
-                        sID = sGuid
-                    Case FormMode.EditRecord
-                        Dim sDate As String = lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", LayoutControl1,,, sID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
-                        'sGuid = sID
-                End Select
-
-                If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("CCT_ORDERS_SPECIAL_CONSTR")
-                End If
-
-                If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
-                    If sIsOrder Then
-                        Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
-                        HasKitchen = cboTRANSH.GetColumnValue("Iskitchen")
-                        HasCloset = cboTRANSH.GetColumnValue("Iscloset")
-                        HasDoors = cboTRANSH.GetColumnValue("Isdoors")
-                        HasSc = cboTRANSH.GetColumnValue("Issc")
-                        If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                            Exit Sub
-                        End If
-                        Dim cmd As SqlCommand
-                        Dim sdr As SqlDataReader
-                        Dim sSQL As String
-                        Dim cctOrderKitchen As String = "00000000-0000-0000-0000-000000000000"
-
-                        sSQL = "select ID from CCT_ORDERS_KITCHEN where transhID = " & (toSQLValueS(cboTRANSH.EditValue.ToString))
-                        cmd = New SqlCommand(sSQL, CNDB)
-                        sdr = cmd.ExecuteReader()
-                        If (sdr.Read() = True) Then
-                            If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then cctOrderKitchen = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
-                        End If
-                        sdr.Close()
-                        cmd.Dispose()
-                    End If
-
-                    '    Cls.ClearCtrls(LayoutControl1)
-                    '    txtCode.Text = DBQ.GetNextId("CCT_OFFERS_SPECIAL_CONSTR")
-                End If
-            End If
-
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        CUSOfferOrderSpecialConstr.SaveRecord(sID)
     End Sub
 
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
@@ -210,62 +86,62 @@ Public Class frmCUSOfferOrderSpecialConstr
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
-
-    Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
+    Private Sub ApplyDiscount(ByVal DiscMode As Integer, Optional ByVal DiscountChangedByUser As Boolean = False)
         Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc1.EditValue = ProgProps.CusDiscountSpecial
-        ' If ProgProps.CusDiscountSpecial > 0 Then
-        InitialPrice = txtInitialPrice1.EditValue
-        Disc = ProgProps.CusDiscountSpecial / 100
-        Discount = Disc * InitialPrice
-        FinalPrice = InitialPrice - Discount
-        txtInitialPrice1.EditValue = InitialPrice
-        txtDiscount1.EditValue = Discount
-        txtFinalPrice1.EditValue = FinalPrice
-        'End If
+        If Me.IsActive = False Then Exit Sub
+        Select Case DiscMode
+            Case 1
+                If DiscountChangedByUser = False Then txtDisc1.EditValue = ProgProps.CusDiscountSpecial
+                InitialPrice = txtInitialPrice1.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc1.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice = InitialPrice - Discount
+                txtInitialPrice1.EditValue = InitialPrice
+                txtDiscount1.EditValue = Discount
+                txtFinalPrice1.EditValue = FinalPrice
+            Case 2
+                If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountSpecial
+                InitialPrice = txtInitialPrice2.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc2.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice = InitialPrice - Discount
+                txtInitialPrice2.EditValue = InitialPrice
+                txtDiscount2.EditValue = Discount
+                txtFinalPrice2.EditValue = FinalPrice
+            Case 3
+                If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountSpecial
+                InitialPrice = txtInitialPrice3.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc3.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice = InitialPrice - Discount
+                txtInitialPrice3.EditValue = InitialPrice
+                txtDiscount3.EditValue = Discount
+                txtFinalPrice3.EditValue = FinalPrice
+            Case 4
+                If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountSpecial
+                InitialPrice = txtInitialPrice4.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc4.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice = InitialPrice - Discount
+                txtInitialPrice4.EditValue = InitialPrice
+                txtDiscount4.EditValue = Discount
+                txtFinalPrice4.EditValue = FinalPrice
+        End Select
+    End Sub
+    Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
+        ApplyDiscount(1)
     End Sub
 
     Private Sub txtInitialPrice2_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice2.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc2.EditValue = ProgProps.CusDiscountSpecial
-        '   If ProgProps.CusDiscountSpecial > 0 Then
-        InitialPrice = txtInitialPrice2.EditValue
-        Disc = ProgProps.CusDiscountSpecial / 100
-        Discount = Disc * InitialPrice
-        FinalPrice = InitialPrice - Discount
-        txtInitialPrice2.EditValue = InitialPrice
-        txtDiscount2.EditValue = Discount
-        txtFinalPrice2.EditValue = FinalPrice
-        '  End If
-
+        ApplyDiscount(2)
     End Sub
 
     Private Sub txtInitialPrice3_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice3.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc3.EditValue = ProgProps.CusDiscountSpecial
-        ' If ProgProps.CusDiscountSpecial > 0 Then
-        InitialPrice = txtInitialPrice3.EditValue
-        Disc = ProgProps.CusDiscountSpecial / 100
-        Discount = Disc * InitialPrice
-        FinalPrice = InitialPrice - Discount
-        txtInitialPrice3.EditValue = InitialPrice
-        txtDiscount3.EditValue = Discount
-        txtFinalPrice3.EditValue = FinalPrice
-        '  End If
+        ApplyDiscount(3)
     End Sub
 
     Private Sub txtInitialPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice4.EditValueChanged
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
-        txtDisc4.EditValue = ProgProps.CusDiscountSpecial
-        '  If ProgProps.CusDiscountSpecial > 0 Then
-        InitialPrice = txtInitialPrice4.EditValue
-        Disc = ProgProps.CusDiscountSpecial / 100
-        Discount = Disc * InitialPrice
-        FinalPrice = InitialPrice - Discount
-        txtInitialPrice4.EditValue = InitialPrice
-        txtDiscount4.EditValue = Discount
-        txtFinalPrice4.EditValue = FinalPrice
-        ' End If
+        ApplyDiscount(4)
     End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
@@ -277,6 +153,7 @@ Public Class frmCUSOfferOrderSpecialConstr
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
                         from vw_TRANSH t
+                        INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = 'AE5476D4-2152-4B20-87BB-7933B0215D04' 
                         where completed = 0 and  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
     End Sub
@@ -308,19 +185,7 @@ Public Class frmCUSOfferOrderSpecialConstr
     End Function
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
-        If sIsOrder = False Then
-            Dim report As New RepCUSOfferSpecialContr()
-            report.Parameters.Item(0).Value = sID
-            report.CreateDocument()
-            Dim printTool As New ReportPrintTool(report)
-            printTool.ShowRibbonPreview()
-        Else
-            Dim report As New RepCUSOrderSpecialConstr
-            report.Parameters.Item(0).Value = sID
-            report.CreateDocument()
-            Dim printTool As New ReportPrintTool(report)
-            printTool.ShowRibbonPreview()
-        End If
+        CUSOfferOrderSpecialConstr.PrintOfferOrder()
     End Sub
     Private Sub frmCUSOfferSpecialConstr_Resize(sender As Object, e As EventArgs) Handles Me.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
@@ -334,8 +199,8 @@ Public Class frmCUSOfferOrderSpecialConstr
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub
@@ -423,24 +288,7 @@ Public Class frmCUSOfferOrderSpecialConstr
     End Sub
 
     Private Sub cmdConvertToOrder_Click(sender As Object, e As EventArgs) Handles cmdConvertToOrder.Click
-        Try
-            If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
-                    oCmd.CommandType = CommandType.StoredProcedure
-                    oCmd.Parameters.AddWithValue("@OfferID", sID)
-                    oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
-                    oCmd.Parameters.AddWithValue("@Mode", 4)
-                    oCmd.ExecuteNonQuery()
-                End Using
-                XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                'cmdConvertToOrder.Enabled = False
-                cmdSave.Enabled = False
-                LayoutControlItem7.Visibility = Utils.LayoutVisibility.Always
-                LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
-            End If
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        CUSOfferOrderSpecialConstr.ConvertToOrder()
     End Sub
     Private Sub cboVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
@@ -490,5 +338,47 @@ Public Class frmCUSOfferOrderSpecialConstr
         Else
             cmd = New SqlCommand("Update CCT_ORDERS_SPECIAL_CONSTR set visibleVAT = 0 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
         End If
+    End Sub
+
+    Private Sub txtDisc1_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc1.EditValueChanged
+        ApplyDiscount(1, True)
+    End Sub
+
+    Private Sub txtDisc2_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc2.EditValueChanged
+        ApplyDiscount(2, True)
+    End Sub
+
+    Private Sub txtDisc3_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc3.EditValueChanged
+        ApplyDiscount(3, True)
+    End Sub
+
+    Private Sub txtDisc4_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc4.EditValueChanged
+        ApplyDiscount(4, True)
+    End Sub
+    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
+        Dim sCompID As String
+        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+    End Sub
+
+    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue)
+            Case 3 : cboCompProject.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+        End Select
     End Sub
 End Class

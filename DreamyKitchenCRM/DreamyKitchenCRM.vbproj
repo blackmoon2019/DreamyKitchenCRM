@@ -221,7 +221,9 @@
     <Compile Include="classes\CN.vb" />
     <Compile Include="classes\CombosManager.vb" />
     <Compile Include="classes\CusOfferOrderCloset.vb" />
+    <Compile Include="classes\CusOfferOrderDoors.vb" />
     <Compile Include="classes\CusOfferOrderKitchen.vb" />
+    <Compile Include="classes\CUSOfferOrderSpecialConstr.vb" />
     <Compile Include="classes\Customers.vb" />
     <Compile Include="classes\DBQueries.vb" />
     <Compile Include="classes\FillCombos.vb" />

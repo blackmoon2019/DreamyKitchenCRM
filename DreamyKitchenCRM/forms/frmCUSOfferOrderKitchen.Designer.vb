@@ -30,6 +30,7 @@ Partial Class frmCUSOfferOrderKitchen
         Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Me.coldCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.chkofferAccepted = New DevExpress.XtraEditors.CheckEdit()
         Me.txtNotes = New DevExpress.XtraEditors.MemoEdit()
         Me.txtCUSOfferOrderFilename = New DevExpress.XtraEditors.ButtonEdit()
         Me.cboSup = New DevExpress.XtraEditors.LookUpEdit()
@@ -152,6 +153,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LCompProject = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem90 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LofferAccepted = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem26 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -296,6 +298,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Vw_VALUELISTITEMModelKitchenTableAdapter = New DreamyKitchenCRM.DM_VALUELISTITEMTableAdapters.vw_VALUELISTITEMModelKitchenTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
+        CType(Me.chkofferAccepted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtNotes.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCUSOfferOrderFilename.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboSup.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -413,6 +416,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LCompProject, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem90, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LofferAccepted, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -539,6 +543,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.chkofferAccepted)
         Me.LayoutControl1.Controls.Add(Me.txtNotes)
         Me.LayoutControl1.Controls.Add(Me.txtCUSOfferOrderFilename)
         Me.LayoutControl1.Controls.Add(Me.cboSup)
@@ -642,6 +647,27 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControl1.Size = New System.Drawing.Size(1885, 1454)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'chkofferAccepted
+        '
+        Me.chkofferAccepted.EditValue = CType(0, Byte)
+        Me.chkofferAccepted.Location = New System.Drawing.Point(1610, 61)
+        Me.chkofferAccepted.Margin = New System.Windows.Forms.Padding(5)
+        Me.chkofferAccepted.Name = "chkofferAccepted"
+        Me.chkofferAccepted.Properties.Appearance.BackColor = System.Drawing.Color.RosyBrown
+        Me.chkofferAccepted.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold)
+        Me.chkofferAccepted.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.chkofferAccepted.Properties.Appearance.Options.UseBackColor = True
+        Me.chkofferAccepted.Properties.Appearance.Options.UseFont = True
+        Me.chkofferAccepted.Properties.Appearance.Options.UseForeColor = True
+        Me.chkofferAccepted.Properties.Caption = "Αποδοχή Προσφοράς"
+        Me.chkofferAccepted.Properties.Tag = "dimChanged"
+        Me.chkofferAccepted.Properties.ValueChecked = CType(1, Byte)
+        Me.chkofferAccepted.Properties.ValueUnchecked = CType(0, Byte)
+        Me.chkofferAccepted.Size = New System.Drawing.Size(250, 35)
+        Me.chkofferAccepted.StyleController = Me.LayoutControl1
+        Me.chkofferAccepted.TabIndex = 74
+        Me.chkofferAccepted.Tag = "offerAccepted,0,1,2"
         '
         'txtNotes
         '
@@ -944,8 +970,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtKFinalHeight.Name = "txtKFinalHeight"
         Me.txtKFinalHeight.Properties.DisplayFormat.FormatString = "n"
         Me.txtKFinalHeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtKFinalHeight.Properties.EditFormat.FormatString = "n2"
-        Me.txtKFinalHeight.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtKFinalHeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtKFinalHeight.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtKFinalHeight.Properties.MaskSettings.Set("mask", "n2")
@@ -980,8 +1004,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtYFinalHeight.Name = "txtYFinalHeight"
         Me.txtYFinalHeight.Properties.DisplayFormat.FormatString = "n"
         Me.txtYFinalHeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtYFinalHeight.Properties.EditFormat.FormatString = "n2"
-        Me.txtYFinalHeight.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtYFinalHeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtYFinalHeight.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtYFinalHeight.Properties.MaskSettings.Set("mask", "n2")
@@ -1077,7 +1099,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.cboEMP.Properties.NullText = ""
         Me.cboEMP.Properties.PopupSizeable = False
         Me.cboEMP.Properties.ValueMember = "ID"
-        Me.cboEMP.Size = New System.Drawing.Size(677, 38)
+        Me.cboEMP.Size = New System.Drawing.Size(423, 38)
         Me.cboEMP.StyleController = Me.LayoutControl1
         Me.cboEMP.TabIndex = 5
         Me.cboEMP.Tag = "empID,0,1,2"
@@ -1173,8 +1195,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtVFinalHeight.Name = "txtVFinalHeight"
         Me.txtVFinalHeight.Properties.DisplayFormat.FormatString = "n"
         Me.txtVFinalHeight.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtVFinalHeight.Properties.EditFormat.FormatString = "n2"
-        Me.txtVFinalHeight.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
         Me.txtVFinalHeight.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtVFinalHeight.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtVFinalHeight.Properties.MaskSettings.Set("mask", "n2")
@@ -2089,7 +2109,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtDisc1.Properties.MaskSettings.Set("mask", "P0")
         Me.txtDisc1.Properties.Tag = "BenchExtraPrice"
         Me.txtDisc1.Properties.UseReadOnlyAppearance = False
-        Me.txtDisc1.Size = New System.Drawing.Size(87, 38)
+        Me.txtDisc1.Size = New System.Drawing.Size(90, 38)
         Me.txtDisc1.StyleController = Me.LayoutControl1
         Me.txtDisc1.TabIndex = 42
         Me.txtDisc1.Tag = "discount1,0,1,2"
@@ -2110,7 +2130,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtDisc2.Properties.MaskSettings.Set("mask", "P0")
         Me.txtDisc2.Properties.Tag = "BenchExtraPrice"
         Me.txtDisc2.Properties.UseReadOnlyAppearance = False
-        Me.txtDisc2.Size = New System.Drawing.Size(87, 38)
+        Me.txtDisc2.Size = New System.Drawing.Size(90, 38)
         Me.txtDisc2.StyleController = Me.LayoutControl1
         Me.txtDisc2.TabIndex = 42
         Me.txtDisc2.Tag = "discount2,0,1,2"
@@ -2131,7 +2151,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtDisc3.Properties.MaskSettings.Set("mask", "P0")
         Me.txtDisc3.Properties.Tag = "BenchExtraPrice"
         Me.txtDisc3.Properties.UseReadOnlyAppearance = False
-        Me.txtDisc3.Size = New System.Drawing.Size(87, 38)
+        Me.txtDisc3.Size = New System.Drawing.Size(90, 38)
         Me.txtDisc3.StyleController = Me.LayoutControl1
         Me.txtDisc3.TabIndex = 42
         Me.txtDisc3.Tag = "discount3,0,1,2"
@@ -2152,7 +2172,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtDisc4.Properties.MaskSettings.Set("mask", "P0")
         Me.txtDisc4.Properties.Tag = "BenchExtraPrice"
         Me.txtDisc4.Properties.UseReadOnlyAppearance = False
-        Me.txtDisc4.Size = New System.Drawing.Size(87, 38)
+        Me.txtDisc4.Size = New System.Drawing.Size(90, 38)
         Me.txtDisc4.StyleController = Me.LayoutControl1
         Me.txtDisc4.TabIndex = 42
         Me.txtDisc4.Tag = "discount4,0,1,2"
@@ -2161,7 +2181,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDiscount1
         '
         Me.txtDiscount1.EditValue = "0,00 €"
-        Me.txtDiscount1.Location = New System.Drawing.Point(1428, 1189)
+        Me.txtDiscount1.Location = New System.Drawing.Point(1431, 1189)
         Me.txtDiscount1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDiscount1.Name = "txtDiscount1"
         Me.txtDiscount1.Properties.DisplayFormat.FormatString = "c"
@@ -2174,7 +2194,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtDiscount1.Properties.ReadOnly = True
         Me.txtDiscount1.Properties.Tag = "BenchExtraPrice"
         Me.txtDiscount1.Properties.UseReadOnlyAppearance = False
-        Me.txtDiscount1.Size = New System.Drawing.Size(165, 38)
+        Me.txtDiscount1.Size = New System.Drawing.Size(163, 38)
         Me.txtDiscount1.StyleController = Me.LayoutControl1
         Me.txtDiscount1.TabIndex = 42
         Me.txtDiscount1.Tag = "modelDiscount1,0,1,2"
@@ -2183,7 +2203,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDiscount2
         '
         Me.txtDiscount2.EditValue = "0,00 €"
-        Me.txtDiscount2.Location = New System.Drawing.Point(1428, 1231)
+        Me.txtDiscount2.Location = New System.Drawing.Point(1431, 1231)
         Me.txtDiscount2.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDiscount2.Name = "txtDiscount2"
         Me.txtDiscount2.Properties.DisplayFormat.FormatString = "c"
@@ -2196,7 +2216,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtDiscount2.Properties.ReadOnly = True
         Me.txtDiscount2.Properties.Tag = "BenchExtraPrice"
         Me.txtDiscount2.Properties.UseReadOnlyAppearance = False
-        Me.txtDiscount2.Size = New System.Drawing.Size(165, 38)
+        Me.txtDiscount2.Size = New System.Drawing.Size(163, 38)
         Me.txtDiscount2.StyleController = Me.LayoutControl1
         Me.txtDiscount2.TabIndex = 42
         Me.txtDiscount2.Tag = "modelDiscount2,0,1,2"
@@ -2205,7 +2225,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDiscount3
         '
         Me.txtDiscount3.EditValue = "0,00 €"
-        Me.txtDiscount3.Location = New System.Drawing.Point(1428, 1273)
+        Me.txtDiscount3.Location = New System.Drawing.Point(1431, 1273)
         Me.txtDiscount3.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDiscount3.Name = "txtDiscount3"
         Me.txtDiscount3.Properties.DisplayFormat.FormatString = "c"
@@ -2218,7 +2238,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtDiscount3.Properties.ReadOnly = True
         Me.txtDiscount3.Properties.Tag = "BenchExtraPrice"
         Me.txtDiscount3.Properties.UseReadOnlyAppearance = False
-        Me.txtDiscount3.Size = New System.Drawing.Size(165, 38)
+        Me.txtDiscount3.Size = New System.Drawing.Size(163, 38)
         Me.txtDiscount3.StyleController = Me.LayoutControl1
         Me.txtDiscount3.TabIndex = 42
         Me.txtDiscount3.Tag = "modelDiscount3,0,1,2"
@@ -2227,7 +2247,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtDiscount4
         '
         Me.txtDiscount4.EditValue = "0,00 €"
-        Me.txtDiscount4.Location = New System.Drawing.Point(1428, 1315)
+        Me.txtDiscount4.Location = New System.Drawing.Point(1431, 1315)
         Me.txtDiscount4.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDiscount4.Name = "txtDiscount4"
         Me.txtDiscount4.Properties.DisplayFormat.FormatString = "c"
@@ -2240,7 +2260,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtDiscount4.Properties.ReadOnly = True
         Me.txtDiscount4.Properties.Tag = "BenchExtraPrice"
         Me.txtDiscount4.Properties.UseReadOnlyAppearance = False
-        Me.txtDiscount4.Size = New System.Drawing.Size(165, 38)
+        Me.txtDiscount4.Size = New System.Drawing.Size(163, 38)
         Me.txtDiscount4.StyleController = Me.LayoutControl1
         Me.txtDiscount4.TabIndex = 42
         Me.txtDiscount4.Tag = "modelDiscount4,0,1,2"
@@ -2249,7 +2269,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtFinalPrice1
         '
         Me.txtFinalPrice1.EditValue = "0,00 €"
-        Me.txtFinalPrice1.Location = New System.Drawing.Point(1698, 1189)
+        Me.txtFinalPrice1.Location = New System.Drawing.Point(1699, 1189)
         Me.txtFinalPrice1.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFinalPrice1.Name = "txtFinalPrice1"
         Me.txtFinalPrice1.Properties.DisplayFormat.FormatString = "c"
@@ -2262,7 +2282,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtFinalPrice1.Properties.ReadOnly = True
         Me.txtFinalPrice1.Properties.Tag = "BenchExtraPrice"
         Me.txtFinalPrice1.Properties.UseReadOnlyAppearance = False
-        Me.txtFinalPrice1.Size = New System.Drawing.Size(149, 38)
+        Me.txtFinalPrice1.Size = New System.Drawing.Size(148, 38)
         Me.txtFinalPrice1.StyleController = Me.LayoutControl1
         Me.txtFinalPrice1.TabIndex = 42
         Me.txtFinalPrice1.Tag = "modelFinalPrice1,0,1,2"
@@ -2271,7 +2291,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtFinalPrice2
         '
         Me.txtFinalPrice2.EditValue = "0,00 €"
-        Me.txtFinalPrice2.Location = New System.Drawing.Point(1698, 1231)
+        Me.txtFinalPrice2.Location = New System.Drawing.Point(1699, 1231)
         Me.txtFinalPrice2.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFinalPrice2.Name = "txtFinalPrice2"
         Me.txtFinalPrice2.Properties.DisplayFormat.FormatString = "c"
@@ -2284,7 +2304,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtFinalPrice2.Properties.ReadOnly = True
         Me.txtFinalPrice2.Properties.Tag = "BenchExtraPrice"
         Me.txtFinalPrice2.Properties.UseReadOnlyAppearance = False
-        Me.txtFinalPrice2.Size = New System.Drawing.Size(149, 38)
+        Me.txtFinalPrice2.Size = New System.Drawing.Size(148, 38)
         Me.txtFinalPrice2.StyleController = Me.LayoutControl1
         Me.txtFinalPrice2.TabIndex = 42
         Me.txtFinalPrice2.Tag = "modelFinalPrice2,0,1,2"
@@ -2293,7 +2313,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtFinalPrice3
         '
         Me.txtFinalPrice3.EditValue = "0,00 €"
-        Me.txtFinalPrice3.Location = New System.Drawing.Point(1698, 1273)
+        Me.txtFinalPrice3.Location = New System.Drawing.Point(1699, 1273)
         Me.txtFinalPrice3.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFinalPrice3.Name = "txtFinalPrice3"
         Me.txtFinalPrice3.Properties.DisplayFormat.FormatString = "c"
@@ -2306,7 +2326,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtFinalPrice3.Properties.ReadOnly = True
         Me.txtFinalPrice3.Properties.Tag = "BenchExtraPrice"
         Me.txtFinalPrice3.Properties.UseReadOnlyAppearance = False
-        Me.txtFinalPrice3.Size = New System.Drawing.Size(149, 38)
+        Me.txtFinalPrice3.Size = New System.Drawing.Size(148, 38)
         Me.txtFinalPrice3.StyleController = Me.LayoutControl1
         Me.txtFinalPrice3.TabIndex = 42
         Me.txtFinalPrice3.Tag = "modelFinalPrice3,0,1,2"
@@ -2315,7 +2335,7 @@ Partial Class frmCUSOfferOrderKitchen
         'txtFinalPrice4
         '
         Me.txtFinalPrice4.EditValue = "0,00 €"
-        Me.txtFinalPrice4.Location = New System.Drawing.Point(1698, 1315)
+        Me.txtFinalPrice4.Location = New System.Drawing.Point(1699, 1315)
         Me.txtFinalPrice4.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFinalPrice4.Name = "txtFinalPrice4"
         Me.txtFinalPrice4.Properties.DisplayFormat.FormatString = "c"
@@ -2328,7 +2348,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtFinalPrice4.Properties.ReadOnly = True
         Me.txtFinalPrice4.Properties.Tag = "BenchExtraPrice"
         Me.txtFinalPrice4.Properties.UseReadOnlyAppearance = False
-        Me.txtFinalPrice4.Size = New System.Drawing.Size(149, 38)
+        Me.txtFinalPrice4.Size = New System.Drawing.Size(148, 38)
         Me.txtFinalPrice4.StyleController = Me.LayoutControl1
         Me.txtFinalPrice4.TabIndex = 42
         Me.txtFinalPrice4.Tag = "modelFinalPrice4,0,1,2"
@@ -2470,7 +2490,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.LayoutControlGroup1.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Question
         Me.LayoutControlGroup1.AppearanceGroup.Options.UseBorderColor = True
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem30, Me.LayoutControlItem31, Me.LayoutControlItem47, Me.LCus, Me.LayoutControlItem77, Me.LayoutControlItem28, Me.LayoutControlItem46, Me.LayoutControlItem1, Me.LayoutControlItem18, Me.LayoutControlItem9, Me.LCompProject, Me.LayoutControlItem90})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem30, Me.LayoutControlItem31, Me.LayoutControlItem47, Me.LCus, Me.LayoutControlItem77, Me.LayoutControlItem28, Me.LayoutControlItem46, Me.LayoutControlItem1, Me.LayoutControlItem18, Me.LayoutControlItem9, Me.LCompProject, Me.LayoutControlItem90, Me.LofferAccepted})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.OptionsItemText.TextToControlDistance = 1
@@ -2572,7 +2592,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem46.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem46.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem46.Location = New System.Drawing.Point(953, 0)
         Me.LayoutControlItem46.Name = "LayoutControlItem46"
-        Me.LayoutControlItem46.Size = New System.Drawing.Size(886, 42)
+        Me.LayoutControlItem46.Size = New System.Drawing.Size(632, 42)
         Me.LayoutControlItem46.Tag = "1"
         Me.LayoutControlItem46.Text = "Πωλητής"
         Me.LayoutControlItem46.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
@@ -2650,6 +2670,16 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem90.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.CustomSize
         Me.LayoutControlItem90.TextSize = New System.Drawing.Size(200, 20)
         Me.LayoutControlItem90.TextToControlDistance = 5
+        '
+        'LofferAccepted
+        '
+        Me.LofferAccepted.Control = Me.chkofferAccepted
+        Me.LofferAccepted.Location = New System.Drawing.Point(1585, 0)
+        Me.LofferAccepted.Name = "LofferAccepted"
+        Me.LofferAccepted.Size = New System.Drawing.Size(254, 42)
+        Me.LofferAccepted.Text = "Αποδοχή Προσφοράς"
+        Me.LofferAccepted.TextSize = New System.Drawing.Size(0, 0)
+        Me.LofferAccepted.TextVisible = False
         '
         'LayoutControlItem2
         '
@@ -3520,7 +3550,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Lcost3.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.Lcost3.Location = New System.Drawing.Point(1074, 0)
         Me.Lcost3.Name = "Lcost3"
-        Me.Lcost3.Size = New System.Drawing.Size(174, 42)
+        Me.Lcost3.Size = New System.Drawing.Size(177, 42)
         Me.Lcost3.Text = "Έκπτωση"
         Me.Lcost3.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.Lcost3.TextSize = New System.Drawing.Size(78, 23)
@@ -3534,7 +3564,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Lcost1.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.Lcost1.Location = New System.Drawing.Point(1074, 42)
         Me.Lcost1.Name = "Lcost1"
-        Me.Lcost1.Size = New System.Drawing.Size(174, 42)
+        Me.Lcost1.Size = New System.Drawing.Size(177, 42)
         Me.Lcost1.Text = "Έκπτωση"
         Me.Lcost1.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.Lcost1.TextSize = New System.Drawing.Size(78, 23)
@@ -3548,7 +3578,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Lcost2.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.Lcost2.Location = New System.Drawing.Point(1074, 84)
         Me.Lcost2.Name = "Lcost2"
-        Me.Lcost2.Size = New System.Drawing.Size(174, 42)
+        Me.Lcost2.Size = New System.Drawing.Size(177, 42)
         Me.Lcost2.Text = "Έκπτωση"
         Me.Lcost2.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.Lcost2.TextSize = New System.Drawing.Size(78, 23)
@@ -3562,7 +3592,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Lcost4.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.Lcost4.Location = New System.Drawing.Point(1074, 126)
         Me.Lcost4.Name = "Lcost4"
-        Me.Lcost4.Size = New System.Drawing.Size(174, 42)
+        Me.Lcost4.Size = New System.Drawing.Size(177, 42)
         Me.Lcost4.Text = "Έκπτωση"
         Me.Lcost4.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.Lcost4.TextSize = New System.Drawing.Size(78, 23)
@@ -3574,9 +3604,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem72.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem72.CustomizationFormText = "Ποσό Έκπτωσης"
         Me.LayoutControlItem72.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem72.Location = New System.Drawing.Point(1248, 0)
+        Me.LayoutControlItem72.Location = New System.Drawing.Point(1251, 0)
         Me.LayoutControlItem72.Name = "LayoutControlItem72"
-        Me.LayoutControlItem72.Size = New System.Drawing.Size(311, 42)
+        Me.LayoutControlItem72.Size = New System.Drawing.Size(309, 42)
         Me.LayoutControlItem72.Text = "Ποσό Έκπτωσης"
         Me.LayoutControlItem72.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem72.TextSize = New System.Drawing.Size(137, 23)
@@ -3588,9 +3618,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem78.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem78.CustomizationFormText = "Ποσό Έκπτωσης"
         Me.LayoutControlItem78.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem78.Location = New System.Drawing.Point(1248, 42)
+        Me.LayoutControlItem78.Location = New System.Drawing.Point(1251, 42)
         Me.LayoutControlItem78.Name = "LayoutControlItem78"
-        Me.LayoutControlItem78.Size = New System.Drawing.Size(311, 42)
+        Me.LayoutControlItem78.Size = New System.Drawing.Size(309, 42)
         Me.LayoutControlItem78.Text = "Ποσό Έκπτωσης"
         Me.LayoutControlItem78.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem78.TextSize = New System.Drawing.Size(137, 23)
@@ -3602,9 +3632,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem79.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem79.CustomizationFormText = "Ποσό Έκπτωσης"
         Me.LayoutControlItem79.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem79.Location = New System.Drawing.Point(1248, 84)
+        Me.LayoutControlItem79.Location = New System.Drawing.Point(1251, 84)
         Me.LayoutControlItem79.Name = "LayoutControlItem79"
-        Me.LayoutControlItem79.Size = New System.Drawing.Size(311, 42)
+        Me.LayoutControlItem79.Size = New System.Drawing.Size(309, 42)
         Me.LayoutControlItem79.Text = "Ποσό Έκπτωσης"
         Me.LayoutControlItem79.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem79.TextSize = New System.Drawing.Size(137, 23)
@@ -3616,9 +3646,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem80.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem80.CustomizationFormText = "Ποσό Έκπτωσης"
         Me.LayoutControlItem80.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem80.Location = New System.Drawing.Point(1248, 126)
+        Me.LayoutControlItem80.Location = New System.Drawing.Point(1251, 126)
         Me.LayoutControlItem80.Name = "LayoutControlItem80"
-        Me.LayoutControlItem80.Size = New System.Drawing.Size(311, 42)
+        Me.LayoutControlItem80.Size = New System.Drawing.Size(309, 42)
         Me.LayoutControlItem80.Text = "Ποσό Έκπτωσης"
         Me.LayoutControlItem80.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem80.TextSize = New System.Drawing.Size(137, 23)
@@ -3630,9 +3660,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem81.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem81.CustomizationFormText = "Τελική Τιμή"
         Me.LayoutControlItem81.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem81.Location = New System.Drawing.Point(1559, 0)
+        Me.LayoutControlItem81.Location = New System.Drawing.Point(1560, 0)
         Me.LayoutControlItem81.Name = "LayoutControlItem81"
-        Me.LayoutControlItem81.Size = New System.Drawing.Size(254, 42)
+        Me.LayoutControlItem81.Size = New System.Drawing.Size(253, 42)
         Me.LayoutControlItem81.Text = "Τελική Τιμή"
         Me.LayoutControlItem81.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem81.TextSize = New System.Drawing.Size(96, 23)
@@ -3644,9 +3674,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem82.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem82.CustomizationFormText = "Τελική Τιμή"
         Me.LayoutControlItem82.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem82.Location = New System.Drawing.Point(1559, 42)
+        Me.LayoutControlItem82.Location = New System.Drawing.Point(1560, 42)
         Me.LayoutControlItem82.Name = "LayoutControlItem82"
-        Me.LayoutControlItem82.Size = New System.Drawing.Size(254, 42)
+        Me.LayoutControlItem82.Size = New System.Drawing.Size(253, 42)
         Me.LayoutControlItem82.Text = "Τελική Τιμή"
         Me.LayoutControlItem82.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem82.TextSize = New System.Drawing.Size(96, 23)
@@ -3658,9 +3688,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem83.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem83.CustomizationFormText = "Τελική Τιμή"
         Me.LayoutControlItem83.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem83.Location = New System.Drawing.Point(1559, 84)
+        Me.LayoutControlItem83.Location = New System.Drawing.Point(1560, 84)
         Me.LayoutControlItem83.Name = "LayoutControlItem83"
-        Me.LayoutControlItem83.Size = New System.Drawing.Size(254, 42)
+        Me.LayoutControlItem83.Size = New System.Drawing.Size(253, 42)
         Me.LayoutControlItem83.Text = "Τελική Τιμή"
         Me.LayoutControlItem83.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem83.TextSize = New System.Drawing.Size(96, 23)
@@ -3672,9 +3702,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem84.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem84.CustomizationFormText = "Τελική Τιμή"
         Me.LayoutControlItem84.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem84.Location = New System.Drawing.Point(1559, 126)
+        Me.LayoutControlItem84.Location = New System.Drawing.Point(1560, 126)
         Me.LayoutControlItem84.Name = "LayoutControlItem84"
-        Me.LayoutControlItem84.Size = New System.Drawing.Size(254, 42)
+        Me.LayoutControlItem84.Size = New System.Drawing.Size(253, 42)
         Me.LayoutControlItem84.Text = "Τελική Τιμή"
         Me.LayoutControlItem84.TextAlignMode = DevExpress.XtraLayout.TextAlignModeItem.AutoSize
         Me.LayoutControlItem84.TextSize = New System.Drawing.Size(96, 23)
@@ -4280,6 +4310,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Text = "frmCUSOrderKitchen"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        CType(Me.chkofferAccepted.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtNotes.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCUSOfferOrderFilename.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboSup.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4397,6 +4428,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LCompProject, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem90, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LofferAccepted, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem26, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
@@ -4779,5 +4811,7 @@ Partial Class frmCUSOfferOrderKitchen
     Friend WithEvents DM_VALUELISTITEM1 As DM_VALUELISTITEM
     Friend WithEvents VwVALUELISTITEMModelKitchenBindingSource As BindingSource
     Friend WithEvents Vw_VALUELISTITEMModelKitchenTableAdapter As DM_VALUELISTITEMTableAdapters.vw_VALUELISTITEMModelKitchenTableAdapter
+    Friend WithEvents chkofferAccepted As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents LofferAccepted As DevExpress.XtraLayout.LayoutControlItem
     '    Friend WithEvents Vw_VALUELISTITEMPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_VALUELISTITEMPlainaYpsilaTableAdapter
 End Class

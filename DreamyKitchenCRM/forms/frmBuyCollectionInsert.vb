@@ -309,7 +309,7 @@ Public Class frmBuyCollectionInsert
                         cmt = GridView5.GetRowCellValue(selectedRowHandle, "cmt").ToString
                         sDate = CDate(GridView5.GetRowCellValue(selectedRowHandle, "invDate"))
                         sdocTypeID = GridView5.GetRowCellValue(selectedRowHandle, "docTypeID").ToString
-                        sOrd = "(select max(ord) + 1 FROM BUY where supID = " & toSQLValueS(supID) & " and dtYBuy = " & toSQLValueS(Year(GridView5.GetRowCellValue(selectedRowHandle, "invDate")), True) & ")"
+                        sOrd = "(select isnull(max(ord),0) + 1 FROM BUY where supID = " & toSQLValueS(supID) & " and dtYBuy = " & toSQLValueS(Year(GridView5.GetRowCellValue(selectedRowHandle, "invDate")), True) & ")"
                         sCusID = GridView5.GetRowCellValue(selectedRowHandle, "cctID").ToString
                         sTranshID = GridView5.GetRowCellValue(selectedRowHandle, "transhID").ToString
                         sPayID = "(select PAY.ID from PAY inner join sup on sup.payID=PAY.id where sup.id = " & toSQLValueS(supID) & ")"

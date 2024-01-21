@@ -260,7 +260,12 @@ Public Class CombosManager
     Public Sub ManageValueListItemChecked(ByVal CallerControl As CheckedComboBoxEdit, ByVal FrmMode As Byte, Optional ByVal ValueListID As String = Nothing)
         Dim Frm As frmValueListItem = New frmValueListItem
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-        Frm.Text = "Μοντέλα Κουζίνας"
+        Select Case ValueListID
+            Case "3C68F058-6A47-4995-8B0C-26538F38580A" ' Μοντέλα Κουζίνας
+                Frm.Text = "Μοντέλα Κουζίνας"
+            Case "CF691845-D6CC-4181-9760-6D15934C40B4"  ' Ντουλάπες
+                Frm.Text = "Μοντέλα Ντουλαπών"
+        End Select
         Frm.CallerControlChecked = CallerControl
         Frm.CalledFromControl = True
         Frm.cboValueList.EditValue = ValueListID

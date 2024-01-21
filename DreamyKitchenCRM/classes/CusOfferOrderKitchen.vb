@@ -43,6 +43,7 @@ Public Class CusOfferOrderKitchen
             Frm.LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LofferAccepted.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Else
             Frm.LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
             Frm.LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
@@ -63,6 +64,7 @@ Public Class CusOfferOrderKitchen
                 Frm.txtRemove.EditValue = ProgProps.KitchenRemove
                 'Frm.cboBaseCat.EditValue = System.Guid.Parse(GetBaseCatID())
                 Frm.dtOrder.EditValue = Date.Now
+                Frm.cmdPrintOffer.Enabled = False
 
                 If sIsOrder = False Then
                     Frm.txtVFinalHeight.EditValue = ProgProps.V_HEIGHT
@@ -183,7 +185,14 @@ Public Class CusOfferOrderKitchen
                 If sResultF Then
                     If Frm.txtCUSOfferOrderFilename.Text <> "" And sResult = True Then
                         sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, sGuid, "CCT_ORDERS_KITCHEN_F")
-                        If sResultF = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        If sResultF = False Then
+                            XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Else
+                            'Αποθήκευση αρχείου στο έργο
+                            Frm.XtraOpenFileDialog1.Tag = "EEA48A0A-4171-46FE-BBC5-D02F2712B04C"
+                            sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F")
+                            If sResultF = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς σατο Έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        End If
                     End If
                 Else
                     XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -199,6 +208,7 @@ Public Class CusOfferOrderKitchen
                         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
                         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def")
                         If sIsOrder = False Then Frm.cmdConvertToOrder.Enabled = True : Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                        Frm.cmdPrintOffer.Enabled = True
                     End If
                     Mode = FormMode.EditRecord
                     If sIsOrder = True Then
@@ -287,6 +297,8 @@ Public Class CusOfferOrderKitchen
     End Sub
     Public Sub ConvertToOrder()
         Try
+            Valid.ID = Frm.cboTRANSH.EditValue.ToString
+            If Valid.ValiDationRules(Frm.Name, Frm) = False Then Exit Sub
             If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure

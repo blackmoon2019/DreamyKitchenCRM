@@ -1,8 +1,15 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports System.Data.SqlClient
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraLayout
 
 Public Class ValidateControls
     Public SChanged As Boolean
+    Private sID As String
+    Public WriteOnly Property ID As String
+        Set(value As String)
+            sID = value
+        End Set
+    End Property
     Public Function ValidateForm(ByVal control As DevExpress.XtraLayout.LayoutControl) As Boolean
         For Each item As BaseLayoutItem In control.Items
             If TypeOf item Is LayoutControlItem Then
@@ -68,19 +75,67 @@ Public Class ValidateControls
         Return True
     End Function
     Public Function ValiDationRules(ByVal FrmName As String, ByVal frm As Form) As Boolean
-        Select Case FrmName
-            Case "frmCUSOfferOrderKitchen"
-                Dim f As frmCUSOfferOrderKitchen = frm
-                ' 1st Rule
-                If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
-                    XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return False
-                End If
-                If (f.txtCUSOfferOrderFilename.EditValue IsNot Nothing And (f.cboSup.EditValue = Nothing Or f.txtbenchSalesPrice.EditValue = 0)) Then
-                    XtraMessageBox.Show("Έχετε επισυνάψει έντυπο προσφορας πάγκου και δεν έχετε επιλέξει προμηθευτή ή Τιμή.Λ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return False
-                End If
-                Return True
-        End Select
+        Try
+
+            Select Case FrmName
+                Case "frmCUSOfferOrderKitchen"
+                    Dim f As frmCUSOfferOrderKitchen = frm
+                    ' 1st Rule
+                    If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
+                        XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
+                    If (f.txtCUSOfferOrderFilename.EditValue IsNot Nothing And (f.cboSup.EditValue = Nothing Or f.txtbenchSalesPrice.EditValue = 0)) Then
+                        XtraMessageBox.Show("Έχετε επισυνάψει έντυπο προσφορας πάγκου και δεν έχετε επιλέξει προμηθευτή ή Τιμή.Λ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
+
+                    Dim sSQL As String
+                    Dim Cmd As SqlCommand
+                    Dim CountClosed As Integer
+
+                    sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                    Cmd = New SqlCommand(sSQL, CNDB)
+                    Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
+                        If CountClosed = 0 Then
+                            XtraMessageBox.Show("Δεν μπορείτε να κάνετε μετατρέψετε την προσφορά σε παραγγελία χωρίς εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+                    Return True
+                Case "frmCUSOfferOrderDoors"
+                    Dim f As frmCUSOfferOrderDoors = frm
+                    ' 1st Rule
+                    If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
+                        XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
+                    Return True
+                Case "frmCUSOfferOrderCloset"
+                    Dim f As frmCUSOfferOrderCloset = frm
+                    ' 1st Rule
+                    If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
+                        XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
+                    Return True
+                Case "frmCUSOfferOrderSpecialConstr"
+                    Dim f As frmCUSOfferOrderSpecialConstr = frm
+                    ' 1st Rule
+                    If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
+                        XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
+                    Return True
+
+            End Select
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+
     End Function
 End Class

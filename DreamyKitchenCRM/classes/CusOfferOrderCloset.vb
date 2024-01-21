@@ -1,5 +1,4 @@
-﻿Imports DevExpress.XtraBars.Navigation
-Imports DevExpress.XtraEditors
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
 Public Class CusOfferOrderCloset
@@ -43,6 +42,7 @@ Public Class CusOfferOrderCloset
             Frm.LayoutControlGroup12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LayoutControlGroup13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LayoutControlGroup15.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LofferAccepted.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
         Else
             Frm.LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
@@ -144,6 +144,7 @@ Public Class CusOfferOrderCloset
         Dim sResult As Boolean
         Dim sGuid As String
         Try
+            If Valid.ValiDationRules(Frm.Name, Frm) = False Then Exit Sub
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 Select Case Mode
                     Case FormMode.NewRecord

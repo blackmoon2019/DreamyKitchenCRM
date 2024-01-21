@@ -8311,6 +8311,8 @@ Partial Public Class DM_VALUELISTITEM
         
         Private columnclosetType As Global.System.Data.DataColumn
         
+        Private columndoorType As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -8539,6 +8541,14 @@ Partial Public Class DM_VALUELISTITEM
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property doorTypeColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndoorType
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -8599,9 +8609,10 @@ Partial Public Class DM_VALUELISTITEM
                     ByVal dimID As System.Guid,  _
                     ByVal valueListID As System.Guid,  _
                     ByVal valueListName As String,  _
-                    ByVal closetType As Integer) As vw_VALUELISTITEMDOORSRow
+                    ByVal closetType As Integer,  _
+                    ByVal doorType As Integer) As vw_VALUELISTITEMDOORSRow
             Dim rowvw_VALUELISTITEMDOORSRow As vw_VALUELISTITEMDOORSRow = CType(Me.NewRow,vw_VALUELISTITEMDOORSRow)
-            Dim columnValuesArray() As Object = New Object() {Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, valueListItem, kasa, dimName, dimID, valueListID, valueListName, closetType}
+            Dim columnValuesArray() As Object = New Object() {Modifier, ID, code, CustomCode, name, cat, color, Price, comments, modifiedBy, modifiedOn, createdOn, createdBy, doorColorID, ColorName, typeDescr, type, valueListItem, kasa, dimName, dimID, valueListID, valueListName, closetType, doorType}
             rowvw_VALUELISTITEMDOORSRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_VALUELISTITEMDOORSRow)
             Return rowvw_VALUELISTITEMDOORSRow
@@ -8654,6 +8665,7 @@ Partial Public Class DM_VALUELISTITEM
             Me.columnvalueListID = MyBase.Columns("valueListID")
             Me.columnvalueListName = MyBase.Columns("valueListName")
             Me.columnclosetType = MyBase.Columns("closetType")
+            Me.columndoorType = MyBase.Columns("doorType")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -8710,6 +8722,8 @@ Partial Public Class DM_VALUELISTITEM
             MyBase.Columns.Add(Me.columnvalueListName)
             Me.columnclosetType = New Global.System.Data.DataColumn("closetType", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnclosetType)
+            Me.columndoorType = New Global.System.Data.DataColumn("doorType", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndoorType)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnModifier.MaxLength = 200
             Me.columnID.AllowDBNull = false
@@ -21909,6 +21923,21 @@ Partial Public Class DM_VALUELISTITEM
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property doorType() As Integer
+            Get
+                Try 
+                    Return CType(Me(Me.tablevw_VALUELISTITEMDOORS.doorTypeColumn),Integer)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'doorType' in table 'vw_VALUELISTITEMDOORS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_VALUELISTITEMDOORS.doorTypeColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IsModifierNull() As Boolean
             Return Me.IsNull(Me.tablevw_VALUELISTITEMDOORS.ModifierColumn)
         End Function
@@ -22133,6 +22162,18 @@ Partial Public Class DM_VALUELISTITEM
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SetclosetTypeNull()
             Me(Me.tablevw_VALUELISTITEMDOORS.closetTypeColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsdoorTypeNull() As Boolean
+            Return Me.IsNull(Me.tablevw_VALUELISTITEMDOORS.doorTypeColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetdoorTypeNull()
+            Me(Me.tablevw_VALUELISTITEMDOORS.doorTypeColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -30774,6 +30815,7 @@ Namespace DM_VALUELISTITEMTableAdapters
             tableMapping.ColumnMappings.Add("valueListID", "valueListID")
             tableMapping.ColumnMappings.Add("valueListName", "valueListName")
             tableMapping.ColumnMappings.Add("closetType", "closetType")
+            tableMapping.ColumnMappings.Add("doorType", "doorType")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
         

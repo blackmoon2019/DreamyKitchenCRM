@@ -159,7 +159,7 @@ Partial Public Class RepCUSOfferKitchen3ndPage
         '
         'XrLabel40
         '
-        Me.XrLabel40.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[notes]")})
+        Me.XrLabel40.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[cmt]")})
         Me.XrLabel40.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrLabel40.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrLabel40.LocationFloat = New DevExpress.Utils.PointFloat(1.999919!, 187.6132!)
@@ -732,13 +732,13 @@ Partial Public Class RepCUSOfferKitchen3ndPage
         Me.DataMember = "vw_CCT_ORDERS_KITCHEN"
         Me.DataSource = Me.SqlDataSource1
         Me.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
-        Me.Margins = New DevExpress.Drawing.DXMargins(51, 51, 94, 167)
+        Me.Margins = New DevExpress.Drawing.DXMargins(51.0!, 51.0!, 94.0!, 167.0!)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
-        Me.Version = "21.2"
+        Me.Version = "23.1"
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 
