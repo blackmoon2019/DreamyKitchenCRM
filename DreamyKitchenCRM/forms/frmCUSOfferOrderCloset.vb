@@ -890,4 +890,12 @@ Public Class frmCUSOfferOrderCloset
             Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
         End Select
     End Sub
+
+    Private Sub cmdPrintPhotos_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub cmdSavePhotos_Click(sender As Object, e As EventArgs)
+
+    End Sub
 End Class

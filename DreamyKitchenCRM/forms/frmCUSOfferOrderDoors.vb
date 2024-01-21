@@ -83,8 +83,6 @@ Public Class frmCUSOfferOrderDoors
         End Select
     End Sub
 
-
-
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
         'txtPhn.EditValue = cboCUS.GetColumnValue("phn")
         'txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
@@ -423,7 +421,7 @@ Public Class frmCUSOfferOrderDoors
             Case 3 : cboVALUELISTITEM5.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM6.ButtonClick
+    Private Sub cboVALUELISTITEM6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
             Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM6, FormMode.EditRecord)

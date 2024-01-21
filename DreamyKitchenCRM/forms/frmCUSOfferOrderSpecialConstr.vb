@@ -292,7 +292,7 @@ Public Class frmCUSOfferOrderSpecialConstr
     End Sub
     Private Sub cboVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboValueListItem, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboValueListItem, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboValueListItem.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -303,7 +303,7 @@ Public Class frmCUSOfferOrderSpecialConstr
 
     Private Sub cboVALUELISTITEM2_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM2.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboValueListItem, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboValueListItem, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboVALUELISTITEM2.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -313,7 +313,7 @@ Public Class frmCUSOfferOrderSpecialConstr
     End Sub
     Private Sub cboVALUELISTITEM3_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM3.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboValueListItem, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboValueListItem, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboVALUELISTITEM3.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -323,7 +323,7 @@ Public Class frmCUSOfferOrderSpecialConstr
     End Sub
     Private Sub cboVALUELISTITEM4_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVALUELISTITEM4.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboValueListItem, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboValueListItem, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboVALUELISTITEM4.EditValue = System.Guid.Parse(sVALUELISTITEMID)
