@@ -22,8 +22,6 @@ Partial Class frmValueListItem
         Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cboDoorColor = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
         Me.ColorPickEdit11 = New DevExpress.XtraEditors.ColorPickEdit()
@@ -37,9 +35,7 @@ Partial Class frmValueListItem
         Me.cboKasa = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboValueListItem = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.cboDim = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwDIMBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboValueList = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwVALUELISTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.cboClosetType = New DevExpress.XtraEditors.ComboBoxEdit()
         Me.txtName = New DevExpress.XtraEditors.TextEdit()
         Me.txtOInvTotalPrice1 = New DevExpress.XtraEditors.TextEdit()
@@ -65,14 +61,16 @@ Partial Class frmValueListItem
         Me.LName = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.VwCOLORSBOXBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.VwDIMBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwVALUELISTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_COLORSBOXTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSBOXTableAdapter()
         Me.Vw_DIMTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_DIMTableAdapter()
         Me.vw_VALUELISTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_VALUELISTTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboDoorColor.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.ColorPickEdit11.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCustomCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -84,9 +82,7 @@ Partial Class frmValueListItem
         CType(Me.cboKasa.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboValueListItem.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboDim.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwDIMBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboValueList.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwVALUELISTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboClosetType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtOInvTotalPrice1.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -112,6 +108,10 @@ Partial Class frmValueListItem
         CType(Me.LName, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwDIMBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwVALUELISTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -162,16 +162,6 @@ Partial Class frmValueListItem
         Me.cboDoorColor.StyleController = Me.LayoutControl1
         Me.cboDoorColor.TabIndex = 46
         Me.cboDoorColor.Tag = "doorColorID,0,1,2"
-        '
-        'VwCOLORSBOXBindingSource
-        '
-        Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
-        Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'cmdExit
         '
@@ -356,11 +346,6 @@ Partial Class frmValueListItem
         Me.cboDim.TabIndex = 46
         Me.cboDim.Tag = "dimID,0,1,2"
         '
-        'VwDIMBindingSource
-        '
-        Me.VwDIMBindingSource.DataMember = "vw_DIM"
-        Me.VwDIMBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'cboValueList
         '
         Me.cboValueList.EditValue = ""
@@ -378,11 +363,6 @@ Partial Class frmValueListItem
         Me.cboValueList.StyleController = Me.LayoutControl1
         Me.cboValueList.TabIndex = 46
         Me.cboValueList.Tag = "valueListID,0,1,2"
-        '
-        'VwVALUELISTBindingSource
-        '
-        Me.VwVALUELISTBindingSource.DataMember = "vw_VALUELIST"
-        Me.VwVALUELISTBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'cboClosetType
         '
@@ -687,6 +667,26 @@ Partial Class frmValueListItem
         Me.LayoutControlItem13.TextSize = New System.Drawing.Size(228, 23)
         Me.LayoutControlItem13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
+        'VwCOLORSBOXBindingSource
+        '
+        Me.VwCOLORSBOXBindingSource.DataMember = "vw_COLORSBOX"
+        Me.VwCOLORSBOXBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwDIMBindingSource
+        '
+        Me.VwDIMBindingSource.DataMember = "vw_DIM"
+        Me.VwDIMBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'VwVALUELISTBindingSource
+        '
+        Me.VwVALUELISTBindingSource.DataMember = "vw_VALUELIST"
+        Me.VwVALUELISTBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
         'Vw_COLORSBOXTableAdapter
         '
         Me.Vw_COLORSBOXTableAdapter.ClearBeforeFill = True
@@ -714,8 +714,6 @@ Partial Class frmValueListItem
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.cboDoorColor.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.ColorPickEdit11.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCustomCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -727,9 +725,7 @@ Partial Class frmValueListItem
         CType(Me.cboKasa.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboValueListItem.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboDim.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwDIMBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboValueList.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwVALUELISTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboClosetType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtOInvTotalPrice1.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -755,6 +751,10 @@ Partial Class frmValueListItem
         CType(Me.LName, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOLORSBOXBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwDIMBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwVALUELISTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

@@ -47,6 +47,7 @@ Partial Class frmBUY
         Me.cboSUP = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
         Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
         Me.dtBuy = New DevExpress.XtraEditors.DateEdit()
         Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
@@ -55,7 +56,6 @@ Partial Class frmBUY
         Me.txtvatAmount = New DevExpress.XtraEditors.TextEdit()
         Me.cboTRANSH = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
         Me.txtinvoiceNumber = New DevExpress.XtraEditors.TextEdit()
         Me.txtgeneral = New DevExpress.XtraEditors.TextEdit()
         Me.txtcloset = New DevExpress.XtraEditors.TextEdit()
@@ -130,6 +130,7 @@ Partial Class frmBUY
         CType(Me.cboSUP.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtBuy.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtBuy.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -139,7 +140,6 @@ Partial Class frmBUY
         CType(Me.txtvatAmount.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtinvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtgeneral.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtcloset.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -486,6 +486,11 @@ Partial Class frmBUY
         Me.CCTTRANSHBindingSource.DataMember = "CCT_TRANSH"
         Me.CCTTRANSHBindingSource.DataSource = Me.DM_TRANS
         '
+        'DM_TRANS
+        '
+        Me.DM_TRANS.DataSetName = "DM_TRANS"
+        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
         'dtBuy
         '
         Me.dtBuy.EditValue = Nothing
@@ -607,11 +612,6 @@ Partial Class frmBUY
         '
         Me.VwTRANSHBindingSource.DataMember = "vw_TRANSH"
         Me.VwTRANSHBindingSource.DataSource = Me.DM_TRANS
-        '
-        'DM_TRANS
-        '
-        Me.DM_TRANS.DataSetName = "DM_TRANS"
-        Me.DM_TRANS.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'txtinvoiceNumber
         '
@@ -1353,6 +1353,7 @@ Partial Class frmBUY
         CType(Me.cboSUP.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtBuy.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtBuy.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1362,7 +1363,6 @@ Partial Class frmBUY
         CType(Me.txtvatAmount.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboTRANSH.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtinvoiceNumber.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtgeneral.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtcloset.Properties, System.ComponentModel.ISupportInitialize).EndInit()

@@ -136,7 +136,7 @@ Public Class Projects
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstallations), New Point(CInt(frmInstallations.Parent.ClientRectangle.Width / 2 - frmInstallations.Width / 2), CInt(frmInstallations.Parent.ClientRectangle.Height / 2 - frmInstallations.Height / 2)))
         frmInstallations.Show()
     End Sub
-    Public Sub SaveRecordSmallH()
+    Public Sub SaveRecordSmallH(Optional ByRef sID As String = "")
         Dim sResult As Boolean
         Try
             If Valid.ValidateForm(Frm2.LayoutControl1) Then
@@ -153,6 +153,7 @@ Public Class Projects
                         If sResult Then SaveTRANSC_SMALL()
                 End Select
                 If sResult = True Then
+                    sID = ID
                     If CalledFromCtrl Then
                         Dim sSQL As New System.Text.StringBuilder
                         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc from vw_TRANSH t where  T.cusid = " & toSQLValueS(Frm2.cboCUS.EditValue.ToString) & "order by description")

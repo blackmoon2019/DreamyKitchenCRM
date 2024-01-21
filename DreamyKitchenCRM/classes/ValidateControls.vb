@@ -74,7 +74,7 @@ Public Class ValidateControls
         Next
         Return True
     End Function
-    Public Function ValiDationRules(ByVal FrmName As String, ByVal frm As Form) As Boolean
+    Public Function ValiDationRules(ByVal FrmName As String, ByVal frm As Form, Optional ByVal ExtraChecks As Boolean = False) As Boolean
         Try
 
             Select Case FrmName
@@ -90,18 +90,20 @@ Public Class ValidateControls
                         Return False
                     End If
 
-                    Dim sSQL As String
-                    Dim Cmd As SqlCommand
-                    Dim CountClosed As Integer
+                    If ExtraChecks = True Then
+                        Dim sSQL As String
+                        Dim Cmd As SqlCommand
+                        Dim CountClosed As Integer
 
-                    sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
-                    Cmd = New SqlCommand(sSQL, CNDB)
-                    Dim sdr As SqlDataReader = Cmd.ExecuteReader()
-                    If (sdr.Read() = True) Then
-                        If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
-                        If CountClosed = 0 Then
-                            XtraMessageBox.Show("Δεν μπορείτε να κάνετε μετατρέψετε την προσφορά σε παραγγελία χωρίς εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
+                        sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                        Cmd = New SqlCommand(sSQL, CNDB)
+                        Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
+                            If CountClosed = 0 Then
+                                XtraMessageBox.Show("Δεν μπορείτε να κάνετε μετατρέψετε την προσφορά σε παραγγελία χωρίς εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
                         End If
                     End If
                     Return True

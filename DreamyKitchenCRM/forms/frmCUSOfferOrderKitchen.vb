@@ -2,6 +2,7 @@
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class frmCUSOfferOrderKitchen
@@ -63,10 +64,6 @@ Public Class frmCUSOfferOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DM_VALUELISTITEM1.vw_VALUELISTITEMModelKitchen' table. You can move, or remove it, as needed.
-        Me.Vw_VALUELISTITEMModelKitchenTableAdapter.Fill(Me.DM_VALUELISTITEM1.vw_VALUELISTITEMModelKitchen)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SUP' table. You can move, or remove it, as needed.
-        Me.Vw_SUPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SUP)
         CusOfferOrderKitchen.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder, sBaseCat)
         CusOfferOrderKitchen.LoadForm()
         Me.CenterToScreen()
@@ -424,7 +421,13 @@ Public Class frmCUSOfferOrderKitchen
             Case 1
                 LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
                 LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
+            Case 3
+                LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_KITCHEN_def.xml")
+                TRANSH_FTableAdapter.FillByTanshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
         End Select
+    End Sub
+    Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
+        OpenFileFromGrid(GridView3, "TRANSH_F")
     End Sub
 
     Private Sub GridView2_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles GridView2.ValidatingEditor
@@ -530,7 +533,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboVVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboVVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboVVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -540,7 +543,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboVVALUELISTITEM1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVVALUELISTITEM1.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVVALUELISTITEM1, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboVVALUELISTITEM1, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboVVALUELISTITEM1.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -550,7 +553,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboVependisisVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVependisisVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVependisisVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboVependisisVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboVependisisVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -560,7 +563,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboNependisisVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboNependisisVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboNependisisVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboNependisisVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboNependisisVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -570,7 +573,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboKVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboKVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboKVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -580,7 +583,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboKVALUELISTITEM1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKVALUELISTITEM1.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKVALUELISTITEM1, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboKVALUELISTITEM1, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboKVALUELISTITEM1.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -590,7 +593,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboKependisisVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKependisisVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKependisisVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboKependisisVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboKependisisVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -600,7 +603,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboSndEpendisisVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboSndEpendisisVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboSndEpendisisVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboSndEpendisisVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboSndEpendisisVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -610,7 +613,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboYVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboYVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboYVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboYVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -620,7 +623,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboYVALUELISTITEM1_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYVALUELISTITEM1.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboYVALUELISTITEM1, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboYVALUELISTITEM1, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboYVALUELISTITEM1.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -631,7 +634,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboVRafieraVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVRafieraVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVRafieraVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboVRafieraVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboVRafieraVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -641,7 +644,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboKRafieraVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKRafieraVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKRafieraVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboKRafieraVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboKRafieraVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -652,7 +655,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboYRafieraVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYRafieraVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboYRafieraVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboYRafieraVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboYRafieraVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -662,7 +665,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
     Private Sub cboKWallRafiaVALUELISTITEM_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKWallRafiaVALUELISTITEM.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKWallRafiaVALUELISTITEM, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboKWallRafiaVALUELISTITEM, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboKWallRafiaVALUELISTITEM.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -673,7 +676,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboVBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboVBOXColors.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboVBOXColors, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboVBOXColors, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboVBOXColors.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -684,7 +687,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboKBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboKBOXColors.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboKBOXColors, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboKBOXColors, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboKBOXColors.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -695,7 +698,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboYBOXColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboYBOXColors.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboYBOXColors, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboYBOXColors, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboYBOXColors.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -706,7 +709,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboGOLAColors_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboGOLAColors.ProcessNewValue
         If CStr(e.DisplayValue) <> String.Empty Then
-            Dim sVALUELISTITEMID = DBQ.InsertNewVALUELISTITEM(cboGOLAColors, e.DisplayValue)
+            Dim sVALUELISTITEMID = DBQ.InsertNewValueListItem(cboGOLAColors, e.DisplayValue)
             If sVALUELISTITEMID <> "" Then
                 Me.Vw_VALUELISTITEM_V2TableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
                 cboGOLAColors.EditValue = System.Guid.Parse(sVALUELISTITEMID)
@@ -808,5 +811,55 @@ Public Class frmCUSOfferOrderKitchen
         End Select
     End Sub
 
+    Private Sub cmdSavePhotos_Click(sender As Object, e As EventArgs) Handles cmdSavePhotos.Click
+        CusOfferOrderKitchen.SavePhotoRecord(sID, FormMode.NewRecord)
+    End Sub
 
+
+    Private Sub CardView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles CardView1.ValidateRow
+        CusOfferOrderKitchen.SavePhotoRecord(sID, FormMode.EditRecord)
+    End Sub
+
+    Private Sub CardView1_KeyDown(sender As Object, e As KeyEventArgs) Handles CardView1.KeyDown
+        If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then DeleteRecord()
+    End Sub
+    Private Sub DeleteRecord()
+        CusOfferOrderKitchen.DeletePhotoRecord
+    End Sub
+
+    Private Sub cboSUP1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP1.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageSup(cboSUP1, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageSup(cboSUP1, FormMode.EditRecord)
+            Case 3 : cboSUP1.EditValue = Nothing
+            Case 4
+                Dim webAddress As String = cboSUP1.GetColumnValue("site")
+                If webAddress = Nothing Then XtraMessageBox.Show("Δεν έχει οριστεί Site στον Προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) Else Process.Start(webAddress)
+        End Select
+
+    End Sub
+
+    Private Sub cboPhotoValueListItem_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPhotoValueListItem.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.EditRecord)
+            Case 3 : cboPhotoValueListItem.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboColorsCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboColorsCat.ButtonClick
+        Select Case e.Button.Index
+        '    Case 1 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+        '    Case 2 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.EditRecord)
+            Case 3 : cboColorsCat.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cmdPrintPhotos_Click(sender As Object, e As EventArgs) Handles cmdPrintPhotos.Click
+        CardView1.ShowPrintPreview()
+    End Sub
+
+    Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "vw_TRANSH_F_KITCHEN_def.xml", "vw_TRANSH_F")
+    End Sub
 End Class

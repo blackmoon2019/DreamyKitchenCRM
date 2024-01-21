@@ -56,6 +56,39 @@
             </Mappings>
             <Sources />
           </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_CCT_ORDERS_PHOTOSTableAdapter" GeneratorDataComponentClassName="vw_CCT_ORDERS_PHOTOSTableAdapter" Name="vw_CCT_ORDERS_PHOTOS" UserDataComponentName="vw_CCT_ORDERS_PHOTOSTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenDEV.dbo.vw_CCT_ORDERS_PHOTOS" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>SELECT vw_CCT_ORDERS_PHOTOS.*
+FROM   vw_CCT_ORDERS_PHOTOS</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="CustomCode" DataSetColumn="CustomCode" />
+              <Mapping SourceColumn="ValueListItemName" DataSetColumn="ValueListItemName" />
+              <Mapping SourceColumn="ColorsCatName" DataSetColumn="ColorsCatName" />
+              <Mapping SourceColumn="SupFullName" DataSetColumn="SupFullName" />
+              <Mapping SourceColumn="site" DataSetColumn="site" />
+              <Mapping SourceColumn="ID" DataSetColumn="ID" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+              <Mapping SourceColumn="orderID" DataSetColumn="orderID" />
+              <Mapping SourceColumn="orderType" DataSetColumn="orderType" />
+              <Mapping SourceColumn="supID" DataSetColumn="supID" />
+              <Mapping SourceColumn="colorCatID" DataSetColumn="colorCatID" />
+              <Mapping SourceColumn="valueListItemID" DataSetColumn="valueListItemID" />
+              <Mapping SourceColumn="photo" DataSetColumn="photo" />
+              <Mapping SourceColumn="modifiedBy" DataSetColumn="modifiedBy" />
+              <Mapping SourceColumn="modifiedOn" DataSetColumn="modifiedOn" />
+              <Mapping SourceColumn="createdOn" DataSetColumn="createdOn" />
+              <Mapping SourceColumn="createdBy" DataSetColumn="createdBy" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
         </Tables>
         <Sources />
       </DataSource>
@@ -218,10 +251,67 @@
             </xs:sequence>
           </xs:complexType>
         </xs:element>
+        <xs:element name="vw_CCT_ORDERS_PHOTOS" msprop:Generator_RowEvHandlerName="vw_CCT_ORDERS_PHOTOSRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_CCT_ORDERS_PHOTOSRowDeleted" msprop:Generator_RowDeletingName="vw_CCT_ORDERS_PHOTOSRowDeleting" msprop:Generator_RowEvArgName="vw_CCT_ORDERS_PHOTOSRowChangeEvent" msprop:Generator_TablePropName="vw_CCT_ORDERS_PHOTOS" msprop:Generator_RowChangedName="vw_CCT_ORDERS_PHOTOSRowChanged" msprop:Generator_RowChangingName="vw_CCT_ORDERS_PHOTOSRowChanging" msprop:Generator_TableClassName="vw_CCT_ORDERS_PHOTOSDataTable" msprop:Generator_RowClassName="vw_CCT_ORDERS_PHOTOSRow" msprop:Generator_TableVarName="tablevw_CCT_ORDERS_PHOTOS" msprop:Generator_UserTableName="vw_CCT_ORDERS_PHOTOS">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CustomCode" msprop:Generator_ColumnPropNameInRow="CustomCode" msprop:Generator_ColumnPropNameInTable="CustomCodeColumn" msprop:Generator_ColumnVarNameInTable="columnCustomCode" msprop:Generator_UserColumnName="CustomCode" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ValueListItemName" msprop:Generator_ColumnPropNameInRow="ValueListItemName" msprop:Generator_ColumnPropNameInTable="ValueListItemNameColumn" msprop:Generator_ColumnVarNameInTable="columnValueListItemName" msprop:Generator_UserColumnName="ValueListItemName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ColorsCatName" msprop:Generator_ColumnPropNameInRow="ColorsCatName" msprop:Generator_ColumnPropNameInTable="ColorsCatNameColumn" msprop:Generator_ColumnVarNameInTable="columnColorsCatName" msprop:Generator_UserColumnName="ColorsCatName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="250" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SupFullName" msprop:Generator_ColumnPropNameInRow="SupFullName" msprop:Generator_ColumnPropNameInTable="SupFullNameColumn" msprop:Generator_ColumnVarNameInTable="columnSupFullName" msprop:Generator_UserColumnName="SupFullName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="site" msprop:Generator_ColumnPropNameInRow="site" msprop:Generator_ColumnPropNameInTable="siteColumn" msprop:Generator_ColumnVarNameInTable="columnsite" msprop:Generator_UserColumnName="site" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="500" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnVarNameInTable="columnID" msprop:Generator_UserColumnName="ID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_UserColumnName="code" type="xs:int" />
+              <xs:element name="orderID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="orderID" msprop:Generator_ColumnPropNameInTable="orderIDColumn" msprop:Generator_ColumnVarNameInTable="columnorderID" msprop:Generator_UserColumnName="orderID" type="xs:string" />
+              <xs:element name="orderType" msprop:Generator_ColumnPropNameInRow="orderType" msprop:Generator_ColumnPropNameInTable="orderTypeColumn" msprop:Generator_ColumnVarNameInTable="columnorderType" msprop:Generator_UserColumnName="orderType" type="xs:short" />
+              <xs:element name="supID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="supID" msprop:Generator_ColumnPropNameInTable="supIDColumn" msprop:Generator_ColumnVarNameInTable="columnsupID" msprop:Generator_UserColumnName="supID" type="xs:string" />
+              <xs:element name="colorCatID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="colorCatID" msprop:Generator_ColumnPropNameInTable="colorCatIDColumn" msprop:Generator_ColumnVarNameInTable="columncolorCatID" msprop:Generator_UserColumnName="colorCatID" type="xs:string" />
+              <xs:element name="valueListItemID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="valueListItemID" msprop:Generator_ColumnPropNameInTable="valueListItemIDColumn" msprop:Generator_ColumnVarNameInTable="columnvalueListItemID" msprop:Generator_UserColumnName="valueListItemID" type="xs:string" />
+              <xs:element name="photo" msprop:Generator_ColumnPropNameInRow="photo" msprop:Generator_ColumnPropNameInTable="photoColumn" msprop:Generator_ColumnVarNameInTable="columnphoto" msprop:Generator_UserColumnName="photo" type="xs:base64Binary" />
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" msprop:Generator_UserColumnName="modifiedBy" type="xs:string" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" msprop:Generator_UserColumnName="modifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" msprop:Generator_UserColumnName="createdOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_ColumnVarNameInTable="columncreatedBy" msprop:Generator_UserColumnName="createdBy" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
       </xs:choice>
     </xs:complexType>
     <xs:unique name="Constraint1" msdata:PrimaryKey="true">
       <xs:selector xpath=".//mstns:vw_COMP" />
+      <xs:field xpath="mstns:ID" />
+    </xs:unique>
+    <xs:unique name="vw_CCT_ORDERS_PHOTOS_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:vw_CCT_ORDERS_PHOTOS" />
       <xs:field xpath="mstns:ID" />
     </xs:unique>
   </xs:element>

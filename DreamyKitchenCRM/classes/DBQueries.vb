@@ -2,8 +2,6 @@
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraEditors
 Imports System.IO
-Imports DevExpress.XtraRichEdit.Import.Html
-Imports Org.BouncyCastle.Asn1.X500
 Imports DevExpress.XtraEditors.Controls
 
 Public Class DBQueries
@@ -293,7 +291,7 @@ Public Class DBQueries
                                             sCheckedItems.Append(CheckedItem.Value.ToString)
                                         End If
                                     Next
-                                    If sCheckedItems.Length > 0 Then sCheckedItems.Append("'") : sSQLV.Append(IIf(IsFirstField = True, "", ",") & sCheckedItems.ToString) Else  sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+                                    If sCheckedItems.Length > 0 Then sCheckedItems.Append("'") : sSQLV.Append(IIf(IsFirstField = True, "", ",") & sCheckedItems.ToString) Else sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
 
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
@@ -1632,6 +1630,57 @@ NextItem:
             sSQL.Append("WHERE ID = " & toSQLValueS(sID))
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+
+                oCmd.ExecuteNonQuery()
+            End Using
+
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    'Διαβάζει τις στήλες ενός GRID δυναμικά και τα πεδία ενός LayoutControlGroup δυναμικά και κάνει Update
+    Public Function UpdateDataCardGRD(ByVal GRD As DevExpress.XtraGrid.Views.Card.CardView, ByVal sTable As String,
+                                      Optional ByVal ExtraFieldsAndValues As String = "", Optional ByVal CheckVisibility As Boolean = False)
+        Dim sSQL As New System.Text.StringBuilder
+        Dim sDate As DateTime
+        Dim IsFirstField As Boolean = True
+        Dim cellValue
+        Try
+            sSQL.Clear()
+            sSQL.AppendLine("UPDATE " & sTable & " SET ")
+            If ExtraFieldsAndValues.Length > 0 Then sSQL.AppendLine(ExtraFieldsAndValues) : IsFirstField = False
+
+            For Each column As DevExpress.XtraGrid.Columns.GridColumn In GRD.Columns
+                If column.Visible = True Then
+                    'If FieldsToBeUpdate.Contains(column.FieldName) Then
+                    sSQL.Append(IIf(IsFirstField = True, "", ","))
+                    If GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName) IsNot DBNull.Value Then
+                        Select Case column.ColumnType.Name
+                            Case "Guid" : sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName).ToString))
+                            Case "Int32" : sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName).ToString, True))
+                            Case "DateTime"
+                                sDate = GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName)
+                                sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(sDate.ToString("yyyyMMdd")))
+                            Case "Decimal" : sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName).ToString, True))
+                            Case "String" : sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName).ToString))
+                            Case "Byte[]"
+                                cellValue = GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName)
+                                sSQL.AppendLine("[" & column.FieldName & "]" & "=@Photo")
+                        End Select
+                        'sSQL.AppendLine(",")
+                    End If
+                    'End If
+                End If
+                IsFirstField = False
+            Next
+            sSQL.AppendLine(",modifiedON = getdate() ")
+            sSQL.AppendLine(",[modifiedBy] = " & toSQLValueS(UserProps.ID.ToString))
+            sSQL.AppendLine("WHERE ID = " & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, "ID").ToString))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.Parameters.AddWithValue("@Photo", cellValue)
                 oCmd.ExecuteNonQuery()
             End Using
 

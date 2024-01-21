@@ -71,7 +71,7 @@ Public Class frmProject
     End Sub
 
     Private Sub cmdSaveTransH_Click(sender As Object, e As EventArgs) Handles cmdSaveTransH.Click
-        Projects.SaveRecordSmallH()
+        Projects.SaveRecordSmallH(sID)
     End Sub
 
     Private Sub frmProject_Resize(sender As Object, e As EventArgs) Handles Me.Resize

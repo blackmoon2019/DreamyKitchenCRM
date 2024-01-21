@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraEditors
+Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
 
@@ -9,6 +10,7 @@ Public Class CusOfferOrderKitchen
     Private Mode As Byte
     Private CalledFromCtrl As Boolean
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
+    Private Cls As New ClearControls
     Private DBQ As New DBQueries
     Private LoadForms As New FormLoader
     Private Frm As frmCUSOfferOrderKitchen
@@ -34,6 +36,11 @@ Public Class CusOfferOrderKitchen
         Frm.Vw_CCTTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_CCT)
         Frm.Vw_SALERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SALERS)
         Frm.Vw_COLORSGOLATableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORSGOLA)
+        Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.Fill(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS)
+        Frm.Vw_COLORS_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORS_CAT)
+        Frm.Vw_VALUELISTITEMModelKitchenTableAdapter.Fill(Frm.DM_VALUELISTITEM1.vw_VALUELISTITEMModelKitchen)
+        Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
+
         Prog_Prop.GetProgPROSF()
 
         If sIsOrder = True Then
@@ -71,7 +78,7 @@ Public Class CusOfferOrderKitchen
                     Frm.txtKHeight.EditValue = ProgProps.K_HEIGHT
                     Frm.txtKFinalHeight.EditValue = ProgProps.K_FINAL_HEIGHT
                     Frm.txtYHeight.EditValue = ProgProps.Y_HEIGHT
-                    Frm.txtYFinalHeight.EditValue = ProgProps.Y_FINAL_HEIGHT                                                                                           
+                    Frm.txtYFinalHeight.EditValue = ProgProps.Y_FINAL_HEIGHT
                     Frm.cboVBOXColors.EditValue = System.Guid.Parse(ProgProps.V_BOX_COLOR)
                     Frm.cboKBOXColors.EditValue = System.Guid.Parse(ProgProps.K_BOX_COLOR)
                     Frm.cboYBOXColors.EditValue = System.Guid.Parse(ProgProps.Y_BOX_COLOR)
@@ -229,6 +236,39 @@ Public Class CusOfferOrderKitchen
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Sub SavePhotoRecord(ByVal sID As String, ByVal LocalMode As Integer)
+        Dim sResult As Boolean
+        Dim sGuid As String
+        Try
+            If Valid.ValidateForm(Frm.LayoutControl3) Then
+                Select Case LocalMode
+                    Case FormMode.NewRecord
+                        sGuid = System.Guid.NewGuid.ToString
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_PHOTOS", Frm.LayoutControl3,,, sGuid, , "orderID,orderType", toSQLValueS(sID) & ",0")
+                    Case FormMode.EditRecord
+                        sResult = DBQ.UpdateDataCardGRD(Frm.CardView1, "CCT_ORDERS_PHOTOS",, True)
+                End Select
+                If sResult = True Then
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Cls.ClearCtrls(Frm.LayoutControl3)
+                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.Fill(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS)
+                End If
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub DeletePhotoRecord()
+        If Frm.CardView1.GetRowCellValue(Frm.CardView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            Dim sSQL As String = "DELETE FROM CCT_ORDERS_PHOTOS WHERE ID = '" & Frm.CardView1.GetRowCellValue(Frm.CardView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.Fill(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS)
+        End If
+    End Sub
     Private Function UpdateProjectFields() As Boolean
         Try
             Dim sSQL As String
@@ -298,7 +338,7 @@ Public Class CusOfferOrderKitchen
     Public Sub ConvertToOrder()
         Try
             Valid.ID = Frm.cboTRANSH.EditValue.ToString
-            If Valid.ValiDationRules(Frm.Name, Frm) = False Then Exit Sub
+            If Valid.ValiDationRules(Frm.Name, Frm, True) = False Then Exit Sub
             If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
