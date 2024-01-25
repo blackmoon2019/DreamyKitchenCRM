@@ -36,10 +36,10 @@ Public Class CusOfferOrderKitchen
         Frm.Vw_CCTTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_CCT)
         Frm.Vw_SALERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SALERS)
         Frm.Vw_COLORSGOLATableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORSGOLA)
-        Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.Fill(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS)
         Frm.Vw_COLORS_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORS_CAT)
         Frm.Vw_VALUELISTITEMModelKitchenTableAdapter.Fill(Frm.DM_VALUELISTITEM1.vw_VALUELISTITEMModelKitchen)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
+        Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0)
 
         Prog_Prop.GetProgPROSF()
 
@@ -58,6 +58,8 @@ Public Class CusOfferOrderKitchen
             Frm.LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.TabNavigationPage3.PageVisible = False
+            Frm.TabNavigationPage4.PageVisible = False
         End If
 
         Select Case Mode
@@ -132,13 +134,13 @@ Public Class CusOfferOrderKitchen
         End Select
 
         LoadForms.LoadDataToGrid(Frm.grdDevices, Frm.GridView1,
-                    "select D.ID,D.code,D.name,(select dCode  from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) as dCode, 
-                    isnull((select price  from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id),0) as price,
-                      CAST(CASE WHEN (select ED.ID 
-                        from CCT_ORDERS_KITCHEN_DEVICES ED 
-	                    where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked
+                    "select D.ID,D.code,D.name,
+                        (select dCode  from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) as dCode, 
+                        isnull((select price  from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id),0) as price,
+                        CAST(CASE WHEN (select ED.ID  from CCT_ORDERS_KITCHEN_DEVICES ED  where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
+                        (select suppID from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) as suppID  
                       from DEVICES D
-                        ORDER BY NAME")
+                      ORDER BY NAME")
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
         If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
@@ -251,7 +253,7 @@ Public Class CusOfferOrderKitchen
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Cls.ClearCtrls(Frm.LayoutControl3)
-                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.Fill(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS)
+                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0)
                 End If
             End If
 
@@ -266,7 +268,7 @@ Public Class CusOfferOrderKitchen
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.Fill(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS)
+            Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0)
         End If
     End Sub
     Private Function UpdateProjectFields() As Boolean
@@ -312,21 +314,26 @@ Public Class CusOfferOrderKitchen
         Next
         If sIsOrder = True Then
             Dim DcodeIsEmpty As Boolean = False
+            Dim supIDIsEmpty As Boolean = False
             For I = 0 To Frm.GridView1.RowCount - 1
                 Selected = Frm.GridView1.GetRowCellValue(I, "checked")
                 If Selected = True Then
                     If Frm.GridView1.GetRowCellValue(I, "dCode").ToString = "" Then DcodeIsEmpty = True
-                    If Frm.GridView1.GetRowCellValue(I, "dCode").ToString.Length > 0 Then
-                        sSQL = "INSERT INTO CCT_ORDERS_KITCHEN_DEVICES(cctOrdersKitchenID,devicesID,dCode,Price,selected) " &
-                    " VALUES ( " & toSQLValueS(ID) & "," & toSQLValueS(Frm.GridView1.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(Frm.GridView1.GetRowCellValue(I, "dCode").ToString) & "," & toSQLValueS(Frm.GridView1.GetRowCellValue(I, "price").ToString, True) & ",1)"
+                    If Frm.GridView1.GetRowCellValue(I, "suppID").ToString = "" Then supIDIsEmpty = True
+                    If Frm.GridView1.GetRowCellValue(I, "dCode").ToString.Length > 0 And Frm.GridView1.GetRowCellValue(I, "suppID").ToString.Length > 0 Then
+                        sSQL = "INSERT INTO CCT_ORDERS_KITCHEN_DEVICES(cctOrdersKitchenID,devicesID,dCode,Price,selected,suppID) " &
+                                " VALUES ( " & toSQLValueS(ID) & "," & toSQLValueS(Frm.GridView1.GetRowCellValue(I, "ID").ToString) & "," & toSQLValueS(Frm.GridView1.GetRowCellValue(I, "dCode").ToString) & "," &
+                                                toSQLValueS(Frm.GridView1.GetRowCellValue(I, "price").ToString, True) & ",1," & toSQLValueS(Frm.GridView1.GetRowCellValue(I, "suppID").ToString) & " )"
                         Using oCmd As New SqlCommand(sSQL, CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
                     End If
                 End If
             Next
-            If DcodeIsEmpty = True Then
-                If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+
+            If DcodeIsEmpty = True Or supIDIsEmpty = True Then
+                If DcodeIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                If supIDIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
             Else
                 If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If

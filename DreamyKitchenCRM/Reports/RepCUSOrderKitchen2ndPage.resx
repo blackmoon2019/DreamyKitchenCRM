@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="SqlDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="CustomSqlQuery1.Sql" xml:space="preserve">
     <value>select "vw_CCT_ORDERS_KITCHEN_DEVICES"."ID",
        "vw_CCT_ORDERS_KITCHEN_DEVICES"."code",
@@ -164,7 +161,7 @@ and "vw_CCT_ORDERS_KITCHEN_EQUIPMENT"."selected" = 1</value>
 	 "vw_CCT_ORDERS_KITCHEN"."BackName",
 	 "vw_CCT_ORDERS_KITCHEN"."BenchName",
 	 "vw_CCT_ORDERS_KITCHEN"."BenchName2",
-	 "vw_CCT_ORDERS_KITCHEN"."BenchNisidaVALUELISTITEMName",
+	 "vw_CCT_ORDERS_KITCHEN"."BenchNisidaDoorTypeName",
 	 "vw_CCT_ORDERS_KITCHEN"."benchThicknessNisida" ,
 	 "vw_CCT_ORDERS_KITCHEN"."benchThicknessTable",
 	 "vw_CCT_ORDERS_KITCHEN"."benchThicknessBack"

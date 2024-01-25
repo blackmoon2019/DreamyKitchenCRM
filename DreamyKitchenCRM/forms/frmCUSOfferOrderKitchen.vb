@@ -421,6 +421,7 @@ Public Class frmCUSOfferOrderKitchen
             Case 1
                 LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
                 LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
+            Case 2
             Case 3
                 LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_KITCHEN_def.xml")
                 TRANSH_FTableAdapter.FillByTanshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
@@ -833,6 +834,7 @@ Public Class frmCUSOfferOrderKitchen
             Case 2 : ManageCbo.ManageSup(cboSUP1, FormMode.EditRecord)
             Case 3 : cboSUP1.EditValue = Nothing
             Case 4
+                If IsDBNull(cboSUP1.GetColumnValue("site")) Then Exit Sub
                 Dim webAddress As String = cboSUP1.GetColumnValue("site")
                 If webAddress = Nothing Then XtraMessageBox.Show("Δεν έχει οριστεί Site στον Προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) Else Process.Start(webAddress)
         End Select
@@ -862,4 +864,5 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "vw_TRANSH_F_KITCHEN_def.xml", "vw_TRANSH_F")
     End Sub
+
 End Class

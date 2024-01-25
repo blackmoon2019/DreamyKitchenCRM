@@ -1142,10 +1142,10 @@ Public Class frmScroller
             Case "vw_CCT_ORDERS_DOOR"
                 Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
                 If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
                     frmCUSOfferOrderDoors.IsOrder = 1
                 Else
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Πόρτες)"
                     frmCUSOfferOrderDoors.IsOrder = 0
                 End If
                 frmCUSOfferOrderDoors.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString

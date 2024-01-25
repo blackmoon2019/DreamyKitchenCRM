@@ -365,6 +365,8 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Vw_COLORS_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORS_CATTableAdapter()
         Me.Vw_CCT_ORDERS_PHOTOSTableAdapter = New DreamyKitchenCRM.DM_CCTTableAdapters.vw_CCT_ORDERS_PHOTOSTableAdapter()
         Me.TRANSH_FTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.TRANSH_FTableAdapter()
+        Me.RepositoryItemLookUpSUP = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.GridColumn10 = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkofferAccepted.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -630,6 +632,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepositoryItemLookUpSUP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'coldCode
@@ -4036,13 +4039,14 @@ Partial Class frmCUSOfferOrderKitchen
         Me.grdDevices.MainView = Me.GridView1
         Me.grdDevices.Margin = New System.Windows.Forms.Padding(5)
         Me.grdDevices.Name = "grdDevices"
+        Me.grdDevices.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemLookUpSUP})
         Me.grdDevices.Size = New System.Drawing.Size(1861, 659)
         Me.grdDevices.TabIndex = 2
         Me.grdDevices.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.coldCode, Me.GridColumn3, Me.colchecked})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.coldCode, Me.GridColumn10, Me.GridColumn3, Me.colchecked})
         Me.GridView1.FixedLineWidth = 3
         GridFormatRule1.ApplyToRow = True
         GridFormatRule1.Column = Me.coldCode
@@ -4103,7 +4107,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.GridColumn3.MinWidth = 35
         Me.GridColumn3.Name = "GridColumn3"
         Me.GridColumn3.Visible = True
-        Me.GridColumn3.VisibleIndex = 3
+        Me.GridColumn3.VisibleIndex = 4
         Me.GridColumn3.Width = 131
         '
         'colchecked
@@ -4113,7 +4117,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.colchecked.MinWidth = 33
         Me.colchecked.Name = "colchecked"
         Me.colchecked.Visible = True
-        Me.colchecked.VisibleIndex = 4
+        Me.colchecked.VisibleIndex = 5
         Me.colchecked.Width = 112
         '
         'grdEquipment
@@ -5001,6 +5005,28 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.TRANSH_FTableAdapter.ClearBeforeFill = True
         '
+        'RepositoryItemLookUpSUP
+        '
+        Me.RepositoryItemLookUpSUP.AutoHeight = False
+        Me.RepositoryItemLookUpSUP.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepositoryItemLookUpSUP.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 55, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Προμηθευτής", 91, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttl", "Τίτλος", 31, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bal", "bal", 40, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 59, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("site", "site", 43, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepositoryItemLookUpSUP.DataSource = Me.VwSUPBindingSource
+        Me.RepositoryItemLookUpSUP.DisplayMember = "Fullname"
+        Me.RepositoryItemLookUpSUP.Name = "RepositoryItemLookUpSUP"
+        Me.RepositoryItemLookUpSUP.NullText = ""
+        Me.RepositoryItemLookUpSUP.ValueMember = "ID"
+        '
+        'GridColumn10
+        '
+        Me.GridColumn10.Caption = "ΠΡΟΜΗΘΕΥΤΗΣ"
+        Me.GridColumn10.ColumnEdit = Me.RepositoryItemLookUpSUP
+        Me.GridColumn10.FieldName = "suppID"
+        Me.GridColumn10.MinWidth = 35
+        Me.GridColumn10.Name = "GridColumn10"
+        Me.GridColumn10.Visible = True
+        Me.GridColumn10.VisibleIndex = 3
+        Me.GridColumn10.Width = 160
+        '
         'frmCUSOfferOrderKitchen
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
@@ -5277,6 +5303,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepositoryItemLookUpSUP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -5611,5 +5638,7 @@ Partial Class frmCUSOfferOrderKitchen
     Friend WithEvents LayoutControlItem99 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents TRANSHFBindingSource As BindingSource
     Friend WithEvents TRANSH_FTableAdapter As DM_TRANSTableAdapters.TRANSH_FTableAdapter
+    Friend WithEvents GridColumn10 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepositoryItemLookUpSUP As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     '    Friend WithEvents Vw_VALUELISTITEMPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_VALUELISTITEMPlainaYpsilaTableAdapter
 End Class

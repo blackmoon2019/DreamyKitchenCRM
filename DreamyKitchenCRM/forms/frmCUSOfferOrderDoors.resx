@@ -118,19 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="VwCOMPBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1955, 69</value>
+    <value>1613, 68</value>
   </metadata>
   <metadata name="DM_CCT.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1804, 69</value>
-  </metadata>
-  <metadata name="DM_CCT.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1804, 69</value>
+    <value>1462, 68</value>
   </metadata>
   <metadata name="VwCCTBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>766, 69</value>
-  </metadata>
-  <metadata name="DreamyKitchenDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
+    <value>427, 68</value>
   </metadata>
   <metadata name="DreamyKitchenDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
@@ -139,22 +133,16 @@
     <value>303, 17</value>
   </metadata>
   <metadata name="VwVALUELISTITEMV2BindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 69</value>
+    <value>2442, 17</value>
   </metadata>
   <metadata name="DM_VALUELISTITEM.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2507, 17</value>
-  </metadata>
-  <metadata name="DM_VALUELISTITEM.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2507, 17</value>
+    <value>2181, 17</value>
   </metadata>
   <metadata name="CCTTRANSHBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1860, 17</value>
   </metadata>
   <metadata name="DM_TRANS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1305, 69</value>
-  </metadata>
-  <metadata name="DM_TRANS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1305, 69</value>
+    <value>963, 68</value>
   </metadata>
   <metadata name="DMDataSet.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1684, 17</value>
@@ -169,16 +157,16 @@
     <value>1298, 17</value>
   </metadata>
   <metadata name="Vw_CCTTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1038, 69</value>
+    <value>696, 68</value>
   </metadata>
   <metadata name="CCT_TRANSHTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1485, 69</value>
+    <value>1143, 68</value>
   </metadata>
   <metadata name="Vw_VALUELISTITEM_V2TableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>383, 69</value>
+    <value>17, 68</value>
   </metadata>
   <metadata name="Vw_COMPTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2247, 69</value>
+    <value>1905, 68</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="cmdSave.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -207,27 +195,6 @@
         WADCxfOu/Q9p2LU3Le0MK9RIVIBsQULP4f/1q54QxM0bXsItAOGCude+BTfu3ofVEqpZ0ECEBTQPImIw
         eiTnTj/1F6fhIECuBSDDC4F5YcvNr9RPpjTPaEVzzsLLoxZqFxU0L+zQ8QixgKaVPnWbLQwMAA1uLO8q
         UNCrAAAAAElFTkSuQmCC
-</value>
-  </data>
-  <data name="EditorButtonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABR0RVh0VGl0
-        bGUASHlwZXJsaW5rO1dlYjsG/qDOAAADdklEQVQ4T12TbUxTVxjHr29bZpSEzWXGSdAZQ9mqLOBtDYgg
-        0IrIS6lYpS32ggWRpnVYMttKaa0WRKQgFHARMHM2QuPQiS1Cu9Y3BF3wJYoiItnmZvTLEvSTSvl7ri+d
-        8SS/L+ee/++553lyqFh1P0XWNMKsGEWXjJfvcvCVvWMrCz2vaMb9MFrqdHKzWpTk+xzCDFp+lgIQhF3T
-        ojYdXUgXuOypet+kpesybN1unPD/jm1HDiDDZsP68vNTcczJznBeSQQr+VgwawUJp+89C21PM/Rde1B1
-        2o4GVwfyWn/BF5ZVWGKSQWwaRFLBbz3kfChhelDA/nai1jOZ3KrByp+TIXFtgaZXhx+cnag4Pw7ZYTfm
-        GZPA09sg3nVjihYdNhPBZ0EBr8DlSLQ2YP7+SCxs4eC76mSonKdgHfgXlksTUDlGkNdkBlNngkh7DmlF
-        nhEi+Dwo4G/tHfu2fCvCtKvwZcVyMMcdqLz6FPuuPIehbwLKn4YhqCpG5aACTI0RYvXACyJY8L9A2fcq
-        orQAooNtkLV1weB9hAr/M+jcE9jR8R8211xHhDkFsjNpkNdvg0QzyHZuUVBAK1wPhaYTCNueA3njBUgP
-        +SCr74fCfheKhr+RZbyOUFUiOHVRSDFLIFL2BYggOA0qOrfTmbH7FhJK2xEjV4OXq4BAXoa4zRokMS1I
-        KfZjmUSN6A0M4sVqxGVqJzm8tTYimMdKKG5ms1KgGphaW+SA1X4cvstD+OfxE3gv/gGzrR38jDIYa1rh
-        9vZjbPxPdPdehM7aHODwU6uIIIRAzaFzjp0U5u2Hr38IlsYOSEtrIVFXI6ekEqLCPUjPNyJ1ix4puWXY
-        rq/F6R4/otZsGibZr1nBjPkcUbRA+mOArSzRVKPtWAeyiyzkisDwyChu3b6DdQoD6puOIDazGHdHHoBe
-        l/+SZJdQtOwMKwlZnV1yzXPhGgwHjr6rqIOAVFyzcQe5u+pNkJ9eCKXWil+7veDGb7hPcuFvR0FRn9JC
-        qc5U2z55zn8F4389gst7CYaqlgA3PvuqzmoPnHL7MHxvlIQ92GmuC3wTldBAcqHvBdMJId8n5pTz05ih
-        2KziFzFC+c1Iflol2Y9cukJYsyxh472YVOYlN148unh5QiPZDyPMfCP4QDKbwI6Hbc5XhLmETwhst9nA
-        UkI4gX1QMwFQrwGjWAB+ikgulAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="LayoutControlItem46.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -266,6 +233,36 @@
         eJaJw5G9QfFCAE0iSJ9A5bowAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="VwCCTORDERSPHOTOSBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>2195, 68</value>
+  </metadata>
+  <data name="EditorButtonImageOptions1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABGdBTUEAALGPC/xhBQAAABR0RVh0VGl0
+        bGUASHlwZXJsaW5rO1dlYjsG/qDOAAADdklEQVQ4T12TbUxTVxjHr29bZpSEzWXGSdAZQ9mqLOBtDYgg
+        0IrIS6lYpS32ggWRpnVYMttKaa0WRKQgFHARMHM2QuPQiS1Cu9Y3BF3wJYoiItnmZvTLEvSTSvl7ri+d
+        8SS/L+ee/++553lyqFh1P0XWNMKsGEWXjJfvcvCVvWMrCz2vaMb9MFrqdHKzWpTk+xzCDFp+lgIQhF3T
+        ojYdXUgXuOypet+kpesybN1unPD/jm1HDiDDZsP68vNTcczJznBeSQQr+VgwawUJp+89C21PM/Rde1B1
+        2o4GVwfyWn/BF5ZVWGKSQWwaRFLBbz3kfChhelDA/nai1jOZ3KrByp+TIXFtgaZXhx+cnag4Pw7ZYTfm
+        GZPA09sg3nVjihYdNhPBZ0EBr8DlSLQ2YP7+SCxs4eC76mSonKdgHfgXlksTUDlGkNdkBlNngkh7DmlF
+        nhEi+Dwo4G/tHfu2fCvCtKvwZcVyMMcdqLz6FPuuPIehbwLKn4YhqCpG5aACTI0RYvXACyJY8L9A2fcq
+        orQAooNtkLV1weB9hAr/M+jcE9jR8R8211xHhDkFsjNpkNdvg0QzyHZuUVBAK1wPhaYTCNueA3njBUgP
+        +SCr74fCfheKhr+RZbyOUFUiOHVRSDFLIFL2BYggOA0qOrfTmbH7FhJK2xEjV4OXq4BAXoa4zRokMS1I
+        KfZjmUSN6A0M4sVqxGVqJzm8tTYimMdKKG5ms1KgGphaW+SA1X4cvstD+OfxE3gv/gGzrR38jDIYa1rh
+        9vZjbPxPdPdehM7aHODwU6uIIIRAzaFzjp0U5u2Hr38IlsYOSEtrIVFXI6ekEqLCPUjPNyJ1ix4puWXY
+        rq/F6R4/otZsGibZr1nBjPkcUbRA+mOArSzRVKPtWAeyiyzkisDwyChu3b6DdQoD6puOIDazGHdHHoBe
+        l/+SZJdQtOwMKwlZnV1yzXPhGgwHjr6rqIOAVFyzcQe5u+pNkJ9eCKXWil+7veDGb7hPcuFvR0FRn9JC
+        qc5U2z55zn8F4389gst7CYaqlgA3PvuqzmoPnHL7MHxvlIQ92GmuC3wTldBAcqHvBdMJId8n5pTz05ih
+        2KziFzFC+c1Iflol2Y9cukJYsyxh472YVOYlN148unh5QiPZDyPMfCP4QDKbwI6Hbc5XhLmETwhst9nA
+        UkI4gX1QMwFQrwGjWAB+ikgulAAAAABJRU5ErkJggg==
+</value>
+  </data>
+  <metadata name="VwSUPBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1048, 119</value>
+  </metadata>
+  <metadata name="VwCOLORSCATBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1939, 119</value>
+  </metadata>
   <data name="LayoutControlItem14.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAYAAAAGCAYAAADgzO9IAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6
@@ -284,6 +281,21 @@
         eJaJw5G9QfFCAE0iSJ9A5bowAAAAAElFTkSuQmCC
 </value>
   </data>
+  <metadata name="TRANSHFBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>460, 119</value>
+  </metadata>
+  <metadata name="Vw_CCT_ORDERS_PHOTOSTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 119</value>
+  </metadata>
+  <metadata name="TRANSH_FTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>755, 119</value>
+  </metadata>
+  <metadata name="Vw_SUPTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1318, 119</value>
+  </metadata>
+  <metadata name="Vw_COLORS_CATTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>1586, 119</value>
+  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>191</value>
   </metadata>

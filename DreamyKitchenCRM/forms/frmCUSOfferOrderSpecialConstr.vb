@@ -1,5 +1,9 @@
 ﻿Imports System.Data.SqlClient
+Imports DevExpress.XtraBars.Navigation
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class frmCUSOfferOrderSpecialConstr
     Private CUSOfferOrderSpecialConstr As New CUSOfferOrderSpecialConstr
@@ -381,4 +385,66 @@ Public Class frmCUSOfferOrderSpecialConstr
             Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
         End Select
     End Sub
+
+    Private Sub cmdSavePhotos_Click(sender As Object, e As EventArgs) Handles cmdSavePhotos.Click
+        CUSOfferOrderSpecialConstr.SavePhotoRecord(sID, FormMode.NewRecord)
+    End Sub
+
+
+    Private Sub CardView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles CardView1.ValidateRow
+        CUSOfferOrderSpecialConstr.SavePhotoRecord(sID, FormMode.EditRecord)
+    End Sub
+
+    Private Sub CardView1_KeyDown(sender As Object, e As KeyEventArgs) Handles CardView1.KeyDown
+        If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then DeleteRecord()
+    End Sub
+    Private Sub DeleteRecord()
+        CUSOfferOrderSpecialConstr.DeletePhotoRecord()
+    End Sub
+
+    Private Sub cboSUP1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP1.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageSup(cboSUP1, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageSup(cboSUP1, FormMode.EditRecord)
+            Case 3 : cboSUP1.EditValue = Nothing
+            Case 4
+                If IsDBNull(cboSUP1.GetColumnValue("site")) Then Exit Sub
+                Dim webAddress As String = cboSUP1.GetColumnValue("site")
+                If webAddress = Nothing Then XtraMessageBox.Show("Δεν έχει οριστεί Site στον Προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) Else Process.Start(webAddress)
+        End Select
+
+    End Sub
+
+    Private Sub cboPhotoValueListItem_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPhotoValueListItem.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 2 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.EditRecord)
+            Case 3 : cboPhotoValueListItem.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboColorsCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboColorsCat.ButtonClick
+        Select Case e.Button.Index
+        '    Case 1 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+        '    Case 2 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.EditRecord)
+            Case 3 : cboColorsCat.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cmdPrintPhotos_Click(sender As Object, e As EventArgs) Handles cmdPrintPhotos.Click
+        CardView1.ShowPrintPreview()
+    End Sub
+
+    Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "vw_TRANSH_F_SPECIAL_CONSTR_def.xml", "vw_TRANSH_F")
+    End Sub
+    Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
+        Select Case TabPane1.SelectedPageIndex
+            Case 2
+                LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_CLOSET_def.xml")
+                TRANSH_FTableAdapter.FillByTanshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
+        End Select
+
+    End Sub
+
 End Class

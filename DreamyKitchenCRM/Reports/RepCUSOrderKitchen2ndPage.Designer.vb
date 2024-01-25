@@ -74,6 +74,9 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.XrLabel70 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.DetailReport3 = New DevExpress.XtraReports.UI.DetailReportBand()
+        Me.Detail4 = New DevExpress.XtraReports.UI.DetailBand()
+        Me.XrLabel16 = New DevExpress.XtraReports.UI.XRLabel()
         Me.DetailReport1 = New DevExpress.XtraReports.UI.DetailReportBand()
         Me.GroupHeader2 = New DevExpress.XtraReports.UI.GroupHeaderBand()
         Me.XrTable5 = New DevExpress.XtraReports.UI.XRTable()
@@ -126,6 +129,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.XrLabel62 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel63 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel65 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrLabel15 = New DevExpress.XtraReports.UI.XRLabel()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -220,7 +224,7 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         '
         'DetailReport
         '
-        Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.GroupHeader1, Me.Detail1, Me.ReportFooter1})
+        Me.DetailReport.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.GroupHeader1, Me.Detail1, Me.ReportFooter1, Me.DetailReport3})
         Me.DetailReport.DataMember = "vw_CCT_ORDERS_KITCHEN_DEVICES"
         Me.DetailReport.DataSource = Me.SqlDataSource1
         Me.DetailReport.Level = 2
@@ -639,6 +643,42 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.XrLabel5.Text = "XrLabel5"
         Me.XrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
         Me.XrLabel5.TextFormatString = "{0:C2}"
+        '
+        'DetailReport3
+        '
+        Me.DetailReport3.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.Detail4})
+        Me.DetailReport3.Level = 0
+        Me.DetailReport3.Name = "DetailReport3"
+        '
+        'Detail4
+        '
+        Me.Detail4.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel15, Me.XrLabel16})
+        Me.Detail4.HeightF = 50.98935!
+        Me.Detail4.Name = "Detail4"
+        '
+        'XrLabel16
+        '
+        Me.XrLabel16.BackColor = System.Drawing.Color.White
+        Me.XrLabel16.BorderColor = System.Drawing.Color.White
+        Me.XrLabel16.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel16.BorderWidth = 2.0!
+        Me.XrLabel16.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
+        Me.XrLabel16.ForeColor = System.Drawing.Color.Red
+        Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0!, 25.0!)
+        Me.XrLabel16.Name = "XrLabel16"
+        Me.XrLabel16.Padding = New DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 100.0!)
+        Me.XrLabel16.SizeF = New System.Drawing.SizeF(725.0!, 25.0!)
+        Me.XrLabel16.StyleName = "DetailCaption2"
+        Me.XrLabel16.StylePriority.UseBackColor = False
+        Me.XrLabel16.StylePriority.UseBorderColor = False
+        Me.XrLabel16.StylePriority.UseBorders = False
+        Me.XrLabel16.StylePriority.UseBorderWidth = False
+        Me.XrLabel16.StylePriority.UseFont = False
+        Me.XrLabel16.StylePriority.UseForeColor = False
+        Me.XrLabel16.StylePriority.UsePadding = False
+        Me.XrLabel16.StylePriority.UseTextAlignment = False
+        Me.XrLabel16.Text = "Οι  συσκευές είναι υποχρέωση του πελάτη"
+        Me.XrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
         'DetailReport1
         '
@@ -1381,20 +1421,44 @@ Partial Public Class RepCUSOrderKitchen2ndPage
         Me.XrLabel65.Text = "XrLabel45"
         Me.XrLabel65.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
+        'XrLabel15
+        '
+        Me.XrLabel15.BackColor = System.Drawing.Color.FromArgb(CType(CType(208, Byte), Integer), CType(CType(206, Byte), Integer), CType(CType(206, Byte), Integer))
+        Me.XrLabel15.BorderColor = System.Drawing.Color.White
+        Me.XrLabel15.Borders = DevExpress.XtraPrinting.BorderSide.None
+        Me.XrLabel15.BorderWidth = 2.0!
+        Me.XrLabel15.Font = New DevExpress.Drawing.DXFont("Zona Pro", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
+        Me.XrLabel15.ForeColor = System.Drawing.Color.Black
+        Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0!, 0!)
+        Me.XrLabel15.Name = "XrLabel15"
+        Me.XrLabel15.Padding = New DevExpress.XtraPrinting.PaddingInfo(6, 6, 0, 0, 100.0!)
+        Me.XrLabel15.SizeF = New System.Drawing.SizeF(725.0!, 25.0!)
+        Me.XrLabel15.StyleName = "DetailCaption2"
+        Me.XrLabel15.StylePriority.UseBackColor = False
+        Me.XrLabel15.StylePriority.UseBorderColor = False
+        Me.XrLabel15.StylePriority.UseBorders = False
+        Me.XrLabel15.StylePriority.UseBorderWidth = False
+        Me.XrLabel15.StylePriority.UseFont = False
+        Me.XrLabel15.StylePriority.UseForeColor = False
+        Me.XrLabel15.StylePriority.UsePadding = False
+        Me.XrLabel15.StylePriority.UseTextAlignment = False
+        Me.XrLabel15.Text = "Συσκευές"
+        Me.XrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
+        '
         'RepCUSOrderKitchen2ndPage
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail, Me.DetailReport, Me.DetailReport1, Me.DetailReport2, Me.PageHeader})
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataSource = Me.SqlDataSource1
         Me.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
-        Me.Margins = New DevExpress.Drawing.DXMargins(51, 51, 94, 51)
+        Me.Margins = New DevExpress.Drawing.DXMargins(51.0!, 51.0!, 94.0!, 51.0!)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferIDDev, Me.OfferIDEq, Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.StyleSheet.AddRange(New DevExpress.XtraReports.UI.XRControlStyle() {Me.Title, Me.DetailCaption2, Me.DetailData2, Me.DetailData3_Odd, Me.PageInfo})
-        Me.Version = "21.2"
+        Me.Version = "23.1"
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1495,4 +1559,8 @@ Partial Public Class RepCUSOrderKitchen2ndPage
     Friend WithEvents XrLabel12 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel14 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel13 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents DetailReport3 As DevExpress.XtraReports.UI.DetailReportBand
+    Friend WithEvents Detail4 As DevExpress.XtraReports.UI.DetailBand
+    Friend WithEvents XrLabel16 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel15 As DevExpress.XtraReports.UI.XRLabel
 End Class

@@ -5,6 +5,7 @@ Imports System.Data.SqlClient
 
 Public Class CUSOfferOrderSpecialConstr
     Private Valid As New ValidateControls
+    Private Cls As New ClearControls
     Private ID As String
     Private sIsOrder As Boolean
     Private Mode As Byte
@@ -37,6 +38,9 @@ Public Class CUSOfferOrderSpecialConstr
         Frm.Vw_CONSTR_TYPETableAdapter.Fill(Frm.DMDataSet.vw_CONSTR_TYPE)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
         Frm.Vw_SALERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SALERS)
+        Frm.Vw_COLORS_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORS_CAT)
+        Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
+        Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 3)
         Prog_Prop.GetProgPROSF()
         If sIsOrder = True Then
             Frm.LayoutControlGroup2.Text = "Στοιχεία Παραγγελίας"
@@ -55,6 +59,8 @@ Public Class CUSOfferOrderSpecialConstr
             Frm.LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
             Frm.LayoutControlItem4.Text = "Αρ. Προσφοράς"
             Frm.LayoutControlItem11.Tag = 0
+            Frm.TabNavigationPage2.PageVisible = False
+            Frm.TabNavigationPage3.PageVisible = False
         End If
         Select Case Mode
             Case FormMode.NewRecord
@@ -177,5 +183,38 @@ Public Class CUSOfferOrderSpecialConstr
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Public Sub SavePhotoRecord(ByVal sID As String, ByVal LocalMode As Integer)
+        Dim sResult As Boolean
+        Dim sGuid As String
+        Try
+            If Valid.ValidateForm(Frm.LayoutControl3) Then
+                Select Case LocalMode
+                    Case FormMode.NewRecord
+                        sGuid = System.Guid.NewGuid.ToString
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_PHOTOS", Frm.LayoutControl3,,, sGuid, , "orderID,orderType", toSQLValueS(sID) & ",3")
+                    Case FormMode.EditRecord
+                        sResult = DBQ.UpdateDataCardGRD(Frm.CardView1, "CCT_ORDERS_PHOTOS",, True)
+                End Select
+                If sResult = True Then
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Cls.ClearCtrls(Frm.LayoutControl3)
+                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 3)
+                End If
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub DeletePhotoRecord()
+        If Frm.CardView1.GetRowCellValue(Frm.CardView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            Dim sSQL As String = "DELETE FROM CCT_ORDERS_PHOTOS WHERE ID = '" & Frm.CardView1.GetRowCellValue(Frm.CardView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 3)
+        End If
     End Sub
 End Class
