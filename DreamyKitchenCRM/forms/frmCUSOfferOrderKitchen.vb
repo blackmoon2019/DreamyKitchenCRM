@@ -710,34 +710,6 @@ Public Class frmCUSOfferOrderKitchen
             e.Handled = True
         End If
     End Sub
-
-    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
-        Dim sCompID As String
-        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
-                        from vw_TRANSH t
-                        where  T.cusid = " & sCompID & "order by description")
-        FillCbo.TRANSH(cboCompProject, sSQL)
-        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-    End Sub
-
-    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True)
-            Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True)
-            Case 3 : cboCompProject.EditValue = Nothing
-        End Select
-    End Sub
-
-    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
-            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
-            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
-        End Select
-    End Sub
-
     Private Sub txtCUSOfferOrderFilename_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtCUSOfferOrderFilename.ButtonClick
         Try
             Select Case e.Button.Index
@@ -857,6 +829,33 @@ Public Class frmCUSOfferOrderKitchen
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "vw_TRANSH_F_KITCHEN_def.xml", "vw_TRANSH_F")
     End Sub
 
+    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
+        Dim sCompID As String
+        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+    End Sub
+
+    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True)
+            Case 3 : cboCompProject.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+        End Select
+    End Sub
+
     Private Sub cmdCollection_Click(sender As Object, e As EventArgs) Handles cmdCompCollection.Click
         If cboCompProject.EditValue Is Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Dim Frm As frmTransactions = New frmTransactions()
@@ -887,7 +886,7 @@ Public Class frmCUSOfferOrderKitchen
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
                         from vw_TRANSH t
                         INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '60344B92-1925-42E9-8D0F-0525990B0D5F' 
-                        where  T.cusid = " & sCusID & " and T.compTrashID = " & scompTrashID & " order by description")
+                        where   completed = 0  and T.cusid = " & sCusID & " and T.compTrashID = " & scompTrashID & " order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
     End Sub
 

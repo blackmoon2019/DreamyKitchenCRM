@@ -73,19 +73,7 @@ Public Class frmCUSPrivateAgreement
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        txtFatherName.EditValue = cboCUS.GetColumnValue("FatherName")
-        txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
-        txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
-        txtAFM.EditValue = cboCUS.GetColumnValue("afm")
-        cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
-
-        Dim sCusID As String
-        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
-                        from vw_TRANSH t
-                        where  completed = 0 and T.cusid = " & sCusID & "order by description")
-        FillCbo.TRANSH(cboTRANSH, sSQL)
+        FillCusTransh()
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
@@ -366,6 +354,7 @@ Public Class frmCUSPrivateAgreement
         End Select
     End Sub
 
+
     Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
         Dim sCompID As String
         If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
@@ -379,8 +368,8 @@ Public Class frmCUSPrivateAgreement
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue)
-            Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue)
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True)
             Case 3 : cboCompProject.EditValue = Nothing
         End Select
     End Sub
@@ -391,5 +380,49 @@ Public Class frmCUSPrivateAgreement
             Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
             Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
         End Select
+    End Sub
+
+    Private Sub cmdCollection_Click(sender As Object, e As EventArgs) Handles cmdCompCollection.Click
+        If cboCompProject.EditValue Is Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        Dim Frm As frmTransactions = New frmTransactions()
+        Frm.Text = "Είσπραξη Πελάτη"
+        Frm.CreditOnly = True
+        Frm.Mode = FormMode.EditRecord
+        Frm.ID = cboCompProject.EditValue.ToString
+        Frm.ShowDialog()
+    End Sub
+
+    Private Sub cmdCusCollection_Click(sender As Object, e As EventArgs) Handles cmdCusCollection.Click
+        If cboTRANSH.EditValue Is Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        Dim Frm As frmTransactions = New frmTransactions()
+        Frm.Text = "Είσπραξη Πελάτη"
+        Frm.CreditOnly = True
+        Frm.Mode = FormMode.EditRecord
+        Frm.ID = cboTRANSH.EditValue.ToString
+        Frm.lCusD.Visibility = False
+        Frm.ShowDialog()
+
+    End Sub
+
+    Private Sub FillCusTransh()
+        txtFatherName.EditValue = cboCUS.GetColumnValue("FatherName")
+        txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
+        txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
+        txtAFM.EditValue = cboCUS.GetColumnValue("afm")
+        cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
+
+        Dim sCusID As String, scompTrashID As String
+        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
+        If cboCompProject.EditValue Is Nothing Then scompTrashID = toSQLValueS(Guid.Empty.ToString) Else scompTrashID = toSQLValueS(cboCompProject.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
+                        from vw_TRANSH t
+                        INNER JOIN TRANSC on transc.transhID = t.id 
+                        where  completed = 0  and T.cusid = " & sCusID & " and T.compTrashID = " & scompTrashID & " order by description")
+        FillCbo.TRANSH(cboTRANSH, sSQL)
+    End Sub
+
+    Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
+        FillCusTransh()
     End Sub
 End Class

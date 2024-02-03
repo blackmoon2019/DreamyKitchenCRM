@@ -22,15 +22,13 @@ Partial Class frmCUSPrivateAgreement
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSPrivateAgreement))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cmdCusCollection = New DevExpress.XtraEditors.SimpleButton()
+        Me.cmdCompCollection = New DevExpress.XtraEditors.SimpleButton()
         Me.cboCompProject = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboCompany = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
         Me.lblCash = New DevExpress.XtraEditors.LabelControl()
         Me.chkVatVisible = New DevExpress.XtraEditors.CheckEdit()
         Me.cboInvoiceType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwINVTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.chkHasSC = New DevExpress.XtraEditors.CheckEdit()
         Me.lblBank = New DevExpress.XtraEditors.LabelControl()
         Me.chkHasDoors = New DevExpress.XtraEditors.CheckEdit()
@@ -41,7 +39,6 @@ Partial Class frmCUSPrivateAgreement
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
         Me.txtFatherName = New DevExpress.XtraEditors.TextEdit()
         Me.txtArea = New DevExpress.XtraEditors.TextEdit()
@@ -87,6 +84,8 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem32 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem33 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LCompProject = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem35 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem36 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem14 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem48 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -114,6 +113,11 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem31 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
+        Me.VwINVTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.DreamyKitchenDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.Vw_BANKSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BANKSTableAdapter()
@@ -123,19 +127,14 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboCompProject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboInvoiceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasDoors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasKitchen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasCloset.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFatherName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -182,6 +181,8 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LCompProject, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -209,10 +210,17 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.cmdCusCollection)
+        Me.LayoutControl1.Controls.Add(Me.cmdCompCollection)
         Me.LayoutControl1.Controls.Add(Me.cboCompProject)
         Me.LayoutControl1.Controls.Add(Me.cboCompany)
         Me.LayoutControl1.Controls.Add(Me.lblCash)
@@ -262,6 +270,26 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
+        'cmdCusCollection
+        '
+        Me.cmdCusCollection.ImageOptions.Image = CType(resources.GetObject("cmdCusCollection.ImageOptions.Image"), System.Drawing.Image)
+        Me.cmdCusCollection.Location = New System.Drawing.Point(988, 272)
+        Me.cmdCusCollection.Name = "cmdCusCollection"
+        Me.cmdCusCollection.Size = New System.Drawing.Size(138, 39)
+        Me.cmdCusCollection.StyleController = Me.LayoutControl1
+        Me.cmdCusCollection.TabIndex = 103
+        Me.cmdCusCollection.Text = "Είσπραξη"
+        '
+        'cmdCompCollection
+        '
+        Me.cmdCompCollection.ImageOptions.Image = CType(resources.GetObject("cmdCompCollection.ImageOptions.Image"), System.Drawing.Image)
+        Me.cmdCompCollection.Location = New System.Drawing.Point(988, 229)
+        Me.cmdCompCollection.Name = "cmdCompCollection"
+        Me.cmdCompCollection.Size = New System.Drawing.Size(138, 39)
+        Me.cmdCompCollection.StyleController = Me.LayoutControl1
+        Me.cmdCompCollection.TabIndex = 102
+        Me.cmdCompCollection.Text = "Είσπραξη"
+        '
         'cboCompProject
         '
         Me.cboCompProject.Location = New System.Drawing.Point(314, 229)
@@ -274,7 +302,7 @@ Partial Class frmCUSPrivateAgreement
         Me.cboCompProject.Properties.NullText = ""
         Me.cboCompProject.Properties.PopupSizeable = False
         Me.cboCompProject.Properties.ValueMember = "ID"
-        Me.cboCompProject.Size = New System.Drawing.Size(812, 38)
+        Me.cboCompProject.Size = New System.Drawing.Size(670, 38)
         Me.cboCompProject.StyleController = Me.LayoutControl1
         Me.cboCompProject.TabIndex = 100
         Me.cboCompProject.Tag = "compTrashID,0,1,2"
@@ -298,23 +326,13 @@ Partial Class frmCUSPrivateAgreement
         Me.cboCompany.TabIndex = 99
         Me.cboCompany.Tag = "compID,0,1,2"
         '
-        'VwCOMPBindingSource
-        '
-        Me.VwCOMPBindingSource.DataMember = "vw_COMP"
-        Me.VwCOMPBindingSource.DataSource = Me.DM_CCT
-        '
-        'DM_CCT
-        '
-        Me.DM_CCT.DataSetName = "DM_CCT"
-        Me.DM_CCT.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'lblCash
         '
         Me.lblCash.Appearance.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold)
         Me.lblCash.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblCash.Appearance.Options.UseFont = True
         Me.lblCash.Appearance.Options.UseForeColor = True
-        Me.lblCash.Location = New System.Drawing.Point(1043, 624)
+        Me.lblCash.Location = New System.Drawing.Point(1043, 626)
         Me.lblCash.Name = "lblCash"
         Me.lblCash.Size = New System.Drawing.Size(83, 23)
         Me.lblCash.StyleController = Me.LayoutControl1
@@ -324,7 +342,7 @@ Partial Class frmCUSPrivateAgreement
         'chkVatVisible
         '
         Me.chkVatVisible.EditValue = CType(0, Byte)
-        Me.chkVatVisible.Location = New System.Drawing.Point(118, 931)
+        Me.chkVatVisible.Location = New System.Drawing.Point(118, 933)
         Me.chkVatVisible.Margin = New System.Windows.Forms.Padding(5)
         Me.chkVatVisible.Name = "chkVatVisible"
         Me.chkVatVisible.Properties.Caption = "Εμφάνιση ΦΠΑ στην εκτύπωση"
@@ -337,7 +355,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'cboInvoiceType
         '
-        Me.cboInvoiceType.Location = New System.Drawing.Point(877, 876)
+        Me.cboInvoiceType.Location = New System.Drawing.Point(877, 878)
         Me.cboInvoiceType.Margin = New System.Windows.Forms.Padding(5)
         Me.cboInvoiceType.Name = "cboInvoiceType"
         Me.cboInvoiceType.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -346,26 +364,17 @@ Partial Class frmCUSPrivateAgreement
         Me.cboInvoiceType.Properties.DisplayMember = "invTypeDescr"
         Me.cboInvoiceType.Properties.NullText = ""
         Me.cboInvoiceType.Properties.PopupSizeable = False
+        Me.cboInvoiceType.Properties.ReadOnly = True
         Me.cboInvoiceType.Properties.ValueMember = "invType"
         Me.cboInvoiceType.Size = New System.Drawing.Size(249, 38)
         Me.cboInvoiceType.StyleController = Me.LayoutControl1
         Me.cboInvoiceType.TabIndex = 70
         Me.cboInvoiceType.Tag = "invType,0,1,2"
         '
-        'VwINVTYPESBindingSource
-        '
-        Me.VwINVTYPESBindingSource.DataMember = "vw_INVTYPES"
-        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'chkHasSC
         '
         Me.chkHasSC.EditValue = CType(0, Byte)
-        Me.chkHasSC.Location = New System.Drawing.Point(691, 494)
+        Me.chkHasSC.Location = New System.Drawing.Point(691, 496)
         Me.chkHasSC.Margin = New System.Windows.Forms.Padding(5)
         Me.chkHasSC.Name = "chkHasSC"
         Me.chkHasSC.Properties.Caption = "Ειδικές Κατασκευές"
@@ -382,7 +391,7 @@ Partial Class frmCUSPrivateAgreement
         Me.lblBank.Appearance.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.lblBank.Appearance.Options.UseFont = True
         Me.lblBank.Appearance.Options.UseForeColor = True
-        Me.lblBank.Location = New System.Drawing.Point(1047, 582)
+        Me.lblBank.Location = New System.Drawing.Point(1047, 584)
         Me.lblBank.Name = "lblBank"
         Me.lblBank.Size = New System.Drawing.Size(79, 23)
         Me.lblBank.StyleController = Me.LayoutControl1
@@ -392,7 +401,7 @@ Partial Class frmCUSPrivateAgreement
         'chkHasDoors
         '
         Me.chkHasDoors.EditValue = CType(0, Byte)
-        Me.chkHasDoors.Location = New System.Drawing.Point(480, 494)
+        Me.chkHasDoors.Location = New System.Drawing.Point(480, 496)
         Me.chkHasDoors.Margin = New System.Windows.Forms.Padding(5)
         Me.chkHasDoors.Name = "chkHasDoors"
         Me.chkHasDoors.Properties.Caption = "Πόρτες Εσωτερικές"
@@ -406,7 +415,7 @@ Partial Class frmCUSPrivateAgreement
         'chkHasKitchen
         '
         Me.chkHasKitchen.EditValue = CType(0, Byte)
-        Me.chkHasKitchen.Location = New System.Drawing.Point(12, 494)
+        Me.chkHasKitchen.Location = New System.Drawing.Point(12, 496)
         Me.chkHasKitchen.Margin = New System.Windows.Forms.Padding(5)
         Me.chkHasKitchen.Name = "chkHasKitchen"
         Me.chkHasKitchen.Properties.AllowHtmlDraw = DevExpress.Utils.DefaultBoolean.[False]
@@ -421,7 +430,7 @@ Partial Class frmCUSPrivateAgreement
         'chkHasCloset
         '
         Me.chkHasCloset.EditValue = CType(0, Byte)
-        Me.chkHasCloset.Location = New System.Drawing.Point(209, 494)
+        Me.chkHasCloset.Location = New System.Drawing.Point(209, 496)
         Me.chkHasCloset.Margin = New System.Windows.Forms.Padding(5)
         Me.chkHasCloset.Name = "chkHasCloset"
         Me.chkHasCloset.Properties.Caption = "Ντουλάπες Υπνοδωματίου"
@@ -435,7 +444,7 @@ Partial Class frmCUSPrivateAgreement
         'cmdPrintOffer
         '
         Me.cmdPrintOffer.Enabled = False
-        Me.cmdPrintOffer.Location = New System.Drawing.Point(12, 931)
+        Me.cmdPrintOffer.Location = New System.Drawing.Point(12, 933)
         Me.cmdPrintOffer.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdPrintOffer.Name = "cmdPrintOffer"
         Me.cmdPrintOffer.Size = New System.Drawing.Size(102, 39)
@@ -446,7 +455,7 @@ Partial Class frmCUSPrivateAgreement
         'cmdSave
         '
         Me.cmdSave.ImageOptions.Image = CType(resources.GetObject("cmdSave.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSave.Location = New System.Drawing.Point(750, 931)
+        Me.cmdSave.Location = New System.Drawing.Point(750, 933)
         Me.cmdSave.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdSave.Name = "cmdSave"
         Me.cmdSave.Size = New System.Drawing.Size(190, 39)
@@ -458,7 +467,7 @@ Partial Class frmCUSPrivateAgreement
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExit.ImageOptions.Image = CType(resources.GetObject("cmdExit.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdExit.Location = New System.Drawing.Point(944, 931)
+        Me.cmdExit.Location = New System.Drawing.Point(944, 933)
         Me.cmdExit.Margin = New System.Windows.Forms.Padding(5)
         Me.cmdExit.Name = "cmdExit"
         Me.cmdExit.Size = New System.Drawing.Size(195, 39)
@@ -468,7 +477,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'cboCUS
         '
-        Me.cboCUS.Location = New System.Drawing.Point(314, 271)
+        Me.cboCUS.Location = New System.Drawing.Point(314, 272)
         Me.cboCUS.Margin = New System.Windows.Forms.Padding(5)
         Me.cboCUS.Name = "cboCUS"
         Me.cboCUS.Properties.AllowMouseWheel = False
@@ -480,7 +489,7 @@ Partial Class frmCUSPrivateAgreement
         Me.cboCUS.Properties.NullText = ""
         Me.cboCUS.Properties.PopupSizeable = False
         Me.cboCUS.Properties.ValueMember = "ID"
-        Me.cboCUS.Size = New System.Drawing.Size(812, 38)
+        Me.cboCUS.Size = New System.Drawing.Size(670, 38)
         Me.cboCUS.StyleController = Me.LayoutControl1
         Me.cboCUS.TabIndex = 5
         Me.cboCUS.Tag = "cusID,0,1,2"
@@ -489,11 +498,6 @@ Partial Class frmCUSPrivateAgreement
         '
         Me.VwCCTBindingSource.DataMember = "vw_CCT"
         Me.VwCCTBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
-        '
-        'DreamyKitchenDataSetBindingSource
-        '
-        Me.DreamyKitchenDataSetBindingSource.DataSource = Me.DreamyKitchenDataSet
-        Me.DreamyKitchenDataSetBindingSource.Position = 0
         '
         'txtCode
         '
@@ -512,7 +516,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'txtFatherName
         '
-        Me.txtFatherName.Location = New System.Drawing.Point(314, 397)
+        Me.txtFatherName.Location = New System.Drawing.Point(314, 399)
         Me.txtFatherName.Margin = New System.Windows.Forms.Padding(5)
         Me.txtFatherName.Name = "txtFatherName"
         Me.txtFatherName.Properties.ReadOnly = True
@@ -524,7 +528,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'txtArea
         '
-        Me.txtArea.Location = New System.Drawing.Point(872, 397)
+        Me.txtArea.Location = New System.Drawing.Point(872, 399)
         Me.txtArea.Margin = New System.Windows.Forms.Padding(5)
         Me.txtArea.Name = "txtArea"
         Me.txtArea.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -537,7 +541,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'txtAFM
         '
-        Me.txtAFM.Location = New System.Drawing.Point(314, 439)
+        Me.txtAFM.Location = New System.Drawing.Point(314, 441)
         Me.txtAFM.Margin = New System.Windows.Forms.Padding(5)
         Me.txtAFM.Name = "txtAFM"
         Me.txtAFM.Properties.ReadOnly = True
@@ -573,7 +577,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'txtDOY
         '
-        Me.txtDOY.Location = New System.Drawing.Point(872, 439)
+        Me.txtDOY.Location = New System.Drawing.Point(872, 441)
         Me.txtDOY.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDOY.Name = "txtDOY"
         Me.txtDOY.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
@@ -600,7 +604,7 @@ Partial Class frmCUSPrivateAgreement
         'txtTotalVatPrice
         '
         Me.txtTotalVatPrice.EditValue = "0,00 €"
-        Me.txtTotalVatPrice.Location = New System.Drawing.Point(314, 624)
+        Me.txtTotalVatPrice.Location = New System.Drawing.Point(314, 626)
         Me.txtTotalVatPrice.Margin = New System.Windows.Forms.Padding(5)
         Me.txtTotalVatPrice.Name = "txtTotalVatPrice"
         Me.txtTotalVatPrice.Properties.DisplayFormat.FormatString = "c"
@@ -621,7 +625,7 @@ Partial Class frmCUSPrivateAgreement
         'TxtTotalVat
         '
         Me.TxtTotalVat.EditValue = "0,00 €"
-        Me.TxtTotalVat.Location = New System.Drawing.Point(314, 582)
+        Me.TxtTotalVat.Location = New System.Drawing.Point(314, 584)
         Me.TxtTotalVat.Margin = New System.Windows.Forms.Padding(5)
         Me.TxtTotalVat.Name = "TxtTotalVat"
         Me.TxtTotalVat.Properties.DisplayFormat.FormatString = "c"
@@ -654,7 +658,7 @@ Partial Class frmCUSPrivateAgreement
         'txtPayinAdvance
         '
         Me.txtPayinAdvance.EditValue = "0,00 €"
-        Me.txtPayinAdvance.Location = New System.Drawing.Point(877, 792)
+        Me.txtPayinAdvance.Location = New System.Drawing.Point(877, 794)
         Me.txtPayinAdvance.Margin = New System.Windows.Forms.Padding(5)
         Me.txtPayinAdvance.Name = "txtPayinAdvance"
         Me.txtPayinAdvance.Properties.DisplayFormat.FormatString = "c"
@@ -674,7 +678,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'cboTRANSH
         '
-        Me.cboTRANSH.Location = New System.Drawing.Point(314, 313)
+        Me.cboTRANSH.Location = New System.Drawing.Point(314, 315)
         Me.cboTRANSH.Margin = New System.Windows.Forms.Padding(5)
         Me.cboTRANSH.Name = "cboTRANSH"
         Me.cboTRANSH.Properties.AllowMouseWheel = False
@@ -692,7 +696,7 @@ Partial Class frmCUSPrivateAgreement
         'txtPartofVat
         '
         Me.txtPartofVat.EditValue = "0,00 €"
-        Me.txtPartofVat.Location = New System.Drawing.Point(314, 708)
+        Me.txtPartofVat.Location = New System.Drawing.Point(314, 710)
         Me.txtPartofVat.Margin = New System.Windows.Forms.Padding(5)
         Me.txtPartofVat.Name = "txtPartofVat"
         Me.txtPartofVat.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.0!)
@@ -717,7 +721,7 @@ Partial Class frmCUSPrivateAgreement
         'txtPayinAdvanceBank
         '
         Me.txtPayinAdvanceBank.EditValue = "0,00 €"
-        Me.txtPayinAdvanceBank.Location = New System.Drawing.Point(877, 708)
+        Me.txtPayinAdvanceBank.Location = New System.Drawing.Point(877, 710)
         Me.txtPayinAdvanceBank.Margin = New System.Windows.Forms.Padding(5)
         Me.txtPayinAdvanceBank.Name = "txtPayinAdvanceBank"
         Me.txtPayinAdvanceBank.Properties.DisplayFormat.FormatString = "c"
@@ -727,8 +731,8 @@ Partial Class frmCUSPrivateAgreement
         Me.txtPayinAdvanceBank.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtPayinAdvanceBank.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtPayinAdvanceBank.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtPayinAdvanceBank.Properties.ReadOnly = True
         Me.txtPayinAdvanceBank.Properties.Tag = "BenchExtraPrice"
-        Me.txtPayinAdvanceBank.Properties.UseReadOnlyAppearance = False
         Me.txtPayinAdvanceBank.Size = New System.Drawing.Size(249, 38)
         Me.txtPayinAdvanceBank.StyleController = Me.LayoutControl1
         Me.txtPayinAdvanceBank.TabIndex = 42
@@ -738,7 +742,7 @@ Partial Class frmCUSPrivateAgreement
         'txtPayinAdvanceCash
         '
         Me.txtPayinAdvanceCash.EditValue = "0,00 €"
-        Me.txtPayinAdvanceCash.Location = New System.Drawing.Point(877, 666)
+        Me.txtPayinAdvanceCash.Location = New System.Drawing.Point(877, 668)
         Me.txtPayinAdvanceCash.Margin = New System.Windows.Forms.Padding(5)
         Me.txtPayinAdvanceCash.Name = "txtPayinAdvanceCash"
         Me.txtPayinAdvanceCash.Properties.DisplayFormat.FormatString = "c"
@@ -748,8 +752,8 @@ Partial Class frmCUSPrivateAgreement
         Me.txtPayinAdvanceCash.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtPayinAdvanceCash.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtPayinAdvanceCash.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtPayinAdvanceCash.Properties.ReadOnly = True
         Me.txtPayinAdvanceCash.Properties.Tag = "BenchExtraPrice"
-        Me.txtPayinAdvanceCash.Properties.UseReadOnlyAppearance = False
         Me.txtPayinAdvanceCash.Size = New System.Drawing.Size(249, 38)
         Me.txtPayinAdvanceCash.StyleController = Me.LayoutControl1
         Me.txtPayinAdvanceCash.TabIndex = 42
@@ -758,7 +762,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'cboBANK
         '
-        Me.cboBANK.Location = New System.Drawing.Point(877, 750)
+        Me.cboBANK.Location = New System.Drawing.Point(877, 752)
         Me.cboBANK.Margin = New System.Windows.Forms.Padding(5)
         Me.cboBANK.Name = "cboBANK"
         Me.cboBANK.Properties.AllowMouseWheel = False
@@ -769,6 +773,7 @@ Partial Class frmCUSPrivateAgreement
         Me.cboBANK.Properties.DisplayMember = "name"
         Me.cboBANK.Properties.NullText = ""
         Me.cboBANK.Properties.PopupSizeable = False
+        Me.cboBANK.Properties.ReadOnly = True
         Me.cboBANK.Properties.ValueMember = "ID"
         Me.cboBANK.Size = New System.Drawing.Size(249, 38)
         Me.cboBANK.StyleController = Me.LayoutControl1
@@ -783,7 +788,7 @@ Partial Class frmCUSPrivateAgreement
         'txtPosoParastatikou
         '
         Me.txtPosoParastatikou.EditValue = "0,00 €"
-        Me.txtPosoParastatikou.Location = New System.Drawing.Point(314, 750)
+        Me.txtPosoParastatikou.Location = New System.Drawing.Point(314, 752)
         Me.txtPosoParastatikou.Margin = New System.Windows.Forms.Padding(5)
         Me.txtPosoParastatikou.Name = "txtPosoParastatikou"
         Me.txtPosoParastatikou.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.0!)
@@ -808,7 +813,7 @@ Partial Class frmCUSPrivateAgreement
         'txtClose
         '
         Me.txtClose.EditValue = "0,00 €"
-        Me.txtClose.Location = New System.Drawing.Point(877, 582)
+        Me.txtClose.Location = New System.Drawing.Point(877, 584)
         Me.txtClose.Margin = New System.Windows.Forms.Padding(5)
         Me.txtClose.Name = "txtClose"
         Me.txtClose.Properties.DisplayFormat.FormatString = "c"
@@ -829,7 +834,7 @@ Partial Class frmCUSPrivateAgreement
         'txtPayinAdvanceYpol
         '
         Me.txtPayinAdvanceYpol.EditValue = "0,00 €"
-        Me.txtPayinAdvanceYpol.Location = New System.Drawing.Point(877, 834)
+        Me.txtPayinAdvanceYpol.Location = New System.Drawing.Point(877, 836)
         Me.txtPayinAdvanceYpol.Margin = New System.Windows.Forms.Padding(5)
         Me.txtPayinAdvanceYpol.Name = "txtPayinAdvanceYpol"
         Me.txtPayinAdvanceYpol.Properties.DisplayFormat.FormatString = "c"
@@ -850,7 +855,7 @@ Partial Class frmCUSPrivateAgreement
         'txtDevices
         '
         Me.txtDevices.EditValue = "0,00 €"
-        Me.txtDevices.Location = New System.Drawing.Point(314, 666)
+        Me.txtDevices.Location = New System.Drawing.Point(314, 668)
         Me.txtDevices.Margin = New System.Windows.Forms.Padding(5)
         Me.txtDevices.Name = "txtDevices"
         Me.txtDevices.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.0!)
@@ -875,7 +880,7 @@ Partial Class frmCUSPrivateAgreement
         'txtGenTot
         '
         Me.txtGenTot.EditValue = "0,00 €"
-        Me.txtGenTot.Location = New System.Drawing.Point(314, 876)
+        Me.txtGenTot.Location = New System.Drawing.Point(314, 878)
         Me.txtGenTot.Margin = New System.Windows.Forms.Padding(5)
         Me.txtGenTot.Name = "txtGenTot"
         Me.txtGenTot.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.0!)
@@ -900,7 +905,7 @@ Partial Class frmCUSPrivateAgreement
         'txtExtraTransp
         '
         Me.txtExtraTransp.EditValue = "0,00 €"
-        Me.txtExtraTransp.Location = New System.Drawing.Point(314, 792)
+        Me.txtExtraTransp.Location = New System.Drawing.Point(314, 794)
         Me.txtExtraTransp.Margin = New System.Windows.Forms.Padding(5)
         Me.txtExtraTransp.Name = "txtExtraTransp"
         Me.txtExtraTransp.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.0!)
@@ -925,7 +930,7 @@ Partial Class frmCUSPrivateAgreement
         'txtExtraInst
         '
         Me.txtExtraInst.EditValue = "0,00 €"
-        Me.txtExtraInst.Location = New System.Drawing.Point(314, 834)
+        Me.txtExtraInst.Location = New System.Drawing.Point(314, 836)
         Me.txtExtraInst.Margin = New System.Windows.Forms.Padding(5)
         Me.txtExtraInst.Name = "txtExtraInst"
         Me.txtExtraInst.Properties.Appearance.Font = New System.Drawing.Font("Tahoma", 8.0!)
@@ -950,7 +955,7 @@ Partial Class frmCUSPrivateAgreement
         'txtCloseCash
         '
         Me.txtCloseCash.EditValue = "0,00 €"
-        Me.txtCloseCash.Location = New System.Drawing.Point(877, 624)
+        Me.txtCloseCash.Location = New System.Drawing.Point(877, 626)
         Me.txtCloseCash.Margin = New System.Windows.Forms.Padding(5)
         Me.txtCloseCash.Name = "txtCloseCash"
         Me.txtCloseCash.Properties.DisplayFormat.FormatString = "c"
@@ -970,7 +975,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'cboADR
         '
-        Me.cboADR.Location = New System.Drawing.Point(314, 355)
+        Me.cboADR.Location = New System.Drawing.Point(314, 357)
         Me.cboADR.Margin = New System.Windows.Forms.Padding(5)
         Me.cboADR.Name = "cboADR"
         Me.cboADR.Properties.AllowMouseWheel = False
@@ -998,28 +1003,28 @@ Partial Class frmCUSPrivateAgreement
         'LayoutControlItem2
         '
         Me.LayoutControlItem2.Control = Me.cmdExit
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(932, 919)
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(932, 921)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(199, 84)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(199, 82)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
         'LayoutControlItem1
         '
         Me.LayoutControlItem1.Control = Me.cmdSave
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(738, 919)
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(738, 921)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(194, 84)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(194, 82)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem46, Me.LayoutControlItem13, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem30, Me.LayoutControlItem10, Me.LayoutControlItem12, Me.LayoutControlItem32, Me.LayoutControlItem33, Me.LCompProject})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem46, Me.LayoutControlItem13, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem30, Me.LayoutControlItem10, Me.LayoutControlItem12, Me.LayoutControlItem32, Me.LayoutControlItem33, Me.LCompProject, Me.LayoutControlItem35, Me.LayoutControlItem36})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.OptionsItemText.TextToControlDistance = 1
-        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1131, 482)
+        Me.LayoutControlGroup1.Size = New System.Drawing.Size(1131, 484)
         Me.LayoutControlGroup1.Text = "Στοιχεία Συμφωνητικού"
         '
         'LayoutControlItem9
@@ -1028,9 +1033,9 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem9.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem9.CustomizationFormText = "Νομός"
         Me.LayoutControlItem9.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem9.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 210)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(0, 211)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
-        Me.LayoutControlItem9.Size = New System.Drawing.Size(1105, 42)
+        Me.LayoutControlItem9.Size = New System.Drawing.Size(963, 43)
         Me.LayoutControlItem9.Tag = "1"
         Me.LayoutControlItem9.Text = "Πελάτης"
         Me.LayoutControlItem9.TextLocation = DevExpress.Utils.Locations.Left
@@ -1042,7 +1047,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem7.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem7.CustomizationFormText = "Περιοχή"
         Me.LayoutControlItem7.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(558, 336)
+        Me.LayoutControlItem7.Location = New System.Drawing.Point(558, 338)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(547, 42)
         Me.LayoutControlItem7.Tag = "1"
@@ -1088,7 +1093,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem13.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem13.CustomizationFormText = "Κινητό"
         Me.LayoutControlItem13.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 336)
+        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 338)
         Me.LayoutControlItem13.Name = "LayoutControlItem13"
         Me.LayoutControlItem13.Size = New System.Drawing.Size(558, 42)
         Me.LayoutControlItem13.Tag = "1"
@@ -1102,7 +1107,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem8.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem8.CustomizationFormText = "Κινητό"
         Me.LayoutControlItem8.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 378)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 380)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
         Me.LayoutControlItem8.Size = New System.Drawing.Size(558, 42)
         Me.LayoutControlItem8.Tag = "1"
@@ -1116,7 +1121,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem3.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem3.CustomizationFormText = "Διεύθυνση"
         Me.LayoutControlItem3.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(558, 378)
+        Me.LayoutControlItem3.Location = New System.Drawing.Point(558, 380)
         Me.LayoutControlItem3.Name = "LayoutControlItem3"
         Me.LayoutControlItem3.Size = New System.Drawing.Size(547, 42)
         Me.LayoutControlItem3.Tag = "1"
@@ -1157,7 +1162,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem12.CustomizationFormText = "Περιοχή"
         Me.LayoutControlItem12.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem12.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem12.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 252)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(0, 254)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
         Me.LayoutControlItem12.Size = New System.Drawing.Size(1105, 42)
         Me.LayoutControlItem12.Tag = "1"
@@ -1171,7 +1176,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem32.CustomizationFormText = "Διεύθυνση"
         Me.LayoutControlItem32.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem32.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem32.Location = New System.Drawing.Point(0, 294)
+        Me.LayoutControlItem32.Location = New System.Drawing.Point(0, 296)
         Me.LayoutControlItem32.Name = "LayoutControlItem32"
         Me.LayoutControlItem32.Size = New System.Drawing.Size(1105, 42)
         Me.LayoutControlItem32.Tag = "1"
@@ -1192,31 +1197,49 @@ Partial Class frmCUSPrivateAgreement
         Me.LCompProject.Control = Me.cboCompProject
         Me.LCompProject.Location = New System.Drawing.Point(0, 168)
         Me.LCompProject.Name = "LCompProject"
-        Me.LCompProject.Size = New System.Drawing.Size(1105, 42)
+        Me.LCompProject.Size = New System.Drawing.Size(963, 43)
         Me.LCompProject.Text = "Έργο Εταιρίας"
         Me.LCompProject.TextSize = New System.Drawing.Size(288, 23)
+        '
+        'LayoutControlItem35
+        '
+        Me.LayoutControlItem35.Control = Me.cmdCompCollection
+        Me.LayoutControlItem35.Location = New System.Drawing.Point(963, 168)
+        Me.LayoutControlItem35.Name = "LayoutControlItem35"
+        Me.LayoutControlItem35.Size = New System.Drawing.Size(142, 43)
+        Me.LayoutControlItem35.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem35.TextVisible = False
+        '
+        'LayoutControlItem36
+        '
+        Me.LayoutControlItem36.Control = Me.cmdCusCollection
+        Me.LayoutControlItem36.Location = New System.Drawing.Point(963, 211)
+        Me.LayoutControlItem36.Name = "LayoutControlItem36"
+        Me.LayoutControlItem36.Size = New System.Drawing.Size(142, 43)
+        Me.LayoutControlItem36.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem36.TextVisible = False
         '
         'EmptySpaceItem14
         '
         Me.EmptySpaceItem14.AllowHotTrack = False
-        Me.EmptySpaceItem14.Location = New System.Drawing.Point(423, 919)
+        Me.EmptySpaceItem14.Location = New System.Drawing.Point(423, 921)
         Me.EmptySpaceItem14.Name = "EmptySpaceItem14"
-        Me.EmptySpaceItem14.Size = New System.Drawing.Size(315, 84)
+        Me.EmptySpaceItem14.Size = New System.Drawing.Size(315, 82)
         Me.EmptySpaceItem14.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem48
         '
         Me.LayoutControlItem48.Control = Me.cmdPrintOffer
-        Me.LayoutControlItem48.Location = New System.Drawing.Point(0, 919)
+        Me.LayoutControlItem48.Location = New System.Drawing.Point(0, 921)
         Me.LayoutControlItem48.Name = "LayoutControlItem48"
-        Me.LayoutControlItem48.Size = New System.Drawing.Size(106, 84)
+        Me.LayoutControlItem48.Size = New System.Drawing.Size(106, 82)
         Me.LayoutControlItem48.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem48.TextVisible = False
         '
         'LayoutControlItem5
         '
         Me.LayoutControlItem5.Control = Me.chkHasKitchen
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 482)
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(0, 484)
         Me.LayoutControlItem5.Name = "LayoutControlItem5"
         Me.LayoutControlItem5.Size = New System.Drawing.Size(197, 39)
         Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
@@ -1225,7 +1248,7 @@ Partial Class frmCUSPrivateAgreement
         'LayoutControlItem52
         '
         Me.LayoutControlItem52.Control = Me.chkHasCloset
-        Me.LayoutControlItem52.Location = New System.Drawing.Point(197, 482)
+        Me.LayoutControlItem52.Location = New System.Drawing.Point(197, 484)
         Me.LayoutControlItem52.Name = "LayoutControlItem52"
         Me.LayoutControlItem52.Size = New System.Drawing.Size(271, 39)
         Me.LayoutControlItem52.TextSize = New System.Drawing.Size(0, 0)
@@ -1234,7 +1257,7 @@ Partial Class frmCUSPrivateAgreement
         'LayoutControlItem6
         '
         Me.LayoutControlItem6.Control = Me.chkHasDoors
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(468, 482)
+        Me.LayoutControlItem6.Location = New System.Drawing.Point(468, 484)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(211, 39)
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(0, 0)
@@ -1247,7 +1270,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlGroup2.AppearanceGroup.Options.UseFont = True
         Me.LayoutControlGroup2.AppearanceGroup.Options.UseForeColor = True
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem34, Me.LayoutControlItem42, Me.LayoutControlItem29, Me.LayoutControlItem17, Me.LayoutControlItem21, Me.LayoutControlItem23, Me.LayoutControlItem24, Me.LayoutControlItem25})
-        Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 521)
+        Me.LayoutControlGroup2.Location = New System.Drawing.Point(0, 523)
         Me.LayoutControlGroup2.Name = "LayoutControlGroup2"
         Me.LayoutControlGroup2.Size = New System.Drawing.Size(563, 398)
         Me.LayoutControlGroup2.Text = "ΑΝΑΛΥΣΗ"
@@ -1355,7 +1378,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlGroup3.AppearanceGroup.Options.UseFont = True
         Me.LayoutControlGroup3.AppearanceGroup.Options.UseForeColor = True
         Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem15, Me.LayoutControlItem14, Me.LayoutControlItem16, Me.LayoutControlItem11, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem26, Me.LayoutControlItem28, Me.LayoutControlItem31})
-        Me.LayoutControlGroup3.Location = New System.Drawing.Point(563, 521)
+        Me.LayoutControlGroup3.Location = New System.Drawing.Point(563, 523)
         Me.LayoutControlGroup3.Name = "LayoutControlGroup3"
         Me.LayoutControlGroup3.Size = New System.Drawing.Size(568, 398)
         Me.LayoutControlGroup3.Text = "ΠΡΟΚΑΤΑΒΟΛΗ"
@@ -1476,7 +1499,7 @@ Partial Class frmCUSPrivateAgreement
         'LayoutControlItem22
         '
         Me.LayoutControlItem22.Control = Me.chkHasSC
-        Me.LayoutControlItem22.Location = New System.Drawing.Point(679, 482)
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(679, 484)
         Me.LayoutControlItem22.Name = "LayoutControlItem22"
         Me.LayoutControlItem22.Size = New System.Drawing.Size(452, 39)
         Me.LayoutControlItem22.TextSize = New System.Drawing.Size(0, 0)
@@ -1485,11 +1508,36 @@ Partial Class frmCUSPrivateAgreement
         'LayoutControlItem27
         '
         Me.LayoutControlItem27.Control = Me.chkVatVisible
-        Me.LayoutControlItem27.Location = New System.Drawing.Point(106, 919)
+        Me.LayoutControlItem27.Location = New System.Drawing.Point(106, 921)
         Me.LayoutControlItem27.Name = "LayoutControlItem27"
-        Me.LayoutControlItem27.Size = New System.Drawing.Size(317, 84)
+        Me.LayoutControlItem27.Size = New System.Drawing.Size(317, 82)
         Me.LayoutControlItem27.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem27.TextVisible = False
+        '
+        'VwCOMPBindingSource
+        '
+        Me.VwCOMPBindingSource.DataMember = "vw_COMP"
+        Me.VwCOMPBindingSource.DataSource = Me.DM_CCT
+        '
+        'DM_CCT
+        '
+        Me.DM_CCT.DataSetName = "DM_CCT"
+        Me.DM_CCT.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwINVTYPESBindingSource
+        '
+        Me.VwINVTYPESBindingSource.DataMember = "vw_INVTYPES"
+        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'DreamyKitchenDataSetBindingSource
+        '
+        Me.DreamyKitchenDataSetBindingSource.DataSource = Me.DreamyKitchenDataSet
+        Me.DreamyKitchenDataSetBindingSource.Position = 0
         '
         'Vw_SALERSTableAdapter
         '
@@ -1522,21 +1570,17 @@ Partial Class frmCUSPrivateAgreement
         Me.Text = "frmCUSPrivateAgreement"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        Me.LayoutControl1.PerformLayout()
         CType(Me.cboCompProject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboInvoiceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasDoors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasKitchen.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasCloset.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFatherName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1583,6 +1627,8 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem32, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem33, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LCompProject, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem36, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem48, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1610,6 +1656,11 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1712,4 +1763,8 @@ Partial Class frmCUSPrivateAgreement
     Friend WithEvents DM_CCT As DM_CCT
     Friend WithEvents VwCOMPBindingSource As BindingSource
     Friend WithEvents Vw_COMPTableAdapter As DM_CCTTableAdapters.vw_COMPTableAdapter
+    Friend WithEvents cmdCompCollection As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem35 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cmdCusCollection As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem36 As DevExpress.XtraLayout.LayoutControlItem
 End Class

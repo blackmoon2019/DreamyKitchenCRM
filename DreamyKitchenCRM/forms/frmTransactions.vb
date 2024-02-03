@@ -418,4 +418,15 @@ Public Class frmTransactions
             Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
         End Select
     End Sub
+
+
+
+    Private Sub cboCUSD_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUSD.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUSD)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUSD)
+            Case 3 : cboCUSD.EditValue = Nothing
+        End Select
+
+    End Sub
 End Class
