@@ -94,7 +94,7 @@ Public Class frmProjectJobs
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS("00000000-0000-0000-0000-000000000000") Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc,instdtDeliverDate
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,instdtDeliverDate
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
@@ -191,7 +191,7 @@ Public Class frmProjectJobs
     End Sub
     Private Sub ManageTRANSH()
         Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Χρεωπιστώσεις Πελατών"
+        form1.Text = "Έργα Πελατών"
         form1.CallerControl = cboTRANSH
         form1.CalledFromControl = True
         form1.MdiParent = frmMain

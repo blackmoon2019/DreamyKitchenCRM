@@ -90,8 +90,14 @@ Public Class CusOfferOrderDoors
                         Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                     End If
                 Else
-                    'cmdConvertToOrder.Enabled = False
                     Frm.LayoutControlItem7.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                    If sFields("CreatedFromOfferID") <> "" Then
+                        Frm.cboCUS.Enabled = False
+                        Frm.cboCompany.Enabled = False
+                        Frm.cboCompProject.Enabled = False
+                        Frm.cboTRANSH.Enabled = False
+                    End If
+
                 End If
 
 
@@ -130,7 +136,7 @@ Public Class CusOfferOrderDoors
                         Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
                         HasKitchen = Frm.cboTRANSH.GetColumnValue("Iskitchen")
                         HasCloset = Frm.cboTRANSH.GetColumnValue("Iscloset")
-                        HasDoors = Frm.cboTRANSH.GetColumnValue("Isdoors")
+                        HasDoors = Frm.cboTRANSH.GetColumnValue("Isdoor")
                         HasSc = Frm.cboTRANSH.GetColumnValue("Issc")
                         If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
                             XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)

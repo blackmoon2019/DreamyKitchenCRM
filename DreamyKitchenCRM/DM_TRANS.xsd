@@ -35,7 +35,7 @@
               <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenDEV.dbo.vw_TRANSD" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, transhID, BankName, cash, amt, cmt, dtPay, RealName, modifiedOn, createdOn, bankID, GRMONTH, paid, PayTypeName, PayTypeID, depositor
+                    <CommandText>SELECT ID, transhID, BankName, cash, amt, cmt, dtPay, RealName, modifiedOn, createdOn, bankID, GRMONTH, paid, PayTypeName, PayTypeID, depositor,cctFullname ,cusID
 FROM   vw_TRANSD
 WHERE (transhID = @transhID)</CommandText>
                     <Parameters>
@@ -62,6 +62,8 @@ WHERE (transhID = @transhID)</CommandText>
               <Mapping SourceColumn="PayTypeName" DataSetColumn="PayTypeName" />
               <Mapping SourceColumn="PayTypeID" DataSetColumn="PayTypeID" />
               <Mapping SourceColumn="depositor" DataSetColumn="depositor" />
+              <Mapping SourceColumn="cctFullname" DataSetColumn="cctFullname" />
+              <Mapping SourceColumn="cusID" DataSetColumn="cusID" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -332,6 +334,14 @@ where transhID=@transhID</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="cctFullname" msprop:Generator_ColumnPropNameInRow="cctFullname" msprop:Generator_ColumnPropNameInTable="cctFullnameColumn" msprop:Generator_ColumnVarNameInTable="columncctFullname" msprop:Generator_UserColumnName="cctFullname" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="cusID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInRow="cusID" msprop:Generator_ColumnPropNameInTable="cusIDColumn" msprop:Generator_ColumnVarNameInTable="columncusID" msprop:Generator_UserColumnName="cusID" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -366,7 +376,7 @@ where transhID=@transhID</CommandText>
               <xs:element name="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_UserColumnName="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" type="xs:dateTime" minOccurs="0" />
               <xs:element name="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_UserColumnName="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" type="xs:dateTime" minOccurs="0" />
               <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_UserColumnName="createdBy" msprop:Generator_ColumnVarNameInTable="columncreatedBy" type="xs:string" minOccurs="0" />
-              <xs:element name="FileCategory" msprop:Generator_ColumnPropNameInRow="FileCategory" msprop:Generator_ColumnPropNameInTable="FileCategoryColumn" msprop:Generator_ColumnVarNameInTable="columnFileCategory" msprop:Generator_UserColumnName="FileCategory" minOccurs="0">
+              <xs:element name="FileCategory" msprop:Generator_ColumnPropNameInTable="FileCategoryColumn" msprop:Generator_ColumnPropNameInRow="FileCategory" msprop:Generator_UserColumnName="FileCategory" msprop:Generator_ColumnVarNameInTable="columnFileCategory" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="150" />
@@ -567,25 +577,25 @@ where transhID=@transhID</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_TRANS_EXTRA_CHARGES" msprop:Generator_RowClassName="vw_TRANS_EXTRA_CHARGESRow" msprop:Generator_RowEvHandlerName="vw_TRANS_EXTRA_CHARGESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_TRANS_EXTRA_CHARGESRowDeleted" msprop:Generator_RowDeletingName="vw_TRANS_EXTRA_CHARGESRowDeleting" msprop:Generator_RowEvArgName="vw_TRANS_EXTRA_CHARGESRowChangeEvent" msprop:Generator_TablePropName="vw_TRANS_EXTRA_CHARGES" msprop:Generator_RowChangedName="vw_TRANS_EXTRA_CHARGESRowChanged" msprop:Generator_UserTableName="vw_TRANS_EXTRA_CHARGES" msprop:Generator_RowChangingName="vw_TRANS_EXTRA_CHARGESRowChanging" msprop:Generator_TableClassName="vw_TRANS_EXTRA_CHARGESDataTable" msprop:Generator_TableVarName="tablevw_TRANS_EXTRA_CHARGES">
+        <xs:element name="vw_TRANS_EXTRA_CHARGES" msprop:Generator_RowEvHandlerName="vw_TRANS_EXTRA_CHARGESRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_TRANS_EXTRA_CHARGESRowDeleted" msprop:Generator_RowDeletingName="vw_TRANS_EXTRA_CHARGESRowDeleting" msprop:Generator_RowEvArgName="vw_TRANS_EXTRA_CHARGESRowChangeEvent" msprop:Generator_TablePropName="vw_TRANS_EXTRA_CHARGES" msprop:Generator_RowChangedName="vw_TRANS_EXTRA_CHARGESRowChanged" msprop:Generator_UserTableName="vw_TRANS_EXTRA_CHARGES" msprop:Generator_RowChangingName="vw_TRANS_EXTRA_CHARGESRowChanging" msprop:Generator_RowClassName="vw_TRANS_EXTRA_CHARGESRow" msprop:Generator_TableClassName="vw_TRANS_EXTRA_CHARGESDataTable" msprop:Generator_TableVarName="tablevw_TRANS_EXTRA_CHARGES">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" />
-              <xs:element name="code" msprop:Generator_UserColumnName="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnVarNameInTable="columncode" type="xs:int" />
-              <xs:element name="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnVarNameInTable="columnname">
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" />
+              <xs:element name="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_UserColumnName="code" msprop:Generator_ColumnVarNameInTable="columncode" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_UserColumnName="name" msprop:Generator_ColumnVarNameInTable="columnname">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="150" />
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="amt" msprop:Generator_UserColumnName="amt" msprop:Generator_ColumnPropNameInTable="amtColumn" msprop:Generator_ColumnPropNameInRow="amt" msprop:Generator_ColumnVarNameInTable="columnamt" type="xs:decimal" />
-              <xs:element name="transhID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="transhID" msprop:Generator_ColumnPropNameInTable="transhIDColumn" msprop:Generator_ColumnPropNameInRow="transhID" msprop:Generator_ColumnVarNameInTable="columntranshID" type="xs:string" />
-              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="modifiedBy" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" type="xs:string" />
-              <xs:element name="modifiedOn" msprop:Generator_UserColumnName="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="createdOn" msprop:Generator_UserColumnName="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" type="xs:dateTime" minOccurs="0" />
-              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="createdBy" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_ColumnVarNameInTable="columncreatedBy" type="xs:string" minOccurs="0" />
-              <xs:element name="RealName" msprop:Generator_UserColumnName="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" minOccurs="0">
+              <xs:element name="amt" msprop:Generator_ColumnPropNameInTable="amtColumn" msprop:Generator_ColumnPropNameInRow="amt" msprop:Generator_UserColumnName="amt" msprop:Generator_ColumnVarNameInTable="columnamt" type="xs:decimal" />
+              <xs:element name="transhID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="transhIDColumn" msprop:Generator_ColumnPropNameInRow="transhID" msprop:Generator_UserColumnName="transhID" msprop:Generator_ColumnVarNameInTable="columntranshID" type="xs:string" />
+              <xs:element name="modifiedBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="modifiedByColumn" msprop:Generator_ColumnPropNameInRow="modifiedBy" msprop:Generator_UserColumnName="modifiedBy" msprop:Generator_ColumnVarNameInTable="columnmodifiedBy" type="xs:string" />
+              <xs:element name="modifiedOn" msprop:Generator_ColumnPropNameInTable="modifiedOnColumn" msprop:Generator_ColumnPropNameInRow="modifiedOn" msprop:Generator_UserColumnName="modifiedOn" msprop:Generator_ColumnVarNameInTable="columnmodifiedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdOn" msprop:Generator_ColumnPropNameInTable="createdOnColumn" msprop:Generator_ColumnPropNameInRow="createdOn" msprop:Generator_UserColumnName="createdOn" msprop:Generator_ColumnVarNameInTable="columncreatedOn" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="createdBy" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="createdByColumn" msprop:Generator_ColumnPropNameInRow="createdBy" msprop:Generator_UserColumnName="createdBy" msprop:Generator_ColumnVarNameInTable="columncreatedBy" type="xs:string" minOccurs="0" />
+              <xs:element name="RealName" msprop:Generator_ColumnPropNameInTable="RealNameColumn" msprop:Generator_ColumnPropNameInRow="RealName" msprop:Generator_UserColumnName="RealName" msprop:Generator_ColumnVarNameInTable="columnRealName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />

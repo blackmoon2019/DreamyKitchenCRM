@@ -10,6 +10,7 @@ Public Class frmProject
     Private FillCbo As New FillCombos
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
+    Private HideCompany As Boolean
     Private sCusID As Guid
     Private sID As String
     Public Mode As Byte
@@ -36,6 +37,11 @@ Public Class frmProject
             CalledFromCtrl = value
         End Set
     End Property
+    Public WriteOnly Property HideCompanyFields As Boolean
+        Set(value As Boolean)
+            HideCompany = value
+        End Set
+    End Property
 
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
@@ -43,6 +49,8 @@ Public Class frmProject
 
 
     Private Sub frmProject_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DM_CCT.vw_COMP' table. You can move, or remove it, as needed.
+        Me.Vw_COMPTableAdapter.Fill(Me.DM_CCT.vw_COMP)
         Projects.InitializeSmall(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
         If sCusID <> Nothing Then cboCUS.EditValue = sCusID : cboCUS.Enabled = False
         Select Case Mode
@@ -55,21 +63,23 @@ Public Class frmProject
                 FillCbo.AREAS(cboAREAS, sSQL)
 
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_TRANSH_SMALL with(nolock) where id ='" + sID + "'")
-                Dim cmd As SqlCommand = New SqlCommand("Select transhCID from TRANSC WHERE transhID = " & toSQLValueS(sID), CNDB)
-                Dim sdr As SqlDataReader = cmd.ExecuteReader()
-                If sdr.HasRows Then
-                    While sdr.Read()
-                        cboTransC.Properties.GetItems.Item(System.Guid.Parse(sdr("transhCID").ToString)).CheckState = CheckState.Checked
-                    End While
-                End If
-                sdr.Close()
+                CheckStateTransItems()
                 If cboCUS.GetColumnValue("isCompany") = True Then LCus.Text = "Εταιρία"
         End Select
         Me.CenterToScreen()
 
         cmdSaveTransH.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
-
+    Private Sub CheckStateTransItems()
+        Dim cmd As SqlCommand = New SqlCommand("Select transhCID from TRANSC WHERE transhID = " & toSQLValueS(sID), CNDB)
+        Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        If sdr.HasRows Then
+            While sdr.Read()
+                cboTransC.Properties.GetItems.Item(System.Guid.Parse(sdr("transhCID").ToString)).CheckState = CheckState.Checked
+            End While
+        End If
+        sdr.Close()
+    End Sub
     Private Sub cmdSaveTransH_Click(sender As Object, e As EventArgs) Handles cmdSaveTransH.Click
         Projects.SaveRecordSmallH(sID)
     End Sub
@@ -131,11 +141,48 @@ Public Class frmProject
     Private Sub cmdOpenTransh_Click(sender As Object, e As EventArgs) Handles cmdOpenTransh.Click
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             Dim Frm As frmTransactions = New frmTransactions()
-            Frm.Text = "Χρεωπιστώσεις Πελατών"
+            Frm.Text = "Έργα Πελατών"
             Frm.MdiParent = frmMain
+            Frm.LCompProject.Visibility = HideCompany
+            Frm.LComp.Visibility = HideCompany
             If Mode = FormMode.EditRecord Then Frm.ID = sID : Frm.Mode = FormMode.EditRecord
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
             Frm.Show()
         End If
     End Sub
+    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
+        Dim sCompID As String
+        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,CouID,AreaID,AdrID
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+
+    End Sub
+
+    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True)
+            Case 3 : cboCompProject.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
+        cboCOU.EditValue = cboCompProject.GetColumnValue("CouID") : cboCOU.Enabled = False
+        cboAREAS.EditValue = cboCompProject.GetColumnValue("AreaID") : cboAREAS.Enabled = False
+        cboADR.EditValue = cboCompProject.GetColumnValue("AdrID") : cboADR.Enabled = False
+    End Sub
+
+
 End Class

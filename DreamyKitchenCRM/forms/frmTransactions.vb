@@ -1,6 +1,5 @@
 ﻿Imports System.ComponentModel
 Imports System.Data.SqlClient
-Imports DevExpress.DataProcessing.InMemoryDataProcessor
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
@@ -21,6 +20,7 @@ Public Class frmTransactions
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
+    Private ShowCreditOnly As Boolean
     Private ManageCbo As New CombosManager
     Private LoadForms As New FormLoader
 
@@ -44,6 +44,12 @@ Public Class frmTransactions
             CtrlCombo = value
         End Set
     End Property
+    Public WriteOnly Property CreditOnly As Boolean
+        Set(value As Boolean)
+            ShowCreditOnly = value
+        End Set
+    End Property
+
     Public WriteOnly Property CalledFromControl As Boolean
         Set(value As Boolean)
             CalledFromCtrl = value
@@ -54,11 +60,9 @@ Public Class frmTransactions
     End Sub
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
-        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         AddHandler GridControl3.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
         Projects.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
-        Projects.LoadForm()
+        Projects.LoadForm(ShowCreditOnly)
         Me.CenterToScreen()
     End Sub
 
@@ -160,7 +164,7 @@ Public Class frmTransactions
 
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
         Select Case e.MenuType
-            Case GridMenuType.Column : LoadForms.PopupMenuShow(e, GridView1, "TRANSD.xml", "TRANSD")
+            Case GridMenuType.Column : LoadForms.PopupMenuShow(e, GridView1, "TRANSD.xml", "vw_TRANSD")
             Case GridMenuType.User
         End Select
     End Sub
@@ -381,5 +385,37 @@ Public Class frmTransactions
             Case 3 : cboTanshFCategory.EditValue = Nothing
         End Select
 
+    End Sub
+
+    Private Sub RepositoryItemCCT_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles RepositoryItemCCT.ButtonPressed
+        Select Case e.Button.Index
+            Case 1 : GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "cusID", Nothing)
+        End Select
+    End Sub
+    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
+        Dim sCompID As String
+        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+    End Sub
+
+    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue)
+            Case 3 : cboCompProject.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+        End Select
     End Sub
 End Class

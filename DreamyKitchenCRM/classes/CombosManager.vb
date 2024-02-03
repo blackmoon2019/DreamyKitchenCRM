@@ -28,7 +28,7 @@ Public Class CombosManager
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             Dim Frm As frmTransactions = New frmTransactions()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-            Frm.Text = "Χρεωπιστώσεις Πελατών"
+            Frm.Text = "Έργα Πελατών"
             Frm.CallerControl = CallerControl
             Frm.CalledFromControl = True
             Frm.MdiParent = frmMain
@@ -43,7 +43,7 @@ Public Class CombosManager
             Frm.Show()
         End If
     End Sub
-    Public Sub ManageTRANSHSmall(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, ByVal CusID As Guid)
+    Public Sub ManageTRANSHSmall(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, ByVal CusID As Guid, Optional ByVal HideCompany As Boolean = False)
         Dim Frm As frmProject = New frmProject()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
         Frm.Text = "Έργα Πελατών"
@@ -51,6 +51,9 @@ Public Class CombosManager
         Frm.CusID = CusID
         Frm.CalledFromControl = True
         Frm.CallerControl = CallerControl
+        Frm.LCompProject.Visibility = HideCompany
+        Frm.LComp.Visibility = HideCompany
+        Frm.HideCompanyFields = HideCompany
         If CallerControl.EditValue <> Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord

@@ -529,7 +529,7 @@ Public Class frmMain
     Private Sub bbTRANSH_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbTRANSH.ItemClick
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Χρεωπιστώσεις Πελατών"
+            form.Text = "Έργα Πελατών"
             form.DataTable = "vw_TRANSH"
             form.DataDetail = "vw_TRANSD"
             form.MdiParent = Me

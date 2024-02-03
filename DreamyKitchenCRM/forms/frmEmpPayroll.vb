@@ -61,7 +61,7 @@ Public Class frmEmpPayroll
     Private Sub frmEmpPayroll_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
         If bIsConstr = True Then
-            'Χρεωπιστώσεις Κατασκευαστικου
+            'Έργα Κατασκευαστικου
             sSQL.AppendLine("Select id,Fullname,salary  from vw_EMP where jobid='F1A60661-D448-41B7-8CF0-CE6B9FF6E518' order by Fullname")
         Else
             'Μισθοδοσία Έκθεσης

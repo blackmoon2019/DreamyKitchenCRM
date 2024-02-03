@@ -224,6 +224,7 @@
     <Compile Include="classes\CusOfferOrderDoors.vb" />
     <Compile Include="classes\CusOfferOrderKitchen.vb" />
     <Compile Include="classes\CUSOfferOrderSpecialConstr.vb" />
+    <Compile Include="classes\CusPrivateAgreement.vb" />
     <Compile Include="classes\Customers.vb" />
     <Compile Include="classes\DBQueries.vb" />
     <Compile Include="classes\FillCombos.vb" />

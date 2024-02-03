@@ -1,6 +1,7 @@
 ﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraReports.UI
+Imports iTextSharp.text.pdf
 Imports System.Data.SqlClient
 
 Public Class Projects
@@ -27,7 +28,10 @@ Public Class Projects
         Mode = sMode
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
-
+        Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
+        Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
+        Frm.Vw_CCTTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_CCT)
+        Frm.Vw_FILE_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_FILE_CAT)
         Frm.Vw_PAYTYPESTableAdapter.Fill(Frm.DM_TRANS.vw_PAYTYPES)
         Frm.Vw_TRANSH_CTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSH_C)
         Frm.Vw_SCAN_FILE_NAMESTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SCAN_FILE_NAMES)
@@ -36,7 +40,7 @@ Public Class Projects
         'Τράπεζες
         FillCbo.BANKS(Frm.cboBANK)
         'Πελάτες
-        FillCbo.CUS(Frm.cboCUS)
+        FillCbo.CUS(Frm.cboCUS) : FillCbo.CUS(Frm.cboCUSD)
         'Πωλητές
         FillCbo.SALERS(Frm.cboSaler)
         'Νομοί
@@ -55,7 +59,7 @@ Public Class Projects
         'Νομοί
         FillCbo.COU(Frm2.cboCOU)
     End Sub
-    Public Sub LoadForm()
+    Public Sub LoadForm(Optional ByVal ShowCreditOnly As Boolean = False)
         Select Case Mode
             Case FormMode.NewRecord
                 Frm.dtCharge.EditValue = DateTime.Now : Frm.dtPay.EditValue = DateTime.Now : Frm.LayoutControlGroup2.Enabled = False : Frm.txtCodeH.Text = GetNextID()
@@ -71,14 +75,7 @@ Public Class Projects
                 sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
                 Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
                 Frm.Vw_TRANSDTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSD, System.Guid.Parse(ID))
-                Dim cmd As SqlCommand = New SqlCommand("Select transhCID from TRANSC WHERE transhID = " & toSQLValueS(ID), CNDB)
-                Dim sdr As SqlDataReader = cmd.ExecuteReader()
-                If sdr.HasRows Then
-                    While sdr.Read()
-                        Frm.cboTransC.Properties.GetItems.Item(System.Guid.Parse(sdr("transhCID").ToString)).CheckState = CheckState.Checked
-                    End While
-                End If
-                sdr.Close()
+                CheckStateTransItems()
                 Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
                 Frm.dtPay.EditValue = DateTime.Now
         End Select
@@ -87,7 +84,26 @@ Public Class Projects
         LoadForms.RestoreLayoutFromXml(Frm.GridView3, "Vw_TRANS_EXTRA_CHARGES.xml")
         Frm.cmdSaveTransH.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Frm.cmdSaveTransD.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        If ShowCreditOnly = True Then
+            Frm.TabNavigationPage1.PageVisible = False
+            Frm.TabNavigationPage3.PageVisible = False
+            Frm.TabNavigationPage4.PageVisible = False
+            Frm.Bar1.Visible = False
 
+        End If
+
+
+
+    End Sub
+    Private Sub CheckStateTransItems()
+        Dim cmd As SqlCommand = New SqlCommand("Select transhCID from TRANSC WHERE transhID = " & toSQLValueS(ID), CNDB)
+        Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        If sdr.HasRows Then
+            While sdr.Read()
+                Frm.cboTransC.Properties.GetItems.Item(System.Guid.Parse(sdr("transhCID").ToString)).CheckState = CheckState.Checked
+            End While
+        End If
+        sdr.Close()
     End Sub
     Public Sub LoadSalerTziroi()
         Dim frmSalerTziroi As New frmSalerTziroi
@@ -144,11 +160,11 @@ Public Class Projects
                 Select Case Mode
                     Case FormMode.NewRecord
                         ID = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID,, "bal,Totamt", toSQLValueS(Frm2.txtDebitCost.EditValue, True) & "," & toSQLValueS(Frm2.txtDebitCost.EditValue, True))
                         ' Εαν πετύχει η καταχώρηση του έργου αλλά όχι των κατηγοριών τότε όλο το έργο διαγράφεται
                         If sResult Then If Not SaveTRANSC_SMALL() Then DeleteRecord() : Exit Sub Else Frm2.txtCodeH.Text = DBQ.GetNextId("TRANSH")
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID,,,,, "bal=" & toSQLValueS(Frm2.txtDebitCost.EditValue, True) & ",Totamt=" & toSQLValueS(Frm2.txtDebitCost.EditValue, True))
                         ' Καταχώρηση κατηγοριών 
                         If sResult Then SaveTRANSC_SMALL()
                 End Select
@@ -156,7 +172,7 @@ Public Class Projects
                     sID = ID
                     If CalledFromCtrl Then
                         Dim sSQL As New System.Text.StringBuilder
-                        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoors,Issc from vw_TRANSH t where  T.cusid = " & toSQLValueS(Frm2.cboCUS.EditValue.ToString) & "order by description")
+                        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc from vw_TRANSH t where  T.cusid = " & toSQLValueS(Frm2.cboCUS.EditValue.ToString) & "order by description")
                         FillCbo.TRANSH(CtrlCombo, sSQL) : CtrlCombo.EditValue = System.Guid.Parse(ID)
                     End If
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -295,6 +311,7 @@ Public Class Projects
             sSQL = "UPDATE [TRANSD] SET dtPay  = " & toSQLValueS(CDate(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay")).ToString("yyyyMMdd")) &
                     ",bankID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "bankID").ToString) &
                     ",PayTypeID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString) &
+                    ",cusID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cusID").ToString) &
                     ",cash = " & cash &
                     ",paid = " & Paid &
                     ",cmt = " & cmt &
@@ -347,7 +364,7 @@ Public Class Projects
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            Frm.dtAgreement.EditValue = CDate(sdtPay).ToString("yyyyMMdd")
+            If sdtPay = "" Then Frm.dtAgreement.EditValue = Nothing Else Frm.dtAgreement.EditValue = CDate(sdtPay).ToString("yyyyMMdd")
             Frm.chkofferCusAcceptance.CheckState = sPaid
             Return True
         Catch ex As Exception

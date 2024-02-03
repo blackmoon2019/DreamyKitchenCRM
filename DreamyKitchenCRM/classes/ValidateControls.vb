@@ -5,11 +5,18 @@ Imports DevExpress.XtraLayout
 Public Class ValidateControls
     Public SChanged As Boolean
     Private sID As String
+    Private scompTrashID As String
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
         End Set
     End Property
+    Public WriteOnly Property compTrashID As String
+        Set(value As String)
+            scompTrashID = value
+        End Set
+    End Property
+
     Public Function ValidateForm(ByVal control As DevExpress.XtraLayout.LayoutControl) As Boolean
         For Each item As BaseLayoutItem In control.Items
             If TypeOf item Is LayoutControlItem Then
@@ -90,18 +97,33 @@ Public Class ValidateControls
                         Return False
                     End If
 
+                    If f.cboCompany.EditValue IsNot Nothing And f.cboCUS.EditValue IsNot Nothing Then
+                        If f.cboCUS.EditValue.ToString.ToUpper = f.cboCompany.EditValue.ToString.ToUpper Then
+                            XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+
+
                     If ExtraChecks = True Then
                         Dim sSQL As String
                         Dim Cmd As SqlCommand
                         Dim CountClosed As Integer
 
-                        sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+
+                        ' Αν αφορά εταιρία η εγγραφή κλεισίματος ελέγχεται αν υπάρχει πάνω στην εταιρία
+                        If f.cboCompany.EditValue IsNot Nothing Then
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
+                        Else
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                        End If
+
                         Cmd = New SqlCommand(sSQL, CNDB)
                         Dim sdr As SqlDataReader = Cmd.ExecuteReader()
                         If (sdr.Read() = True) Then
                             If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
                             If CountClosed = 0 Then
-                                XtraMessageBox.Show("Δεν μπορείτε να κάνετε μετατρέψετε την προσφορά σε παραγγελία χωρίς εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν μπορείτε να μετατρέψετε την προσφορά σε παραγγελία χωρίς εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 Return False
                             End If
                         End If
@@ -114,6 +136,37 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
+                    If f.cboCompany.EditValue IsNot Nothing And f.cboCUS.EditValue IsNot Nothing Then
+                        If f.cboCUS.EditValue.ToString.ToUpper = f.cboCompany.EditValue.ToString.ToUpper Then
+                            XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+
+
+                    If ExtraChecks = True Then
+                        Dim sSQL As String
+                        Dim Cmd As SqlCommand
+                        Dim CountClosed As Integer
+
+
+                        ' Αν αφορά εταιρία η εγγραφή κλεισίματος ελέγχεται αν υπάρχει πάνω στην εταιρία
+                        If f.cboCompany.EditValue IsNot Nothing Then
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
+                        Else
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                        End If
+
+                        Cmd = New SqlCommand(sSQL, CNDB)
+                        Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
+                            If CountClosed = 0 Then
+                                XtraMessageBox.Show("Δεν μπορείτε να μετατρέψετε την προσφορά σε παραγγελία χωρίς εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
+                        End If
+                    End If
                     Return True
                 Case "frmCUSOfferOrderCloset"
                     Dim f As frmCUSOfferOrderCloset = frm
@@ -122,6 +175,37 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
+                    If f.cboCompany.EditValue IsNot Nothing And f.cboCUS.EditValue IsNot Nothing Then
+                        If f.cboCUS.EditValue.ToString.ToUpper = f.cboCompany.EditValue.ToString.ToUpper Then
+                            XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+
+
+                    If ExtraChecks = True Then
+                        Dim sSQL As String
+                        Dim Cmd As SqlCommand
+                        Dim CountClosed As Integer
+
+
+                        ' Αν αφορά εταιρία η εγγραφή κλεισίματος ελέγχεται αν υπάρχει πάνω στην εταιρία
+                        If f.cboCompany.EditValue IsNot Nothing Then
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
+                        Else
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                        End If
+
+                        Cmd = New SqlCommand(sSQL, CNDB)
+                        Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
+                            If CountClosed = 0 Then
+                                XtraMessageBox.Show("Δεν μπορείτε να μετατρέψετε την προσφορά σε παραγγελία χωρίς εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
+                        End If
+                    End If
                     Return True
                 Case "frmCUSOfferOrderSpecialConstr"
                     Dim f As frmCUSOfferOrderSpecialConstr = frm
@@ -129,6 +213,37 @@ Public Class ValidateControls
                     If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
+                    End If
+                    If f.cboCompany.EditValue IsNot Nothing And f.cboCUS.EditValue IsNot Nothing Then
+                        If f.cboCUS.EditValue.ToString.ToUpper = f.cboCompany.EditValue.ToString.ToUpper Then
+                            XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+
+
+                    If ExtraChecks = True Then
+                        Dim sSQL As String
+                        Dim Cmd As SqlCommand
+                        Dim CountClosed As Integer
+
+
+                        ' Αν αφορά εταιρία η εγγραφή κλεισίματος ελέγχεται αν υπάρχει πάνω στην εταιρία
+                        If f.cboCompany.EditValue IsNot Nothing Then
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
+                        Else
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                        End If
+
+                        Cmd = New SqlCommand(sSQL, CNDB)
+                        Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
+                            If CountClosed = 0 Then
+                                XtraMessageBox.Show("Δεν μπορείτε να μετατρέψετε την προσφορά σε παραγγελία χωρίς εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
+                        End If
                     End If
                     Return True
 

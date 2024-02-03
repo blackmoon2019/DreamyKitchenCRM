@@ -212,7 +212,7 @@ Public Class frmInstallations
     End Function
     Private Sub ManageTRANSH()
         Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Χρεωπιστώσεις Πελατών"
+        form1.Text = "Έργα Πελατών"
         form1.CallerControl = cboTRANSH
         form1.CalledFromControl = True
         form1.MdiParent = frmMain

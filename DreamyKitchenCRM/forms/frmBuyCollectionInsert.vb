@@ -677,7 +677,7 @@ Public Class frmBuyCollectionInsert
                 If reptranshID <> "" Then
                     Dim frmTransactions As frmTransactions = New frmTransactions()
                     frmTransactions.CalledFromControl = True
-                    frmTransactions.Text = "Χρεωπιστώσεις"
+                    frmTransactions.Text = "Έργα"
                     frmTransactions.ID = reptranshID
                     frmTransactions.MdiParent = frmMain
                     frmTransactions.Mode = FormMode.EditRecord

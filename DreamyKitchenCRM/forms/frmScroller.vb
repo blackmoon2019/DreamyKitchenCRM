@@ -1432,7 +1432,7 @@ Public Class frmScroller
                 frmGen.Show()
             Case "vw_INST_M"
                 Dim frmInstM As New frmInstM
-                frmInstM.Text = "Χρεωπιστώσεις Τοποθετών"
+                frmInstM.Text = "Έργα Τοποθετών"
                 frmInstM.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmInstM.InstID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString
                 frmInstM.MdiParent = frmMain
@@ -1455,7 +1455,7 @@ Public Class frmScroller
                 frmEMP.Show()
             Case "vw_TRANSH"
                 Dim frmTransactions As New frmTransactions
-                frmTransactions.Text = "Χρεωπιστώσεις"
+                frmTransactions.Text = "Έργα"
                 frmTransactions.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmTransactions.MdiParent = frmMain
                 frmTransactions.Mode = FormMode.EditRecord
@@ -2388,7 +2388,7 @@ Public Class frmScroller
                 frmGen.Show()
             Case "vw_INST_M"
                 Dim frmInstM As New frmInstM
-                frmInstM.Text = "Χρεωπιστώσεις Τοποθετών"
+                frmInstM.Text = "Έργα Τοποθετών"
                 frmInstM.MdiParent = frmMain
                 frmInstM.Mode = FormMode.NewRecord
                 frmInstM.Scroller = GridView1
@@ -2408,7 +2408,7 @@ Public Class frmScroller
                 frmEMP.Show()
             Case "vw_TRANSH"
                 Dim frmTransactions As New frmTransactions
-                frmTransactions.Text = "Χρεωπιστώσεις"
+                frmTransactions.Text = "Έργα"
                 frmTransactions.MdiParent = frmMain
                 frmTransactions.Mode = FormMode.NewRecord
                 frmTransactions.Scroller = GridView1
@@ -2925,15 +2925,15 @@ Public Class frmScroller
                         AdapterDetail.Fill(sdataSet, sDataDetail)
                         Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
                         Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("transhID")
-                        sdataSet.Relations.Add("Χρεωπιστώσεις", keyColumn, foreignKeyColumn, False)
+                        sdataSet.Relations.Add("Έργα", keyColumn, foreignKeyColumn, False)
                         GridView1.Columns.Clear() : GridView2.Columns.Clear()
                         grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
                         grdMain.ForceInitialize()
                         If grdMain.LevelTree.Nodes.Count = 1 Then
                             Dim GrdView As New GridView(grdMain)
-                            grdMain.LevelTree.Nodes.Add("Χρεωπιστώσεις", GridView2)
+                            grdMain.LevelTree.Nodes.Add("Έργα", GridView2)
                             'Specify text to be displayed within detail tabs.
-                            GrdView.ViewCaption = "Χρεωπιστώσεις"
+                            GrdView.ViewCaption = "Έργα"
                         End If
                     Case "vw_INST_M"
                         Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
@@ -2943,15 +2943,15 @@ Public Class frmScroller
                         AdapterDetail.Fill(sdataSet, sDataDetail)
                         Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
                         Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("instID")
-                        sdataSet.Relations.Add("Χρεωπιστώσεις Τοποθετών", keyColumn, foreignKeyColumn, False)
+                        sdataSet.Relations.Add("Έργα Τοποθετών", keyColumn, foreignKeyColumn, False)
                         GridView1.Columns.Clear() : GridView2.Columns.Clear()
                         grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
                         grdMain.ForceInitialize()
                         If grdMain.LevelTree.Nodes.Count = 1 Then
                             Dim GrdView As New GridView(grdMain)
-                            grdMain.LevelTree.Nodes.Add("Χρεωπιστώσεις Τοποθετών", GridView2)
+                            grdMain.LevelTree.Nodes.Add("Έργα Τοποθετών", GridView2)
                             'Specify text to be displayed within detail tabs.
-                            GrdView.ViewCaption = "Χρεωπιστώσεις Τοποθετών"
+                            GrdView.ViewCaption = "Έργα Τοποθετών"
                         End If
                     Case "vw_SUP_PAYMENTS_D"
                         Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)

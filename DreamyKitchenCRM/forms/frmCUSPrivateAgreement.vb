@@ -1,15 +1,12 @@
 ﻿Imports System.Data.SqlClient
 Imports DevExpress.Utils
-Imports DevExpress.Utils.Menu
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraEditors.Repository
-Imports DevExpress.XtraGrid.Menu
-Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraReports.UI
 Public Event HyperlinkClick As HyperlinkClickEventHandler
 Public Class frmCUSPrivateAgreement
-
+    Private CusPrivateAgreement As New CusPrivateAgreement
+    Private ManageCbo As New CombosManager
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
@@ -62,167 +59,17 @@ Public Class frmCUSPrivateAgreement
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
     End Sub
-    Private Sub frmPrivateAgreement_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INVTYPES' table. You can move, or remove it, as needed.
-        Me.Vw_INVTYPESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_INVTYPES)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BANKS' table. You can move, or remove it, as needed.
-        Me.Vw_BANKSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BANKS)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
-        Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
-        Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
-        Dim sSQL As New System.Text.StringBuilder
-        FillCbo.ADR(cboADR, sSQL)
-
-
-        Select Case Mode
-            Case FormMode.NewRecord
-                txtCode.Text = DBQ.GetNextId("AGREEMENT")
-                cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
-                ChangeVal = True
-            Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from AGREEMENT where id = " & toSQLValueS(sID))
-                ChangeVal = False
-                cmdPrintOffer.Enabled = True
-        End Select
+    Private Sub frmPrivateAgreement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        CusPrivateAgreement.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
+        CusPrivateAgreement.LoadForm()
         Me.CenterToScreen()
-        cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
-
-        chkHasCloset.Properties.AllowHtmlDraw = DefaultBoolean.True
-        chkHasCloset.Text = "<href=www.dreamykitchen.gr/>Ντουλάπες Υπνοδωματίου</href>"
-        chkHasDoors.Properties.AllowHtmlDraw = DefaultBoolean.True
-        chkHasDoors.Text = "<href=www.dreamykitchen.gr/>Πόρτες Εσωτερικές</href>"
-        chkHasKitchen.Properties.AllowHtmlDraw = DefaultBoolean.True
-        chkHasKitchen.Text = "<href=www.dreamykitchen.gr/>Ερμάρια Κουζίνας</href>"
-        chkHasSC.Properties.AllowHtmlDraw = DefaultBoolean.True
-        chkHasSC.Text = "<href=www.dreamykitchen.gr/>Ειδικές Κατασκευές</href>"
-
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
-        Dim sResult As Boolean
-        Dim sGuid As String
-        Dim TotalPrice As Double, PayinAdvance As Double, closeAmt As Double
-        Try
-            If Valid.ValidateForm(LayoutControl1) Then
-                If txtPayinAdvance.EditValue = "0,00" Then
-                    XtraMessageBox.Show("Δεν έχετε συμπληρώσει στην προκαταβολη (Μετρητά,Τράπεζα ή και τα 2).", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                End If
-                TotalPrice = 0
-                TotalPrice = DbnullToZero(txtPayinAdvanceCash)
-                TotalPrice = TotalPrice + DbnullToZero(txtPayinAdvanceBank)
-                PayinAdvance = DbnullToZero(txtPayinAdvance)
-                closeAmt = DbnullToZero(txtClose)
-                closeAmt = closeAmt + DbnullToZero(txtCloseCash)
-                TotalPrice = TotalPrice + closeAmt
-                If Math.Round(TotalPrice, 2) <> Math.Round(PayinAdvance, 2) Then
-                    XtraMessageBox.Show("Το σύνολο της προκαταβολής δεν είναι ίσο με τις επιμέρους", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
-                PayinAdvance = txtPayinAdvanceBank.EditValue
-                If PayinAdvance <> "0" And cboBANK.EditValue = Nothing Then
-                    XtraMessageBox.Show("Έχετε συμπληρώσει προκαταβολή(Τράπεζα) χωρίς να βάλετε τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
-                End If
-                Select Case Mode
-                    Case FormMode.NewRecord
-                        sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "AGREEMENT", LayoutControl1,,, sGuid, True)
-                        sID = sGuid
-                    Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "AGREEMENT", LayoutControl1,,, sID, True)
-                        'sGuid = sID
-                End Select
-
-                If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_AGREEMENT")
-                End If
-
-                If sResult = True Then
-                    Dim sSQL As New System.Text.StringBuilder
-                    TotalPrice = txtGenTot.EditValue
-                    Dim PolisiErgou As Double = TotalPrice - txtDevices.EditValue
-                    TotalPrice = TotalPrice + txtDevices.EditValue
-
-                    sSQL.AppendLine("update TRANSH SET waitingForAgreement=1,invType = " & toSQLValueS(cboInvoiceType.EditValue.ToString) & ",  vatamt = " & toSQLValueS(txtPartofVat.EditValue.ToString, True) & ", " &
-                                    " amt = " & toSQLValueS(txtPosoParastatikou.EditValue.ToString, True) & ",debitcost = " & toSQLValueS(PolisiErgou.ToString, True) & ", " &
-                                    " DevicesCost = " & toSQLValueS(txtDevices.EditValue.ToString) & ",  totamt = " & toSQLValueS(txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
-                    'Εκτέλεση QUERY
-                    Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                    sSQL.Clear()
-                    ' Διαγραφή όλων των κινήσεων που αφοόύν το συγκεκριμένο συμφωνητικό
-                    sSQL.AppendLine("DELETE FROM TRANSD WHERE agreementID = " & toSQLValueS(sID))
-                    Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                    sSQL.Clear()
-                    TotalPrice = txtPayinAdvanceCash.EditValue
-                    If TotalPrice <> "0" Then
-                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,AMT,DTPAY,PAYTYPEID,agreementID) ")
-                        sSQL.AppendLine("Select " & toSQLValueS(cboTRANSH.EditValue.ToString) & ",")
-                        sSQL.AppendLine("1" & ",")
-                        sSQL.AppendLine(toSQLValueS(txtPayinAdvanceCash.EditValue.ToString, True) & ",")
-                        sSQL.AppendLine(toSQLValueS(CDate(dtpresentation.Text).ToString("yyyyMMdd")) & ",")
-                        sSQL.Append("'27CF38F4-BD30-403C-8BC6-2D2A57501DEB',")
-                        sSQL.AppendLine(toSQLValueS(sID))
-                        'Εκτέλεση QUERY
-                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                    End If
-                    sSQL.Clear()
-                    TotalPrice = txtPayinAdvanceBank.EditValue
-                    If TotalPrice <> "0" Then
-                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,BANKID,AMT,DTPAY,PAYTYPEID,agreementID) ")
-                        sSQL.AppendLine("Select " & toSQLValueS(cboTRANSH.EditValue.ToString) & ",")
-                        sSQL.AppendLine("0" & ",")
-                        sSQL.AppendLine(toSQLValueS(cboBANK.EditValue.ToString) & ",")
-                        sSQL.AppendLine(toSQLValueS(txtPayinAdvanceBank.EditValue.ToString, True) & ",")
-                        sSQL.AppendLine(toSQLValueS(CDate(dtpresentation.Text).ToString("yyyyMMdd")) & ",")
-                        sSQL.Append("'27CF38F4-BD30-403C-8BC6-2D2A57501DEB',")
-                        sSQL.AppendLine(toSQLValueS(sID))
-                        'Εκτέλεση QUERY
-                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                    End If
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    cmdPrintOffer.Enabled = True
-                    Dim cmd As SqlCommand
-                    Dim sdr As SqlDataReader
-                    Dim ExistNegative As Integer = 0
-                    cmd = New SqlCommand("  select  count(id) as ExistNegative  
-	                                        from vw_ANALYSH_KOSTOYS 
-	                                        where (KLEISIMO_CASH<0 or ΕΝΑΝΤΙ_CASH<0 OR [EXOFLISI_CASH]<0 OR KLEISIMO_BANK<0 OR [ΕΝΑΝΤΙ_BANK]<0
-	                                        OR EXOFLISI_BANK<0)  and ID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
-                    sdr = cmd.ExecuteReader()
-                    If (sdr.Read() = True) Then
-                        If sdr.IsDBNull(sdr.GetOrdinal("ExistNegative")) = False Then ExistNegative = sdr.GetInt32(sdr.GetOrdinal("ExistNegative"))
-                    End If
-                    sdr.Close()
-                    If ExistNegative > 0 Then
-                        XtraMessageBox.Show("Λανθασμένη κατανομή ποσών στον τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Dim report As New RepCUSAnalysis
-                        report.Parameters.Item(0).Value = cboTRANSH.EditValue.ToString
-                        report.CreateDocument()
-
-                        Dim printTool As New ReportPrintTool(report)
-                        printTool.ShowRibbonPreview()
-
-                    End If
-                    Mode = FormMode.EditRecord
-                End If
-            End If
-
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        CusPrivateAgreement.SaveRecord(sID)
     End Sub
 
-    Private Sub frmPrivateAgreement_Resize(sender As Object, e As EventArgs) Handles Me.Resize
+    Private Sub frmPrivateAgreement_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
@@ -242,134 +89,67 @@ Public Class frmCUSPrivateAgreement
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboEMP.EditValue = Nothing : ManageEMP()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboEMP.EditValue <> Nothing Then ManageEMP()
+            Case 1 : ManageCbo.ManageEMP(cboEMP, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageEMP(cboEMP, FormMode.EditRecord)
             Case 3 : cboEMP.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS) : Vw_CCTTableAdapter.Fill(DreamyKitchenDataSet.vw_CCT)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS) : Vw_CCTTableAdapter.Fill(DreamyKitchenDataSet.vw_CCT)
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageTRANSH()
-        Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Χρεωπιστώσεις Πελατών"
-        form1.CallerControl = cboTRANSH
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboTRANSH.EditValue <> Nothing Then
-            form1.ID = cboTRANSH.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
-    Private Sub ManageEMP()
-        Dim form1 As frmEMP = New frmEMP()
-        form1.Text = "Προσωπικό"
-        form1.CallerControl = cboEMP
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboEMP.EditValue <> Nothing Then
-            form1.ID = cboEMP.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
-    Private Sub ManageCus()
-        Dim form1 As frmCustomers = New frmCustomers()
-        form1.Text = "Πελάτες"
-        form1.CallerControl = cboCUS
-        form1.CalledFromControl = True
-        'form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
-            form1.ID = cboCUS.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.ShowDialog()
-        Dim cmd As SqlCommand
-        Dim sdr As SqlDataReader
-        If cboCUS.EditValue <> Nothing Then
-            cmd = New SqlCommand("SELECT AdrID,FatherName,AREAS_Name,DOY_Name,afm FROM VW_CCT WHERE ID = " & toSQLValueS(cboCUS.EditValue.ToString), CNDB)
-            sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("FatherName")) = False Then txtFatherName.EditValue = sdr.GetString(sdr.GetOrdinal("FatherName")) Else txtFatherName.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("AREAS_Name")) = False Then txtArea.EditValue = sdr.GetString(sdr.GetOrdinal("AREAS_Name")) Else txtArea.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("DOY_Name")) = False Then txtDOY.EditValue = sdr.GetString(sdr.GetOrdinal("DOY_Name")) Else txtDOY.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("afm")) = False Then txtAFM.EditValue = sdr.GetString(sdr.GetOrdinal("afm")) Else txtAFM.EditValue = Nothing
-                Dim sADSQL As New System.Text.StringBuilder
-                If cboADR.EditValue IsNot Nothing Then sADSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR WHERE ID = " & toSQLValueS(cboADR.EditValue.ToString))
-                FillCbo.ADR(cboADR, sADSQL)
-                If sdr.IsDBNull(sdr.GetOrdinal("AdrID")) = False Then cboADR.EditValue = sdr.GetGuid(sdr.GetOrdinal("AdrID")) Else cboADR.EditValue = Nothing
-            End If
-            sdr.Close()
-        End If
-    End Sub
+
+    'Private Sub ManageCus()
+    '    Dim form1 As frmCustomers = New frmCustomers()
+    '    form1.Text = "Πελάτες"
+    '    form1.CallerControl = cboCUS
+    '    form1.CalledFromControl = True
+    '    'form1.MdiParent = frmMain
+    '    If cboCUS.EditValue <> Nothing Then
+    '        form1.ID = cboCUS.EditValue.ToString
+    '        form1.Mode = FormMode.EditRecord
+    '    Else
+    '        form1.Mode = FormMode.NewRecord
+    '    End If
+    '    'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
+    '    form1.ShowDialog()
+    '    Dim cmd As SqlCommand
+    '    Dim sdr As SqlDataReader
+    '    If cboCUS.EditValue <> Nothing Then
+    '        cmd = New SqlCommand("SELECT AdrID,FatherName,AREAS_Name,DOY_Name,afm FROM VW_CCT WHERE ID = " & toSQLValueS(cboCUS.EditValue.ToString), CNDB)
+    '        sdr = cmd.ExecuteReader()
+    '        If (sdr.Read() = True) Then
+    '            If sdr.IsDBNull(sdr.GetOrdinal("FatherName")) = False Then txtFatherName.EditValue = sdr.GetString(sdr.GetOrdinal("FatherName")) Else txtFatherName.EditValue = Nothing
+    '            If sdr.IsDBNull(sdr.GetOrdinal("AREAS_Name")) = False Then txtArea.EditValue = sdr.GetString(sdr.GetOrdinal("AREAS_Name")) Else txtArea.EditValue = Nothing
+    '            If sdr.IsDBNull(sdr.GetOrdinal("DOY_Name")) = False Then txtDOY.EditValue = sdr.GetString(sdr.GetOrdinal("DOY_Name")) Else txtDOY.EditValue = Nothing
+    '            If sdr.IsDBNull(sdr.GetOrdinal("afm")) = False Then txtAFM.EditValue = sdr.GetString(sdr.GetOrdinal("afm")) Else txtAFM.EditValue = Nothing
+    '            Dim sADSQL As New System.Text.StringBuilder
+    '            If cboADR.EditValue IsNot Nothing Then sADSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR WHERE ID = " & toSQLValueS(cboADR.EditValue.ToString))
+    '            FillCbo.ADR(cboADR, sADSQL)
+    '            If sdr.IsDBNull(sdr.GetOrdinal("AdrID")) = False Then cboADR.EditValue = sdr.GetGuid(sdr.GetOrdinal("AdrID")) Else cboADR.EditValue = Nothing
+    '        End If
+    '        sdr.Close()
+    '    End If
+    'End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
-        Dim report As New RepCUSPrivateAgreement()
-
-        report.Parameters.Item(0).Value = sID
-        report.CreateDocument()
-
-        Dim report2 As New RepCUSPrivateAgreement2ndPage
-        report2.Parameters.Item(0).Value = sID
-        report2.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report2.Pages)
-                              End Sub)
-        Dim report3 As New RepCUSPrivateAgreement3ndPage
-        report3.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report3.Pages)
-                              End Sub)
-        Dim report4 As New RepCUSPrivateAgreement4ndPage
-        report4.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report4.Pages)
-                              End Sub)
-        Dim report5 As New RepCUSAnalysis
-        report5.Parameters.Item(0).Value = cboTRANSH.EditValue.ToString
-        report5.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report5.Pages)
-                              End Sub)
-        Dim printTool As New ReportPrintTool(report)
-        printTool.ShowRibbonPreview()
+        CusPrivateAgreement.PrintAgreement()
     End Sub
 
-    Private Sub txtTotalVatPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalVatPrice.EditValueChanged
-        'Dim TotalPrice As Double
-        'If txtTotalVatPrice.EditValue <> Nothing Then TotalPrice = DbnullToZero(txtTotalVatPrice)
-        'TotalPrice = TotalPrice / 2
-        'txtPayinAdvance.EditValue = TotalPrice
-        'If ChangeVal Then txtTotalPrice.Text = "0.00" : txtPartofVat.Text = "0.00"
-    End Sub
     Private Sub txtTotalPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TxtTotalVat.EditValueChanged
         Dim Price As Double, PartOfVat As Double
         If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat)
         If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
-        'txtPayinAdvance.EditValue = (Price + PartOfVat) / 2
-        'If ChangeVal Then txtTotalVatPrice.Text = "0.00"
-
     End Sub
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
         Dim TotalPrice As Double, Price As Double, PartOfVat As Double
@@ -378,8 +158,6 @@ Public Class frmCUSPrivateAgreement
         txtPosoParastatikou.EditValue = TotalPrice
         If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat)
         If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
-        'txtPayinAdvance.EditValue = (Price + PartOfVat) / 2
-        'If ChangeVal Then txtTotalVatPrice.Text = "0.00"
     End Sub
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
@@ -461,26 +239,13 @@ Public Class frmCUSPrivateAgreement
 
     Private Sub cboBANK_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboBANK.ButtonPressed
         Select Case e.Button.Index
-            Case 1 : cboBANK.EditValue = Nothing : ManageBank()
-            Case 2 : If cboBANK.EditValue <> Nothing Then ManageBank()
+            Case 1 : ManageCbo.ManageBank(cboBANK, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageBank(cboBANK, FormMode.EditRecord)
             Case 3 : cboBANK.EditValue = Nothing
         End Select
 
     End Sub
-    Private Sub ManageBank()
-        Dim form1 As frmGen = New frmGen()
-        form1.Text = "Τράπεζες"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Τράπεζα"
-        form1.DataTable = "BANKS"
-        form1.CalledFromControl = True
-        form1.CallerControl = cboBANK
-        If cboBANK.EditValue <> Nothing Then form1.ID = cboBANK.EditValue.ToString
-        form1.MdiParent = frmMain
-        If cboBANK.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
+
 
     Private Sub txtGenTot_EditValueChanged(sender As Object, e As EventArgs) Handles txtGenTot.EditValueChanged
         Dim PayinAdvance As Double
@@ -492,7 +257,7 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
 
-    Private Sub chkHasCloset_DoubleClick(sender As Object, e As EventArgs) Handles chkHasCloset.DoubleClick
+    Private Sub chkHasCloset_DoubleClick(sender As Object, e As EventArgs)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Dim oID As String = ""
@@ -517,7 +282,7 @@ Public Class frmCUSPrivateAgreement
         End Try
     End Sub
 
-    Private Sub chkHasDoors_DoubleClick(sender As Object, e As EventArgs) Handles chkHasDoors.DoubleClick
+    Private Sub chkHasDoors_DoubleClick(sender As Object, e As EventArgs)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Dim oID As String = ""
@@ -543,7 +308,7 @@ Public Class frmCUSPrivateAgreement
         End Try
     End Sub
 
-    Private Sub chkHasKitchen_DoubleClick(sender As Object, e As EventArgs) Handles chkHasKitchen.DoubleClick
+    Private Sub chkHasKitchen_DoubleClick(sender As Object, e As EventArgs)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Dim oID As String = ""
@@ -568,7 +333,7 @@ Public Class frmCUSPrivateAgreement
         End Try
     End Sub
 
-    Private Sub chkHasSC_DoubleClick(sender As Object, e As EventArgs) Handles chkHasSC.DoubleClick
+    Private Sub chkHasSC_DoubleClick(sender As Object, e As EventArgs)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Dim oID As String = ""
@@ -595,33 +360,36 @@ Public Class frmCUSPrivateAgreement
 
     Private Sub cboADR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboADR.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboADR.EditValue = Nothing : ManageADR()
-            Case 2 : If cboADR.EditValue <> Nothing Then ManageADR()
+            Case 1 : cboADR.EditValue = Nothing : ManageCbo.ManageADR(cboADR, FormMode.NewRecord)
+            Case 2 : If cboADR.EditValue <> Nothing Then ManageCbo.ManageADR(cboADR, FormMode.EditRecord)
             Case 3 : cboADR.EditValue = Nothing
         End Select
     End Sub
 
-    Private Sub ManageADR()
-        Dim form1 As frmGen = New frmGen()
-        form1.Text = "Διευθύνσεις"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Διεύθυνση"
-        form1.L3.Text = "Νομός"
-        form1.L4.Text = "Περιοχές"
-        form1.L8.Text = "Αριθμός"
-        form1.DataTable = "ADR"
-        form1.CalledFromControl = True
-        form1.CallerControl = cboADR
-        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L8.Control.Tag = "Ar,0,1,2"
-        If cboADR.EditValue <> Nothing Then form1.ID = cboADR.EditValue.ToString
-        form1.MdiParent = frmMain
-
-        If cboADR.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
+    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
+        Dim sCompID As String
+        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
     End Sub
 
+    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue)
+            Case 3 : cboCompProject.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+        End Select
+    End Sub
 End Class
