@@ -427,6 +427,20 @@ Public Class frmTransactions
             Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUSD)
             Case 3 : cboCUSD.EditValue = Nothing
         End Select
+    End Sub
+    Private Sub GridView4_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView4.ValidateRow
+        Projects.SaveRecordD(False, e)
+    End Sub
 
+    Private Sub GridView4_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView4.InvalidRowException
+        e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
+    End Sub
+
+    Private Sub GridView4_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView4.KeyDown
+        If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then Projects.DeleteRecordD(False)
+    End Sub
+
+    Private Sub GridView4_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView4.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView4, "Vw_TRANSD_Debit.xml", "Vw_TRANSD")
     End Sub
 End Class

@@ -60,9 +60,8 @@ Public Class frmCUSPrivateAgreement
         Me.Close()
     End Sub
     Private Sub frmPrivateAgreement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        CusPrivateAgreement.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
-        CusPrivateAgreement.LoadForm()
-        Me.CenterToScreen()
+        If Me.IsActive = False Then Exit Sub
+        InitializeForm()
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -74,6 +73,10 @@ Public Class frmCUSPrivateAgreement
     End Sub
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
         FillCusTransh()
+    End Sub
+    Public Sub InitializeForm()
+        CusPrivateAgreement.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
+        CusPrivateAgreement.LoadForm()
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
@@ -160,13 +163,14 @@ Public Class frmCUSPrivateAgreement
                 chkHasDoors.Checked = False : chkHasSC.Checked = False : txtGenTot.EditValue = 0
                 txtPosoParastatikou.EditValue = 0 : txtDevices.EditValue = 0 : txtExtraInst.EditValue = 0 : txtExtraTransp.EditValue = 0
                 txtPayinAdvance.EditValue = 0 : txtPayinAdvanceBank.EditValue = 0 : txtPayinAdvanceCash.EditValue = 0
-                txtArProt.EditValue = Nothing
+                txtArProt.EditValue = Nothing : cboInvoiceType.EditValue = Nothing
                 Exit Sub
             Else
-                txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtKitchen").ToString.Length > 0, cboTRANSH.GetColumnValue("ArProtKitchen") & " ", "")
-                txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtCloset").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtCloset"), "")
-                txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtDoor").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtDoor"), "")
-                txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtSpecialContr").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtSpecialContr"), "")
+                If cboTRANSH.GetColumnValue("ArProtKitchen") IsNot Nothing Then txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtKitchen").ToString.Length > 0, cboTRANSH.GetColumnValue("ArProtKitchen") & " ", "")
+                If cboTRANSH.GetColumnValue("ArProtCloset") IsNot Nothing Then txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtCloset").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtCloset"), "")
+                If cboTRANSH.GetColumnValue("ArProtDoor") IsNot Nothing Then txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtDoor").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtDoor"), "")
+                If cboTRANSH.GetColumnValue("ArProtSpecialContr") IsNot Nothing Then txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtSpecialContr").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtSpecialContr"), "")
+                cboInvoiceType.EditValue = cboTRANSH.GetColumnValue("invType")
             End If
             cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=0 and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
             sdr = cmd.ExecuteReader()
@@ -364,6 +368,7 @@ Public Class frmCUSPrivateAgreement
                         where  T.cusid = " & sCompID & "order by description")
         FillCbo.TRANSH(cboCompProject, sSQL)
         LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        cmdCompCollection.Enabled = True
     End Sub
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
@@ -378,7 +383,7 @@ Public Class frmCUSPrivateAgreement
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
             Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
-            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing : cmdCompCollection.Enabled = False
         End Select
     End Sub
 
@@ -405,6 +410,7 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Private Sub FillCusTransh()
+
         txtFatherName.EditValue = cboCUS.GetColumnValue("FatherName")
         txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
         txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
@@ -413,12 +419,12 @@ Public Class frmCUSPrivateAgreement
 
         Dim sCusID As String, scompTrashID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
-        If cboCompProject.EditValue Is Nothing Then scompTrashID = toSQLValueS(Guid.Empty.ToString) Else scompTrashID = toSQLValueS(cboCompProject.EditValue.ToString)
+        If cboCompProject.EditValue Is Nothing Then scompTrashID = "IS NULL" Else scompTrashID = " = " & toSQLValueS(cboCompProject.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr,invType
                         from vw_TRANSH t
                         INNER JOIN TRANSC on transc.transhID = t.id 
-                        where  completed = 0  and T.cusid = " & sCusID & " and T.compTrashID = " & scompTrashID & " order by description")
+                        where  completed = 0  and T.cusid = " & sCusID & " and T.compTrashID " & scompTrashID & " order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
     End Sub
 

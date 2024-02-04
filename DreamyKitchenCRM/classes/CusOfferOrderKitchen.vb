@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports DevExpress.Utils.Extensions
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
@@ -51,6 +52,7 @@ Public Class CusOfferOrderKitchen
             Frm.LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LofferAccepted.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LGenOffer.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Else
             Frm.LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
             Frm.LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
@@ -58,10 +60,12 @@ Public Class CusOfferOrderKitchen
             Frm.LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LPrivateAgreement.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.TabNavigationPage3.PageVisible = False
             Frm.TabNavigationPage4.PageVisible = False
-        End If
 
+        End If
+        If Frm.cboCompany.EditValue Is Nothing Then Frm.cmdCompCollection.Enabled = False
         Select Case Mode
             Case FormMode.NewRecord
                 'txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
@@ -349,8 +353,9 @@ Public Class CusOfferOrderKitchen
     End Sub
     Public Sub ConvertToOrder()
         Try
+            Dim OrderID As String
             Valid.ID = Frm.cboTRANSH.EditValue.ToString
-            Valid.compTrashID = Frm.cboCompProject.EditValue.ToString
+            If Frm.cboCompProject.EditValue IsNot Nothing Then Valid.compTrashID = Frm.cboCompProject.EditValue.ToString
             If Valid.ValiDationRules(Frm.Name, Frm, True) = False Then Exit Sub
             If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
@@ -358,13 +363,21 @@ Public Class CusOfferOrderKitchen
                     oCmd.Parameters.AddWithValue("@OfferID", ID)
                     oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
                     oCmd.Parameters.AddWithValue("@Mode", 1)
+                    oCmd.Parameters("@OrderID").Direction = ParameterDirection.Output
                     oCmd.ExecuteNonQuery()
+                    OrderID = oCmd.Parameters("@OrderID").Value
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'cmdConvertToOrder.Enabled = False
                 Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False
                 Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                If XtraMessageBox.Show("Θέλετε να δείτε την παραγγελία ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
+                    frmCUSOfferOrderKitchen.ID = OrderID
+                    frmCUSOfferOrderKitchen.Mode = FormMode.EditRecord
+                    frmCUSOfferOrderKitchen.ShowDialog()
+                End If
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -411,19 +424,60 @@ Public Class CusOfferOrderKitchen
 
             Dim report2 As New RepCUSOfferKitchen2ndPage
 
-                report2.CreateDocument()
-                report.ModifyDocument(Sub(x)
-                                          x.AddPages(report2.Pages)
-                                      End Sub)
-                Dim report3 As New RepCUSOfferKitchen3ndPage
-                report3.Parameters.Item(0).Value = ID
-                report3.CreateDocument()
-                report.ModifyDocument(Sub(x)
-                                          x.AddPages(report3.Pages)
-                                      End Sub)
+            report2.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report2.Pages)
+                                  End Sub)
+            Dim report3 As New RepCUSOfferKitchen3ndPage
+            report3.Parameters.Item(0).Value = ID
+            report3.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report3.Pages)
+                                  End Sub)
 
-                Dim printTool As New ReportPrintTool(report)
-                printTool.ShowRibbonPreview()
-            End If
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
+        End If
+    End Sub
+    Public Sub NewRecord()
+        Cls.ClearCtrls(Frm.LayoutControl1) : Cls.ClearCtrls(Frm.LayoutControl2)
+        Cls.ClearCtrls(Frm.LayoutControl3) : Cls.ClearCtrls(Frm.LayoutControl4)
+
+        Frm.txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
+        Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.EmpID.ToString.ToUpper)
+        Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
+        Frm.txtTransp.EditValue = ProgProps.KitchenTransp
+        Frm.txtMeasurement.EditValue = ProgProps.KitchenMeasurement
+        Frm.txtRemove.EditValue = ProgProps.KitchenRemove
+        Frm.LabelControl1.Text = ""
+        Frm.cboModel1.SetEditValue(-1) : Frm.cboModel2.SetEditValue(-1)
+        Frm.cboModel3.SetEditValue(-1) : Frm.cboModel4.SetEditValue(-1)
+        Frm.dtOrder.EditValue = Date.Now
+        Frm.cmdPrintOffer.Enabled = False
+        Mode = FormMode.NewRecord
+        If sIsOrder = False Then
+            Frm.txtVFinalHeight.EditValue = ProgProps.V_HEIGHT
+            Frm.txtKHeight.EditValue = ProgProps.K_HEIGHT
+            Frm.txtKFinalHeight.EditValue = ProgProps.K_FINAL_HEIGHT
+            Frm.txtYHeight.EditValue = ProgProps.Y_HEIGHT
+            Frm.txtYFinalHeight.EditValue = ProgProps.Y_FINAL_HEIGHT
+            Frm.cboVBOXColors.EditValue = System.Guid.Parse(ProgProps.V_BOX_COLOR)
+            Frm.cboKBOXColors.EditValue = System.Guid.Parse(ProgProps.K_BOX_COLOR)
+            Frm.cboYBOXColors.EditValue = System.Guid.Parse(ProgProps.Y_BOX_COLOR)
+            Frm.cboLegs.EditValue = ProgProps.LEGS
+            Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
+            Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
+            Frm.txtNotes.EditValue = ProgProps.CUS_NOTES
+        End If
+
+        LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
+            "Select  e.ID,E.code,name,e.price as defPrice,
+                     price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked,
+                     case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard 
+                     From vw_EQUIPMENT E 
+                     where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
+        Frm.TabNavigationPage2.Enabled = False
+        'cmdConvertToOrder.Enabled = False
+        Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
     End Sub
 End Class

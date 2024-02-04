@@ -35,6 +35,10 @@ Public Class ClearControls
                                     Dim chklst As DevExpress.XtraEditors.CheckedListBoxControl
                                     chklst = Ctrl
                                     chklst.UnCheckAll()
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                    Dim chklst As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                    chklst = Ctrl
+                                    chklst.SetEditValue(-1)
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
                                     Dim chk As DevExpress.XtraEditors.CheckEdit
                                     chk = Ctrl
@@ -86,6 +90,11 @@ Public Class ClearControls
                                     Dim chklst As DevExpress.XtraEditors.CheckedListBoxControl
                                     chklst = Ctrl
                                     chklst.UnCheckAll()
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                    Dim chklst As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                    chklst = Ctrl
+                                    chklst.SetEditValue(-1)
+
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
                                     Dim chk As DevExpress.XtraEditors.CheckEdit
                                     chk = Ctrl

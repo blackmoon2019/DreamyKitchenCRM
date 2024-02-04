@@ -24,8 +24,6 @@ Public Class CusPrivateAgreement
         Mode = sMode
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
-    End Sub
-    Public Sub LoadForm()
         Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
         Frm.Vw_INVTYPESTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_INVTYPES)
         Frm.Vw_BANKSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_BANKS)
@@ -34,18 +32,22 @@ Public Class CusPrivateAgreement
         Dim sSQL As New System.Text.StringBuilder
         FillCbo.ADR(Frm.cboADR, sSQL)
 
+    End Sub
+    Public Sub LoadForm()
+
 
         Select Case Mode
             Case FormMode.NewRecord
                 Frm.txtCode.Text = DBQ.GetNextId("AGREEMENT")
-                Frm.txtArProt.Text = DBQ.GetNextId("AGREEMENT")
                 Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
+                Frm.dtpresentation.EditValue = Date.Now
                 ChangeVal = True
             Case FormMode.EditRecord
                 LoadForms.LoadForm(Frm.LayoutControl1, "Select * from AGREEMENT where id = " & toSQLValueS(ID))
                 ChangeVal = False
                 Frm.cmdPrintOffer.Enabled = True
         End Select
+        Frm.cmdCompCollection.Enabled = IIf(Frm.cboCompany.EditValue = Nothing, False, True)
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Frm.chkHasCloset.Properties.AllowHtmlDraw = DefaultBoolean.True
         Frm.chkHasCloset.Text = "<href=www.dreamykitchen.gr/>Ντουλάπες Υπνοδωματίου</href>"
@@ -115,13 +117,14 @@ Public Class CusPrivateAgreement
                     sSQL.Clear()
                     TotalPrice = Frm.txtPayinAdvanceCash.EditValue
                     If TotalPrice <> "0" Then
-                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,AMT,DTPAY,PAYTYPEID,agreementID) ")
+                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,AMT,DTPAY,PAYTYPEID,agreementID,isCredit) ")
                         sSQL.AppendLine("Select " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & ",")
                         sSQL.AppendLine("1" & ",")
                         sSQL.AppendLine(toSQLValueS(Frm.txtPayinAdvanceCash.EditValue.ToString, True) & ",")
                         sSQL.AppendLine(toSQLValueS(CDate(Frm.dtpresentation.Text).ToString("yyyyMMdd")) & ",")
                         sSQL.Append("'27CF38F4-BD30-403C-8BC6-2D2A57501DEB',")
-                        sSQL.AppendLine(toSQLValueS(sID))
+                        sSQL.AppendLine(toSQLValueS(sID) & ",")
+                        sSQL.AppendLine("1")
                         'Εκτέλεση QUERY
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                             oCmd.ExecuteNonQuery()
@@ -130,14 +133,15 @@ Public Class CusPrivateAgreement
                     sSQL.Clear()
                     TotalPrice = Frm.txtPayinAdvanceBank.EditValue
                     If TotalPrice <> "0" Then
-                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,BANKID,AMT,DTPAY,PAYTYPEID,agreementID) ")
+                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,BANKID,AMT,DTPAY,PAYTYPEID,agreementID,isCredit) ")
                         sSQL.AppendLine("Select " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & ",")
                         sSQL.AppendLine("0" & ",")
                         sSQL.AppendLine(toSQLValueS(Frm.cboBANK.EditValue.ToString) & ",")
                         sSQL.AppendLine(toSQLValueS(Frm.txtPayinAdvanceBank.EditValue.ToString, True) & ",")
                         sSQL.AppendLine(toSQLValueS(CDate(Frm.dtpresentation.Text).ToString("yyyyMMdd")) & ",")
                         sSQL.Append("'27CF38F4-BD30-403C-8BC6-2D2A57501DEB',")
-                        sSQL.AppendLine(toSQLValueS(sID))
+                        sSQL.AppendLine(toSQLValueS(sID) & ",")
+                        sSQL.AppendLine("1")
                         'Εκτέλεση QUERY
                         Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                             oCmd.ExecuteNonQuery()

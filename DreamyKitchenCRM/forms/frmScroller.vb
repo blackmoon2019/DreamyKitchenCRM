@@ -98,7 +98,8 @@ Public Class frmScroller
                         ' Το κουμπί απενεργοποιείται γιατί θα πρέπει να μπεί μέσα από την προσφορά και να πατήσει μετατροπή σε παραγγελία
                         BarNewRec.Enabled = False
                     End If
-
+                Case "vw_AGREEMENT"
+                    BarNewRec.Enabled = False
             End Select
             If sDataTable = "vw_INST_ELLIPSE" Then
             End If
@@ -1119,7 +1120,7 @@ Public Class frmScroller
                 frmCUSOfferOrderKitchen.Scroller = GridView1
                 frmCUSOfferOrderKitchen.FormScroller = Me
                 frmCUSOfferOrderKitchen.FormScrollerExist = True
-                frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 850
+                ' frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 850
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderKitchen.Show()
             Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
@@ -2113,7 +2114,7 @@ Public Class frmScroller
                 frmCUSOfferOrderKitchen.FormScroller = Me
                 frmCUSOfferOrderKitchen.FormScrollerExist = True
                 frmMain.XtraTabbedMdiManager1.FloatOnDrag = DevExpress.Utils.DefaultBoolean.True
-                frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 850
+                '  frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 850
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
 
                 frmCUSOfferOrderKitchen.Show()

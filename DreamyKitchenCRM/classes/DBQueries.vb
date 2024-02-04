@@ -1115,7 +1115,7 @@ NextItem:
             Case 1
                 Return UpdateData2(control, sTable, sGuid, CheckVisibility, ExtraFieldsAndValues)
             Case 2
-                Return UpdateDataNew(controls, sTable, sGuid, CheckVisibility)
+                Return UpdateDataNew(controls, sTable, sGuid, CheckVisibility, ExtraFieldsAndValues)
             Case 3
                 Return UpdateDataGRP(GRP, sTable, sGuid, CheckVisibility, ExceptFields, ExtraFieldsAndValues)
             Case 4
@@ -1324,7 +1324,7 @@ NextItem:
             Return False
         End Try
     End Function
-    Private Function UpdateDataNew(ByVal controls As List(Of Control), ByVal sTable As String, ByVal sID As String, Optional ByVal CheckVisibility As Boolean = False) As Boolean
+    Private Function UpdateDataNew(ByVal controls As List(Of Control), ByVal sTable As String, ByVal sID As String, Optional ByVal CheckVisibility As Boolean = False, Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
         Dim sSQL As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim IsFirstField As Boolean = True
         Dim TagValue As String()
@@ -1335,6 +1335,7 @@ NextItem:
             'Εαν η function καλεστεί με sGuid σημαίνει ότι θα πρε΄πει να καταχωρίσουμε εμείς το ID
             'FIELDS
             sSQL.AppendLine("UPDATE " & sTable & " SET ")
+            If ExtraFieldsAndValues.Length > 0 Then sSQL.AppendLine(ExtraFieldsAndValues) : IsFirstField = False
             For Each control As DevExpress.XtraLayout.LayoutControl In controls
                 For Each item As BaseLayoutItem In control.Items
                     If TypeOf item Is LayoutControlItem Then

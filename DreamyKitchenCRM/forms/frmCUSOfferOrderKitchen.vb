@@ -30,6 +30,11 @@ Public Class frmCUSOfferOrderKitchen
             sIsOrder = value
         End Set
     End Property
+    Public ReadOnly Property IsOrderRead As Boolean
+        Get
+            Return sIsOrder
+        End Get
+    End Property
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
@@ -835,9 +840,14 @@ Public Class frmCUSOfferOrderKitchen
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
                         from vw_TRANSH t
-                        where  T.cusid = " & sCompID & "order by description")
+                        where  T.cusid = " & sCompID & " order by description")
         FillCbo.TRANSH(cboCompProject, sSQL)
         LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        If chkGenOffer.CheckState = CheckState.Checked Then
+            cboCUS.EditValue = cboCompany.EditValue
+            cboTRANSH.EditValue = cboCompProject.EditValue
+        End If
+        cmdCompCollection.Enabled = True
     End Sub
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
@@ -852,7 +862,7 @@ Public Class frmCUSOfferOrderKitchen
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
             Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
-            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing : cmdCompCollection.Enabled = False
         End Select
     End Sub
 
@@ -881,16 +891,59 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub FillCusTransh()
         Dim sCusID As String, scompTrashID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
-        If cboCompProject.EditValue Is Nothing Then scompTrashID = toSQLValueS(Guid.Empty.ToString) Else scompTrashID = toSQLValueS(cboCompProject.EditValue.ToString)
+        If chkGenOffer.CheckState = CheckState.Unchecked Then
+            If cboCompProject.EditValue Is Nothing Then scompTrashID = " and T.compTrashID  IS NULL" Else scompTrashID = " and T.compTrashID   = " & toSQLValueS(cboCompProject.EditValue.ToString)
+        End If
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID
                         from vw_TRANSH t
                         INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '60344B92-1925-42E9-8D0F-0525990B0D5F' 
-                        where   completed = 0  and T.cusid = " & sCusID & " and T.compTrashID = " & scompTrashID & " order by description")
+                        where   completed = 0  and T.cusid = " & sCusID & scompTrashID & " order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
+        If chkGenOffer.CheckState = CheckState.Checked Then
+            cboCUS.EditValue = cboCompany.EditValue
+            cboTRANSH.EditValue = cboCompProject.EditValue
+        End If
     End Sub
 
     Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
         FillCusTransh()
+    End Sub
+
+    Private Sub chkGenOffer_CheckedChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckedChanged
+        If chkGenOffer.CheckState = CheckState.Checked Then
+            FillCusTransh()
+            cboCUS.Enabled = False : cboTRANSH.Enabled = False
+            cboCUS.EditValue = cboCompany.EditValue
+            cboTRANSH.EditValue = cboCompProject.EditValue
+        Else
+            cboCUS.Enabled = True : cboTRANSH.Enabled = True
+        End If
+    End Sub
+
+    Private Sub cmdNewRecord_Click(sender As Object, e As EventArgs) Handles cmdNewRecord.Click
+        CusOfferOrderKitchen.NewRecord()
+    End Sub
+
+    Private Sub cmdPrivateAgreement_Click(sender As Object, e As EventArgs) Handles cmdPrivateAgreement.Click
+        Dim frmPrivateAgreement As frmCUSPrivateAgreement = New frmCUSPrivateAgreement()
+        With frmPrivateAgreement
+            .Text = "Ιδ. Συμφωνητικό"
+            If cboTRANSH.GetColumnValue("AgreementExist") = "1" Then
+                .ID = cboTRANSH.GetColumnValue("AgreementID").ToString
+                .Mode = FormMode.EditRecord
+            Else
+
+                .Mode = FormMode.NewRecord
+                .InitializeForm()
+                .cboCompany.EditValue = cboCompany.EditValue
+                .cboCompProject.EditValue = cboCompProject.EditValue
+                .cboCUS.EditValue = cboCUS.EditValue
+                .cboTRANSH.EditValue = cboTRANSH.EditValue
+                .cboEMP.EditValue = cboEMP.EditValue
+            End If
+            .ShowDialog()
+        End With
+
     End Sub
 End Class

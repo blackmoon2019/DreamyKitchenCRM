@@ -982,12 +982,12 @@ Public Class frmCUSOfferOrderCloset
     Private Sub FillCusTransh()
         Dim sCusID As String, scompTrashID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
-        If cboCompProject.EditValue Is Nothing Then scompTrashID = toSQLValueS(Guid.Empty.ToString) Else scompTrashID = toSQLValueS(cboCompProject.EditValue.ToString)
+        If cboCompProject.EditValue Is Nothing Then scompTrashID = "IS NULL" Else scompTrashID = " = " & toSQLValueS(cboCompProject.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
                         from vw_TRANSH t
                         INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '3DAF9172-E9C4-402D-9BE7-4A3F64ABDAE4' 
-                        where   completed = 0  and T.cusid = " & sCusID & " and T.compTrashID = " & scompTrashID & " order by description")
+                        where   completed = 0  and T.cusid = " & sCusID & " and T.compTrashID  " & scompTrashID & " order by description")
         FillCbo.TRANSH(cboTRANSH, sSQL)
     End Sub
 

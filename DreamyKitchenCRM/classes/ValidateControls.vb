@@ -88,6 +88,10 @@ Public Class ValidateControls
                 Case "frmCUSOfferOrderKitchen"
                     Dim f As frmCUSOfferOrderKitchen = frm
                     ' 1st Rule
+                    If f.chkGenOffer.CheckState = CheckState.Checked And f.cboCompany.EditValue Is Nothing Then
+                        XtraMessageBox.Show("Έχετε επιλέξει Γενική Προσφορά εταιρίας χωρίς να επιλέξετε εταιρία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
                     If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
@@ -98,7 +102,7 @@ Public Class ValidateControls
                     End If
 
                     If f.cboCompany.EditValue IsNot Nothing And f.cboCUS.EditValue IsNot Nothing Then
-                        If f.cboCUS.EditValue.ToString.ToUpper = f.cboCompany.EditValue.ToString.ToUpper Then
+                        If f.chkGenOffer.CheckState = True And f.IsOrderRead = False Then
                             XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         End If
@@ -113,9 +117,9 @@ Public Class ValidateControls
 
                         ' Αν αφορά εταιρία η εγγραφή κλεισίματος ελέγχεται αν υπάρχει πάνω στην εταιρία
                         If f.cboCompany.EditValue IsNot Nothing Then
-                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
                         Else
-                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
                         End If
 
                         Cmd = New SqlCommand(sSQL, CNDB)
@@ -152,9 +156,9 @@ Public Class ValidateControls
 
                         ' Αν αφορά εταιρία η εγγραφή κλεισίματος ελέγχεται αν υπάρχει πάνω στην εταιρία
                         If f.cboCompany.EditValue IsNot Nothing Then
-                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
                         Else
-                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
                         End If
 
                         Cmd = New SqlCommand(sSQL, CNDB)
@@ -191,9 +195,9 @@ Public Class ValidateControls
 
                         ' Αν αφορά εταιρία η εγγραφή κλεισίματος ελέγχεται αν υπάρχει πάνω στην εταιρία
                         If f.cboCompany.EditValue IsNot Nothing Then
-                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
                         Else
-                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
                         End If
 
                         Cmd = New SqlCommand(sSQL, CNDB)
@@ -230,9 +234,9 @@ Public Class ValidateControls
 
                         ' Αν αφορά εταιρία η εγγραφή κλεισίματος ελέγχεται αν υπάρχει πάνω στην εταιρία
                         If f.cboCompany.EditValue IsNot Nothing Then
-                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
                         Else
-                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
+                            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)
                         End If
 
                         Cmd = New SqlCommand(sSQL, CNDB)
