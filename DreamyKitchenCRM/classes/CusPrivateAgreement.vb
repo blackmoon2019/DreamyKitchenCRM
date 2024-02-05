@@ -47,6 +47,7 @@ Public Class CusPrivateAgreement
                 ChangeVal = False
                 Frm.cmdPrintOffer.Enabled = True
         End Select
+
         Frm.cmdCompCollection.Enabled = IIf(Frm.cboCompany.EditValue = Nothing, False, True)
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Frm.chkHasCloset.Properties.AllowHtmlDraw = DefaultBoolean.True
@@ -80,7 +81,7 @@ Public Class CusPrivateAgreement
                     XtraMessageBox.Show("Το σύνολο της προκαταβολής δεν είναι ίσο με τις επιμέρους", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 End If
                 PayinAdvance = Frm.txtPayinAdvanceBank.EditValue
-                If PayinAdvance <> "0" And Frm.cboBANK.EditValue = Nothing Then
+                If PayinAdvance <> "0" Then
                     XtraMessageBox.Show("Έχετε συμπληρώσει προκαταβολή(Τράπεζα) χωρίς να βάλετε τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
@@ -116,37 +117,7 @@ Public Class CusPrivateAgreement
                     End Using
                     sSQL.Clear()
                     TotalPrice = Frm.txtPayinAdvanceCash.EditValue
-                    If TotalPrice <> "0" Then
-                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,AMT,DTPAY,PAYTYPEID,agreementID,isCredit) ")
-                        sSQL.AppendLine("Select " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & ",")
-                        sSQL.AppendLine("1" & ",")
-                        sSQL.AppendLine(toSQLValueS(Frm.txtPayinAdvanceCash.EditValue.ToString, True) & ",")
-                        sSQL.AppendLine(toSQLValueS(CDate(Frm.dtpresentation.Text).ToString("yyyyMMdd")) & ",")
-                        sSQL.Append("'27CF38F4-BD30-403C-8BC6-2D2A57501DEB',")
-                        sSQL.AppendLine(toSQLValueS(sID) & ",")
-                        sSQL.AppendLine("1")
-                        'Εκτέλεση QUERY
-                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                    End If
-                    sSQL.Clear()
-                    TotalPrice = Frm.txtPayinAdvanceBank.EditValue
-                    If TotalPrice <> "0" Then
-                        sSQL.AppendLine("INSERT INTO TRANSD (TRANSHID,CASH,BANKID,AMT,DTPAY,PAYTYPEID,agreementID,isCredit) ")
-                        sSQL.AppendLine("Select " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & ",")
-                        sSQL.AppendLine("0" & ",")
-                        sSQL.AppendLine(toSQLValueS(Frm.cboBANK.EditValue.ToString) & ",")
-                        sSQL.AppendLine(toSQLValueS(Frm.txtPayinAdvanceBank.EditValue.ToString, True) & ",")
-                        sSQL.AppendLine(toSQLValueS(CDate(Frm.dtpresentation.Text).ToString("yyyyMMdd")) & ",")
-                        sSQL.Append("'27CF38F4-BD30-403C-8BC6-2D2A57501DEB',")
-                        sSQL.AppendLine(toSQLValueS(sID) & ",")
-                        sSQL.AppendLine("1")
-                        'Εκτέλεση QUERY
-                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                    End If
+
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Frm.cmdPrintOffer.Enabled = True
                     Dim cmd As SqlCommand

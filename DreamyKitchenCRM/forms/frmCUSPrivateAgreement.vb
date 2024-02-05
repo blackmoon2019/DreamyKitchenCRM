@@ -60,8 +60,8 @@ Public Class frmCUSPrivateAgreement
         Me.Close()
     End Sub
     Private Sub frmPrivateAgreement_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        If Me.IsActive = False Then Exit Sub
         InitializeForm()
+        Me.CenterToScreen()
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -71,9 +71,7 @@ Public Class frmCUSPrivateAgreement
     Private Sub frmPrivateAgreement_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
         If Me.WindowState = FormWindowState.Maximized Then frmMain.XtraTabbedMdiManager1.Dock(Me, frmMain.XtraTabbedMdiManager1)
     End Sub
-    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        FillCusTransh()
-    End Sub
+
     Public Sub InitializeForm()
         CusPrivateAgreement.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
         CusPrivateAgreement.LoadForm()
@@ -100,38 +98,6 @@ Public Class frmCUSPrivateAgreement
         End Select
     End Sub
 
-    'Private Sub ManageCus()
-    '    Dim form1 As frmCustomers = New frmCustomers()
-    '    form1.Text = "Πελάτες"
-    '    form1.CallerControl = cboCUS
-    '    form1.CalledFromControl = True
-    '    'form1.MdiParent = frmMain
-    '    If cboCUS.EditValue <> Nothing Then
-    '        form1.ID = cboCUS.EditValue.ToString
-    '        form1.Mode = FormMode.EditRecord
-    '    Else
-    '        form1.Mode = FormMode.NewRecord
-    '    End If
-    '    'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-    '    form1.ShowDialog()
-    '    Dim cmd As SqlCommand
-    '    Dim sdr As SqlDataReader
-    '    If cboCUS.EditValue <> Nothing Then
-    '        cmd = New SqlCommand("SELECT AdrID,FatherName,AREAS_Name,DOY_Name,afm FROM VW_CCT WHERE ID = " & toSQLValueS(cboCUS.EditValue.ToString), CNDB)
-    '        sdr = cmd.ExecuteReader()
-    '        If (sdr.Read() = True) Then
-    '            If sdr.IsDBNull(sdr.GetOrdinal("FatherName")) = False Then txtFatherName.EditValue = sdr.GetString(sdr.GetOrdinal("FatherName")) Else txtFatherName.EditValue = Nothing
-    '            If sdr.IsDBNull(sdr.GetOrdinal("AREAS_Name")) = False Then txtArea.EditValue = sdr.GetString(sdr.GetOrdinal("AREAS_Name")) Else txtArea.EditValue = Nothing
-    '            If sdr.IsDBNull(sdr.GetOrdinal("DOY_Name")) = False Then txtDOY.EditValue = sdr.GetString(sdr.GetOrdinal("DOY_Name")) Else txtDOY.EditValue = Nothing
-    '            If sdr.IsDBNull(sdr.GetOrdinal("afm")) = False Then txtAFM.EditValue = sdr.GetString(sdr.GetOrdinal("afm")) Else txtAFM.EditValue = Nothing
-    '            Dim sADSQL As New System.Text.StringBuilder
-    '            If cboADR.EditValue IsNot Nothing Then sADSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR WHERE ID = " & toSQLValueS(cboADR.EditValue.ToString))
-    '            FillCbo.ADR(cboADR, sADSQL)
-    '            If sdr.IsDBNull(sdr.GetOrdinal("AdrID")) = False Then cboADR.EditValue = sdr.GetGuid(sdr.GetOrdinal("AdrID")) Else cboADR.EditValue = Nothing
-    '        End If
-    '        sdr.Close()
-    '    End If
-    'End Sub
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
         CusPrivateAgreement.PrintAgreement()
@@ -229,14 +195,7 @@ Public Class frmCUSPrivateAgreement
         txtPayinAdvanceYpol.EditValue = Ypol
     End Sub
 
-    Private Sub cboBANK_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboBANK.ButtonPressed
-        Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageBank(cboBANK, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageBank(cboBANK, FormMode.EditRecord)
-            Case 3 : cboBANK.EditValue = Nothing
-        End Select
 
-    End Sub
 
 
     Private Sub txtGenTot_EditValueChanged(sender As Object, e As EventArgs) Handles txtGenTot.EditValueChanged
@@ -249,7 +208,7 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
 
-    Private Sub chkHasCloset_DoubleClick(sender As Object, e As EventArgs)
+    Private Sub chkHasCloset_DoubleClick(sender As Object, e As EventArgs) Handles chkHasCloset.DoubleClick
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Dim oID As String = ""
@@ -274,7 +233,7 @@ Public Class frmCUSPrivateAgreement
         End Try
     End Sub
 
-    Private Sub chkHasDoors_DoubleClick(sender As Object, e As EventArgs)
+    Private Sub chkHasDoors_DoubleClick(sender As Object, e As EventArgs) Handles chkHasDoors.DoubleClick
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Dim oID As String = ""
@@ -300,7 +259,7 @@ Public Class frmCUSPrivateAgreement
         End Try
     End Sub
 
-    Private Sub chkHasKitchen_DoubleClick(sender As Object, e As EventArgs)
+    Private Sub chkHasKitchen_DoubleClick(sender As Object, e As EventArgs) Handles chkHasKitchen.DoubleClick
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Dim oID As String = ""
@@ -325,7 +284,7 @@ Public Class frmCUSPrivateAgreement
         End Try
     End Sub
 
-    Private Sub chkHasSC_DoubleClick(sender As Object, e As EventArgs)
+    Private Sub chkHasSC_DoubleClick(sender As Object, e As EventArgs) Handles chkHasSC.DoubleClick
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Dim oID As String = ""
@@ -406,29 +365,45 @@ Public Class frmCUSPrivateAgreement
         Frm.ID = cboTRANSH.EditValue.ToString
         Frm.lCusD.Visibility = False
         Frm.ShowDialog()
-
+    End Sub
+    Private Sub GetCreditAmountsFromProject()
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=0 and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then txtClose.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt")) Else txtClose.EditValue = Nothing
+            Else
+                lblBank.Text = ""
+                txtClose.EditValue = "0"
+            End If
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 
-    Private Sub FillCusTransh()
+    Public Sub FillCusTransh()
+        Dim sCusID As String, scompTrashID As String
+        If cboCUS.EditValue Is Nothing Then sCusID = "IS NULL" Else sCusID = " = " & toSQLValueS(cboCUS.EditValue.ToString)
+        If cboCompProject.EditValue Is Nothing Then scompTrashID = "IS NULL" Else scompTrashID = " = " & toSQLValueS(cboCompProject.EditValue.ToString)
 
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr,invType
+                        from vw_TRANSH t
+                        INNER JOIN TRANSC on transc.transhID = t.id 
+                        where  completed = 0  and T.cusid  " & sCusID & " and T.compTrashID " & scompTrashID & " order by description")
+        FillCbo.TRANSH(cboTRANSH, sSQL)
         txtFatherName.EditValue = cboCUS.GetColumnValue("FatherName")
         txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
         txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
         txtAFM.EditValue = cboCUS.GetColumnValue("afm")
         cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
 
-        Dim sCusID As String, scompTrashID As String
-        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
-        If cboCompProject.EditValue Is Nothing Then scompTrashID = "IS NULL" Else scompTrashID = " = " & toSQLValueS(cboCompProject.EditValue.ToString)
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr,invType
-                        from vw_TRANSH t
-                        INNER JOIN TRANSC on transc.transhID = t.id 
-                        where  completed = 0  and T.cusid = " & sCusID & " and T.compTrashID " & scompTrashID & " order by description")
-        FillCbo.TRANSH(cboTRANSH, sSQL)
     End Sub
 
-    Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
+    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
         FillCusTransh()
     End Sub
 End Class

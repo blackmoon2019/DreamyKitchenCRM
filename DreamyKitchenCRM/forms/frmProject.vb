@@ -12,12 +12,30 @@ Public Class frmProject
     Private CalledFromCtrl As Boolean
     Private HideCompany As Boolean
     Private sCusID As Guid
+    Private sEmpID As Guid
+    Private sCompID As Guid
+    Private sCompProjectID As Guid
     Private sID As String
     Public Mode As Byte
 
     Public WriteOnly Property CusID As Guid
         Set(value As Guid)
             sCusID = value
+        End Set
+    End Property
+    Public WriteOnly Property EmpID As Guid
+        Set(value As Guid)
+            sEmpID = value
+        End Set
+    End Property
+    Public WriteOnly Property CompID As Guid
+        Set(value As Guid)
+            sCompID = value
+        End Set
+    End Property
+    Public WriteOnly Property CompProjectID As Guid
+        Set(value As Guid)
+            sCompProjectID = value
         End Set
     End Property
 
@@ -55,6 +73,9 @@ Public Class frmProject
         Me.Vw_COMPTableAdapter.Fill(Me.DM_CCT.vw_COMP)
         Projects.InitializeSmall(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
         If sCusID <> Nothing Then cboCUS.EditValue = sCusID : cboCUS.Enabled = False
+        If sEmpID <> Nothing Then cboSaler.EditValue = sEmpID : cboSaler.Enabled = False
+        If sCompID <> Nothing Then cboCompany.EditValue = sCompID : cboCompany.Enabled = False
+        If sCompProjectID <> Nothing Then cboCompProject.EditValue = sCompProjectID : cboCompProject.Enabled = False
         Select Case Mode
             Case FormMode.NewRecord
                 dtCharge.EditValue = DateTime.Now : txtCodeH.Text = Projects.GetNextID

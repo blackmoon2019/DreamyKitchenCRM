@@ -53,6 +53,7 @@ Public Class CusOfferOrderKitchen
             Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LofferAccepted.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LGenOffer.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LcmdNewRecord.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Else
             Frm.LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
             Frm.LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
@@ -363,10 +364,12 @@ Public Class CusOfferOrderKitchen
                     oCmd.Parameters.AddWithValue("@OfferID", ID)
                     oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
                     oCmd.Parameters.AddWithValue("@Mode", 1)
+                    oCmd.Parameters.Add("@OrderID", SqlDbType.UniqueIdentifier)
                     oCmd.Parameters("@OrderID").Direction = ParameterDirection.Output
                     oCmd.ExecuteNonQuery()
-                    OrderID = oCmd.Parameters("@OrderID").Value
+                    OrderID = oCmd.Parameters("@OrderID").Value.ToString
                 End Using
+
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 'cmdConvertToOrder.Enabled = False
                 Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False

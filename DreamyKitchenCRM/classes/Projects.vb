@@ -368,8 +368,8 @@ Public Class Projects
                         Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
-
                     End If
+                    Frm.Vw_TRANSD_DebitTableAdapter.FillByDedit(Frm.DM_TRANS.vw_TRANSD_Debit, System.Guid.Parse(ID))
                 Catch sqlEx As SqlException When sqlEx.Number = 2601
                     XtraMessageBox.Show("Δεν μπορείτε να περάσετε χρέωση σε ίδιο πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     e.Valid = False

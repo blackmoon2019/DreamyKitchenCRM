@@ -21,20 +21,20 @@ Partial Class frmCUSOfferOrderKitchen
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSOfferOrderKitchen))
+        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
-        Dim GridFormatRule3 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleExpression3 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
-        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.coldCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdPrivateAgreement = New DevExpress.XtraEditors.SimpleButton()
@@ -260,7 +260,7 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem35 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem85 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem86 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem102 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LcmdNewRecord = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LPrivateAgreement = New DevExpress.XtraLayout.LayoutControlItem()
         Me.CCTTRANSHBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
@@ -593,7 +593,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem85, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem86, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem102, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LcmdNewRecord, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LPrivateAgreement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -867,8 +867,8 @@ Partial Class frmCUSOfferOrderKitchen
         Me.txtCUSOfferOrderFilename.Location = New System.Drawing.Point(687, 633)
         Me.txtCUSOfferOrderFilename.Name = "txtCUSOfferOrderFilename"
         Me.txtCUSOfferOrderFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
-        Me.txtCUSOfferOrderFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.txtCUSOfferOrderFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtCUSOfferOrderFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtCUSOfferOrderFilename.Size = New System.Drawing.Size(418, 24)
         Me.txtCUSOfferOrderFilename.StyleController = Me.LayoutControl1
@@ -2577,7 +2577,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup1, Me.LayoutControlItem2, Me.LayoutControlItem26, Me.LayoutControlItem27, Me.LayoutControlItem32, Me.LayoutControlGroup3, Me.LayoutControlGroup5, Me.LayoutControlGroup6, Me.LayoutControlGroup7, Me.LayoutControlGroup2, Me.LayoutControlItem85, Me.LayoutControlItem86, Me.LayoutControlItem102, Me.LPrivateAgreement})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlGroup1, Me.LayoutControlItem2, Me.LayoutControlItem26, Me.LayoutControlItem27, Me.LayoutControlItem32, Me.LayoutControlGroup3, Me.LayoutControlGroup5, Me.LayoutControlGroup6, Me.LayoutControlGroup7, Me.LayoutControlGroup2, Me.LayoutControlItem85, Me.LayoutControlItem86, Me.LcmdNewRecord, Me.LPrivateAgreement})
         Me.Root.Name = "Root"
         Me.Root.OptionsItemText.TextToControlDistance = 1
         Me.Root.Size = New System.Drawing.Size(1129, 897)
@@ -3982,15 +3982,15 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem86.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem86.TextVisible = False
         '
-        'LayoutControlItem102
+        'LcmdNewRecord
         '
-        Me.LayoutControlItem102.Control = Me.cmdNewRecord
-        Me.LayoutControlItem102.Location = New System.Drawing.Point(550, 838)
-        Me.LayoutControlItem102.Name = "LayoutControlItem102"
-        Me.LayoutControlItem102.Size = New System.Drawing.Size(103, 39)
-        Me.LayoutControlItem102.Text = "Νέα Εγγραφή"
-        Me.LayoutControlItem102.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem102.TextVisible = False
+        Me.LcmdNewRecord.Control = Me.cmdNewRecord
+        Me.LcmdNewRecord.Location = New System.Drawing.Point(550, 838)
+        Me.LcmdNewRecord.Name = "LcmdNewRecord"
+        Me.LcmdNewRecord.Size = New System.Drawing.Size(103, 39)
+        Me.LcmdNewRecord.Text = "Νέα Εγγραφή"
+        Me.LcmdNewRecord.TextSize = New System.Drawing.Size(0, 0)
+        Me.LcmdNewRecord.TextVisible = False
         '
         'LPrivateAgreement
         '
@@ -4093,15 +4093,15 @@ Partial Class frmCUSOfferOrderKitchen
         Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn1, Me.GridColumn2, Me.coldCode, Me.GridColumn10, Me.GridColumn3, Me.colchecked})
         Me.GridView1.DetailHeight = 198
         Me.GridView1.FixedLineWidth = 3
-        GridFormatRule2.ApplyToRow = True
-        GridFormatRule2.Column = Me.coldCode
-        GridFormatRule2.Name = "Format0"
-        FormatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.White
-        FormatConditionRuleExpression2.Appearance.Options.UseBackColor = True
-        FormatConditionRuleExpression2.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
-        FormatConditionRuleExpression2.PredefinedName = "Red Text"
-        GridFormatRule2.Rule = FormatConditionRuleExpression2
-        Me.GridView1.FormatRules.Add(GridFormatRule2)
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Column = Me.coldCode
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.White
+        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression1.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
+        FormatConditionRuleExpression1.PredefinedName = "Red Text"
+        GridFormatRule1.Rule = FormatConditionRuleExpression1
+        Me.GridView1.FormatRules.Add(GridFormatRule1)
         Me.GridView1.GridControl = Me.grdDevices
         Me.GridView1.LevelIndent = 0
         Me.GridView1.Name = "GridView1"
@@ -4471,14 +4471,14 @@ Partial Class frmCUSOfferOrderKitchen
         Me.CardView1.CardWidth = 305
         Me.CardView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcolorCatID1, Me.colColorsCatName, Me.colsupID1, Me.colSupFullName, Me.colvalueListItemID1, Me.colValueListItemName, Me.colphoto, Me.colID1, Me.colvalueListItemID, Me.colCustomCode, Me.colcreatedOn, Me.colcreatedBy, Me.colcolorCatID, Me.colmodifiedBy, Me.colmodifiedOn, Me.colsite, Me.colsupID})
         Me.CardView1.DetailHeight = 198
-        GridFormatRule3.ApplyToRow = True
-        GridFormatRule3.Name = "Format0"
-        FormatConditionRuleExpression3.Appearance.BackColor = System.Drawing.Color.White
-        FormatConditionRuleExpression3.Appearance.Options.UseBackColor = True
-        FormatConditionRuleExpression3.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
-        FormatConditionRuleExpression3.PredefinedName = "Red Text"
-        GridFormatRule3.Rule = FormatConditionRuleExpression3
-        Me.CardView1.FormatRules.Add(GridFormatRule3)
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.White
+        FormatConditionRuleExpression2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression2.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
+        FormatConditionRuleExpression2.PredefinedName = "Red Text"
+        GridFormatRule2.Rule = FormatConditionRuleExpression2
+        Me.CardView1.FormatRules.Add(GridFormatRule2)
         Me.CardView1.GridControl = Me.GridControl1
         Me.CardView1.Name = "CardView1"
         Me.CardView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -4694,8 +4694,8 @@ Partial Class frmCUSOfferOrderKitchen
         Me.cboSUP1.Name = "cboSUP1"
         Me.cboSUP1.Properties.AllowMouseWheel = False
         Me.cboSUP1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions3.Image = CType(resources.GetObject("EditorButtonImageOptions3.Image"), System.Drawing.Image)
-        Me.cboSUP1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
+        Me.cboSUP1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.cboSUP1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 21, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 33, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Επωνυμία", 55, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttl", "ttl", 19, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bal", "bal", 24, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 35, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("site", "site", 26, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.cboSUP1.Properties.DataSource = Me.VwSUPBindingSource
         Me.cboSUP1.Properties.DisplayMember = "Fullname"
@@ -5289,7 +5289,7 @@ Partial Class frmCUSOfferOrderKitchen
         CType(Me.LayoutControlItem35, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem85, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem86, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem102, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LcmdNewRecord, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LPrivateAgreement, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -5688,7 +5688,7 @@ Partial Class frmCUSOfferOrderKitchen
     Friend WithEvents chkGenOffer As DevExpress.XtraEditors.CheckEdit
     Friend WithEvents LGenOffer As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cmdNewRecord As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents LayoutControlItem102 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LcmdNewRecord As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cmdPrivateAgreement As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LPrivateAgreement As DevExpress.XtraLayout.LayoutControlItem
     '    Friend WithEvents Vw_VALUELISTITEMPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_VALUELISTITEMPlainaYpsilaTableAdapter

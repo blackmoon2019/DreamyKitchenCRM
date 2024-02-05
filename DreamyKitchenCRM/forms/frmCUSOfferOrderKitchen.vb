@@ -144,7 +144,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue)
+            Case 1 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue)
             Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
@@ -933,15 +933,21 @@ Public Class frmCUSOfferOrderKitchen
                 .ID = cboTRANSH.GetColumnValue("AgreementID").ToString
                 .Mode = FormMode.EditRecord
             Else
-
                 .Mode = FormMode.NewRecord
                 .InitializeForm()
-                .cboCompany.EditValue = cboCompany.EditValue
-                .cboCompProject.EditValue = cboCompProject.EditValue
-                .cboCUS.EditValue = cboCUS.EditValue
-                .cboTRANSH.EditValue = cboTRANSH.EditValue
-                .cboEMP.EditValue = cboEMP.EditValue
             End If
+            .cboCompany.EditValue = cboCompany.EditValue
+            .cboCompProject.EditValue = cboCompProject.EditValue
+            .cboCUS.EditValue = cboCUS.EditValue
+            .FillCusTransh()
+            .cboTRANSH.EditValue = cboTRANSH.EditValue
+            .cboEMP.EditValue = cboEMP.EditValue
+            .txtFatherName.EditValue = cboCUS.GetColumnValue("FatherName")
+            .txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
+            .txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
+            .txtAFM.EditValue = cboCUS.GetColumnValue("afm")
+            .cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
+
             .ShowDialog()
         End With
 
