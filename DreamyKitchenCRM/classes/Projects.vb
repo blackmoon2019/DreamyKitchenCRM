@@ -417,7 +417,7 @@ Public Class Projects
                 If UpdateProjectFields(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay").ToString, Paid.ToString) = False Then
                     XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
-                Frm.dtAgreement.EditValue = Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay")
+                Frm.dtreceiveDateAgreement.EditValue = Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay")
             End If
             'sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(Frm.txtBal.EditValue.ToString, True) & " WHERE ID = " & toSQLValueS(ID)
             'Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -457,7 +457,7 @@ Public Class Projects
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            If sdtPay = "" Then Frm.dtAgreement.EditValue = Nothing Else Frm.dtAgreement.EditValue = CDate(sdtPay).ToString("yyyyMMdd")
+            If sdtPay = "" Then Frm.dtreceiveDateAgreement.EditValue = Nothing Else Frm.dtreceiveDateAgreement.EditValue = sdtPay
             Frm.chkofferCusAcceptance.CheckState = sPaid
             Return True
         Catch ex As Exception
@@ -691,7 +691,7 @@ Public Class Projects
                         If UpdateProjectFields("", "0") = False Then
                             XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Else
-                            Frm.dtAgreement.EditValue = Nothing
+                            Frm.dtreceiveDateAgreement.EditValue = Nothing
                         End If
 
                     End If

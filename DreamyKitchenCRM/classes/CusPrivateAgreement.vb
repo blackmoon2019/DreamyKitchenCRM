@@ -39,7 +39,7 @@ Public Class CusPrivateAgreement
         Select Case Mode
             Case FormMode.NewRecord
                 Frm.txtCode.Text = DBQ.GetNextId("AGREEMENT")
-                Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
+                'Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 Frm.dtpresentation.EditValue = Date.Now
                 ChangeVal = True
             Case FormMode.EditRecord

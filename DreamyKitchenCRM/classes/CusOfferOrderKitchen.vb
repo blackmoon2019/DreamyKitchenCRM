@@ -379,6 +379,7 @@ Public Class CusOfferOrderKitchen
                     Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
                     frmCUSOfferOrderKitchen.ID = OrderID
                     frmCUSOfferOrderKitchen.Mode = FormMode.EditRecord
+                    frmCUSOfferOrderKitchen.IsOrder = True
                     frmCUSOfferOrderKitchen.ShowDialog()
                 End If
             End If

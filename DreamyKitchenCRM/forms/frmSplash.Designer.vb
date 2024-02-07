@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmSplash
-    Inherits DevExpress.XtraSplashScreen.SplashScreen
+    Inherits DevExpress.XtraEditors.XtraForm
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -119,9 +119,13 @@ Partial Class frmSplash
         Me.Controls.Add(Me.labelStatus)
         Me.Controls.Add(Me.labelCopyright)
         Me.Controls.Add(Me.progressBarControl)
-        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
+        Me.IconOptions.Icon = CType(resources.GetObject("frmSplash.IconOptions.Icon"), System.Drawing.Icon)
+        Me.MaximizeBox = False
+        Me.MinimizeBox = False
         Me.Name = "frmSplash"
         Me.Padding = New System.Windows.Forms.Padding(1)
+        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "SplashScreen1"
         CType(Me.peLogo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.progressBarControl.Properties, System.ComponentModel.ISupportInitialize).EndInit()
