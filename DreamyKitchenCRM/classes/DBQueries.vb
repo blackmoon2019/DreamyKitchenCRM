@@ -1216,7 +1216,7 @@ NextItem:
                                 If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         If cbo.Text <> "" Then sSQL.Append(toSQLValueS(cbo.EditValue.ToString)) Else sSQL.Append("NULL")
                                     Else
                                         sSQL.Append("NULL")

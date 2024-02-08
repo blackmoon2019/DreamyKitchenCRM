@@ -154,6 +154,7 @@ Public Class CusOfferOrderKitchen
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
         If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
+        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Frm.cmdCusCollection.Enabled = False Else Frm.cmdCusCollection.Enabled = True
         Frm.GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
         Frm.GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
         Frm.GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
@@ -187,6 +188,7 @@ Public Class CusOfferOrderKitchen
         Dim sGuid As String
         Try
             If Valid.ValiDationRules(Frm.Name, Frm) = False Then Exit Sub
+
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 Select Case Mode
                     Case FormMode.NewRecord
@@ -358,6 +360,9 @@ Public Class CusOfferOrderKitchen
             Valid.ID = Frm.cboTRANSH.EditValue.ToString
             If Frm.cboCompProject.EditValue IsNot Nothing Then Valid.compTrashID = Frm.cboCompProject.EditValue.ToString
             If Valid.ValiDationRules(Frm.Name, Frm, True) = False Then Exit Sub
+            If Frm.cboCompany.EditValue IsNot Nothing And Frm.cboCUS.EditValue IsNot Nothing Then
+                If Frm.chkGenOffer.CheckState = CheckState.Checked And Frm.IsOrderRead = False Then XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+            End If
             If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure

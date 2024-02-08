@@ -1388,6 +1388,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-clear-filters-16.png" />
+    <None Include="Resources\icons8-filter-16.png" />
     <None Include="Resources\icons8-print-24.png" />
     <None Include="Resources\icons8-agreement-24.png" />
     <None Include="Resources\icons8-new-document-24.png" />

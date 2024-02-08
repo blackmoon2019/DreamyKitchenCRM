@@ -7,7 +7,7 @@ Public Class CombosManager
         If isFromGrid = False Then
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
             Frm.CallerControl = CallerControl
-            Frm.CalledFromControl = False
+            Frm.CalledFromControl = True
             If CallerControl.EditValue <> Nothing Then
                 Frm.ID = CallerControl.EditValue.ToString
                 Frm.Mode = FormMode.EditRecord

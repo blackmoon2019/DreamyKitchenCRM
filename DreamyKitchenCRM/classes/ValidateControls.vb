@@ -101,12 +101,6 @@ Public Class ValidateControls
                         Return False
                     End If
 
-                    If f.cboCompany.EditValue IsNot Nothing And f.cboCUS.EditValue IsNot Nothing Then
-                        If f.chkGenOffer.CheckState = True And f.IsOrderRead = False Then
-                            XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
-                    End If
 
 
                     If ExtraChecks = True Then
@@ -116,7 +110,7 @@ Public Class ValidateControls
 
 
                         ' Αν αφορά εταιρία η εγγραφή κλεισίματος ελέγχεται αν υπάρχει πάνω στην εταιρία
-                        If f.cboCompany.EditValue IsNot Nothing Then
+                        If f.chkGenOffer.CheckState = CheckState.Checked Then
                             sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(scompTrashID)
                         Else
                             sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(sID)

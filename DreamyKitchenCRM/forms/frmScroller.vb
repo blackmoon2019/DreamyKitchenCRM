@@ -3141,6 +3141,32 @@ Public Class frmScroller
             Clipboard.SetText(view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString())
         End If
     End Sub
+    ' Φίλτρο Με επιλογή
+    Private Sub BarFilterWithCell_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarFilterWithCell.ItemClick
+        Dim view As GridView = CType(GridView1, GridView)
+        If view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn) IsNot Nothing AndAlso view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString() <> [String].Empty Then
+            Dim filterString As String = "[" & GridView1.FocusedColumn.FieldName & "]" & "=" & toSQLValueS(view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString())
+            GridView1.Columns(GridView1.FocusedColumn.FieldName).FilterInfo = New ColumnFilterInfo(filterString)
+        End If
+
+    End Sub
+    ' Αφαίρεση Φίλτρου
+    Private Sub BarRemoveFilterWithCell_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarRemoveFilterWithCell.ItemClick
+        GridView1.Columns(GridView1.FocusedColumn.FieldName).ClearFilter()
+    End Sub
+    ' Φίλτρο Με εξαίρεση
+    Private Sub BarFilterWithoutCell_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarFilterWithoutCell.ItemClick
+        Dim view As GridView = CType(GridView1, GridView)
+        If view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn) IsNot Nothing AndAlso view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString() <> [String].Empty Then
+            Dim filterString As String = "[" & GridView1.FocusedColumn.FieldName & "]" & "<>" & toSQLValueS(view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString())
+            GridView1.Columns(GridView1.FocusedColumn.FieldName).FilterInfo = New ColumnFilterInfo(filterString)
+        End If
+
+    End Sub
+    'Αφαίρεση όλων των φίλτρων
+    Private Sub BarRemoveAllFilters_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarRemoveAllFilters.ItemClick
+        GridView1.ClearColumnsFilter()
+    End Sub
 
     Private Sub GridView2_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView2.KeyDown
         Dim view As GridView = CType(sender, GridView)
