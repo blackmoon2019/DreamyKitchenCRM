@@ -1,8 +1,11 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Text.RegularExpressions
 Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraLayout.Resizing
 Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraRichEdit.Import.Html
 Public Event HyperlinkClick As HyperlinkClickEventHandler
 Public Class frmCUSPrivateAgreement
     Private CusPrivateAgreement As New CusPrivateAgreement
@@ -66,6 +69,7 @@ Public Class frmCUSPrivateAgreement
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         CusPrivateAgreement.SaveRecord(sID)
+        LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
     End Sub
 
     Private Sub frmPrivateAgreement_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
@@ -118,9 +122,6 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
-        Dim cmd As SqlCommand
-        Dim sdr As SqlDataReader
-        Dim Cash As Boolean
         Try
             If cboTRANSH.EditValue = Nothing Then
                 lblBank.Text = "" : txtClose.EditValue = 0 : txtCloseCash.EditValue = 0
@@ -138,48 +139,10 @@ Public Class frmCUSPrivateAgreement
                 If cboTRANSH.GetColumnValue("ArProtSpecialContr") IsNot Nothing Then txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtSpecialContr").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtSpecialContr"), "")
                 cboInvoiceType.EditValue = cboTRANSH.GetColumnValue("invType")
             End If
-            cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=0 and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
-            sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then txtClose.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt")) Else txtClose.EditValue = Nothing
-            Else
-                lblBank.Text = ""
-                txtClose.EditValue = "0"
-            End If
-            sdr.Close()
-            cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=1 and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
-            sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then txtCloseCash.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt")) Else txtCloseCash.EditValue = Nothing
-            Else
-                lblCash.Text = ""
-                txtCloseCash.EditValue = "0"
-            End If
-            sdr.Close()
-            cmd = New SqlCommand(" select   TotPartOfVat,TotalVat,TotalPrice,TotalEquipmentPrice,GENTOT,ExtraInst, ExtraTransp,
-                                            TotKitchen,TotDoor,HasCloset,HasKitchen,HasSpecial,HasDoors
-                                    FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
-            sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("TotPartOfVat")) = False Then txtPartofVat.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotPartOfVat")) Else txtPartofVat.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("TotalVat")) = False Then TxtTotalVat.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalVat")) Else TxtTotalVat.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("TotalPrice")) = False Then txtTotalVatPrice.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalPrice")) Else txtTotalVatPrice.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("GENTOT")) = False Then txtGenTot.EditValue = sdr.GetDecimal(sdr.GetOrdinal("GENTOT")) Else txtGenTot.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("ExtraInst")) = False Then txtExtraInst.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraInst")) Else txtExtraInst.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("ExtraTransp")) = False Then txtExtraTransp.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraTransp")) Else txtExtraTransp.EditValue = Nothing
-                chkHasKitchen.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasKitchen"))
-                chkHasCloset.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasCloset"))
-                chkHasDoors.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasDoors"))
-                chkHasSC.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasSpecial"))
-                If sdr.IsDBNull(sdr.GetOrdinal("TotalEquipmentPrice")) = False Then
-                    Dim TotalEquipmentPrice As Double, PosoParastatikou As Double
-                    TotalEquipmentPrice = sdr.GetDecimal(sdr.GetOrdinal("TotalEquipmentPrice"))
-                    PosoParastatikou = DbnullToZero(txtPosoParastatikou)
-                    txtPosoParastatikou.EditValue = PosoParastatikou + TotalEquipmentPrice
-                    txtDevices.EditValue = TotalEquipmentPrice
-                End If
-            End If
-            sdr.Close()
+
+            CusPrivateAgreement.GetKLeisimoAmt()
+            CusPrivateAgreement.GetPayInAdvanceAmt()
+            CusPrivateAgreement.GetProjectAmounts()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -354,6 +317,7 @@ Public Class frmCUSPrivateAgreement
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboCompProject.EditValue.ToString
         Frm.ShowDialog()
+        Frm.LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
     End Sub
 
     Private Sub cmdCusCollection_Click(sender As Object, e As EventArgs) Handles cmdCusCollection.Click
@@ -363,8 +327,11 @@ Public Class frmCUSPrivateAgreement
         Frm.CreditOnly = True
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboTRANSH.EditValue.ToString
-        Frm.lCusD.Visibility = False
+        Frm.lCusD.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Frm.ShowDialog()
+        CusPrivateAgreement.GetKLeisimoAmt()
+        CusPrivateAgreement.GetPayInAdvanceAmt()
+        LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
     End Sub
     Private Sub GetCreditAmountsFromProject()
         Dim cmd As SqlCommand

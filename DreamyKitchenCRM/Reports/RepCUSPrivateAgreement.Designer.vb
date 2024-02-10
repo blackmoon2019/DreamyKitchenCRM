@@ -35,6 +35,7 @@ Partial Public Class RepCUSPrivateAgreement
         Me.Detail = New DevExpress.XtraReports.UI.DetailBand()
         Me.OfferID = New DevExpress.XtraReports.Parameters.Parameter()
         Me.PageHeader = New DevExpress.XtraReports.UI.PageHeaderBand()
+        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel6 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel5 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel3 = New DevExpress.XtraReports.UI.XRLabel()
@@ -42,13 +43,12 @@ Partial Public Class RepCUSPrivateAgreement
         Me.XrLabel43 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel34 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrRichText3 = New DevExpress.XtraReports.UI.XRRichText()
-        Me.XrLabel4 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel23 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel11 = New DevExpress.XtraReports.UI.XRLabel()
         Me.XrLabel1 = New DevExpress.XtraReports.UI.XRLabel()
-        Me.XrRichText2 = New DevExpress.XtraReports.UI.XRRichText()
         Me.PageFooter = New DevExpress.XtraReports.UI.PageFooterBand()
         Me.XrLabel2 = New DevExpress.XtraReports.UI.XRLabel()
+        Me.XrRichText2 = New DevExpress.XtraReports.UI.XRRichText()
         CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrRichText3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -141,7 +141,7 @@ Partial Public Class RepCUSPrivateAgreement
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "4b7ff0e8-0ae8-4324-8a5b-001ba54927bd"
+        Me.OfferID.ValueInfo = "71615618-7b24-4f78-8df9-2dde6459f91d"
         DynamicListLookUpSettings1.DataMember = "vw_AGREEMENT"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
@@ -153,10 +153,26 @@ Partial Public Class RepCUSPrivateAgreement
         '
         'PageHeader
         '
-        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel6, Me.XrLabel5, Me.XrLabel3, Me.XrLabel44, Me.XrLabel43, Me.XrLabel34, Me.XrRichText3, Me.XrLabel4, Me.XrLabel23, Me.XrLabel11, Me.XrLabel1, Me.XrRichText2})
+        Me.PageHeader.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel4, Me.XrLabel6, Me.XrLabel5, Me.XrLabel3, Me.XrLabel44, Me.XrLabel43, Me.XrLabel34, Me.XrRichText3, Me.XrLabel23, Me.XrLabel11, Me.XrLabel1, Me.XrRichText2})
         Me.PageHeader.Dpi = 254.0!
         Me.PageHeader.HeightF = 1955.073!
         Me.PageHeader.Name = "PageHeader"
+        '
+        'XrLabel4
+        '
+        Me.XrLabel4.Dpi = 254.0!
+        Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[dtAgreement]")})
+        Me.XrLabel4.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!, CType((DevExpress.Drawing.DXFontStyle.Bold Or DevExpress.Drawing.DXFontStyle.Underline), DevExpress.Drawing.DXFontStyle))
+        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(477.7618!, 178.4048!)
+        Me.XrLabel4.Multiline = True
+        Me.XrLabel4.Name = "XrLabel4"
+        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
+        Me.XrLabel4.SizeF = New System.Drawing.SizeF(254.0!, 49.71132!)
+        Me.XrLabel4.StylePriority.UseFont = False
+        Me.XrLabel4.StylePriority.UseTextAlignment = False
+        Me.XrLabel4.Text = "XrLabel4"
+        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopJustify
+        Me.XrLabel4.TextFormatString = "{0:d}"
         '
         'XrLabel6
         '
@@ -287,22 +303,6 @@ Partial Public Class RepCUSPrivateAgreement
         Me.XrRichText3.SerializableRtfString = resources.GetString("XrRichText3.SerializableRtfString")
         Me.XrRichText3.SizeF = New System.Drawing.SizeF(1591.612!, 1252.703!)
         '
-        'XrLabel4
-        '
-        Me.XrLabel4.Dpi = 254.0!
-        Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[dtAgreement]")})
-        Me.XrLabel4.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!, CType((DevExpress.Drawing.DXFontStyle.Bold Or DevExpress.Drawing.DXFontStyle.Underline), DevExpress.Drawing.DXFontStyle))
-        Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(477.7618!, 178.4048!)
-        Me.XrLabel4.Multiline = True
-        Me.XrLabel4.Name = "XrLabel4"
-        Me.XrLabel4.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrLabel4.SizeF = New System.Drawing.SizeF(254.0!, 49.71132!)
-        Me.XrLabel4.StylePriority.UseFont = False
-        Me.XrLabel4.StylePriority.UseTextAlignment = False
-        Me.XrLabel4.Text = "XrLabel4"
-        Me.XrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopJustify
-        Me.XrLabel4.TextFormatString = "{0:d}"
-        '
         'XrLabel23
         '
         Me.XrLabel23.Dpi = 254.0!
@@ -353,16 +353,6 @@ Partial Public Class RepCUSPrivateAgreement
         Me.XrLabel1.Text = "XrLabel23"
         Me.XrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopJustify
         '
-        'XrRichText2
-        '
-        Me.XrRichText2.Dpi = 254.0!
-        Me.XrRichText2.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
-        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0.9676412!, 0!)
-        Me.XrRichText2.Name = "XrRichText2"
-        Me.XrRichText2.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
-        Me.XrRichText2.SerializableRtfString = resources.GetString("XrRichText2.SerializableRtfString")
-        Me.XrRichText2.SizeF = New System.Drawing.SizeF(1591.612!, 692.1495!)
-        '
         'PageFooter
         '
         Me.PageFooter.Controls.AddRange(New DevExpress.XtraReports.UI.XRControl() {Me.XrLabel2})
@@ -382,6 +372,16 @@ Partial Public Class RepCUSPrivateAgreement
         Me.XrLabel2.Text = "1"
         Me.XrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         '
+        'XrRichText2
+        '
+        Me.XrRichText2.Dpi = 254.0!
+        Me.XrRichText2.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
+        Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(0.9676412!, 0!)
+        Me.XrRichText2.Name = "XrRichText2"
+        Me.XrRichText2.Padding = New DevExpress.XtraPrinting.PaddingInfo(5, 5, 0, 0, 254.0!)
+        Me.XrRichText2.SerializableRtfString = resources.GetString("XrRichText2.SerializableRtfString")
+        Me.XrRichText2.SizeF = New System.Drawing.SizeF(1591.612!, 692.1495!)
+        '
         'RepCUSPrivateAgreement
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail, Me.PageHeader, Me.PageFooter})
@@ -390,15 +390,16 @@ Partial Public Class RepCUSPrivateAgreement
         Me.DataSource = Me.SqlDataSource1
         Me.Dpi = 254.0!
         Me.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
-        Me.Margins = New DevExpress.Drawing.DXMargins(254, 254, 388, 254)
+        Me.Margins = New DevExpress.Drawing.DXMargins(254.0!, 254.0!, 387.7734!, 254.0!)
         Me.PageHeight = 2970
         Me.PageWidth = 2100
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
+        Me.ParameterPanelLayoutItems.AddRange(New DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem() {New DevExpress.XtraReports.Parameters.ParameterLayoutItem(Me.OfferID, DevExpress.XtraReports.Parameters.Orientation.Horizontal)})
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ReportUnit = DevExpress.XtraReports.UI.ReportUnit.TenthsOfAMillimeter
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.SnapGridSize = 25.0!
-        Me.Version = "21.2"
+        Me.Version = "23.1"
         CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrRichText3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrRichText2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -413,7 +414,6 @@ Partial Public Class RepCUSPrivateAgreement
     Friend WithEvents SqlDataSource1 As DevExpress.DataAccess.Sql.SqlDataSource
     Friend WithEvents OfferID As DevExpress.XtraReports.Parameters.Parameter
     Friend WithEvents PageHeader As DevExpress.XtraReports.UI.PageHeaderBand
-    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel11 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel23 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel34 As DevExpress.XtraReports.UI.XRLabel
@@ -423,11 +423,12 @@ Partial Public Class RepCUSPrivateAgreement
     Friend WithEvents XrLabel43 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel44 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents PageFooter As DevExpress.XtraReports.UI.PageFooterBand
-    Friend WithEvents XrRichText2 As DevExpress.XtraReports.UI.XRRichText
     Friend WithEvents XrLabel1 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrRichText3 As DevExpress.XtraReports.UI.XRRichText
     Friend WithEvents XrLabel2 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel3 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel5 As DevExpress.XtraReports.UI.XRLabel
     Friend WithEvents XrLabel6 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrLabel4 As DevExpress.XtraReports.UI.XRLabel
+    Friend WithEvents XrRichText2 As DevExpress.XtraReports.UI.XRRichText
 End Class

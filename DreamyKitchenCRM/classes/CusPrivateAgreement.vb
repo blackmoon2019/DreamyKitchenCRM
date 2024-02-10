@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
+Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
 
 Public Class CusPrivateAgreement
@@ -41,7 +42,8 @@ Public Class CusPrivateAgreement
                 Frm.txtCode.Text = DBQ.GetNextId("AGREEMENT")
                 'Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 Frm.dtpresentation.EditValue = Date.Now
-                ChangeVal = True
+                ChangeVal = True : Frm.lblMsg.Text = "Το Συμφωνητικό δεν έχει αποθηκευτεί"
+                Frm.LayoutControlItem16.Visibility = Utils.LayoutVisibility.Always
             Case FormMode.EditRecord
                 LoadForms.LoadForm(Frm.LayoutControl1, "Select * from AGREEMENT where id = " & toSQLValueS(ID))
                 ChangeVal = False
@@ -79,11 +81,6 @@ Public Class CusPrivateAgreement
                 TotalPrice = TotalPrice + closeAmt
                 If Math.Round(TotalPrice, 2) <> Math.Round(PayinAdvance, 2) Then
                     XtraMessageBox.Show("Το σύνολο της προκαταβολής δεν είναι ίσο με τις επιμέρους", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
-                PayinAdvance = Frm.txtPayinAdvanceBank.EditValue
-                If PayinAdvance <> "0" Then
-                    XtraMessageBox.Show("Έχετε συμπληρώσει προκαταβολή(Τράπεζα) χωρίς να βάλετε τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
                 End If
                 Select Case Mode
                     Case FormMode.NewRecord
@@ -146,6 +143,94 @@ Public Class CusPrivateAgreement
                 End If
             End If
 
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub GetKLeisimoAmt()
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & " Group By Cash ", CNDB)
+            sdr = cmd.ExecuteReader()
+            If sdr.HasRows Then
+                While sdr.Read()
+                    If sdr.GetBoolean(sdr.GetOrdinal("cash")) = "0" Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
+                            Frm.txtClose.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                        Else
+                            Frm.txtClose.EditValue = Nothing
+                        End If
+                    Else
+                        If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
+                            Frm.txtCloseCash.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                        Else
+                            Frm.txtCloseCash.EditValue = Nothing
+                        End If
+                    End If
+                End While
+            End If
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub GetPayInAdvanceAmt()
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='27CF38F4-BD30-403C-8BC6-2D2A57501DEB'  and transhID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & " Group By Cash ", CNDB)
+            sdr = cmd.ExecuteReader()
+            If sdr.HasRows Then
+                While sdr.Read()
+                    If sdr.GetBoolean(sdr.GetOrdinal("cash")) = "0" Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
+                            Frm.txtPayinAdvanceBank.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                        Else
+                            Frm.txtPayinAdvanceBank.EditValue = Nothing
+                        End If
+                    Else
+                        If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
+                            Frm.txtPayinAdvanceCash.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                        Else
+                            Frm.txtPayinAdvanceCash.EditValue = Nothing
+                        End If
+                    End If
+                End While
+            End If
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub GetProjectAmounts()
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            cmd = New SqlCommand(" select   TotPartOfVat,TotalVat,TotalPrice,TotalEquipmentPrice,GENTOT,ExtraInst, ExtraTransp,
+                                            TotKitchen,TotDoor,HasCloset,HasKitchen,HasSpecial,HasDoors
+                                    FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString), CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("TotPartOfVat")) = False Then Frm.txtPartofVat.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotPartOfVat")) Else Frm.txtPartofVat.EditValue = Nothing
+                If sdr.IsDBNull(sdr.GetOrdinal("TotalVat")) = False Then Frm.TxtTotalVat.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalVat")) Else Frm.TxtTotalVat.EditValue = Nothing
+                If sdr.IsDBNull(sdr.GetOrdinal("TotalPrice")) = False Then Frm.txtTotalVatPrice.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalPrice")) Else Frm.txtTotalVatPrice.EditValue = Nothing
+                If sdr.IsDBNull(sdr.GetOrdinal("GENTOT")) = False Then Frm.txtGenTot.EditValue = sdr.GetDecimal(sdr.GetOrdinal("GENTOT")) Else Frm.txtGenTot.EditValue = Nothing
+                If sdr.IsDBNull(sdr.GetOrdinal("ExtraInst")) = False Then Frm.txtExtraInst.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraInst")) Else Frm.txtExtraInst.EditValue = Nothing
+                If sdr.IsDBNull(sdr.GetOrdinal("ExtraTransp")) = False Then Frm.txtExtraTransp.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraTransp")) Else Frm.txtExtraTransp.EditValue = Nothing
+                Frm.chkHasKitchen.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasKitchen"))
+                Frm.chkHasCloset.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasCloset"))
+                Frm.chkHasDoors.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasDoors"))
+                Frm.chkHasSC.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasSpecial"))
+                If sdr.IsDBNull(sdr.GetOrdinal("TotalEquipmentPrice")) = False Then
+                    Dim TotalEquipmentPrice As Double, PosoParastatikou As Double
+                    TotalEquipmentPrice = sdr.GetDecimal(sdr.GetOrdinal("TotalEquipmentPrice"))
+                    PosoParastatikou = DbnullToZero(Frm.txtPosoParastatikou)
+                    Frm.txtPosoParastatikou.EditValue = PosoParastatikou + TotalEquipmentPrice
+                    Frm.txtDevices.EditValue = TotalEquipmentPrice
+                End If
+            End If
+            sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
