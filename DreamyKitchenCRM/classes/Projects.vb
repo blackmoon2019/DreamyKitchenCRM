@@ -100,6 +100,7 @@ Public Class Projects
                 Else
                     Frm.TabNavigationPage6.PageVisible = True
                 End If
+                If Frm.chkcompProject.CheckState = CheckState.Checked Then Frm.LCompProject.Visibility = Utils.LayoutVisibility.Never
         End Select
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "vw_TRANSH_F_def.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "TRANSD.xml")
@@ -226,8 +227,7 @@ Public Class Projects
 
         Try
             If Valid.ValidateForm(Frm.LayoutControl2) Then
-                If BenchValidation() = False Then Exit Sub
-                If receiveAgreementValidation() = False Then Exit Sub
+                If ValiDationRules(True, False, True, False, True) = False Then Exit Sub
                 ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
                 Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
                 myLayoutControls.Add(Frm.LayoutControl6)
@@ -289,9 +289,7 @@ Public Class Projects
         Try
             If isCredit Then
                 If Valid.ValidateForm(Frm.LayoutControl3) Then
-                    If PayTypeValidations(Frm.cboPayType.EditValue.ToString) = False Then Exit Sub
-                    If receiveAgreementValidation() = False Then Exit Sub
-                    If BalValidation() = False Then Exit Sub
+                    If ValiDationRules(False, True, True, True, False, Frm.cboPayType.EditValue.ToString) = False Then Exit Sub
                     sGuid = System.Guid.NewGuid.ToString
                     sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSD", Frm.LayoutControl3,,, sGuid,, "transhID,IsCredit", toSQLValueS(ID) & ",1")
                     If sResult = True Then
@@ -387,7 +385,7 @@ Public Class Projects
         Try
             Dim sSQL As String
             If Frm.GridView1.FocusedColumn.Name = "colPayTypeID" Then
-                If PayTypeValidations(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString) = False Then Return False
+                If ValiDationRules(False, True, False, False, False, Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString) = False Then Return False
             End If
             If Not IsDBNull(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash")) Then
                 If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = True Then cash = 1 Else cash = 0
@@ -515,86 +513,105 @@ Public Class Projects
     ' Έλεγχος αν έχει συμπληρωθεί Τιμή Πώλησης Πάγκου τότε πρέπει να έχει συμπληρωθεί υποχρεωτικά και η Τιμή Αγοράς Πάγκου
     Private Function receiveAgreementValidation() As Boolean
         Try
-            If Frm.dtreceiveDateAgreement.EditValue = Nothing And Frm.chkreceiveDateAgreement.CheckState = CheckState.Checked Then
-                XtraMessageBox.Show("Έχετε επιλέξει 'Παραλαβή Συμφωνητικού' χωρίς να βάλετε Ημερομηνία Παραλαβής.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
-            End If
-            If Frm.dtreceiveDateAgreement.EditValue IsNot Nothing And Frm.chkreceiveDateAgreement.CheckState = CheckState.Unchecked Then
-                XtraMessageBox.Show("Έχετε βάλει 'Ημερομηνία Παραλαβής' χωρίς να επιλέξετε 'Παραλαβή Συμφωνητικού'.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
-            End If
-            If Frm.chkwaitingForAgreement.CheckState = CheckState.Checked And Frm.chkreceiveDateAgreement.CheckState = CheckState.Unchecked Then
-                XtraMessageBox.Show("Δεν μπορείτε να κάνετε αλλαγές αν δεν έχετε παραλάβει το συμφωνητικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
-            End If
-            Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
 
     End Function
-    Private Function BenchValidation() As Boolean
-        Try
-            If Frm.txtbenchSalesPrice.EditValue = Nothing Then Return True
-            If Frm.txtbenchSalesPrice.EditValue <> 0 And Frm.txtbenchPurchasePrice.EditValue = 0 Then
-                XtraMessageBox.Show("Έχετε συμπληρώσει 'Τιμή Πώλησης Πάγκου' και δεν έχετε συμπληρώσει την 'Τιμή Αγοράς Πάγκου'", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
-            End If
-            Return True
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
-        End Try
-    End Function
-    ' Έλεγχος αν υπάρχει εγγραφή με τύπο πληρωμής "Κλείσιμο" ή δεν έχει καταχωρηθεί διπλή εγγραφή Κλεισίματος
-    Private Function PayTypeValidations(ByVal sPayType As String) As Boolean
+    Public Function ValiDationRules(ByVal BenchValidation As Boolean, ByVal PayTypeValidations As Boolean, ByVal receiveAgreementValidation As Boolean,
+                                    ByVal BalValidation As Boolean, ByVal GenCompProject As Boolean, Optional ByVal sPayType As String = "") As Boolean
         Dim sSQL As String
         Dim Cmd As SqlCommand
-        Try
-            Dim CountClosed As Integer
+        Dim CountClosed As Integer
 
-            sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(ID)
-            Cmd = New SqlCommand(sSQL, CNDB)
-            Dim sdr As SqlDataReader = Cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
-                Select Case sPayType.ToUpper
+        Try
+            'BenchValidation
+            If BenchValidation Then
+                If Frm.txtbenchSalesPrice.EditValue = Nothing Then Return True
+                If Frm.txtbenchSalesPrice.EditValue <> 0 And Frm.txtbenchPurchasePrice.EditValue = 0 Then
+                    XtraMessageBox.Show("Έχετε συμπληρώσει 'Τιμή Πώλησης Πάγκου' και δεν έχετε συμπληρώσει την 'Τιμή Αγοράς Πάγκου'", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+            End If
+            'PayTypeValidations  Έλεγχος αν υπάρχει εγγραφή με τύπο πληρωμής "Κλείσιμο" ή δεν έχει καταχωρηθεί διπλή εγγραφή Κλεισίματος
+            If PayTypeValidations Then
+                sSQL = "SELECT count(ID) as CountClosed FROM [TRANSD] WHERE isCredit = 1 and PayTypeID = '90A295A1-D2A0-40B7-B260-A532B2C322AC' and transhID = " & toSQLValueS(ID)
+                Cmd = New SqlCommand(sSQL, CNDB)
+                Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                If (sdr.Read() = True) Then
+                    If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountClosed = sdr.GetInt32(sdr.GetOrdinal("CountClosed")) Else CountClosed = 0
+                    Select Case sPayType.ToUpper
                     'Κλεισιμο
-                    Case "90A295A1-D2A0-40B7-B260-A532B2C322AC"
-                        If CountClosed > 0 Then
-                            XtraMessageBox.Show("Δεν μπορείτε να καταχωρήσετε παραπάνω από μια φορές εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
-                    Case Else
-                        If CountClosed = 0 Then
-                            XtraMessageBox.Show("Δεν μπορείτε να καταχωρήσετε άλλον τύπο πληρωμής αν  δεν έχει καταχωρηθεί πρώτα το ΚΛΕΙΣΙΜΟ. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
-                End Select
+                        Case "90A295A1-D2A0-40B7-B260-A532B2C322AC"
+                            If CountClosed > 0 Then
+                                XtraMessageBox.Show("Δεν μπορείτε να καταχωρήσετε παραπάνω από μια φορές εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
+                        Case Else
+                            If CountClosed = 0 Then
+                                XtraMessageBox.Show("Δεν μπορείτε να καταχωρήσετε άλλον τύπο πληρωμής αν  δεν έχει καταχωρηθεί πρώτα το ΚΛΕΙΣΙΜΟ. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
+                    End Select
+                End If
             End If
-            Return True
+            'receiveAgreementValidation  Έλεγχος αν έχει συμπληρωθεί Τιμή Πώλησης Πάγκου τότε πρέπει να έχει συμπληρωθεί υποχρεωτικά και η Τιμή Αγοράς Πάγκου
+            If receiveAgreementValidation Then
+                If Frm.dtreceiveDateAgreement.EditValue = Nothing And Frm.chkreceiveDateAgreement.CheckState = CheckState.Checked Then
+                    XtraMessageBox.Show("Έχετε επιλέξει 'Παραλαβή Συμφωνητικού' χωρίς να βάλετε Ημερομηνία Παραλαβής.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+                If Frm.dtreceiveDateAgreement.EditValue IsNot Nothing And Frm.chkreceiveDateAgreement.CheckState = CheckState.Unchecked Then
+                    XtraMessageBox.Show("Έχετε βάλει 'Ημερομηνία Παραλαβής' χωρίς να επιλέξετε 'Παραλαβή Συμφωνητικού'.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+                If Frm.chkwaitingForAgreement.CheckState = CheckState.Checked And Frm.chkreceiveDateAgreement.CheckState = CheckState.Unchecked Then
+                    XtraMessageBox.Show("Δεν μπορείτε να κάνετε αλλαγές αν δεν έχετε παραλάβει το συμφωνητικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+            End If
+            'BalValidation
+            If BalValidation Then
+                Dim amtD As Double, Bal As Double
+                amtD = Frm.txtamtD.EditValue : Bal = Frm.txtBal.EditValue
+                If amtD > Bal Then
+                    XtraMessageBox.Show("Το σύνολο της Πίστωσης δεν μπορεί να ξεπερνάει την Χρέωση. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+            End If
+            'GenCompProject Έλεγχος αν το έργο συμμετέχει σε προσφορές
+            If GenCompProject Then
+                If Frm.chkcompProject.CheckState = CheckState.Unchecked Then
+                    sSQL =
+                    " select top 1 ID from CCT_ORDERS_KITCHEN where compTrashID= " & toSQLValueS(ID) &
+                    " Union " &
+                    " Select top 1 ID from CCT_ORDERS_DOOR  where compTrashID= " & toSQLValueS(ID) &
+                    " Union " &
+                    "Select ID from CCT_ORDERS_CLOSET  where compTrashID= " & toSQLValueS(ID) &
+                    " Union " &
+                    "Select top 1 ID from CCT_ORDERS_SPECIAL_CONSTR  where compTrashID= " & toSQLValueS(ID)
+                    Cmd = New SqlCommand(sSQL, CNDB)
+                    Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then
+                            XtraMessageBox.Show("Δεν μπορείτε να χαρακτηρίσετε το έργο ως ""ΜΗ Γενικό"" γιατί συμμετέχει σε προσφορές.  ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+                End If
+            End If
+
+                Return True
+
+
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
 
     End Function
-    Private Function BalValidation() As Boolean
-        Try
-            Dim amtD As Double, Bal As Double
-            amtD = Frm.txtamtD.EditValue : Bal = Frm.txtBal.EditValue
-            If amtD > Bal Then
-                XtraMessageBox.Show("Το σύνολο της Πίστωσης δεν μπορεί να ξεπερνάει την Χρέωση. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
-            Else
-                Return True
-            End If
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Return False
-        End Try
-    End Function
+
     'Καταχώρηση Κατηγοριών έργου
     Private Function SaveTRANSC() As Boolean
         Dim sSQL As New System.Text.StringBuilder

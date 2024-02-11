@@ -93,6 +93,7 @@ Public Class FormLoader
                         End Select
                     Next
                 End If
+
                 For Each control As DevExpress.XtraLayout.LayoutControl In controls
                     For Each item As BaseLayoutItem In control.Items
                         If TypeOf item Is LayoutControlItem Then

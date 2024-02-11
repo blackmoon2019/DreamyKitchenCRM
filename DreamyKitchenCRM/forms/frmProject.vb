@@ -84,10 +84,10 @@ Public Class frmProject
                 Dim sSQL As New System.Text.StringBuilder
                 If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
                 FillCbo.AREAS(cboAREAS, sSQL)
-
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_TRANSH_SMALL with(nolock) where id ='" + sID + "'")
                 CheckStateTransItems()
                 If cboCUS.GetColumnValue("isCompany") = True Then LCus.Text = "Εταιρία"
+                If chkcompProject.CheckState = CheckState.Checked Then chkcompProject.Enabled = False
         End Select
         Me.CenterToScreen()
 

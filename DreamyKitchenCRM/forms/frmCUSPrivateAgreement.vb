@@ -352,15 +352,13 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Public Sub FillCusTransh()
-        Dim sCusID As String, scompTrashID As String
-        If cboCUS.EditValue Is Nothing Then sCusID = "IS NULL" Else sCusID = " = " & toSQLValueS(cboCUS.EditValue.ToString)
-        If cboCompProject.EditValue Is Nothing Then scompTrashID = "IS NULL" Else scompTrashID = " = " & toSQLValueS(cboCompProject.EditValue.ToString)
 
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr,invType
-                        from vw_TRANSH t
-                        INNER JOIN TRANSC on transc.transhID = t.id 
-                        where  completed = 0  and T.cusid  " & sCusID & " and T.compTrashID " & scompTrashID & " order by description")
+        sSQL.AppendLine("SELECT T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr,a.invType
+                        FROM AGREEMENT A
+                        INNER JOIN vw_TRANSH T ON T.ID=A.transhID 
+                        INNER JOIN TRANSC TC on TC.transhID = T.id 
+                        WHERE T.completed = 0  AND A.ID= " & toSQLValueS(sID))
         FillCbo.TRANSH(cboTRANSH, sSQL)
         txtFatherName.EditValue = cboCUS.GetColumnValue("FatherName")
         txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
@@ -372,5 +370,15 @@ Public Class frmCUSPrivateAgreement
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
         FillCusTransh()
+    End Sub
+
+    Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
+        If cboCompProject.EditValue IsNot Nothing Then
+            LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LLegalRepresentative.Tag = "1"
+        Else
+            LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        End If
+
     End Sub
 End Class

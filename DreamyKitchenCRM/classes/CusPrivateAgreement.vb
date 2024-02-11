@@ -49,7 +49,12 @@ Public Class CusPrivateAgreement
                 ChangeVal = False
                 Frm.cmdPrintOffer.Enabled = True
         End Select
-
+        If Frm.cboCompProject.EditValue IsNot Nothing Then
+            Frm.LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Frm.LLegalRepresentative.Tag = "1"
+        Else
+            Frm.LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        End If
         Frm.cmdCompCollection.Enabled = IIf(Frm.cboCompany.EditValue = Nothing, False, True)
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Frm.chkHasCloset.Properties.AllowHtmlDraw = DefaultBoolean.True
@@ -238,6 +243,8 @@ Public Class CusPrivateAgreement
     Public Sub PrintAgreement()
         Dim report As New RepCUSPrivateAgreement()
 
+        report.XrLabel5.Visible = True
+        report.XrLabel5.ExpressionBindings.Item(0).Expression = "' συμφωνούνται τα εξής :'"
         report.Parameters.Item(0).Value = ID
         report.CreateDocument()
 
@@ -265,6 +272,45 @@ Public Class CusPrivateAgreement
                               End Sub)
         Dim printTool As New ReportPrintTool(report)
         printTool.ShowRibbonPreview()
+
+        If Frm.cboCompProject.EditValue IsNot Nothing Then
+            Dim reportComp As New RepCUSPrivateAgreement()
+            reportComp.XrLabel23.ExpressionBindings.Item(0).Expression = "'Της Εταιρίας ' + [COMPName] + ' η οποία εδρεύει ' + [CompAdrName] + ' με ΑΦΜ ' + [CompAFM] + ' ΔΟΥ ' + [COMPDoyName] "
+            reportComp.XrLabel1.ExpressionBindings.Item(0).Expression = "'νόμιμα εκπροσωπούμενης για την υπογραφή του παρόντος από το νόμιμο εκπρόσωπο της'"
+            reportComp.XrLabel5.Visible = True
+            reportComp.XrLabel5.ExpressionBindings.Item(0).Expression = "[COMPName] + ' ,  που θα καλείται στο εξής <b><ΑΓΟΡΑΣΤΗΣ></b> συμφωνούνται τα εξής :'"
+
+            reportComp.Parameters.Item(0).Value = ID
+            reportComp.CreateDocument()
+
+            Dim reportComp2 As New RepCUSPrivateAgreement2ndPage
+            reportComp2.Parameters.Item(0).Value = ID
+            reportComp2.CreateDocument()
+            reportComp.ModifyDocument(Sub(x)
+                                          x.AddPages(reportComp2.Pages)
+                                      End Sub)
+            Dim reportComp3 As New RepCUSPrivateAgreement3ndPage
+            reportComp3.CreateDocument()
+            reportComp.ModifyDocument(Sub(x)
+                                          x.AddPages(reportComp3.Pages)
+                                      End Sub)
+            Dim reportComp4 As New RepCUSPrivateAgreement4ndPage
+            reportComp4.CreateDocument()
+            reportComp.ModifyDocument(Sub(x)
+                                          x.AddPages(reportComp4.Pages)
+                                      End Sub)
+            Dim reportComp5 As New RepCUSAnalysis
+            reportComp5.Parameters.Item(0).Value = Frm.cboTRANSH.EditValue.ToString
+            reportComp5.CreateDocument()
+            reportComp.ModifyDocument(Sub(x)
+                                          x.AddPages(reportComp5.Pages)
+                                      End Sub)
+            Dim printToolComp As New ReportPrintTool(reportComp)
+            printToolComp.ShowRibbonPreview()
+
+        End If
+
+
     End Sub
 
 End Class

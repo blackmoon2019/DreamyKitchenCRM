@@ -401,6 +401,7 @@ Public Class frmTransactions
                         where  T.cusid = " & sCompID & "order by description")
         FillCbo.TRANSH(cboCompProject, sSQL)
         LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        If chkcompProject.CheckState = CheckState.Checked Then cboCUS.EditValue = cboCompany.EditValue : LCUS.Enabled = False Else cboCUS.EditValue = Nothing : LCUS.Enabled = True
     End Sub
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
@@ -442,5 +443,9 @@ Public Class frmTransactions
 
     Private Sub GridView4_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView4.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView4, "Vw_TRANSD_Debit.xml", "Vw_TRANSD")
+    End Sub
+
+    Private Sub chkcompProject_CheckStateChanged(sender As Object, e As EventArgs) Handles chkcompProject.CheckStateChanged
+        If chkcompProject.CheckState = CheckState.Checked Then cboCUS.EditValue = cboCompany.EditValue : LCUS.Enabled = False Else cboCUS.EditValue = Nothing : LCUS.Enabled = True
     End Sub
 End Class
