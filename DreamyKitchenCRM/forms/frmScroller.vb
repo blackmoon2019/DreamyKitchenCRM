@@ -225,6 +225,7 @@ Public Class frmScroller
                     Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_VALUELISTITEM" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Case "vw_PROJECTCHECKLIST" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CAT_ERM" : sSQL = "DELETE FROM CAT_ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_ERM" : sSQL = "DELETE FROM ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_BENCH" : sSQL = "DELETE FROM BENCH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -427,6 +428,7 @@ Public Class frmScroller
                     Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_VALUELISTITEM" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_PROJECTCHECKLIST" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CAT_ERM" : sSQL = "DELETE FROM CAT_ERM WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_ERM" : sSQL = "DELETE FROM ERM WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BENCH" : sSQL = "DELETE FROM BENCH WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
@@ -1886,10 +1888,22 @@ Public Class frmScroller
                 frmVALUELISTITEM.MdiParent = frmMain
                 frmVALUELISTITEM.Mode = FormMode.EditRecord
                 frmVALUELISTITEM.Scroller = GridView1
+                frmVALUELISTITEM.GroupName = "MATERIALS"
                 frmVALUELISTITEM.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVALUELISTITEM), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmVALUELISTITEM.Show()
-
+            Case "vw_PROJECTCHECKLIST"
+                Dim frmPROJECTCHECKLIST As frmValueListItem = New frmValueListItem
+                frmPROJECTCHECKLIST.Text = "CheckList Έργων"
+                frmPROJECTCHECKLIST.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmPROJECTCHECKLIST.MdiParent = frmMain
+                frmPROJECTCHECKLIST.Mode = FormMode.EditRecord
+                frmPROJECTCHECKLIST.Scroller = GridView1
+                frmPROJECTCHECKLIST.GroupName = "CHECKLIST"
+                frmPROJECTCHECKLIST.cboValueList.EditValue = "CA8BACF7-3205-43AF-BCBB-A0DA4915C046"
+                frmPROJECTCHECKLIST.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmPROJECTCHECKLIST), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmPROJECTCHECKLIST.Show()
             Case "vw_CAT_ERM"
                 frmGen.Text = "Κατηγορίες Ερμαριών"
                 frmGen.MdiParent = frmMain
@@ -2806,8 +2820,20 @@ Public Class frmScroller
                 frmVALUELISTITEM.Mode = FormMode.NewRecord
                 frmVALUELISTITEM.Scroller = GridView1
                 frmVALUELISTITEM.FormScroller = Me
+                frmVALUELISTITEM.GroupName = "MATERIALS"
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVALUELISTITEM), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmVALUELISTITEM.Show()
+            Case "vw_PROJECTCHECKLIST"
+                Dim frmPROJECTCHECKLIST As frmValueListItem = New frmValueListItem
+                frmPROJECTCHECKLIST.Text = "CheckList Έργων"
+                frmPROJECTCHECKLIST.MdiParent = frmMain
+                frmPROJECTCHECKLIST.Mode = FormMode.NewRecord
+                frmPROJECTCHECKLIST.Scroller = GridView1
+                frmPROJECTCHECKLIST.GroupName = "CHECKLIST"
+                frmPROJECTCHECKLIST.cboValueList.EditValue = "CA8BACF7-3205-43AF-BCBB-A0DA4915C046"
+                frmPROJECTCHECKLIST.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmPROJECTCHECKLIST), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmPROJECTCHECKLIST.Show()
             Case "vw_CAT_ERM"
                 frmGen.Text = "Κατηγορίες Ερμαρίων"
                 frmGen.MdiParent = frmMain

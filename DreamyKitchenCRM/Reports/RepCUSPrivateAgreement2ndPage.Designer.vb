@@ -176,7 +176,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         '
         'XrLabel1
         '
-        Me.XrLabel1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([vw_AGREEMENT].[visibleVat]=True,'  συμπεριλαμβανομένου  ΦΠΑ   24%. ',' μη  σ" &
+        Me.XrLabel1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([vw_AGREEMENT].[visibleVAT]=True,'  συμπεριλαμβανομένου  ΦΠΑ   24%. ',' μη  σ" &
                     "υμπεριλαμβανομένου  ΦΠΑ   24%. ')" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(0!, 49.92825!)
@@ -196,7 +196,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
                     "ng('{0:C2}',[Price])) ")})
         Me.XrLabel2.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel2.ForeColor = System.Drawing.Color.Black
-        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(518.6667!, 30.35683!)
+        Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(518.6667!, 21.35683!)
         Me.XrLabel2.Multiline = True
         Me.XrLabel2.Name = "XrLabel2"
         Me.XrLabel2.Padding = New DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100.0!)

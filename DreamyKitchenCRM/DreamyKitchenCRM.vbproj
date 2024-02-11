@@ -215,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="classes\AgreementCheckList.vb" />
     <Compile Include="classes\CheckForUpdates.vb" />
     <Compile Include="classes\CheckPermissions.vb" />
     <Compile Include="classes\ClearControls.vb" />
@@ -272,6 +273,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DM_CCT.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmAgreementCheckList.Designer.vb">
+      <DependentUpon>frmAgreementCheckList.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmAgreementCheckList.vb">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmBaseCat.Designer.vb">
       <DependentUpon>frmBaseCat.vb</DependentUpon>
@@ -820,6 +827,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="forms\frmAgreementCheckList.resx">
+      <DependentUpon>frmAgreementCheckList.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmBaseCat.resx">
       <DependentUpon>frmBaseCat.vb</DependentUpon>
     </EmbeddedResource>
@@ -1388,6 +1398,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-checklist-24.png" />
     <None Include="Resources\icons8-clear-filters-16.png" />
     <None Include="Resources\icons8-filter-16.png" />
     <None Include="Resources\icons8-print-24.png" />

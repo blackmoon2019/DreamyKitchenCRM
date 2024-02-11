@@ -1079,5 +1079,14 @@ Public Class frmMain
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBProjectCheckList_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectCheckList.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "CheckList Έργών"
+        form.DataTable = "vw_PROJECTCHECKLIST"
+        form.DataTableWhereCondition = " where GroupName='CHECKLIST'"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
 End Class
 

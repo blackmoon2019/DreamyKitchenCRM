@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Text
 Imports System.Text.RegularExpressions
 Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
@@ -133,10 +134,12 @@ Public Class frmCUSPrivateAgreement
                 txtArProt.EditValue = Nothing : cboInvoiceType.EditValue = Nothing
                 Exit Sub
             Else
-                If cboTRANSH.GetColumnValue("ArProtKitchen") IsNot Nothing Then txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtKitchen").ToString.Length > 0, cboTRANSH.GetColumnValue("ArProtKitchen") & " ", "")
-                If cboTRANSH.GetColumnValue("ArProtCloset") IsNot Nothing Then txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtCloset").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtCloset"), "")
-                If cboTRANSH.GetColumnValue("ArProtDoor") IsNot Nothing Then txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtDoor").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtDoor"), "")
-                If cboTRANSH.GetColumnValue("ArProtSpecialContr") IsNot Nothing Then txtArProt.EditValue = txtArProt.EditValue & IIf(cboTRANSH.GetColumnValue("ArProtSpecialContr").ToString.Length > 0, " " & cboTRANSH.GetColumnValue("ArProtSpecialContr"), "")
+                Dim sArProt As New StringBuilder
+                sArProt.Append(cboTRANSH.GetColumnValue("ArProtKitchen") & " ")
+                sArProt.Append(cboTRANSH.GetColumnValue("ArProtCloset") & " ")
+                sArProt.Append(cboTRANSH.GetColumnValue("ArProtDoor") & " ")
+                sArProt.Append(cboTRANSH.GetColumnValue("ArProtSpecialContr") & " ")
+                txtArProt.EditValue = sArProt
                 cboInvoiceType.EditValue = cboTRANSH.GetColumnValue("invType")
             End If
 
@@ -381,4 +384,25 @@ Public Class frmCUSPrivateAgreement
         End If
 
     End Sub
+
+    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+        Dim frmAgreementCheckList As New frmAgreementCheckList
+        frmAgreementCheckList.ID = sID
+        If CheckListExist() Then frmAgreementCheckList.Mode = FormMode.EditRecord Else frmAgreementCheckList.Mode = FormMode.NewRecord
+        frmAgreementCheckList.ShowDialog()
+    End Sub
+    Private Function CheckListExist() As Boolean
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Dim oID As String = ""
+        Try
+            cmd = New SqlCommand("select top 1 ID from AGREEMENT_CHECKLIST where AgreementID =  " & toSQLValueS(sID), CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then sdr.Close:  Return True Else sdr.Close:Return False
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Function
 End Class

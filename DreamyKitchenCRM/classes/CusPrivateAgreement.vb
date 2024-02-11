@@ -285,6 +285,7 @@ Public Class CusPrivateAgreement
 
             Dim reportComp2 As New RepCUSPrivateAgreement2ndPage
             reportComp2.Parameters.Item(0).Value = ID
+            reportComp2.XrLabel2.ExpressionBindings.Item(0).Expression = "FormatString('{0:C2}',[DebitAmt]) "
             reportComp2.CreateDocument()
             reportComp.ModifyDocument(Sub(x)
                                           x.AddPages(reportComp2.Pages)

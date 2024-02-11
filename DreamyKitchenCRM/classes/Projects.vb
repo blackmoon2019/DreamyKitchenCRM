@@ -566,10 +566,10 @@ Public Class Projects
                     XtraMessageBox.Show("Έχετε βάλει 'Ημερομηνία Παραλαβής' χωρίς να επιλέξετε 'Παραλαβή Συμφωνητικού'.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return False
                 End If
-                If Frm.chkwaitingForAgreement.CheckState = CheckState.Checked And Frm.chkreceiveDateAgreement.CheckState = CheckState.Unchecked Then
-                    XtraMessageBox.Show("Δεν μπορείτε να κάνετε αλλαγές αν δεν έχετε παραλάβει το συμφωνητικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return False
-                End If
+                'If Frm.chkwaitingForAgreement.CheckState = CheckState.Checked And Frm.chkreceiveDateAgreement.CheckState = CheckState.Unchecked Then
+                '    XtraMessageBox.Show("Δεν μπορείτε να κάνετε αλλαγές αν δεν έχετε παραλάβει το συμφωνητικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                '    Return False
+                'End If
             End If
             'BalValidation
             If BalValidation Then

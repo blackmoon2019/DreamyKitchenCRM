@@ -254,7 +254,7 @@ Public Class CombosManager
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
-    Public Sub ManageValueListItem(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal ValueListID As String = Nothing)
+    Public Sub ManageValueListItem(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal ValueListID As String = Nothing, Optional ByVal GroupName As String = Nothing)
         Dim Frm As frmValueListItem = New frmValueListItem
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
         Frm.Text = "Κατηγορία Πόρτας"

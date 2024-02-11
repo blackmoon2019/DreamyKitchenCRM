@@ -4,6 +4,7 @@ Imports DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters
 
 Public Class frmValueListItem
     Private sID As String
+    Private sGroupName As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -21,6 +22,11 @@ Public Class frmValueListItem
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
+        End Set
+    End Property
+    Public WriteOnly Property GroupName As String
+        Set(value As String)
+            sGroupName = value
         End Set
     End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
@@ -59,7 +65,7 @@ Public Class frmValueListItem
 
     Private Sub frmVALUELISTITEM_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_VALUELIST' table. You can move, or remove it, as needed.
-        Me.vw_VALUELISTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_VALUELIST)
+        Me.vw_VALUELISTTableAdapter.FillByGroupName(Me.DreamyKitchenDataSet.vw_VALUELIST, sGroupName)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DIM' table. You can move, or remove it, as needed.
         Me.Vw_DIMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DIM)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
@@ -91,8 +97,14 @@ Public Class frmValueListItem
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
                 LName.Tag = "1"
                 cboValueList.ReadOnly = True
+            Case "CA8BACF7-3205-43AF-BCBB-A0DA4915C046" 'CHECKLIST
+                Me.Text = "CheckList Έργων"
+                LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+                LName.Tag = "1"
+                LName.Text = "Περιγραφή"
+                cboValueList.ReadOnly = True
         End Select
-
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         Dim sResult As Boolean
