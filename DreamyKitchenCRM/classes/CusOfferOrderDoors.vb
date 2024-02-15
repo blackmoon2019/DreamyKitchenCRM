@@ -38,7 +38,7 @@ Public Class CusOfferOrderDoors
         Frm.Vw_SALERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SALERS)
         Frm.Vw_COLORS_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORS_CAT)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
-        Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 2)
+        Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 2, System.Guid.Parse(ID))
         Prog_Prop.GetProgPROSF()
 
         If sIsOrder = True Then
@@ -222,7 +222,7 @@ Public Class CusOfferOrderDoors
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Cls.ClearCtrls(Frm.LayoutControl3)
-                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0)
+                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(sID))
                 End If
             End If
 
@@ -237,7 +237,7 @@ Public Class CusOfferOrderDoors
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0)
+            Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(ID))
         End If
     End Sub
 

@@ -144,7 +144,9 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue)
+            Case 1
+                If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue)
             Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
@@ -851,7 +853,9 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1)
+            Case 1
+                If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1)
             Case 2 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True)
             Case 3 : cboCompProject.EditValue = Nothing
         End Select
@@ -927,15 +931,8 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub cmdPrivateAgreement_Click(sender As Object, e As EventArgs) Handles cmdPrivateAgreement.Click
         Dim frmPrivateAgreement As frmCUSPrivateAgreement = New frmCUSPrivateAgreement()
         With frmPrivateAgreement
-            .Text = "Ιδ. Συμφωνητικό"
-            If cboTRANSH.GetColumnValue("AgreementExist") = "1" Then
-                .ID = cboTRANSH.GetColumnValue("AgreementID").ToString
-                .Mode = FormMode.EditRecord
-            Else
-                .Mode = FormMode.NewRecord
-                .InitializeForm()
-            End If
             .cboCompany.EditValue = cboCompany.EditValue
+            .FillCompanyProjects()
             .cboCompProject.EditValue = cboCompProject.EditValue
             .cboCUS.EditValue = cboCUS.EditValue
             .FillCusTransh()
@@ -946,6 +943,15 @@ Public Class frmCUSOfferOrderKitchen
             .txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
             .txtAFM.EditValue = cboCUS.GetColumnValue("afm")
             .cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
+
+            .Text = "Ιδ. Συμφωνητικό"
+            If cboTRANSH.GetColumnValue("AgreementExist") = "1" Then
+                .ID = cboTRANSH.GetColumnValue("AgreementID").ToString
+                .Mode = FormMode.EditRecord
+            Else
+                .Mode = FormMode.NewRecord
+                '   .InitializeForm()
+            End If
 
             .ShowDialog()
         End With

@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Text
 Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraLayout
@@ -49,6 +50,12 @@ Public Class CusPrivateAgreement
                 ChangeVal = False
                 Frm.cmdPrintOffer.Enabled = True
         End Select
+        GetKLeisimoAmt(Frm.cboTRANSH.EditValue.ToString)
+        GetPayInAdvanceAmt(Frm.cboTRANSH.EditValue.ToString)
+        GetProjectAmounts(Frm.cboTRANSH.EditValue.ToString)
+        FillArProt()
+
+        Frm.cboInvoiceType.EditValue = Frm.cboTRANSH.GetColumnValue("invType")
         If Frm.cboCompProject.EditValue IsNot Nothing Then
             Frm.LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LLegalRepresentative.Tag = "1"
@@ -66,6 +73,14 @@ Public Class CusPrivateAgreement
         Frm.chkHasSC.Properties.AllowHtmlDraw = DefaultBoolean.True
         Frm.chkHasSC.Text = "<href=www.dreamykitchen.gr/>Ειδικές Κατασκευές</href>"
 
+    End Sub
+    Private Sub FillArProt()
+        Dim sArProt As New StringBuilder
+        sArProt.Append(Frm.cboTRANSH.GetColumnValue("ArProtKitchen") & " ")
+        sArProt.Append(Frm.cboTRANSH.GetColumnValue("ArProtCloset") & " ")
+        sArProt.Append(Frm.cboTRANSH.GetColumnValue("ArProtDoor") & " ")
+        sArProt.Append(Frm.cboTRANSH.GetColumnValue("ArProtSpecialContr") & " ")
+        Frm.txtArProt.EditValue = sArProt
     End Sub
     Public Sub SaveRecord(ByRef sID As String)
         Dim sResult As Boolean
@@ -152,11 +167,11 @@ Public Class CusPrivateAgreement
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public Sub GetKLeisimoAmt()
+    Public Sub GetKLeisimoAmt(ByVal TransHID As String)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & " Group By Cash ", CNDB)
+            cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(TransHID) & " Group By Cash ", CNDB)
             sdr = cmd.ExecuteReader()
             If sdr.HasRows Then
                 While sdr.Read()
@@ -180,11 +195,11 @@ Public Class CusPrivateAgreement
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public Sub GetPayInAdvanceAmt()
+    Public Sub GetPayInAdvanceAmt(ByVal TransHID As String)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='27CF38F4-BD30-403C-8BC6-2D2A57501DEB'  and transhID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & " Group By Cash ", CNDB)
+            cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='27CF38F4-BD30-403C-8BC6-2D2A57501DEB'  and transhID = " & toSQLValueS(TransHID) & " Group By Cash ", CNDB)
             sdr = cmd.ExecuteReader()
             If sdr.HasRows Then
                 While sdr.Read()
@@ -208,13 +223,13 @@ Public Class CusPrivateAgreement
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public Sub GetProjectAmounts()
+    Public Sub GetProjectAmounts(ByVal TransHID As String)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
             cmd = New SqlCommand(" select   TotPartOfVat,TotalVat,TotalPrice,TotalEquipmentPrice,GENTOT,ExtraInst, ExtraTransp,
                                             TotKitchen,TotDoor,HasCloset,HasKitchen,HasSpecial,HasDoors
-                                    FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString), CNDB)
+                                    FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(TransHID), CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
                 If sdr.IsDBNull(sdr.GetOrdinal("TotPartOfVat")) = False Then Frm.txtPartofVat.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotPartOfVat")) Else Frm.txtPartofVat.EditValue = Nothing

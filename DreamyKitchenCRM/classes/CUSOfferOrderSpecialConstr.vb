@@ -40,7 +40,7 @@ Public Class CUSOfferOrderSpecialConstr
         Frm.Vw_SALERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SALERS)
         Frm.Vw_COLORS_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORS_CAT)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
-        Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 3)
+        Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 3, System.Guid.Parse(ID))
         Prog_Prop.GetProgPROSF()
         If sIsOrder = True Then
             Frm.LayoutControlGroup2.Text = "Στοιχεία Παραγγελίας"
@@ -205,7 +205,7 @@ Public Class CUSOfferOrderSpecialConstr
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Cls.ClearCtrls(Frm.LayoutControl3)
-                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 3)
+                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 3, System.Guid.Parse(sID))
                 End If
             End If
 
@@ -220,7 +220,7 @@ Public Class CUSOfferOrderSpecialConstr
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 3)
+            Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 3, System.Guid.Parse(ID))
         End If
     End Sub
 End Class

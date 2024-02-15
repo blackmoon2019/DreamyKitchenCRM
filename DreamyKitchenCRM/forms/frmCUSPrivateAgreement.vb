@@ -90,10 +90,30 @@ Public Class frmCUSPrivateAgreement
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS) : Vw_CCTTableAdapter.Fill(DreamyKitchenDataSet.vw_CCT)
-            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS) : Vw_CCTTableAdapter.Fill(DreamyKitchenDataSet.vw_CCT)
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS) : GetCusFields()
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS) : GetCusFields()
             Case 3 : cboCUS.EditValue = Nothing
         End Select
+    End Sub
+    Private Sub GetCusFields()
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+
+        Try
+            cmd = New SqlCommand("SELECT FatherName,AREAS_Name,DOY_Name,afm,AdrID FROM VW_CCT WHERE ID = " & toSQLValueS(cboCUS.EditValue.ToString), CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("FatherName")) = False Then txtFatherName.EditValue = sdr.GetString(sdr.GetOrdinal("FatherName")).ToString
+                If sdr.IsDBNull(sdr.GetOrdinal("AREAS_Name")) = False Then txtArea.EditValue = sdr.GetString(sdr.GetOrdinal("AREAS_Name")).ToString
+                If sdr.IsDBNull(sdr.GetOrdinal("DOY_Name")) = False Then txtDOY.EditValue = sdr.GetString(sdr.GetOrdinal("DOY_Name")).ToString
+                If sdr.IsDBNull(sdr.GetOrdinal("afm")) = False Then txtAFM.EditValue = sdr.GetString(sdr.GetOrdinal("afm")).ToString
+                If sdr.IsDBNull(sdr.GetOrdinal("AdrID")) = False Then cboADR.EditValue = sdr.GetGuid(sdr.GetOrdinal("AdrID")).ToString
+            End If
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
@@ -105,15 +125,21 @@ Public Class frmCUSPrivateAgreement
 
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
+        If CheckListExist() = False Then
+            XtraMessageBox.Show(String.Format("Δεν μπορεί να εκτυπωθεί το Συμφωνητικό γιατί δεν έχει συμπληρωθεί η CheckList του Έργου"), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Exit Sub
+        End If
         CusPrivateAgreement.PrintAgreement()
     End Sub
 
     Private Sub txtTotalPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TxtTotalVat.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim Price As Double, PartOfVat As Double
         If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat)
         If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
     End Sub
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim TotalPrice As Double, Price As Double, PartOfVat As Double
         If txtPartofVat.EditValue <> Nothing Then TotalPrice = DbnullToZero(txtPartofVat)
         TotalPrice = (TotalPrice * 100) / 24 + TotalPrice
@@ -123,36 +149,11 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
-        Try
-            If cboTRANSH.EditValue = Nothing Then
-                lblBank.Text = "" : txtClose.EditValue = 0 : txtCloseCash.EditValue = 0
-                txtPartofVat.EditValue = 0 : TxtTotalVat.EditValue = 0
-                txtTotalVatPrice.EditValue = 0 : chkHasKitchen.Checked = False : chkHasCloset.Checked = False
-                chkHasDoors.Checked = False : chkHasSC.Checked = False : txtGenTot.EditValue = 0
-                txtPosoParastatikou.EditValue = 0 : txtDevices.EditValue = 0 : txtExtraInst.EditValue = 0 : txtExtraTransp.EditValue = 0
-                txtPayinAdvance.EditValue = 0 : txtPayinAdvanceBank.EditValue = 0 : txtPayinAdvanceCash.EditValue = 0
-                txtArProt.EditValue = Nothing : cboInvoiceType.EditValue = Nothing
-                Exit Sub
-            Else
-                Dim sArProt As New StringBuilder
-                sArProt.Append(cboTRANSH.GetColumnValue("ArProtKitchen") & " ")
-                sArProt.Append(cboTRANSH.GetColumnValue("ArProtCloset") & " ")
-                sArProt.Append(cboTRANSH.GetColumnValue("ArProtDoor") & " ")
-                sArProt.Append(cboTRANSH.GetColumnValue("ArProtSpecialContr") & " ")
-                txtArProt.EditValue = sArProt
-                cboInvoiceType.EditValue = cboTRANSH.GetColumnValue("invType")
-            End If
-
-            CusPrivateAgreement.GetKLeisimoAmt()
-            CusPrivateAgreement.GetPayInAdvanceAmt()
-            CusPrivateAgreement.GetProjectAmounts()
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
 
     End Sub
 
     Private Sub txtPayinAdvance_EditValueChanged(sender As Object, e As EventArgs) Handles txtPayinAdvance.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim TotalPrice As Double, Close As Double, Ypol As Double
         If txtPayinAdvance.EditValue <> Nothing Then TotalPrice = DbnullToZero(txtPayinAdvance)
         If txtClose.EditValue <> Nothing Then Close = DbnullToZero(txtClose)
@@ -161,10 +162,8 @@ Public Class frmCUSPrivateAgreement
         txtPayinAdvanceYpol.EditValue = Ypol
     End Sub
 
-
-
-
     Private Sub txtGenTot_EditValueChanged(sender As Object, e As EventArgs) Handles txtGenTot.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim PayinAdvance As Double
         If txtGenTot.EditValue <> Nothing Then
             PayinAdvance = DbnullToZero(txtGenTot)
@@ -285,15 +284,7 @@ Public Class frmCUSPrivateAgreement
 
 
     Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
-        Dim sCompID As String
-        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
-                        from vw_TRANSH t
-                        where  T.cusid = " & sCompID & "order by description")
-        FillCbo.TRANSH(cboCompProject, sSQL)
-        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        cmdCompCollection.Enabled = True
+
     End Sub
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
@@ -332,8 +323,8 @@ Public Class frmCUSPrivateAgreement
         Frm.ID = cboTRANSH.EditValue.ToString
         Frm.lCusD.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Frm.ShowDialog()
-        CusPrivateAgreement.GetKLeisimoAmt()
-        CusPrivateAgreement.GetPayInAdvanceAmt()
+        CusPrivateAgreement.GetKLeisimoAmt(cboTRANSH.EditValue.ToString)
+        CusPrivateAgreement.GetPayInAdvanceAmt(cboTRANSH.EditValue.ToString)
         LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
     End Sub
     Private Sub GetCreditAmountsFromProject()
@@ -357,11 +348,13 @@ Public Class frmCUSPrivateAgreement
     Public Sub FillCusTransh()
 
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("SELECT T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr,a.invType
-                        FROM AGREEMENT A
-                        INNER JOIN vw_TRANSH T ON T.ID=A.transhID 
+        sSQL.AppendLine("SELECT T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr,t.invType
+                        FROM vw_TRANSH T 
+                        LEFT JOIN AGREEMENT A ON T.ID=A.transhID 
                         INNER JOIN TRANSC TC on TC.transhID = T.id 
-                        WHERE T.completed = 0  AND A.ID= " & toSQLValueS(sID))
+                        WHERE T.completed = 0 ")
+        If sID IsNot Nothing Then sSQL.AppendLine(" AND A.ID= " & toSQLValueS(sID))
+        If cboCUS.EditValue IsNot Nothing Then sSQL.AppendLine(" AND T.CusID= " & toSQLValueS(cboCUS.EditValue.ToString))
         FillCbo.TRANSH(cboTRANSH, sSQL)
         txtFatherName.EditValue = cboCUS.GetColumnValue("FatherName")
         txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
@@ -370,18 +363,25 @@ Public Class frmCUSPrivateAgreement
         cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
 
     End Sub
+    Public Sub FillCompanyProjects()
+        Dim sCompID As String
+        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        cmdCompCollection.Enabled = True
+
+    End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        FillCusTransh()
+
     End Sub
 
     Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
-        If cboCompProject.EditValue IsNot Nothing Then
-            LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            LLegalRepresentative.Tag = "1"
-        Else
-            LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        End If
+
 
     End Sub
 
