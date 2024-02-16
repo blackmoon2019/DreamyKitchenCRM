@@ -86,21 +86,25 @@ Public Class Projects
                 myLayoutControls.Add(Frm.LayoutControl7)
 
                 LoadForms.LoadFormNew(myLayoutControls, "Select * from vw_TRANSH with(nolock) where id ='" + ID + "'",, TranshFieldAndValues)
+                ' Debug.Print(Frm.cboCUS.EditValue.ToString)
+                Frm.cboCUS.EditValue = TranshFieldAndValues.Item("cusID").ToString
+
                 Frm.txtBal.EditValue = TranshFieldAndValues.Item("bal")
                 sEMP_T_ID = TranshFieldAndValues.Item("EmpTID").ToString
                 sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
                 Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
                 Frm.Vw_TRANSD_CreditTableAdapter.FillByCredit(Frm.DM_TRANS.vw_TRANSD_Credit, System.Guid.Parse(ID))
-                Frm.Vw_TRANSD_DebitTableAdapter.FillByDedit(Frm.DM_TRANS.vw_TRANSD_Debit, System.Guid.Parse(ID))
+
                 CheckStateTransItems()
                 Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
                 Frm.dtPay.EditValue = DateTime.Now
-                If Frm.cboCompany.EditValue = Nothing Then
-                    Frm.TabNavigationPage6.PageVisible = False
-                Else
+                If Frm.chkcompProject.CheckState = CheckState.Checked Then
+                    Frm.LCompProject.Visibility = Utils.LayoutVisibility.Never
                     Frm.TabNavigationPage6.PageVisible = True
+                Else
+                    Frm.TabNavigationPage6.PageVisible = False
+                    Frm.LPrintCompOffer.Visibility = Utils.LayoutVisibility.Never
                 End If
-                If Frm.chkcompProject.CheckState = CheckState.Checked Then Frm.LCompProject.Visibility = Utils.LayoutVisibility.Never
         End Select
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "vw_TRANSH_F_def.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "TRANSD.xml")
@@ -845,6 +849,16 @@ Public Class Projects
         sdr.Close()
         Dim printTool As New ReportPrintTool(report)
         printTool.ShowRibbonPreview()
+    End Sub
+    Public Sub PrintCompOffer()
+        Dim report As New RepCompOffer()
+
+        report.Parameters.Item(0).Value = ID
+        report.CreateDocument()
+
+        Dim printTool As New ReportPrintTool(report)
+        printTool.ShowRibbonPreview()
+
     End Sub
     Public Function GetNextID() As Integer
         Return DBQ.GetNextId("TRANSH")

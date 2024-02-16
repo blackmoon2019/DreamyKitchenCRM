@@ -343,9 +343,7 @@
     <Compile Include="forms\frmConstrunction.Designer.vb">
       <DependentUpon>frmConstrunction.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmConstrunction.vb">
-      <SubType>Form</SubType>
-    </Compile>
+    <Compile Include="forms\frmConstrunction.vb" />
     <Compile Include="forms\frmCusMov.Designer.vb">
       <DependentUpon>frmCusMov.vb</DependentUpon>
     </Compile>
@@ -609,6 +607,12 @@
     </Compile>
     <Compile Include="forms\frmVersions.vb">
       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reports\RepCompOffer.Designer.vb">
+      <DependentUpon>RepCompOffer.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCompOffer.vb">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\RepCUSEllipse.Designer.vb">
       <DependentUpon>RepCUSEllipse.vb</DependentUpon>
@@ -997,6 +1001,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="forms\frmVersions.resx">
       <DependentUpon>frmVersions.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCompOffer.resx">
+      <DependentUpon>RepCompOffer.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSEllipse.resx">
       <DependentUpon>RepCUSEllipse.vb</DependentUpon>
@@ -1398,6 +1405,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-papers-24.png" />
     <None Include="Resources\icons8-checklist-24.png" />
     <None Include="Resources\icons8-clear-filters-16.png" />
     <None Include="Resources\icons8-filter-16.png" />

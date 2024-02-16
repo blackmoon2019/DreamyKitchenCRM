@@ -361,7 +361,8 @@ Public Class frmTransactions
         Select Case TabPane1.SelectedPageIndex
             Case 0  'Projects.LoadForm()
             Case 1
-            Case 2 : Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
+            Case 2
+                If sID IsNot Nothing Then Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
             Case Else
         End Select
     End Sub
@@ -447,5 +448,18 @@ Public Class frmTransactions
 
     Private Sub chkcompProject_CheckStateChanged(sender As Object, e As EventArgs) Handles chkcompProject.CheckStateChanged
         If chkcompProject.CheckState = CheckState.Checked Then cboCUS.EditValue = cboCompany.EditValue : LCUS.Enabled = False Else cboCUS.EditValue = Nothing : LCUS.Enabled = True
+    End Sub
+
+    Private Sub TabPane2_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane2.SelectedPageChanged
+        Select Case TabPane2.SelectedPageIndex
+            Case 1
+                Vw_TRANSD_DebitTableAdapter.FillByDedit(DM_TRANS.vw_TRANSD_Debit, System.Guid.Parse(sID))
+                COMP_CCT_TRANSHTableAdapter.Fill(DM_TRANS.COMP_CCT_TRANSH, System.Guid.Parse(sID))
+
+        End Select
+    End Sub
+
+    Private Sub cmdPrintCompOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintCompOffer.Click
+        Projects.PrintCompOffer()
     End Sub
 End Class
