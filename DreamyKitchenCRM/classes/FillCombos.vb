@@ -192,9 +192,9 @@ Public Class FillCombos
         End Try
 
     End Sub
-    Public Sub ADR(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal sSQL As System.Text.StringBuilder)
+    Public Sub ADR(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
         Try
-            If sSQL.Length = 0 Then sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
+            If sSQL Is Nothing Then sSQL = New System.Text.StringBuilder : sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
             Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = ""
@@ -208,7 +208,7 @@ Public Class FillCombos
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Διευθύνσεις"
             sdr.Close()
-        Catch ex As Exception
+            Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub

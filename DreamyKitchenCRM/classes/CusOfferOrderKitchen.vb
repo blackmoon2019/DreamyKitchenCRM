@@ -104,24 +104,42 @@ Public Class CusOfferOrderKitchen
                 Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
-                LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[OFFER].*,OFFER_F.filename " &
+                If sIsOrder = False Then
+                    LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[OFFER].*,OFFER_F.filename " &
                                                        "from CCT_ORDERS_KITCHEN [OFFER]" &
                                                        " left join CCT_ORDERS_KITCHEN  [ORDER] on [ORDER].CreatedFromOfferID =  [OFFER].id " &
                                                        " left join CCT_ORDERS_KITCHEN_F  OFFER_F on OFFER_F.cctOrdersKitchenID =  [OFFER].ID " &
                                                        "where [OFFER].id = " & toSQLValueS(ID), sFields)
-                If sIsOrder = False Then
+
                     If sFields("OrderID") <> "" Then
                         Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                         Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False
                         Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                     End If
+                    If sFields("selectedModel") = 1 Then Frm.chkModel1.CheckState = CheckState.Checked
+                    If sFields("selectedModel") = 2 Then Frm.chkModel2.CheckState = CheckState.Checked
+                    If sFields("selectedModel") = 3 Then Frm.chkModel3.CheckState = CheckState.Checked
+                    If sFields("selectedModel") = 4 Then Frm.chkModel4.CheckState = CheckState.Checked
+
                 Else
+                    LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[ORDER].*,OFFER_F.filename " &
+                                                       "from CCT_ORDERS_KITCHEN [OFFER]" &
+                                                       " left join CCT_ORDERS_KITCHEN  [ORDER] on [ORDER].CreatedFromOfferID =  [OFFER].id " &
+                                                       " left join CCT_ORDERS_KITCHEN_F  OFFER_F on OFFER_F.cctOrdersKitchenID =  [OFFER].ID " &
+                                                       "where [ORDER].id = " & toSQLValueS(ID), sFields)
+
                     Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                     If sFields("CreatedFromOfferID") <> "" Then
                         Frm.cboCUS.Enabled = False
                         Frm.cboCompany.Enabled = False
                         Frm.cboCompProject.Enabled = False
-                        Frm.cboTRANSH.Enabled = False
+                        Frm.cboCompProject.Properties.Buttons.Item(0).Enabled = False
+                        Frm.cboCompProject.Properties.Buttons.Item(1).Enabled = False
+                        Frm.cboCompProject.Properties.Buttons.Item(3).Enabled = False
+                        Frm.cboTRANSH.ReadOnly = True
+                        Frm.cboTRANSH.Properties.Buttons.Item(0).Enabled = False
+                        Frm.cboTRANSH.Properties.Buttons.Item(1).Enabled = False
+                        Frm.cboTRANSH.Properties.Buttons.Item(3).Enabled = False
                     End If
                 End If
                 sFields = Nothing
@@ -185,18 +203,23 @@ Public Class CusOfferOrderKitchen
         Dim sResult As Boolean, sResultF As Boolean
         Dim sGuid As String
         Try
-            If Valid.ValiDationRules(Frm.Name, Frm) = False Then Exit Sub
+            If Valid.ValiDationRules(Frm.Name, Frm,, sIsOrder) = False Then Exit Sub
 
             If Valid.ValidateForm(Frm.LayoutControl1) Then
+                Dim selectedModel As Integer
+                If Frm.chkModel1.CheckState = CheckState.Checked Then selectedModel = 1
+                If Frm.chkModel2.CheckState = CheckState.Checked Then selectedModel = 2
+                If Frm.chkModel3.CheckState = CheckState.Checked Then selectedModel = 3
+                If Frm.chkModel4.CheckState = CheckState.Checked Then selectedModel = 4
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder,selectedModel", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0) & "," & selectedModel)
                         ID = sGuid : sID = ID
                     Case FormMode.EditRecord
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, ID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, ID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0) & ",selectedModel = " & selectedModel)
                         sGuid = ID : sID = ID
                 End Select
                 If sResult = False Then Exit Sub
@@ -342,8 +365,8 @@ Public Class CusOfferOrderKitchen
             Next
 
             If DcodeIsEmpty = True Or supIDIsEmpty = True Then
-                If DcodeIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                If supIDIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                If DcodeIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                If supIDIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
                 If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If

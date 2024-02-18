@@ -269,7 +269,7 @@ Public Class frmTransactions
         Dim benchPurchasePrice As Double, benchSalesPrice As Double
         If txtbenchPurchasePrice.EditValue Is Nothing Or txtbenchSalesPrice.EditValue Is Nothing Then Exit Sub
         benchPurchasePrice = DbnullToZero(txtbenchPurchasePrice) : benchSalesPrice = DbnullToZero(txtbenchSalesPrice)
-        txtbenchProfit.EditValue = benchPurchasePrice - benchSalesPrice
+        txtbenchProfit.EditValue = benchSalesPrice - benchPurchasePrice
     End Sub
     Private Sub GridView3_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView3.InvalidRowException
         e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction

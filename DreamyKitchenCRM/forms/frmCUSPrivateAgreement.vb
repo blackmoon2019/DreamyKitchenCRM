@@ -29,6 +29,36 @@ Public Class frmCUSPrivateAgreement
     Private AgreementSalary As Double
     Private UserPermissions As New CheckPermissions
     Private Prog_Prop As New ProgProp
+    Public sCompany As Guid
+    Public sCompProject As Guid
+    Public sCUS As Guid
+    Public sTRANSH As Guid
+    Public sEMP As Guid
+    Public WriteOnly Property Company As Guid
+        Set(value As Guid)
+            sCompany = value
+        End Set
+    End Property
+    Public WriteOnly Property CompProject As Guid
+        Set(value As Guid)
+            sCompProject = value
+        End Set
+    End Property
+    Public WriteOnly Property CUS As Guid
+        Set(value As Guid)
+            sCUS = value
+        End Set
+    End Property
+    Public WriteOnly Property TRANSH As Guid
+        Set(value As Guid)
+            sTRANSH = value
+        End Set
+    End Property
+    Public WriteOnly Property EMP As Guid
+        Set(value As Guid)
+            sEMP = value
+        End Set
+    End Property
 
     Public WriteOnly Property ID As String
         Set(value As String)
@@ -70,7 +100,8 @@ Public Class frmCUSPrivateAgreement
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         CusPrivateAgreement.SaveRecord(sID)
-        LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        LCheckList.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
     End Sub
 
     Private Sub frmPrivateAgreement_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
@@ -78,6 +109,11 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Public Sub InitializeForm()
+        CusPrivateAgreement.Company = sCompany
+        CusPrivateAgreement.CompProject = sCompProject
+        CusPrivateAgreement.CUS = sCUS
+        CusPrivateAgreement.TRANSH = sTRANSH
+        CusPrivateAgreement.EMP = sEMP
         CusPrivateAgreement.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
         CusPrivateAgreement.LoadForm()
     End Sub
@@ -133,13 +169,11 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Private Sub txtTotalPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TxtTotalVat.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
         Dim Price As Double, PartOfVat As Double
         If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat)
         If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
     End Sub
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
         Dim TotalPrice As Double, Price As Double, PartOfVat As Double
         If txtPartofVat.EditValue <> Nothing Then TotalPrice = DbnullToZero(txtPartofVat)
         TotalPrice = (TotalPrice * 100) / 24 + TotalPrice
@@ -148,12 +182,8 @@ Public Class frmCUSPrivateAgreement
         If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
     End Sub
 
-    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
-
-    End Sub
 
     Private Sub txtPayinAdvance_EditValueChanged(sender As Object, e As EventArgs) Handles txtPayinAdvance.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
         Dim TotalPrice As Double, Close As Double, Ypol As Double
         If txtPayinAdvance.EditValue <> Nothing Then TotalPrice = DbnullToZero(txtPayinAdvance)
         If txtClose.EditValue <> Nothing Then Close = DbnullToZero(txtClose)
@@ -163,7 +193,6 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Private Sub txtGenTot_EditValueChanged(sender As Object, e As EventArgs) Handles txtGenTot.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
         Dim PayinAdvance As Double
         If txtGenTot.EditValue <> Nothing Then
             PayinAdvance = DbnullToZero(txtGenTot)
@@ -283,10 +312,6 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
 
-    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
-
-    End Sub
-
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True)
@@ -325,7 +350,7 @@ Public Class frmCUSPrivateAgreement
         Frm.ShowDialog()
         CusPrivateAgreement.GetKLeisimoAmt(cboTRANSH.EditValue.ToString)
         CusPrivateAgreement.GetPayInAdvanceAmt(cboTRANSH.EditValue.ToString)
-        LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
     End Sub
     Private Sub GetCreditAmountsFromProject()
         Dim cmd As SqlCommand
@@ -345,47 +370,10 @@ Public Class frmCUSPrivateAgreement
         End Try
     End Sub
 
-    Public Sub FillCusTransh()
-
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("SELECT T.id,FullTranshDescription,Description,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr,t.invType
-                        FROM vw_TRANSH T 
-                        LEFT JOIN AGREEMENT A ON T.ID=A.transhID 
-                        INNER JOIN TRANSC TC on TC.transhID = T.id 
-                        WHERE T.completed = 0 ")
-        If sID IsNot Nothing Then sSQL.AppendLine(" AND A.ID= " & toSQLValueS(sID))
-        If cboCUS.EditValue IsNot Nothing Then sSQL.AppendLine(" AND T.CusID= " & toSQLValueS(cboCUS.EditValue.ToString))
-        FillCbo.TRANSH(cboTRANSH, sSQL)
-        txtFatherName.EditValue = cboCUS.GetColumnValue("FatherName")
-        txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
-        txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
-        txtAFM.EditValue = cboCUS.GetColumnValue("afm")
-        cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
-
-    End Sub
-    Public Sub FillCompanyProjects()
-        Dim sCompID As String
-        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
-                        from vw_TRANSH t
-                        where  T.cusid = " & sCompID & "order by description")
-        FillCbo.TRANSH(cboCompProject, sSQL)
-        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        cmdCompCollection.Enabled = True
-
-    End Sub
-
-    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-
-    End Sub
-
-    Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
 
 
-    End Sub
 
-    Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
+    Private Sub cmdCheckList_Click(sender As Object, e As EventArgs) Handles cmdCheckList.Click
         Dim frmAgreementCheckList As New frmAgreementCheckList
         frmAgreementCheckList.ID = sID
         If CheckListExist() Then frmAgreementCheckList.Mode = FormMode.EditRecord Else frmAgreementCheckList.Mode = FormMode.NewRecord

@@ -343,7 +343,9 @@
     <Compile Include="forms\frmConstrunction.Designer.vb">
       <DependentUpon>frmConstrunction.vb</DependentUpon>
     </Compile>
-    <Compile Include="forms\frmConstrunction.vb" />
+    <Compile Include="forms\frmConstrunction.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="forms\frmCusMov.Designer.vb">
       <DependentUpon>frmCusMov.vb</DependentUpon>
     </Compile>

@@ -1087,6 +1087,11 @@ Public Class frmScroller
                 frmPrivateAgreement.Scroller = GridView1
                 frmPrivateAgreement.FormScroller = Me
                 frmPrivateAgreement.FormScrollerExist = True
+                frmPrivateAgreement.CUS = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cusID")
+                frmPrivateAgreement.TRANSH = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID")
+                frmPrivateAgreement.Company = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "compID") Is DBNull.Value, Guid.Empty, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "compID"))
+                frmPrivateAgreement.CompProject = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "compTrashID") Is DBNull.Value, Guid.Empty, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "compTrashID"))
+                frmPrivateAgreement.EMP = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "empID")
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmPrivateAgreement), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmPrivateAgreement.Show()
             Case "vw_CCT_ORDERS_CLOSET"

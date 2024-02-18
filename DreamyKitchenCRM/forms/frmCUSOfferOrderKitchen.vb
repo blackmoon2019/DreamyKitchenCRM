@@ -146,8 +146,8 @@ Public Class frmCUSOfferOrderKitchen
         Select Case e.Button.Index
             Case 1
                 If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-                ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue)
-            Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue)
+                ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, sIsOrder)
+            Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue,,,,,, sIsOrder)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub
@@ -855,8 +855,8 @@ Public Class frmCUSOfferOrderKitchen
         Select Case e.Button.Index
             Case 1
                 If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1)
-            Case 2 : If cboCompProject.EditValue IsNot Nothing Then ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True)
+                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder)
+            Case 2 : If cboCompProject.EditValue IsNot Nothing Then ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True,,,,, sIsOrder)
             Case 3 : cboCompProject.EditValue = Nothing
         End Select
     End Sub
@@ -891,14 +891,27 @@ Public Class frmCUSOfferOrderKitchen
 
     End Sub
 
-    Private Sub FillCusTransh()
+    Public Sub FillCompanyProjects()
+        Dim sCompID As String
+        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        cmdCompCollection.Enabled = True
+
+    End Sub
+
+    Public Sub FillCusTransh()
         Dim sCusID As String, scompTrashID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         If chkGenOffer.CheckState = CheckState.Unchecked Then
             If cboCompProject.EditValue Is Nothing Then scompTrashID = " and T.compTrashID  IS NULL" Else scompTrashID = " and T.compTrashID   = " & toSQLValueS(cboCompProject.EditValue.ToString)
         End If
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,DebitCost
                         from vw_TRANSH t
                         INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '60344B92-1925-42E9-8D0F-0525990B0D5F' 
                         where   completed = 0  and T.cusid = " & sCusID & scompTrashID & " order by description")
@@ -931,27 +944,12 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub cmdPrivateAgreement_Click(sender As Object, e As EventArgs) Handles cmdPrivateAgreement.Click
         Dim frmPrivateAgreement As frmCUSPrivateAgreement = New frmCUSPrivateAgreement()
         With frmPrivateAgreement
-            .cboCompany.EditValue = cboCompany.EditValue
-            .FillCompanyProjects()
-            .cboCompProject.EditValue = cboCompProject.EditValue
-            .cboCUS.EditValue = cboCUS.EditValue
-            .FillCusTransh()
-            .cboTRANSH.EditValue = cboTRANSH.EditValue
-            .cboEMP.EditValue = cboEMP.EditValue
-            .txtFatherName.EditValue = cboCUS.GetColumnValue("FatherName")
-            .txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
-            .txtDOY.EditValue = cboCUS.GetColumnValue("DOY_Name")
-            .txtAFM.EditValue = cboCUS.GetColumnValue("afm")
-            .cboADR.EditValue = cboCUS.GetColumnValue("AdrID")
-
+            .Company = cboCompany.EditValue
+            .CompProject = cboCompProject.EditValue
+            .CUS = cboCUS.EditValue
+            .TRANSH = cboTRANSH.EditValue
+            .EMP = cboEMP.EditValue
             .Text = "Ιδ. Συμφωνητικό"
-            If cboTRANSH.GetColumnValue("AgreementExist") = "1" Then
-                .ID = cboTRANSH.GetColumnValue("AgreementID").ToString
-                .Mode = FormMode.EditRecord
-            Else
-                .Mode = FormMode.NewRecord
-                '   .InitializeForm()
-            End If
 
             .ShowDialog()
         End With
@@ -961,5 +959,85 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub chkGenOffer_CheckStateChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckStateChanged
         If chkGenOffer.CheckState = CheckState.Checked Then cmdCusCollection.Enabled = False Else cmdCusCollection.Enabled = True
+    End Sub
+
+    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+        txtTotAmt.EditValue = cboTRANSH.GetColumnValue("DebitCost")
+    End Sub
+
+    Private Sub chkModel1_CheckStateChanged(sender As Object, e As EventArgs) Handles chkModel1.CheckStateChanged
+        If chkModel1.CheckState = CheckState.Checked Then
+            chkModel2.CheckState = CheckState.Unchecked
+            chkModel3.CheckState = CheckState.Unchecked
+            chkModel4.CheckState = CheckState.Unchecked
+            LModel1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LModel1.AppearanceItemCaption.Options.UseFont = True
+            LDisc1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDisc1.AppearanceItemCaption.Options.UseFont = True
+            LDiscount1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDiscount1.AppearanceItemCaption.Options.UseFont = True
+            LInitialPrice1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LInitialPrice1.AppearanceItemCaption.Options.UseFont = True
+            LFinalPrice1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LFinalPrice1.AppearanceItemCaption.Options.UseFont = True
+        Else
+            LModel1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LModel1.AppearanceItemCaption.Options.UseFont = False
+            LDisc1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDisc1.AppearanceItemCaption.Options.UseFont = False
+            LDiscount1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDiscount1.AppearanceItemCaption.Options.UseFont = False
+            LInitialPrice1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LInitialPrice1.AppearanceItemCaption.Options.UseFont = False
+            LFinalPrice1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LFinalPrice1.AppearanceItemCaption.Options.UseFont = False
+        End If
+    End Sub
+
+    Private Sub chkModel2_CheckStateChanged(sender As Object, e As EventArgs) Handles chkModel2.CheckStateChanged
+        If chkModel2.CheckState = CheckState.Checked Then
+            chkModel1.CheckState = CheckState.Unchecked
+            chkModel3.CheckState = CheckState.Unchecked
+            chkModel4.CheckState = CheckState.Unchecked
+            LModel2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LModel2.AppearanceItemCaption.Options.UseFont = True
+            LDisc2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDisc2.AppearanceItemCaption.Options.UseFont = True
+            LDiscount2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDiscount2.AppearanceItemCaption.Options.UseFont = True
+            LInitialPrice2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LInitialPrice2.AppearanceItemCaption.Options.UseFont = True
+            LFinalPrice2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LFinalPrice2.AppearanceItemCaption.Options.UseFont = True
+        Else
+            LModel2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LModel2.AppearanceItemCaption.Options.UseFont = False
+            LDisc2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDisc2.AppearanceItemCaption.Options.UseFont = False
+            LDiscount2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDiscount2.AppearanceItemCaption.Options.UseFont = False
+            LInitialPrice2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LInitialPrice2.AppearanceItemCaption.Options.UseFont = False
+            LFinalPrice2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LFinalPrice2.AppearanceItemCaption.Options.UseFont = False
+        End If
+    End Sub
+
+    Private Sub chkModel3_CheckStateChanged(sender As Object, e As EventArgs) Handles chkModel3.CheckStateChanged
+        If chkModel3.CheckState = CheckState.Checked Then
+            chkModel1.CheckState = CheckState.Unchecked
+            chkModel2.CheckState = CheckState.Unchecked
+            chkModel4.CheckState = CheckState.Unchecked
+            LModel3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LModel3.AppearanceItemCaption.Options.UseFont = True
+            LDisc3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDisc3.AppearanceItemCaption.Options.UseFont = True
+            LDiscount3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDiscount3.AppearanceItemCaption.Options.UseFont = True
+            LInitialPrice3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LInitialPrice3.AppearanceItemCaption.Options.UseFont = True
+            LFinalPrice3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LFinalPrice3.AppearanceItemCaption.Options.UseFont = True
+        Else
+            LModel3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LModel3.AppearanceItemCaption.Options.UseFont = False
+            LDisc3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDisc3.AppearanceItemCaption.Options.UseFont = False
+            LDiscount3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDiscount3.AppearanceItemCaption.Options.UseFont = False
+            LInitialPrice3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LInitialPrice3.AppearanceItemCaption.Options.UseFont = False
+            LFinalPrice3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LFinalPrice3.AppearanceItemCaption.Options.UseFont = False
+        End If
+    End Sub
+
+    Private Sub chkModel4_CheckStateChanged(sender As Object, e As EventArgs) Handles chkModel4.CheckStateChanged
+        If chkModel4.CheckState = CheckState.Checked Then
+            chkModel1.CheckState = CheckState.Unchecked
+            chkModel2.CheckState = CheckState.Unchecked
+            chkModel3.CheckState = CheckState.Unchecked
+            LModel4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LModel4.AppearanceItemCaption.Options.UseFont = True
+            LDisc4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDisc4.AppearanceItemCaption.Options.UseFont = True
+            LDiscount4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDiscount4.AppearanceItemCaption.Options.UseFont = True
+            LInitialPrice4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LInitialPrice4.AppearanceItemCaption.Options.UseFont = True
+            LFinalPrice4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LFinalPrice4.AppearanceItemCaption.Options.UseFont = True
+        Else
+            LModel4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LModel4.AppearanceItemCaption.Options.UseFont = False
+            LDisc4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDisc4.AppearanceItemCaption.Options.UseFont = False
+            LDiscount4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDiscount4.AppearanceItemCaption.Options.UseFont = False
+            LInitialPrice4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LInitialPrice4.AppearanceItemCaption.Options.UseFont = False
+            LFinalPrice4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LFinalPrice4.AppearanceItemCaption.Options.UseFont = False
+        End If
     End Sub
 End Class

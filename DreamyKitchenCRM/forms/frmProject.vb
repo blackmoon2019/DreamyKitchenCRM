@@ -16,8 +16,14 @@ Public Class frmProject
     Private sCompID As Guid
     Private sCompProjectID As Guid
     Private sID As String
+    Private sisOrder As Boolean
     Public Mode As Byte
 
+    Public WriteOnly Property isOrder As Boolean
+        Set(value As Boolean)
+            sisOrder = value
+        End Set
+    End Property
     Public WriteOnly Property CusID As Guid
         Set(value As Guid)
             sCusID = value
@@ -71,7 +77,7 @@ Public Class frmProject
         Me.Vw_INVTYPESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_INVTYPES)
         'TODO: This line of code loads data into the 'DM_CCT.vw_COMP' table. You can move, or remove it, as needed.
         Me.Vw_COMPTableAdapter.Fill(Me.DM_CCT.vw_COMP)
-        Projects.InitializeSmall(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
+        Projects.InitializeSmall(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sisOrder)
         If sCusID <> Nothing Then cboCUS.EditValue = sCusID : cboCUS.Enabled = False
         If sEmpID <> Nothing Then cboSaler.EditValue = sEmpID : cboSaler.Enabled = False
         If sCompID <> Nothing Then cboCompany.EditValue = sCompID : cboCompany.Enabled = False
@@ -88,6 +94,7 @@ Public Class frmProject
                 CheckStateTransItems()
                 If cboCUS.GetColumnValue("isCompany") = True Then LCus.Text = "Εταιρία"
                 If chkcompProject.CheckState = CheckState.Checked Then chkcompProject.Enabled = False
+                If sisOrder = True Then LCompProject.Enabled = False : LComp.Enabled = False : LdtCharge.Enabled = False
         End Select
         Me.CenterToScreen()
 

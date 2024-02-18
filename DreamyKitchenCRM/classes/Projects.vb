@@ -14,6 +14,7 @@ Public Class Projects
     Private Frm2 As frmProject
     Private LoadForms As New FormLoader
     Private ID As String
+    Private IsOrder As Boolean
     Private Mode As Byte
     Private CalledFromCtrl As Boolean
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
@@ -50,7 +51,7 @@ Public Class Projects
         'Νομοί
         FillCbo.COU(Frm.cboCOU)
     End Sub
-    Public Sub InitializeSmall(ByVal sFrm As frmProject, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+    Public Sub InitializeSmall(ByVal sFrm As frmProject, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal sIsOrder As Boolean)
         Frm2 = sFrm : ID = sID : Mode = sMode
         Frm2.Vw_TRANSH_CTableAdapter.Fill(Frm2.DM_TRANS.vw_TRANSH_C)
 
@@ -195,6 +196,10 @@ Public Class Projects
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID,,,,, "bal=" & toSQLValueS(Frm2.txtDebitCost.EditValue, True) & ",Totamt=" & toSQLValueS(Frm2.txtDebitCost.EditValue, True))
                         ' Καταχώρηση κατηγοριών 
                         If sResult Then SaveTRANSC_SMALL()
+                        If IsOrder = True Then
+                            ' Όταν αλλάζει η τιμή πώλησης έργου ενημερώνεται και η τελική τιμή προσφοράς
+                            ChangeOfferAmt()
+                        End If
                 End Select
                 If sResult = True Then
                     sID = ID
@@ -206,11 +211,24 @@ Public Class Projects
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Mode = FormMode.EditRecord
                     If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Frm2.cmdOpenTransh.Enabled = True
+
                 End If
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Private Sub ChangeOfferAmt()
+        Try
+            Using oCmd As New SqlCommand("UpdateOfferAmt", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@transhID", ID)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
     Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
         Dim sResultF As Boolean

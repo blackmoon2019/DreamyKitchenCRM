@@ -81,7 +81,7 @@ Public Class ValidateControls
         Next
         Return True
     End Function
-    Public Function ValiDationRules(ByVal FrmName As String, ByVal frm As Form, Optional ByVal ExtraChecks As Boolean = False) As Boolean
+    Public Function ValiDationRules(ByVal FrmName As String, ByVal frm As Form, Optional ByVal ExtraChecks As Boolean = False, Optional ByVal isOrder As Boolean = False) As Boolean
         Try
 
             Select Case FrmName
@@ -100,8 +100,25 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Έχετε επισυνάψει έντυπο προσφορας πάγκου και δεν έχετε επιλέξει προμηθευτή ή Τιμή.Λ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
-
-
+                    If isOrder = False And f.chkModel1.CheckState = CheckState.Unchecked And f.chkModel2.CheckState = CheckState.Unchecked And f.chkModel3.CheckState = CheckState.Unchecked And
+                       f.chkModel4.CheckState = CheckState.Unchecked Then
+                        XtraMessageBox.Show("Δεν έχετε επιλέξει με ποιο μοντέλο θα προχωρήσετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
+                    Dim FinalPrice As Double
+                    Dim TotAmt As Double = GetAmt(f.txtTotAmt)
+                    If isOrder = False Then
+                        If f.chkModel1.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice1)
+                        If f.chkModel2.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice2)
+                        If f.chkModel3.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice3)
+                        If f.chkModel4.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice4)
+                    Else
+                        FinalPrice = GetAmt(f.txtTotalErmariaVat)
+                    End If
+                    If FinalPrice <> TotAmt Then
+                        XtraMessageBox.Show("Το ποσό πώλησης έργου είναι διαφορετικό από το σύνολο της " & IIf(isOrder = False, " προσφοράς", " παραγγελίας"), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
 
                     If ExtraChecks = True Then
                         Dim sSQL As String

@@ -164,6 +164,17 @@ Module Main
             Return 0
         End If
     End Function
+    Public Function GetAmt(t As DevExpress.XtraEditors.TextEdit) As Double
+        If IsDBNull(t) = False Then
+            If t.Text = "" Then
+                Return 0
+            Else
+                Return t.Text.ToString.Replace(",", ".").Replace("€", "")
+            End If
+        Else
+            Return 0
+        End If
+    End Function
 
     Public Sub HideColumns(GridView1 As DevExpress.XtraGrid.Views.Grid.GridView, sExclude As String)
         Dim col As GridColumn

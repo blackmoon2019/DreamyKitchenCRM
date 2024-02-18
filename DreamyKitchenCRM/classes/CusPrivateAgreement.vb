@@ -19,6 +19,11 @@ Public Class CusPrivateAgreement
     Private Frm As frmCUSPrivateAgreement
     Private Prog_Prop As New ProgProp
     Private ChangeVal As Boolean = False
+    Public Company As Guid
+    Public CompProject As Guid
+    Public CUS As Guid
+    Public TRANSH As Guid
+    Public EMP As Guid
 
     Public Sub Initialize(ByVal sFrm As frmCUSPrivateAgreement, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Frm = sFrm
@@ -31,11 +36,31 @@ Public Class CusPrivateAgreement
         Frm.Vw_BANKSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_BANKS)
         Frm.Vw_CCTTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_CCT)
         Frm.Vw_SALERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SALERS)
-        Dim sSQL As New System.Text.StringBuilder
-        FillCbo.ADR(Frm.cboADR, sSQL)
+        FillCbo.ADR(Frm.cboADR)
+        Frm.cboCompany.EditValue = System.Guid.Parse(Company.ToString)
+        If Company <> Guid.Empty Then FillCompanyProjects()
+        Frm.cboCompProject.EditValue = System.Guid.Parse(CompProject.ToString)
+        Frm.cboCUS.EditValue = System.Guid.Parse(CUS.ToString)
+        If CUS <> Guid.Empty Then FillCusTransh()
+        Frm.cboTRANSH.EditValue = System.Guid.Parse(TRANSH.ToString)
+        Frm.cboEMP.EditValue = System.Guid.Parse(EMP.ToString)
+        If Frm.cboTRANSH.GetColumnValue("AgreementExist") = "1" Then
+            ID = Frm.cboTRANSH.GetColumnValue("AgreementID").ToString
+            Mode = FormMode.EditRecord
+        Else
+            Mode = FormMode.NewRecord
+        End If
 
     End Sub
+
+
     Public Sub LoadForm()
+        'If Frm.cboTRANSH.GetColumnValue("AgreementExist") = "1" Then
+        '    .ID = cboTRANSH.GetColumnValue("AgreementID").ToString
+        '    .Mode = FormMode.EditRecord
+        'Else
+        '    .Mode = FormMode.NewRecord
+        'End If
 
 
         Select Case Mode
@@ -44,24 +69,28 @@ Public Class CusPrivateAgreement
                 'Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 Frm.dtpresentation.EditValue = Date.Now
                 ChangeVal = True : Frm.lblMsg.Text = "Το Συμφωνητικό δεν έχει αποθηκευτεί"
-                Frm.LayoutControlItem16.Visibility = Utils.LayoutVisibility.Always
+                Frm.LCheckList.Visibility = Utils.LayoutVisibility.Never
+                Frm.LMsg.Visibility = Utils.LayoutVisibility.Always
             Case FormMode.EditRecord
                 LoadForms.LoadForm(Frm.LayoutControl1, "Select * from AGREEMENT where id = " & toSQLValueS(ID))
                 ChangeVal = False
                 Frm.cmdPrintOffer.Enabled = True
         End Select
+        If Company = Guid.Empty Then FillCompanyProjects()
+        If CUS = Guid.Empty Then FillCusTransh()
         GetKLeisimoAmt(Frm.cboTRANSH.EditValue.ToString)
         GetPayInAdvanceAmt(Frm.cboTRANSH.EditValue.ToString)
         GetProjectAmounts(Frm.cboTRANSH.EditValue.ToString)
         FillArProt()
 
-        Frm.cboInvoiceType.EditValue = Frm.cboTRANSH.GetColumnValue("invType")
+
         If Frm.cboCompProject.EditValue IsNot Nothing Then
             Frm.LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LLegalRepresentative.Tag = "1"
         Else
             Frm.LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         End If
+        Frm.cboInvoiceType.EditValue = Frm.cboTRANSH.GetColumnValue("invType")
         Frm.cmdCompCollection.Enabled = IIf(Frm.cboCompany.EditValue = Nothing, False, True)
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Frm.chkHasCloset.Properties.AllowHtmlDraw = DefaultBoolean.True
@@ -72,6 +101,37 @@ Public Class CusPrivateAgreement
         Frm.chkHasKitchen.Text = "<href=www.dreamykitchen.gr/>Ερμάρια Κουζίνας</href>"
         Frm.chkHasSC.Properties.AllowHtmlDraw = DefaultBoolean.True
         Frm.chkHasSC.Text = "<href=www.dreamykitchen.gr/>Ειδικές Κατασκευές</href>"
+
+    End Sub
+
+    Private Sub FillCusTransh()
+        Dim sCusID As String, scompTrashID As String
+        If CUS = Guid.Empty Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(CUS.ToString)
+        If CompProject = Guid.Empty Then scompTrashID = toSQLValueS(Guid.Empty.ToString) Else scompTrashID = toSQLValueS(CompProject.ToString)
+
+        If CompProject = Guid.Empty Then scompTrashID = " and T.compTrashID  IS NULL" Else scompTrashID = " and T.compTrashID   = " & toSQLValueS(CompProject.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,t.invType,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
+                        from vw_TRANSH t
+                        INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '60344B92-1925-42E9-8D0F-0525990B0D5F' 
+                        where   completed = 0  and T.cusid = " & sCusID & scompTrashID & " order by description")
+        FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
+        Frm.txtFatherName.EditValue = Frm.cboCUS.GetColumnValue("FatherName")
+        Frm.txtArea.EditValue = Frm.cboCUS.GetColumnValue("AREAS_Name")
+        Frm.txtDOY.EditValue = Frm.cboCUS.GetColumnValue("DOY_Name")
+        Frm.txtAFM.EditValue = Frm.cboCUS.GetColumnValue("afm")
+        Frm.cboADR.EditValue = Frm.cboCUS.GetColumnValue("AdrID")
+    End Sub
+    Private Sub FillCompanyProjects()
+        Dim sCompID As String
+        If Frm.cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(Frm.cboCompany.EditValue.ToString)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(Frm.cboCompProject, sSQL)
+        Frm.LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Frm.cmdCompCollection.Enabled = True
 
     End Sub
     Private Sub FillArProt()
