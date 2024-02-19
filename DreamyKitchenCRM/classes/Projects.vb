@@ -1,10 +1,8 @@
 ﻿Imports DevExpress.CodeParser
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraGrid
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
-Imports iTextSharp.text.pdf
 Imports System.Data.SqlClient
 
 Public Class Projects
@@ -196,22 +194,19 @@ Public Class Projects
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID,,,,, "bal=" & toSQLValueS(Frm2.txtDebitCost.EditValue, True) & ",Totamt=" & toSQLValueS(Frm2.txtDebitCost.EditValue, True))
                         ' Καταχώρηση κατηγοριών 
                         If sResult Then SaveTRANSC_SMALL()
-                        If IsOrder = True Then
-                            ' Όταν αλλάζει η τιμή πώλησης έργου ενημερώνεται και η τελική τιμή προσφοράς
-                            ChangeOfferAmt()
-                        End If
+                        ' Όταν αλλάζει η τιμή πώλησης έργου ενημερώνεται και η τελική τιμή προσφοράς
+                        ChangeOfferAmt()
                 End Select
                 If sResult = True Then
                     sID = ID
                     If CalledFromCtrl Then
                         Dim sSQL As New System.Text.StringBuilder
-                        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc from vw_TRANSH t where  T.cusid = " & toSQLValueS(Frm2.cboCUS.EditValue.ToString) & "order by description")
-                        FillCbo.TRANSH(CtrlCombo, sSQL) : CtrlCombo.EditValue = System.Guid.Parse(ID)
+                        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,DebitCost from vw_TRANSH t where  T.cusid = " & toSQLValueS(Frm2.cboCUS.EditValue.ToString) & "order by description")
+                        FillCbo.TRANSH(CtrlCombo, sSQL) : CtrlCombo.EditValue = Nothing : CtrlCombo.EditValue = System.Guid.Parse(ID)
                     End If
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Mode = FormMode.EditRecord
                     If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Frm2.cmdOpenTransh.Enabled = True
-
                 End If
             End If
         Catch ex As Exception

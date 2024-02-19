@@ -23,12 +23,12 @@ Public Class DBQueries
         Dim Code As Integer = cmd.ExecuteScalar()
         Return Code
     End Function
-    Public Function DeleteDataFiles(ByVal sTable As String, ByVal ID As String) As Boolean
+    Public Function DeleteDataFiles(ByVal sTable As String, ByVal transhID As String, ByVal ownerID As String) As Boolean
         Try
             Dim sSQL As New System.Text.StringBuilder
 
             Select Case sTable
-                Case "CCT_ORDERS_KITCHEN_F" : sSQL.AppendLine("DELETE FROM CCT_ORDERS_KITCHEN_F where cctOrdersKitchenID = " & toSQLValueS(ID))
+                Case "TRANSH_F" : sSQL.AppendLine("DELETE FROM TRANSH_F where transhID = " & toSQLValueS(transhID) & " And ownerID = " & toSQLValueS(ownerID))
             End Select
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
@@ -40,7 +40,7 @@ Public Class DBQueries
             Return False
         End Try
     End Function
-    Public Function InsertDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal ID As String, ByVal sTable As String) As Boolean
+    Public Function InsertDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal ID As String, ByVal sTable As String, Optional ByVal OwnerID As String = Nothing) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Dim i As Integer
         Try
@@ -50,10 +50,9 @@ Public Class DBQueries
                 Select Case sTable
                     Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,[files])")
-                    Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,fileCatID,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
+                    Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,fileCatID,ownerID,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "SUP_ORDERS_F" : sSQL.AppendLine("INSERT INTO SUP_ORDERS_F (supOrderID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
-                    Case "CCT_ORDERS_KITCHEN_F" : sSQL.AppendLine("INSERT INTO CCT_ORDERS_KITCHEN_F (cctOrdersKitchenID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                 End Select
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
                 Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))
@@ -63,7 +62,10 @@ Public Class DBQueries
 
                 sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
                 sSQL.AppendLine(toSQLValueS(control.SafeFileNames(i).ToString) & ",")
-                If sTable = "TRANSH_F" Then sSQL.AppendLine(toSQLValueS(FileCatID) & ",")
+                If sTable = "TRANSH_F" Then
+                    sSQL.AppendLine(toSQLValueS(FileCatID) & ",")
+                    sSQL.AppendLine(toSQLValueS(OwnerID  ) & ",")
+                End If
                 sSQL.AppendLine(toSQLValueS(FilePath) & ",")
                 sSQL.AppendLine(toSQLValueS(extension) & ",")
                 sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")

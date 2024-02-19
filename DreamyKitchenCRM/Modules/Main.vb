@@ -278,13 +278,13 @@ Module Main
     '    Next
     'End Function
 
-    Public Sub OpenFile(ByVal sTable As String, ByVal ID As String)
+    Public Sub OpenFile(ByVal sTable As String, ByVal ID As String, ByVal ownerID As String)
 
         Try
             Dim Cmd As SqlCommand, sdr As SqlDataReader
             Dim sSQL As String
             Select Case sTable
-                Case "CCT_ORDERS_KITCHEN_F" : sSQL = "SELECT files,filename  FROM CCT_ORDERS_KITCHEN_F WHERE cctOrdersKitchenID= " & toSQLValueS(ID)
+                Case "TRANSH_F" : sSQL = "SELECT files,filename  FROM TRANSH_F WHERE transhID= " & toSQLValueS(ID) & " ownerID = " & toSQLValueS(ownerID)
             End Select
 
             Cmd = New SqlCommand(sSQL.ToString, CNDB)

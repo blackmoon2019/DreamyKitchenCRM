@@ -116,9 +116,25 @@ Public Class ValidateControls
                         FinalPrice = GetAmt(f.txtTotalErmariaVat)
                     End If
                     If FinalPrice <> TotAmt Then
-                        XtraMessageBox.Show("Το ποσό πώλησης έργου είναι διαφορετικό από το σύνολο της " & IIf(isOrder = False, " προσφοράς", " παραγγελίας"), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        XtraMessageBox.Show("Το ποσό πώλησης έργου είναι διαφορετικό από το σύνολο της " & IIf(isOrder=False," προσφοράς"," παραγγελίας"), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
+                    If isOrder = True Then
+                        Dim sSQL As String
+                        Dim Cmd As SqlCommand
+                        Dim ExistAgreement As Integer
+                        sSQL = "SELECT count(ID) as ExistAgreement FROM [AGREEMENT] WHERE transhID = " & toSQLValueS(sID)
+                        Cmd = New SqlCommand(sSQL, CNDB)
+                        Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("ExistAgreement")) = False Then ExistAgreement = sdr.GetInt32(sdr.GetOrdinal("ExistAgreement")) Else ExistAgreement = 0
+                            If ExistAgreement = 1 Then
+                                XtraMessageBox.Show("Δεν μπορείτε να αλλάξετε την παραγγελία όταν έχει δημιουργηθεί συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
+                        End If
+                    End If
+
 
                     If ExtraChecks = True Then
                         Dim sSQL As String

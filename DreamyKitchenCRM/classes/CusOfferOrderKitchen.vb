@@ -108,7 +108,7 @@ Public Class CusOfferOrderKitchen
                     LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[OFFER].*,OFFER_F.filename " &
                                                        "from CCT_ORDERS_KITCHEN [OFFER]" &
                                                        " left join CCT_ORDERS_KITCHEN  [ORDER] on [ORDER].CreatedFromOfferID =  [OFFER].id " &
-                                                       " left join CCT_ORDERS_KITCHEN_F  OFFER_F on OFFER_F.cctOrdersKitchenID =  [OFFER].ID " &
+                                                       " left join TRANSH_F  OFFER_F on OFFER_F.ownerID =  [OFFER].ID " &
                                                        "where [OFFER].id = " & toSQLValueS(ID), sFields)
 
                     If sFields("OrderID") <> "" Then
@@ -125,7 +125,7 @@ Public Class CusOfferOrderKitchen
                     LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[ORDER].*,OFFER_F.filename " &
                                                        "from CCT_ORDERS_KITCHEN [OFFER]" &
                                                        " left join CCT_ORDERS_KITCHEN  [ORDER] on [ORDER].CreatedFromOfferID =  [OFFER].id " &
-                                                       " left join CCT_ORDERS_KITCHEN_F  OFFER_F on OFFER_F.cctOrdersKitchenID =  [OFFER].ID " &
+                                                       " left join TRANSH_F  OFFER_F on OFFER_F.ownerID =  [OFFER].ID " &
                                                        "where [ORDER].id = " & toSQLValueS(ID), sFields)
 
                     Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
@@ -203,6 +203,7 @@ Public Class CusOfferOrderKitchen
         Dim sResult As Boolean, sResultF As Boolean
         Dim sGuid As String
         Try
+            Valid.ID = Frm.cboTRANSH.EditValue.ToString
             If Valid.ValiDationRules(Frm.Name, Frm,, sIsOrder) = False Then Exit Sub
 
             If Valid.ValidateForm(Frm.LayoutControl1) Then
@@ -222,22 +223,13 @@ Public Class CusOfferOrderKitchen
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, ID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0) & ",selectedModel = " & selectedModel)
                         sGuid = ID : sID = ID
                 End Select
-                If sResult = False Then Exit Sub
-                sResultF = DBQ.DeleteDataFiles("CCT_ORDERS_KITCHEN_F", sGuid)
-                If sResultF Then
-                    If Frm.txtCUSOfferOrderFilename.Text <> "" And sResult = True Then
-                        sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, sGuid, "CCT_ORDERS_KITCHEN_F")
-                        If sResultF = False Then
-                            XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Else
-                            'Αποθήκευση αρχείου στο έργο
-                            Frm.XtraOpenFileDialog1.Tag = "EEA48A0A-4171-46FE-BBC5-D02F2712B04C"
-                            sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F")
-                            If sResultF = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς σατο Έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        End If
-                    End If
-                Else
-                    XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+                If Frm.txtCUSOfferOrderFilename.Text <> "" And sResult = True Then
+                    sResultF = DBQ.DeleteDataFiles("TRANSH_F", Frm.cboTRANSH.EditValue.ToString, sGuid)
+                    'Αποθήκευση αρχείου στο έργο
+                    Frm.XtraOpenFileDialog1.Tag = "EEA48A0A-4171-46FE-BBC5-D02F2712B04C" ' Κατηγορία Αρχείου ΠΑΓΚΟΙ
+                    sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", sGuid)
+                    If sResultF = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς στο Έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
                 If sResult = True Then
                     If UpdateProjectFields() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του έργου.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

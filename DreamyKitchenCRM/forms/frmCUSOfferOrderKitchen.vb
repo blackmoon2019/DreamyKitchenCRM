@@ -146,10 +146,11 @@ Public Class frmCUSOfferOrderKitchen
         Select Case e.Button.Index
             Case 1
                 If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-                ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, sIsOrder)
+                ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, sIsOrder) 
             Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue,,,,,, sIsOrder)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
+
     End Sub
 
     Private Sub cmdSaveEquipDev_Click(sender As Object, e As EventArgs) Handles cmdSaveEquipDev.Click
@@ -457,7 +458,7 @@ Public Class frmCUSOfferOrderKitchen
             Case 1
                 If DiscountChangedByUser = False Then txtDisc1.EditValue = ProgProps.CusDiscountKitchen
                 If ProgProps.CusDiscountKitchen > 0 Then
-                    InitialPrice = txtInitialPrice1.EditValue
+                    InitialPrice = txtInitialPrice1.EditValue.ToString.Replace(".", ",")
                     If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc1.EditValue / 100
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
@@ -468,7 +469,7 @@ Public Class frmCUSOfferOrderKitchen
             Case 2
                 If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountKitchen
                 If ProgProps.CusDiscountKitchen > 0 Then
-                    InitialPrice = txtInitialPrice2.EditValue
+                    InitialPrice = txtInitialPrice2.EditValue.ToString.Replace(".", ",")
                     If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc2.EditValue / 100
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
@@ -479,7 +480,7 @@ Public Class frmCUSOfferOrderKitchen
             Case 3
                 If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountKitchen
                 If ProgProps.CusDiscountKitchen > 0 Then
-                    InitialPrice = txtInitialPrice3.EditValue
+                    InitialPrice = txtInitialPrice3.EditValue.ToString.Replace(".", ",")
                     If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc3.EditValue / 100
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
@@ -490,7 +491,7 @@ Public Class frmCUSOfferOrderKitchen
             Case 4
                 If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountKitchen
                 If ProgProps.CusDiscountKitchen > 0 Then
-                    InitialPrice = txtInitialPrice4.EditValue
+                    InitialPrice = txtInitialPrice4.EditValue.ToString.Replace(".", ",")
                     If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc4.EditValue / 100
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
@@ -720,11 +721,11 @@ Public Class frmCUSOfferOrderKitchen
         Try
             Select Case e.Button.Index
                 Case 0 : FilesSelection(XtraOpenFileDialog1, txtCUSOfferOrderFilename, False) : txtbenchSalesPrice.ReadOnly = False
-                Case 1 : OpenFile("CCT_ORDERS_KITCHEN_F", sID)
+                Case 1 : OpenFile("TRANSH_F", cboTRANSH.EditValue.ToString, sID)
                 Case 2
                     If txtCUSOfferOrderFilename.EditValue = Nothing Then Exit Sub
                     If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                        DBQ.DeleteDataFiles("CCT_ORDERS_KITCHEN_F", sID)
+                        DBQ.DeleteDataFiles("TRANSH_F", cboTRANSH.EditValue.ToString, sID)
                         txtCUSOfferOrderFilename.EditValue = Nothing : txtbenchSalesPrice.EditValue = 0 : txtbenchSalesPrice.ReadOnly = True
                     End If
             End Select
@@ -963,6 +964,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
         txtTotAmt.EditValue = cboTRANSH.GetColumnValue("DebitCost")
+        txtTotalErmariaVat.EditValue = cboTRANSH.GetColumnValue("DebitCost")
     End Sub
 
     Private Sub chkModel1_CheckStateChanged(sender As Object, e As EventArgs) Handles chkModel1.CheckStateChanged
