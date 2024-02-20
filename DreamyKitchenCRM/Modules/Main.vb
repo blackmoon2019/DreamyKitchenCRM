@@ -284,7 +284,7 @@ Module Main
             Dim Cmd As SqlCommand, sdr As SqlDataReader
             Dim sSQL As String
             Select Case sTable
-                Case "TRANSH_F" : sSQL = "SELECT files,filename  FROM TRANSH_F WHERE transhID= " & toSQLValueS(ID) & " ownerID = " & toSQLValueS(ownerID)
+                Case "TRANSH_F" : sSQL = "SELECT files,filename  FROM TRANSH_F WHERE transhID= " & toSQLValueS(ID) & " and ownerID = " & toSQLValueS(ownerID)
             End Select
 
             Cmd = New SqlCommand(sSQL.ToString, CNDB)

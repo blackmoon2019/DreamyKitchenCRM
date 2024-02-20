@@ -6,6 +6,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class frmCUSOfferOrderKitchen
+    Private ScanFile As ScanToPDF
     Private CusOfferOrderKitchen As New CusOfferOrderKitchen
     Private ManageCbo As New CombosManager
     Private sID As String
@@ -69,6 +70,8 @@ Public Class frmCUSOfferOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
+        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         CusOfferOrderKitchen.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder, sBaseCat)
         CusOfferOrderKitchen.LoadForm()
         Me.CenterToScreen()
@@ -829,6 +832,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
 
     Private Sub cmdPrintPhotos_Click(sender As Object, e As EventArgs) Handles cmdPrintPhotos.Click
+        CardView1.Columns(2).Visible = False
         CardView1.ShowPrintPreview()
     End Sub
 
@@ -1042,4 +1046,33 @@ Public Class frmCUSOfferOrderKitchen
             LFinalPrice4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LFinalPrice4.AppearanceItemCaption.Options.UseFont = False
         End If
     End Sub
+
+    Private Sub cmdSaveTransF_Click(sender As Object, e As EventArgs) Handles cmdSaveTransF.Click
+        XtraOpenFileDialog1.Tag = cboTanshFCategory.EditValue.ToString
+        CusOfferOrderKitchen.SaveRecordF(0)
+    End Sub
+    Private Sub cboTanshFCategory_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboTanshFCategory.ButtonPressed
+        Select Case e.Button.Index
+            Case 1 : cboTanshFCategory.EditValue = Nothing : ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.NewRecord)
+            Case 2 : If cboTanshFCategory.EditValue <> Nothing Then ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.EditRecord)
+            Case 3 : cboTanshFCategory.EditValue = Nothing
+        End Select
+
+    End Sub
+    Private Sub txtFiles_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtFiles.ButtonClick
+        Dim sFilename As String
+        Select Case e.Button.Index
+            Case 0
+                Dim result = XtraInputBox.Show("Πληκτρολογήστε το πλήθος σελίδων που θα σκανάρετε", "Όνομα Αρχείου", "1")
+                ScanFile = New ScanToPDF
+                If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
+                txtFiles.EditValue = sFilename
+                If txtFiles.Text <> "" Then CusOfferOrderKitchen.SaveRecordF(1, sFilename)
+                ScanFile = Nothing
+            Case 1 : FilesSelection(XtraOpenFileDialog1, txtFiles)
+
+            Case 2 : txtFiles.EditValue = Nothing
+        End Select
+    End Sub
+
 End Class

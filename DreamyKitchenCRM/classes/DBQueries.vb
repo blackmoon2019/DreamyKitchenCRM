@@ -146,14 +146,14 @@ Public Class DBQueries
         End Try
     End Function
 
-    Public Function InsertDataFilesFromScanner(ByVal sFilename As String, ByVal ID As String, ByVal sTable As String, Optional ByVal FileCatID As String = "") As Boolean
+    Public Function InsertDataFilesFromScanner(ByVal sFilename As String, ByVal ID As String, ByVal sTable As String, Optional ByVal FileCatID As String = "", Optional ByVal OwnerID As String = Nothing) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Try
             sSQL.Clear()
             Select Case sTable
                 Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                 Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
-                Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,fileCatID,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
+                Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,fileCatID,ownerID,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                 Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
             End Select
             Dim extension As String = Path.GetExtension(sFilename)
@@ -161,7 +161,7 @@ Public Class DBQueries
             Dim FileName As String = Path.GetFileName(sFilename)
             sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
             sSQL.AppendLine(toSQLValueS(FileName) & ",")
-            If sTable = "TRANSH_F" Then sSQL.AppendLine(toSQLValueS(FileCatID) & ",")
+            If sTable = "TRANSH_F" Then sSQL.AppendLine(toSQLValueS(FileCatID) & ",") : sSQL.AppendLine(toSQLValueS(OwnerID) & ",")
             sSQL.AppendLine(toSQLValueS(FilePath) & ",")
             sSQL.AppendLine(toSQLValueS(extension) & ",")
             sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")

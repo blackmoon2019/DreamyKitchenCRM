@@ -115,6 +115,8 @@ Public Class CusOfferOrderKitchen
                         Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                         Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False
                         Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                        Frm.txtCUSOfferOrderFilename.Properties.Buttons.Item(0).Enabled = False
+                        Frm.txtCUSOfferOrderFilename.Properties.Buttons.Item(2).Enabled = False
                     End If
                     If sFields("selectedModel") = 1 Then Frm.chkModel1.CheckState = CheckState.Checked
                     If sFields("selectedModel") = 2 Then Frm.chkModel2.CheckState = CheckState.Checked
@@ -122,11 +124,10 @@ Public Class CusOfferOrderKitchen
                     If sFields("selectedModel") = 4 Then Frm.chkModel4.CheckState = CheckState.Checked
 
                 Else
-                    LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[ORDER].*,OFFER_F.filename " &
-                                                       "from CCT_ORDERS_KITCHEN [OFFER]" &
-                                                       " left join CCT_ORDERS_KITCHEN  [ORDER] on [ORDER].CreatedFromOfferID =  [OFFER].id " &
-                                                       " left join TRANSH_F  OFFER_F on OFFER_F.ownerID =  [OFFER].ID " &
-                                                       "where [ORDER].id = " & toSQLValueS(ID), sFields)
+                    LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[ORDER].*,ORDER_F.filename 
+                                                            from CCT_ORDERS_KITCHEN [ORDER]
+                                                            left join CCT_ORDERS_KITCHEN  [OFFER] on [OFFER].CreatedFromOfferID =  [ORDER].id  
+                                                            left join TRANSH_F  ORDER_F on ORDER_F.ownerID =  [ORDER].ID where [ORDER].id = " & toSQLValueS(ID), sFields)
 
                     Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                     If sFields("CreatedFromOfferID") <> "" Then
@@ -296,6 +297,20 @@ Public Class CusOfferOrderKitchen
             Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(ID))
         End If
     End Sub
+    Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
+        Dim sResultF As Boolean
+        If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.txtFiles.Text <> "" Then
+            Select Case sMode
+                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID)
+                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID)
+            End Select
+
+            Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
+        End If
+
+    End Sub
+
     Private Function UpdateProjectFields() As Boolean
         Try
             Dim sSQL As String

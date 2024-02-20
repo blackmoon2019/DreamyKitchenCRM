@@ -35,6 +35,11 @@ Partial Class frmCUSOfferOrderKitchen
         Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.coldCode = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.chkModel4 = New DevExpress.XtraEditors.CheckEdit()
@@ -354,6 +359,9 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LayoutControlItem98 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TabNavigationPage4 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl4 = New DevExpress.XtraLayout.LayoutControl()
+        Me.cmdSaveTransF = New DevExpress.XtraEditors.SimpleButton()
+        Me.cboTanshFCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.VwFILECATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.TRANSHFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -367,8 +375,13 @@ Partial Class frmCUSOfferOrderKitchen
         Me.colmodifiedOn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedOn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.txtFiles = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControlGroup11 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem99 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem25 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem4 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.VwDEVICESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.VwEQUIPMENTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_COLORSGOLATableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORSGOLATableAdapter()
@@ -388,6 +401,8 @@ Partial Class frmCUSOfferOrderKitchen
         Me.Vw_COLORS_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORS_CATTableAdapter()
         Me.Vw_CCT_ORDERS_PHOTOSTableAdapter = New DreamyKitchenCRM.DM_CCTTableAdapters.vw_CCT_ORDERS_PHOTOSTableAdapter()
         Me.TRANSH_FTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.TRANSH_FTableAdapter()
+        Me.Vw_FILE_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter()
+        Me.VwSCANFILENAMESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkModel4.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -664,13 +679,21 @@ Partial Class frmCUSOfferOrderKitchen
         Me.TabNavigationPage4.SuspendLayout()
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl4.SuspendLayout()
+        CType(Me.cboTanshFCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFiles.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'coldCode
@@ -5008,29 +5031,67 @@ Partial Class frmCUSOfferOrderKitchen
         Me.TabNavigationPage4.Margin = New System.Windows.Forms.Padding(9, 10, 9, 10)
         Me.TabNavigationPage4.Name = "TabNavigationPage4"
         Me.TabNavigationPage4.PageText = "ΑΡΧΕΙΑ"
-        Me.TabNavigationPage4.Size = New System.Drawing.Size(1738, 1378)
+        Me.TabNavigationPage4.Size = New System.Drawing.Size(1738, 1379)
         '
         'LayoutControl4
         '
+        Me.LayoutControl4.Controls.Add(Me.cmdSaveTransF)
+        Me.LayoutControl4.Controls.Add(Me.cboTanshFCategory)
         Me.LayoutControl4.Controls.Add(Me.GridControl2)
+        Me.LayoutControl4.Controls.Add(Me.txtFiles)
         Me.LayoutControl4.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl4.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl4.Margin = New System.Windows.Forms.Padding(9, 10, 9, 10)
         Me.LayoutControl4.Name = "LayoutControl4"
         Me.LayoutControl4.Root = Me.LayoutControlGroup11
-        Me.LayoutControl4.Size = New System.Drawing.Size(1738, 1378)
+        Me.LayoutControl4.Size = New System.Drawing.Size(1738, 1379)
         Me.LayoutControl4.TabIndex = 0
         Me.LayoutControl4.Text = "LayoutControl4"
+        '
+        'cmdSaveTransF
+        '
+        Me.cmdSaveTransF.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
+        Me.cmdSaveTransF.Location = New System.Drawing.Point(1510, 72)
+        Me.cmdSaveTransF.Margin = New System.Windows.Forms.Padding(4)
+        Me.cmdSaveTransF.Name = "cmdSaveTransF"
+        Me.cmdSaveTransF.Size = New System.Drawing.Size(216, 32)
+        Me.cmdSaveTransF.StyleController = Me.LayoutControl4
+        Me.cmdSaveTransF.TabIndex = 68
+        Me.cmdSaveTransF.Text = "Αποθήκευση"
+        '
+        'cboTanshFCategory
+        '
+        Me.cboTanshFCategory.Location = New System.Drawing.Point(109, 42)
+        Me.cboTanshFCategory.Margin = New System.Windows.Forms.Padding(4)
+        Me.cboTanshFCategory.Name = "cboTanshFCategory"
+        Me.cboTanshFCategory.Properties.AllowMouseWheel = False
+        Me.cboTanshFCategory.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        Me.cboTanshFCategory.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboTanshFCategory.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 31, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 49, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Κατηγορία", 55, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 102, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 105, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 97, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 93, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 96, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.cboTanshFCategory.Properties.DataSource = Me.VwFILECATBindingSource
+        Me.cboTanshFCategory.Properties.DisplayMember = "name"
+        Me.cboTanshFCategory.Properties.NullText = ""
+        Me.cboTanshFCategory.Properties.PopupSizeable = False
+        Me.cboTanshFCategory.Properties.ValueMember = "ID"
+        Me.cboTanshFCategory.Size = New System.Drawing.Size(1617, 26)
+        Me.cboTanshFCategory.StyleController = Me.LayoutControl4
+        Me.cboTanshFCategory.TabIndex = 67
+        Me.cboTanshFCategory.Tag = "fileCatID,0,1,2"
+        '
+        'VwFILECATBindingSource
+        '
+        Me.VwFILECATBindingSource.DataMember = "vw_FILE_CAT"
+        Me.VwFILECATBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'GridControl2
         '
         Me.GridControl2.DataSource = Me.TRANSHFBindingSource
         Me.GridControl2.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(8, 9, 8, 9)
-        Me.GridControl2.Location = New System.Drawing.Point(12, 12)
+        Me.GridControl2.Location = New System.Drawing.Point(12, 108)
         Me.GridControl2.MainView = Me.GridView3
         Me.GridControl2.Margin = New System.Windows.Forms.Padding(15)
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1714, 1354)
+        Me.GridControl2.Size = New System.Drawing.Size(1714, 1259)
         Me.GridControl2.TabIndex = 66
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
@@ -5141,23 +5202,77 @@ Partial Class frmCUSOfferOrderKitchen
         Me.GridColumn9.VisibleIndex = 9
         Me.GridColumn9.Width = 363
         '
+        'txtFiles
+        '
+        Me.txtFiles.Location = New System.Drawing.Point(109, 12)
+        Me.txtFiles.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtFiles.Name = "txtFiles"
+        Me.txtFiles.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
+        EditorButtonImageOptions3.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
+        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        Me.txtFiles.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
+        Me.txtFiles.Size = New System.Drawing.Size(1617, 26)
+        Me.txtFiles.StyleController = Me.LayoutControl4
+        Me.txtFiles.TabIndex = 6
+        Me.txtFiles.Tag = ""
+        '
         'LayoutControlGroup11
         '
         Me.LayoutControlGroup11.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlGroup11.GroupBordersVisible = False
-        Me.LayoutControlGroup11.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem99})
+        Me.LayoutControlGroup11.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem99, Me.LayoutControlItem22, Me.LayoutControlItem25, Me.LayoutControlItem37, Me.EmptySpaceItem4})
         Me.LayoutControlGroup11.Name = "LayoutControlGroup11"
-        Me.LayoutControlGroup11.Size = New System.Drawing.Size(1738, 1378)
+        Me.LayoutControlGroup11.Size = New System.Drawing.Size(1738, 1379)
         Me.LayoutControlGroup11.TextVisible = False
         '
         'LayoutControlItem99
         '
         Me.LayoutControlItem99.Control = Me.GridControl2
-        Me.LayoutControlItem99.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem99.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem99.Name = "LayoutControlItem99"
-        Me.LayoutControlItem99.Size = New System.Drawing.Size(1718, 1358)
+        Me.LayoutControlItem99.Size = New System.Drawing.Size(1718, 1263)
         Me.LayoutControlItem99.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem99.TextVisible = False
+        '
+        'LayoutControlItem22
+        '
+        Me.LayoutControlItem22.Control = Me.txtFiles
+        Me.LayoutControlItem22.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem22.CustomizationFormText = "Αρχεία"
+        Me.LayoutControlItem22.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem22.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem22.Name = "LayoutControlItem22"
+        Me.LayoutControlItem22.Size = New System.Drawing.Size(1718, 30)
+        Me.LayoutControlItem22.Text = "Αρχεία"
+        Me.LayoutControlItem22.TextSize = New System.Drawing.Size(85, 19)
+        '
+        'LayoutControlItem25
+        '
+        Me.LayoutControlItem25.Control = Me.cboTanshFCategory
+        Me.LayoutControlItem25.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Me.LayoutControlItem25.Location = New System.Drawing.Point(0, 30)
+        Me.LayoutControlItem25.Name = "LayoutControlItem25"
+        Me.LayoutControlItem25.Size = New System.Drawing.Size(1718, 30)
+        Me.LayoutControlItem25.Tag = "1"
+        Me.LayoutControlItem25.Text = "Κατηγορία"
+        Me.LayoutControlItem25.TextSize = New System.Drawing.Size(85, 19)
+        '
+        'LayoutControlItem37
+        '
+        Me.LayoutControlItem37.Control = Me.cmdSaveTransF
+        Me.LayoutControlItem37.Location = New System.Drawing.Point(1498, 60)
+        Me.LayoutControlItem37.Name = "LayoutControlItem37"
+        Me.LayoutControlItem37.Size = New System.Drawing.Size(220, 36)
+        Me.LayoutControlItem37.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem37.TextVisible = False
+        '
+        'EmptySpaceItem4
+        '
+        Me.EmptySpaceItem4.AllowHotTrack = False
+        Me.EmptySpaceItem4.Location = New System.Drawing.Point(0, 60)
+        Me.EmptySpaceItem4.Name = "EmptySpaceItem4"
+        Me.EmptySpaceItem4.Size = New System.Drawing.Size(1498, 36)
+        Me.EmptySpaceItem4.TextSize = New System.Drawing.Size(0, 0)
         '
         'VwDEVICESBindingSource
         '
@@ -5236,6 +5351,15 @@ Partial Class frmCUSOfferOrderKitchen
         'TRANSH_FTableAdapter
         '
         Me.TRANSH_FTableAdapter.ClearBeforeFill = True
+        '
+        'Vw_FILE_CATTableAdapter
+        '
+        Me.Vw_FILE_CATTableAdapter.ClearBeforeFill = True
+        '
+        'VwSCANFILENAMESBindingSource
+        '
+        Me.VwSCANFILENAMESBindingSource.DataMember = "vw_SCAN_FILE_NAMES"
+        Me.VwSCANFILENAMESBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'frmCUSOfferOrderKitchen
         '
@@ -5524,13 +5648,21 @@ Partial Class frmCUSOfferOrderKitchen
         Me.TabNavigationPage4.ResumeLayout(False)
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl4.ResumeLayout(False)
+        CType(Me.cboTanshFCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFiles.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem99, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem25, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwDEVICESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwEQUIPMENTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -5888,5 +6020,15 @@ Partial Class frmCUSOfferOrderKitchen
     Friend WithEvents LayoutControlItem104 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem105 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem106 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents txtFiles As DevExpress.XtraEditors.ButtonEdit
+    Friend WithEvents LayoutControlItem22 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cboTanshFCategory As DevExpress.XtraEditors.LookUpEdit
+    Friend WithEvents LayoutControlItem25 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents cmdSaveTransF As DevExpress.XtraEditors.SimpleButton
+    Friend WithEvents LayoutControlItem37 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents EmptySpaceItem4 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents VwFILECATBindingSource As BindingSource
+    Friend WithEvents Vw_FILE_CATTableAdapter As DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter
+    Friend WithEvents VwSCANFILENAMESBindingSource As BindingSource
     '    Friend WithEvents Vw_VALUELISTITEMPlainaYpsilaTableAdapter As DMDataSetTableAdapters.vw_VALUELISTITEMPlainaYpsilaTableAdapter
 End Class
