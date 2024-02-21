@@ -50,7 +50,7 @@ Public Class CusPrivateAgreement
         Else
             Mode = FormMode.NewRecord
         End If
-
+        Valid.AddControlsForCheckIfSomethingChanged(Frm.LayoutControl1)
     End Sub
 
 
@@ -80,6 +80,7 @@ Public Class CusPrivateAgreement
         If CUS = Guid.Empty Then FillCusTransh()
         GetKLeisimoAmt(Frm.cboTRANSH.EditValue.ToString)
         GetPayInAdvanceAmt(Frm.cboTRANSH.EditValue.ToString)
+        GetPayOFFAmt(Frm.cboTRANSH.EditValue.ToString)
         GetProjectAmounts(Frm.cboTRANSH.EditValue.ToString)
         FillArProt()
 
@@ -246,6 +247,34 @@ Public Class CusPrivateAgreement
                             Frm.txtCloseCash.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
                         Else
                             Frm.txtCloseCash.EditValue = Nothing
+                        End If
+                    End If
+                End While
+            End If
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Public Sub GetPayOFFAmt(ByVal TransHID As String)
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='49E938F5-5F2E-4A2A-B9B9-0C8F81F1765D'  and transhID = " & toSQLValueS(TransHID) & " Group By Cash ", CNDB)
+            sdr = cmd.ExecuteReader()
+            If sdr.HasRows Then
+                While sdr.Read()
+                    If sdr.GetBoolean(sdr.GetOrdinal("cash")) = "0" Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
+                            Frm.txtPayoffBank.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                        Else
+                            Frm.txtPayoffBank.EditValue = Nothing
+                        End If
+                    Else
+                        If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
+                            Frm.txtPayoffCash.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                        Else
+                            Frm.txtPayoffCash.EditValue = Nothing
                         End If
                     End If
                 End While

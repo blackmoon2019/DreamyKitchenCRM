@@ -164,6 +164,9 @@ Module Main
             Return 0
         End If
     End Function
+    Public Function lkupEditValue(t As DevExpress.XtraEditors.LookUpEdit) As String
+        If t.EditValue = Nothing Then Return "" Else Return t.EditValue.ToString
+    End Function
     Public Function GetAmt(t As DevExpress.XtraEditors.TextEdit) As Double
         If IsDBNull(t) = False Then
             If t.Text = "" Then

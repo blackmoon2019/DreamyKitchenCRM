@@ -16,7 +16,6 @@ Public Class frmCUSOfferOrderKitchen
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
     Private FScrollerExist As Boolean = False
-    Private FillCbo As New FillCombos
     Private DBQ As New DBQueries
     Private LoadForms As New FormLoader
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
@@ -100,9 +99,6 @@ Public Class frmCUSOfferOrderKitchen
         CusOfferOrderKitchen.SaveRecord(sID)
     End Sub
 
-    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        FillCusTransh
-    End Sub
 
     Private Sub txtdtdaysOfDelivery_EditValueChanged(sender As Object, e As EventArgs) Handles txtdtdaysOfDelivery.EditValueChanged
         If dtOrder.EditValue Is Nothing Then Exit Sub
@@ -149,7 +145,7 @@ Public Class frmCUSOfferOrderKitchen
         Select Case e.Button.Index
             Case 1
                 If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-                ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, sIsOrder) 
+                ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, sIsOrder)
             Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue,,,,,, sIsOrder)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
@@ -422,9 +418,10 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
             Case 1
-                LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
-                LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
-            Case 2
+                CusOfferOrderKitchen.LoadEquipments()
+                If sIsOrder = True Then CusOfferOrderKitchen.LoadDevices()
+
+            Case 2 : If sID IsNot Nothing Then Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(sID))
             Case 3
                 LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_KITCHEN_def.xml")
                 TRANSH_FTableAdapter.FillByTanshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
@@ -729,7 +726,7 @@ Public Class frmCUSOfferOrderKitchen
                     If txtCUSOfferOrderFilename.EditValue = Nothing Then Exit Sub
                     If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                         DBQ.DeleteDataFiles("TRANSH_F", cboTRANSH.EditValue.ToString, sID)
-                        txtCUSOfferOrderFilename.EditValue = Nothing : txtbenchSalesPrice.EditValue = 0 : txtbenchSalesPrice.ReadOnly = True
+                        txtCUSOfferOrderFilename.EditValue = Nothing : txtbenchSalesPrice.EditValue = 0 : txtbenchSalesPrice.ReadOnly = True : cboSup.EditValue = Nothing
                     End If
             End Select
         Catch ex As Exception
@@ -799,7 +796,7 @@ Public Class frmCUSOfferOrderKitchen
         If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then DeleteRecord()
     End Sub
     Private Sub DeleteRecord()
-        CusOfferOrderKitchen.DeletePhotoRecord
+        CusOfferOrderKitchen.DeletePhotoRecord()
     End Sub
 
     Private Sub cboSUP1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP1.ButtonClick
@@ -840,21 +837,6 @@ Public Class frmCUSOfferOrderKitchen
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView3, "vw_TRANSH_F_KITCHEN_def.xml", "vw_TRANSH_F")
     End Sub
 
-    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
-        Dim sCompID As String
-        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
-                        from vw_TRANSH t
-                        where  T.cusid = " & sCompID & " order by description")
-        FillCbo.TRANSH(cboCompProject, sSQL)
-        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        If chkGenOffer.CheckState = CheckState.Checked Then
-            cboCUS.EditValue = cboCompany.EditValue
-            cboTRANSH.EditValue = cboCompProject.EditValue
-        End If
-        cmdCompCollection.Enabled = True
-    End Sub
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
         Select Case e.Button.Index
@@ -895,45 +877,8 @@ Public Class frmCUSOfferOrderKitchen
         Frm.ShowDialog()
 
     End Sub
-
-    Public Sub FillCompanyProjects()
-        Dim sCompID As String
-        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
-                        from vw_TRANSH t
-                        where  T.cusid = " & sCompID & "order by description")
-        FillCbo.TRANSH(cboCompProject, sSQL)
-        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        cmdCompCollection.Enabled = True
-
-    End Sub
-
-    Public Sub FillCusTransh()
-        Dim sCusID As String, scompTrashID As String
-        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
-        If chkGenOffer.CheckState = CheckState.Unchecked Then
-            If cboCompProject.EditValue Is Nothing Then scompTrashID = " and T.compTrashID  IS NULL" Else scompTrashID = " and T.compTrashID   = " & toSQLValueS(cboCompProject.EditValue.ToString)
-        End If
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,DebitCost
-                        from vw_TRANSH t
-                        INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '60344B92-1925-42E9-8D0F-0525990B0D5F' 
-                        where   completed = 0  and T.cusid = " & sCusID & scompTrashID & " order by description")
-        FillCbo.TRANSH(cboTRANSH, sSQL)
-        If chkGenOffer.CheckState = CheckState.Checked Then
-            cboCUS.EditValue = cboCompany.EditValue
-            cboTRANSH.EditValue = cboCompProject.EditValue
-        End If
-    End Sub
-
-    Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
-        FillCusTransh()
-    End Sub
-
     Private Sub chkGenOffer_CheckedChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckedChanged
         If chkGenOffer.CheckState = CheckState.Checked Then
-            FillCusTransh()
             cboCUS.Enabled = False : cboTRANSH.Enabled = False
             cboCUS.EditValue = cboCompany.EditValue
             cboTRANSH.EditValue = cboCompProject.EditValue
@@ -1073,6 +1018,13 @@ Public Class frmCUSOfferOrderKitchen
 
             Case 2 : txtFiles.EditValue = Nothing
         End Select
+    End Sub
+
+    Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
+        If Mode = FormMode.NewRecord Then CusOfferOrderKitchen.FillCusTransh(lkupEditValue(cboCUS), lkupEditValue(cboCompProject), chkGenOffer.CheckState, "")
+    End Sub
+    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
+        If Mode = FormMode.NewRecord Then CusOfferOrderKitchen.FillCompanyProjects(lkupEditValue(cboCompany), chkGenOffer.CheckState, "")
     End Sub
 
 End Class

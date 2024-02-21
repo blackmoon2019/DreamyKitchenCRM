@@ -1,4 +1,5 @@
-﻿Imports System.Data.SqlClient
+﻿Imports System.ComponentModel
+Imports System.Data.SqlClient
 Imports System.Text
 Imports System.Text.RegularExpressions
 Imports DevExpress.Utils
@@ -102,6 +103,7 @@ Public Class frmCUSPrivateAgreement
         CusPrivateAgreement.SaveRecord(sID)
         LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         LCheckList.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+
     End Sub
 
     Private Sub frmPrivateAgreement_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
@@ -350,6 +352,7 @@ Public Class frmCUSPrivateAgreement
         Frm.ShowDialog()
         CusPrivateAgreement.GetKLeisimoAmt(cboTRANSH.EditValue.ToString)
         CusPrivateAgreement.GetPayInAdvanceAmt(cboTRANSH.EditValue.ToString)
+        CusPrivateAgreement.GetPayOFFAmt(cboTRANSH.EditValue.ToString)
         LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
     End Sub
     Private Sub GetCreditAmountsFromProject()
@@ -386,11 +389,23 @@ Public Class frmCUSPrivateAgreement
         Try
             cmd = New SqlCommand("select top 1 ID from AGREEMENT_CHECKLIST where AgreementID =  " & toSQLValueS(sID), CNDB)
             sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then sdr.Close:  Return True Else sdr.Close:Return False
+            If (sdr.Read() = True) Then
+                sdr.Close()
+                Return True
+            Else
+                sdr.Close()
+                Return False
+            End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Function
+
+    Private Sub frmCUSPrivateAgreement_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
+        If Valid.SChanged Then
+            CusPrivateAgreement.SaveRecord(sID)
+        End If
+    End Sub
 End Class

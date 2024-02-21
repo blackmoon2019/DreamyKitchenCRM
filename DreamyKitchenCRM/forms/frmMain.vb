@@ -631,9 +631,9 @@ Public Class frmMain
     End Sub
 
     Private Sub bbEMP_T_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEMP_T.ItemClick
-        If UserPermissions.CheckViewPermission("Τζίροι-Ποσοστά έκθεσης") Then
+        If UserPermissions.CheckViewPermission("Ποσοστά Πωλητών") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Τζίροι-Ποσοστά έκθεσης"
+            form.Text = "Ποσοστά Πωλητών"
             form.DataTable = "vw_EMP_T"
             form.MdiParent = Me
             form.Show()

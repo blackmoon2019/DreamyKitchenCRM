@@ -1154,8 +1154,8 @@
     </None>
     <None Include="DM_TRANS.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>DM_TRANS.Designer.vb</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>DM_TRANS1.Designer.vb</LastGenOutput>
     </None>
     <None Include="DM_TRANS.xss">
       <DependentUpon>DM_TRANS.xsd</DependentUpon>

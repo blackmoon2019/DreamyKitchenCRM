@@ -3,6 +3,7 @@ Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
 
 Public Class CusOfferOrderKitchen
+    Private FillCbo As New FillCombos
     Private Valid As New ValidateControls
     Private ID As String
     Private sIsOrder As Boolean
@@ -24,8 +25,6 @@ Public Class CusOfferOrderKitchen
         CtrlCombo = sCtrlCombo
         sBaseCat = BaseCat
         sIsOrder = IsOrder
-    End Sub
-    Public Sub LoadForm()
         Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
         Frm.Vw_VALUELISTITEM_BENCH_V2TableAdapter.Fill(Frm.DM_VALUELISTITEM.vw_VALUELISTITEM_BENCH_V2)
         Frm.Vw_VALUELISTITEM_V2TableAdapter.Fill(Frm.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
@@ -38,7 +37,10 @@ Public Class CusOfferOrderKitchen
         Frm.Vw_COLORS_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORS_CAT)
         Frm.Vw_VALUELISTITEMModelKitchenTableAdapter.Fill(Frm.DM_VALUELISTITEM1.vw_VALUELISTITEMModelKitchen)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
-        If ID IsNot Nothing Then Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(ID))
+
+    End Sub
+    Public Sub LoadForm()
+
 
         Prog_Prop.GetProgPROSF()
 
@@ -67,16 +69,16 @@ Public Class CusOfferOrderKitchen
         If Frm.cboCompany.EditValue Is Nothing Then Frm.cmdCompCollection.Enabled = False
         Select Case Mode
             Case FormMode.NewRecord
-                'txtCode.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
                 Frm.txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
                 Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.EmpID.ToString.ToUpper)
                 Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
                 Frm.txtTransp.EditValue = ProgProps.KitchenTransp
                 Frm.txtMeasurement.EditValue = ProgProps.KitchenMeasurement
                 Frm.txtRemove.EditValue = ProgProps.KitchenRemove
-                'Frm.cboBaseCat.EditValue = System.Guid.Parse(GetBaseCatID())
                 Frm.dtOrder.EditValue = Date.Now
                 Frm.cmdPrintOffer.Enabled = False
+                Frm.TabNavigationPage2.Enabled = False
+                Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
 
                 If sIsOrder = False Then
                     Frm.txtVFinalHeight.EditValue = ProgProps.V_HEIGHT
@@ -93,15 +95,7 @@ Public Class CusOfferOrderKitchen
                     Frm.txtNotes.EditValue = ProgProps.CUS_NOTES
                 End If
 
-                LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
-                    "Select  e.ID,E.code,name,e.price as defPrice,
-                     price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked,
-                     case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard 
-                     From vw_EQUIPMENT E 
-                     where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
-                Frm.TabNavigationPage2.Enabled = False
-                'cmdConvertToOrder.Enabled = False
-                Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
                 If sIsOrder = False Then
@@ -143,9 +137,47 @@ Public Class CusOfferOrderKitchen
                         Frm.cboTRANSH.Properties.Buttons.Item(3).Enabled = False
                     End If
                 End If
-                sFields = Nothing
 
-                LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
+
+                Frm.TabNavigationPage2.Enabled = True
+
+                FillCusTransh(sFields("cusID"), sFields("compTrashID"), sFields("GenOffer"), sFields("transhID")) : FillCompanyProjects(sFields("compID"), sFields("GenOffer"), sFields("compTrashID"))
+                sFields = Nothing
+        End Select
+
+
+
+        If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
+        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Frm.cmdCusCollection.Enabled = False Else Frm.cmdCusCollection.Enabled = True
+        Frm.GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
+        Frm.GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
+        Frm.GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
+        Frm.GridView1.OptionsMenu.ShowConditionalFormattingItem = True
+
+
+    End Sub
+    Public Sub LoadDevices()
+        LoadForms.LoadDataToGrid(Frm.grdDevices, Frm.GridView1,
+                   "select D.ID,D.code,D.name,
+                        (select dCode  from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) as dCode, 
+                        isnull((select price  from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id),0) as price,
+                        CAST(CASE WHEN (select ED.ID  from CCT_ORDERS_KITCHEN_DEVICES ED  where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
+                        (select suppID from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) as suppID  
+                      from DEVICES D
+                      ORDER BY NAME")
+        LoadForms.RestoreLayoutFromXml(Frm.GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
+    End Sub
+    Public Sub LoadEquipments()
+        If Mode = FormMode.NewRecord Then
+            LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
+                    "Select  e.ID,E.code,name,e.price as defPrice,
+                     price,cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked,
+                     case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard 
+                     From vw_EQUIPMENT E 
+                     where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
+
+        Else
+            LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
                     "select e.ID,e.code,e.name,
                     isnull((select price from CCT_ORDERS_KITCHEN_EQUIPMENT EQ where eq.cctOrdersKitchenID= " & toSQLValueS(ID) & " And eq.equipmentID=e.id),e.price ) as price,
                     e.price as defPrice,
@@ -156,28 +188,42 @@ Public Class CusOfferOrderKitchen
                     from EQUIPMENT E
                     where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' 
                     ORDER BY NAME")
-                Frm.TabNavigationPage2.Enabled = True
-
-        End Select
-
-        LoadForms.LoadDataToGrid(Frm.grdDevices, Frm.GridView1,
-                    "select D.ID,D.code,D.name,
-                        (select dCode  from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) as dCode, 
-                        isnull((select price  from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id),0) as price,
-                        CAST(CASE WHEN (select ED.ID  from CCT_ORDERS_KITCHEN_DEVICES ED  where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) IS NULL THEN 0 ELSE 1 END AS BIT ) as checked,
-                        (select suppID from CCT_ORDERS_KITCHEN_DEVICES ED where ED.cctOrdersKitchenID=" & toSQLValueS(ID) & " AND  ED.devicesID =D.id) as suppID  
-                      from DEVICES D
-                      ORDER BY NAME")
+        End If
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def.xml")
-        LoadForms.RestoreLayoutFromXml(Frm.GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
-        If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
-        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Frm.cmdCusCollection.Enabled = False Else Frm.cmdCusCollection.Enabled = True
-        Frm.GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
-        Frm.GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
-        Frm.GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
-        Frm.GridView1.OptionsMenu.ShowConditionalFormattingItem = True
+    End Sub
+    Public Sub FillCompanyProjects(ByVal sCompID As String, ByVal GenOffer As Boolean, ByVal scompTrashID As String)
+        If sCompID = "" Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(sCompID)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+                        from vw_TRANSH t
+                        where  T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(Frm.cboCompProject, sSQL)
+        Frm.LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Frm.cmdCompCollection.Enabled = True
+        If GenOffer = True Then
+            Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
+            Frm.cboTRANSH.EditValue = Frm.cboCompProject.EditValue
+        End If
+        If scompTrashID <> "" Then Frm.cboCompProject.EditValue = System.Guid.Parse(scompTrashID)
+    End Sub
 
-
+    Public Sub FillCusTransh(ByVal sCusID As String, ByVal scompTrashID As String, ByVal GenOffer As Boolean, ByVal sTranshID As String)
+        Dim sCompProjectID As String
+        If sCusID = "" Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(sCusID)
+        If GenOffer = False Then
+            If scompTrashID = "" Then sCompProjectID = " and T.compTrashID  IS NULL" Else sCompProjectID = " and T.compTrashID   = " & toSQLValueS(scompTrashID)
+        End If
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,DebitCost
+                        from vw_TRANSH t
+                        INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '60344B92-1925-42E9-8D0F-0525990B0D5F' 
+                        where   completed = 0  and T.cusid = " & sCusID & sCompProjectID & " order by description")
+        FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
+        If Frm.chkGenOffer.CheckState = CheckState.Checked Then
+            Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
+            Frm.cboTRANSH.EditValue = Frm.cboCompProject.EditValue
+        End If
+        If sTranshID <> "" Then Frm.cboTRANSH.EditValue = System.Guid.Parse(sTranshID)
     End Sub
     Private Function GetBaseCatID() As String
         Dim Cmd As SqlCommand, sdr As SqlDataReader
@@ -229,7 +275,7 @@ Public Class CusOfferOrderKitchen
                     sResultF = DBQ.DeleteDataFiles("TRANSH_F", Frm.cboTRANSH.EditValue.ToString, sGuid)
                     'Αποθήκευση αρχείου στο έργο
                     Frm.XtraOpenFileDialog1.Tag = "EEA48A0A-4171-46FE-BBC5-D02F2712B04C" ' Κατηγορία Αρχείου ΠΑΓΚΟΙ
-                    sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", sGuid)
+                    sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", sGuid, IIf(sIsOrder = True, "Παραγγελία", "Προσφορά"))
                     If sResultF = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς στο Έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
                 If sResult = True Then
@@ -302,8 +348,8 @@ Public Class CusOfferOrderKitchen
         If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtFiles.Text <> "" Then
             Select Case sMode
-                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID)
-                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID)
+                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
+                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Παραγγελία")
             End Select
 
             Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))

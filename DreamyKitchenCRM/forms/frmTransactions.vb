@@ -251,8 +251,7 @@ Public Class frmTransactions
     End Sub
 
     Private Sub txtbenchSalesPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchSalesPrice.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
-        CalculateTotAmt() : CalculateBenchProfit()
+        CalculateBenchProfit() : CalculateTotAmt()
     End Sub
     Private Sub CalculateTotAmt()
         Dim ExtraCost As Double, Debit As Double, Devices As Double, BenchSalesPrice As Double
@@ -262,8 +261,7 @@ Public Class frmTransactions
     End Sub
 
     Private Sub txtbenchPurchasePrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchPurchasePrice.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
-        CalculateBenchProfit()
+        CalculateBenchProfit() : CalculateTotAmt()
     End Sub
     Private Sub CalculateBenchProfit()
         Dim benchPurchasePrice As Double, benchSalesPrice As Double

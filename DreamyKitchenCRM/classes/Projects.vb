@@ -230,8 +230,8 @@ Public Class Projects
         If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtFiles.Text <> "" Then
             Select Case sMode
-                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, ID, "TRANSH_F")
-                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, ID, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString)
+                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, ID, "TRANSH_F",, "Εργο")
+                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, ID, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString,, "Εργο")
             End Select
 
             Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
@@ -421,6 +421,7 @@ Public Class Projects
                     ",bankID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "bankID").ToString) &
                     ",PayTypeID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString) &
                     ",cusID = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cusID").ToString) &
+                    ",depositor = " & toSQLValueS(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "depositor").ToString) &
                     ",cash = " & cash &
                     ",paid = " & Paid &
                     ",cmt = " & cmt &
@@ -696,6 +697,11 @@ Public Class Projects
         Try
             Dim sSQL As String
             If Frm.GridView2.GetRowCellValue(Frm.GridView2.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+
+            If Frm.GridView2.GetRowCellValue(Frm.GridView2.FocusedRowHandle, "ownerID").ToString <> "" Then
+                XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε αρχείο που συμμετέχει σε προσφορά ή παραγγελία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
             If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 sSQL = "DELETE FROM TRANSH_F WHERE ID = '" & Frm.GridView2.GetRowCellValue(Frm.GridView2.FocusedRowHandle, "ID").ToString & "'"
 
@@ -709,6 +715,8 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+
     Public Sub DeleteRecordD(Optional ByVal isCredit As Boolean = True)
         Dim sSQL As String
         Try

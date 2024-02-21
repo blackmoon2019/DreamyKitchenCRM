@@ -40,7 +40,7 @@ Public Class DBQueries
             Return False
         End Try
     End Function
-    Public Function InsertDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal ID As String, ByVal sTable As String, Optional ByVal OwnerID As String = Nothing) As Boolean
+    Public Function InsertDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal ID As String, ByVal sTable As String, Optional ByVal OwnerID As String = Nothing, Optional ByVal belongsTo As String = Nothing) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Dim i As Integer
         Try
@@ -50,7 +50,7 @@ Public Class DBQueries
                 Select Case sTable
                     Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,[files])")
-                    Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,fileCatID,ownerID,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
+                    Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,fileCatID,ownerID,[belongsTo],comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "SUP_ORDERS_F" : sSQL.AppendLine("INSERT INTO SUP_ORDERS_F (supOrderID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                 End Select
@@ -64,7 +64,8 @@ Public Class DBQueries
                 sSQL.AppendLine(toSQLValueS(control.SafeFileNames(i).ToString) & ",")
                 If sTable = "TRANSH_F" Then
                     sSQL.AppendLine(toSQLValueS(FileCatID) & ",")
-                    sSQL.AppendLine(toSQLValueS(OwnerID  ) & ",")
+                    sSQL.AppendLine(toSQLValueS(OwnerID) & ",")
+                    sSQL.AppendLine(toSQLValueS(belongsTo) & ",")
                 End If
                 sSQL.AppendLine(toSQLValueS(FilePath) & ",")
                 sSQL.AppendLine(toSQLValueS(extension) & ",")
@@ -146,7 +147,7 @@ Public Class DBQueries
         End Try
     End Function
 
-    Public Function InsertDataFilesFromScanner(ByVal sFilename As String, ByVal ID As String, ByVal sTable As String, Optional ByVal FileCatID As String = "", Optional ByVal OwnerID As String = Nothing) As Boolean
+    Public Function InsertDataFilesFromScanner(ByVal sFilename As String, ByVal ID As String, ByVal sTable As String, Optional ByVal FileCatID As String = "", Optional ByVal OwnerID As String = Nothing, Optional ByVal belongsTo As String = Nothing) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Try
             sSQL.Clear()
@@ -161,7 +162,11 @@ Public Class DBQueries
             Dim FileName As String = Path.GetFileName(sFilename)
             sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
             sSQL.AppendLine(toSQLValueS(FileName) & ",")
-            If sTable = "TRANSH_F" Then sSQL.AppendLine(toSQLValueS(FileCatID) & ",") : sSQL.AppendLine(toSQLValueS(OwnerID) & ",")
+            If sTable = "TRANSH_F" Then
+                sSQL.AppendLine(toSQLValueS(FileCatID) & ",")
+                sSQL.AppendLine(toSQLValueS(OwnerID) & ",")
+                sSQL.AppendLine(toSQLValueS(belongsTo) & ",")
+            End If
             sSQL.AppendLine(toSQLValueS(FilePath) & ",")
             sSQL.AppendLine(toSQLValueS(extension) & ",")
             sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
