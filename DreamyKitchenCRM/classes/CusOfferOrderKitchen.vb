@@ -72,9 +72,6 @@ Public Class CusOfferOrderKitchen
                 Frm.txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
                 Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.EmpID.ToString.ToUpper)
                 Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
-                Frm.txtTransp.EditValue = ProgProps.KitchenTransp
-                Frm.txtMeasurement.EditValue = ProgProps.KitchenMeasurement
-                Frm.txtRemove.EditValue = ProgProps.KitchenRemove
                 Frm.dtOrder.EditValue = Date.Now
                 Frm.cmdPrintOffer.Enabled = False
                 Frm.TabNavigationPage2.Enabled = False
@@ -214,7 +211,7 @@ Public Class CusOfferOrderKitchen
             If scompTrashID = "" Then sCompProjectID = " and T.compTrashID  IS NULL" Else sCompProjectID = " and T.compTrashID   = " & toSQLValueS(scompTrashID)
         End If
         Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,DebitCost
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,Totamt
                         from vw_TRANSH t
                         INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '60344B92-1925-42E9-8D0F-0525990B0D5F' 
                         where   completed = 0  and T.cusid = " & sCusID & sCompProjectID & " order by description")
@@ -255,15 +252,16 @@ Public Class CusOfferOrderKitchen
 
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 Dim selectedModel As Integer
-                If Frm.chkModel1.CheckState = CheckState.Checked Then selectedModel = 1
-                If Frm.chkModel2.CheckState = CheckState.Checked Then selectedModel = 2
-                If Frm.chkModel3.CheckState = CheckState.Checked Then selectedModel = 3
-                If Frm.chkModel4.CheckState = CheckState.Checked Then selectedModel = 4
+                Dim TotAmt As Double
+                If Frm.chkModel1.CheckState = CheckState.Checked Then selectedModel = 1 : Frm.txtTotAmt.EditValue = Frm.txtFinalPrice1.EditValue
+                If Frm.chkModel2.CheckState = CheckState.Checked Then selectedModel = 2 : Frm.txtTotAmt.EditValue = Frm.txtFinalPrice2.EditValue
+                If Frm.chkModel3.CheckState = CheckState.Checked Then selectedModel = 3 : Frm.txtTotAmt.EditValue = Frm.txtFinalPrice3.EditValue
+                If Frm.chkModel4.CheckState = CheckState.Checked Then selectedModel = 4 : Frm.txtTotAmt.EditValue = Frm.txtFinalPrice4.EditValue
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder,selectedModel", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0) & "," & selectedModel)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder,selectedModel,TotAmt", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0) & "," & selectedModel)
                         ID = sGuid : sID = ID
                     Case FormMode.EditRecord
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
@@ -279,7 +277,11 @@ Public Class CusOfferOrderKitchen
                     If sResultF = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς στο Έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
                 If sResult = True Then
-                    If UpdateProjectFields() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του έργου.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    ' Πάγκος
+                    If UpdateProjectBench() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του πάγκου στο έργο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Dim Projects As New Projects
+                    Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, sIsOrder, , True)
+
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Καταχώρηση Εξοπλισμών
                     If Mode = FormMode.NewRecord Then
@@ -310,6 +312,7 @@ Public Class CusOfferOrderKitchen
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
     Public Sub SavePhotoRecord(ByVal sID As String, ByVal LocalMode As Integer)
         Dim sResult As Boolean
         Dim sGuid As String
@@ -357,7 +360,8 @@ Public Class CusOfferOrderKitchen
 
     End Sub
 
-    Private Function UpdateProjectFields() As Boolean
+    ' Πάγκος
+    Private Function UpdateProjectBench() As Boolean
         Try
             Dim sSQL As String
             If Frm.txtCUSOfferOrderFilename.EditValue = Nothing Then Return True
@@ -421,6 +425,9 @@ Public Class CusOfferOrderKitchen
                 If DcodeIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 If supIDIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
+                Dim Projects As New Projects
+                Projects.UpdateProject(toSQLValueS(Frm.cboTRANSH.EditValue.ToString), True)
+
                 If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Else
@@ -428,6 +435,7 @@ Public Class CusOfferOrderKitchen
         End If
 
     End Sub
+
     Public Sub ConvertToOrder()
         Try
             Dim OrderID As String
@@ -529,9 +537,6 @@ Public Class CusOfferOrderKitchen
         Frm.txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
         Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.EmpID.ToString.ToUpper)
         Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
-        Frm.txtTransp.EditValue = ProgProps.KitchenTransp
-        Frm.txtMeasurement.EditValue = ProgProps.KitchenMeasurement
-        Frm.txtRemove.EditValue = ProgProps.KitchenRemove
         Frm.LabelControl1.Text = ""
         Frm.cboModel1.SetEditValue(-1) : Frm.cboModel2.SetEditValue(-1)
         Frm.cboModel3.SetEditValue(-1) : Frm.cboModel4.SetEditValue(-1)

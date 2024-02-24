@@ -105,20 +105,20 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Δεν έχετε επιλέξει με ποιο μοντέλο θα προχωρήσετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
-                    Dim FinalPrice As Double
-                    Dim TotAmt As Double = GetAmt(f.txtTotAmt)
-                    If isOrder = False Then
-                        If f.chkModel1.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice1)
-                        If f.chkModel2.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice2)
-                        If f.chkModel3.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice3)
-                        If f.chkModel4.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice4)
-                    Else
-                        FinalPrice = GetAmt(f.txtTotalErmariaVat)
-                    End If
-                    If FinalPrice <> TotAmt Then
-                        XtraMessageBox.Show("Το ποσό πώλησης έργου είναι διαφορετικό από το σύνολο της " & IIf(isOrder = False, " προσφοράς", " παραγγελίας"), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Return False
-                    End If
+                    'Dim FinalPrice As Double
+                    'Dim TotAmt As Double = GetAmt(f.txtTotAmt)
+                    'If isOrder = False Then
+                    '    If f.chkModel1.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice1)
+                    '    If f.chkModel2.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice2)
+                    '    If f.chkModel3.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice3)
+                    '    If f.chkModel4.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice4)
+                    'Else
+                    '    FinalPrice = GetAmt(f.txtTotalErmariaVat)
+                    'End If
+                    'If FinalPrice <> TotAmt Then
+                    '    XtraMessageBox.Show("Το ποσό πώλησης έργου είναι διαφορετικό από το σύνολο της " & IIf(isOrder = False, " προσφοράς", " παραγγελίας"), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    '    Return False
+                    'End If
                     If isOrder = True Then
                         Dim sSQL As String
                         Dim Cmd As SqlCommand

@@ -353,7 +353,7 @@ Partial Public Class RepCUSAnalysis
         '
         'XrTableCell10
         '
-        Me.XrTableCell10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ΕΝΑΝΤΙ_CASH]")})
+        Me.XrTableCell10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PAYINADVANCE_CASH]")})
         Me.XrTableCell10.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell10.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell10.Multiline = True
@@ -382,7 +382,7 @@ Partial Public Class RepCUSAnalysis
         '
         'XrTableCell12
         '
-        Me.XrTableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[ΕΝΑΝΤΙ_BANK]")})
+        Me.XrTableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PAYINADVANCE_BANK]")})
         Me.XrTableCell12.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell12.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell12.Multiline = True
@@ -409,7 +409,7 @@ Partial Public Class RepCUSAnalysis
         Me.XrTableCell13.StylePriority.UseFont = False
         Me.XrTableCell13.StylePriority.UseForeColor = False
         Me.XrTableCell13.StylePriority.UseTextAlignment = False
-        Me.XrTableCell13.Text = "ΕΞΟΦΛΗΣΗ"
+        Me.XrTableCell13.Text = "ΥΠΟΛΟΙΠΟ"
         Me.XrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft
         Me.XrTableCell13.Weight = 1.3939126781769855R
         '

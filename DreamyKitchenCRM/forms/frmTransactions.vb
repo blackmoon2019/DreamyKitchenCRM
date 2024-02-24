@@ -208,7 +208,7 @@ Public Class frmTransactions
         If Me.IsActive = False Then Exit Sub
         CalculateTotAmt()
     End Sub
-    Private Sub txtDebitCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDebitCost.EditValueChanged
+    Private Sub txtDebitCost_EditValueChanged(sender As Object, e As EventArgs)
         If Me.IsActive = False Then Exit Sub
         CalculateTotAmt()
     End Sub
@@ -255,8 +255,8 @@ Public Class frmTransactions
     End Sub
     Private Sub CalculateTotAmt()
         Dim ExtraCost As Double, Debit As Double, Devices As Double, BenchSalesPrice As Double
-        If txtExtraCost.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Or txtDebitCost.EditValue Is Nothing Then Exit Sub
-        Debit = DbnullToZero(txtDebitCost) : Devices = DbnullToZero(txtDevicesCost) : ExtraCost = DbnullToZero(txtExtraCost) : BenchSalesPrice = DbnullToZero(txtbenchSalesPrice)
+        If txtExtraCost.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Then Exit Sub
+        Devices = DbnullToZero(txtDevicesCost) : ExtraCost = DbnullToZero(txtExtraCost) : BenchSalesPrice = DbnullToZero(txtbenchSalesPrice)
         txtTotAmt.EditValue = Debit + Devices + ExtraCost + BenchSalesPrice
     End Sub
 
@@ -295,6 +295,7 @@ Public Class frmTransactions
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
+            txtExtraCost.EditValue = GetExtraCost()
             Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
         End If
     End Sub
@@ -342,18 +343,31 @@ Public Class frmTransactions
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
+            txtExtraCost.EditValue = GetExtraCost()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Function GetExtraCost() As Double
+        Try
+            Dim extracost As Double
             Dim cmd As SqlCommand = New SqlCommand("Select extracost from TRANSH WHERE ID = " & toSQLValueS(sID), CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
-            If sdr.HasRows Then
-                While sdr.Read()
-                    If sdr.IsDBNull(sdr.GetOrdinal("extracost")) = False Then txtExtraCost.EditValue = sdr.GetDecimal(sdr.GetOrdinal("extracost"))
-                End While
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("extracost")) = False Then
+                    extracost = sdr.GetDecimal(sdr.GetOrdinal("extracost"))
+                    sdr.Close()
+                    Return extracost
+                Else
+                    sdr.Close()
+                    Return 0
+                End If
             End If
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Sub
+    End Function
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         If Me.IsActive = False Then Exit Sub
         Select Case TabPane1.SelectedPageIndex

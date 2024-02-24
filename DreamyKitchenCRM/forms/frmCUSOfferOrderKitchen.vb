@@ -127,7 +127,7 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub txtTotalErmariaVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalErmariaVat.EditValueChanged
         Dim TotalErmariaPrice As Double
         TotalErmariaPrice = (txtTotalErmariaVat.EditValue * (ProgProps.VAT / 100)) + txtTotalErmariaVat.EditValue
-        txtTotalErmariaPice.EditValue = TotalErmariaPrice
+        txtTotalErmariaPrice.EditValue = TotalErmariaPrice
     End Sub
 
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
@@ -912,8 +912,6 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
-        txtTotAmt.EditValue = cboTRANSH.GetColumnValue("DebitCost")
-        txtTotalErmariaVat.EditValue = cboTRANSH.GetColumnValue("DebitCost")
     End Sub
 
     Private Sub chkModel1_CheckStateChanged(sender As Object, e As EventArgs) Handles chkModel1.CheckStateChanged
@@ -926,6 +924,7 @@ Public Class frmCUSOfferOrderKitchen
             LDiscount1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDiscount1.AppearanceItemCaption.Options.UseFont = True
             LInitialPrice1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LInitialPrice1.AppearanceItemCaption.Options.UseFont = True
             LFinalPrice1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LFinalPrice1.AppearanceItemCaption.Options.UseFont = True
+            txtTotAmt.EditValue = txtFinalPrice1.EditValue
         Else
             LModel1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LModel1.AppearanceItemCaption.Options.UseFont = False
             LDisc1.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDisc1.AppearanceItemCaption.Options.UseFont = False
@@ -945,6 +944,7 @@ Public Class frmCUSOfferOrderKitchen
             LDiscount2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDiscount2.AppearanceItemCaption.Options.UseFont = True
             LInitialPrice2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LInitialPrice2.AppearanceItemCaption.Options.UseFont = True
             LFinalPrice2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LFinalPrice2.AppearanceItemCaption.Options.UseFont = True
+            txtTotAmt.EditValue = txtFinalPrice2.EditValue
         Else
             LModel2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LModel2.AppearanceItemCaption.Options.UseFont = False
             LDisc2.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDisc2.AppearanceItemCaption.Options.UseFont = False
@@ -964,6 +964,7 @@ Public Class frmCUSOfferOrderKitchen
             LDiscount3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDiscount3.AppearanceItemCaption.Options.UseFont = True
             LInitialPrice3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LInitialPrice3.AppearanceItemCaption.Options.UseFont = True
             LFinalPrice3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LFinalPrice3.AppearanceItemCaption.Options.UseFont = True
+            txtTotAmt.EditValue = txtFinalPrice3.EditValue
         Else
             LModel3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LModel3.AppearanceItemCaption.Options.UseFont = False
             LDisc3.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDisc3.AppearanceItemCaption.Options.UseFont = False
@@ -983,6 +984,7 @@ Public Class frmCUSOfferOrderKitchen
             LDiscount4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LDiscount4.AppearanceItemCaption.Options.UseFont = True
             LInitialPrice4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LInitialPrice4.AppearanceItemCaption.Options.UseFont = True
             LFinalPrice4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold) : LFinalPrice4.AppearanceItemCaption.Options.UseFont = True
+            txtTotAmt.EditValue = txtFinalPrice4.EditValue
         Else
             LModel4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LModel4.AppearanceItemCaption.Options.UseFont = False
             LDisc4.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Regular) : LDisc4.AppearanceItemCaption.Options.UseFont = False
@@ -1026,5 +1028,49 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
         If Mode = FormMode.NewRecord Then CusOfferOrderKitchen.FillCompanyProjects(lkupEditValue(cboCompany), chkGenOffer.CheckState, "")
     End Sub
+    Private Sub CalculateTotAmt()
+        Dim ExtraInst As Double = DbnullToZero(txtExtraInst)
+        Dim ExtraTransp As Double = DbnullToZero(txtExtraTransp)
+        Dim TotalErmariaPrice As Double = DbnullToZero(txtTotalErmariaPrice)
+        Dim TotalEquipmentPrice As Double = DbnullToZero(txtTotalDevicesPrice)
+        Dim TotalErmariaVat As Double = DbnullToZero(txtTotalErmariaVat)
+        Dim PartofVat As Double = DbnullToZero(txtPartofVat)
+        Dim TotAmt As Double = ExtraInst + ExtraTransp + TotalEquipmentPrice + IIf(PartofVat > 0, TotalErmariaVat + PartofVat, TotalErmariaPrice)
+        txtTotAmt.EditValue = TotAmt
+    End Sub
+    Private Sub txtExtraInst_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraInst.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        CalculateTotAmt()
+    End Sub
 
+    Private Sub txtExtraTransp_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraTransp.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        CalculateTotAmt()
+    End Sub
+
+    Private Sub txtTotalErmariaPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalErmariaPrice.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        CalculateTotAmt()
+    End Sub
+
+    Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        CalculateTotAmt()
+    End Sub
+
+    Private Sub txtFinalPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice1.EditValueChanged
+        txtTotAmt.EditValue = txtFinalPrice1.EditValue
+    End Sub
+
+    Private Sub txtFinalPrice2_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice2.EditValueChanged
+        txtTotAmt.EditValue = txtFinalPrice2.EditValue
+    End Sub
+
+    Private Sub txtFinalPrice3_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice3.EditValueChanged
+        txtTotAmt.EditValue = txtFinalPrice3.EditValue
+    End Sub
+
+    Private Sub txtFinalPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice4.EditValueChanged
+        txtTotAmt.EditValue = txtFinalPrice4.EditValue
+    End Sub
 End Class

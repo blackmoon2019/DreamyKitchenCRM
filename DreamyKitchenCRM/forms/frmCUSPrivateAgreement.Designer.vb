@@ -127,10 +127,6 @@ Partial Class frmCUSPrivateAgreement
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.Vw_BANKSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BANKSTableAdapter()
-        Me.txtPayoffCash = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtPayoffBank = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboCompProject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -225,10 +221,6 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LMsg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LCheckList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwBANKSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPayoffCash.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPayoffBank.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -276,8 +268,6 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControl1.Controls.Add(Me.txtCloseCash)
         Me.LayoutControl1.Controls.Add(Me.cboADR)
         Me.LayoutControl1.Controls.Add(Me.txtLegalRepresentative)
-        Me.LayoutControl1.Controls.Add(Me.txtPayoffCash)
-        Me.LayoutControl1.Controls.Add(Me.txtPayoffBank)
         Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4)
@@ -1370,6 +1360,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem42.Size = New System.Drawing.Size(491, 30)
         Me.LayoutControlItem42.Text = "Συνολική Αξία με Φ.Π.Α"
         Me.LayoutControlItem42.TextSize = New System.Drawing.Size(246, 19)
+        Me.LayoutControlItem42.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem29
         '
@@ -1416,7 +1407,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem23.Location = New System.Drawing.Point(0, 210)
         Me.LayoutControlItem23.Name = "LayoutControlItem23"
         Me.LayoutControlItem23.Size = New System.Drawing.Size(491, 30)
-        Me.LayoutControlItem23.Text = "Γενικό Σύνολο"
+        Me.LayoutControlItem23.Text = "Γενικό Σύνολο Πώλησης"
         Me.LayoutControlItem23.TextSize = New System.Drawing.Size(246, 19)
         '
         'LayoutControlItem24
@@ -1430,6 +1421,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem24.Size = New System.Drawing.Size(491, 30)
         Me.LayoutControlItem24.Text = "Έξτρα Μεταφορά"
         Me.LayoutControlItem24.TextSize = New System.Drawing.Size(246, 19)
+        Me.LayoutControlItem24.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem25
         '
@@ -1442,6 +1434,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem25.Size = New System.Drawing.Size(491, 30)
         Me.LayoutControlItem25.Text = "Έξτρα Τοποθέτηση"
         Me.LayoutControlItem25.TextSize = New System.Drawing.Size(246, 19)
+        Me.LayoutControlItem25.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlGroup3
         '
@@ -1449,7 +1442,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlGroup3.AppearanceGroup.ForeColor = System.Drawing.Color.FromArgb(CType(CType(192, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
         Me.LayoutControlGroup3.AppearanceGroup.Options.UseFont = True
         Me.LayoutControlGroup3.AppearanceGroup.Options.UseForeColor = True
-        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem15, Me.LayoutControlItem14, Me.LayoutControlItem11, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem28, Me.LayoutControlItem31, Me.LayoutControlItem16, Me.LayoutControlItem37})
+        Me.LayoutControlGroup3.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem15, Me.LayoutControlItem14, Me.LayoutControlItem11, Me.LayoutControlItem18, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem28, Me.LayoutControlItem31})
         Me.LayoutControlGroup3.Location = New System.Drawing.Point(515, 465)
         Me.LayoutControlGroup3.Name = "LayoutControlGroup3"
         Me.LayoutControlGroup3.Size = New System.Drawing.Size(501, 296)
@@ -1511,7 +1504,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem19.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 150)
         Me.LayoutControlItem19.Name = "LayoutControlItem19"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(477, 30)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(477, 90)
         Me.LayoutControlItem19.Text = "Υπόλοιπο Προκαταβολής"
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(246, 19)
         '
@@ -1607,72 +1600,6 @@ Partial Class frmCUSPrivateAgreement
         'Vw_BANKSTableAdapter
         '
         Me.Vw_BANKSTableAdapter.ClearBeforeFill = True
-        '
-        'txtPayoffCash
-        '
-        Me.txtPayoffCash.EditValue = "0,00 €"
-        Me.txtPayoffCash.Location = New System.Drawing.Point(786, 701)
-        Me.txtPayoffCash.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtPayoffCash.Name = "txtPayoffCash"
-        Me.txtPayoffCash.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPayoffCash.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPayoffCash.Properties.EditFormat.FormatString = "n2"
-        Me.txtPayoffCash.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPayoffCash.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPayoffCash.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPayoffCash.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPayoffCash.Properties.ReadOnly = True
-        Me.txtPayoffCash.Properties.Tag = "BenchExtraPrice"
-        Me.txtPayoffCash.Size = New System.Drawing.Size(226, 26)
-        Me.txtPayoffCash.StyleController = Me.LayoutControl1
-        Me.txtPayoffCash.TabIndex = 42
-        Me.txtPayoffCash.Tag = "payOffCash,0,1,2"
-        Me.txtPayoffCash.Visible = False
-        '
-        'LayoutControlItem16
-        '
-        Me.LayoutControlItem16.Control = Me.txtPayoffCash
-        Me.LayoutControlItem16.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem16.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem16.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 180)
-        Me.LayoutControlItem16.Name = "LayoutControlItem16"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(477, 30)
-        Me.LayoutControlItem16.Text = "Εξόφληση(Μετρητά)"
-        Me.LayoutControlItem16.TextSize = New System.Drawing.Size(246, 19)
-        '
-        'txtPayoffBank
-        '
-        Me.txtPayoffBank.EditValue = "0,00 €"
-        Me.txtPayoffBank.Location = New System.Drawing.Point(786, 731)
-        Me.txtPayoffBank.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtPayoffBank.Name = "txtPayoffBank"
-        Me.txtPayoffBank.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPayoffBank.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPayoffBank.Properties.EditFormat.FormatString = "n2"
-        Me.txtPayoffBank.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPayoffBank.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPayoffBank.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPayoffBank.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPayoffBank.Properties.ReadOnly = True
-        Me.txtPayoffBank.Properties.Tag = "BenchExtraPrice"
-        Me.txtPayoffBank.Size = New System.Drawing.Size(226, 26)
-        Me.txtPayoffBank.StyleController = Me.LayoutControl1
-        Me.txtPayoffBank.TabIndex = 42
-        Me.txtPayoffBank.Tag = "payOffBank,0,1,2"
-        Me.txtPayoffBank.Visible = False
-        '
-        'LayoutControlItem37
-        '
-        Me.LayoutControlItem37.Control = Me.txtPayoffBank
-        Me.LayoutControlItem37.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem37.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem37.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem37.Location = New System.Drawing.Point(0, 210)
-        Me.LayoutControlItem37.Name = "LayoutControlItem37"
-        Me.LayoutControlItem37.Size = New System.Drawing.Size(477, 30)
-        Me.LayoutControlItem37.Text = "Εξόφληση(Τράπεζα)"
-        Me.LayoutControlItem37.TextSize = New System.Drawing.Size(246, 19)
         '
         'frmCUSPrivateAgreement
         '
@@ -1779,10 +1706,6 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LMsg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LCheckList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwBANKSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPayoffCash.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPayoffBank.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -1893,8 +1816,4 @@ Partial Class frmCUSPrivateAgreement
     Friend WithEvents LLegalRepresentative As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents cmdCheckList As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents LCheckList As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents txtPayoffCash As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents txtPayoffBank As DevExpress.XtraEditors.TextEdit
-    Friend WithEvents LayoutControlItem16 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem37 As DevExpress.XtraLayout.LayoutControlItem
 End Class

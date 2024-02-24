@@ -187,15 +187,14 @@ Public Class Projects
                 Select Case Mode
                     Case FormMode.NewRecord
                         ID = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID,, "bal,Totamt", toSQLValueS(Frm2.txtDebitCost.EditValue, True) & "," & toSQLValueS(Frm2.txtDebitCost.EditValue, True))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID)
                         ' Εαν πετύχει η καταχώρηση του έργου αλλά όχι των κατηγοριών τότε όλο το έργο διαγράφεται
                         If sResult Then If Not SaveTRANSC_SMALL() Then DeleteRecord() : Exit Sub Else Frm2.txtCodeH.Text = DBQ.GetNextId("TRANSH")
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID,,,,, "bal=" & toSQLValueS(Frm2.txtDebitCost.EditValue, True) & ",Totamt=" & toSQLValueS(Frm2.txtDebitCost.EditValue, True))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSH", Frm2.LayoutControl1,,, ID)
                         ' Καταχώρηση κατηγοριών 
                         If sResult Then SaveTRANSC_SMALL()
-                        ' Όταν αλλάζει η τιμή πώλησης έργου ενημερώνεται και η τελική τιμή προσφοράς
-                        ChangeOfferAmt()
+
                 End Select
                 If sResult = True Then
                     sID = ID
@@ -212,18 +211,6 @@ Public Class Projects
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
-    End Sub
-    Private Sub ChangeOfferAmt()
-        Try
-            Using oCmd As New SqlCommand("UpdateOfferAmt", CNDB)
-                oCmd.CommandType = CommandType.StoredProcedure
-                oCmd.Parameters.AddWithValue("@transhID", ID)
-                oCmd.ExecuteNonQuery()
-            End Using
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
     End Sub
     Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
         Dim sResultF As Boolean
@@ -564,15 +551,18 @@ Public Class Projects
                         Case "90A295A1-D2A0-40B7-B260-A532B2C322AC"
                             If CountClosed > 0 Then
                                 XtraMessageBox.Show("Δεν μπορείτε να καταχωρήσετε παραπάνω από μια φορές εγγραφή Κλεισίματος. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                sdr.Close()
                                 Return False
                             End If
                         Case Else
                             If CountClosed = 0 Then
                                 XtraMessageBox.Show("Δεν μπορείτε να καταχωρήσετε άλλον τύπο πληρωμής αν  δεν έχει καταχωρηθεί πρώτα το ΚΛΕΙΣΙΜΟ. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                sdr.Close()
                                 Return False
                             End If
                     End Select
                 End If
+                sdr.Close()
             End If
             'receiveAgreementValidation  Έλεγχος αν έχει συμπληρωθεί Τιμή Πώλησης Πάγκου τότε πρέπει να έχει συμπληρωθεί υποχρεωτικά και η Τιμή Αγοράς Πάγκου
             If receiveAgreementValidation Then
@@ -590,7 +580,7 @@ Public Class Projects
                 'End If
             End If
             'BalValidation
-            If BalValidation Then
+            If BalValidation And AgreementExist() = True Then
                 Dim amtD As Double, Bal As Double
                 amtD = Frm.txtamtD.EditValue : Bal = Frm.txtBal.EditValue
                 If amtD > Bal Then
@@ -620,9 +610,35 @@ Public Class Projects
                 End If
             End If
 
-                Return True
+            Return True
 
 
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+    'Ελεγχος αν υπάρχει Συμφωνητικό στο έργο
+    Private Function AgreementExist() As Boolean
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Try
+            sSQL = "SELECT ID FROM [AGREEMENT] WHERE transhID = " & toSQLValueS(ID)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then
+                    sdr.Close()
+                    Return False
+                Else
+                    sdr.Close()
+                    Return True
+                End If
+            Else
+                sdr.Close()
+                Return False
+            End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
@@ -884,4 +900,50 @@ Public Class Projects
     Public Function GetNextID() As Integer
         Return DBQ.GetNextId("TRANSH")
     End Function
+    Public Sub UpdateProject(ByVal transhID As String, ByVal IsOrder As Boolean, Optional ByVal KDevices As Boolean = False, Optional ByVal GrandTotal As Boolean = False)
+        Dim sSQL As String
+        Try
+
+            ' Συσκευές
+            If KDevices = True Then
+                sSQL = "UPDATE TRANSH SET DevicesCost = sum(Price) 
+                        from CCT_ORDERS_KITCHEN_DEVICES D
+                        inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
+                        inner join TRANSH  T on T.ID = K.transhID 
+                        WHERE selected = 1 and T.ID =  " & toSQLValueS(transhID)
+            End If
+            ' Γενικό σύνολο πώλησης
+            If GrandTotal Then
+                sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)	
+	                    FROM TRANSH T
+	                    left join CCT_ORDERS_KITCHEN K on K.transhID = T.ID and K.isOrder =1
+	                    left join CCT_ORDERS_DOOR D on D.transhID = T.ID and D.isOrder =1
+	                    left join CCT_ORDERS_CLOSET  C on C.transhID = T.ID and C.isOrder =1
+	                    left join CCT_ORDERS_SPECIAL_CONSTR   SC on SC.transhID = T.ID and SC.isOrder =1
+	                    where T.ID = " & toSQLValueS(transhID)
+            End If
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            ' Όταν αλλάζει η τιμή πώλησης έργου ενημερώνεται και η τελική τιμή προσφοράς
+            If IsOrder Then ChangeOfferAmt(transhID)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+    Private Sub ChangeOfferAmt(ByVal transhID As String)
+        Try
+            Using oCmd As New SqlCommand("UpdateOfferAmt", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@transhID", transhID)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
 End Class

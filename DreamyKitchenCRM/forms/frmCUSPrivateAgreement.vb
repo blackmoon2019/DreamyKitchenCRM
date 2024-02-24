@@ -352,7 +352,6 @@ Public Class frmCUSPrivateAgreement
         Frm.ShowDialog()
         CusPrivateAgreement.GetKLeisimoAmt(cboTRANSH.EditValue.ToString)
         CusPrivateAgreement.GetPayInAdvanceAmt(cboTRANSH.EditValue.ToString)
-        CusPrivateAgreement.GetPayOFFAmt(cboTRANSH.EditValue.ToString)
         LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
     End Sub
     Private Sub GetCreditAmountsFromProject()
@@ -372,9 +371,6 @@ Public Class frmCUSPrivateAgreement
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-
-
-
 
     Private Sub cmdCheckList_Click(sender As Object, e As EventArgs) Handles cmdCheckList.Click
         Dim frmAgreementCheckList As New frmAgreementCheckList

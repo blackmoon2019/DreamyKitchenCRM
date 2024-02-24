@@ -150,7 +150,7 @@ and "vw_CCT_ORDERS_KITCHEN_EQUIPMENT"."selected" = 1</value>
        "vw_CCT_ORDERS_KITCHEN"."TotalEquipmentPrice",
        "vw_CCT_ORDERS_KITCHEN"."ID",
        "vw_CCT_ORDERS_KITCHEN"."visibleVat",
-       "vw_CCT_ORDERS_KITCHEN"."TotalErmariaPice",
+       "vw_CCT_ORDERS_KITCHEN"."TotalErmariaPrice",
  	 "vw_CCT_ORDERS_KITCHEN"."ExtraInst",
 	 "vw_CCT_ORDERS_KITCHEN"."ExtraTransp",
 	 "vw_CCT_ORDERS_KITCHEN"."GENTOT",
