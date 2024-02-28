@@ -288,6 +288,10 @@ Public Class frmScroller
                     Case "vw_CCT_OFFERS_SPECIAL_CONSTR" : sSQL = "DELETE FROM CCT_OFFERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT_ORDERS_SPECIAL_CONSTR" : sSQL = "DELETE FROM CCT_ORDERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT_ORDERS_KITCHEN"
+                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
                         sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                         Using oCmd As New SqlCommand(sSQL, CNDB)
                             oCmd.ExecuteNonQuery()
@@ -403,6 +407,48 @@ Public Class frmScroller
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function CheckIfOrderExist(ByVal sID As String) As Boolean
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Try
+            sSQL = "SELECT ID FROM CCT_ORDERS_KITCHEN WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then sdr.Close: Return True Else sdr.Close:Return False
+            Else
+                sdr.Close() :
+                Return False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+    Private Function CheckIfAgreementExist(ByVal sID As String) As Boolean
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Try
+            sSQL = "select A.ID 
+                    from AGREEMENT A
+                    INNER JOIN TRANSH T ON T.ID=A.transhID 
+                    INNER JOIN CCT_ORDERS_KITCHEN  K ON K.ID=A.transhID  = " & toSQLValueS(sID)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then sdr.Close() : Return True Else sdr.Close() : Return False
+            Else
+                sdr.Close()
+                Return False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+
     'Διαγραφη Εγγραφών
     Private Sub DeleteBatchRecords()
         Dim sSQL As String
@@ -1132,8 +1178,10 @@ Public Class frmScroller
                 Else
                     frmCUSOfferOrderKitchen.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
                     frmCUSOfferOrderKitchen.IsOrder = 0
+
                 End If
                 frmCUSOfferOrderKitchen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+
                 frmCUSOfferOrderKitchen.MdiParent = frmMain
                 frmCUSOfferOrderKitchen.Mode = FormMode.EditRecord
                 frmCUSOfferOrderKitchen.Scroller = GridView1

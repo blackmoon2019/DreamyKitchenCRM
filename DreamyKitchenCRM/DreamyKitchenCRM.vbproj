@@ -1407,6 +1407,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-purchase-order-24.png" />
     <None Include="Resources\icons8-papers-24.png" />
     <None Include="Resources\icons8-checklist-24.png" />
     <None Include="Resources\icons8-clear-filters-16.png" />

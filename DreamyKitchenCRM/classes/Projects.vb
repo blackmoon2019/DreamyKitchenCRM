@@ -900,21 +900,22 @@ Public Class Projects
     Public Function GetNextID() As Integer
         Return DBQ.GetNextId("TRANSH")
     End Function
-    Public Sub UpdateProject(ByVal transhID As String, ByVal IsOrder As Boolean, Optional ByVal KDevices As Boolean = False, Optional ByVal GrandTotal As Boolean = False)
+    Public Sub UpdateProject(ByVal transhID As String, Optional ByVal KDevices As Boolean = False, Optional ByVal GrandTotal As Boolean = False)
         Dim sSQL As String
         Try
 
             ' Συσκευές
             If KDevices = True Then
-                sSQL = "UPDATE TRANSH SET DevicesCost = sum(Price) 
+                sSQL = "UPDATE TRANSH SET DevicesCost = (select sum(Price) 
                         from CCT_ORDERS_KITCHEN_DEVICES D
                         inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
                         inner join TRANSH  T on T.ID = K.transhID 
-                        WHERE selected = 1 and T.ID =  " & toSQLValueS(transhID)
+                        WHERE T.ID =  " & toSQLValueS(transhID) & ") where TRANSH.ID =  " & toSQLValueS(transhID)
             End If
             ' Γενικό σύνολο πώλησης
             If GrandTotal Then
-                sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)	
+                sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)	,
+                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)) - (Select isnull(sum(amt),0) from TRANSD where transhID = 	T.ID)
 	                    FROM TRANSH T
 	                    left join CCT_ORDERS_KITCHEN K on K.transhID = T.ID and K.isOrder =1
 	                    left join CCT_ORDERS_DOOR D on D.transhID = T.ID and D.isOrder =1
@@ -924,20 +925,6 @@ Public Class Projects
             End If
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL, CNDB)
-                oCmd.ExecuteNonQuery()
-            End Using
-            ' Όταν αλλάζει η τιμή πώλησης έργου ενημερώνεται και η τελική τιμή προσφοράς
-            If IsOrder Then ChangeOfferAmt(transhID)
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
-
-    End Sub
-    Private Sub ChangeOfferAmt(ByVal transhID As String)
-        Try
-            Using oCmd As New SqlCommand("UpdateOfferAmt", CNDB)
-                oCmd.CommandType = CommandType.StoredProcedure
-                oCmd.Parameters.AddWithValue("@transhID", transhID)
                 oCmd.ExecuteNonQuery()
             End Using
         Catch ex As Exception

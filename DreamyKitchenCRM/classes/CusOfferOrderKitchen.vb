@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraEditors
+Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
 
@@ -54,6 +55,7 @@ Public Class CusOfferOrderKitchen
             Frm.LofferAccepted.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LGenOffer.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LcmdNewRecord.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LcmdOrder.Visibility = Utils.LayoutVisibility.Never
         Else
             Frm.LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
             Frm.LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
@@ -64,7 +66,7 @@ Public Class CusOfferOrderKitchen
             Frm.LPrivateAgreement.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.TabNavigationPage3.PageVisible = False
             Frm.TabNavigationPage4.PageVisible = False
-
+            Frm.LcmdOrder.Visibility = Utils.LayoutVisibility.Always
         End If
         If Frm.cboCompany.EditValue Is Nothing Then Frm.cmdCompCollection.Enabled = False
         Select Case Mode
@@ -90,6 +92,7 @@ Public Class CusOfferOrderKitchen
                     Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                     Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
                     Frm.txtNotes.EditValue = ProgProps.CUS_NOTES
+                    Frm.cmdOrder.Enabled = False
                 End If
 
 
@@ -103,11 +106,14 @@ Public Class CusOfferOrderKitchen
                                                        "where [OFFER].id = " & toSQLValueS(ID), sFields)
 
                     If sFields("OrderID") <> "" Then
+                        Frm.orderID = sFields("OrderID")
                         Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                         Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False
                         Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                         Frm.txtCUSOfferOrderFilename.Properties.Buttons.Item(0).Enabled = False
                         Frm.txtCUSOfferOrderFilename.Properties.Buttons.Item(2).Enabled = False
+                    Else
+                        Frm.cmdOrder.Enabled = False
                     End If
                     If sFields("selectedModel") = 1 Then Frm.chkModel1.CheckState = CheckState.Checked
                     If sFields("selectedModel") = 2 Then Frm.chkModel2.CheckState = CheckState.Checked
@@ -261,11 +267,11 @@ Public Class CusOfferOrderKitchen
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder,selectedModel,TotAmt", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0) & "," & selectedModel)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder,selectedModel,TotAmt", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0) & "," & selectedModel & "," & toSQLValue(Frm.txtTotAmt, True))
                         ID = sGuid : sID = ID
                     Case FormMode.EditRecord
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, ID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0) & ",selectedModel = " & selectedModel)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_KITCHEN", Frm.LayoutControl1,,, ID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0) & ",selectedModel = " & selectedModel & ",TotAmt = " & toSQLValue(Frm.txtTotAmt, True))
                         sGuid = ID : sID = ID
                 End Select
 
@@ -280,7 +286,7 @@ Public Class CusOfferOrderKitchen
                     ' Πάγκος
                     If UpdateProjectBench() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του πάγκου στο έργο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Dim Projects As New Projects
-                    Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, sIsOrder, , True)
+                    If sIsOrder = True Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString,  , True)
 
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Καταχώρηση Εξοπλισμών
@@ -288,9 +294,11 @@ Public Class CusOfferOrderKitchen
                         Frm.GridView1.PopulateColumns() : Frm.GridView2.PopulateColumns()
                         Frm.TabNavigationPage2.Enabled = True
                         InsertSelectedRows(False)
-                        LoadForms.RestoreLayoutFromXml(Frm.GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
-                        LoadForms.RestoreLayoutFromXml(Frm.GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def")
-                        If sIsOrder = False Then Frm.cmdConvertToOrder.Enabled = True : Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                        If sIsOrder = False Then
+                            Frm.cmdConvertToOrder.Enabled = True
+                            Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                            Frm.LcmdOrder.Visibility = Utils.LayoutVisibility.Always
+                        End If
                         Frm.cmdPrintOffer.Enabled = True
                     End If
                     Mode = FormMode.EditRecord
@@ -420,13 +428,13 @@ Public Class CusOfferOrderKitchen
                     End If
                 End If
             Next
-
+            If Frm.GridView1.Columns.Item("price").SummaryItem.SummaryValue IsNot Nothing Then Frm.txtTotalDevicesPrice.EditValue = Frm.GridView1.Columns.Item("price").SummaryItem.SummaryValue
             If DcodeIsEmpty = True Or supIDIsEmpty = True Then
                 If DcodeIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Κωδικούς συσκευών", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 If supIDIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
                 Dim Projects As New Projects
-                Projects.UpdateProject(toSQLValueS(Frm.cboTRANSH.EditValue.ToString), True)
+                Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, True)
 
                 If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
@@ -458,15 +466,18 @@ Public Class CusOfferOrderKitchen
                 End Using
 
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Frm.orderID = OrderID
                 'cmdConvertToOrder.Enabled = False
                 Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False
                 Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                Frm.cmdOrder.Enabled = True
                 If XtraMessageBox.Show("Θέλετε να δείτε την παραγγελία ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
                     frmCUSOfferOrderKitchen.ID = OrderID
                     frmCUSOfferOrderKitchen.Mode = FormMode.EditRecord
                     frmCUSOfferOrderKitchen.IsOrder = True
+                    frmCUSOfferOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
                     frmCUSOfferOrderKitchen.ShowDialog()
                 End If
             End If

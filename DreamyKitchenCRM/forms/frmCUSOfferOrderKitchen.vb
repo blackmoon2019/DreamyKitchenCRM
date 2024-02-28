@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports DevExpress.PivotGrid.OLAP
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
@@ -10,6 +11,7 @@ Public Class frmCUSOfferOrderKitchen
     Private CusOfferOrderKitchen As New CusOfferOrderKitchen
     Private ManageCbo As New CombosManager
     Private sID As String
+    Private sOrderID As String
     Private sBaseCat As Integer
     Private sIsOrder As Boolean
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
@@ -35,6 +37,12 @@ Public Class frmCUSOfferOrderKitchen
             Return sIsOrder
         End Get
     End Property
+    Public WriteOnly Property orderID As String
+        Set(value As String)
+            sOrderID = value
+        End Set
+    End Property
+
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
@@ -420,6 +428,8 @@ Public Class frmCUSOfferOrderKitchen
             Case 1
                 CusOfferOrderKitchen.LoadEquipments()
                 If sIsOrder = True Then CusOfferOrderKitchen.LoadDevices()
+                LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
+                LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def")
 
             Case 2 : If sID IsNot Nothing Then Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(sID))
             Case 3
@@ -462,6 +472,7 @@ Public Class frmCUSOfferOrderKitchen
                     If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc1.EditValue / 100
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
+                    FinalPrice = FinalPrice + (FinalPrice * (ProgProps.VAT / 100))
                     txtInitialPrice1.EditValue = InitialPrice
                     txtDiscount1.EditValue = Discount
                     txtFinalPrice1.EditValue = FinalPrice
@@ -473,6 +484,7 @@ Public Class frmCUSOfferOrderKitchen
                     If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc2.EditValue / 100
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
+                    FinalPrice = FinalPrice + (FinalPrice * (ProgProps.VAT / 100))
                     txtInitialPrice2.EditValue = InitialPrice
                     txtDiscount2.EditValue = Discount
                     txtFinalPrice2.EditValue = FinalPrice
@@ -484,6 +496,7 @@ Public Class frmCUSOfferOrderKitchen
                     If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc3.EditValue / 100
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
+                    FinalPrice = FinalPrice + (FinalPrice * (ProgProps.VAT / 100))
                     txtInitialPrice3.EditValue = InitialPrice
                     txtDiscount3.EditValue = Discount
                     txtFinalPrice3.EditValue = FinalPrice
@@ -495,6 +508,7 @@ Public Class frmCUSOfferOrderKitchen
                     If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountKitchen / 100 Else Disc = txtDisc4.EditValue / 100
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
+                    FinalPrice = FinalPrice + (FinalPrice * (ProgProps.VAT / 100))
                     txtInitialPrice4.EditValue = InitialPrice
                     txtDiscount4.EditValue = Discount
                     txtFinalPrice4.EditValue = FinalPrice
@@ -1032,10 +1046,10 @@ Public Class frmCUSOfferOrderKitchen
         Dim ExtraInst As Double = DbnullToZero(txtExtraInst)
         Dim ExtraTransp As Double = DbnullToZero(txtExtraTransp)
         Dim TotalErmariaPrice As Double = DbnullToZero(txtTotalErmariaPrice)
-        Dim TotalEquipmentPrice As Double = DbnullToZero(txtTotalDevicesPrice)
+        Dim TotalDevicesPrice As Double = DbnullToZero(txtTotalDevicesPrice)
         Dim TotalErmariaVat As Double = DbnullToZero(txtTotalErmariaVat)
         Dim PartofVat As Double = DbnullToZero(txtPartofVat)
-        Dim TotAmt As Double = ExtraInst + ExtraTransp + TotalEquipmentPrice + IIf(PartofVat > 0, TotalErmariaVat + PartofVat, TotalErmariaPrice)
+        Dim TotAmt As Double = ExtraInst + ExtraTransp + TotalDevicesPrice + IIf(PartofVat > 0, TotalErmariaVat + PartofVat, TotalErmariaPrice)
         txtTotAmt.EditValue = TotAmt
     End Sub
     Private Sub txtExtraInst_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraInst.EditValueChanged
@@ -1072,5 +1086,24 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub txtFinalPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice4.EditValueChanged
         txtTotAmt.EditValue = txtFinalPrice4.EditValue
+    End Sub
+
+    Private Sub cmdOrder_Click(sender As Object, e As EventArgs) Handles cmdOrder.Click
+        Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
+        frmCUSOfferOrderKitchen.ID = sOrderID
+        frmCUSOfferOrderKitchen.Mode = FormMode.EditRecord
+        frmCUSOfferOrderKitchen.IsOrder = True
+        frmCUSOfferOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+        frmCUSOfferOrderKitchen.ShowDialog()
+
+    End Sub
+
+    Private Sub txtTotalDevicesPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalDevicesPrice.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        CalculateTotAmt()
+    End Sub
+
+    Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
+        'If e.Column.FieldName <> "selected" Then GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "checked", 1)
     End Sub
 End Class
