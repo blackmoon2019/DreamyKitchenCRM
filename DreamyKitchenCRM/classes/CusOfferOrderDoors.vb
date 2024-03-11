@@ -51,7 +51,7 @@ Public Class CusOfferOrderDoors
             Frm.LGroupOrderDetails1.Text = "Στοιχεία Προσφοράς"
             Frm.LGroupOrderDetails2.Text = "Στοιχεία Προσφοράς"
             Frm.Ldtpresentation.Text = "Ημερ/νία Προσφοράς"
-            Frm.LCost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm..Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.TabNavigationPage2.PageVisible = False
             Frm.TabNavigationPage3.PageVisible = False
         End If
