@@ -45,7 +45,7 @@ Public Class CombosManager
     End Sub
     Public Sub ManageTRANSHSmall(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, ByVal CusID As Guid, Optional ByVal HideCompany As Boolean = False,
                                  Optional ByVal EmpID As Guid = Nothing, Optional ByVal CompID As Guid = Nothing, Optional ByVal CompProjectID As Guid = Nothing,
-                                 Optional ByVal compProject As Integer = Nothing, Optional ByVal sIsOrder As Boolean = False)
+                                 Optional ByVal compProject As Integer = Nothing, Optional ByVal sIsOrder As Boolean = False, Optional ByVal sTransCID As Guid = Nothing)
         Dim Frm As frmProject = New frmProject()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
         Frm.Text = "Έργα Πελατών"
@@ -60,6 +60,7 @@ Public Class CombosManager
         Frm.LCompProject.Visibility = HideCompany
         Frm.LComp.Visibility = HideCompany
         Frm.HideCompanyFields = HideCompany
+        Frm.TransCID = sTransCID
         If compProject = Nothing Then Frm.chkcompProject.CheckState = CheckState.Unchecked Else Frm.chkcompProject.CheckState = CheckState.Checked : 
         Frm.chkcompProject.Enabled = False
         If CallerControl.EditValue <> Nothing Then

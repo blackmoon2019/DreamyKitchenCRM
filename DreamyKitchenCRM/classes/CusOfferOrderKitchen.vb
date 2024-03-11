@@ -39,36 +39,37 @@ Public Class CusOfferOrderKitchen
         Frm.Vw_VALUELISTITEMModelKitchenTableAdapter.Fill(Frm.DM_VALUELISTITEM1.vw_VALUELISTITEMModelKitchen)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
 
+        Prog_Prop.GetProgPROSF()
+
+        If sIsOrder = True Then
+            Frm.LOrderDetailsGroup.Text = "Στοιχεία Παραγγελίας"
+            Frm.LdtOrder.Text = "Ημερ/νία Παραγγελίας"
+            Frm.LCostDetails.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Frm.LOfferDetails.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LDevices.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LofferAccepted.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LGenOffer.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LNewRecord.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        Else
+            Frm.LOrderDetailsGroup.Text = "Στοιχεία Προσφοράς"
+            Frm.LdtOrder.Text = "Ημερ/νία Προσφοράς"
+            Frm.LarProt.Text = "Αρ. Προσφοράς"
+            Frm.LCostDetails.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LOfferDetails.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Frm.LDevices.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LPrivateAgreement.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.TabNavigationPage3.PageVisible = False
+            Frm.TabNavigationPage4.PageVisible = False
+            Frm.LOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        End If
+
     End Sub
     Public Sub LoadForm()
 
 
-        Prog_Prop.GetProgPROSF()
 
-        If sIsOrder = True Then
-            Frm.LayoutControlGroup1.Text = "Στοιχεία Παραγγελίας"
-            Frm.LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
-            Frm.LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            Frm.LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LofferAccepted.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LGenOffer.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LcmdNewRecord.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LcmdOrder.Visibility = Utils.LayoutVisibility.Never
-        Else
-            Frm.LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
-            Frm.LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
-            Frm.LayoutControlItem28.Text = "Αρ. Προσφοράς"
-            Frm.LayoutControlGroup8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LayoutControlGroup9.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            Frm.LayoutControlItem71.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LPrivateAgreement.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.TabNavigationPage3.PageVisible = False
-            Frm.TabNavigationPage4.PageVisible = False
-            Frm.LcmdOrder.Visibility = Utils.LayoutVisibility.Always
-        End If
-        If Frm.cboCompany.EditValue Is Nothing Then Frm.cmdCompCollection.Enabled = False
         Select Case Mode
             Case FormMode.NewRecord
                 Frm.txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
@@ -77,7 +78,7 @@ Public Class CusOfferOrderKitchen
                 Frm.dtOrder.EditValue = Date.Now
                 Frm.cmdPrintOffer.Enabled = False
                 Frm.TabNavigationPage2.Enabled = False
-                Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
 
                 If sIsOrder = False Then
                     Frm.txtVFinalHeight.EditValue = ProgProps.V_HEIGHT
@@ -107,26 +108,27 @@ Public Class CusOfferOrderKitchen
 
                     If sFields("OrderID") <> "" Then
                         Frm.orderID = sFields("OrderID")
-                        Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                        Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                         Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False
-                        Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                        Frm.LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                         Frm.txtCUSOfferOrderFilename.Properties.Buttons.Item(0).Enabled = False
                         Frm.txtCUSOfferOrderFilename.Properties.Buttons.Item(2).Enabled = False
                     Else
                         Frm.cmdOrder.Enabled = False
                     End If
-                    If sFields("selectedModel") = 1 Then Frm.chkModel1.CheckState = CheckState.Checked
-                    If sFields("selectedModel") = 2 Then Frm.chkModel2.CheckState = CheckState.Checked
-                    If sFields("selectedModel") = 3 Then Frm.chkModel3.CheckState = CheckState.Checked
-                    If sFields("selectedModel") = 4 Then Frm.chkModel4.CheckState = CheckState.Checked
-
+                    If sFields("selectedModel") <> "" Then
+                        If sFields("selectedModel") = 1 Then Frm.chkModel1.CheckState = CheckState.Checked
+                        If sFields("selectedModel") = 2 Then Frm.chkModel2.CheckState = CheckState.Checked
+                        If sFields("selectedModel") = 3 Then Frm.chkModel3.CheckState = CheckState.Checked
+                        If sFields("selectedModel") = 4 Then Frm.chkModel4.CheckState = CheckState.Checked
+                    End If
                 Else
                     LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[ORDER].*,ORDER_F.filename 
-                                                            from CCT_ORDERS_KITCHEN [ORDER]
-                                                            left join CCT_ORDERS_KITCHEN  [OFFER] on [OFFER].CreatedFromOfferID =  [ORDER].id  
-                                                            left join TRANSH_F  ORDER_F on ORDER_F.ownerID =  [ORDER].ID where [ORDER].id = " & toSQLValueS(ID), sFields)
+                                                        from CCT_ORDERS_KITCHEN [ORDER]
+                                                        left join CCT_ORDERS_KITCHEN  [OFFER] on [OFFER].CreatedFromOfferID =  [ORDER].id  
+                                                        left join TRANSH_F  ORDER_F on ORDER_F.ownerID =  [ORDER].ID where [ORDER].id = " & toSQLValueS(ID), sFields)
 
-                    Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                    Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                     If sFields("CreatedFromOfferID") <> "" Then
                         Frm.cboCUS.Enabled = False
                         Frm.cboCompany.Enabled = False
@@ -141,9 +143,9 @@ Public Class CusOfferOrderKitchen
                     End If
                 End If
 
-
+                If Frm.cboCompany.EditValue Is Nothing Then Frm.cmdCompCollection.Enabled = False
                 Frm.TabNavigationPage2.Enabled = True
-
+                If sFields("GenOffer") = "" Then sFields("GenOffer") = False
                 FillCusTransh(sFields("cusID"), sFields("compTrashID"), sFields("GenOffer"), sFields("transhID")) : FillCompanyProjects(sFields("compID"), sFields("GenOffer"), sFields("compTrashID"))
                 sFields = Nothing
         End Select
@@ -152,10 +154,7 @@ Public Class CusOfferOrderKitchen
 
         If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
         If Frm.chkGenOffer.CheckState = CheckState.Checked Then Frm.cmdCusCollection.Enabled = False Else Frm.cmdCusCollection.Enabled = True
-        Frm.GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
-        Frm.GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
-        Frm.GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
-        Frm.GridView1.OptionsMenu.ShowConditionalFormattingItem = True
+
 
 
     End Sub
@@ -199,7 +198,7 @@ Public Class CusOfferOrderKitchen
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
                         from vw_TRANSH t
-                        where  T.cusid = " & sCompID & "order by description")
+                        where  Iskitchen = 1 and T.cusid = " & sCompID & "order by description")
         FillCbo.TRANSH(Frm.cboCompProject, sSQL)
         Frm.LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Frm.cmdCompCollection.Enabled = True
@@ -226,6 +225,7 @@ Public Class CusOfferOrderKitchen
             Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
             Frm.cboTRANSH.EditValue = Frm.cboCompProject.EditValue
         End If
+        If sCusID <> "" Then Frm.cboCUS.EditValue = System.Guid.Parse(sCusID.Replace("'", ""))
         If sTranshID <> "" Then Frm.cboTRANSH.EditValue = System.Guid.Parse(sTranshID)
     End Sub
     Private Function GetBaseCatID() As String
@@ -285,10 +285,6 @@ Public Class CusOfferOrderKitchen
                 If sResult = True Then
                     ' Πάγκος
                     If UpdateProjectBench() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του πάγκου στο έργο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Dim Projects As New Projects
-                    If sIsOrder = True Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString,  , True)
-
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Καταχώρηση Εξοπλισμών
                     If Mode = FormMode.NewRecord Then
                         Frm.GridView1.PopulateColumns() : Frm.GridView2.PopulateColumns()
@@ -296,23 +292,18 @@ Public Class CusOfferOrderKitchen
                         InsertSelectedRows(False)
                         If sIsOrder = False Then
                             Frm.cmdConvertToOrder.Enabled = True
-                            Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-                            Frm.LcmdOrder.Visibility = Utils.LayoutVisibility.Always
+                            Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                            Frm.LOrder.Visibility = Utils.LayoutVisibility.Always
                         End If
                         Frm.cmdPrintOffer.Enabled = True
                     End If
-                    Mode = FormMode.EditRecord
                     If sIsOrder = True Then
-                        Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
-                        HasKitchen = Frm.cboTRANSH.GetColumnValue("Iskitchen")
-                        HasCloset = Frm.cboTRANSH.GetColumnValue("Iscloset")
-                        HasDoors = Frm.cboTRANSH.GetColumnValue("Isdoor")
-                        HasSc = Frm.cboTRANSH.GetColumnValue("Issc")
-                        If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                            XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                            Exit Sub
-                        End If
+                        Dim Projects As New Projects
+                        ' Ενημέρωση ποσών στο έργο
+                        Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True)
                     End If
+                    Mode = FormMode.EditRecord
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             End If
 
@@ -469,8 +460,8 @@ Public Class CusOfferOrderKitchen
                 Frm.orderID = OrderID
                 'cmdConvertToOrder.Enabled = False
                 Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False
-                Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                Frm.LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
                 Frm.cmdOrder.Enabled = True
                 If XtraMessageBox.Show("Θέλετε να δείτε την παραγγελία ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
@@ -548,7 +539,7 @@ Public Class CusOfferOrderKitchen
         Frm.txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_KITCHEN")
         Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.EmpID.ToString.ToUpper)
         Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
-        Frm.LabelControl1.Text = ""
+        Frm.LblMsg.Text = ""
         Frm.cboModel1.SetEditValue(-1) : Frm.cboModel2.SetEditValue(-1)
         Frm.cboModel3.SetEditValue(-1) : Frm.cboModel4.SetEditValue(-1)
         Frm.dtOrder.EditValue = Date.Now
@@ -577,6 +568,6 @@ Public Class CusOfferOrderKitchen
                      where equipmentCatID='8AA21DC8-7D98-4596-8B73-9E664E955FFB' ORDER BY NAME")
         Frm.TabNavigationPage2.Enabled = False
         'cmdConvertToOrder.Enabled = False
-        Frm.LayoutControlItem85.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
     End Sub
 End Class

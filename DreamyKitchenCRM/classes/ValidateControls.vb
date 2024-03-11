@@ -202,6 +202,10 @@ Public Class ValidateControls
                 Case "frmCUSOfferOrderCloset"
                     Dim f As frmCUSOfferOrderCloset = frm
                     ' 1st Rule
+                    If f.chkGenOffer.CheckState = CheckState.Checked And f.cboCompany.EditValue Is Nothing Then
+                        XtraMessageBox.Show("Έχετε επιλέξει Γενική Προσφορά εταιρίας χωρίς να επιλέξετε εταιρία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
                     If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False

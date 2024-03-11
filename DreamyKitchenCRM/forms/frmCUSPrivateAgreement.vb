@@ -1,13 +1,9 @@
 ﻿Imports System.ComponentModel
 Imports System.Data.SqlClient
-Imports System.Text
-Imports System.Text.RegularExpressions
 Imports DevExpress.Utils
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraLayout.Resizing
-Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraRichEdit.Import.Html
+
 Public Event HyperlinkClick As HyperlinkClickEventHandler
 Public Class frmCUSPrivateAgreement
     Private CusPrivateAgreement As New CusPrivateAgreement
@@ -100,10 +96,11 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
-        CusPrivateAgreement.SaveRecord(sID)
-        LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-        LCheckList.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-
+        If CusPrivateAgreement.SaveRecord(sID) = True Then
+            LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            LCheckList.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Mode = FormMode.EditRecord
+        End If
     End Sub
 
     Private Sub frmPrivateAgreement_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
@@ -185,13 +182,16 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
 
-    Private Sub txtPayinAdvance_EditValueChanged(sender As Object, e As EventArgs) Handles txtPayinAdvance.EditValueChanged
-        Dim TotalPrice As Double, Close As Double, Ypol As Double
-        If txtPayinAdvance.EditValue <> Nothing Then TotalPrice = DbnullToZero(txtPayinAdvance)
-        If txtClose.EditValue <> Nothing Then Close = DbnullToZero(txtClose)
+    Private Sub txtPayinAdvance_EditValueChanged(sender As Object, e As EventArgs) Handles txtPayinAdvanceTot.EditValueChanged
+        Dim TotalPayinAdvance As Double, Close As Double, BalPayinAdvance As Double
+        If txtPayinAdvanceTot.EditValue <> Nothing Then TotalPayinAdvance = DbnullToZero(txtPayinAdvanceTot)
+        If txtCloseBank.EditValue <> Nothing Then Close = DbnullToZero(txtCloseBank)
         If txtCloseCash.EditValue <> Nothing Then Close = Close + DbnullToZero(txtCloseCash)
-        Ypol = TotalPrice - Close
-        txtPayinAdvanceYpol.EditValue = Ypol
+        BalPayinAdvance = TotalPayinAdvance - Close
+        txtPayinAdvanceBal.EditValue = BalPayinAdvance
+        'If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then
+        '    LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        'End If
     End Sub
 
     Private Sub txtGenTot_EditValueChanged(sender As Object, e As EventArgs) Handles txtGenTot.EditValueChanged
@@ -199,110 +199,26 @@ Public Class frmCUSPrivateAgreement
         If txtGenTot.EditValue <> Nothing Then
             PayinAdvance = DbnullToZero(txtGenTot)
             PayinAdvance = PayinAdvance / 2
-            txtPayinAdvance.EditValue = PayinAdvance
+            lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & PayinAdvance & "€"
+            'txtPayinAdvance.EditValue = PayinAdvance
         End If
     End Sub
 
 
     Private Sub chkHasCloset_DoubleClick(sender As Object, e As EventArgs) Handles chkHasCloset.DoubleClick
-        Dim cmd As SqlCommand
-        Dim sdr As SqlDataReader
-        Dim oID As String = ""
-        Try
-            cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_CLOSET WHERE transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
-            sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
-            End If
-            sdr.Close()
-            If oID = "" Then Exit Sub
-            Dim frmCUSOrderCloset As frmCUSOfferOrderCloset = New frmCUSOfferOrderCloset()
-            frmCUSOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
-            frmCUSOrderCloset.ID = oID
-            frmCUSOrderCloset.IsOrder = True
-            frmCUSOrderCloset.MdiParent = frmMain
-            frmCUSOrderCloset.Mode = FormMode.EditRecord
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderCloset), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
-            frmCUSOrderCloset.Show()
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        CusPrivateAgreement.OpenOrder(3, cboTRANSH.EditValue.ToString)
     End Sub
 
     Private Sub chkHasDoors_DoubleClick(sender As Object, e As EventArgs) Handles chkHasDoors.DoubleClick
-        Dim cmd As SqlCommand
-        Dim sdr As SqlDataReader
-        Dim oID As String = ""
-        Try
-            cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_DOOR WHERE transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
-            sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
-            End If
-            sdr.Close()
-            If oID = "" Then Exit Sub
-            Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
-            frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
-            frmCUSOfferOrderDoors.IsOrder = True
-            frmCUSOfferOrderDoors.ID = oID
-            frmCUSOfferOrderDoors.IsOrder = True
-            frmCUSOfferOrderDoors.MdiParent = frmMain
-            frmCUSOfferOrderDoors.Mode = FormMode.EditRecord
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderDoors), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
-            frmCUSOfferOrderDoors.Show()
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        CusPrivateAgreement.OpenOrder(2, cboTRANSH.EditValue.ToString)
     End Sub
 
     Private Sub chkHasKitchen_DoubleClick(sender As Object, e As EventArgs) Handles chkHasKitchen.DoubleClick
-        Dim cmd As SqlCommand
-        Dim sdr As SqlDataReader
-        Dim oID As String = ""
-        Try
-            cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_KITCHEN WHERE transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
-            sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
-            End If
-            sdr.Close()
-            If oID = "" Then Exit Sub
-            Dim frmCUSOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
-            frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
-            frmCUSOrderKitchen.ID = oID
-            frmCUSOrderKitchen.IsOrder = True
-            frmCUSOrderKitchen.MdiParent = frmMain
-            frmCUSOrderKitchen.Mode = FormMode.EditRecord
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOrderKitchen), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
-            frmCUSOrderKitchen.Show()
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        CusPrivateAgreement.OpenOrder(1, cboTRANSH.EditValue.ToString)
     End Sub
 
     Private Sub chkHasSC_DoubleClick(sender As Object, e As EventArgs) Handles chkHasSC.DoubleClick
-        Dim cmd As SqlCommand
-        Dim sdr As SqlDataReader
-        Dim oID As String = ""
-        Try
-            cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_SPECIAL_CONSTR WHERE transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
-            sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
-            End If
-            sdr.Close()
-            If oID = "" Then Exit Sub
-            Dim frmCUSOfferSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
-            frmCUSOfferSpecialConstr.Text = "Έντυπο Παραγγελίας Πελατών(Έπιπλο Μπάνιου)"
-            frmCUSOfferSpecialConstr.ID = oID
-            frmCUSOfferSpecialConstr.MdiParent = frmMain
-            frmCUSOfferSpecialConstr.IsOrder = True
-            frmCUSOfferSpecialConstr.Mode = FormMode.EditRecord
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferSpecialConstr), New Point(CInt(Me.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.ClientRectangle.Height / 2 - Me.Height / 2)))
-            frmCUSOfferSpecialConstr.Show()
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        CusPrivateAgreement.OpenOrder(4, cboTRANSH.EditValue.ToString)
     End Sub
 
     Private Sub cboADR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboADR.ButtonClick
@@ -353,6 +269,7 @@ Public Class frmCUSPrivateAgreement
         CusPrivateAgreement.GetKLeisimoAmt(cboTRANSH.EditValue.ToString)
         CusPrivateAgreement.GetPayInAdvanceAmt(cboTRANSH.EditValue.ToString)
         LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+
     End Sub
     Private Sub GetCreditAmountsFromProject()
         Dim cmd As SqlCommand
@@ -361,10 +278,10 @@ Public Class frmCUSPrivateAgreement
             cmd = New SqlCommand("SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash=0 and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then txtClose.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt")) Else txtClose.EditValue = Nothing
+                If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then txtCloseBank.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt")) Else txtCloseBank.EditValue = Nothing
             Else
                 lblBank.Text = ""
-                txtClose.EditValue = "0"
+                txtCloseBank.EditValue = "0"
             End If
             sdr.Close()
         Catch ex As Exception
@@ -400,8 +317,9 @@ Public Class frmCUSPrivateAgreement
     End Function
 
     Private Sub frmCUSPrivateAgreement_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        If Valid.SChanged Then
-            CusPrivateAgreement.SaveRecord(sID)
+        If Mode = FormMode.NewRecord Then
+            XtraMessageBox.Show("Το συμφωνητικό δεν έχει αποθηκευθεί.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            e.Cancel = True
         End If
     End Sub
 End Class

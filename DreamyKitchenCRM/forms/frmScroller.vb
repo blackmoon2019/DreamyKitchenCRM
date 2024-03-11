@@ -1,11 +1,10 @@
-﻿Imports System.Windows.Forms
-Imports System.Data.SqlClient
-Imports DevExpress.XtraSplashScreen
+﻿Imports System.Data.SqlClient
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraBars
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.Utils.Menu
+Imports System.Windows.Forms
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraPrinting
@@ -14,9 +13,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.Utils
 Imports DevExpress.XtraGrid.Localization
 Imports DevExpress.XtraGrid
-Imports System.IO
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-Imports DevExpress.DataAccess
 
 Public Class frmScroller
 
@@ -206,195 +203,88 @@ Public Class frmScroller
         Try
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
             If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                Dim sID As String = toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
+
                 Select Case sDataTable
-                    Case "vw_USR" : sSQL = "DELETE FROM USR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_FILE_CAT" : sSQL = "DELETE FROM FILE_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_MAILS" : sSQL = "DELETE FROM MAILS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_RIGHTS" : sSQL = "DELETE FROM RIGHTS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        sSQL2 = "DELETE FROM FORM_RIGHTS WHERE RID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_COU" : sSQL = "DELETE FROM COU WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_AREAS" : sSQL = "DELETE FROM AREAS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_ADR" : sSQL = "DELETE FROM ADR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOY" : sSQL = "DELETE FROM DOY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_PRF" : sSQL = "DELETE FROM PRF WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_STATUS" : sSQL = "DELETE FROM STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SOURCE" : sSQL = "DELETE FROM SCR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT" : sSQL = "DELETE FROM CCT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SALERS" : sSQL = "DELETE FROM SALERS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_M" : sSQL = "DELETE FROM CCT_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_VALUELISTITEM" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_PROJECTCHECKLIST" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CAT_ERM" : sSQL = "DELETE FROM CAT_ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_ERM" : sSQL = "DELETE FROM ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_BENCH" : sSQL = "DELETE FROM BENCH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_MECH" : sSQL = "DELETE FROM MECH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_TECH_CAT" : sSQL = "DELETE FROM TECH_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_TECH_SUP" : sSQL = "DELETE FROM TECH_SUP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_VALUELIST" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_TRANSH_SMALL" : sSQL = "DELETE FROM TRANSH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_INST_ELLIPSE"
-                        Dim Cmd As SqlCommand, sdr As SqlDataReader
-                        sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
-                            " and DATEADD(ms, -DATEPART(ms, createdOn), createdOn)> " & toSQLValueS(DateTime.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "createdOn")).ToString("yyyy-MM-dd HH:mm:ss.fff"))
-                        Cmd = New SqlCommand(sSQL.ToString, CNDB)
-                        sdr = Cmd.ExecuteReader()
-                        Dim CountEllipse As Integer
-                        If (sdr.Read() = True) Then
-                            If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
-                            If CountEllipse > 0 Then
-                                XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                sdr.Close()
-                                Exit Sub
-                            Else
-                                sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                            End If
-                        Else
-                            XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            sdr.Close()
-                            Exit Sub
-                        End If
-                    Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP_M_S" : sSQL = "DELETE FROM EMP_M_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP_M" : sSQL = "DELETE FROM EMP_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP_T" : sSQL = "DELETE FROM EMP_T WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DEP" : sSQL = "DELETE FROM DEP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SALER_CAL_STATUS" : sSQL = "DELETE FROM SALER_CAL_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CONSTR_CAT" : sSQL = "DELETE FROM CONSTR_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CONSTR" : sSQL = "DELETE FROM CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_JOBS" : sSQL = "DELETE FROM JOBS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SCAN_FILE_NAMES" : sSQL = "DELETE FROM SCAN_FILE_NAMES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_PROJECT_COST" : sSQL = "DELETE FROM PROJECT_COST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_NOTES" : sSQL = "DELETE FROM NOTES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_PAY" : sSQL = "DELETE FROM PAY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SUP" : sSQL = "DELETE FROM SUP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_BUY_C" : sSQL = "DELETE FROM BUY_C WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_OFFERS" : sSQL = "DELETE FROM CCT_OFFERS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_OFFERS_CLOSET" : sSQL = "DELETE FROM CCT_OFFERS_CLOSET WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_OFFERS_DOOR" : sSQL = "DELETE FROM CCT_OFFERS_DOOR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_OFFERS_SPECIAL_CONSTR" : sSQL = "DELETE FROM CCT_OFFERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_ORDERS_SPECIAL_CONSTR" : sSQL = "DELETE FROM CCT_ORDERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_ORDERS_KITCHEN"
-                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString) = True Then
-                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
-                        End If
-                        sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM CCT_ORDERS_KITCHEN WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-
-                    Case "vw_CCT_ORDERS_DOOR" : sSQL = "DELETE FROM CCT_ORDERS_DOOR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SUP_ORDERS" : sSQL = "DELETE FROM SUP_ORDERS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EQUIPMENT" : sSQL = "DELETE FROM EQUIPMENT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EQUIPMENT_CAT" : sSQL = "DELETE FROM vw_EQUIPMENT_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DEVICES" : sSQL = "DELETE FROM DEVICES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_ORDERS_CLOSET" : sSQL = "DELETE FROM CCT_ORDERS_CLOSET WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_AGREEMENT"
-                        sSQL = "update TRANSH SET waitingForAgreement=0 where ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString)
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-
-                    Case "vw_EP_STATUS" : sSQL = "DELETE FROM EP_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_TRANS_CONSTR" : sSQL = "DELETE FROM TRANS_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOC_TYPES" : sSQL = "DELETE FROM DOC_TYPES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DMVER" : sSQL = "DELETE FROM DMVER WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SUP_PAYMENTS_H"
-                        ' Επαναφορά τιμολογίων σε απλήρωτα όπου αυτό χρειάζεται
-                        sSQL = "UPDATE BUY	SET PAID=0	FROM BUY INNER JOIN	SUP_PAYMENTS_D SD ON SD.buyID=BUY.ID WHERE SD.supPaymentHID= '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-
-                        sSQL = "DELETE FROM SUP_PAYMENTS_H WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
-                        Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
-                            oCmd.CommandType = CommandType.StoredProcedure
-                            oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-
-                    Case "vw_BUY"
-
-                        sSQL = "DELETE FROM BUY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
-                        Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
-                            oCmd.CommandType = CommandType.StoredProcedure
-                            oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-
-                    Case "vw_TRANSH"
-                        sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
-                                WHERE TRANSH.ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM TRANSD WHERE TRANSHID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM TRANSH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_OFF"
-                        sSQL = "DELETE FROM [OFFER_MECH] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFFER_SIDES] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFF_TOTAL] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFFERS] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFF_SUBOFF] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFF_DET] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFF] WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CALC" : sSQL = "DELETE FROM CALC WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CAT_SUB_ERM" : sSQL = "DELETE FROM CAT_SUB_ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-
+                    Case "vw_USR" : sSQL = "DELETE FROM USR WHERE ID = " & sID
+                    Case "vw_FILE_CAT" : sSQL = "DELETE FROM FILE_CAT WHERE ID = " & sID
+                    Case "vw_MAILS" : sSQL = "DELETE FROM MAILS WHERE ID = " & sID
+                    Case "vw_RIGHTS" : sSQL = "DELETE FROM RIGHTS WHERE ID = " & sID : sSQL2 = "DELETE FROM FORM_RIGHTS WHERE RID = " & sID
+                    Case "vw_COU" : sSQL = "DELETE FROM COU WHERE ID = " & sID
+                    Case "vw_AREAS" : sSQL = "DELETE FROM AREAS WHERE ID = " & sID
+                    Case "vw_ADR" : sSQL = "DELETE FROM ADR WHERE ID = " & sID
+                    Case "vw_DOY" : sSQL = "DELETE FROM DOY WHERE ID = " & sID
+                    Case "vw_PRF" : sSQL = "DELETE FROM PRF WHERE ID = " & sID
+                    Case "vw_STATUS" : sSQL = "DELETE FROM STATUS WHERE ID = " & sID
+                    Case "vw_SOURCE" : sSQL = "DELETE FROM SCR WHERE ID = " & sID
+                    Case "vw_CCT" : sSQL = "DELETE FROM CCT WHERE ID = " & sID
+                    Case "vw_SALERS" : sSQL = "DELETE FROM SALERS WHERE ID = " & sID
+                    Case "vw_CCT_M" : sSQL = "DELETE FROM CCT_M WHERE ID = " & sID
+                    Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = " & sID
+                    Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = " & sID
+                    Case "vw_VALUELISTITEM" : sSQL = "DELETE FROM valueListItem WHERE ID = " & sID
+                    Case "vw_PROJECTCHECKLIST" : sSQL = "DELETE FROM valueListItem WHERE ID = " & sID
+                    Case "vw_CAT_ERM" : sSQL = "DELETE FROM CAT_ERM WHERE ID = " & sID
+                    Case "vw_ERM" : sSQL = "DELETE FROM ERM WHERE ID = " & sID
+                    Case "vw_BENCH" : sSQL = "DELETE FROM BENCH WHERE ID = " & sID
+                    Case "vw_MECH" : sSQL = "DELETE FROM MECH WHERE ID = " & sID
+                    Case "vw_TECH_CAT" : sSQL = "DELETE FROM TECH_CAT WHERE ID = " & sID
+                    Case "vw_TECH_SUP" : sSQL = "DELETE FROM TECH_SUP WHERE ID = " & sID
+                    Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = " & sID
+                    Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = " & sID
+                    Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = " & sID
+                    Case "vw_VALUELIST" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = " & sID
+                    Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = " & sID
+                    Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = " & sID
+                    Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = " & sID
+                    Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = " & sID
+                    Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = " & sID
+                    Case "vw_TRANSH_SMALL" : sSQL = "DELETE FROM TRANSH WHERE ID = " & sID
+                    Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = " & sID
+                    Case "vw_INST_ELLIPSE" : DeleteInstEllipse()
+                    Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = " & sID
+                    Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = " & sID
+                    Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = " & sID
+                    Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = " & sID
+                    Case "vw_EMP_M_S" : sSQL = "DELETE FROM EMP_M_S WHERE ID = " & sID
+                    Case "vw_EMP_M" : sSQL = "DELETE FROM EMP_M WHERE ID = " & sID
+                    Case "vw_EMP_T" : sSQL = "DELETE FROM EMP_T WHERE ID = " & sID
+                    Case "vw_DEP" : sSQL = "DELETE FROM DEP WHERE ID = " & sID
+                    Case "vw_SALER_CAL_STATUS" : sSQL = "DELETE FROM SALER_CAL_STATUS WHERE ID = " & sID
+                    Case "vw_CONSTR_CAT" : sSQL = "DELETE FROM CONSTR_CAT WHERE ID = " & sID
+                    Case "vw_CONSTR" : sSQL = "DELETE FROM CONSTR WHERE ID = " & sID
+                    Case "vw_JOBS" : sSQL = "DELETE FROM JOBS WHERE ID = " & sID
+                    Case "vw_SCAN_FILE_NAMES" : sSQL = "DELETE FROM SCAN_FILE_NAMES WHERE ID = " & sID
+                    Case "vw_PROJECT_COST" : sSQL = "DELETE FROM PROJECT_COST WHERE ID = " & sID
+                    Case "vw_NOTES" : sSQL = "DELETE FROM NOTES WHERE ID = " & sID
+                    Case "vw_PAY" : sSQL = "DELETE FROM PAY WHERE ID = " & sID
+                    Case "vw_SUP" : sSQL = "DELETE FROM SUP WHERE ID = " & sID
+                    Case "vw_BUY_C" : sSQL = "DELETE FROM BUY_C WHERE ID = " & sID
+                    Case "vw_CCT_ORDERS_KITCHEN" : DeleteOrder(1)
+                    Case "vw_CCT_ORDERS_DOOR" : DeleteOrder(2)
+                    Case "vw_CCT_ORDERS_CLOSET" : DeleteOrder(3)
+                    Case "vw_CCT_ORDERS_SPECIAL_CONSTR" : DeleteOrder(4)
+                    Case "vw_SUP_ORDERS" : sSQL = "DELETE FROM SUP_ORDERS WHERE ID = " & sID
+                    Case "vw_EQUIPMENT" : sSQL = "DELETE FROM EQUIPMENT WHERE ID = " & sID
+                    Case "vw_EQUIPMENT_CAT" : sSQL = "DELETE FROM vw_EQUIPMENT_CAT WHERE ID = " & sID
+                    Case "vw_DEVICES" : sSQL = "DELETE FROM DEVICES WHERE ID = " & sID
+                    Case "vw_AGREEMENT" : DeleteAgreement()
+                    Case "vw_EP_STATUS" : sSQL = "DELETE FROM EP_STATUS WHERE ID = " & sID
+                    Case "vw_TRANS_CONSTR" : sSQL = "DELETE FROM TRANS_CONSTR WHERE ID = " & sID
+                    Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = " & sID
+                    Case "vw_DOC_TYPES" : sSQL = "DELETE FROM DOC_TYPES WHERE ID = " & sID
+                    Case "vw_DMVER" : sSQL = "DELETE FROM DMVER WHERE ID = " & sID
+                    Case "vw_SUP_PAYMENTS_H" : DeleteSupPaymentsH()
+                    Case "vw_BUY" : DeleteBuy()
+                    Case "vw_TRANSH" : DeleteTransh()
+                    Case "vw_CALC" : sSQL = "DELETE FROM CALC WHERE ID = " & sID
+                    Case "vw_CAT_SUB_ERM" : sSQL = "DELETE FROM CAT_SUB_ERM WHERE ID = " & sID
                 End Select
-
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
+                If sSQL <> "" Then
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
                 If sSQL2 <> "" Then
                     Using oCmd As New SqlCommand(sSQL2, CNDB)
                         oCmd.ExecuteNonQuery()
@@ -407,11 +297,220 @@ Public Class frmScroller
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Function CheckIfOrderExist(ByVal sID As String) As Boolean
+
+    Private Sub DeleteTransh()
+        Try
+            Dim sSQL As String
+            sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
+                                WHERE TRANSH.ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "DELETE FROM TRANSD WHERE TRANSHID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "DELETE FROM TRANSH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub DeleteBuy()
+        Try
+            Dim sSQL As String
+            sSQL = "DELETE FROM BUY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
+            Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    Private Sub DeleteSupPaymentsH()
+        Try
+            Dim sSQL As String
+            ' Επαναφορά τιμολογίων σε απλήρωτα όπου αυτό χρειάζεται
+            sSQL = "UPDATE BUY	SET PAID=0	FROM BUY INNER JOIN	SUP_PAYMENTS_D SD ON SD.buyID=BUY.ID WHERE SD.supPaymentHID= '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+            sSQL = "DELETE FROM SUP_PAYMENTS_H WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
+            Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+    'Διαγραφή Συμφωνητικού
+    Private Sub DeleteAgreement()
+        Try
+            Dim sSQL As String
+            sSQL = "update TRANSH SET waitingForAgreement=0 where ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    ' Διαγραφή έλλειψης
+    Private Sub DeleteInstEllipse()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Try
+            Dim sSQL As String
+            sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
+                " and DATEADD(ms, -DATEPART(ms, createdOn), createdOn)> " & toSQLValueS(DateTime.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "createdOn")).ToString("yyyy-MM-dd HH:mm:ss.fff"))
+            Cmd = New SqlCommand(sSQL, CNDB)
+            sdr = Cmd.ExecuteReader()
+            Dim CountEllipse As Integer
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
+                If CountEllipse > 0 Then
+                    XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    sdr.Close()
+                    Exit Sub
+                Else
+                    sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
+            Else
+                XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                sdr.Close()
+                Exit Sub
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sdr.Close()
+        End Try
+
+    End Sub
+    ' Διαγραφή παραγγελίας
+    Private Sub DeleteOrder(ByVal sMode As Int16)
+        Try
+            Dim sSQL As String
+            Select Case sMode
+                Case 1 ' Κουζίνα
+                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
+                        If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                    Else
+                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                    End If
+                    sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    sSQL = "DELETE FROM CCT_ORDERS_KITCHEN WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Case 2 ' Πόρτες
+                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
+                        If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                    Else
+                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                    End If
+                    sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    sSQL = "DELETE FROM CCT_ORDERS_DOOR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Case 3 ' Ντουλάπες
+                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
+                        If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                    Else
+                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                    End If
+                    sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    sSQL = "DELETE FROM CCT_ORDERS_CLOSET WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Case 3 ' Ειδικές Κατασκευές
+                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
+                        If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                    Else
+                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Exit Sub
+                        End If
+                    End If
+                    sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    sSQL = "DELETE FROM CCT_ORDERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+            End Select
+        Catch ex As Exception
+
+        End Try
+    End Sub
+    ' Έλεγχος αν υπάρχει παραγγελία
+    Private Function CheckIfOrderExist(ByVal sID As String, ByVal sMode As Int16) As Boolean
         Dim sSQL As String
         Dim Cmd As SqlCommand
         Try
-            sSQL = "SELECT ID FROM CCT_ORDERS_KITCHEN WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+            Select Case sMode
+                ' Κουζίνα
+                Case 1 : sSQL = "SELECT ID FROM CCT_ORDERS_KITCHEN WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+                Case 2 : sSQL = "SELECT ID FROM CCT_ORDERS_DOOR WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+                Case 3 : sSQL = "SELECT ID FROM CCT_ORDERS_CLOSET WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+                Case 4 : sSQL = "SELECT ID FROM CCT_ORDERS_SPECIAL_CONSTR WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+            End Select
             Cmd = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
@@ -426,14 +525,32 @@ Public Class frmScroller
         End Try
 
     End Function
-    Private Function CheckIfAgreementExist(ByVal sID As String) As Boolean
+    Private Function CheckIfAgreementExist(ByVal sTranshID As String, ByVal sMode As Int16) As Boolean
         Dim sSQL As String
         Dim Cmd As SqlCommand
         Try
-            sSQL = "select A.ID 
-                    from AGREEMENT A
-                    INNER JOIN TRANSH T ON T.ID=A.transhID 
-                    INNER JOIN CCT_ORDERS_KITCHEN  K ON K.ID=A.transhID  = " & toSQLValueS(sID)
+            Select Case sMode
+                Case 1 ' Κουζίνα
+                    sSQL = "select A.ID 
+                        from AGREEMENT A
+                        INNER JOIN CCT_ORDERS_KITCHEN  K ON K.transhID=A.transhID   " &
+                        " where K.TranshID = " & toSQLValueS(sTranshID)
+                Case 2 ' Πόρτες
+                    sSQL = "select A.ID 
+                        from AGREEMENT A
+                        INNER JOIN CCT_ORDERS_DOOR  D ON D.transhID=A.transhID   " &
+                        " where K.TranshID = " & toSQLValueS(sTranshID)
+                Case 3 ' Ντουλάπες
+                    sSQL = "select A.ID 
+                        from AGREEMENT A
+                        INNER JOIN CCT_ORDERS_CLOSET  C ON C.transhID=A.transhID   " &
+                        " where K.TranshID = " & toSQLValueS(sTranshID)
+                Case 4 ' Ειδικές Κατασκευές
+                    sSQL = "select A.ID 
+                        from AGREEMENT A
+                        INNER JOIN CCT_ORDERS_SPECIAL_CONSTR  SC ON SC.transhID=A.transhID  =   " &
+                        " where K.TranshID = " & toSQLValueS(sTranshID)
+            End Select
             Cmd = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
@@ -1210,10 +1327,10 @@ Public Class frmScroller
             Case "vw_CCT_ORDERS_DOOR"
                 Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
                 If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτα)"
                     frmCUSOfferOrderDoors.IsOrder = 1
                 Else
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Πόρτες)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Πόρτα)"
                     frmCUSOfferOrderDoors.IsOrder = 0
                 End If
                 frmCUSOfferOrderDoors.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -2174,12 +2291,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderCloset.Show()
             Case "vw_CCT_ORDERS_KITCHEN"
-                'Dim frmBaseCat As frmBaseCat = New frmBaseCat
-                'frmBaseCat.Text = "Τύποι Κατασκευής"
-                'frmBaseCat.ShowDialog()
-                'If frmBaseCat.BaseCat = 3 Then Exit Sub
                 Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
-                'frmCUSOfferOrderKitchen.BaseCat = frmBaseCat.BaseCat
                 If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
                     frmCUSOfferOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
                     frmCUSOfferOrderKitchen.IsOrder = 1
@@ -2193,9 +2305,7 @@ Public Class frmScroller
                 frmCUSOfferOrderKitchen.FormScroller = Me
                 frmCUSOfferOrderKitchen.FormScrollerExist = True
                 frmMain.XtraTabbedMdiManager1.FloatOnDrag = DevExpress.Utils.DefaultBoolean.True
-                '  frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 850
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-
                 frmCUSOfferOrderKitchen.Show()
             Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
                 Dim frmCUSOfferOrderSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
@@ -2216,10 +2326,10 @@ Public Class frmScroller
             Case "vw_CCT_ORDERS_DOOR"
                 Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
                 If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτα)"
                     frmCUSOfferOrderDoors.IsOrder = 1
                 Else
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Πόρτα)"
                     frmCUSOfferOrderDoors.IsOrder = 0
                 End If
                 frmCUSOfferOrderDoors.MdiParent = frmMain

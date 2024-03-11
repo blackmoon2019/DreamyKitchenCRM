@@ -1,7 +1,9 @@
 ﻿Imports DevExpress.XtraEditors
+Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
 Public Class CusOfferOrderCloset
+    Private FillCbo As New FillCombos
     Private Valid As New ValidateControls
     Private Cls As New ClearControls
     Private ID As String
@@ -20,48 +22,51 @@ Public Class CusOfferOrderCloset
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
         sIsOrder = IsOrder
-    End Sub
-    Public Sub LoadForm()
-        'TODO: This line of code loads data into the 'DM_VALUELISTITEM.vw_VALUELISTITEMCloset' table. You can move, or remove it, as needed.
+        Prog_Prop.GetProgPROSF()
+        Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
         Frm.Vw_VALUELISTITEMModelClosetTableAdapter.Fill(Frm.DM_VALUELISTITEM.vw_VALUELISTITEMModelCloset)
-        'TODO: This line of code loads data into the 'DM_TRANS.CCT_TRANSH' table. You can move, or remove it, as needed.
         Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
         Frm.Vw_CCTTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_CCT)
-        'TODO: This line of code loads data into the 'DM_VALUELISTITEM.vw_VALUELISTITEM_V2' table. You can move, or remove it, as needed.
         Frm.Vw_VALUELISTITEM_V2TableAdapter.Fill(Frm.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
-        'TODO: This line of code loads data into the 'DMDataSet.CCT_TRANSH' table. You can move, or remove it, as needed.
         Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
         Frm.Vw_SALERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SALERS)
         Frm.Vw_COLORS_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORS_CAT)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
         If ID IsNot Nothing Then Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 1, System.Guid.Parse(ID))
-        Prog_Prop.GetProgPROSF()
-
         If sIsOrder = True Then
-            Frm.LayoutControlGroup1.Text = "Στοιχεία Παραγγελίας"
-            Frm.LayoutControlGroup3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LayoutControlGroup11.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LayoutControlGroup12.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LayoutControlGroup13.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LayoutControlGroup15.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LOrderDetailsGroup.Text = "Στοιχεία Παραγγελίας"
+            Frm.LdtOrder.Text = "Ημερ/νία Παραγγελίας"
+            Frm.LCost1Group.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LCost2Group.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LCost3Group.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LCost4Group.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LCost5Group.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LofferAccepted.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-            Frm.LayoutControlItem30.Text = "Ημερ/νία Παραγγελίας"
+            Frm.LGenOffer.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LNewRecord.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Else
-            Frm.LayoutControlGroup1.Text = "Στοιχεία Προσφοράς"
-            Frm.LayoutControlItem30.Text = "Ημερ/νία Προσφοράς"
-            Frm.LayoutControlItem4.Text = "Αρ. Προσφοράς"
-            Frm.LayoutControlGroup10.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LOrderDetailsGroup.Text = "Στοιχεία Προσφοράς"
+            Frm.LdtOrder.Text = "Ημερ/νία Προσφοράς"
+            Frm.LarProt.Text = "Αρ. Προσφοράς"
+            Frm.LCostGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LPrivateAgreement.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.TabNavigationPage3.PageVisible = False
             Frm.TabNavigationPage4.PageVisible = False
         End If
+    End Sub
+    Public Sub LoadForm()
+
+
 
         Select Case Mode
             Case FormMode.NewRecord
                 Frm.txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_CLOSET")
                 Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
                 Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
+                Frm.cmdPrintOffer.Enabled = False
                 If sIsOrder = True Then
                     Frm.txtdrawers.EditValue = ProgProps.CLOSET_DRAWERS
                     Frm.cboBackThikness2.EditValue = ProgProps.CLOSET_BACK_THIKNESS
@@ -79,9 +84,6 @@ Public Class CusOfferOrderCloset
                     Frm.cboBackThikness6.EditValue = ProgProps.CLOSET_BACK_THIKNESS
                     Frm.cboboxThikness6.EditValue = ProgProps.CLOSET_BOX_THIKNESS
                     Frm.txtdrawers6.EditValue = ProgProps.CLOSET_DRAWERS
-                    Frm.txtTransp.EditValue = ProgProps.ClosetTransp
-                    Frm.txtMeasurement.EditValue = ProgProps.ClosetMeasurement
-                    Frm.txtRemove.EditValue = ProgProps.ClosetRemove
                     Frm.cboBackThikness.EditValue = ProgProps.CLOSET_BACK_THIKNESS
                     Frm.cboboxThikness.EditValue = ProgProps.CLOSET_BOX_THIKNESS
                 Else
@@ -92,47 +94,70 @@ Public Class CusOfferOrderCloset
                     Frm.txtdrawers4.EditValue = ProgProps.DRAWERS
                     Frm.txtdrawers5.EditValue = ProgProps.DRAWERS
                     Frm.txtdrawers6.EditValue = ProgProps.DRAWERS
+                    Frm.cmdOrder.Enabled = False
                 End If
 
-
-                LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
-                    "Select  e.ID,E.code,name,price,e.price as defPrice,
-                    cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, 
-                    case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard 
-                    From vw_EQUIPMENT E where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62' ORDER BY NAME"
-)
                 Frm.TabNavigationPage2.Enabled = False
-                Frm.LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
-                LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,CCT_ORDERS_CLOSET.* " &
-                                                   " from CCT_ORDERS_CLOSET " &
-                                                   " left join CCT_ORDERS_CLOSET  [ORDER] on [ORDER].CreatedFromOfferID =  CCT_ORDERS_CLOSET.id " &
-                                                   " where CCT_ORDERS_CLOSET.id = " & toSQLValueS(ID), sFields)
                 If sIsOrder = False Then
+                    LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[OFFER].*,OFFER_F.filename " &
+                                                   " from CCT_ORDERS_CLOSET  [OFFER] " &
+                                                   " left join CCT_ORDERS_CLOSET  [ORDER] on [ORDER].CreatedFromOfferID =  [OFFER].id " &
+                                                   " left join TRANSH_F  OFFER_F on OFFER_F.ownerID =  [OFFER].ID " &
+                                                   " where [OFFER].id = " & toSQLValueS(ID), sFields)
+
                     If sFields("OrderID") <> "" Then
-                        'cmdConvertToOrder.Enabled = False
-                        Frm.LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                        Frm.orderID = sFields("OrderID")
+                        Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                         Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False
-                        Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                        Frm.LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                    Else
+                        Frm.cmdOrder.Enabled = False
                     End If
                 Else
+                    LoadForms.LoadForm(Frm.LayoutControl1, "Select [ORDER].id as OrderID,[ORDER].*,ORDER_F.filename 
+                                                        from CCT_ORDERS_CLOSET [ORDER]
+                                                        left join CCT_ORDERS_CLOSET  [OFFER] on [OFFER].CreatedFromOfferID =  [ORDER].id  
+                                                        left join TRANSH_F  ORDER_F on ORDER_F.ownerID =  [ORDER].ID where [ORDER].id = " & toSQLValueS(ID), sFields)
                     'cmdConvertToOrder.Enabled = False
-                    Frm.LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                    Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                     If sFields("CreatedFromOfferID") <> "" Then
                         Frm.cboCUS.Enabled = False
                         Frm.cboCompany.Enabled = False
                         Frm.cboCompProject.Enabled = False
-                        Frm.cboTRANSH.Enabled = False
+                        Frm.cboCompProject.Properties.Buttons.Item(0).Enabled = False
+                        Frm.cboCompProject.Properties.Buttons.Item(1).Enabled = False
+                        Frm.cboCompProject.Properties.Buttons.Item(3).Enabled = False
+                        Frm.cboTRANSH.ReadOnly = True
+                        Frm.cboTRANSH.Properties.Buttons.Item(0).Enabled = False
+                        Frm.cboTRANSH.Properties.Buttons.Item(1).Enabled = False
+                        Frm.cboTRANSH.Properties.Buttons.Item(3).Enabled = False
                     End If
 
                 End If
 
 
-
+                If Frm.cboCompany.EditValue Is Nothing Then Frm.cmdCompCollection.Enabled = False
+                Frm.TabNavigationPage2.Enabled = True
+                If sFields("GenOffer") = "" Then sFields("GenOffer") = False
+                FillCusTransh(sFields("cusID"), sFields("compTrashID"), sFields("GenOffer"), sFields("transhID")) : FillCompanyProjects(sFields("compID"), sFields("GenOffer"), sFields("compTrashID"))
                 sFields = Nothing
 
-                LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
+        End Select
+        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Frm.cmdCusCollection.Enabled = False Else Frm.cmdCusCollection.Enabled = True
+    End Sub
+    Public Sub LoadEquipments()
+        If Mode = FormMode.NewRecord Then
+            LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
+                    "Select  e.ID,E.code,name,price,e.price as defPrice,
+                    cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, 
+                    case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard 
+                    From vw_EQUIPMENT E where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62' ORDER BY NAME")
+
+        Else
+            LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
                     "select e.ID,e.code,e.name,
                     isnull((select price from CCT_ORDERS_CLOSET_EQUIPMENT EQ where eq.cctOrdersClosetID= " & toSQLValueS(ID) & " And eq.equipmentID=e.id),e.price ) as price,
                     e.price as defPrice,
@@ -142,15 +167,9 @@ Public Class CusOfferOrderCloset
                     isnull((select qty from CCT_ORDERS_CLOSET_EQUIPMENT EQ where eq.cctOrdersClosetID= " & toSQLValueS(ID) & " and eq.equipmentID=e.id),0) as QTY,standard
                     from EQUIPMENT E
                     where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62'
-                    ORDER BY NAME"
-)
-
-                Frm.TabNavigationPage2.Enabled = True
-
-        End Select
+                    ORDER BY NAME")
+        End If
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "CCT_ORDERS_CLOSET_EQUIPMENT_def.xml")
-        Frm.GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : Frm.GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
-
     End Sub
     Public Sub SaveRecord(ByRef sID As String)
         Dim sResult As Boolean
@@ -162,51 +181,50 @@ Public Class CusOfferOrderCloset
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder,TotAmt", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0) & "," & toSQLValue(Frm.txtTotAmt, True))
                         ID = sGuid : sID = ID
                     Case FormMode.EditRecord
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", Frm.LayoutControl1,,, sID,,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_CLOSET", Frm.LayoutControl1,,, sID,,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0) & ",TotAmt = " & toSQLValue(Frm.txtTotAmt, True))
                         sGuid = ID : sID = ID
                 End Select
 
                 If sResult = True Then
                     If Mode = FormMode.NewRecord Then
                         Frm.TabNavigationPage2.Enabled = True
-                        If sIsOrder = False Then Frm.cmdConvertToOrder.Enabled = True : Frm.LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                        If sIsOrder = False Then
+                            Frm.cmdConvertToOrder.Enabled = True
+                            Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                            Frm.LOrder.Visibility = Utils.LayoutVisibility.Always
+                        End If
+                        Frm.cmdPrintOffer.Enabled = True
                         InsertSelectedRows(False)
                     End If
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-
+                    If sIsOrder = True Then
+                        Dim Projects As New Projects
+                        ' Ενημέρωση ποσών στο έργο
+                        Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString,  , True)
+                    End If
                     Mode = FormMode.EditRecord
-                    Dim HasKitchen As Boolean, HasCloset As Boolean, HasDoors As Boolean, HasSc As Boolean
-                    HasKitchen = Frm.cboTRANSH.GetColumnValue("Iskitchen")
-                    HasCloset = Frm.cboTRANSH.GetColumnValue("Iscloset")
-                    HasDoors = Frm.cboTRANSH.GetColumnValue("Isdoor")
-                    HasSc = Frm.cboTRANSH.GetColumnValue("Issc")
-                    If HasKitchen = False And HasCloset = False And HasDoors = False And HasSc = False Then
-                        XtraMessageBox.Show("Κοστολόγηση δεν θα δημιουργηθεί λόγω έλλειψης συμφωνητικού", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                        Exit Sub
-                    End If
-                    Dim cmd As SqlCommand
-                    Dim sdr As SqlDataReader
-                    Dim sSQL As String
-                    Dim cctOrderKitchen As String = "00000000-0000-0000-0000-000000000000"
-
-                    sSQL = "select ID from CCT_ORDERS_KITCHEN where transhID = " & (toSQLValueS(Frm.cboTRANSH.EditValue.ToString))
-                    cmd = New SqlCommand(sSQL, CNDB)
-                    sdr = cmd.ExecuteReader()
-                    If (sdr.Read() = True) Then
-                        If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then cctOrderKitchen = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
-                    End If
-                    sdr.Close()
-                    cmd.Dispose()
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             End If
-
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
+    End Sub
+    Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
+        Dim sResultF As Boolean
+        If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.txtFiles.Text <> "" Then
+            Select Case sMode
+                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
+                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Παραγγελία")
+            End Select
+
+            Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
+        End If
+
     End Sub
     Public Sub InsertSelectedRows(Optional ByVal msg As Boolean = True)
         Dim sSQL As String
@@ -267,19 +285,40 @@ Public Class CusOfferOrderCloset
     End Sub
     Public Sub ConvertToOrder()
         Try
+            Dim OrderID As String
+            Valid.ID = Frm.cboTRANSH.EditValue.ToString
+            If Frm.cboCompProject.EditValue IsNot Nothing Then Valid.compTrashID = Frm.cboCompProject.EditValue.ToString
+            If Valid.ValiDationRules(Frm.Name, Frm, True) = False Then Exit Sub
+            If Frm.cboCompany.EditValue IsNot Nothing And Frm.cboCUS.EditValue IsNot Nothing Then
+                If Frm.chkGenOffer.CheckState = CheckState.Checked And Frm.IsOrderRead = False Then XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+            End If
             If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.AddWithValue("@OfferID", ID)
                     oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
                     oCmd.Parameters.AddWithValue("@Mode", 2)
+                    oCmd.Parameters.Add("@OrderID", SqlDbType.UniqueIdentifier)
+                    oCmd.Parameters("@OrderID").Direction = ParameterDirection.Output
                     oCmd.ExecuteNonQuery()
+                    OrderID = oCmd.Parameters("@OrderID").Value.ToString
                 End Using
+
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Frm.orderID = OrderID
                 'cmdConvertToOrder.Enabled = False
                 Frm.cmdSave.Enabled = False : Frm.cmdSaveEquipDev.Enabled = False
-                Frm.LayoutControlItem104.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
-                Frm.LabelControl1.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                Frm.LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                Frm.cmdOrder.Enabled = True
+                If XtraMessageBox.Show("Θέλετε να δείτε την παραγγελία ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    Dim frmCUSOfferOrderCloset As frmCUSOfferOrderCloset = New frmCUSOfferOrderCloset()
+                    frmCUSOfferOrderCloset.ID = OrderID
+                    frmCUSOfferOrderCloset.Mode = FormMode.EditRecord
+                    frmCUSOfferOrderCloset.IsOrder = True
+                    frmCUSOfferOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                    frmCUSOfferOrderCloset.ShowDialog()
+                End If
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -317,5 +356,85 @@ Public Class CusOfferOrderCloset
             End Using
             Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 1, System.Guid.Parse(ID))
         End If
+    End Sub
+    Public Sub NewRecord()
+        Cls.ClearCtrls(Frm.LayoutControl1) : Cls.ClearCtrls(Frm.LayoutControl2)
+        Cls.ClearCtrls(Frm.LayoutControl3) : Cls.ClearCtrls(Frm.LayoutControl4)
+
+        Frm.txtarProt.Text = DBQ.GetNextId("CCT_ORDERS_CLOSET")
+        Frm.cboEMP.EditValue = System.Guid.Parse(UserProps.ID.ToString.ToUpper)
+        Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
+        If sIsOrder = True Then
+            Frm.txtdrawers.EditValue = ProgProps.CLOSET_DRAWERS
+            Frm.cboBackThikness2.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+            Frm.cboboxThikness2.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+            Frm.txtdrawers2.EditValue = ProgProps.CLOSET_DRAWERS
+            Frm.cboBackThikness3.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+            Frm.cboboxThikness3.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+            Frm.txtdrawers3.EditValue = ProgProps.CLOSET_DRAWERS
+            Frm.cboBackThikness4.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+            Frm.cboboxThikness4.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+            Frm.txtdrawers4.EditValue = ProgProps.CLOSET_DRAWERS
+            Frm.cboBackThikness5.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+            Frm.cboboxThikness5.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+            Frm.txtdrawers5.EditValue = ProgProps.CLOSET_DRAWERS
+            Frm.cboBackThikness6.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+            Frm.cboboxThikness6.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+            Frm.txtdrawers6.EditValue = ProgProps.CLOSET_DRAWERS
+            Frm.cboBackThikness.EditValue = ProgProps.CLOSET_BACK_THIKNESS
+            Frm.cboboxThikness.EditValue = ProgProps.CLOSET_BOX_THIKNESS
+        Else
+            Frm.txtNotes.EditValue = ProgProps.CUS_NOTES
+            Frm.txtdrawers.EditValue = ProgProps.DRAWERS
+            Frm.txtdrawers2.EditValue = ProgProps.DRAWERS
+            Frm.txtdrawers3.EditValue = ProgProps.DRAWERS
+            Frm.txtdrawers4.EditValue = ProgProps.DRAWERS
+            Frm.txtdrawers5.EditValue = ProgProps.DRAWERS
+            Frm.txtdrawers6.EditValue = ProgProps.DRAWERS
+        End If
+
+
+        LoadForms.LoadDataToGrid(Frm.grdEquipment, Frm.GridView2,
+                    "Select  e.ID,E.code,name,price,e.price as defPrice,
+                    cast(case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end as bit) as  checked, 
+                    case when (SELECT FLdVAL FROM PRM_DET WHERE TBL='EQUIPMENT' AND fld='ID' AND fldVal=e.id) is null then 0 else 1 end AS QTY,standard 
+                    From vw_EQUIPMENT E where equipmentCatID='DB158CAB-11EA-423B-9430-0C8A0CEB1D62' ORDER BY NAME"
+)
+        Frm.TabNavigationPage2.Enabled = False
+        Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+    End Sub
+    Public Sub FillCompanyProjects(ByVal sCompID As String, ByVal GenOffer As Boolean, ByVal scompTrashID As String)
+        If sCompID = "" Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(sCompID)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+                        from vw_TRANSH t
+                        where  IsCloset = 1 and T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(Frm.cboCompProject, sSQL)
+        Frm.LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Frm.cmdCompCollection.Enabled = True
+        If GenOffer = True Then
+            Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
+            Frm.cboTRANSH.EditValue = Frm.cboCompProject.EditValue
+        End If
+        If scompTrashID <> "" Then Frm.cboCompProject.EditValue = System.Guid.Parse(scompTrashID)
+    End Sub
+    Public Sub FillCusTransh(ByVal sCusID As String, ByVal scompTrashID As String, ByVal GenOffer As Boolean, ByVal sTranshID As String)
+        Dim sCompProjectID As String
+        If sCusID = "" Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(sCusID)
+        If GenOffer = False Then
+            If scompTrashID = "" Then sCompProjectID = " and T.compTrashID  IS NULL" Else sCompProjectID = " and T.compTrashID   = " & toSQLValueS(scompTrashID)
+        End If
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,Totamt
+                        from vw_TRANSH t
+                        INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID =  '3DAF9172-E9C4-402D-9BE7-4A3F64ABDAE4' 
+                        where   completed = 0  and T.cusid = " & sCusID & sCompProjectID & " order by description")
+        FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
+        If Frm.chkGenOffer.CheckState = CheckState.Checked Then
+            Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
+            Frm.cboTRANSH.EditValue = Frm.cboCompProject.EditValue
+        End If
+        If sCusID <> "" Then Frm.cboCUS.EditValue = System.Guid.Parse(sCusID.Replace("'", ""))
+        If sTranshID <> "" Then Frm.cboTRANSH.EditValue = System.Guid.Parse(sTranshID)
     End Sub
 End Class

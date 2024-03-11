@@ -15,6 +15,7 @@ Public Class frmProject
     Private sEmpID As Guid
     Private sCompID As Guid
     Private sCompProjectID As Guid
+    Private sTransCID As Guid
     Private sID As String
     Private sisOrder As Boolean
     Public Mode As Byte
@@ -32,6 +33,11 @@ Public Class frmProject
     Public WriteOnly Property EmpID As Guid
         Set(value As Guid)
             sEmpID = value
+        End Set
+    End Property
+    Public WriteOnly Property TransCID As Guid
+        Set(value As Guid)
+            sTransCID = value
         End Set
     End Property
     Public WriteOnly Property CompID As Guid
@@ -85,6 +91,7 @@ Public Class frmProject
         Select Case Mode
             Case FormMode.NewRecord
                 dtCharge.EditValue = DateTime.Now : txtCodeH.Text = Projects.GetNextID
+                If sTransCID <> Nothing Then cboTransC.Properties.GetItems.Item(System.Guid.Parse(sTransCID.ToString)).CheckState = CheckState.Checked
             Case FormMode.EditRecord
                 If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cmdOpenTransh.Enabled = True
                 Dim sSQL As New System.Text.StringBuilder

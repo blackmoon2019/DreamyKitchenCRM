@@ -192,7 +192,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         'XrLabel2
         '
         Me.XrLabel2.BackColor = System.Drawing.Color.White
-        Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([vw_AGREEMENT].[visibleVat]=True,FormatString('{0:C2}',[VatPrice]),FormatStri" &
+        Me.XrLabel2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([vw_AGREEMENT].[visibleVAT]=True,FormatString('{0:C2}',[VatPrice]),FormatStri" &
                     "ng('{0:C2}',[Price])) ")})
         Me.XrLabel2.Font = New DevExpress.Drawing.DXFont("Zona Pro Light", 11.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel2.ForeColor = System.Drawing.Color.Black
@@ -224,7 +224,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "c930b6c2-4083-492e-9835-3934be786915"
+        Me.OfferID.ValueInfo = "e661378e-6d3b-44cd-aa12-a4b5e2876d8c"
         DynamicListLookUpSettings1.DataMember = "vw_AGREEMENT"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
@@ -261,6 +261,7 @@ Partial Public Class RepCUSPrivateAgreement2ndPage
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
+        Me.ParameterPanelLayoutItems.AddRange(New DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem() {New DevExpress.XtraReports.Parameters.ParameterLayoutItem(Me.OfferID, DevExpress.XtraReports.Parameters.Orientation.Horizontal)})
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "23.1"

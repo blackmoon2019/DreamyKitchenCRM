@@ -1,6 +1,7 @@
 ﻿Imports System.Data.SqlClient
 Imports System.Text
 Imports DevExpress.Utils
+Imports DevExpress.Utils.Extensions
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
@@ -113,7 +114,7 @@ Public Class CusPrivateAgreement
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,t.invType,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
                         from vw_TRANSH t
-                        INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = '60344B92-1925-42E9-8D0F-0525990B0D5F' 
+                        INNER JOIN TRANSC on transc.transhID = t.id 
                         where   completed = 0  and T.cusid = " & sCusID & scompTrashID & " order by description")
         FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
         Frm.txtFatherName.EditValue = Frm.cboCUS.GetColumnValue("FatherName")
@@ -142,26 +143,17 @@ Public Class CusPrivateAgreement
         sArProt.Append(Frm.cboTRANSH.GetColumnValue("ArProtSpecialContr") & " ")
         Frm.txtArProt.EditValue = sArProt
     End Sub
-    Public Sub SaveRecord(ByRef sID As String)
+    Public Function SaveRecord(ByRef sID As String) As Boolean
         Dim sResult As Boolean
         Dim sGuid As String
-        Dim TotalPrice As Double, PayinAdvance As Double, closeAmt As Double
         Try
             If Valid.ValidateForm(Frm.LayoutControl1) Then
-                If Frm.txtPayinAdvance.EditValue = "0,00" Then
+                If Frm.txtPayinAdvanceTot.EditValue = "0,00" Then
                     XtraMessageBox.Show("Δεν έχετε συμπληρώσει στην προκαταβολη (Μετρητά,Τράπεζα ή και τα 2).", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Exit Sub
+                    Return False
                 End If
-                TotalPrice = 0
-                TotalPrice = DbnullToZero(Frm.txtPayinAdvanceCash)
-                TotalPrice = TotalPrice + DbnullToZero(Frm.txtPayinAdvanceBank)
-                PayinAdvance = DbnullToZero(Frm.txtPayinAdvance)
-                closeAmt = DbnullToZero(Frm.txtClose)
-                closeAmt = closeAmt + DbnullToZero(Frm.txtCloseCash)
-                TotalPrice = TotalPrice + closeAmt
-                If Math.Round(TotalPrice, 2) <> Math.Round(PayinAdvance, 2) Then
-                    XtraMessageBox.Show("Το σύνολο της προκαταβολής δεν είναι ίσο με τις επιμέρους", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-                End If
+                ' Έλεγχος αν η προκαταβολή καλύπτει το 50% του έργου
+                CheckForValidPayinAdvnace()
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
@@ -172,60 +164,92 @@ Public Class CusPrivateAgreement
                         sGuid = ID : sID = ID
                 End Select
 
-
                 If sResult = True Then
-                    Dim sSQL As New System.Text.StringBuilder
-                    TotalPrice = Frm.txtGenTot.EditValue
-                    Dim PolisiErgou As Double = TotalPrice - Frm.txtDevices.EditValue
-                    TotalPrice = TotalPrice + Frm.txtDevices.EditValue
-
-                    sSQL.AppendLine("update TRANSH SET waitingForAgreement=1,invType = " & toSQLValueS(Frm.cboInvoiceType.EditValue.ToString) & ",  vatamt = " & toSQLValueS(Frm.txtPartofVat.EditValue.ToString, True) & ", " &
-                                    " amt = " & toSQLValueS(Frm.txtPosoParastatikou.EditValue.ToString, True) & ",debitcost = " & toSQLValueS(PolisiErgou.ToString, True) & ", " &
-                                    " DevicesCost = " & toSQLValueS(Frm.txtDevices.EditValue.ToString) & ",  totamt = " & toSQLValueS(Frm.txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString))
-                    'Εκτέλεση QUERY
-                    Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                    sSQL.Clear()
-                    ' Διαγραφή όλων των κινήσεων που αφοόύν το συγκεκριμένο συμφωνητικό
-                    sSQL.AppendLine("DELETE FROM TRANSD WHERE agreementID = " & toSQLValueS(sID))
-                    Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                    sSQL.Clear()
-                    TotalPrice = Frm.txtPayinAdvanceCash.EditValue
-
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Frm.cmdPrintOffer.Enabled = True
-                    Dim cmd As SqlCommand
-                    Dim sdr As SqlDataReader
-                    Dim ExistNegative As Integer = 0
-                    cmd = New SqlCommand("  select  count(id) as ExistNegative  
-	                                        from vw_ANALYSH_KOSTOYS 
-	                                        where (KLEISIMO_CASH<0 or ΕΝΑΝΤΙ_CASH<0 OR [EXOFLISI_CASH]<0 OR KLEISIMO_BANK<0 OR [ΕΝΑΝΤΙ_BANK]<0
-	                                        OR EXOFLISI_BANK<0)  and ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString), CNDB)
-                    sdr = cmd.ExecuteReader()
-                    If (sdr.Read() = True) Then
-                        If sdr.IsDBNull(sdr.GetOrdinal("ExistNegative")) = False Then ExistNegative = sdr.GetInt32(sdr.GetOrdinal("ExistNegative"))
-                    End If
-                    sdr.Close()
-                    If ExistNegative > 0 Then
-                        XtraMessageBox.Show("Λανθασμένη κατανομή ποσών στον τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        Dim report As New RepCUSAnalysis
-                        report.Parameters.Item(0).Value = Frm.cboTRANSH.EditValue.ToString
-                        report.CreateDocument()
-
-                        Dim printTool As New ReportPrintTool(report)
-                        printTool.ShowRibbonPreview()
-
-                    End If
+                    ' Ενημέρωση πεδίων έργου
+                    UpdateTransH()
+                    'Ελεγχος για λανθασμένη κατανομή ποσών
+                    CheckForNegative()
                     Mode = FormMode.EditRecord
+                    Return True
+                Else
+                    Return False
                 End If
+            Else
+                Return False
             End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         End Try
+    End Function
+    ' Ενημέρωση πεδίων έργου
+    Private Sub UpdateTransH()
+        Try
+            Dim GenTot As Double
+            Dim sSQL As New System.Text.StringBuilder
+
+            GenTot = Frm.txtGenTot.EditValue
+            Dim PolisiErgou As Double = GenTot - Frm.txtDevices.EditValue
+            GenTot = GenTot + Frm.txtDevices.EditValue
+
+            sSQL.AppendLine("update TRANSH SET waitingForAgreement=1,invType = " & toSQLValueS(Frm.cboInvoiceType.EditValue.ToString) & ",  vatamt = " & toSQLValueS(Frm.txtPartofVat.EditValue.ToString, True) & ", " &
+                            " amt = " & toSQLValueS(Frm.txtPosoParastatikou.EditValue.ToString, True) & ",debitcost = " & toSQLValueS(PolisiErgou.ToString, True) & ", " &
+                            " DevicesCost = " & toSQLValueS(Frm.txtDevices.EditValue.ToString) & ",  totamt = " & toSQLValueS(Frm.txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    'Ελεγχος για λανθασμένη κατανομή ποσών
+    Private Sub CheckForNegative()
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            Dim ExistNegative As Integer = 0
+            cmd = New SqlCommand("  select  count(id) as ExistNegative  
+	                                        from vw_ANALYSH_KOSTOYS 
+	                                        where (KLEISIMO_CASH<0 or ΕΝΑΝΤΙ_CASH<0 OR [EXOFLISI_CASH]<0 OR KLEISIMO_BANK<0 OR [ΕΝΑΝΤΙ_BANK]<0
+	                                        OR EXOFLISI_BANK<0)  and ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString), CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("ExistNegative")) = False Then ExistNegative = sdr.GetInt32(sdr.GetOrdinal("ExistNegative"))
+            End If
+            sdr.Close()
+            If ExistNegative > 0 Then
+                XtraMessageBox.Show("Λανθασμένη κατανομή ποσών στον τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Dim report As New RepCUSAnalysis
+                report.Parameters.Item(0).Value = Frm.cboTRANSH.EditValue.ToString
+                report.CreateDocument()
+
+                Dim printTool As New ReportPrintTool(report)
+                printTool.ShowRibbonPreview()
+
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sdr.Close()
+        End Try
+    End Sub
+    Private Sub CheckForValidPayinAdvnace()
+        Dim TotalPayinAdvance As Double, PayinAdvance As Double, closeAmt As Double, CheckPayInAdvance As Double
+        TotalPayinAdvance = 0
+        TotalPayinAdvance = DbnullToZero(Frm.txtPayinAdvanceCash)
+        TotalPayinAdvance = TotalPayinAdvance + DbnullToZero(Frm.txtPayinAdvanceBank)
+        PayinAdvance = DbnullToZero(Frm.txtPayinAdvanceTot)
+        closeAmt = DbnullToZero(Frm.txtCloseBank)
+        closeAmt = closeAmt + DbnullToZero(Frm.txtCloseCash)
+        TotalPayinAdvance = TotalPayinAdvance + closeAmt
+        ' Αυτό που πρέπει να δίνει ο πελάτης με το συμφωνητικό είναι ως προκαταβολή το 50% του έργου
+        CheckPayInAdvance = DbnullToZero(Frm.txtGenTot) : CheckPayInAdvance = CheckPayInAdvance / 2
+        If Math.Round(TotalPayinAdvance, 2) < Math.Round(CheckPayInAdvance, 2) Then
+            XtraMessageBox.Show("Η προκαταβολή που έχει εισπραχθεί είναι μικρότερη του 50% του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
     End Sub
     Public Sub GetKLeisimoAmt(ByVal TransHID As String)
         Dim cmd As SqlCommand
@@ -237,9 +261,9 @@ Public Class CusPrivateAgreement
                 While sdr.Read()
                     If sdr.GetBoolean(sdr.GetOrdinal("cash")) = "0" Then
                         If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
-                            Frm.txtClose.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                            Frm.txtCloseBank.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
                         Else
-                            Frm.txtClose.EditValue = Nothing
+                            Frm.txtCloseBank.EditValue = Nothing
                         End If
                     Else
                         If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
@@ -258,6 +282,7 @@ Public Class CusPrivateAgreement
     Public Sub GetPayInAdvanceAmt(ByVal TransHID As String)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
+        Dim TotalPayInAdvance As Double
         Try
             cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='27CF38F4-BD30-403C-8BC6-2D2A57501DEB'  and transhID = " & toSQLValueS(TransHID) & " Group By Cash ", CNDB)
             sdr = cmd.ExecuteReader()
@@ -266,17 +291,20 @@ Public Class CusPrivateAgreement
                     If sdr.GetBoolean(sdr.GetOrdinal("cash")) = "0" Then
                         If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
                             Frm.txtPayinAdvanceBank.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                            TotalPayInAdvance = TotalPayInAdvance + DbnullToZero(Frm.txtPayinAdvanceBank)
                         Else
                             Frm.txtPayinAdvanceBank.EditValue = Nothing
                         End If
                     Else
                         If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
                             Frm.txtPayinAdvanceCash.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                            TotalPayInAdvance = TotalPayInAdvance + DbnullToZero(Frm.txtPayinAdvanceCash)
                         Else
                             Frm.txtPayinAdvanceCash.EditValue = Nothing
                         End If
                     End If
                 End While
+                Frm.txtPayinAdvanceTot.EditValue = TotalPayInAdvance
             End If
             sdr.Close()
         Catch ex As Exception
@@ -296,8 +324,8 @@ Public Class CusPrivateAgreement
                 If sdr.IsDBNull(sdr.GetOrdinal("TotalVat")) = False Then Frm.TxtTotalVat.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalVat")) Else Frm.TxtTotalVat.EditValue = Nothing
                 If sdr.IsDBNull(sdr.GetOrdinal("TotalPrice")) = False Then Frm.txtTotalVatPrice.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalPrice")) Else Frm.txtTotalVatPrice.EditValue = Nothing
                 If sdr.IsDBNull(sdr.GetOrdinal("GENTOT")) = False Then Frm.txtGenTot.EditValue = sdr.GetDecimal(sdr.GetOrdinal("GENTOT")) Else Frm.txtGenTot.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("ExtraInst")) = False Then Frm.txtExtraInst.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraInst")) Else Frm.txtExtraInst.EditValue = Nothing
-                If sdr.IsDBNull(sdr.GetOrdinal("ExtraTransp")) = False Then Frm.txtExtraTransp.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraTransp")) Else Frm.txtExtraTransp.EditValue = Nothing
+                'If sdr.IsDBNull(sdr.GetOrdinal("ExtraInst")) = False Then Frm.txtExtraInst.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraInst")) Else Frm.txtExtraInst.EditValue = Nothing
+                'If sdr.IsDBNull(sdr.GetOrdinal("ExtraTransp")) = False Then Frm.txtExtraTransp.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraTransp")) Else Frm.txtExtraTransp.EditValue = Nothing
                 Frm.chkHasKitchen.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasKitchen"))
                 Frm.chkHasCloset.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasCloset"))
                 Frm.chkHasDoors.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasDoors"))
@@ -315,6 +343,83 @@ Public Class CusPrivateAgreement
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Sub OpenOrder(ByVal Mode As Int16, ByVal sTranshID As String)
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Dim oID As String = ""
+        Try
+
+            Select Case Mode
+                Case 1 ' Κουζίνα
+                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_KITCHEN WHERE transhID = " & toSQLValueS(sTranshID), CNDB)
+                    sdr = cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                    End If
+                    sdr.Close()
+                    If oID = "" Then Exit Sub
+                    Dim frmCUSOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
+                    frmCUSOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                    frmCUSOrderKitchen.ID = oID
+                    frmCUSOrderKitchen.IsOrder = True
+                    'frmCUSOrderKitchen.MdiParent = frmMain
+                    frmCUSOrderKitchen.Mode = FormMode.EditRecord
+                    frmCUSOrderKitchen.ShowDialog()
+                Case 2 ' Πόρτες
+                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_DOOR WHERE transhID = " & toSQLValueS(sTranshID), CNDB)
+                    sdr = cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                    End If
+                    sdr.Close()
+                    If oID = "" Then Exit Sub
+                    Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
+                    frmCUSOfferOrderDoors.IsOrder = True
+                    frmCUSOfferOrderDoors.ID = oID
+                    frmCUSOfferOrderDoors.IsOrder = True
+                    'frmCUSOfferOrderDoors.MdiParent = frmMain
+                    frmCUSOfferOrderDoors.Mode = FormMode.EditRecord
+                    frmCUSOfferOrderDoors.ShowDialog()
+                Case 3 ' Ντουλάπες
+                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_CLOSET WHERE transhID = " & toSQLValueS(sTranshID), CNDB)
+                    sdr = cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                    End If
+                    sdr.Close()
+                    If oID = "" Then Exit Sub
+                    Dim frmCUSOrderCloset As frmCUSOfferOrderCloset = New frmCUSOfferOrderCloset()
+                    frmCUSOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                    frmCUSOrderCloset.ID = oID
+                    frmCUSOrderCloset.IsOrder = True
+                    ' frmCUSOrderCloset.MdiParent = frmMain
+                    frmCUSOrderCloset.Mode = FormMode.EditRecord
+                    frmCUSOrderCloset.ShowDialog()
+                Case 4 ' Ειδικές Κατασκευές
+                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_SPECIAL_CONSTR WHERE transhID = " & toSQLValueS(sTranshID), CNDB)
+                    sdr = cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
+                    End If
+                    sdr.Close()
+                    If oID = "" Then Exit Sub
+                    Dim frmCUSOfferSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
+                    frmCUSOfferSpecialConstr.Text = "Έντυπο Παραγγελίας Πελατών(Έπιπλο Μπάνιου)"
+                    frmCUSOfferSpecialConstr.ID = oID
+                    ' frmCUSOfferSpecialConstr.MdiParent = frmMain
+                    frmCUSOfferSpecialConstr.IsOrder = True
+                    frmCUSOfferSpecialConstr.Mode = FormMode.EditRecord
+                    frmCUSOfferSpecialConstr.ShowDialog()
+
+            End Select
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sdr.Close()
+        End Try
+
+    End Sub
+
     Public Sub PrintAgreement()
         Dim report As New RepCUSPrivateAgreement()
 

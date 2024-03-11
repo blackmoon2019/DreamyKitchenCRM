@@ -1,5 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports DevExpress.PivotGrid.OLAP
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
@@ -22,6 +21,7 @@ Public Class frmCUSOfferOrderKitchen
     Private LoadForms As New FormLoader
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
+    Private receiveAgreement As Boolean = False
     Public WriteOnly Property BaseCat As Integer
         Set(value As Integer)
             sBaseCat = value
@@ -81,6 +81,7 @@ Public Class frmCUSOfferOrderKitchen
         Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         CusOfferOrderKitchen.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder, sBaseCat)
         CusOfferOrderKitchen.LoadForm()
+        If receiveAgreement = True Then cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False : cmdSavePhotos.Enabled = False : cmdSaveTransF.Enabled = False
         Me.CenterToScreen()
     End Sub
 
@@ -153,7 +154,7 @@ Public Class frmCUSOfferOrderKitchen
         Select Case e.Button.Index
             Case 1
                 If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-                ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, sIsOrder)
+                ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue,, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 0, sIsOrder, System.Guid.Parse("60344B92-1925-42E9-8D0F-0525990B0D5F"))
             Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue,,,,,, sIsOrder)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
@@ -180,7 +181,7 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub chkVatVisible_CheckedChanged(sender As Object, e As EventArgs) Handles chkVatVisible.CheckedChanged
         Dim cmd As SqlCommand
         If chkVatVisible.Checked = True Then
-            cmd = New SqlCommand("Update CCT_ORDERS_KITCHEN set visibleVAT = 1 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
+            cmd = New SqlCommand("Update CCT_ORDERS_KITCHEN set visibleVAT = 1 where ID =c " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
         Else
             cmd = New SqlCommand("Update CCT_ORDERS_KITCHEN set visibleVAT = 0 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
         End If
@@ -430,7 +431,10 @@ Public Class frmCUSOfferOrderKitchen
                 If sIsOrder = True Then CusOfferOrderKitchen.LoadDevices()
                 LoadForms.RestoreLayoutFromXml(GridView1, "CCT_ORDERS_KITCHEN_DEVICES_def.xml")
                 LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def")
-
+                GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
+                GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
+                GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
+                GridView1.OptionsMenu.ShowConditionalFormattingItem = True
             Case 2 : If sID IsNot Nothing Then Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(sID))
             Case 3
                 LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_KITCHEN_def.xml")
@@ -856,7 +860,7 @@ Public Class frmCUSOfferOrderKitchen
         Select Case e.Button.Index
             Case 1
                 If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder)
+                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder, System.Guid.Parse("60344B92-1925-42E9-8D0F-0525990B0D5F"))
             Case 2 : If cboCompProject.EditValue IsNot Nothing Then ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True,,,,, sIsOrder)
             Case 3 : cboCompProject.EditValue = Nothing
         End Select
@@ -907,6 +911,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cmdPrivateAgreement_Click(sender As Object, e As EventArgs) Handles cmdPrivateAgreement.Click
         Dim frmPrivateAgreement As frmCUSPrivateAgreement = New frmCUSPrivateAgreement()
+        Dim AgreementID As String
         With frmPrivateAgreement
             .Company = cboCompany.EditValue
             .CompProject = cboCompProject.EditValue
@@ -914,18 +919,37 @@ Public Class frmCUSOfferOrderKitchen
             .TRANSH = cboTRANSH.EditValue
             .EMP = cboEMP.EditValue
             .Text = "Ιδ. Συμφωνητικό"
-
+            If AgreementExist(AgreementID) Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
+            .ID = AgreementID
             .ShowDialog()
         End With
 
     End Sub
-
+    ' Έλεγχος αν υτπάρχει συφωνητικό για την Κουζίνα
+    Private Function AgreementExist(ByRef AgreementID As String) As Boolean
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            cmd = New SqlCommand("  select  id from Agreement where Kitchen = 1 and transhID =  " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                AgreementID = sdr.GetGuid(sdr.GetOrdinal("id")).ToString()
+                sdr.Close() : Return True
+            Else
+                sdr.Close() : Return False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sdr.Close()
+        End Try
+    End Function
 
     Private Sub chkGenOffer_CheckStateChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckStateChanged
         If chkGenOffer.CheckState = CheckState.Checked Then cmdCusCollection.Enabled = False Else cmdCusCollection.Enabled = True
     End Sub
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+        receiveAgreement = cboTRANSH.GetColumnValue("receiveAgreement")
     End Sub
 
     Private Sub chkModel1_CheckStateChanged(sender As Object, e As EventArgs) Handles chkModel1.CheckStateChanged
@@ -1073,19 +1097,19 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
 
     Private Sub txtFinalPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice1.EditValueChanged
-        txtTotAmt.EditValue = txtFinalPrice1.EditValue
+        If chkModel1.CheckState = CheckState.Checked Then txtTotAmt.EditValue = txtFinalPrice1.EditValue
     End Sub
 
     Private Sub txtFinalPrice2_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice2.EditValueChanged
-        txtTotAmt.EditValue = txtFinalPrice2.EditValue
+        If chkModel2.CheckState = CheckState.Checked Then txtTotAmt.EditValue = txtFinalPrice2.EditValue
     End Sub
 
     Private Sub txtFinalPrice3_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice3.EditValueChanged
-        txtTotAmt.EditValue = txtFinalPrice3.EditValue
+        If chkModel3.CheckState = CheckState.Checked Then txtTotAmt.EditValue = txtFinalPrice3.EditValue
     End Sub
 
     Private Sub txtFinalPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice4.EditValueChanged
-        txtTotAmt.EditValue = txtFinalPrice4.EditValue
+        If chkModel4.CheckState = CheckState.Checked Then txtTotAmt.EditValue = txtFinalPrice4.EditValue
     End Sub
 
     Private Sub cmdOrder_Click(sender As Object, e As EventArgs) Handles cmdOrder.Click
@@ -1106,4 +1130,6 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub GridView1_CellValueChanged(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanged
         'If e.Column.FieldName <> "selected" Then GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "checked", 1)
     End Sub
+
+
 End Class
