@@ -1074,8 +1074,10 @@ Public Class frmCUSOfferOrderKitchen
         Dim TotalDevicesPrice As Double = DbnullToZero(txtTotalDevicesPrice)
         Dim TotalErmariaVat As Double = DbnullToZero(txtTotalErmariaVat)
         Dim PartofVat As Double = DbnullToZero(txtPartofVat)
+        TotalErmariaVat = TotalErmariaVat + ExtraInst + ExtraTransp
+        TotalErmariaPrice = (TotalErmariaVat * (ProgProps.VAT / 100)) + TotalErmariaVat
         Dim TotAmt As Double = ExtraInst + ExtraTransp + TotalDevicesPrice + IIf(PartofVat > 0, TotalErmariaVat + PartofVat, TotalErmariaPrice)
-        txtTotAmt.EditValue = TotAmt
+        txtTotalErmariaPrice.EditValue = TotAmt : txtTotAmt.EditValue = TotAmt
     End Sub
     Private Sub txtExtraInst_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraInst.EditValueChanged
         If Me.IsActive = False Then Exit Sub

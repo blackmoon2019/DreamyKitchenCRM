@@ -1622,6 +1622,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.txtTotalClosetVat.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtTotalClosetVat.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtTotalClosetVat.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtTotalClosetVat.Properties.ReadOnly = True
         Me.txtTotalClosetVat.Properties.Tag = "BenchExtraPrice"
         Me.txtTotalClosetVat.Properties.UseReadOnlyAppearance = False
         Me.txtTotalClosetVat.Size = New System.Drawing.Size(136, 26)

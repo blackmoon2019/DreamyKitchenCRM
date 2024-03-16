@@ -433,6 +433,7 @@ Public Class frmCUSOfferOrderCloset
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc1.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice1 = InitialPrice - Discount
+                FinalPrice1 = FinalPrice1 + (FinalPrice1 * (ProgProps.VAT / 100))
                 txtInitialPrice1.EditValue = InitialPrice
                 txtDiscount1.EditValue = Discount
                 txtFinalPrice1.EditValue = FinalPrice1
@@ -442,6 +443,7 @@ Public Class frmCUSOfferOrderCloset
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc2.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice2 = InitialPrice - Discount
+                FinalPrice2 = FinalPrice2 + (FinalPrice2 * (ProgProps.VAT / 100))
                 txtInitialPrice2.EditValue = InitialPrice
                 txtDiscount2.EditValue = Discount
                 txtFinalPrice2.EditValue = FinalPrice2
@@ -451,6 +453,7 @@ Public Class frmCUSOfferOrderCloset
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc3.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice3 = InitialPrice - Discount
+                FinalPrice3 = FinalPrice3 + (FinalPrice3 * (ProgProps.VAT / 100))
                 txtInitialPrice3.EditValue = InitialPrice
                 txtDiscount3.EditValue = Discount
                 txtFinalPrice3.EditValue = FinalPrice3
@@ -460,6 +463,7 @@ Public Class frmCUSOfferOrderCloset
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc4.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice4 = InitialPrice - Discount
+                FinalPrice4 = FinalPrice4 + (FinalPrice4 * (ProgProps.VAT / 100))
                 txtInitialPrice4.EditValue = InitialPrice
                 txtDiscount4.EditValue = Discount
                 txtFinalPrice4.EditValue = FinalPrice4
@@ -469,6 +473,7 @@ Public Class frmCUSOfferOrderCloset
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc5.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice5 = InitialPrice - Discount
+                FinalPrice5 = FinalPrice5 + (FinalPrice5 * (ProgProps.VAT / 100))
                 txtInitialPrice5.EditValue = InitialPrice
                 txtDiscount5.EditValue = Discount
                 txtFinalPrice5.EditValue = FinalPrice5

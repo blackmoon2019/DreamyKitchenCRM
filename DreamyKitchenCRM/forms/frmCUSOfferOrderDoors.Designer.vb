@@ -21,13 +21,13 @@ Partial Class frmCUSOfferOrderDoors
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSOfferOrderDoors))
-        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
-        Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
         Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -1338,6 +1338,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtTotalDoorsVat.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtTotalDoorsVat.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtTotalDoorsVat.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtTotalDoorsVat.Properties.ReadOnly = True
         Me.txtTotalDoorsVat.Properties.Tag = "BenchExtraPrice"
         Me.txtTotalDoorsVat.Properties.UseReadOnlyAppearance = False
         Me.txtTotalDoorsVat.Size = New System.Drawing.Size(143, 26)
@@ -3603,12 +3604,12 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.LayoutControlItem107.Control = Me.txtFinalPrice1
         Me.LayoutControlItem107.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem107.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem107.CustomizationFormText = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem107.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem107.Location = New System.Drawing.Point(934, 100)
         Me.LayoutControlItem107.Name = "LayoutControlItem107"
         Me.LayoutControlItem107.Size = New System.Drawing.Size(351, 50)
-        Me.LayoutControlItem107.Text = "Τελική Τιμή"
+        Me.LayoutControlItem107.Text = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem107.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem107.TextSize = New System.Drawing.Size(201, 19)
         '
@@ -3748,12 +3749,12 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.LayoutControlItem110.Control = Me.txtFinalPrice2
         Me.LayoutControlItem110.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem110.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem110.CustomizationFormText = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem110.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem110.Location = New System.Drawing.Point(934, 100)
         Me.LayoutControlItem110.Name = "LayoutControlItem110"
         Me.LayoutControlItem110.Size = New System.Drawing.Size(351, 50)
-        Me.LayoutControlItem110.Text = "Τελική Τιμή"
+        Me.LayoutControlItem110.Text = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem110.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem110.TextSize = New System.Drawing.Size(201, 19)
         '
@@ -3881,12 +3882,12 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.LayoutControlItem113.Control = Me.txtFinalPrice3
         Me.LayoutControlItem113.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem113.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem113.CustomizationFormText = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem113.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem113.Location = New System.Drawing.Point(934, 100)
         Me.LayoutControlItem113.Name = "LayoutControlItem113"
         Me.LayoutControlItem113.Size = New System.Drawing.Size(351, 50)
-        Me.LayoutControlItem113.Text = "Τελική Τιμή"
+        Me.LayoutControlItem113.Text = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem113.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem113.TextSize = New System.Drawing.Size(201, 19)
         '
@@ -4014,12 +4015,12 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.LayoutControlItem116.Control = Me.txtFinalPrice4
         Me.LayoutControlItem116.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem116.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem116.CustomizationFormText = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem116.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem116.Location = New System.Drawing.Point(934, 100)
         Me.LayoutControlItem116.Name = "LayoutControlItem116"
         Me.LayoutControlItem116.Size = New System.Drawing.Size(351, 50)
-        Me.LayoutControlItem116.Text = "Τελική Τιμή"
+        Me.LayoutControlItem116.Text = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem116.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem116.TextSize = New System.Drawing.Size(201, 19)
         '
@@ -4147,12 +4148,12 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.LayoutControlItem119.Control = Me.txtFinalPrice5
         Me.LayoutControlItem119.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem119.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem119.CustomizationFormText = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem119.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem119.Location = New System.Drawing.Point(934, 100)
         Me.LayoutControlItem119.Name = "LayoutControlItem119"
         Me.LayoutControlItem119.Size = New System.Drawing.Size(351, 50)
-        Me.LayoutControlItem119.Text = "Τελική Τιμή"
+        Me.LayoutControlItem119.Text = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem119.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem119.TextSize = New System.Drawing.Size(201, 19)
         '
@@ -4414,12 +4415,12 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.LayoutControlItem125.Control = Me.txtFinalPrice7
         Me.LayoutControlItem125.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem125.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem125.CustomizationFormText = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem125.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem125.Location = New System.Drawing.Point(934, 100)
         Me.LayoutControlItem125.Name = "LayoutControlItem125"
         Me.LayoutControlItem125.Size = New System.Drawing.Size(351, 50)
-        Me.LayoutControlItem125.Text = "Τελική Τιμή"
+        Me.LayoutControlItem125.Text = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem125.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem125.TextSize = New System.Drawing.Size(201, 19)
         '
@@ -4546,12 +4547,12 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.LayoutControlItem128.Control = Me.txtFinalPrice8
         Me.LayoutControlItem128.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem128.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem128.CustomizationFormText = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem128.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem128.Location = New System.Drawing.Point(934, 100)
         Me.LayoutControlItem128.Name = "LayoutControlItem128"
         Me.LayoutControlItem128.Size = New System.Drawing.Size(351, 50)
-        Me.LayoutControlItem128.Text = "Τελική Τιμή"
+        Me.LayoutControlItem128.Text = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem128.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem128.TextSize = New System.Drawing.Size(201, 19)
         '
@@ -4679,12 +4680,12 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.LayoutControlItem131.Control = Me.txtFinalPrice9
         Me.LayoutControlItem131.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem131.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem131.CustomizationFormText = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem131.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem131.Location = New System.Drawing.Point(934, 100)
         Me.LayoutControlItem131.Name = "LayoutControlItem131"
         Me.LayoutControlItem131.Size = New System.Drawing.Size(351, 50)
-        Me.LayoutControlItem131.Text = "Τελική Τιμή"
+        Me.LayoutControlItem131.Text = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem131.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem131.TextSize = New System.Drawing.Size(201, 19)
         '
@@ -4811,12 +4812,12 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.LayoutControlItem134.Control = Me.txtFinalPrice10
         Me.LayoutControlItem134.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem134.CustomizationFormText = "Τελική Τιμή"
+        Me.LayoutControlItem134.CustomizationFormText = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem134.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem134.Location = New System.Drawing.Point(934, 100)
         Me.LayoutControlItem134.Name = "LayoutControlItem134"
         Me.LayoutControlItem134.Size = New System.Drawing.Size(351, 50)
-        Me.LayoutControlItem134.Text = "Τελική Τιμή"
+        Me.LayoutControlItem134.Text = "Τελική Τιμή(ΦΠΑ)"
         Me.LayoutControlItem134.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem134.TextSize = New System.Drawing.Size(201, 19)
         '
@@ -5079,14 +5080,14 @@ Partial Class frmCUSOfferOrderDoors
         Me.CardView1.CardWidth = 1399
         Me.CardView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcolorCatID1, Me.colColorsCatName, Me.colsupID1, Me.colSupFullName, Me.colvalueListItemID1, Me.colValueListItemName, Me.colphoto, Me.colID1, Me.colvalueListItemID, Me.colCustomCode, Me.colcreatedOn, Me.colcreatedBy, Me.colcolorCatID, Me.colmodifiedBy, Me.colmodifiedOn, Me.colsite, Me.colsupID})
         Me.CardView1.DetailHeight = 886
-        GridFormatRule1.ApplyToRow = True
-        GridFormatRule1.Name = "Format0"
-        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.White
-        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
-        FormatConditionRuleExpression1.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
-        FormatConditionRuleExpression1.PredefinedName = "Red Text"
-        GridFormatRule1.Rule = FormatConditionRuleExpression1
-        Me.CardView1.FormatRules.Add(GridFormatRule1)
+        GridFormatRule2.ApplyToRow = True
+        GridFormatRule2.Name = "Format0"
+        FormatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.White
+        FormatConditionRuleExpression2.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression2.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
+        FormatConditionRuleExpression2.PredefinedName = "Red Text"
+        GridFormatRule2.Rule = FormatConditionRuleExpression2
+        Me.CardView1.FormatRules.Add(GridFormatRule2)
         Me.CardView1.GridControl = Me.GridControl1
         Me.CardView1.Name = "CardView1"
         Me.CardView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -5297,8 +5298,8 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboSUP1.Name = "cboSUP1"
         Me.cboSUP1.Properties.AllowMouseWheel = False
         Me.cboSUP1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-        Me.cboSUP1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions2.Image = CType(resources.GetObject("EditorButtonImageOptions2.Image"), System.Drawing.Image)
+        Me.cboSUP1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.cboSUP1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 94, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 150, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Επωνυμία", 253, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttl", "ttl", 87, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bal", "bal", 111, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 160, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("site", "site", 54, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.cboSUP1.Properties.DataSource = Me.VwSUPBindingSource
         Me.cboSUP1.Properties.DisplayMember = "Fullname"

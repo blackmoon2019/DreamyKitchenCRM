@@ -200,6 +200,7 @@ Public Class frmScroller
     Private Sub DeleteRecord()
         Dim sSQL As String
         Dim sSQL2 As String
+        Dim DeleteSucceed As Boolean = True
         Try
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
             If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
@@ -241,7 +242,7 @@ Public Class frmScroller
                     Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = " & sID
                     Case "vw_TRANSH_SMALL" : sSQL = "DELETE FROM TRANSH WHERE ID = " & sID
                     Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = " & sID
-                    Case "vw_INST_ELLIPSE" : DeleteInstEllipse()
+                    Case "vw_INST_ELLIPSE" : DeleteSucceed = DeleteInstEllipse()
                     Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = " & sID
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = " & sID
                     Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = " & sID
@@ -260,23 +261,23 @@ Public Class frmScroller
                     Case "vw_PAY" : sSQL = "DELETE FROM PAY WHERE ID = " & sID
                     Case "vw_SUP" : sSQL = "DELETE FROM SUP WHERE ID = " & sID
                     Case "vw_BUY_C" : sSQL = "DELETE FROM BUY_C WHERE ID = " & sID
-                    Case "vw_CCT_ORDERS_KITCHEN" : DeleteOrder(1)
-                    Case "vw_CCT_ORDERS_DOOR" : DeleteOrder(2)
-                    Case "vw_CCT_ORDERS_CLOSET" : DeleteOrder(3)
-                    Case "vw_CCT_ORDERS_SPECIAL_CONSTR" : DeleteOrder(4)
+                    Case "vw_CCT_ORDERS_KITCHEN" : DeleteSucceed = DeleteOrder(1)
+                    Case "vw_CCT_ORDERS_DOOR" : DeleteSucceed = DeleteOrder(2)
+                    Case "vw_CCT_ORDERS_CLOSET" : DeleteSucceed = DeleteOrder(3)
+                    Case "vw_CCT_ORDERS_SPECIAL_CONSTR" : DeleteSucceed = DeleteOrder(4)
                     Case "vw_SUP_ORDERS" : sSQL = "DELETE FROM SUP_ORDERS WHERE ID = " & sID
                     Case "vw_EQUIPMENT" : sSQL = "DELETE FROM EQUIPMENT WHERE ID = " & sID
                     Case "vw_EQUIPMENT_CAT" : sSQL = "DELETE FROM vw_EQUIPMENT_CAT WHERE ID = " & sID
                     Case "vw_DEVICES" : sSQL = "DELETE FROM DEVICES WHERE ID = " & sID
-                    Case "vw_AGREEMENT" : DeleteAgreement()
+                    Case "vw_AGREEMENT" : DeleteSucceed = DeleteAgreement()
                     Case "vw_EP_STATUS" : sSQL = "DELETE FROM EP_STATUS WHERE ID = " & sID
                     Case "vw_TRANS_CONSTR" : sSQL = "DELETE FROM TRANS_CONSTR WHERE ID = " & sID
                     Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = " & sID
                     Case "vw_DOC_TYPES" : sSQL = "DELETE FROM DOC_TYPES WHERE ID = " & sID
                     Case "vw_DMVER" : sSQL = "DELETE FROM DMVER WHERE ID = " & sID
-                    Case "vw_SUP_PAYMENTS_H" : DeleteSupPaymentsH()
-                    Case "vw_BUY" : DeleteBuy()
-                    Case "vw_TRANSH" : DeleteTransh()
+                    Case "vw_SUP_PAYMENTS_H" : DeleteSucceed = DeleteSupPaymentsH()
+                    Case "vw_BUY" : DeleteSucceed = DeleteBuy()
+                    Case "vw_TRANSH" : DeleteSucceed = DeleteTransh()
                     Case "vw_CALC" : sSQL = "DELETE FROM CALC WHERE ID = " & sID
                     Case "vw_CAT_SUB_ERM" : sSQL = "DELETE FROM CAT_SUB_ERM WHERE ID = " & sID
                 End Select
@@ -290,15 +291,17 @@ Public Class frmScroller
                         oCmd.ExecuteNonQuery()
                     End Using
                 End If
-                LoadRecords()
-                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If DeleteSucceed Then
+                    LoadRecords()
+                    XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
-    Private Sub DeleteTransh()
+    Private Function DeleteTransh() As Boolean
         Try
             Dim sSQL As String
             sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
@@ -314,12 +317,13 @@ Public Class frmScroller
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-
+            Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         End Try
-    End Sub
-    Private Sub DeleteBuy()
+    End Function
+    Private Function DeleteBuy() As Boolean
         Try
             Dim sSQL As String
             sSQL = "DELETE FROM BUY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -332,11 +336,13 @@ Public Class frmScroller
                 oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
                 oCmd.ExecuteNonQuery()
             End Using
+            Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         End Try
-    End Sub
-    Private Sub DeleteSupPaymentsH()
+    End Function
+    Private Function DeleteSupPaymentsH() As Boolean
         Try
             Dim sSQL As String
             ' Επαναφορά τιμολογίων σε απλήρωτα όπου αυτό χρειάζεται
@@ -355,13 +361,15 @@ Public Class frmScroller
                 oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
                 oCmd.ExecuteNonQuery()
             End Using
+            Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         End Try
 
-    End Sub
+    End Function
     'Διαγραφή Συμφωνητικού
-    Private Sub DeleteAgreement()
+    Private Function DeleteAgreement() As Boolean
         Try
             Dim sSQL As String
             sSQL = "update TRANSH SET waitingForAgreement=0 where ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString)
@@ -372,12 +380,14 @@ Public Class frmScroller
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
+            Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         End Try
-    End Sub
+    End Function
     ' Διαγραφή έλλειψης
-    Private Sub DeleteInstEllipse()
+    Private Function DeleteInstEllipse() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Try
             Dim sSQL As String
@@ -391,7 +401,7 @@ Public Class frmScroller
                 If CountEllipse > 0 Then
                     XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     sdr.Close()
-                    Exit Sub
+                    Return False
                 Else
                     sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -401,29 +411,31 @@ Public Class frmScroller
             Else
                 XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 sdr.Close()
-                Exit Sub
+                Return False
             End If
+            Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             sdr.Close()
+            Return False
         End Try
 
-    End Sub
+    End Function
     ' Διαγραφή παραγγελίας
-    Private Sub DeleteOrder(ByVal sMode As Int16)
+    Private Function DeleteOrder(ByVal sMode As Int16) As Boolean
         Try
             Dim sSQL As String
             Select Case sMode
                 Case 1 ' Κουζίνα
                     If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
                         If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
-                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε παραγγελία όταν έχει δημιουργηθεί Ιδ.Συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
                         End If
                     Else
                         If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
                             XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            Return False
                         End If
                     End If
                     sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -437,13 +449,13 @@ Public Class frmScroller
                 Case 2 ' Πόρτες
                     If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
                         If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
-                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε παραγγελία όταν έχει δημιουργηθεί Ιδ.Συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
                         End If
                     Else
                         If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
                             XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            Return False
                         End If
                     End If
                     sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -457,13 +469,13 @@ Public Class frmScroller
                 Case 3 ' Ντουλάπες
                     If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
                         If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
-                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε παραγγελία όταν έχει δημιουργηθεί Ιδ.Συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
                         End If
                     Else
                         If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
                             XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            Return False
                         End If
                     End If
                     sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -477,13 +489,13 @@ Public Class frmScroller
                 Case 3 ' Ειδικές Κατασκευές
                     If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
                         If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
-                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε παραγγελία όταν έχει δημιουργηθεί Ιδ.Συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
                         End If
                     Else
                         If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
                             XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Exit Sub
+                            Return False
                         End If
                     End If
                     sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
@@ -495,10 +507,12 @@ Public Class frmScroller
                         oCmd.ExecuteNonQuery()
                     End Using
             End Select
+            Return True
         Catch ex As Exception
-
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         End Try
-    End Sub
+    End Function
     ' Έλεγχος αν υπάρχει παραγγελία
     Private Function CheckIfOrderExist(ByVal sID As String, ByVal sMode As Int16) As Boolean
         Dim sSQL As String
@@ -539,17 +553,17 @@ Public Class frmScroller
                     sSQL = "select A.ID 
                         from AGREEMENT A
                         INNER JOIN CCT_ORDERS_DOOR  D ON D.transhID=A.transhID   " &
-                        " where K.TranshID = " & toSQLValueS(sTranshID)
+                        " where D.TranshID = " & toSQLValueS(sTranshID)
                 Case 3 ' Ντουλάπες
                     sSQL = "select A.ID 
                         from AGREEMENT A
                         INNER JOIN CCT_ORDERS_CLOSET  C ON C.transhID=A.transhID   " &
-                        " where K.TranshID = " & toSQLValueS(sTranshID)
+                        " where C.TranshID = " & toSQLValueS(sTranshID)
                 Case 4 ' Ειδικές Κατασκευές
                     sSQL = "select A.ID 
                         from AGREEMENT A
                         INNER JOIN CCT_ORDERS_SPECIAL_CONSTR  SC ON SC.transhID=A.transhID  =   " &
-                        " where K.TranshID = " & toSQLValueS(sTranshID)
+                        " where SC.TranshID = " & toSQLValueS(sTranshID)
             End Select
             Cmd = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = Cmd.ExecuteReader()
