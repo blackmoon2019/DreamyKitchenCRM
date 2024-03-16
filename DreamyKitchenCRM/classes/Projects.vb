@@ -13,6 +13,7 @@ Public Class Projects
     Private LoadForms As New FormLoader
     Private ID As String
     Private IsOrder As Boolean
+    Private isCompany As Boolean
     Private Mode As Byte
     Private CalledFromCtrl As Boolean
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
@@ -24,12 +25,13 @@ Public Class Projects
 
 
 
-    Public Sub Initialize(ByVal sFrm As frmTransactions, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
+    Public Sub Initialize(ByVal sFrm As frmTransactions, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal sisCompany As Boolean)
         Frm = sFrm
         ID = sID
         Mode = sMode
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
+        isCompany = sisCompany
         Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
         Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
         Frm.Vw_CCTTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_CCT)
@@ -116,7 +118,13 @@ Public Class Projects
             Frm.TabNavigationPage3.PageVisible = False
             Frm.TabNavigationPage4.PageVisible = False
             Frm.Bar1.Visible = False
-
+        End If
+        If isCompany Then
+            Frm.GridView1.Columns.Item("cusID").Visible = True
+            Frm.lCusD.Visibility = Utils.LayoutVisibility.Always
+        Else
+            Frm.GridView1.Columns.Item("cusID").Visible = False
+            Frm.lCusD.Visibility = Utils.LayoutVisibility.Never
         End If
 
 

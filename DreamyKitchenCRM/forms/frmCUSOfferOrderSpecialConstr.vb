@@ -394,7 +394,7 @@ Public Class frmCUSOfferOrderSpecialConstr
 
     Private Sub cboPhotoValueListItem_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPhotoValueListItem.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.EditRecord)
             Case 3 : cboPhotoValueListItem.EditValue = Nothing
         End Select
@@ -402,7 +402,7 @@ Public Class frmCUSOfferOrderSpecialConstr
 
     Private Sub cboColorsCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboColorsCat.ButtonClick
         Select Case e.Button.Index
-        '    Case 1 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+        '    Case 1 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
         '    Case 2 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.EditRecord)
             Case 3 : cboColorsCat.EditValue = Nothing
         End Select
@@ -458,6 +458,7 @@ Public Class frmCUSOfferOrderSpecialConstr
         Frm.CreditOnly = True
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboCompProject.EditValue.ToString
+        Frm.isCompany = True
         Frm.ShowDialog()
     End Sub
 

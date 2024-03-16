@@ -48,6 +48,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
+        Me.LblMsg = New DevExpress.XtraEditors.LabelControl()
         Me.chkGenOffer = New DevExpress.XtraEditors.CheckEdit()
         Me.cmdOrder = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdPrivateAgreement = New DevExpress.XtraEditors.SimpleButton()
@@ -327,10 +328,10 @@ Partial Class frmCUSOfferOrderDoors
         Me.LConvertToOrder = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem14 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LTotAmt = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LPrivateAgreement = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LOrder = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LNewRecord = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.TabNavigationPage2 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
         Me.LayoutControl3 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdPrintPhotos = New DevExpress.XtraEditors.SimpleButton()
@@ -692,10 +693,10 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LConvertToOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LTotAmt, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LPrivateAgreement, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LOrder, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LNewRecord, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabNavigationPage2.SuspendLayout()
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl3.SuspendLayout()
@@ -845,6 +846,7 @@ Partial Class frmCUSOfferOrderDoors
         '
         'LayoutControl1
         '
+        Me.LayoutControl1.Controls.Add(Me.LblMsg)
         Me.LayoutControl1.Controls.Add(Me.chkGenOffer)
         Me.LayoutControl1.Controls.Add(Me.cmdOrder)
         Me.LayoutControl1.Controls.Add(Me.cmdPrivateAgreement)
@@ -985,6 +987,19 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControl1.Size = New System.Drawing.Size(1353, 961)
         Me.LayoutControl1.TabIndex = 3
         Me.LayoutControl1.Text = "LayoutControl1"
+        '
+        'LblMsg
+        '
+        Me.LblMsg.Appearance.Font = New System.Drawing.Font("Tahoma", 8.142858!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Italic), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(161, Byte))
+        Me.LblMsg.Appearance.ForeColor = System.Drawing.Color.Red
+        Me.LblMsg.Appearance.Options.UseFont = True
+        Me.LblMsg.Appearance.Options.UseForeColor = True
+        Me.LblMsg.Location = New System.Drawing.Point(12, 883)
+        Me.LblMsg.Margin = New System.Windows.Forms.Padding(10)
+        Me.LblMsg.Name = "LblMsg"
+        Me.LblMsg.Size = New System.Drawing.Size(966, 19)
+        Me.LblMsg.StyleController = Me.LayoutControl1
+        Me.LblMsg.TabIndex = 107
         '
         'chkGenOffer
         '
@@ -1323,7 +1338,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.txtTotalDoorsVat.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtTotalDoorsVat.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtTotalDoorsVat.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtTotalDoorsVat.Properties.ReadOnly = True
         Me.txtTotalDoorsVat.Properties.Tag = "BenchExtraPrice"
         Me.txtTotalDoorsVat.Properties.UseReadOnlyAppearance = False
         Me.txtTotalDoorsVat.Size = New System.Drawing.Size(143, 26)
@@ -3222,7 +3236,7 @@ Partial Class frmCUSOfferOrderDoors
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LExit, Me.LSave, Me.LGroupOrderDetails1, Me.LPrintOffer, Me.LvisibleVAT, Me.LGroupOrderDetails2, Me.LayoutControlGroup9, Me.LCost, Me.LConvertToOrder, Me.EmptySpaceItem14, Me.LTotAmt, Me.EmptySpaceItem2, Me.LPrivateAgreement, Me.LOrder, Me.LNewRecord})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LExit, Me.LSave, Me.LGroupOrderDetails1, Me.LPrintOffer, Me.LvisibleVAT, Me.LGroupOrderDetails2, Me.LayoutControlGroup9, Me.LCost, Me.LConvertToOrder, Me.EmptySpaceItem14, Me.LTotAmt, Me.LPrivateAgreement, Me.LOrder, Me.LNewRecord, Me.LayoutControlItem1})
         Me.Root.Name = "Root"
         Me.Root.OptionsItemText.TextToControlDistance = 1
         Me.Root.Size = New System.Drawing.Size(1353, 961)
@@ -3284,7 +3298,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.LEMP.Control = Me.cboEMP
         Me.LEMP.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LEMP.CustomizationFormText = "Πωλητής"
-        Me.LEMP.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem46.ImageOptions.Image"), System.Drawing.Image)
+        Me.LEMP.ImageOptions.Image = CType(resources.GetObject("LEMP.ImageOptions.Image"), System.Drawing.Image)
         Me.LEMP.Location = New System.Drawing.Point(0, 32)
         Me.LEMP.Name = "LEMP"
         Me.LEMP.Size = New System.Drawing.Size(1309, 30)
@@ -4951,14 +4965,6 @@ Partial Class frmCUSOfferOrderDoors
         Me.LTotAmt.Text = "Γενικό Σύνολο Πώλησης"
         Me.LTotAmt.TextSize = New System.Drawing.Size(201, 19)
         '
-        'EmptySpaceItem2
-        '
-        Me.EmptySpaceItem2.AllowHotTrack = False
-        Me.EmptySpaceItem2.Location = New System.Drawing.Point(0, 871)
-        Me.EmptySpaceItem2.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem2.Size = New System.Drawing.Size(970, 34)
-        Me.EmptySpaceItem2.TextSize = New System.Drawing.Size(0, 0)
-        '
         'LPrivateAgreement
         '
         Me.LPrivateAgreement.Control = Me.cmdPrivateAgreement
@@ -4988,6 +4994,15 @@ Partial Class frmCUSOfferOrderDoors
         Me.LNewRecord.Text = "Νέα Εγγραφή"
         Me.LNewRecord.TextSize = New System.Drawing.Size(0, 0)
         Me.LNewRecord.TextVisible = False
+        '
+        'LayoutControlItem1
+        '
+        Me.LayoutControlItem1.Control = Me.LblMsg
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 871)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(970, 34)
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem1.TextVisible = False
         '
         'TabNavigationPage2
         '
@@ -6000,10 +6015,10 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.LConvertToOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LTotAmt, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LPrivateAgreement, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LOrder, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LNewRecord, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabNavigationPage2.ResumeLayout(False)
         CType(Me.LayoutControl3, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl3.ResumeLayout(False)
@@ -6409,7 +6424,6 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents LConvertToOrder As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem14 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LTotAmt As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem2 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LOrder As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LPrivateAgreement As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LNewRecord As DevExpress.XtraLayout.LayoutControlItem
@@ -6426,4 +6440,6 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents VwSCANFILENAMESBindingSource As BindingSource
     Friend WithEvents XtraOpenFileDialog1 As DevExpress.XtraEditors.XtraOpenFileDialog
     Friend WithEvents Vw_FILE_CATTableAdapter As DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter
+    Friend WithEvents LblMsg As DevExpress.XtraEditors.LabelControl
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
 End Class

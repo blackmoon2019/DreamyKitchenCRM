@@ -29,6 +29,12 @@ Public Class frmCUSOfferOrderDoors
     Private Prog_Prop As New ProgProp
     Private receiveAgreement As Boolean = False
     Private sOrderID As String
+    Public ReadOnly Property IsOrderRead As Boolean
+        Get
+            Return sIsOrder
+        End Get
+    End Property
+
     Public WriteOnly Property orderID As String
         Set(value As String)
             sOrderID = value
@@ -392,71 +398,71 @@ Public Class frmCUSOfferOrderDoors
     End Sub
     Private Sub cboVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboValueListItem.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVALUELISTITEM2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM2.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM2, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM2, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboVALUELISTITEM2.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVALUELISTITEM3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM3.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM3, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM3, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboVALUELISTITEM3.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVALUELISTITEM4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM4.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM4, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM4, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboVALUELISTITEM4.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVALUELISTITEM5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM5.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM5, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM5, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboVALUELISTITEM5.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboVALUELISTITEM6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
+    Private Sub cboVALUELISTITEM6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM6.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM6, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM6, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboVALUELISTITEM6.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVALUELISTITEM7_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM7.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM7, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM7, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM7, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM7, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboVALUELISTITEM7.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVALUELISTITEM8_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM8.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM8, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM8, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM8, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM8, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboVALUELISTITEM8.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVALUELISTITEM9_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM9.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM9, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM9, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM9, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM9, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboVALUELISTITEM9.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboVALUELISTITEM10_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboVALUELISTITEM10.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM10, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
-            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM10, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageValueListItem(cboVALUELISTITEM10, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
+            Case 2 : ManageCbo.ManageValueListItem(cboVALUELISTITEM10, FormMode.EditRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 3 : cboVALUELISTITEM10.EditValue = Nothing
         End Select
     End Sub
@@ -577,41 +583,61 @@ Public Class frmCUSOfferOrderDoors
         If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(10)
     End Sub
     Private Sub txtDisc1_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc1.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(1, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(1, True)
+        End If
     End Sub
     Private Sub txtDisc2_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc2.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(2, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(2, True)
+        End If
     End Sub
 
     Private Sub txtDisc3_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc3.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(3, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(3, True)
+        End If
     End Sub
 
     Private Sub txtDisc4_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc4.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(4, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(4, True)
+        End If
     End Sub
     Private Sub txtDisc5_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc5.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(5, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(5, True)
+        End If
     End Sub
 
     Private Sub txtDisc6_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc6.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(6, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(6, True)
+        End If
     End Sub
 
     Private Sub txtDisc7_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc7.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(7, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(7, True)
+        End If
     End Sub
 
     Private Sub txtDisc8_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc8.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(8, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(8, True)
+        End If
     End Sub
 
     Private Sub txtDisc9_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc9.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(9, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(9, True)
+        End If
     End Sub
 
     Private Sub txtDisc10_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc10.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(10, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(10, True)
+        End If
     End Sub
 
     Private Sub cmdSavePhotos_Click(sender As Object, e As EventArgs) Handles cmdSavePhotos.Click
@@ -645,7 +671,7 @@ Public Class frmCUSOfferOrderDoors
 
     Private Sub cboPhotoValueListItem_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPhotoValueListItem.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.EditRecord)
             Case 3 : cboPhotoValueListItem.EditValue = Nothing
         End Select
@@ -653,7 +679,7 @@ Public Class frmCUSOfferOrderDoors
 
     Private Sub cboColorsCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboColorsCat.ButtonClick
         Select Case e.Button.Index
-        '    Case 1 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+        '    Case 1 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
         '    Case 2 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.EditRecord)
             Case 3 : cboColorsCat.EditValue = Nothing
         End Select
@@ -704,6 +730,7 @@ Public Class frmCUSOfferOrderDoors
         Frm.CreditOnly = True
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboCompProject.EditValue.ToString
+        Frm.isCompany = True
         Frm.ShowDialog()
     End Sub
 
@@ -716,7 +743,6 @@ Public Class frmCUSOfferOrderDoors
         Frm.ID = cboTRANSH.EditValue.ToString
         Frm.lCusD.Visibility = False
         Frm.ShowDialog()
-
     End Sub
 
 
@@ -790,5 +816,38 @@ Public Class frmCUSOfferOrderDoors
             Case 2 : txtFiles.EditValue = Nothing
         End Select
     End Sub
+    Private Sub CalculateTotAmt()
+        If Me.IsActive = False Then Exit Sub
+        Dim FinalPrice1 As Double, FinalPrice2 As Double, FinalPrice3 As Double, FinalPrice4 As Double, FinalPrice5 As Double, FinalPrice6 As Double, FinalPrice7 As Double, FinalPrice8 As Double, FinalPrice9 As Double, FinalPrice10 As Double
+        Dim ExtraInst As Double = DbnullToZero(txtExtraInst)
+        Dim ExtraTransp As Double = DbnullToZero(txtExtraTransp)
+        Dim PartofVat As Double = DbnullToZero(txtPartofVat)
+        FinalPrice1 = DbnullToZero(txtFinalPrice1)
+        FinalPrice2 = DbnullToZero(txtFinalPrice2)
+        FinalPrice3 = DbnullToZero(txtFinalPrice3)
+        FinalPrice4 = DbnullToZero(txtFinalPrice4)
+        FinalPrice5 = DbnullToZero(txtFinalPrice5)
+        FinalPrice6 = DbnullToZero(txtFinalPrice6)
+        FinalPrice7 = DbnullToZero(txtFinalPrice7)
+        FinalPrice8 = DbnullToZero(txtFinalPrice8)
+        FinalPrice9 = DbnullToZero(txtFinalPrice9)
+        FinalPrice10 = DbnullToZero(txtFinalPrice10)
+        Dim DoorsVat As Double = DbnullToZero(txtTotalDoorsVat) + ExtraInst + ExtraTransp + FinalPrice1 + FinalPrice2 + FinalPrice3 + FinalPrice4 + FinalPrice5 + FinalPrice6 + FinalPrice7 + FinalPrice8 + FinalPrice9 + FinalPrice10
+        Dim TotalDoorsPrice As Double = DbnullToZero(txtTotalDoorsPrice)
+        TotalDoorsPrice = (DoorsVat * (ProgProps.VAT / 100)) + DoorsVat
+        Dim TotAmt As Double = IIf(PartofVat > 0, DoorsVat + PartofVat, TotalDoorsPrice)
+        txtTotalDoorsPrice.EditValue = TotAmt : txtTotAmt.EditValue = TotAmt
+    End Sub
 
+    Private Sub txtExtraInst_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraInst.EditValueChanged
+        CalculateTotAmt()
+    End Sub
+
+    Private Sub txtExtraTransp_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraTransp.EditValueChanged
+        CalculateTotAmt()
+    End Sub
+
+    Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
+        CalculateTotAmt()
+    End Sub
 End Class

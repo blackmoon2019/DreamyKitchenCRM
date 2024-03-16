@@ -43,7 +43,7 @@ Public Class frmParameters
     Private Sub V_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles V_BOX_COLOR.ButtonClick
 
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(V_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(V_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(V_BOX_COLOR, FormMode.EditRecord)
             Case 3 : V_BOX_COLOR.EditValue = Nothing
         End Select
@@ -53,7 +53,7 @@ Public Class frmParameters
 
     Private Sub K_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles K_BOX_COLOR.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(K_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(K_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(K_BOX_COLOR, FormMode.EditRecord)
             Case 3 : K_BOX_COLOR.EditValue = Nothing
         End Select
@@ -62,7 +62,7 @@ Public Class frmParameters
 
     Private Sub Y_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles Y_BOX_COLOR.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(Y_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(Y_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(Y_BOX_COLOR, FormMode.EditRecord)
             Case 3 : Y_BOX_COLOR.EditValue = Nothing
         End Select
@@ -151,7 +151,7 @@ Public Class frmParameters
 
     Private Sub CLOSET_BOX_COLOR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles CLOSET_BOX_COLOR.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(CLOSET_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(CLOSET_BOX_COLOR, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(CLOSET_BOX_COLOR, FormMode.EditRecord)
             Case 3 : CLOSET_BOX_COLOR.EditValue = Nothing
         End Select

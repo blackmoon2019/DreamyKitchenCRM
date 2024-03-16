@@ -262,10 +262,15 @@ Public Class CombosManager
         Frm.Text = "Κατηγορία Πόρτας"
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
-        Frm.cboValueList.EditValue = ValueListID
-        If CallerControl.EditValue <> Nothing Then Frm.ID = CallerControl.EditValue.ToString
+        Frm.ValueListID = ValueListID
+        Frm.GroupName = GroupName
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
+        If CallerControl.EditValue <> Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub

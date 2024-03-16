@@ -21,6 +21,7 @@ Public Class frmTransactions
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
     Private ShowCreditOnly As Boolean
+    Private sisCompany As Boolean
     Private ManageCbo As New CombosManager
     Private LoadForms As New FormLoader
 
@@ -49,6 +50,11 @@ Public Class frmTransactions
             ShowCreditOnly = value
         End Set
     End Property
+    Public WriteOnly Property isCompany As Boolean
+        Set(value As Boolean)
+            sisCompany = value
+        End Set
+    End Property
 
     Public WriteOnly Property CalledFromControl As Boolean
         Set(value As Boolean)
@@ -61,7 +67,7 @@ Public Class frmTransactions
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
         AddHandler GridControl3.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
-        Projects.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
+        Projects.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sisCompany)
         Projects.LoadForm(ShowCreditOnly)
         Me.CenterToScreen()
     End Sub

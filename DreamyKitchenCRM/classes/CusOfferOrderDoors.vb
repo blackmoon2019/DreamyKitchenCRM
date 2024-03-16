@@ -1,8 +1,8 @@
 ﻿Imports System.Data.SqlClient
+Imports DevExpress.PivotGrid.OLAP
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
-
 Public Class CusOfferOrderDoors
     Private FillCbo As New FillCombos
     Private Valid As New ValidateControls
@@ -37,7 +37,7 @@ Public Class CusOfferOrderDoors
         If sIsOrder = True Then
             Frm.LGenOffer.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LExtraInst.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-            Frm.LPartOfVat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Frm.LPartofVat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LPrivateAgreement.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LExtraTransp.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
@@ -45,13 +45,20 @@ Public Class CusOfferOrderDoors
             Frm.LGroupOrderDetails1.Text = "Στοιχεία Παραγγελίας"
             Frm.LGroupOrderDetails2.Text = "Στοιχεία Παραγγελίας"
             Frm.Ldtpresentation.Text = "Ημερ/νία Παραγγελίας"
+            Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LofferAccepted.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LGenOffer.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LNewRecord.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Else
             Frm.LayoutControlItem41.Tag = 0
             Frm.LarProt.Text = "Αρ. Προσφοράς"
             Frm.LGroupOrderDetails1.Text = "Στοιχεία Προσφοράς"
             Frm.LGroupOrderDetails2.Text = "Στοιχεία Προσφοράς"
             Frm.Ldtpresentation.Text = "Ημερ/νία Προσφοράς"
-            Frm..Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LCost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Frm.LPrivateAgreement.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.TabNavigationPage2.PageVisible = False
             Frm.TabNavigationPage3.PageVisible = False
         End If
@@ -67,6 +74,11 @@ Public Class CusOfferOrderDoors
                 Frm.txtComments.EditValue = ProgProps.DOOR_CMT
                 Frm.txtNotes.EditValue = ProgProps.CUS_NOTES
                 Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                Frm.cmdPrintOffer.Enabled = False
+                If sIsOrder = True Then
+                Else
+                    Frm.cmdOrder.Enabled = False
+                End If
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
                 If sIsOrder = False Then
@@ -122,11 +134,11 @@ Public Class CusOfferOrderDoors
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder,TotAmt", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0) & "," & toSQLValue(Frm.txtTotAmt, True))
                         ID = sGuid : sID = ID
                     Case FormMode.EditRecord
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", Frm.LayoutControl1,,, sID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", Frm.LayoutControl1,,, sID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0) & ",TotAmt = " & toSQLValue(Frm.txtTotAmt, True))
                         sGuid = ID : sID = ID
                 End Select
 
@@ -172,19 +184,39 @@ Public Class CusOfferOrderDoors
     End Sub
     Public Sub ConvertToOrder()
         Try
+            Dim OrderID As String
+            Valid.ID = Frm.cboTRANSH.EditValue.ToString
+            If Frm.cboCompProject.EditValue IsNot Nothing Then Valid.compTrashID = Frm.cboCompProject.EditValue.ToString
+            If Valid.ValiDationRules(Frm.Name, Frm, True) = False Then Exit Sub
+            If Frm.cboCompany.EditValue IsNot Nothing And Frm.cboCUS.EditValue IsNot Nothing Then
+                If Frm.chkGenOffer.CheckState = CheckState.Checked And Frm.IsOrderRead = False Then XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+            End If
             If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure
                     oCmd.Parameters.AddWithValue("@OfferID", ID)
                     oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
                     oCmd.Parameters.AddWithValue("@Mode", 3)
+                    oCmd.Parameters.Add("@OrderID", SqlDbType.UniqueIdentifier)
+                    oCmd.Parameters("@OrderID").Direction = ParameterDirection.Output
                     oCmd.ExecuteNonQuery()
+                    OrderID = oCmd.Parameters("@OrderID").Value.ToString
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Frm.orderID = OrderID
                 'cmdConvertToOrder.Enabled = False
                 Frm.cmdSave.Enabled = False
                 Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 Frm.LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+                Frm.cmdOrder.Enabled = True
+                If XtraMessageBox.Show("Θέλετε να δείτε την παραγγελία ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                    Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
+                    frmCUSOfferOrderDoors.ID = OrderID
+                    frmCUSOfferOrderDoors.Mode = FormMode.EditRecord
+                    frmCUSOfferOrderDoors.IsOrder = True
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
+                    frmCUSOfferOrderDoors.ShowDialog()
+                End If
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

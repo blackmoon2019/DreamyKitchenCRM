@@ -254,6 +254,7 @@ Public Class frmCUSPrivateAgreement
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboCompProject.EditValue.ToString
         Frm.ShowDialog()
+        Frm.isCompany = True
         Frm.LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
     End Sub
 

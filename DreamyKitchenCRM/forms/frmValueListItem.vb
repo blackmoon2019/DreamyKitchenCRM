@@ -17,8 +17,14 @@ Public Class frmValueListItem
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CtrlComboChecked As DevExpress.XtraEditors.CheckedComboBoxEdit
     Private CalledFromCtrl As Boolean
+    Private sValueListID As String
 
 
+    Public WriteOnly Property ValueListID As String
+        Set(value As String)
+            sValueListID = value
+        End Set
+    End Property
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
@@ -64,20 +70,19 @@ Public Class frmValueListItem
     End Sub
 
     Private Sub frmVALUELISTITEM_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_VALUELIST' table. You can move, or remove it, as needed.
-        Me.vw_VALUELISTTableAdapter.FillByGroupName(Me.DreamyKitchenDataSet.vw_VALUELIST, sGroupName)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DIM' table. You can move, or remove it, as needed.
+        Me.Vw_VALUELISTTableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELIST)
+        Me.Vw_VALUELISTTableAdapter.FillByGroupName(Me.DM_VALUELISTITEM.vw_VALUELIST, sGroupName)
         Me.Vw_DIMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DIM)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
         Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
-
+        cboValueList.EditValue = System.Guid.Parse(sValueListID)
+        ShowRequiredItems()
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("valueListItem")
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from valueListItem where id ='" + sID + "'")
         End Select
-        ShowRequiredItems()
+
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
@@ -89,6 +94,7 @@ Public Class frmValueListItem
                 LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
                 LName.Tag = "1"
+                LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 cboValueList.ReadOnly = True
             Case "AFDD6E1A-EBA3-4FE9-AB28-EDE277939F29"  ' Ντουλάπες
                 Me.Text = "Μοντέλα Ντουλαπών"
@@ -96,6 +102,23 @@ Public Class frmValueListItem
                 LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
                 LName.Tag = "1"
+                LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                cboValueList.ReadOnly = True
+            Case "DE86FD16-2154-4E2A-B025-4D34BDF8C808" ' Πόρτες
+                Me.Text = "Μοντέλα Πορτών"
+                LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+                LName.Tag = "1"
+                LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                cboValueList.ReadOnly = True
+            Case "CF47FAEE-7CD7-49AD-9455-3BC69D438DE9" ' Ειδικές Κατασκευές
+                Me.Text = "Ειδικές Κατασκευές"
+                LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+                LName.Tag = "1"
+                LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 cboValueList.ReadOnly = True
             Case "CA8BACF7-3205-43AF-BCBB-A0DA4915C046" 'CHECKLIST
                 Me.Text = "CheckList Έργων"
@@ -123,15 +146,26 @@ Public Class frmValueListItem
                 If CalledFromCtrl Then
                     If CtrlCombo IsNot Nothing Then
                         FillCbo.valueListItem(CtrlCombo)
+                        CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                     Else
                         Dim sSQL As System.Text.StringBuilder
                         sSQL = New System.Text.StringBuilder
-                        sSQL.AppendLine("SELECT * FROM vw_VALUELISTITEM WHERE (valueListID = '3C68F058-6A47-4995-8B0C-26538F38580A')")
+                        sSQL.AppendLine("SELECT  id,name,price FROM vw_VALUELISTITEM WHERE valueListID = 'DE86FD16-2154-4E2A-B025-4D34BDF8C808' order by name ")
                         Select Case cboValueList.EditValue.ToString.ToUpper
                             ' Μοντέλα Κουζίνας
-                            Case "3C68F058-6A47-4995-8B0C-26538F38580A" : FillCbo.valueListItem(, sSQL, CtrlComboChecked)
+                            Case "3C68F058-6A47-4995-8B0C-26538F38580A"
+                                FillCbo.valueListItem(, sSQL, CtrlComboChecked)
+                            ' Ντουλάπες
+                            Case "AFDD6E1A-EBA3-4FE9-AB28-EDE277939F29"
+                                FillCbo.valueListItem(, sSQL, CtrlComboChecked)
+                            ' Πόρτες
+                            Case "DE86FD16-2154-4E2A-B025-4D34BDF8C808"
+                                FillCbo.valueListItem(, sSQL)
+                            ' Ειδικές Κατασκευές
+                            Case "CF47FAEE-7CD7-49AD-9455-3BC69D438DE9"
+                                FillCbo.valueListItem(, sSQL)
                         End Select
-
+                        CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                         '       CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                     End If
                 Else

@@ -153,42 +153,42 @@ Public Class frmCUSOfferOrderCloset
     End Sub
     Private Sub cboBOXColors_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboBOXColors, FormMode.EditRecord)
             Case 3 : cboBOXColors.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBOXColors2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors2.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboBOXColors2, FormMode.EditRecord)
             Case 3 : cboBOXColors2.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBOXColors3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors3.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboBOXColors3, FormMode.EditRecord)
             Case 3 : cboBOXColors3.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBOXColors4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors4.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboBOXColors4, FormMode.EditRecord)
             Case 3 : cboBOXColors4.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBOXColors5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors5.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboBOXColors5, FormMode.EditRecord)
             Case 3 : cboBOXColors5.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboBOXColors6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBOXColors6.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboBOXColors6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboBOXColors6, FormMode.EditRecord)
             Case 3 : cboBOXColors6.EditValue = Nothing
         End Select
@@ -196,91 +196,91 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboValueListItemID_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.EditRecord)
             Case 3 : cboValueListItem.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem2.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem8, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem8, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem8, FormMode.EditRecord)
             Case 3 : cboValueListItem8.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem3.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem9, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem9, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem9, FormMode.EditRecord)
             Case 3 : cboValueListItem9.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem4.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem4, FormMode.EditRecord)
             Case 3 : cboValueListItem4.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem5.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem5, FormMode.EditRecord)
             Case 3 : cboValueListItem5.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem6.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem6, FormMode.EditRecord)
             Case 3 : cboValueListItem6.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID7_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem7.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem7, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem7, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem7, FormMode.EditRecord)
             Case 3 : cboValueListItem7.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID8_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem8.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem2, FormMode.EditRecord)
             Case 3 : cboValueListItem2.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID9_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem9.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem3, FormMode.EditRecord)
             Case 3 : cboValueListItem3.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID10_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem10.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem10, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem10, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem10, FormMode.EditRecord)
             Case 3 : cboValueListItem10.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID11_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem11.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem11, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem11, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem11, FormMode.EditRecord)
             Case 3 : cboValueListItem11.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboValueListItemID12_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem12.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem12, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboValueListItem12, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboValueListItem12, FormMode.EditRecord)
             Case 3 : cboValueListItem12.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboSides1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSides1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboSides1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboSides1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboSides1, FormMode.EditRecord)
             Case 3 : cboSides1.EditValue = Nothing
         End Select
@@ -288,7 +288,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboSides2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboSides2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboSides2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboSides2, FormMode.EditRecord)
             Case 3 : cboSides2.EditValue = Nothing
         End Select
@@ -296,7 +296,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboSides3_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboSides3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboSides3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboSides3, FormMode.EditRecord)
             Case 3 : cboSides3.EditValue = Nothing
         End Select
@@ -304,7 +304,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboSides4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSides4.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboSides4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboSides4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboSides1, FormMode.EditRecord)
             Case 3 : cboSides4.EditValue = Nothing
         End Select
@@ -312,7 +312,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboSides5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSides5.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboSides5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboSides5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboSides5, FormMode.EditRecord)
             Case 3 : cboSides5.EditValue = Nothing
         End Select
@@ -321,7 +321,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboSides6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSides6.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboSides6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboSides6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboSides6, FormMode.EditRecord)
             Case 3 : cboSides6.EditValue = Nothing
         End Select
@@ -329,7 +329,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboShelves1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboShelves1.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboShelves1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboShelves1, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboShelves1, FormMode.EditRecord)
             Case 3 : cboShelves1.EditValue = Nothing
         End Select
@@ -337,7 +337,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboShelves2_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboShelves2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboShelves2, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboShelves2, FormMode.EditRecord)
             Case 3 : cboShelves2.EditValue = Nothing
         End Select
@@ -345,7 +345,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboShelves3_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboShelves3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboShelves3, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboShelves3, FormMode.EditRecord)
             Case 3 : cboShelves3.EditValue = Nothing
         End Select
@@ -353,7 +353,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboShelves4_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboShelves4.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboShelves4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboShelves4, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboShelves1, FormMode.EditRecord)
             Case 3 : cboShelves4.EditValue = Nothing
         End Select
@@ -361,14 +361,14 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboShelves5_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboShelves5.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboShelves5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboShelves5, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboShelves5, FormMode.EditRecord)
             Case 3 : cboShelves5.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboShelves6_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboShelves6.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboShelves6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboShelves6, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboShelves6, FormMode.EditRecord)
             Case 3 : cboShelves6.EditValue = Nothing
         End Select
@@ -908,7 +908,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboPhotoValueListItem_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPhotoValueListItem.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+            Case 1 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
             Case 2 : ManageCbo.ManageValueListItem(cboPhotoValueListItem, FormMode.EditRecord)
             Case 3 : cboPhotoValueListItem.EditValue = Nothing
         End Select
@@ -916,7 +916,7 @@ Public Class frmCUSOfferOrderCloset
 
     Private Sub cboColorsCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboColorsCat.ButtonClick
         Select Case e.Button.Index
-        '    Case 1 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808")
+        '    Case 1 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.NewRecord, "DE86FD16-2154-4E2A-B025-4D34BDF8C808", "MATERIALS")
         '    Case 2 : ManageCbo.ManageColors(cboPhotoValueListItem, FormMode.EditRecord)
             Case 3 : cboColorsCat.EditValue = Nothing
         End Select
@@ -969,6 +969,7 @@ Public Class frmCUSOfferOrderCloset
         Frm.CreditOnly = True
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboCompProject.EditValue.ToString
+        Frm.isCompany = True
         Frm.ShowDialog()
     End Sub
 
