@@ -175,7 +175,7 @@ Public Class frmCUSPrivateAgreement
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
         Dim TotalPrice As Double, Price As Double, PartOfVat As Double
         If txtPartofVat.EditValue <> Nothing Then TotalPrice = DbnullToZero(txtPartofVat)
-        TotalPrice = (TotalPrice * 100) / 24 + TotalPrice
+        TotalPrice = (TotalPrice * 100) / ProgProps.VAT + TotalPrice
         txtPosoParastatikou.EditValue = TotalPrice
         If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat)
         If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)

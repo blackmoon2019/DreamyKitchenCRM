@@ -8,11 +8,13 @@ Imports DevExpress.XtraGrid.Views.Grid
 Public Class frmCUSOfferOrderSpecialConstr
     Private CUSOfferOrderSpecialConstr As New CUSOfferOrderSpecialConstr
     Private sID As String
+    Private ScanFile As ScanToPDF
     Private ManageCbo As New CombosManager
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
     Private sIsOrder As Boolean
+    Private sOrderID As String
     Private Valid As New ValidateControls
     Private FScrollerExist As Boolean = False
     Private Log As New Transactions
@@ -24,6 +26,7 @@ Public Class frmCUSOfferOrderSpecialConstr
     Private CalledFromCtrl As Boolean
     Private WorkingTime As Integer
     Private AgreementSalary As Double
+    Private receiveAgreement As Boolean = False
     Private UserPermissions As New CheckPermissions
     Private Prog_Prop As New ProgProp
     Public WriteOnly Property ID As String
@@ -36,6 +39,17 @@ Public Class frmCUSOfferOrderSpecialConstr
             sIsOrder = value
         End Set
     End Property
+    Public ReadOnly Property IsOrderRead As Boolean
+        Get
+            Return sIsOrder
+        End Get
+    End Property
+    Public WriteOnly Property orderID As String
+        Set(value As String)
+            sOrderID = value
+        End Set
+    End Property
+
 
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
         Set(value As DevExpress.XtraGrid.Views.Grid.GridView)
@@ -66,10 +80,11 @@ Public Class frmCUSOfferOrderSpecialConstr
         Me.Close()
     End Sub
     Private Sub frmCUSOfferSpecialConstr_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DM_CCT.vw_COMP' table. You can move, or remove it, as needed.
-        Me.Vw_COMPTableAdapter.Fill(Me.DM_CCT.vw_COMP)
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
+        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         CUSOfferOrderSpecialConstr.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder)
         CUSOfferOrderSpecialConstr.LoadForm()
+        If receiveAgreement = True Then cmdSave.Enabled = False : cmdSavePhotos.Enabled = False
         Me.CenterToScreen()
     End Sub
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
@@ -91,7 +106,8 @@ Public Class frmCUSOfferOrderSpecialConstr
         End Select
     End Sub
     Private Sub ApplyDiscount(ByVal DiscMode As Integer, Optional ByVal DiscountChangedByUser As Boolean = False)
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice1 As Double, FinalPrice2 As Double, FinalPrice3 As Double, FinalPrice4 As Double
+        Dim TotAmt As Double
         If Me.IsActive = False Then Exit Sub
         Select Case DiscMode
             Case 1
@@ -99,67 +115,51 @@ Public Class frmCUSOfferOrderSpecialConstr
                 InitialPrice = txtInitialPrice1.EditValue
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc1.EditValue / 100
                 Discount = Disc * InitialPrice
-                FinalPrice = InitialPrice - Discount
+                FinalPrice1 = InitialPrice - Discount
+                FinalPrice1 = FinalPrice1 + (FinalPrice1 * (ProgProps.VAT / 100))
                 txtInitialPrice1.EditValue = InitialPrice
                 txtDiscount1.EditValue = Discount
-                txtFinalPrice1.EditValue = FinalPrice
+                txtFinalPrice1.EditValue = FinalPrice1
             Case 2
                 If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountSpecial
                 InitialPrice = txtInitialPrice2.EditValue
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc2.EditValue / 100
                 Discount = Disc * InitialPrice
-                FinalPrice = InitialPrice - Discount
+                FinalPrice2 = InitialPrice - Discount
+                FinalPrice2 = FinalPrice2 + (FinalPrice2 * (ProgProps.VAT / 100))
                 txtInitialPrice2.EditValue = InitialPrice
                 txtDiscount2.EditValue = Discount
-                txtFinalPrice2.EditValue = FinalPrice
+                txtFinalPrice2.EditValue = FinalPrice2
             Case 3
                 If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountSpecial
                 InitialPrice = txtInitialPrice3.EditValue
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc3.EditValue / 100
                 Discount = Disc * InitialPrice
-                FinalPrice = InitialPrice - Discount
+                FinalPrice3 = InitialPrice - Discount
+                FinalPrice3 = FinalPrice3 + (FinalPrice3 * (ProgProps.VAT / 100))
                 txtInitialPrice3.EditValue = InitialPrice
                 txtDiscount3.EditValue = Discount
-                txtFinalPrice3.EditValue = FinalPrice
+                txtFinalPrice3.EditValue = FinalPrice3
             Case 4
                 If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountSpecial
                 InitialPrice = txtInitialPrice4.EditValue
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc4.EditValue / 100
                 Discount = Disc * InitialPrice
-                FinalPrice = InitialPrice - Discount
+                FinalPrice4 = InitialPrice - Discount
+                FinalPrice4 = FinalPrice4 + (FinalPrice4 * (ProgProps.VAT / 100))
                 txtInitialPrice4.EditValue = InitialPrice
                 txtDiscount4.EditValue = Discount
-                txtFinalPrice4.EditValue = FinalPrice
+                txtFinalPrice4.EditValue = FinalPrice4
         End Select
-    End Sub
-    Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
-        ApplyDiscount(1)
-    End Sub
-
-    Private Sub txtInitialPrice2_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice2.EditValueChanged
-        ApplyDiscount(2)
+        TotAmt = txtTotAmt.EditValue
+        FinalPrice1 = txtFinalPrice1.EditValue : FinalPrice2 = txtFinalPrice2.EditValue : FinalPrice3 = txtFinalPrice3.EditValue
+        FinalPrice4 = txtFinalPrice4.EditValue
+        txtTotAmt.EditValue = FinalPrice1 + FinalPrice2 + FinalPrice3 + FinalPrice4
     End Sub
 
-    Private Sub txtInitialPrice3_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice3.EditValueChanged
-        ApplyDiscount(3)
-    End Sub
-
-    Private Sub txtInitialPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice4.EditValueChanged
-        ApplyDiscount(4)
-    End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
-        'txtPhn.EditValue = cboCUS.GetColumnValue("phn")
-        'txtArea.EditValue = cboCUS.GetColumnValue("AREAS_Name")
-        'txtADR.EditValue = cboCUS.GetColumnValue("ADR_Name")
-        Dim sCusID As String
-        If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
-                        from vw_TRANSH t
-                        INNER JOIN TRANSC on transc.transhID = t.id and TRANSC.transhcID = 'AE5476D4-2152-4B20-87BB-7933B0215D04' 
-                        where completed = 0 and  T.cusid = " & sCusID & "order by description")
-        FillCbo.TRANSH(cboTRANSH, sSQL)
+        If Mode = FormMode.NewRecord Then CUSOfferOrderSpecialConstr.FillCusTransh(lkupEditValue(cboCUS), lkupEditValue(cboCompProject), chkGenOffer.CheckState, "")
     End Sub
 
     Private Sub txtdtdaysOfDelivery_EditValueChanged(sender As Object, e As EventArgs) Handles txtdtdaysOfDelivery.EditValueChanged
@@ -209,26 +209,6 @@ Public Class frmCUSOfferOrderSpecialConstr
             Case 2 : ManageCbo.ManageTRANSHSmall(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue,,,,,, sIsOrder)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
-    End Sub
-
-
-    Private Sub txtFinalPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice4.EditValueChanged
-        txtTotalSpecialVat.EditValue = TotalPrice()
-    End Sub
-
-    Private Sub txtFinalPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice1.EditValueChanged
-        txtTotalSpecialVat.EditValue = TotalPrice()
-    End Sub
-
-    Private Sub txtFinalPrice2_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice2.EditValueChanged
-        txtTotalSpecialVat.EditValue = TotalPrice()
-    End Sub
-
-    Private Sub txtFinalPrice3_EditValueChanged(sender As Object, e As EventArgs) Handles txtFinalPrice3.EditValueChanged
-        txtTotalSpecialVat.EditValue = TotalPrice()
-        Dim Price As Double
-        Price = DbnullToZero(txtTotalSpecialVat)
-        txtTotalSpecialPrice.EditValue = Price * (ProgProps.VAT / 100) + Price
     End Sub
 
     Private Sub cboVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
@@ -347,19 +327,26 @@ Public Class frmCUSOfferOrderSpecialConstr
     End Sub
 
     Private Sub txtDisc1_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc1.EditValueChanged
-        ApplyDiscount(1, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(1, True)
+        End If
     End Sub
-
     Private Sub txtDisc2_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc2.EditValueChanged
-        ApplyDiscount(2, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(2, True)
+        End If
     End Sub
 
     Private Sub txtDisc3_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc3.EditValueChanged
-        ApplyDiscount(3, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(3, True)
+        End If
     End Sub
 
     Private Sub txtDisc4_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc4.EditValueChanged
-        ApplyDiscount(4, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(4, True)
+        End If
     End Sub
 
 
@@ -418,26 +405,20 @@ Public Class frmCUSOfferOrderSpecialConstr
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
             Case 2
-                LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_CLOSET_def.xml")
-                TRANSH_FTableAdapter.FillByTanshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
+                LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_SPECIAL_CONSTR_def.xml")
+                TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
         End Select
 
     End Sub
     Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
-        Dim sCompID As String
-        If cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(cboCompany.EditValue.ToString)
-        Dim sSQL As New System.Text.StringBuilder
-        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
-                        from vw_TRANSH t
-                        where  T.cusid = " & sCompID & "order by description")
-        FillCbo.TRANSH(cboCompProject, sSQL)
-        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        If Mode = FormMode.NewRecord Then CUSOfferOrderSpecialConstr.FillCompanyProjects(lkupEditValue(cboCompany), chkGenOffer.CheckState, "")
     End Sub
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
         Select Case e.Button.Index
+            Case 1
                 If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-            ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder, System.Guid.Parse("AE5476D4-2152-4B20-87BB-7933B0215D04"))
+                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder, System.Guid.Parse("AE5476D4-2152-4B20-87BB-7933B0215D04"))
             Case 2 : If cboCompProject.EditValue IsNot Nothing Then ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True,,,,, sIsOrder)
             Case 3 : cboCompProject.EditValue = Nothing
         End Select
@@ -488,5 +469,108 @@ Public Class frmCUSOfferOrderSpecialConstr
 
     Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
         FillCusTransh()
+    End Sub
+    Private Sub chkGenOffer_CheckedChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckedChanged
+        If chkGenOffer.CheckState = CheckState.Checked Then
+            cboCUS.Enabled = False : cboTRANSH.Enabled = False
+            cboCUS.EditValue = cboCompany.EditValue
+            cboTRANSH.EditValue = cboCompProject.EditValue
+        Else
+            cboCUS.Enabled = True : cboTRANSH.Enabled = True
+        End If
+    End Sub
+
+    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+        receiveAgreement = cboTRANSH.GetColumnValue("receiveAgreement")
+    End Sub
+    Private Sub cmdSaveTransF_Click(sender As Object, e As EventArgs) Handles cmdSaveTransF.Click
+        XtraOpenFileDialog1.Tag = cboTanshFCategory.EditValue.ToString
+        CUSOfferOrderSpecialConstr.SaveRecordF(0)
+    End Sub
+    Private Sub txtFiles_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtFiles.ButtonClick
+        Dim sFilename As String
+        Select Case e.Button.Index
+            Case 0
+                Dim result = XtraInputBox.Show("Πληκτρολογήστε το πλήθος σελίδων που θα σκανάρετε", "Όνομα Αρχείου", "1")
+                ScanFile = New ScanToPDF
+                If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
+                txtFiles.EditValue = sFilename
+                If txtFiles.Text <> "" Then CUSOfferOrderSpecialConstr.SaveRecordF(1, sFilename)
+                ScanFile = Nothing
+            Case 1 : FilesSelection(XtraOpenFileDialog1, txtFiles)
+
+            Case 2 : txtFiles.EditValue = Nothing
+        End Select
+    End Sub
+    Private Sub cmdPrivateAgreement_Click(sender As Object, e As EventArgs) Handles cmdPrivateAgreement.Click
+        Dim frmPrivateAgreement As frmCUSPrivateAgreement = New frmCUSPrivateAgreement()
+        Dim AgreementID As String
+        With frmPrivateAgreement
+            .Company = cboCompany.EditValue
+            .CompProject = cboCompProject.EditValue
+            .CUS = cboCUS.EditValue
+            .TRANSH = cboTRANSH.EditValue
+            .EMP = cboEMP.EditValue
+            .Text = "Ιδ. Συμφωνητικό"
+            If AgreementExist(AgreementID) Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
+            .ID = AgreementID
+            .ShowDialog()
+        End With
+    End Sub
+    ' Έλεγχος αν υτπάρχει συφωνητικό για την Ντουλάπα
+    Private Function AgreementExist(ByRef AgreementID As String) As Boolean
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Try
+            cmd = New SqlCommand("  select  id from Agreement where sc = 1 and transhID =  " & toSQLValueS(cboTRANSH.EditValue.ToString), CNDB)
+            sdr = cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                AgreementID = sdr.GetGuid(sdr.GetOrdinal("id")).ToString()
+                sdr.Close() : Return True
+            Else
+                sdr.Close() : Return False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sdr.Close()
+        End Try
+    End Function
+    Private Sub CalculateTotAmt()
+        If Me.IsActive = False Then Exit Sub
+        Dim ExtraInst As Double = DbnullToZero(txtExtraInst)
+        Dim ExtraTransp As Double = DbnullToZero(txtExtraTransp)
+        Dim PartofVat As Double = DbnullToZero(txtPartofVat)
+
+        Dim SCVat As Double = DbnullToZero(txtTotalSpecialVat) + ExtraInst + ExtraTransp
+        Dim TotalSpecialPrice As Double = DbnullToZero(txtTotalSpecialPrice)
+        TotalSpecialPrice = (SCVat * (ProgProps.VAT / 100)) + SCVat
+        Dim TotAmt As Double = IIf(PartofVat > 0, SCVat + PartofVat, TotalSpecialPrice)
+        txtTotalSpecialPrice.EditValue = TotAmt : txtTotAmt.EditValue = TotAmt
+    End Sub
+    Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(1)
+    End Sub
+
+    Private Sub txtInitialPrice2_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice2.EditValueChanged
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(2)
+    End Sub
+
+    Private Sub txtInitialPrice3_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice3.EditValueChanged
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(3)
+    End Sub
+
+    Private Sub txtInitialPrice4_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice4.EditValueChanged
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(4)
+    End Sub
+    Private Sub txtExtraInst_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraInst.EditValueChanged
+        CalculateTotAmt()
+    End Sub
+
+    Private Sub txtExtraTransp_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraTransp.EditValueChanged
+        CalculateTotAmt()
+    End Sub
+
+    Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
+        CalculateTotAmt()
     End Sub
 End Class

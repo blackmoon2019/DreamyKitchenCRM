@@ -74,6 +74,8 @@ Public Class frmCUSOfferOrderCloset
     End Sub
 
     Private Sub frmCUSOrderCloset_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
+        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         CusOfferOrderCloset.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder)
         CusOfferOrderCloset.LoadForm()
         If receiveAgreement = True Then cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False : cmdSavePhotos.Enabled = False
@@ -407,13 +409,15 @@ Public Class frmCUSOfferOrderCloset
     Private Sub GridView2_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles GridView2.ValidatingEditor
         Dim grdView As GridView = sender
         If grdView.FocusedColumn.FieldName = "checked" Then
-            If CStr(e.Value) = "false" Then
+            If CStr(e.Value) = "False" Then
                 GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "QTY", 0)
             Else
-                GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "QTY", 1)
-                GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice"))
+                If GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "QTY") = 0 Then
+                    GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "QTY", 1)
+                    GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice"))
+                End If
             End If
-        End If
+            End If
         If grdView.FocusedColumn.FieldName = "QTY" Then
             If CStr(e.Value) = "" Then Exit Sub
             Dim sTot As Decimal = e.Value * GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice")
@@ -503,21 +507,36 @@ Public Class frmCUSOfferOrderCloset
     End Sub
 
     Private Sub txtDisc1_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc1.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(1, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(1, True)
+        End If
+
     End Sub
     Private Sub txtDisc2_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc2.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(2, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(2, True)
+        End If
+
     End Sub
 
     Private Sub txtDisc3_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc3.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(3, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(3, True)
+        End If
+
     End Sub
 
     Private Sub txtDisc4_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc4.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(4, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(4, True)
+        End If
+
     End Sub
     Private Sub txtDisc5_EditValueChanged(sender As Object, e As EventArgs) Handles txtDisc5.EditValueChanged
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(5, True)
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing Then
+            If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue.ToString.Replace("%", "") <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(5, True)
+        End If
+
     End Sub
 
     Private Sub cboValueListItemID_ProcessNewValue(sender As Object, e As ProcessNewValueEventArgs) Handles cboValueListItem.ProcessNewValue
@@ -943,17 +962,28 @@ Public Class frmCUSOfferOrderCloset
                 GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
             Case 3
                 LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_CLOSET_def.xml")
-                TRANSH_FTableAdapter.FillByTanshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
+                TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
         End Select
     End Sub
     Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
         If Mode = FormMode.NewRecord Then CusOfferOrderCloset.FillCompanyProjects(lkupEditValue(cboCompany), chkGenOffer.CheckState, "")
     End Sub
+    Private Sub chkGenOffer_CheckedChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckedChanged
+        If chkGenOffer.CheckState = CheckState.Checked Then
+            cboCUS.Enabled = False : cboTRANSH.Enabled = False
+            cboCUS.EditValue = cboCompany.EditValue
+            cboTRANSH.EditValue = cboCompProject.EditValue
+        Else
+            cboCUS.Enabled = True : cboTRANSH.Enabled = True
+        End If
+    End Sub
+
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
         Select Case e.Button.Index
+            Case 1
                 If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-            ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder, System.Guid.Parse("3DAF9172-E9C4-402D-9BE7-4A3F64ABDAE4"))
+                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder, System.Guid.Parse("3DAF9172-E9C4-402D-9BE7-4A3F64ABDAE4"))
             Case 2 : If cboCompProject.EditValue IsNot Nothing Then ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True,,,,, sIsOrder)
             Case 3 : cboCompProject.EditValue = Nothing
         End Select

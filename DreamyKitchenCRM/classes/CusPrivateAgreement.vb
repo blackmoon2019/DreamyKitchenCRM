@@ -51,7 +51,6 @@ Public Class CusPrivateAgreement
         Else
             Mode = FormMode.NewRecord
         End If
-        Valid.AddControlsForCheckIfSomethingChanged(Frm.LayoutControl1)
     End Sub
 
 
@@ -324,8 +323,6 @@ Public Class CusPrivateAgreement
                 If sdr.IsDBNull(sdr.GetOrdinal("TotalVat")) = False Then Frm.TxtTotalVat.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalVat")) Else Frm.TxtTotalVat.EditValue = Nothing
                 If sdr.IsDBNull(sdr.GetOrdinal("TotalPrice")) = False Then Frm.txtTotalVatPrice.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalPrice")) Else Frm.txtTotalVatPrice.EditValue = Nothing
                 If sdr.IsDBNull(sdr.GetOrdinal("GENTOT")) = False Then Frm.txtGenTot.EditValue = sdr.GetDecimal(sdr.GetOrdinal("GENTOT")) Else Frm.txtGenTot.EditValue = Nothing
-                'If sdr.IsDBNull(sdr.GetOrdinal("ExtraInst")) = False Then Frm.txtExtraInst.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraInst")) Else Frm.txtExtraInst.EditValue = Nothing
-                'If sdr.IsDBNull(sdr.GetOrdinal("ExtraTransp")) = False Then Frm.txtExtraTransp.EditValue = sdr.GetDecimal(sdr.GetOrdinal("ExtraTransp")) Else Frm.txtExtraTransp.EditValue = Nothing
                 Frm.chkHasKitchen.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasKitchen"))
                 Frm.chkHasCloset.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasCloset"))
                 Frm.chkHasDoors.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasDoors"))
@@ -351,7 +348,7 @@ Public Class CusPrivateAgreement
 
             Select Case Mode
                 Case 1 ' Κουζίνα
-                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_KITCHEN WHERE transhID = " & toSQLValueS(sTranshID), CNDB)
+                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_KITCHEN WHERE isOrder = 1 and transhID = " & toSQLValueS(sTranshID), CNDB)
                     sdr = cmd.ExecuteReader()
                     If (sdr.Read() = True) Then
                         If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
@@ -366,7 +363,7 @@ Public Class CusPrivateAgreement
                     frmCUSOrderKitchen.Mode = FormMode.EditRecord
                     frmCUSOrderKitchen.ShowDialog()
                 Case 2 ' Πόρτες
-                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_DOOR WHERE transhID = " & toSQLValueS(sTranshID), CNDB)
+                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_DOOR WHERE isOrder = 1 and transhID = " & toSQLValueS(sTranshID), CNDB)
                     sdr = cmd.ExecuteReader()
                     If (sdr.Read() = True) Then
                         If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
@@ -382,7 +379,7 @@ Public Class CusPrivateAgreement
                     frmCUSOfferOrderDoors.Mode = FormMode.EditRecord
                     frmCUSOfferOrderDoors.ShowDialog()
                 Case 3 ' Ντουλάπες
-                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_CLOSET WHERE transhID = " & toSQLValueS(sTranshID), CNDB)
+                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_CLOSET WHERE isOrder = 1 and  transhID = " & toSQLValueS(sTranshID), CNDB)
                     sdr = cmd.ExecuteReader()
                     If (sdr.Read() = True) Then
                         If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString
@@ -397,7 +394,7 @@ Public Class CusPrivateAgreement
                     frmCUSOrderCloset.Mode = FormMode.EditRecord
                     frmCUSOrderCloset.ShowDialog()
                 Case 4 ' Ειδικές Κατασκευές
-                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_SPECIAL_CONSTR WHERE transhID = " & toSQLValueS(sTranshID), CNDB)
+                    cmd = New SqlCommand("SELECT ID FROM CCT_ORDERS_SPECIAL_CONSTR WHERE isOrder = 1 and transhID = " & toSQLValueS(sTranshID), CNDB)
                     sdr = cmd.ExecuteReader()
                     If (sdr.Read() = True) Then
                         If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then oID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString

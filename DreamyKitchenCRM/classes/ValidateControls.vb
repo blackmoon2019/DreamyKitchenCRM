@@ -167,12 +167,6 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
-                    If f.cboCompany.EditValue IsNot Nothing And f.cboCUS.EditValue IsNot Nothing Then
-                        If f.cboCUS.EditValue.ToString.ToUpper = f.cboCompany.EditValue.ToString.ToUpper Then
-                            XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
-                    End If
 
 
                     If ExtraChecks = True Then
@@ -210,12 +204,6 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
-                    If f.cboCompany.EditValue IsNot Nothing And f.cboCUS.EditValue IsNot Nothing Then
-                        If f.cboCUS.EditValue.ToString.ToUpper = f.cboCompany.EditValue.ToString.ToUpper Then
-                            XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
-                    End If
 
 
                     If ExtraChecks = True Then
@@ -248,12 +236,6 @@ Public Class ValidateControls
                     If f.cboCompany.EditValue IsNot Nothing And f.cboCompProject.EditValue = Nothing Then
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
-                    End If
-                    If f.cboCompany.EditValue IsNot Nothing And f.cboCUS.EditValue IsNot Nothing Then
-                        If f.cboCUS.EditValue.ToString.ToUpper = f.cboCompany.EditValue.ToString.ToUpper Then
-                            XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
                     End If
 
 

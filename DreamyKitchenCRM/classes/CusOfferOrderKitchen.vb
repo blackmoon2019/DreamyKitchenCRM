@@ -26,6 +26,8 @@ Public Class CusOfferOrderKitchen
         CtrlCombo = sCtrlCombo
         sBaseCat = BaseCat
         sIsOrder = IsOrder
+        Prog_Prop.GetProgPROSF()
+        Frm.Vw_FILE_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_FILE_CAT)
         Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
         Frm.Vw_VALUELISTITEM_BENCH_V2TableAdapter.Fill(Frm.DM_VALUELISTITEM.vw_VALUELISTITEM_BENCH_V2)
         Frm.Vw_VALUELISTITEM_V2TableAdapter.Fill(Frm.DM_VALUELISTITEM.vw_VALUELISTITEM_V2)
@@ -38,9 +40,7 @@ Public Class CusOfferOrderKitchen
         Frm.Vw_COLORS_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_COLORS_CAT)
         Frm.Vw_VALUELISTITEMModelKitchenTableAdapter.Fill(Frm.DM_VALUELISTITEM1.vw_VALUELISTITEMModelKitchen)
         Frm.Vw_SUPTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SUP)
-
-        Prog_Prop.GetProgPROSF()
-
+        If ID IsNot Nothing Then Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(ID))
         If sIsOrder = True Then
             Frm.LOrderDetailsGroup.Text = "Στοιχεία Παραγγελίας"
             Frm.LdtOrder.Text = "Ημερ/νία Παραγγελίας"
@@ -204,7 +204,7 @@ Public Class CusOfferOrderKitchen
         Frm.cmdCompCollection.Enabled = True
         If GenOffer = True Then
             Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
-            Frm.cboTRANSH.EditValue = Frm.cboCompProject.EditValue
+            Frm.cboTRANSH.EditValue = scompTrashID
         End If
         If scompTrashID <> "" Then Frm.cboCompProject.EditValue = System.Guid.Parse(scompTrashID)
     End Sub
@@ -297,10 +297,12 @@ Public Class CusOfferOrderKitchen
                         End If
                         Frm.cmdPrintOffer.Enabled = True
                     End If
+                    Dim Projects As New Projects
                     If sIsOrder = True Then
-                        Dim Projects As New Projects
                         ' Ενημέρωση ποσών στο έργο
                         Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True)
+                    Else
+                        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True, True)
                     End If
                     Mode = FormMode.EditRecord
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -348,14 +350,14 @@ Public Class CusOfferOrderKitchen
     Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
         Dim sResultF As Boolean
         If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If Frm.txtFiles.Text <> "" Then
-            Select Case sMode
-                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
-                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Παραγγελία")
-            End Select
+        If Frm.txtFiles.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει Αρχείο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        Select Case sMode
+            Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
+            Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Παραγγελία")
+        End Select
+        Frm.txtFiles.EditValue = Nothing
+        Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
 
-            Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
-        End If
 
     End Sub
 

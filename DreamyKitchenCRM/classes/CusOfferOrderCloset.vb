@@ -50,7 +50,7 @@ Public Class CusOfferOrderCloset
             Frm.LOrderDetailsGroup.Text = "Στοιχεία Προσφοράς"
             Frm.LdtOrder.Text = "Ημερ/νία Προσφοράς"
             Frm.LarProt.Text = "Αρ. Προσφοράς"
-            Frm.LCostGroup.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LCost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LPrivateAgreement.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
             Frm.LOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.TabNavigationPage3.PageVisible = False
@@ -200,10 +200,12 @@ Public Class CusOfferOrderCloset
                         Frm.cmdPrintOffer.Enabled = True
                         InsertSelectedRows(False)
                     End If
+                    Dim Projects As New Projects
                     If sIsOrder = True Then
-                        Dim Projects As New Projects
                         ' Ενημέρωση ποσών στο έργο
                         Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString,  , True)
+                    Else
+                        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True, True)
                     End If
                     Mode = FormMode.EditRecord
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -216,14 +218,14 @@ Public Class CusOfferOrderCloset
     Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
         Dim sResultF As Boolean
         If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If Frm.txtFiles.Text <> "" Then
-            Select Case sMode
-                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
-                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Παραγγελία")
-            End Select
+        If Frm.txtFiles.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει Αρχείο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        Select Case sMode
+            Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
+            Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Παραγγελία")
+        End Select
+        Frm.txtFiles.EditValue = Nothing
+        Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
 
-            Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
-        End If
 
     End Sub
     Public Sub InsertSelectedRows(Optional ByVal msg As Boolean = True)
@@ -316,7 +318,7 @@ Public Class CusOfferOrderCloset
                     frmCUSOfferOrderCloset.ID = OrderID
                     frmCUSOfferOrderCloset.Mode = FormMode.EditRecord
                     frmCUSOfferOrderCloset.IsOrder = True
-                    frmCUSOfferOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                    frmCUSOfferOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
                     frmCUSOfferOrderCloset.ShowDialog()
                 End If
             End If
@@ -414,7 +416,7 @@ Public Class CusOfferOrderCloset
         Frm.cmdCompCollection.Enabled = True
         If GenOffer = True Then
             Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
-            Frm.cboTRANSH.EditValue = Frm.cboCompProject.EditValue
+            Frm.cboTRANSH.EditValue = scompTrashID
         End If
         If scompTrashID <> "" Then Frm.cboCompProject.EditValue = System.Guid.Parse(scompTrashID)
     End Sub

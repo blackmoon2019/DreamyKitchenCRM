@@ -77,8 +77,6 @@ Public Class frmCUSOfferOrderKitchen
         Me.Close()
     End Sub
     Private Sub frmCUSOrderKitchen_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
-        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         CusOfferOrderKitchen.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder, sBaseCat)
         CusOfferOrderKitchen.LoadForm()
         If receiveAgreement = True Then cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False : cmdSavePhotos.Enabled = False : cmdSaveTransF.Enabled = False
@@ -181,7 +179,7 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub chkVatVisible_CheckedChanged(sender As Object, e As EventArgs) Handles chkVatVisible.CheckedChanged
         Dim cmd As SqlCommand
         If chkVatVisible.Checked = True Then
-            cmd = New SqlCommand("Update CCT_ORDERS_KITCHEN set visibleVAT = 1 where ID =c " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
+            cmd = New SqlCommand("Update CCT_ORDERS_KITCHEN set visibleVAT = 1 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
         Else
             cmd = New SqlCommand("Update CCT_ORDERS_KITCHEN set visibleVAT = 0 where ID = " & toSQLValueS(sID), CNDB) : cmd.ExecuteNonQuery()
         End If
@@ -433,12 +431,13 @@ Public Class frmCUSOfferOrderKitchen
                 LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_KITCHEN_EQUIPMENT_def")
                 GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
                 GridView1.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView1.Columns.Item("code").OptionsColumn.AllowEdit = False
-                GridView2.Columns.Item("price").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
+                GridView2.Columns.Item("price").OptionsColumn.AllowEdit = True
+                GridView2.Columns.Item("standard").OptionsColumn.AllowEdit = False
                 GridView1.OptionsMenu.ShowConditionalFormattingItem = True
             Case 2 : If sID IsNot Nothing Then Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(sID))
             Case 3
                 LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_KITCHEN_def.xml")
-                TRANSH_FTableAdapter.FillByTanshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
+                TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
         End Select
     End Sub
     Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
@@ -1077,7 +1076,7 @@ Public Class frmCUSOfferOrderKitchen
         TotalErmariaVat = TotalErmariaVat + ExtraInst + ExtraTransp
         TotalErmariaPrice = (TotalErmariaVat * (ProgProps.VAT / 100)) + TotalErmariaVat
         Dim TotAmt As Double = ExtraInst + ExtraTransp + TotalDevicesPrice + IIf(PartofVat > 0, TotalErmariaVat + PartofVat, TotalErmariaPrice)
-        txtTotalErmariaPrice.EditValue = TotAmt : txtTotAmt.EditValue = TotAmt
+        txtTotalErmariaPrice.EditValue = TotAmt - TotalDevicesPrice : txtTotAmt.EditValue = TotAmt
     End Sub
     Private Sub txtExtraInst_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraInst.EditValueChanged
         If Me.IsActive = False Then Exit Sub

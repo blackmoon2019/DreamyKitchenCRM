@@ -297,7 +297,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.LayoutControlItem92 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem93 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem11 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LCostGroup = New DevExpress.XtraLayout.LayoutControlGroup()
+        Me.LCost = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem72 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem40 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -376,7 +376,6 @@ Partial Class frmCUSOfferOrderCloset
         Me.LayoutControl4 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdSaveTransF = New DevExpress.XtraEditors.SimpleButton()
         Me.cboTanshFCategory = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwFILECATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.TRANSHFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DM_TRANS = New DreamyKitchenCRM.DM_TRANS()
@@ -413,6 +412,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.Vw_COLORS_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORS_CATTableAdapter()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         Me.VwSCANFILENAMESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwFILECATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_FILE_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPane1.SuspendLayout()
@@ -670,7 +670,7 @@ Partial Class frmCUSOfferOrderCloset
         CType(Me.LayoutControlItem92, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem93, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem11, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LCostGroup, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LCost, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem72, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -725,7 +725,6 @@ Partial Class frmCUSOfferOrderCloset
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl4.SuspendLayout()
         CType(Me.cboTanshFCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -741,6 +740,7 @@ Partial Class frmCUSOfferOrderCloset
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DMTRANSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TabPane1
@@ -895,7 +895,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(15)
         Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1693, 179, 1255, 1695)
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(5617, 166, 1255, 1695)
         Me.LayoutControl1.Root = Me.Root
         Me.LayoutControl1.Size = New System.Drawing.Size(1370, 1114)
         Me.LayoutControl1.TabIndex = 2
@@ -1062,7 +1062,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboboxThikness6.Name = "cboboxThikness6"
         Me.cboboxThikness6.Properties.AllowMouseWheel = False
         Me.cboboxThikness6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboboxThikness6.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboboxThikness6.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboboxThikness6.Properties.Tag = "opening"
         Me.cboboxThikness6.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboboxThikness6.Size = New System.Drawing.Size(319, 26)
@@ -1077,7 +1077,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboBackThikness6.Name = "cboBackThikness6"
         Me.cboBackThikness6.Properties.AllowMouseWheel = False
         Me.cboBackThikness6.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBackThikness6.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboBackThikness6.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboBackThikness6.Properties.Tag = "opening"
         Me.cboBackThikness6.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboBackThikness6.Size = New System.Drawing.Size(312, 26)
@@ -1128,7 +1128,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboboxThikness5.Name = "cboboxThikness5"
         Me.cboboxThikness5.Properties.AllowMouseWheel = False
         Me.cboboxThikness5.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboboxThikness5.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboboxThikness5.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboboxThikness5.Properties.Tag = "opening"
         Me.cboboxThikness5.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboboxThikness5.Size = New System.Drawing.Size(319, 26)
@@ -1143,7 +1143,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboBackThikness5.Name = "cboBackThikness5"
         Me.cboBackThikness5.Properties.AllowMouseWheel = False
         Me.cboBackThikness5.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBackThikness5.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboBackThikness5.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboBackThikness5.Properties.Tag = "opening"
         Me.cboBackThikness5.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboBackThikness5.Size = New System.Drawing.Size(312, 26)
@@ -1194,7 +1194,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboboxThikness4.Name = "cboboxThikness4"
         Me.cboboxThikness4.Properties.AllowMouseWheel = False
         Me.cboboxThikness4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboboxThikness4.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboboxThikness4.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboboxThikness4.Properties.Tag = "opening"
         Me.cboboxThikness4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboboxThikness4.Size = New System.Drawing.Size(319, 26)
@@ -1209,7 +1209,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboBackThikness4.Name = "cboBackThikness4"
         Me.cboBackThikness4.Properties.AllowMouseWheel = False
         Me.cboBackThikness4.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBackThikness4.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboBackThikness4.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboBackThikness4.Properties.Tag = "opening"
         Me.cboBackThikness4.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboBackThikness4.Size = New System.Drawing.Size(312, 26)
@@ -1260,7 +1260,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboboxThikness3.Name = "cboboxThikness3"
         Me.cboboxThikness3.Properties.AllowMouseWheel = False
         Me.cboboxThikness3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboboxThikness3.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboboxThikness3.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboboxThikness3.Properties.Tag = "opening"
         Me.cboboxThikness3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboboxThikness3.Size = New System.Drawing.Size(319, 26)
@@ -1275,7 +1275,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboBackThikness3.Name = "cboBackThikness3"
         Me.cboBackThikness3.Properties.AllowMouseWheel = False
         Me.cboBackThikness3.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBackThikness3.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboBackThikness3.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboBackThikness3.Properties.Tag = "opening"
         Me.cboBackThikness3.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboBackThikness3.Size = New System.Drawing.Size(312, 26)
@@ -1326,7 +1326,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboboxThikness2.Name = "cboboxThikness2"
         Me.cboboxThikness2.Properties.AllowMouseWheel = False
         Me.cboboxThikness2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboboxThikness2.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboboxThikness2.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboboxThikness2.Properties.Tag = "opening"
         Me.cboboxThikness2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboboxThikness2.Size = New System.Drawing.Size(319, 26)
@@ -1341,7 +1341,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboBackThikness2.Name = "cboBackThikness2"
         Me.cboBackThikness2.Properties.AllowMouseWheel = False
         Me.cboBackThikness2.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBackThikness2.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboBackThikness2.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboBackThikness2.Properties.Tag = "opening"
         Me.cboBackThikness2.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboBackThikness2.Size = New System.Drawing.Size(312, 26)
@@ -1479,7 +1479,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboBackThikness.Name = "cboBackThikness"
         Me.cboBackThikness.Properties.AllowMouseWheel = False
         Me.cboBackThikness.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboBackThikness.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboBackThikness.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboBackThikness.Properties.Tag = "opening"
         Me.cboBackThikness.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboBackThikness.Size = New System.Drawing.Size(312, 26)
@@ -1709,7 +1709,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboboxThikness.Name = "cboboxThikness"
         Me.cboboxThikness.Properties.AllowMouseWheel = False
         Me.cboboxThikness.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
-        Me.cboboxThikness.Properties.Items.AddRange(New Object() {"8cm", "18cm"})
+        Me.cboboxThikness.Properties.Items.AddRange(New Object() {"8mm", "18mm"})
         Me.cboboxThikness.Properties.Tag = "opening"
         Me.cboboxThikness.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.cboboxThikness.Size = New System.Drawing.Size(319, 26)
@@ -3117,7 +3117,7 @@ Partial Class frmCUSOfferOrderCloset
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LOrderDetailsGroup, Me.LPrint, Me.LSave, Me.LExit, Me.LVatVisible, Me.LayoutControlGroup8, Me.LCostGroup, Me.LConvertToOrder, Me.EmptySpaceItem3, Me.LNewRecord, Me.LOrder, Me.LPrivateAgreement, Me.LayoutControlItem125, Me.EmptySpaceItem13, Me.Lmsg})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LOrderDetailsGroup, Me.LPrint, Me.LSave, Me.LExit, Me.LVatVisible, Me.LayoutControlGroup8, Me.LCost, Me.LConvertToOrder, Me.EmptySpaceItem3, Me.LNewRecord, Me.LOrder, Me.LPrivateAgreement, Me.LayoutControlItem125, Me.EmptySpaceItem13, Me.Lmsg})
         Me.Root.Name = "Root"
         Me.Root.OptionsItemText.TextToControlDistance = 1
         Me.Root.Size = New System.Drawing.Size(1370, 1114)
@@ -4724,15 +4724,15 @@ Partial Class frmCUSOfferOrderCloset
         Me.EmptySpaceItem11.Size = New System.Drawing.Size(333, 175)
         Me.EmptySpaceItem11.TextSize = New System.Drawing.Size(0, 0)
         '
-        'LCostGroup
+        'LCost
         '
-        Me.LCostGroup.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success
-        Me.LCostGroup.AppearanceGroup.Options.UseBorderColor = True
-        Me.LCostGroup.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem2, Me.LayoutControlItem72, Me.LayoutControlItem40, Me.LayoutControlItem41, Me.LayoutControlItem34, Me.LayoutControlItem42, Me.EmptySpaceItem6})
-        Me.LCostGroup.Location = New System.Drawing.Point(0, 847)
-        Me.LCostGroup.Name = "LCostGroup"
-        Me.LCostGroup.Size = New System.Drawing.Size(1350, 154)
-        Me.LCostGroup.Text = "Κοστολόγιο"
+        Me.LCost.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Success
+        Me.LCost.AppearanceGroup.Options.UseBorderColor = True
+        Me.LCost.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.EmptySpaceItem2, Me.LayoutControlItem72, Me.LayoutControlItem40, Me.LayoutControlItem41, Me.LayoutControlItem34, Me.LayoutControlItem42, Me.EmptySpaceItem6})
+        Me.LCost.Location = New System.Drawing.Point(0, 847)
+        Me.LCost.Name = "LCost"
+        Me.LCost.Size = New System.Drawing.Size(1350, 154)
+        Me.LCost.Text = "Κοστολόγιο"
         '
         'EmptySpaceItem2
         '
@@ -4834,6 +4834,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.LNewRecord.Location = New System.Drawing.Point(429, 1058)
         Me.LNewRecord.Name = "LNewRecord"
         Me.LNewRecord.Size = New System.Drawing.Size(136, 36)
+        Me.LNewRecord.Text = "Νέα Εγγραφή"
         Me.LNewRecord.TextSize = New System.Drawing.Size(0, 0)
         Me.LNewRecord.TextVisible = False
         '
@@ -5554,11 +5555,6 @@ Partial Class frmCUSOfferOrderCloset
         Me.cboTanshFCategory.TabIndex = 67
         Me.cboTanshFCategory.Tag = "fileCatID,0,1,2"
         '
-        'VwFILECATBindingSource
-        '
-        Me.VwFILECATBindingSource.DataMember = "vw_FILE_CAT"
-        Me.VwFILECATBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'GridControl2
         '
         Me.GridControl2.DataSource = Me.TRANSHFBindingSource
@@ -5818,6 +5814,11 @@ Partial Class frmCUSOfferOrderCloset
         '
         Me.VwSCANFILENAMESBindingSource.DataMember = "vw_SCAN_FILE_NAMES"
         Me.VwSCANFILENAMESBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'VwFILECATBindingSource
+        '
+        Me.VwFILECATBindingSource.DataMember = "vw_FILE_CAT"
+        Me.VwFILECATBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
         'Vw_FILE_CATTableAdapter
         '
@@ -6090,7 +6091,7 @@ Partial Class frmCUSOfferOrderCloset
         CType(Me.LayoutControlItem92, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem93, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem11, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LCostGroup, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LCost, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem72, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem40, System.ComponentModel.ISupportInitialize).EndInit()
@@ -6145,7 +6146,6 @@ Partial Class frmCUSOfferOrderCloset
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl4.ResumeLayout(False)
         CType(Me.cboTanshFCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DM_TRANS, System.ComponentModel.ISupportInitialize).EndInit()
@@ -6161,6 +6161,7 @@ Partial Class frmCUSOfferOrderCloset
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DMTRANSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -6314,7 +6315,7 @@ Partial Class frmCUSOfferOrderCloset
     Friend WithEvents Vw_SALERSTableAdapter As DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter
     Friend WithEvents DMDataSet As DMDataSet
     Friend WithEvents CCTTRANSHBindingSource As BindingSource
-    Friend WithEvents LCostGroup As DevExpress.XtraLayout.LayoutControlGroup
+    Friend WithEvents LCost As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents cboboxThikness2 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents cboBackThikness2 As DevExpress.XtraEditors.ComboBoxEdit
     Friend WithEvents txtdrawers2 As DevExpress.XtraEditors.TextEdit

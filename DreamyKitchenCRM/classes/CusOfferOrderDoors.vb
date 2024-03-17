@@ -75,10 +75,7 @@ Public Class CusOfferOrderDoors
                 Frm.txtNotes.EditValue = ProgProps.CUS_NOTES
                 Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 Frm.cmdPrintOffer.Enabled = False
-                If sIsOrder = True Then
-                Else
-                    Frm.cmdOrder.Enabled = False
-                End If
+                If sIsOrder = False Then Frm.cmdOrder.Enabled = False
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
                 If sIsOrder = False Then
@@ -153,10 +150,12 @@ Public Class CusOfferOrderDoors
                         End If
                         Frm.cmdPrintOffer.Enabled = True
                     End If
+                    Dim Projects As New Projects
                     If sIsOrder = True Then
-                        Dim Projects As New Projects
                         ' Ενημέρωση ποσών στο έργο
                         Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString,  , True)
+                    Else
+                        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True, True)
                     End If
                     Mode = FormMode.EditRecord
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -204,7 +203,6 @@ Public Class CusOfferOrderDoors
                 End Using
                 XtraMessageBox.Show("Η μετατροπή ολοκληρώθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 Frm.orderID = OrderID
-                'cmdConvertToOrder.Enabled = False
                 Frm.cmdSave.Enabled = False
                 Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
                 Frm.LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
@@ -266,7 +264,7 @@ Public Class CusOfferOrderDoors
         Frm.cmdCompCollection.Enabled = True
         If GenOffer = True Then
             Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
-            Frm.cboTRANSH.EditValue = Frm.cboCompProject.EditValue
+            Frm.cboTRANSH.EditValue = scompTrashID
         End If
         If scompTrashID <> "" Then Frm.cboCompProject.EditValue = System.Guid.Parse(scompTrashID)
     End Sub
@@ -301,14 +299,13 @@ Public Class CusOfferOrderDoors
     Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
         Dim sResultF As Boolean
         If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If Frm.txtFiles.Text <> "" Then
-            Select Case sMode
-                Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
-                Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Παραγγελία")
-            End Select
-
-            Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
-        End If
+        If Frm.txtFiles.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει Αρχείο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        Select Case sMode
+            Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
+            Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Παραγγελία")
+        End Select
+        Frm.txtFiles.EditValue = Nothing
+        Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
 
     End Sub
 End Class

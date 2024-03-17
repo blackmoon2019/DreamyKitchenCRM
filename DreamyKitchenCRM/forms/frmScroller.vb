@@ -486,7 +486,7 @@ Public Class frmScroller
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
-                Case 3 ' Ειδικές Κατασκευές
+                Case 4 ' Ειδικές Κατασκευές
                     If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
                         If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
                             XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε παραγγελία όταν έχει δημιουργηθεί Ιδ.Συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

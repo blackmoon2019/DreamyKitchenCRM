@@ -81,10 +81,15 @@ Public Class frmCUSOfferOrderDoors
     End Sub
 
     Private Sub frmCUSOfferDoors_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
+        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         CusOfferOrderDoors.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder)
         CusOfferOrderDoors.LoadForm()
         If receiveAgreement = True Then cmdSave.Enabled = False : cmdSavePhotos.Enabled = False
         Me.CenterToScreen()
+    End Sub
+    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+        receiveAgreement = cboTRANSH.GetColumnValue("receiveAgreement")
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
@@ -706,7 +711,8 @@ Public Class frmCUSOfferOrderDoors
         Select Case TabPane1.SelectedPageIndex
             Case 2
                 LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_DOORS_def.xml")
-                TRANSH_FTableAdapter.FillByTanshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
+                'TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
+                TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
         End Select
 
     End Sub
@@ -716,11 +722,22 @@ Public Class frmCUSOfferOrderDoors
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
         If Mode = FormMode.NewRecord Then CusOfferOrderDoors.FillCusTransh(lkupEditValue(cboCUS), lkupEditValue(cboCompProject), chkGenOffer.CheckState, "")
     End Sub
+    Private Sub chkGenOffer_CheckedChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckedChanged
+        If chkGenOffer.CheckState = CheckState.Checked Then
+            cboCUS.Enabled = False : cboTRANSH.Enabled = False
+            cboCUS.EditValue = cboCompany.EditValue
+            cboTRANSH.EditValue = cboCompProject.EditValue
+        Else
+            cboCUS.Enabled = True : cboTRANSH.Enabled = True
+        End If
+    End Sub
+
 
     Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
         Select Case e.Button.Index
+            Case 1
                 If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-            ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder, System.Guid.Parse("47618E49-33E8-4685-969F-55419EDFAC58"))
+                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder, System.Guid.Parse("47618E49-33E8-4685-969F-55419EDFAC58"))
             Case 2 : If cboCompProject.EditValue IsNot Nothing Then ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True,,,,, sIsOrder)
             Case 3 : cboCompProject.EditValue = Nothing
         End Select

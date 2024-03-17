@@ -79,9 +79,7 @@ Public Class frmProject
 
 
     Private Sub frmProject_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INVTYPES' table. You can move, or remove it, as needed.
         Me.Vw_INVTYPESTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_INVTYPES)
-        'TODO: This line of code loads data into the 'DM_CCT.vw_COMP' table. You can move, or remove it, as needed.
         Me.Vw_COMPTableAdapter.Fill(Me.DM_CCT.vw_COMP)
         Projects.InitializeSmall(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sisOrder)
         If sCusID <> Nothing Then cboCUS.EditValue = sCusID : cboCUS.Enabled = False

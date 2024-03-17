@@ -93,7 +93,7 @@ Public Class Projects
                 Frm.txtBal.EditValue = TranshFieldAndValues.Item("bal")
                 sEMP_T_ID = TranshFieldAndValues.Item("EmpTID").ToString
                 sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
-                Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
+                Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
                 Frm.Vw_TRANSD_CreditTableAdapter.FillByCredit(Frm.DM_TRANS.vw_TRANSD_Credit, System.Guid.Parse(ID))
 
                 CheckStateTransItems()
@@ -229,7 +229,7 @@ Public Class Projects
                 Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, ID, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString,, "Εργο")
             End Select
 
-            Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
+            Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
         End If
 
     End Sub
@@ -733,7 +733,7 @@ Public Class Projects
                     oCmd.ExecuteNonQuery()
                 End Using
                 XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Frm.TRANSH_FTableAdapter.FillByTanshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
+                Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
             End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -908,7 +908,7 @@ Public Class Projects
     Public Function GetNextID() As Integer
         Return DBQ.GetNextId("TRANSH")
     End Function
-    Public Sub UpdateProject(ByVal transhID As String, Optional ByVal KDevices As Boolean = False, Optional ByVal GrandTotal As Boolean = False)
+    Public Sub UpdateProject(ByVal transhID As String, Optional ByVal KDevices As Boolean = False, Optional ByVal GrandTotal As Boolean = False, Optional ByVal isGenOffer As Boolean = False)
         Dim sSQL As String
         Try
 
@@ -919,22 +919,59 @@ Public Class Projects
                         inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
                         inner join TRANSH  T on T.ID = K.transhID 
                         WHERE T.ID =  " & toSQLValueS(transhID) & ") where TRANSH.ID =  " & toSQLValueS(transhID)
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
             End If
+
             ' Γενικό σύνολο πώλησης
             If GrandTotal Then
-                sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)	,
-                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)) - (Select isnull(sum(amt),0) from TRANSD where transhID = 	T.ID)
+                If isGenOffer = True Then
+                    sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0) + 	
+                        isnull((select sum(Price) 
+                        from CCT_ORDERS_KITCHEN_DEVICES D
+                        inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
+                        inner join TRANSH  T on T.ID = K.transhID 
+                        WHERE T.ID =  " & toSQLValueS(transhID) & "),0),
+                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)) + 
+                        isnull((select sum(Price) 
+                        from CCT_ORDERS_KITCHEN_DEVICES D
+                        inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
+                        inner join TRANSH  T on T.ID = K.transhID 
+                        WHERE T.ID =  " & toSQLValueS(transhID) & "),0) - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID)
+	                    FROM TRANSH T
+	                    left join CCT_ORDERS_KITCHEN K on K.transhID = T.ID and K.isOrder =0
+	                    left join CCT_ORDERS_DOOR D on D.transhID = T.ID and D.isOrder =0
+	                    left join CCT_ORDERS_CLOSET  C on C.transhID = T.ID and C.isOrder =0
+	                    left join CCT_ORDERS_SPECIAL_CONSTR   SC on SC.transhID = T.ID and SC.isOrder =0
+	                    where T.ID = " & toSQLValueS(transhID)
+                Else
+                    sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0) + 	
+                        isnull((select sum(Price) 
+                        from CCT_ORDERS_KITCHEN_DEVICES D
+                        inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
+                        inner join TRANSH  T on T.ID = K.transhID 
+                        WHERE T.ID =  " & toSQLValueS(transhID) & "),0),
+                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)) + 
+                        isnull((select sum(Price) 
+                        from CCT_ORDERS_KITCHEN_DEVICES D
+                        inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
+                        inner join TRANSH  T on T.ID = K.transhID 
+                        WHERE T.ID =  " & toSQLValueS(transhID) & "),0) - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID)
 	                    FROM TRANSH T
 	                    left join CCT_ORDERS_KITCHEN K on K.transhID = T.ID and K.isOrder =1
 	                    left join CCT_ORDERS_DOOR D on D.transhID = T.ID and D.isOrder =1
 	                    left join CCT_ORDERS_CLOSET  C on C.transhID = T.ID and C.isOrder =1
 	                    left join CCT_ORDERS_SPECIAL_CONSTR   SC on SC.transhID = T.ID and SC.isOrder =1
 	                    where T.ID = " & toSQLValueS(transhID)
+                End If
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+
             End If
-            'Εκτέλεση QUERY
-            Using oCmd As New SqlCommand(sSQL, CNDB)
-                oCmd.ExecuteNonQuery()
-            End Using
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
