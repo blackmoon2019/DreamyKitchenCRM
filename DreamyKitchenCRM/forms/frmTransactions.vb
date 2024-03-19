@@ -188,15 +188,7 @@ Public Class frmTransactions
         End Select
 
     End Sub
-    Private Sub txtTotAmt_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotAmt.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
-        CalculateBal()
-    End Sub
-    Private Sub CalculateBal()
-        Dim dAmt As Double = 0
-        If GridView1.Columns.Item("amt").SummaryItem.SummaryValue IsNot Nothing Then dAmt = GridView1.Columns.Item("amt").SummaryItem.SummaryValue
-        txtBal.Text = txtTotAmt.EditValue - dAmt
-    End Sub
+
     Private Sub frmTransactions_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         Projects.LoadInstallations(True)
     End Sub
@@ -209,21 +201,6 @@ Public Class frmTransactions
     Private Sub cmdPrintAll_Click(sender As Object, e As EventArgs) Handles cmdPrintAll.Click
         Projects.PrintedForms()
     End Sub
-
-    Private Sub txtExtraCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraCost.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
-        CalculateTotAmt()
-    End Sub
-    Private Sub txtDebitCost_EditValueChanged(sender As Object, e As EventArgs)
-        If Me.IsActive = False Then Exit Sub
-        CalculateTotAmt()
-    End Sub
-
-    Private Sub txtDevicesCost_EditValueChanged(sender As Object, e As EventArgs) Handles txtDevicesCost.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
-        CalculateTotAmt()
-    End Sub
-
     Private Sub cboPayType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPayType.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManagePAY_TYPE(cboPayType, FormMode.NewRecord)
@@ -245,11 +222,9 @@ Public Class frmTransactions
     End Sub
 
     Private Sub GridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView1.ValidateRow
-        GridView1.UpdateTotalSummary() : CalculateBal()
-
+        GridView1.UpdateTotalSummary()
         If Projects.UpdateRecordD() = False Then e.Valid = False
-        txtBal.Text = Projects.GetTranshBal
-
+        Projects.CalculateTotAmtAndBal()
     End Sub
 
     Private Sub GridView1_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView1.InvalidRowException
@@ -257,17 +232,11 @@ Public Class frmTransactions
     End Sub
 
     Private Sub txtbenchSalesPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchSalesPrice.EditValueChanged
-        CalculateBenchProfit() : CalculateTotAmt()
-    End Sub
-    Private Sub CalculateTotAmt()
-        Dim ExtraCost As Double, Debit As Double, Devices As Double, BenchSalesPrice As Double
-        If txtExtraCost.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Then Exit Sub
-        Devices = DbnullToZero(txtDevicesCost) : ExtraCost = DbnullToZero(txtExtraCost) : BenchSalesPrice = DbnullToZero(txtbenchSalesPrice)
-        txtTotAmt.EditValue = Debit + Devices + ExtraCost + BenchSalesPrice
+        CalculateBenchProfit()
     End Sub
 
     Private Sub txtbenchPurchasePrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchPurchasePrice.EditValueChanged
-        CalculateBenchProfit() : CalculateTotAmt()
+        CalculateBenchProfit()
     End Sub
     Private Sub CalculateBenchProfit()
         Dim benchPurchasePrice As Double, benchSalesPrice As Double
@@ -301,7 +270,13 @@ Public Class frmTransactions
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
+            sSQL = "UPDATE TRANSH	SET extracost=(select sum(amt) from TRANS_EXTRA_CHARGES where transhID =  " & toSQLValueS(sID) & ") where ID = " & toSQLValueS(sID)
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
             txtExtraCost.EditValue = GetExtraCost()
+            Projects.CalculateTotAmtAndBal()
             Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
         End If
     End Sub
@@ -350,6 +325,7 @@ Public Class frmTransactions
                 oCmd.ExecuteNonQuery()
             End Using
             txtExtraCost.EditValue = GetExtraCost()
+            Projects.CalculateTotAmtAndBal()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -479,5 +455,17 @@ Public Class frmTransactions
 
     Private Sub cmdPrintCompOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintCompOffer.Click
         Projects.PrintCompOffer()
+    End Sub
+
+    Private Sub txtbenchPurchasePrice_Validated(sender As Object, e As EventArgs) Handles txtbenchPurchasePrice.Validated
+        Projects.CalculateTotAmtAndBal()
+    End Sub
+
+    Private Sub txtbenchSalesPrice_Validated(sender As Object, e As EventArgs) Handles txtbenchSalesPrice.Validated
+
+    End Sub
+
+    Private Sub txtExtraCost_Validated(sender As Object, e As EventArgs) Handles txtExtraCost.Validated
+
     End Sub
 End Class

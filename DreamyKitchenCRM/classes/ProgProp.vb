@@ -46,10 +46,13 @@ Public Class ProgProp
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            sSQL = "select val FROM PRM where prm= 'VAT'"
+            sSQL = "select val,alternateVal FROM PRM where prm= 'VAT'"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then ProgProps.VAT = sdr.GetString(sdr.GetOrdinal("VAL"))
+            If (sdr.Read() = True) Then
+                ProgProps.VAT = sdr.GetString(sdr.GetOrdinal("VAL"))
+                ProgProps.AlternateVAT = sdr.GetString(sdr.GetOrdinal("AlternateVal"))
+            End If
             Return ProgProps.VAT
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

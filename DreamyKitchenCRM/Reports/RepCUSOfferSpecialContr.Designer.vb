@@ -323,7 +323,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell12
         '
-        Me.XrTableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName1]")})
+        Me.XrTableCell12.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorTypeName1]")})
         Me.XrTableCell12.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell12.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell12.Multiline = True
@@ -367,7 +367,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell33
         '
-        Me.XrTableCell33.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice1]")})
+        Me.XrTableCell33.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice1]/1.24")})
         Me.XrTableCell33.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell33.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell33.Multiline = True
@@ -417,7 +417,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell13
         '
-        Me.XrTableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName2]")})
+        Me.XrTableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorTypeName2]")})
         Me.XrTableCell13.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell13.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell13.Multiline = True
@@ -461,7 +461,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell34
         '
-        Me.XrTableCell34.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice2]")})
+        Me.XrTableCell34.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice2]/1.24")})
         Me.XrTableCell34.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell34.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell34.Multiline = True
@@ -511,7 +511,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell14
         '
-        Me.XrTableCell14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName3]")})
+        Me.XrTableCell14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorTypeName3]")})
         Me.XrTableCell14.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell14.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell14.Multiline = True
@@ -555,7 +555,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell35
         '
-        Me.XrTableCell35.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice3]")})
+        Me.XrTableCell35.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice3]/1.24")})
         Me.XrTableCell35.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell35.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell35.Multiline = True
@@ -605,7 +605,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell15
         '
-        Me.XrTableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VALUELISTITEMName4]")})
+        Me.XrTableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[doorTypeName4]")})
         Me.XrTableCell15.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell15.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell15.Multiline = True
@@ -649,7 +649,7 @@ Partial Public Class RepCUSOfferSpecialContr
         '
         'XrTableCell36
         '
-        Me.XrTableCell36.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice4]")})
+        Me.XrTableCell36.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice4]/1.24")})
         Me.XrTableCell36.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrTableCell36.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell36.Multiline = True
@@ -1117,7 +1117,7 @@ Partial Public Class RepCUSOfferSpecialContr
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "cc76a5f6-1899-4259-a256-7d78b242d5a3"
+        Me.OfferID.ValueInfo = "0de180e8-1d12-47b3-8b72-8544f8731a69"
         DynamicListLookUpSettings1.DataMember = "vw_CCT_OFFERS_SPECIAL_CONSTR"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
@@ -1134,13 +1134,14 @@ Partial Public Class RepCUSOfferSpecialContr
         Me.DataMember = "vw_CCT_ORDERS_SPECIAL_CONSTR"
         Me.DataSource = Me.SqlDataSource1
         Me.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
-        Me.Margins = New DevExpress.Drawing.DXMargins(51, 51, 94, 51)
+        Me.Margins = New DevExpress.Drawing.DXMargins(51.0!, 51.0!, 94.0!, 51.0!)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
+        Me.ParameterPanelLayoutItems.AddRange(New DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem() {New DevExpress.XtraReports.Parameters.ParameterLayoutItem(Me.OfferID, DevExpress.XtraReports.Parameters.Orientation.Horizontal)})
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
-        Me.Version = "21.2"
+        Me.Version = "23.1"
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()
 

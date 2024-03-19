@@ -105,57 +105,7 @@ Public Class frmCUSOfferOrderSpecialConstr
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ApplyDiscount(ByVal DiscMode As Integer, Optional ByVal DiscountChangedByUser As Boolean = False)
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice1 As Double, FinalPrice2 As Double, FinalPrice3 As Double, FinalPrice4 As Double
-        Dim TotAmt As Double
-        If Me.IsActive = False Then Exit Sub
-        Select Case DiscMode
-            Case 1
-                If DiscountChangedByUser = False Then txtDisc1.EditValue = ProgProps.CusDiscountSpecial
-                InitialPrice = txtInitialPrice1.EditValue
-                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc1.EditValue / 100
-                Discount = Disc * InitialPrice
-                FinalPrice1 = InitialPrice - Discount
-                FinalPrice1 = FinalPrice1 + (FinalPrice1 * (ProgProps.VAT / 100))
-                txtInitialPrice1.EditValue = InitialPrice
-                txtDiscount1.EditValue = Discount
-                txtFinalPrice1.EditValue = FinalPrice1
-            Case 2
-                If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountSpecial
-                InitialPrice = txtInitialPrice2.EditValue
-                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc2.EditValue / 100
-                Discount = Disc * InitialPrice
-                FinalPrice2 = InitialPrice - Discount
-                FinalPrice2 = FinalPrice2 + (FinalPrice2 * (ProgProps.VAT / 100))
-                txtInitialPrice2.EditValue = InitialPrice
-                txtDiscount2.EditValue = Discount
-                txtFinalPrice2.EditValue = FinalPrice2
-            Case 3
-                If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountSpecial
-                InitialPrice = txtInitialPrice3.EditValue
-                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc3.EditValue / 100
-                Discount = Disc * InitialPrice
-                FinalPrice3 = InitialPrice - Discount
-                FinalPrice3 = FinalPrice3 + (FinalPrice3 * (ProgProps.VAT / 100))
-                txtInitialPrice3.EditValue = InitialPrice
-                txtDiscount3.EditValue = Discount
-                txtFinalPrice3.EditValue = FinalPrice3
-            Case 4
-                If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountSpecial
-                InitialPrice = txtInitialPrice4.EditValue
-                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc4.EditValue / 100
-                Discount = Disc * InitialPrice
-                FinalPrice4 = InitialPrice - Discount
-                FinalPrice4 = FinalPrice4 + (FinalPrice4 * (ProgProps.VAT / 100))
-                txtInitialPrice4.EditValue = InitialPrice
-                txtDiscount4.EditValue = Discount
-                txtFinalPrice4.EditValue = FinalPrice4
-        End Select
-        TotAmt = txtTotAmt.EditValue
-        FinalPrice1 = txtFinalPrice1.EditValue : FinalPrice2 = txtFinalPrice2.EditValue : FinalPrice3 = txtFinalPrice3.EditValue
-        FinalPrice4 = txtFinalPrice4.EditValue
-        txtTotAmt.EditValue = FinalPrice1 + FinalPrice2 + FinalPrice3 + FinalPrice4
-    End Sub
+
 
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
@@ -404,6 +354,7 @@ Public Class frmCUSOfferOrderSpecialConstr
     End Sub
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
+            Case 1 : If sID IsNot Nothing Then Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(DM_CCT.vw_CCT_ORDERS_PHOTOS, 3, System.Guid.Parse(sID))
             Case 2
                 LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_SPECIAL_CONSTR_def.xml")
                 TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
@@ -535,17 +486,74 @@ Public Class frmCUSOfferOrderSpecialConstr
             sdr.Close()
         End Try
     End Function
-    Private Sub CalculateTotAmt()
+    Private Sub ApplyDiscount(ByVal DiscMode As Integer, Optional ByVal DiscountChangedByUser As Boolean = False)
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice1 As Double, FinalPrice2 As Double, FinalPrice3 As Double, FinalPrice4 As Double
+        Dim TotAmt As Double
         If Me.IsActive = False Then Exit Sub
-        Dim ExtraInst As Double = DbnullToZero(txtExtraInst)
-        Dim ExtraTransp As Double = DbnullToZero(txtExtraTransp)
-        Dim PartofVat As Double = DbnullToZero(txtPartofVat)
-
-        Dim SCVat As Double = DbnullToZero(txtTotalSpecialVat) + ExtraInst + ExtraTransp
-        Dim TotalSpecialPrice As Double = DbnullToZero(txtTotalSpecialPrice)
-        TotalSpecialPrice = (SCVat * (ProgProps.VAT / 100)) + SCVat
-        Dim TotAmt As Double = IIf(PartofVat > 0, SCVat + PartofVat, TotalSpecialPrice)
-        txtTotalSpecialPrice.EditValue = TotAmt : txtTotAmt.EditValue = TotAmt
+        Select Case DiscMode
+            Case 1
+                If DiscountChangedByUser = False Then txtDisc1.EditValue = ProgProps.CusDiscountSpecial
+                InitialPrice = txtInitialPrice1.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc1.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice1 = InitialPrice - Discount
+                FinalPrice1 = FinalPrice1 + (FinalPrice1 * (ProgProps.VAT / 100))
+                txtInitialPrice1.EditValue = InitialPrice
+                txtDiscount1.EditValue = Discount
+                txtFinalPrice1.EditValue = FinalPrice1
+            Case 2
+                If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountSpecial
+                InitialPrice = txtInitialPrice2.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc2.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice2 = InitialPrice - Discount
+                FinalPrice2 = FinalPrice2 + (FinalPrice2 * (ProgProps.VAT / 100))
+                txtInitialPrice2.EditValue = InitialPrice
+                txtDiscount2.EditValue = Discount
+                txtFinalPrice2.EditValue = FinalPrice2
+            Case 3
+                If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountSpecial
+                InitialPrice = txtInitialPrice3.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc3.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice3 = InitialPrice - Discount
+                FinalPrice3 = FinalPrice3 + (FinalPrice3 * (ProgProps.VAT / 100))
+                txtInitialPrice3.EditValue = InitialPrice
+                txtDiscount3.EditValue = Discount
+                txtFinalPrice3.EditValue = FinalPrice3
+            Case 4
+                If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountSpecial
+                InitialPrice = txtInitialPrice4.EditValue
+                If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountSpecial / 100 Else Disc = txtDisc4.EditValue / 100
+                Discount = Disc * InitialPrice
+                FinalPrice4 = InitialPrice - Discount
+                FinalPrice4 = FinalPrice4 + (FinalPrice4 * (ProgProps.VAT / 100))
+                txtInitialPrice4.EditValue = InitialPrice
+                txtDiscount4.EditValue = Discount
+                txtFinalPrice4.EditValue = FinalPrice4
+        End Select
+        CalculateTotAmt()
+    End Sub
+    Private Sub CalculateTotAmt()
+        Dim SCVat As Double, TotAmt As Double
+        Dim ExtraInst As Double = DbnullToZero(txtExtraInst)                'Τοποθέτηση
+        Dim ExtraTransp As Double = DbnullToZero(txtExtraTransp)            'Μεταφορά
+        Dim PartofVat As Double = DbnullToZero(txtPartofVat)                'Συμφωνηθέν ΦΠΑ
+        Dim TotalDoorsPrice As Double = DbnullToZero(txtTotalSpecialPrice)  'Συνολική Αξία με ΦΠΑ
+        'Τελικές Τιμές Πορτών
+        Dim FinalPrice1 As Double = DbnullToZero(txtFinalPrice1)
+        Dim FinalPrice2 As Double = DbnullToZero(txtFinalPrice2)
+        Dim FinalPrice3 As Double = DbnullToZero(txtFinalPrice3)
+        Dim FinalPrice4 As Double = DbnullToZero(txtFinalPrice4)
+        TotalDoorsPrice = ExtraInst + ExtraTransp + FinalPrice1 + FinalPrice2 + FinalPrice3 + FinalPrice4
+        SCVat = TotalDoorsPrice / ProgProps.AlternateVAT
+        TotAmt = IIf(PartofVat > 0, SCVat + PartofVat, TotalDoorsPrice)
+        'Συνολική Αξία ΠΡΟ ΦΠΑ
+        txtTotalSpecialVat.EditValue = SCVat
+        'Συνολική Αξία ΜΕ ΦΠΑ
+        txtTotalSpecialPrice.EditValue = TotAmt
+        'Γενικό σύνολο Πώλησης
+        txtTotAmt.EditValue = TotAmt
     End Sub
     Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
         If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(1)
@@ -572,5 +580,21 @@ Public Class frmCUSOfferOrderSpecialConstr
 
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
         CalculateTotAmt()
+    End Sub
+    Private Sub cboTanshFCategory_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboTanshFCategory.ButtonPressed
+        Select Case e.Button.Index
+            Case 1 : cboTanshFCategory.EditValue = Nothing : ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.NewRecord)
+            Case 2 : If cboTanshFCategory.EditValue <> Nothing Then ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.EditRecord)
+            Case 3 : cboTanshFCategory.EditValue = Nothing
+        End Select
+
+    End Sub
+    Private Sub cmdOrder_Click(sender As Object, e As EventArgs) Handles cmdOrder.Click
+        Dim frmCUSOfferOrderSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
+        frmCUSOfferOrderSpecialConstr.ID = sOrderID
+        frmCUSOfferOrderSpecialConstr.Mode = FormMode.EditRecord
+        frmCUSOfferOrderSpecialConstr.IsOrder = True
+        frmCUSOfferOrderSpecialConstr.Text = "Έντυπο Παραγγελίας Πελατών(Ειδικές Κατασκευές)"
+        frmCUSOfferOrderSpecialConstr.ShowDialog()
     End Sub
 End Class

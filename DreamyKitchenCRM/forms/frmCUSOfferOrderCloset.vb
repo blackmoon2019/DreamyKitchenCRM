@@ -960,6 +960,7 @@ Public Class frmCUSOfferOrderCloset
                 CusOfferOrderCloset.LoadEquipments()
                 LoadForms.RestoreLayoutFromXml(GridView2, "CCT_ORDERS_CLOSET_EQUIPMENT_def.xml")
                 GridView2.Columns.Item("name").OptionsColumn.AllowEdit = False : GridView2.Columns.Item("code").OptionsColumn.AllowEdit = False
+            Case 2 : If sID IsNot Nothing Then Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(DM_CCT.vw_CCT_ORDERS_PHOTOS, 1, System.Guid.Parse(sID))
             Case 3
                 LoadForms.RestoreLayoutFromXml(GridView3, "vw_TRANSH_F_CLOSET_def.xml")
                 TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))

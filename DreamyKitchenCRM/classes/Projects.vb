@@ -3,6 +3,7 @@ Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraRichEdit.UI
 Imports System.Data.SqlClient
 
 Public Class Projects
@@ -99,14 +100,9 @@ Public Class Projects
                 CheckStateTransItems()
                 Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
                 Frm.dtPay.EditValue = DateTime.Now
-                If Frm.chkcompProject.CheckState = CheckState.Checked Then
-                    Frm.LCompProject.Visibility = Utils.LayoutVisibility.Never
-                    Frm.TabNavigationPage6.PageVisible = True
-                Else
-                    Frm.TabNavigationPage6.PageVisible = False
-                    Frm.LPrintCompOffer.Visibility = Utils.LayoutVisibility.Never
-                End If
+
         End Select
+        isCompany = Frm.chkcompProject.CheckState
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "vw_TRANSH_F_def.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "TRANSD.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView3, "Vw_TRANS_EXTRA_CHARGES.xml")
@@ -122,9 +118,13 @@ Public Class Projects
         If isCompany Then
             Frm.GridView1.Columns.Item("cusID").Visible = True
             Frm.lCusD.Visibility = Utils.LayoutVisibility.Always
+            Frm.LCompProject.Visibility = Utils.LayoutVisibility.Never
+            Frm.TabNavigationPage6.PageVisible = True
         Else
             Frm.GridView1.Columns.Item("cusID").Visible = False
             Frm.lCusD.Visibility = Utils.LayoutVisibility.Never
+            Frm.TabNavigationPage6.PageVisible = False
+            Frm.LPrintCompOffer.Visibility = Utils.LayoutVisibility.Never
         End If
 
 
@@ -187,6 +187,27 @@ Public Class Projects
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmInstallations), New Point(CInt(frmInstallations.Parent.ClientRectangle.Width / 2 - frmInstallations.Width / 2), CInt(frmInstallations.Parent.ClientRectangle.Height / 2 - frmInstallations.Height / 2)))
         frmInstallations.Show()
     End Sub
+    'Ενημέρωση Υπολοίπου έργου
+    Public Sub CalculateTotAmtAndBal()
+        Try
+            Using oCmd As New SqlCommand("CalculateProjectBal", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@transhID", ID)
+                oCmd.Parameters.AddWithValue("@benchSalesPrice", DbnullToZero(Frm.txtbenchSalesPrice))
+                oCmd.Parameters.Add("@bal", SqlDbType.Decimal)
+                oCmd.Parameters.Add("@Totamt", SqlDbType.Decimal)
+                oCmd.Parameters("@bal").Direction = ParameterDirection.Output : oCmd.Parameters("@bal").Precision = 18 : oCmd.Parameters("@bal").Scale = 2
+                oCmd.Parameters("@Totamt").Direction = ParameterDirection.Output : oCmd.Parameters("@Totamt").Precision = 18 : oCmd.Parameters("@Totamt").Scale = 2
+                oCmd.ExecuteNonQuery()
+                Frm.txtBal.EditValue = oCmd.Parameters("@bal").Value : If Frm.txtBal.Text = "" Then Frm.txtBal.EditValue = "0.00"
+                Frm.txtTotAmt.EditValue = oCmd.Parameters("@Totamt").Value : If Frm.txtTotAmt.Text = "" Then Frm.txtTotAmt.EditValue = "0.00"
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
+
     Public Sub SaveRecordSmallH(Optional ByRef sID As String = "")
         Dim sResult As Boolean
         Try

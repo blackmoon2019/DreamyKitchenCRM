@@ -98,7 +98,12 @@ Public Class frmProject
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_TRANSH_SMALL with(nolock) where id ='" + sID + "'")
                 CheckStateTransItems()
                 If cboCUS.GetColumnValue("isCompany") = True Then LCus.Text = "Εταιρία"
-                If chkcompProject.CheckState = CheckState.Checked Then chkcompProject.Enabled = False
+                If chkcompProject.CheckState = CheckState.Checked Then
+                    chkcompProject.Enabled = False
+                    LCompProject.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                    LComp.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+                    HideCompanyFields = False
+                End If
                 If sisOrder = True Then LCompProject.Enabled = False : LComp.Enabled = False : LdtCharge.Enabled = False
         End Select
         Me.CenterToScreen()

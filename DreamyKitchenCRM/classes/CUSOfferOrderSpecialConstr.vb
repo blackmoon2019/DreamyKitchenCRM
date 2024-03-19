@@ -129,11 +129,11 @@ Public Class CUSOfferOrderSpecialConstr
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
                         sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder,TotAmt", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0) & "," & toSQLValue(Frm.txtTotAmt, True))
-                        ID = sGuid : sID = ID
+                        ID = sGuid : sID = sGuid
                     Case FormMode.EditRecord
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_SPECIAL_CONSTR", Frm.LayoutControl1,,, sID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0) & ",TotAmt = " & toSQLValue(Frm.txtTotAmt, True))
-                        ID = sGuid : sID = ID
+                        ID = sID
                 End Select
 
 
@@ -152,7 +152,7 @@ Public Class CUSOfferOrderSpecialConstr
                         ' Ενημέρωση ποσών στο έργο
                         Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString,  , True)
                     Else
-                        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True)
+                        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True, True)
                     End If
                     Mode = FormMode.EditRecord
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -303,4 +303,5 @@ Public Class CUSOfferOrderSpecialConstr
         Frm.txtFiles.EditValue = Nothing
         Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
     End Sub
+
 End Class

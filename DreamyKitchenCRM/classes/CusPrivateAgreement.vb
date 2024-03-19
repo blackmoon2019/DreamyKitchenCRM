@@ -81,6 +81,7 @@ Public Class CusPrivateAgreement
         GetKLeisimoAmt(Frm.cboTRANSH.EditValue.ToString)
         GetPayInAdvanceAmt(Frm.cboTRANSH.EditValue.ToString)
         GetProjectAmounts(Frm.cboTRANSH.EditValue.ToString)
+        GetPayInAdvanceBal()
         FillArProt()
 
 
@@ -103,7 +104,16 @@ Public Class CusPrivateAgreement
         Frm.chkHasSC.Text = "<href=www.dreamykitchen.gr/>Ειδικές Κατασκευές</href>"
 
     End Sub
+    Private Sub GetPayInAdvanceBal()
+        Dim CloseTot As Double, BalPayinAdvance As Double, CusPayInAdvance As Double, TotalPayInAdvance As Double
+        If Frm.txtPayinAdvanceTot.EditValue <> Nothing Then TotalPayInAdvance = DbnullToZero(Frm.txtPayinAdvanceTot)
+        If Frm.txtCloseTot.EditValue <> Nothing Then CloseTot = DbnullToZero(Frm.txtCloseTot)
+        CusPayInAdvance = CusPayInAdvanceInf()
+        BalPayinAdvance = CusPayInAdvance - (TotalPayInAdvance + CloseTot)
+        Frm.txtPayinAdvanceBal.EditValue = BalPayinAdvance
+        Frm.lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & CusPayInAdvance & "€"
 
+    End Sub
     Private Sub FillCusTransh()
         Dim sCusID As String, scompTrashID As String
         If CUS = Guid.Empty Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(CUS.ToString)
@@ -253,6 +263,7 @@ Public Class CusPrivateAgreement
     Public Sub GetKLeisimoAmt(ByVal TransHID As String)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
+        Dim CloseCash As Double, CloseBank As Double, CloseTot As Double
         Try
             cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='90A295A1-D2A0-40B7-B260-A532B2C322AC'  and transhID = " & toSQLValueS(TransHID) & " Group By Cash ", CNDB)
             sdr = cmd.ExecuteReader()
@@ -272,6 +283,10 @@ Public Class CusPrivateAgreement
                         End If
                     End If
                 End While
+                CloseCash = DbnullToZero(Frm.txtCloseCash)
+                CloseBank = DbnullToZero(Frm.txtCloseBank)
+                CloseTot = CloseCash + CloseBank
+                Frm.txtCloseTot.EditValue = CloseTot
             End If
             sdr.Close()
         Catch ex As Exception
@@ -340,6 +355,14 @@ Public Class CusPrivateAgreement
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function CusPayInAdvanceInf() As Double
+        Dim PayinAdvance As Double
+        If Frm.txtGenTot.EditValue <> Nothing Then
+            PayinAdvance = DbnullToZero(Frm.txtGenTot)
+            PayinAdvance = PayinAdvance / 2
+        End If
+        Return PayinAdvance
+    End Function
     Public Sub OpenOrder(ByVal Mode As Int16, ByVal sTranshID As String)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader

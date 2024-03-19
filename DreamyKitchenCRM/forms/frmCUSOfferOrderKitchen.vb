@@ -1067,34 +1067,34 @@ Public Class frmCUSOfferOrderKitchen
         If Mode = FormMode.NewRecord Then CusOfferOrderKitchen.FillCompanyProjects(lkupEditValue(cboCompany), chkGenOffer.CheckState, "")
     End Sub
     Private Sub CalculateTotAmt()
-        Dim ExtraInst As Double = DbnullToZero(txtExtraInst)
-        Dim ExtraTransp As Double = DbnullToZero(txtExtraTransp)
-        Dim TotalErmariaPrice As Double = DbnullToZero(txtTotalErmariaPrice)
-        Dim TotalDevicesPrice As Double = DbnullToZero(txtTotalDevicesPrice)
-        Dim TotalErmariaVat As Double = DbnullToZero(txtTotalErmariaVat)
-        Dim PartofVat As Double = DbnullToZero(txtPartofVat)
-        TotalErmariaVat = TotalErmariaVat + ExtraInst + ExtraTransp
-        TotalErmariaPrice = (TotalErmariaVat * (ProgProps.VAT / 100)) + TotalErmariaVat
-        Dim TotAmt As Double = ExtraInst + ExtraTransp + TotalDevicesPrice + IIf(PartofVat > 0, TotalErmariaVat + PartofVat, TotalErmariaPrice)
-        txtTotalErmariaPrice.EditValue = TotAmt - TotalDevicesPrice : txtTotAmt.EditValue = TotAmt
+        If Me.IsActive = False Then Exit Sub
+        Dim KitchenVat As Double
+        Dim ExtraInst As Double = DbnullToZero(txtExtraInst)                        'Τοποθέτηση
+        Dim ExtraTransp As Double = DbnullToZero(txtExtraTransp)                    'Μεταφορά
+        Dim TotalErmariaPrice As Double = DbnullToZero(txtTotalErmariaPrice)        'Συνολική Αξία με ΦΠΑ
+        Dim TotalDevicesPrice As Double = DbnullToZero(txtTotalDevicesPrice)        'Συνολική Αξία Συσκευών με ΦΠΑ
+        Dim TotalErmariaVat As Double = DbnullToZero(txtTotalErmariaVat)            'Συνολική Αξία προ ΦΠΑ
+        Dim PartofVat As Double = DbnullToZero(txtPartofVat)                        'Συμφωνηθέν ΦΠΑ
+        TotalErmariaPrice = TotalErmariaVat + ExtraInst + ExtraTransp
+        KitchenVat = TotalErmariaPrice / ProgProps.AlternateVAT
+        TotalErmariaPrice = TotalErmariaPrice * ProgProps.AlternateVAT
+        Dim TotAmt As Double = TotalDevicesPrice + IIf(PartofVat > 0, TotalErmariaVat + PartofVat, TotalErmariaPrice)
+        txtTotalErmariaPrice.EditValue = TotAmt - TotalDevicesPrice
+        txtTotAmt.EditValue = TotAmt
     End Sub
     Private Sub txtExtraInst_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraInst.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
         CalculateTotAmt()
     End Sub
 
     Private Sub txtExtraTransp_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraTransp.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
         CalculateTotAmt()
     End Sub
 
     Private Sub txtTotalErmariaPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalErmariaPrice.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
         CalculateTotAmt()
     End Sub
 
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
         CalculateTotAmt()
     End Sub
 
@@ -1121,11 +1121,9 @@ Public Class frmCUSOfferOrderKitchen
         frmCUSOfferOrderKitchen.IsOrder = True
         frmCUSOfferOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
         frmCUSOfferOrderKitchen.ShowDialog()
-
     End Sub
 
     Private Sub txtTotalDevicesPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotalDevicesPrice.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
         CalculateTotAmt()
     End Sub
 

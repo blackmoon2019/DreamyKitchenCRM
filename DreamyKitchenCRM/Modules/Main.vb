@@ -47,6 +47,7 @@ Module Main
         Public TempPicturesFolderPath As String
         Public ProgTitle As String
         Public VAT As Integer
+        Public AlternateVAT As Double
         Public Decimals As Integer
         Public EmailOrders As String
         Public SupportEmail As String

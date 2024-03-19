@@ -162,8 +162,7 @@ Partial Public Class RepCUSAnalysis
         Me.XrLabel31.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel31.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrLabel31.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,False,True)" & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TotKitchen] + [TotCloset] + [TotDoor] + [TotSpecialConstr] + [TotalDevices] + [E" &
-                    "xtraInst] + [ExtraTransp]")})
+        Me.XrLabel31.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,False,True)" & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[TotKitchen] + [TotCloset] + [TotDoor] + [TotSpecialConstr] ")})
         Me.XrLabel31.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.75!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel31.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(488.2188!, 356.7728!)

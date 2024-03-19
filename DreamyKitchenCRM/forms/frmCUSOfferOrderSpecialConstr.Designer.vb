@@ -227,6 +227,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControl4 = New DevExpress.XtraLayout.LayoutControl()
         Me.cmdSaveTransF = New DevExpress.XtraEditors.SimpleButton()
         Me.cboTanshFCategory = New DevExpress.XtraEditors.LookUpEdit()
+        Me.VwFILECATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridControl2 = New DevExpress.XtraGrid.GridControl()
         Me.TRANSHFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -253,7 +254,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.Vw_COLORS_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_COLORS_CATTableAdapter()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         Me.VwSCANFILENAMESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.VwFILECATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_FILE_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter()
         CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -416,6 +416,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl4.SuspendLayout()
         CType(Me.cboTanshFCategory.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -427,7 +428,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'VwCOMPBindingSource
@@ -707,7 +707,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboCompProject.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboCompProject.Properties.DisplayMember = "description"
         Me.cboCompProject.Properties.NullText = ""
-        Me.cboCompProject.Properties.PopupSizeable = False
+        Me.cboCompProject.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth
+        Me.cboCompProject.Properties.ShowPopupButtons = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboCompProject.Properties.ValueMember = "ID"
         Me.cboCompProject.Size = New System.Drawing.Size(358, 26)
         Me.cboCompProject.StyleController = Me.LayoutControl1
@@ -1342,7 +1343,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboTRANSH.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
         Me.cboTRANSH.Properties.DisplayMember = "description"
         Me.cboTRANSH.Properties.NullText = ""
-        Me.cboTRANSH.Properties.PopupSizeable = False
+        Me.cboTRANSH.Properties.PopupWidthMode = DevExpress.XtraEditors.PopupWidthMode.ContentWidth
+        Me.cboTRANSH.Properties.ShowPopupButtons = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboTRANSH.Properties.ValueMember = "ID"
         Me.cboTRANSH.Size = New System.Drawing.Size(358, 26)
         Me.cboTRANSH.StyleController = Me.LayoutControl1
@@ -2941,6 +2943,11 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboTanshFCategory.TabIndex = 68
         Me.cboTanshFCategory.Tag = "fileCatID,0,1,2"
         '
+        'VwFILECATBindingSource
+        '
+        Me.VwFILECATBindingSource.DataMember = "vw_FILE_CAT"
+        Me.VwFILECATBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
         'GridControl2
         '
         Me.GridControl2.DataSource = Me.TRANSHFBindingSource
@@ -3157,11 +3164,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.VwSCANFILENAMESBindingSource.DataMember = "vw_SCAN_FILE_NAMES"
         Me.VwSCANFILENAMESBindingSource.DataSource = Me.DreamyKitchenDataSet
         '
-        'VwFILECATBindingSource
-        '
-        Me.VwFILECATBindingSource.DataMember = "vw_FILE_CAT"
-        Me.VwFILECATBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
         'Vw_FILE_CATTableAdapter
         '
         Me.Vw_FILE_CATTableAdapter.ClearBeforeFill = True
@@ -3337,6 +3339,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.LayoutControl4, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl4.ResumeLayout(False)
         CType(Me.cboTanshFCategory.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3348,7 +3351,6 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem6, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwSCANFILENAMESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwFILECATBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

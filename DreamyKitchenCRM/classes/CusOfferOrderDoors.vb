@@ -132,11 +132,11 @@ Public Class CusOfferOrderDoors
                         sGuid = System.Guid.NewGuid.ToString
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
                         sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", Frm.LayoutControl1,,, sGuid, , "dtDeliver,IsOrder,TotAmt", toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & "," & IIf(sIsOrder = True, 1, 0) & "," & toSQLValue(Frm.txtTotAmt, True))
-                        ID = sGuid : sID = ID
+                        ID = sGuid : sID = sGuid
                     Case FormMode.EditRecord
                         Dim sDate As String = Frm.lblDate.Text.Replace("Ημερομηνία Παράδοσης: ", "")
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CCT_ORDERS_DOOR", Frm.LayoutControl1,,, sID, ,,,, "dtDeliver=" & toSQLValueS(CDate(sDate).ToString("yyyyMMdd")) & ",IsOrder = " & IIf(sIsOrder = True, 1, 0) & ",TotAmt = " & toSQLValue(Frm.txtTotAmt, True))
-                        sGuid = ID : sID = ID
+                        ID = sID
                 End Select
 
 
@@ -235,7 +235,7 @@ Public Class CusOfferOrderDoors
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Cls.ClearCtrls(Frm.LayoutControl3)
-                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 0, System.Guid.Parse(sID))
+                    Frm.Vw_CCT_ORDERS_PHOTOSTableAdapter.FillByOrderType(Frm.DM_CCT.vw_CCT_ORDERS_PHOTOS, 2, System.Guid.Parse(sID))
                 End If
             End If
 

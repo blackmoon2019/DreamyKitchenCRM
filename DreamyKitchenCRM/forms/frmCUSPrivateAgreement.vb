@@ -168,11 +168,13 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Private Sub txtTotalPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TxtTotalVat.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim Price As Double, PartOfVat As Double
         If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat)
         If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
     End Sub
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim TotalPrice As Double, Price As Double, PartOfVat As Double
         If txtPartofVat.EditValue <> Nothing Then TotalPrice = DbnullToZero(txtPartofVat)
         TotalPrice = (TotalPrice * 100) / ProgProps.VAT + TotalPrice
@@ -183,41 +185,39 @@ Public Class frmCUSPrivateAgreement
 
 
     Private Sub txtPayinAdvance_EditValueChanged(sender As Object, e As EventArgs) Handles txtPayinAdvanceTot.EditValueChanged
-        Dim TotalPayinAdvance As Double, Close As Double, BalPayinAdvance As Double
+        If Me.IsActive = False Then Exit Sub
+        Dim TotalPayinAdvance As Double, CloseTot As Double, BalPayinAdvance As Double
         If txtPayinAdvanceTot.EditValue <> Nothing Then TotalPayinAdvance = DbnullToZero(txtPayinAdvanceTot)
-        If txtCloseBank.EditValue <> Nothing Then Close = DbnullToZero(txtCloseBank)
-        If txtCloseCash.EditValue <> Nothing Then Close = Close + DbnullToZero(txtCloseCash)
-        BalPayinAdvance = TotalPayinAdvance - Close
+        If txtCloseTot.EditValue <> Nothing Then CloseTot = DbnullToZero(txtCloseTot)
+        BalPayinAdvance = CusPayInAdvanceInf() - (TotalPayinAdvance + CloseTot)
         txtPayinAdvanceBal.EditValue = BalPayinAdvance
-        'If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then
-        '    LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        'End If
     End Sub
 
     Private Sub txtGenTot_EditValueChanged(sender As Object, e As EventArgs) Handles txtGenTot.EditValueChanged
+        lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & CusPayInAdvanceInf() & "€"
+    End Sub
+    Private Function CusPayInAdvanceInf() As Double
         Dim PayinAdvance As Double
         If txtGenTot.EditValue <> Nothing Then
             PayinAdvance = DbnullToZero(txtGenTot)
             PayinAdvance = PayinAdvance / 2
             lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & PayinAdvance & "€"
-            'txtPayinAdvance.EditValue = PayinAdvance
         End If
-    End Sub
-
-
-    Private Sub chkHasCloset_DoubleClick(sender As Object, e As EventArgs) Handles chkHasCloset.DoubleClick
+        Return PayinAdvance
+    End Function
+    Private Sub chkHasCloset_Click(sender As Object, e As EventArgs) Handles chkHasCloset.Click
         CusPrivateAgreement.OpenOrder(3, cboTRANSH.EditValue.ToString)
     End Sub
 
-    Private Sub chkHasDoors_DoubleClick(sender As Object, e As EventArgs) Handles chkHasDoors.DoubleClick
+    Private Sub chkHasDoors_Click(sender As Object, e As EventArgs) Handles chkHasDoors.Click
         CusPrivateAgreement.OpenOrder(2, cboTRANSH.EditValue.ToString)
     End Sub
 
-    Private Sub chkHasKitchen_DoubleClick(sender As Object, e As EventArgs) Handles chkHasKitchen.DoubleClick
+    Private Sub chkHasKitchen_Click(sender As Object, e As EventArgs) Handles chkHasKitchen.Click
         CusPrivateAgreement.OpenOrder(1, cboTRANSH.EditValue.ToString)
     End Sub
 
-    Private Sub chkHasSC_DoubleClick(sender As Object, e As EventArgs) Handles chkHasSC.DoubleClick
+    Private Sub chkHasSC_Click(sender As Object, e As EventArgs) Handles chkHasSC.Click
         CusPrivateAgreement.OpenOrder(4, cboTRANSH.EditValue.ToString)
     End Sub
 
