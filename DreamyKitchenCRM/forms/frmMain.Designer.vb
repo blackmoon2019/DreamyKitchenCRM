@@ -211,7 +211,7 @@ Partial Class frmMain
         Me.RibbonControl1.ExpandCollapseItem.Id = 0
         Me.RibbonControl1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.RibbonControl1.ExpandCollapseItem, Me.bbUsers, Me.bbMailSettings, Me.BarButtonItem1, Me.BarClose, Me.bbRights, Me.SkinDropDownButtonItem1, Me.BarMdiChildrenListItem1, Me.bbDate, Me.BarEditItem1, Me.BarEditItem2, Me.bbUser, Me.bbServer, Me.bbDB, Me.bbLink, Me.bbCCT, Me.bbCOU, Me.bbAreas, Me.bbADR, Me.bbDOY, Me.bbPRF, Me.bbVersion, Me.bbStatus, Me.bbSource, Me.bbSalers, Me.BBCusMovs, Me.BBCalendar, Me.BBCusStatistics1, Me.BBNotes, Me.bbLabels, Me.BBChangeUsr, Me.ΒΒvalueListItem, Me.bbCatErm, Me.bbERM, Me.bbBench, Me.bbMech, Me.bboffer, Me.BarButtonItem2, Me.bbTechnicalSupport, Me.bbTechCateg, Me.bbColors, Me.bbColorCAT, Me.bbEpendisis, Me.bbDimensions, Me.bbCalculations, Me.bbCatSubErm, Me.BBSer, Me.BBInst, Me.BBCalendarInst, Me.bbTRANSH, Me.bbBanks, Me.bbEmploye, Me.bbDep, Me.bbEmpMov, Me.bbStatusPre, Me.BBPersonalCalendar, Me.BBPersonalCalendarStatus, Me.BBInstM, Me.BBPayroll, Me.BBPayrolStatus, Me.bbEMP_T, Me.BBEllipse, Me.bbConstrCat, Me.bbConstr, Me.BBPayrollConstr, Me.bbJobs, Me.BBScanFileNames, Me.BBStatistics2, Me.BBStatistics3, Me.BBProjectCosts, Me.BBUpdate, Me.BBNotes2, Me.BBPay, Me.BBSup, Me.BBBuy_C, Me.BBuy, Me.BBSupInvoicesPayment, Me.BBTransactions, Me.BBPrivateAgreement, Me.BBcctOffer, Me.BBParam, Me.BBCloset, Me.BBDoors, Me.BBSpecialConstr, Me.BBCCctOrdersKitchen, Me.BBEquipment, Me.BBDevices, Me.BBequipmentCat, Me.BBCCctOrdersCloset, Me.BBCCctDoorsCloset, Me.BBSpecialOrder, Me.BBEpStatus, Me.BarMdiChildrenListItem2, Me.BarDockingMenuItem1, Me.BBEpopteia, Me.BarSubItem1, Me.BBSupOrders, Me.BBEpopteiaTrans, Me.BBTransConstr, Me.BBEpopteiaTable, Me.BBEpopteiaChart, Me.BBTransCost, Me.bbDimensionsCat, Me.BBConstruct, Me.BBTechSup, Me.BBVer, Me.BBEMP_P, Me.BBOrderFormNumbers, Me.bbEmpConstrMov, Me.BBinvBuyTypes, Me.BBBulkInsertInvoices, Me.BBProjectJobs, Me.BBBaseCatERP, Me.BBTransh_C, Me.BBPayType, Me.BBProject, Me.BBFileCat, Me.BBProjectCheckList})
         Me.RibbonControl1.Location = New System.Drawing.Point(0, 0)
-        Me.RibbonControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RibbonControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.RibbonControl1.MaxItemId = 126
         Me.RibbonControl1.Name = "RibbonControl1"
         Me.RibbonControl1.OptionsMenuMinWidth = 495
@@ -582,7 +582,6 @@ Partial Class frmMain
         Me.bbEpendisis.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.επενδυσεις__καταφραγες
         Me.bbEpendisis.Name = "bbEpendisis"
         Me.bbEpendisis.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
-        Me.bbEpendisis.Visibility = DevExpress.XtraBars.BarItemVisibility.Never
         '
         'bbDimensions
         '
@@ -1515,7 +1514,7 @@ Partial Class frmMain
         Me.MainstatusBar.ItemLinks.Add(Me.bbVersion)
         Me.MainstatusBar.ItemLinks.Add(Me.bbLink)
         Me.MainstatusBar.Location = New System.Drawing.Point(0, 1091)
-        Me.MainstatusBar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.MainstatusBar.Margin = New System.Windows.Forms.Padding(4)
         Me.MainstatusBar.Name = "MainstatusBar"
         Me.MainstatusBar.Ribbon = Me.RibbonControl1
         Me.MainstatusBar.Size = New System.Drawing.Size(2182, 40)
@@ -1577,7 +1576,7 @@ Partial Class frmMain
         Me.FormBorderEffect = DevExpress.XtraEditors.FormBorderEffect.Glow
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.IsMdiContainer = True
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmMain"
         Me.ShowMdiChildCaptionInParentTitle = True
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen

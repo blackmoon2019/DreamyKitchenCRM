@@ -276,10 +276,10 @@ Public Class CusOfferOrderKitchen
                 End Select
 
                 If Frm.txtCUSOfferOrderFilename.Text <> "" And sResult = True Then
-                    sResultF = DBQ.DeleteDataFiles("TRANSH_F", Frm.cboTRANSH.EditValue.ToString, sGuid)
+                    sResultF = DBQ.DeleteDataFiles("TRANSH_F", Frm.cboTRANSH.EditValue.ToString, sID)
                     'Αποθήκευση αρχείου στο έργο
                     Frm.XtraOpenFileDialog1.Tag = "EEA48A0A-4171-46FE-BBC5-D02F2712B04C" ' Κατηγορία Αρχείου ΠΑΓΚΟΙ
-                    sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", sGuid, IIf(sIsOrder = True, "Παραγγελία", "Προσφορά"))
+                    sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", sID, IIf(sIsOrder = True, "Παραγγελία", "Προσφορά"))
                     If sResultF = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς στο Έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
                 If sResult = True Then

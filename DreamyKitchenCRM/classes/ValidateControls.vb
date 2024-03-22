@@ -105,35 +105,11 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Δεν έχετε επιλέξει με ποιο μοντέλο θα προχωρήσετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
-                    'Dim FinalPrice As Double
-                    'Dim TotAmt As Double = GetAmt(f.txtTotAmt)
-                    'If isOrder = False Then
-                    '    If f.chkModel1.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice1)
-                    '    If f.chkModel2.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice2)
-                    '    If f.chkModel3.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice3)
-                    '    If f.chkModel4.CheckState = CheckState.Checked Then FinalPrice = GetAmt(f.txtFinalPrice4)
-                    'Else
-                    '    FinalPrice = GetAmt(f.txtTotalErmariaVat)
-                    'End If
-                    'If FinalPrice <> TotAmt Then
-                    '    XtraMessageBox.Show("Το ποσό πώλησης έργου είναι διαφορετικό από το σύνολο της " & IIf(isOrder = False, " προσφοράς", " παραγγελίας"), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    '    Return False
-                    'End If
-                    If isOrder = True Then
-                        Dim sSQL As String
-                        Dim Cmd As SqlCommand
-                        Dim ExistAgreement As Integer
-                        sSQL = "SELECT count(ID) as ExistAgreement FROM [AGREEMENT] WHERE transhID = " & toSQLValueS(sID)
-                        Cmd = New SqlCommand(sSQL, CNDB)
-                        Dim sdr As SqlDataReader = Cmd.ExecuteReader()
-                        If (sdr.Read() = True) Then
-                            If sdr.IsDBNull(sdr.GetOrdinal("ExistAgreement")) = False Then ExistAgreement = sdr.GetInt32(sdr.GetOrdinal("ExistAgreement")) Else ExistAgreement = 0
-                            If ExistAgreement = 1 Then
-                                XtraMessageBox.Show("Δεν μπορείτε να αλλάξετε την παραγγελία όταν έχει δημιουργηθεί συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                Return False
-                            End If
-                        End If
-                    End If
+
+                    If OrderExistInTransH("CCT_ORDERS_KITCHEN") = True Then Return False
+                    If isOrder = True Then If AgreementExist() = True Then Return False
+
+
 
 
                     If ExtraChecks = True Then
@@ -167,6 +143,9 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
+                    If OrderExistInTransH("CCT_ORDERS_DOOR") = True Then Return False
+                    If isOrder = True Then If AgreementExist() = True Then Return False
+
 
 
                     If ExtraChecks = True Then
@@ -204,6 +183,9 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
+                    If OrderExistInTransH("CCT_ORDERS_CLOSET") = True Then Return False
+                    If isOrder = True Then If AgreementExist() = True Then Return False
+
 
 
                     If ExtraChecks = True Then
@@ -237,6 +219,9 @@ Public Class ValidateControls
                         XtraMessageBox.Show("Δεν έχετε συμπληρώσει έργο εταιρίας", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Return False
                     End If
+                    If OrderExistInTransH("CCT_ORDERS_SPECIAL_CONSTR") = True Then Return False
+                    If isOrder = True Then If AgreementExist() = True Then Return False
+
 
 
                     If ExtraChecks = True Then
@@ -270,7 +255,54 @@ Public Class ValidateControls
             Return False
         End Try
 
-
+    End Function
+    Private Function AgreementExist() As Boolean
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Dim ExistAgreement As Integer
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "SELECT count(ID) as ExistAgreement FROM [AGREEMENT] WHERE transhID = " & toSQLValueS(sID)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("ExistAgreement")) = False Then ExistAgreement = sdr.GetInt32(sdr.GetOrdinal("ExistAgreement")) Else ExistAgreement = 0
+                If ExistAgreement = 1 Then
+                    XtraMessageBox.Show("Δεν μπορείτε να αλλάξετε την παραγγελία όταν έχει δημιουργηθεί συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    sdr.Close()
+                    Return True
+                End If
+            End If
+            Return False
+        Catch ex As Exception
+            sdr.Close()
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return True
+        End Try
+    End Function
+    Private Function OrderExistInTransH(ByVal sTable As String) As Boolean
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Dim ExistOrder As Integer
+        Dim sdr As SqlDataReader
+        Try
+            sSQL = "SELECT count(ID) as ExistOrder FROM " & sTable & " WHERE isOrder = 1 and transhID = " & toSQLValueS(sID)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("ExistOrder")) = False Then ExistOrder = sdr.GetInt32(sdr.GetOrdinal("ExistOrder")) Else ExistOrder = 0
+                If ExistOrder > 0 Then
+                    XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε παραπάνω από μια παραγγελίες στο ίδιο έργο. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    sdr.Close()
+                    Return True
+                End If
+            End If
+            Return False
+        Catch ex As Exception
+            sdr.Close()
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return True
+        End Try
     End Function
     Public Sub AddControlsForCheckIfSomethingChanged(ByVal control As DevExpress.XtraLayout.LayoutControl, Optional ByVal IgnoreVisibility As Boolean = False)
         Dim TagValue As String()

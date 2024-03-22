@@ -821,10 +821,11 @@ Public Class Projects
                                 FROM dbo.vw_TRANSH AS T 
                                 LEFT OUTER JOIN dbo.vw_ANALYSH_KOSTOYS AS AN ON AN.ID = T.ID 
                                 LEFT OUTER JOIN dbo.vw_AGREEMENT AS A ON A.transhID = T.ID 
-                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_CLOSET AS C ON C.transhID = T.ID 
-                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_KITCHEN AS K ON K.transhID = T.ID 
-                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_SPECIAL_CONSTR AS SC ON SC.transhID = T.ID 
-                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_DOOR AS D ON D.transhID = T.ID  where  T.ID = " & toSQLValueS(ID), CNDB)
+                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_CLOSET AS C ON C.transhID = T.ID and C.IsOrder = 1
+                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_KITCHEN AS K ON K.transhID = T.ID and K.IsOrder = 1
+                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_SPECIAL_CONSTR AS SC ON SC.transhID = T.ID and SC.IsOrder = 1
+                                LEFT OUTER JOIN dbo.vw_CCT_ORDERS_DOOR AS D ON D.transhID = T.ID  and D.IsOrder = 1
+                                where  T.ID = " & toSQLValueS(ID), CNDB)
         sdr = cmd.ExecuteReader()
         Dim report As New RepCUSPrivateAgreement()
         While sdr.Read()
