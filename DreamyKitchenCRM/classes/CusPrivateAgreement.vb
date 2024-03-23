@@ -203,10 +203,10 @@ Public Class CusPrivateAgreement
             GenTot = Frm.txtGenTot.EditValue
             Dim PolisiErgou As Double = GenTot - Frm.txtDevices.EditValue
             GenTot = GenTot + Frm.txtDevices.EditValue
-
+            sSQL.Clear()
             sSQL.AppendLine("update TRANSH SET waitingForAgreement=1,invType = " & toSQLValueS(Frm.cboInvoiceType.EditValue.ToString) & ",  vatamt = " & toSQLValueS(Frm.txtPartofVat.EditValue.ToString, True) & ", " &
                             " amt = " & toSQLValueS(Frm.txtPosoParastatikou.EditValue.ToString, True) & ",debitcost = " & toSQLValueS(PolisiErgou.ToString, True) & ", " &
-                            " DevicesCost = " & toSQLValueS(Frm.txtDevices.EditValue.ToString) & ",  totamt = " & toSQLValueS(Frm.txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString))
+                            " DevicesCost = " & toSQLValueS(Frm.txtDevices.EditValue.ToString, True) & ",  totamt = " & toSQLValueS(Frm.txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString))
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
@@ -329,8 +329,8 @@ Public Class CusPrivateAgreement
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            cmd = New SqlCommand(" select   TotPartOfVat,TotalVat,TotalPrice,TotalEquipmentPrice,GENTOT,ExtraInst, ExtraTransp,
-                                            TotKitchen,TotDoor,HasCloset,HasKitchen,HasSpecial,HasDoors
+            cmd = New SqlCommand(" select   TotPartOfVat,TotalVat,TotalPrice,TotalDevices,GENTOT,ExtraInst, ExtraTransp,
+                                            TotKitchen,TotDoor,HasCloset,HasKitchen,HasSpecial,HasDoors,PosoParastatikou
                                     FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(TransHID), CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
@@ -342,13 +342,8 @@ Public Class CusPrivateAgreement
                 Frm.chkHasCloset.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasCloset"))
                 Frm.chkHasDoors.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasDoors"))
                 Frm.chkHasSC.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasSpecial"))
-                If sdr.IsDBNull(sdr.GetOrdinal("TotalEquipmentPrice")) = False Then
-                    Dim TotalEquipmentPrice As Double, PosoParastatikou As Double
-                    TotalEquipmentPrice = sdr.GetDecimal(sdr.GetOrdinal("TotalEquipmentPrice"))
-                    PosoParastatikou = DbnullToZero(Frm.txtPosoParastatikou)
-                    Frm.txtPosoParastatikou.EditValue = PosoParastatikou + TotalEquipmentPrice
-                    Frm.txtDevices.EditValue = TotalEquipmentPrice
-                End If
+                If sdr.IsDBNull(sdr.GetOrdinal("PosoParastatikou")) = False Then Frm.txtPosoParastatikou.EditValue = sdr.GetDecimal(sdr.GetOrdinal("PosoParastatikou"))
+                If sdr.IsDBNull(sdr.GetOrdinal("TotalDevices")) = False Then Frm.txtDevices.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalDevices"))
             End If
             sdr.Close()
         Catch ex As Exception

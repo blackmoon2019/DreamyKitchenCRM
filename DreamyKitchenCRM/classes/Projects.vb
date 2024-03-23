@@ -194,6 +194,7 @@ Public Class Projects
                 oCmd.CommandType = CommandType.StoredProcedure
                 oCmd.Parameters.AddWithValue("@transhID", ID)
                 oCmd.Parameters.AddWithValue("@benchSalesPrice", DbnullToZero(Frm.txtbenchSalesPrice))
+                oCmd.Parameters.AddWithValue("@offerCusAcceptance", Frm.chkofferCusAcceptance.CheckState)
                 oCmd.Parameters.Add("@bal", SqlDbType.Decimal)
                 oCmd.Parameters.Add("@Totamt", SqlDbType.Decimal)
                 oCmd.Parameters("@bal").Direction = ParameterDirection.Output : oCmd.Parameters("@bal").Precision = 18 : oCmd.Parameters("@bal").Scale = 2

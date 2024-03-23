@@ -238,12 +238,6 @@ Public Class frmTransactions
     Private Sub txtbenchPurchasePrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchPurchasePrice.EditValueChanged
         CalculateBenchProfit()
     End Sub
-    Private Sub CalculateBenchProfit()
-        Dim benchPurchasePrice As Double, benchSalesPrice As Double
-        If txtbenchPurchasePrice.EditValue Is Nothing Or txtbenchSalesPrice.EditValue Is Nothing Then Exit Sub
-        benchPurchasePrice = DbnullToZero(txtbenchPurchasePrice) : benchSalesPrice = DbnullToZero(txtbenchSalesPrice)
-        txtbenchProfit.EditValue = benchSalesPrice - benchPurchasePrice
-    End Sub
     Private Sub GridView3_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView3.InvalidRowException
         e.ExceptionMode = DevExpress.XtraEditors.Controls.ExceptionMode.NoAction
     End Sub
@@ -460,12 +454,14 @@ Public Class frmTransactions
     Private Sub txtbenchPurchasePrice_Validated(sender As Object, e As EventArgs) Handles txtbenchPurchasePrice.Validated
         Projects.CalculateTotAmtAndBal()
     End Sub
-
-    Private Sub txtbenchSalesPrice_Validated(sender As Object, e As EventArgs) Handles txtbenchSalesPrice.Validated
-
+    Private Sub chkofferCusAcceptance_CheckStateChanged(sender As Object, e As EventArgs) Handles chkofferCusAcceptance.CheckStateChanged
+        If Me.IsActive = False Then Exit Sub
+        Projects.CalculateTotAmtAndBal()
     End Sub
-
-    Private Sub txtExtraCost_Validated(sender As Object, e As EventArgs) Handles txtExtraCost.Validated
-
+    Private Sub CalculateBenchProfit()
+        Dim benchPurchasePrice As Double, benchSalesPrice As Double
+        If txtbenchPurchasePrice.EditValue Is Nothing Or txtbenchSalesPrice.EditValue Is Nothing Then Exit Sub
+        benchPurchasePrice = DbnullToZero(txtbenchPurchasePrice) : benchSalesPrice = DbnullToZero(txtbenchSalesPrice)
+        txtbenchProfit.EditValue = benchSalesPrice - benchPurchasePrice
     End Sub
 End Class
