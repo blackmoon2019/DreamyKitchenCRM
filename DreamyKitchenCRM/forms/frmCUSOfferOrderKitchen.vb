@@ -1131,5 +1131,7 @@ Public Class frmCUSOfferOrderKitchen
         'If e.Column.FieldName <> "selected" Then GridView1.SetRowCellValue(GridView1.FocusedRowHandle, "checked", 1)
     End Sub
 
+    Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
 
+    End Sub
 End Class

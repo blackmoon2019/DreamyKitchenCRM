@@ -173,7 +173,7 @@ Public Class frmCUSPrivateAgreement
     Private Sub txtTotalPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TxtTotalVat.EditValueChanged
         If Me.IsActive = False Then Exit Sub
         Dim Price As Double, PartOfVat As Double
-        If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat)
+        If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat) : txtTotalVatPrice.EditValue = Price * ProgProps.AlternateVAT
         If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
     End Sub
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged

@@ -8,6 +8,7 @@ Public Class frmProjectCost
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
+    Private ManageCbo As New CombosManager
     Private Valid As New ValidateControls
     Private FScrollerExist As Boolean = False
     Private Log As New Transactions
@@ -53,6 +54,8 @@ Public Class frmProjectCost
     End Property
 
     Private Sub frmProjectCost_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DM_CCT.vw_COMP' table. You can move, or remove it, as needed.
+        Me.Vw_COMPTableAdapter.Fill(Me.DM_CCT.vw_COMP)
         FillCbo.CUS(cboCUS)
 
         Select Case Mode
@@ -71,44 +74,17 @@ Public Class frmProjectCost
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS)
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageCus()
-        Dim form1 As frmCustomers = New frmCustomers()
-        form1.Text = "Πελάτες"
-        form1.CallerControl = cboCUS
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
-            form1.ID = cboCUS.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
-    Private Sub ManageTRANSH()
-        Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Έργα Πελατών"
-        form1.CallerControl = cboTRANSH
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboTRANSH.EditValue <> Nothing Then
-            form1.ID = cboTRANSH.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
+
     Private Sub cboTransH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
-            Case 3 : cboTRANSH.EditValue = Nothing
+            Case 1 : ManageCbo.ManageTRANSH(cboCompProject, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboCompProject, FormMode.EditRecord)
+            Case 3 : cboCompProject.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
@@ -279,5 +255,33 @@ Public Class frmProjectCost
 
     Private Sub txtmeasurement_EditValueChanged(sender As Object, e As EventArgs) Handles txtmeasurement.EditValueChanged
         txtTotBuy.EditValue = TotalBuy()
+    End Sub
+    Private Sub FillCompanyProjects(ByVal sCompID As String, ByVal scompTrashID As String)
+        If sCompID = "" Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(sCompID)
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
+                        from vw_TRANSH t
+                        where  Iskitchen = 1 and T.cusid = " & sCompID & "order by description")
+        FillCbo.TRANSH(cboCompProject, sSQL)
+        LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        If scompTrashID <> "" Then cboCompProject.EditValue = System.Guid.Parse(scompTrashID)
+    End Sub
+
+    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
+        If Mode = FormMode.NewRecord Then FillCompanyProjects(lkupEditValue(cboCompany), "")
+    End Sub
+    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+        End Select
+    End Sub
+    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSH(cboCompProject, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboCompProject, FormMode.EditRecord)
+            Case 3 : cboCompProject.EditValue = Nothing
+        End Select
     End Sub
 End Class

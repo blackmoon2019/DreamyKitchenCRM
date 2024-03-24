@@ -261,7 +261,7 @@ Public Class CusOfferOrderDoors
                         where  IsDoor = 1 and T.cusid = " & sCompID & "order by description")
         FillCbo.TRANSH(Frm.cboCompProject, sSQL)
         Frm.LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Frm.cmdCompCollection.Enabled = True
+        If Frm.chkGenOffer.CheckState = CheckState.Unchecked Then Frm.cmdCompCollection.Enabled = False Else Frm.cmdCompCollection.Enabled = True
         If GenOffer = True Then
             Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
             Frm.cboTRANSH.EditValue = scompTrashID

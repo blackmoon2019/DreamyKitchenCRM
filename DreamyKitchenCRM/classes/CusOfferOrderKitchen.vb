@@ -144,7 +144,6 @@ Public Class CusOfferOrderKitchen
                     End If
                 End If
 
-                If Frm.cboCompany.EditValue Is Nothing Then Frm.cmdCompCollection.Enabled = False
                 Frm.TabNavigationPage2.Enabled = True
                 If sFields("GenOffer") = "" Then sFields("GenOffer") = False
                 FillCusTransh(sFields("cusID"), sFields("compTrashID"), sFields("GenOffer"), sFields("transhID")) : FillCompanyProjects(sFields("compID"), sFields("GenOffer"), sFields("compTrashID"))
@@ -202,7 +201,7 @@ Public Class CusOfferOrderKitchen
                         where  Iskitchen = 1 and T.cusid = " & sCompID & "order by description")
         FillCbo.TRANSH(Frm.cboCompProject, sSQL)
         Frm.LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Frm.cmdCompCollection.Enabled = True
+        If Frm.chkGenOffer.CheckState = CheckState.Unchecked Then Frm.cmdCompCollection.Enabled = False Else Frm.cmdCompCollection.Enabled = True
         If GenOffer = True Then
             Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
             Frm.cboTRANSH.EditValue = scompTrashID
