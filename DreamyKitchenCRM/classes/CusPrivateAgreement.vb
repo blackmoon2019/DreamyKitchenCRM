@@ -117,8 +117,6 @@ Public Class CusPrivateAgreement
     Private Sub FillCusTransh()
         Dim sCusID As String, scompTrashID As String
         If CUS = Guid.Empty Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(CUS.ToString)
-        If CompProject = Guid.Empty Then scompTrashID = toSQLValueS(Guid.Empty.ToString) Else scompTrashID = toSQLValueS(CompProject.ToString)
-
         If CompProject = Guid.Empty Then scompTrashID = " and T.compTrashID  IS NULL" Else scompTrashID = " and T.compTrashID   = " & toSQLValueS(CompProject.ToString)
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,t.invType,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
@@ -126,6 +124,8 @@ Public Class CusPrivateAgreement
                         INNER JOIN TRANSC on transc.transhID = t.id 
                         where   completed = 0  and T.cusid = " & sCusID & scompTrashID & " order by description")
         FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
+        Frm.cboCUS.EditValue = System.Guid.Parse(sCusID.Replace("'", ""))
+        Frm.cboCompProject.EditValue = System.Guid.Parse(CompProject.ToString)
         Frm.txtFatherName.EditValue = Frm.cboCUS.GetColumnValue("FatherName")
         Frm.txtArea.EditValue = Frm.cboCUS.GetColumnValue("AREAS_Name")
         Frm.txtDOY.EditValue = Frm.cboCUS.GetColumnValue("DOY_Name")
@@ -140,6 +140,7 @@ Public Class CusPrivateAgreement
                         from vw_TRANSH t
                         where  T.cusid = " & sCompID & "order by description")
         FillCbo.TRANSH(Frm.cboCompProject, sSQL)
+        Frm.cboCompany.EditValue = System.Guid.Parse(sCompID.Replace("'", ""))
         Frm.LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Frm.cmdCompCollection.Enabled = True
 

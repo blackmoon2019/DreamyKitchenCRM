@@ -464,4 +464,24 @@ Public Class frmTransactions
         benchPurchasePrice = DbnullToZero(txtbenchPurchasePrice) : benchSalesPrice = DbnullToZero(txtbenchSalesPrice)
         txtbenchProfit.EditValue = benchSalesPrice - benchPurchasePrice
     End Sub
+
+    Private Sub BBCctOrdersKitchen_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBCctOrdersKitchen.ItemClick
+        Projects.LoadOrder("CCT_ORDERS_KITCHEN")
+    End Sub
+
+    Private Sub BBCctOrdersDoor_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBCctOrdersDoor.ItemClick
+        Projects.LoadOrder("CCT_ORDERS_DOOR")
+    End Sub
+
+    Private Sub BBCctOrdersCloset_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBCctOrdersCloset.ItemClick
+        Projects.LoadOrder("CCT_ORDERS_CLOSET")
+    End Sub
+
+    Private Sub BBCctOrdersSC_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBCctOrdersSC.ItemClick
+        Projects.LoadOrder("CCT_ORDERS_SPECIAL_CONSTR")
+    End Sub
+
+    Private Sub BBAgreement_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBAgreement.ItemClick
+        Projects.LoadOrder("AGREEMENT")
+    End Sub
 End Class

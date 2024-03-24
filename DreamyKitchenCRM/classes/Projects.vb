@@ -1,9 +1,8 @@
-﻿Imports DevExpress.CodeParser
+﻿Imports DevExpress.Utils.Extensions
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
-Imports DevExpress.XtraRichEdit.UI
 Imports System.Data.SqlClient
 
 Public Class Projects
@@ -140,6 +139,66 @@ Public Class Projects
         End If
         sdr.Close()
     End Sub
+    Public Sub LoadOrder(ByVal sTable As String)
+        Dim sOrderID As String = ""
+        Dim sWhereContition As String = IIf(sTable <> "AGREEMENT", "CreatedFromOfferID is not Null and ", "")
+        Dim cmd As SqlCommand = New SqlCommand("Select ID from " & sTable & " WHERE " & sWhereContition & " transhID = " & toSQLValueS(ID), CNDB)
+        Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        If sdr.HasRows Then
+            While sdr.Read()
+                sOrderID = sdr("ID").ToString.ToUpperInvariant
+            End While
+        End If
+        sdr.Close()
+
+        Select Case sTable
+            Case "AGREEMENT"
+                If sOrderID = "" Then XtraMessageBox.Show("Δεν υπάρχει Συμφωνητικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                Dim frmPrivateAgreement As frmCUSPrivateAgreement = New frmCUSPrivateAgreement()
+                frmPrivateAgreement.Text = "Ιδ. Συμφωνητικό"
+                frmPrivateAgreement.ID = sOrderID
+                frmPrivateAgreement.Mode = FormMode.EditRecord
+                frmPrivateAgreement.CUS = System.Guid.Parse(Frm.cboCUS.EditValue)
+                frmPrivateAgreement.TRANSH = System.Guid.Parse(ID)
+                If Frm.cboCompany.EditValue = Nothing Then frmPrivateAgreement.Company = Guid.Empty Else frmPrivateAgreement.Company = Frm.cboCompany.EditValue
+                If Frm.cboCompProject.EditValue = Nothing Then frmPrivateAgreement.CompProject = Guid.Empty Else frmPrivateAgreement.CompProject = Frm.cboCompProject.EditValue
+                If Frm.cboSaler.EditValue = Nothing Then frmPrivateAgreement.sEMP = Guid.Empty Else frmPrivateAgreement.sEMP = Frm.cboSaler.EditValue
+                frmPrivateAgreement.Show()
+            Case "CCT_ORDERS_CLOSET"
+                If sOrderID = "" Then XtraMessageBox.Show("Δεν υπάρχει παραγγελία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                Dim frmCUSOfferOrderCloset As frmCUSOfferOrderCloset = New frmCUSOfferOrderCloset()
+                frmCUSOfferOrderCloset.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                frmCUSOfferOrderCloset.Mode = FormMode.EditRecord
+                frmCUSOfferOrderCloset.IsOrder = 1
+                frmCUSOfferOrderCloset.ID = sOrderID
+                frmCUSOfferOrderCloset.Show()
+            Case "CCT_ORDERS_KITCHEN"
+                If sOrderID = "" Then XtraMessageBox.Show("Δεν υπάρχει παραγγελία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
+                frmCUSOfferOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
+                frmCUSOfferOrderKitchen.IsOrder = 1
+                frmCUSOfferOrderKitchen.Mode = FormMode.EditRecord
+                frmCUSOfferOrderKitchen.ID = sOrderID
+                frmCUSOfferOrderKitchen.Show()
+            Case "CCT_ORDERS_SPECIAL_CONSTR"
+                If sOrderID = "" Then XtraMessageBox.Show("Δεν υπάρχει παραγγελία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                Dim frmCUSOfferOrderSpecialConstr As frmCUSOfferOrderSpecialConstr = New frmCUSOfferOrderSpecialConstr()
+                frmCUSOfferOrderSpecialConstr.Text = "Έντυπο Παραγγελίας Πελατών(Έπιπλο Μπάνιου)"
+                frmCUSOfferOrderSpecialConstr.IsOrder = 1
+                frmCUSOfferOrderSpecialConstr.Mode = FormMode.EditRecord
+                frmCUSOfferOrderSpecialConstr.ID = sOrderID
+                frmCUSOfferOrderSpecialConstr.Show()
+            Case "CCT_ORDERS_DOOR"
+                If sOrderID = "" Then XtraMessageBox.Show("Δεν υπάρχει παραγγελία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
+                frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτα)"
+                frmCUSOfferOrderDoors.IsOrder = 1
+                frmCUSOfferOrderDoors.Mode = FormMode.EditRecord
+                frmCUSOfferOrderDoors.ID = sOrderID
+                frmCUSOfferOrderDoors.Show()
+        End Select
+    End Sub
+
     Public Sub LoadSalerTziroi()
         Dim frmSalerTziroi As New frmSalerTziroi
         frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"

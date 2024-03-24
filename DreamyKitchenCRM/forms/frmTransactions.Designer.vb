@@ -249,6 +249,11 @@ Partial Class frmTransactions
         Me.bbEMP_T = New DevExpress.XtraBars.BarButtonItem()
         Me.BBProjectCosts = New DevExpress.XtraBars.BarButtonItem()
         Me.BBInstallations = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCctOrdersKitchen = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCctOrdersDoor = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCctOrdersCloset = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCctOrdersSC = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBAgreement = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
@@ -262,6 +267,7 @@ Partial Class frmTransactions
         Me.Vw_TRANSD_CreditTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSD_CreditTableAdapter()
         Me.Vw_TRANSD_DebitTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSD_DebitTableAdapter()
         Me.COMP_CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.COMP_CCT_TRANSHTableAdapter()
+        Me.BarButtonItem6 = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2847,8 +2853,8 @@ Partial Class frmTransactions
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbEMP_T, Me.BBProjectCosts, Me.BBInstallations})
-        Me.BarManager1.MaxItemId = 3
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbEMP_T, Me.BBProjectCosts, Me.BBInstallations, Me.BBCctOrdersKitchen, Me.BBCctOrdersDoor, Me.BBCctOrdersCloset, Me.BBCctOrdersSC, Me.BBAgreement})
+        Me.BarManager1.MaxItemId = 8
         '
         'Bar1
         '
@@ -2857,7 +2863,7 @@ Partial Class frmTransactions
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Left
         Me.Bar1.FloatLocation = New System.Drawing.Point(51, 368)
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbEMP_T), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProjectCosts), New DevExpress.XtraBars.LinkPersistInfo(Me.BBInstallations)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbEMP_T), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProjectCosts), New DevExpress.XtraBars.LinkPersistInfo(Me.BBInstallations), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersKitchen), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersDoor), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersCloset), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersSC), New DevExpress.XtraBars.LinkPersistInfo(Me.BBAgreement)})
         Me.Bar1.Offset = 15
         Me.Bar1.Text = "Tools"
         '
@@ -2881,6 +2887,41 @@ Partial Class frmTransactions
         Me.BBInstallations.Id = 2
         Me.BBInstallations.ImageOptions.Image = CType(resources.GetObject("BBInstallations.ImageOptions.Image"), System.Drawing.Image)
         Me.BBInstallations.Name = "BBInstallations"
+        '
+        'BBCctOrdersKitchen
+        '
+        Me.BBCctOrdersKitchen.Caption = "Παραγγελία Κουζίνας"
+        Me.BBCctOrdersKitchen.Id = 3
+        Me.BBCctOrdersKitchen.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_24
+        Me.BBCctOrdersKitchen.Name = "BBCctOrdersKitchen"
+        '
+        'BBCctOrdersDoor
+        '
+        Me.BBCctOrdersDoor.Caption = "Παραγγελία Πόρτας"
+        Me.BBCctOrdersDoor.Id = 4
+        Me.BBCctOrdersDoor.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_24
+        Me.BBCctOrdersDoor.Name = "BBCctOrdersDoor"
+        '
+        'BBCctOrdersCloset
+        '
+        Me.BBCctOrdersCloset.Caption = "Παραγγελία Ντουλάπας"
+        Me.BBCctOrdersCloset.Id = 5
+        Me.BBCctOrdersCloset.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_24
+        Me.BBCctOrdersCloset.Name = "BBCctOrdersCloset"
+        '
+        'BBCctOrdersSC
+        '
+        Me.BBCctOrdersSC.Caption = "Παραγγελία Ειδ. Κατασκευών"
+        Me.BBCctOrdersSC.Id = 6
+        Me.BBCctOrdersSC.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_24
+        Me.BBCctOrdersSC.Name = "BBCctOrdersSC"
+        '
+        'BBAgreement
+        '
+        Me.BBAgreement.Caption = "Ιδ. Συμφωνητικό"
+        Me.BBAgreement.Id = 7
+        Me.BBAgreement.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_agreement_24
+        Me.BBAgreement.Name = "BBAgreement"
         '
         'barDockControlTop
         '
@@ -2950,6 +2991,12 @@ Partial Class frmTransactions
         'COMP_CCT_TRANSHTableAdapter
         '
         Me.COMP_CCT_TRANSHTableAdapter.ClearBeforeFill = True
+        '
+        'BarButtonItem6
+        '
+        Me.BarButtonItem6.Caption = "BarButtonItem1"
+        Me.BarButtonItem6.Id = 3
+        Me.BarButtonItem6.Name = "BarButtonItem6"
         '
         'frmTransactions
         '
@@ -3383,4 +3430,10 @@ Partial Class frmTransactions
     Friend WithEvents LPrintCompOffer As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents COMPCCTTRANSHBindingSource As BindingSource
     Friend WithEvents COMP_CCT_TRANSHTableAdapter As DM_TRANSTableAdapters.COMP_CCT_TRANSHTableAdapter
+    Friend WithEvents BBCctOrdersKitchen As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBCctOrdersDoor As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBCctOrdersCloset As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBCctOrdersSC As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BBAgreement As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarButtonItem6 As DevExpress.XtraBars.BarButtonItem
 End Class
