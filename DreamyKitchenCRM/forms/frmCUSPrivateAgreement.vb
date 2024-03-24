@@ -26,34 +26,34 @@ Public Class frmCUSPrivateAgreement
     Private AgreementSalary As Double
     Private UserPermissions As New CheckPermissions
     Private Prog_Prop As New ProgProp
-    Public sCompany As Guid
-    Public sCompProject As Guid
-    Public sCUS As Guid
-    Public sTRANSH As Guid
-    Public sEMP As Guid
+    Public sCompanyID As Guid
+    Public sCompTranshID As Guid
+    Public sCusID As Guid
+    Public sTranshID As Guid
+    Public sEmpID As Guid
     Public WriteOnly Property Company As Guid
         Set(value As Guid)
-            sCompany = value
+            sCompanyID = value
         End Set
     End Property
     Public WriteOnly Property CompProject As Guid
         Set(value As Guid)
-            sCompProject = value
+            sCompTranshID = value
         End Set
     End Property
     Public WriteOnly Property CUS As Guid
         Set(value As Guid)
-            sCUS = value
+            sCusID = value
         End Set
     End Property
     Public WriteOnly Property TRANSH As Guid
         Set(value As Guid)
-            sTRANSH = value
+            sTranshID = value
         End Set
     End Property
     Public WriteOnly Property EMP As Guid
         Set(value As Guid)
-            sEMP = value
+            sEmpID = value
         End Set
     End Property
 
@@ -108,11 +108,11 @@ Public Class frmCUSPrivateAgreement
     End Sub
 
     Public Sub InitializeForm()
-        CusPrivateAgreement.Company = sCompany
-        CusPrivateAgreement.CompProject = sCompProject
-        CusPrivateAgreement.CUS = sCUS
-        CusPrivateAgreement.TRANSH = sTRANSH
-        CusPrivateAgreement.EMP = sEMP
+        CusPrivateAgreement.CompanyID = sCompanyID
+        CusPrivateAgreement.CompTranshID = sCompTranshID
+        CusPrivateAgreement.CusID = sCusID
+        CusPrivateAgreement.TranshID = sTranshID
+        CusPrivateAgreement.EmpID = sEmpID
         CusPrivateAgreement.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
         CusPrivateAgreement.LoadForm()
     End Sub
@@ -160,9 +160,12 @@ Public Class frmCUSPrivateAgreement
 
 
     Private Sub cmdPrintOffer_Click(sender As Object, e As EventArgs) Handles cmdPrintOffer.Click
-        If CheckListExist() = False Then
-            XtraMessageBox.Show(String.Format("Δεν μπορεί να εκτυπωθεί το Συμφωνητικό γιατί δεν έχει συμπληρωθεί η CheckList του Έργου"), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            Exit Sub
+
+        If cboCUS.EditValue <> cboCompany.EditValue Then ' Ενα αφορά το συμφωνητικό τον Κατασκευαστή δεν μας ενδιαφέρει η check List
+            If CheckListExist() = False Then
+                XtraMessageBox.Show(String.Format("Δεν μπορεί να εκτυπωθεί το Συμφωνητικό γιατί δεν έχει συμπληρωθεί η CheckList του Έργου"), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Exit Sub
+            End If
         End If
         CusPrivateAgreement.PrintAgreement()
     End Sub
@@ -241,7 +244,7 @@ Public Class frmCUSPrivateAgreement
     Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
-            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany) : If cboCUS.EditValue = cboCompany.EditValue Then GetCusFields()
             Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing : cmdCompCollection.Enabled = False
         End Select
     End Sub
@@ -256,6 +259,12 @@ Public Class frmCUSPrivateAgreement
         Frm.ShowDialog()
         Frm.isCompany = True
         Frm.LayoutControlItem16.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        If cboCUS.EditValue = cboCompany.EditValue Then
+            CusPrivateAgreement.GetKLeisimoAmt(cboTRANSH.EditValue.ToString)
+            CusPrivateAgreement.GetPayInAdvanceAmt(cboTRANSH.EditValue.ToString)
+            LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        End If
+
     End Sub
 
     Private Sub cmdCusCollection_Click(sender As Object, e As EventArgs) Handles cmdCusCollection.Click

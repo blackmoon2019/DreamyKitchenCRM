@@ -162,7 +162,7 @@ Public Class Projects
                 frmPrivateAgreement.TRANSH = System.Guid.Parse(ID)
                 If Frm.cboCompany.EditValue = Nothing Then frmPrivateAgreement.Company = Guid.Empty Else frmPrivateAgreement.Company = Frm.cboCompany.EditValue
                 If Frm.cboCompProject.EditValue = Nothing Then frmPrivateAgreement.CompProject = Guid.Empty Else frmPrivateAgreement.CompProject = Frm.cboCompProject.EditValue
-                If Frm.cboSaler.EditValue = Nothing Then frmPrivateAgreement.sEMP = Guid.Empty Else frmPrivateAgreement.sEMP = Frm.cboSaler.EditValue
+                If Frm.cboSaler.EditValue = Nothing Then frmPrivateAgreement.sEmpID = Guid.Empty Else frmPrivateAgreement.sEmpID = Frm.cboSaler.EditValue
                 frmPrivateAgreement.Show()
             Case "CCT_ORDERS_CLOSET"
                 If sOrderID = "" Then XtraMessageBox.Show("Δεν υπάρχει παραγγελία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub

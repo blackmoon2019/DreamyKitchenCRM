@@ -291,7 +291,7 @@ Public Class ValidateControls
             sdr = Cmd.ExecuteReader()
             If (sdr.Read() = True) Then
                 If sdr.IsDBNull(sdr.GetOrdinal("ExistOrder")) = False Then ExistOrder = sdr.GetInt32(sdr.GetOrdinal("ExistOrder")) Else ExistOrder = 0
-                If ExistOrder > 0 Then
+                If ExistOrder > 1 Then
                     XtraMessageBox.Show("Δεν μπορείτε να δημιουργήσετε παραπάνω από μια παραγγελίες στο ίδιο έργο. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     sdr.Close()
                     Return True

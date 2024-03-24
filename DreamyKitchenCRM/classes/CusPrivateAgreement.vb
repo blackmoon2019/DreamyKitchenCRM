@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Runtime.Remoting.Metadata.W3cXsd2001
 Imports System.Text
 Imports DevExpress.Utils
 Imports DevExpress.Utils.Extensions
@@ -20,11 +21,12 @@ Public Class CusPrivateAgreement
     Private Frm As frmCUSPrivateAgreement
     Private Prog_Prop As New ProgProp
     Private ChangeVal As Boolean = False
-    Public Company As Guid
-    Public CompProject As Guid
-    Public CUS As Guid
-    Public TRANSH As Guid
-    Public EMP As Guid
+    Public CompanyID As Guid
+    Public CompTranshID As Guid
+    Public CusID As Guid
+    Public TranshID As Guid
+    Public EmpID As Guid
+
 
     Public Sub Initialize(ByVal sFrm As frmCUSPrivateAgreement, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Frm = sFrm
@@ -38,13 +40,13 @@ Public Class CusPrivateAgreement
         Frm.Vw_CCTTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_CCT)
         Frm.Vw_SALERSTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_SALERS)
         FillCbo.ADR(Frm.cboADR)
-        Frm.cboCompany.EditValue = System.Guid.Parse(Company.ToString)
-        If Company <> Guid.Empty Then FillCompanyProjects()
-        Frm.cboCompProject.EditValue = System.Guid.Parse(CompProject.ToString)
-        Frm.cboCUS.EditValue = System.Guid.Parse(CUS.ToString)
-        If CUS <> Guid.Empty Then FillCusTransh()
-        Frm.cboTRANSH.EditValue = System.Guid.Parse(TRANSH.ToString)
-        Frm.cboEMP.EditValue = System.Guid.Parse(EMP.ToString)
+        Frm.cboCompany.EditValue = System.Guid.Parse(CompanyID.ToString)
+        If CompanyID <> Guid.Empty Then FillCompanyProjects()
+        Frm.cboCompProject.EditValue = System.Guid.Parse(CompTranshID.ToString)
+        Frm.cboCUS.EditValue = System.Guid.Parse(CusID.ToString)
+        If CusID <> Guid.Empty Then FillCusTransh()
+        Frm.cboTRANSH.EditValue = System.Guid.Parse(TranshID.ToString)
+        Frm.cboEMP.EditValue = System.Guid.Parse(EmpID.ToString)
         If Frm.cboTRANSH.GetColumnValue("AgreementExist") = "1" Then
             ID = Frm.cboTRANSH.GetColumnValue("AgreementID").ToString
             Mode = FormMode.EditRecord
@@ -76,8 +78,8 @@ Public Class CusPrivateAgreement
                 ChangeVal = False
                 Frm.cmdPrintOffer.Enabled = True
         End Select
-        If Company = Guid.Empty Then FillCompanyProjects()
-        If CUS = Guid.Empty Then FillCusTransh()
+        If CompanyID = Guid.Empty Then FillCompanyProjects()
+        If CusID = Guid.Empty Then FillCusTransh()
         GetKLeisimoAmt(Frm.cboTRANSH.EditValue.ToString)
         GetPayInAdvanceAmt(Frm.cboTRANSH.EditValue.ToString)
         GetProjectAmounts(Frm.cboTRANSH.EditValue.ToString)
@@ -93,6 +95,7 @@ Public Class CusPrivateAgreement
         End If
         Frm.cboInvoiceType.EditValue = Frm.cboTRANSH.GetColumnValue("invType")
         Frm.cmdCompCollection.Enabled = IIf(Frm.cboCompany.EditValue = Nothing, False, True)
+        Frm.cmdCusCollection.Enabled = IIf(Frm.cboCompany.EditValue = Frm.cboCUS.EditValue, False, True)
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Frm.chkHasCloset.Properties.AllowHtmlDraw = DefaultBoolean.True
         Frm.chkHasCloset.Text = "<href=www.dreamykitchen.gr/>Ντουλάπες Υπνοδωματίου</href>"
@@ -115,17 +118,23 @@ Public Class CusPrivateAgreement
 
     End Sub
     Private Sub FillCusTransh()
-        Dim sCusID As String, scompTrashID As String
-        If CUS = Guid.Empty Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(CUS.ToString)
-        If CompProject = Guid.Empty Then scompTrashID = " and T.compTrashID  IS NULL" Else scompTrashID = " and T.compTrashID   = " & toSQLValueS(CompProject.ToString)
-        Dim sSQL As New System.Text.StringBuilder
+        Dim sCusID As String, scompTrashID As String, sCompID As String
+        If CusID = Guid.Empty Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(CusID.ToString)
+        If Frm.cboCompany.EditValue Is Nothing Then sCompID = toSQLValueS(Guid.Empty.ToString) Else sCompID = toSQLValueS(Frm.cboCompany.EditValue.ToString)
+        If CompTranshID = Guid.Empty Then
+            scompTrashID = " and T.compTrashID  IS NULL"
+        Else
+            'Εαν το συμφωνητικό δεν αφορά τον ίδιο τον κατασκευαστή
+            If sCusID <> sCompID Then scompTrashID = " and T.compTrashID   = " & toSQLValueS(CompTranshID.ToString)
+        End If
+            Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,t.invType,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
                         from vw_TRANSH t
                         INNER JOIN TRANSC on transc.transhID = t.id 
                         where   completed = 0  and T.cusid = " & sCusID & scompTrashID & " order by description")
         FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
         Frm.cboCUS.EditValue = System.Guid.Parse(sCusID.Replace("'", ""))
-        Frm.cboCompProject.EditValue = System.Guid.Parse(CompProject.ToString)
+        Frm.cboCompProject.EditValue = System.Guid.Parse(CompTranshID.ToString)
         Frm.txtFatherName.EditValue = Frm.cboCUS.GetColumnValue("FatherName")
         Frm.txtArea.EditValue = Frm.cboCUS.GetColumnValue("AREAS_Name")
         Frm.txtDOY.EditValue = Frm.cboCUS.GetColumnValue("DOY_Name")
@@ -437,37 +446,7 @@ Public Class CusPrivateAgreement
     End Sub
 
     Public Sub PrintAgreement()
-        Dim report As New RepCUSPrivateAgreement()
 
-        report.XrLabel5.Visible = True
-        report.XrLabel5.ExpressionBindings.Item(0).Expression = "' συμφωνούνται τα εξής :'"
-        report.Parameters.Item(0).Value = ID
-        report.CreateDocument()
-
-        Dim report2 As New RepCUSPrivateAgreement2ndPage
-        report2.Parameters.Item(0).Value = ID
-        report2.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report2.Pages)
-                              End Sub)
-        Dim report3 As New RepCUSPrivateAgreement3ndPage
-        report3.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report3.Pages)
-                              End Sub)
-        Dim report4 As New RepCUSPrivateAgreement4ndPage
-        report4.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report4.Pages)
-                              End Sub)
-        Dim report5 As New RepCUSAnalysis
-        report5.Parameters.Item(0).Value = Frm.cboTRANSH.EditValue.ToString
-        report5.CreateDocument()
-        report.ModifyDocument(Sub(x)
-                                  x.AddPages(report5.Pages)
-                              End Sub)
-        Dim printTool As New ReportPrintTool(report)
-        printTool.ShowRibbonPreview()
 
         If Frm.cboCompProject.EditValue IsNot Nothing Then
             Dim reportComp As New RepCUSPrivateAgreement()
@@ -481,7 +460,7 @@ Public Class CusPrivateAgreement
 
             Dim reportComp2 As New RepCUSPrivateAgreement2ndPage
             reportComp2.Parameters.Item(0).Value = ID
-            reportComp2.XrLabel2.ExpressionBindings.Item(0).Expression = "FormatString('{0:C2}',[DebitAmt]) "
+            'reportComp2.XrLabel2.ExpressionBindings.Item(0).Expression = "FormatString('{0:C2}',[DebitAmt]) "
             reportComp2.CreateDocument()
             reportComp.ModifyDocument(Sub(x)
                                           x.AddPages(reportComp2.Pages)
@@ -504,7 +483,38 @@ Public Class CusPrivateAgreement
                                       End Sub)
             Dim printToolComp As New ReportPrintTool(reportComp)
             printToolComp.ShowRibbonPreview()
+        Else
+            Dim report As New RepCUSPrivateAgreement()
 
+            report.XrLabel5.Visible = True
+            report.XrLabel5.ExpressionBindings.Item(0).Expression = "' συμφωνούνται τα εξής :'"
+            report.Parameters.Item(0).Value = ID
+            report.CreateDocument()
+
+            Dim report2 As New RepCUSPrivateAgreement2ndPage
+            report2.Parameters.Item(0).Value = ID
+            report2.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report2.Pages)
+                                  End Sub)
+            Dim report3 As New RepCUSPrivateAgreement3ndPage
+            report3.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report3.Pages)
+                                  End Sub)
+            Dim report4 As New RepCUSPrivateAgreement4ndPage
+            report4.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report4.Pages)
+                                  End Sub)
+            Dim report5 As New RepCUSAnalysis
+            report5.Parameters.Item(0).Value = Frm.cboTRANSH.EditValue.ToString
+            report5.CreateDocument()
+            report.ModifyDocument(Sub(x)
+                                      x.AddPages(report5.Pages)
+                                  End Sub)
+            Dim printTool As New ReportPrintTool(report)
+            printTool.ShowRibbonPreview()
         End If
 
 
