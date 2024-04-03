@@ -1774,20 +1774,22 @@ Partial Class frmCUSOfferOrderSpecialConstr
         'LayoutControlItem51
         '
         Me.LayoutControlItem51.Control = Me.cmdCompCollection
+        Me.LayoutControlItem51.Enabled = False
         Me.LayoutControlItem51.Location = New System.Drawing.Point(1126, 62)
         Me.LayoutControlItem51.Name = "LayoutControlItem51"
         Me.LayoutControlItem51.Size = New System.Drawing.Size(112, 36)
-        Me.LayoutControlItem51.Text = "Είσπραξη"
+        Me.LayoutControlItem51.Text = "Είσπραξη Εταιρίας"
         Me.LayoutControlItem51.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem51.TextVisible = False
         '
         'LayoutControlItem52
         '
         Me.LayoutControlItem52.Control = Me.cmdCusCollection
+        Me.LayoutControlItem52.Enabled = False
         Me.LayoutControlItem52.Location = New System.Drawing.Point(1126, 98)
         Me.LayoutControlItem52.Name = "LayoutControlItem52"
         Me.LayoutControlItem52.Size = New System.Drawing.Size(112, 36)
-        Me.LayoutControlItem52.Text = "Είσπραξη"
+        Me.LayoutControlItem52.Text = "Είσπραξη Πελάτη"
         Me.LayoutControlItem52.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem52.TextVisible = False
         '

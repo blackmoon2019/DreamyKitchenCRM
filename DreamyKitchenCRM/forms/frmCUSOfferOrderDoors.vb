@@ -88,9 +88,7 @@ Public Class frmCUSOfferOrderDoors
         If receiveAgreement = True Then cmdSave.Enabled = False : cmdSavePhotos.Enabled = False
         Me.CenterToScreen()
     End Sub
-    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
-        receiveAgreement = cboTRANSH.GetColumnValue("receiveAgreement")
-    End Sub
+
     Private Sub cboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
             Case 1 : ManageCbo.ManageEMP(cboEMP, FormMode.NewRecord)
@@ -98,13 +96,7 @@ Public Class frmCUSOfferOrderDoors
             Case 3 : cboEMP.EditValue = Nothing
         End Select
     End Sub
-    Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS)
-            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS)
-            Case 3 : cboCUS.EditValue = Nothing
-        End Select
-    End Sub
+
     Private Sub txtdtdaysOfDelivery_EditValueChanged(sender As Object, e As EventArgs) Handles txtdtdaysOfDelivery.EditValueChanged
         If dtpresentation.EditValue Is Nothing Then Exit Sub
         If dtpresentation.EditValue.ToString = "" Then Exit Sub
@@ -620,23 +612,6 @@ Public Class frmCUSOfferOrderDoors
     End Sub
 
 
-    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
-        Select Case e.Button.Index
-            Case 1
-                If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder, System.Guid.Parse("47618E49-33E8-4685-969F-55419EDFAC58"))
-            Case 2 : If cboCompProject.EditValue IsNot Nothing Then ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True,,,,, sIsOrder)
-            Case 3 : cboCompProject.EditValue = Nothing
-        End Select
-    End Sub
-
-    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
-        Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
-            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
-            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
-        End Select
-    End Sub
     Private Sub cmdCollection_Click(sender As Object, e As EventArgs) Handles cmdCompCollection.Click
         If cboCompProject.EditValue Is Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Dim Frm As frmTransactions = New frmTransactions()
@@ -659,12 +634,6 @@ Public Class frmCUSOfferOrderDoors
         Frm.ID = cboTRANSH.EditValue.ToString
         Frm.lCusD.Visibility = False
         Frm.ShowDialog()
-    End Sub
-
-
-
-    Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
-        If Mode = FormMode.NewRecord Then CusOfferOrderDoors.FillCusTransh(lkupEditValue(cboCUS), lkupEditValue(cboCompProject), chkGenOffer.CheckState, "")
     End Sub
 
     Private Sub cmdOrder_Click(sender As Object, e As EventArgs) Handles cmdOrder.Click
@@ -881,5 +850,40 @@ Public Class frmCUSOfferOrderDoors
 
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
         CalculateTotAmt()
+    End Sub
+    Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
+        If Mode = FormMode.NewRecord Then CusOfferOrderDoors.FillCusTransh(lkupEditValue(cboCUS), lkupEditValue(cboCompProject), chkGenOffer.CheckState, "")
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue IsNot Nothing Then cmdCompCollection.Enabled = True Else cmdCompCollection.Enabled = False
+    End Sub
+    Private Sub chkGenOffer_CheckStateChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckStateChanged
+        If chkGenOffer.CheckState = CheckState.Checked Then cmdCusCollection.Enabled = False Else cmdCusCollection.Enabled = True
+    End Sub
+    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+        receiveAgreement = cboTRANSH.GetColumnValue("receiveAgreement")
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue IsNot Nothing Then cmdCusCollection.Enabled = True Else cmdCusCollection.Enabled = False
+    End Sub
+    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
+        Select Case e.Button.Index
+            Case 1
+                If cboEMP.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει πωλητή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.NewRecord, cboCompany.EditValue, True, cboEMP.EditValue, cboCompany.EditValue, cboCompProject.EditValue, 1, sIsOrder, System.Guid.Parse("47618E49-33E8-4685-969F-55419EDFAC58"))
+            Case 2 : If cboCompProject.EditValue IsNot Nothing Then ManageCbo.ManageTRANSHSmall(cboCompProject, FormMode.EditRecord, cboCompany.EditValue, True,,,,, sIsOrder)
+            Case 3 : cboCompProject.EditValue = Nothing : cmdCompCollection.Enabled = False
+        End Select
+    End Sub
+
+    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing : cmdCompCollection.Enabled = False
+        End Select
+    End Sub
+    Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS)
+            Case 3 : cboCUS.EditValue = Nothing : cmdCusCollection.Enabled = False
+        End Select
     End Sub
 End Class

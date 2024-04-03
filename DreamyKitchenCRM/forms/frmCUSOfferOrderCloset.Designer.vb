@@ -895,7 +895,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(15)
         Me.LayoutControl1.Name = "LayoutControl1"
-        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(5617, 166, 1255, 1695)
+        Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1524, 85, 1255, 1695)
         Me.LayoutControl1.Root = Me.Root
         Me.LayoutControl1.Size = New System.Drawing.Size(1370, 1114)
         Me.LayoutControl1.TabIndex = 2
@@ -3292,18 +3292,22 @@ Partial Class frmCUSOfferOrderCloset
         'LayoutControlItem118
         '
         Me.LayoutControlItem118.Control = Me.cmdCompCollection
+        Me.LayoutControlItem118.Enabled = False
         Me.LayoutControlItem118.Location = New System.Drawing.Point(1211, 62)
         Me.LayoutControlItem118.Name = "LayoutControlItem118"
         Me.LayoutControlItem118.Size = New System.Drawing.Size(115, 36)
+        Me.LayoutControlItem118.Text = "Είσπραξη Εταιρίας"
         Me.LayoutControlItem118.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem118.TextVisible = False
         '
         'LayoutControlItem119
         '
         Me.LayoutControlItem119.Control = Me.cmdCusCollection
+        Me.LayoutControlItem119.Enabled = False
         Me.LayoutControlItem119.Location = New System.Drawing.Point(1211, 98)
         Me.LayoutControlItem119.Name = "LayoutControlItem119"
         Me.LayoutControlItem119.Size = New System.Drawing.Size(115, 36)
+        Me.LayoutControlItem119.Text = "Είσπραξη Πελάτη"
         Me.LayoutControlItem119.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem119.TextVisible = False
         '

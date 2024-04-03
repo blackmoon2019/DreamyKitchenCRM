@@ -153,9 +153,6 @@ Public Class CusOfferOrderKitchen
 
 
         If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
-        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Frm.cmdCusCollection.Enabled = False Else Frm.cmdCusCollection.Enabled = True
-
-
 
     End Sub
     Public Sub LoadDevices()
@@ -201,7 +198,6 @@ Public Class CusOfferOrderKitchen
                         where  Iskitchen = 1 and T.cusid = " & sCompID & "order by description")
         FillCbo.TRANSH(Frm.cboCompProject, sSQL)
         Frm.LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        If Frm.chkGenOffer.CheckState = CheckState.Unchecked Then Frm.cmdCompCollection.Enabled = False Else Frm.cmdCompCollection.Enabled = True
         If GenOffer = True Then
             Frm.cboCUS.EditValue = Frm.cboCompany.EditValue
             Frm.cboTRANSH.EditValue = scompTrashID
