@@ -282,7 +282,7 @@ Public Class frmBuyCollectionInsert
     End Sub
     Private Sub InsertRecordsToBuy()
         Dim sInvNumber As String, sDate As String, sVatAmount As Double, sNetAmount As Double
-        Dim kitchen As Double, materials As Double, general As Double, closet As Double, bathroomFurn As Double
+        Dim kitchen As Double, materials As Double, general As Double, closet As Double, bathroomFurn As Double, extraCus As Double
         Dim sOrd As String, cmt As String
         Dim supID As String, sdocTypeID As String, sCusID As String, sTranshID As String, sPayID As String
         Dim selectedRowHandles As Int32() = GridView5.GetSelectedRows
@@ -318,6 +318,7 @@ Public Class frmBuyCollectionInsert
                         general = GridView5.GetRowCellValue(selectedRowHandle, "general")
                         closet = GridView5.GetRowCellValue(selectedRowHandle, "closet")
                         bathroomFurn = GridView5.GetRowCellValue(selectedRowHandle, "bathroomFurn")
+                        extraCus = GridView5.GetRowCellValue(selectedRowHandle, "extraCus")
                         sNetAmount = GridView5.GetRowCellValue(selectedRowHandle, "netAmount")
                         sVatAmount = GridView5.GetRowCellValue(selectedRowHandle, "vatAmount")
                         If kitchen <> 0 Then Found = Found + 1
@@ -325,12 +326,13 @@ Public Class frmBuyCollectionInsert
                         If general <> 0 Then Found = Found + 1
                         If closet <> 0 Then Found = Found + 1
                         If bathroomFurn <> 0 Then Found = Found + 1
+                        If extraCus <> 0 Then Found = Found + 1
 
                         'Εαν έχει περάσει έστω και ένα ποσό μόνο τότε θα γίνει η καταχώρηση στις αγορές
                         If Found > 0 Then
 
 
-                            sSQL.AppendLine("INSERT INTO BUY (ID, ord, dtBuy, invoiceNumber, docTypeID, supID, cusID, transhID, payID, paid, kitchen, closet, general, materials, bathroomFurn, netAmount, " &
+                            sSQL.AppendLine("INSERT INTO BUY (ID, ord, dtBuy, invoiceNumber, docTypeID, supID, cusID, transhID, payID, paid, kitchen, closet,extraCus, general, materials, bathroomFurn, netAmount, " &
                                             " vatAmount,ComeFrom,cmt,createdOn,createdBy) VALUES( ")
                             sSQL.AppendLine(toSQLValueS(sbuyID) & ",")
                             sSQL.AppendLine(sOrd & ",")
@@ -344,6 +346,7 @@ Public Class frmBuyCollectionInsert
                             sSQL.AppendLine("0" & ",")
                             sSQL.AppendLine(toSQLValueS(kitchen, True) & ",")
                             sSQL.AppendLine(toSQLValueS(closet, True) & ",")
+                            sSQL.AppendLine(toSQLValueS(extraCus, True) & ",")
                             sSQL.AppendLine(toSQLValueS(general, True) & ",")
                             sSQL.AppendLine(toSQLValueS(materials, True) & ",")
                             sSQL.AppendLine(toSQLValueS(bathroomFurn, True) & ",")
@@ -446,7 +449,7 @@ Public Class frmBuyCollectionInsert
 
     End Sub
     Private Sub GridView5_ValidatingEditor(sender As Object, e As BaseContainerValidateEditorEventArgs) Handles GridView5.ValidatingEditor
-        Dim kitchen As Double, materials As Double, general As Double, closet As Double, bathroomFurn As Double
+        Dim kitchen As Double, materials As Double, general As Double, closet As Double, bathroomFurn As Double, extraCus As Double
         Dim Found As Integer = 0
         If GridView5.FocusedColumn.Name = "colKanO" Then Exit Sub
         If GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "completed") = "True" And sender.FocusedColumn.FieldName <> "completed" Then
@@ -461,11 +464,14 @@ Public Class frmBuyCollectionInsert
         general = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "general")
         closet = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "closet")
         bathroomFurn = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "bathroomFurn")
+        extraCus = GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "extraCus")
+
         If kitchen <> 0 Then Found = Found + 1
         If materials <> 0 Then Found = Found + 1
         If general <> 0 Then Found = Found + 1
         If closet <> 0 Then Found = Found + 1
         If bathroomFurn <> 0 Then Found = Found + 1
+        If extraCus <> 0 Then Found = Found + 1
 
         If Found > 1 Then
             e.ErrorText = "Έχετε συμπληρώσει περισσότερες από 2 στήλες με ποσό στο ίδιο παραστατικό"
@@ -651,7 +657,9 @@ Public Class frmBuyCollectionInsert
             sSQL.AppendLine("closet= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "closet").ToString, True) & ",")
             sSQL.AppendLine("general= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "general").ToString, True) & ",")
             sSQL.AppendLine("materials= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "materials").ToString, True) & ",")
+            sSQL.AppendLine("extraCus= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "extraCus").ToString, True) & ",")
             sSQL.AppendLine("bathroomFurn= " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "bathroomFurn").ToString, True))
+
             sSQL.AppendLine("WHERE ID = " & toSQLValueS(GridView5.GetRowCellValue(GridView5.FocusedRowHandle, "ID").ToString))
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()

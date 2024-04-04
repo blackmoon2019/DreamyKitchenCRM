@@ -58,15 +58,17 @@ Public Class ProjectCost
         End Try
     End Sub
     Public Function TotalBuy() As Double
-        Dim Kitchen As Double, Closet As Double, general As Double, Materials As Double, Doors As Double
+        Dim Kitchen As Double, Closet As Double, general As Double, Materials As Double, Doors As Double, kitchenDoors As Double
         Dim Varnishes As Double, ExtraCus As Double, Transportation As Double, ConstrPayroll As Double
         Dim InstPayroll As Double, salerProfit As Double, Total As Double, DebitCost As Double, Glasses As Double, measurement As Double, DevicesBuy As Double
-        Kitchen = DbnullToZero(Frm.txtkitchen) : Closet = DbnullToZero(Frm.txtcloset) : general = DbnullToZero(Frm.txtgeneral)
+        Kitchen = DbnullToZero(Frm.txtkitchen) : Closet = DbnullToZero(Frm.txtcloset) : general = DbnullToZero(Frm.txtgeneral) : kitchenDoors = DbnullToZero(Frm.txtkitchenDoors)
         Materials = DbnullToZero(Frm.txtmaterials) : Varnishes = DbnullToZero(Frm.txtvarnishes) : ExtraCus = DbnullToZero(Frm.txtextraCus)
         Transportation = DbnullToZero(Frm.txttransportation) : ConstrPayroll = DbnullToZero(Frm.txtConstrPayroll) : Glasses = DbnullToZero(Frm.txtglasses) : measurement = DbnullToZero(Frm.txtmeasurement)
         Doors = DbnullToZero(Frm.txtdoors) : InstPayroll = DbnullToZero(Frm.txtInstPayroll) : salerProfit = DbnullToZero(Frm.txtSalerProfit) : DevicesBuy = DbnullToZero(Frm.txtDevicesBuy)
         DebitCost = DbnullToZero(Frm.txtTotAmt)
-        Total = Kitchen + Closet + general + Materials + Varnishes + ExtraCus + Transportation + ConstrPayroll + Doors + InstPayroll + salerProfit + Glasses + measurement + DevicesBuy
+
+        Total = Kitchen + Closet + general + Materials + Varnishes + ExtraCus + Transportation + ConstrPayroll + Doors + InstPayroll + salerProfit + Glasses + measurement + DevicesBuy + kitchenDoors
+
         Dim TotAmt As Double, TotBuy As Double, MixProfit As Double
         TotAmt = DbnullToZero(Frm.txtTotAmt) : TotBuy = DbnullToZero(Frm.txtTotBuy)
         Frm.txtMixProfit.EditValue = DebitCost - TotBuy : MixProfit = DbnullToZero(Frm.txtMixProfit)

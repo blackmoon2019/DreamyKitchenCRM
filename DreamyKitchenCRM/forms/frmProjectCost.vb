@@ -1,4 +1,5 @@
 ﻿Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraPrinting.Native
 
 Public Class frmProjectCost
     Private sID As String
@@ -82,7 +83,7 @@ Public Class frmProjectCost
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,
-                        DebitCost,DevicesCost,Totamt,isnull(SalerProfit,0) as  SalerProfit,
+                        DevicesCost,Totamt,isnull(SalerProfit,0) as  SalerProfit,
                         ISNULL((Select sum(ISNULL(C.salary, 0) + ISNULL(C.extracost, 0)) from constr C where transhid=t.id),0) as ConstrPayroll,
                         ISNULL((Select sum(ISNULL(I.cost, 0) + ISNULL(I.extraCost, 0)) from INST I where transhid=t.id),0) as InstPayroll,
                         ISNULL((SELECT sum(KITCHENV) kitchen from BUY B where B.transhID=T.ID),0) as kitchen,
@@ -91,8 +92,14 @@ Public Class frmProjectCost
                         ISNULL((SELECT sum(generalV) general from BUY B where B.transhID=T.ID),0) as general,
                         ISNULL((SELECT sum(materialsV) materials from BUY B where B.transhID=T.ID),0) as materials,
                         ISNULL((SELECT sum(bathroomFurnV) bathroomFurn from BUY B where B.transhID=T.ID),0) as bathroomFurn,
-                        ISNULL((SELECT sum(measurementV) measurement from BUY B where B.transhID=T.ID),0) as measurement,
-                        ISNULL((SELECT sum(doorsV) doors from BUY B where B.transhID=T.ID),0) as doors
+			            ISNULL((SELECT sum(benchV) bench from BUY B where B.transhID=T.ID),0) as bench, 
+			            ISNULL((SELECT sum(transportationv) transportation from BUY B where B.transhID=T.ID),0) as transportation,
+			            ISNULL((SELECT sum(glassesv) glasses from BUY B where B.transhID=T.ID),0) as glasses,
+			            ISNULL((SELECT sum(measurementv) measurement from BUY B where B.transhID=T.ID),0) as measurement, 
+			            ISNULL((SELECT sum(doorsv) doors from BUY B where B.transhID=T.ID),0) as doors,
+			            ISNULL((SELECT sum(kitchenDoorsV) kitchenDoors from BUY B where B.transhID=T.ID),0) as kitchenDoors,
+			            ISNULL((SELECT sum(varnishesV) varnishes from BUY B where B.transhID=T.ID),0) as varnishes,
+			            ISNULL((SELECT sum(extraCusV) extraCus from BUY B where B.transhID=T.ID),0) as extraCus
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH_FOR_PROJECTCOST(cboTRANSH, sSQL)
@@ -101,11 +108,14 @@ Public Class frmProjectCost
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
         'If Me.IsActive = False Then Exit Sub
         If cboTRANSH.EditValue = Nothing Then
-            txtDebitCost.EditValue = "0" : txtDevicesCost.EditValue = "0" : txtTotAmt.EditValue = "0" : txtSalerProfit.EditValue = "0"
+            'txtDebitCost.EditValue = "0"
+            txtDevicesCost.EditValue = "0" : txtTotAmt.EditValue = "0" : txtSalerProfit.EditValue = "0"
             txtConstrPayroll.EditValue = "0" : txtInstPayroll.EditValue = "0" : txtbathroomFurn.EditValue = "0" : txtcloset.EditValue = "0"
-            txtgeneral.EditValue = "0" : txtmaterials.EditValue = "0" : txtDevicesBuy.EditValue = "0" : txtkitchen.EditValue = "0"
+            txtgeneral.EditValue = "0" : txtmaterials.EditValue = "0" : txtDevicesBuy.EditValue = "0" : txtkitchen.EditValue = "0" : txtkitchenDoors.EditValue = "0"
+            txtvarnishes.EditValue = "0" : txtextraCus.EditValue = "0" : txtglasses.EditValue = "0" : txtmeasurement.EditValue = "0" : txtExtraCusBench.EditValue = "0"
+            txttransportation.EditValue = "0"
         Else
-            txtDebitCost.EditValue = cboTRANSH.GetColumnValue("DebitCost")
+            'txtDebitCost.EditValue = cboTRANSH.GetColumnValue("DebitCost")
             txtDevicesCost.EditValue = cboTRANSH.GetColumnValue("DevicesCost")
             txtTotAmt.EditValue = cboTRANSH.GetColumnValue("Totamt")
             txtSalerProfit.EditValue = cboTRANSH.GetColumnValue("SalerProfit")
@@ -118,6 +128,13 @@ Public Class frmProjectCost
             txtDevicesBuy.EditValue = cboTRANSH.GetColumnValue("DEVICESBUY")
             txtkitchen.EditValue = cboTRANSH.GetColumnValue("kitchen")
             txtdoors.EditValue = cboTRANSH.GetColumnValue("doors")
+            txtkitchenDoors.EditValue = cboTRANSH.GetColumnValue("kitchenDoors")
+            txtvarnishes.EditValue = cboTRANSH.GetColumnValue("varnishes")
+            txtextraCus.EditValue = cboTRANSH.GetColumnValue("extraCus")
+            txtglasses.EditValue = cboTRANSH.GetColumnValue("glasses")
+            txtmeasurement.EditValue = cboTRANSH.GetColumnValue("measurement")
+            txtExtraCusBench.EditValue = cboTRANSH.GetColumnValue("bench")
+            txttransportation.EditValue = cboTRANSH.GetColumnValue("transportation")
         End If
     End Sub
 

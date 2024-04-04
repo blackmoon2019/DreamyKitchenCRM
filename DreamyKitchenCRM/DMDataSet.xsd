@@ -88,14 +88,17 @@ WHERE supID=@supID</CommandText>
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="KANELLOPOULOSTableAdapter" GeneratorDataComponentClassName="KANELLOPOULOSTableAdapter" Name="KANELLOPOULOS" UserDataComponentName="KANELLOPOULOSTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.KANELLOPOULOS" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenDEV.dbo.KANELLOPOULOS" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT KANELLOPOULOS.ID, KANELLOPOULOS.ord, KANELLOPOULOS.supID, KANELLOPOULOS.invDate, KANELLOPOULOS.invNumber, KANELLOPOULOS.docTypeID, KANELLOPOULOS.uploadDate, KANELLOPOULOS.dtYBuy, KANELLOPOULOS.buyFID, KANELLOPOULOS.cctID, KANELLOPOULOS.transhID, 
-           KANELLOPOULOS.FullTranshDescription, KANELLOPOULOS.kitchen, KANELLOPOULOS.closet, KANELLOPOULOS.general, KANELLOPOULOS.materials, KANELLOPOULOS.bathroomFurn, KANELLOPOULOS.netAmount, KANELLOPOULOS.vatAmount, KANELLOPOULOS.completed, KANELLOPOULOS.isCredit, 
-           KANELLOPOULOS.createdOn, KANELLOPOULOS.createdBy, KANELLOPOULOS.buyID, KANELLOPOULOS.cmt,  cast(case when (select count(id) from KANELLOPOULOS_O where kanID=KANELLOPOULOS.ID) &gt;0 then 1  else 0 end as bit) as DeltOrders
+                    <CommandText>SELECT KANELLOPOULOS.ID, KANELLOPOULOS.ord, KANELLOPOULOS.supID, KANELLOPOULOS.invDate, KANELLOPOULOS.invNumber, KANELLOPOULOS.docTypeID, KANELLOPOULOS.uploadDate, KANELLOPOULOS.dtYBuy, KANELLOPOULOS.buyFID, KANELLOPOULOS.cctID, 
+             KANELLOPOULOS.transhID, KANELLOPOULOS.FullTranshDescription, KANELLOPOULOS.kitchen, KANELLOPOULOS.closet, KANELLOPOULOS.general, KANELLOPOULOS.materials, KANELLOPOULOS.bathroomFurn, KANELLOPOULOS.netAmount, KANELLOPOULOS.vatAmount, 
+             KANELLOPOULOS.completed, KANELLOPOULOS.isCredit, KANELLOPOULOS.createdOn, KANELLOPOULOS.createdBy, KANELLOPOULOS.buyID, KANELLOPOULOS.cmt, CAST(CASE WHEN
+                 (SELECT COUNT(id)
+                 FROM    KANELLOPOULOS_O
+                 WHERE kanID = KANELLOPOULOS.ID) &gt; 0 THEN 1 ELSE 0 END AS bit) AS DeltOrders, KANELLOPOULOS.extraCus
 FROM   KANELLOPOULOS LEFT OUTER JOIN
-           BUY ON BUY.ID = KANELLOPOULOS.buyID</CommandText>
+             BUY ON BUY.ID = KANELLOPOULOS.buyID</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -128,6 +131,7 @@ FROM   KANELLOPOULOS LEFT OUTER JOIN
               <Mapping SourceColumn="buyID" DataSetColumn="buyID" />
               <Mapping SourceColumn="cmt" DataSetColumn="cmt" />
               <Mapping SourceColumn="DeltOrders" DataSetColumn="DeltOrders" />
+              <Mapping SourceColumn="extraCus" DataSetColumn="extraCus" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -1303,6 +1307,7 @@ ORDER BY name</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="DeltOrders" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="DeltOrdersColumn" msprop:Generator_ColumnPropNameInRow="DeltOrders" msprop:Generator_UserColumnName="DeltOrders" msprop:Generator_ColumnVarNameInTable="columnDeltOrders" type="xs:boolean" minOccurs="0" />
+              <xs:element name="extraCus" msprop:Generator_ColumnPropNameInRow="extraCus" msprop:Generator_ColumnPropNameInTable="extraCusColumn" msprop:Generator_ColumnVarNameInTable="columnextraCus" msprop:Generator_UserColumnName="extraCus" type="xs:decimal" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -1608,7 +1613,7 @@ ORDER BY name</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="doorType" msprop:Generator_UserColumnName="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" type="xs:int" minOccurs="0" />
+              <xs:element name="doorType" msprop:Generator_ColumnPropNameInTable="doorTypeColumn" msprop:Generator_ColumnPropNameInRow="doorType" msprop:Generator_UserColumnName="doorType" msprop:Generator_ColumnVarNameInTable="columndoorType" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
@@ -2727,7 +2732,7 @@ ORDER BY name</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_KANELLOPOULOS_O_KANELLOPOULOS" msdata:parent="KANELLOPOULOS" msdata:child="KANELLOPOULOS_O" msdata:parentkey="ID" msdata:childkey="kanID" msprop:Generator_UserParentTable="KANELLOPOULOS" msprop:Generator_UserChildTable="KANELLOPOULOS_O" msprop:Generator_RelationVarName="relationFK_KANELLOPOULOS_O_KANELLOPOULOS" msprop:Generator_ChildPropName="GetKANELLOPOULOS_ORows" msprop:Generator_UserRelationName="FK_KANELLOPOULOS_O_KANELLOPOULOS" msprop:Generator_ParentPropName="KANELLOPOULOSRow" />
+      <msdata:Relationship name="FK_KANELLOPOULOS_O_KANELLOPOULOS" msdata:parent="KANELLOPOULOS" msdata:child="KANELLOPOULOS_O" msdata:parentkey="ID" msdata:childkey="kanID" msprop:Generator_UserParentTable="KANELLOPOULOS" msprop:Generator_UserChildTable="KANELLOPOULOS_O" msprop:Generator_RelationVarName="relationFK_KANELLOPOULOS_O_KANELLOPOULOS" msprop:Generator_ChildPropName="GetKANELLOPOULOS_ORows" msprop:Generator_ParentPropName="KANELLOPOULOSRow" msprop:Generator_UserRelationName="FK_KANELLOPOULOS_O_KANELLOPOULOS" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

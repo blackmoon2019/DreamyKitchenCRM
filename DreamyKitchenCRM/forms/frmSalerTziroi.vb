@@ -154,6 +154,16 @@ Public Class frmSalerTziroi
                     form.LoadRecords("vw_EMP_T")
                 End If
 
+                If cboTransH.EditValue IsNot Nothing Then
+                    ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                    Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@transhID", cboTransH.EditValue.ToString)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
+
+
                 If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 If Mode = FormMode.NewRecord Then
                     Cls.ClearCtrls(LayoutControl1)
