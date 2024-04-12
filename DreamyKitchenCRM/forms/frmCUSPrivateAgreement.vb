@@ -141,13 +141,13 @@ Public Class frmCUSPrivateAgreement
 
                 If sResult = True Then
                     Dim sSQL As New System.Text.StringBuilder
-                    TotalPrice = txtGenTot.EditValue
-                    Dim PolisiErgou As Double = TotalPrice - txtDevices.EditValue
-                    TotalPrice = TotalPrice + txtDevices.EditValue
+                    TotalPrice = DbnullToZero(txtGenTot)
+                    Dim PolisiErgou As Double = TotalPrice - DbnullToZero(txtDevices)
+                    TotalPrice = TotalPrice + DbnullToZero(txtDevices)
 
                     sSQL.AppendLine("update TRANSH SET invType = " & toSQLValueS(cboInvoiceType.EditValue.ToString) & ",  vatamt = " & toSQLValueS(txtPartofVat.EditValue.ToString, True) & ", " &
                                     " amt = " & toSQLValueS(txtPosoParastatikou.EditValue.ToString, True) & ",debitcost = " & toSQLValueS(PolisiErgou.ToString, True) & ", " &
-                                    " DevicesCost = " & toSQLValueS(txtDevices.EditValue.ToString) & ",  totamt = " & toSQLValueS(txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
+                                    " DevicesCost = " & toSQLValueS(txtDevices.EditValue.ToString, True) & ",  totamt = " & toSQLValueS(txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
                     'Εκτέλεση QUERY
                     Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                         oCmd.ExecuteNonQuery()
