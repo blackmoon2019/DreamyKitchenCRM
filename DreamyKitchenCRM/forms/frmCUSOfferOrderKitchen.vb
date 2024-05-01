@@ -1038,13 +1038,16 @@ Public Class frmCUSOfferOrderKitchen
         Dim ExtraTransp As Double = DbnullToZero(txtExtraTransp)                    'Μεταφορά
         Dim TotalErmariaPrice As Double = DbnullToZero(txtTotalErmariaPrice)        'Συνολική Αξία με ΦΠΑ
         Dim TotalDevicesPrice As Double = DbnullToZero(txtTotalDevicesPrice)        'Συνολική Αξία Συσκευών με ΦΠΑ
+        Dim TotalBenchSalePrice As Double = DbnullToZero(txtbenchSalesPrice)        'Συνολική Αξία Πάγκου
         Dim TotalErmariaVat As Double = DbnullToZero(txtTotalErmariaVat)            'Συνολική Αξία προ ΦΠΑ
         Dim PartofVat As Double = DbnullToZero(txtPartofVat)                        'Συμφωνηθέν ΦΠΑ
+
+        txtTotalbenchSalesPrice.EditValue = txtbenchSalesPrice.EditValue
         TotalErmariaPrice = TotalErmariaVat + ExtraInst + ExtraTransp
         KitchenVat = TotalErmariaPrice / ProgProps.AlternateVAT
         TotalErmariaPrice = TotalErmariaPrice * ProgProps.AlternateVAT
-        Dim TotAmt As Double = TotalDevicesPrice + IIf(PartofVat > 0, TotalErmariaVat + PartofVat, TotalErmariaPrice)
-        txtTotalErmariaPrice.EditValue = TotAmt - TotalDevicesPrice
+        Dim TotAmt As Double = TotalDevicesPrice + TotalBenchSalePrice + IIf(PartofVat > 0, TotalErmariaVat + PartofVat, TotalErmariaPrice)
+        txtTotalErmariaPrice.EditValue = TotAmt - TotalDevicesPrice - TotalBenchSalePrice
         txtTotAmt.EditValue = TotAmt
     End Sub
     Private Sub txtExtraInst_EditValueChanged(sender As Object, e As EventArgs) Handles txtExtraInst.EditValueChanged
@@ -1127,5 +1130,9 @@ Public Class frmCUSOfferOrderKitchen
             Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS)
             Case 3 : cboCUS.EditValue = Nothing : cmdCusCollection.Enabled = False
         End Select
+    End Sub
+
+    Private Sub txtbenchSalesPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchSalesPrice.EditValueChanged
+        CalculateTotAmt()
     End Sub
 End Class

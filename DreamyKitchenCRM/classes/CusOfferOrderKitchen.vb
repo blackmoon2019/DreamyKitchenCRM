@@ -147,7 +147,7 @@ Public Class CusOfferOrderKitchen
                 Frm.TabNavigationPage2.Enabled = True
                 If sFields("GenOffer") = "" Then sFields("GenOffer") = False
                 FillCusTransh(sFields("cusID"), sFields("compTrashID"), sFields("GenOffer"), sFields("transhID")) : FillCompanyProjects(sFields("compID"), sFields("GenOffer"), sFields("compTrashID"))
-                sFields = Nothing
+                sFields = Nothing 
         End Select
 
 
@@ -279,8 +279,6 @@ Public Class CusOfferOrderKitchen
                     If sResultF = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην επισύναψη προσφοράς στο Έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
                 If sResult = True Then
-                    ' Πάγκος
-                    If UpdateProjectBench() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του πάγκου στο έργο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     ' Καταχώρηση Εξοπλισμών
                     If Mode = FormMode.NewRecord Then
                         Frm.GridView1.PopulateColumns() : Frm.GridView2.PopulateColumns()
@@ -290,20 +288,24 @@ Public Class CusOfferOrderKitchen
                             Frm.cmdConvertToOrder.Enabled = True
                             Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                             Frm.LOrder.Visibility = Utils.LayoutVisibility.Always
+                        Else
+                            Frm.cmdPrivateAgreement.Enabled = True
                         End If
                         Frm.cmdPrintOffer.Enabled = True
                     End If
                     Dim Projects As New Projects
                     If sIsOrder = True Then
+                        ' Πάγκος
+                        If UpdateProjectBench() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του πάγκου στο έργο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         ' Ενημέρωση ποσών στο έργο
                         Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True)
                     Else
                         If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True, True)
                     End If
-                    Mode = FormMode.EditRecord
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                        Mode = FormMode.EditRecord
+                        XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    End If
                 End If
-            End If
 
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

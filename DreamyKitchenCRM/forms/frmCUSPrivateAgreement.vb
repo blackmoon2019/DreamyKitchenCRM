@@ -189,10 +189,11 @@ Public Class frmCUSPrivateAgreement
 
     Private Sub txtPayinAdvance_EditValueChanged(sender As Object, e As EventArgs) Handles txtPayinAdvanceTot.EditValueChanged
         If Me.IsActive = False Then Exit Sub
-        Dim TotalPayinAdvance As Double, CloseTot As Double, BalPayinAdvance As Double
+        Dim TotalPayinAdvance As Double, CloseTot As Double, BalPayinAdvance As Double, TotalPayinAdvanceBench As Double
         If txtPayinAdvanceTot.EditValue <> Nothing Then TotalPayinAdvance = DbnullToZero(txtPayinAdvanceTot)
+        If txtPayInAdvanceBench.EditValue <> Nothing Then TotalPayinAdvanceBench = DbnullToZero(txtPayInAdvanceBench)
         If txtCloseTot.EditValue <> Nothing Then CloseTot = DbnullToZero(txtCloseTot)
-        BalPayinAdvance = CusPayInAdvanceInf() - (TotalPayinAdvance + CloseTot)
+        BalPayinAdvance = CusPayInAdvanceInf() - (TotalPayinAdvance + TotalPayinAdvanceBench + CloseTot)
         txtPayinAdvanceBal.EditValue = BalPayinAdvance
     End Sub
 
@@ -328,8 +329,7 @@ Public Class frmCUSPrivateAgreement
 
     Private Sub frmCUSPrivateAgreement_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
         If Mode = FormMode.NewRecord Then
-            XtraMessageBox.Show("Το συμφωνητικό δεν έχει αποθηκευθεί.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-            e.Cancel = True
+            If XtraMessageBox.Show("Το συμφωνητικό δεν έχει αποθηκευθεί.Να κλείσει η φόρμα?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then e.Cancel = True
         End If
     End Sub
 End Class

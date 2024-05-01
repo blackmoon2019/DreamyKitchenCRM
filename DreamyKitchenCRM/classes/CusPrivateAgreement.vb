@@ -308,25 +308,31 @@ Public Class CusPrivateAgreement
         Dim sdr As SqlDataReader
         Dim TotalPayInAdvance As Double
         Try
-            cmd = New SqlCommand("SELECT cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID='27CF38F4-BD30-403C-8BC6-2D2A57501DEB'  and transhID = " & toSQLValueS(TransHID) & " Group By Cash ", CNDB)
+            cmd = New SqlCommand("SELECT paytypeID,cash, isnull(sum(amt),0) as amt FROM TRANSD WHERE cash in(0,1) and paytypeID in('CEB0FF51-CA48-4EC1-962E-1B46851A37BD', '27CF38F4-BD30-403C-8BC6-2D2A57501DEB')  and transhID = " & toSQLValueS(TransHID) & " Group By Cash,paytypeID ", CNDB)
             sdr = cmd.ExecuteReader()
             If sdr.HasRows Then
                 While sdr.Read()
-                    If sdr.GetBoolean(sdr.GetOrdinal("cash")) = "0" Then
-                        If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
-                            Frm.txtPayinAdvanceBank.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
-                            TotalPayInAdvance = TotalPayInAdvance + DbnullToZero(Frm.txtPayinAdvanceBank)
-                        Else
-                            Frm.txtPayinAdvanceBank.EditValue = Nothing
-                        End If
-                    Else
-                        If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
-                            Frm.txtPayinAdvanceCash.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
-                            TotalPayInAdvance = TotalPayInAdvance + DbnullToZero(Frm.txtPayinAdvanceCash)
-                        Else
-                            Frm.txtPayinAdvanceCash.EditValue = Nothing
-                        End If
-                    End If
+
+                    Select Case sdr.GetGuid(sdr.GetOrdinal("paytypeID")).ToString.ToUpper
+                        Case "CEB0FF51-CA48-4EC1-962E-1B46851A37BD" ' Προκαταβολή Πάγκου
+                            Frm.txtPayInAdvanceBench.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                        Case "27CF38F4-BD30-403C-8BC6-2D2A57501DEB" ' Προκαταβολή
+                            If sdr.GetBoolean(sdr.GetOrdinal("cash")) = "0" Then
+                                If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
+                                    Frm.txtPayinAdvanceBank.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                                    TotalPayInAdvance = TotalPayInAdvance + DbnullToZero(Frm.txtPayinAdvanceBank)
+                                Else
+                                    Frm.txtPayinAdvanceBank.EditValue = Nothing
+                                End If
+                            Else
+                                If sdr.IsDBNull(sdr.GetOrdinal("amt")) = False Then
+                                    Frm.txtPayinAdvanceCash.EditValue = sdr.GetDecimal(sdr.GetOrdinal("amt"))
+                                    TotalPayInAdvance = TotalPayInAdvance + DbnullToZero(Frm.txtPayinAdvanceCash)
+                                Else
+                                    Frm.txtPayinAdvanceCash.EditValue = Nothing
+                                End If
+                            End If
+                    End Select
                 End While
                 Frm.txtPayinAdvanceTot.EditValue = TotalPayInAdvance
             End If
@@ -340,7 +346,7 @@ Public Class CusPrivateAgreement
         Dim sdr As SqlDataReader
         Try
             cmd = New SqlCommand(" select   TotPartOfVat,TotalVat,TotalPrice,TotalDevices,GENTOT,ExtraInst, ExtraTransp,
-                                            TotKitchen,TotDoor,HasCloset,HasKitchen,HasSpecial,HasDoors,PosoParastatikou
+                                            TotKitchen,TotDoor,HasCloset,HasKitchen,HasSpecial,HasDoors,PosoParastatikou,benchSalesPrice
                                     FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(TransHID), CNDB)
             sdr = cmd.ExecuteReader()
             If (sdr.Read() = True) Then
@@ -354,6 +360,7 @@ Public Class CusPrivateAgreement
                 Frm.chkHasSC.Checked = sdr.GetBoolean(sdr.GetOrdinal("HasSpecial"))
                 If sdr.IsDBNull(sdr.GetOrdinal("PosoParastatikou")) = False Then Frm.txtPosoParastatikou.EditValue = sdr.GetDecimal(sdr.GetOrdinal("PosoParastatikou"))
                 If sdr.IsDBNull(sdr.GetOrdinal("TotalDevices")) = False Then Frm.txtDevices.EditValue = sdr.GetDecimal(sdr.GetOrdinal("TotalDevices"))
+                If sdr.IsDBNull(sdr.GetOrdinal("benchSalesPrice")) = False Then Frm.txtTotalbenchSalesPrice.EditValue = sdr.GetDecimal(sdr.GetOrdinal("benchSalesPrice"))
             End If
             sdr.Close()
         Catch ex As Exception
