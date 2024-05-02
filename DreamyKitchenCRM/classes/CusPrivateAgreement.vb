@@ -107,15 +107,16 @@ Public Class CusPrivateAgreement
         Frm.chkHasSC.Text = "<href=www.dreamykitchen.gr/>Ειδικές Κατασκευές</href>"
 
     End Sub
-    Private Sub GetPayInAdvanceBal()
-        Dim CloseTot As Double, BalPayinAdvance As Double, CusPayInAdvance As Double, TotalPayInAdvance As Double
-        If Frm.txtPayinAdvanceTot.EditValue <> Nothing Then TotalPayInAdvance = DbnullToZero(Frm.txtPayinAdvanceTot)
+    Public Sub GetPayInAdvanceBal()
+        Dim TotalPayinAdvance As Double, CloseTot As Double, BalPayinAdvance As Double, TotalPayinAdvanceBench As Double
+        Dim CusPayInAdvance As Double
+        If Frm.txtPayinAdvanceTot.EditValue <> Nothing Then TotalPayinAdvance = DbnullToZero(Frm.txtPayinAdvanceTot)
+        If Frm.txtPayInAdvanceBench.EditValue <> Nothing Then TotalPayinAdvanceBench = DbnullToZero(Frm.txtPayInAdvanceBench)
         If Frm.txtCloseTot.EditValue <> Nothing Then CloseTot = DbnullToZero(Frm.txtCloseTot)
         CusPayInAdvance = CusPayInAdvanceInf()
-        BalPayinAdvance = CusPayInAdvance - (TotalPayInAdvance + CloseTot)
+        BalPayinAdvance = CusPayInAdvance - (TotalPayinAdvance + TotalPayinAdvanceBench + CloseTot)
         Frm.txtPayinAdvanceBal.EditValue = BalPayinAdvance
         Frm.lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & CusPayInAdvance & "€"
-
     End Sub
     Private Sub FillCusTransh()
         Dim sCusID As String, scompTrashID As String, sCompID As String
@@ -130,7 +131,7 @@ Public Class CusPrivateAgreement
             Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,t.invType,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
                         from vw_TRANSH t
-                        INNER JOIN TRANSC on transc.transhID = t.id 
+                        INNER JOIN TRANSC on transc.transhID = t.id and transc.transhcID ='60344B92-1925-42E9-8D0F-0525990B0D5F'
                         where   completed = 0  and T.cusid = " & sCusID & scompTrashID & " order by description")
         FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
         Frm.cboCUS.EditValue = System.Guid.Parse(sCusID.Replace("'", ""))
@@ -147,7 +148,8 @@ Public Class CusPrivateAgreement
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc
                         from vw_TRANSH t
-                        where  T.cusid = " & sCompID & "order by description")
+                        INNER JOIN TRANSC on transc.transhID = t.id and transc.transhcID ='60344B92-1925-42E9-8D0F-0525990B0D5F'
+                        where  completed = 0  and T.cusid = " & sCompID & "order by description")
         FillCbo.TRANSH(Frm.cboCompProject, sSQL)
         Frm.cboCompany.EditValue = System.Guid.Parse(sCompID.Replace("'", ""))
         Frm.LCompProject.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
@@ -172,7 +174,7 @@ Public Class CusPrivateAgreement
                     Return False
                 End If
                 ' Έλεγχος αν η προκαταβολή καλύπτει το 50% του έργου
-                CheckForValidPayinAdvnace()
+                CheckForValidPayinAdvaνce()
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
@@ -255,7 +257,7 @@ Public Class CusPrivateAgreement
             sdr.Close()
         End Try
     End Sub
-    Private Sub CheckForValidPayinAdvnace()
+    Private Sub CheckForValidPayinAdvaνce()
         Dim TotalPayinAdvance As Double, PayinAdvance As Double, closeAmt As Double, CheckPayInAdvance As Double
         TotalPayinAdvance = 0
         TotalPayinAdvance = DbnullToZero(Frm.txtPayinAdvanceCash)
@@ -303,6 +305,16 @@ Public Class CusPrivateAgreement
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Public Function CusPayInAdvanceInf() As Double
+        Dim PayinAdvance As Double
+        If Frm.txtGenTot.EditValue <> Nothing Then
+            PayinAdvance = DbnullToZero(Frm.txtGenTot)
+            PayinAdvance = PayinAdvance / 2
+            Frm.lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & PayinAdvance & "€"
+        End If
+        Return PayinAdvance
+    End Function
     Public Sub GetPayInAdvanceAmt(ByVal TransHID As String)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
@@ -367,14 +379,6 @@ Public Class CusPrivateAgreement
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Private Function CusPayInAdvanceInf() As Double
-        Dim PayinAdvance As Double
-        If Frm.txtGenTot.EditValue <> Nothing Then
-            PayinAdvance = DbnullToZero(Frm.txtGenTot)
-            PayinAdvance = PayinAdvance / 2
-        End If
-        Return PayinAdvance
-    End Function
     Public Sub OpenOrder(ByVal Mode As Int16, ByVal sTranshID As String)
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader

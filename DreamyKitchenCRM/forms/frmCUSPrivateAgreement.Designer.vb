@@ -32,13 +32,9 @@ Partial Class frmCUSPrivateAgreement
         Me.cmdCompCollection = New DevExpress.XtraEditors.SimpleButton()
         Me.cboCompProject = New DevExpress.XtraEditors.LookUpEdit()
         Me.cboCompany = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
         Me.lblCash = New DevExpress.XtraEditors.LabelControl()
         Me.chkVatVisible = New DevExpress.XtraEditors.CheckEdit()
         Me.cboInvoiceType = New DevExpress.XtraEditors.LookUpEdit()
-        Me.VwINVTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.chkHasSC = New DevExpress.XtraEditors.CheckEdit()
         Me.lblBank = New DevExpress.XtraEditors.LabelControl()
         Me.chkHasDoors = New DevExpress.XtraEditors.CheckEdit()
@@ -49,7 +45,6 @@ Partial Class frmCUSPrivateAgreement
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cboCUS = New DevExpress.XtraEditors.LookUpEdit()
         Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DreamyKitchenDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtCode = New DevExpress.XtraEditors.TextEdit()
         Me.txtFatherName = New DevExpress.XtraEditors.TextEdit()
         Me.txtArea = New DevExpress.XtraEditors.TextEdit()
@@ -75,6 +70,8 @@ Partial Class frmCUSPrivateAgreement
         Me.cboADR = New DevExpress.XtraEditors.LookUpEdit()
         Me.txtLegalRepresentative = New DevExpress.XtraEditors.TextEdit()
         Me.txtCloseTot = New DevExpress.XtraEditors.TextEdit()
+        Me.txtTotalbenchSalesPrice = New DevExpress.XtraEditors.TextEdit()
+        Me.txtPayInAdvanceBench = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -110,6 +107,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem21 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem23 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LPayInAdvance = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem38 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -122,38 +120,35 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem31 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem39 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LMsg = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LCheckList = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.VwBANKSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
+        Me.VwINVTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
+        Me.DreamyKitchenDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.Vw_COMPTableAdapter = New DreamyKitchenCRM.DM_CCTTableAdapters.vw_COMPTableAdapter()
         Me.Vw_INVTYPESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_INVTYPESTableAdapter()
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.Vw_BANKSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BANKSTableAdapter()
-        Me.txtTotalbenchSalesPrice = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem38 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtPayInAdvanceBench = New DevExpress.XtraEditors.TextEdit()
-        Me.LayoutControlItem39 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.cboCompProject.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCompany.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboInvoiceType.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasDoors.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasKitchen.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.chkHasCloset.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFatherName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtArea.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -180,6 +175,8 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.cboADR.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtLegalRepresentative.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtCloseTot.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtTotalbenchSalesPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtPayInAdvanceBench.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -215,6 +212,7 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LPayInAdvance, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -227,16 +225,18 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LMsg, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LCheckList, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.VwBANKSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtTotalbenchSalesPrice.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtPayInAdvanceBench.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -433,16 +433,6 @@ Partial Class frmCUSPrivateAgreement
         Me.cboCompany.TabIndex = 99
         Me.cboCompany.Tag = "compID,0,1,2"
         '
-        'VwCOMPBindingSource
-        '
-        Me.VwCOMPBindingSource.DataMember = "vw_COMP"
-        Me.VwCOMPBindingSource.DataSource = Me.DM_CCT
-        '
-        'DM_CCT
-        '
-        Me.DM_CCT.DataSetName = "DM_CCT"
-        Me.DM_CCT.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
         'lblCash
         '
         Me.lblCash.Appearance.Font = New System.Drawing.Font("Tahoma", 8.142858!, System.Drawing.FontStyle.Bold)
@@ -487,16 +477,6 @@ Partial Class frmCUSPrivateAgreement
         Me.cboInvoiceType.StyleController = Me.LayoutControl1
         Me.cboInvoiceType.TabIndex = 70
         Me.cboInvoiceType.Tag = "invType,0,1,2"
-        '
-        'VwINVTYPESBindingSource
-        '
-        Me.VwINVTYPESBindingSource.DataMember = "vw_INVTYPES"
-        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
-        '
-        'DreamyKitchenDataSet
-        '
-        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
-        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
         '
         'chkHasSC
         '
@@ -631,11 +611,6 @@ Partial Class frmCUSPrivateAgreement
         '
         Me.VwCCTBindingSource.DataMember = "vw_CCT"
         Me.VwCCTBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
-        '
-        'DreamyKitchenDataSetBindingSource
-        '
-        Me.DreamyKitchenDataSetBindingSource.DataSource = Me.DreamyKitchenDataSet
-        Me.DreamyKitchenDataSetBindingSource.Position = 0
         '
         'txtCode
         '
@@ -1075,6 +1050,51 @@ Partial Class frmCUSPrivateAgreement
         Me.txtCloseTot.Tag = ""
         Me.txtCloseTot.Visible = False
         '
+        'txtTotalbenchSalesPrice
+        '
+        Me.txtTotalbenchSalesPrice.EditValue = "0,00 €"
+        Me.txtTotalbenchSalesPrice.Location = New System.Drawing.Point(271, 581)
+        Me.txtTotalbenchSalesPrice.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtTotalbenchSalesPrice.Name = "txtTotalbenchSalesPrice"
+        Me.txtTotalbenchSalesPrice.Properties.Appearance.ForeColor = System.Drawing.Color.Black
+        Me.txtTotalbenchSalesPrice.Properties.Appearance.Options.UseFont = True
+        Me.txtTotalbenchSalesPrice.Properties.Appearance.Options.UseForeColor = True
+        Me.txtTotalbenchSalesPrice.Properties.DisplayFormat.FormatString = "c"
+        Me.txtTotalbenchSalesPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalbenchSalesPrice.Properties.EditFormat.FormatString = "n2"
+        Me.txtTotalbenchSalesPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtTotalbenchSalesPrice.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtTotalbenchSalesPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtTotalbenchSalesPrice.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtTotalbenchSalesPrice.Properties.ReadOnly = True
+        Me.txtTotalbenchSalesPrice.Properties.Tag = "BenchExtraPrice"
+        Me.txtTotalbenchSalesPrice.Size = New System.Drawing.Size(244, 26)
+        Me.txtTotalbenchSalesPrice.StyleController = Me.LayoutControl1
+        Me.txtTotalbenchSalesPrice.TabIndex = 42
+        Me.txtTotalbenchSalesPrice.Tag = "benchSalesPrice,0,1,2"
+        Me.txtTotalbenchSalesPrice.Visible = False
+        '
+        'txtPayInAdvanceBench
+        '
+        Me.txtPayInAdvanceBench.EditValue = "0,00 €"
+        Me.txtPayInAdvanceBench.Location = New System.Drawing.Point(790, 701)
+        Me.txtPayInAdvanceBench.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtPayInAdvanceBench.Name = "txtPayInAdvanceBench"
+        Me.txtPayInAdvanceBench.Properties.DisplayFormat.FormatString = "c"
+        Me.txtPayInAdvanceBench.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtPayInAdvanceBench.Properties.EditFormat.FormatString = "n2"
+        Me.txtPayInAdvanceBench.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtPayInAdvanceBench.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtPayInAdvanceBench.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtPayInAdvanceBench.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtPayInAdvanceBench.Properties.ReadOnly = True
+        Me.txtPayInAdvanceBench.Properties.Tag = "BenchExtraPrice"
+        Me.txtPayInAdvanceBench.Size = New System.Drawing.Size(222, 26)
+        Me.txtPayInAdvanceBench.StyleController = Me.LayoutControl1
+        Me.txtPayInAdvanceBench.TabIndex = 42
+        Me.txtPayInAdvanceBench.Tag = "PayInAdvanceBench,0,1,2"
+        Me.txtPayInAdvanceBench.Visible = False
+        '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
@@ -1470,6 +1490,18 @@ Partial Class frmCUSPrivateAgreement
         Me.LPayInAdvance.TextSize = New System.Drawing.Size(0, 0)
         Me.LPayInAdvance.TextVisible = False
         '
+        'LayoutControlItem38
+        '
+        Me.LayoutControlItem38.Control = Me.txtTotalbenchSalesPrice
+        Me.LayoutControlItem38.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem38.CustomizationFormText = "Συνολική Αξία Πάγκου"
+        Me.LayoutControlItem38.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem38.Location = New System.Drawing.Point(0, 60)
+        Me.LayoutControlItem38.Name = "LayoutControlItem38"
+        Me.LayoutControlItem38.Size = New System.Drawing.Size(495, 30)
+        Me.LayoutControlItem38.Text = "Συνολική Αξία Πάγκου"
+        Me.LayoutControlItem38.TextSize = New System.Drawing.Size(246, 19)
+        '
         'LayoutControlGroup3
         '
         Me.LayoutControlGroup3.AppearanceGroup.BorderColor = DevExpress.LookAndFeel.DXSkinColors.FillColors.Primary
@@ -1608,6 +1640,18 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem37.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem37.TextVisible = False
         '
+        'LayoutControlItem39
+        '
+        Me.LayoutControlItem39.Control = Me.txtPayInAdvanceBench
+        Me.LayoutControlItem39.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem39.CustomizationFormText = "Τελική Αξία"
+        Me.LayoutControlItem39.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem39.Location = New System.Drawing.Point(0, 180)
+        Me.LayoutControlItem39.Name = "LayoutControlItem39"
+        Me.LayoutControlItem39.Size = New System.Drawing.Size(473, 30)
+        Me.LayoutControlItem39.Text = "Προκαταβολή Πάγκου"
+        Me.LayoutControlItem39.TextSize = New System.Drawing.Size(246, 19)
+        '
         'LayoutControlItem22
         '
         Me.LayoutControlItem22.Control = Me.chkHasSC
@@ -1660,6 +1704,31 @@ Partial Class frmCUSPrivateAgreement
         Me.VwBANKSBindingSource.DataMember = "vw_BANKS"
         Me.VwBANKSBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
         '
+        'VwCOMPBindingSource
+        '
+        Me.VwCOMPBindingSource.DataMember = "vw_COMP"
+        Me.VwCOMPBindingSource.DataSource = Me.DM_CCT
+        '
+        'DM_CCT
+        '
+        Me.DM_CCT.DataSetName = "DM_CCT"
+        Me.DM_CCT.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwINVTYPESBindingSource
+        '
+        Me.VwINVTYPESBindingSource.DataMember = "vw_INVTYPES"
+        Me.VwINVTYPESBindingSource.DataSource = Me.DreamyKitchenDataSet
+        '
+        'DreamyKitchenDataSet
+        '
+        Me.DreamyKitchenDataSet.DataSetName = "DreamyKitchenDataSet"
+        Me.DreamyKitchenDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'DreamyKitchenDataSetBindingSource
+        '
+        Me.DreamyKitchenDataSetBindingSource.DataSource = Me.DreamyKitchenDataSet
+        Me.DreamyKitchenDataSetBindingSource.Position = 0
+        '
         'Vw_COMPTableAdapter
         '
         Me.Vw_COMPTableAdapter.ClearBeforeFill = True
@@ -1680,75 +1749,6 @@ Partial Class frmCUSPrivateAgreement
         '
         Me.Vw_BANKSTableAdapter.ClearBeforeFill = True
         '
-        'txtTotalbenchSalesPrice
-        '
-        Me.txtTotalbenchSalesPrice.EditValue = "0,00 €"
-        Me.txtTotalbenchSalesPrice.Location = New System.Drawing.Point(271, 581)
-        Me.txtTotalbenchSalesPrice.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtTotalbenchSalesPrice.Name = "txtTotalbenchSalesPrice"
-        Me.txtTotalbenchSalesPrice.Properties.Appearance.ForeColor = System.Drawing.Color.Black
-        Me.txtTotalbenchSalesPrice.Properties.Appearance.Options.UseFont = True
-        Me.txtTotalbenchSalesPrice.Properties.Appearance.Options.UseForeColor = True
-        Me.txtTotalbenchSalesPrice.Properties.DisplayFormat.FormatString = "c"
-        Me.txtTotalbenchSalesPrice.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalbenchSalesPrice.Properties.EditFormat.FormatString = "n2"
-        Me.txtTotalbenchSalesPrice.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtTotalbenchSalesPrice.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtTotalbenchSalesPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtTotalbenchSalesPrice.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtTotalbenchSalesPrice.Properties.ReadOnly = True
-        Me.txtTotalbenchSalesPrice.Properties.Tag = "BenchExtraPrice"
-        Me.txtTotalbenchSalesPrice.Size = New System.Drawing.Size(244, 26)
-        Me.txtTotalbenchSalesPrice.StyleController = Me.LayoutControl1
-        Me.txtTotalbenchSalesPrice.TabIndex = 42
-        Me.txtTotalbenchSalesPrice.Tag = "benchSalesPrice,0,1,2"
-        Me.txtTotalbenchSalesPrice.Visible = False
-        '
-        'LayoutControlItem38
-        '
-        Me.LayoutControlItem38.Control = Me.txtTotalbenchSalesPrice
-        Me.LayoutControlItem38.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem38.CustomizationFormText = "Συνολική Αξία Πάγκου"
-        Me.LayoutControlItem38.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem38.Location = New System.Drawing.Point(0, 60)
-        Me.LayoutControlItem38.Name = "LayoutControlItem38"
-        Me.LayoutControlItem38.Size = New System.Drawing.Size(495, 30)
-        Me.LayoutControlItem38.Text = "Συνολική Αξία Πάγκου"
-        Me.LayoutControlItem38.TextSize = New System.Drawing.Size(246, 19)
-        '
-        'txtPayInAdvanceBench
-        '
-        Me.txtPayInAdvanceBench.EditValue = "0,00 €"
-        Me.txtPayInAdvanceBench.Location = New System.Drawing.Point(790, 701)
-        Me.txtPayInAdvanceBench.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtPayInAdvanceBench.Name = "txtPayInAdvanceBench"
-        Me.txtPayInAdvanceBench.Properties.DisplayFormat.FormatString = "c"
-        Me.txtPayInAdvanceBench.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPayInAdvanceBench.Properties.EditFormat.FormatString = "n2"
-        Me.txtPayInAdvanceBench.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtPayInAdvanceBench.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtPayInAdvanceBench.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtPayInAdvanceBench.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtPayInAdvanceBench.Properties.ReadOnly = True
-        Me.txtPayInAdvanceBench.Properties.Tag = "BenchExtraPrice"
-        Me.txtPayInAdvanceBench.Size = New System.Drawing.Size(222, 26)
-        Me.txtPayInAdvanceBench.StyleController = Me.LayoutControl1
-        Me.txtPayInAdvanceBench.TabIndex = 42
-        Me.txtPayInAdvanceBench.Tag = "PayInAdvanceBench,0,1,2"
-        Me.txtPayInAdvanceBench.Visible = False
-        '
-        'LayoutControlItem39
-        '
-        Me.LayoutControlItem39.Control = Me.txtPayInAdvanceBench
-        Me.LayoutControlItem39.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem39.CustomizationFormText = "Τελική Αξία"
-        Me.LayoutControlItem39.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem39.Location = New System.Drawing.Point(0, 180)
-        Me.LayoutControlItem39.Name = "LayoutControlItem39"
-        Me.LayoutControlItem39.Size = New System.Drawing.Size(473, 30)
-        Me.LayoutControlItem39.Text = "Προκαταβολή Πάγκου"
-        Me.LayoutControlItem39.TextSize = New System.Drawing.Size(246, 19)
-        '
         'frmCUSPrivateAgreement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(144.0!, 144.0!)
@@ -1762,21 +1762,17 @@ Partial Class frmCUSPrivateAgreement
         Me.Text = "frmCUSPrivateAgreement"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
+        Me.LayoutControl1.PerformLayout()
         CType(Me.cboCompProject.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCompany.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkVatVisible.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboInvoiceType.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasSC.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasDoors.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasKitchen.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.chkHasCloset.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.cboCUS.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwCCTBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCode.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFatherName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtArea.Properties, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1803,6 +1799,8 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.cboADR.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtLegalRepresentative.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtCloseTot.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtTotalbenchSalesPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtPayInAdvanceBench.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1838,6 +1836,7 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem21, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem23, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LPayInAdvance, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1850,16 +1849,18 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem31, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LMsg, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LCheckList, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem24, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.VwBANKSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtTotalbenchSalesPrice.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtPayInAdvanceBench.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwCOMPBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DM_CCT, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwINVTYPESBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DreamyKitchenDataSetBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

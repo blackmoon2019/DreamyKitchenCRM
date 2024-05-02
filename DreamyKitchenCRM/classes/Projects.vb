@@ -289,7 +289,8 @@ Public Class Projects
                     sID = ID
                     If CalledFromCtrl Then
                         Dim sSQL As New System.Text.StringBuilder
-                        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,DebitCost from vw_TRANSH t where  T.cusid = " & toSQLValueS(Frm2.cboCUS.EditValue.ToString) & "order by description")
+                        sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,DebitCost 
+                                         from vw_TRANSH t where  T.cusid = " & toSQLValueS(Frm2.cboCUS.EditValue.ToString) & " order by description")
                         FillCbo.TRANSH(CtrlCombo, sSQL) : CtrlCombo.EditValue = Nothing : CtrlCombo.EditValue = System.Guid.Parse(ID)
                     End If
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -462,6 +463,7 @@ Public Class Projects
                         End Using
                     End If
                     Frm.Vw_TRANSD_DebitTableAdapter.FillByDedit(Frm.DM_TRANS.vw_TRANSD_Debit, System.Guid.Parse(ID))
+                    Frm.chkCash.Enabled = True
                 Catch sqlEx As SqlException When sqlEx.Number = 2601
                     XtraMessageBox.Show("Δεν μπορείτε να περάσετε χρέωση σε ίδιο πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     e.Valid = False

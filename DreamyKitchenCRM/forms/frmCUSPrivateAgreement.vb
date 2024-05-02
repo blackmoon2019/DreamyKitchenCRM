@@ -186,29 +186,10 @@ Public Class frmCUSPrivateAgreement
         If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
     End Sub
 
-
-    Private Sub txtPayinAdvance_EditValueChanged(sender As Object, e As EventArgs) Handles txtPayinAdvanceTot.EditValueChanged
-        If Me.IsActive = False Then Exit Sub
-        Dim TotalPayinAdvance As Double, CloseTot As Double, BalPayinAdvance As Double, TotalPayinAdvanceBench As Double
-        If txtPayinAdvanceTot.EditValue <> Nothing Then TotalPayinAdvance = DbnullToZero(txtPayinAdvanceTot)
-        If txtPayInAdvanceBench.EditValue <> Nothing Then TotalPayinAdvanceBench = DbnullToZero(txtPayInAdvanceBench)
-        If txtCloseTot.EditValue <> Nothing Then CloseTot = DbnullToZero(txtCloseTot)
-        BalPayinAdvance = CusPayInAdvanceInf() - (TotalPayinAdvance + TotalPayinAdvanceBench + CloseTot)
-        txtPayinAdvanceBal.EditValue = BalPayinAdvance
-    End Sub
-
     Private Sub txtGenTot_EditValueChanged(sender As Object, e As EventArgs) Handles txtGenTot.EditValueChanged
-        lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & CusPayInAdvanceInf() & "€"
+        '        lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & CusPrivateAgreement.CusPayInAdvanceInf() & "€"
     End Sub
-    Private Function CusPayInAdvanceInf() As Double
-        Dim PayinAdvance As Double
-        If txtGenTot.EditValue <> Nothing Then
-            PayinAdvance = DbnullToZero(txtGenTot)
-            PayinAdvance = PayinAdvance / 2
-            lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & PayinAdvance & "€"
-        End If
-        Return PayinAdvance
-    End Function
+
     Private Sub chkHasCloset_Click(sender As Object, e As EventArgs) Handles chkHasCloset.Click
         CusPrivateAgreement.OpenOrder(3, cboTRANSH.EditValue.ToString)
     End Sub
@@ -279,6 +260,7 @@ Public Class frmCUSPrivateAgreement
         Frm.ShowDialog()
         CusPrivateAgreement.GetKLeisimoAmt(cboTRANSH.EditValue.ToString)
         CusPrivateAgreement.GetPayInAdvanceAmt(cboTRANSH.EditValue.ToString)
+        CusPrivateAgreement.GetPayInAdvanceBal()
         LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
 
     End Sub

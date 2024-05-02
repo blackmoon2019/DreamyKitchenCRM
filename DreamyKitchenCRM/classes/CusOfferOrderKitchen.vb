@@ -133,13 +133,16 @@ Public Class CusOfferOrderKitchen
                     If sFields("CreatedFromOfferID") <> "" Then
                         Frm.cboCUS.Enabled = False
                         Frm.cboCompany.Enabled = False
-                        Frm.cboCompProject.Enabled = False
+                        'Frm.cboCompProject.Enabled = False
+                        Frm.cboCompProject.ReadOnly = True
                         Frm.cboCompProject.Properties.Buttons.Item(0).Enabled = False
                         Frm.cboCompProject.Properties.Buttons.Item(1).Enabled = False
+                        Frm.cboCompProject.Properties.Buttons.Item(2).Enabled = True
                         Frm.cboCompProject.Properties.Buttons.Item(3).Enabled = False
                         Frm.cboTRANSH.ReadOnly = True
                         Frm.cboTRANSH.Properties.Buttons.Item(0).Enabled = False
                         Frm.cboTRANSH.Properties.Buttons.Item(1).Enabled = False
+                        Frm.cboTRANSH.Properties.Buttons.Item(2).Enabled = True
                         Frm.cboTRANSH.Properties.Buttons.Item(3).Enabled = False
                     End If
                 End If
