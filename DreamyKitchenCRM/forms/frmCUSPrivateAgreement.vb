@@ -244,6 +244,7 @@ Public Class frmCUSPrivateAgreement
         If cboCUS.EditValue = cboCompany.EditValue Then
             CusPrivateAgreement.GetKLeisimoAmt(cboTRANSH.EditValue.ToString)
             CusPrivateAgreement.GetPayInAdvanceAmt(cboTRANSH.EditValue.ToString)
+            CusPrivateAgreement.GetPayInAdvanceBal()
             LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         End If
 

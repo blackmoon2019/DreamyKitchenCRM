@@ -997,11 +997,13 @@ Public Class frmCUSOfferOrderCloset
     Private Sub cmdPrivateAgreement_Click(sender As Object, e As EventArgs) Handles cmdPrivateAgreement.Click
         Dim frmPrivateAgreement As frmCUSPrivateAgreement = New frmCUSPrivateAgreement()
         Dim AgreementID As String
+        Dim sTranshID As Guid
         With frmPrivateAgreement
             .Company = cboCompany.EditValue
             .CompProject = cboCompProject.EditValue
             .CUS = cboCUS.EditValue
-            .TRANSH = cboTRANSH.EditValue
+            sTranshID = System.Guid.Parse(cboTRANSH.EditValue.ToString)
+            .TRANSH = sTranshID
             .EMP = cboEMP.EditValue
             .Text = "Ιδ. Συμφωνητικό"
             If AgreementExist(AgreementID) Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord

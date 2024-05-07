@@ -168,6 +168,8 @@ Public Class CusPrivateAgreement
         Dim sResult As Boolean
         Dim sGuid As String
         Try
+            ' Εαν αφορά εταιρία τότε να μην ελέγχουμε το όνομα πατέρα
+            If CompanyID = CusID Then Frm.LFatherName.Tag = ""
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 If Frm.txtPayinAdvanceTot.EditValue = "0,00" Then
                     XtraMessageBox.Show("Δεν έχετε συμπληρώσει στην προκαταβολη (Μετρητά,Τράπεζα ή και τα 2).", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -464,7 +466,7 @@ Public Class CusPrivateAgreement
             reportComp.XrLabel23.ExpressionBindings.Item(0).Expression = "'Της Εταιρίας ' + [COMPName] + ' η οποία εδρεύει ' + [CompAdrName] + ' με ΑΦΜ ' + [CompAFM] + ' ΔΟΥ ' + [COMPDoyName] "
             reportComp.XrLabel1.ExpressionBindings.Item(0).Expression = "'νόμιμα εκπροσωπούμενης για την υπογραφή του παρόντος από το νόμιμο εκπρόσωπο της'"
             reportComp.XrLabel5.Visible = True
-            reportComp.XrLabel5.ExpressionBindings.Item(0).Expression = "[COMPName] + ' ,  που θα καλείται στο εξής <b><ΑΓΟΡΑΣΤΗΣ></b> συμφωνούνται τα εξής :'"
+            reportComp.XrLabel5.ExpressionBindings.Item(0).Expression = "[LegalRepresentative] + ' ,  που θα καλείται στο εξής <b><ΑΓΟΡΑΣΤΗΣ></b> συμφωνούνται τα εξής :'"
 
             reportComp.Parameters.Item(0).Value = ID
             reportComp.CreateDocument()

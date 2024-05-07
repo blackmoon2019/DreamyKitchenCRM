@@ -81,7 +81,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem46 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LFatherName = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem30 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -186,7 +186,7 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem46, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LFatherName, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem30, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1125,7 +1125,7 @@ Partial Class frmCUSPrivateAgreement
         '
         'LayoutControlGroup1
         '
-        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem46, Me.LayoutControlItem13, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem30, Me.LayoutControlItem10, Me.LayoutControlItem12, Me.LayoutControlItem32, Me.LayoutControlItem33, Me.LCompProject, Me.LayoutControlItem35, Me.LayoutControlItem26, Me.LLegalRepresentative, Me.LayoutControlItem36})
+        Me.LayoutControlGroup1.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.EmptySpaceItem1, Me.LayoutControlItem46, Me.LFatherName, Me.LayoutControlItem8, Me.LayoutControlItem3, Me.LayoutControlItem30, Me.LayoutControlItem10, Me.LayoutControlItem12, Me.LayoutControlItem32, Me.LayoutControlItem33, Me.LCompProject, Me.LayoutControlItem35, Me.LayoutControlItem26, Me.LLegalRepresentative, Me.LayoutControlItem36})
         Me.LayoutControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlGroup1.Name = "LayoutControlGroup1"
         Me.LayoutControlGroup1.OptionsItemText.TextToControlDistance = 1
@@ -1192,19 +1192,19 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem46.TextLocation = DevExpress.Utils.Locations.Left
         Me.LayoutControlItem46.TextSize = New System.Drawing.Size(246, 19)
         '
-        'LayoutControlItem13
+        'LFatherName
         '
-        Me.LayoutControlItem13.Control = Me.txtFatherName
-        Me.LayoutControlItem13.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem13.CustomizationFormText = "Κινητό"
-        Me.LayoutControlItem13.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem13.Location = New System.Drawing.Point(0, 318)
-        Me.LayoutControlItem13.Name = "LayoutControlItem13"
-        Me.LayoutControlItem13.Size = New System.Drawing.Size(501, 30)
-        Me.LayoutControlItem13.Tag = "1"
-        Me.LayoutControlItem13.Text = "Όνομα Πατέρα"
-        Me.LayoutControlItem13.TextLocation = DevExpress.Utils.Locations.Left
-        Me.LayoutControlItem13.TextSize = New System.Drawing.Size(246, 19)
+        Me.LFatherName.Control = Me.txtFatherName
+        Me.LFatherName.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LFatherName.CustomizationFormText = "Κινητό"
+        Me.LFatherName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+        Me.LFatherName.Location = New System.Drawing.Point(0, 318)
+        Me.LFatherName.Name = "LFatherName"
+        Me.LFatherName.Size = New System.Drawing.Size(501, 30)
+        Me.LFatherName.Tag = "1"
+        Me.LFatherName.Text = "Όνομα Πατέρα"
+        Me.LFatherName.TextLocation = DevExpress.Utils.Locations.Left
+        Me.LFatherName.TextSize = New System.Drawing.Size(246, 19)
         '
         'LayoutControlItem8
         '
@@ -1810,7 +1810,7 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem46, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LFatherName, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem30, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1883,7 +1883,7 @@ Partial Class frmCUSPrivateAgreement
     Friend WithEvents LayoutControlItem9 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents LFatherName As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
     Friend WithEvents LayoutControlItem46 As DevExpress.XtraLayout.LayoutControlItem

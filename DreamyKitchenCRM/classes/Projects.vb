@@ -1012,18 +1012,8 @@ Public Class Projects
             ' Γενικό σύνολο πώλησης
             If GrandTotal Then
                 If isGenOffer = True Then
-                    sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0) + 	
-                        isnull((select sum(Price) 
-                        from CCT_ORDERS_KITCHEN_DEVICES D
-                        inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
-                        inner join TRANSH  T on T.ID = K.transhID 
-                        WHERE T.ID =  " & toSQLValueS(transhID) & "),0),
-                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)) + 
-                        isnull((select sum(Price) 
-                        from CCT_ORDERS_KITCHEN_DEVICES D
-                        inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
-                        inner join TRANSH  T on T.ID = K.transhID 
-                        WHERE T.ID =  " & toSQLValueS(transhID) & "),0) - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID)
+                    sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0) ,
+                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))   - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID)
 	                    FROM TRANSH T
 	                    left join CCT_ORDERS_KITCHEN K on K.transhID = T.ID and K.isOrder =0
 	                    left join CCT_ORDERS_DOOR D on D.transhID = T.ID and D.isOrder =0
@@ -1031,18 +1021,8 @@ Public Class Projects
 	                    left join CCT_ORDERS_SPECIAL_CONSTR   SC on SC.transhID = T.ID and SC.isOrder =0
 	                    where T.ID = " & toSQLValueS(transhID)
                 Else
-                    sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0) + 	
-                        isnull((select sum(Price) 
-                        from CCT_ORDERS_KITCHEN_DEVICES D
-                        inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
-                        inner join TRANSH  T on T.ID = K.transhID 
-                        WHERE T.ID =  " & toSQLValueS(transhID) & "),0),
-                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0)) + 
-                        isnull((select sum(Price) 
-                        from CCT_ORDERS_KITCHEN_DEVICES D
-                        inner join CCT_ORDERS_KITCHEN K on D.cctOrdersKitchenID = K.ID 
-                        inner join TRANSH  T on T.ID = K.transhID 
-                        WHERE T.ID =  " & toSQLValueS(transhID) & "),0) - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID)
+                    sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0),
+                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))  - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID)
 	                    FROM TRANSH T
 	                    left join CCT_ORDERS_KITCHEN K on K.transhID = T.ID and K.isOrder =1
 	                    left join CCT_ORDERS_DOOR D on D.transhID = T.ID and D.isOrder =1

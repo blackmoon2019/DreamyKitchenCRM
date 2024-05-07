@@ -125,7 +125,7 @@ Partial Public Class RepCUSPrivateAgreement
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "e661378e-6d3b-44cd-aa12-a4b5e2876d8c"
+        Me.OfferID.ValueInfo = "7e3a8fd1-d895-465b-be32-6c73416d5971"
         DynamicListLookUpSettings1.DataMember = "vw_AGREEMENT"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
@@ -228,7 +228,7 @@ Partial Public Class RepCUSPrivateAgreement
         Me.XrLabel43.StylePriority.UsePadding = False
         Me.XrLabel43.StylePriority.UseTextAlignment = False
         Me.XrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft
-        Me.XrLabel43.TextFormatString = "{0},"
+        Me.XrLabel43.TextFormatString = "{0}"
         '
         'XrLabel34
         '
