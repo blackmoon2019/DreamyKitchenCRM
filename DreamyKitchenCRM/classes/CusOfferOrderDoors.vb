@@ -16,6 +16,7 @@ Public Class CusOfferOrderDoors
     Private LoadForms As New FormLoader
     Private Frm As frmCUSOfferOrderDoors
     Private Prog_Prop As New ProgProp
+    Private isCustomer As Boolean
     Public Sub Initialize(ByVal sFrm As frmCUSOfferOrderDoors, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal IsOrder As Boolean)
         Frm = sFrm
         ID = sID
@@ -118,6 +119,8 @@ Public Class CusOfferOrderDoors
                 If sFields("GenOffer") = "" Then sFields("GenOffer") = False
                 FillCusTransh(sFields("cusID"), sFields("compTrashID"), sFields("GenOffer"), sFields("transhID")) : FillCompanyProjects(sFields("compID"), sFields("GenOffer"), sFields("compTrashID"))
                 sFields = Nothing
+                If Frm.chkGenOffer.CheckState = CheckState.Checked Or Frm.cboCUS.EditValue = Frm.cboCompany.EditValue Then isCustomer = False Else isCustomer = True
+                If isCustomer Then Frm.cmdCompCollection.Enabled = False
         End Select
     End Sub
     Public Sub SaveRecord(ByRef sID As String)

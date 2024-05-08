@@ -17,6 +17,7 @@ Public Class CusOfferOrderKitchen
     Private Frm As frmCUSOfferOrderKitchen
     Private Prog_Prop As New ProgProp
     Private sBaseCat As Integer
+    Private isCustomer As Boolean
     Public Sub Initialize(ByVal sFrm As frmCUSOfferOrderKitchen, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit,
                           ByVal IsOrder As Boolean, BaseCat As Integer)
         Frm = sFrm
@@ -153,10 +154,9 @@ Public Class CusOfferOrderKitchen
                 sFields = Nothing 
         End Select
 
-
-
         If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
-
+        If Frm.chkGenOffer.CheckState = CheckState.Checked Or Frm.cboCUS.EditValue = Frm.cboCompany.EditValue Then isCustomer = False Else isCustomer = True
+        If isCustomer Then Frm.cmdCompCollection.Enabled = False
     End Sub
     Public Sub LoadDevices()
         LoadForms.LoadDataToGrid(Frm.grdDevices, Frm.GridView1,

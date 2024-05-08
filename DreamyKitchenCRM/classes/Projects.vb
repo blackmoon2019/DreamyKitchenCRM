@@ -321,7 +321,7 @@ Public Class Projects
 
         Try
             If Valid.ValidateForm(Frm.LayoutControl2) Then
-                If ValiDationRules(True, False, True, False, True) = False Then Exit Sub
+                If ValiDationRules(True, False, True, False, True, True) = False Then Exit Sub
                 ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
                 Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
                 myLayoutControls.Add(Frm.LayoutControl6)
@@ -338,14 +338,6 @@ Public Class Projects
                                 Exit Sub
                             Else
                                 Frm.txtCodeH.Text = DBQ.GetNextId("TRANSH")
-                            End If
-                        End If
-
-                    Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.MultipleLayoutControls, "TRANSH",, myLayoutControls,, ID,,,,, "bal=" & toSQLValueS(Frm.txtBal.EditValue.ToString, True))
-                        ' Καταχώρηση κατηγοριών 
-                        If sResult Then
-                            If Not SaveTRANSC() Then
                                 ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
                                 If CheckIfClosedRecExist() Then
                                     'Τζίροι ποσοστά
@@ -353,7 +345,22 @@ Public Class Projects
                                     ' Ανάλυση έργου 
                                     SaveProjectcost()
                                 End If
-                                Exit Sub
+
+                            End If
+                        End If
+
+                    Case FormMode.EditRecord
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.MultipleLayoutControls, "TRANSH",, myLayoutControls,, ID,,,,, "bal=" & toSQLValueS(Frm.txtBal.EditValue.ToString, True))
+                        ' Καταχώρηση κατηγοριών 
+                        If sResult Then
+                            If SaveTRANSC() Then
+                                ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
+                                If CheckIfClosedRecExist() Then
+                                    'Τζίροι ποσοστά
+                                    SaveEMP_T()
+                                    ' Ανάλυση έργου 
+                                    SaveProjectcost()
+                                End If
                             End If
                         End If
 
@@ -383,7 +390,7 @@ Public Class Projects
         Try
             If isCredit Then
                 If Valid.ValidateForm(Frm.LayoutControl3) Then
-                    If ValiDationRules(False, True, True, True, False, Frm.cboPayType.EditValue.ToString) = False Then Exit Sub
+                    If ValiDationRules(False, True, True, True, False, True, Frm.cboPayType.EditValue.ToString) = False Then Exit Sub
                     sGuid = System.Guid.NewGuid.ToString
                     sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSD", Frm.LayoutControl3,,, sGuid,, "transhID,IsCredit", toSQLValueS(ID) & ",1")
                     If sResult = True Then
@@ -393,7 +400,8 @@ Public Class Projects
                         If Frm.cboPayType.EditValue.ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" Then
                             If UpdateProjectFields(Frm.dtPay.EditValue.ToString, "0") = False Then
                                 XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            End If                        'Τζίροι ποσοστά
+                            End If
+                            'Τζίροι ποσοστά
                             SaveEMP_T()
                             ' Ανάλυση έργου 
                             SaveProjectcost()
@@ -514,6 +522,10 @@ Public Class Projects
                 End If
                 Frm.dtreceiveDateAgreement.EditValue = Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay")
             End If
+            'Τζίροι ποσοστά
+            SaveEMP_T()
+            ' Ανάλυση έργου 
+            SaveProjectcost()
             'sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(Frm.txtBal.EditValue.ToString, True) & " WHERE ID = " & toSQLValueS(ID)
             'Using oCmd As New SqlCommand(sSQL, CNDB)
             '    oCmd.ExecuteNonQuery()
@@ -563,7 +575,7 @@ Public Class Projects
     'Καταχώρηση Εγγραφής στους Τζίρους ποσοστά
     Private Sub SaveEMP_T()
         Try
-            Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
+            Using oCmd As New SqlCommand("usp_AddOrUpdateEmp_T", CNDB)
                 oCmd.CommandType = CommandType.StoredProcedure
                 oCmd.Parameters.AddWithValue("@transhID", ID)
                 oCmd.ExecuteNonQuery()
@@ -575,7 +587,7 @@ Public Class Projects
     ' Άνοιγμα ανάλυσης έργου αν δεν υπάρχει ή ενημέρωση ποσών
     Private Sub SaveProjectcost()
         Try
-            Using oCmd As New SqlCommand("usp_AddOrUpdateEmp_T", CNDB)
+            Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
                 oCmd.CommandType = CommandType.StoredProcedure
                 oCmd.Parameters.AddWithValue("@transhID", ID)
                 oCmd.ExecuteNonQuery()
@@ -616,7 +628,7 @@ Public Class Projects
 
     End Function
     Public Function ValiDationRules(ByVal BenchValidation As Boolean, ByVal PayTypeValidations As Boolean, ByVal receiveAgreementValidation As Boolean,
-                                    ByVal BalValidation As Boolean, ByVal GenCompProject As Boolean, Optional ByVal sPayType As String = "") As Boolean
+                                    ByVal BalValidation As Boolean, ByVal GenCompProject As Boolean, ByVal CompTranshValidation As Boolean, Optional ByVal sPayType As String = "") As Boolean
         Dim sSQL As String
         Dim Cmd As SqlCommand
         Dim CountClosed As Integer
@@ -695,8 +707,33 @@ Public Class Projects
                     If (sdr.Read() = True) Then
                         If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then
                             XtraMessageBox.Show("Δεν μπορείτε να χαρακτηρίσετε το έργο ως ""ΜΗ Γενικό"" γιατί συμμετέχει σε προσφορές.  ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            sdr.Close()
                             Return False
                         End If
+                        sdr.Close()
+                    End If
+                End If
+            End If
+
+            If CompTranshValidation And TranshFieldAndValues.Item("compTrashID").ToString <> "" Then
+                If TranshFieldAndValues.Item("compTrashID").ToString.ToUpper <> Frm.cboCompProject.EditValue.ToString.ToUpper Then
+                    sSQL =
+                        " select top 1 ID from CCT_ORDERS_KITCHEN where compTrashID= " & toSQLValueS(TranshFieldAndValues.Item("compTrashID").ToString) &
+                        " Union " &
+                        " Select top 1 ID from CCT_ORDERS_DOOR  where compTrashID= " & toSQLValueS(TranshFieldAndValues.Item("compTrashID").ToString) &
+                        " Union " &
+                        "Select ID from CCT_ORDERS_CLOSET  where compTrashID= " & toSQLValueS(TranshFieldAndValues.Item("compTrashID").ToString) &
+                        " Union " &
+                        "Select top 1 ID from CCT_ORDERS_SPECIAL_CONSTR  where compTrashID= " & toSQLValueS(TranshFieldAndValues.Item("compTrashID").ToString)
+                    Cmd = New SqlCommand(sSQL, CNDB)
+                    Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then
+                            XtraMessageBox.Show("Δεν μπορείτε να αλλάξετε το έργο εταιρίας όταν συμμετέχει ήδη σε παραγγελίες/προσφορές.  ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            sdr.Close()
+                            Return False
+                        End If
+                        sdr.Close()
                     End If
                 End If
             End If
@@ -1013,8 +1050,10 @@ Public Class Projects
             If GrandTotal Then
                 If isGenOffer = True Then
                     sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0) ,
-                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))   - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID)
-	                    FROM TRANSH T
+                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))   - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID),
+                        compID = coalesce(K.compID,D.compid,C.compid,SC.compid) ,
+                        compTrashID =  coalesce(K.compTrashID,D.compTrashID,C.compTrashID,SC.compTrashID)
+                        FROM TRANSH T
 	                    left join CCT_ORDERS_KITCHEN K on K.transhID = T.ID and K.isOrder =0
 	                    left join CCT_ORDERS_DOOR D on D.transhID = T.ID and D.isOrder =0
 	                    left join CCT_ORDERS_CLOSET  C on C.transhID = T.ID and C.isOrder =0
@@ -1022,8 +1061,10 @@ Public Class Projects
 	                    where T.ID = " & toSQLValueS(transhID)
                 Else
                     sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0),
-                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))  - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID)
-	                    FROM TRANSH T
+                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))  - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID),
+                        compID = coalesce(K.compID,D.compid,C.compid,SC.compid) ,
+                        compTrashID =  coalesce(K.compTrashID,D.compTrashID,C.compTrashID,SC.compTrashID)
+                        FROM TRANSH T
 	                    left join CCT_ORDERS_KITCHEN K on K.transhID = T.ID and K.isOrder =1
 	                    left join CCT_ORDERS_DOOR D on D.transhID = T.ID and D.isOrder =1
 	                    left join CCT_ORDERS_CLOSET  C on C.transhID = T.ID and C.isOrder =1

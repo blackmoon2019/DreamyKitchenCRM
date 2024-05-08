@@ -1406,7 +1406,7 @@ Partial Class frmTransactions
         Me.TabNavigationPage6.Controls.Add(Me.GridControl4)
         Me.TabNavigationPage6.Name = "TabNavigationPage6"
         Me.TabNavigationPage6.PageText = "Στοιχεία Χρέωσης"
-        Me.TabNavigationPage6.Size = New System.Drawing.Size(1257, 336)
+        Me.TabNavigationPage6.Size = New System.Drawing.Size(1294, 378)
         '
         'GridControl4
         '
@@ -1425,7 +1425,7 @@ Partial Class frmTransactions
         Me.GridControl4.Margin = New System.Windows.Forms.Padding(4)
         Me.GridControl4.Name = "GridControl4"
         Me.GridControl4.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemBanks, Me.RepositoryItemPayTypes, Me.RepositoryItemCctTransh})
-        Me.GridControl4.Size = New System.Drawing.Size(1257, 336)
+        Me.GridControl4.Size = New System.Drawing.Size(1294, 378)
         Me.GridControl4.TabIndex = 11
         Me.GridControl4.UseEmbeddedNavigator = True
         Me.GridControl4.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView4})

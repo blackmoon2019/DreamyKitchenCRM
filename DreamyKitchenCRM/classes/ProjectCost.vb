@@ -27,6 +27,7 @@ Public Class ProjectCost
                 Frm.txtCode.Text = DBQ.GetNextId("PROJECT_COST")
             Case FormMode.EditRecord
                 LoadForms.LoadForm(Frm.LayoutControl1, "Select * from vw_PROJECT_COST where id ='" + ID + "'")
+                FillCompanyProjects(lkupEditValue(Frm.cboCompany), lkupEditValue(Frm.cboCompProject))
         End Select
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub

@@ -484,4 +484,45 @@ Public Class frmTransactions
     Private Sub BBAgreement_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBAgreement.ItemClick
         Projects.LoadOrder("AGREEMENT")
     End Sub
+
+
+    Private Function AllowChangeTransC(ByVal TransCID As String) As Boolean
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Dim CountTransC As Integer
+        Try
+            sSQL = "SELECT count(K.ID) as CountTransC FROM CCT_ORDERS_KITCHEN K
+                inner join TRANSC on TRANSC.transhID =  K.transhID and TRANSC.transhcID = " & toSQLValueS(TransCID) & " WHERE K.transhID = " & toSQLValueS(sID) &
+                "UNION Select count(C.ID) As CountTransC FROM CCT_ORDERS_CLOSET  C
+                inner Join TRANSC on TRANSC.transhID =  C.transhID And TRANSC.transhcID =  " & toSQLValueS(TransCID) & " WHERE C.transhID= " & toSQLValueS(sID) &
+                "UNION Select count(D.ID) As CountTransC FROM CCT_ORDERS_DOOR  D
+                inner Join TRANSC on TRANSC.transhID =  D.transhID And TRANSC.transhcID =  " & toSQLValueS(TransCID) & " WHERE D.transhID= " & toSQLValueS(sID) &
+                "UNION SELECT count(SC.ID) As CountTransC FROM CCT_ORDERS_SPECIAL_CONSTR  SC
+                inner Join TRANSC on TRANSC.transhID =  SC.transhID And TRANSC.transhcID =  " & toSQLValueS(TransCID) & " WHERE SC.transhID= " & toSQLValueS(sID)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountTransC")) = False Then CountTransC = sdr.GetInt32(sdr.GetOrdinal("CountTransC")) Else CountTransC = 0
+                If CountTransC > 0 Then
+                    XtraMessageBox.Show("Δεν μπορείτε να αφαιρέσετε κατηγορία όταν συμμετέχει σε προσφορά/παραγγελία. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    sdr.Close()
+                    Return False
+                End If
+            End If
+            sdr.Close()
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+
+    Private Sub cboTransC_ItemChecking(sender As Object, e As ItemCheckingEventArgs) Handles cboTransC.ItemChecking
+        If e.OldValue = CheckState.Checked Then
+            If AllowChangeTransC(cboTransC.Properties.Items.Item(e.Index - 1).Value.ToString) = False Then
+                e.Cancel = True
+            End If
+        End If
+    End Sub
 End Class

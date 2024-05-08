@@ -26,6 +26,7 @@ Public Class CusPrivateAgreement
     Public CusID As Guid
     Public TranshID As Guid
     Public EmpID As Guid
+    Private isCustomer As Boolean
 
 
     Public Sub Initialize(ByVal sFrm As frmCUSPrivateAgreement, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
@@ -87,15 +88,21 @@ Public Class CusPrivateAgreement
         FillArProt()
 
 
-        If Frm.cboCompProject.EditValue IsNot Nothing Then
+        If Frm.cboCUS.EditValue = Frm.cboCompany.EditValue Then isCustomer = False Else isCustomer = True
+        If isCustomer Then
+            Frm.cmdCompCollection.Enabled = False
+            Frm.cmdCusCollection.Enabled = True
+            Frm.LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LLegalRepresentative.Tag = ""
+        Else
             Frm.LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
             Frm.LLegalRepresentative.Tag = "1"
-        Else
-            Frm.LLegalRepresentative.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Frm.LFatherName.Tag = "" : Frm.LFatherName.ImageOptions.Image = Nothing
+            Frm.cmdCompCollection.Enabled = True
+            Frm.cmdCusCollection.Enabled = False
         End If
+
         Frm.cboInvoiceType.EditValue = Frm.cboTRANSH.GetColumnValue("invType")
-        Frm.cmdCompCollection.Enabled = IIf(Frm.cboCompany.EditValue = Nothing, False, True)
-        Frm.cmdCusCollection.Enabled = IIf(Frm.cboCompany.EditValue = Frm.cboCUS.EditValue, False, True)
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Frm.chkHasCloset.Properties.AllowHtmlDraw = DefaultBoolean.True
         Frm.chkHasCloset.Text = "<href=www.dreamykitchen.gr/>Ντουλάπες Υπνοδωματίου</href>"
@@ -168,8 +175,6 @@ Public Class CusPrivateAgreement
         Dim sResult As Boolean
         Dim sGuid As String
         Try
-            ' Εαν αφορά εταιρία τότε να μην ελέγχουμε το όνομα πατέρα
-            If CompanyID = CusID Then Frm.LFatherName.Tag = ""
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 If Frm.txtPayinAdvanceTot.EditValue = "0,00" Then
                     XtraMessageBox.Show("Δεν έχετε συμπληρώσει στην προκαταβολη (Μετρητά,Τράπεζα ή και τα 2).", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -192,6 +197,10 @@ Public Class CusPrivateAgreement
                     Frm.cmdPrintOffer.Enabled = True
                     ' Ενημέρωση πεδίων έργου
                     UpdateTransH()
+                    'Τζίροι ποσοστά
+                    SaveEMP_T()
+                    ' Ανάλυση έργου 
+                    SaveProjectcost()
                     'Ελεγχος για λανθασμένη κατανομή ποσών
                     CheckForNegative()
                     Mode = FormMode.EditRecord
@@ -223,6 +232,30 @@ Public Class CusPrivateAgreement
                             " DevicesCost = " & toSQLValueS(Frm.txtDevices.EditValue.ToString, True) & ",  totamt = " & toSQLValueS(Frm.txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString))
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    'Καταχώρηση Εγγραφής στους Τζίρους ποσοστά
+    Private Sub SaveEMP_T()
+        Try
+            Using oCmd As New SqlCommand("usp_AddOrUpdateEmp_T", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@transhID", TranshID.ToString)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    ' Άνοιγμα ανάλυσης έργου αν δεν υπάρχει ή ενημέρωση ποσών
+    Private Sub SaveProjectcost()
+        Try
+            Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@transhID", TranshID.ToString)
                 oCmd.ExecuteNonQuery()
             End Using
         Catch ex As Exception

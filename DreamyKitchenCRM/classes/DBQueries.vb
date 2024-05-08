@@ -1390,8 +1390,35 @@ NextItem:
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                         cbo = Ctrl
+                                        If cbo.EditValue IsNot Nothing Then
+                                            If cbo.Text <> "" Then sSQL.Append(toSQLValueS(cbo.EditValue.ToString)) Else sSQL.Append("NULL")
+                                        Else
+                                            sSQL.Append("NULL")
+                                        End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                        Dim cbo As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                        Dim sCheckedItems As New System.Text.StringBuilder
+                                        cbo = Ctrl
+                                        For Each CheckedItem As CheckedListBoxItem In cbo.Properties.GetItems
+                                            If CheckedItem.CheckState = CheckState.Checked Then
+                                                If sCheckedItems.Length = 0 Then sCheckedItems.Append("'") Else sCheckedItems.Append(";")
+                                                sCheckedItems.Append(CheckedItem.Value.ToString)
+                                            End If
+                                        Next
+                                        If sCheckedItems.Length > 0 Then sCheckedItems.Append("'") : sSQL.Append(sCheckedItems.ToString) Else sSQL.Append("NULL")
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+                                        Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
+                                        cbo = Ctrl
                                         If cbo.EditValue <> Nothing Then
-                                            sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
+                                            If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
+                                                sSQL.Append(cbo.SelectedIndex)
+                                            Else
+                                                If cbo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                                    sSQL.Append(cbo.SelectedIndex)
+                                                Else
+                                                    sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
+                                                End If
+                                            End If
                                         Else
                                             sSQL.Append("NULL")
                                         End If

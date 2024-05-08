@@ -71,8 +71,8 @@ Public Class frmProjectCost
 
     Private Sub cboTransH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSH(cboCompProject, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageTRANSH(cboCompProject, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
             Case 3 : cboCompProject.EditValue = Nothing
         End Select
     End Sub
