@@ -470,6 +470,8 @@ Public Class Projects
                             oCmd.ExecuteNonQuery()
                         End Using
                     End If
+                    ' Ανάλυση έργου 
+                    SaveProjectcost()
                     Frm.Vw_TRANSD_DebitTableAdapter.FillByDedit(Frm.DM_TRANS.vw_TRANSD_Debit, System.Guid.Parse(ID))
                     Frm.chkCash.Enabled = True
                 Catch sqlEx As SqlException When sqlEx.Number = 2601
