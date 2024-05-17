@@ -307,7 +307,7 @@ Public Class ProgProp
                             If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                 Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                 cbo = Ctrl
-                                If cbo.EditValue <> Nothing Then
+                                If cbo.EditValue isnot Nothing Then
                                     sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
                                 Else
                                     sSQL.Append("NULL")
@@ -315,7 +315,7 @@ Public Class ProgProp
                             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                 Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                 cbo = Ctrl
-                                If cbo.EditValue <> Nothing Then
+                                If cbo.EditValue isnot Nothing Then
                                     If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                         sSQL.Append(cbo.SelectedIndex)
                                     Else

@@ -105,7 +105,7 @@ Public Class frmBench
     Private Sub cboDim_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDim.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDim.EditValue = Nothing : ManageDIM()
-            Case 2 : If cboDim.EditValue <> Nothing Then ManageDIM()
+            Case 2 : If cboDim.EditValue isnot Nothing Then ManageDIM()
             Case 3 : cboDim.EditValue = Nothing
         End Select
     End Sub
@@ -117,9 +117,9 @@ Public Class frmBench
         form1.DataTable = "DIM"
         form1.CallerControl = cboDim
         form1.CalledFromControl = True
-        If cboDim.EditValue <> Nothing Then form1.ID = cboDim.EditValue.ToString
+        If cboDim.EditValue isnot Nothing Then form1.ID = cboDim.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboDim.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboDim.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub

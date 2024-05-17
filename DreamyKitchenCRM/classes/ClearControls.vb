@@ -7,7 +7,7 @@ Public Class ClearControls
             For Each item As BaseLayoutItem In control.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         If LItem.Control.Tag <> "" Then
                             If LItem.Control.Visible = True Then
                                 Dim Ctrl As Control = LItem.Control
@@ -62,7 +62,7 @@ Public Class ClearControls
             For Each item As BaseLayoutItem In GRP.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         If LItem.Control.Tag <> "" Then
                             If LItem.Control.Visible = True Then
                                 Dim Ctrl As Control = LItem.Control

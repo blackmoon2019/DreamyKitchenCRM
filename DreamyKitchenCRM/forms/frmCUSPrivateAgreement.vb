@@ -173,17 +173,17 @@ Public Class frmCUSPrivateAgreement
     Private Sub txtTotalPrice_EditValueChanged(sender As Object, e As EventArgs) Handles TxtTotalVat.EditValueChanged
         If Me.IsActive = False Then Exit Sub
         Dim Price As Double, PartOfVat As Double
-        If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat) : txtTotalVatPrice.EditValue = Price * ProgProps.AlternateVAT
-        If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
+        If TxtTotalVat.EditValue isnot Nothing Then Price = DbnullToZero(TxtTotalVat) : txtTotalVatPrice.EditValue = Price * ProgProps.AlternateVAT
+        If txtPartofVat.EditValue isnot Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
     End Sub
     Private Sub txtPartofVat_EditValueChanged(sender As Object, e As EventArgs) Handles txtPartofVat.EditValueChanged
         If Me.IsActive = False Then Exit Sub
         Dim TotalPrice As Double, Price As Double, PartOfVat As Double
-        If txtPartofVat.EditValue <> Nothing Then TotalPrice = DbnullToZero(txtPartofVat)
+        If txtPartofVat.EditValue isnot Nothing Then TotalPrice = DbnullToZero(txtPartofVat)
         TotalPrice = (TotalPrice * 100) / ProgProps.VAT + TotalPrice
         txtPosoParastatikou.EditValue = TotalPrice
-        If TxtTotalVat.EditValue <> Nothing Then Price = DbnullToZero(TxtTotalVat)
-        If txtPartofVat.EditValue <> Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
+        If TxtTotalVat.EditValue isnot Nothing Then Price = DbnullToZero(TxtTotalVat)
+        If txtPartofVat.EditValue isnot Nothing Then PartOfVat = DbnullToZero(txtPartofVat)
     End Sub
 
     Private Sub txtGenTot_EditValueChanged(sender As Object, e As EventArgs) Handles txtGenTot.EditValueChanged
@@ -209,7 +209,7 @@ Public Class frmCUSPrivateAgreement
     Private Sub cboADR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboADR.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboADR.EditValue = Nothing : ManageCbo.ManageADR(cboADR, FormMode.NewRecord)
-            Case 2 : If cboADR.EditValue <> Nothing Then ManageCbo.ManageADR(cboADR, FormMode.EditRecord)
+            Case 2 : If cboADR.EditValue isnot Nothing Then ManageCbo.ManageADR(cboADR, FormMode.EditRecord)
             Case 3 : cboADR.EditValue = Nothing
         End Select
     End Sub

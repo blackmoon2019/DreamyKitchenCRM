@@ -95,7 +95,7 @@ Public Class frmUsers
         form1.CallerControl = cboSaler
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboSaler.EditValue <> Nothing Then
+        If cboSaler.EditValue isnot Nothing Then
             form1.ID = cboSaler.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -108,7 +108,7 @@ Public Class frmUsers
     Private Sub cboSaler_ButtonClick(sender As Object, e As Controls.ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
             Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboSaler.EditValue = Nothing : ManageSalers()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboSaler.EditValue <> Nothing Then ManageSalers()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboSaler.EditValue isnot Nothing Then ManageSalers()
             Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub

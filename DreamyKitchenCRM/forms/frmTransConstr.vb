@@ -78,7 +78,7 @@ Public Class frmTransConstr
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 2 : If cboCUS.EditValue isnot Nothing Then ManageCus()
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
@@ -88,7 +88,7 @@ Public Class frmTransConstr
         form1.CallerControl = cboCUS
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
+        If cboCUS.EditValue isnot Nothing Then
             form1.ID = cboCUS.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -112,7 +112,7 @@ Public Class frmTransConstr
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
             Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboTRANSH.EditValue isnot Nothing Then ManageTRANSH()
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub
@@ -122,7 +122,7 @@ Public Class frmTransConstr
         form1.CallerControl = cboTRANSH
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboTRANSH.EditValue <> Nothing Then
+        If cboTRANSH.EditValue isnot Nothing Then
             form1.ID = cboTRANSH.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         End If

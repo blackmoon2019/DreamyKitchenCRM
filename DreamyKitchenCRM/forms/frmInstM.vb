@@ -237,7 +237,7 @@ Public Class frmInstM
     Private Sub cboSER_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSER.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboSER.EditValue = Nothing : ManageSer()
-            Case 2 : If cboSER.EditValue <> Nothing Then ManageSer()
+            Case 2 : If cboSER.EditValue isnot Nothing Then ManageSer()
             Case 3 : cboSER.EditValue = Nothing
         End Select
     End Sub
@@ -247,7 +247,7 @@ Public Class frmInstM
         form1.CallerControl = cboSER
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboSER.EditValue <> Nothing Then
+        If cboSER.EditValue isnot Nothing Then
             form1.ID = cboSER.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else

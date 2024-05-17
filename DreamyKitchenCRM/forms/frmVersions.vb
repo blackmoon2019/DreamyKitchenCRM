@@ -138,7 +138,7 @@ Public Class frmVersions
     Private Sub cbotechnical_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbotechnical.ButtonClick
         Select Case e.Button.Index
             Case 1 : cbotechnical.EditValue = Nothing : ManageTechnical()
-            Case 2 : If cbotechnical.EditValue <> Nothing Then ManageTechnical()
+            Case 2 : If cbotechnical.EditValue isnot Nothing Then ManageTechnical()
             Case 3 : cbotechnical.EditValue = Nothing
         End Select
     End Sub
@@ -148,7 +148,7 @@ Public Class frmVersions
         'form1.MdiParent = frmMain
         form1.CallerControl = cbotechnical
         form1.CalledFromControl = True
-        If cbotechnical.EditValue <> Nothing Then
+        If cbotechnical.EditValue isnot Nothing Then
             form1.ID = cbotechnical.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else

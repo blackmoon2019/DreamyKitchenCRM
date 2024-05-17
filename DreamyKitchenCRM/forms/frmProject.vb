@@ -93,7 +93,7 @@ Public Class frmProject
             Case FormMode.EditRecord
                 If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cmdOpenTransh.Enabled = True
                 Dim sSQL As New System.Text.StringBuilder
-                If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
+                If cboCOU.EditValue IsNot Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
                 FillCbo.AREAS(cboAREAS, sSQL)
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_TRANSH_SMALL with(nolock) where id ='" + sID + "'")
                 CheckStateTransItems()
@@ -129,7 +129,7 @@ Public Class frmProject
     End Sub
     Private Sub cboCOU_EditValueChanged(sender As Object, e As EventArgs) Handles cboCOU.EditValueChanged
         Dim sSQL As New System.Text.StringBuilder
-        If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
+        If cboCOU.EditValue IsNot Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
         FillCbo.AREAS(cboAREAS, sSQL)
         FillCbo.ADR(cboADR, ManageCbo.ADRsSQL(cboCOU, cboAREAS))
     End Sub
@@ -159,14 +159,14 @@ Public Class frmProject
     Private Sub cboCOU_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCOU.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboCOU.EditValue = Nothing : ManageCbo.ManageCOU(cboCOU, FormMode.NewRecord)
-            Case 2 : If cboCOU.EditValue <> Nothing Then ManageCbo.ManageCOU(cboCOU, FormMode.EditRecord)
+            Case 2 : If cboCOU.EditValue IsNot Nothing Then ManageCbo.ManageCOU(cboCOU, FormMode.EditRecord)
             Case 3 : cboCOU.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboAREAS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboAREAS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboAREAS.EditValue = Nothing : ManageCbo.ManageAREAS(cboAREAS, FormMode.NewRecord)
-            Case 2 : If cboAREAS.EditValue <> Nothing Then ManageCbo.ManageAREAS(cboAREAS, FormMode.EditRecord)
+            Case 2 : If cboAREAS.EditValue IsNot Nothing Then ManageCbo.ManageAREAS(cboAREAS, FormMode.EditRecord)
             Case 3 : cboAREAS.EditValue = Nothing
         End Select
     End Sub
@@ -174,7 +174,7 @@ Public Class frmProject
     Private Sub cboADR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboADR.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboADR.EditValue = Nothing : ManageCbo.ManageADR(cboADR, FormMode.NewRecord)
-            Case 2 : If cboADR.EditValue <> Nothing Then ManageCbo.ManageADR(cboADR, FormMode.EditRecord)
+            Case 2 : If cboADR.EditValue IsNot Nothing Then ManageCbo.ManageADR(cboADR, FormMode.EditRecord)
             Case 3 : cboADR.EditValue = Nothing
         End Select
     End Sub

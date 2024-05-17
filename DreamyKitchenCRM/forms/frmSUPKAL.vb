@@ -122,7 +122,7 @@ Public Class frmSUPKal
     Private Sub cboSUP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboSUP.EditValue = Nothing : ManageSup()
-            Case 2 : If cboSUP.EditValue <> Nothing Then ManageSup()
+            Case 2 : If cboSUP.EditValue isnot Nothing Then ManageSup()
             Case 3 : cboSUP.EditValue = Nothing : cboPAY.EditValue = Nothing : txtBal.EditValue = "0.00"
         End Select
     End Sub
@@ -132,7 +132,7 @@ Public Class frmSUPKal
         form1.CallerControl = cboSUP
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboSUP.EditValue <> Nothing Then
+        If cboSUP.EditValue isnot Nothing Then
             form1.ID = cboSUP.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -145,7 +145,7 @@ Public Class frmSUPKal
     Private Sub cboBANK_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBANK.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboBANK.EditValue = Nothing : ManageBank()
-            Case 2 : If cboBANK.EditValue <> Nothing Then ManageBank()
+            Case 2 : If cboBANK.EditValue isnot Nothing Then ManageBank()
             Case 3 : cboBANK.EditValue = Nothing
         End Select
     End Sub
@@ -157,9 +157,9 @@ Public Class frmSUPKal
         form1.DataTable = "BANKS"
         form1.CalledFromControl = True
         form1.CallerControl = cboBANK
-        If cboBANK.EditValue <> Nothing Then form1.ID = cboBANK.EditValue.ToString
+        If cboBANK.EditValue isnot Nothing Then form1.ID = cboBANK.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboBANK.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboBANK.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -171,16 +171,16 @@ Public Class frmSUPKal
         form1.DataTable = "PAY"
         form1.CallerControl = cboPAY
         form1.CalledFromControl = True
-        If cboPAY.EditValue <> Nothing Then form1.ID = cboPAY.EditValue.ToString
+        If cboPAY.EditValue isnot Nothing Then form1.ID = cboPAY.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboPAY.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboPAY.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
     Private Sub cboPAY_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPAY.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboPAY.EditValue = Nothing : ManagePAY()
-            Case 2 : If cboPAY.EditValue <> Nothing Then ManagePAY()
+            Case 2 : If cboPAY.EditValue isnot Nothing Then ManagePAY()
             Case 3 : cboPAY.EditValue = Nothing
         End Select
     End Sub

@@ -83,7 +83,7 @@ Public Class frmConstrunction
         form1.CallerControl = cboCUS
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
+        If cboCUS.EditValue isnot Nothing Then
             form1.ID = cboCUS.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -99,7 +99,7 @@ Public Class frmConstrunction
         form1.CallerControl = cboSER
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboSER.EditValue <> Nothing Then
+        If cboSER.EditValue isnot Nothing Then
             form1.ID = cboSER.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -117,9 +117,9 @@ Public Class frmConstrunction
         form1.DataTable = "CONSTR_CAT"
         form1.CalledFromControl = True
         form1.CallerControl = cboConstrCat
-        If cboConstrCat.EditValue <> Nothing Then form1.ID = cboConstrCat.EditValue.ToString
+        If cboConstrCat.EditValue isnot Nothing Then form1.ID = cboConstrCat.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboConstrCat.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboConstrCat.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
 
@@ -130,7 +130,7 @@ Public Class frmConstrunction
         form1.CallerControl = cboTRANSH
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboTRANSH.EditValue <> Nothing Then
+        If cboTRANSH.EditValue isnot Nothing Then
             form1.ID = cboTRANSH.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -143,7 +143,7 @@ Public Class frmConstrunction
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
             Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then If cboTRANSH.EditValue isnot Nothing Then ManageTRANSH()
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub
@@ -197,7 +197,7 @@ Public Class frmConstrunction
     Private Sub cboSER_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSER.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboSER.EditValue = Nothing : ManageSer()
-            Case 2 : If cboSER.EditValue <> Nothing Then ManageSer()
+            Case 2 : If cboSER.EditValue isnot Nothing Then ManageSer()
             Case 3 : cboSER.EditValue = Nothing : txtSalary.Text = "0.00"
         End Select
     End Sub
@@ -205,7 +205,7 @@ Public Class frmConstrunction
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 2 : If cboCUS.EditValue isnot Nothing Then ManageCus()
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
@@ -213,7 +213,7 @@ Public Class frmConstrunction
     Private Sub cboConstrCat_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboConstrCat.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboConstrCat.EditValue = Nothing : ManageConstrCat()
-            Case 2 : If cboConstrCat.EditValue <> Nothing Then ManageConstrCat()
+            Case 2 : If cboConstrCat.EditValue isnot Nothing Then ManageConstrCat()
             Case 3 : cboConstrCat.EditValue = Nothing
         End Select
     End Sub

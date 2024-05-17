@@ -8,14 +8,14 @@ Public Class CombosManager
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
             Frm.CallerControl = CallerControl
             Frm.CalledFromControl = True
-            If CallerControl.EditValue <> Nothing Then
+            If CallerControl.EditValue isnot Nothing Then
                 Frm.ID = CallerControl.EditValue.ToString
                 Frm.Mode = FormMode.EditRecord
             Else
                 Frm.Mode = FormMode.NewRecord
             End If
         Else
-            If grdView.GetRowCellValue(grdView.FocusedRowHandle, "cctID").ToString <> Nothing Then
+            If grdView.GetRowCellValue(grdView.FocusedRowHandle, "cctID").ToString isnot Nothing Then
                 Frm.ID = grdView.GetRowCellValue(grdView.FocusedRowHandle, "cctID").ToString
                 Frm.Mode = FormMode.EditRecord
             Else
@@ -32,7 +32,7 @@ Public Class CombosManager
             Frm.CallerControl = CallerControl
             Frm.CalledFromControl = True
             Frm.MdiParent = frmMain
-            If CallerControl.EditValue <> Nothing Then
+            If CallerControl.EditValue isnot Nothing Then
                 Frm.ID = CallerControl.EditValue.ToString
                 Frm.Mode = FormMode.EditRecord
             Else
@@ -63,7 +63,7 @@ Public Class CombosManager
         Frm.TransCID = sTransCID
         If compProject = Nothing Then Frm.chkcompProject.CheckState = CheckState.Unchecked Else Frm.chkcompProject.CheckState = CheckState.Checked : 
         Frm.chkcompProject.Enabled = False
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -82,7 +82,7 @@ Public Class CombosManager
             Frm.CallerControl = CallerControl
             Frm.CalledFromControl = True
             Frm.MdiParent = frmMain
-            If CallerControl.EditValue <> Nothing Then
+            If CallerControl.EditValue isnot Nothing Then
                 Frm.ID = CallerControl.EditValue.ToString
                 Frm.Mode = FormMode.EditRecord
             Else
@@ -103,7 +103,7 @@ Public Class CombosManager
             Frm.CallerControl = CallerControl
             Frm.CalledFromControl = True
             Frm.MdiParent = frmMain
-            If CallerControl.EditValue <> Nothing Then
+            If CallerControl.EditValue isnot Nothing Then
                 Frm.ID = CallerControl.EditValue.ToString
                 Frm.Mode = FormMode.EditRecord
             Else
@@ -122,9 +122,9 @@ Public Class CombosManager
         Frm.DataTable = "PAY"
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
-        If CallerControl.EditValue <> Nothing Then Frm.ID = CallerControl.EditValue.ToString
+        If CallerControl.EditValue isnot Nothing Then Frm.ID = CallerControl.EditValue.ToString
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
+        If CallerControl.EditValue isnot Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
@@ -137,9 +137,9 @@ Public Class CombosManager
         Frm.DataTable = "PAY_TYPE"
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
-        If CallerControl.EditValue <> Nothing Then Frm.ID = CallerControl.EditValue.ToString
+        If CallerControl.EditValue isnot Nothing Then Frm.ID = CallerControl.EditValue.ToString
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
+        If CallerControl.EditValue isnot Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
@@ -159,7 +159,7 @@ Public Class CombosManager
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -177,7 +177,7 @@ Public Class CombosManager
             Frm.CallerControl = CallerControl
             Frm.CalledFromControl = True
             Frm.MdiParent = frmMain
-            If CallerControl.EditValue <> Nothing Then
+            If CallerControl.EditValue isnot Nothing Then
                 Frm.ID = CallerControl.EditValue.ToString
                 Frm.Mode = FormMode.EditRecord
             Else
@@ -194,7 +194,7 @@ Public Class CombosManager
             Frm.CallerControl = CallerControl
             Frm.CalledFromControl = True
             Frm.MdiParent = frmMain
-            If CallerControl.EditValue <> Nothing Then
+            If CallerControl.EditValue isnot Nothing Then
                 Frm.ID = CallerControl.EditValue.ToString
                 Frm.Mode = FormMode.EditRecord
             Else
@@ -211,7 +211,7 @@ Public Class CombosManager
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -229,7 +229,7 @@ Public Class CombosManager
         Frm.DataTable = "BANKS"
         Frm.CalledFromControl = True
         Frm.CallerControl = CallerControl
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -247,7 +247,7 @@ Public Class CombosManager
         Frm.DataTable = "BASE_CAT"
         Frm.CalledFromControl = True
         Frm.CallerControl = CallerControl
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -265,7 +265,7 @@ Public Class CombosManager
         Frm.ValueListID = ValueListID
         Frm.GroupName = GroupName
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -286,9 +286,9 @@ Public Class CombosManager
         Frm.CallerControlChecked = CallerControl
         Frm.CalledFromControl = True
         Frm.cboValueList.EditValue = ValueListID
-        If CallerControl.EditValue <> Nothing Then Frm.ID = CallerControl.EditValue.ToString
+        If CallerControl.EditValue isnot Nothing Then Frm.ID = CallerControl.EditValue.ToString
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
+        If CallerControl.EditValue isnot Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
@@ -300,7 +300,7 @@ Public Class CombosManager
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -323,7 +323,7 @@ Public Class CombosManager
         Frm.CallerControlLKUP = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -342,7 +342,7 @@ Public Class CombosManager
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -363,7 +363,7 @@ Public Class CombosManager
         Frm.CalledFromControl = True
         Frm.CallerControl = CallerControl
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -376,8 +376,8 @@ Public Class CombosManager
         Dim sSQL As New System.Text.StringBuilder
         Dim CouID As String = ""
         Dim AreaID As String = ""
-        If cboCOU.EditValue <> Nothing Then CouID = cboCOU.EditValue.ToString
-        If cboAREAS.EditValue <> Nothing Then AreaID = cboAREAS.EditValue.ToString
+        If cboCOU.EditValue isnot Nothing Then CouID = cboCOU.EditValue.ToString
+        If cboAREAS.EditValue isnot Nothing Then AreaID = cboAREAS.EditValue.ToString
         sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
         If CouID.Length > 0 Or AreaID.Length > 0 Or txtTK IsNot Nothing Then sSQL.AppendLine(" where ")
         If CouID.Length > 0 Then sSQL.AppendLine(" couid = " & toSQLValueS(CouID))
@@ -412,7 +412,7 @@ Public Class CombosManager
         Frm.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         Frm.L8.Control.Tag = "Ar,0,1,2"
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -431,7 +431,7 @@ Public Class CombosManager
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -450,7 +450,7 @@ Public Class CombosManager
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -468,7 +468,7 @@ Public Class CombosManager
         Frm.DataTable = "DOY"
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -489,7 +489,7 @@ Public Class CombosManager
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else
@@ -509,7 +509,7 @@ Public Class CombosManager
         Frm.CalledFromControl = True
         Frm.CallerControl = CallerControl
         Frm.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
+        If CallerControl.EditValue isnot Nothing Then
             Frm.ID = CallerControl.EditValue.ToString
             Frm.Mode = FormMode.EditRecord
         Else

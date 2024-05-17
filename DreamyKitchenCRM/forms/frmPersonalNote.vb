@@ -80,9 +80,9 @@ Public Class frmPersonalNote
         form1.CallerControl = cboStatus
         form1.CalledFromControl = True
         form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        If cboStatus.EditValue <> Nothing Then form1.ID = cboStatus.EditValue.ToString
+        If cboStatus.EditValue isnot Nothing Then form1.ID = cboStatus.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboStatus.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboStatus.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -117,7 +117,7 @@ Public Class frmPersonalNote
     Private Sub cboStatus_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboStatus.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboStatus.EditValue = Nothing : ManageSALER_CAL_STATUS()
-            Case 2 : If cboStatus.EditValue <> Nothing Then ManageSALER_CAL_STATUS()
+            Case 2 : If cboStatus.EditValue isnot Nothing Then ManageSALER_CAL_STATUS()
             Case 3 : cboStatus.EditValue = Nothing
         End Select
     End Sub

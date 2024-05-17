@@ -274,7 +274,7 @@ Public Class frmTecnicalSupport
         form1.CallerControl = cboCategory
         form1.CallerForm = Me
         form1.MdiParent = frmMain
-        If cboCategory.EditValue <> Nothing Then
+        If cboCategory.EditValue isnot Nothing Then
             form1.Mode = FormMode.EditRecord
             form1.ID = cboCategory.EditValue.ToString
         Else
@@ -288,7 +288,7 @@ Public Class frmTecnicalSupport
     Private Sub cboCategory_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboCategory.ButtonPressed
         Select Case e.Button.Index
             Case 1 : cboCategory.EditValue = Nothing : ManageCategory()
-            Case 2 : If cboCategory.EditValue <> Nothing Then ManageCategory()
+            Case 2 : If cboCategory.EditValue isnot Nothing Then ManageCategory()
             Case 3 : cboCategory.EditValue = Nothing
         End Select
     End Sub

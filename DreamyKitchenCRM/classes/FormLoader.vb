@@ -98,7 +98,7 @@ Public Class FormLoader
                     For Each item As BaseLayoutItem In control.Items
                         If TypeOf item Is LayoutControlItem Then
                             Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                            If LItem.ControlName <> Nothing Then
+                            If LItem.ControlName isnot Nothing Then
 
                                 'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                                 If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
@@ -106,11 +106,11 @@ Public Class FormLoader
                                     RDG = LItem.Control
                                     For i As Integer = 0 To RDG.Properties.Items.Count - 1
                                         'Βάζω τις τιμές του TAG σε array
-                                        If RDG.Properties.Items(i).Tag <> Nothing Then
+                                        If RDG.Properties.Items(i).Tag isnot Nothing Then
                                             TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                             'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                             Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                            If value <> Nothing Then
+                                            If value isnot Nothing Then
                                                 TagV = TagValue(0).Replace("[", "").Replace("]", "")
                                                 Console.WriteLine(TagV)
                                                 sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
@@ -137,7 +137,7 @@ Public Class FormLoader
 
                                     ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                                     'If LItem.Control.Visible = True Then
-                                    If value <> Nothing Then
+                                    If value isnot Nothing Then
                                         TagV = TagValue(0).Replace("[", "").Replace("]", "")
                                         Console.WriteLine(TagV)
                                         'Function που ελέγχει αν υπάρχει ενα πεδίο μέσα στον SQLDataReader
@@ -265,18 +265,18 @@ NextItem:
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
                         'If LItem.ControlName.Contains("cboSides") Then Stop
-                        If LItem.ControlName <> Nothing Then
+                        If LItem.ControlName isnot Nothing Then
                             'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                             If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                                 Dim RDG As DevExpress.XtraEditors.RadioGroup
                                 RDG = LItem.Control
                                 For i As Integer = 0 To RDG.Properties.Items.Count - 1
                                     'Βάζω τις τιμές του TAG σε array
-                                    If RDG.Properties.Items(i).Tag <> Nothing Then
+                                    If RDG.Properties.Items(i).Tag isnot Nothing Then
                                         TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                         'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                         Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                        If value <> Nothing Then
+                                        If value isnot Nothing Then
                                             TagV = TagValue(0).Replace("[", "").Replace("]", "")
                                             Console.WriteLine(TagV)
                                             sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
@@ -299,7 +299,7 @@ NextItem:
                                 If CheckVisibility = True Then
                                     If LItem.Control.Visible = False Then GoTo NextItem
                                 End If
-                                If value <> Nothing Then
+                                If value isnot Nothing Then
                                     TagV = TagValue(0).Replace("[", "").Replace("]", "")
                                     Console.WriteLine(TagV)
                                     sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
@@ -420,7 +420,7 @@ NextItem:
                         LoadFormGRP(item, sSQL, IgnoreVisibility)
                     ElseIf TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                        If LItem.ControlName <> Nothing Then
+                        If LItem.ControlName isnot Nothing Then
                             ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             If LItem.Control.Tag <> "" Then
                                 'Βάζω τις τιμές του TAG σε array
@@ -433,7 +433,7 @@ NextItem:
                                 End If
 
                                 'If LItem.Control.Visible = True Then
-                                If value <> Nothing Then
+                                If value isnot Nothing Then
                                     TagV = TagValue(0).Replace("[", "").Replace("]", "")
                                     Console.WriteLine(TagV)
                                     If sdr.GetSchemaTable().Select("ColumnName='" & TagV & "'").Length > 0 Then

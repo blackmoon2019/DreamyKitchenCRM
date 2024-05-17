@@ -2,6 +2,7 @@
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraLayout
+Imports DevExpress.XtraLayout.Resizing
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
 
@@ -78,7 +79,7 @@ Public Class Projects
                 Frm.dtCharge.EditValue = DateTime.Now : Frm.dtPay.EditValue = DateTime.Now : Frm.LayoutControlGroup2.Enabled = False : Frm.txtCodeH.Text = GetNextID()
             Case FormMode.EditRecord
                 Dim sSQL As New System.Text.StringBuilder
-                If Frm.cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(Frm.cboCOU.EditValue.ToString))
+                If Frm.cboCOU.EditValue IsNot Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(Frm.cboCOU.EditValue.ToString))
                 FillCbo.AREAS(Frm.cboAREAS, sSQL)
 
                 TranshFieldAndValues = New Dictionary(Of String, String)
@@ -321,7 +322,7 @@ Public Class Projects
 
         Try
             If Valid.ValidateForm(Frm.LayoutControl2) Then
-                If ValiDationRules(True, False, True, False, True, True) = False Then Exit Sub
+                If ValiDationRules(True, False, True, False, True, True, False, False) = False Then Exit Sub
                 ' Καταχώριση/Ενημέρωση Ποσοστά-Τζίρους Έκθεσης
                 Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
                 myLayoutControls.Add(Frm.LayoutControl6)
@@ -384,13 +385,13 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
-    Public Sub SaveRecordD(Optional ByVal isCredit As Boolean = True, Optional ByVal e As DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs = Nothing)
+    Public Sub SaveRecordD(Optional ByVal isCredit As Boolean = True, Optional ByVal e As DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs = Nothing, Optional ValidationsFromGrid As Boolean = False)
         Dim sResult As Boolean
         Dim sGuid As String, sSQL As String
         Try
             If isCredit Then
                 If Valid.ValidateForm(Frm.LayoutControl3) Then
-                    If ValiDationRules(False, True, True, True, False, True, Frm.cboPayType.EditValue.ToString) = False Then Exit Sub
+                    If ValiDationRules(False, True, True, True, False, True, True, True, Frm.cboPayType.EditValue.ToString) = False Then Exit Sub
                     sGuid = System.Guid.NewGuid.ToString
                     sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSD", Frm.LayoutControl3,,, sGuid,, "transhID,IsCredit", toSQLValueS(ID) & ",1")
                     If sResult = True Then
@@ -490,7 +491,10 @@ Public Class Projects
         Try
             Dim sSQL As String
             If Frm.GridView1.FocusedColumn.Name = "colPayTypeID" Then
-                If ValiDationRules(False, True, False, False, False, Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString) = False Then Return False
+                If ValiDationRules(False, True, False, False, False, False, False, False, Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString) = False Then Return False
+            End If
+            If Frm.GridView1.FocusedColumn.Name = "colbankID" Or Frm.GridView1.FocusedColumn.Name = "colcash" Or Frm.GridView1.FocusedColumn.Name = "colamt" Then
+                If ValiDationRules(False, False, False, False, False, False, True, True, Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString, True) = False Then Return False
             End If
             If Not IsDBNull(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash")) Then
                 If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = True Then cash = 1 Else cash = 0
@@ -630,7 +634,8 @@ Public Class Projects
 
     End Function
     Public Function ValiDationRules(ByVal BenchValidation As Boolean, ByVal PayTypeValidations As Boolean, ByVal receiveAgreementValidation As Boolean,
-                                    ByVal BalValidation As Boolean, ByVal GenCompProject As Boolean, ByVal CompTranshValidation As Boolean, Optional ByVal sPayType As String = "") As Boolean
+                                    ByVal BalValidation As Boolean, ByVal GenCompProject As Boolean, ByVal CompTranshValidation As Boolean, ByVal PayWayValidations As Boolean,
+                                    ByVal CheckAmmountsValidation As Boolean, Optional ByVal sPayType As String = "", Optional ByVal ValidationsFromGrid As Boolean = False) As Boolean
         Dim sSQL As String
         Dim Cmd As SqlCommand
         Dim CountClosed As Integer
@@ -739,8 +744,71 @@ Public Class Projects
                     End If
                 End If
             End If
+            ' PayWayValidations Έλεγχος αν έχει επιλέξει τρόπο πληρωμής
+            If PayWayValidations Then
+                If ValidationsFromGrid = True And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = True And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "bankID").ToString <> "" Then
+                    XtraMessageBox.Show("Έχετε επιλέξει τρόπο πληρωμής Μετρητά και Τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+                If ValidationsFromGrid = True And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = False And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "bankID").ToString = "" Then
+                    XtraMessageBox.Show("Δεν έχετε επιλέξει τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+                If ValidationsFromGrid = False And Frm.chkCash.CheckState = CheckState.Checked And Frm.cboBANK.EditValue IsNot Nothing Then
+                    XtraMessageBox.Show("Έχετε επιλέξει τρόπο πληρωμής Μετρητά και Τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+                If ValidationsFromGrid = False And Frm.chkCash.CheckState = CheckState.Unchecked And Frm.cboBANK.EditValue = Nothing Then
+                    XtraMessageBox.Show("Δεν έχετε επιλέξει τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                End If
+            End If
 
-            Return True
+            'CheckAmmountsValidation Έλεγχος αν έχει δώσει σωστά τραπεζικά και μετρητά σύμφωνα με το ποσό παραστατικού
+            If CheckAmmountsValidation Then
+                Dim AmtCash As Double = 0
+                Dim AmtBank As Double = 0
+                If ValidationsFromGrid = True Then
+                    If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = True Then
+                        AmtCash = Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "amt")
+                    Else
+                        AmtBank = Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "amt")
+                    End If
+                Else
+                    If Frm.chkCash.CheckState = CheckState.Checked Then
+                        AmtCash = DbnullToZero(Frm.txtamtD)
+                    Else
+                        AmtBank = DbnullToZero(Frm.txtamtD)
+                    End If
+                End If
+                    sSQL = "  select   PosoParastatikou as Trapezika,GENTOT - PosoParastatikou as Metrhta,
+                         (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =1 and transhID=" & toSQLValueS(ID) & ") as CreditCash,
+                         (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =0 and transhID=" & toSQLValueS(ID) & ") as CreditBank
+                        FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(ID)
+                Cmd = New SqlCommand(sSQL, CNDB)
+                Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                If (sdr.Read() = True) Then
+                    Dim Trapezika As Double = sdr.GetDecimal(sdr.GetOrdinal("Trapezika"))
+                    Dim Metrhta As Double = sdr.GetDecimal(sdr.GetOrdinal("Metrhta"))
+                    Dim CreditCash As Double = sdr.GetDecimal(sdr.GetOrdinal("CreditCash")) + AmtCash
+                    Dim CreditBank As Double = sdr.GetDecimal(sdr.GetOrdinal("CreditBank")) + AmtBank
+
+                    If CreditCash > Metrhta Then
+                        XtraMessageBox.Show("Το πόσο μετρητών είναι μεγαλύτερο από το επιτρεπτό όριο.Το όριο είναι " & Metrhta & "€", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        sdr.Close()
+                        Return False
+                    End If
+                    If CreditBank > Trapezika Then
+                        XtraMessageBox.Show("Το πόσο τραπεζικών είναι μεγαλύτερο από το επιτρεπτό όριο.Το όριο είναι " & Trapezika & "€", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        sdr.Close()
+                        Return False
+                    End If
+                    sdr.Close()
+                End If
+
+            End If
+
+                Return True
 
 
         Catch ex As Exception
@@ -784,7 +852,7 @@ Public Class Projects
                 oCmd.ExecuteNonQuery()
             End Using
             For Each CheckedItem As CheckedListBoxItem In Frm.cboTransC.Properties.GetItems
-                If Frm.cboTransC.EditValue <> Nothing Then
+                If Frm.cboTransC.EditValue IsNot Nothing Then
                     If CheckedItem.CheckState = CheckState.Checked Then
                         sSQL.Clear()
                         sSQL.Append("INSERT INTO TRANSC(TRANSHCID,TRANSHID,createdOn,createdBy)")
@@ -811,7 +879,7 @@ Public Class Projects
                 oCmd.ExecuteNonQuery()
             End Using
             For Each CheckedItem As CheckedListBoxItem In Frm2.cboTransC.Properties.GetItems
-                If Frm2.cboTransC.EditValue <> Nothing Then
+                If Frm2.cboTransC.EditValue IsNot Nothing Then
                     If CheckedItem.CheckState = CheckState.Checked Then
                         sSQL.Clear()
                         sSQL.Append("INSERT INTO TRANSC(TRANSHCID,TRANSHID,createdOn,createdBy)")

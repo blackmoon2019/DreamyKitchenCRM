@@ -855,10 +855,10 @@ Public Class frmCUSOfferOrderDoors
     End Sub
     Private Sub cboCompProject_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompProject.EditValueChanged
         If Mode = FormMode.NewRecord Then CusOfferOrderDoors.FillCusTransh(lkupEditValue(cboCUS), lkupEditValue(cboCompProject), chkGenOffer.CheckState, "")
-        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue IsNot Nothing Then cmdCompCollection.Enabled = True Else cmdCompCollection.Enabled = False
+        If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue IsNot Nothing And chkGenOffer.CheckState = CheckState.Checked Then cmdCompCollection.Enabled = True Else cmdCompCollection.Enabled = False
     End Sub
     Private Sub chkGenOffer_CheckStateChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckStateChanged
-        If chkGenOffer.CheckState = CheckState.Checked Then cmdCusCollection.Enabled = False Else cmdCusCollection.Enabled = True
+        If chkGenOffer.CheckState = CheckState.Checked Then cmdCompCollection.Enabled = True : cmdCusCollection.Enabled = False Else cmdCompCollection.Enabled = False : cmdCusCollection.Enabled = True
     End Sub
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
         receiveAgreement = cboTRANSH.GetColumnValue("receiveAgreement")

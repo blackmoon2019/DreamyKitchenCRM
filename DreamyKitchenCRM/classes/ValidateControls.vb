@@ -310,7 +310,7 @@ Public Class ValidateControls
         For Each item As DevExpress.XtraLayout.BaseLayoutItem In control.Items
             If TypeOf item Is DevExpress.XtraLayout.LayoutControlItem Then
                 Dim LItem As DevExpress.XtraLayout.LayoutControlItem = CType(item, DevExpress.XtraLayout.LayoutControlItem)
-                If LItem.ControlName <> Nothing Then
+                If LItem.ControlName isnot Nothing Then
                     'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                     If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                         Dim RDG As DevExpress.XtraEditors.RadioGroup
@@ -375,7 +375,7 @@ NextItem:
         For Each item As DevExpress.XtraLayout.BaseLayoutItem In control.Items
             If TypeOf item Is DevExpress.XtraLayout.LayoutControlItem Then
                 Dim LItem As DevExpress.XtraLayout.LayoutControlItem = CType(item, DevExpress.XtraLayout.LayoutControlItem)
-                If LItem.ControlName <> Nothing Then
+                If LItem.ControlName isnot Nothing Then
                     'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                     If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                         Dim RDG As DevExpress.XtraEditors.RadioGroup

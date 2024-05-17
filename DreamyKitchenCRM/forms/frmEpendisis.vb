@@ -117,9 +117,9 @@ Public Class frmEpendisis
         Dim frmVALUELISTITEM As frmValueListItem = New frmValueListItem
         frmVALUELISTITEM.CallerControl = cboValueListItem
         frmVALUELISTITEM.CalledFromControl = True
-        If cboValueListItem.EditValue <> Nothing Then frmVALUELISTITEM.ID = cboValueListItem.EditValue.ToString
+        If cboValueListItem.EditValue isnot Nothing Then frmVALUELISTITEM.ID = cboValueListItem.EditValue.ToString
         frmVALUELISTITEM.MdiParent = frmMain
-        If cboValueListItem.EditValue <> Nothing Then frmVALUELISTITEM.Mode = FormMode.EditRecord Else frmVALUELISTITEM.Mode = FormMode.NewRecord
+        If cboValueListItem.EditValue isnot Nothing Then frmVALUELISTITEM.Mode = FormMode.EditRecord Else frmVALUELISTITEM.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVALUELISTITEM), New Point(CInt(frmVALUELISTITEM.Parent.ClientRectangle.Width / 2 - frmVALUELISTITEM.Width / 2), CInt(frmVALUELISTITEM.Parent.ClientRectangle.Height / 2 - frmVALUELISTITEM.Height / 2)))
         frmVALUELISTITEM.Show()
     End Sub

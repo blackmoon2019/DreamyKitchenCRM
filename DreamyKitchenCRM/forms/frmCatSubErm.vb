@@ -108,9 +108,9 @@ Public Class frmCatSubErm
         frmGen.DataTable = "CAT_ERM"
         frmGen.CallerControl = cboCatErm
         frmGen.CalledFromControl = True
-        If cboCatErm.EditValue <> Nothing Then frmGen.ID = cboCatErm.EditValue.ToString
+        If cboCatErm.EditValue isnot Nothing Then frmGen.ID = cboCatErm.EditValue.ToString
         frmGen.MdiParent = frmMain
-        If cboCatErm.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
+        If cboCatErm.EditValue isnot Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
         frmGen.Show()
     End Sub

@@ -84,7 +84,7 @@ Public Class frmTransactions
     End Sub
     Private Sub cboCOU_EditValueChanged(sender As Object, e As EventArgs) Handles cboCOU.EditValueChanged
         Dim sSQL As New System.Text.StringBuilder
-        If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
+        If cboCOU.EditValue isnot Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
         FillCbo.AREAS(cboAREAS, sSQL)
         FillCbo.ADR(cboADR, ManageCbo.ADRsSQL(cboCOU, cboAREAS))
     End Sub
@@ -95,14 +95,14 @@ Public Class frmTransactions
     Private Sub cboCOU_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCOU.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboCOU.EditValue = Nothing : ManageCbo.ManageCOU(cboCOU, FormMode.NewRecord)
-            Case 2 : If cboCOU.EditValue <> Nothing Then ManageCbo.ManageCOU(cboCOU, FormMode.EditRecord)
+            Case 2 : If cboCOU.EditValue isnot Nothing Then ManageCbo.ManageCOU(cboCOU, FormMode.EditRecord)
             Case 3 : cboCOU.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboAREAS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboAREAS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboAREAS.EditValue = Nothing : ManageCbo.ManageAREAS(cboAREAS, FormMode.NewRecord)
-            Case 2 : If cboAREAS.EditValue <> Nothing Then ManageCbo.ManageAREAS(cboAREAS, FormMode.EditRecord)
+            Case 2 : If cboAREAS.EditValue isnot Nothing Then ManageCbo.ManageAREAS(cboAREAS, FormMode.EditRecord)
             Case 3 : cboAREAS.EditValue = Nothing
         End Select
     End Sub
@@ -110,7 +110,7 @@ Public Class frmTransactions
     Private Sub cboADR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboADR.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboADR.EditValue = Nothing : ManageCbo.ManageADR(cboADR, FormMode.NewRecord)
-            Case 2 : If cboADR.EditValue <> Nothing Then ManageCbo.ManageADR(cboADR, FormMode.EditRecord)
+            Case 2 : If cboADR.EditValue isnot Nothing Then ManageCbo.ManageADR(cboADR, FormMode.EditRecord)
             Case 3 : cboADR.EditValue = Nothing
         End Select
     End Sub
@@ -370,7 +370,7 @@ Public Class frmTransactions
     Private Sub cboTanshFCategory_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboTanshFCategory.ButtonPressed
         Select Case e.Button.Index
             Case 1 : cboTanshFCategory.EditValue = Nothing : ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.NewRecord)
-            Case 2 : If cboTanshFCategory.EditValue <> Nothing Then ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.EditRecord)
+            Case 2 : If cboTanshFCategory.EditValue isnot Nothing Then ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.EditRecord)
             Case 3 : cboTanshFCategory.EditValue = Nothing
         End Select
 

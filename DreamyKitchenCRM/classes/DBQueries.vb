@@ -226,7 +226,7 @@ Public Class DBQueries
             For Each item As BaseLayoutItem In control.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                         If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                             Dim RDG As DevExpress.XtraEditors.RadioGroup
@@ -236,7 +236,7 @@ Public Class DBQueries
                                 TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                     If RDG.SelectedIndex = i Then
@@ -260,7 +260,7 @@ Public Class DBQueries
 
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             'If LItem.Control.Visible = True Then
-                            If value <> Nothing Then
+                            If value IsNot Nothing Then
                                 ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                 sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                 ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -269,7 +269,7 @@ Public Class DBQueries
                                 If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -304,7 +304,7 @@ Public Class DBQueries
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
                                     Debug.Print(cbo.Name)
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & cbo.SelectedIndex)
                                         Else
@@ -414,7 +414,7 @@ NextItem:
             For Each item As BaseLayoutItem In control.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                         If LItem.Control.Tag <> "" Then
                             'Βάζω τις τιμές του TAG σε array
@@ -424,7 +424,7 @@ NextItem:
 
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             If LItem.Control.Visible = True Then
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                     ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -434,7 +434,7 @@ NextItem:
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -442,7 +442,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                         Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & cbo.SelectedIndex)
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -451,7 +451,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -526,7 +526,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.RatingControl Then
                                         Dim rt As DevExpress.XtraEditors.RatingControl
                                         rt = Ctrl
-                                        If rt.EditValue <> Nothing Then
+                                        If rt.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(rt.EditValue.ToString, True))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -578,7 +578,7 @@ NextItem:
             For Each item As BaseLayoutItem In control.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                         If LItem.Control.Tag <> "" Then
                             'Βάζω τις τιμές του TAG σε array
@@ -588,7 +588,7 @@ NextItem:
 
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             If LItem.Control.Visible = True Then
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                     ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -597,7 +597,7 @@ NextItem:
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQL.Append("NULL")
@@ -605,7 +605,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                         Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                                 sSQL.Append(cbo.SelectedIndex)
                                             Else
@@ -621,7 +621,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQL.Append("NULL")
@@ -678,7 +678,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.RatingControl Then
                                         Dim rt As DevExpress.XtraEditors.RatingControl
                                         rt = Ctrl
-                                        If rt.EditValue <> Nothing Then
+                                        If rt.EditValue IsNot Nothing Then
                                             sSQL.Append(toSQLValueS(rt.EditValue.ToString, True))
                                         Else
                                             sSQL.Append("NULL")
@@ -756,18 +756,18 @@ NextItem:
                 For Each item As BaseLayoutItem In control.Items
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                        If LItem.ControlName <> Nothing Then
+                        If LItem.ControlName IsNot Nothing Then
                             'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                             If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                                 Dim RDG As DevExpress.XtraEditors.RadioGroup
                                 RDG = LItem.Control
                                 For i As Integer = 0 To RDG.Properties.Items.Count - 1
-                                    If RDG.Properties.Items(i).Tag <> Nothing Then
+                                    If RDG.Properties.Items(i).Tag IsNot Nothing Then
                                         'Βάζω τις τιμές του TAG σε array
                                         TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                         'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                         Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                        If value <> Nothing Then
+                                        If value IsNot Nothing Then
                                             ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                             sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                             If RDG.SelectedIndex = i Then
@@ -792,7 +792,7 @@ NextItem:
 
                                 ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                                 'If LItem.Control.Visible = True Then
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                     ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -801,7 +801,7 @@ NextItem:
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -894,7 +894,7 @@ NextItem:
             For Each item As BaseLayoutItem In GRP.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         If ExceptFields IsNot Nothing Then
                             If IsExceptedField(LItem, ExceptFields) Then GoTo NextItem
                         End If
@@ -907,7 +907,7 @@ NextItem:
                                 TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                     If RDG.SelectedIndex = i Then
@@ -931,7 +931,7 @@ NextItem:
 
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             'If LItem.Control.Visible = True Then
-                            If value <> Nothing Then
+                            If value IsNot Nothing Then
                                 ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                 sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                 ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -948,7 +948,7 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & cbo.SelectedIndex)
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -956,7 +956,7 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -998,7 +998,7 @@ NextItem:
                                     Dim txt As DevExpress.XtraEditors.TextEdit
                                     txt = Ctrl
                                     If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
-                                        'If txt.EditValue <> Nothing Then txt.EditValue = txt.Text
+                                        'If txt.EditValue isnot Nothing Then txt.EditValue = txt.Text
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
@@ -1161,7 +1161,7 @@ NextItem:
                 '                    If txt.Visible = False Then GoTo NextItem
                 '                End If
                 '                'If LItem.Control.Visible = True 
-                '                If value <> Nothing Then
+                '                If value isnot Nothing Then
                 '                    ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                 '                    sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                 '                    ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -1179,7 +1179,7 @@ NextItem:
                 'End If
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                         If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                             Dim RDG As DevExpress.XtraEditors.RadioGroup
@@ -1190,7 +1190,7 @@ NextItem:
                                     TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                     'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                     Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                    If value <> Nothing Then
+                                    If value IsNot Nothing Then
                                         ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                         sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                         If RDG.SelectedIndex = i Then
@@ -1214,7 +1214,7 @@ NextItem:
                                 If LItem.Control.Visible = False Then GoTo NextItem
                             End If
                             'If LItem.Control.Visible = True 
-                            If value <> Nothing Then
+                            If value IsNot Nothing Then
                                 ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                 sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                 ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -1255,7 +1255,7 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                             sSQL.Append(cbo.SelectedIndex)
                                         Else
@@ -1347,18 +1347,18 @@ NextItem:
                 For Each item As BaseLayoutItem In control.Items
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                        If LItem.ControlName <> Nothing Then
+                        If LItem.ControlName IsNot Nothing Then
                             'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                             If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                                 Dim RDG As DevExpress.XtraEditors.RadioGroup
                                 RDG = LItem.Control
                                 For i As Integer = 0 To RDG.Properties.Items.Count - 1
-                                    If RDG.Properties.Items(i).Tag <> Nothing Then
+                                    If RDG.Properties.Items(i).Tag IsNot Nothing Then
                                         'Βάζω τις τιμές του TAG σε array
                                         TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                         'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                         Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                        If value <> Nothing Then
+                                        If value IsNot Nothing Then
                                             ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                             sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                             If RDG.SelectedIndex = i Then
@@ -1381,7 +1381,7 @@ NextItem:
                                     If LItem.Control.Visible = False Then GoTo NextItem
                                 End If
                                 'If LItem.Control.Visible = True 
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                     ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -1409,7 +1409,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                         Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                                 sSQL.Append(cbo.SelectedIndex)
                                             Else
@@ -1498,7 +1498,7 @@ NextItem:
             For Each item As BaseLayoutItem In GRP.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                         If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                             Dim RDG As DevExpress.XtraEditors.RadioGroup
@@ -1508,7 +1508,7 @@ NextItem:
                                 TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                     If RDG.SelectedIndex = i Then
@@ -1530,7 +1530,7 @@ NextItem:
                                 If LItem.Control.Visible = False Then GoTo NextItem
                             End If
                             'If LItem.Control.Visible = True 
-                            If value <> Nothing Then
+                            If value IsNot Nothing Then
                                 If ExceptFields IsNot Nothing Then
                                     If IsExceptedField(LItem, ExceptFields) Then GoTo NextItem
                                 End If
@@ -1550,7 +1550,7 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQL.Append(cbo.SelectedIndex)
                                     Else
                                         sSQL.Append("NULL")
@@ -1558,7 +1558,7 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
                                     Else
                                         sSQL.Append("NULL")

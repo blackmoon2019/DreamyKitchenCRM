@@ -78,7 +78,7 @@ Public Class frmDBConnection
 
     End Sub
     Private Sub cboDatabases_EditValueChanged(sender As Object, e As EventArgs) Handles cboDatabases.EditValueChanged
-        If sender.editvalue <> Nothing Then cmdConnect.Enabled = True : sDatabaseName = sender.editvalue
+        If sender.editvalue isnot Nothing Then cmdConnect.Enabled = True : sDatabaseName = sender.editvalue
     End Sub
 
     Private Sub cmdCancel_Click(sender As Object, e As EventArgs) Handles cmdCancel.Click

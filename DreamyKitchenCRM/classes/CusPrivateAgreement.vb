@@ -117,9 +117,9 @@ Public Class CusPrivateAgreement
     Public Sub GetPayInAdvanceBal()
         Dim TotalPayinAdvance As Double, CloseTot As Double, BalPayinAdvance As Double, TotalPayinAdvanceBench As Double
         Dim CusPayInAdvance As Double
-        If Frm.txtPayinAdvanceTot.EditValue <> Nothing Then TotalPayinAdvance = DbnullToZero(Frm.txtPayinAdvanceTot)
-        If Frm.txtPayInAdvanceBench.EditValue <> Nothing Then TotalPayinAdvanceBench = DbnullToZero(Frm.txtPayInAdvanceBench)
-        If Frm.txtCloseTot.EditValue <> Nothing Then CloseTot = DbnullToZero(Frm.txtCloseTot)
+        If Frm.txtPayinAdvanceTot.EditValue IsNot Nothing Then TotalPayinAdvance = DbnullToZero(Frm.txtPayinAdvanceTot)
+        If Frm.txtPayInAdvanceBench.EditValue isnot Nothing Then TotalPayinAdvanceBench = DbnullToZero(Frm.txtPayInAdvanceBench)
+        If Frm.txtCloseTot.EditValue isnot Nothing Then CloseTot = DbnullToZero(Frm.txtCloseTot)
         CusPayInAdvance = CusPayInAdvanceInf()
         BalPayinAdvance = CusPayInAdvance - (TotalPayinAdvance + TotalPayinAdvanceBench + CloseTot)
         Frm.txtPayinAdvanceBal.EditValue = BalPayinAdvance
@@ -293,14 +293,15 @@ Public Class CusPrivateAgreement
         End Try
     End Sub
     Private Sub CheckForValidPayinAdvaνce()
-        Dim TotalPayinAdvance As Double, PayinAdvance As Double, closeAmt As Double, CheckPayInAdvance As Double
+        Dim TotalPayinAdvance As Double, PayinAdvance As Double, closeAmt As Double, CheckPayInAdvance As Double, PayInAdvanceBench As Double
         TotalPayinAdvance = 0
         TotalPayinAdvance = DbnullToZero(Frm.txtPayinAdvanceCash)
         TotalPayinAdvance = TotalPayinAdvance + DbnullToZero(Frm.txtPayinAdvanceBank)
+        PayInAdvanceBench = DbnullToZero(Frm.txtPayInAdvanceBench)
         PayinAdvance = DbnullToZero(Frm.txtPayinAdvanceTot)
         closeAmt = DbnullToZero(Frm.txtCloseBank)
         closeAmt = closeAmt + DbnullToZero(Frm.txtCloseCash)
-        TotalPayinAdvance = TotalPayinAdvance + closeAmt
+        TotalPayinAdvance = TotalPayinAdvance + closeAmt + PayInAdvanceBench
         ' Αυτό που πρέπει να δίνει ο πελάτης με το συμφωνητικό είναι ως προκαταβολή το 50% του έργου
         CheckPayInAdvance = DbnullToZero(Frm.txtGenTot) : CheckPayInAdvance = CheckPayInAdvance / 2
         If Math.Round(TotalPayinAdvance, 2) < Math.Round(CheckPayInAdvance, 2) Then
@@ -343,7 +344,7 @@ Public Class CusPrivateAgreement
 
     Public Function CusPayInAdvanceInf() As Double
         Dim PayinAdvance As Double
-        If Frm.txtGenTot.EditValue <> Nothing Then
+        If Frm.txtGenTot.EditValue isnot Nothing Then
             PayinAdvance = DbnullToZero(Frm.txtGenTot)
             PayinAdvance = PayinAdvance / 2
             Frm.lblPayInAdvnace.Text = "Ο πελάτης πρέπει να καταβάλει το 50% του έργου: " & PayinAdvance & "€"

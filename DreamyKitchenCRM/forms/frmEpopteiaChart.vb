@@ -17,7 +17,7 @@ Public Class frmEpopteiaChart
     Private Sub cboCUS_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 2 : If cboCUS.EditValue isnot Nothing Then ManageCus()
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
@@ -28,7 +28,7 @@ Public Class frmEpopteiaChart
         form1.CallerControl = cboCUS
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
+        If cboCUS.EditValue isnot Nothing Then
             form1.ID = cboCUS.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else

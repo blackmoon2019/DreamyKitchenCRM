@@ -3099,7 +3099,7 @@ Public Class frmScroller
             sActiveFilter = GridView1.ActiveFilterString
             sVal = RepositoryBarRecords.Items.IndexOf(BarRecords.EditValue)
 
-            If sVal <> 4 And BarRecords.EditValue <> Nothing Then
+            If sVal <> 4 And BarRecords.EditValue isnot Nothing Then
                 sSQL = "SELECT top " & BarRecords.EditValue & " * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
             Else
                 sSQL = "SELECT  * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition

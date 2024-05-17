@@ -137,7 +137,7 @@ Module Main
     End Function
     Public Function toSQLValueS(t As String, Optional ByVal isnum As Boolean = False) As String
         Try
-            If t <> Nothing Then
+            If t isnot Nothing Then
                 If t.Length = 0 Then
                     Return "NULL" 'this will pass through any SQL statement without notice  
                 Else 'Lets suppose our textbox is checked to contain only numbers, so we count on it  

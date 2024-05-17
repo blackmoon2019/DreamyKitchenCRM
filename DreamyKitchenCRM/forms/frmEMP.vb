@@ -68,7 +68,7 @@ Public Class frmEMP
                 'dtDTS.EditValue = DateTime.Now
                 txtCode.Text = DBQ.GetNextId("EMP")
             Case FormMode.EditRecord
-                If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
+                If cboCOU.EditValue isnot Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
                 FillCbo.AREAS(cboAREAS, sSQL)
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_EMP where id ='" + sID + "'")
                 LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,empID,files,filename,comefrom,createdon,realname From vw_EMP_F where empID = '" & sID & "'")
@@ -117,9 +117,9 @@ Public Class frmEMP
         form1.L2.Text = "Θέση"
         form1.DataTable = "JOBS"
         form1.CallerControl = cboJobs
-        If cboJobs.EditValue <> Nothing Then form1.ID = cboJobs.EditValue.ToString
+        If cboJobs.EditValue isnot Nothing Then form1.ID = cboJobs.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboJobs.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboJobs.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -132,9 +132,9 @@ Public Class frmEMP
         form1.DataTable = "AREAS"
         form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form1.CallerControl = cboAREAS
-        If cboAREAS.EditValue <> Nothing Then form1.ID = cboAREAS.EditValue.ToString
+        If cboAREAS.EditValue isnot Nothing Then form1.ID = cboAREAS.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboAREAS.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboAREAS.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -142,8 +142,8 @@ Public Class frmEMP
         Dim sSQL As New System.Text.StringBuilder
         Dim CouID As String = ""
         Dim AreaID As String = ""
-        If cboCOU.EditValue <> Nothing Then CouID = cboCOU.EditValue.ToString
-        If cboAREAS.EditValue <> Nothing Then AreaID = cboAREAS.EditValue.ToString
+        If cboCOU.EditValue isnot Nothing Then CouID = cboCOU.EditValue.ToString
+        If cboAREAS.EditValue isnot Nothing Then AreaID = cboAREAS.EditValue.ToString
         sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
         If CouID.Length > 0 Or AreaID.Length > 0 Or txtTK.Text.Length > 0 Then sSQL.AppendLine(" where ")
         If CouID.Length > 0 Then sSQL.AppendLine(" couid = " & toSQLValueS(CouID))
@@ -174,10 +174,10 @@ Public Class frmEMP
         form1.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
         form1.L8.Control.Tag = "Ar,0,1,2"
-        If cboADR.EditValue <> Nothing Then form1.ID = cboADR.EditValue.ToString
+        If cboADR.EditValue isnot Nothing Then form1.ID = cboADR.EditValue.ToString
         form1.MdiParent = frmMain
 
-        If cboADR.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboADR.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
 
@@ -190,9 +190,9 @@ Public Class frmEMP
         form1.DataTable = "COU"
         form1.CallerControl = cboCOU
         form1.CalledFromControl = True
-        If cboCOU.EditValue <> Nothing Then form1.ID = cboCOU.EditValue.ToString
+        If cboCOU.EditValue isnot Nothing Then form1.ID = cboCOU.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboCOU.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboCOU.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -205,9 +205,9 @@ Public Class frmEMP
         form1.DataTable = "DOY"
         form1.CallerControl = cboDOY
         form1.CalledFromControl = True
-        If cboDOY.EditValue <> Nothing Then form1.ID = cboDOY.EditValue.ToString
+        If cboDOY.EditValue isnot Nothing Then form1.ID = cboDOY.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboDOY.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboDOY.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -220,9 +220,9 @@ Public Class frmEMP
         form1.DataTable = "PRF"
         form1.CallerControl = cboPRF
         form1.CalledFromControl = True
-        If cboPRF.EditValue <> Nothing Then form1.ID = cboPRF.EditValue.ToString
+        If cboPRF.EditValue isnot Nothing Then form1.ID = cboPRF.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboPRF.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboPRF.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -234,9 +234,9 @@ Public Class frmEMP
         form1.DataTable = "DEP"
         form1.CalledFromControl = True
         form1.CallerControl = cboDEP
-        If cboDEP.EditValue <> Nothing Then form1.ID = cboDEP.EditValue.ToString
+        If cboDEP.EditValue isnot Nothing Then form1.ID = cboDEP.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboDEP.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboDEP.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -268,21 +268,21 @@ Public Class frmEMP
     Private Sub cboCOU_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCOU.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboCOU.EditValue = Nothing : ManageCOU()
-            Case 2 : If cboCOU.EditValue <> Nothing Then ManageCOU()
+            Case 2 : If cboCOU.EditValue isnot Nothing Then ManageCOU()
             Case 3 : cboCOU.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboDOY_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDOY.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDOY.EditValue = Nothing : ManageDOY()
-            Case 2 : If cboDOY.EditValue <> Nothing Then ManageDOY()
+            Case 2 : If cboDOY.EditValue isnot Nothing Then ManageDOY()
             Case 3 : cboDOY.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboPRF_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPRF.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboPRF.EditValue = Nothing : ManagePRF()
-            Case 2 : If cboPRF.EditValue <> Nothing Then ManagePRF()
+            Case 2 : If cboPRF.EditValue isnot Nothing Then ManagePRF()
             Case 3 : cboPRF.EditValue = Nothing
         End Select
     End Sub
@@ -290,7 +290,7 @@ Public Class frmEMP
     Private Sub cboAREAS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboAREAS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboAREAS.EditValue = Nothing : ManageAREAS()
-            Case 2 : If cboAREAS.EditValue <> Nothing Then ManageAREAS()
+            Case 2 : If cboAREAS.EditValue isnot Nothing Then ManageAREAS()
             Case 3 : cboAREAS.EditValue = Nothing
         End Select
     End Sub
@@ -298,7 +298,7 @@ Public Class frmEMP
     Private Sub cboADR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboADR.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboADR.EditValue = Nothing : ManageADR()
-            Case 2 : If cboADR.EditValue <> Nothing Then ManageADR()
+            Case 2 : If cboADR.EditValue isnot Nothing Then ManageADR()
             Case 3 : cboADR.EditValue = Nothing
         End Select
     End Sub
@@ -334,7 +334,7 @@ Public Class frmEMP
 
     Private Sub cboCOU_EditValueChanged(sender As Object, e As EventArgs) Handles cboCOU.EditValueChanged
         Dim sSQL As New System.Text.StringBuilder
-        If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
+        If cboCOU.EditValue isnot Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
         FillCbo.AREAS(cboAREAS, sSQL)
         FillCbo.ADR(cboADR, ADRsSQL)
     End Sub
@@ -398,7 +398,7 @@ Public Class frmEMP
     Private Sub cboDEP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDEP.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDEP.EditValue = Nothing : ManageDEP()
-            Case 2 : If cboDEP.EditValue <> Nothing Then ManageDEP()
+            Case 2 : If cboDEP.EditValue isnot Nothing Then ManageDEP()
             Case 3 : cboDEP.EditValue = Nothing
         End Select
     End Sub
@@ -408,14 +408,14 @@ Public Class frmEMP
     'Private Sub cboSER_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
     '    Select Case e.Button.Index
     '        Case 1 : cboSER.EditValue = Nothing : ManageSer()
-    '        Case 2 : If cboSER.EditValue <> Nothing Then ManageSer()
+    '        Case 2 : If cboSER.EditValue isnot Nothing Then ManageSer()
     '        Case 3 : cboSER.EditValue = Nothing
     '    End Select
     'End Sub
     'Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs)
     '    Select Case e.Button.Index
     '        Case 1 : cboSaler.EditValue = Nothing : ManageSaler()
-    '        Case 2 : If cboSaler.EditValue <> Nothing Then ManageSaler()
+    '        Case 2 : If cboSaler.EditValue isnot Nothing Then ManageSaler()
     '        Case 3 : cboSaler.EditValue = Nothing
     '    End Select
     'End Sub
@@ -425,7 +425,7 @@ Public Class frmEMP
     '    form1.CallerControl = cboSER
     '    form1.CalledFromControl = True
     '    form1.MdiParent = frmMain
-    '    If cboSER.EditValue <> Nothing Then
+    '    If cboSER.EditValue isnot Nothing Then
     '        form1.ID = cboSER.EditValue.ToString
     '        form1.Mode = FormMode.EditRecord
     '    Else
@@ -444,10 +444,10 @@ Public Class frmEMP
     '    form1.DataTable = "SALERS"
     '    form1.CalledFromControl = True
     '    form1.CallerControl = cboSaler
-    '    If cboSaler.EditValue <> Nothing Then form1.ID = cboSaler.EditValue.ToString
+    '    If cboSaler.EditValue isnot Nothing Then form1.ID = cboSaler.EditValue.ToString
     '    form1.MdiParent = frmMain
     '    form1.L6.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-    '    If cboSaler.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+    '    If cboSaler.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
     '    frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
     '    form1.Show()
     'End Sub
@@ -455,7 +455,7 @@ Public Class frmEMP
     Private Sub cboJobs_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboJobs.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboJobs.EditValue = Nothing : ManageJOBS()
-            Case 2 : If cboJobs.EditValue <> Nothing Then ManageJOBS()
+            Case 2 : If cboJobs.EditValue isnot Nothing Then ManageJOBS()
             Case 3 : cboJobs.EditValue = Nothing
         End Select
 

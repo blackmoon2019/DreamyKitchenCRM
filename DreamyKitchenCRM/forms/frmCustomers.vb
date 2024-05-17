@@ -50,7 +50,7 @@ Public Class frmCustomers
                 txtCode.Text = Customers.GetNextID
             Case FormMode.EditRecord
                 Dim sSQL As New System.Text.StringBuilder
-                If cboCOU.EditValue <> Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
+                If cboCOU.EditValue isnot Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
                 FillCbo.AREAS(cboAREAS, sSQL)
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_CCT where id ='" + sID + "'")
                 LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,cctID,filename,comefrom,createdon,realname From vw_CCT_F where isnull(isInvoice,0)=0 and cctID = '" & sID & "'")
@@ -77,28 +77,28 @@ Public Class frmCustomers
     Private Sub cboDOY_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDOY.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboDOY.EditValue = Nothing : ManageCbo.ManageDOY(cboDOY, FormMode.NewRecord)
-            Case 2 : If cboDOY.EditValue <> Nothing Then ManageCbo.ManageDOY(cboDOY, FormMode.EditRecord)
+            Case 2 : If cboDOY.EditValue isnot Nothing Then ManageCbo.ManageDOY(cboDOY, FormMode.EditRecord)
             Case 3 : cboDOY.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboPRF_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPRF.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboPRF.EditValue = Nothing : ManageCbo.ManagePRF(cboPRF, FormMode.NewRecord)
-            Case 2 : If cboPRF.EditValue <> Nothing Then ManageCbo.ManagePRF(cboPRF, FormMode.EditRecord)
+            Case 2 : If cboPRF.EditValue isnot Nothing Then ManageCbo.ManagePRF(cboPRF, FormMode.EditRecord)
             Case 3 : cboPRF.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboCOU_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCOU.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboCOU.EditValue = Nothing : ManageCbo.ManageCOU(cboCOU, FormMode.NewRecord)
-            Case 2 : If cboCOU.EditValue <> Nothing Then ManageCbo.ManageCOU(cboCOU, FormMode.EditRecord)
+            Case 2 : If cboCOU.EditValue isnot Nothing Then ManageCbo.ManageCOU(cboCOU, FormMode.EditRecord)
             Case 3 : cboCOU.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboAREAS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboAREAS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboAREAS.EditValue = Nothing : ManageCbo.ManageAREAS(cboAREAS, FormMode.NewRecord)
-            Case 2 : If cboAREAS.EditValue <> Nothing Then ManageCbo.ManageAREAS(cboAREAS, FormMode.EditRecord)
+            Case 2 : If cboAREAS.EditValue isnot Nothing Then ManageCbo.ManageAREAS(cboAREAS, FormMode.EditRecord)
             Case 3 : cboAREAS.EditValue = Nothing
         End Select
     End Sub
@@ -106,7 +106,7 @@ Public Class frmCustomers
     Private Sub cboADR_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboADR.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboADR.EditValue = Nothing : ManageCbo.ManageADR(cboADR, FormMode.NewRecord)
-            Case 2 : If cboADR.EditValue <> Nothing Then ManageCbo.ManageADR(cboADR, FormMode.EditRecord)
+            Case 2 : If cboADR.EditValue isnot Nothing Then ManageCbo.ManageADR(cboADR, FormMode.EditRecord)
             Case 3 : cboADR.EditValue = Nothing
         End Select
     End Sub
@@ -152,7 +152,7 @@ Public Class frmCustomers
     Private Sub cboSRC_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSRC.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboSRC.EditValue = Nothing : ManageCbo.ManageSRC(cboSRC, FormMode.NewRecord)
-            Case 2 : If cboSRC.EditValue <> Nothing Then ManageCbo.ManageSRC(cboSRC, FormMode.EditRecord)
+            Case 2 : If cboSRC.EditValue isnot Nothing Then ManageCbo.ManageSRC(cboSRC, FormMode.EditRecord)
             Case 3 : cboSRC.EditValue = Nothing
         End Select
     End Sub
