@@ -4015,6 +4015,8 @@ Partial Public Class DM_TRANS
 
         Private columnisCredit As Global.System.Data.DataColumn
 
+        Private columncustranshid As Global.System.Data.DataColumn
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub New()
@@ -4203,6 +4205,14 @@ Partial Public Class DM_TRANS
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property custranshidColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustranshid
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
          Global.System.ComponentModel.Browsable(False)>
         Public ReadOnly Property Count() As Integer
@@ -4258,9 +4268,10 @@ Partial Public Class DM_TRANS
                     ByVal depositor As String,
                     ByVal cctFullname As String,
                     ByVal cusID As System.Guid,
-                    ByVal isCredit As Boolean) As vw_TRANSD_CreditRow
+                    ByVal isCredit As Boolean,
+                    ByVal custranshid As System.Guid) As vw_TRANSD_CreditRow
             Dim rowvw_TRANSD_CreditRow As vw_TRANSD_CreditRow = CType(Me.NewRow, vw_TRANSD_CreditRow)
-            Dim columnValuesArray() As Object = New Object() {ID, transhID, BankName, cash, amt, cmt, dtPay, RealName, modifiedOn, createdOn, bankID, GRMONTH, paid, PayTypeName, PayTypeID, depositor, cctFullname, cusID, isCredit}
+            Dim columnValuesArray() As Object = New Object() {ID, transhID, BankName, cash, amt, cmt, dtPay, RealName, modifiedOn, createdOn, bankID, GRMONTH, paid, PayTypeName, PayTypeID, depositor, cctFullname, cusID, isCredit, custranshid}
             rowvw_TRANSD_CreditRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_TRANSD_CreditRow)
             Return rowvw_TRANSD_CreditRow
@@ -4308,6 +4319,7 @@ Partial Public Class DM_TRANS
             Me.columncctFullname = MyBase.Columns("cctFullname")
             Me.columncusID = MyBase.Columns("cusID")
             Me.columnisCredit = MyBase.Columns("isCredit")
+            Me.columncustranshid = MyBase.Columns("custranshid")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -4351,6 +4363,8 @@ Partial Public Class DM_TRANS
             MyBase.Columns.Add(Me.columncusID)
             Me.columnisCredit = New Global.System.Data.DataColumn("isCredit", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnisCredit)
+            Me.columncustranshid = New Global.System.Data.DataColumn("custranshid", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustranshid)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, True))
             Me.columnID.AllowDBNull = False
             Me.columnID.Unique = True
@@ -4362,7 +4376,6 @@ Partial Public Class DM_TRANS
             Me.columnRealName.MaxLength = 200
             Me.columnGRMONTH.ReadOnly = True
             Me.columnGRMONTH.MaxLength = 50
-            Me.columnPayTypeName.AllowDBNull = False
             Me.columnPayTypeName.MaxLength = 150
             Me.columndepositor.MaxLength = 100
             Me.columncctFullname.MaxLength = 200
@@ -4524,6 +4537,8 @@ Partial Public Class DM_TRANS
 
         Private columnisCredit As Global.System.Data.DataColumn
 
+        Private columncustranshid As Global.System.Data.DataColumn
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub New()
@@ -4640,6 +4655,14 @@ Partial Public Class DM_TRANS
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property custranshidColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncustranshid
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
          Global.System.ComponentModel.Browsable(False)>
         Public ReadOnly Property Count() As Integer
@@ -4676,9 +4699,9 @@ Partial Public Class DM_TRANS
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Overloads Function Addvw_TRANSD_DebitRow(ByVal ID As System.Guid, ByVal transhID As System.Guid, ByVal amt As Decimal, ByVal dtPay As Date, ByVal RealName As String, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal cctFullname As String, ByVal cusID As System.Guid, ByVal isCredit As Boolean) As vw_TRANSD_DebitRow
+        Public Overloads Function Addvw_TRANSD_DebitRow(ByVal ID As System.Guid, ByVal transhID As System.Guid, ByVal amt As Decimal, ByVal dtPay As Date, ByVal RealName As String, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal cctFullname As String, ByVal cusID As System.Guid, ByVal isCredit As Boolean, ByVal custranshid As System.Guid) As vw_TRANSD_DebitRow
             Dim rowvw_TRANSD_DebitRow As vw_TRANSD_DebitRow = CType(Me.NewRow, vw_TRANSD_DebitRow)
-            Dim columnValuesArray() As Object = New Object() {ID, transhID, amt, dtPay, RealName, modifiedOn, createdOn, cctFullname, cusID, isCredit}
+            Dim columnValuesArray() As Object = New Object() {ID, transhID, amt, dtPay, RealName, modifiedOn, createdOn, cctFullname, cusID, isCredit, custranshid}
             rowvw_TRANSD_DebitRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_TRANSD_DebitRow)
             Return rowvw_TRANSD_DebitRow
@@ -4717,6 +4740,7 @@ Partial Public Class DM_TRANS
             Me.columncctFullname = MyBase.Columns("cctFullname")
             Me.columncusID = MyBase.Columns("cusID")
             Me.columnisCredit = MyBase.Columns("isCredit")
+            Me.columncustranshid = MyBase.Columns("custranshid")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -4742,6 +4766,8 @@ Partial Public Class DM_TRANS
             MyBase.Columns.Add(Me.columncusID)
             Me.columnisCredit = New Global.System.Data.DataColumn("isCredit", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnisCredit)
+            Me.columncustranshid = New Global.System.Data.DataColumn("custranshid", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncustranshid)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, True))
             Me.columnID.AllowDBNull = False
             Me.columnID.Unique = True
@@ -8428,7 +8454,11 @@ Partial Public Class DM_TRANS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Property PayTypeName() As String
             Get
-                Return CType(Me(Me.tablevw_TRANSD_Credit.PayTypeNameColumn), String)
+                Try
+                    Return CType(Me(Me.tablevw_TRANSD_Credit.PayTypeNameColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'PayTypeName' in table 'vw_TRANSD_Credit' is DBNull.", e)
+                End Try
             End Get
             Set
                 Me(Me.tablevw_TRANSD_Credit.PayTypeNameColumn) = value
@@ -8503,6 +8533,21 @@ Partial Public Class DM_TRANS
             End Get
             Set
                 Me(Me.tablevw_TRANSD_Credit.isCreditColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property custranshid() As System.Guid
+            Get
+                Try
+                    Return CType(Me(Me.tablevw_TRANSD_Credit.custranshidColumn), Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'custranshid' in table 'vw_TRANSD_Credit' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSD_Credit.custranshidColumn) = value
             End Set
         End Property
 
@@ -8616,6 +8661,18 @@ Partial Public Class DM_TRANS
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IsPayTypeNameNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSD_Credit.PayTypeNameColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetPayTypeNameNull()
+            Me(Me.tablevw_TRANSD_Credit.PayTypeNameColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Function IsPayTypeIDNull() As Boolean
             Return Me.IsNull(Me.tablevw_TRANSD_Credit.PayTypeIDColumn)
         End Function
@@ -8660,6 +8717,18 @@ Partial Public Class DM_TRANS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub SetcusIDNull()
             Me(Me.tablevw_TRANSD_Credit.cusIDColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IscustranshidNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSD_Credit.custranshidColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetcustranshidNull()
+            Me(Me.tablevw_TRANSD_Credit.custranshidColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
 
@@ -8814,6 +8883,21 @@ Partial Public Class DM_TRANS
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property custranshid() As System.Guid
+            Get
+                Try
+                    Return CType(Me(Me.tablevw_TRANSD_Debit.custranshidColumn), Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'custranshid' in table 'vw_TRANSD_Debit' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSD_Debit.custranshidColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Function IsamtNull() As Boolean
             Return Me.IsNull(Me.tablevw_TRANSD_Debit.amtColumn)
         End Function
@@ -8882,6 +8966,18 @@ Partial Public Class DM_TRANS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub SetcusIDNull()
             Me(Me.tablevw_TRANSD_Debit.cusIDColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IscustranshidNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSD_Debit.custranshidColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetcustranshidNull()
+            Me(Me.tablevw_TRANSD_Debit.custranshidColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
 
@@ -10611,7 +10707,7 @@ Namespace DM_TRANSTableAdapters
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Private Sub InitCommandCollection()
-            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
+            Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(2) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, crea" &
@@ -10622,6 +10718,29 @@ Namespace DM_TRANSTableAdapters
                 "reement" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSH" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (cusID = @cusID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cusID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cusID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(1).Connection = Me.Connection
+            Me._commandCollection(1).CommandText = "SELECT ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, crea" &
+                "tedOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, E" &
+                "mpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerP" &
+                "rofit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurcha" &
+                "sePrice, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "           benchProfit, dtAgreement, offerCusAcceptance, waitingForAg" &
+                "reement" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSH" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (compTrashID = @compTrashID)  and compID <>cusI" &
+                "D "
+            Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@compTrashID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "compTrashID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
+            Me._commandCollection(2).Connection = Me.Connection
+            Me._commandCollection(2).CommandText = "SELECT ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, crea" &
+                "tedOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, E" &
+                "mpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerP" &
+                "rofit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurcha" &
+                "sePrice, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "           benchProfit, dtAgreement, offerCusAcceptance, waitingForAg" &
+                "reement" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSH" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (compTrashID = @compTrashID) and (cusID = @cusI" &
+                "D)"
+            Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@compTrashID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "compTrashID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cusID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cusID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -10648,6 +10767,43 @@ Namespace DM_TRANSTableAdapters
             Dim dataTable As DM_TRANS.vw_TRANSHDataTable = New DM_TRANS.vw_TRANSHDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)>
+        Public Overridable Overloads Function FillByComp(ByVal dataTable As DM_TRANS.vw_TRANSHDataTable, ByVal compTrashID As Global.System.Nullable(Of Global.System.Guid)) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(1)
+            If (compTrashID.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(compTrashID.Value, System.Guid)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
+         Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
+         Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)>
+        Public Overridable Overloads Function FillByCompAndCus(ByVal dataTable As DM_TRANS.vw_TRANSHDataTable, ByVal compTrashID As Global.System.Nullable(Of Global.System.Guid), ByVal cusID As System.Guid) As Integer
+            Me.Adapter.SelectCommand = Me.CommandCollection(2)
+            If (compTrashID.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(compTrashID.Value, System.Guid)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
+            Me.Adapter.SelectCommand.Parameters(1).Value = CType(cusID, System.Guid)
+            If (Me.ClearBeforeFill = True) Then
+                dataTable.Clear
+            End If
+            Dim returnValue As Integer = Me.Adapter.Fill(dataTable)
+            Return returnValue
         End Function
     End Class
 
@@ -11323,6 +11479,7 @@ Namespace DM_TRANSTableAdapters
             tableMapping.ColumnMappings.Add("cctFullname", "cctFullname")
             tableMapping.ColumnMappings.Add("cusID", "cusID")
             tableMapping.ColumnMappings.Add("isCredit", "isCredit")
+            tableMapping.ColumnMappings.Add("custranshid", "custranshid")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
 
@@ -11341,7 +11498,8 @@ Namespace DM_TRANSTableAdapters
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, transhID, BankName, cash, amt, cmt, dtPay, RealName, modifiedOn, creat" &
                 "edOn, bankID, GRMONTH, paid, PayTypeName, PayTypeID, depositor,cctFullname ,cusI" &
-                "D,isCredit" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSD" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE isCredit = 1 and (transhID = @transhID)"
+                "D,isCredit,custranshid" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSD" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE isCredit = 1 and (transhID = @tr" &
+                "anshID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@transhID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "transhID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub
@@ -11498,6 +11656,7 @@ Namespace DM_TRANSTableAdapters
             tableMapping.ColumnMappings.Add("cctFullname", "cctFullname")
             tableMapping.ColumnMappings.Add("cusID", "cusID")
             tableMapping.ColumnMappings.Add("isCredit", "isCredit")
+            tableMapping.ColumnMappings.Add("custranshid", "custranshid")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
 
@@ -11515,7 +11674,8 @@ Namespace DM_TRANSTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, transhID, amt, dtPay, RealName, modifiedOn, createdOn, cctFullname ,cu" &
-                "sID,isCredit" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSD" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE isCredit = 0 and (transhID = @transhID)"
+                "sID,isCredit,custranshid" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSD" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE isCredit = 0 and (transhID = @" &
+                "transhID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@transhID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "transhID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub

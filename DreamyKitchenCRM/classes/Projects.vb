@@ -1,4 +1,5 @@
-﻿Imports DevExpress.Utils.Extensions
+﻿Imports DevExpress.CodeParser
+Imports DevExpress.Utils.Extensions
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraLayout
@@ -339,14 +340,16 @@ Public Class Projects
                                 Exit Sub
                             Else
                                 Frm.txtCodeH.Text = DBQ.GetNextId("TRANSH")
-                                ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
-                                If CheckIfClosedRecExist() Then
-                                    'Τζίροι ποσοστά
-                                    SaveEMP_T()
-                                    ' Ανάλυση έργου 
-                                    SaveProjectcost()
+                                ' Μόνο όταν δεν είναι Γενικό έργο
+                                If Frm.chkcompProject.CheckState = CheckState.Unchecked Then
+                                    ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
+                                    If CheckIfClosedRecExist() Then
+                                        'Τζίροι ποσοστά
+                                        SaveEMP_T()
+                                        ' Ανάλυση έργου 
+                                        SaveProjectcost()
+                                    End If
                                 End If
-
                             End If
                         End If
 
@@ -355,12 +358,15 @@ Public Class Projects
                         ' Καταχώρηση κατηγοριών 
                         If sResult Then
                             If SaveTRANSC() Then
-                                ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
-                                If CheckIfClosedRecExist() Then
-                                    'Τζίροι ποσοστά
-                                    SaveEMP_T()
-                                    ' Ανάλυση έργου 
-                                    SaveProjectcost()
+                                ' Μόνο όταν δεν είναι Γενικό έργο
+                                If Frm.chkcompProject.CheckState = CheckState.Unchecked Then
+                                    ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
+                                    If CheckIfClosedRecExist() Then
+                                        'Τζίροι ποσοστά
+                                        SaveEMP_T()
+                                        ' Ανάλυση έργου 
+                                        SaveProjectcost()
+                                    End If
                                 End If
                             End If
                         End If
@@ -402,14 +408,16 @@ Public Class Projects
                             If UpdateProjectFields(Frm.dtPay.EditValue.ToString, "0") = False Then
                                 XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             End If
-                            'Τζίροι ποσοστά
-                            SaveEMP_T()
-                            ' Ανάλυση έργου 
-                            SaveProjectcost()
+                            If Frm.chkcompProject.CheckState = CheckState.Unchecked Then
+                                'Τζίροι ποσοστά
+                                SaveEMP_T()
+                                ' Ανάλυση έργου 
+                                SaveProjectcost()
+                            End If
                         End If
 
-                        'Καθαρισμός Controls
-                        Cls.ClearCtrls(Frm.LayoutControl3)
+                            'Καθαρισμός Controls
+                            Cls.ClearCtrls(Frm.LayoutControl3)
                         Frm.dtPay.EditValue = DateTime.Now
                         Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
                     End If
@@ -435,10 +443,11 @@ Public Class Projects
                         Frm.GridView4.SetRowCellValue(Frm.GridView4.FocusedRowHandle, "transhID", ID)
                         Frm.GridView4.SetRowCellValue(Frm.GridView4.FocusedRowHandle, "dtPay", Date.Now)
 
-                        sSQLS.AppendLine("INSERT INTO TRANSD (ID,transhID,cusID,cash,amt,dtPay,isCredit,createdOn,createdBy)")
+                        sSQLS.AppendLine("INSERT INTO TRANSD (ID,transhID,cusID,custranshid,cash,amt,dtPay,isCredit,createdOn,createdBy)")
                         sSQLS.AppendLine("Select " & toSQLValueS(sGuids) & ",")
                         sSQLS.AppendLine(toSQLValueS(ID) & ",")
                         sSQLS.AppendLine(toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "cusID").ToString) & ",")
+                        sSQLS.AppendLine(toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString) & ",")
                         sSQLS.AppendLine("1" & ",")
                         sSQLS.AppendLine(toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
                         sSQLS.AppendLine("getdate()" & ",")
@@ -462,6 +471,7 @@ Public Class Projects
                         End If
                         sSQLS.AppendLine("UPDATE TRANSD SET  ")
                         sSQLS.AppendLine("cusID = " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "cusID").ToString) & ",")
+                        sSQLS.AppendLine("cusTranshID = " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString) & ",")
                         sSQLS.AppendLine("amt = " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
                         sSQLS.AppendLine("modifiedBy = " & toSQLValueS(UserProps.ID.ToString) & ",")
                         sSQLS.AppendLine("modifiedOn = getdate()")
@@ -471,8 +481,31 @@ Public Class Projects
                             oCmd.ExecuteNonQuery()
                         End Using
                     End If
-                    ' Ανάλυση έργου 
-                    SaveProjectcost()
+                    If Frm.chkcompProject.CheckState = CheckState.Unchecked Then
+                        'Τζίροι ποσοστά
+                        SaveEMP_T()
+                        ' Ανάλυση έργου 
+                        SaveProjectcost()
+                    Else
+                        sSQLS.Clear()
+                        sSQLS.AppendLine("UPDATE PROJECT_COST SET DebitCus =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
+                        sSQLS.AppendLine("GenTotamt =  TotAmt + " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True))
+                        sSQLS.AppendLine("From PROJECT_COST  P ")
+                        sSQLS.AppendLine("where transhID =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString))
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        sSQLS.Clear()
+                        sSQLS.AppendLine("UPDATE EMP_T SET DebitCus =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
+                        sSQLS.AppendLine("GenTotamt =  SalePrice + " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True))
+                        sSQLS.AppendLine("From EMP_T  T ")
+                        sSQLS.AppendLine("where transhID =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString))
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    End If
                     Frm.Vw_TRANSD_DebitTableAdapter.FillByDedit(Frm.DM_TRANS.vw_TRANSD_Debit, System.Guid.Parse(ID))
                     Frm.chkCash.Enabled = True
                 Catch sqlEx As SqlException When sqlEx.Number = 2601

@@ -443,6 +443,7 @@ Public Class frmTransactions
             Case 1
                 Vw_TRANSD_DebitTableAdapter.FillByDedit(DM_TRANS.vw_TRANSD_Debit, System.Guid.Parse(sID))
                 COMP_CCT_TRANSHTableAdapter.Fill(DM_TRANS.COMP_CCT_TRANSH, System.Guid.Parse(sID))
+                Vw_TRANSHTableAdapter.FillByComp(DM_TRANS.vw_TRANSH, System.Guid.Parse(sID))
 
         End Select
     End Sub
@@ -524,5 +525,9 @@ Public Class frmTransactions
                 e.Cancel = True
             End If
         End If
+    End Sub
+
+    Private Sub RepositoryItemCctTransh_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCctTransh.EditValueChanged
+        Vw_TRANSHTableAdapter.FillByCompAndCus(DM_TRANS.vw_TRANSH, System.Guid.Parse(sID), DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue)
     End Sub
 End Class
