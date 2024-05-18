@@ -100,7 +100,7 @@ Public Class Projects
                 sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
                 Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
                 Frm.Vw_TRANSD_CreditTableAdapter.FillByCredit(Frm.DM_TRANS.vw_TRANSD_Credit, System.Guid.Parse(ID))
-
+                sisCompany = TranshFieldAndValues.Item("compProject")
                 CheckStateTransItems()
                 Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
                 Frm.dtPay.EditValue = DateTime.Now
