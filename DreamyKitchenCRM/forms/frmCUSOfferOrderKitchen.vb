@@ -80,6 +80,7 @@ Public Class frmCUSOfferOrderKitchen
         CusOfferOrderKitchen.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder, sBaseCat)
         CusOfferOrderKitchen.LoadForm()
         If receiveAgreement = True Then cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False : cmdSavePhotos.Enabled = False : cmdSaveTransF.Enabled = False
+        If chkGenOffer.CheckState = CheckState.Checked = True Then cmdCusCollection.Enabled = False : cmdCompCollection.Enabled = True Else cmdCusCollection.Enabled = True : cmdCompCollection.Enabled = False
         Me.CenterToScreen()
     End Sub
 

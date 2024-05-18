@@ -181,11 +181,11 @@ Public Class frmSalerTziroi
     End Sub
 
     Private Sub txtnormalPrice_Validated(sender As Object, e As EventArgs) Handles txtnormalPrice.Validated
-        txtbusisnessProfit.EditValue = txtsalePrice.EditValue - txtnormalPrice.EditValue
+        txtbusisnessProfit.EditValue = txtGenTotAmt.EditValue - txtnormalPrice.EditValue
     End Sub
 
     Private Sub txtsalePrice_Validated(sender As Object, e As EventArgs) Handles txtsalePrice.Validated
-        txtbusisnessProfit.EditValue = txtsalePrice.EditValue - txtnormalPrice.EditValue
+        txtbusisnessProfit.EditValue = txtGenTotAmt.EditValue - txtnormalPrice.EditValue
 
     End Sub
 

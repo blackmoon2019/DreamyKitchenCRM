@@ -86,6 +86,7 @@ Public Class frmCUSOfferOrderDoors
         CusOfferOrderDoors.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder)
         CusOfferOrderDoors.LoadForm()
         If receiveAgreement = True Then cmdSave.Enabled = False : cmdSavePhotos.Enabled = False
+        If chkGenOffer.CheckState = CheckState.Checked = True Then cmdCusCollection.Enabled = False : cmdCompCollection.Enabled = True Else cmdCusCollection.Enabled = True : cmdCompCollection.Enabled = False
         Me.CenterToScreen()
     End Sub
 

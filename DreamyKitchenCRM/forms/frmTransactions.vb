@@ -67,7 +67,8 @@ Public Class frmTransactions
 
     Private Sub frmTransactions_Load(sender As Object, e As EventArgs) Handles Me.Load
         AddHandler GridControl3.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
-        Projects.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sisCompany)
+        Projects.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
+        Projects.isCompany = sisCompany
         Projects.LoadForm(ShowCreditOnly)
         Me.CenterToScreen()
     End Sub

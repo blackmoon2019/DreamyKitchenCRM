@@ -108,6 +108,15 @@ Public Class ValidateControls
 
                     If OrderExistInTransH("CCT_ORDERS_KITCHEN") = True Then Return False
                     If isOrder = True Then If AgreementExist() = True Then Return False
+                    ' Έλεγχος ώστε το Συμφωνηθέν ΦΠΑ να μην ξεπερνάει ποτέ το Κανονικό ΦΠΑ
+                    If isOrder = True Then
+                        Dim NormalVat As Double = (DbnullToZero(f.txtTotalErmariaVat) * 1.24) - DbnullToZero(f.txtTotalErmariaVat)
+                        Dim PartOfVatVat As Double = DbnullToZero(f.txtPartofVat)
+                        If PartOfVatVat > NormalVat Then
+                            XtraMessageBox.Show("Δεν μπορεί το συμφωνηθέν ΦΠΑ να είναι μεγαλύτερο από το κανονικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
 
 
 
@@ -145,6 +154,15 @@ Public Class ValidateControls
                     End If
                     If OrderExistInTransH("CCT_ORDERS_DOOR") = True Then Return False
                     If isOrder = True Then If AgreementExist() = True Then Return False
+                    ' Έλεγχος ώστε το Συμφωνηθέν ΦΠΑ να μην ξεπερνάει ποτέ το Κανονικό ΦΠΑ
+                    If isOrder = True Then
+                        Dim NormalVat As Double = (DbnullToZero(f.txtTotalDoorsVat) * 1.24) - DbnullToZero(f.txtTotalDoorsVat)
+                        Dim PartOfVatVat As Double = DbnullToZero(f.txtPartofVat)
+                        If PartOfVatVat > NormalVat Then
+                            XtraMessageBox.Show("Δεν μπορεί το συμφωνηθέν ΦΠΑ να είναι μεγαλύτερο από το κανονικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
 
 
 
@@ -185,7 +203,15 @@ Public Class ValidateControls
                     End If
                     If OrderExistInTransH("CCT_ORDERS_CLOSET") = True Then Return False
                     If isOrder = True Then If AgreementExist() = True Then Return False
-
+                    ' Έλεγχος ώστε το Συμφωνηθέν ΦΠΑ να μην ξεπερνάει ποτέ το Κανονικό ΦΠΑ
+                    If isOrder = True Then
+                        Dim NormalVat As Double = (DbnullToZero(f.txtTotalClosetVat) * 1.24) - DbnullToZero(f.txtTotalClosetVat)
+                        Dim PartOfVatVat As Double = DbnullToZero(f.txtPartofVat)
+                        If PartOfVatVat > NormalVat Then
+                            XtraMessageBox.Show("Δεν μπορεί το συμφωνηθέν ΦΠΑ να είναι μεγαλύτερο από το κανονικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
 
 
                     If ExtraChecks = True Then
@@ -221,7 +247,15 @@ Public Class ValidateControls
                     End If
                     If OrderExistInTransH("CCT_ORDERS_SPECIAL_CONSTR") = True Then Return False
                     If isOrder = True Then If AgreementExist() = True Then Return False
-
+                    ' Έλεγχος ώστε το Συμφωνηθέν ΦΠΑ να μην ξεπερνάει ποτέ το Κανονικό ΦΠΑ
+                    If isOrder = True Then
+                        Dim NormalVat As Double = (DbnullToZero(f.txtTotalSpecialVat) * 1.24) - DbnullToZero(f.txtTotalSpecialVat)
+                        Dim PartOfVatVat As Double = DbnullToZero(f.txtPartofVat)
+                        If PartOfVatVat > NormalVat Then
+                            XtraMessageBox.Show("Δεν μπορεί το συμφωνηθέν ΦΠΑ να είναι μεγαλύτερο από το κανονικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
 
 
                     If ExtraChecks = True Then

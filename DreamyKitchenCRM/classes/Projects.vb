@@ -15,7 +15,7 @@ Public Class Projects
     Private LoadForms As New FormLoader
     Private ID As String
     Private IsOrder As Boolean
-    Private isCompany As Boolean
+    Private sisCompany As Boolean
     Private Mode As Byte
     Private CalledFromCtrl As Boolean
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
@@ -24,16 +24,19 @@ Public Class Projects
     Private TranshFieldAndValues As Dictionary(Of String, String)
     Private sEMP_T_ID As String = ""
     Private sProjectCostID As String
+    Public WriteOnly Property isCompany As Boolean
+        Set(value As Boolean)
+            sisCompany = value
+        End Set
+    End Property
 
 
-
-    Public Sub Initialize(ByVal sFrm As frmTransactions, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal sisCompany As Boolean)
+    Public Sub Initialize(ByVal sFrm As frmTransactions, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Frm = sFrm
         ID = sID
         Mode = sMode
         CalledFromCtrl = sCalledFromCtrl
         CtrlCombo = sCtrlCombo
-        isCompany = sisCompany
         Frm.Vw_COMPTableAdapter.Fill(Frm.DM_CCT.vw_COMP)
         Frm.CCT_TRANSHTableAdapter.Fill(Frm.DM_TRANS.CCT_TRANSH)
         Frm.Vw_CCTTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_CCT)
@@ -103,7 +106,6 @@ Public Class Projects
                 Frm.dtPay.EditValue = DateTime.Now
 
         End Select
-        isCompany = Frm.chkcompProject.CheckState
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "vw_TRANSH_F_def.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "TRANSD.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView3, "Vw_TRANS_EXTRA_CHARGES.xml")
@@ -116,7 +118,7 @@ Public Class Projects
             Frm.TabNavigationPage4.PageVisible = False
             Frm.Bar1.Visible = False
         End If
-        If isCompany Then
+        If sisCompany Then
             Frm.GridView1.Columns.Item("cusID").Visible = True
             Frm.lCusD.Visibility = Utils.LayoutVisibility.Always
             Frm.LCompProject.Visibility = Utils.LayoutVisibility.Never
@@ -408,7 +410,7 @@ Public Class Projects
                             If UpdateProjectFields(Frm.dtPay.EditValue.ToString, "0") = False Then
                                 XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             End If
-                            If Frm.chkcompProject.CheckState = CheckState.Unchecked Then
+                            If sisCompany = False Then
                                 'Τζίροι ποσοστά
                                 SaveEMP_T()
                                 ' Ανάλυση έργου 
@@ -481,7 +483,7 @@ Public Class Projects
                             oCmd.ExecuteNonQuery()
                         End Using
                     End If
-                    If Frm.chkcompProject.CheckState = CheckState.Unchecked Then
+                    If sisCompany = False Then
                         'Τζίροι ποσοστά
                         SaveEMP_T()
                         ' Ανάλυση έργου 
@@ -779,15 +781,19 @@ Public Class Projects
             End If
             ' PayWayValidations Έλεγχος αν έχει επιλέξει τρόπο πληρωμής
             If PayWayValidations Then
-                If ValidationsFromGrid = True And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = True And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "bankID").ToString <> "" Then
-                    XtraMessageBox.Show("Έχετε επιλέξει τρόπο πληρωμής Μετρητά και Τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return False
+                If ValidationsFromGrid = True Then
+                    If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = True And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "bankID").ToString <> "" Then
+                        XtraMessageBox.Show("Έχετε επιλέξει τρόπο πληρωμής Μετρητά και Τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
                 End If
-                If ValidationsFromGrid = True And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = False And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "bankID").ToString = "" Then
-                    XtraMessageBox.Show("Δεν έχετε επιλέξει τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    Return False
+                If ValidationsFromGrid = True Then
+                    If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "cash") = False And Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "bankID").ToString = "" Then
+                        XtraMessageBox.Show("Δεν έχετε επιλέξει τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                        Return False
+                    End If
                 End If
-                If ValidationsFromGrid = False And Frm.chkCash.CheckState = CheckState.Checked And Frm.cboBANK.EditValue IsNot Nothing Then
+                    If ValidationsFromGrid = False And Frm.chkCash.CheckState = CheckState.Checked And Frm.cboBANK.EditValue IsNot Nothing Then
                     XtraMessageBox.Show("Έχετε επιλέξει τρόπο πληρωμής Μετρητά και Τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return False
                 End If
@@ -825,7 +831,11 @@ Public Class Projects
                     Dim Metrhta As Double = sdr.GetDecimal(sdr.GetOrdinal("Metrhta"))
                     Dim CreditCash As Double = sdr.GetDecimal(sdr.GetOrdinal("CreditCash")) + AmtCash
                     Dim CreditBank As Double = sdr.GetDecimal(sdr.GetOrdinal("CreditBank")) + AmtBank
-
+                    ' Αυτό σημαίνει ότι δεν έχει φτάσει ακόμα σε Ιδ. Συμφωνητικό
+                    If Trapezika = 0 And Metrhta = 0 Then
+                        sdr.Close()
+                        Return True
+                    End If
                     If CreditCash > Metrhta Then
                         XtraMessageBox.Show("Το πόσο μετρητών είναι μεγαλύτερο από το επιτρεπτό όριο.Το όριο είναι " & Metrhta & "€", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         sdr.Close()
