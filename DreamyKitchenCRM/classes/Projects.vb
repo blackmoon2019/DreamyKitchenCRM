@@ -563,10 +563,12 @@ Public Class Projects
                 End If
                 Frm.dtreceiveDateAgreement.EditValue = Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay")
             End If
-            'Τζίροι ποσοστά
-            SaveEMP_T()
-            ' Ανάλυση έργου 
-            SaveProjectcost()
+            If sisCompany = False Then
+                'Τζίροι ποσοστά
+                SaveEMP_T()
+                ' Ανάλυση έργου 
+                SaveProjectcost()
+            End If
             'sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(Frm.txtBal.EditValue.ToString, True) & " WHERE ID = " & toSQLValueS(ID)
             'Using oCmd As New SqlCommand(sSQL, CNDB)
             '    oCmd.ExecuteNonQuery()
@@ -793,11 +795,11 @@ Public Class Projects
                         Return False
                     End If
                 End If
-                    If ValidationsFromGrid = False And Frm.chkCash.CheckState = CheckState.Checked And Frm.cboBANK.EditValue IsNot Nothing Then
+                If ValidationsFromGrid = False And Frm.chkCash.CheckState = CheckState.Checked And Frm.cboBANK.Text <> "" Then
                     XtraMessageBox.Show("Έχετε επιλέξει τρόπο πληρωμής Μετρητά και Τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return False
                 End If
-                If ValidationsFromGrid = False And Frm.chkCash.CheckState = CheckState.Unchecked And Frm.cboBANK.EditValue = Nothing Then
+                If ValidationsFromGrid = False And Frm.chkCash.CheckState = CheckState.Unchecked And Frm.cboBANK.Text = "" Then
                     XtraMessageBox.Show("Δεν έχετε επιλέξει τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Return False
                 End If

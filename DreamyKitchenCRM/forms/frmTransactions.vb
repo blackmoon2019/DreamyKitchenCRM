@@ -224,6 +224,7 @@ Public Class frmTransactions
 
     Private Sub GridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView1.ValidateRow
         GridView1.UpdateTotalSummary()
+        'Projects.isCompany = sisCompany
         If Projects.UpdateRecordD() = False Then e.Valid = False
         Projects.CalculateTotAmtAndBal()
     End Sub

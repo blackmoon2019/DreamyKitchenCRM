@@ -4781,7 +4781,7 @@ Partial Class frmCUSOfferOrderCloset
         Me.LayoutControlItem41.Location = New System.Drawing.Point(984, 0)
         Me.LayoutControlItem41.Name = "LayoutControlItem41"
         Me.LayoutControlItem41.Size = New System.Drawing.Size(342, 34)
-        Me.LayoutControlItem41.Text = "Συμφωνηθέν ΦΠΑ"
+        Me.LayoutControlItem41.Text = "Σ.Φ.Π."
         Me.LayoutControlItem41.TextSize = New System.Drawing.Size(201, 19)
         '
         'LayoutControlItem34

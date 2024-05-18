@@ -127,13 +127,13 @@ Partial Class frmCUSPrivateAgreement
         Me.LCheckList = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem24 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.VwBANKSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Vw_COMPTableAdapter = New DreamyKitchenCRM.DM_CCTTableAdapters.vw_COMPTableAdapter()
+        Me.Vw_INVTYPESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_INVTYPESTableAdapter()
         Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
         Me.VwINVTYPESBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DreamyKitchenDataSet = New DreamyKitchenCRM.DreamyKitchenDataSet()
         Me.DreamyKitchenDataSetBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.Vw_COMPTableAdapter = New DreamyKitchenCRM.DM_CCTTableAdapters.vw_COMPTableAdapter()
-        Me.Vw_INVTYPESTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_INVTYPESTableAdapter()
         Me.Vw_SALERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SALERSTableAdapter()
         Me.Vw_CCTTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_CCTTableAdapter()
         Me.Vw_BANKSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_BANKSTableAdapter()
@@ -295,7 +295,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1799, 599, 904, 888)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(1036, 888)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1036, 902)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
@@ -1102,7 +1102,7 @@ Partial Class frmCUSPrivateAgreement
         Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem2, Me.LayoutControlItem1, Me.LayoutControlGroup1, Me.EmptySpaceItem14, Me.LayoutControlItem48, Me.LayoutControlItem5, Me.LayoutControlItem52, Me.LayoutControlItem6, Me.LayoutControlGroup2, Me.LayoutControlGroup3, Me.LayoutControlItem22, Me.LayoutControlItem27, Me.LMsg, Me.LCheckList, Me.LayoutControlItem24})
         Me.Root.Name = "Root"
         Me.Root.OptionsItemText.TextToControlDistance = 1
-        Me.Root.Size = New System.Drawing.Size(1036, 888)
+        Me.Root.Size = New System.Drawing.Size(1036, 902)
         Me.Root.TextVisible = False
         '
         'LayoutControlItem2
@@ -1110,7 +1110,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem2.Control = Me.cmdExit
         Me.LayoutControlItem2.Location = New System.Drawing.Point(847, 786)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(169, 82)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(169, 96)
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem2.TextVisible = False
         '
@@ -1119,7 +1119,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem1.Control = Me.cmdSave
         Me.LayoutControlItem1.Location = New System.Drawing.Point(686, 786)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(161, 82)
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(161, 96)
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem1.TextVisible = False
         '
@@ -1355,7 +1355,7 @@ Partial Class frmCUSPrivateAgreement
         Me.EmptySpaceItem14.AllowHotTrack = False
         Me.EmptySpaceItem14.Location = New System.Drawing.Point(371, 786)
         Me.EmptySpaceItem14.Name = "EmptySpaceItem14"
-        Me.EmptySpaceItem14.Size = New System.Drawing.Size(79, 82)
+        Me.EmptySpaceItem14.Size = New System.Drawing.Size(79, 96)
         Me.EmptySpaceItem14.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem48
@@ -1363,7 +1363,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem48.Control = Me.cmdPrintOffer
         Me.LayoutControlItem48.Location = New System.Drawing.Point(0, 786)
         Me.LayoutControlItem48.Name = "LayoutControlItem48"
-        Me.LayoutControlItem48.Size = New System.Drawing.Size(113, 82)
+        Me.LayoutControlItem48.Size = New System.Drawing.Size(113, 96)
         Me.LayoutControlItem48.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem48.TextVisible = False
         '
@@ -1442,7 +1442,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem29.Location = New System.Drawing.Point(0, 120)
         Me.LayoutControlItem29.Name = "LayoutControlItem29"
         Me.LayoutControlItem29.Size = New System.Drawing.Size(495, 30)
-        Me.LayoutControlItem29.Text = "Συμφωνηθέν ΦΠΑ"
+        Me.LayoutControlItem29.Text = "Σ.Φ.Π."
         Me.LayoutControlItem29.TextSize = New System.Drawing.Size(246, 19)
         '
         'LayoutControlItem17
@@ -1666,7 +1666,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem27.Control = Me.chkVatVisible
         Me.LayoutControlItem27.Location = New System.Drawing.Point(113, 786)
         Me.LayoutControlItem27.Name = "LayoutControlItem27"
-        Me.LayoutControlItem27.Size = New System.Drawing.Size(258, 82)
+        Me.LayoutControlItem27.Size = New System.Drawing.Size(258, 96)
         Me.LayoutControlItem27.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem27.TextVisible = False
         '
@@ -1686,7 +1686,7 @@ Partial Class frmCUSPrivateAgreement
         Me.LCheckList.Control = Me.cmdCheckList
         Me.LCheckList.Location = New System.Drawing.Point(450, 786)
         Me.LCheckList.Name = "LCheckList"
-        Me.LCheckList.Size = New System.Drawing.Size(236, 82)
+        Me.LCheckList.Size = New System.Drawing.Size(236, 96)
         Me.LCheckList.TextSize = New System.Drawing.Size(0, 0)
         Me.LCheckList.TextVisible = False
         '
@@ -1703,6 +1703,14 @@ Partial Class frmCUSPrivateAgreement
         '
         Me.VwBANKSBindingSource.DataMember = "vw_BANKS"
         Me.VwBANKSBindingSource.DataSource = Me.DreamyKitchenDataSetBindingSource
+        '
+        'Vw_COMPTableAdapter
+        '
+        Me.Vw_COMPTableAdapter.ClearBeforeFill = True
+        '
+        'Vw_INVTYPESTableAdapter
+        '
+        Me.Vw_INVTYPESTableAdapter.ClearBeforeFill = True
         '
         'VwCOMPBindingSource
         '
@@ -1729,14 +1737,6 @@ Partial Class frmCUSPrivateAgreement
         Me.DreamyKitchenDataSetBindingSource.DataSource = Me.DreamyKitchenDataSet
         Me.DreamyKitchenDataSetBindingSource.Position = 0
         '
-        'Vw_COMPTableAdapter
-        '
-        Me.Vw_COMPTableAdapter.ClearBeforeFill = True
-        '
-        'Vw_INVTYPESTableAdapter
-        '
-        Me.Vw_INVTYPESTableAdapter.ClearBeforeFill = True
-        '
         'Vw_SALERSTableAdapter
         '
         Me.Vw_SALERSTableAdapter.ClearBeforeFill = True
@@ -1753,7 +1753,7 @@ Partial Class frmCUSPrivateAgreement
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(144.0!, 144.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi
-        Me.ClientSize = New System.Drawing.Size(1036, 888)
+        Me.ClientSize = New System.Drawing.Size(1036, 902)
         Me.Controls.Add(Me.LayoutControl1)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.MinimumSize = New System.Drawing.Size(693, 610)

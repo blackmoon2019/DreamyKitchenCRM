@@ -4907,7 +4907,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.LPartofVat.Location = New System.Drawing.Point(960, 0)
         Me.LPartofVat.Name = "LPartofVat"
         Me.LPartofVat.Size = New System.Drawing.Size(349, 34)
-        Me.LPartofVat.Text = "Συμφωνηθέν ΦΠΑ"
+        Me.LPartofVat.Text = "Σ.Φ.Π."
         Me.LPartofVat.TextSize = New System.Drawing.Size(201, 19)
         Me.LPartofVat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '

@@ -113,7 +113,7 @@ Public Class ValidateControls
                         Dim NormalVat As Double = (DbnullToZero(f.txtTotalErmariaVat) * 1.24) - DbnullToZero(f.txtTotalErmariaVat)
                         Dim PartOfVatVat As Double = DbnullToZero(f.txtPartofVat)
                         If PartOfVatVat > NormalVat Then
-                            XtraMessageBox.Show("Δεν μπορεί το συμφωνηθέν ΦΠΑ να είναι μεγαλύτερο από το κανονικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            XtraMessageBox.Show("Λανθασμένη καταχώριση ποσού ΦΠΑ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         End If
                     End If
