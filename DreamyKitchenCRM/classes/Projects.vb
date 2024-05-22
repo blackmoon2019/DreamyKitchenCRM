@@ -123,6 +123,8 @@ Public Class Projects
             Frm.lCusD.Visibility = Utils.LayoutVisibility.Always
             Frm.LCompProject.Visibility = Utils.LayoutVisibility.Never
             Frm.TabNavigationPage6.PageVisible = True
+            Frm.bbEMP_T.Enabled = False
+            Frm.BBProjectCosts.Enabled = False
         Else
             Frm.GridView1.Columns.Item("cusID").Visible = False
             Frm.lCusD.Visibility = Utils.LayoutVisibility.Never
@@ -337,44 +339,25 @@ Public Class Projects
                         sResult = DBQ.InsertNewData(DBQueries.InsertMode.MultipleLayoutControls, "TRANSH",, myLayoutControls,, ID,, "bal", toSQLValueS(Frm.txtBal.EditValue.ToString, True))
                         ' Εαν πετύχει η καταχώρηση του έργου αλλά όχι των κατηγοριών τότε όλο το έργο διαγράφεται
                         If sResult Then
-                            If Not SaveTRANSC() Then
-                                DeleteRecord()
-                                Exit Sub
-                            Else
-                                Frm.txtCodeH.Text = DBQ.GetNextId("TRANSH")
-                                ' Μόνο όταν δεν είναι Γενικό έργο
-                                If Frm.chkcompProject.CheckState = CheckState.Unchecked Then
-                                    ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
-                                    If CheckIfClosedRecExist() Then
-                                        'Τζίροι ποσοστά
-                                        SaveEMP_T()
-                                        ' Ανάλυση έργου 
-                                        SaveProjectcost()
-                                    End If
-                                End If
-                            End If
+                            If Not SaveTRANSC() Then DeleteRecord() Else Frm.txtCodeH.Text = DBQ.GetNextId("TRANSH")
+                        Else
+                            Exit Sub
                         End If
-
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.MultipleLayoutControls, "TRANSH",, myLayoutControls,, ID,,,,, "bal=" & toSQLValueS(Frm.txtBal.EditValue.ToString, True))
                         ' Καταχώρηση κατηγοριών 
-                        If sResult Then
-                            If SaveTRANSC() Then
-                                ' Μόνο όταν δεν είναι Γενικό έργο
-                                If Frm.chkcompProject.CheckState = CheckState.Unchecked Then
-                                    ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
-                                    If CheckIfClosedRecExist() Then
-                                        'Τζίροι ποσοστά
-                                        SaveEMP_T()
-                                        ' Ανάλυση έργου 
-                                        SaveProjectcost()
-                                    End If
-                                End If
-                            End If
-                        End If
-
+                        If sResult Then SaveTRANSC() Else Exit Sub
                 End Select
-
+                ' Μόνο όταν δεν είναι Γενικό έργο
+                If sisCompany = False Then
+                    ' Εαν υπάρχει εγγραφή κλεισίματος τότε κάνουμε ενημέρωση των ποσών στους τζίρους και στην ανάλυση
+                    If CheckIfClosedRecExist() Then
+                        'Τζίροι ποσοστά
+                        SaveEMP_T()
+                        ' Ανάλυση έργου 
+                        SaveProjectcost()
+                    End If
+                End If
 
 
                 If CalledFromCtrl = True Then
@@ -395,7 +378,7 @@ Public Class Projects
     End Sub
     Public Sub SaveRecordD(Optional ByVal isCredit As Boolean = True, Optional ByVal e As DevExpress.XtraGrid.Views.Base.ValidateRowEventArgs = Nothing, Optional ValidationsFromGrid As Boolean = False)
         Dim sResult As Boolean
-        Dim sGuid As String, sSQL As String
+        Dim sGuid As String, sSQL As String, custranshid As String
         Try
             If isCredit Then
                 If Valid.ValidateForm(Frm.LayoutControl3) Then
@@ -418,8 +401,8 @@ Public Class Projects
                             End If
                         End If
 
-                            'Καθαρισμός Controls
-                            Cls.ClearCtrls(Frm.LayoutControl3)
+                        'Καθαρισμός Controls
+                        Cls.ClearCtrls(Frm.LayoutControl3)
                         Frm.dtPay.EditValue = DateTime.Now
                         Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
                     End If
@@ -444,12 +427,12 @@ Public Class Projects
                         Frm.GridView4.SetRowCellValue(Frm.GridView4.FocusedRowHandle, "ID", sGuids)
                         Frm.GridView4.SetRowCellValue(Frm.GridView4.FocusedRowHandle, "transhID", ID)
                         Frm.GridView4.SetRowCellValue(Frm.GridView4.FocusedRowHandle, "dtPay", Date.Now)
-
+                        custranshid = Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString
                         sSQLS.AppendLine("INSERT INTO TRANSD (ID,transhID,cusID,custranshid,cash,amt,dtPay,isCredit,createdOn,createdBy)")
                         sSQLS.AppendLine("Select " & toSQLValueS(sGuids) & ",")
                         sSQLS.AppendLine(toSQLValueS(ID) & ",")
                         sSQLS.AppendLine(toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "cusID").ToString) & ",")
-                        sSQLS.AppendLine(toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString) & ",")
+                        sSQLS.AppendLine(toSQLValueS(custranshid) & ",")
                         sSQLS.AppendLine("1" & ",")
                         sSQLS.AppendLine(toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
                         sSQLS.AppendLine("getdate()" & ",")
@@ -473,7 +456,7 @@ Public Class Projects
                         End If
                         sSQLS.AppendLine("UPDATE TRANSD SET  ")
                         sSQLS.AppendLine("cusID = " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "cusID").ToString) & ",")
-                        sSQLS.AppendLine("cusTranshID = " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString) & ",")
+                        sSQLS.AppendLine("cusTranshID = " & toSQLValueS(custranshid) & ",")
                         sSQLS.AppendLine("amt = " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
                         sSQLS.AppendLine("modifiedBy = " & toSQLValueS(UserProps.ID.ToString) & ",")
                         sSQLS.AppendLine("modifiedOn = getdate()")
@@ -489,24 +472,7 @@ Public Class Projects
                         ' Ανάλυση έργου 
                         SaveProjectcost()
                     Else
-                        sSQLS.Clear()
-                        sSQLS.AppendLine("UPDATE PROJECT_COST SET DebitCus =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
-                        sSQLS.AppendLine("GenTotamt =  TotAmt + " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True))
-                        sSQLS.AppendLine("From PROJECT_COST  P ")
-                        sSQLS.AppendLine("where transhID =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString))
-                        'Εκτέλεση QUERY
-                        Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQLS.Clear()
-                        sSQLS.AppendLine("UPDATE EMP_T SET DebitCus =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
-                        sSQLS.AppendLine("GenTotamt =  SalePrice + " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True))
-                        sSQLS.AppendLine("From EMP_T  T ")
-                        sSQLS.AppendLine("where transhID =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString))
-                        'Εκτέλεση QUERY
-                        Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
+                        If UpdateProjectCostAndEmpT() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση της ανάλυσης έργου και ποσοστά πωλητών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     End If
                     Frm.Vw_TRANSD_DebitTableAdapter.FillByDedit(Frm.DM_TRANS.vw_TRANSD_Debit, System.Guid.Parse(ID))
                     Frm.chkCash.Enabled = True
@@ -521,6 +487,54 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Private Function UpdateProjectCostAndEmpT(Optional ByVal isDeleted As Boolean = False, Optional ByVal custranshid As String = "") As Boolean
+        Dim sSQLS As New System.Text.StringBuilder
+        Try
+            sSQLS.Clear()
+            If isDeleted = False Then
+                sSQLS.AppendLine("UPDATE PROJECT_COST SET DebitCus =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
+                sSQLS.AppendLine("GenTotamt =  TotAmt + " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True))
+                sSQLS.AppendLine("From PROJECT_COST  P ")
+                sSQLS.AppendLine("where transhID =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString))
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                sSQLS.Clear()
+                sSQLS.AppendLine("UPDATE EMP_T SET DebitCus =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
+                sSQLS.AppendLine("GenTotamt =  SalePrice + " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True))
+                sSQLS.AppendLine("From EMP_T  T ")
+                sSQLS.AppendLine("where transhID =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString))
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+            Else
+                sSQLS.AppendLine("UPDATE PROJECT_COST SET DebitCus =  0 ,")
+                sSQLS.AppendLine("GenTotamt =  TotAmt ")
+                sSQLS.AppendLine("From PROJECT_COST  P ")
+                sSQLS.AppendLine("where transhID =  " & toSQLValueS(custranshid))
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                sSQLS.Clear()
+                sSQLS.AppendLine("UPDATE EMP_T SET DebitCus =  0 ,")
+                sSQLS.AppendLine("GenTotamt =  SalePrice ")
+                sSQLS.AppendLine("From EMP_T  T ")
+                sSQLS.AppendLine("where transhID =  " & toSQLValueS(custranshid))
+                'Εκτέλεση QUERY
+                Using oCmd As New SqlCommand(sSQLS.ToString, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
     Public Function UpdateRecordD() As Boolean
         Dim cash As Byte, cmt As String, Paid As Byte
         Try
@@ -568,6 +582,8 @@ Public Class Projects
                 SaveEMP_T()
                 ' Ανάλυση έργου 
                 SaveProjectcost()
+            Else
+                If UpdateProjectCostAndEmpT() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση της ανάλυσης έργου και ποσοστά πωλητών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             End If
             'sSQL = "UPDATE [TRANSH] SET bal  = " & toSQLValueS(Frm.txtBal.EditValue.ToString, True) & " WHERE ID = " & toSQLValueS(ID)
             'Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -977,7 +993,7 @@ Public Class Projects
 
 
     Public Sub DeleteRecordD(Optional ByVal isCredit As Boolean = True)
-        Dim sSQL As String
+        Dim sSQL As String, custranshid As String
         Try
             If isCredit Then
                 If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
@@ -1002,15 +1018,18 @@ Public Class Projects
                 End If
             Else
                 If Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+                custranshid = Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "custranshid").ToString
                 If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     sSQL = "DELETE FROM TRANSD WHERE ID = '" & Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "ID").ToString & "'"
 
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
-
                     XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Frm.Vw_TRANSD_DebitTableAdapter.FillByDedit(Frm.DM_TRANS.vw_TRANSD_Debit, System.Guid.Parse(ID))
+                    If sisCompany = True Then
+                        If UpdateProjectCostAndEmpT(True, custranshid) = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση της ανάλυσης έργου και ποσοστά πωλητών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    End If
                 End If
             End If
 

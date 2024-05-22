@@ -458,7 +458,7 @@ Public Class frmCUSOfferOrderSpecialConstr
         End Try
     End Function
     Private Sub ApplyDiscount(ByVal DiscMode As Integer, Optional ByVal DiscountChangedByUser As Boolean = False)
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice1 As Double, FinalPrice2 As Double, FinalPrice3 As Double, FinalPrice4 As Double
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice1 As Double, FinalPrice2 As Double, FinalPrice3 As Double, FinalPrice4 As Double, VatPrice As Double
         Dim TotAmt As Double
         If Me.IsActive = False Then Exit Sub
         Select Case DiscMode
@@ -469,9 +469,11 @@ Public Class frmCUSOfferOrderSpecialConstr
                 Discount = Disc * InitialPrice
                 FinalPrice1 = InitialPrice - Discount
                 FinalPrice1 = FinalPrice1 + (FinalPrice1 * (ProgProps.VAT / 100))
+                VatPrice = InitialPrice - Discount
                 txtInitialPrice1.EditValue = InitialPrice
                 txtDiscount1.EditValue = Discount
                 txtFinalPrice1.EditValue = FinalPrice1
+                txtVatPrice1.EditValue = VatPrice
             Case 2
                 If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountSpecial
                 InitialPrice = txtInitialPrice2.EditValue
@@ -479,9 +481,11 @@ Public Class frmCUSOfferOrderSpecialConstr
                 Discount = Disc * InitialPrice
                 FinalPrice2 = InitialPrice - Discount
                 FinalPrice2 = FinalPrice2 + (FinalPrice2 * (ProgProps.VAT / 100))
+                VatPrice = InitialPrice - Discount
                 txtInitialPrice2.EditValue = InitialPrice
                 txtDiscount2.EditValue = Discount
                 txtFinalPrice2.EditValue = FinalPrice2
+                txtVatPrice2.EditValue = VatPrice
             Case 3
                 If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountSpecial
                 InitialPrice = txtInitialPrice3.EditValue
@@ -489,9 +493,11 @@ Public Class frmCUSOfferOrderSpecialConstr
                 Discount = Disc * InitialPrice
                 FinalPrice3 = InitialPrice - Discount
                 FinalPrice3 = FinalPrice3 + (FinalPrice3 * (ProgProps.VAT / 100))
+                VatPrice = InitialPrice - Discount
                 txtInitialPrice3.EditValue = InitialPrice
                 txtDiscount3.EditValue = Discount
                 txtFinalPrice3.EditValue = FinalPrice3
+                txtVatPrice3.EditValue = VatPrice
             Case 4
                 If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountSpecial
                 InitialPrice = txtInitialPrice4.EditValue
@@ -499,9 +505,11 @@ Public Class frmCUSOfferOrderSpecialConstr
                 Discount = Disc * InitialPrice
                 FinalPrice4 = InitialPrice - Discount
                 FinalPrice4 = FinalPrice4 + (FinalPrice4 * (ProgProps.VAT / 100))
+                VatPrice = InitialPrice - Discount
                 txtInitialPrice4.EditValue = InitialPrice
                 txtDiscount4.EditValue = Discount
                 txtFinalPrice4.EditValue = FinalPrice4
+                txtVatPrice4.EditValue = VatPrice
         End Select
         CalculateTotAmt()
     End Sub

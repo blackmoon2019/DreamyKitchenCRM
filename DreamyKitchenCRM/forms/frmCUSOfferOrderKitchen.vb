@@ -459,7 +459,7 @@ Public Class frmCUSOfferOrderKitchen
         CusOfferOrderKitchen.ConvertToOrder()
     End Sub
     Private Sub ApplyDiscount(ByVal DiscMode As Integer, Optional ByVal DiscountChangedByUser As Boolean = False)
-        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double
+        Dim Disc As Double, Discount As Double, InitialPrice As Double, FinalPrice As Double, VatPrice As Double
         If Me.IsActive = False Then Exit Sub
         Select Case DiscMode
             Case 1
@@ -470,9 +470,11 @@ Public Class frmCUSOfferOrderKitchen
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
                     FinalPrice = FinalPrice + (FinalPrice * (ProgProps.VAT / 100))
+                    VatPrice = InitialPrice - Discount
                     txtInitialPrice1.EditValue = InitialPrice
                     txtDiscount1.EditValue = Discount
                     txtFinalPrice1.EditValue = FinalPrice
+                    txtVatPrice1.EditValue = VatPrice
                 End If
             Case 2
                 If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountKitchen
@@ -482,9 +484,11 @@ Public Class frmCUSOfferOrderKitchen
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
                     FinalPrice = FinalPrice + (FinalPrice * (ProgProps.VAT / 100))
+                    VatPrice = InitialPrice - Discount
                     txtInitialPrice2.EditValue = InitialPrice
                     txtDiscount2.EditValue = Discount
                     txtFinalPrice2.EditValue = FinalPrice
+                    txtVatPrice2.EditValue = VatPrice
                 End If
             Case 3
                 If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountKitchen
@@ -494,9 +498,11 @@ Public Class frmCUSOfferOrderKitchen
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
                     FinalPrice = FinalPrice + (FinalPrice * (ProgProps.VAT / 100))
+                    VatPrice = InitialPrice - Discount
                     txtInitialPrice3.EditValue = InitialPrice
                     txtDiscount3.EditValue = Discount
                     txtFinalPrice3.EditValue = FinalPrice
+                    txtVatPrice3.EditValue = VatPrice
                 End If
             Case 4
                 If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountKitchen
@@ -506,9 +512,11 @@ Public Class frmCUSOfferOrderKitchen
                     Discount = Disc * InitialPrice
                     FinalPrice = InitialPrice - Discount
                     FinalPrice = FinalPrice + (FinalPrice * (ProgProps.VAT / 100))
+                    VatPrice = InitialPrice - Discount
                     txtInitialPrice4.EditValue = InitialPrice
                     txtDiscount4.EditValue = Discount
                     txtFinalPrice4.EditValue = FinalPrice
+                    txtVatPrice4.EditValue = VatPrice
                 End If
         End Select
     End Sub

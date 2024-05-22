@@ -197,7 +197,7 @@ Public Class CusPrivateAgreement
                     Frm.cmdPrintOffer.Enabled = True
                     ' Ενημέρωση πεδίων έργου
                     UpdateTransH()
-                    ' Μόνο αν είναι πελάτης ενημερώνεται οι τζίροι-ποσοστά και η ανάλυση έργου
+                    ' 
                     If isCustomer Then
                         'Τζίροι ποσοστά
                         SaveEMP_T()
@@ -258,7 +258,7 @@ Public Class CusPrivateAgreement
         Try
             Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
                 oCmd.CommandType = CommandType.StoredProcedure
-                oCmd.Parameters.AddWithValue("@transhID", ID)
+                oCmd.Parameters.AddWithValue("@transhID", TranshID.ToString)
                 oCmd.ExecuteNonQuery()
             End Using
         Catch ex As Exception
