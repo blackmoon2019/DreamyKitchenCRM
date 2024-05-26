@@ -181,12 +181,17 @@ Public Class frmSalerTziroi
     End Sub
 
     Private Sub txtnormalPrice_Validated(sender As Object, e As EventArgs) Handles txtnormalPrice.Validated
-        txtbusisnessProfit.EditValue = txtGenTotAmt.EditValue - txtnormalPrice.EditValue
+        Dim GenTotAmt As Double, normalPrice As Double
+        GenTotAmt = txtGenTotAmt.EditValue.ToString.Replace(".", ",")
+        normalPrice = txtnormalPrice.EditValue.ToString.Replace(".", ",")
+        txtbusisnessProfit.EditValue = GenTotAmt - normalPrice
     End Sub
 
     Private Sub txtsalePrice_Validated(sender As Object, e As EventArgs) Handles txtsalePrice.Validated
-        txtbusisnessProfit.EditValue = txtGenTotAmt.EditValue - txtnormalPrice.EditValue
-
+        Dim GenTotAmt As Double, normalPrice As Double
+        GenTotAmt = txtGenTotAmt.EditValue.ToString.Replace(".", ",")
+        normalPrice = txtnormalPrice.EditValue.ToString.Replace(".", ",")
+        txtbusisnessProfit.EditValue = GenTotAmt - normalPrice
     End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged

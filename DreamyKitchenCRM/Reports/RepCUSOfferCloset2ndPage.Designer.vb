@@ -406,7 +406,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell13
         '
-        Me.XrTableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model11]")})
+        Me.XrTableCell13.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model11Name]")})
         Me.XrTableCell13.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell13.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell13.Multiline = True
@@ -516,7 +516,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell14
         '
-        Me.XrTableCell14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model21]")})
+        Me.XrTableCell14.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model21Name]")})
         Me.XrTableCell14.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell14.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell14.Multiline = True
@@ -626,7 +626,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell15
         '
-        Me.XrTableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model31]")})
+        Me.XrTableCell15.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model31Name]")})
         Me.XrTableCell15.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell15.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell15.Multiline = True
@@ -736,7 +736,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell16
         '
-        Me.XrTableCell16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model41]")})
+        Me.XrTableCell16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model41Name]")})
         Me.XrTableCell16.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell16.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell16.Multiline = True
@@ -845,7 +845,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell39
         '
-        Me.XrTableCell39.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model51]")})
+        Me.XrTableCell39.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[Model51Name]")})
         Me.XrTableCell39.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell39.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell39.Multiline = True

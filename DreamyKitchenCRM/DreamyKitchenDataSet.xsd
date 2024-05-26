@@ -1044,7 +1044,7 @@ FROM   vw_PAY</CommandText>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, code, Fullname, phn, mob, fax, email, afm, cmt, modifiedBy, modifiedOn, createdOn, RealName, COU_Name, SRC_Name, AREAS_Name, ADR_Name, PRF_Name, SALERS_Name, color, CouID, AreaID, AdrID, SourceID, SalerID, DoyID, PrfID, Ar, tk, createdby_Realname, HasFiles, FatherName, DOY_Name, isCompany
 FROM   vw_CCT 
-ORDER BY Fullname</CommandText>
+</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -3344,7 +3344,7 @@ FROM   vw_COLORS_CAT</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
-              <xs:element name="GroupName" msprop:Generator_ColumnPropNameInRow="GroupName" msprop:Generator_ColumnPropNameInTable="GroupNameColumn" msprop:Generator_ColumnVarNameInTable="columnGroupName" msprop:Generator_UserColumnName="GroupName" minOccurs="0">
+              <xs:element name="GroupName" msprop:Generator_UserColumnName="GroupName" msprop:Generator_ColumnPropNameInTable="GroupNameColumn" msprop:Generator_ColumnPropNameInRow="GroupName" msprop:Generator_ColumnVarNameInTable="columnGroupName" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="50" />

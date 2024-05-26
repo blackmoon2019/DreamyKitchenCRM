@@ -492,6 +492,7 @@ Public Class Projects
         Try
             sSQLS.Clear()
             If isDeleted = False Then
+                If Frm.GridView4.DataRowCount = 0 Then Return True
                 sSQLS.AppendLine("UPDATE PROJECT_COST SET DebitCus =  " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True) & ",")
                 sSQLS.AppendLine("GenTotamt =  TotAmt + " & toSQLValueS(Frm.GridView4.GetRowCellValue(Frm.GridView4.FocusedRowHandle, "amt").ToString, True))
                 sSQLS.AppendLine("From PROJECT_COST  P ")

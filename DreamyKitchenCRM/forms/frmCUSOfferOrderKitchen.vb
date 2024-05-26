@@ -882,6 +882,7 @@ Public Class frmCUSOfferOrderKitchen
         If chkGenOffer.CheckState = CheckState.Checked Then
             cboCUS.Enabled = False : cboTRANSH.Enabled = False
             cboCUS.EditValue = cboCompany.EditValue
+            cboCUS.Text = cboCompany.Text
             cboTRANSH.EditValue = cboCompProject.EditValue
         Else
             cboCUS.Enabled = True : cboTRANSH.Enabled = True
@@ -1130,7 +1131,7 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany) ': Vw_CCTTableAdapter.Fill(DreamyKitchenDataSet.vw_CCT)
             Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
             Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing : cmdCompCollection.Enabled = False
         End Select

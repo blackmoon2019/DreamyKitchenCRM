@@ -753,6 +753,32 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub COMPANY(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
+        Try
+            If sSQL Is Nothing Then
+                sSQL = New System.Text.StringBuilder
+                sSQL.AppendLine("Select id,Fullname,'00000000-0000-0000-0000-000000000000' as SalerID,phn,AdrID,email,isCompany from vw_CCT WHERE isCompany = 1 order by Fullname")
+            End If
+
+            Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+            CtrlCombo.Properties.DisplayMember = "Fullname"
+            CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.Columns.Clear()
+            CtrlCombo.Properties.ForceInitialize()
+            CtrlCombo.Properties.PopulateColumns()
+            CtrlCombo.Properties.Columns(0).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Πελάτες"
+            CtrlCombo.Properties.Columns(2).Visible = False
+            CtrlCombo.Properties.Columns(3).Caption = "Τηλέφωνο"
+            CtrlCombo.Properties.Columns(4).Visible = False
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
     Public Sub SUP(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
             'Dim cmd As SqlCommand = New SqlCommand("Select id,Fullname,isnull(SalerID,'00000000-0000-0000-0000-000000000000') as SalerID from vw_CCT order by Fullname", CNDB)

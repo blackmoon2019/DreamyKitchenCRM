@@ -74,7 +74,7 @@ Public Class Customers
                 Frm.txtCode.Text = DBQ.GetNextId("CCT")
                 If CalledFromCtrl Then
                     Dim FillCbo As New FillCombos
-                    FillCbo.CUS(CtrlCombo)
+                    If Frm.chkCompany.CheckState = CheckState.Checked Then FillCbo.COMPANY(CtrlCombo) Else FillCbo.CUS(CtrlCombo)
                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                     FillCbo = Nothing
                 End If

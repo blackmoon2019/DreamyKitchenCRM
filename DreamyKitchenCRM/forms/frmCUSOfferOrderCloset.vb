@@ -427,7 +427,7 @@ Public Class frmCUSOfferOrderCloset
         Select Case DiscMode
             Case 1
                 If DiscountChangedByUser = False Then txtDisc1.EditValue = ProgProps.CusDiscountCloset
-                InitialPrice = txtInitialPrice1.EditValue
+                InitialPrice = txtInitialPrice1.EditValue.ToString.Replace(".", ",")
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc1.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice1 = InitialPrice - Discount
@@ -439,7 +439,7 @@ Public Class frmCUSOfferOrderCloset
                 txtVatPrice1.EditValue = VatPrice
             Case 2
                 If DiscountChangedByUser = False Then txtDisc2.EditValue = ProgProps.CusDiscountCloset
-                InitialPrice = txtInitialPrice2.EditValue
+                InitialPrice = txtInitialPrice2.EditValue.ToString.Replace(".", ",")
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc2.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice2 = InitialPrice - Discount
@@ -451,7 +451,7 @@ Public Class frmCUSOfferOrderCloset
                 txtVatPrice2.EditValue = VatPrice
             Case 3
                 If DiscountChangedByUser = False Then txtDisc3.EditValue = ProgProps.CusDiscountCloset
-                InitialPrice = txtInitialPrice3.EditValue
+                InitialPrice = txtInitialPrice3.EditValue.ToString.Replace(".", ",")
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc3.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice3 = InitialPrice - Discount
@@ -463,7 +463,7 @@ Public Class frmCUSOfferOrderCloset
                 txtVatPrice3.EditValue = VatPrice
             Case 4
                 If DiscountChangedByUser = False Then txtDisc4.EditValue = ProgProps.CusDiscountCloset
-                InitialPrice = txtInitialPrice4.EditValue
+                InitialPrice = txtInitialPrice4.EditValue.ToString.Replace(".", ",")
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc4.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice4 = InitialPrice - Discount
@@ -475,7 +475,7 @@ Public Class frmCUSOfferOrderCloset
                 txtVatPrice4.EditValue = VatPrice
             Case 5
                 If DiscountChangedByUser = False Then txtDisc5.EditValue = ProgProps.CusDiscountCloset
-                InitialPrice = txtInitialPrice5.EditValue
+                InitialPrice = txtInitialPrice5.EditValue.ToString.Replace(".", ",")
                 If DiscountChangedByUser = False Then Disc = ProgProps.CusDiscountCloset / 100 Else Disc = txtDisc5.EditValue / 100
                 Discount = Disc * InitialPrice
                 FinalPrice5 = InitialPrice - Discount
