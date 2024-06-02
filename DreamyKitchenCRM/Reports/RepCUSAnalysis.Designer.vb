@@ -1317,7 +1317,7 @@ Partial Public Class RepCUSAnalysis
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "d289af26-a2da-4f89-839a-f535a06078ee"
+        Me.OfferID.ValueInfo = "54345d18-6242-42c1-84d2-c3f3931a5f76"
         DynamicListLookUpSettings1.DataMember = "vw_ANALYSH_KOSTOYS"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"

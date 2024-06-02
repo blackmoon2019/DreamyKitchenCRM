@@ -262,7 +262,7 @@ Public Class frmCUSPrivateAgreement
         CusPrivateAgreement.GetKLeisimoAmt(cboTRANSH.EditValue.ToString)
         CusPrivateAgreement.GetPayInAdvanceAmt(cboTRANSH.EditValue.ToString)
         CusPrivateAgreement.GetPayInAdvanceBal()
-        LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        If Mode = FormMode.NewRecord Then LMsg.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
 
     End Sub
     Private Sub GetCreditAmountsFromProject()

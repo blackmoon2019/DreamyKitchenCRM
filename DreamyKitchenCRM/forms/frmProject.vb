@@ -85,6 +85,7 @@ Public Class frmProject
         If sCusID <> Nothing Then cboCUS.EditValue = sCusID : cboCUS.Enabled = False
         If sEmpID <> Nothing Then cboSaler.EditValue = sEmpID : cboSaler.Enabled = False
         If sCompID <> Nothing Then cboCompany.EditValue = sCompID : cboCompany.Enabled = False
+        If sCompID.ToString = "00000000-0000-0000-0000-000000000000" Then cboCompany.Enabled = False
         If sCompProjectID <> Nothing Then cboCompProject.EditValue = sCompProjectID : cboCompProject.Enabled = False
         Select Case Mode
             Case FormMode.NewRecord

@@ -544,7 +544,7 @@ Public Class frmCUSOfferOrderDoors
     End Sub
 
     Private Sub CardView1_KeyDown(sender As Object, e As KeyEventArgs) Handles CardView1.KeyDown
-        If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then DeleteRecord()
+        DeleteRecord()
     End Sub
     Private Sub DeleteRecord()
         CusOfferOrderDoors.DeletePhotoRecord()

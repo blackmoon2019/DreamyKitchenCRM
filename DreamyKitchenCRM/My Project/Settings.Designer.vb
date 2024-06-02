@@ -15,7 +15,7 @@ Option Explicit On
 Namespace My
     
     <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
-     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.8.0.0"),  _
+     Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "17.10.0.0"),  _
      Global.System.ComponentModel.EditorBrowsableAttribute(Global.System.ComponentModel.EditorBrowsableState.Advanced)>  _
     Partial Friend NotInheritable Class MySettings
         Inherits Global.System.Configuration.ApplicationSettingsBase
@@ -91,9 +91,9 @@ Namespace My
         <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.SpecialSettingAttribute(Global.System.Configuration.SpecialSetting.ConnectionString),  _
-         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchenDEV;Persist Security Info"& _ 
-            "=True;User ID=sa;Password=Dr3@mySA;MultipleActiveResultSets=True;Encrypt=False;T"& _ 
-            "rustServerCertificate=True")>  _
+         Global.System.Configuration.DefaultSettingValueAttribute("Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchen;Persist Security Info=Tr"& _ 
+            "ue;User ID=sa;Password=Dr3@mySA;MultipleActiveResultSets=True;Encrypt=False;Trus"& _ 
+            "tServerCertificate=True")>  _
         Public ReadOnly Property DreamyKitchenConnectionStringRemotely() As String
             Get
                 Return CType(Me("DreamyKitchenConnectionStringRemotely"),String)

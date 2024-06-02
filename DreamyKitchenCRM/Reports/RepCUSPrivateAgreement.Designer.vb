@@ -125,7 +125,7 @@ Partial Public Class RepCUSPrivateAgreement
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "7e3a8fd1-d895-465b-be32-6c73416d5971"
+        Me.OfferID.ValueInfo = "577c9610-726a-4b49-9269-9dabc354fc80"
         DynamicListLookUpSettings1.DataMember = "vw_AGREEMENT"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"

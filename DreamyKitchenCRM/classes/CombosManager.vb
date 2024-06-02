@@ -286,6 +286,7 @@ Public Class CombosManager
         Frm.CallerControlChecked = CallerControl
         Frm.CalledFromControl = True
         Frm.cboValueList.EditValue = ValueListID
+        Frm.ValueListID = ValueListID
         If CallerControl.EditValue isnot Nothing Then Frm.ID = CallerControl.EditValue.ToString
         Frm.MdiParent = frmMain
         If CallerControl.EditValue isnot Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord

@@ -191,7 +191,7 @@ Public Class frmTransactions
     End Sub
 
     Private Sub frmTransactions_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        Projects.LoadInstallations(True)
+        If ShowCreditOnly = False Then Projects.LoadInstallations(True)
     End Sub
 
 
