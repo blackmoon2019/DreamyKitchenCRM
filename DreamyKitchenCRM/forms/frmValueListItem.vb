@@ -73,7 +73,7 @@ Public Class frmValueListItem
         If sGroupName Is Nothing Then Me.Vw_VALUELISTTableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELIST) Else Me.Vw_VALUELISTTableAdapter.FillByGroupName(Me.DM_VALUELISTITEM.vw_VALUELIST, sGroupName)
         Me.Vw_DIMTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_DIM)
         Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
-        cboValueList.EditValue = System.Guid.Parse(sValueListID)
+        If Mode = FormMode.EditRecord Then cboValueList.EditValue = System.Guid.Parse(sValueListID)
         ShowRequiredItems()
         Select Case Mode
             Case FormMode.NewRecord
@@ -86,7 +86,13 @@ Public Class frmValueListItem
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
     Private Sub ShowRequiredItems()
-        If cboValueList.EditValue = Nothing Then Exit Sub
+        If cboValueList.EditValue = Nothing Then
+            LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+            LName.Tag = "1"
+            LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Exit Sub
+        End If
         Select Case cboValueList.EditValue.ToString.ToUpper
             Case "3C68F058-6A47-4995-8B0C-26538F38580A" ' Μοντέλα Κουζίνας
                 Me.Text = "Μοντέλα Κουζίνας"

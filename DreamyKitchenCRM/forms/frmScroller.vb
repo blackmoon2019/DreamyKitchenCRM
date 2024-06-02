@@ -2084,6 +2084,7 @@ Public Class frmScroller
                 frmVALUELISTITEM.MdiParent = frmMain
                 frmVALUELISTITEM.Mode = FormMode.EditRecord
                 frmVALUELISTITEM.Scroller = GridView1
+                frmVALUELISTITEM.ValueListID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "valueListID").ToString
                 frmVALUELISTITEM.GroupName = "MATERIALS"
                 frmVALUELISTITEM.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVALUELISTITEM), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
