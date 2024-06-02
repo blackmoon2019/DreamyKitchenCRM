@@ -122,6 +122,7 @@ Public Class CUSOfferOrderSpecialConstr
         Dim sResult As Boolean
         Dim sGuid As String
         Try
+            Valid.ID = Frm.cboTRANSH.EditValue.ToString
             If Valid.ValiDationRules(Frm.Name, Frm) = False Then Exit Sub
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 Select Case Mode

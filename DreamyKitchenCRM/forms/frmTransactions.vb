@@ -20,7 +20,7 @@ Public Class frmTransactions
     Private Cls As New ClearControls
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private CalledFromCtrl As Boolean
-    Private ShowCreditOnly As Boolean
+    Private ShowCreditOnly As Boolean = False
     Private sisCompany As Boolean
     Private ManageCbo As New CombosManager
     Private LoadForms As New FormLoader
@@ -69,6 +69,7 @@ Public Class frmTransactions
         AddHandler GridControl3.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
         Projects.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
         Projects.isCompany = sisCompany
+        If ShowCreditOnly = Nothing Then ShowCreditOnly = False
         Projects.LoadForm(ShowCreditOnly)
         Me.CenterToScreen()
     End Sub

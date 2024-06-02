@@ -11,7 +11,7 @@ Public Class frmLogin
         Dim CN As New CN
         'MultipleActiveResultSets=True
         ProgProps.ProgTitle = "DreamyKitchenCRM"
-        If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then
+        If CNDB.Database <> "DreamyKitchen" And Debugger.IsAttached = True Then
             UserProps.UNSave = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchenDEV", "UNSave", "2")
         Else
             UserProps.UNSave = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "UNSave", "2")
@@ -28,7 +28,7 @@ Public Class frmLogin
             End If
         End If
         FillCbo.USR(cboUN)
-        If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then
+        If CNDB.Database <> "DreamyKitchen" And Debugger.IsAttached = True Then
             UserProps.UN = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchenDEV", "UN", System.Guid.Empty.ToString)
         Else
             UserProps.UN = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "UN", System.Guid.Empty.ToString)
@@ -81,7 +81,7 @@ Public Class frmLogin
                     Prog_Prop.GetProgvat()
 
                     'Δημιουργία Κλειδιών
-                    If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then
+                    If CNDB.Database <> "DreamyKitchen" And Debugger.IsAttached = True Then
                         If Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\DreamyKitchenDEV") Is Nothing Then My.Computer.Registry.CurrentUser.CreateSubKey("SOFTWARE\\DreamyKitchenDEV")
                         ProgProps.ServerViewsPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchenDEV", "SERVERVIEWS", "")
                         ProgProps.ServerPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchenDEV", "SERVER_PATH", "")

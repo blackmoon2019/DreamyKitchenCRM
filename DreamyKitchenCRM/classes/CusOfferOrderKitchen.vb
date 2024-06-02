@@ -252,6 +252,7 @@ Public Class CusOfferOrderKitchen
         Dim sResult As Boolean, sResultF As Boolean
         Dim sGuid As String
         Try
+            Valid.ID = Frm.cboTRANSH.EditValue.ToString
             If Valid.ValiDationRules(Frm.Name, Frm,, sIsOrder) = False Then Exit Sub
 
             If Valid.ValidateForm(Frm.LayoutControl1) Then

@@ -138,7 +138,7 @@ Public Class CusPrivateAgreement
             Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,Iskitchen,Iscloset,Isdoor,Issc,AgreementExist,AgreementID,t.invType,ArProtKitchen,ArProtCloset,ArProtDoor,ArProtSpecialContr
                         from vw_TRANSH t
-                        INNER JOIN TRANSC on transc.transhID = t.id and transc.transhcID ='60344B92-1925-42E9-8D0F-0525990B0D5F'
+                        INNER JOIN TRANSC on transc.transhID = t.id 
                         where   completed = 0  and T.cusid = " & sCusID & scompTrashID & " order by description")
         FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
         Frm.cboCUS.EditValue = System.Guid.Parse(sCusID.Replace("'", ""))

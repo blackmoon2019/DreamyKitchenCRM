@@ -2898,7 +2898,7 @@ Partial Class frmTransactions
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Left
         Me.Bar1.FloatLocation = New System.Drawing.Point(51, 368)
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbEMP_T), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProjectCosts), New DevExpress.XtraBars.LinkPersistInfo(Me.BBInstallations), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersKitchen), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersDoor), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersCloset), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersSC), New DevExpress.XtraBars.LinkPersistInfo(Me.BBAgreement)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbEMP_T), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProjectCosts), New DevExpress.XtraBars.LinkPersistInfo(Me.BBInstallations), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersKitchen), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersCloset), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersDoor), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersSC), New DevExpress.XtraBars.LinkPersistInfo(Me.BBAgreement)})
         Me.Bar1.Offset = 15
         Me.Bar1.Text = "Tools"
         '

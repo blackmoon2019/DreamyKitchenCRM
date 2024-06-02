@@ -94,7 +94,7 @@ Public Class frmVersions
         Dim myValue = XtraInputBox.Show(args)
         Try
             If myValue = "" Then Exit Sub
-            If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then
+            If CNDB.Database <> "DreamyKitchen" And Debugger.IsAttached = True Then
                 sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath='\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue & "\'"
             Else
                 sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath='\\10.10.5.5\crm\DKCRM\Updates\" & myValue & "\'"
@@ -114,7 +114,7 @@ Public Class frmVersions
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
-            If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then
+            If CNDB.Database <> "DreamyKitchen" And Debugger.IsAttached = True Then
                 If My.Computer.FileSystem.DirectoryExists("\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue) = False Then
                     My.Computer.FileSystem.CreateDirectory("\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue)
                     Dim exePath As String = Application.ExecutablePath()
