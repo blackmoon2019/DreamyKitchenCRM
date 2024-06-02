@@ -1,11 +1,10 @@
-﻿Imports System.Windows.Forms
-Imports System.Data.SqlClient
-Imports DevExpress.XtraSplashScreen
+﻿Imports System.Data.SqlClient
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
 Imports DevExpress.XtraBars
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.Utils.Menu
+Imports System.Windows.Forms
 Imports DevExpress.XtraGrid.Columns
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.XtraPrinting
@@ -14,9 +13,7 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.Utils
 Imports DevExpress.XtraGrid.Localization
 Imports DevExpress.XtraGrid
-Imports System.IO
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-Imports DevExpress.DataAccess
 
 Public Class frmScroller
 
@@ -98,7 +95,8 @@ Public Class frmScroller
                         ' Το κουμπί απενεργοποιείται γιατί θα πρέπει να μπεί μέσα από την προσφορά και να πατήσει μετατροπή σε παραγγελία
                         BarNewRec.Enabled = False
                     End If
-
+                Case "vw_AGREEMENT"
+                    BarNewRec.Enabled = False
             End Select
             If sDataTable = "vw_INST_ELLIPSE" Then
             End If
@@ -127,7 +125,7 @@ Public Class frmScroller
             GridView2.OptionsMenu.ShowGroupSortSummaryItems = True
             GridView2.OptionsMenu.ShowConditionalFormattingItem = True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub LoadConditionalFormatting()
@@ -163,11 +161,11 @@ Public Class frmScroller
             If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml") = False Then
                 GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
+                GridView1.OptionsLayout.LayoutVersion = "v1.1"
+                GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
             If System.IO.File.Exists(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml") = False Then
-                If sDataDetail <> "" Then
-                    GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
-                End If
+                If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
 
             'Εαν δεν υπάρχει Folder Σχεδίου για το συγκεκριμένο πίνακα δημιουργεί
@@ -195,193 +193,393 @@ Public Class frmScroller
                 If sDataDetail <> "" Then GridView2.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Διαγραφη Εγγραφής
     Private Sub DeleteRecord()
         Dim sSQL As String
         Dim sSQL2 As String
+        Dim DeleteSucceed As Boolean = True
         Try
             If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
-            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                Dim sID As String = toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString)
+
                 Select Case sDataTable
-                    Case "vw_USR" : sSQL = "DELETE FROM USR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_MAILS" : sSQL = "DELETE FROM MAILS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_RIGHTS" : sSQL = "DELETE FROM RIGHTS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        sSQL2 = "DELETE FROM FORM_RIGHTS WHERE RID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_COU" : sSQL = "DELETE FROM COU WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_AREAS" : sSQL = "DELETE FROM AREAS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_ADR" : sSQL = "DELETE FROM ADR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOY" : sSQL = "DELETE FROM DOY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_PRF" : sSQL = "DELETE FROM PRF WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_STATUS" : sSQL = "DELETE FROM STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SOURCE" : sSQL = "DELETE FROM SCR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT" : sSQL = "DELETE FROM CCT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SALERS" : sSQL = "DELETE FROM SALERS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_M" : sSQL = "DELETE FROM CCT_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOOR_TYPE" : sSQL = "DELETE FROM DOOR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CAT_ERM" : sSQL = "DELETE FROM CAT_ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_ERM" : sSQL = "DELETE FROM ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_BENCH" : sSQL = "DELETE FROM BENCH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_MECH" : sSQL = "DELETE FROM MECH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_TECH_CAT" : sSQL = "DELETE FROM TECH_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_TECH_SUP" : sSQL = "DELETE FROM TECH_SUP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOOR_CAT" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_INST_ELLIPSE"
-                        Dim Cmd As SqlCommand, sdr As SqlDataReader
-                        sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
-                            " and DATEADD(ms, -DATEPART(ms, createdOn), createdOn)> " & toSQLValueS(DateTime.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "createdOn")).ToString("yyyy-MM-dd HH:mm:ss.fff"))
-                        Cmd = New SqlCommand(sSQL.ToString, CNDB)
-                        sdr = Cmd.ExecuteReader()
-                        Dim CountEllipse As Integer
-                        If (sdr.Read() = True) Then
-                            If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
-                            If CountEllipse > 0 Then
-                                XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                sdr.Close()
-                                Exit Sub
-                            Else
-                                sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                            End If
-                        Else
-                            XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            sdr.Close()
-                            Exit Sub
-                        End If
-                    Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP_M_S" : sSQL = "DELETE FROM EMP_M_S WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP_M" : sSQL = "DELETE FROM EMP_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP_T" : sSQL = "DELETE FROM EMP_T WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DEP" : sSQL = "DELETE FROM DEP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SALER_CAL_STATUS" : sSQL = "DELETE FROM SALER_CAL_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CONSTR_CAT" : sSQL = "DELETE FROM CONSTR_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CONSTR" : sSQL = "DELETE FROM CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_JOBS" : sSQL = "DELETE FROM JOBS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SCAN_FILE_NAMES" : sSQL = "DELETE FROM SCAN_FILE_NAMES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_PROJECT_COST" : sSQL = "DELETE FROM PROJECT_COST WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_NOTES" : sSQL = "DELETE FROM NOTES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_PAY" : sSQL = "DELETE FROM PAY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SUP" : sSQL = "DELETE FROM SUP WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_BUY_C" : sSQL = "DELETE FROM BUY_C WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_OFFERS" : sSQL = "DELETE FROM CCT_OFFERS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_OFFERS_CLOSET" : sSQL = "DELETE FROM CCT_OFFERS_CLOSET WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_OFFERS_DOOR" : sSQL = "DELETE FROM CCT_OFFERS_DOOR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_OFFERS_SPECIAL_CONSTR" : sSQL = "DELETE FROM CCT_OFFERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_ORDERS_SPECIAL_CONSTR" : sSQL = "DELETE FROM CCT_ORDERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_ORDERS_KITCHEN" : sSQL = "DELETE FROM CCT_ORDERS_KITCHEN WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_ORDERS_DOOR" : sSQL = "DELETE FROM CCT_ORDERS_DOOR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SUP_ORDERS" : sSQL = "DELETE FROM SUP_ORDERS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EQUIPMENT" : sSQL = "DELETE FROM EQUIPMENT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EQUIPMENT_CAT" : sSQL = "DELETE FROM vw_EQUIPMENT_CAT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DEVICES" : sSQL = "DELETE FROM DEVICES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_ORDERS_CLOSET" : sSQL = "DELETE FROM CCT_ORDERS_CLOSET WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_AGREEMENT" : sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_EP_STATUS" : sSQL = "DELETE FROM EP_STATUS WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_TRANS_CONSTR" : sSQL = "DELETE FROM TRANS_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOC_TYPES" : sSQL = "DELETE FROM DOC_TYPES WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_DMVER" : sSQL = "DELETE FROM DMVER WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_SUP_PAYMENTS_H"
-                        ' Επαναφορά τιμολογίων σε απλήρωτα όπου αυτό χρειάζεται
-                        sSQL = "UPDATE BUY	SET PAID=0	FROM BUY INNER JOIN	SUP_PAYMENTS_D SD ON SD.buyID=BUY.ID WHERE SD.supPaymentHID= '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-
-                        sSQL = "DELETE FROM SUP_PAYMENTS_H WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
-                        Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
-                            oCmd.CommandType = CommandType.StoredProcedure
-                            oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-
-                    Case "vw_BUY"
-
-                        sSQL = "DELETE FROM BUY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
-                        Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
-                            oCmd.CommandType = CommandType.StoredProcedure
-                            oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-
-                    Case "vw_TRANSH"
-                        sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
-                                WHERE TRANSH.ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM TRANSD WHERE TRANSHID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM TRANSH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_OFF"
-                        sSQL = "DELETE FROM [OFFER_MECH] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFFER_SIDES] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFF_TOTAL] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFFERS] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFF_SUBOFF] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFF_DET] WHERE offID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                        Using oCmd As New SqlCommand(sSQL, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sSQL = "DELETE FROM [OFF] WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CALC" : sSQL = "DELETE FROM CALC WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-                    Case "vw_CAT_SUB_ERM" : sSQL = "DELETE FROM CAT_SUB_ERM WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
-
+                    Case "vw_USR" : sSQL = "DELETE FROM USR WHERE ID = " & sID
+                    Case "vw_FILE_CAT" : sSQL = "DELETE FROM FILE_CAT WHERE ID = " & sID
+                    Case "vw_MAILS" : sSQL = "DELETE FROM MAILS WHERE ID = " & sID
+                    Case "vw_RIGHTS" : sSQL = "DELETE FROM RIGHTS WHERE ID = " & sID : sSQL2 = "DELETE FROM FORM_RIGHTS WHERE RID = " & sID
+                    Case "vw_COU" : sSQL = "DELETE FROM COU WHERE ID = " & sID
+                    Case "vw_AREAS" : sSQL = "DELETE FROM AREAS WHERE ID = " & sID
+                    Case "vw_ADR" : sSQL = "DELETE FROM ADR WHERE ID = " & sID
+                    Case "vw_DOY" : sSQL = "DELETE FROM DOY WHERE ID = " & sID
+                    Case "vw_PRF" : sSQL = "DELETE FROM PRF WHERE ID = " & sID
+                    Case "vw_STATUS" : sSQL = "DELETE FROM STATUS WHERE ID = " & sID
+                    Case "vw_SOURCE" : sSQL = "DELETE FROM SCR WHERE ID = " & sID
+                    Case "vw_CCT" : sSQL = "DELETE FROM CCT WHERE ID = " & sID
+                    Case "vw_SALERS" : sSQL = "DELETE FROM SALERS WHERE ID = " & sID
+                    Case "vw_CCT_M" : sSQL = "DELETE FROM CCT_M WHERE ID = " & sID
+                    Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = " & sID
+                    Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = " & sID
+                    Case "vw_VALUELISTITEM" : sSQL = "DELETE FROM valueListItem WHERE ID = " & sID
+                    Case "vw_PROJECTCHECKLIST" : sSQL = "DELETE FROM valueListItem WHERE ID = " & sID
+                    Case "vw_CAT_ERM" : sSQL = "DELETE FROM CAT_ERM WHERE ID = " & sID
+                    Case "vw_ERM" : sSQL = "DELETE FROM ERM WHERE ID = " & sID
+                    Case "vw_BENCH" : sSQL = "DELETE FROM BENCH WHERE ID = " & sID
+                    Case "vw_MECH" : sSQL = "DELETE FROM MECH WHERE ID = " & sID
+                    Case "vw_TECH_CAT" : sSQL = "DELETE FROM TECH_CAT WHERE ID = " & sID
+                    Case "vw_TECH_SUP" : sSQL = "DELETE FROM TECH_SUP WHERE ID = " & sID
+                    Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = " & sID
+                    Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = " & sID
+                    Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = " & sID
+                    Case "vw_VALUELIST" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = " & sID
+                    Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = " & sID
+                    Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = " & sID
+                    Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = " & sID
+                    Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = " & sID
+                    Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = " & sID
+                    Case "vw_TRANSH_SMALL" : sSQL = "DELETE FROM TRANSH WHERE ID = " & sID
+                    Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = " & sID
+                    Case "vw_INST_ELLIPSE" : DeleteSucceed = DeleteInstEllipse()
+                    Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = " & sID
+                    Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = " & sID
+                    Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = " & sID
+                    Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = " & sID
+                    Case "vw_EMP_M_S" : sSQL = "DELETE FROM EMP_M_S WHERE ID = " & sID
+                    Case "vw_EMP_M" : sSQL = "DELETE FROM EMP_M WHERE ID = " & sID
+                    Case "vw_EMP_T" : sSQL = "DELETE FROM EMP_T WHERE ID = " & sID
+                    Case "vw_DEP" : sSQL = "DELETE FROM DEP WHERE ID = " & sID
+                    Case "vw_SALER_CAL_STATUS" : sSQL = "DELETE FROM SALER_CAL_STATUS WHERE ID = " & sID
+                    Case "vw_CONSTR_CAT" : sSQL = "DELETE FROM CONSTR_CAT WHERE ID = " & sID
+                    Case "vw_CONSTR" : sSQL = "DELETE FROM CONSTR WHERE ID = " & sID
+                    Case "vw_JOBS" : sSQL = "DELETE FROM JOBS WHERE ID = " & sID
+                    Case "vw_SCAN_FILE_NAMES" : sSQL = "DELETE FROM SCAN_FILE_NAMES WHERE ID = " & sID
+                    Case "vw_PROJECT_COST" : sSQL = "DELETE FROM PROJECT_COST WHERE ID = " & sID
+                    Case "vw_NOTES" : sSQL = "DELETE FROM NOTES WHERE ID = " & sID
+                    Case "vw_PAY" : sSQL = "DELETE FROM PAY WHERE ID = " & sID
+                    Case "vw_SUP" : sSQL = "DELETE FROM SUP WHERE ID = " & sID
+                    Case "vw_BUY_C" : sSQL = "DELETE FROM BUY_C WHERE ID = " & sID
+                    Case "vw_CCT_ORDERS_KITCHEN" : DeleteSucceed = DeleteOrder(1)
+                    Case "vw_CCT_ORDERS_DOOR" : DeleteSucceed = DeleteOrder(2)
+                    Case "vw_CCT_ORDERS_CLOSET" : DeleteSucceed = DeleteOrder(3)
+                    Case "vw_CCT_ORDERS_SPECIAL_CONSTR" : DeleteSucceed = DeleteOrder(4)
+                    Case "vw_SUP_ORDERS" : sSQL = "DELETE FROM SUP_ORDERS WHERE ID = " & sID
+                    Case "vw_EQUIPMENT" : sSQL = "DELETE FROM EQUIPMENT WHERE ID = " & sID
+                    Case "vw_EQUIPMENT_CAT" : sSQL = "DELETE FROM vw_EQUIPMENT_CAT WHERE ID = " & sID
+                    Case "vw_DEVICES" : sSQL = "DELETE FROM DEVICES WHERE ID = " & sID
+                    Case "vw_AGREEMENT" : DeleteSucceed = DeleteAgreement()
+                    Case "vw_EP_STATUS" : sSQL = "DELETE FROM EP_STATUS WHERE ID = " & sID
+                    Case "vw_TRANS_CONSTR" : sSQL = "DELETE FROM TRANS_CONSTR WHERE ID = " & sID
+                    Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = " & sID
+                    Case "vw_DOC_TYPES" : sSQL = "DELETE FROM DOC_TYPES WHERE ID = " & sID
+                    Case "vw_DMVER" : sSQL = "DELETE FROM DMVER WHERE ID = " & sID
+                    Case "vw_SUP_PAYMENTS_H" : DeleteSucceed = DeleteSupPaymentsH()
+                    Case "vw_BUY" : DeleteSucceed = DeleteBuy()
+                    Case "vw_TRANSH" : DeleteSucceed = DeleteTransh()
+                    Case "vw_CALC" : sSQL = "DELETE FROM CALC WHERE ID = " & sID
+                    Case "vw_CAT_SUB_ERM" : sSQL = "DELETE FROM CAT_SUB_ERM WHERE ID = " & sID
                 End Select
-
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
+                If sSQL <> "" Then
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
                 If sSQL2 <> "" Then
                     Using oCmd As New SqlCommand(sSQL2, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using
                 End If
-                LoadRecords()
-                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If DeleteSucceed Then
+                    LoadRecords()
+                    XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                End If
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
+    Private Function DeleteTransh() As Boolean
+        Try
+            Dim sSQL As String
+            sSQL = "DELETE FROM CCTF FROM CCT_F CCTF INNER JOIN TRANSH ON CCTF.cctID = TRANSH.cusID AND CCTF.isinvoice=1 
+                                WHERE TRANSH.ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "DELETE FROM TRANSD WHERE TRANSHID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "DELETE FROM TRANSH WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Private Function DeleteBuy() As Boolean
+        Try
+            Dim sSQL As String
+            sSQL = "DELETE FROM BUY WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
+            Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Private Function DeleteSupPaymentsH() As Boolean
+        Try
+            Dim sSQL As String
+            ' Επαναφορά τιμολογίων σε απλήρωτα όπου αυτό χρειάζεται
+            sSQL = "UPDATE BUY	SET PAID=0	FROM BUY INNER JOIN	SUP_PAYMENTS_D SD ON SD.buyID=BUY.ID WHERE SD.supPaymentHID= '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+            sSQL = "DELETE FROM SUP_PAYMENTS_H WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            'Ενημέρωση υπολοίπου προμηθευτή όταν το τιμολόγιο δεν είναι πληρωμένο και δεν είναι μετρητοίς
+            Using oCmd As New SqlCommand("FIX_SUP_BAL", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@supplierID", GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "supID").ToString)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+    'Διαγραφή Συμφωνητικού
+    Private Function DeleteAgreement() As Boolean
+        Try
+            Dim sSQL As String
+            sSQL = "update TRANSH SET waitingForAgreement=0 where ID = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString)
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    ' Διαγραφή έλλειψης
+    Private Function DeleteInstEllipse() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Try
+            Dim sSQL As String
+            sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString) &
+                " and DATEADD(ms, -DATEPART(ms, createdOn), createdOn)> " & toSQLValueS(DateTime.Parse(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "createdOn")).ToString("yyyy-MM-dd HH:mm:ss.fff"))
+            Cmd = New SqlCommand(sSQL, CNDB)
+            sdr = Cmd.ExecuteReader()
+            Dim CountEllipse As Integer
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
+                If CountEllipse > 0 Then
+                    XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    sdr.Close()
+                    Return False
+                Else
+                    sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
+            Else
+                XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                sdr.Close()
+                Return False
+            End If
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sdr.Close()
+            Return False
+        End Try
+
+    End Function
+    ' Διαγραφή παραγγελίας
+    Private Function DeleteOrder(ByVal sMode As Int16) As Boolean
+        Try
+            Dim sSQL As String
+            Select Case sMode
+                Case 1 ' Κουζίνα
+                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
+                        If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε παραγγελία όταν έχει δημιουργηθεί Ιδ.Συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    Else
+                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+                    sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    sSQL = "DELETE FROM CCT_ORDERS_KITCHEN WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Case 2 ' Πόρτες
+                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
+                        If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε παραγγελία όταν έχει δημιουργηθεί Ιδ.Συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    Else
+                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+                    sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    sSQL = "DELETE FROM CCT_ORDERS_DOOR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Case 3 ' Ντουλάπες
+                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
+                        If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε παραγγελία όταν έχει δημιουργηθεί Ιδ.Συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    Else
+                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+                    sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    sSQL = "DELETE FROM CCT_ORDERS_CLOSET WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Case 4 ' Ειδικές Κατασκευές
+                    If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "isOrder").ToString = "True" Then
+                        If CheckIfAgreementExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε παραγγελία όταν έχει δημιουργηθεί Ιδ.Συμφωνητικό. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    Else
+                        If CheckIfOrderExist(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString, sMode) = True Then
+                            XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε προσφορά όταν έχει μετασχηματιστεί σε παραγγελια. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+                    sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                    sSQL = "DELETE FROM CCT_ORDERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+            End Select
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    ' Έλεγχος αν υπάρχει παραγγελία
+    Private Function CheckIfOrderExist(ByVal sID As String, ByVal sMode As Int16) As Boolean
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Try
+            Select Case sMode
+                ' Κουζίνα
+                Case 1 : sSQL = "SELECT ID FROM CCT_ORDERS_KITCHEN WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+                Case 2 : sSQL = "SELECT ID FROM CCT_ORDERS_DOOR WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+                Case 3 : sSQL = "SELECT ID FROM CCT_ORDERS_CLOSET WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+                Case 4 : sSQL = "SELECT ID FROM CCT_ORDERS_SPECIAL_CONSTR WHERE CreatedFromOfferID = " & toSQLValueS(sID)
+            End Select
+            Cmd = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then sdr.Close: Return True Else sdr.Close:Return False
+            Else
+                sdr.Close() :
+                Return False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+    Private Function CheckIfAgreementExist(ByVal sTranshID As String, ByVal sMode As Int16) As Boolean
+        Dim sSQL As String
+        Dim Cmd As SqlCommand
+        Try
+            Select Case sMode
+                Case 1 ' Κουζίνα
+                    sSQL = "select A.ID 
+                        from AGREEMENT A
+                        INNER JOIN CCT_ORDERS_KITCHEN  K ON K.transhID=A.transhID   " &
+                        " where K.TranshID = " & toSQLValueS(sTranshID)
+                Case 2 ' Πόρτες
+                    sSQL = "select A.ID 
+                        from AGREEMENT A
+                        INNER JOIN CCT_ORDERS_DOOR  D ON D.transhID=A.transhID   " &
+                        " where D.TranshID = " & toSQLValueS(sTranshID)
+                Case 3 ' Ντουλάπες
+                    sSQL = "select A.ID 
+                        from AGREEMENT A
+                        INNER JOIN CCT_ORDERS_CLOSET  C ON C.transhID=A.transhID   " &
+                        " where C.TranshID = " & toSQLValueS(sTranshID)
+                Case 4 ' Ειδικές Κατασκευές
+                    sSQL = "select A.ID 
+                        from AGREEMENT A
+                        INNER JOIN CCT_ORDERS_SPECIAL_CONSTR  SC ON SC.transhID=A.transhID  =   " &
+                        " where SC.TranshID = " & toSQLValueS(sTranshID)
+            End Select
+            Cmd = New SqlCommand(sSQL, CNDB)
+            Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("ID")) = False Then sdr.Close() : Return True Else sdr.Close() : Return False
+            Else
+                sdr.Close()
+                Return False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+
     'Διαγραφη Εγγραφών
     Private Sub DeleteBatchRecords()
         Dim sSQL As String
@@ -389,13 +587,14 @@ Public Class frmScroller
         Dim selectedRowHandles As Int32() = GridView1.GetSelectedRows()
         Dim I As Integer
         Try
-            If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
+            If XtraMessageBox.Show("Θέλετε να διαγραφούν η τρέχουσες εγγραφές?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
             For I = 0 To selectedRowHandles.Length - 1
                 Dim selectedRowHandle As Int32 = selectedRowHandles(I)
 
                 If GridView1.GetRowCellValue(selectedRowHandle, "ID") = Nothing Then Exit Sub
                 Select Case sDataTable
                     Case "vw_USR" : sSQL = "DELETE FROM USR WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_FILE_CAT" : sSQL = "DELETE FROM FILE_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_MAILS" : sSQL = "DELETE FROM MAILS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_RIGHTS" : sSQL = "DELETE FROM RIGHTS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                         sSQL2 = "DELETE FROM FORM_RIGHTS WHERE RID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
@@ -411,7 +610,8 @@ Public Class frmScroller
                     Case "vw_CCT_M" : sSQL = "DELETE FROM CCT_M WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_REM_VALUES" : sSQL = "DELETE FROM REM_VALUES WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_NOTES_L" : sSQL = "DELETE FROM NOTES_L WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOOR_TYPE" : sSQL = "DELETE FROM DOOR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_VALUELISTITEM" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_PROJECTCHECKLIST" : sSQL = "DELETE FROM valueListItem WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CAT_ERM" : sSQL = "DELETE FROM CAT_ERM WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_ERM" : sSQL = "DELETE FROM ERM WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BENCH" : sSQL = "DELETE FROM BENCH WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
@@ -421,11 +621,14 @@ Public Class frmScroller
                     Case "vw_COLORS" : sSQL = "DELETE FROM COLORS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_SIDES" : sSQL = "DELETE FROM SIDES WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_DIM" : sSQL = "DELETE FROM DIM WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
-                    Case "vw_DOOR_CAT" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_VALUELIST" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_TRANSH_SMALL" : sSQL = "DELETE FROM TRANSH WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_PAY_TYPE" : sSQL = "DELETE FROM PAY_TYPE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_INST_ELLIPSE"
                         Dim Cmd As SqlCommand, sdr As SqlDataReader
                         sSQL = "SELECT count (id) as CountEllipse  FROM INST_ELLIPSE WHERE instID= " & toSQLValueS(GridView1.GetRowCellValue(selectedRowHandle, "instID").ToString) & " and createdOn> " & toSQLValueS(CDate(GridView1.GetRowCellValue(selectedRowHandle, "createdOn")).ToString("yyyyMMdd"))
@@ -435,14 +638,14 @@ Public Class frmScroller
                         If (sdr.Read() = True) Then
                             If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
                             If CountEllipse > 0 Then
-                                XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                XtraMessageBox.Show("Δεν πορείτε να διαγράψετε έλλειψη όταν υπάρχει κι αλλη έλλειψη για το έργο σε μεταγενέστερη ημερομηνία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                                 sdr.Close()
                                 Exit Sub
                             Else
                                 sSQL = "DELETE FROM INST_ELLIPSE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                             End If
                         Else
-                            XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             sdr.Close()
                             Exit Sub
                         End If
@@ -469,14 +672,28 @@ Public Class frmScroller
                     Case "vw_CCT_OFFERS_DOOR" : sSQL = "DELETE FROM CCT_OFFERS_DOOR WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT_OFFERS_SPECIAL_CONSTR" : sSQL = "DELETE FROM CCT_OFFERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT_ORDERS_SPECIAL_CONSTR" : sSQL = "DELETE FROM CCT_ORDERS_SPECIAL_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
-                    Case "vw_CCT_ORDERS_KITCHEN" : sSQL = "DELETE FROM CCT_ORDERS_KITCHEN WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_CCT_ORDERS_KITCHEN"
+                        sSQL = "DELETE FROM TRANSH_F WHERE OWNERID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+
+                        sSQL = "DELETE FROM CCT_ORDERS_KITCHEN WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT_ORDERS_DOOR" : sSQL = "DELETE FROM CCT_ORDERS_DOOR WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_SUP_ORDERS" : sSQL = "DELETE FROM SUP_ORDERS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_EQUIPMENT" : sSQL = "DELETE FROM EQUIPMENT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_EQUIPMENT_CAT" : sSQL = "DELETE FROM vw_EQUIPMENT_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_DEVICES" : sSQL = "DELETE FROM DEVICES WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CCT_ORDERS_CLOSET" : sSQL = "DELETE FROM CCT_ORDERS_CLOSET WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
-                    Case "vw_AGREEMENT" : sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_AGREEMENT"
+                        sSQL = "update TRANSH SET waitingForAgreement=0 where ID = " & toSQLValueS(GridView1.GetRowCellValue(selectedRowHandle, "transhID").ToString)
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        sSQL = "DELETE FROM AGREEMENT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
                     Case "vw_EP_STATUS" : sSQL = "DELETE FROM EP_STATUS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_TRANS_CONSTR" : sSQL = "DELETE FROM TRANS_CONSTR WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CONSTR_TYPE" : sSQL = "DELETE FROM CONSTR_TYPE WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
@@ -566,9 +783,9 @@ Public Class frmScroller
             Next
 
             LoadRecords()
-            XtraMessageBox.Show("Η εγγραφές διαγράφηκαν με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("Η εγγραφές διαγράφηκαν με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Επιλογή όψης
@@ -590,7 +807,7 @@ Public Class frmScroller
                 popDeleteView.Enabled = True
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Κλείσιμο Φόρμας
@@ -604,7 +821,7 @@ Public Class frmScroller
     End Sub
     'Διαγραφή όψης
     Private Sub popDeleteView_ItemClick(sender As Object, e As ItemClickEventArgs) Handles popDeleteView.ItemClick
-        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα όψη?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα όψη?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             If BarViews.EditValue <> "" Then
                 My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
                 If sDataDetail <> "" Then My.Computer.FileSystem.DeleteFile(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue)
@@ -651,7 +868,7 @@ Public Class frmScroller
                 CurrentView = BarViews.EditValue
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     'Αποθήκευση όψης
@@ -673,7 +890,7 @@ Public Class frmScroller
                 GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\D_" & sDataDetail & "\" & BarViews.EditValue, OptionsLayoutBase.FullLayout)
             End If
             'GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\" & sDataTable & "\" & BarViews.EditValue)
-            XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
     'Επαναφορά Default όψης
@@ -779,10 +996,10 @@ Public Class frmScroller
     Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataDetail & "_def.xml") = False Then GridView2.OptionsLayout.LayoutVersion = "v1"
                 GridView2.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -920,7 +1137,7 @@ Public Class frmScroller
                 End If
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             If GetVal Then sdr.Close()
         End Try
 
@@ -958,6 +1175,53 @@ Public Class frmScroller
         Dim frmGen As frmGen = New frmGen()
         If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID") Is Nothing Then Exit Sub
         Select Case sDataTable
+            Case "vw_TRANSH_SMALL"
+                Dim frmProject As New frmProject
+                frmProject.Text = "Έργα Πελατών"
+                frmProject.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmProject.MdiParent = frmMain
+                frmProject.Mode = FormMode.EditRecord
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProject), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmProject.Show()
+            Case "vw_FILE_CAT"
+                frmGen.Text = "Κατηγορίες Αρχείων"
+                frmGen.MdiParent = frmMain
+                frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmGen.Mode = FormMode.EditRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "FILE_CAT"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Κατηγορία"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
+            Case "vw_PAY_TYPE"
+                frmGen.Text = "Τύποι Πληρωμής"
+                frmGen.MdiParent = frmMain
+                frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmGen.Mode = FormMode.EditRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "PAY_TYPE"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Τύποι Πληρωμής"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
+            Case "vw_TRANSH_C"
+                frmGen.Text = "Κατηγορίες Έργων"
+                frmGen.MdiParent = frmMain
+                frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmGen.Mode = FormMode.EditRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "TRANSH_C"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Κατηγορίες Έργων"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_BASE_CAT"
                 frmGen.Text = "Τύποι Κατασκευής"
                 frmGen.MdiParent = frmMain
@@ -1012,6 +1276,11 @@ Public Class frmScroller
                 frmPrivateAgreement.Scroller = GridView1
                 frmPrivateAgreement.FormScroller = Me
                 frmPrivateAgreement.FormScrollerExist = True
+                frmPrivateAgreement.CUS = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cusID")
+                frmPrivateAgreement.TRANSH = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "transhID")
+                frmPrivateAgreement.Company = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "compID") Is DBNull.Value, Guid.Empty, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "compID"))
+                frmPrivateAgreement.CompProject = IIf(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "compTrashID") Is DBNull.Value, Guid.Empty, GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "compTrashID"))
+                frmPrivateAgreement.EMP = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "empID")
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmPrivateAgreement), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmPrivateAgreement.Show()
             Case "vw_CCT_ORDERS_CLOSET"
@@ -1040,13 +1309,16 @@ Public Class frmScroller
                 Else
                     frmCUSOfferOrderKitchen.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
                     frmCUSOfferOrderKitchen.IsOrder = 0
+
                 End If
                 frmCUSOfferOrderKitchen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+
                 frmCUSOfferOrderKitchen.MdiParent = frmMain
                 frmCUSOfferOrderKitchen.Mode = FormMode.EditRecord
                 frmCUSOfferOrderKitchen.Scroller = GridView1
                 frmCUSOfferOrderKitchen.FormScroller = Me
                 frmCUSOfferOrderKitchen.FormScrollerExist = True
+                ' frmCUSOfferOrderKitchen.Width = 1133 : frmCUSOfferOrderKitchen.Height = 850
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderKitchen.Show()
             Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
@@ -1069,10 +1341,10 @@ Public Class frmScroller
             Case "vw_CCT_ORDERS_DOOR"
                 Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
                 If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτα)"
                     frmCUSOfferOrderDoors.IsOrder = 1
                 Else
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Πόρτα)"
                     frmCUSOfferOrderDoors.IsOrder = 0
                 End If
                 frmCUSOfferOrderDoors.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
@@ -1359,7 +1631,7 @@ Public Class frmScroller
                 frmGen.Show()
             Case "vw_INST_M"
                 Dim frmInstM As New frmInstM
-                frmInstM.Text = "Χρεωπιστώσεις Τοποθετών"
+                frmInstM.Text = "Έργα Τοποθετών"
                 frmInstM.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmInstM.InstID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString
                 frmInstM.MdiParent = frmMain
@@ -1382,7 +1654,7 @@ Public Class frmScroller
                 frmEMP.Show()
             Case "vw_TRANSH"
                 Dim frmTransactions As New frmTransactions
-                frmTransactions.Text = "Χρεωπιστώσεις"
+                frmTransactions.Text = "Έργα"
                 frmTransactions.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmTransactions.MdiParent = frmMain
                 frmTransactions.Mode = FormMode.EditRecord
@@ -1541,7 +1813,7 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_DOOR_CAT"
+            Case "vw_VALUELIST"
                 frmGen.Text = "Κατηγορίες Διαστάσεων"
                 frmGen.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmGen.MdiParent = frmMain
@@ -1805,17 +2077,29 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_DOOR_TYPE"
-                Dim frmDoorType As frmDoorType = New frmDoorType
-                frmDoorType.Text = "Κατηγορία Πόρτας"
-                frmDoorType.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
-                frmDoorType.MdiParent = frmMain
-                frmDoorType.Mode = FormMode.EditRecord
-                frmDoorType.Scroller = GridView1
-                frmDoorType.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmDoorType.Show()
-
+            Case "vw_VALUELISTITEM"
+                Dim frmVALUELISTITEM As frmValueListItem = New frmValueListItem
+                frmVALUELISTITEM.Text = "Κατηγορία Πόρτας"
+                frmVALUELISTITEM.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmVALUELISTITEM.MdiParent = frmMain
+                frmVALUELISTITEM.Mode = FormMode.EditRecord
+                frmVALUELISTITEM.Scroller = GridView1
+                frmVALUELISTITEM.GroupName = "MATERIALS"
+                frmVALUELISTITEM.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVALUELISTITEM), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmVALUELISTITEM.Show()
+            Case "vw_PROJECTCHECKLIST"
+                Dim frmPROJECTCHECKLIST As frmValueListItem = New frmValueListItem
+                frmPROJECTCHECKLIST.Text = "CheckList Έργων"
+                frmPROJECTCHECKLIST.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmPROJECTCHECKLIST.MdiParent = frmMain
+                frmPROJECTCHECKLIST.Mode = FormMode.EditRecord
+                frmPROJECTCHECKLIST.Scroller = GridView1
+                frmPROJECTCHECKLIST.GroupName = "CHECKLIST"
+                frmPROJECTCHECKLIST.cboValueList.EditValue = "CA8BACF7-3205-43AF-BCBB-A0DA4915C046"
+                frmPROJECTCHECKLIST.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmPROJECTCHECKLIST), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmPROJECTCHECKLIST.Show()
             Case "vw_CAT_ERM"
                 frmGen.Text = "Κατηγορίες Ερμαριών"
                 frmGen.MdiParent = frmMain
@@ -1891,6 +2175,50 @@ Public Class frmScroller
     Private Sub NewRecord()
         Dim frmGen As frmGen = New frmGen()
         Select Case sDataTable
+            Case "vw_TRANSH_SMALL"
+                Dim frmProject As New frmProject
+                frmProject.Text = "Έργα Πελατών"
+                frmProject.MdiParent = frmMain
+                frmProject.Mode = FormMode.NewRecord
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProject), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmProject.Show()
+            Case "vw_FILE_CAT"
+                frmGen.Text = "Κατηγορίες Αρχείων"
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.NewRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "FILE_CAT"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Κατηγορία"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
+
+            Case "vw_PAY_TYPE"
+                frmGen.Text = "Τύποι Πληρωμής"
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.NewRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "PAY_TYPE"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Τύποι Πληρωμής"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
+            Case "vw_TRANSH_C"
+                frmGen.Text = "Κατηγορίες Έργων"
+                frmGen.MdiParent = frmMain
+                frmGen.Mode = FormMode.NewRecord
+                frmGen.Scroller = GridView1
+                frmGen.DataTable = "TRANSH_C"
+                frmGen.L1.Text = "Κωδικός"
+                frmGen.L2.Text = "Κατηγορίες Έργων"
+                frmGen.FormScroller = Me
+                frmGen.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmGen.Show()
             Case "vw_BASE_CAT"
                 frmGen.Text = "Τύποι Κατασκευής"
                 frmGen.MdiParent = frmMain
@@ -1977,12 +2305,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderCloset), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderCloset.Show()
             Case "vw_CCT_ORDERS_KITCHEN"
-                Dim frmBaseCat As frmBaseCat = New frmBaseCat
-                frmBaseCat.Text = "Τύποι Κατασκευής"
-                frmBaseCat.ShowDialog()
-                If frmBaseCat.BaseCat = 3 Then Exit Sub
                 Dim frmCUSOfferOrderKitchen As frmCUSOfferOrderKitchen = New frmCUSOfferOrderKitchen()
-                frmCUSOfferOrderKitchen.BaseCat = frmBaseCat.BaseCat
                 If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
                     frmCUSOfferOrderKitchen.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνα)"
                     frmCUSOfferOrderKitchen.IsOrder = 1
@@ -1995,6 +2318,7 @@ Public Class frmScroller
                 frmCUSOfferOrderKitchen.Scroller = GridView1
                 frmCUSOfferOrderKitchen.FormScroller = Me
                 frmCUSOfferOrderKitchen.FormScrollerExist = True
+                frmMain.XtraTabbedMdiManager1.FloatOnDrag = DevExpress.Utils.DefaultBoolean.True
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmCUSOfferOrderKitchen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmCUSOfferOrderKitchen.Show()
             Case "vw_CCT_ORDERS_SPECIAL_CONSTR"
@@ -2016,10 +2340,10 @@ Public Class frmScroller
             Case "vw_CCT_ORDERS_DOOR"
                 Dim frmCUSOfferOrderDoors As frmCUSOfferOrderDoors = New frmCUSOfferOrderDoors()
                 If sWhereCondition.TrimStart.TrimEnd = "where isOrder = 1" Then
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτα)"
                     frmCUSOfferOrderDoors.IsOrder = 1
                 Else
-                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
+                    frmCUSOfferOrderDoors.Text = "Έντυπο Προσφοράς Πελατών(Πόρτα)"
                     frmCUSOfferOrderDoors.IsOrder = 0
                 End If
                 frmCUSOfferOrderDoors.MdiParent = frmMain
@@ -2268,7 +2592,7 @@ Public Class frmScroller
                 frmGen.Show()
             Case "vw_INST_M"
                 Dim frmInstM As New frmInstM
-                frmInstM.Text = "Χρεωπιστώσεις Τοποθετών"
+                frmInstM.Text = "Έργα Τοποθετών"
                 frmInstM.MdiParent = frmMain
                 frmInstM.Mode = FormMode.NewRecord
                 frmInstM.Scroller = GridView1
@@ -2288,7 +2612,7 @@ Public Class frmScroller
                 frmEMP.Show()
             Case "vw_TRANSH"
                 Dim frmTransactions As New frmTransactions
-                frmTransactions.Text = "Χρεωπιστώσεις"
+                frmTransactions.Text = "Έργα"
                 frmTransactions.MdiParent = frmMain
                 frmTransactions.Mode = FormMode.NewRecord
                 frmTransactions.Scroller = GridView1
@@ -2435,7 +2759,7 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_DOOR_CAT"
+            Case "vw_VALUELIST"
                 frmGen.Text = "Κατηγορίες Διαστάσεων"
                 frmGen.MdiParent = frmMain
                 frmGen.Mode = FormMode.NewRecord
@@ -2678,15 +3002,27 @@ Public Class frmScroller
                 frmGen.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmGen.Show()
-            Case "vw_DOOR_TYPE"
-                Dim frmDoorType As frmDoorType = New frmDoorType
-                frmDoorType.Text = "Κατηγορία Πόρτας"
-                frmDoorType.MdiParent = frmMain
-                frmDoorType.Mode = FormMode.NewRecord
-                frmDoorType.Scroller = GridView1
-                frmDoorType.FormScroller = Me
-                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
-                frmDoorType.Show()
+            Case "vw_VALUELISTITEM"
+                Dim frmVALUELISTITEM As frmValueListItem = New frmValueListItem
+                frmVALUELISTITEM.Text = "Κατηγορία Πόρτας"
+                frmVALUELISTITEM.MdiParent = frmMain
+                frmVALUELISTITEM.Mode = FormMode.NewRecord
+                frmVALUELISTITEM.Scroller = GridView1
+                frmVALUELISTITEM.FormScroller = Me
+                frmVALUELISTITEM.GroupName = "MATERIALS"
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVALUELISTITEM), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmVALUELISTITEM.Show()
+            Case "vw_PROJECTCHECKLIST"
+                Dim frmPROJECTCHECKLIST As frmValueListItem = New frmValueListItem
+                frmPROJECTCHECKLIST.Text = "CheckList Έργων"
+                frmPROJECTCHECKLIST.MdiParent = frmMain
+                frmPROJECTCHECKLIST.Mode = FormMode.NewRecord
+                frmPROJECTCHECKLIST.Scroller = GridView1
+                frmPROJECTCHECKLIST.GroupName = "CHECKLIST"
+                frmPROJECTCHECKLIST.cboValueList.EditValue = "CA8BACF7-3205-43AF-BCBB-A0DA4915C046"
+                frmPROJECTCHECKLIST.FormScroller = Me
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmPROJECTCHECKLIST), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmPROJECTCHECKLIST.Show()
             Case "vw_CAT_ERM"
                 frmGen.Text = "Κατηγορίες Ερμαρίων"
                 frmGen.MdiParent = frmMain
@@ -2763,7 +3099,7 @@ Public Class frmScroller
             sActiveFilter = GridView1.ActiveFilterString
             sVal = RepositoryBarRecords.Items.IndexOf(BarRecords.EditValue)
 
-            If sVal <> 4 And BarRecords.EditValue <> Nothing Then
+            If sVal <> 4 And BarRecords.EditValue isnot Nothing Then
                 sSQL = "SELECT top " & BarRecords.EditValue & " * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
             Else
                 sSQL = "SELECT  * FROM " & IIf(sDataTable = "", sDataTable2, sDataTable) & " " & sWhereCondition
@@ -2805,15 +3141,15 @@ Public Class frmScroller
                         AdapterDetail.Fill(sdataSet, sDataDetail)
                         Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
                         Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("transhID")
-                        sdataSet.Relations.Add("Χρεωπιστώσεις", keyColumn, foreignKeyColumn, False)
+                        sdataSet.Relations.Add("Έργα", keyColumn, foreignKeyColumn, False)
                         GridView1.Columns.Clear() : GridView2.Columns.Clear()
                         grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
                         grdMain.ForceInitialize()
                         If grdMain.LevelTree.Nodes.Count = 1 Then
                             Dim GrdView As New GridView(grdMain)
-                            grdMain.LevelTree.Nodes.Add("Χρεωπιστώσεις", GridView2)
+                            grdMain.LevelTree.Nodes.Add("Έργα", GridView2)
                             'Specify text to be displayed within detail tabs.
-                            GrdView.ViewCaption = "Χρεωπιστώσεις"
+                            GrdView.ViewCaption = "Έργα"
                         End If
                     Case "vw_INST_M"
                         Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
@@ -2823,15 +3159,15 @@ Public Class frmScroller
                         AdapterDetail.Fill(sdataSet, sDataDetail)
                         Dim keyColumn As DataColumn = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable)).Columns("ID")
                         Dim foreignKeyColumn As DataColumn = sdataSet.Tables(sDataDetail).Columns("instID")
-                        sdataSet.Relations.Add("Χρεωπιστώσεις Τοποθετών", keyColumn, foreignKeyColumn, False)
+                        sdataSet.Relations.Add("Έργα Τοποθετών", keyColumn, foreignKeyColumn, False)
                         GridView1.Columns.Clear() : GridView2.Columns.Clear()
                         grdMain.DataSource = sdataSet.Tables(IIf(sDataTable = "", sDataTable2, sDataTable))
                         grdMain.ForceInitialize()
                         If grdMain.LevelTree.Nodes.Count = 1 Then
                             Dim GrdView As New GridView(grdMain)
-                            grdMain.LevelTree.Nodes.Add("Χρεωπιστώσεις Τοποθετών", GridView2)
+                            grdMain.LevelTree.Nodes.Add("Έργα Τοποθετών", GridView2)
                             'Specify text to be displayed within detail tabs.
-                            GrdView.ViewCaption = "Χρεωπιστώσεις Τοποθετών"
+                            GrdView.ViewCaption = "Έργα Τοποθετών"
                         End If
                     Case "vw_SUP_PAYMENTS_D"
                         Dim AdapterMaster As New SqlDataAdapter(sSQL, CNDB)
@@ -2896,7 +3232,7 @@ Public Class frmScroller
             myCmd.Dispose()
             If CloseReader = True Then myReader.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
         'If grdMain.DefaultView.DataRowCount <> 0 Then myReader.Close() 'myReader.Close()
     End Sub
@@ -2962,10 +3298,10 @@ Public Class frmScroller
 
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
         If sDataDetail <> "" Then GridView2.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\D_" & sDataDetail & "_def.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\" & sDataTable & "_def.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -3020,6 +3356,32 @@ Public Class frmScroller
             Clipboard.SetText(view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString())
         End If
     End Sub
+    ' Φίλτρο Με επιλογή
+    Private Sub BarFilterWithCell_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarFilterWithCell.ItemClick
+        Dim view As GridView = CType(GridView1, GridView)
+        If view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn) IsNot Nothing AndAlso view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString() <> [String].Empty Then
+            Dim filterString As String = "[" & GridView1.FocusedColumn.FieldName & "]" & "=" & toSQLValueS(view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString())
+            GridView1.Columns(GridView1.FocusedColumn.FieldName).FilterInfo = New ColumnFilterInfo(filterString)
+        End If
+
+    End Sub
+    ' Αφαίρεση Φίλτρου
+    Private Sub BarRemoveFilterWithCell_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarRemoveFilterWithCell.ItemClick
+        GridView1.Columns(GridView1.FocusedColumn.FieldName).ClearFilter()
+    End Sub
+    ' Φίλτρο Με εξαίρεση
+    Private Sub BarFilterWithoutCell_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarFilterWithoutCell.ItemClick
+        Dim view As GridView = CType(GridView1, GridView)
+        If view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn) IsNot Nothing AndAlso view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString() <> [String].Empty Then
+            Dim filterString As String = "[" & GridView1.FocusedColumn.FieldName & "]" & "<>" & toSQLValueS(view.GetRowCellValue(view.FocusedRowHandle, view.FocusedColumn).ToString())
+            GridView1.Columns(GridView1.FocusedColumn.FieldName).FilterInfo = New ColumnFilterInfo(filterString)
+        End If
+
+    End Sub
+    'Αφαίρεση όλων των φίλτρων
+    Private Sub BarRemoveAllFilters_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BarRemoveAllFilters.ItemClick
+        GridView1.ClearColumnsFilter()
+    End Sub
 
     Private Sub GridView2_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView2.KeyDown
         Dim view As GridView = CType(sender, GridView)
@@ -3043,7 +3405,7 @@ Public Class frmScroller
                     End If
             End Select
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -3110,7 +3472,7 @@ Public Class frmScroller
             LoadForms.LoadColumnDescriptionNames(grdMain, GridView1, , sDataTable)
             myReader.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub BBUpdateViewFromDB_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdateViewFromDB.ItemClick

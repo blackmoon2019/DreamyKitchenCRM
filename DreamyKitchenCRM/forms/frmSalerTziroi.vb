@@ -77,11 +77,11 @@ Public Class frmSalerTziroi
     End Sub
     Private Sub ManageTRANSH()
         Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Χρεωπιστώσεις Πελατών"
+        form1.Text = "Έργα Πελατών"
         form1.CallerControl = cboTransH
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboTransH.EditValue <> Nothing Then
+        If cboTransH.EditValue isnot Nothing Then
             form1.ID = cboTransH.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         End If
@@ -94,7 +94,7 @@ Public Class frmSalerTziroi
         form1.CallerControl = cboCUS
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
+        If cboCUS.EditValue isnot Nothing Then
             form1.ID = cboCUS.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -109,7 +109,7 @@ Public Class frmSalerTziroi
         form1.CallerControl = cboSaler
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboSaler.EditValue <> Nothing Then
+        If cboSaler.EditValue isnot Nothing Then
             form1.ID = cboSaler.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -122,7 +122,7 @@ Public Class frmSalerTziroi
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 2 : If cboCUS.EditValue isnot Nothing Then ManageCus()
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
@@ -130,7 +130,7 @@ Public Class frmSalerTziroi
     Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
             Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboSaler.EditValue <> Nothing Then ManageSaler()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboSaler.EditValue isnot Nothing Then ManageSaler()
             Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub
@@ -154,7 +154,17 @@ Public Class frmSalerTziroi
                     form.LoadRecords("vw_EMP_T")
                 End If
 
-                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If cboTransH.EditValue IsNot Nothing Then
+                    ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                    Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@transhID", cboTransH.EditValue.ToString)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
+
+
+                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 If Mode = FormMode.NewRecord Then
                     Cls.ClearCtrls(LayoutControl1)
                     txtCode.Text = DBQ.GetNextId("EMP_T")
@@ -162,7 +172,7 @@ Public Class frmSalerTziroi
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -171,12 +181,17 @@ Public Class frmSalerTziroi
     End Sub
 
     Private Sub txtnormalPrice_Validated(sender As Object, e As EventArgs) Handles txtnormalPrice.Validated
-        txtbusisnessProfit.EditValue = txtsalePrice.EditValue - txtnormalPrice.EditValue
+        Dim GenTotAmt As Double, normalPrice As Double
+        GenTotAmt = txtGenTotAmt.EditValue.ToString.Replace(".", ",")
+        normalPrice = txtnormalPrice.EditValue.ToString.Replace(".", ",")
+        txtbusisnessProfit.EditValue = GenTotAmt - normalPrice
     End Sub
 
     Private Sub txtsalePrice_Validated(sender As Object, e As EventArgs) Handles txtsalePrice.Validated
-        txtbusisnessProfit.EditValue = txtsalePrice.EditValue - txtnormalPrice.EditValue
-
+        Dim GenTotAmt As Double, normalPrice As Double
+        GenTotAmt = txtGenTotAmt.EditValue.ToString.Replace(".", ",")
+        normalPrice = txtnormalPrice.EditValue.ToString.Replace(".", ",")
+        txtbusisnessProfit.EditValue = GenTotAmt - normalPrice
     End Sub
 
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
@@ -190,7 +205,7 @@ Public Class frmSalerTziroi
     Private Sub cboTransH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTransH.ButtonClick
         Select Case e.Button.Index
             Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   cboTransH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   If cboTransH.EditValue <> Nothing Then ManageTRANSH()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   If cboTransH.EditValue isnot Nothing Then ManageTRANSH()
             Case 3 : cboTransH.EditValue = Nothing
         End Select
     End Sub

@@ -30,7 +30,7 @@ Public Class frmMain
             ProjectAnalysis.Visible = False
             RibbonPage4.Visible = False
             RibonSettings.Visible = False
-            bbCreditDebit.Visibility = BarItemVisibility.Never
+            bbTRANSH.Visibility = BarItemVisibility.Never
             BBProjectCosts.Visibility = BarItemVisibility.Never
             bbProjects.Visible = False
         End If
@@ -49,7 +49,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
 
     End Sub
@@ -62,7 +62,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -74,6 +74,8 @@ Public Class frmMain
                 XtraTabbedMdiManager1.ActiveFloatForm.Width = 520 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 136
             Case "frmCalendar"
                 XtraTabbedMdiManager1.SelectedPage.ShowCloseButton = DefaultBoolean.False
+            Case "frmCUSOfferOrderKitchen"
+                XtraTabbedMdiManager1.ActiveFloatForm.Width = 1133 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 770
         End Select
     End Sub
 
@@ -104,7 +106,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -262,7 +264,7 @@ Public Class frmMain
             form10.Show()
             Timer1.Enabled = True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Timer1.Enabled = False
         End Try
     End Sub
@@ -290,7 +292,7 @@ Public Class frmMain
             sdr.Close()
             sdr = Nothing
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Timer1.Enabled = False
         End Try
     End Sub
@@ -326,7 +328,7 @@ Public Class frmMain
             form10.Show()
             Timer1.Enabled = True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Timer1.Enabled = False
         End Try
     End Sub
@@ -340,10 +342,10 @@ Public Class frmMain
         Me.Close()
     End Sub
 
-    Private Sub ΒΒDoorType_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒDoorType.ItemClick
+    Private Sub ΒΒVALUELISTITEM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒvalueListItem.ItemClick
         Dim form As frmScroller = New frmScroller()
         form.Text = "Κατηγορία Πόρτας"
-        form.DataTable = "vw_DOOR_TYPE"
+        form.DataTable = "vw_VALUELISTITEM"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -492,7 +494,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
     Private Sub BBInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInst.ItemClick
@@ -505,7 +507,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -524,16 +526,16 @@ Public Class frmMain
         form.Show()
     End Sub
 
-    Private Sub bbCreditDebit_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCreditDebit.ItemClick
+    Private Sub bbTRANSH_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbTRANSH.ItemClick
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Χρεωπιστώσεις Πελατών"
+            form.Text = "Έργα Πελατών"
             form.DataTable = "vw_TRANSH"
             form.DataDetail = "vw_TRANSD"
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -545,7 +547,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -557,7 +559,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -569,7 +571,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -581,7 +583,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -610,7 +612,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -624,19 +626,19 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
     Private Sub bbEMP_T_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEMP_T.ItemClick
-        If UserPermissions.CheckViewPermission("Τζίροι-Ποσοστά έκθεσης") Then
+        If UserPermissions.CheckViewPermission("Ποσοστά Πωλητών") Then
             Dim form As frmScroller = New frmScroller()
-            form.Text = "Τζίροι-Ποσοστά έκθεσης"
+            form.Text = "Ποσοστά Πωλητών"
             form.DataTable = "vw_EMP_T"
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -665,7 +667,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -679,7 +681,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -819,7 +821,7 @@ Public Class frmMain
 
     Private Sub BBDoors_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBDoors.ItemClick
         Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Προσφοράς Πελατών(Πόρτες)"
+        form.Text = "Έντυπο Προσφοράς Πελατών(Πόρτας)"
         form.DataTable = "vw_CCT_ORDERS_DOOR"
         form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
@@ -880,7 +882,7 @@ Public Class frmMain
 
     Private Sub BBCCctDoorsCloset_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCCctDoorsCloset.ItemClick
         Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτες)"
+        form.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτας)"
         form.DataTable = "vw_CCT_ORDERS_DOOR"
         form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
@@ -952,7 +954,7 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Κατηγορίες Υλικών"
         form.BarNewRec.Enabled = False
-        form.DataTable = "vw_DOOR_CAT"
+        form.DataTable = "vw_VALUELIST"
         form.MdiParent = Me
         form.Show()
     End Sub
@@ -989,7 +991,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -1009,7 +1011,7 @@ Public Class frmMain
             form.MdiParent = Me
             form.Show()
         Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -1041,6 +1043,48 @@ Public Class frmMain
         Dim form As frmScroller = New frmScroller()
         form.Text = "Τύποι Κατασκευής"
         form.DataTable = "vw_BASE_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBTransh_C_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBTransh_C.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κατηγορίες Έργων"
+        form.DataTable = "vw_TRANSH_C"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBPayType_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayType.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Τύποι Πληρωμής"
+        form.DataTable = "vw_PAY_TYPE"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBProject_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProject.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Έργα Πελατών"
+        form.DataTable = "vw_TRANSH_SMALL"
+        form.DataTableWhereCondition = " where completed = 0"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBFileCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBFileCat.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "Κατηγορίες Αρχείων"
+        form.DataTable = "vw_FILE_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBProjectCheckList_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectCheckList.ItemClick
+        Dim form As frmScroller = New frmScroller()
+        form.Text = "CheckList Έργών"
+        form.DataTable = "vw_PROJECTCHECKLIST"
+        form.DataTableWhereCondition = " where GroupName='CHECKLIST'"
         form.MdiParent = Me
         form.Show()
     End Sub

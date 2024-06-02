@@ -107,7 +107,7 @@ Public Class frmSUPKal
                     oCmd.ExecuteNonQuery()
                 End Using
 
-                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
 
                 If Mode = FormMode.NewRecord Then
                     Cls.ClearCtrls(LayoutControl1)
@@ -116,13 +116,13 @@ Public Class frmSUPKal
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub cboSUP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSUP.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboSUP.EditValue = Nothing : ManageSup()
-            Case 2 : If cboSUP.EditValue <> Nothing Then ManageSup()
+            Case 2 : If cboSUP.EditValue isnot Nothing Then ManageSup()
             Case 3 : cboSUP.EditValue = Nothing : cboPAY.EditValue = Nothing : txtBal.EditValue = "0.00"
         End Select
     End Sub
@@ -132,7 +132,7 @@ Public Class frmSUPKal
         form1.CallerControl = cboSUP
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboSUP.EditValue <> Nothing Then
+        If cboSUP.EditValue isnot Nothing Then
             form1.ID = cboSUP.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -145,7 +145,7 @@ Public Class frmSUPKal
     Private Sub cboBANK_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBANK.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboBANK.EditValue = Nothing : ManageBank()
-            Case 2 : If cboBANK.EditValue <> Nothing Then ManageBank()
+            Case 2 : If cboBANK.EditValue isnot Nothing Then ManageBank()
             Case 3 : cboBANK.EditValue = Nothing
         End Select
     End Sub
@@ -157,9 +157,9 @@ Public Class frmSUPKal
         form1.DataTable = "BANKS"
         form1.CalledFromControl = True
         form1.CallerControl = cboBANK
-        If cboBANK.EditValue <> Nothing Then form1.ID = cboBANK.EditValue.ToString
+        If cboBANK.EditValue isnot Nothing Then form1.ID = cboBANK.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboBANK.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboBANK.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -171,16 +171,16 @@ Public Class frmSUPKal
         form1.DataTable = "PAY"
         form1.CallerControl = cboPAY
         form1.CalledFromControl = True
-        If cboPAY.EditValue <> Nothing Then form1.ID = cboPAY.EditValue.ToString
+        If cboPAY.EditValue isnot Nothing Then form1.ID = cboPAY.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboPAY.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboPAY.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
     Private Sub cboPAY_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboPAY.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboPAY.EditValue = Nothing : ManagePAY()
-            Case 2 : If cboPAY.EditValue <> Nothing Then ManagePAY()
+            Case 2 : If cboPAY.EditValue isnot Nothing Then ManagePAY()
             Case 3 : cboPAY.EditValue = Nothing
         End Select
     End Sub
@@ -267,10 +267,10 @@ Public Class frmSUPKal
     Private Sub OnSaveView(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView1.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         ' Μόνο αν ο Χρήστης είναι ο Παναγόπουλος
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then 
-            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+            If XtraMessageBox.Show("Θέλετε να γίνει κοινοποίηση της όψης? Εαν επιλέξετε 'Yes' όλοι οι χρήστες θα έχουν την ίδια όψη", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 If My.Computer.FileSystem.FileExists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml") = False Then GridView1.OptionsLayout.LayoutVersion = "v1"
                 GridView1.SaveLayoutToXml(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml", OptionsLayoutBase.FullLayout)
             End If
@@ -279,7 +279,7 @@ Public Class frmSUPKal
     End Sub
     'Συγχρονισμός όψης από Server
     Private Sub OnSyncView(ByVal sender As System.Object, ByVal e As EventArgs)
-        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+        If XtraMessageBox.Show("Θέλετε να γίνει μεταφορά της όψης από τον server?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             ' Έλεγχος αν υπάρχει όψη με μεταγενέστερη ημερομηνία στον Server
             If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml") = True Then
                 My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_BUY_INV_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_BUY_INV_def.xml", True)

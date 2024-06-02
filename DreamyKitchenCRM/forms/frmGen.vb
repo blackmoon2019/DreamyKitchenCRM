@@ -9,10 +9,10 @@ Public Class frmGen
     Private sID As String
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
+    Private CalledFromCtrl As Boolean
     Private Frm As DevExpress.XtraEditors.XtraForm
     Private FrmCaller As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
-    Private CalledFromCtrl As Boolean
     Private Valid As New ValidateControls
     Private Log As New Transactions
     Private DBQ As New DBQueries
@@ -82,6 +82,46 @@ Public Class frmGen
                 Select Case Mode
                     Case FormMode.NewRecord
                         Select Case sDataTable
+                            Case "FILE_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "FILE_CAT", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.FILE_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_FILE_CAT")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("FILE_CAT")
+                            Case "PAY_TYPE"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "PAY_TYPE", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.PAY_TYPE(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_PAY_TYPE")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("PAY_TYPE")
+
+                            Case "TRANSH_C"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.InsertData(LayoutControl1, "TRANSH_C", sGuid)
+                                If CalledFromCtrl Then
+                                    FillCbo.TRANSH_C(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_TRANSH_C")
+                                End If
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("BASE_CAT")
                             Case "BASE_CAT"
                                 sGuid = System.Guid.NewGuid.ToString
                                 sResult = DBQ.InsertData(LayoutControl1, "BASE_CAT", sGuid)
@@ -497,24 +537,67 @@ Public Class frmGen
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
                                 txtCode.Text = DBQ.GetNextId("DIM")
-                            Case "DOOR_CAT"
+                            Case "VALUELIST"
                                 sGuid = System.Guid.NewGuid.ToString
-                                sResult = DBQ.InsertData(LayoutControl1, "DOOR_CAT", sGuid)
+                                sResult = DBQ.InsertData(LayoutControl1, "VALUELIST", sGuid)
                                 If CalledFromCtrl Then
-                                    FillCbo.DOOR_CAT(CtrlCombo)
+                                    FillCbo.VALUELIST(CtrlCombo)
                                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                                 Else
                                     Dim form As frmScroller = Frm
-                                    form.LoadRecords("vw_DOOR_CAT")
+                                    form.LoadRecords("vw_VALUELIST")
                                 End If
                                 'Καθαρισμός Controls
                                 Cls.ClearCtrls(LayoutControl1)
-                                txtCode.Text = DBQ.GetNextId("DOOR_CAT")
-
-
+                                txtCode.Text = DBQ.GetNextId("VALUELIST")
                         End Select
                     Case FormMode.EditRecord
                         Select Case sDataTable
+                            Case "FILE_CAT"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.UpdateData(LayoutControl1, "FILE_CAT", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.FILE_CAT(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_FILE_CAT")
+                                End If
+
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("FILE_CAT")
+
+                            Case "PAY_TYPE"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.UpdateData(LayoutControl1, "PAY_TYPE", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.PAY_TYPE(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_PAY_TYPE")
+                                End If
+
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("PAY_TYPE")
+
+                            Case "TRANSH_C"
+                                sGuid = System.Guid.NewGuid.ToString
+                                sResult = DBQ.UpdateData(LayoutControl1, "TRANSH_C", sID)
+                                If CalledFromCtrl Then
+                                    FillCbo.TRANSH_C(CtrlCombo)
+                                    CtrlCombo.EditValue = System.Guid.Parse(sGuid)
+                                Else
+                                    Dim form As frmScroller = Frm
+                                    form.LoadRecords("vw_TRANSH_C")
+                                End If
+
+                                'Καθαρισμός Controls
+                                Cls.ClearCtrls(LayoutControl1)
+                                txtCode.Text = DBQ.GetNextId("TRANSH_C")
+
                             Case "BASE_CAT"
                                 sResult = DBQ.UpdateData(LayoutControl1, "BASE_CAT", sID)
                                 If CalledFromCtrl Then
@@ -799,27 +882,45 @@ Public Class frmGen
                                     form = Frm
                                     form.LoadRecords("vw_DIM")
                                 End If
-                            Case "DOOR_CAT"
-                                sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "DOOR_CAT", LayoutControl1,,, sID, True)
+                            Case "VALUELIST"
+                                sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "VALUELIST", LayoutControl1,,, sID, True)
                                 If CalledFromCtrl Then
-                                    FillCbo.DOOR_CAT(CtrlCombo)
+                                    FillCbo.VALUELIST(CtrlCombo)
                                     CtrlCombo.EditValue = System.Guid.Parse(sGuid)
                                 Else
                                     Dim form As New frmScroller
                                     form = Frm
-                                    form.LoadRecords("vw_DOOR_CAT")
+                                    form.LoadRecords("vw_VALUELIST")
                                 End If
 
                         End Select
                 End Select
-                If sResult Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If sResult Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub LoadGen()
         Select Case sDataTable
+            Case "FILE_CAT"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("FILE_CAT")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_FILE_CAT where id ='" + sID + "'",, True)
+                End If
+            Case "PAY_TYPE"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("PAY_TYPE")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_PAY_TYPE where id ='" + sID + "'",, True)
+                End If
+            Case "TRANSH_C"
+                If Mode = FormMode.NewRecord Then
+                    txtCode.Text = DBQ.GetNextId("TRANSH_C")
+                Else
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_TRANSH_C where id ='" + sID + "'",, True)
+                End If
             Case "BASE_CAT"
                 If Mode = FormMode.NewRecord Then
                     txtCode.Text = DBQ.GetNextId("BASE_CAT")
@@ -1015,11 +1116,11 @@ Public Class frmGen
                 Else
                     LoadForms.LoadForm(LayoutControl1, "Select * from vw_DIM where id ='" + sID + "'",, True)
                 End If
-            Case "DOOR_CAT"
+            Case "VALUELIST"
                 If Mode = FormMode.NewRecord Then
-                    txtCode.Text = DBQ.GetNextId("DOOR_CAT")
+                    txtCode.Text = DBQ.GetNextId("VALUELIST")
                 Else
-                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_DOOR_CAT where id ='" + sID + "'",, True)
+                    LoadForms.LoadForm(LayoutControl1, "Select * from vw_VALUELIST where id ='" + sID + "'",, True)
                 End If
 
         End Select
@@ -1035,13 +1136,34 @@ Public Class frmGen
     Private Sub DeleteRecord()
         Dim sSQL As String
         Try
-            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 sSQL = "DELETE FROM " & sDataTable & " WHERE ID = " & toSQLValueS(sID)
                 Using oCmd As New SqlCommand(sSQL, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
 
                 Select Case sDataTable
+                    Case "FILE_CAT"
+                        If CalledFromCtrl Then
+                            FillCbo.FILE_CAT(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_FILE_CAT")
+                        End If
+                    Case "PAY_TYPE"
+                        If CalledFromCtrl Then
+                            FillCbo.PAY_TYPE(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_PAY_TYPE")
+                        End If
+                    Case "TRANSH_C"
+                        If CalledFromCtrl Then
+                            FillCbo.TRANSH_C(CtrlCombo)
+                        Else
+                            Dim form As frmScroller = Frm
+                            form.LoadRecords("vw_TRANSH_C")
+                        End If
                     Case "EP_STATUS"
                         If CalledFromCtrl Then
                             FillCbo.EP_STATUS(CtrlCombo)
@@ -1235,22 +1357,22 @@ Public Class frmGen
                             Dim form As New frmScroller
                             form.LoadRecords("vw_DIM")
                         End If
-                    Case "DOOR_CAT"
+                    Case "VALUELIST"
                         If CalledFromCtrl Then
-                            FillCbo.DOOR_CAT(CtrlCombo)
+                            FillCbo.VALUELIST(CtrlCombo)
                         Else
                             Dim form As New frmScroller
-                            form.LoadRecords("vw_DOOR_CAT")
+                            form.LoadRecords("vw_VALUELIST")
                         End If
                 End Select
                 Cls.ClearCtrls(LayoutControl1)
                 txtCode.Text = DBQ.GetNextId(sDataTable)
                 If CalledFromCtrl Then CtrlCombo.EditValue = Nothing
 
-                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                XtraMessageBox.Show("Η εγγραφή διαγράφηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

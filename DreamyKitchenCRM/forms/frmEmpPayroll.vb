@@ -61,7 +61,7 @@ Public Class frmEmpPayroll
     Private Sub frmEmpPayroll_Load(sender As Object, e As EventArgs) Handles Me.Load
         Dim sSQL As New System.Text.StringBuilder
         If bIsConstr = True Then
-            'Χρεωπιστώσεις Κατασκευαστικου
+            'Έργα Κατασκευαστικου
             sSQL.AppendLine("Select id,Fullname,salary  from vw_EMP where jobid='F1A60661-D448-41B7-8CF0-CE6B9FF6E518' order by Fullname")
         Else
             'Μισθοδοσία Έκθεσης
@@ -94,7 +94,7 @@ Public Class frmEmpPayroll
         form1.CallerControl = cboEMP
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboEMP.EditValue <> Nothing Then
+        If cboEMP.EditValue isnot Nothing Then
             form1.ID = cboEMP.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -111,9 +111,9 @@ Public Class frmEmpPayroll
         form1.DataTable = "EMP_M_S"
         form1.CalledFromControl = True
         form1.CallerControl = cboEMP_M_S
-        If cboEMP_M_S.EditValue <> Nothing Then form1.ID = cboEMP_M_S.EditValue.ToString
+        If cboEMP_M_S.EditValue isnot Nothing Then form1.ID = cboEMP_M_S.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboEMP_M_S.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboEMP_M_S.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub
@@ -121,7 +121,7 @@ Public Class frmEmpPayroll
     Private Sub cboEMP_ButtonClickcboEMP_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
             Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboEMP.EditValue = Nothing : ManageEMP()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboEMP.EditValue <> Nothing Then ManageEMP()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboEMP.EditValue isnot Nothing Then ManageEMP()
             Case 3 : cboEMP.EditValue = Nothing
         End Select
     End Sub
@@ -129,7 +129,7 @@ Public Class frmEmpPayroll
     Private Sub cboEMP_M_S_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboEMP_M_S.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboEMP_M_S.EditValue = Nothing : ManageEMP_M_S()
-            Case 2 : If cboEMP_M_S.EditValue <> Nothing Then ManageEMP_M_S()
+            Case 2 : If cboEMP_M_S.EditValue isnot Nothing Then ManageEMP_M_S()
             Case 3 : cboEMP_M_S.EditValue = Nothing
         End Select
     End Sub
@@ -154,7 +154,7 @@ Public Class frmEmpPayroll
                     form.LoadRecords("vw_EMP_M")
                 End If
 
-                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                If sResult = True Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 If Mode = FormMode.NewRecord Then
                     Cls.ClearCtrls(LayoutControl1)
                     txtCode.Text = DBQ.GetNextId("EMP_M")
@@ -162,7 +162,7 @@ Public Class frmEmpPayroll
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -172,7 +172,7 @@ Public Class frmEmpPayroll
     Private Sub cboBANK_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboBANK.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboBANK.EditValue = Nothing : ManageBank()
-            Case 2 : If cboBANK.EditValue <> Nothing Then ManageBank()
+            Case 2 : If cboBANK.EditValue isnot Nothing Then ManageBank()
             Case 3 : cboBANK.EditValue = Nothing
         End Select
     End Sub
@@ -184,9 +184,9 @@ Public Class frmEmpPayroll
         form1.DataTable = "BANKS"
         form1.CalledFromControl = True
         form1.CallerControl = cboBANK
-        If cboBANK.EditValue <> Nothing Then form1.ID = cboBANK.EditValue.ToString
+        If cboBANK.EditValue isnot Nothing Then form1.ID = cboBANK.EditValue.ToString
         form1.MdiParent = frmMain
-        If cboBANK.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
+        If cboBANK.EditValue isnot Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.Show()
     End Sub

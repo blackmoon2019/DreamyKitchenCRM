@@ -106,7 +106,7 @@ Public Class frmInstM
     Private Sub OnSaveViewINSTM(ByVal sender As System.Object, ByVal e As EventArgs)
         Dim item As DXMenuItem = TryCast(sender, DXMenuItem)
         GridView3.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\INSTPERSER.xml", OptionsLayoutBase.FullLayout)
-        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        XtraMessageBox.Show("Η όψη αποθηκεύτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
     End Sub
     'Μετονομασία Στήλης Master
     Private Sub OnEditValueChangedOff(ByVal sender As System.Object, ByVal e As EventArgs)
@@ -206,7 +206,7 @@ Public Class frmInstM
                 End If
 
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Αν υπάρχει στην μισθοδοσία τοποθετών εγγραφή στο ίδιο έργο και με ίδιο ποσό γίνεται εξοφλημενη
                     sSQL = "Update INST Set paid=1 
                              From INST I
@@ -225,7 +225,7 @@ Public Class frmInstM
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -237,7 +237,7 @@ Public Class frmInstM
     Private Sub cboSER_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSER.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboSER.EditValue = Nothing : ManageSer()
-            Case 2 : If cboSER.EditValue <> Nothing Then ManageSer()
+            Case 2 : If cboSER.EditValue isnot Nothing Then ManageSer()
             Case 3 : cboSER.EditValue = Nothing
         End Select
     End Sub
@@ -247,7 +247,7 @@ Public Class frmInstM
         form1.CallerControl = cboSER
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboSER.EditValue <> Nothing Then
+        If cboSER.EditValue isnot Nothing Then
             form1.ID = cboSER.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else

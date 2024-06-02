@@ -153,7 +153,7 @@ Public Class frmEmpPresentation
             SPR.WorksheetDisplayArea.SetSize(SPR.ActiveWorksheet.Name, 32, Row)
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -172,7 +172,7 @@ Public Class frmEmpPresentation
                 If Not sdr.IsDBNull(3) Then worksheet.Cells.Item(Row, sdr.Item(2).ToString).FillColor = Color.FromArgb(sdr.Item(3).ToString)
             End While
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub SPR_CellBeginEdit(sender As Object, e As SpreadsheetCellCancelEventArgs) Handles SPR.CellBeginEdit
@@ -275,7 +275,7 @@ Public Class frmEmpPresentation
             End Using
             SPR.ActiveWorksheet.Cells.Item(SPR.ActiveCell.RowIndex, SPR.ActiveCell.ColumnIndex).FillColor = Color.FromArgb(valueColor)
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 

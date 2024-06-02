@@ -85,12 +85,12 @@ Public Class frmCatSubErm
                 End If
                 txtCustomCode.Select()
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then Cls.ClearCtrls(LayoutControl1) : txtCode.Text = DBQ.GetNextId("CAT_SUB_ERM")
                 End If
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -108,9 +108,9 @@ Public Class frmCatSubErm
         frmGen.DataTable = "CAT_ERM"
         frmGen.CallerControl = cboCatErm
         frmGen.CalledFromControl = True
-        If cboCatErm.EditValue <> Nothing Then frmGen.ID = cboCatErm.EditValue.ToString
+        If cboCatErm.EditValue isnot Nothing Then frmGen.ID = cboCatErm.EditValue.ToString
         frmGen.MdiParent = frmMain
-        If cboCatErm.EditValue <> Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
+        If cboCatErm.EditValue isnot Nothing Then frmGen.Mode = FormMode.EditRecord Else frmGen.Mode = FormMode.NewRecord
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmGen), New Point(CInt(frmGen.Parent.ClientRectangle.Width / 2 - frmGen.Width / 2), CInt(frmGen.Parent.ClientRectangle.Height / 2 - frmGen.Height / 2)))
         frmGen.Show()
     End Sub

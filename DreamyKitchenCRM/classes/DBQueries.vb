@@ -2,8 +2,7 @@
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraEditors
 Imports System.IO
-Imports DevExpress.XtraRichEdit.Import.Html
-Imports Org.BouncyCastle.Asn1.X500
+Imports DevExpress.XtraEditors.Controls
 
 Public Class DBQueries
     Public Enum InsertMode
@@ -24,7 +23,24 @@ Public Class DBQueries
         Dim Code As Integer = cmd.ExecuteScalar()
         Return Code
     End Function
-    Public Function InsertDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal ID As String, ByVal sTable As String) As Boolean
+    Public Function DeleteDataFiles(ByVal sTable As String, ByVal transhID As String, ByVal ownerID As String) As Boolean
+        Try
+            Dim sSQL As New System.Text.StringBuilder
+
+            Select Case sTable
+                Case "TRANSH_F" : sSQL.AppendLine("DELETE FROM TRANSH_F where transhID = " & toSQLValueS(transhID) & " And ownerID = " & toSQLValueS(ownerID))
+            End Select
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Function InsertDataFiles(ByVal control As DevExpress.XtraEditors.XtraOpenFileDialog, ByVal ID As String, ByVal sTable As String, Optional ByVal OwnerID As String = Nothing, Optional ByVal belongsTo As String = Nothing) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Dim i As Integer
         Try
@@ -34,17 +50,23 @@ Public Class DBQueries
                 Select Case sTable
                     Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,[files])")
-                    Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
+                    Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,fileCatID,ownerID,[belongsTo],comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                     Case "SUP_ORDERS_F" : sSQL.AppendLine("INSERT INTO SUP_ORDERS_F (supOrderID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],[files])")
                 End Select
                 Dim extension As String = Path.GetExtension(control.FileNames(i))
                 Dim FilePath As String = Path.GetDirectoryName(control.FileNames(i))
                 Dim FileName As String = Path.GetFileName(control.FileNames(i))
+                Dim FileCatID As String = control.Tag
                 ' My.Computer.FileSystem.CopyFile(control.FileNames(i), ProgProps.ServerPath & FileName, True)
 
                 sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
                 sSQL.AppendLine(toSQLValueS(control.SafeFileNames(i).ToString) & ",")
+                If sTable = "TRANSH_F" Then
+                    sSQL.AppendLine(toSQLValueS(FileCatID) & ",")
+                    sSQL.AppendLine(toSQLValueS(OwnerID) & ",")
+                    sSQL.AppendLine(toSQLValueS(belongsTo) & ",")
+                End If
                 sSQL.AppendLine(toSQLValueS(FilePath) & ",")
                 sSQL.AppendLine(toSQLValueS(extension) & ",")
                 sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
@@ -64,7 +86,7 @@ Public Class DBQueries
             'ReadBlobFile()
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
 
@@ -125,22 +147,26 @@ Public Class DBQueries
         End Try
     End Function
 
-    Public Function InsertDataFilesFromScanner(ByVal sFilename As String, ByVal ID As String, ByVal sTable As String) As Boolean
+    Public Function InsertDataFilesFromScanner(ByVal sFilename As String, ByVal ID As String, ByVal sTable As String, Optional ByVal FileCatID As String = "", Optional ByVal OwnerID As String = Nothing, Optional ByVal belongsTo As String = Nothing) As Boolean
         Dim sSQL As New System.Text.StringBuilder
         Try
             sSQL.Clear()
             Select Case sTable
                 Case "EMP_F" : sSQL.AppendLine("INSERT INTO EMP_F (empID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                 Case "CCT_F" : sSQL.AppendLine("INSERT INTO CCT_F (cctID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],isinvoice,files)")
-                Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
+                Case "TRANSH_F" : sSQL.AppendLine("INSERT INTO TRANSH_F (transhID,filename,fileCatID,ownerID,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
                 Case "NOTES_F" : sSQL.AppendLine("INSERT INTO NOTES_F (notesID,filename,comefrom,extension, [modifiedBy],[createdby],[createdOn],files)")
             End Select
             Dim extension As String = Path.GetExtension(sFilename)
             Dim FilePath As String = Path.GetDirectoryName(sFilename)
             Dim FileName As String = Path.GetFileName(sFilename)
-
             sSQL.AppendLine("Select " & toSQLValueS(ID) & ",")
             sSQL.AppendLine(toSQLValueS(FileName) & ",")
+            If sTable = "TRANSH_F" Then
+                sSQL.AppendLine(toSQLValueS(FileCatID) & ",")
+                sSQL.AppendLine(toSQLValueS(OwnerID) & ",")
+                sSQL.AppendLine(toSQLValueS(belongsTo) & ",")
+            End If
             sSQL.AppendLine(toSQLValueS(FilePath) & ",")
             sSQL.AppendLine(toSQLValueS(extension) & ",")
             sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
@@ -157,7 +183,7 @@ Public Class DBQueries
             'ReadBlobFile()
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
 
@@ -200,7 +226,7 @@ Public Class DBQueries
             For Each item As BaseLayoutItem In control.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                         If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                             Dim RDG As DevExpress.XtraEditors.RadioGroup
@@ -210,7 +236,7 @@ Public Class DBQueries
                                 TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                     If RDG.SelectedIndex = i Then
@@ -234,7 +260,7 @@ Public Class DBQueries
 
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             'If LItem.Control.Visible = True Then
-                            If value <> Nothing Then
+                            If value IsNot Nothing Then
                                 ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                 sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                 ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -243,7 +269,7 @@ Public Class DBQueries
                                 If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -262,11 +288,23 @@ Public Class DBQueries
                                             Exit For
                                         End If
                                     Next
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                    Dim cbo As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                    Dim sCheckedItems As New System.Text.StringBuilder
+                                    cbo = Ctrl
+                                    For Each CheckedItem As CheckedListBoxItem In cbo.Properties.GetItems
+                                        If CheckedItem.CheckState = CheckState.Checked Then
+                                            If sCheckedItems.Length = 0 Then sCheckedItems.Append("'") Else sCheckedItems.Append(";")
+                                            sCheckedItems.Append(CheckedItem.Value.ToString)
+                                        End If
+                                    Next
+                                    If sCheckedItems.Length > 0 Then sCheckedItems.Append("'") : sSQLV.Append(IIf(IsFirstField = True, "", ",") & sCheckedItems.ToString) Else sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
+
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
                                     Debug.Print(cbo.Name)
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & cbo.SelectedIndex)
                                         Else
@@ -352,7 +390,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -376,7 +414,7 @@ NextItem:
             For Each item As BaseLayoutItem In control.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                         If LItem.Control.Tag <> "" Then
                             'Βάζω τις τιμές του TAG σε array
@@ -386,7 +424,7 @@ NextItem:
 
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             If LItem.Control.Visible = True Then
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                     ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -396,7 +434,7 @@ NextItem:
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -404,7 +442,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                         Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & cbo.SelectedIndex)
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -413,7 +451,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -488,7 +526,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.RatingControl Then
                                         Dim rt As DevExpress.XtraEditors.RatingControl
                                         rt = Ctrl
-                                        If rt.EditValue <> Nothing Then
+                                        If rt.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(rt.EditValue.ToString, True))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -520,7 +558,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -540,7 +578,7 @@ NextItem:
             For Each item As BaseLayoutItem In control.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                         If LItem.Control.Tag <> "" Then
                             'Βάζω τις τιμές του TAG σε array
@@ -550,7 +588,7 @@ NextItem:
 
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             If LItem.Control.Visible = True Then
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                     ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -559,7 +597,7 @@ NextItem:
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQL.Append("NULL")
@@ -567,7 +605,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                         Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                                 sSQL.Append(cbo.SelectedIndex)
                                             Else
@@ -583,7 +621,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQL.Append("NULL")
@@ -640,7 +678,7 @@ NextItem:
                                     ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.RatingControl Then
                                         Dim rt As DevExpress.XtraEditors.RatingControl
                                         rt = Ctrl
-                                        If rt.EditValue <> Nothing Then
+                                        If rt.EditValue IsNot Nothing Then
                                             sSQL.Append(toSQLValueS(rt.EditValue.ToString, True))
                                         Else
                                             sSQL.Append("NULL")
@@ -672,7 +710,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -718,18 +756,18 @@ NextItem:
                 For Each item As BaseLayoutItem In control.Items
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                        If LItem.ControlName <> Nothing Then
+                        If LItem.ControlName IsNot Nothing Then
                             'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                             If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                                 Dim RDG As DevExpress.XtraEditors.RadioGroup
                                 RDG = LItem.Control
                                 For i As Integer = 0 To RDG.Properties.Items.Count - 1
-                                    If RDG.Properties.Items(i).Tag <> Nothing Then
+                                    If RDG.Properties.Items(i).Tag IsNot Nothing Then
                                         'Βάζω τις τιμές του TAG σε array
                                         TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                         'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                         Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                        If value <> Nothing Then
+                                        If value IsNot Nothing Then
                                             ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                             sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                             If RDG.SelectedIndex = i Then
@@ -754,7 +792,7 @@ NextItem:
 
                                 ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                                 'If LItem.Control.Visible = True Then
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                     ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -763,7 +801,7 @@ NextItem:
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
+                                        If cbo.EditValue IsNot Nothing Then
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                         Else
                                             sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -819,7 +857,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -856,7 +894,7 @@ NextItem:
             For Each item As BaseLayoutItem In GRP.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         If ExceptFields IsNot Nothing Then
                             If IsExceptedField(LItem, ExceptFields) Then GoTo NextItem
                         End If
@@ -869,7 +907,7 @@ NextItem:
                                 TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                     If RDG.SelectedIndex = i Then
@@ -893,7 +931,7 @@ NextItem:
 
                             ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             'If LItem.Control.Visible = True Then
-                            If value <> Nothing Then
+                            If value IsNot Nothing Then
                                 ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                 sSQLF.Append(IIf(IsFirstField = True, "", ",") & TagValue(0))
                                 ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -910,7 +948,7 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & cbo.SelectedIndex)
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -918,7 +956,7 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(cbo.EditValue.ToString))
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & "NULL")
@@ -960,7 +998,7 @@ NextItem:
                                     Dim txt As DevExpress.XtraEditors.TextEdit
                                     txt = Ctrl
                                     If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Or txt.Properties.Mask.MaskType = Mask.MaskType.Numeric Or txt.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
-                                        'If txt.EditValue <> Nothing Then txt.EditValue = txt.Text
+                                        'If txt.EditValue isnot Nothing Then txt.EditValue = txt.Text
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.EditValue, True))
                                     Else
                                         sSQLV.Append(IIf(IsFirstField = True, "", ",") & toSQLValueS(txt.Text))
@@ -1007,9 +1045,9 @@ NextItem:
         Catch ex As Exception
             Console.WriteLine(Err.Number)
             'If Err.Number = 5 Then
-            '    XtraMessageBox.Show("Προσπαθήσατε να περάσετε εγγραφή που υπάρχει ήδη στο σύστημα", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            '    XtraMessageBox.Show("Προσπαθήσατε να περάσετε εγγραφή που υπάρχει ήδη στο σύστημα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             'Else
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             'End If
 
 
@@ -1084,7 +1122,7 @@ NextItem:
             Case 1
                 Return UpdateData2(control, sTable, sGuid, CheckVisibility, ExtraFieldsAndValues)
             Case 2
-                Return UpdateDataNew(controls, sTable, sGuid, CheckVisibility)
+                Return UpdateDataNew(controls, sTable, sGuid, CheckVisibility, ExtraFieldsAndValues)
             Case 3
                 Return UpdateDataGRP(GRP, sTable, sGuid, CheckVisibility, ExceptFields, ExtraFieldsAndValues)
             Case 4
@@ -1123,7 +1161,7 @@ NextItem:
                 '                    If txt.Visible = False Then GoTo NextItem
                 '                End If
                 '                'If LItem.Control.Visible = True 
-                '                If value <> Nothing Then
+                '                If value isnot Nothing Then
                 '                    ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                 '                    sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                 '                    ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -1141,7 +1179,7 @@ NextItem:
                 'End If
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                         If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                             Dim RDG As DevExpress.XtraEditors.RadioGroup
@@ -1152,7 +1190,7 @@ NextItem:
                                     TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                     'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                     Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                    If value <> Nothing Then
+                                    If value IsNot Nothing Then
                                         ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                         sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                         If RDG.SelectedIndex = i Then
@@ -1176,7 +1214,7 @@ NextItem:
                                 If LItem.Control.Visible = False Then GoTo NextItem
                             End If
                             'If LItem.Control.Visible = True 
-                            If value <> Nothing Then
+                            If value IsNot Nothing Then
                                 ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                 sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                 ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -1185,7 +1223,7 @@ NextItem:
                                 If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         If cbo.Text <> "" Then sSQL.Append(toSQLValueS(cbo.EditValue.ToString)) Else sSQL.Append("NULL")
                                     Else
                                         sSQL.Append("NULL")
@@ -1203,10 +1241,21 @@ NextItem:
                                             Exit For
                                         End If
                                     Next
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                    Dim cbo As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                    Dim sCheckedItems As New System.Text.StringBuilder
+                                    cbo = Ctrl
+                                    For Each CheckedItem As CheckedListBoxItem In cbo.Properties.GetItems
+                                        If CheckedItem.CheckState = CheckState.Checked Then
+                                            If sCheckedItems.Length = 0 Then sCheckedItems.Append("'") Else sCheckedItems.Append(";")
+                                            sCheckedItems.Append(CheckedItem.Value.ToString)
+                                        End If
+                                    Next
+                                    If sCheckedItems.Length > 0 Then sCheckedItems.Append("'") : sSQL.Append(sCheckedItems.ToString) Else sSQL.Append("NULL")
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                             sSQL.Append(cbo.SelectedIndex)
                                         Else
@@ -1278,11 +1327,11 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
-    Private Function UpdateDataNew(ByVal controls As List(Of Control), ByVal sTable As String, ByVal sID As String, Optional ByVal CheckVisibility As Boolean = False) As Boolean
+    Private Function UpdateDataNew(ByVal controls As List(Of Control), ByVal sTable As String, ByVal sID As String, Optional ByVal CheckVisibility As Boolean = False, Optional ByVal ExtraFieldsAndValues As String = "") As Boolean
         Dim sSQL As New System.Text.StringBuilder ' Το 1ο StringField αφορά τα πεδία
         Dim IsFirstField As Boolean = True
         Dim TagValue As String()
@@ -1293,22 +1342,23 @@ NextItem:
             'Εαν η function καλεστεί με sGuid σημαίνει ότι θα πρε΄πει να καταχωρίσουμε εμείς το ID
             'FIELDS
             sSQL.AppendLine("UPDATE " & sTable & " SET ")
+            If ExtraFieldsAndValues.Length > 0 Then sSQL.AppendLine(ExtraFieldsAndValues) : IsFirstField = False
             For Each control As DevExpress.XtraLayout.LayoutControl In controls
                 For Each item As BaseLayoutItem In control.Items
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                        If LItem.ControlName <> Nothing Then
+                        If LItem.ControlName IsNot Nothing Then
                             'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                             If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                                 Dim RDG As DevExpress.XtraEditors.RadioGroup
                                 RDG = LItem.Control
                                 For i As Integer = 0 To RDG.Properties.Items.Count - 1
-                                    If RDG.Properties.Items(i).Tag <> Nothing Then
+                                    If RDG.Properties.Items(i).Tag IsNot Nothing Then
                                         'Βάζω τις τιμές του TAG σε array
                                         TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                         'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                         Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                        If value <> Nothing Then
+                                        If value IsNot Nothing Then
                                             ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                             sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                             If RDG.SelectedIndex = i Then
@@ -1331,7 +1381,7 @@ NextItem:
                                     If LItem.Control.Visible = False Then GoTo NextItem
                                 End If
                                 'If LItem.Control.Visible = True 
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                     ' Παίρνω τον τύπο του Control ώστε να δώ με ποιον τρόπ θα πάρω το value.
@@ -1340,8 +1390,35 @@ NextItem:
                                     If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                         Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                         cbo = Ctrl
-                                        If cbo.EditValue <> Nothing Then
-                                            sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
+                                        If cbo.EditValue IsNot Nothing Then
+                                            If cbo.Text <> "" Then sSQL.Append(toSQLValueS(cbo.EditValue.ToString)) Else sSQL.Append("NULL")
+                                        Else
+                                            sSQL.Append("NULL")
+                                        End If
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                        Dim cbo As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                        Dim sCheckedItems As New System.Text.StringBuilder
+                                        cbo = Ctrl
+                                        For Each CheckedItem As CheckedListBoxItem In cbo.Properties.GetItems
+                                            If CheckedItem.CheckState = CheckState.Checked Then
+                                                If sCheckedItems.Length = 0 Then sCheckedItems.Append("'") Else sCheckedItems.Append(";")
+                                                sCheckedItems.Append(CheckedItem.Value.ToString)
+                                            End If
+                                        Next
+                                        If sCheckedItems.Length > 0 Then sCheckedItems.Append("'") : sSQL.Append(sCheckedItems.ToString) Else sSQL.Append("NULL")
+                                    ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
+                                        Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
+                                        cbo = Ctrl
+                                        If cbo.EditValue IsNot Nothing Then
+                                            If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
+                                                sSQL.Append(cbo.SelectedIndex)
+                                            Else
+                                                If cbo.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric Then
+                                                    sSQL.Append(cbo.SelectedIndex)
+                                                Else
+                                                    sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
+                                                End If
+                                            End If
                                         Else
                                             sSQL.Append("NULL")
                                         End If
@@ -1396,7 +1473,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -1421,7 +1498,7 @@ NextItem:
             For Each item As BaseLayoutItem In GRP.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                         If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                             Dim RDG As DevExpress.XtraEditors.RadioGroup
@@ -1431,7 +1508,7 @@ NextItem:
                                 TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                 'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                 Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                If value <> Nothing Then
+                                If value IsNot Nothing Then
                                     ' Παίρνω το Tag του  Control και το προσθέτω για το INSERT-UPDATE
                                     sSQL.Append(IIf(IsFirstField = True, "", ",") & TagValue(0) & " = ")
                                     If RDG.SelectedIndex = i Then
@@ -1453,7 +1530,7 @@ NextItem:
                                 If LItem.Control.Visible = False Then GoTo NextItem
                             End If
                             'If LItem.Control.Visible = True 
-                            If value <> Nothing Then
+                            If value IsNot Nothing Then
                                 If ExceptFields IsNot Nothing Then
                                     If IsExceptedField(LItem, ExceptFields) Then GoTo NextItem
                                 End If
@@ -1473,7 +1550,7 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                     Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQL.Append(cbo.SelectedIndex)
                                     Else
                                         sSQL.Append("NULL")
@@ -1481,7 +1558,7 @@ NextItem:
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.GridLookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.GridLookUpEdit
                                     cbo = Ctrl
-                                    If cbo.EditValue <> Nothing Then
+                                    If cbo.EditValue IsNot Nothing Then
                                         sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
                                     Else
                                         sSQL.Append("NULL")
@@ -1554,7 +1631,7 @@ NextItem:
             End Using
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
@@ -1588,23 +1665,74 @@ NextItem:
             sSQL.Append("WHERE ID = " & toSQLValueS(sID))
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+
                 oCmd.ExecuteNonQuery()
             End Using
 
             Return True
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End Try
     End Function
-    Public Function InsertNewDoorType(ByVal Lkup As DevExpress.XtraEditors.LookUpEdit, ByVal sValue As String) As String
+    'Διαβάζει τις στήλες ενός GRID δυναμικά και τα πεδία ενός LayoutControlGroup δυναμικά και κάνει Update
+    Public Function UpdateDataCardGRD(ByVal GRD As DevExpress.XtraGrid.Views.Card.CardView, ByVal sTable As String,
+                                      Optional ByVal ExtraFieldsAndValues As String = "", Optional ByVal CheckVisibility As Boolean = False)
+        Dim sSQL As New System.Text.StringBuilder
+        Dim sDate As DateTime
+        Dim IsFirstField As Boolean = True
+        Dim cellValue
+        Try
+            sSQL.Clear()
+            sSQL.AppendLine("UPDATE " & sTable & " SET ")
+            If ExtraFieldsAndValues.Length > 0 Then sSQL.AppendLine(ExtraFieldsAndValues) : IsFirstField = False
+
+            For Each column As DevExpress.XtraGrid.Columns.GridColumn In GRD.Columns
+                If column.Visible = True Then
+                    'If FieldsToBeUpdate.Contains(column.FieldName) Then
+                    sSQL.Append(IIf(IsFirstField = True, "", ","))
+                    If GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName) IsNot DBNull.Value Then
+                        Select Case column.ColumnType.Name
+                            Case "Guid" : sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName).ToString))
+                            Case "Int32" : sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName).ToString, True))
+                            Case "DateTime"
+                                sDate = GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName)
+                                sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(sDate.ToString("yyyyMMdd")))
+                            Case "Decimal" : sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName).ToString, True))
+                            Case "String" : sSQL.AppendLine("[" & column.FieldName & "]" & "=" & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName).ToString))
+                            Case "Byte[]"
+                                cellValue = GRD.GetRowCellValue(GRD.FocusedRowHandle, column.FieldName)
+                                sSQL.AppendLine("[" & column.FieldName & "]" & "=@Photo")
+                        End Select
+                        'sSQL.AppendLine(",")
+                    End If
+                    'End If
+                End If
+                IsFirstField = False
+            Next
+            sSQL.AppendLine(",modifiedON = getdate() ")
+            sSQL.AppendLine(",[modifiedBy] = " & toSQLValueS(UserProps.ID.ToString))
+            sSQL.AppendLine("WHERE ID = " & toSQLValueS(GRD.GetRowCellValue(GRD.FocusedRowHandle, "ID").ToString))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.Parameters.AddWithValue("@Photo", cellValue)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+    End Function
+    Public Function InsertNewValueListItem(ByVal Lkup As DevExpress.XtraEditors.LookUpEdit, ByVal sValue As String) As String
         Try
             If XtraMessageBox.Show("Βρέθηκε καινούριος Κωδικός. Να προστεθεί?", "Επιβεβαίωση", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.Yes Then
                 Dim sSQL = New System.Text.StringBuilder
-                Dim sDoorTypeID = System.Guid.NewGuid.ToString
-                sSQL.AppendLine("INSERT INTO DOOR_TYPE (ID,Name, Cat,description,doorCatID) ")
+                Dim sVALUELISTITEMID = System.Guid.NewGuid.ToString
+                sSQL.AppendLine("INSERT INTO valueListItem (ID,Name, Cat,description,ValueListID) ")
                 sSQL.AppendLine("VALUES (")
-                sSQL.AppendLine(toSQLValueS(sDoorTypeID) & ",")
+                sSQL.AppendLine(toSQLValueS(sVALUELISTITEMID) & ",")
                 sSQL.AppendLine(toSQLValueS(sValue) & ",")
                 sSQL.AppendLine(0 & ",")
                 sSQL.AppendLine("'ΛΑΚΑ',")
@@ -1612,10 +1740,10 @@ NextItem:
                 Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                     oCmd.ExecuteNonQuery()
                 End Using
-                Return sDoorTypeID
+                Return sVALUELISTITEMID
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
 

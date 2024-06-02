@@ -121,7 +121,7 @@
     <value>17, 134</value>
   </metadata>
   <data name="CustomSqlQuery1.Sql" xml:space="preserve">
-    <value>select "vw_OFF_REP_TOTALPERDOOR"."DoorTypeName",
+    <value>select "vw_OFF_REP_TOTALPERDOOR"."VALUELISTITEMName",
        "vw_OFF_REP_TOTALPERDOOR"."OfferPrice",
        "vw_OFF_REP_TOTALPERDOOR"."offID"
   from "dbo"."vw_OFF_REP_TOTALPERDOOR" "vw_OFF_REP_TOTALPERDOOR"

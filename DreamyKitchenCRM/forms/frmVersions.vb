@@ -1,4 +1,5 @@
 ﻿Imports System.Data.SqlClient
+Imports System.Reflection
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 
@@ -46,6 +47,7 @@ Public Class frmVersions
                 dtFDate.EditValue = Date.Now
                 'TODO: This line of code loads data into the 'Priamos_NETDataSet.vw_TECH_SUP' table. You can move, or remove it, as needed.
                 Me.Vw_TECH_SUPTableAdapter.FillWithNew(Me.DreamyKitchenDataSet.vw_TECH_SUP)
+                txtNam.EditValue = Assembly.GetExecutingAssembly().GetName().Version.ToString()
             Case FormMode.EditRecord
                 'TODO: This line of code loads data into the 'Priamos_NETDataSet.vw_TECH_SUP' table. You can move, or remove it, as needed.
                 Me.Vw_TECH_SUPTableAdapter.FillBy(Me.DreamyKitchenDataSet.vw_TECH_SUP)
@@ -81,10 +83,23 @@ Public Class frmVersions
 
     Private Sub SimpleButton1_Click(sender As Object, e As EventArgs) Handles SimpleButton1.Click
         Dim sSQL As String
-        Dim myValue As String = InputBox("Πληκτρολογήστε την Έκδοση", "Έκδοση", "")
+        'Dim myValue As String = InputBox("Πληκτρολογήστε την Έκδοση", "Έκδοση", "")
+        Dim args = New XtraInputBoxArgs()
+        Dim TXT As New DevExpress.XtraEditors.TextEdit
+        args.Caption = "Έκδοση"
+        args.Prompt = "Πληκτρολογήστε την Έκδοση"
+        args.DefaultButtonIndex = 0
+        args.Editor = TXT
+        args.DefaultResponse = Assembly.GetExecutingAssembly().GetName().Version.ToString()
+        Dim myValue = XtraInputBox.Show(args)
         Try
             If myValue = "" Then Exit Sub
-            sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath='\\10.10.5.5\crm\DKCRM\Updates\" & myValue & "\'"
+            If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then
+                sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath='\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue & "\'"
+            Else
+                sSQL = "Update ver set ExeVer = " & toSQLValueS(myValue) & ",DbVer = " & toSQLValueS(myValue) & ", UpdatePath='\\10.10.5.5\crm\DKCRM\Updates\" & myValue & "\'"
+            End If
+
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
@@ -99,11 +114,20 @@ Public Class frmVersions
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
+            If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then
+                If My.Computer.FileSystem.DirectoryExists("\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue) = False Then
+                    My.Computer.FileSystem.CreateDirectory("\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue)
+                    Dim exePath As String = Application.ExecutablePath()
+                    My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), "\\10.10.5.5\crm\DKCRM\DEV\Updates\" & myValue & "\DreamyKitchenCRM.exe")
+                End If
 
-            If My.Computer.FileSystem.DirectoryExists("\\10.10.5.5\crm\DKCRM\Updates\" & myValue) = False Then
-                My.Computer.FileSystem.CreateDirectory("\\10.10.5.5\crm\DKCRM\Updates\" & myValue)
-                Dim exePath As String = Application.ExecutablePath()
-                My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), "\\10.10.5.5\crm\DKCRM\Updates\" & myValue & "\DreamyKitchenCRM.exe")
+            Else
+                If My.Computer.FileSystem.DirectoryExists("\\10.10.5.5\crm\DKCRM\Updates\" & myValue) = False Then
+                    My.Computer.FileSystem.CreateDirectory("\\10.10.5.5\crm\DKCRM\Updates\" & myValue)
+                    Dim exePath As String = Application.ExecutablePath()
+                    My.Computer.FileSystem.CopyFile(Application.ExecutablePath().Replace("Debug", "Release"), "\\10.10.5.5\crm\DKCRM\Updates\" & myValue & "\DreamyKitchenCRM.exe")
+                End If
+
             End If
             XtraMessageBox.Show("Η έκδοση δημιουργήθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
         Catch ex As Exception
@@ -114,7 +138,7 @@ Public Class frmVersions
     Private Sub cbotechnical_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbotechnical.ButtonClick
         Select Case e.Button.Index
             Case 1 : cbotechnical.EditValue = Nothing : ManageTechnical()
-            Case 2 : If cbotechnical.EditValue <> Nothing Then ManageTechnical()
+            Case 2 : If cbotechnical.EditValue isnot Nothing Then ManageTechnical()
             Case 3 : cbotechnical.EditValue = Nothing
         End Select
     End Sub
@@ -124,7 +148,7 @@ Public Class frmVersions
         'form1.MdiParent = frmMain
         form1.CallerControl = cbotechnical
         form1.CalledFromControl = True
-        If cbotechnical.EditValue <> Nothing Then
+        If cbotechnical.EditValue isnot Nothing Then
             form1.ID = cbotechnical.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else

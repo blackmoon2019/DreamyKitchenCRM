@@ -9,6 +9,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Menu
 Imports DevExpress.Utils
+Imports Org.BouncyCastle.Asn1.X500
 
 Public Class FormLoader
     Private GRDview As GridView
@@ -21,8 +22,174 @@ Public Class FormLoader
 
     'End Function
 
+    Public Function LoadFormNew(ByVal controls As List(Of System.Windows.Forms.Control), ByVal sSQL As String, Optional ByVal IgnoreVisibility As Boolean = False, Optional ByRef dictionary As Dictionary(Of String, String) = Nothing) As Boolean
 
+        Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
+        Dim sdr As SqlDataReader = cmd.ExecuteReader()
+        Dim sTable As DataTable
+        Dim TagValue As String()
+        '        Dim control As DevExpress.XtraLayout.LayoutControl
+        'Tag Value = 0 For Load
+        'Tag Value = 1 For Insert
+        'Tag Value = 2 For Update
+        Dim TagV As String
+        Try
 
+            sTable = sdr.GetSchemaTable()
+            If (sdr.Read() = True) Then
+                ' Αυτό μπήκε αγια να φέρει όλα τα πεδία του view μαζί με τιμές 
+                If Not IsNothing(dictionary) Then
+                    For index As Integer = 0 To sdr.FieldCount - 1
+                        Select Case sdr.GetDataTypeName(index)
+                            Case "nvarchar"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetString(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "int"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetInt32(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "bigint"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetInt64(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "uniqueidentifier"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetGuid(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "bit"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetBoolean(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "decimal"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetDecimal(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "datetime"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetDateTime(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "date"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetDateTime(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "varbinary"
+                        End Select
+                    Next
+                End If
+
+                For Each control As DevExpress.XtraLayout.LayoutControl In controls
+                    For Each item As BaseLayoutItem In control.Items
+                        If TypeOf item Is LayoutControlItem Then
+                            Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
+                            If LItem.ControlName isnot Nothing Then
+
+                                'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
+                                If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
+                                    Dim RDG As DevExpress.XtraEditors.RadioGroup
+                                    RDG = LItem.Control
+                                    For i As Integer = 0 To RDG.Properties.Items.Count - 1
+                                        'Βάζω τις τιμές του TAG σε array
+                                        If RDG.Properties.Items(i).Tag isnot Nothing Then
+                                            TagValue = RDG.Properties.Items(i).Tag.Split(",")
+                                            'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
+                                            Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
+                                            If value isnot Nothing Then
+                                                TagV = TagValue(0).Replace("[", "").Replace("]", "")
+                                                Console.WriteLine(TagV)
+                                                sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
+                                                Dim index = sdr.GetOrdinal(TagV)
+                                                Console.WriteLine(sdr.GetDataTypeName(index))
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
+                                                    If sdr.GetBoolean(sdr.GetOrdinal(TagV)) = True Then RDG.SelectedIndex = i
+                                                End If
+                                            End If
+                                        End If
+                                    Next i
+                                End If
+
+                                ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
+                                If LItem.Control.Tag <> "" Then
+                                    'Βάζω τις τιμές του TAG σε array
+                                    TagValue = LItem.Control.Tag.ToString.Split(",")
+                                    'Ψάχνω αν το πεδίο έχει δικάιωμα Προβολής
+                                    Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("0")))
+                                    ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
+                                    If IgnoreVisibility = True Then
+                                        If LItem.Control.Visible = False Then GoTo NextItem
+                                    End If
+
+                                    ' Εαν δεν είναι visible το Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
+                                    'If LItem.Control.Visible = True Then
+                                    If value isnot Nothing Then
+                                        TagV = TagValue(0).Replace("[", "").Replace("]", "")
+                                        Console.WriteLine(TagV)
+                                        'Function που ελέγχει αν υπάρχει ενα πεδίο μέσα στον SQLDataReader
+                                        If ColumnExistToDataReader(sdr, TagV) = False Then GoTo NextItem
+                                        sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
+                                        Dim index = sdr.GetOrdinal(TagV)
+                                        Console.WriteLine(sdr.GetDataTypeName(index))
+                                        'If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetBoolean(sdr.GetOrdinal(TagV)))
+                                        Select Case sdr.GetDataTypeName(index)
+                                            Case "nvarchar"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal(TagV)))
+                                            Case "int"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetInt32(sdr.GetOrdinal(TagV)))
+                                            Case "bigint"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetInt64(sdr.GetOrdinal(TagV)))
+                                            Case "uniqueidentifier"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetGuid(sdr.GetOrdinal(TagV)).ToString)
+                                            Case "bit"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetBoolean(sdr.GetOrdinal(TagV)))
+                                            Case "decimal"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDecimal(sdr.GetOrdinal(TagV)))
+                                            Case "datetime"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                            Case "date"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                            Case "varbinary"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
+                                                    Dim pic As DevExpress.XtraEditors.PictureEdit
+                                                    Dim bytes As Byte()
+                                                    pic = LItem.Control
+                                                    bytes = DirectCast(sdr(TagV), Byte())
+                                                    pic.EditValue = bytes
+                                                End If
+                                        End Select
+                                    End If
+NextItem:
+                                End If
+                            End If
+                        End If
+                    Next
+                Next
+            End If
+
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Function
+    Private Function ColumnExistToDataReader(ByVal sdr As SqlDataReader, ByVal sColName As String) As Boolean
+        sdr.GetSchemaTable().DefaultView.RowFilter = "ColumnName= '" + sColName + "'"
+        Return (sdr.GetSchemaTable().DefaultView.Count > 0)
+    End Function
     Public Function LoadForm(ByVal control As DevExpress.XtraLayout.LayoutControl, ByVal sSQL As String, Optional ByRef dictionary As Dictionary(Of String, String) = Nothing,
                              Optional ByVal CheckVisibility As Boolean = False) As Boolean
 
@@ -98,18 +265,18 @@ Public Class FormLoader
                     If TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
                         'If LItem.ControlName.Contains("cboSides") Then Stop
-                        If LItem.ControlName <> Nothing Then
+                        If LItem.ControlName isnot Nothing Then
                             'Γίνεται διαχείριση όταν υπάρχει RadioGroup με optionButtons
                             If TypeOf LItem.Control Is DevExpress.XtraEditors.RadioGroup Then
                                 Dim RDG As DevExpress.XtraEditors.RadioGroup
                                 RDG = LItem.Control
                                 For i As Integer = 0 To RDG.Properties.Items.Count - 1
                                     'Βάζω τις τιμές του TAG σε array
-                                    If RDG.Properties.Items(i).Tag <> Nothing Then
+                                    If RDG.Properties.Items(i).Tag isnot Nothing Then
                                         TagValue = RDG.Properties.Items(i).Tag.Split(",")
                                         'Ψάχνω αν το πεδίο έχει δικάιωμα μεταβολής
                                         Dim value As String = Array.Find(TagValue, Function(x) (x.StartsWith("2")))
-                                        If value <> Nothing Then
+                                        If value isnot Nothing Then
                                             TagV = TagValue(0).Replace("[", "").Replace("]", "")
                                             Console.WriteLine(TagV)
                                             sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
@@ -132,7 +299,7 @@ Public Class FormLoader
                                 If CheckVisibility = True Then
                                     If LItem.Control.Visible = False Then GoTo NextItem
                                 End If
-                                If value <> Nothing Then
+                                If value isnot Nothing Then
                                     TagV = TagValue(0).Replace("[", "").Replace("]", "")
                                     Console.WriteLine(TagV)
                                     sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
@@ -175,10 +342,10 @@ NextItem:
             Dim trace = New System.Diagnostics.StackTrace(ex, True)
             Dim line As String = Strings.Right(trace.ToString, 5)
 
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
-    Public Function LoadFormGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sSQL As String, Optional ByVal IgnoreVisibility As Boolean = True) As Boolean
+    Public Function LoadFormGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup, ByVal sSQL As String, Optional ByVal IgnoreVisibility As Boolean = True, Optional ByRef dictionary As Dictionary(Of String, String) = Nothing) As Boolean
 
         Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
         Dim sdr As SqlDataReader = cmd.ExecuteReader()
@@ -191,10 +358,69 @@ NextItem:
         Try
             sTable = sdr.GetSchemaTable()
             If (sdr.Read() = True) Then
+                ' Αυτό μπήκε αγια να φέρει όλα τα πεδία του view μαζί με τιμές 
+                If Not IsNothing(dictionary) Then
+                    For index As Integer = 0 To sdr.FieldCount - 1
+                        Select Case sdr.GetDataTypeName(index)
+                            Case "nvarchar"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetString(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "int"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetInt32(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "bigint"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetInt64(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "uniqueidentifier"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetGuid(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "bit"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetBoolean(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "decimal"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetDecimal(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "datetime"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetDateTime(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "date"
+                                If sdr.IsDBNull(sdr.GetOrdinal(sdr.GetName(index))) = False Then
+                                    dictionary.Add(sdr.GetName(index), sdr.GetDateTime(sdr.GetOrdinal(sdr.GetName(index))).ToString)
+                                Else
+                                    dictionary.Add(sdr.GetName(index), "")
+                                End If
+                            Case "varbinary"
+                        End Select
+                    Next
+                End If
+
                 For Each item As BaseLayoutItem In GRP.Items
-                    If TypeOf item Is LayoutControlItem Then
+                    If TypeOf item Is DevExpress.XtraLayout.LayoutControlGroup Then
+                        LoadFormGRP(item, sSQL, IgnoreVisibility)
+                    ElseIf TypeOf item Is LayoutControlItem Then
                         Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                        If LItem.ControlName <> Nothing Then
+                        If LItem.ControlName isnot Nothing Then
                             ' Εαν δεν έχω ορίσει tag στο Control δεν θα συμπεριληφθεί στο INSERT-UPDATE
                             If LItem.Control.Tag <> "" Then
                                 'Βάζω τις τιμές του TAG σε array
@@ -207,49 +433,49 @@ NextItem:
                                 End If
 
                                 'If LItem.Control.Visible = True Then
-                                If value <> Nothing Then
-                                        TagV = TagValue(0).Replace("[", "").Replace("]", "")
-                                        Console.WriteLine(TagV)
-                                        If sdr.GetSchemaTable().Select("ColumnName='" & TagV & "'").Length > 0 Then
-                                            sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
-                                            Dim index = sdr.GetOrdinal(TagV)
-                                            Console.WriteLine(sdr.GetDataTypeName(index))
-                                            Select Case sdr.GetDataTypeName(index)
-                                                Case "nvarchar"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal(TagV)))
-                                                Case "int"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetInt32(sdr.GetOrdinal(TagV)))
+                                If value isnot Nothing Then
+                                    TagV = TagValue(0).Replace("[", "").Replace("]", "")
+                                    Console.WriteLine(TagV)
+                                    If sdr.GetSchemaTable().Select("ColumnName='" & TagV & "'").Length > 0 Then
+                                        sdr.GetDataTypeName(sdr.GetOrdinal(TagV))
+                                        Dim index = sdr.GetOrdinal(TagV)
+                                        Console.WriteLine(sdr.GetDataTypeName(index))
+                                        Select Case sdr.GetDataTypeName(index)
+                                            Case "nvarchar"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal(TagV)))
+                                            Case "int"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetInt32(sdr.GetOrdinal(TagV)))
                                             Case "uniqueidentifier"
                                                 If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetGuid(sdr.GetOrdinal(TagV)).ToString)
                                             Case "bit"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetBoolean(sdr.GetOrdinal(TagV)))
-                                                Case "decimal"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDecimal(sdr.GetOrdinal(TagV)))
-                                                Case "datetime"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
-                                                Case "date"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
-                                                Case "varbinary"
-                                                    If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
-                                                        Dim pic As DevExpress.XtraEditors.PictureEdit
-                                                        Dim bytes As Byte()
-                                                        pic = LItem.Control
-                                                        bytes = DirectCast(sdr(TagV), Byte())
-                                                        pic.EditValue = bytes
-                                                    End If
-                                            End Select
-                                        End If
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetBoolean(sdr.GetOrdinal(TagV)))
+                                            Case "decimal"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDecimal(sdr.GetOrdinal(TagV)))
+                                            Case "datetime"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                            Case "date"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then SetValueToControl(LItem, sdr.GetDateTime(sdr.GetOrdinal(TagV)))
+                                            Case "varbinary"
+                                                If sdr.IsDBNull(sdr.GetOrdinal(TagV)) = False Then
+                                                    Dim pic As DevExpress.XtraEditors.PictureEdit
+                                                    Dim bytes As Byte()
+                                                    pic = LItem.Control
+                                                    bytes = DirectCast(sdr(TagV), Byte())
+                                                    pic.EditValue = bytes
+                                                End If
+                                        End Select
                                     End If
-NextItem:
-                                    'End If
                                 End If
+NextItem:
+                                'End If
+                            End If
                         End If
                     End If
                 Next
             End If
             sdr.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Private Sub SetValueToControl(ByVal LItem As LayoutControlItem, ByVal sValue As String)
@@ -267,13 +493,23 @@ NextItem:
                     cbo.EditValue = Convert.ToInt32(sValue)
                 End If
                 cbo.Properties.AllowMouseWheel = False
+            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                Dim cbo As DevExpress.XtraEditors.CheckedComboBoxEdit
+                cbo = Ctrl
+                If sValue.Length > 0 Then
+                    Dim ValueList As String() = sValue.Split(";")
+                    Dim IsValidGuid As Guid
+                    For Each Value As String In ValueList
+                        Guid.TryParse(Value, IsValidGuid)
+                        If IsValidGuid <> Guid.Empty Then cbo.Properties.GetItems.Item(System.Guid.Parse(Value)).CheckState = CheckState.Checked
+                    Next
+                End If
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
-
                 Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                 cbo = Ctrl
                 If sValue = "False" Or sValue = "True" Then
                     If sValue = "False" Then cbo.SelectedIndex = 0 Else cbo.SelectedIndex = 1
-                ElseIf cbo.Properties.tag = "String" Then
+                ElseIf cbo.Properties.Tag = "String" Then
                     cbo.EditValue = sValue
                 ElseIf IsNumeric(sValue) Then
                     cbo.SelectedIndex = sValue
@@ -282,46 +518,49 @@ NextItem:
                 End If
                 cbo.Properties.AllowMouseWheel = False
             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
-                Dim dt As DevExpress.XtraEditors.DateEdit
-                dt = Ctrl
-                dt.EditValue = CDate(sValue)
-            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
-                Dim tm As DevExpress.XtraEditors.TimeEdit
-                tm = Ctrl
-                tm.EditValue = CDate(sValue).ToString("HH:mm")
-            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
-                Dim txt As DevExpress.XtraEditors.MemoEdit
-                txt = Ctrl
-                If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
-                    txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
-                Else
-                    txt.Text = sValue
-                End If
-            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.RatingControl Then
-                Dim Rt As DevExpress.XtraEditors.RatingControl
-                Rt = Ctrl
-                Rt.EditValue = sValue
-            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
-                Dim txt As DevExpress.XtraEditors.TextEdit
-                txt = Ctrl
-                If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
-                    txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
-                ElseIf txt.Properties.Mask.EditMask = "d" Then ' Αφορά το DateEditControl
-                    'sSQL.Append(toSQLValueS(CDate(txt.Text).ToString("yyyyMMdd")))
-                    txt.Text = sValue
-                Else
-                    txt.Text = sValue
-                End If
-            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
-                Dim chk As DevExpress.XtraEditors.CheckEdit
-                chk = Ctrl
-                chk.EditValue = sValue
-                chk.Checked = sValue
-            ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
+                    Dim dt As DevExpress.XtraEditors.DateEdit
+                    dt = Ctrl
+                    dt.EditValue = CDate(sValue)
+                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TimeEdit Then
+                    Dim tm As DevExpress.XtraEditors.TimeEdit
+                    tm = Ctrl
+                    tm.EditValue = CDate(sValue).ToString("HH:mm")
+                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.MemoEdit Then
+                    Dim txt As DevExpress.XtraEditors.MemoEdit
+                    txt = Ctrl
+                    If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
+                        txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
+                    Else
+                        txt.Text = sValue
+                    End If
+                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.RatingControl Then
+                    Dim Rt As DevExpress.XtraEditors.RatingControl
+                    Rt = Ctrl
+                    Rt.EditValue = sValue
+                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.TextEdit Then
+                    Dim txt As DevExpress.XtraEditors.TextEdit
+                    txt = Ctrl
+                    If txt.Properties.Mask.EditMask = "c" & ProgProps.Decimals Then
+                        txt.Text = Math.Round(CDec(sValue), ProgProps.Decimals)
+                    ElseIf txt.Properties.Mask.EditMask = "d" Then ' Αφορά το DateEditControl
+                        'sSQL.Append(toSQLValueS(CDate(txt.Text).ToString("yyyyMMdd")))
+                        txt.Text = sValue
+                    Else
+                        txt.Text = sValue
+                    End If
+                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
+                    Dim chk As DevExpress.XtraEditors.CheckEdit
+                    chk = Ctrl
+                    chk.EditValue = sValue
+                    chk.Checked = sValue
+                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
 
-            End If
+                End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Dim trace = New System.Diagnostics.StackTrace(ex, True)
+            Dim line As String = Strings.Right(trace.ToString, 5)
+
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message & " Error in- Line number: " & line), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadDataToGrid(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
@@ -375,7 +614,7 @@ NextItem:
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadDataToVGrid(ByRef GRDControl As DevExpress.XtraVerticalGrid.VGridControl,
@@ -555,7 +794,7 @@ NextItem:
             'End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub LoadColumnDescriptionNames(ByRef GRDControl As DevExpress.XtraGrid.GridControl, ByRef GRDView As DevExpress.XtraGrid.Views.Grid.GridView,
@@ -604,7 +843,7 @@ NextItem:
                 'If columnName.Length > 0 And GRDView.Columns.Item(columnName) IsNot Nothing Then GRDView.Columns.Item(columnName).Caption = columnNameValue
             Next
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub PopupMenuShow(ByVal e As Views.Grid.PopupMenuShowingEventArgs, ByVal GridView As GridView, ByVal sXMLName As String, Optional ByVal sTableName As String = "",
@@ -841,22 +1080,6 @@ NextItem:
             End If
         End If
     End Sub
-    Public Function GetFile(ByVal sRowID As String, ByVal sTable As String) As Byte()
-        Dim sSQL As String
-        Dim cmd As SqlCommand
-        Dim sdr As SqlDataReader
-        Dim bytes As Byte()
-
-        sSQL = "Select  files From " & sTable & " WHERE ID = " & toSQLValueS(sRowID)
-        cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
-        If sdr.Read() = True Then
-            bytes = DirectCast(sdr("files"), Byte())
-            sdr.Close()
-            Return bytes
-        End If
-        sdr.Close()
-
-    End Function
 
     Friend Class MenuColumnInfo
         Public Sub New(ByVal column As GridColumn)
@@ -866,10 +1089,6 @@ NextItem:
     End Class
     Public Sub RestoreLayoutFromXml(ByVal GridView As GridView, ByVal sXMLName As String)
         Try
-            'If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sXMLName) = False Then
-            '    GridView.SaveLayoutToXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
-            'End If
-
             If My.Computer.FileSystem.FileExists(Application.StartupPath & "\DSGNS\DEF\" & sXMLName) Then
                 GetNewestFileFromServer(Application.StartupPath & "\DSGNS\DEF\" & sXMLName)
                 GridView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
@@ -880,8 +1099,9 @@ NextItem:
                 GridView.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\" & sXMLName, OptionsLayoutBase.FullLayout)
             End If
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+
 End Class
 

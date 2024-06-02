@@ -174,7 +174,7 @@ Partial Public Class RepCUSOfferCloset_old
         '
         'XrLabel1
         '
-        Me.XrLabel1.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrLabel1.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(327.8494!, 20.36934!)
         Me.XrLabel1.Name = "XrLabel1"
@@ -215,7 +215,7 @@ Partial Public Class RepCUSOfferCloset_old
         '
         'XrLabel41
         '
-        Me.XrLabel41.Font = New System.Drawing.Font("Zona Pro Regular", 8.0!)
+        Me.XrLabel41.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrLabel41.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrLabel41.LocationFloat = New DevExpress.Utils.PointFloat(1.000032!, 132.078!)
         Me.XrLabel41.Multiline = True
@@ -238,7 +238,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel5
         '
         Me.XrLabel5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[description]")})
-        Me.XrLabel5.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrLabel5.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrLabel5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrLabel5.LocationFloat = New DevExpress.Utils.PointFloat(0!, 188.7362!)
         Me.XrLabel5.Multiline = True
@@ -252,7 +252,7 @@ Partial Public Class RepCUSOfferCloset_old
         '
         'XrLabel2
         '
-        Me.XrLabel2.Font = New System.Drawing.Font("Zona Pro", 14.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel2.Font = New DevExpress.Drawing.DXFont("Zona Pro", 14.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel2.LocationFloat = New DevExpress.Utils.PointFloat(0.0000726609!, 0!)
         Me.XrLabel2.Name = "XrLabel2"
@@ -273,7 +273,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel34
         '
         Me.XrLabel34.CanShrink = True
-        Me.XrLabel34.Font = New System.Drawing.Font("Zona Pro", 10.0!)
+        Me.XrLabel34.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!)
         Me.XrLabel34.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel34.LocationFloat = New DevExpress.Utils.PointFloat(1.999701!, 102.9584!)
         Me.XrLabel34.Name = "XrLabel34"
@@ -287,7 +287,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel35.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel35.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel35.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[EmpName]")})
-        Me.XrLabel35.Font = New System.Drawing.Font("Zona Pro Regular", 9.857143!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.XrLabel35.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.857143!, DevExpress.Drawing.DXFontStyle.Regular, DevExpress.Drawing.DXGraphicsUnit.Point, New DevExpress.Drawing.DXFontAdditionalProperty() {New DevExpress.Drawing.DXFontAdditionalProperty("GdiCharSet", CType(0, Byte))})
         Me.XrLabel35.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel35.LocationFloat = New DevExpress.Utils.PointFloat(75.82351!, 102.9584!)
         Me.XrLabel35.Multiline = True
@@ -303,7 +303,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel17
         '
         Me.XrLabel17.CanShrink = True
-        Me.XrLabel17.Font = New System.Drawing.Font("Zona Pro", 10.0!)
+        Me.XrLabel17.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!)
         Me.XrLabel17.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel17.LocationFloat = New DevExpress.Utils.PointFloat(0!, 71.0!)
         Me.XrLabel17.Name = "XrLabel17"
@@ -317,7 +317,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel22.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel22.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel22.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[AREAS_Name]")})
-        Me.XrLabel22.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrLabel22.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrLabel22.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel22.LocationFloat = New DevExpress.Utils.PointFloat(406.1104!, 43.00002!)
         Me.XrLabel22.Multiline = True
@@ -335,7 +335,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel21.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel21.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel21.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[phn]")})
-        Me.XrLabel21.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrLabel21.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrLabel21.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel21.LocationFloat = New DevExpress.Utils.PointFloat(406.1104!, 12.99999!)
         Me.XrLabel21.Multiline = True
@@ -353,7 +353,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel20.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel20.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel20.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[dtOffer]")})
-        Me.XrLabel20.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
+        Me.XrLabel20.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrLabel20.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel20.LocationFloat = New DevExpress.Utils.PointFloat(159.1986!, 70.99998!)
         Me.XrLabel20.Multiline = True
@@ -372,7 +372,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel19.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel19.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel19.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[FullAddress]")})
-        Me.XrLabel19.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrLabel19.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrLabel19.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrLabel19.LocationFloat = New DevExpress.Utils.PointFloat(74.82351!, 42.99997!)
         Me.XrLabel19.Multiline = True
@@ -392,7 +392,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel18.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel18.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel18.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[CctName]")})
-        Me.XrLabel18.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrLabel18.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrLabel18.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel18.LocationFloat = New DevExpress.Utils.PointFloat(75.82351!, 13.0!)
         Me.XrLabel18.Multiline = True
@@ -408,7 +408,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel12
         '
         Me.XrLabel12.CanShrink = True
-        Me.XrLabel12.Font = New System.Drawing.Font("Zona Pro", 10.0!)
+        Me.XrLabel12.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!)
         Me.XrLabel12.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel12.LocationFloat = New DevExpress.Utils.PointFloat(352.9486!, 13.0!)
         Me.XrLabel12.Name = "XrLabel12"
@@ -420,7 +420,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel13
         '
         Me.XrLabel13.CanShrink = True
-        Me.XrLabel13.Font = New System.Drawing.Font("Zona Pro", 10.0!)
+        Me.XrLabel13.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!)
         Me.XrLabel13.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel13.LocationFloat = New DevExpress.Utils.PointFloat(352.9486!, 45.99998!)
         Me.XrLabel13.Name = "XrLabel13"
@@ -432,7 +432,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel14
         '
         Me.XrLabel14.CanShrink = True
-        Me.XrLabel14.Font = New System.Drawing.Font("Zona Pro", 10.0!)
+        Me.XrLabel14.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!)
         Me.XrLabel14.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel14.LocationFloat = New DevExpress.Utils.PointFloat(352.9486!, 71.0!)
         Me.XrLabel14.Name = "XrLabel14"
@@ -444,7 +444,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel15
         '
         Me.XrLabel15.CanShrink = True
-        Me.XrLabel15.Font = New System.Drawing.Font("Zona Pro", 10.0!)
+        Me.XrLabel15.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!)
         Me.XrLabel15.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel15.LocationFloat = New DevExpress.Utils.PointFloat(0!, 13.00003!)
         Me.XrLabel15.Name = "XrLabel15"
@@ -456,7 +456,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel16
         '
         Me.XrLabel16.CanShrink = True
-        Me.XrLabel16.Font = New System.Drawing.Font("Zona Pro", 10.0!)
+        Me.XrLabel16.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!)
         Me.XrLabel16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel16.LocationFloat = New DevExpress.Utils.PointFloat(0!, 46.00005!)
         Me.XrLabel16.Name = "XrLabel16"
@@ -470,7 +470,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel23.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel23.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel23.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[daysofdeliver]")})
-        Me.XrLabel23.Font = New System.Drawing.Font("Zona Pro Regular", 10.0!)
+        Me.XrLabel23.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!)
         Me.XrLabel23.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel23.LocationFloat = New DevExpress.Utils.PointFloat(502.9854!, 70.99998!)
         Me.XrLabel23.Multiline = True
@@ -495,7 +495,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrCheckBox7
         '
         Me.XrCheckBox7.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Iif([totVestiario] = 1 ,'Checked' , 'Unchecked')")})
-        Me.XrCheckBox7.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrCheckBox7.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrCheckBox7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox7.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Far
         Me.XrCheckBox7.LocationFloat = New DevExpress.Utils.PointFloat(530.4763!, 1.000031!)
@@ -509,7 +509,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrCheckBox3
         '
         Me.XrCheckBox3.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Iif([totSlide] = 1 ,'Checked' , 'Unchecked')")})
-        Me.XrCheckBox3.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrCheckBox3.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrCheckBox3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox3.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Far
         Me.XrCheckBox3.LocationFloat = New DevExpress.Utils.PointFloat(436.9999!, 0.9999695!)
@@ -523,7 +523,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrCheckBox1
         '
         Me.XrCheckBox1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Iif([totOpen] = 1 ,'Checked' , 'Unchecked')")})
-        Me.XrCheckBox1.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrCheckBox1.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrCheckBox1.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox1.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Far
         Me.XrCheckBox1.LocationFloat = New DevExpress.Utils.PointFloat(326.9488!, 1.0!)
@@ -539,7 +539,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel55.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel55.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel55.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[totClosets]")})
-        Me.XrLabel55.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel55.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel55.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel55.LocationFloat = New DevExpress.Utils.PointFloat(143.5714!, 4.0!)
         Me.XrLabel55.Multiline = True
@@ -557,7 +557,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel8
         '
         Me.XrLabel8.CanShrink = True
-        Me.XrLabel8.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel8.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel8.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel8.LocationFloat = New DevExpress.Utils.PointFloat(229.9678!, 4.000015!)
         Me.XrLabel8.Name = "XrLabel8"
@@ -573,7 +573,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel28
         '
         Me.XrLabel28.CanShrink = True
-        Me.XrLabel28.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel28.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel28.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel28.LocationFloat = New DevExpress.Utils.PointFloat(3.157516!, 4.000031!)
         Me.XrLabel28.Name = "XrLabel28"
@@ -589,7 +589,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel3
         '
         Me.XrLabel3.BackColor = System.Drawing.Color.White
-        Me.XrLabel3.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel3.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel3.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel3.LocationFloat = New DevExpress.Utils.PointFloat(0!, 162.9029!)
         Me.XrLabel3.Name = "XrLabel3"
@@ -619,7 +619,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel7
         '
         Me.XrLabel7.CanShrink = True
-        Me.XrLabel7.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel7.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel7.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel7.LocationFloat = New DevExpress.Utils.PointFloat(1.000032!, 4.20636!)
         Me.XrLabel7.Name = "XrLabel7"
@@ -637,7 +637,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel9.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel9.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([slideCloset]=0,NULL,[slideCloset])")})
-        Me.XrLabel9.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel9.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel9.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel9.LocationFloat = New DevExpress.Utils.PointFloat(144.5715!, 4.206348!)
         Me.XrLabel9.Multiline = True
@@ -655,7 +655,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel10
         '
         Me.XrLabel10.CanShrink = True
-        Me.XrLabel10.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel10.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel10.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel10.LocationFloat = New DevExpress.Utils.PointFloat(229.9678!, 4.206348!)
         Me.XrLabel10.Name = "XrLabel10"
@@ -671,7 +671,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrCheckBox4
         '
         Me.XrCheckBox4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Iif([slideSimple] = 1 ,'Checked' , 'Unchecked')")})
-        Me.XrCheckBox4.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrCheckBox4.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrCheckBox4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox4.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Far
         Me.XrCheckBox4.LocationFloat = New DevExpress.Utils.PointFloat(363.9488!, 0!)
@@ -685,7 +685,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrCheckBox6
         '
         Me.XrCheckBox6.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Iif([slidehang]= 1 ,'Checked' , 'Unchecked')" & Global.Microsoft.VisualBasic.ChrW(10))})
-        Me.XrCheckBox6.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrCheckBox6.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrCheckBox6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox6.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Far
         Me.XrCheckBox6.LocationFloat = New DevExpress.Utils.PointFloat(517.0!, 0!)
@@ -712,7 +712,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel24
         '
         Me.XrLabel24.CanShrink = True
-        Me.XrLabel24.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel24.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel24.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel24.LocationFloat = New DevExpress.Utils.PointFloat(1.000032!, 3.000023!)
         Me.XrLabel24.Name = "XrLabel24"
@@ -730,7 +730,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel25.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel25.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel25.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([openCloset]=0,NULL,[openCloset])" & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "TopF", "" & Global.Microsoft.VisualBasic.ChrW(10))})
-        Me.XrLabel25.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel25.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel25.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel25.LocationFloat = New DevExpress.Utils.PointFloat(144.5715!, 2.999969!)
         Me.XrLabel25.Multiline = True
@@ -748,7 +748,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrCheckBox5
         '
         Me.XrCheckBox5.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Iif([onePiece]= 1 ,'Checked' , 'Unchecked')" & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "TopF", "" & Global.Microsoft.VisualBasic.ChrW(10))})
-        Me.XrCheckBox5.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrCheckBox5.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrCheckBox5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox5.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Far
         Me.XrCheckBox5.LocationFloat = New DevExpress.Utils.PointFloat(282.3441!, 0.00002288818!)
@@ -762,7 +762,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrCheckBox2
         '
         Me.XrCheckBox2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "CheckBoxState", "Iif([upDown]= 1 ,'Checked' , 'Unchecked')" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "TopF", "" & Global.Microsoft.VisualBasic.ChrW(10))})
-        Me.XrCheckBox2.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrCheckBox2.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrCheckBox2.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrCheckBox2.GlyphOptions.Alignment = DevExpress.Utils.HorzAlignment.Far
         Me.XrCheckBox2.LocationFloat = New DevExpress.Utils.PointFloat(468.1905!, 0!)
@@ -789,7 +789,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel42
         '
         Me.XrLabel42.CanShrink = True
-        Me.XrLabel42.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel42.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel42.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel42.LocationFloat = New DevExpress.Utils.PointFloat(0.0001831055!, 0.0001144409!)
         Me.XrLabel42.Name = "XrLabel42"
@@ -807,7 +807,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel43.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel43.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel43.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([VestiarioCloset]=0,NULL,[VestiarioCloset])")})
-        Me.XrLabel43.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel43.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel43.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel43.LocationFloat = New DevExpress.Utils.PointFloat(140.4142!, 0.00001525879!)
         Me.XrLabel43.Multiline = True
@@ -826,7 +826,7 @@ Partial Public Class RepCUSOfferCloset_old
         '
         Me.XrLabel44.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel44.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vestiarioDet]"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "TopF", "" & Global.Microsoft.VisualBasic.ChrW(10))})
-        Me.XrLabel44.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel44.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel44.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel44.LocationFloat = New DevExpress.Utils.PointFloat(226.8105!, 0!)
         Me.XrLabel44.Multiline = True
@@ -858,7 +858,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel33.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel33.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel33.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[dimensions]")})
-        Me.XrLabel33.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel33.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel33.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel33.LocationFloat = New DevExpress.Utils.PointFloat(82.82349!, 47.40271!)
         Me.XrLabel33.Multiline = True
@@ -876,7 +876,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel32
         '
         Me.XrLabel32.CanShrink = True
-        Me.XrLabel32.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel32.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel32.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel32.LocationFloat = New DevExpress.Utils.PointFloat(4.157511!, 47.40271!)
         Me.XrLabel32.Name = "XrLabel32"
@@ -892,7 +892,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel26
         '
         Me.XrLabel26.CanShrink = True
-        Me.XrLabel26.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel26.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel26.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel26.LocationFloat = New DevExpress.Utils.PointFloat(3.157716!, 10.0002!)
         Me.XrLabel26.Name = "XrLabel26"
@@ -910,7 +910,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel27.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel27.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel27.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[knobs]")})
-        Me.XrLabel27.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel27.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel27.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel27.LocationFloat = New DevExpress.Utils.PointFloat(75.82369!, 10.00011!)
         Me.XrLabel27.Multiline = True
@@ -928,7 +928,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel31
         '
         Me.XrLabel31.CanShrink = True
-        Me.XrLabel31.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel31.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel31.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel31.LocationFloat = New DevExpress.Utils.PointFloat(188.2933!, 10.0002!)
         Me.XrLabel31.Name = "XrLabel31"
@@ -946,7 +946,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel30.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel30.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel30.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[baza]")})
-        Me.XrLabel30.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel30.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel30.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel30.LocationFloat = New DevExpress.Utils.PointFloat(253.3713!, 10.00011!)
         Me.XrLabel30.Multiline = True
@@ -965,7 +965,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel6
         '
         Me.XrLabel6.CanShrink = True
-        Me.XrLabel6.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel6.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel6.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel6.LocationFloat = New DevExpress.Utils.PointFloat(337.2736!, 10.00011!)
         Me.XrLabel6.Name = "XrLabel6"
@@ -983,7 +983,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel4.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([drawers]=0,NULL,[drawers])" & Global.Microsoft.VisualBasic.ChrW(10))})
-        Me.XrLabel4.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel4.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel4.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(409.9395!, 10.0!)
         Me.XrLabel4.Multiline = True
@@ -1001,7 +1001,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel29
         '
         Me.XrLabel29.CanShrink = True
-        Me.XrLabel29.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel29.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel29.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel29.LocationFloat = New DevExpress.Utils.PointFloat(493.3147!, 10.0002!)
         Me.XrLabel29.Name = "XrLabel29"
@@ -1019,7 +1019,7 @@ Partial Public Class RepCUSOfferCloset_old
         Me.XrLabel11.BorderColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel11.Borders = DevExpress.XtraPrinting.BorderSide.Bottom
         Me.XrLabel11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([shelves]=0,NULL,[shelves])" & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(10))})
-        Me.XrLabel11.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel11.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel11.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel11.LocationFloat = New DevExpress.Utils.PointFloat(548.7736!, 10.0002!)
         Me.XrLabel11.Multiline = True
@@ -1071,7 +1071,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel37
         '
         Me.XrLabel37.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[EquipmentName]")})
-        Me.XrLabel37.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel37.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel37.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel37.LocationFloat = New DevExpress.Utils.PointFloat(1.000032!, 0.584339!)
         Me.XrLabel37.Multiline = True
@@ -1093,7 +1093,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel36
         '
         Me.XrLabel36.BackColor = System.Drawing.Color.White
-        Me.XrLabel36.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel36.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel36.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel36.LocationFloat = New DevExpress.Utils.PointFloat(4.999817!, 3.000023!)
         Me.XrLabel36.Name = "XrLabel36"
@@ -1127,7 +1127,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel39
         '
         Me.XrLabel39.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_OFFERS_CLOSET_EQUIPMENT_EXTRA].[EquipmentName]")})
-        Me.XrLabel39.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel39.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel39.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel39.LocationFloat = New DevExpress.Utils.PointFloat(1.000032!, 0.584339!)
         Me.XrLabel39.Multiline = True
@@ -1142,7 +1142,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel40
         '
         Me.XrLabel40.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_OFFERS_CLOSET_EQUIPMENT_EXTRA].[price]")})
-        Me.XrLabel40.Font = New System.Drawing.Font("Zona Pro", 9.0!)
+        Me.XrLabel40.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrLabel40.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel40.LocationFloat = New DevExpress.Utils.PointFloat(212.0!, 0!)
         Me.XrLabel40.Multiline = True
@@ -1164,7 +1164,7 @@ Partial Public Class RepCUSOfferCloset_old
         'XrLabel38
         '
         Me.XrLabel38.BackColor = System.Drawing.Color.White
-        Me.XrLabel38.Font = New System.Drawing.Font("Zona Pro", 10.0!, System.Drawing.FontStyle.Bold)
+        Me.XrLabel38.Font = New DevExpress.Drawing.DXFont("Zona Pro", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrLabel38.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrLabel38.LocationFloat = New DevExpress.Utils.PointFloat(4.999817!, 3.000023!)
         Me.XrLabel38.Name = "XrLabel38"
@@ -1184,11 +1184,11 @@ Partial Public Class RepCUSOfferCloset_old
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataMember = "vw_CCT_OFFERS_CLOSET"
         Me.DataSource = Me.SqlDataSource1
-        Me.Font = New System.Drawing.Font("Times New Roman", 9.0!)
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 99, 167)
+        Me.Font = New DevExpress.Drawing.DXFont("Times New Roman", 9.0!)
+        Me.Margins = New DevExpress.Drawing.DXMargins(100, 100, 99, 167)
         Me.PageHeight = 1169
         Me.PageWidth = 827
-        Me.PaperKind = System.Drawing.Printing.PaperKind.A4
+        Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "21.2"

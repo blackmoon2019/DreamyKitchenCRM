@@ -1,13 +1,13 @@
-﻿Imports System.ComponentModel
-Imports System.Data.SqlClient
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraEditors.Controls
+﻿Imports DevExpress.XtraEditors.Controls
+Imports DevExpress.XtraPrinting.Native
 
 Public Class frmProjectCost
     Private sID As String
+    Private ProjectCost As New ProjectCost
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
+    Private ManageCbo As New CombosManager
     Private Valid As New ValidateControls
     Private FScrollerExist As Boolean = False
     Private Log As New Transactions
@@ -53,17 +53,9 @@ Public Class frmProjectCost
     End Property
 
     Private Sub frmProjectCost_Load(sender As Object, e As EventArgs) Handles Me.Load
-        FillCbo.CUS(cboCUS)
-
-        Select Case Mode
-            Case FormMode.NewRecord
-                txtCode.Text = DBQ.GetNextId("PROJECT_COST")
-            Case FormMode.EditRecord
-                LoadForms.LoadForm(LayoutControl1, "Select * from vw_PROJECT_COST where id ='" + sID + "'")
-        End Select
+        ProjectCost.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo)
+        ProjectCost.LoadForm()
         Me.CenterToScreen()
-        cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
-
     End Sub
 
     Private Sub frmProjectCost_Resize(sender As Object, e As EventArgs) Handles Me.Resize
@@ -71,52 +63,27 @@ Public Class frmProjectCost
     End Sub
     Private Sub cboCUS_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
-            Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCUS)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCUS)
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageCus()
-        Dim form1 As frmCustomers = New frmCustomers()
-        form1.Text = "Πελάτες"
-        form1.CallerControl = cboCUS
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
-            form1.ID = cboCUS.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        Else
-            form1.Mode = FormMode.NewRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
-    Private Sub ManageTRANSH()
-        Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Χρεωπιστώσεις Πελατών"
-        form1.CallerControl = cboTRANSH
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If cboTRANSH.EditValue <> Nothing Then
-            form1.ID = cboTRANSH.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
-        End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
-    End Sub
+
     Private Sub cboTransH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
-            Case 3 : cboTRANSH.EditValue = Nothing
+            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
+            Case 3 : cboCompProject.EditValue = Nothing
         End Select
     End Sub
+
     Private Sub cboCUS_EditValueChanged(sender As Object, e As EventArgs) Handles cboCUS.EditValueChanged
+        'If Me.IsActive = False Then Exit Sub
         Dim sCusID As String
         If cboCUS.EditValue Is Nothing Then sCusID = toSQLValueS(Guid.Empty.ToString) Else sCusID = toSQLValueS(cboCUS.EditValue.ToString)
         Dim sSQL As New System.Text.StringBuilder
         sSQL.AppendLine("Select T.id,FullTranshDescription,Description,
-                        DebitCost,DevicesCost,Totamt,isnull(SalerProfit,0) as  SalerProfit,
+                        DevicesCost,Totamt,isnull(SalerProfit,0) as  SalerProfit,
                         ISNULL((Select sum(ISNULL(C.salary, 0) + ISNULL(C.extracost, 0)) from constr C where transhid=t.id),0) as ConstrPayroll,
                         ISNULL((Select sum(ISNULL(I.cost, 0) + ISNULL(I.extraCost, 0)) from INST I where transhid=t.id),0) as InstPayroll,
                         ISNULL((SELECT sum(KITCHENV) kitchen from BUY B where B.transhID=T.ID),0) as kitchen,
@@ -125,20 +92,30 @@ Public Class frmProjectCost
                         ISNULL((SELECT sum(generalV) general from BUY B where B.transhID=T.ID),0) as general,
                         ISNULL((SELECT sum(materialsV) materials from BUY B where B.transhID=T.ID),0) as materials,
                         ISNULL((SELECT sum(bathroomFurnV) bathroomFurn from BUY B where B.transhID=T.ID),0) as bathroomFurn,
-                        ISNULL((SELECT sum(measurementV) measurement from BUY B where B.transhID=T.ID),0) as measurement,
-                        ISNULL((SELECT sum(doorsV) doors from BUY B where B.transhID=T.ID),0) as doors
+			            ISNULL((SELECT sum(benchV) bench from BUY B where B.transhID=T.ID),0) as bench, 
+			            ISNULL((SELECT sum(transportationv) transportation from BUY B where B.transhID=T.ID),0) as transportation,
+			            ISNULL((SELECT sum(glassesv) glasses from BUY B where B.transhID=T.ID),0) as glasses,
+			            ISNULL((SELECT sum(measurementv) measurement from BUY B where B.transhID=T.ID),0) as measurement, 
+			            ISNULL((SELECT sum(doorsv) doors from BUY B where B.transhID=T.ID),0) as doors,
+			            ISNULL((SELECT sum(kitchenDoorsV) kitchenDoors from BUY B where B.transhID=T.ID),0) as kitchenDoors,
+			            ISNULL((SELECT sum(varnishesV) varnishes from BUY B where B.transhID=T.ID),0) as varnishes,
+			            ISNULL((SELECT sum(extraCusV) extraCus from BUY B where B.transhID=T.ID),0) as extraCus
                         from vw_TRANSH t
                         where  T.cusid = " & sCusID & "order by description")
         FillCbo.TRANSH_FOR_PROJECTCOST(cboTRANSH, sSQL)
     End Sub
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+        'If Me.IsActive = False Then Exit Sub
         If cboTRANSH.EditValue = Nothing Then
-            txtDebitCost.EditValue = "0" : txtDevicesCost.EditValue = "0" : txtTotAmt.EditValue = "0" : txtSalerProfit.EditValue = "0"
+            'txtDebitCost.EditValue = "0"
+            txtDevicesCost.EditValue = "0" : txtTotAmt.EditValue = "0" : txtSalerProfit.EditValue = "0"
             txtConstrPayroll.EditValue = "0" : txtInstPayroll.EditValue = "0" : txtbathroomFurn.EditValue = "0" : txtcloset.EditValue = "0"
-            txtgeneral.EditValue = "0" : txtmaterials.EditValue = "0" : txtDevicesBuy.EditValue = "0" : txtkitchen.EditValue = "0"
+            txtgeneral.EditValue = "0" : txtmaterials.EditValue = "0" : txtDevicesBuy.EditValue = "0" : txtkitchen.EditValue = "0" : txtkitchenDoors.EditValue = "0"
+            txtvarnishes.EditValue = "0" : txtextraCus.EditValue = "0" : txtglasses.EditValue = "0" : txtmeasurement.EditValue = "0" : txtExtraCusBench.EditValue = "0"
+            txttransportation.EditValue = "0"
         Else
-            txtDebitCost.EditValue = cboTRANSH.GetColumnValue("DebitCost")
+            'txtDebitCost.EditValue = cboTRANSH.GetColumnValue("DebitCost")
             txtDevicesCost.EditValue = cboTRANSH.GetColumnValue("DevicesCost")
             txtTotAmt.EditValue = cboTRANSH.GetColumnValue("Totamt")
             txtSalerProfit.EditValue = cboTRANSH.GetColumnValue("SalerProfit")
@@ -151,10 +128,18 @@ Public Class frmProjectCost
             txtDevicesBuy.EditValue = cboTRANSH.GetColumnValue("DEVICESBUY")
             txtkitchen.EditValue = cboTRANSH.GetColumnValue("kitchen")
             txtdoors.EditValue = cboTRANSH.GetColumnValue("doors")
+            txtkitchenDoors.EditValue = cboTRANSH.GetColumnValue("kitchenDoors")
+            txtvarnishes.EditValue = cboTRANSH.GetColumnValue("varnishes")
+            txtextraCus.EditValue = cboTRANSH.GetColumnValue("extraCus")
+            txtglasses.EditValue = cboTRANSH.GetColumnValue("glasses")
+            txtmeasurement.EditValue = cboTRANSH.GetColumnValue("measurement")
+            txtExtraCusBench.EditValue = cboTRANSH.GetColumnValue("bench")
+            txttransportation.EditValue = cboTRANSH.GetColumnValue("transportation")
         End If
     End Sub
 
     Private Sub txtDevicesBuy_EditValueChanged(sender As Object, e As EventArgs) Handles txtDevicesBuy.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         Dim DevicesBuy As Double, DevicesCost As Double
         If txtDevicesBuy.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Then Exit Sub
         DevicesBuy = DbnullToZero(txtDevicesBuy) : DevicesCost = DbnullToZero(txtDevicesCost)
@@ -166,118 +151,101 @@ Public Class frmProjectCost
         If txtDevicesBuy.EditValue Is Nothing Or txtDevicesCost.EditValue Is Nothing Then Exit Sub
         DevicesBuy = DbnullToZero(txtDevicesBuy) : DevicesCost = DbnullToZero(txtDevicesCost)
         txtDevicesProfit.EditValue = DevicesCost - DevicesBuy
-
     End Sub
 
     Private Sub txtkitchen_EditValueChanged(sender As Object, e As EventArgs) Handles txtkitchen.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
-    Private Function TotalBuy() As Double
-        Dim Kitchen As Double, Closet As Double, general As Double, Materials As Double, Doors As Double
-        Dim Varnishes As Double, ExtraCus As Double, Transportation As Double, ConstrPayroll As Double
-        Dim InstPayroll As Double, salerProfit As Double, Total As Double, DebitCost As Double, Glasses As Double, measurement As Double, DevicesBuy As Double
-        Kitchen = DbnullToZero(txtkitchen) : Closet = DbnullToZero(txtcloset) : general = DbnullToZero(txtgeneral)
-        Materials = DbnullToZero(txtmaterials) : Varnishes = DbnullToZero(txtvarnishes) : ExtraCus = DbnullToZero(txtextraCus)
-        Transportation = DbnullToZero(txttransportation) : ConstrPayroll = DbnullToZero(txtConstrPayroll) : Glasses = DbnullToZero(txtglasses) : measurement = DbnullToZero(txtmeasurement)
-        Doors = DbnullToZero(txtdoors) : InstPayroll = DbnullToZero(txtInstPayroll) : salerProfit = DbnullToZero(txtSalerProfit) : DevicesBuy = DbnullToZero(txtDevicesBuy)
-        DebitCost = DbnullToZero(txtTotAmt)
-        Total = Kitchen + Closet + general + Materials + Varnishes + ExtraCus + Transportation + ConstrPayroll + Doors + InstPayroll + salerProfit + Glasses + measurement + DevicesBuy
-        Dim TotAmt As Double, TotBuy As Double, MixProfit As Double
-        TotAmt = DbnullToZero(txtTotAmt) : TotBuy = DbnullToZero(txtTotBuy)
-        txtMixProfit.EditValue = DebitCost - TotBuy : MixProfit = DbnullToZero(txtMixProfit)
-        txtMixProfitPerc.EditValue = ((TotAmt - TotBuy) / TotAmt) * 100
-        Return Total
-    End Function
+
 
     Private Sub txtcloset_EditValueChanged(sender As Object, e As EventArgs) Handles txtcloset.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
     Private Sub txtgeneral_EditValueChanged(sender As Object, e As EventArgs) Handles txtgeneral.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
     Private Sub txtmaterials_EditValueChanged(sender As Object, e As EventArgs) Handles txtmaterials.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
     Private Sub txtdoors_EditValueChanged(sender As Object, e As EventArgs) Handles txtdoors.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
     Private Sub txtvarnishes_EditValueChanged(sender As Object, e As EventArgs) Handles txtvarnishes.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
     Private Sub txtextraCus_EditValueChanged(sender As Object, e As EventArgs) Handles txtextraCus.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
     Private Sub txttransportation_EditValueChanged(sender As Object, e As EventArgs) Handles txttransportation.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
     Private Sub txtConstrPayroll_EditValueChanged(sender As Object, e As EventArgs) Handles txtConstrPayroll.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
     Private Sub txtInstPayroll_EditValueChanged(sender As Object, e As EventArgs) Handles txtInstPayroll.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
     Private Sub txtSalerProfit_EditValueChanged(sender As Object, e As EventArgs) Handles txtSalerProfit.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
+    End Sub
+    Private Sub txtTotBuy_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotBuy.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
     End Sub
 
+    Private Sub txtglasses_EditValueChanged(sender As Object, e As EventArgs) Handles txtglasses.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
+    End Sub
+
+    Private Sub txtmeasurement_EditValueChanged(sender As Object, e As EventArgs) Handles txtmeasurement.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
+        txtTotBuy.EditValue = ProjectCost.TotalBuy()
+    End Sub
+
+
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
-        Dim sResult As Boolean
-        Dim sGuid As String
-        Dim sSQL As New System.Text.StringBuilder
-        Dim Kitchen As Double, Closet As Double, general As Double
-
-        Try
-            If Valid.ValidateForm(LayoutControl1) Then
-                Select Case Mode
-                    Case FormMode.NewRecord
-                        sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "PROJECT_COST", LayoutControl1,,, sGuid, True)
-                        sID = sGuid
-                    Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "PROJECT_COST", LayoutControl1,,, sID, True)
-                End Select
-
-                If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_PROJECT_COST")
-                End If
-
-                If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    If Mode = FormMode.NewRecord Then
-                        Cls.ClearCtrls(LayoutControl1)
-                        txtCode.Text = DBQ.GetNextId("PROJECT_COST")
-                    End If
-                End If
-            End If
-
-        Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End Try
+        ProjectCost.SaveRecord(sID)
     End Sub
 
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
         Me.Close()
     End Sub
-
-    Private Sub txtTotBuy_EditValueChanged(sender As Object, e As EventArgs) Handles txtTotBuy.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+    Private Sub cboCompany_EditValueChanged(sender As Object, e As EventArgs) Handles cboCompany.EditValueChanged
+        If Mode = FormMode.NewRecord Then ProjectCost.FillCompanyProjects(lkupEditValue(cboCompany), "")
     End Sub
-
-    Private Sub txtglasses_EditValueChanged(sender As Object, e As EventArgs) Handles txtglasses.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+    Private Sub cboCompany_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompany.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageCCT(FormMode.NewRecord, False,, cboCompany)
+            Case 2 : ManageCbo.ManageCCT(FormMode.EditRecord, False,, cboCompany)
+            Case 3 : cboCompany.EditValue = Nothing : LCompProject.ImageOptions.Image = Nothing
+        End Select
     End Sub
-
-    Private Sub txtmeasurement_EditValueChanged(sender As Object, e As EventArgs) Handles txtmeasurement.EditValueChanged
-        txtTotBuy.EditValue = TotalBuy()
+    Private Sub cboCompProject_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboCompProject.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : ManageCbo.ManageTRANSH(cboCompProject, FormMode.NewRecord)
+            Case 2 : ManageCbo.ManageTRANSH(cboCompProject, FormMode.EditRecord)
+            Case 3 : cboCompProject.EditValue = Nothing
+        End Select
     End Sub
 End Class

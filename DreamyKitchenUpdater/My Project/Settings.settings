@@ -2,12 +2,13 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="DreamyKitchenConnectionString" Type="(Connection string)" Scope="Application">
+    <Setting Name="DreamyKitchenConnectionStringRemotely" Type="(Connection string)" Scope="Application">
       <DesignTimeValue Profile="(Default)">&lt;?xml version="1.0" encoding="utf-16"?&gt;
-&lt;SerializableConnectionString xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema"&gt;
-  &lt;ConnectionString&gt;Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKitchen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+&lt;SerializableConnectionString xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"&gt;
+  &lt;ConnectionString&gt;Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchenDEV;Persist Security Info=True;User ID=sa;Password=Dr3@mySA;MultipleActiveResultSets=True&lt;/ConnectionString&gt;
+  &lt;ProviderName&gt;System.Data.SqlClient&lt;/ProviderName&gt;
 &lt;/SerializableConnectionString&gt;</DesignTimeValue>
-      <Value Profile="(Default)">Password=Dr3@mySA;Persist Security Info=True;User ID=sa;Initial Catalog=DreamyKitchen;Data Source=10.10.5.7,1433;MultipleActiveResultSets=True</Value>
+      <Value Profile="(Default)">Data Source=10.10.5.7,1433;Initial Catalog=DreamyKitchenDEV;Persist Security Info=True;User ID=sa;Password=Dr3@mySA;MultipleActiveResultSets=True</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -64,7 +64,7 @@ Partial Public Class RepCUSPrivateAgreement3ndPage
         '
         'XrRichText2
         '
-        Me.XrRichText2.Font = New System.Drawing.Font("Arial", 9.75!)
+        Me.XrRichText2.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
         Me.XrRichText2.LocationFloat = New DevExpress.Utils.PointFloat(10.0!, 0!)
         Me.XrRichText2.Name = "XrRichText2"
         Me.XrRichText2.Padding = New DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100.0!)
@@ -90,11 +90,11 @@ Partial Public Class RepCUSPrivateAgreement3ndPage
         'RepCUSPrivateAgreement3ndPage
         '
         Me.Bands.AddRange(New DevExpress.XtraReports.UI.Band() {Me.TopMargin, Me.BottomMargin, Me.Detail, Me.PageHeader, Me.PageFooter})
-        Me.Font = New System.Drawing.Font("Arial", 9.75!)
-        Me.Margins = New System.Drawing.Printing.Margins(100, 100, 153, 100)
+        Me.Font = New DevExpress.Drawing.DXFont("Arial", 9.75!)
+        Me.Margins = New DevExpress.Drawing.DXMargins(100, 100, 153, 100)
         Me.PageHeight = 1169
         Me.PageWidth = 827
-        Me.PaperKind = System.Drawing.Printing.PaperKind.A4
+        Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "21.2"
         CType(Me.XrRichText1, System.ComponentModel.ISupportInitialize).EndInit()

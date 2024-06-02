@@ -55,7 +55,7 @@ Public Class frmEpendisis
     Private Sub frmEpendisis_Load(sender As Object, e As EventArgs) Handles Me.Load
         'Κατηγορίες Ερμαρίων
 
-        FillCbo.DOOR_TYPE(cboDoorType)
+        FillCbo.valueListItem(cboValueListItem)
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("SIDES")
@@ -93,7 +93,7 @@ Public Class frmEpendisis
                 End If
                 txtCustomCode.Select()
                 If sResult = True Then
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     If Mode = FormMode.NewRecord Then
                         Cls.ClearCtrls(LayoutControl1)
                         txtCode.Text = DBQ.GetNextId("SIDES")
@@ -102,26 +102,26 @@ Public Class frmEpendisis
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
 
-    Private Sub cboDoorType_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboDoorType.ButtonClick
+    Private Sub cboVALUELISTITEM_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboValueListItem.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageDoorType()
-            Case 2 : cboDoorType.EditValue = Nothing
+            Case 1 : ManageValueListItem()
+            Case 2 : cboValueListItem.EditValue = Nothing
         End Select
     End Sub
-    Private Sub ManageDoorType()
-        Dim frmDoorType As frmDoorType = New frmDoorType
-        frmDoorType.CallerControl = cboDoorType
-        frmDoorType.CalledFromControl = True
-        If cboDoorType.EditValue <> Nothing Then frmDoorType.ID = cboDoorType.EditValue.ToString
-        frmDoorType.MdiParent = frmMain
-        If cboDoorType.EditValue <> Nothing Then frmDoorType.Mode = FormMode.EditRecord Else frmDoorType.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(frmDoorType.Parent.ClientRectangle.Width / 2 - frmDoorType.Width / 2), CInt(frmDoorType.Parent.ClientRectangle.Height / 2 - frmDoorType.Height / 2)))
-        frmDoorType.Show()
+    Private Sub ManageValueListItem()
+        Dim frmVALUELISTITEM As frmValueListItem = New frmValueListItem
+        frmVALUELISTITEM.CallerControl = cboValueListItem
+        frmVALUELISTITEM.CalledFromControl = True
+        If cboValueListItem.EditValue isnot Nothing Then frmVALUELISTITEM.ID = cboValueListItem.EditValue.ToString
+        frmVALUELISTITEM.MdiParent = frmMain
+        If cboValueListItem.EditValue isnot Nothing Then frmVALUELISTITEM.Mode = FormMode.EditRecord Else frmVALUELISTITEM.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmVALUELISTITEM), New Point(CInt(frmVALUELISTITEM.Parent.ClientRectangle.Width / 2 - frmVALUELISTITEM.Width / 2), CInt(frmVALUELISTITEM.Parent.ClientRectangle.Height / 2 - frmVALUELISTITEM.Height / 2)))
+        frmVALUELISTITEM.Show()
     End Sub
 
     Private Sub txtPricePerMeter_EditValueChanged(sender As Object, e As EventArgs) Handles txtPricePerMeter.EditValueChanged

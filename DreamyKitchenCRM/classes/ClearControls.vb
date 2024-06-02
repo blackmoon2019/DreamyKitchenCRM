@@ -7,7 +7,7 @@ Public Class ClearControls
             For Each item As BaseLayoutItem In control.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         If LItem.Control.Tag <> "" Then
                             If LItem.Control.Visible = True Then
                                 Dim Ctrl As Control = LItem.Control
@@ -35,6 +35,10 @@ Public Class ClearControls
                                     Dim chklst As DevExpress.XtraEditors.CheckedListBoxControl
                                     chklst = Ctrl
                                     chklst.UnCheckAll()
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                    Dim chklst As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                    chklst = Ctrl
+                                    chklst.SetEditValue(-1)
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
                                     Dim chk As DevExpress.XtraEditors.CheckEdit
                                     chk = Ctrl
@@ -50,7 +54,7 @@ Public Class ClearControls
                 End If
             Next
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub ClearCtrlsGRP(ByVal GRP As DevExpress.XtraLayout.LayoutControlGroup)
@@ -58,7 +62,7 @@ Public Class ClearControls
             For Each item As BaseLayoutItem In GRP.Items
                 If TypeOf item Is LayoutControlItem Then
                     Dim LItem As LayoutControlItem = CType(item, LayoutControlItem)
-                    If LItem.ControlName <> Nothing Then
+                    If LItem.ControlName IsNot Nothing Then
                         If LItem.Control.Tag <> "" Then
                             If LItem.Control.Visible = True Then
                                 Dim Ctrl As Control = LItem.Control
@@ -86,6 +90,11 @@ Public Class ClearControls
                                     Dim chklst As DevExpress.XtraEditors.CheckedListBoxControl
                                     chklst = Ctrl
                                     chklst.UnCheckAll()
+                                ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckedComboBoxEdit Then
+                                    Dim chklst As DevExpress.XtraEditors.CheckedComboBoxEdit
+                                    chklst = Ctrl
+                                    chklst.SetEditValue(-1)
+
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.CheckEdit Then
                                     Dim chk As DevExpress.XtraEditors.CheckEdit
                                     chk = Ctrl
@@ -101,7 +110,7 @@ Public Class ClearControls
                 End If
             Next
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 End Class

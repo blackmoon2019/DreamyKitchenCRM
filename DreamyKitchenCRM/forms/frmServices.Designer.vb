@@ -163,7 +163,7 @@ Partial Class frmServices
         Me.TextEdit8.Size = New System.Drawing.Size(457, 38)
         Me.TextEdit8.StyleController = Me.LayoutControl1
         Me.TextEdit8.TabIndex = 35
-        Me.TextEdit8.Tag = "company,0,1,2"
+        Me.TextEdit8.Tag = "ProgProps.ProgTitle,0,1,2"
         '
         'cboDOY
         '

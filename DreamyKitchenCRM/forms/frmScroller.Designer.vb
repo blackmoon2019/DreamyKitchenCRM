@@ -90,6 +90,10 @@ Partial Class frmScroller
         Me.XtraSaveFileDialog1 = New DevExpress.XtraEditors.XtraSaveFileDialog(Me.components)
         Me.PopupMenuRows = New DevExpress.XtraBars.PopupMenu(Me.components)
         Me.PopupMenuRowsDetail = New DevExpress.XtraBars.PopupMenu(Me.components)
+        Me.BarFilterWithCell = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarFilterWithoutCell = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarRemoveFilterWithCell = New DevExpress.XtraBars.BarButtonItem()
+        Me.BarRemoveAllFilters = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -109,12 +113,12 @@ Partial Class frmScroller
         '
         'GridView2
         '
-        Me.GridView2.DetailHeight = 619
         Me.GridView2.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
         Me.GridView2.GridControl = Me.grdMain
         Me.GridView2.Name = "GridView2"
         Me.GridView2.OptionsBehavior.Editable = False
         Me.GridView2.OptionsBehavior.ReadOnly = True
+        Me.GridView2.OptionsEditForm.PopupEditFormWidth = 480
         Me.GridView2.OptionsLayout.Columns.StoreAllOptions = True
         Me.GridView2.OptionsLayout.Columns.StoreAppearance = True
         Me.GridView2.OptionsLayout.StoreAllOptions = True
@@ -129,28 +133,26 @@ Partial Class frmScroller
         '
         Me.grdMain.Cursor = System.Windows.Forms.Cursors.Default
         Me.grdMain.Dock = System.Windows.Forms.DockStyle.Fill
-        Me.grdMain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(5)
         GridLevelNode1.LevelTemplate = Me.GridView2
         GridLevelNode1.RelationName = "Level1"
         Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
-        Me.grdMain.Location = New System.Drawing.Point(44, 68)
+        Me.grdMain.Location = New System.Drawing.Point(26, 40)
         Me.grdMain.MainView = Me.GridView1
-        Me.grdMain.Margin = New System.Windows.Forms.Padding(5)
         Me.grdMain.Name = "grdMain"
-        Me.grdMain.Size = New System.Drawing.Size(1681, 1043)
+        Me.grdMain.Size = New System.Drawing.Size(1009, 587)
         Me.grdMain.TabIndex = 5
         Me.grdMain.UseEmbeddedNavigator = True
         Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1, Me.GridView2})
         '
         'GridView1
         '
-        Me.GridView1.DetailHeight = 619
         Me.GridView1.FocusRectStyle = DevExpress.XtraGrid.Views.Grid.DrawFocusRectStyle.RowFullFocus
         Me.GridView1.GridControl = Me.grdMain
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsBehavior.AutoExpandAllGroups = True
         Me.GridView1.OptionsBehavior.Editable = False
         Me.GridView1.OptionsBehavior.ReadOnly = True
+        Me.GridView1.OptionsEditForm.PopupEditFormWidth = 480
         Me.GridView1.OptionsLayout.Columns.StoreAppearance = True
         Me.GridView1.OptionsLayout.StoreAllOptions = True
         Me.GridView1.OptionsLayout.StoreAppearance = True
@@ -172,9 +174,9 @@ Partial Class frmScroller
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarRecords, Me.BarViews, Me.popDeleteView, Me.popRestoreView, Me.popSaveAsView, Me.popSaveView, Me.BarViewsManage, Me.BarPrintPreview, Me.BarButtonItem1, Me.BarPDFExport, Me.BarExportHTML, Me.BarExportMHT, Me.BarExportXLSX, Me.BarExportXLS, Me.BarExportDOCX, Me.BarExportRTF, Me.BarExportTEXT, Me.BarNewRec, Me.BarDelete, Me.BarEdit, Me.BarRefresh, Me.BarStaticItem1, Me.BarStaticItem2, Me.BarStaticItem3, Me.BarStaticItem4, Me.BarStaticItem5, Me.popSaveAsDefault, Me.BarCopyCell, Me.BarCopyRow, Me.BarCopyAll, Me.BarCopyCell_D, Me.BarCopyRow_D, Me.BarCopyAll_D, Me.BarButtonItem2, Me.BBUpdateViewFromDB, Me.BBUpdateViewFileFromServer})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.BarRecords, Me.BarViews, Me.popDeleteView, Me.popRestoreView, Me.popSaveAsView, Me.popSaveView, Me.BarViewsManage, Me.BarPrintPreview, Me.BarButtonItem1, Me.BarPDFExport, Me.BarExportHTML, Me.BarExportMHT, Me.BarExportXLSX, Me.BarExportXLS, Me.BarExportDOCX, Me.BarExportRTF, Me.BarExportTEXT, Me.BarNewRec, Me.BarDelete, Me.BarEdit, Me.BarRefresh, Me.BarStaticItem1, Me.BarStaticItem2, Me.BarStaticItem3, Me.BarStaticItem4, Me.BarStaticItem5, Me.popSaveAsDefault, Me.BarCopyCell, Me.BarCopyRow, Me.BarCopyAll, Me.BarCopyCell_D, Me.BarCopyRow_D, Me.BarCopyAll_D, Me.BarButtonItem2, Me.BBUpdateViewFromDB, Me.BBUpdateViewFileFromServer, Me.BarFilterWithCell, Me.BarFilterWithoutCell, Me.BarRemoveFilterWithCell, Me.BarRemoveAllFilters})
         Me.BarManager1.MainMenu = Me.Bar1
-        Me.BarManager1.MaxItemId = 51
+        Me.BarManager1.MaxItemId = 55
         Me.BarManager1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryBarRecords, Me.RepositoryBarViews, Me.RepositoryItemButtonEdit1, Me.RepositoryItemBreadCrumbEdit1, Me.RepositoryItemButtonEdit2, Me.RepositoryPopRenameView, Me.RepositoryPopSaveAsView})
         Me.BarManager1.StatusBar = Me.Bar3
         '
@@ -463,35 +465,31 @@ Partial Class frmScroller
         Me.barDockControlTop.Dock = System.Windows.Forms.DockStyle.Top
         Me.barDockControlTop.Location = New System.Drawing.Point(0, 0)
         Me.barDockControlTop.Manager = Me.BarManager1
-        Me.barDockControlTop.Margin = New System.Windows.Forms.Padding(5)
-        Me.barDockControlTop.Size = New System.Drawing.Size(1725, 68)
+        Me.barDockControlTop.Size = New System.Drawing.Size(1035, 40)
         '
         'barDockControlBottom
         '
         Me.barDockControlBottom.CausesValidation = False
         Me.barDockControlBottom.Dock = System.Windows.Forms.DockStyle.Bottom
-        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 1111)
+        Me.barDockControlBottom.Location = New System.Drawing.Point(0, 627)
         Me.barDockControlBottom.Manager = Me.BarManager1
-        Me.barDockControlBottom.Margin = New System.Windows.Forms.Padding(5)
-        Me.barDockControlBottom.Size = New System.Drawing.Size(1725, 51)
+        Me.barDockControlBottom.Size = New System.Drawing.Size(1035, 30)
         '
         'barDockControlLeft
         '
         Me.barDockControlLeft.CausesValidation = False
         Me.barDockControlLeft.Dock = System.Windows.Forms.DockStyle.Left
-        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 68)
+        Me.barDockControlLeft.Location = New System.Drawing.Point(0, 40)
         Me.barDockControlLeft.Manager = Me.BarManager1
-        Me.barDockControlLeft.Margin = New System.Windows.Forms.Padding(5)
-        Me.barDockControlLeft.Size = New System.Drawing.Size(44, 1043)
+        Me.barDockControlLeft.Size = New System.Drawing.Size(26, 587)
         '
         'barDockControlRight
         '
         Me.barDockControlRight.CausesValidation = False
         Me.barDockControlRight.Dock = System.Windows.Forms.DockStyle.Right
-        Me.barDockControlRight.Location = New System.Drawing.Point(1725, 68)
+        Me.barDockControlRight.Location = New System.Drawing.Point(1035, 40)
         Me.barDockControlRight.Manager = Me.BarManager1
-        Me.barDockControlRight.Margin = New System.Windows.Forms.Padding(5)
-        Me.barDockControlRight.Size = New System.Drawing.Size(0, 1043)
+        Me.barDockControlRight.Size = New System.Drawing.Size(0, 587)
         '
         'BarStaticItem5
         '
@@ -601,7 +599,7 @@ Partial Class frmScroller
         '
         'PopupMenuRows
         '
-        Me.PopupMenuRows.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarCopyCell, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarCopyRow), New DevExpress.XtraBars.LinkPersistInfo(Me.BarCopyAll)})
+        Me.PopupMenuRows.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.BarFilterWithCell, True), New DevExpress.XtraBars.LinkPersistInfo(Me.BarFilterWithoutCell), New DevExpress.XtraBars.LinkPersistInfo(Me.BarRemoveFilterWithCell), New DevExpress.XtraBars.LinkPersistInfo(Me.BarRemoveAllFilters), New DevExpress.XtraBars.LinkPersistInfo(Me.BarCopyCell), New DevExpress.XtraBars.LinkPersistInfo(Me.BarCopyRow), New DevExpress.XtraBars.LinkPersistInfo(Me.BarCopyAll)})
         Me.PopupMenuRows.Manager = Me.BarManager1
         Me.PopupMenuRows.Name = "PopupMenuRows"
         '
@@ -611,18 +609,45 @@ Partial Class frmScroller
         Me.PopupMenuRowsDetail.Manager = Me.BarManager1
         Me.PopupMenuRowsDetail.Name = "PopupMenuRowsDetail"
         '
+        'BarFilterWithCell
+        '
+        Me.BarFilterWithCell.Caption = "Φίλτρο με επιλογή"
+        Me.BarFilterWithCell.Id = 51
+        Me.BarFilterWithCell.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_filter_16
+        Me.BarFilterWithCell.Name = "BarFilterWithCell"
+        '
+        'BarFilterWithoutCell
+        '
+        Me.BarFilterWithoutCell.Caption = "Φίλτρο με εξαίρεση"
+        Me.BarFilterWithoutCell.Id = 52
+        Me.BarFilterWithoutCell.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_filter_16
+        Me.BarFilterWithoutCell.Name = "BarFilterWithoutCell"
+        '
+        'BarRemoveFilterWithCell
+        '
+        Me.BarRemoveFilterWithCell.Caption = "Αφαίρεση Φίλτρου"
+        Me.BarRemoveFilterWithCell.Id = 53
+        Me.BarRemoveFilterWithCell.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_clear_filters_16
+        Me.BarRemoveFilterWithCell.Name = "BarRemoveFilterWithCell"
+        '
+        'BarRemoveAllFilters
+        '
+        Me.BarRemoveAllFilters.Caption = "Αφαίρεση όλων των φίλτρων"
+        Me.BarRemoveAllFilters.Id = 54
+        Me.BarRemoveAllFilters.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_clear_filters_16
+        Me.BarRemoveAllFilters.Name = "BarRemoveAllFilters"
+        '
         'frmScroller
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(10.0!, 23.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1725, 1162)
+        Me.ClientSize = New System.Drawing.Size(1035, 657)
         Me.Controls.Add(Me.grdMain)
         Me.Controls.Add(Me.barDockControlLeft)
         Me.Controls.Add(Me.barDockControlRight)
         Me.Controls.Add(Me.barDockControlBottom)
         Me.Controls.Add(Me.barDockControlTop)
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
-        Me.Margin = New System.Windows.Forms.Padding(5)
         Me.Name = "frmScroller"
         Me.Text = "frmScroller"
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -706,4 +731,8 @@ Partial Class frmScroller
     Friend WithEvents BarButtonItem2 As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBUpdateViewFromDB As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BBUpdateViewFileFromServer As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarFilterWithCell As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarFilterWithoutCell As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarRemoveFilterWithCell As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents BarRemoveAllFilters As DevExpress.XtraBars.BarButtonItem
 End Class

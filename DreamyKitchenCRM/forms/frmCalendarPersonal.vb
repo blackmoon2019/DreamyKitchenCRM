@@ -40,7 +40,7 @@ Public Class frmCalendarPersonal
             SchedulerControl1.Start = Now.Date
             sdr.Close()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub SchedulerControl1_MouseMove(sender As Object, e As MouseEventArgs) Handles SchedulerControl1.MouseMove
@@ -150,7 +150,7 @@ Public Class frmCalendarPersonal
     Private Sub SchedulerControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles SchedulerControl1.KeyDown
         Dim sSQL As String
         If e.KeyCode = Keys.Delete Then
-            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", "Dreamy Kitchen CRM", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
                     Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
                     sSQL = "DELETE FROM SALER_CALENDAR WHERE ID = " & toSQLValueS(apt.Id)

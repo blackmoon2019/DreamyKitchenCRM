@@ -50,8 +50,8 @@ Public Class frmTransCost
         Dim VFinalPrice1 As Double
         Dim VFinalPrice2 As Double
         Dim VTotal As Double
-        Dim VDoorType1 As Guid
-        Dim VDoorType2 As Guid
+        Dim VVALUELISTITEM1 As Guid
+        Dim VVALUELISTITEM2 As Guid
         'ΕΡΜΑΡΙΑ ΚΡΕΜΑΣΤΑ
         Dim KDoorPrice1 As Double
         Dim KDoorPrice2 As Double
@@ -60,8 +60,8 @@ Public Class frmTransCost
         Dim KFinalPrice1 As Double
         Dim KFinalPrice2 As Double
         Dim KTotal As Double
-        Dim KDoorType1 As Guid
-        Dim KDoorType2 As Guid
+        Dim KVALUELISTITEM1 As Guid
+        Dim KVALUELISTITEM2 As Guid
         'ΕΡΜΑΡΙΑ ΥΨΗΛΑ
         Dim YDoorPrice1 As Double
         Dim YDoorPrice2 As Double
@@ -70,8 +70,8 @@ Public Class frmTransCost
         Dim YFinalPrice1 As Double
         Dim YFinalPrice2 As Double
         Dim YTotal As Double
-        Dim YDoorType1 As Guid
-        Dim YDoorType2 As Guid
+        Dim YVALUELISTITEM1 As Guid
+        Dim YVALUELISTITEM2 As Guid
         '****ΕΠΕΝΔΥΣΕΙΣ-ΡΑΦΙΕΡΕΣ*******
         'ΕΠΕΝΔΥΣΕΙΣ ΒΑΣΕΩΣ - ΡΑΦΙΕΡΑ
         Dim VependisisPrice As Double
@@ -84,9 +84,9 @@ Public Class frmTransCost
         Dim NependisisFinalPrice As Double
         Dim VRafieraFinalPrice As Double
         Dim VEpendisisTotal As Double
-        Dim VependisisDoorTypeID As Guid
-        Dim NependisisDoorTypeID As Guid
-        Dim VRafieraDoorTypeID As Guid
+        Dim VependisisVALUELISTITEMID As Guid
+        Dim NependisisVALUELISTITEMID As Guid
+        Dim VRafieraVALUELISTITEMID As Guid
         'ΕΠΕΝΔΥΣΕΙΣ ΚΡΕΜΑΣΤΩΝ - ΡΑΦΙΕΡΑ
         Dim KependisisPrice As Double
         Dim SependisisPrice As Double
@@ -101,10 +101,10 @@ Public Class frmTransCost
         Dim KRafieraFinalPrice As Double
         Dim WRafieraFinalPrice As Double
         Dim KEpendisisTotal As Double
-        Dim KependisisDoorTypeID As Guid
-        Dim SependisisDoorTypeID As Guid
-        Dim KRafieraDoorTypeID As Guid
-        Dim KWallRafiaDoorTypeID As Guid
+        Dim KependisisVALUELISTITEMID As Guid
+        Dim SependisisVALUELISTITEMID As Guid
+        Dim KRafieraVALUELISTITEMID As Guid
+        Dim KWallRafiaVALUELISTITEMID As Guid
         'ΕΠΕΝΔΥΣΕΙΣ ΥΨΗΛΩΝ - ΡΑΦΙΕΡΑ
         Dim YependisisPrice As Double
         Dim YRafieraPrice As Double
@@ -113,8 +113,8 @@ Public Class frmTransCost
         Dim YependisisFinalPrice As Double
         Dim YRafieraFinalPrice As Double
         Dim YEpendisisTotal As Double
-        Dim YependisisDoorTypeID As Guid
-        Dim YRafieraDoorTypeID As Guid
+        Dim YependisisVALUELISTITEMID As Guid
+        Dim YRafieraVALUELISTITEMID As Guid
         '****ΠΑΓΚΟΙ*******
         Dim BenchPrice1 As Double
         Dim BenchPrice2 As Double
@@ -140,18 +140,18 @@ Public Class frmTransCost
         Dim BoxColorID4 As Guid
         Dim BoxColorID5 As Guid
         Dim BoxColorID6 As Guid
-        Dim DoorTypeID As Guid
-        Dim DoorTypeID2 As Guid
-        Dim DoorTypeID3 As Guid
-        Dim DoorTypeID4 As Guid
-        Dim DoorTypeID5 As Guid
-        Dim DoorTypeID6 As Guid
-        Dim DoorTypeID7 As Guid
-        Dim DoorTypeID8 As Guid
-        Dim DoorTypeID9 As Guid
-        Dim DoorTypeID10 As Guid
-        Dim DoorTypeID11 As Guid
-        Dim DoorTypeID12 As Guid
+        Dim VALUELISTITEMID As Guid
+        Dim VALUELISTITEMID2 As Guid
+        Dim VALUELISTITEMID3 As Guid
+        Dim VALUELISTITEMID4 As Guid
+        Dim VALUELISTITEMID5 As Guid
+        Dim VALUELISTITEMID6 As Guid
+        Dim VALUELISTITEMID7 As Guid
+        Dim VALUELISTITEMID8 As Guid
+        Dim VALUELISTITEMID9 As Guid
+        Dim VALUELISTITEMID10 As Guid
+        Dim VALUELISTITEMID11 As Guid
+        Dim VALUELISTITEMID12 As Guid
         Dim SidesID1 As Guid
         Dim SidesID2 As Guid
         Dim SidesID3 As Guid
@@ -222,12 +222,12 @@ Public Class frmTransCost
         'ΜΗΧΑΝΙΣΜΟΊ - ΝΤΟΥΛΑΠΑΣ
         Dim TotCEquipment As Double
         '****ΠΟΡΤΕΣ*******
-        Dim DDoorTypeID1 As Guid
-        Dim DDoorTypeID2 As Guid
-        Dim DDoorTypeID3 As Guid
-        Dim DDoorTypeID4 As Guid
-        Dim DDoorTypeID5 As Guid
-        Dim DDoorTypeID6 As Guid
+        Dim DVALUELISTITEMID1 As Guid
+        Dim DVALUELISTITEMID2 As Guid
+        Dim DVALUELISTITEMID3 As Guid
+        Dim DVALUELISTITEMID4 As Guid
+        Dim DVALUELISTITEMID5 As Guid
+        Dim DVALUELISTITEMID6 As Guid
         Dim DDoorPrice1 As Double
         Dim DDoorPrice2 As Double
         Dim DDoorPrice3 As Double
@@ -246,12 +246,12 @@ Public Class frmTransCost
         Dim DTem4 As Double
         Dim DTem5 As Double
         Dim DTem6 As Double
-        Dim DoorType1 As String
-        Dim DoorType2 As String
-        Dim DoorType3 As String
-        Dim DoorType4 As String
-        Dim DoorType5 As String
-        Dim DoorType6 As String
+        Dim VALUELISTITEM1 As String
+        Dim VALUELISTITEM2 As String
+        Dim VALUELISTITEM3 As String
+        Dim VALUELISTITEM4 As String
+        Dim VALUELISTITEM5 As String
+        Dim VALUELISTITEM6 As String
         Dim Kasa1 As String
         Dim Kasa2 As String
         Dim Kasa3 As String
@@ -264,10 +264,10 @@ Public Class frmTransCost
         Dim ScpecialConstr2 As Guid
         Dim ScpecialConstr3 As Guid
         Dim ScpecialConstr4 As Guid
-        Dim SCDoorTypeID1 As Guid
-        Dim SCDoorTypeID2 As Guid
-        Dim SCDoorTypeID3 As Guid
-        Dim SCDoorTypeID4 As Guid
+        Dim SCVALUELISTITEMID1 As Guid
+        Dim SCVALUELISTITEMID2 As Guid
+        Dim SCVALUELISTITEMID3 As Guid
+        Dim SCVALUELISTITEMID4 As Guid
         Dim SCDoorFinalPrice1 As Double
         Dim SCDoorFinalPrice2 As Double
         Dim SCDoorFinalPrice3 As Double
@@ -352,42 +352,42 @@ Public Class frmTransCost
     End Property
 
     Private Sub frmTransCost_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEDOORS' table. You can move, or remove it, as needed.
+        'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEMDOORS' table. You can move, or remove it, as needed.
 
         Try
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafiaWall' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPERafiaWallTableAdapter.FillByRafiaWall(Me.DM_DOORTYPES.vw_DOOR_TYPERafiaWall)
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPESpecialConstr' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPESpecialConstrTableAdapter.Fill(Me.DM_DOORTYPES.vw_DOOR_TYPESpecialConstr)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEMRafiaWall' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEMRafiaWallTableAdapter.FillByRafiaWall(Me.DM_VALUELISTITEM.vw_VALUELISTITEMRafiaWall)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEMSpecialConstr' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEMSpecialConstrTableAdapter.Fill(Me.DM_VALUELISTITEM.vw_VALUELISTITEMSpecialConstr)
             'TODO: This line of code loads data into the 'DMDataSet.vw_CONSTR_TYPE' table. You can move, or remove it, as needed.
             Me.Vw_CONSTR_TYPETableAdapter.Fill(Me.DMDataSet.vw_CONSTR_TYPE)
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEEpendisisCloset' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPEEpendisisClosetTableAdapter.FillBYEpendisisCloset(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisCloset)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEMEpendisisCloset' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEMEpendisisClosetTableAdapter.FillBYEpendisisCloset(Me.DM_VALUELISTITEM.vw_VALUELISTITEMEpendisisCloset)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_BENCH' table. You can move, or remove it, as needed.
             Me.Vw_BENCHTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_BENCH)
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresY' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPERafieresYTableAdapter.FillByRafieresY(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresY)
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaYpsila' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPEPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DM_DOORTYPES.vw_DOOR_TYPEPlainaYpsila)
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresK' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPERafieresKTableAdapter.FillByRafieresK(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresK)
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPEPlainaKremasta' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPEPlainaKremastaTableAdapter.FillByEpendisisKremasta(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisKremasta)
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPERafieresV' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPERafieresVTableAdapter.FillByRafieresV(Me.DM_DOORTYPES.vw_DOOR_TYPERafieresV)
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPETableAdapter.FillBYEpendisisNisida(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisNisida)
-            'TODO: This line of code loads data into the 'DMDataSet.DOOR_TYPE' table. You can move, or remove it, as needed.
-            Me.DOOR_TYPETableAdapter.FillBYEpendisisVaseos(Me.DM_DOORTYPES.vw_DOOR_TYPEEpendisisVaseos)
-            'TODO: This line of code loads data into the 'DMDataSet.vw_DOOR_TYPE1' table. You can move, or remove it, as needed.
-            Me.Vw_DOOR_TYPE1TableAdapter.FillBYErmaria(Me.DM_DOORTYPES.vw_DOOR_TYPE1)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEMRafieresY' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEMRafieresYTableAdapter.FillByRafieresY(Me.DM_VALUELISTITEM.vw_VALUELISTITEMRafieresY)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEMPlainaYpsila' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEMPlainaYpsilaTableAdapter.FillBYPlainaYpsila(Me.DM_VALUELISTITEM.vw_VALUELISTITEMPlainaYpsila)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEMRafieresK' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEMRafieresKTableAdapter.FillByRafieresK(Me.DM_VALUELISTITEM.vw_VALUELISTITEMRafieresK)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEMPlainaKremasta' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEMPlainaKremastaTableAdapter.FillByEpendisisKremasta(Me.DM_VALUELISTITEM.vw_VALUELISTITEMEpendisisKremasta)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEMRafieresV' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEMRafieresVTableAdapter.FillByRafieresV(Me.DM_VALUELISTITEM.vw_VALUELISTITEMRafieresV)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEM' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEMTableAdapter.FillBYEpendisisNisida(Me.DM_VALUELISTITEM.vw_VALUELISTITEMEpendisisNisida)
+            'TODO: This line of code loads data into the 'DMDataSet.valueListItem' table. You can move, or remove it, as needed.
+            Me.VALUELISTITEMTableAdapter.FillBYEpendisisVaseos(Me.DM_VALUELISTITEM.vw_VALUELISTITEMEpendisisVaseos)
+            'TODO: This line of code loads data into the 'DMDataSet.vw_VALUELISTITEM1' table. You can move, or remove it, as needed.
+            Me.Vw_VALUELISTITEM1TableAdapter.FillBYErmaria(Me.DM_VALUELISTITEM.vw_VALUELISTITEM1)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_COLORSBOX' table. You can move, or remove it, as needed.
             Me.Vw_COLORSBOXTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_COLORSBOX)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_CCT' table. You can move, or remove it, as needed.
             Me.Vw_CCTTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_CCT)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS' table. You can move, or remove it, as needed.
             Me.Vw_SALERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS)
-            Me.Vw_DOOR_TYPEClosetTableAdapter.FillBYCloset(Me.DM_DOORTYPES.vw_DOOR_TYPECloset)
+            Me.Vw_VALUELISTITEMClosetTableAdapter.FillBYCloset(Me.DM_VALUELISTITEM.vw_VALUELISTITEMCloset)
             Dim Prog_Prop As New ProgProp
             Prog_Prop.GetProgPROSF()
 
@@ -467,7 +467,7 @@ Public Class frmTransCost
             Me.CenterToScreen()
             cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -651,7 +651,7 @@ Public Class frmTransCost
         Try
             If Valid.ValidateFormGRP(LayoutControlGroup1) Then
                 If CostPrices.AgreementID.ToString = "" Then
-                    XtraMessageBox.Show("Για να γίνει κοστολόγηση έργου πρέπει πρώτα να καταχωρηθεί Ιδ. Συμφωνητικό.", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    XtraMessageBox.Show("Για να γίνει κοστολόγηση έργου πρέπει πρώτα να καταχωρηθεί Ιδ. Συμφωνητικό.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
 
@@ -725,7 +725,7 @@ Public Class frmTransCost
 
                 If sResult = True Then
                     TileNavPane1.Enabled = True
-                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     '      Dim sSQL As New System.Text.StringBuilder
                     '     If CostPrices.Kitchen = True And Mode = FormMode.NewRecord Then Dim oCmd As New SqlCommand("INSERT INTO TRANSCOST_K (transCostID) SELECT " & toSQLValueS(sID), CNDB) : oCmd.ExecuteNonQuery()
                     If Mode = FormMode.NewRecord Then Mode = FormMode.EditRecord
@@ -733,7 +733,7 @@ Public Class frmTransCost
             End If
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Private Sub UpdateEmpT()
@@ -749,7 +749,7 @@ Public Class frmTransCost
             End Using
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -790,7 +790,7 @@ Public Class frmTransCost
             Next
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -803,7 +803,7 @@ Public Class frmTransCost
         form1.CallerControl = cboCUS
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboCUS.EditValue <> Nothing Then
+        If cboCUS.EditValue isnot Nothing Then
             form1.ID = cboCUS.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else
@@ -856,7 +856,7 @@ Public Class frmTransCost
             sdr.Close()
 
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
 
@@ -1026,7 +1026,7 @@ Public Class frmTransCost
             ' Γενικό σύνολο από όλα τα είδη πώλησης. Με ποσοστά
             CalculateGenTot()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("FillCostFromDB Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("FillCostFromDB Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -1081,7 +1081,7 @@ Public Class frmTransCost
             txtTotalSalerProfit.EditValue = CostPrices.SprofitK + CostPrices.SprofitC + CostPrices.SprofitSC
             txtTotalCompanyProfit.EditValue = CostPrices.CprofitK + CostPrices.CprofitC + CostPrices.CprofitSC
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("CalculateGenTot Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("CalculateGenTot Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -1120,17 +1120,17 @@ Public Class frmTransCost
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
             Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboTRANSH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboTRANSH.EditValue <> Nothing Then ManageTRANSH()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboTRANSH.EditValue isnot Nothing Then ManageTRANSH()
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub
     Private Sub ManageTRANSH()
         Dim form1 As frmTransactions = New frmTransactions()
-        form1.Text = "Χρεωπιστώσεις Πελατών"
+        form1.Text = "Έργα Πελατών"
         form1.CallerControl = cboTRANSH
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboTRANSH.EditValue <> Nothing Then
+        If cboTRANSH.EditValue isnot Nothing Then
             form1.ID = cboTRANSH.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         End If
@@ -1140,14 +1140,14 @@ Public Class frmTransCost
     Private Sub cboCUS_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles cboCUS.ButtonClick
         Select Case e.Button.Index
             Case 1 : cboCUS.EditValue = Nothing : ManageCus()
-            Case 2 : If cboCUS.EditValue <> Nothing Then ManageCus()
+            Case 2 : If cboCUS.EditValue isnot Nothing Then ManageCus()
             Case 3 : cboCUS.EditValue = Nothing
         End Select
     End Sub
     Private Sub cboEMP_ButtonClick(sender As Object, e As DevExpress.XtraEditors.Controls.ButtonPressedEventArgs) Handles cboEMP.ButtonClick
         Select Case e.Button.Index
             Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboEMP.EditValue = Nothing : ManageEMP()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboEMP.EditValue <> Nothing Then ManageEMP()
+            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboEMP.EditValue isnot Nothing Then ManageEMP()
             Case 3 : cboEMP.EditValue = Nothing
         End Select
     End Sub
@@ -1157,7 +1157,7 @@ Public Class frmTransCost
         form1.CallerControl = cboEMP
         form1.CalledFromControl = True
         form1.MdiParent = frmMain
-        If cboEMP.EditValue <> Nothing Then
+        If cboEMP.EditValue isnot Nothing Then
             form1.ID = cboEMP.EditValue.ToString
             form1.Mode = FormMode.EditRecord
         Else

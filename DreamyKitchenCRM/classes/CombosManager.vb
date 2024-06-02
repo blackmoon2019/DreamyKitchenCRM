@@ -1,241 +1,522 @@
-﻿Imports System.ComponentModel
-Imports System.Data.SqlClient
-Imports DevExpress.CodeParser
-Imports DevExpress.DataAccess
-Imports DevExpress.DataAccess.Native
-Imports DevExpress.PivotGrid.QueryMode
-Imports DevExpress.XtraEditors
-Imports DevExpress.XtraEditors.Controls
-Imports DevExpress.XtraGrid
-Imports DevExpress.XtraGrid.Views.Base
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.Grid
 Public Class CombosManager
     Public Sub ManageCCT(ByVal FrmMode As Byte, ByVal isFromGrid As Boolean, Optional ByRef RecID As String = "", Optional ByVal CallerControl As LookUpEdit = Nothing, Optional ByVal grdView As GridView = Nothing)
-        Dim form1 As frmCustomers = New frmCustomers()
-        form1.Text = "Πελάτες"
+        Dim Frm As frmCustomers = New frmCustomers()
+        Frm.Text = "Πελάτες"
         If isFromGrid = False Then
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-            form1.CallerControl = CallerControl
-            form1.CalledFromControl = False
-            If CallerControl.EditValue <> Nothing Then
-                form1.ID = CallerControl.EditValue.ToString
-                form1.Mode = FormMode.EditRecord
+            Frm.CallerControl = CallerControl
+            Frm.CalledFromControl = True
+            If CallerControl.EditValue isnot Nothing Then
+                Frm.ID = CallerControl.EditValue.ToString
+                Frm.Mode = FormMode.EditRecord
             Else
-                form1.Mode = FormMode.NewRecord
+                Frm.Mode = FormMode.NewRecord
             End If
         Else
-            If grdView.GetRowCellValue(grdView.FocusedRowHandle, "cctID").ToString <> Nothing Then
-                form1.ID = grdView.GetRowCellValue(grdView.FocusedRowHandle, "cctID").ToString
-                form1.Mode = FormMode.EditRecord
+            If grdView.GetRowCellValue(grdView.FocusedRowHandle, "cctID").ToString isnot Nothing Then
+                Frm.ID = grdView.GetRowCellValue(grdView.FocusedRowHandle, "cctID").ToString
+                Frm.Mode = FormMode.EditRecord
             Else
-                form1.Mode = FormMode.NewRecord
+                Frm.Mode = FormMode.NewRecord
             End If
         End If
-        form1.ShowDialog()
+        Frm.ShowDialog()
     End Sub
     Public Sub ManageTRANSH(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            Dim form1 As frmTransactions = New frmTransactions()
+            Dim Frm As frmTransactions = New frmTransactions()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-            form1.Text = "Χρεωπιστώσεις Πελατών"
-            form1.CallerControl = CallerControl
-            form1.CalledFromControl = True
-            form1.MdiParent = frmMain
-            If CallerControl.EditValue <> Nothing Then
-                form1.ID = CallerControl.EditValue.ToString
-                form1.Mode = FormMode.EditRecord
+            Frm.Text = "Έργα Πελατών"
+            Frm.CallerControl = CallerControl
+            Frm.CalledFromControl = True
+            Frm.MdiParent = frmMain
+            If CallerControl.EditValue isnot Nothing Then
+                Frm.ID = CallerControl.EditValue.ToString
+                Frm.Mode = FormMode.EditRecord
             Else
-                form1.Mode = FormMode.NewRecord
+                Frm.Mode = FormMode.NewRecord
             End If
 
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-            form1.Show()
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+            Frm.Show()
         End If
     End Sub
+    Public Sub ManageTRANSHSmall(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, ByVal CusID As Guid, Optional ByVal HideCompany As Boolean = False,
+                                 Optional ByVal EmpID As Guid = Nothing, Optional ByVal CompID As Guid = Nothing, Optional ByVal CompProjectID As Guid = Nothing,
+                                 Optional ByVal compProject As Integer = Nothing, Optional ByVal sIsOrder As Boolean = False, Optional ByVal sTransCID As Guid = Nothing)
+        Dim Frm As frmProject = New frmProject()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Έργα Πελατών"
+        Frm.MdiParent = frmMain
+        Frm.CusID = CusID
+        Frm.EmpID = EmpID
+        Frm.CompID = CompID
+        Frm.isOrder = sIsOrder
+        Frm.CompProjectID = CompProjectID
+        Frm.CalledFromControl = True
+        Frm.CallerControl = CallerControl
+        Frm.LCompProject.Visibility = HideCompany
+        Frm.LComp.Visibility = HideCompany
+        Frm.HideCompanyFields = HideCompany
+        Frm.TransCID = sTransCID
+        If compProject = Nothing Then Frm.chkcompProject.CheckState = CheckState.Unchecked Else Frm.chkcompProject.CheckState = CheckState.Checked : 
+        Frm.chkcompProject.Enabled = False
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+
     Public Sub ManageSup(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            Dim form1 As frmSUP = New frmSUP()
+            Dim Frm As frmSUP = New frmSUP()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-            form1.Text = "Προμηθευτές"
-            form1.CallerControl = CallerControl
-            form1.CalledFromControl = True
-            form1.MdiParent = frmMain
-            If CallerControl.EditValue <> Nothing Then
-                form1.ID = CallerControl.EditValue.ToString
-                form1.Mode = FormMode.EditRecord
+            Frm.Text = "Προμηθευτές"
+            Frm.CallerControl = CallerControl
+            Frm.CalledFromControl = True
+            Frm.MdiParent = frmMain
+            If CallerControl.EditValue isnot Nothing Then
+                Frm.ID = CallerControl.EditValue.ToString
+                Frm.Mode = FormMode.EditRecord
             Else
-                form1.Mode = FormMode.NewRecord
+                Frm.Mode = FormMode.NewRecord
             End If
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-            form1.Show()
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+            Frm.Show()
         End If
     End Sub
     Public Sub ManageBUY_C(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            Dim form1 As frmGen = New frmGen()
+            Dim Frm As frmGen = New frmGen()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-            form1.Text = "Κατηγορίες Αγορών"
-            form1.DataTable = "BUY_C"
-            form1.L1.Text = "Κωδικός"
-            form1.L2.Text = "Όνομα"
-            form1.CallerControl = CallerControl
-            form1.CalledFromControl = True
-            form1.MdiParent = frmMain
-            If CallerControl.EditValue <> Nothing Then
-                form1.ID = CallerControl.EditValue.ToString
-                form1.Mode = FormMode.EditRecord
+            Frm.Text = "Κατηγορίες Αγορών"
+            Frm.DataTable = "BUY_C"
+            Frm.L1.Text = "Κωδικός"
+            Frm.L2.Text = "Όνομα"
+            Frm.CallerControl = CallerControl
+            Frm.CalledFromControl = True
+            Frm.MdiParent = frmMain
+            If CallerControl.EditValue isnot Nothing Then
+                Frm.ID = CallerControl.EditValue.ToString
+                Frm.Mode = FormMode.EditRecord
             Else
-                form1.Mode = FormMode.NewRecord
+                Frm.Mode = FormMode.NewRecord
             End If
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-            form1.Show()
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+            Frm.Show()
         End If
     End Sub
     Public Sub ManagePAY(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
-        Dim form1 As frmGen = New frmGen()
+        Dim Frm As frmGen = New frmGen()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-        form1.Text = "Τρόποι Πληρωμής"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Τρόπος Πληρωμής"
-        form1.DataTable = "PAY"
-        form1.CallerControl = CallerControl
-        form1.CalledFromControl = True
-        If CallerControl.EditValue <> Nothing Then form1.ID = CallerControl.EditValue.ToString
-        form1.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then form1.Mode = FormMode.EditRecord Else form1.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
+        Frm.Text = "Τρόποι Πληρωμής"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Τρόπος Πληρωμής"
+        Frm.DataTable = "PAY"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        If CallerControl.EditValue isnot Nothing Then Frm.ID = CallerControl.EditValue.ToString
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Sub ManagePAY_TYPE(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Τύποι Πληρωμής"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Τύπος Πληρωμής"
+        Frm.DataTable = "PAY_TYPE"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        If CallerControl.EditValue isnot Nothing Then Frm.ID = CallerControl.EditValue.ToString
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
     End Sub
     Public Sub ManageDOCTYPES(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
-        Dim form1 As frmGen = New frmGen()
+        Dim Frm As frmGen = New frmGen()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-        form1.Text = "Τύποι Παραστατικών"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Τύπος"
-        form1.L8.Control.Tag = "Vmultiplier,0,1,2"
-        form1.L8.Text = "Πολλαπλασιαστής"
-        form1.L3.Text = "Προμηθευτής"
-        form1.L3.Control.Tag = "supID,0,1,2"
-        form1.DataTable = "DOC_TYPES"
-        form1.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
-        form1.CallerControl = CallerControl
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
-            form1.ID = CallerControl.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
+        Frm.Text = "Τύποι Παραστατικών"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Τύπος"
+        Frm.L8.Control.Tag = "Vmultiplier,0,1,2"
+        Frm.L8.Text = "Πολλαπλασιαστής"
+        Frm.L3.Text = "Προμηθευτής"
+        Frm.L3.Control.Tag = "supID,0,1,2"
+        Frm.DataTable = "DOC_TYPES"
+        Frm.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        Frm.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
         Else
-            form1.Mode = FormMode.NewRecord
+            Frm.Mode = FormMode.NewRecord
         End If
 
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
     End Sub
     Public Sub ManageEMP(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            Dim form1 As frmEMP = New frmEMP()
+            Dim Frm As frmEMP = New frmEMP()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-            form1.Text = "Προσωπικό"
-            form1.CallerControl = CallerControl
-            form1.CalledFromControl = True
-            form1.MdiParent = frmMain
-            If CallerControl.EditValue <> Nothing Then
-                form1.ID = CallerControl.EditValue.ToString
-                form1.Mode = FormMode.EditRecord
+            Frm.Text = "Προσωπικό"
+            Frm.CallerControl = CallerControl
+            Frm.CalledFromControl = True
+            Frm.MdiParent = frmMain
+            If CallerControl.EditValue isnot Nothing Then
+                Frm.ID = CallerControl.EditValue.ToString
+                Frm.Mode = FormMode.EditRecord
             Else
-                form1.Mode = FormMode.NewRecord
+                Frm.Mode = FormMode.NewRecord
             End If
-            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-            form1.Show()
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+            Frm.Show()
+        End If
+    End Sub
+    Public Sub ManageSaler(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+            Dim Frm As frmEMP = New frmEMP()
+            Frm.Text = "Πωλητές"
+            Frm.CallerControl = CallerControl
+            Frm.CalledFromControl = True
+            Frm.MdiParent = frmMain
+            If CallerControl.EditValue isnot Nothing Then
+                Frm.ID = CallerControl.EditValue.ToString
+                Frm.Mode = FormMode.EditRecord
+            Else
+                Frm.Mode = FormMode.NewRecord
+            End If
+            frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+            Frm.Show()
         End If
     End Sub
     Public Sub ManageINST(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
-        Dim form1 As frmInstallations = New frmInstallations()
+        Dim Frm As frmInstallations = New frmInstallations()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-        form1.Text = "Μισθοδοσία Τοποθετών"
-        form1.CallerControl = CallerControl
-        form1.CalledFromControl = True
-        form1.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
-            form1.ID = CallerControl.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
+        Frm.Text = "Μισθοδοσία Τοποθετών"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
         Else
-            form1.Mode = FormMode.NewRecord
+            Frm.Mode = FormMode.NewRecord
         End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Sub ManageBank(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Τράπεζες"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Τράπεζα"
+        Frm.DataTable = "BANKS"
+        Frm.CalledFromControl = True
+        Frm.CallerControl = CallerControl
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Sub ManageBaseCat(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Τύποι Κατασκευών"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Τύπος"
+        Frm.DataTable = "BASE_CAT"
+        Frm.CalledFromControl = True
+        Frm.CallerControl = CallerControl
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Sub ManageValueListItem(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal ValueListID As String = Nothing, Optional ByVal GroupName As String = Nothing)
+        Dim Frm As frmValueListItem = New frmValueListItem
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Κατηγορία Πόρτας"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        Frm.ValueListID = ValueListID
+        Frm.GroupName = GroupName
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Sub ManageValueListItemChecked(ByVal CallerControl As CheckedComboBoxEdit, ByVal FrmMode As Byte, Optional ByVal ValueListID As String = Nothing)
+        Dim Frm As frmValueListItem = New frmValueListItem
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Select Case ValueListID
+            Case "3C68F058-6A47-4995-8B0C-26538F38580A" ' Μοντέλα Κουζίνας
+                Frm.Text = "Μοντέλα Κουζίνας"
+            Case "CF691845-D6CC-4181-9760-6D15934C40B4"  ' Ντουλάπες
+                Frm.Text = "Μοντέλα Ντουλαπών"
+        End Select
+        Frm.CallerControlChecked = CallerControl
+        Frm.CalledFromControl = True
+        Frm.cboValueList.EditValue = ValueListID
+        Frm.ValueListID = ValueListID
+        If CallerControl.EditValue isnot Nothing Then Frm.ID = CallerControl.EditValue.ToString
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then Frm.Mode = FormMode.EditRecord Else Frm.Mode = FormMode.NewRecord
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
 
-    End Sub
-    Public Sub ManageDoorType(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal DoorCatID As String = Nothing)
-        Dim frmDoorType As frmDoorType = New frmDoorType
-        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-        frmDoorType.Text = "Κατηγορία Πόρτας"
-        frmDoorType.CallerControl = CallerControl
-        frmDoorType.CalledFromControl = True
-        frmDoorType.cboDoorCat.EditValue = DoorCatID
-        If CallerControl.EditValue <> Nothing Then frmDoorType.ID = CallerControl.EditValue.ToString
-        frmDoorType.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then frmDoorType.Mode = FormMode.EditRecord Else frmDoorType.Mode = FormMode.NewRecord
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmDoorType), New Point(CInt(frmDoorType.Parent.ClientRectangle.Width / 2 - frmDoorType.Width / 2), CInt(frmDoorType.Parent.ClientRectangle.Height / 2 - frmDoorType.Height / 2)))
-        frmDoorType.Show()
-    End Sub
     Public Sub ManageBENCH(ByVal CallerControl As LookUpEdit, ByVal FrmCaller As DevExpress.XtraEditors.XtraForm, ByVal FrmMode As Byte)
-        Dim frmBench As frmBench = New frmBench
+        Dim Frm As frmBench = New frmBench
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-        frmBench.CallerForm = FrmCaller.Name
-        frmBench.CallerControl = CallerControl
-        frmBench.CalledFromControl = True
-        frmBench.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
-            frmBench.ID = CallerControl.EditValue.ToString
-            frmBench.Mode = FormMode.EditRecord
+        Frm.CallerForm = FrmCaller.Name
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
         Else
-            frmBench.Mode = FormMode.NewRecord
+            Frm.Mode = FormMode.NewRecord
         End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmBench), New Point(CInt(frmBench.Parent.ClientRectangle.Width / 2 - frmBench.Width / 2), CInt(frmBench.Parent.ClientRectangle.Height / 2 - frmBench.Height / 2)))
-        frmBench.Show()
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
     End Sub
     Public Sub ManageColors(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
-        Dim frmColors As frmColors = New frmColors
+        Dim Frm As frmColors = New frmColors
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
         Select Case CallerControl.Name
-            Case "cboGOLAColors" : frmColors.ColorCategory = "1FA658C9-A338-4805-B38F-7E6503A5CD25"
+            Case "cboGOLAColors" : Frm.ColorCategory = "1FA658C9-A338-4805-B38F-7E6503A5CD25"
             Case "cboVBOXColors", "cboKBOXColors", "cboYBOXColors", "cboBOXColors", "cboBOXColors2",
-                 "cboBOXColors3", "cboBOXColors4", "cboBOXColors5", "cboBOXColors6" : frmColors.ColorCategory = "40C7BFFB-43EB-48FB-A467-74C0BCBE09FA"
-            Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors" : frmColors.ColorCategory = "1226147D-2FF2-4076-B24D-92ABC8FB4663"
+                 "cboBOXColors3", "cboBOXColors4", "cboBOXColors5", "cboBOXColors6" : Frm.ColorCategory = "40C7BFFB-43EB-48FB-A467-74C0BCBE09FA"
+            Case "cboVPVCColors", "cboKPVCColors", "cboYPVCColors" : Frm.ColorCategory = "1226147D-2FF2-4076-B24D-92ABC8FB4663"
         End Select
-        frmColors.Text = "Χρώματα"
-        frmColors.CallerForm = "frmCUSOrderKitchen"
-        frmColors.CallerControlLKUP = CallerControl
-        frmColors.CalledFromControl = True
-        frmColors.MdiParent = frmMain
-        If CallerControl.EditValue <> Nothing Then
-            frmColors.ID = CallerControl.EditValue.ToString
-            frmColors.Mode = FormMode.EditRecord
+        Frm.Text = "Χρώματα"
+        Frm.CallerForm = "frmCUSOrderKitchen"
+        Frm.CallerControlLKUP = CallerControl
+        Frm.CalledFromControl = True
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
         Else
-            frmColors.Mode = FormMode.NewRecord
+            Frm.Mode = FormMode.NewRecord
         End If
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmColors), New Point(CInt(frmColors.Parent.ClientRectangle.Width / 2 - frmColors.Width / 2), CInt(frmColors.Parent.ClientRectangle.Height / 2 - frmColors.Height / 2)))
-        frmColors.Show()
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
     End Sub
     Public Sub ManageSpecialConstr(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
-        Dim form1 As frmGen = New frmGen()
+        Dim Frm As frmGen = New frmGen()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-        form1.Text = "Είδη Κατασκευής"
-        form1.L1.Text = "Κωδικός"
-        form1.L2.Text = "Είδος"
-        form1.DataTable = "CONSTR_TYPE"
-        form1.CallerControl = CallerControl
-        form1.CalledFromControl = True
-        If CallerControl.EditValue <> Nothing Then
-            form1.ID = CallerControl.EditValue.ToString
-            form1.Mode = FormMode.EditRecord
+        Frm.Text = "Είδη Κατασκευής"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Είδος"
+        Frm.DataTable = "CONSTR_TYPE"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
         Else
-            form1.Mode = FormMode.NewRecord
+            Frm.Mode = FormMode.NewRecord
         End If
-        form1.MdiParent = frmMain
-        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
-        form1.Show()
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Sub ManageAREAS(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Περιοχές"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Περιοχή"
+        Frm.L3.Text = "Νομός"
+        Frm.DataTable = "AREAS"
+        Frm.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        Frm.CalledFromControl = True
+        Frm.CallerControl = CallerControl
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Function ADRsSQL(ByVal cboCOU As LookUpEdit, ByVal cboAREAS As LookUpEdit, Optional ByVal txtTK As TextEdit = Nothing) As System.Text.StringBuilder
+        Dim sSQL As New System.Text.StringBuilder
+        Dim CouID As String = ""
+        Dim AreaID As String = ""
+        If cboCOU.EditValue isnot Nothing Then CouID = cboCOU.EditValue.ToString
+        If cboAREAS.EditValue isnot Nothing Then AreaID = cboAREAS.EditValue.ToString
+        sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
+        If CouID.Length > 0 Or AreaID.Length > 0 Or txtTK IsNot Nothing Then sSQL.AppendLine(" where ")
+        If CouID.Length > 0 Then sSQL.AppendLine(" couid = " & toSQLValueS(CouID))
+        If AreaID.Length > 0 Then
+            If CouID.Length > 0 Then sSQL.AppendLine(" AND ")
+            sSQL.AppendLine(" AreaID = " & toSQLValueS(AreaID))
+        End If
+        If txtTK IsNot Nothing Then
+            If txtTK.Text.Length > 0 Then
+                If CouID.Length > 0 Or AreaID.Length > 0 Then sSQL.AppendLine(" AND ")
+                sSQL.AppendLine(" TK = " & toSQLValue(txtTK))
+            End If
+        End If
+        If sSQL.ToString.Contains(" where ") Then sSQL.AppendLine(" order by name ")
+        Return sSQL
+    End Function
+
+    Public Sub ManageADR(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Διευθύνσεις"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Διεύθυνση"
+        Frm.L3.Text = "Νομός"
+        Frm.L4.Text = "Περιοχές"
+        Frm.L8.Text = "Αριθμός"
+        Frm.DataTable = "ADR"
+        Frm.CalledFromControl = True
+        Frm.CallerControl = CallerControl
+        Frm.L3.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        Frm.L4.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        Frm.L8.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+        Frm.L8.Control.Tag = "Ar,0,1,2"
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Sub ManageCOU(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Νομοί"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Νομός"
+        Frm.DataTable = "COU"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Sub ManageFCategory(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Κατηγορίες Αρχείων"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Κατηγορία"
+        Frm.DataTable = "FILE_CAT"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+    Public Sub ManageDOY(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "ΔΟΥ"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "ΔΟΥ"
+        Frm.DataTable = "DOY"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        Frm.MdiParent = frmMain
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+
+    Public Sub ManagePRF(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Επαγγέλματα"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Επάγγελμα"
+        Frm.DataTable = "PRF"
+        Frm.CallerControl = CallerControl
+        Frm.CalledFromControl = True
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
+    End Sub
+
+    Public Sub ManageSRC(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+        Dim Frm As frmGen = New frmGen()
+        If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
+        Frm.Text = "Πηγές"
+        Frm.L1.Text = "Κωδικός"
+        Frm.L2.Text = "Πηγή"
+        Frm.DataTable = "SRC"
+        Frm.CalledFromControl = True
+        Frm.CallerControl = CallerControl
+        Frm.MdiParent = frmMain
+        If CallerControl.EditValue isnot Nothing Then
+            Frm.ID = CallerControl.EditValue.ToString
+            Frm.Mode = FormMode.EditRecord
+        Else
+            Frm.Mode = FormMode.NewRecord
+        End If
+        frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
+        Frm.Show()
     End Sub
 End Class

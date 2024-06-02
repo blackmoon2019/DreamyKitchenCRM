@@ -1,11 +1,16 @@
 ﻿Imports System.Data.SqlClient
+Imports System.IO
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Repository
+Imports DevExpress.XtraExport.Helpers
 Imports DevExpress.XtraGrid.Columns
+Imports DevExpress.XtraGrid.Views.Grid
 
 Module Main
     Public CNDB As New SqlConnection()
     Public CNDB2 As New SqlConnection()
+    Public Const ProgTitle As String = "Dreamy Kitchen CRM"
+
     Enum FormMode
         NewRecord = 1
         EditRecord = 2
@@ -42,6 +47,7 @@ Module Main
         Public TempPicturesFolderPath As String
         Public ProgTitle As String
         Public VAT As Integer
+        Public AlternateVAT As Double
         Public Decimals As Integer
         Public EmailOrders As String
         Public SupportEmail As String
@@ -107,6 +113,8 @@ Module Main
         Public CLOSET_LEGS As String
         Public CLOSET_PVC_COLOR As String
         Public CLOSET_SHELVES As String
+        Public REPORT_ECO As String
+        Public REPORT_PREMIUM As String
     End Structure
     Public ProgProps As PROG_PROPS
     Public Function toSQLValue(t As DevExpress.XtraEditors.TextEdit, Optional ByVal isnum As Boolean = False) As String
@@ -129,7 +137,7 @@ Module Main
     End Function
     Public Function toSQLValueS(t As String, Optional ByVal isnum As Boolean = False) As String
         Try
-            If t <> Nothing Then
+            If t isnot Nothing Then
                 If t.Length = 0 Then
                     Return "NULL" 'this will pass through any SQL statement without notice  
                 Else 'Lets suppose our textbox is checked to contain only numbers, so we count on it  
@@ -147,12 +155,26 @@ Module Main
                 Return "NULL" 'this will pass through any SQL statement without notice  
             End If
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Public Function DbnullToZero(t As DevExpress.XtraEditors.TextEdit) As Double
         If IsDBNull(t) = False Then
             If t.Text = "" Then Return 0 Else Return t.EditValue.ToString.Replace(".", ",")
+        Else
+            Return 0
+        End If
+    End Function
+    Public Function lkupEditValue(t As DevExpress.XtraEditors.LookUpEdit) As String
+        If t.EditValue = Nothing Then Return "" Else Return t.EditValue.ToString
+    End Function
+    Public Function GetAmt(t As DevExpress.XtraEditors.TextEdit) As Double
+        If IsDBNull(t) = False Then
+            If t.Text = "" Then
+                Return 0
+            Else
+                Return t.Text.ToString.Replace(",", ".").Replace("€", "")
+            End If
         Else
             Return 0
         End If
@@ -167,10 +189,11 @@ Module Main
     End Sub
     Public Sub GetFileFromServer(ByVal sFile As String)
         Try
+            If System.IO.File.Exists(ProgProps.ServerViewsPath & "DSGNS\DEF\" & System.IO.Path.GetFileName(sFile)) = False Then Exit Sub
             Dim ServerFile As String = ProgProps.ServerViewsPath & "DSGNS\DEF\" & System.IO.Path.GetFileName(sFile)
             My.Computer.FileSystem.CopyFile(ServerFile, sFile, True)
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
     Public Sub GetNewestFileFromServer(ByVal sFile As String)
@@ -192,19 +215,104 @@ Module Main
                 Loop Until LastModifiedF1 = LastModifiedF2
             End If
         Catch ex As Exception
-            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            DevExpress.XtraEditors.XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
+    Public Sub ShellExecute(ByVal File As String)
+        Dim myProcess As New Process
+        myProcess.StartInfo.FileName = File
+        myProcess.StartInfo.UseShellExecute = True
+        myProcess.StartInfo.RedirectStandardOutput = False
+        myProcess.Start()
+        myProcess.Dispose()
+    End Sub
 
+    Public Function GetFile(ByVal sRowID As String, ByVal sTable As String, Optional ByRef sFileName As String = "") As Byte()
+        Dim sSQL As String
+        Dim cmd As SqlCommand
+        Dim sdr As SqlDataReader
+        Dim bytes As Byte()
+
+        sSQL = "Select filename, files From " & sTable & " WHERE ID = " & toSQLValueS(sRowID)
+        cmd = New SqlCommand(sSQL, CNDB) : sdr = cmd.ExecuteReader()
+        If sdr.Read() = True Then
+            bytes = DirectCast(sdr("files"), Byte())
+            sFileName = sdr.GetString(sdr.GetOrdinal("filename").ToString).ToString
+            sdr.Close()
+            Return bytes
+        End If
+        sdr.Close()
+
+    End Function
+    Public Sub FilesSelection(ByVal XtraOpenFileDialog1 As XtraOpenFileDialog, ByVal txtFileNames As TextEdit, Optional MultiSelect As Boolean = True)
+
+        'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
+        XtraOpenFileDialog1.FilterIndex = 1
+        XtraOpenFileDialog1.InitialDirectory = "C:\"
+        XtraOpenFileDialog1.Title = "Open File"
+        XtraOpenFileDialog1.CheckFileExists = False
+        XtraOpenFileDialog1.Multiselect = MultiSelect
+        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
+        If result = DialogResult.OK Then
+            txtFileNames.EditValue = ""
+            For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
+                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I).Replace("'", "")
+            Next I
+        End If
+    End Sub
+    Public Sub OpenFileFromGrid(ByVal grdView As GridView, ByVal sTable As String)
+        If grdView.GetRowCellValue(grdView.FocusedRowHandle, "filename") Is DBNull.Value Then Exit Sub
+        Try
+            Dim sFilename = grdView.GetRowCellValue(grdView.FocusedRowHandle, "filename")
+            Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+            Dim b() As Byte = GetFile(grdView.GetRowCellValue(grdView.FocusedRowHandle, "ID").ToString, sTable)
+            fs.Write(b, 0, b.Length)
+            fs.Close()
+            ShellExecute(ProgProps.TempFolderPath & sFilename)
+        Catch ex As IOException
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     'Public Function FindItemByValChkListBox(ByVal sValue As String, ByVal chkList As DevExpress.XtraEditors.CheckedListBoxControl) As DevExpress.XtraEditors.Controls.CheckedListBoxItem
     '    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In chkList
 
     '    Next
     'End Function
 
-End Module
+    Public Sub OpenFile(ByVal sTable As String, ByVal ID As String, ByVal ownerID As String)
 
+        Try
+            Dim Cmd As SqlCommand, sdr As SqlDataReader
+            Dim sSQL As String
+            Select Case sTable
+                Case "TRANSH_F" : sSQL = "SELECT files,filename  FROM TRANSH_F WHERE transhID= " & toSQLValueS(ID) & " and ownerID = " & toSQLValueS(ownerID)
+            End Select
+
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("filename")) = False Then
+                    Dim sFilename = Path.GetFileName(sdr.GetString(sdr.GetOrdinal("filename")))
+                    Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                    Dim b As Byte()
+                    b = DirectCast(sdr("files"), Byte())
+                    fs.Write(b, 0, b.Length)
+                    fs.Close()
+                    ShellExecute(ProgProps.TempFolderPath & sFilename)
+                End If
+            End If
+            sdr.Close()
+        Catch exfs As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+
+        End Try
+    End Sub
+
+End Module
 'Private Sub SetUserSettings()
 '    Dim cf As New XML_Serialization.User_Settings
 '    cf.user = New XML_Serialization.User() With {.ID = sUserCode}

@@ -82,7 +82,7 @@ Partial Public Class RepOfferMech
         'XrLabel1
         '
         Me.XrLabel1.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[name]")})
-        Me.XrLabel1.Font = New System.Drawing.Font("Zona Pro Regular", 9.0!)
+        Me.XrLabel1.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
         Me.XrLabel1.ForeColor = System.Drawing.Color.Gray
         Me.XrLabel1.LocationFloat = New DevExpress.Utils.PointFloat(14.58333!, 0!)
         Me.XrLabel1.Multiline = True
@@ -113,8 +113,8 @@ Partial Public Class RepOfferMech
         Me.ComponentStorage.AddRange(New System.ComponentModel.IComponent() {Me.SqlDataSource1})
         Me.DataMember = "vw_OFFER_MECH"
         Me.DataSource = Me.SqlDataSource1
-        Me.Font = New System.Drawing.Font("Zona Pro Regular", 8.999999!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(161, Byte))
-        Me.Margins = New System.Drawing.Printing.Margins(100, 448, 0, 0)
+        Me.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.999999!, DevExpress.Drawing.DXFontStyle.Regular, DevExpress.Drawing.DXGraphicsUnit.Point, New DevExpress.Drawing.DXFontAdditionalProperty() {New DevExpress.Drawing.DXFontAdditionalProperty("GdiCharSet", CType(161, Byte))})
+        Me.Margins = New DevExpress.Drawing.DXMargins(100, 448, 0, 0)
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.offerID})
         Me.Version = "20.2"
         CType(Me, System.ComponentModel.ISupportInitialize).EndInit()

@@ -14,7 +14,7 @@ Public Class ProgProp
             If (sdr.Read() = True) Then ProgProps.SupportEmail = sdr.GetString(sdr.GetOrdinal("VAL"))
             Return ProgProps.SupportEmail
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Function
@@ -25,7 +25,7 @@ Public Class ProgProp
             sSQL = "Update PRM set val = '" & sValue & "' where prm= 'VAT'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -37,7 +37,7 @@ Public Class ProgProp
             sSQL = "Update PRM set val = '" & sValue & "' where prm= 'DECIMAL_PLACES'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
 
     End Sub
@@ -46,13 +46,16 @@ Public Class ProgProp
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            sSQL = "select val FROM PRM where prm= 'VAT'"
+            sSQL = "select val,alternateVal FROM PRM where prm= 'VAT'"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
-            If (sdr.Read() = True) Then ProgProps.VAT = sdr.GetString(sdr.GetOrdinal("VAL"))
+            If (sdr.Read() = True) Then
+                ProgProps.VAT = sdr.GetString(sdr.GetOrdinal("VAL"))
+                ProgProps.AlternateVAT = sdr.GetString(sdr.GetOrdinal("AlternateVal"))
+            End If
             Return ProgProps.VAT
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Public Function GetProgDecimals() As Integer
@@ -66,7 +69,7 @@ Public Class ProgProp
             If (sdr.Read() = True) Then ProgProps.Decimals = sdr.GetString(sdr.GetOrdinal("VAL"))
             Return ProgProps.Decimals
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
     Public Sub GetProgPROSF(Optional ByVal control As DevExpress.XtraLayout.LayoutControl = Nothing)
@@ -75,7 +78,7 @@ Public Class ProgProp
         Dim cmd As SqlCommand
         Dim sdr As SqlDataReader
         Try
-            sSQL = "select prm,val FROM PRM where grpName= 'PROSF' ORDER by prm"
+            sSQL = "select prm,val FROM PRM where grpName in('PROSF','REPORTS') ORDER by prm"
             cmd = New SqlCommand(sSQL, CNDB)
             sdr = cmd.ExecuteReader()
             'If (sdr.Read() = True) Then
@@ -134,6 +137,8 @@ Public Class ProgProp
                             Case "CCOMPANY_PROFIT" : ProgProps.CCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "DCOMPANY_PROFIT" : ProgProps.DCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
                             Case "SCCOMPANY_PROFIT" : ProgProps.SCCOMPANY_PROFIT = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "REPORT_ECO" : ProgProps.REPORT_ECO = sdr.GetString(sdr.GetOrdinal("val"))
+                            Case "REPORT_PREMIUM" : ProgProps.REPORT_PREMIUM = sdr.GetString(sdr.GetOrdinal("val"))
                         End Select
                     End If
                 Else
@@ -149,7 +154,7 @@ Public Class ProgProp
             sdr = Nothing
             'End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             sdr.Close()
             sdr = Nothing
         End Try
@@ -210,7 +215,7 @@ Public Class ProgProp
             sdr = Nothing
             'End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             sdr.Close()
             sdr = Nothing
         End Try
@@ -283,7 +288,7 @@ Public Class ProgProp
 
             End If
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         End Try
     End Sub
@@ -302,7 +307,7 @@ Public Class ProgProp
                             If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                 Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                 cbo = Ctrl
-                                If cbo.EditValue <> Nothing Then
+                                If cbo.EditValue isnot Nothing Then
                                     sSQL.Append(toSQLValueS(cbo.EditValue.ToString))
                                 Else
                                     sSQL.Append("NULL")
@@ -310,7 +315,7 @@ Public Class ProgProp
                             ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ComboBoxEdit Then
                                 Dim cbo As DevExpress.XtraEditors.ComboBoxEdit
                                 cbo = Ctrl
-                                If cbo.EditValue <> Nothing Then
+                                If cbo.EditValue isnot Nothing Then
                                     If cbo.EditValue = "False" Or cbo.EditValue = "True" Or cbo.Properties.Tag = "0" Then
                                         sSQL.Append(cbo.SelectedIndex)
                                     Else
@@ -354,7 +359,7 @@ Public Class ProgProp
         Catch ex As Exception
             Dim trace = New System.Diagnostics.StackTrace(ex, True)
             Dim line As String = Strings.Right(trace.ToString, 5)
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -365,7 +370,7 @@ Public Class ProgProp
             sSQL = "Update PRM set val = '" & sValue & "' where prm= 'SUPPORT_EMAIL'"
             cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
 
@@ -416,7 +421,7 @@ Public Class ProgProp
             If (sdr.Read() = True) Then ProgProps.EmailOrders = sdr.GetString(sdr.GetOrdinal("VAL")) : If LItem IsNot Nothing Then SetValueToControl(LItem, sdr.GetString(sdr.GetOrdinal("val")))
             Return ProgProps.EmailOrders
         Catch ex As Exception
-            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), "Dreamy Kitchen CRM", MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Function
 End Class
