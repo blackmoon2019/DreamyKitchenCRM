@@ -710,9 +710,7 @@
     <Compile Include="Reports\RepCUSOrderCloset.Designer.vb">
       <DependentUpon>RepCUSOrderCloset.vb</DependentUpon>
     </Compile>
-    <Compile Include="Reports\RepCUSOrderCloset.vb">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Reports\RepCUSOrderCloset.vb" />
     <Compile Include="Reports\RepCUSOrderCloset2ndPage.Designer.vb">
       <DependentUpon>RepCUSOrderCloset2ndPage.vb</DependentUpon>
     </Compile>

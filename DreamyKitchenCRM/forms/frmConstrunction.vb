@@ -162,15 +162,16 @@ Public Class frmConstrunction
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "CONSTR", LayoutControl1,,, sID, True)
                         'sGuid = sID
                 End Select
-                sSQL.Clear()
-                sSQL.AppendLine("UPDATE PROJECT_COST SET ConstrPayroll = (Select sum(ISNULL(C.salary, 0) + ISNULL(C.extracost, 0)) from constr C where C.transhid= " & toSQLValueS(cboTRANSH.EditValue.ToString) & ")")
-                sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
-                'Εκτέλεση QUERY
-                Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
 
                 If cboTRANSH.EditValue IsNot Nothing Then
+                    'sSQL.Clear()
+                    'sSQL.AppendLine("UPDATE PROJECT_COST SET ConstrPayroll = (Select sum(ISNULL(C.salary, 0) + ISNULL(C.extracost, 0)) from constr C where C.transhid= " & toSQLValueS(cboTRANSH.EditValue.ToString) & ")")
+                    'sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(cboTRANSH.EditValue.ToString))
+                    ''Εκτέλεση QUERY
+                    'Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                    '    oCmd.ExecuteNonQuery()
+                    'End Using
+
                     ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
                     Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
                         oCmd.CommandType = CommandType.StoredProcedure

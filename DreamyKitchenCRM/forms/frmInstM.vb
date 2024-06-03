@@ -200,10 +200,10 @@ Public Class frmInstM
                         sGuid = sID
                 End Select
                 txtCode.Text = DBQ.GetNextId("INST_M")
-                If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_INST_M")
-                End If
+                'If FScrollerExist = True Then
+                '    Dim form As frmScroller = Frm
+                '    form.LoadRecords("vw_INST_M")
+                'End If
 
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)

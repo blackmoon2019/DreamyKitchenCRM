@@ -158,6 +158,7 @@ Public Class frmEmpPayroll
                 If Mode = FormMode.NewRecord Then
                     Cls.ClearCtrls(LayoutControl1)
                     txtCode.Text = DBQ.GetNextId("EMP_M")
+                    chkCash.Enabled = True
                 End If
             End If
 

@@ -14,11 +14,11 @@ Public Class ClearControls
                                 If TypeOf Ctrl Is DevExpress.XtraEditors.LookUpEdit Then
                                     Dim cbo As DevExpress.XtraEditors.LookUpEdit
                                     cbo = Ctrl
-                                    cbo.EditValue = Nothing : cbo.Text = "" : cbo.EditValue = ""
+                                    cbo.EditValue = Nothing : cbo.Text = "" : cbo.EditValue = Nothing
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.ColorPickEdit Then
                                     Dim cpk As DevExpress.XtraEditors.ColorPickEdit
                                     cpk = Ctrl
-                                    cpk.EditValue = Nothing : cpk.Text = "" : cpk.EditValue = ""
+                                    cpk.EditValue = Nothing : cpk.Text = "" : cpk.EditValue = Nothing
                                 ElseIf TypeOf Ctrl Is DevExpress.XtraEditors.DateEdit Then
                                     Dim dt As DevExpress.XtraEditors.DateEdit
                                     dt = Ctrl

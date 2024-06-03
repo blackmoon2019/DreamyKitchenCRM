@@ -2097,6 +2097,7 @@ Public Class frmScroller
                 frmPROJECTCHECKLIST.Mode = FormMode.EditRecord
                 frmPROJECTCHECKLIST.Scroller = GridView1
                 frmPROJECTCHECKLIST.GroupName = "CHECKLIST"
+                frmPROJECTCHECKLIST.ValueListID = "CA8BACF7-3205-43AF-BCBB-A0DA4915C046"
                 frmPROJECTCHECKLIST.cboValueList.EditValue = "CA8BACF7-3205-43AF-BCBB-A0DA4915C046"
                 frmPROJECTCHECKLIST.FormScroller = Me
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmPROJECTCHECKLIST), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
