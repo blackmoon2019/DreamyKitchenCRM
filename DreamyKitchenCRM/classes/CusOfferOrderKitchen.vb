@@ -252,11 +252,10 @@ Public Class CusOfferOrderKitchen
         Dim sResult As Boolean, sResultF As Boolean
         Dim sGuid As String
         Try
-            Valid.ID = Frm.cboTRANSH.EditValue.ToString
-            If Valid.ValiDationRules(Frm.Name, Frm,, sIsOrder) = False Then Exit Sub
 
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 Valid.ID = Frm.cboTRANSH.EditValue.ToString
+                If Valid.ValiDationRules(Frm.Name, Frm,, sIsOrder) = False Then Exit Sub
                 Dim selectedModel As Integer
                 Dim TotAmt As Double
                 If Frm.chkModel1.CheckState = CheckState.Checked Then selectedModel = 1 : Frm.txtTotAmt.EditValue = Frm.txtFinalPrice1.EditValue
@@ -298,14 +297,14 @@ Public Class CusOfferOrderKitchen
                         Frm.cmdPrintOffer.Enabled = True
                     End If
                     Dim Projects As New Projects
-                    If sIsOrder = True Then
-                        ' Πάγκος
-                        If UpdateProjectBench() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του πάγκου στο έργο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                        ' Ενημέρωση ποσών στο έργο
-                        Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True)
-                    Else
-                        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True, True)
-                    End If
+                    'If sIsOrder = True Then
+                    ' Πάγκος
+                    If UpdateProjectBench() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του πάγκου στο έργο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    ' Ενημέρωση ποσών στο έργο
+                    'Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True)
+                    'Else
+                    If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True, True) Else Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True)
+                    'End If
                     Mode = FormMode.EditRecord
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If

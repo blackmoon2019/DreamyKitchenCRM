@@ -253,8 +253,8 @@ Partial Class frmTransactions
         Me.BBProjectCosts = New DevExpress.XtraBars.BarButtonItem()
         Me.BBInstallations = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCctOrdersKitchen = New DevExpress.XtraBars.BarButtonItem()
-        Me.BBCctOrdersDoor = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCctOrdersCloset = New DevExpress.XtraBars.BarButtonItem()
+        Me.BBCctOrdersDoor = New DevExpress.XtraBars.BarButtonItem()
         Me.BBCctOrdersSC = New DevExpress.XtraBars.BarButtonItem()
         Me.BBAgreement = New DevExpress.XtraBars.BarButtonItem()
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
@@ -1167,7 +1167,6 @@ Partial Class frmTransactions
         Me.txtbenchSalesPrice.Properties.Mask.UseMaskAsDisplayFormat = True
         Me.txtbenchSalesPrice.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
         Me.txtbenchSalesPrice.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtbenchSalesPrice.Properties.ReadOnly = True
         Me.txtbenchSalesPrice.Properties.Tag = "BenchExtraPrice"
         Me.txtbenchSalesPrice.Size = New System.Drawing.Size(171, 26)
         Me.txtbenchSalesPrice.StyleController = Me.LayoutControl6
@@ -1311,7 +1310,6 @@ Partial Class frmTransactions
         Me.LayoutControlItem48.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem48.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem48.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem48.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem48.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem48.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem48.Name = "LayoutControlItem48"
         Me.LayoutControlItem48.Size = New System.Drawing.Size(354, 30)
@@ -1324,7 +1322,6 @@ Partial Class frmTransactions
         Me.LayoutControlItem49.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem49.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem49.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem49.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem49.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem49.Location = New System.Drawing.Point(354, 30)
         Me.LayoutControlItem49.Name = "LayoutControlItem49"
         Me.LayoutControlItem49.Size = New System.Drawing.Size(391, 30)
@@ -1337,7 +1334,6 @@ Partial Class frmTransactions
         Me.LayoutControlItem50.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem50.CustomizationFormText = "Τελική Αξία"
         Me.LayoutControlItem50.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem50.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem50.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem50.Location = New System.Drawing.Point(745, 30)
         Me.LayoutControlItem50.Name = "LayoutControlItem50"
         Me.LayoutControlItem50.Size = New System.Drawing.Size(529, 30)
@@ -2930,19 +2926,19 @@ Partial Class frmTransactions
         Me.BBCctOrdersKitchen.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_24
         Me.BBCctOrdersKitchen.Name = "BBCctOrdersKitchen"
         '
-        'BBCctOrdersDoor
-        '
-        Me.BBCctOrdersDoor.Caption = "Παραγγελία Πόρτας"
-        Me.BBCctOrdersDoor.Id = 4
-        Me.BBCctOrdersDoor.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_24
-        Me.BBCctOrdersDoor.Name = "BBCctOrdersDoor"
-        '
         'BBCctOrdersCloset
         '
         Me.BBCctOrdersCloset.Caption = "Παραγγελία Ντουλάπας"
         Me.BBCctOrdersCloset.Id = 5
         Me.BBCctOrdersCloset.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_24
         Me.BBCctOrdersCloset.Name = "BBCctOrdersCloset"
+        '
+        'BBCctOrdersDoor
+        '
+        Me.BBCctOrdersDoor.Caption = "Παραγγελία Πόρτας"
+        Me.BBCctOrdersDoor.Id = 4
+        Me.BBCctOrdersDoor.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_order_24
+        Me.BBCctOrdersDoor.Name = "BBCctOrdersDoor"
         '
         'BBCctOrdersSC
         '

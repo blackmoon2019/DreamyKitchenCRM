@@ -671,7 +671,7 @@ Partial Class frmParameters
         Me.TabNavigationPage4.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.TabNavigationPage4.Name = "TabNavigationPage4"
         Me.TabNavigationPage4.PageText = "Προσφορές Πελατών(Προεπιλογές)"
-        Me.TabNavigationPage4.Size = New System.Drawing.Size(1401, 1080)
+        Me.TabNavigationPage4.Size = New System.Drawing.Size(1401, 1079)
         '
         'LayoutControl3
         '
@@ -683,7 +683,7 @@ Partial Class frmParameters
         Me.LayoutControl3.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.Root = Me.LayoutControlGroup2
-        Me.LayoutControl3.Size = New System.Drawing.Size(1401, 1080)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1401, 1079)
         Me.LayoutControl3.TabIndex = 7
         Me.LayoutControl3.Text = "LayoutControl3"
         '
@@ -693,7 +693,7 @@ Partial Class frmParameters
         Me.XtraTabControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.XtraTabControl1.Name = "XtraTabControl1"
         Me.XtraTabControl1.SelectedTabPage = Me.XtraTabPage1
-        Me.XtraTabControl1.Size = New System.Drawing.Size(1377, 1020)
+        Me.XtraTabControl1.Size = New System.Drawing.Size(1377, 1019)
         Me.XtraTabControl1.TabIndex = 46
         Me.XtraTabControl1.TabPages.AddRange(New DevExpress.XtraTab.XtraTabPage() {Me.XtraTabPage1, Me.XtraTabPage2, Me.XtraTabPage3, Me.XtraTabPage4, Me.XtraTabPage5})
         '
@@ -704,7 +704,7 @@ Partial Class frmParameters
         Me.XtraTabPage1.Controls.Add(Me.LayoutControl6)
         Me.XtraTabPage1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.XtraTabPage1.Name = "XtraTabPage1"
-        Me.XtraTabPage1.Size = New System.Drawing.Size(1375, 985)
+        Me.XtraTabPage1.Size = New System.Drawing.Size(1375, 984)
         Me.XtraTabPage1.Text = "Γενικές"
         '
         'LayoutControl6
@@ -717,7 +717,7 @@ Partial Class frmParameters
         Me.LayoutControl6.Name = "LayoutControl6"
         Me.LayoutControl6.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1640, 913, 1137, 700)
         Me.LayoutControl6.Root = Me.LayoutControlGroup21
-        Me.LayoutControl6.Size = New System.Drawing.Size(1375, 985)
+        Me.LayoutControl6.Size = New System.Drawing.Size(1375, 984)
         Me.LayoutControl6.TabIndex = 0
         Me.LayoutControl6.Text = "LayoutControl6"
         '
@@ -743,7 +743,7 @@ Partial Class frmParameters
         Me.CUS_NOTES.Location = New System.Drawing.Point(211, 42)
         Me.CUS_NOTES.Margin = New System.Windows.Forms.Padding(4)
         Me.CUS_NOTES.Name = "CUS_NOTES"
-        Me.CUS_NOTES.Size = New System.Drawing.Size(1152, 931)
+        Me.CUS_NOTES.Size = New System.Drawing.Size(1152, 930)
         Me.CUS_NOTES.StyleController = Me.LayoutControl6
         Me.CUS_NOTES.TabIndex = 17
         Me.CUS_NOTES.Tag = "CUS_NOTES"
@@ -754,7 +754,7 @@ Partial Class frmParameters
         Me.LayoutControlGroup21.GroupBordersVisible = False
         Me.LayoutControlGroup21.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem12, Me.LayoutControlItem49})
         Me.LayoutControlGroup21.Name = "Root"
-        Me.LayoutControlGroup21.Size = New System.Drawing.Size(1375, 985)
+        Me.LayoutControlGroup21.Size = New System.Drawing.Size(1375, 984)
         Me.LayoutControlGroup21.TextVisible = False
         '
         'LayoutControlItem12
@@ -777,7 +777,7 @@ Partial Class frmParameters
         Me.LayoutControlItem49.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem49.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem49.Name = "LayoutControlItem49"
-        Me.LayoutControlItem49.Size = New System.Drawing.Size(1355, 935)
+        Me.LayoutControlItem49.Size = New System.Drawing.Size(1355, 934)
         Me.LayoutControlItem49.Text = "Παρατηρήσεις"
         Me.LayoutControlItem49.TextSize = New System.Drawing.Size(187, 19)
         '
@@ -788,7 +788,7 @@ Partial Class frmParameters
         Me.XtraTabPage2.Controls.Add(Me.LayoutControl10)
         Me.XtraTabPage2.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
         Me.XtraTabPage2.Name = "XtraTabPage2"
-        Me.XtraTabPage2.Size = New System.Drawing.Size(1375, 985)
+        Me.XtraTabPage2.Size = New System.Drawing.Size(1375, 984)
         Me.XtraTabPage2.Text = "Κουζίνα"
         '
         'LayoutControl10
@@ -811,14 +811,14 @@ Partial Class frmParameters
         Me.LayoutControl10.Name = "LayoutControl10"
         Me.LayoutControl10.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1640, 913, 1137, 700)
         Me.LayoutControl10.Root = Me.LayoutControlGroup7
-        Me.LayoutControl10.Size = New System.Drawing.Size(1375, 985)
+        Me.LayoutControl10.Size = New System.Drawing.Size(1375, 984)
         Me.LayoutControl10.TabIndex = 0
         Me.LayoutControl10.Text = "LayoutControl10"
         '
         'Y_BOX_COLOR
         '
         Me.Y_BOX_COLOR.EditValue = ""
-        Me.Y_BOX_COLOR.Location = New System.Drawing.Point(213, 935)
+        Me.Y_BOX_COLOR.Location = New System.Drawing.Point(213, 934)
         Me.Y_BOX_COLOR.Margin = New System.Windows.Forms.Padding(4)
         Me.Y_BOX_COLOR.Name = "Y_BOX_COLOR"
         Me.Y_BOX_COLOR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -845,7 +845,7 @@ Partial Class frmParameters
         'K_BOX_COLOR
         '
         Me.K_BOX_COLOR.EditValue = ""
-        Me.K_BOX_COLOR.Location = New System.Drawing.Point(213, 935)
+        Me.K_BOX_COLOR.Location = New System.Drawing.Point(213, 934)
         Me.K_BOX_COLOR.Margin = New System.Windows.Forms.Padding(4)
         Me.K_BOX_COLOR.Name = "K_BOX_COLOR"
         Me.K_BOX_COLOR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -862,7 +862,7 @@ Partial Class frmParameters
         'V_BOX_COLOR
         '
         Me.V_BOX_COLOR.EditValue = ""
-        Me.V_BOX_COLOR.Location = New System.Drawing.Point(213, 935)
+        Me.V_BOX_COLOR.Location = New System.Drawing.Point(213, 934)
         Me.V_BOX_COLOR.Margin = New System.Windows.Forms.Padding(4)
         Me.V_BOX_COLOR.Name = "V_BOX_COLOR"
         Me.V_BOX_COLOR.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
@@ -908,7 +908,7 @@ Partial Class frmParameters
         Me.REPORT_PREMIUM.Location = New System.Drawing.Point(201, 416)
         Me.REPORT_PREMIUM.Margin = New System.Windows.Forms.Padding(4)
         Me.REPORT_PREMIUM.Name = "REPORT_PREMIUM"
-        Me.REPORT_PREMIUM.Size = New System.Drawing.Size(1162, 410)
+        Me.REPORT_PREMIUM.Size = New System.Drawing.Size(1162, 409)
         Me.REPORT_PREMIUM.StyleController = Me.LayoutControl10
         Me.REPORT_PREMIUM.TabIndex = 17
         Me.REPORT_PREMIUM.Tag = "REPORT_PREMIUM"
@@ -916,7 +916,7 @@ Partial Class frmParameters
         'V_HEIGHT
         '
         Me.V_HEIGHT.EditValue = ""
-        Me.V_HEIGHT.Location = New System.Drawing.Point(213, 875)
+        Me.V_HEIGHT.Location = New System.Drawing.Point(213, 874)
         Me.V_HEIGHT.Margin = New System.Windows.Forms.Padding(4)
         Me.V_HEIGHT.Name = "V_HEIGHT"
         Me.V_HEIGHT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
@@ -932,7 +932,7 @@ Partial Class frmParameters
         'LEGS
         '
         Me.LEGS.EditValue = "0"
-        Me.LEGS.Location = New System.Drawing.Point(213, 905)
+        Me.LEGS.Location = New System.Drawing.Point(213, 904)
         Me.LEGS.Margin = New System.Windows.Forms.Padding(4)
         Me.LEGS.Name = "LEGS"
         Me.LEGS.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
@@ -947,7 +947,7 @@ Partial Class frmParameters
         'K_HEIGHT
         '
         Me.K_HEIGHT.EditValue = ""
-        Me.K_HEIGHT.Location = New System.Drawing.Point(213, 875)
+        Me.K_HEIGHT.Location = New System.Drawing.Point(213, 874)
         Me.K_HEIGHT.Margin = New System.Windows.Forms.Padding(4)
         Me.K_HEIGHT.Name = "K_HEIGHT"
         Me.K_HEIGHT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
@@ -963,7 +963,7 @@ Partial Class frmParameters
         'K_FINAL_HEIGHT
         '
         Me.K_FINAL_HEIGHT.EditValue = "0,00 €"
-        Me.K_FINAL_HEIGHT.Location = New System.Drawing.Point(213, 905)
+        Me.K_FINAL_HEIGHT.Location = New System.Drawing.Point(213, 904)
         Me.K_FINAL_HEIGHT.Margin = New System.Windows.Forms.Padding(4)
         Me.K_FINAL_HEIGHT.Name = "K_FINAL_HEIGHT"
         Me.K_FINAL_HEIGHT.Properties.DisplayFormat.FormatString = "n"
@@ -981,7 +981,7 @@ Partial Class frmParameters
         'Y_HEIGHT
         '
         Me.Y_HEIGHT.EditValue = ""
-        Me.Y_HEIGHT.Location = New System.Drawing.Point(213, 875)
+        Me.Y_HEIGHT.Location = New System.Drawing.Point(213, 874)
         Me.Y_HEIGHT.Margin = New System.Windows.Forms.Padding(4)
         Me.Y_HEIGHT.Name = "Y_HEIGHT"
         Me.Y_HEIGHT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
@@ -997,7 +997,7 @@ Partial Class frmParameters
         'Y_FINAL_HEIGHT
         '
         Me.Y_FINAL_HEIGHT.EditValue = "0,00 €"
-        Me.Y_FINAL_HEIGHT.Location = New System.Drawing.Point(213, 905)
+        Me.Y_FINAL_HEIGHT.Location = New System.Drawing.Point(213, 904)
         Me.Y_FINAL_HEIGHT.Margin = New System.Windows.Forms.Padding(4)
         Me.Y_FINAL_HEIGHT.Name = "Y_FINAL_HEIGHT"
         Me.Y_FINAL_HEIGHT.Properties.DisplayFormat.FormatString = "n"
@@ -1018,7 +1018,7 @@ Partial Class frmParameters
         Me.LayoutControlGroup7.GroupBordersVisible = False
         Me.LayoutControlGroup7.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem7, Me.LayoutControlItem15, Me.TabbedControlGroup1})
         Me.LayoutControlGroup7.Name = "Root"
-        Me.LayoutControlGroup7.Size = New System.Drawing.Size(1375, 985)
+        Me.LayoutControlGroup7.Size = New System.Drawing.Size(1375, 984)
         Me.LayoutControlGroup7.TextVisible = False
         '
         'LayoutControlItem4
@@ -1053,13 +1053,13 @@ Partial Class frmParameters
         Me.LayoutControlItem15.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 404)
         Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(1355, 414)
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(1355, 413)
         Me.LayoutControlItem15.Text = "PREMIUM"
         Me.LayoutControlItem15.TextSize = New System.Drawing.Size(177, 19)
         '
         'TabbedControlGroup1
         '
-        Me.TabbedControlGroup1.Location = New System.Drawing.Point(0, 818)
+        Me.TabbedControlGroup1.Location = New System.Drawing.Point(0, 817)
         Me.TabbedControlGroup1.Name = "TabbedControlGroup1"
         Me.TabbedControlGroup1.SelectedTabPage = Me.LayoutControlGroup3
         Me.TabbedControlGroup1.Size = New System.Drawing.Size(1355, 147)
@@ -1450,7 +1450,7 @@ Partial Class frmParameters
         '
         Me.cmdExitDefaultOffer.DialogResult = System.Windows.Forms.DialogResult.Cancel
         Me.cmdExitDefaultOffer.ImageOptions.Image = CType(resources.GetObject("cmdExitDefaultOffer.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdExitDefaultOffer.Location = New System.Drawing.Point(1215, 1036)
+        Me.cmdExitDefaultOffer.Location = New System.Drawing.Point(1215, 1035)
         Me.cmdExitDefaultOffer.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdExitDefaultOffer.Name = "cmdExitDefaultOffer"
         Me.cmdExitDefaultOffer.Size = New System.Drawing.Size(174, 32)
@@ -1461,7 +1461,7 @@ Partial Class frmParameters
         'cmdSaveDefaultOffer
         '
         Me.cmdSaveDefaultOffer.ImageOptions.Image = CType(resources.GetObject("cmdSaveDefaultOffer.ImageOptions.Image"), System.Drawing.Image)
-        Me.cmdSaveDefaultOffer.Location = New System.Drawing.Point(1048, 1036)
+        Me.cmdSaveDefaultOffer.Location = New System.Drawing.Point(1048, 1035)
         Me.cmdSaveDefaultOffer.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdSaveDefaultOffer.Name = "cmdSaveDefaultOffer"
         Me.cmdSaveDefaultOffer.Size = New System.Drawing.Size(163, 32)
@@ -1475,13 +1475,13 @@ Partial Class frmParameters
         Me.LayoutControlGroup2.GroupBordersVisible = False
         Me.LayoutControlGroup2.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem9, Me.EmptySpaceItem1, Me.LayoutControlItem8, Me.LayoutControlItem17})
         Me.LayoutControlGroup2.Name = "Root"
-        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1401, 1080)
+        Me.LayoutControlGroup2.Size = New System.Drawing.Size(1401, 1079)
         Me.LayoutControlGroup2.TextVisible = False
         '
         'LayoutControlItem9
         '
         Me.LayoutControlItem9.Control = Me.cmdExitDefaultOffer
-        Me.LayoutControlItem9.Location = New System.Drawing.Point(1203, 1024)
+        Me.LayoutControlItem9.Location = New System.Drawing.Point(1203, 1023)
         Me.LayoutControlItem9.MinSize = New System.Drawing.Size(92, 36)
         Me.LayoutControlItem9.Name = "LayoutControlItem9"
         Me.LayoutControlItem9.Size = New System.Drawing.Size(178, 36)
@@ -1492,7 +1492,7 @@ Partial Class frmParameters
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 1024)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 1023)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(1036, 36)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
@@ -1500,7 +1500,7 @@ Partial Class frmParameters
         'LayoutControlItem8
         '
         Me.LayoutControlItem8.Control = Me.cmdSaveDefaultOffer
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(1036, 1024)
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(1036, 1023)
         Me.LayoutControlItem8.MaxSize = New System.Drawing.Size(167, 36)
         Me.LayoutControlItem8.MinSize = New System.Drawing.Size(167, 36)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
@@ -1514,7 +1514,7 @@ Partial Class frmParameters
         Me.LayoutControlItem17.Control = Me.XtraTabControl1
         Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem17.Name = "LayoutControlItem17"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(1381, 1024)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(1381, 1023)
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem17.TextVisible = False
         '

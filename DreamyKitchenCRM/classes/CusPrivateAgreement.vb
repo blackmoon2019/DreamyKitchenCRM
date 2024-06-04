@@ -232,7 +232,7 @@ Public Class CusPrivateAgreement
             sSQL.Clear()
             sSQL.AppendLine("update TRANSH SET waitingForAgreement=1,invType = " & toSQLValueS(Frm.cboInvoiceType.EditValue.ToString) & ",  vatamt = " & toSQLValueS(Frm.txtPartofVat.EditValue.ToString, True) & ", " &
                             " amt = " & toSQLValueS(Frm.txtPosoParastatikou.EditValue.ToString, True) & ",debitcost = " & toSQLValueS(PolisiErgou.ToString, True) & ", " &
-                            " DevicesCost = " & toSQLValueS(Frm.txtDevices.EditValue.ToString, True) & ",  totamt = " & toSQLValueS(Frm.txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString))
+                            " DevicesCost = " & toSQLValueS(Frm.txtDevices.EditValue.ToString, True) & ",  totamt = ISNULL(benchSalesPrice,0) + ISNULL(extracost,0) + " & toSQLValueS(Frm.txtGenTot.EditValue.ToString, True) & " where ID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString))
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()

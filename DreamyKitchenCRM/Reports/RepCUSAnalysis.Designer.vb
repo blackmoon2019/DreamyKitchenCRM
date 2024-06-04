@@ -703,7 +703,7 @@ Partial Public Class RepCUSAnalysis
         '
         'XrTableCell33
         '
-        Me.XrTableCell33.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "IIF([TotKitchen]=0,'',[TotKitchen])")})
+        Me.XrTableCell33.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "IIF([TotalErmariaPrice]=0,'',[TotalErmariaPrice])")})
         Me.XrTableCell33.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell33.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell33.Multiline = True
@@ -825,7 +825,7 @@ Partial Public Class RepCUSAnalysis
         '
         'XrTableCell34
         '
-        Me.XrTableCell34.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "IIF([TotCloset]=0,'',[TotCloset])" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableCell34.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "IIF([TotalClosetPrice]=0,'',[TotalClosetPrice])" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableCell34.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell34.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell34.Multiline = True
@@ -889,7 +889,7 @@ Partial Public Class RepCUSAnalysis
         '
         'XrTableCell35
         '
-        Me.XrTableCell35.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "IIF([TotDoor]=0,'',[TotDoor])" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableCell35.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "IIF([TotalDoorPrice]=0,'',[TotalDoorPrice])" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrTableCell35.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell35.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell35.Multiline = True
@@ -953,7 +953,7 @@ Partial Public Class RepCUSAnalysis
         '
         'XrTableCell41
         '
-        Me.XrTableCell41.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "IIF([TotSpecialConstr]=0,'',[TotSpecialConstr])")})
+        Me.XrTableCell41.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "IIF([TotalSpecialPrice]=0,'',[TotalSpecialPrice])")})
         Me.XrTableCell41.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell41.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell41.Multiline = True

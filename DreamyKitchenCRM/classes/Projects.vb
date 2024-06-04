@@ -1183,9 +1183,9 @@ Public Class Projects
 
             ' Γενικό σύνολο πώλησης
             If GrandTotal Then
-                If isGenOffer = True Then
+                If isGenOffer = True Or IsOrder = False Then
                     sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0) ,
-                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))   - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID),
+                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))   - (Select isnull(sum(amt),0) from TRANSD where  isCredit=1 and transhID = 	T.ID),
                         compID = coalesce(K.compID,D.compid,C.compid,SC.compid) ,
                         compTrashID =  coalesce(K.compTrashID,D.compTrashID,C.compTrashID,SC.compTrashID)
                         FROM TRANSH T
@@ -1196,7 +1196,7 @@ Public Class Projects
 	                    where T.ID = " & toSQLValueS(transhID)
                 Else
                     sSQL = "UPDATE T SET Totamt = isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0),
-                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))  - (Select isnull(sum(amt),0) from TRANSD where  isCredit=0 and transhID = 	T.ID),
+                        Bal = (isnull(K.Totamt,0)	+ isnull(D.Totamt,0)	+ isnull(C.Totamt,0)	+ isnull(SC.Totamt,0))  - (Select isnull(sum(amt),0) from TRANSD where  isCredit=1 and transhID = 	T.ID),
                         compID = coalesce(K.compID,D.compid,C.compid,SC.compid) ,
                         compTrashID =  coalesce(K.compTrashID,D.compTrashID,C.compTrashID,SC.compTrashID)
                         FROM TRANSH T

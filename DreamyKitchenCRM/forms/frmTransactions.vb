@@ -235,10 +235,12 @@ Public Class frmTransactions
     End Sub
 
     Private Sub txtbenchSalesPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchSalesPrice.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         CalculateBenchProfit()
     End Sub
 
     Private Sub txtbenchPurchasePrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchPurchasePrice.EditValueChanged
+        If Me.IsActive = False Then Exit Sub
         CalculateBenchProfit()
     End Sub
     Private Sub GridView3_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView3.InvalidRowException
@@ -467,6 +469,7 @@ Public Class frmTransactions
         If txtbenchPurchasePrice.EditValue Is Nothing Or txtbenchSalesPrice.EditValue Is Nothing Then Exit Sub
         benchPurchasePrice = DbnullToZero(txtbenchPurchasePrice) : benchSalesPrice = DbnullToZero(txtbenchSalesPrice)
         txtbenchProfit.EditValue = benchSalesPrice - benchPurchasePrice
+        Projects.CalculateTotAmtAndBal()
     End Sub
 
     Private Sub BBCctOrdersKitchen_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBCctOrdersKitchen.ItemClick
