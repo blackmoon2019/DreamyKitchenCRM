@@ -194,7 +194,15 @@ Public Class FillCombos
     End Sub
     Public Sub ADR(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
         Try
-            If sSQL Is Nothing Then sSQL = New System.Text.StringBuilder : sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
+            If sSQL Is Nothing Then
+                sSQL = New System.Text.StringBuilder
+                sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
+            Else
+                If sSQL.Length = 0 Then
+                    sSQL = New System.Text.StringBuilder
+                    sSQL.AppendLine("Select id,Name + ' - ' + isnull(ar,'') as Name from vw_ADR ")
+                End If
+            End If
             Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             CtrlCombo.Properties.DataSource = ""

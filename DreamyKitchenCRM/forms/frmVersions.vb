@@ -36,7 +36,7 @@ Public Class frmVersions
 
     Private Sub frmVersions_Load(sender As Object, e As EventArgs) Handles Me.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_TECH_SUP' table. You can move, or remove it, as needed.
-        Me.Vw_TECH_SUPTableAdapter.FillBy(Me.DreamyKitchenDataSet.vw_TECH_SUP)
+        Me.Vw_TECH_SUPTableAdapter.FillWithNew(Me.DreamyKitchenDataSet.vw_TECH_SUP)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_DIM' table. You can move, or remove it, as needed.
         If UserProps.ID.ToString.ToUpper <> "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then LayoutControl1.Enabled = False
 

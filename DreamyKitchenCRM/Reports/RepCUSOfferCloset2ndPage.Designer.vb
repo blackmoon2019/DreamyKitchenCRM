@@ -450,7 +450,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell33
         '
-        Me.XrTableCell33.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice1]")})
+        Me.XrTableCell33.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VatPrice1]")})
         Me.XrTableCell33.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell33.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell33.Multiline = True
@@ -465,7 +465,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell8
         '
-        Me.XrTableCell8.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice1] * 1.24"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableCell8.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice1]")})
         Me.XrTableCell8.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell8.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell8.Multiline = True
@@ -560,7 +560,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell34
         '
-        Me.XrTableCell34.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice2]")})
+        Me.XrTableCell34.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VatPrice2]")})
         Me.XrTableCell34.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell34.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell34.Multiline = True
@@ -575,7 +575,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell9
         '
-        Me.XrTableCell9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice2] * 1.24"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableCell9.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice2] ")})
         Me.XrTableCell9.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell9.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell9.Multiline = True
@@ -670,7 +670,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell35
         '
-        Me.XrTableCell35.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice3]")})
+        Me.XrTableCell35.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VatPrice3]")})
         Me.XrTableCell35.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell35.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell35.Multiline = True
@@ -685,7 +685,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell10
         '
-        Me.XrTableCell10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice3] * 1.24"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableCell10.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice3] ")})
         Me.XrTableCell10.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell10.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell10.Multiline = True
@@ -780,7 +780,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell36
         '
-        Me.XrTableCell36.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice4]")})
+        Me.XrTableCell36.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VatPrice4]")})
         Me.XrTableCell36.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell36.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell36.Multiline = True
@@ -795,7 +795,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell11
         '
-        Me.XrTableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice4] * 1.24"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableCell11.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice4] ")})
         Me.XrTableCell11.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell11.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell11.Multiline = True
@@ -889,7 +889,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell41
         '
-        Me.XrTableCell41.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice5]")})
+        Me.XrTableCell41.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[VatPrice5]")})
         Me.XrTableCell41.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell41.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell41.Multiline = True
@@ -904,7 +904,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrTableCell42
         '
-        Me.XrTableCell42.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice5] * 1.24"), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10))})
+        Me.XrTableCell42.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Visible", "iif([visibleVat]=True,True,False)" & Global.Microsoft.VisualBasic.ChrW(10)), New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[modelFinalPrice5] ")})
         Me.XrTableCell42.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 8.0!)
         Me.XrTableCell42.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell42.Multiline = True
