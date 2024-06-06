@@ -10,6 +10,7 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class frmTransactions
     Private Projects As New Projects
     Private sID As String
+    Private sIsOrder As Boolean
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -28,6 +29,11 @@ Public Class frmTransactions
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
+        End Set
+    End Property
+    Public WriteOnly Property isOrder As Boolean
+        Set(value As Boolean)
+            sisOrder = value
         End Set
     End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
@@ -79,7 +85,7 @@ Public Class frmTransactions
     End Sub
 
     Private Sub cmdSaveTransD_Click(sender As Object, e As EventArgs) Handles cmdSaveTransD.Click
-        Projects.SaveRecordD() : txtBal.Text = Projects.GetTranshBal
+        Projects.SaveRecordD() : Projects.CalculateTotAmtAndBal(sID, sIsOrder) : txtBal.Text = Projects.GetTranshBal
     End Sub
     Private Sub cmdSaveTransH_Click(sender As Object, e As EventArgs) Handles cmdSaveTransH.Click
         Projects.SaveRecordH() : txtBal.Text = Projects.GetTranshBal
@@ -179,7 +185,7 @@ Public Class frmTransactions
 
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
         Select Case e.KeyCode
-            Case Keys.Delete : Projects.DeleteRecordD() : txtBal.Text = Projects.GetTranshBal
+            Case Keys.Delete : Projects.DeleteRecordD() : Projects.CalculateTotAmtAndBal(sID, sIsOrder) : txtBal.Text = Projects.GetTranshBal
         End Select
     End Sub
 
@@ -227,7 +233,7 @@ Public Class frmTransactions
         GridView1.UpdateTotalSummary()
         'Projects.isCompany = sisCompany
         If Projects.UpdateRecordD() = False Then e.Valid = False
-        Projects.CalculateTotAmtAndBal()
+        Projects.CalculateTotAmtAndBal(sID, sIsOrder)
     End Sub
 
     Private Sub GridView1_InvalidRowException(sender As Object, e As InvalidRowExceptionEventArgs) Handles GridView1.InvalidRowException
@@ -275,7 +281,7 @@ Public Class frmTransactions
                 oCmd.ExecuteNonQuery()
             End Using
             txtExtraCost.EditValue = GetExtraCost()
-            Projects.CalculateTotAmtAndBal()
+            Projects.CalculateTotAmtAndBal(sID)
             Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
         End If
     End Sub
@@ -324,7 +330,7 @@ Public Class frmTransactions
                 oCmd.ExecuteNonQuery()
             End Using
             txtExtraCost.EditValue = GetExtraCost()
-            Projects.CalculateTotAmtAndBal()
+            Projects.CalculateTotAmtAndBal(sID)
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -458,18 +464,18 @@ Public Class frmTransactions
     End Sub
 
     Private Sub txtbenchPurchasePrice_Validated(sender As Object, e As EventArgs) Handles txtbenchPurchasePrice.Validated
-        Projects.CalculateTotAmtAndBal()
+        Projects.CalculateTotAmtAndBal(sID)
     End Sub
     Private Sub chkofferCusAcceptance_CheckStateChanged(sender As Object, e As EventArgs) Handles chkofferCusAcceptance.CheckStateChanged
         If Me.IsActive = False Then Exit Sub
-        Projects.CalculateTotAmtAndBal()
+        Projects.CalculateTotAmtAndBal(sID)
     End Sub
     Private Sub CalculateBenchProfit()
         Dim benchPurchasePrice As Double, benchSalesPrice As Double
         If txtbenchPurchasePrice.EditValue Is Nothing Or txtbenchSalesPrice.EditValue Is Nothing Then Exit Sub
         benchPurchasePrice = DbnullToZero(txtbenchPurchasePrice) : benchSalesPrice = DbnullToZero(txtbenchSalesPrice)
         txtbenchProfit.EditValue = benchSalesPrice - benchPurchasePrice
-        Projects.CalculateTotAmtAndBal()
+        Projects.CalculateTotAmtAndBal(sID)
     End Sub
 
     Private Sub BBCctOrdersKitchen_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBCctOrdersKitchen.ItemClick

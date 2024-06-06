@@ -1,9 +1,6 @@
-﻿Imports DevExpress.CodeParser
-Imports DevExpress.Utils.Extensions
-Imports DevExpress.XtraEditors
+﻿Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraLayout
-Imports DevExpress.XtraLayout.Resizing
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
 
@@ -253,20 +250,23 @@ Public Class Projects
         frmInstallations.Show()
     End Sub
     'Ενημέρωση Υπολοίπου έργου
-    Public Sub CalculateTotAmtAndBal()
+    Public Sub CalculateTotAmtAndBal(ByVal transhID As String, Optional ByVal isOrder As Boolean = True)
         Try
             Using oCmd As New SqlCommand("CalculateProjectBal", CNDB)
                 oCmd.CommandType = CommandType.StoredProcedure
-                oCmd.Parameters.AddWithValue("@transhID", ID)
-                oCmd.Parameters.AddWithValue("@benchSalesPrice", DbnullToZero(Frm.txtbenchSalesPrice))
-                oCmd.Parameters.AddWithValue("@offerCusAcceptance", Frm.chkofferCusAcceptance.CheckState)
+                oCmd.Parameters.AddWithValue("@isOrder", isOrder)
+                oCmd.Parameters.AddWithValue("@transhID", transhID)
+                'oCmd.Parameters.AddWithValue("@benchSalesPrice", DbnullToZero(Frm.txtbenchSalesPrice))
+                'oCmd.Parameters.AddWithValue("@offerCusAcceptance", Frm.chkofferCusAcceptance.CheckState)
                 oCmd.Parameters.Add("@bal", SqlDbType.Decimal)
                 oCmd.Parameters.Add("@Totamt", SqlDbType.Decimal)
                 oCmd.Parameters("@bal").Direction = ParameterDirection.Output : oCmd.Parameters("@bal").Precision = 18 : oCmd.Parameters("@bal").Scale = 2
                 oCmd.Parameters("@Totamt").Direction = ParameterDirection.Output : oCmd.Parameters("@Totamt").Precision = 18 : oCmd.Parameters("@Totamt").Scale = 2
                 oCmd.ExecuteNonQuery()
-                Frm.txtBal.EditValue = oCmd.Parameters("@bal").Value : If Frm.txtBal.Text = "" Then Frm.txtBal.EditValue = "0.00"
-                Frm.txtTotAmt.EditValue = oCmd.Parameters("@Totamt").Value : If Frm.txtTotAmt.Text = "" Then Frm.txtTotAmt.EditValue = "0.00"
+                If Frm IsNot Nothing Then
+                    Frm.txtBal.EditValue = oCmd.Parameters("@bal").Value : If Frm.txtBal.Text = "" Then Frm.txtBal.EditValue = "0.00"
+                    Frm.txtTotAmt.EditValue = oCmd.Parameters("@Totamt").Value : If Frm.txtTotAmt.Text = "" Then Frm.txtTotAmt.EditValue = "0.00"
+                End If
             End Using
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -572,8 +572,11 @@ Public Class Projects
             Using oCmd As New SqlCommand(sSQL, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
+            'ΚΛΕΙΣΙΜΟ
             If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" Then
                 If UpdateProjectFields(Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay").ToString, Paid.ToString) = False Then
+                    ' Επειδή αφορά Κλείσιμο και το κλείσιμο γίνεται μόνο στην προσφορά ενημερώνω τα υπόλοιπα με isOrder = False
+                    'CalculateTotAmtAndBal(ID, False)
                     XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                 End If
                 Frm.dtreceiveDateAgreement.EditValue = Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "dtPay")

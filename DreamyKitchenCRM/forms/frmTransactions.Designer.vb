@@ -26,6 +26,7 @@ Partial Class frmTransactions
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim PushTransition1 As DevExpress.Utils.Animation.PushTransition = New DevExpress.Utils.Animation.PushTransition()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.TabPane1 = New DevExpress.XtraBars.Navigation.TabPane()
         Me.TabNavigationPage1 = New DevExpress.XtraBars.Navigation.TabNavigationPage()
@@ -272,6 +273,8 @@ Partial Class frmTransactions
         Me.COMP_CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.COMP_CCT_TRANSHTableAdapter()
         Me.BarButtonItem6 = New DevExpress.XtraBars.BarButtonItem()
         Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSHTableAdapter()
+        Me.BarWorkspaceMenuItem1 = New DevExpress.XtraBars.BarWorkspaceMenuItem()
+        Me.WorkspaceManager1 = New DevExpress.Utils.WorkspaceManager(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2884,8 +2887,8 @@ Partial Class frmTransactions
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbEMP_T, Me.BBProjectCosts, Me.BBInstallations, Me.BBCctOrdersKitchen, Me.BBCctOrdersDoor, Me.BBCctOrdersCloset, Me.BBCctOrdersSC, Me.BBAgreement})
-        Me.BarManager1.MaxItemId = 8
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbEMP_T, Me.BBProjectCosts, Me.BBInstallations, Me.BBCctOrdersKitchen, Me.BBCctOrdersDoor, Me.BBCctOrdersCloset, Me.BBCctOrdersSC, Me.BBAgreement, Me.BarWorkspaceMenuItem1})
+        Me.BarManager1.MaxItemId = 9
         '
         'Bar1
         '
@@ -3032,6 +3035,18 @@ Partial Class frmTransactions
         'Vw_TRANSHTableAdapter
         '
         Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
+        '
+        'BarWorkspaceMenuItem1
+        '
+        Me.BarWorkspaceMenuItem1.Caption = "BarWorkspaceMenuItem1"
+        Me.BarWorkspaceMenuItem1.Id = 8
+        Me.BarWorkspaceMenuItem1.Name = "BarWorkspaceMenuItem1"
+        Me.BarWorkspaceMenuItem1.WorkspaceManager = Me.WorkspaceManager1
+        '
+        'WorkspaceManager1
+        '
+        Me.WorkspaceManager1.TargetControl = Me
+        Me.WorkspaceManager1.TransitionType = PushTransition1
         '
         'frmTransactions
         '
@@ -3477,4 +3492,6 @@ Partial Class frmTransactions
     Friend WithEvents RepositoryItemCusTranshID As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
     Friend WithEvents VwTRANSHBindingSource As BindingSource
     Friend WithEvents Vw_TRANSHTableAdapter As DM_TRANSTableAdapters.vw_TRANSHTableAdapter
+    Friend WithEvents BarWorkspaceMenuItem1 As DevExpress.XtraBars.BarWorkspaceMenuItem
+    Friend WithEvents WorkspaceManager1 As DevExpress.Utils.WorkspaceManager
 End Class

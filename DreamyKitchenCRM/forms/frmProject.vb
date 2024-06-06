@@ -186,6 +186,7 @@ Public Class frmProject
             Frm.MdiParent = frmMain
             Frm.LCompProject.Visibility = HideCompany
             Frm.LComp.Visibility = HideCompany
+            Frm.isOrder = sisOrder
             Frm.isCompany = chkcompProject.CheckState
             If Mode = FormMode.EditRecord Then Frm.ID = sID : Frm.Mode = FormMode.EditRecord
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))

@@ -236,6 +236,7 @@ Public Class frmCUSPrivateAgreement
         Dim Frm As frmTransactions = New frmTransactions()
         Frm.Text = "Είσπραξη Πελάτη"
         Frm.CreditOnly = True
+        Frm.isOrder = True
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboCompProject.EditValue.ToString
         Frm.ShowDialog()
@@ -255,6 +256,7 @@ Public Class frmCUSPrivateAgreement
         Dim Frm As frmTransactions = New frmTransactions()
         Frm.Text = "Είσπραξη Πελάτη"
         Frm.CreditOnly = True
+        Frm.isOrder = True
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboTRANSH.EditValue.ToString
         Frm.lCusD.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never

@@ -149,12 +149,7 @@ Public Class CUSOfferOrderSpecialConstr
                         Frm.cmdPrintOffer.Enabled = True
                     End If
                     Dim Projects As New Projects
-                    If sIsOrder = True Then
-                        ' Ενημέρωση ποσών στο έργο
-                        Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString,  , True)
-                    Else
-                        If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True, True)
-                    End If
+                    Projects.CalculateTotAmtAndBal(Frm.cboTRANSH.EditValue.ToString, sIsOrder)
                     Mode = FormMode.EditRecord
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If

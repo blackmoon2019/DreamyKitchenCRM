@@ -297,14 +297,10 @@ Public Class CusOfferOrderKitchen
                         Frm.cmdPrintOffer.Enabled = True
                     End If
                     Dim Projects As New Projects
-                    'If sIsOrder = True Then
                     ' Πάγκος
                     If UpdateProjectBench() = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα στην ενημέρωση του πάγκου στο έργο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     ' Ενημέρωση ποσών στο έργο
-                    'Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True)
-                    'Else
-                    If Frm.chkGenOffer.CheckState = CheckState.Checked Then Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True, True) Else Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, False, True)
-                    'End If
+                    Projects.CalculateTotAmtAndBal(Frm.cboTRANSH.EditValue.ToString, sIsOrder)
                     Mode = FormMode.EditRecord
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
@@ -428,8 +424,7 @@ Public Class CusOfferOrderKitchen
                 If supIDIsEmpty = True Then If msg Then XtraMessageBox.Show("Δεν έχετε καταχωρήσει Προμηθευτή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Else
                 Dim Projects As New Projects
-                Projects.UpdateProject(Frm.cboTRANSH.EditValue.ToString, True)
-
+                Projects.CalculateTotAmtAndBal(Frm.cboTRANSH.EditValue.ToString, sIsOrder)
                 If msg Then XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
         Else

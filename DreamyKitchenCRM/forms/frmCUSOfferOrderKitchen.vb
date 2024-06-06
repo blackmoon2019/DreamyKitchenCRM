@@ -861,6 +861,7 @@ Public Class frmCUSOfferOrderKitchen
         Dim Frm As frmTransactions = New frmTransactions()
         Frm.Text = "Είσπραξη Πελάτη"
         Frm.CreditOnly = True
+        Frm.isOrder = sIsOrder
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboCompProject.EditValue.ToString
         Frm.isCompany = True
@@ -872,6 +873,7 @@ Public Class frmCUSOfferOrderKitchen
         Dim Frm As frmTransactions = New frmTransactions()
         Frm.Text = "Είσπραξη Πελάτη"
         Frm.CreditOnly = True
+        Frm.isOrder = sIsOrder
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboTRANSH.EditValue.ToString
         Frm.lCusD.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never

@@ -1656,6 +1656,14 @@ Public Class frmScroller
                 Dim frmTransactions As New frmTransactions
                 frmTransactions.Text = "Έργα"
                 frmTransactions.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HasOrderKitchen").ToString = "True" Or
+                    GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HasOrderCloset").ToString = "True" Or
+                    GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HasOrderDoor").ToString = "True" Or
+                    GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "HasOrderSpecialConstr").ToString = "True" Then
+                    frmTransactions.isOrder = True
+                Else
+                    frmTransactions.isOrder = False
+                End If
                 frmTransactions.MdiParent = frmMain
                 frmTransactions.Mode = FormMode.EditRecord
                 frmTransactions.Scroller = GridView1
