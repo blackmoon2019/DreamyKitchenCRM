@@ -3,6 +3,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
+Imports System.Xaml
 
 Public Class Projects
     Private Valid As New ValidateControls
@@ -11,7 +12,10 @@ Public Class Projects
     Private Frm2 As frmProject
     Private LoadForms As New FormLoader
     Private ID As String
+    Private sOfferID As String
+    Private sTypeOfProject As Int16
     Private IsOrder As Boolean
+    Private sorderCreated As Boolean = False
     Private sisCompany As Boolean
     Private Mode As Byte
     Private CalledFromCtrl As Boolean
@@ -26,7 +30,28 @@ Public Class Projects
             sisCompany = value
         End Set
     End Property
+    Public WriteOnly Property OfferID As String
+        Set(value As String)
+            sOfferID = value
+        End Set
+    End Property
+    Public Property TypeOfProject() As Int16
+        Get
+            Return sTypeOfProject
+        End Get
+        Set(value As Int16)
+            sTypeOfProject = value
+        End Set
+    End Property
 
+    Public Property orderCreated() As Boolean
+        Get
+            Return sorderCreated
+        End Get
+        Set(ByVal value As Boolean)
+            sorderCreated = value
+        End Set
+    End Property
 
     Public Sub Initialize(ByVal sFrm As frmTransactions, ByVal sID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Frm = sFrm
@@ -132,6 +157,25 @@ Public Class Projects
 
 
     End Sub
+    Public Sub ConvertToOrder()
+        Try
+            Dim OrderID As String
+            Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@OfferID", sOfferID)
+                oCmd.Parameters.AddWithValue("@createdBy", UserProps.ID)
+                oCmd.Parameters.AddWithValue("@Mode", TypeOfProject)
+                oCmd.Parameters.Add("@OrderID", SqlDbType.UniqueIdentifier)
+                oCmd.Parameters("@OrderID").Direction = ParameterDirection.Output
+                oCmd.ExecuteNonQuery()
+                OrderID = oCmd.Parameters("@OrderID").Value.ToString
+                Frm.orderCreated = True
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
     Private Sub CheckStateTransItems()
         Dim cmd As SqlCommand = New SqlCommand("Select transhCID from TRANSC WHERE transhID = " & toSQLValueS(ID), CNDB)
         Dim sdr As SqlDataReader = cmd.ExecuteReader()
@@ -387,18 +431,13 @@ Public Class Projects
                     sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "TRANSD", Frm.LayoutControl3,,, sGuid,, "transhID,IsCredit", toSQLValueS(ID) & ",1")
                     If sResult = True Then
                         XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                        'Frm.Vw_TRANSDTableAdapter.Fill(Frm.DM_TRANS.vw_TRANSD, System.Guid.Parse(ID))
                         Frm.Vw_TRANSD_CreditTableAdapter.FillByCredit(Frm.DM_TRANS.vw_TRANSD_Credit, System.Guid.Parse(ID))
                         If Frm.cboPayType.EditValue.ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" Then
-                            If UpdateProjectFields(Frm.dtPay.EditValue.ToString, "0") = False Then
-                                XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            End If
-                            If sisCompany = False Then
-                                'Τζίροι ποσοστά
-                                SaveEMP_T()
-                                ' Ανάλυση έργου 
-                                SaveProjectcost()
-                            End If
+                            If UpdateProjectFields(Frm.dtPay.EditValue.ToString, "0") = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            'Τζίροι ποσοστά - Ανάλυση έργου 
+                            If sisCompany = False Then SaveEMP_T() : SaveProjectcost()
+                            ' Αν η εγγραφή που περνάμε είναι κλείσιμο τότε κάνει και μετατροπή σε παραγγελία
+                            ConvertToOrder()
                         End If
 
                         'Καθαρισμός Controls
@@ -1001,7 +1040,9 @@ Public Class Projects
         Try
             If isCredit Then
                 If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
+                ' Έλεγχος αν υπάρχουν άλλες εγγραφές εκτός το κλείσιμο
                 If ClosedRecordIsLast() = False Then Exit Sub
+                If CheckIfExistOrder() = False Then Exit Sub
                 If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     sSQL = "DELETE FROM TRANSD WHERE ID = '" & Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString & "'"
 
@@ -1041,6 +1082,40 @@ Public Class Projects
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    'Έλεγχος αν έχει δημιουργηθεί παραγγελία
+    Private Function CheckIfExistOrder() As Boolean
+        Select Case TypeOfProject
+            Case 1
+                If TranshFieldAndValues.Item("HasOrderKitchen") = True Then
+                    XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε εγγραφή 'Κλεισίματος' όταν υπάρχει παραγγελία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                Else
+                    Return True
+                End If
+            Case 2
+                If TranshFieldAndValues.Item("HasOrderCloset") = True Then
+                    XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε εγγραφή 'Κλεισίματος' όταν υπάρχει παραγγελία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                Else
+                    Return True
+                End If
+            Case 3
+                If TranshFieldAndValues.Item("HasOrderDoor") = True Then
+                    XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε εγγραφή 'Κλεισίματος' όταν υπάρχει παραγγελία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                Else
+                    Return True
+                End If
+            Case 4
+                If TranshFieldAndValues.Item("HasOrderSpecialConstr") = True Then
+                    XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε εγγραφή 'Κλεισίματος' όταν υπάρχει παραγγελία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Return False
+                Else
+                    Return True
+                End If
+        End Select
+
+    End Function
     'Έλεγχος αν πάει να διαγραφεί η εγγραφή του Κλεισίματος πριν από άλλες εγγραφές. Πάντα τελευταία πρέπει να διαγράφεται
     Private Function ClosedRecordIsLast() As Boolean
         If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "PayTypeID").ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" And Frm.GridView1.DataRowCount > 1 Then

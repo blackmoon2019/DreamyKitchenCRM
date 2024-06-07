@@ -96,6 +96,10 @@ Public Class CusOfferOrderKitchen
                     Frm.txtdtdaysOfDelivery.EditValue = ProgProps.DAYS_OF_DELIVERY
                     Frm.txtNotes.EditValue = ProgProps.CUS_NOTES
                     Frm.cmdOrder.Enabled = False
+                    Frm.cmdCompCollection.Enabled = False
+                    Frm.cmdCusCollection.Enabled = False
+                Else
+                    If Frm.chkGenOffer.CheckState = CheckState.Checked Then Frm.cmdCusCollection.Enabled = False : Frm.cmdCompCollection.Enabled = True Else Frm.cmdCusCollection.Enabled = True : Frm.cmdCompCollection.Enabled = False
                 End If
 
 
@@ -148,6 +152,8 @@ Public Class CusOfferOrderKitchen
                     End If
                 End If
 
+                If Frm.chkGenOffer.CheckState = CheckState.Checked Then Frm.cmdCusCollection.Enabled = False : Frm.cmdCompCollection.Enabled = True Else Frm.cmdCusCollection.Enabled = True : Frm.cmdCompCollection.Enabled = False
+
                 Frm.TabNavigationPage2.Enabled = True
                 If sFields("GenOffer") = "" Then sFields("GenOffer") = False
                 FillCusTransh(sFields("cusID"), sFields("compTrashID"), sFields("GenOffer"), sFields("transhID")) : FillCompanyProjects(sFields("compID"), sFields("GenOffer"), sFields("compTrashID"))
@@ -156,7 +162,7 @@ Public Class CusOfferOrderKitchen
 
         If Frm.txtCUSOfferOrderFilename.EditValue IsNot Nothing Then Frm.txtbenchSalesPrice.ReadOnly = False Else Frm.txtbenchSalesPrice.ReadOnly = True
         If Frm.chkGenOffer.CheckState = CheckState.Checked Or Frm.cboCUS.EditValue = Frm.cboCompany.EditValue Then isCustomer = False Else isCustomer = True
-        If isCustomer Then Frm.cmdCompCollection.Enabled = False
+
     End Sub
     Public Sub LoadDevices()
         LoadForms.LoadDataToGrid(Frm.grdDevices, Frm.GridView1,
@@ -291,6 +297,8 @@ Public Class CusOfferOrderKitchen
                             Frm.cmdConvertToOrder.Enabled = True
                             Frm.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                             Frm.LOrder.Visibility = Utils.LayoutVisibility.Always
+                            If isCustomer = True Then Frm.cmdCompCollection.Enabled = False
+                            Frm.cmdCusCollection.Enabled = True
                         Else
                             Frm.cmdPrivateAgreement.Enabled = True
                         End If
@@ -439,9 +447,6 @@ Public Class CusOfferOrderKitchen
             Valid.ID = Frm.cboTRANSH.EditValue.ToString
             If Frm.cboCompProject.EditValue IsNot Nothing Then Valid.compTrashID = Frm.cboCompProject.EditValue.ToString
             If Valid.ValiDationRules(Frm.Name, Frm, True) = False Then Exit Sub
-            'If Frm.cboCompany.EditValue IsNot Nothing And Frm.cboCUS.EditValue IsNot Nothing Then
-            '    If Frm.chkGenOffer.CheckState = CheckState.Checked And Frm.IsOrderRead = False Then XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-            'End If
             If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure

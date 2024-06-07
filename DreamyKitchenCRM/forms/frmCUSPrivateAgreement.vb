@@ -56,7 +56,6 @@ Public Class frmCUSPrivateAgreement
             sEmpID = value
         End Set
     End Property
-
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value

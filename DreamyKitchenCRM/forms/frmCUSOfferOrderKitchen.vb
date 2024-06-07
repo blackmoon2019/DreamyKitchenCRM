@@ -32,7 +32,7 @@ Public Class frmCUSOfferOrderKitchen
             sIsOrder = value
         End Set
     End Property
-    Public ReadOnly Property IsOrderRead As Boolean
+    Public ReadOnly Property orderCreated As Boolean
         Get
             Return sIsOrder
         End Get
@@ -80,7 +80,6 @@ Public Class frmCUSOfferOrderKitchen
         CusOfferOrderKitchen.Initialize(Me, sID, Mode, CalledFromCtrl, CtrlCombo, sIsOrder, sBaseCat)
         CusOfferOrderKitchen.LoadForm()
         If receiveAgreement = True Then cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False : cmdSavePhotos.Enabled = False : cmdSaveTransF.Enabled = False
-        If chkGenOffer.CheckState = CheckState.Checked = True Then cmdCusCollection.Enabled = False : cmdCompCollection.Enabled = True Else cmdCusCollection.Enabled = True : cmdCompCollection.Enabled = False
         Me.CenterToScreen()
     End Sub
 
@@ -858,27 +857,40 @@ Public Class frmCUSOfferOrderKitchen
 
     Private Sub cmdCollection_Click(sender As Object, e As EventArgs) Handles cmdCompCollection.Click
         If cboCompProject.EditValue Is Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If sID = "" Then XtraMessageBox.Show("Δεν έχετε αποθηκεύσει την προσφορά", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Dim Frm As frmTransactions = New frmTransactions()
         Frm.Text = "Είσπραξη Πελάτη"
         Frm.CreditOnly = True
+        Frm.TypeOfProject = 1 'Κουζίνα
         Frm.isOrder = sIsOrder
+        Frm.OfferID = sID
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboCompProject.EditValue.ToString
         Frm.isCompany = True
         Frm.ShowDialog()
+        If Frm.orderCreated Then
+            cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False : cmdOrder.Enabled = True
+            LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+        End If
     End Sub
 
     Private Sub cmdCusCollection_Click(sender As Object, e As EventArgs) Handles cmdCusCollection.Click
         If cboTRANSH.EditValue Is Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If sID = "" Then XtraMessageBox.Show("Δεν έχετε αποθηκεύσει την προσφορά", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Dim Frm As frmTransactions = New frmTransactions()
         Frm.Text = "Είσπραξη Πελάτη"
         Frm.CreditOnly = True
+        Frm.TypeOfProject = 1 'Κουζίνα
         Frm.isOrder = sIsOrder
+        Frm.OfferID = sID
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboTRANSH.EditValue.ToString
         Frm.lCusD.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Frm.ShowDialog()
-
+        If Frm.orderCreated Then
+            cmdSave.Enabled = False : cmdSaveEquipDev.Enabled = False : cmdOrder.Enabled = True
+            LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+        End If
     End Sub
     Private Sub chkGenOffer_CheckedChanged(sender As Object, e As EventArgs) Handles chkGenOffer.CheckedChanged
         If chkGenOffer.CheckState = CheckState.Checked Then

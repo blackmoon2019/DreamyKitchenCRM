@@ -185,9 +185,6 @@ Public Class CusOfferOrderDoors
             Valid.ID = Frm.cboTRANSH.EditValue.ToString
             If Frm.cboCompProject.EditValue IsNot Nothing Then Valid.compTrashID = Frm.cboCompProject.EditValue.ToString
             If Valid.ValiDationRules(Frm.Name, Frm, True) = False Then Exit Sub
-            'If Frm.cboCompany.EditValue IsNot Nothing And Frm.cboCUS.EditValue IsNot Nothing Then
-            '    If Frm.chkGenOffer.CheckState = CheckState.Checked And Frm.IsOrderRead = False Then XtraMessageBox.Show("Παραγγελίες γίνονται μόνο σε πελάτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-            'End If
             If XtraMessageBox.Show("Θέλετε να μετατραπεί σε παραγγελία η προσφορά ?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                 Using oCmd As New SqlCommand("ConvertToOrder", CNDB)
                     oCmd.CommandType = CommandType.StoredProcedure

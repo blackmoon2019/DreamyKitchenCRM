@@ -39,7 +39,7 @@ Public Class frmCUSOfferOrderSpecialConstr
             sIsOrder = value
         End Set
     End Property
-    Public ReadOnly Property IsOrderRead As Boolean
+    Public ReadOnly Property orderCreated As Boolean
         Get
             Return sIsOrder
         End Get
@@ -361,27 +361,40 @@ Public Class frmCUSOfferOrderSpecialConstr
 
     Private Sub cmdCollection_Click(sender As Object, e As EventArgs) Handles cmdCompCollection.Click
         If cboCompProject.EditValue Is Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If sID = "" Then XtraMessageBox.Show("Δεν έχετε αποθηκεύσει την προσφορά", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Dim Frm As frmTransactions = New frmTransactions()
         Frm.Text = "Είσπραξη Πελάτη"
         Frm.CreditOnly = True
+        Frm.TypeOfProject = 4 ' Ειδ. Κατασκευή
         Frm.isOrder = sIsOrder
+        Frm.OfferID = sID
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboCompProject.EditValue.ToString
         Frm.isCompany = True
         Frm.ShowDialog()
+        If Frm.orderCreated Then
+            cmdSave.Enabled = False : cmdOrder.Enabled = True
+            LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+        End If
     End Sub
 
     Private Sub cmdCusCollection_Click(sender As Object, e As EventArgs) Handles cmdCusCollection.Click
         If cboTRANSH.EditValue Is Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If sID = "" Then XtraMessageBox.Show("Δεν έχετε αποθηκεύσει την προσφορά", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Dim Frm As frmTransactions = New frmTransactions()
         Frm.Text = "Είσπραξη Πελάτη"
         Frm.CreditOnly = True
+        Frm.TypeOfProject = 4 ' Ειδ. Κατασκευή
         Frm.isOrder = sIsOrder
+        Frm.OfferID = sID
         Frm.Mode = FormMode.EditRecord
         Frm.ID = cboTRANSH.EditValue.ToString
         Frm.lCusD.Visibility = False
         Frm.ShowDialog()
-
+        If Frm.orderCreated Then
+            cmdSave.Enabled = False : cmdOrder.Enabled = True
+            LblMsg.Text = "Δεν μπορείτε να κάνετε αλλαγές στην προσφορά γιατί έχει δημιουργηθεί παραγγελία."
+        End If
     End Sub
 
     Private Sub FillCusTransh()

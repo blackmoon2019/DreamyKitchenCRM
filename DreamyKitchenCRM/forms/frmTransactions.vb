@@ -10,7 +10,10 @@ Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Public Class frmTransactions
     Private Projects As New Projects
     Private sID As String
+    Private sOfferID As String
     Private sIsOrder As Boolean
+    Private sorderCreated As Boolean = False
+    Private sTypeOfProject As Int16
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -34,6 +37,27 @@ Public Class frmTransactions
     Public WriteOnly Property isOrder As Boolean
         Set(value As Boolean)
             sisOrder = value
+        End Set
+    End Property
+    Public WriteOnly Property OfferID As String
+        Set(value As String)
+            sOfferID = value
+        End Set
+    End Property
+    Public Property TypeOfProject() As Int16
+        Get
+            Return sTypeOfProject
+        End Get
+        Set(value As Int16)
+            sTypeOfProject = value
+        End Set
+    End Property
+    Public Property orderCreated() As Boolean
+        Get
+            Return sorderCreated
+        End Get
+        Set(ByVal value As Boolean)
+            sorderCreated = value
         End Set
     End Property
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
@@ -85,7 +109,7 @@ Public Class frmTransactions
     End Sub
 
     Private Sub cmdSaveTransD_Click(sender As Object, e As EventArgs) Handles cmdSaveTransD.Click
-        Projects.SaveRecordD() : Projects.CalculateTotAmtAndBal(sID, sIsOrder) : txtBal.Text = Projects.GetTranshBal
+        Projects.OfferID = sOfferID : Projects.SaveRecordD() : Projects.CalculateTotAmtAndBal(sID, sIsOrder) : txtBal.Text = Projects.GetTranshBal
     End Sub
     Private Sub cmdSaveTransH_Click(sender As Object, e As EventArgs) Handles cmdSaveTransH.Click
         Projects.SaveRecordH() : txtBal.Text = Projects.GetTranshBal
@@ -185,7 +209,7 @@ Public Class frmTransactions
 
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
         Select Case e.KeyCode
-            Case Keys.Delete : Projects.DeleteRecordD() : Projects.CalculateTotAmtAndBal(sID, sIsOrder) : txtBal.Text = Projects.GetTranshBal
+            Case Keys.Delete : Projects.TypeOfProject = TypeOfProject : Projects.DeleteRecordD() : Projects.CalculateTotAmtAndBal(sID, sIsOrder) : txtBal.Text = Projects.GetTranshBal
         End Select
     End Sub
 

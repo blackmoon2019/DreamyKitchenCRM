@@ -262,6 +262,8 @@ Partial Class frmTransactions
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlLeft = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlRight = New DevExpress.XtraBars.BarDockControl()
+        Me.BarWorkspaceMenuItem1 = New DevExpress.XtraBars.BarWorkspaceMenuItem()
+        Me.WorkspaceManager1 = New DevExpress.Utils.WorkspaceManager(Me.components)
         Me.Vw_TRANS_EXTRA_CHARGESTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANS_EXTRA_CHARGESTableAdapter()
         Me.Vw_FILE_CATTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_FILE_CATTableAdapter()
         Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -273,8 +275,6 @@ Partial Class frmTransactions
         Me.COMP_CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.COMP_CCT_TRANSHTableAdapter()
         Me.BarButtonItem6 = New DevExpress.XtraBars.BarButtonItem()
         Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSHTableAdapter()
-        Me.BarWorkspaceMenuItem1 = New DevExpress.XtraBars.BarWorkspaceMenuItem()
-        Me.WorkspaceManager1 = New DevExpress.Utils.WorkspaceManager(Me.components)
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2989,6 +2989,18 @@ Partial Class frmTransactions
         Me.barDockControlRight.Manager = Me.BarManager1
         Me.barDockControlRight.Size = New System.Drawing.Size(0, 1314)
         '
+        'BarWorkspaceMenuItem1
+        '
+        Me.BarWorkspaceMenuItem1.Caption = "BarWorkspaceMenuItem1"
+        Me.BarWorkspaceMenuItem1.Id = 8
+        Me.BarWorkspaceMenuItem1.Name = "BarWorkspaceMenuItem1"
+        Me.BarWorkspaceMenuItem1.WorkspaceManager = Me.WorkspaceManager1
+        '
+        'WorkspaceManager1
+        '
+        Me.WorkspaceManager1.TargetControl = Me
+        Me.WorkspaceManager1.TransitionType = PushTransition1
+        '
         'Vw_TRANS_EXTRA_CHARGESTableAdapter
         '
         Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.ClearBeforeFill = True
@@ -3035,18 +3047,6 @@ Partial Class frmTransactions
         'Vw_TRANSHTableAdapter
         '
         Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
-        '
-        'BarWorkspaceMenuItem1
-        '
-        Me.BarWorkspaceMenuItem1.Caption = "BarWorkspaceMenuItem1"
-        Me.BarWorkspaceMenuItem1.Id = 8
-        Me.BarWorkspaceMenuItem1.Name = "BarWorkspaceMenuItem1"
-        Me.BarWorkspaceMenuItem1.WorkspaceManager = Me.WorkspaceManager1
-        '
-        'WorkspaceManager1
-        '
-        Me.WorkspaceManager1.TargetControl = Me
-        Me.WorkspaceManager1.TransitionType = PushTransition1
         '
         'frmTransactions
         '
