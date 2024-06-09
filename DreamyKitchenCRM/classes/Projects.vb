@@ -437,7 +437,7 @@ Public Class Projects
                             'Τζίροι ποσοστά - Ανάλυση έργου 
                             If sisCompany = False Then SaveEMP_T() : SaveProjectcost()
                             ' Αν η εγγραφή που περνάμε είναι κλείσιμο τότε κάνει και μετατροπή σε παραγγελία
-                            ConvertToOrder()
+                            'ConvertToOrder()
                         End If
 
                         'Καθαρισμός Controls

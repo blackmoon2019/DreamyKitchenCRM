@@ -1020,7 +1020,7 @@ Partial Public Class RepCUSOfferCloset2ndPage
         '
         'XrLabel4
         '
-        Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", resources.GetString("XrLabel4.ExpressionBindings"))})
+        Me.XrLabel4.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "iif([visibleVat]=True, [TotalClosetPrice],[TotalClosetVat] )" & Global.Microsoft.VisualBasic.ChrW(10))})
         Me.XrLabel4.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.75!)
         Me.XrLabel4.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrLabel4.LocationFloat = New DevExpress.Utils.PointFloat(265.3095!, 152.0!)

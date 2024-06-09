@@ -2616,7 +2616,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.cmdConvertToOrder.StyleController = Me.LayoutControl1
         Me.cmdConvertToOrder.TabIndex = 66
         Me.cmdConvertToOrder.Text = "Μετατροπή σε Παραγγελία"
-        Me.cmdConvertToOrder.Visible = False
         '
         'cboCompProject
         '
@@ -3750,7 +3749,7 @@ Partial Class frmCUSOfferOrderKitchen
         '
         Me.TabbedControlGroup1.Location = New System.Drawing.Point(0, 0)
         Me.TabbedControlGroup1.Name = "TabbedControlGroup1"
-        Me.TabbedControlGroup1.SelectedTabPage = Me.LCostDetails
+        Me.TabbedControlGroup1.SelectedTabPage = Me.LOfferDetails
         Me.TabbedControlGroup1.Size = New System.Drawing.Size(1914, 177)
         Me.TabbedControlGroup1.TabPages.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LCostDetails, Me.LOfferDetails})
         '
@@ -4265,7 +4264,6 @@ Partial Class frmCUSOfferOrderKitchen
         Me.LConvertToOrder.Text = "Μετατροπή σε Παραγγελία"
         Me.LConvertToOrder.TextSize = New System.Drawing.Size(0, 0)
         Me.LConvertToOrder.TextVisible = False
-        Me.LConvertToOrder.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         '
         'LayoutControlItem86
         '
