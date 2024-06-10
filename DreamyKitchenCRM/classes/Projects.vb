@@ -1042,7 +1042,7 @@ Public Class Projects
                 If Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID") = Nothing Then Exit Sub
                 ' Έλεγχος αν υπάρχουν άλλες εγγραφές εκτός το κλείσιμο
                 If ClosedRecordIsLast() = False Then Exit Sub
-                If CheckIfExistOrder() = False Then Exit Sub
+                'If CheckIfExistOrder() = False Then Exit Sub
                 If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
                     sSQL = "DELETE FROM TRANSD WHERE ID = '" & Frm.GridView1.GetRowCellValue(Frm.GridView1.FocusedRowHandle, "ID").ToString & "'"
 
@@ -1113,6 +1113,7 @@ Public Class Projects
                 Else
                     Return True
                 End If
+            Case 0 : Return True
         End Select
 
     End Function

@@ -490,6 +490,7 @@ Public Class frmCUSOfferOrderCloset
         FinalPrice1 = txtFinalPrice1.EditValue : FinalPrice2 = txtFinalPrice2.EditValue : FinalPrice3 = txtFinalPrice3.EditValue
         FinalPrice4 = txtFinalPrice4.EditValue : FinalPrice5 = txtFinalPrice5.EditValue
         txtTotAmt.EditValue = FinalPrice1 + FinalPrice2 + FinalPrice3 + FinalPrice4 + FinalPrice5
+        txtTotalClosetVat.EditValue = (FinalPrice1 + FinalPrice2 + FinalPrice3 + FinalPrice4 + FinalPrice5) / ProgProps.AlternateVAT
     End Sub
     Private Sub txtInitialPrice1_EditValueChanged(sender As Object, e As EventArgs) Handles txtInitialPrice1.EditValueChanged
         If DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue IsNot Nothing And DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).OldValue <> DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue Then ApplyDiscount(1)
