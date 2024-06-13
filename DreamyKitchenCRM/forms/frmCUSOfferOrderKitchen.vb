@@ -1161,4 +1161,39 @@ Public Class frmCUSOfferOrderKitchen
     Private Sub txtbenchSalesPrice_EditValueChanged(sender As Object, e As EventArgs) Handles txtbenchSalesPrice.EditValueChanged
         CalculateTotAmt()
     End Sub
+
+    Private Sub cboLegs1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboLegs1.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cboLegs1.EditValue = Nothing
+        End Select
+
+    End Sub
+
+    Private Sub cbobenchThickness_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbobenchThickness.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cbobenchThickness.EditValue = Nothing
+        End Select
+
+    End Sub
+
+    Private Sub cbobenchThickness1_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbobenchThickness1.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cbobenchThickness1.EditValue = Nothing
+        End Select
+
+    End Sub
+
+    Private Sub cbobenchThickness2_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbobenchThickness2.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cbobenchThickness2.EditValue = Nothing
+        End Select
+
+    End Sub
+
+    Private Sub cbobenchThickness3_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cbobenchThickness3.ButtonClick
+        Select Case e.Button.Index
+            Case 1 : cbobenchThickness3.EditValue = Nothing
+        End Select
+
+    End Sub
 End Class

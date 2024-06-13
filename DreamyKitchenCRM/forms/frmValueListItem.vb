@@ -109,8 +109,16 @@ Public Class frmValueListItem
                 LName.Tag = "1"
                 LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 cboValueList.ReadOnly = True
-            Case "DE86FD16-2154-4E2A-B025-4D34BDF8C808" ' Πόρτες
-                Me.Text = "Μοντέλα Πορτών"
+            Case "D08B9371-F94A-48F9-8021-C1661120ED8C" ' Πάγκοι
+                Me.Text = "Πάγκοι"
+                LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
+                LName.Tag = "1"
+                LDescription.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+                cboValueList.ReadOnly = True
+            Case "DE86FD16-2154-4E2A-B025-4D34BDF8C808" ' Κωδικοί Χρωμάτων
+                Me.Text = "Κωδικοί Χρωμάτων"
                 LCat.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 LName.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
                 LName.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk

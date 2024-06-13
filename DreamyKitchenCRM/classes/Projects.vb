@@ -116,7 +116,6 @@ Public Class Projects
                 LoadForms.LoadFormNew(myLayoutControls, "Select * from vw_TRANSH with(nolock) where id ='" + ID + "'",, TranshFieldAndValues)
                 ' Debug.Print(Frm.cboCUS.EditValue.ToString)
                 Frm.cboCUS.EditValue = TranshFieldAndValues.Item("cusID").ToString
-
                 Frm.txtBal.EditValue = TranshFieldAndValues.Item("bal")
                 sEMP_T_ID = TranshFieldAndValues.Item("EmpTID").ToString
                 sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
@@ -126,7 +125,7 @@ Public Class Projects
                 CheckStateTransItems()
                 Frm.txtCodeD.Text = DBQ.GetNextId("TRANSD")
                 Frm.dtPay.EditValue = DateTime.Now
-
+                Frm.chkCompleted.CheckState = IIf(TranshFieldAndValues.Item("completed") = "True", 1, 0)
         End Select
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "vw_TRANSH_F_def.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "TRANSD.xml")

@@ -232,6 +232,7 @@
     <Compile Include="classes\FillCombos.vb" />
     <Compile Include="classes\FormLoader.vb" />
     <Compile Include="classes\InitializeCalendar.vb" />
+    <Compile Include="classes\Installations.vb" />
     <Compile Include="classes\Localization.vb" />
     <Compile Include="classes\Parameters.vb" />
     <Compile Include="classes\ProgProp.vb" />

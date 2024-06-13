@@ -1,8 +1,6 @@
 ﻿Imports System.Data.SqlClient
-Imports System.Runtime.Remoting.Metadata.W3cXsd2001
 Imports System.Text
 Imports DevExpress.Utils
-Imports DevExpress.Utils.Extensions
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI

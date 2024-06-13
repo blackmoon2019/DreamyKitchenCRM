@@ -363,7 +363,7 @@ Partial Public Class RepCUSOfferKitchen
         Me.XrTableCell38.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
         Me.XrTableCell38.Borders = CType(((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell38.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_CCT_ORDERS_KITCHEN].[BenchNisidaVALUELISTITEMName]")})
+        Me.XrTableCell38.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[BenchNisidaDoorTypeName]")})
         Me.XrTableCell38.Font = New DevExpress.Drawing.DXFont("Zona Pro", 9.0!)
         Me.XrTableCell38.ForeColor = System.Drawing.Color.FromArgb(CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer), CType(CType(89, Byte), Integer))
         Me.XrTableCell38.Multiline = True
@@ -1422,7 +1422,7 @@ Partial Public Class RepCUSOfferKitchen
         Me.OfferID.Description = "OfferID"
         Me.OfferID.Name = "OfferID"
         Me.OfferID.Type = GetType(System.Guid)
-        Me.OfferID.ValueInfo = "a611ca9f-dd1c-4962-9245-a4a600169b76"
+        Me.OfferID.ValueInfo = "406419e2-b037-4264-911d-3ba53f335cfc"
         DynamicListLookUpSettings1.DataMember = "vw_CCT_ORDERS_KITCHEN"
         DynamicListLookUpSettings1.DataSource = Me.SqlDataSource1
         DynamicListLookUpSettings1.DisplayMember = "ID"
@@ -1758,6 +1758,7 @@ Partial Public Class RepCUSOfferKitchen
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
+        Me.ParameterPanelLayoutItems.AddRange(New DevExpress.XtraReports.Parameters.ParameterPanelLayoutItem() {New DevExpress.XtraReports.Parameters.ParameterLayoutItem(Me.OfferID, DevExpress.XtraReports.Parameters.Orientation.Horizontal)})
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.OfferID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
         Me.Version = "23.1"
