@@ -32,39 +32,17 @@ Public Class frmMain
             RibonSettings.Visible = False
             bbTRANSH.Visibility = BarItemVisibility.Never
             BBProjectCosts.Visibility = BarItemVisibility.Never
-            bbProjects.Visible = False
+            bbTRANSH.Visibility = BarItemVisibility.Never
+            BBProjectCosts.Visibility = BarItemVisibility.Never
+            BBTransh_C.Visibility = BarItemVisibility.Never
+        Else
+            BBProject.Visibility = BarItemVisibility.Never
         End If
         ProjectAnalysis.Visible = True
 
 
     End Sub
-
-    Private Sub MdiManager_PageAdded(sender As Object, e As MdiTabPageEventArgs)
-    End Sub
-    Private Sub bbUsers_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbUsers.ItemClick
-        If UserPermissions.CheckViewPermission("Χρήστες") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Χρήστες"
-            form.DataTable = "vw_USR"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
-
-    End Sub
-
-    Private Sub bbMailSettings_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbMailSettings.ItemClick
-        If UserPermissions.CheckViewPermission("Email Settings") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Email Settings"
-            form.DataTable = "vw_MAILS"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
-    End Sub
+ 
 
     Private Sub XtraTabbedMdiManager1_EndFloating(sender As Object, e As FloatingEventArgs) Handles XtraTabbedMdiManager1.EndFloating
         Select Case XtraTabbedMdiManager1.ActiveFloatForm.Name
@@ -84,155 +62,6 @@ Public Class frmMain
 
         Application.Exit()
     End Sub
-
-    Private Sub XtraTabbedMdiManager1_BeginFloating(sender As Object, e As FloatingCancelEventArgs) Handles XtraTabbedMdiManager1.BeginFloating
-        Select Case XtraTabbedMdiManager1.SelectedPage.MdiChild.Name
-            Case "frmCalendar"
-                'e.Cancel = True
-                '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 489 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 166
-                '    Case "frmMailSettings"
-                '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 520 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 136
-                '    Case "frmScroller"
-                '        frmScroller.Width = 1037 : frmScroller.Height = 689
-
-        End Select
-    End Sub
-    Private Sub bbRights_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbRights.ItemClick
-        If UserPermissions.CheckViewPermission("Δικαιώματα") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Δικαιώματα"
-            form.DataTable = "vw_RIGHTS"
-            form.DataDetail = "vw_FORM_RIGHTS"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
-    End Sub
-
-
-    Private Sub bbLink_HyperlinkClick(sender As Object, e As HyperlinkClickEventArgs) Handles bbLink.HyperlinkClick
-        Process.Start(bbLink.EditValue)
-    End Sub
-
-    Private Sub bbCOU_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCOU.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Νομοί"
-        form.DataTable = "vw_COU"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbAreas_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbAreas.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Περιοχές"
-        form.DataTable = "vw_AREAS"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbADR_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbADR.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Διευθύνσεις"
-        form.DataTable = "vw_ADR"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbDOY_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDOY.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "ΔΟΥ"
-        form.DataTable = "vw_DOY"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbPRF_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbPRF.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Επαγγέλματα"
-        form.DataTable = "vw_PRF"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbStatus_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbStatus.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Status"
-        form.DataTable = "vw_STATUS"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbSource_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbSource.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Πηγές"
-        form.DataTable = "vw_SOURCE"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbCCT_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCCT.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Πελάτες"
-        form.DataTable = "vw_CCT"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbSalers_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbSalers.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Πωλητές"
-        form.DataTable = "vw_SALERS"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub BBCusMovs_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCusMovs.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κινήσεις Πελατών"
-        form.DataTable = "vw_CCT_M"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub BBCalendar_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCalendar.ItemClick
-        Dim form As frmCalendar = New frmCalendar()
-        form.Text = "Ημερολόγιο Κινήσεων"
-        'form.DataTable = "vw_CCT_M"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub BBCusStatistics1_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCusStatistics1.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Στατιστικά Πελατών"
-        form.DataTable = "vw_CUS_REPORT1"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub XtraTabbedMdiManager1_PageAdded(sender As Object, e As MdiTabPageEventArgs) Handles XtraTabbedMdiManager1.PageAdded
-        Dim form1 As frmCalendar = New frmCalendar()
-        XtraTabbedMdiManager1.Pages(frmCalendar).ShowCloseButton = DefaultBoolean.False
-
-
-    End Sub
-
-    Private Sub BBNotes_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBNotes.ItemClick
-        Dim form As New frmNotesScroller
-        form.Text = "Σημειώματα"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub BarButtonItem2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbLabels.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Εττικέτες"
-        form.DataTable = "vw_NOTES_L"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         GetNewMessages()
         'Έλεγχος νέας έκδοσης
@@ -304,7 +133,14 @@ Public Class frmMain
         Return False
     End Function
 
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        If BBUpdate.Visibility = BarItemVisibility.Never Then BBUpdate.Visibility = BarItemVisibility.Always Else BBUpdate.Visibility = BarItemVisibility.Never
+    End Sub
 
+    Private Sub BBUpdate_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdate.ItemClick
+        Timer2.Stop()
+        CheckFUpdate.FindNewVersion()
+    End Sub
     Private Sub AlertControl1_AlertClick(sender As Object, e As AlertClickEventArgs) Handles AlertControl1.AlertClick
         Try
             Dim sSQL As String
@@ -341,120 +177,21 @@ Public Class frmMain
         frmLogin.Show()
         Me.Close()
     End Sub
+    Private Sub XtraTabbedMdiManager1_BeginFloating(sender As Object, e As FloatingCancelEventArgs) Handles XtraTabbedMdiManager1.BeginFloating
+        Select Case XtraTabbedMdiManager1.SelectedPage.MdiChild.Name
+            Case "frmCalendar"
+                'e.Cancel = True
+                '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 489 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 166
+                '    Case "frmMailSettings"
+                '        XtraTabbedMdiManager1.ActiveFloatForm.Width = 520 : XtraTabbedMdiManager1.ActiveFloatForm.Height = 136
+                '    Case "frmScroller"
+                '        frmScroller.Width = 1037 : frmScroller.Height = 689
 
-    Private Sub ΒΒVALUELISTITEM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒvalueListItem.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορία Πόρτας"
-        form.DataTable = "vw_VALUELISTITEM"
-        form.MdiParent = Me
-        form.Show()
+        End Select
     End Sub
-
-    Private Sub bbCatErm_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCatErm.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορίες Ερμαρίων"
-        form.DataTable = "vw_CAT_ERM"
-        form.MdiParent = Me
-        form.Show()
+    Private Sub bbLink_HyperlinkClick(sender As Object, e As HyperlinkClickEventArgs) Handles bbLink.HyperlinkClick
+        Process.Start(bbLink.EditValue)
     End Sub
-
-    Private Sub bbERM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbERM.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Ερμάρια"
-        form.DataTable = "vw_ERM"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbBench_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbBench.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Πάγκοι"
-        form.DataTable = "vw_BENCH"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbMech_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbMech.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Μηχανισμοί"
-        form.DataTable = "vw_MECH"
-        form.MdiParent = Me
-        form.Show()
-
-    End Sub
-
-    Private Sub bbTechCateg_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbTechCateg.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορίες Τεχνικής Υποστήριξης"
-        form.DataTable = "vw_TECH_CAT"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbTechnicalSupport_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbTechnicalSupport.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τεχνική Υποστήριξη"
-        form.DataTable = "vw_TECH_SUP"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbColors_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbColors.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Χρώματα"
-        form.DataTable = "vw_COLORS"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbColorCAT_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbColorCAT.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορίες Χρωμάτων"
-        form.DataTable = "vw_COLORS_CAT"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bboffer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bboffer.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Προσφορές"
-        form.DataTable = "vw_OFF"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbEpendisis_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEpendisis.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Επενδύσης - Καταφραγές"
-        form.DataTable = "vw_SIDES"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbDimensions_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDimensions.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Διαστάσεις"
-        form.DataTable = "vw_DIM"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbCalculations_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCalculations.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Υπολογισμοί"
-        form.DataTable = "vw_CALC"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
-    Private Sub bbCatSubErm_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCatSubErm.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Υποκατηγορίες Ερμαρίων"
-        form.DataTable = "vw_CAT_SUB_ERM"
-        form.MdiParent = Me
-        form.Show()
-    End Sub
-
     Private Sub frmMain_Closed(sender As Object, e As EventArgs) Handles Me.Closed
         SaveCurrentSkin()
     End Sub
@@ -478,37 +215,252 @@ Public Class frmMain
         End If
     End Sub
 
+    Private Sub XtraTabbedMdiManager1_PageAdded(sender As Object, e As MdiTabPageEventArgs) Handles XtraTabbedMdiManager1.PageAdded
+        Dim form1 As frmCalendar = New frmCalendar()
+        XtraTabbedMdiManager1.Pages(frmCalendar).ShowCloseButton = DefaultBoolean.False
+    End Sub
+
+    Private Sub bbUsers_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles bbUsers.ItemClick
+        Dim form As frmScroller = New frmScroller("Χρήστες") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_USR"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbMailSettings_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbMailSettings.ItemClick
+        Dim form As frmScroller = New frmScroller("Email Settings") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_MAILS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+    Private Sub bbRights_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbRights.ItemClick
+        Dim form As frmPermissions = New frmPermissions()
+        form.Text = "Δικαιώματα"
+        UserPermissions.GetUserPermissions(form.Text) : If UserProps.AllowView = False Then XtraMessageBox.Show("Δεν έχουν οριστεί τα απαραίτητα δικαιώματα στον χρήστη", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : form.Dispose() : Exit Sub
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbCOU_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCOU.ItemClick
+        Dim form As frmScroller = New frmScroller("Νομοί") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_COU"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbAreas_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbAreas.ItemClick
+        Dim form As frmScroller = New frmScroller("Περιοχές") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_AREAS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbADR_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbADR.ItemClick
+        Dim form As frmScroller = New frmScroller("Διευθύνσεις") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_ADR"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbDOY_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDOY.ItemClick
+        Dim form As frmScroller = New frmScroller("ΔΟΥ") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_DOY"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbPRF_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbPRF.ItemClick
+        Dim form As frmScroller = New frmScroller("Επαγγέλματα") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_PRF"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbStatus_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbStatus.ItemClick
+        Dim form As frmScroller = New frmScroller("Status") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_STATUS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbSource_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbSource.ItemClick
+        Dim form As frmScroller = New frmScroller("Πηγές") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_SOURCE"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbCCT_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCCT.ItemClick
+        Dim form As frmScroller = New frmScroller("Πελάτες") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_CCT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbSalers_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbSalers.ItemClick
+        Dim form As frmScroller = New frmScroller("Πωλητές") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_SALERS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBCusMovs_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCusMovs.ItemClick
+        Dim form As frmScroller = New frmScroller("Κινήσεις Πελατών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_CCT_M"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBCalendar_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCalendar.ItemClick
+        Dim form As frmCalendar = New frmCalendar()
+        form.Text = "Ημερολόγιο Κινήσεων"
+        'form.DataTable = "vw_CCT_M"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BBCusStatistics1_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCusStatistics1.ItemClick
+        Dim form As frmScroller = New frmScroller("Στατιστικά Πελατών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_CUS_REPORT1"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+
+    Private Sub BBNotes_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBNotes.ItemClick
+        Dim form As New frmNotesScroller
+        form.Text = "Σημειώματα"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub BarButtonItem2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbLabels.ItemClick
+        Dim form As frmScroller = New frmScroller("Εττικέτες") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_NOTES_L"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+
+
+    Private Sub ΒΒVALUELISTITEM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒvalueListItem.ItemClick
+        Dim form As frmScroller = New frmScroller("Κατηγορία Πόρτας") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_VALUELISTITEM"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbCatErm_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCatErm.ItemClick
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Ερμαρίων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_CAT_ERM"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbERM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbERM.ItemClick
+        Dim form As frmScroller = New frmScroller("Ερμάρια") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_ERM"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbBench_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbBench.ItemClick
+        Dim form As frmScroller = New frmScroller("Πάγκοι") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_BENCH"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbMech_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbMech.ItemClick
+        Dim form As frmScroller = New frmScroller("Μηχανισμοί") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_MECH"
+        form.MdiParent = Me
+        form.Show()
+
+    End Sub
+
+    Private Sub bbTechCateg_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbTechCateg.ItemClick
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Τεχνικής Υποστήριξης") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_TECH_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbTechnicalSupport_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbTechnicalSupport.ItemClick
+        Dim form As frmScroller = New frmScroller("Τεχνική Υποστήριξη") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_TECH_SUP"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbColors_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbColors.ItemClick
+        Dim form As frmScroller = New frmScroller("Χρώματα") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_COLORS"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbColorCAT_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbColorCAT.ItemClick
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Χρωμάτων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_COLORS_CAT"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bboffer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bboffer.ItemClick
+        Dim form As frmScroller = New frmScroller("Προσφορές") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_OFF"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbEpendisis_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEpendisis.ItemClick
+        Dim form As frmScroller = New frmScroller("Επενδύσης - Καταφραγές") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_SIDES"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbDimensions_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDimensions.ItemClick
+        Dim form As frmScroller = New frmScroller("Διαστάσεις") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_DIM"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbCalculations_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCalculations.ItemClick
+        Dim form As frmScroller = New frmScroller("Υπολογισμοί") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_CALC"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
+    Private Sub bbCatSubErm_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbCatSubErm.ItemClick
+        Dim form As frmScroller = New frmScroller("Υποκατηγορίες Ερμαρίων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_CAT_SUB_ERM"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
     Private Sub BBSer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSer.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Συνεργεία"
+        Dim form As frmScroller = New frmScroller("Συνεργεία") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_SER"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBInstM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInstM.ItemClick
-        If UserPermissions.CheckViewPermission("Μισθοδοσία Τοποθετών") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Μισθοδοσία Τοποθετών"
-            form.DataTable = "vw_INST_M"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Μισθοδοσία Τοποθετών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_INST_M"
+        form.MdiParent = Me
+        form.Show()
     End Sub
     Private Sub BBInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInst.ItemClick
-        If UserPermissions.CheckViewPermission("Πρόγραμμα Εργασιών Τοποθετών") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Πρόγραμμα Εργασιών Τοποθετών"
-            form.DataTable = "vw_INST"
-            form.DataDetail = "vw_INST_M"
-            'form.DataTableWhereCondition = " WHERE DEPID = 'BFD7EBD9-B0B2-4FCB-B1FF-341EC37A6A11'"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Πρόγραμμα Εργασιών Τοποθετών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_INST"
+        form.DataDetail = "vw_INST_M"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub BBCalendarInst_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCalendarInst.ItemClick
@@ -519,48 +471,32 @@ Public Class frmMain
     End Sub
 
     Private Sub bbBanks_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbBanks.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τράπεζες"
+        Dim form As frmScroller = New frmScroller("Τράπεζες") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_BANKS"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub bbTRANSH_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbTRANSH.ItemClick
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Έργα Πελατών"
-            form.DataTable = "vw_TRANSH"
-            form.DataDetail = "vw_TRANSD"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Έργα Πελατών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_TRANSH"
+        form.DataDetail = "vw_TRANSD"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub bbEmploye_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEmploye.ItemClick
-        If UserPermissions.CheckViewPermission("Διαχείριση Προσωπικού") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Διαχείριση Προσωπικού"
-            form.DataTable = "vw_EMP"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Διαχείριση Προσωπικού") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_EMP"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub bbDep_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDep.ItemClick
-        If UserPermissions.CheckViewPermission("Τμήματα Εταιρίας") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Τμήματα Εταιρίας"
-            form.DataTable = "vw_DEP"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Τμήματα Εταιρίας") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_DEP"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub bbEmpMov_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEmpMov.ItemClick
@@ -576,15 +512,10 @@ Public Class frmMain
     End Sub
 
     Private Sub bbStatusPre_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbStatusPre.ItemClick
-        If UserPermissions.CheckViewPermission("Status Παρουσιολογίου") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Status Παρουσιολογίου"
-            form.DataTable = "vw_EMP_S"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Status Παρουσιολογίου") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_EMP_S"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub BBPersonalCalendar_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPersonalCalendar.ItemClick
@@ -595,8 +526,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBPersonalCalendarStatus_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPersonalCalendarStatus.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Status Προσωπικού Ημερολογίου"
+        Dim form As frmScroller = New frmScroller("Status Προσωπικού Ημερολογίου") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_SALER_CAL_STATUS"
         form.MdiParent = Me
         form.Show()
@@ -605,46 +535,30 @@ Public Class frmMain
 
 
     Private Sub BBPayrolStatus_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayrolStatus.ItemClick
-        If UserPermissions.CheckViewPermission("Status Μισθοδοσίας") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Status Μισθοδοσίας"
-            form.DataTable = "vw_EMP_M_S"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Status Μισθοδοσίας") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_EMP_M_S"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub BBPayroll_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayroll.ItemClick
-        If UserPermissions.CheckViewPermission("Μισθοδοσία Έκθεσης") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Μισθοδοσία Έκθεσης"
-            form.DataTableWhereCondition = " WHERE DEPID = '9812E975-2FD4-4653-B043-3D6CAF440888'"
-            form.IsConstr = False
-            form.DataTable = "vw_EMP_M"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Μισθοδοσία Έκθεσης") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTableWhereCondition = " WHERE DEPID = '9812E975-2FD4-4653-B043-3D6CAF440888'"
+        form.IsConstr = False
+        form.DataTable = "vw_EMP_M"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub bbEMP_T_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbEMP_T.ItemClick
-        If UserPermissions.CheckViewPermission("Ποσοστά Πωλητών") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Ποσοστά Πωλητών"
-            form.DataTable = "vw_EMP_T"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Ποσοστά Πωλητών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_EMP_T"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub BBEllipse_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEllipse.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Εκκρεμότητες Έργων"
+        Dim form As frmScroller = New frmScroller("Εκκρεμότητες Έργων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_INST_ELLIPSE"
         form.DataDetail = "INST_ELLIPSE_JOBS"
         form.MdiParent = Me
@@ -652,92 +566,65 @@ Public Class frmMain
     End Sub
 
     Private Sub bbConstrCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbConstrCat.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Status Κατασκευαστικού"
+        Dim form As frmScroller = New frmScroller("Status Κατασκευαστικού") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CONSTR_CAT"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub bbConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbConstr.ItemClick
-        If UserPermissions.CheckViewPermission("Πρόγραμμα Εργασίας Κατασκευαστικού") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Πρόγραμμα Εργασίας Κατασκευαστικού"
-            form.DataTable = "vw_CONSTR"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Πρόγραμμα Εργασίας Κατασκευαστικού") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_CONSTR"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub BBPayrollConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayrollConstr.ItemClick
-        If UserPermissions.CheckViewPermission("Μισθοδοσία Κατασκευαστικου") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Μισθοδοσία Κατασκευαστικου"
-            form.IsConstr = True
-            form.DataTableWhereCondition = " WHERE jobid = 'F1A60661-D448-41B7-8CF0-CE6B9FF6E518'"
-            form.DataTable = "vw_EMP_M"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Μισθοδοσία Κατασκευαστικου") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.IsConstr = True
+        form.DataTableWhereCondition = " WHERE jobid = 'F1A60661-D448-41B7-8CF0-CE6B9FF6E518'"
+        form.DataTable = "vw_EMP_M"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub bbJobs_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbJobs.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Θέσεις Εργασίας"
+        Dim form As frmScroller = New frmScroller("Θέσεις Εργασίας") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_JOBS"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBStatistics2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBStatistics2.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
+        Dim form As frmScroller = New frmScroller("Πρόγραμμα Παραδόσεων - Τοποθετήσεων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_STATISTICS2"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBScanFileNames_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBScanFileNames.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Ονομασίες Scan Αρχείων"
+        Dim form As frmScroller = New frmScroller("Ονομασίες Scan Αρχείων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_SCAN_FILE_NAMES"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBStatistics3_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBStatistics3.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τελευταίο Status Ανα πελάτη"
+        Dim form As frmScroller = New frmScroller("Τελευταίο Status Ανα πελάτη") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_STATISTICS3"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBProjectCosts_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectCosts.ItemClick
-        If UserPermissions.CheckViewPermission("Ανάλυση Έργων") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Ανάλυση Έργων"
-            form.DataTable = "vw_PROJECT_COST"
-            form.MdiParent = Me
-            form.Show()
-        End If
-    End Sub
-    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
-        If BBUpdate.Visibility = BarItemVisibility.Never Then BBUpdate.Visibility = BarItemVisibility.Always Else BBUpdate.Visibility = BarItemVisibility.Never
-    End Sub
-
-    Private Sub BBUpdate_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBUpdate.ItemClick
-        Timer2.Stop()
-        CheckFUpdate.FindNewVersion()
+        Dim form As frmScroller = New frmScroller("Ανάλυση Έργων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_PROJECT_COST"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub BBNotes2_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBNotes2.ItemClick
-        Dim form As New frmScroller
-        form.Text = "Σημειώματα"
+        Dim form As New frmScroller("Σημειώματα") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_NOTES"
         form.DataTableWhereCondition = "WHERE empID = " & toSQLValueS(UserProps.EmpID.ToString) & "  Or createdBy = " & toSQLValueS(UserProps.ID.ToString)
         form.MdiParent = Me
@@ -745,32 +632,28 @@ Public Class frmMain
     End Sub
 
     Private Sub BBPay_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPay.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τρόποι Πληρωμής"
+        Dim form As frmScroller = New frmScroller("Τρόποι Πληρωμής") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_PAY"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBSup_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSup.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Προμηθευτές"
+        Dim form As frmScroller = New frmScroller("Προμηθευτές") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_SUP"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBBuy_C_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBBuy_C.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορίες Αγορών"
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Αγορών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_BUY_C"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBuy_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBuy.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Αγορές"
+        Dim form As frmScroller = New frmScroller("Αγορές") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_BUY"
         form.DataDetail = "vw_SUP_PAYMENTS_D"
         form.MdiParent = Me
@@ -778,16 +661,14 @@ Public Class frmMain
     End Sub
 
     Private Sub BBSupInvoicesPayment_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSupInvoicesPayment.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Πληρωμές Παραστατικών Προμηθευτών"
+        Dim form As frmScroller = New frmScroller("Πληρωμές Παραστατικών Προμηθευτών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_SUP_PAYMENTS_H"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBTransactions_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBTransactions.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Καρτέλλα"
+        Dim form As frmScroller = New frmScroller("Καρτέλλα") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_SUP_PAYMENTS_D"
         form.MdiParent = Me
         form.Show()
@@ -802,16 +683,14 @@ Public Class frmMain
         form.Show()
     End Sub
     Private Sub BBcctOffer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBcctOffer.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Προσφοράς Πελατών(Κουζίνα)"
+        Dim form As frmScroller = New frmScroller("Έντυπο Προσφοράς Πελατών(Κουζίνα)") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CCT_ORDERS_KITCHEN"
         form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
         form.Show()
     End Sub
     Private Sub BBCloset_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCloset.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Προσφοράς Πελατών(Ντουλάπα)"
+        Dim form As frmScroller = New frmScroller("Έντυπο Προσφοράς Πελατών(Ντουλάπα)") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CCT_ORDERS_CLOSET"
         form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
@@ -820,8 +699,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBDoors_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBDoors.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Προσφοράς Πελατών(Πόρτας)"
+        Dim form As frmScroller = New frmScroller("Έντυπο Προσφοράς Πελατών(Πόρτας)") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CCT_ORDERS_DOOR"
         form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
@@ -829,8 +707,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBSpecialConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSpecialConstr.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Προσφοράς Πελατών(Ειδικές Κατασκευές)"
+        Dim form As frmScroller = New frmScroller("Έντυπο Προσφοράς Πελατών(Ειδικές Κατασκευές)") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CCT_ORDERS_SPECIAL_CONSTR"
         form.DataTableWhereCondition = " where isOrder = 0"
         form.MdiParent = Me
@@ -838,8 +715,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBCCctOrdersKitchen_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCCctOrdersKitchen.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Παραγγελίας Πελατών(Κουζίνας)"
+        Dim form As frmScroller = New frmScroller("Έντυπο Παραγγελίας Πελατών(Κουζίνας)") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CCT_ORDERS_KITCHEN"
         form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
@@ -847,16 +723,14 @@ Public Class frmMain
     End Sub
 
     Private Sub BBEquipment_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEquipment.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Εξοπλισμός"
+        Dim form As frmScroller = New frmScroller("Εξοπλισμός") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_EQUIPMENT"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBDevices_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBDevices.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Συσκευές"
+        Dim form As frmScroller = New frmScroller("Συσκευές") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_DEVICES"
         form.MdiParent = Me
         form.Show()
@@ -864,16 +738,14 @@ Public Class frmMain
     End Sub
 
     Private Sub BBequipmentCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBequipmentCat.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορίες Εξαρτήμάτων"
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Εξαρτήμάτων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_EQUIPMENT_CAT"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBCCctOrdersCloset_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCCctOrdersCloset.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Παραγγελίας Πελατών(Ντουλάπας)"
+        Dim form As frmScroller = New frmScroller("Έντυπο Παραγγελίας Πελατών(Ντουλάπας)") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CCT_ORDERS_CLOSET"
         form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
@@ -881,8 +753,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBCCctDoorsCloset_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBCCctDoorsCloset.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Παραγγελίας Πελατών(Πόρτας)"
+        Dim form As frmScroller = New frmScroller("Έντυπο Παραγγελίας Πελατών(Πόρτας)") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CCT_ORDERS_DOOR"
         form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
@@ -890,16 +761,14 @@ Public Class frmMain
     End Sub
 
     Private Sub BBPrivateAgreement_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPrivateAgreement.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Ιδ. Συμφωνητικό"
+        Dim form As frmScroller = New frmScroller("Ιδ. Συμφωνητικό") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_AGREEMENT"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBSpecialOrder_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSpecialOrder.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Έντυπο Παραγγελίας Πελατών(Ειδικές Κατασκευές)"
+        Dim form As frmScroller = New frmScroller("Έντυπο Παραγγελίας Πελατών(Ειδικές Κατασκευές)") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CCT_ORDERS_SPECIAL_CONSTR"
         form.DataTableWhereCondition = " where isOrder = 1"
         form.MdiParent = Me
@@ -907,36 +776,28 @@ Public Class frmMain
     End Sub
 
     Private Sub BBEpStatus_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEpStatus.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Status Εποπτείας"
+        Dim form As frmScroller = New frmScroller("Status Εποπτείας") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_EP_STATUS"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBSupOrders_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBSupOrders.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Παραγγελίες Προμηθευτών"
+        Dim form As frmScroller = New frmScroller("Παραγγελίες Προμηθευτών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_SUP_ORDERS"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBTransConstr_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBTransConstr.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κλείσιμο Κατασκευής"
+        Dim form As frmScroller = New frmScroller("Κλείσιμο Κατασκευής") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_TRANS_CONSTR"
         form.MdiParent = Me
         form.Show()
     End Sub
 
-    Private Sub BBEpopteiaTrans_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEpopteiaTrans.ItemClick
-
-    End Sub
-
     Private Sub BBEpopteiaTable_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEpopteiaTable.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Εποπτεία Έργου"
+        Dim form As frmScroller = New frmScroller("Εποπτεία Έργου") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_EPOPTEIA"
         form.MdiParent = Me
         form.Show()
@@ -951,8 +812,7 @@ Public Class frmMain
 
 
     Private Sub bbDimensionsCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDimensionsCat.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορίες Υλικών"
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Υλικών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.BarNewRec.Enabled = False
         form.DataTable = "vw_VALUELIST"
         form.MdiParent = Me
@@ -960,44 +820,35 @@ Public Class frmMain
     End Sub
 
     Private Sub BBConstruct_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBConstruct.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Είδη Κατασκευής"
+        Dim form As frmScroller = New frmScroller("Είδη Κατασκευής") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_CONSTR_TYPE"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBTechSup_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBTechSup.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τεχνική Υποστήριξη"
+        Dim form As frmScroller = New frmScroller("Τεχνική Υποστήριξη") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_TECH_SUP"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBVer_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBVer.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Εκδόσεις"
+        Dim form As frmScroller = New frmScroller("Εκδόσεις") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_DMVER"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBEMP_P_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBEMP_P.ItemClick
-        If UserPermissions.CheckViewPermission("Παρουσιολόγιο Report") Then
-            Dim form As frmScroller = New frmScroller()
-            form.Text = "Παρουσιολόγιο Report"
-            form.DataTable = "vw_EMP_P"
-            form.MdiParent = Me
-            form.Show()
-        Else
-            XtraMessageBox.Show("Δεν έχετε τα απαραίτητα δικαιώματα για να εισέλθετε", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
-        End If
+        Dim form As frmScroller = New frmScroller("Παρουσιολόγιο Report") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_EMP_P"
+        form.MdiParent = Me
+        form.Show()
     End Sub
 
     Private Sub BBOrderFormNumbers_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBOrderFormNumbers.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Δελτία Παραγγελίας"
+        Dim form As frmScroller = New frmScroller("Δελτία Παραγγελίας") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_BUY_WITH_ORDERNUM"
         form.MdiParent = Me
         form.Show()
@@ -1016,8 +867,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBinvBuyTypes_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBinvBuyTypes.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τύποι Παραστατικών"
+        Dim form As frmScroller = New frmScroller("Τύποι Παραστατικών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_DOC_TYPES"
         form.MdiParent = Me
         form.Show()
@@ -1026,46 +876,40 @@ Public Class frmMain
     Private Sub BBBulkInsertInvoices_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBBulkInsertInvoices.ItemClick
         Dim form As frmBuyCollectionInsert = New frmBuyCollectionInsert()
         form.Text = "Αυτόματη Εισαγωγή Τιμολογίων Προμηθευτών"
-        'UserPermissions.GetUserPermissions(form.Text) : If UserProps.AllowView = False Then XtraMessageBox.Show("Δεν έχουν οριστεί τα απαραίτητα δικαιώματα στον χρήστη", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : form.Dispose() : Exit Sub
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBProjectJobs_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectJobs.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Εργασίες"
+        Dim form As frmScroller = New frmScroller("Εργασίες Έργων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_PROJECT_JOBS"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBBaseCatERP_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBBaseCatERP.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τύποι Κατασκευής"
+        Dim form As frmScroller = New frmScroller("Τύποι Κατασκευής") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_BASE_CAT"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBTransh_C_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBTransh_C.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορίες Έργων"
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Έργων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_TRANSH_C"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBPayType_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBPayType.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Τύποι Πληρωμής"
+        Dim form As frmScroller = New frmScroller("Τύποι Πληρωμής") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_PAY_TYPE"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBProject_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProject.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Έργα Πελατών"
+        Dim form As frmScroller = New frmScroller("Έργα Πελατών(όψη πωλητών)") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_TRANSH_SMALL"
         form.DataTableWhereCondition = " where completed = 0"
         form.MdiParent = Me
@@ -1073,20 +917,26 @@ Public Class frmMain
     End Sub
 
     Private Sub BBFileCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBFileCat.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "Κατηγορίες Αρχείων"
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Αρχείων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_FILE_CAT"
         form.MdiParent = Me
         form.Show()
     End Sub
 
     Private Sub BBProjectCheckList_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectCheckList.ItemClick
-        Dim form As frmScroller = New frmScroller()
-        form.Text = "CheckList Έργών"
+        Dim form As frmScroller = New frmScroller("CheckList Έργών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_PROJECTCHECKLIST"
         form.DataTableWhereCondition = " where GroupName='CHECKLIST'"
         form.MdiParent = Me
         form.Show()
     End Sub
+
+    Private Sub BBExtPartners_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBExtPartners.ItemClick
+        Dim form As frmScroller = New frmScroller("Εξωτερικοί Συνεργάτες") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        form.DataTable = "vw_ExtPartners"
+        form.MdiParent = Me
+        form.Show()
+    End Sub
+
 End Class
 

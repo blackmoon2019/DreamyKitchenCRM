@@ -23,12 +23,12 @@ Public Class DBQueries
         Dim Code As Integer = cmd.ExecuteScalar()
         Return Code
     End Function
-    Public Function DeleteDataFiles(ByVal sTable As String, ByVal transhID As String, ByVal ownerID As String) As Boolean
+    Public Function DeleteDataFiles(ByVal sTable As String, ByVal transhID As String, ByVal ownerID As String, ByVal FileCatID As String) As Boolean
         Try
             Dim sSQL As New System.Text.StringBuilder
 
             Select Case sTable
-                Case "TRANSH_F" : sSQL.AppendLine("DELETE FROM TRANSH_F where transhID = " & toSQLValueS(transhID) & " And ownerID = " & toSQLValueS(ownerID))
+                Case "TRANSH_F" : sSQL.AppendLine("DELETE FROM TRANSH_F where transhID = " & toSQLValueS(transhID) & " And ownerID = " & toSQLValueS(ownerID) & " and FileCatID = " & toSQLValueS(FileCatID))
             End Select
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)

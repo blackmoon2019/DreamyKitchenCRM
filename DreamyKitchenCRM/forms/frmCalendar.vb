@@ -60,8 +60,8 @@ Public Class frmCalendar
     Private Sub SchedulerControl1_DoubleClick(sender As Object, e As EventArgs) Handles SchedulerControl1.DoubleClick
         Dim form1 As frmCusMov = New frmCusMov()
         form1.Text = "Κινήσεις Πελατών"
-        form1.Scroller = frmScroller.GridView1
-        form1.FormScroller = frmScroller
+        ' form1.Scroller = frmScroller.GridView1
+        'form1.FormScroller = frmScroller
         form1.FormScrollerExist = False
         form1.MdiParent = frmMain
         If SchedulerControl1.SelectedAppointments.Count = 0 Then

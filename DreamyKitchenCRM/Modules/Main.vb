@@ -245,19 +245,19 @@ Module Main
         sdr.Close()
 
     End Function
-    Public Sub FilesSelection(ByVal XtraOpenFileDialog1 As XtraOpenFileDialog, ByVal txtFileNames As TextEdit, Optional MultiSelect As Boolean = True)
+    Public Sub FilesSelection(ByVal XtraOpenFileDialog As XtraOpenFileDialog, ByVal txtFileNames As TextEdit, Optional MultiSelect As Boolean = True)
 
         'XtraOpenFileDialog1.Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*"
-        XtraOpenFileDialog1.FilterIndex = 1
-        XtraOpenFileDialog1.InitialDirectory = "C:\"
-        XtraOpenFileDialog1.Title = "Open File"
-        XtraOpenFileDialog1.CheckFileExists = False
-        XtraOpenFileDialog1.Multiselect = MultiSelect
-        Dim result As DialogResult = XtraOpenFileDialog1.ShowDialog()
+        XtraOpenFileDialog.FilterIndex = 1
+        XtraOpenFileDialog.InitialDirectory = "C:\"
+        XtraOpenFileDialog.Title = "Open File"
+        XtraOpenFileDialog.CheckFileExists = False
+        XtraOpenFileDialog.Multiselect = MultiSelect
+        Dim result As DialogResult = XtraOpenFileDialog.ShowDialog()
         If result = DialogResult.OK Then
             txtFileNames.EditValue = ""
-            For I = 0 To XtraOpenFileDialog1.FileNames.Count - 1
-                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog1.SafeFileNames(I).Replace("'", "")
+            For I = 0 To XtraOpenFileDialog.FileNames.Count - 1
+                txtFileNames.EditValue = txtFileNames.EditValue & IIf(txtFileNames.EditValue <> "", ";", "") & XtraOpenFileDialog.SafeFileNames(I).Replace("'", "")
             Next I
         End If
     End Sub

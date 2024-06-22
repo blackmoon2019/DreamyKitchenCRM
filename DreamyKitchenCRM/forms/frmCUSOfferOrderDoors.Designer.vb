@@ -5419,7 +5419,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.TabNavigationPage2.Margin = New System.Windows.Forms.Padding(10)
         Me.TabNavigationPage2.Name = "TabNavigationPage2"
         Me.TabNavigationPage2.PageText = "ΦΩΤΟΓΡΑΦΙΕΣ ΧΡΩΜΑΤΩΝ"
-        Me.TabNavigationPage2.Size = New System.Drawing.Size(5198, 2999)
+        Me.TabNavigationPage2.Size = New System.Drawing.Size(1353, 961)
         '
         'LayoutControl3
         '
@@ -5436,16 +5436,16 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControl3.Name = "LayoutControl3"
         Me.LayoutControl3.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1970, 1031, 1137, 700)
         Me.LayoutControl3.Root = Me.LayoutControlGroup14
-        Me.LayoutControl3.Size = New System.Drawing.Size(5198, 2999)
+        Me.LayoutControl3.Size = New System.Drawing.Size(1353, 961)
         Me.LayoutControl3.TabIndex = 2
         Me.LayoutControl3.Text = "LayoutControl3"
         '
         'cmdPrintPhotos
         '
-        Me.cmdPrintPhotos.Location = New System.Drawing.Point(12, 829)
+        Me.cmdPrintPhotos.Location = New System.Drawing.Point(12, 316)
         Me.cmdPrintPhotos.Margin = New System.Windows.Forms.Padding(15)
         Me.cmdPrintPhotos.Name = "cmdPrintPhotos"
-        Me.cmdPrintPhotos.Size = New System.Drawing.Size(895, 32)
+        Me.cmdPrintPhotos.Size = New System.Drawing.Size(227, 32)
         Me.cmdPrintPhotos.StyleController = Me.LayoutControl3
         Me.cmdPrintPhotos.TabIndex = 57
         Me.cmdPrintPhotos.Text = "Εκτύπωση"
@@ -5453,10 +5453,10 @@ Partial Class frmCUSOfferOrderDoors
         'cmdSavePhotos
         '
         Me.cmdSavePhotos.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSavePhotos.Location = New System.Drawing.Point(4452, 829)
+        Me.cmdSavePhotos.Location = New System.Drawing.Point(1155, 316)
         Me.cmdSavePhotos.Margin = New System.Windows.Forms.Padding(15)
         Me.cmdSavePhotos.Name = "cmdSavePhotos"
-        Me.cmdSavePhotos.Size = New System.Drawing.Size(734, 32)
+        Me.cmdSavePhotos.Size = New System.Drawing.Size(186, 32)
         Me.cmdSavePhotos.StyleController = Me.LayoutControl3
         Me.cmdSavePhotos.TabIndex = 52
         Me.cmdSavePhotos.Text = "Αποθήκευση"
@@ -5467,12 +5467,12 @@ Partial Class frmCUSOfferOrderDoors
             Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.GridControl1.DataSource = Me.VwCCTORDERSPHOTOSBindingSource
         Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(9)
-        Me.GridControl1.Location = New System.Drawing.Point(12, 865)
+        Me.GridControl1.Location = New System.Drawing.Point(12, 352)
         Me.GridControl1.MainView = Me.CardView1
         Me.GridControl1.Margin = New System.Windows.Forms.Padding(15)
         Me.GridControl1.Name = "GridControl1"
         Me.GridControl1.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepositoryItemColorCat, Me.RepositoryItemValueListiItem, Me.RepositoryItemSup, Me.RepositoryItemPhoto})
-        Me.GridControl1.Size = New System.Drawing.Size(5174, 2122)
+        Me.GridControl1.Size = New System.Drawing.Size(1329, 597)
         Me.GridControl1.TabIndex = 51
         Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.CardView1})
         '
@@ -5693,7 +5693,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboPhotoValueListItem.Properties.PopupFormMinSize = New System.Drawing.Size(1653, 761)
         Me.cboPhotoValueListItem.Properties.SearchMode = DevExpress.XtraEditors.Controls.SearchMode.AutoSuggest
         Me.cboPhotoValueListItem.Properties.ValueMember = "ID"
-        Me.cboPhotoValueListItem.Size = New System.Drawing.Size(5026, 26)
+        Me.cboPhotoValueListItem.Size = New System.Drawing.Size(1181, 26)
         Me.cboPhotoValueListItem.StyleController = Me.LayoutControl3
         Me.cboPhotoValueListItem.TabIndex = 50
         Me.cboPhotoValueListItem.Tag = "valueListItemID,0,1,2"
@@ -5707,13 +5707,13 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboSUP1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
         Me.cboSUP1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
-        Me.cboSUP1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 94, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 150, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Επωνυμία", 253, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttl", "ttl", 87, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bal", "bal", 111, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 160, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("site", "site", 54, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.cboSUP1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 94, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 150, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Επωνυμία", 253, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttl", "Διακριτικός Τίτλος", 87, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bal", "bal", 111, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 160, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("site", "site", 54, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.cboSUP1.Properties.DataSource = Me.VwSUPBindingSource
         Me.cboSUP1.Properties.DisplayMember = "Fullname"
         Me.cboSUP1.Properties.NullText = ""
         Me.cboSUP1.Properties.PopupSizeable = False
         Me.cboSUP1.Properties.ValueMember = "ID"
-        Me.cboSUP1.Size = New System.Drawing.Size(5026, 26)
+        Me.cboSUP1.Size = New System.Drawing.Size(1181, 26)
         Me.cboSUP1.StyleController = Me.LayoutControl3
         Me.cboSUP1.TabIndex = 5
         Me.cboSUP1.Tag = "supID,0,1,2"
@@ -5736,7 +5736,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.cboColorsCat.Properties.NullText = ""
         Me.cboColorsCat.Properties.PopupSizeable = False
         Me.cboColorsCat.Properties.ValueMember = "ID"
-        Me.cboColorsCat.Size = New System.Drawing.Size(5026, 26)
+        Me.cboColorsCat.Size = New System.Drawing.Size(1181, 26)
         Me.cboColorsCat.StyleController = Me.LayoutControl3
         Me.cboColorsCat.TabIndex = 21
         Me.cboColorsCat.Tag = "colorCatID,0,1,2"
@@ -5755,7 +5755,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.PictureEdit2.Properties.ShowCameraMenuItem = DevExpress.XtraEditors.Controls.CameraMenuItemVisibility.Always
         Me.PictureEdit2.Properties.ShowScrollBars = True
         Me.PictureEdit2.Properties.ShowZoomSubMenu = DevExpress.Utils.DefaultBoolean.[True]
-        Me.PictureEdit2.Size = New System.Drawing.Size(5026, 723)
+        Me.PictureEdit2.Size = New System.Drawing.Size(1181, 210)
         Me.PictureEdit2.StyleController = Me.LayoutControl3
         Me.PictureEdit2.TabIndex = 44
         Me.PictureEdit2.Tag = "photo,0,1,2"
@@ -5766,7 +5766,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlGroup14.GroupBordersVisible = False
         Me.LayoutControlGroup14.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem14, Me.LayoutControlItem16, Me.LayoutControlItem17, Me.LayoutControlItem19, Me.LayoutControlItem20, Me.LayoutControlItem34, Me.EmptySpaceItem5, Me.LayoutControlItem36})
         Me.LayoutControlGroup14.Name = "Root"
-        Me.LayoutControlGroup14.Size = New System.Drawing.Size(5198, 2999)
+        Me.LayoutControlGroup14.Size = New System.Drawing.Size(1353, 961)
         Me.LayoutControlGroup14.TextVisible = False
         '
         'LayoutControlItem14
@@ -5778,7 +5778,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem14.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem14.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem14.Name = "LayoutControlItem92"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(5178, 30)
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(1333, 30)
         Me.LayoutControlItem14.Text = "Προμηθευτής"
         Me.LayoutControlItem14.TextSize = New System.Drawing.Size(136, 19)
         '
@@ -5790,7 +5790,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem16.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem16.ImageOptions.Image"), System.Drawing.Image)
         Me.LayoutControlItem16.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem16.Name = "LayoutControlItem93"
-        Me.LayoutControlItem16.Size = New System.Drawing.Size(5178, 30)
+        Me.LayoutControlItem16.Size = New System.Drawing.Size(1333, 30)
         Me.LayoutControlItem16.Text = "Κατηγορία"
         Me.LayoutControlItem16.TextSize = New System.Drawing.Size(136, 19)
         '
@@ -5799,7 +5799,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem17.Control = Me.cboPhotoValueListItem
         Me.LayoutControlItem17.Location = New System.Drawing.Point(0, 60)
         Me.LayoutControlItem17.Name = "LayoutControlItem94"
-        Me.LayoutControlItem17.Size = New System.Drawing.Size(5178, 30)
+        Me.LayoutControlItem17.Size = New System.Drawing.Size(1333, 30)
         Me.LayoutControlItem17.Text = "Κωδικός Χρώματος"
         Me.LayoutControlItem17.TextSize = New System.Drawing.Size(136, 19)
         '
@@ -5810,7 +5810,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.LayoutControlItem19.CustomizationFormText = "Φωτογραφία"
         Me.LayoutControlItem19.Location = New System.Drawing.Point(0, 90)
         Me.LayoutControlItem19.Name = "LayoutControlItem95"
-        Me.LayoutControlItem19.Size = New System.Drawing.Size(5178, 727)
+        Me.LayoutControlItem19.Size = New System.Drawing.Size(1333, 214)
         Me.LayoutControlItem19.Text = "Φωτογραφία"
         Me.LayoutControlItem19.TextLocation = DevExpress.Utils.Locations.Left
         Me.LayoutControlItem19.TextSize = New System.Drawing.Size(136, 19)
@@ -5818,35 +5818,35 @@ Partial Class frmCUSOfferOrderDoors
         'LayoutControlItem20
         '
         Me.LayoutControlItem20.Control = Me.GridControl1
-        Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 853)
+        Me.LayoutControlItem20.Location = New System.Drawing.Point(0, 340)
         Me.LayoutControlItem20.Name = "LayoutControlItem96"
-        Me.LayoutControlItem20.Size = New System.Drawing.Size(5178, 2126)
+        Me.LayoutControlItem20.Size = New System.Drawing.Size(1333, 601)
         Me.LayoutControlItem20.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem20.TextVisible = False
         '
         'LayoutControlItem34
         '
         Me.LayoutControlItem34.Control = Me.cmdSavePhotos
-        Me.LayoutControlItem34.Location = New System.Drawing.Point(4440, 817)
+        Me.LayoutControlItem34.Location = New System.Drawing.Point(1143, 304)
         Me.LayoutControlItem34.Name = "LayoutControlItem97"
-        Me.LayoutControlItem34.Size = New System.Drawing.Size(738, 36)
+        Me.LayoutControlItem34.Size = New System.Drawing.Size(190, 36)
         Me.LayoutControlItem34.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem34.TextVisible = False
         '
         'EmptySpaceItem5
         '
         Me.EmptySpaceItem5.AllowHotTrack = False
-        Me.EmptySpaceItem5.Location = New System.Drawing.Point(899, 817)
+        Me.EmptySpaceItem5.Location = New System.Drawing.Point(231, 304)
         Me.EmptySpaceItem5.Name = "EmptySpaceItem2"
-        Me.EmptySpaceItem5.Size = New System.Drawing.Size(3541, 36)
+        Me.EmptySpaceItem5.Size = New System.Drawing.Size(912, 36)
         Me.EmptySpaceItem5.TextSize = New System.Drawing.Size(0, 0)
         '
         'LayoutControlItem36
         '
         Me.LayoutControlItem36.Control = Me.cmdPrintPhotos
-        Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 817)
+        Me.LayoutControlItem36.Location = New System.Drawing.Point(0, 304)
         Me.LayoutControlItem36.Name = "LayoutControlItem98"
-        Me.LayoutControlItem36.Size = New System.Drawing.Size(899, 36)
+        Me.LayoutControlItem36.Size = New System.Drawing.Size(231, 36)
         Me.LayoutControlItem36.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem36.TextVisible = False
         '

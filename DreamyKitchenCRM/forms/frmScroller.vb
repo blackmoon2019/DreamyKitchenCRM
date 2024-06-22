@@ -16,7 +16,7 @@ Imports DevExpress.XtraGrid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class frmScroller
-
+    Private UserPermissions As New CheckPermissions
     Private myConn As SqlConnection
     Private myCmd As SqlCommand
     Private myReader As SqlDataReader
@@ -26,6 +26,19 @@ Public Class frmScroller
     Private CurrentView As String
     Private LoadForms As New FormLoader
     Private bIsConstr As Boolean
+
+    Public Sub New(Optional ByVal FormText As String = "")
+
+        ' This call is required by the designer.
+        InitializeComponent()
+        UserPermissions.GetUserPermissions(FormText)
+        If UserProps.AllowView = False Then
+            XtraMessageBox.Show("Δεν έχουν οριστεί τα απαραίτητα δικαιώματα στον χρήστη", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+        Me.Text = FormText
+        ' Add any initialization after the InitializeComponent() call.
+
+    End Sub
 
     Public WriteOnly Property IsConstr As Boolean
         Set(value As Boolean)
@@ -245,7 +258,7 @@ Public Class frmScroller
                     Case "vw_INST_ELLIPSE" : DeleteSucceed = DeleteInstEllipse()
                     Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = " & sID
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = " & sID
-                    Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = " & sID
+                    Case "vw_EMP", "vw_ExtPartners" : sSQL = "DELETE FROM EMP WHERE ID = " & sID
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = " & sID
                     Case "vw_EMP_M_S" : sSQL = "DELETE FROM EMP_M_S WHERE ID = " & sID
                     Case "vw_EMP_M" : sSQL = "DELETE FROM EMP_M WHERE ID = " & sID
@@ -280,6 +293,7 @@ Public Class frmScroller
                     Case "vw_TRANSH" : DeleteSucceed = DeleteTransh()
                     Case "vw_CALC" : sSQL = "DELETE FROM CALC WHERE ID = " & sID
                     Case "vw_CAT_SUB_ERM" : sSQL = "DELETE FROM CAT_SUB_ERM WHERE ID = " & sID
+                    Case "vw_COLORS_CAT" : sSQL = "DELETE FROM COLORS_CAT WHERE ID = " & sID
                 End Select
                 If sSQL <> "" Then
                     Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -651,7 +665,7 @@ Public Class frmScroller
                         End If
                     Case "vw_PROJECT_JOBS" : sSQL = "DELETE FROM PROJECT_JOBS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_BANKS" : sSQL = "DELETE FROM BANKS WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
-                    Case "vw_EMP" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_EMP", "vw_ExtPartners" : sSQL = "DELETE FROM EMP WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_S" : sSQL = "DELETE FROM EMP_S WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_M_S" : sSQL = "DELETE FROM EMP_M_S WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_EMP_M" : sSQL = "DELETE FROM EMP_M WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
@@ -769,6 +783,7 @@ Public Class frmScroller
                         sSQL = "DELETE FROM [OFF] WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CALC" : sSQL = "DELETE FROM CALC WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
                     Case "vw_CAT_SUB_ERM" : sSQL = "DELETE FROM CAT_SUB_ERM WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
+                    Case "vw_COLORS_CAT" : sSQL = "DELETE FROM COLORS_CAT WHERE ID = '" & GridView1.GetRowCellValue(selectedRowHandle, "ID").ToString & "'"
 
                 End Select
 
@@ -1652,6 +1667,18 @@ Public Class frmScroller
                 frmEMP.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEMP), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmEMP.Show()
+            Case "vw_ExtPartners"
+                Dim frmEMP As New frmEMP
+                frmEMP.Text = "Εξωτερικοί Συνεργάτες"
+                frmEMP.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
+                frmEMP.IsExternalPartner = True
+                frmEMP.MdiParent = frmMain
+                frmEMP.Mode = FormMode.EditRecord
+                frmEMP.Scroller = GridView1
+                frmEMP.FormScroller = Me
+                frmEMP.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEMP), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmEMP.Show()
             Case "vw_TRANSH"
                 Dim frmTransactions As New frmTransactions
                 frmTransactions.Text = "Έργα"
@@ -1876,7 +1903,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(fTechicalSupport), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 fTechicalSupport.Show()
             Case "vw_RIGHTS"
-                Dim frmPermissions As frmPermissions = New frmPermissions()
+                Dim frmPermissions As frmPermissionsOld = New frmPermissionsOld()
                 frmPermissions.Text = "Δικαιώματα"
                 frmPermissions.ID = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString
                 frmPermissions.MdiParent = frmMain
@@ -2620,6 +2647,17 @@ Public Class frmScroller
                 frmEMP.CalledFromControl = False
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEMP), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 frmEMP.Show()
+            Case "vw_ExtPartners"
+                Dim frmEMP As New frmEMP
+                frmEMP.Text = "Εξωτερικοί Συνεργάτες"
+                frmEMP.IsExternalPartner = True
+                frmEMP.MdiParent = frmMain
+                frmEMP.Mode = FormMode.NewRecord
+                frmEMP.Scroller = GridView1
+                frmEMP.FormScroller = Me
+                frmEMP.CalledFromControl = False
+                frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmEMP), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
+                frmEMP.Show()
             Case "vw_TRANSH"
                 Dim frmTransactions As New frmTransactions
                 frmTransactions.Text = "Έργα"
@@ -2819,7 +2857,7 @@ Public Class frmScroller
                 frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(fTechicalSupport), New Point(CInt(Me.Parent.ClientRectangle.Width / 2 - Me.Width / 2), CInt(Me.Parent.ClientRectangle.Height / 2 - Me.Height / 2)))
                 fTechicalSupport.Show()
             Case "vw_RIGHTS"
-                Dim frmPermissions As frmPermissions = New frmPermissions()
+                Dim frmPermissions As frmPermissionsOld = New frmPermissionsOld()
                 frmPermissions.Text = "Δικαιώματα"
                 frmPermissions.MdiParent = frmMain
                 frmPermissions.Mode = FormMode.NewRecord

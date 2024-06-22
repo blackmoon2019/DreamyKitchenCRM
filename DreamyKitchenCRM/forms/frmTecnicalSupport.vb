@@ -110,9 +110,6 @@ Public Class frmTecnicalSupport
                         LoadForms.LoadDataToGrid(GridControl1, GridView1, "select ID,techSupID,files,filename,comefrom,createdon,realname From vw_TECH_SUP_F where techSupID = " & toSQLValueS(IIf(Mode = FormMode.NewRecord, sGuid, sID)))
                         LoadForms.RestoreLayoutFromXml(GridView1, "TECH_SUP_F_def.xml")
                     End If
-
-                    Dim form As New frmScroller
-                    form.LoadRecords("vw_TECH_SUP")
                 Else
                     SaveTech = False
 

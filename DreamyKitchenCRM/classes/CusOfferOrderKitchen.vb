@@ -281,7 +281,7 @@ Public Class CusOfferOrderKitchen
                 End Select
 
                 If Frm.txtCUSOfferOrderFilename.Text <> "" And sResult = True Then
-                    sResultF = DBQ.DeleteDataFiles("TRANSH_F", Frm.cboTRANSH.EditValue.ToString, sID)
+                    sResultF = DBQ.DeleteDataFiles("TRANSH_F", Frm.cboTRANSH.EditValue.ToString, sID, "EEA48A0A-4171-46FE-BBC5-D02F2712B04C")
                     'Αποθήκευση αρχείου στο έργο
                     Frm.XtraOpenFileDialog1.Tag = "EEA48A0A-4171-46FE-BBC5-D02F2712B04C" ' Κατηγορία Αρχείου ΠΑΓΚΟΙ
                     sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", sID, IIf(sIsOrder = True, "Παραγγελία", "Προσφορά"))
@@ -357,7 +357,7 @@ Public Class CusOfferOrderKitchen
         If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtFiles.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει Αρχείο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Select Case sMode
-            Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog1, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
+            Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog2, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Παραγγελία")
             Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Παραγγελία")
         End Select
         Frm.txtFiles.EditValue = Nothing

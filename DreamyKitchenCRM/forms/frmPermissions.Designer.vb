@@ -19,281 +19,301 @@ Partial Class frmPermissions
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
-        Me.chkDelete = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkLstUsers = New DevExpress.XtraEditors.CheckedListBoxControl()
-        Me.chkEdit = New DevExpress.XtraEditors.CheckEdit()
-        Me.chkInsert = New DevExpress.XtraEditors.CheckEdit()
+        Me.txtFormName = New DevExpress.XtraEditors.TextEdit()
+        Me.GridControl1 = New DevExpress.XtraGrid.GridControl()
+        Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
+        Me.colRealName = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colview = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colinsert = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coledit = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coldelete = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colname = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.cmdExit = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdSave = New DevExpress.XtraEditors.SimpleButton()
-        Me.cboUsers = New DevExpress.XtraEditors.LookUpEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem3 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem7 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.chkView = New DevExpress.XtraEditors.CheckEdit()
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
+        Me.LayoutControlItem1 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem5 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
+        Me.FORMRIGHTSBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.FORMRIGHTSTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.FORMRIGHTSTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
-        CType(Me.chkDelete.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkLstUsers, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkEdit.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkInsert.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.cboUsers.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtFormName.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.chkView.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.FORMRIGHTSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
         '
-        Me.LayoutControl1.Controls.Add(Me.chkView)
-        Me.LayoutControl1.Controls.Add(Me.chkDelete)
-        Me.LayoutControl1.Controls.Add(Me.chkLstUsers)
-        Me.LayoutControl1.Controls.Add(Me.chkEdit)
-        Me.LayoutControl1.Controls.Add(Me.chkInsert)
+        Me.LayoutControl1.Controls.Add(Me.txtFormName)
+        Me.LayoutControl1.Controls.Add(Me.GridControl1)
         Me.LayoutControl1.Controls.Add(Me.cmdExit)
         Me.LayoutControl1.Controls.Add(Me.cmdSave)
-        Me.LayoutControl1.Controls.Add(Me.cboUsers)
-        Me.LayoutControl1.Location = New System.Drawing.Point(2, 2)
+        Me.LayoutControl1.Dock = System.Windows.Forms.DockStyle.Fill
+        Me.LayoutControl1.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.LayoutControl1.Name = "LayoutControl1"
         Me.LayoutControl1.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(416, 136, 650, 400)
         Me.LayoutControl1.Root = Me.Root
-        Me.LayoutControl1.Size = New System.Drawing.Size(589, 505)
+        Me.LayoutControl1.Size = New System.Drawing.Size(1643, 1107)
         Me.LayoutControl1.TabIndex = 2
         Me.LayoutControl1.Text = "LayoutControl1"
         '
-        'chkDelete
+        'txtFormName
         '
-        Me.chkDelete.EditValue = CType(0, Byte)
-        Me.chkDelete.Location = New System.Drawing.Point(311, 108)
-        Me.chkDelete.Name = "chkDelete"
-        Me.chkDelete.Properties.Caption = "Διαγραφή"
-        Me.chkDelete.Properties.ValueChecked = CType(1, Byte)
-        Me.chkDelete.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkDelete.Size = New System.Drawing.Size(266, 20)
-        Me.chkDelete.StyleController = Me.LayoutControl1
-        Me.chkDelete.TabIndex = 11
-        Me.chkDelete.Tag = "[delete],0,1,2"
+        Me.txtFormName.Location = New System.Drawing.Point(790, 1065)
+        Me.txtFormName.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.txtFormName.Name = "txtFormName"
+        Me.txtFormName.Size = New System.Drawing.Size(532, 26)
+        Me.txtFormName.StyleController = Me.LayoutControl1
+        Me.txtFormName.TabIndex = 13
         '
-        'chkLstUsers
+        'GridControl1
         '
-        Me.chkLstUsers.HorizontalScrollbar = True
-        Me.chkLstUsers.Location = New System.Drawing.Point(12, 12)
-        Me.chkLstUsers.Name = "chkLstUsers"
-        Me.chkLstUsers.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple
-        Me.chkLstUsers.Size = New System.Drawing.Size(295, 481)
-        Me.chkLstUsers.SortOrder = System.Windows.Forms.SortOrder.Ascending
-        Me.chkLstUsers.StyleController = Me.LayoutControl1
-        Me.chkLstUsers.TabIndex = 9
-        Me.chkLstUsers.Tag = ""
+        Me.GridControl1.DataSource = Me.FORMRIGHTSBindingSource
+        Me.GridControl1.EmbeddedNavigator.Buttons.Append.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.CancelEdit.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.Edit.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.EndEdit.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Buttons.Remove.Visible = False
+        Me.GridControl1.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GridControl1.Location = New System.Drawing.Point(11, 10)
+        Me.GridControl1.MainView = Me.GridView1
+        Me.GridControl1.Margin = New System.Windows.Forms.Padding(3, 2, 3, 2)
+        Me.GridControl1.Name = "GridControl1"
+        Me.GridControl1.Size = New System.Drawing.Size(1621, 1051)
+        Me.GridControl1.TabIndex = 12
+        Me.GridControl1.UseEmbeddedNavigator = True
+        Me.GridControl1.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView1})
         '
-        'chkEdit
+        'GridView1
         '
-        Me.chkEdit.EditValue = CType(0, Byte)
-        Me.chkEdit.Location = New System.Drawing.Point(311, 84)
-        Me.chkEdit.Name = "chkEdit"
-        Me.chkEdit.Properties.Caption = "Επεξεργασία"
-        Me.chkEdit.Properties.ValueChecked = CType(1, Byte)
-        Me.chkEdit.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkEdit.Size = New System.Drawing.Size(266, 20)
-        Me.chkEdit.StyleController = Me.LayoutControl1
-        Me.chkEdit.TabIndex = 10
-        Me.chkEdit.Tag = "[edit],0,1,2"
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colRealName, Me.colID, Me.colview, Me.colinsert, Me.coledit, Me.coldelete, Me.colname})
+        Me.GridView1.DetailHeight = 164
+        Me.GridView1.FixedLineWidth = 3
+        Me.GridView1.GridControl = Me.GridControl1
+        Me.GridView1.Name = "GridView1"
+        Me.GridView1.OptionsEditForm.PopupEditFormWidth = 720
+        Me.GridView1.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colRealName, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
-        'chkInsert
+        'colRealName
         '
-        Me.chkInsert.EditValue = CType(0, Byte)
-        Me.chkInsert.Location = New System.Drawing.Point(311, 60)
-        Me.chkInsert.Name = "chkInsert"
-        Me.chkInsert.Properties.Caption = "Καταχώρηση"
-        Me.chkInsert.Properties.ValueChecked = CType(1, Byte)
-        Me.chkInsert.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkInsert.Size = New System.Drawing.Size(266, 20)
-        Me.chkInsert.StyleController = Me.LayoutControl1
-        Me.chkInsert.TabIndex = 9
-        Me.chkInsert.Tag = "[insert],0,1,2"
+        Me.colRealName.AppearanceHeader.Options.UseTextOptions = True
+        Me.colRealName.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.colRealName.Caption = "Χρήστης"
+        Me.colRealName.FieldName = "RealName"
+        Me.colRealName.MinWidth = 31
+        Me.colRealName.Name = "colRealName"
+        Me.colRealName.OptionsColumn.AllowEdit = False
+        Me.colRealName.Visible = True
+        Me.colRealName.VisibleIndex = 0
+        Me.colRealName.Width = 438
+        '
+        'colID
+        '
+        Me.colID.AppearanceHeader.Options.UseTextOptions = True
+        Me.colID.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.colID.FieldName = "ID"
+        Me.colID.MinWidth = 31
+        Me.colID.Name = "colID"
+        Me.colID.Width = 438
+        '
+        'colview
+        '
+        Me.colview.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(192, Byte), Integer), CType(CType(192, Byte), Integer))
+        Me.colview.AppearanceCell.Options.UseBackColor = True
+        Me.colview.AppearanceHeader.Options.UseTextOptions = True
+        Me.colview.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.colview.Caption = "Προβολή"
+        Me.colview.FieldName = "view"
+        Me.colview.MinWidth = 31
+        Me.colview.Name = "colview"
+        Me.colview.Visible = True
+        Me.colview.VisibleIndex = 2
+        Me.colview.Width = 182
+        '
+        'colinsert
+        '
+        Me.colinsert.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(255, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.colinsert.AppearanceCell.Options.UseBackColor = True
+        Me.colinsert.AppearanceHeader.Options.UseTextOptions = True
+        Me.colinsert.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.colinsert.Caption = "Καταχώρηση"
+        Me.colinsert.FieldName = "insert"
+        Me.colinsert.MinWidth = 31
+        Me.colinsert.Name = "colinsert"
+        Me.colinsert.Visible = True
+        Me.colinsert.VisibleIndex = 3
+        Me.colinsert.Width = 184
+        '
+        'coledit
+        '
+        Me.coledit.AppearanceCell.BackColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.coledit.AppearanceCell.Options.UseBackColor = True
+        Me.coledit.AppearanceHeader.Options.UseTextOptions = True
+        Me.coledit.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.coledit.Caption = "Επεξεργασία"
+        Me.coledit.FieldName = "edit"
+        Me.coledit.MinWidth = 31
+        Me.coledit.Name = "coledit"
+        Me.coledit.Visible = True
+        Me.coledit.VisibleIndex = 4
+        Me.coledit.Width = 191
+        '
+        'coldelete
+        '
+        Me.coldelete.AppearanceCell.BackColor = System.Drawing.SystemColors.ScrollBar
+        Me.coldelete.AppearanceCell.Options.UseBackColor = True
+        Me.coldelete.AppearanceHeader.Options.UseTextOptions = True
+        Me.coldelete.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.coldelete.Caption = "Διαγραφή"
+        Me.coldelete.FieldName = "delete"
+        Me.coldelete.MinWidth = 31
+        Me.coldelete.Name = "coldelete"
+        Me.coldelete.Visible = True
+        Me.coldelete.VisibleIndex = 5
+        Me.coldelete.Width = 1199
+        '
+        'colname
+        '
+        Me.colname.AppearanceHeader.Options.UseTextOptions = True
+        Me.colname.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center
+        Me.colname.Caption = "Φόρμα"
+        Me.colname.FieldName = "name"
+        Me.colname.MinWidth = 31
+        Me.colname.Name = "colname"
+        Me.colname.OptionsColumn.AllowEdit = False
+        Me.colname.Visible = True
+        Me.colname.VisibleIndex = 1
+        Me.colname.Width = 438
         '
         'cmdExit
         '
         Me.cmdExit.DialogResult = System.Windows.Forms.DialogResult.Cancel
-        Me.cmdExit.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_exit_24
-        Me.cmdExit.Location = New System.Drawing.Point(311, 465)
+        Me.cmdExit.Location = New System.Drawing.Point(1543, 1065)
+        Me.cmdExit.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdExit.Name = "cmdExit"
-        Me.cmdExit.Size = New System.Drawing.Size(135, 28)
+        Me.cmdExit.Size = New System.Drawing.Size(89, 32)
         Me.cmdExit.StyleController = Me.LayoutControl1
         Me.cmdExit.TabIndex = 6
         Me.cmdExit.Text = "Έξοδος"
         '
         'cmdSave
         '
-        Me.cmdSave.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSave.Location = New System.Drawing.Point(450, 465)
+        Me.cmdSave.Location = New System.Drawing.Point(1326, 1065)
+        Me.cmdSave.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cmdSave.Name = "cmdSave"
-        Me.cmdSave.Size = New System.Drawing.Size(127, 28)
+        Me.cmdSave.Size = New System.Drawing.Size(213, 32)
         Me.cmdSave.StyleController = Me.LayoutControl1
         Me.cmdSave.TabIndex = 7
-        Me.cmdSave.Text = "Αποθήκευση"
-        '
-        'cboUsers
-        '
-        Me.cboUsers.Location = New System.Drawing.Point(374, 12)
-        Me.cboUsers.Name = "cboUsers"
-        Me.cboUsers.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        Me.cboUsers.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
-        Me.cboUsers.Properties.NullText = ""
-        Me.cboUsers.Properties.PopupSizeable = False
-        Me.cboUsers.Size = New System.Drawing.Size(203, 20)
-        Me.cboUsers.StyleController = Me.LayoutControl1
-        Me.cboUsers.TabIndex = 8
-        Me.cboUsers.Tag = "uid,0,1,2"
+        Me.cmdSave.Text = "Προσθήκη νέας Φορμας"
         '
         'Root
         '
         Me.Root.EnableIndentsWithoutBorders = DevExpress.Utils.DefaultBoolean.[True]
         Me.Root.GroupBordersVisible = False
-        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem6, Me.LayoutControlItem1, Me.LayoutControlItem2, Me.LayoutControlItem3, Me.LayoutControlItem7, Me.LayoutControlItem4, Me.LayoutControlItem5, Me.EmptySpaceItem1, Me.LayoutControlItem8})
+        Me.Root.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem4, Me.LayoutControlItem8, Me.EmptySpaceItem1, Me.LayoutControlItem1, Me.LayoutControlItem5})
         Me.Root.Name = "Root"
-        Me.Root.Size = New System.Drawing.Size(589, 505)
+        Me.Root.Size = New System.Drawing.Size(1643, 1107)
         Me.Root.TextVisible = False
-        '
-        'LayoutControlItem6
-        '
-        Me.LayoutControlItem6.Control = Me.cboUsers
-        Me.LayoutControlItem6.ImageOptions.Alignment = System.Drawing.ContentAlignment.MiddleRight
-        Me.LayoutControlItem6.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
-        Me.LayoutControlItem6.Location = New System.Drawing.Point(299, 0)
-        Me.LayoutControlItem6.Name = "LayoutControlItem6"
-        Me.LayoutControlItem6.Size = New System.Drawing.Size(270, 24)
-        Me.LayoutControlItem6.Tag = "1"
-        Me.LayoutControlItem6.Text = "Χρήστης"
-        Me.LayoutControlItem6.TextSize = New System.Drawing.Size(51, 13)
-        '
-        'LayoutControlItem1
-        '
-        Me.LayoutControlItem1.Control = Me.chkInsert
-        Me.LayoutControlItem1.Location = New System.Drawing.Point(299, 48)
-        Me.LayoutControlItem1.Name = "LayoutControlItem1"
-        Me.LayoutControlItem1.Size = New System.Drawing.Size(270, 24)
-        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem1.TextVisible = False
-        '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me.chkEdit
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(299, 72)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(270, 24)
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem2.TextVisible = False
-        '
-        'LayoutControlItem3
-        '
-        Me.LayoutControlItem3.Control = Me.chkDelete
-        Me.LayoutControlItem3.Location = New System.Drawing.Point(299, 96)
-        Me.LayoutControlItem3.Name = "LayoutControlItem3"
-        Me.LayoutControlItem3.Size = New System.Drawing.Size(270, 24)
-        Me.LayoutControlItem3.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem3.TextVisible = False
-        '
-        'LayoutControlItem7
-        '
-        Me.LayoutControlItem7.Control = Me.chkLstUsers
-        Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 0)
-        Me.LayoutControlItem7.Name = "LayoutControlItem7"
-        Me.LayoutControlItem7.Size = New System.Drawing.Size(299, 485)
-        Me.LayoutControlItem7.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem7.TextVisible = False
         '
         'LayoutControlItem4
         '
         Me.LayoutControlItem4.Control = Me.cmdExit
-        Me.LayoutControlItem4.Location = New System.Drawing.Point(299, 453)
+        Me.LayoutControlItem4.Location = New System.Drawing.Point(1532, 1055)
         Me.LayoutControlItem4.Name = "LayoutControlItem4"
-        Me.LayoutControlItem4.Size = New System.Drawing.Size(139, 32)
+        Me.LayoutControlItem4.Size = New System.Drawing.Size(93, 36)
         Me.LayoutControlItem4.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem4.TextVisible = False
         '
-        'LayoutControlItem5
+        'LayoutControlItem8
         '
-        Me.LayoutControlItem5.Control = Me.cmdSave
-        Me.LayoutControlItem5.Location = New System.Drawing.Point(438, 453)
-        Me.LayoutControlItem5.Name = "LayoutControlItem5"
-        Me.LayoutControlItem5.Size = New System.Drawing.Size(131, 32)
-        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem5.TextVisible = False
+        Me.LayoutControlItem8.Control = Me.GridControl1
+        Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 0)
+        Me.LayoutControlItem8.Name = "LayoutControlItem8"
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(1625, 1055)
+        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem8.TextVisible = False
         '
         'EmptySpaceItem1
         '
         Me.EmptySpaceItem1.AllowHotTrack = False
-        Me.EmptySpaceItem1.Location = New System.Drawing.Point(299, 120)
+        Me.EmptySpaceItem1.Location = New System.Drawing.Point(0, 1055)
         Me.EmptySpaceItem1.Name = "EmptySpaceItem1"
-        Me.EmptySpaceItem1.Size = New System.Drawing.Size(270, 333)
+        Me.EmptySpaceItem1.Size = New System.Drawing.Size(658, 36)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
-        'chkView
+        'LayoutControlItem1
         '
-        Me.chkView.EditValue = CType(0, Byte)
-        Me.chkView.Location = New System.Drawing.Point(311, 36)
-        Me.chkView.Name = "chkView"
-        Me.chkView.Properties.Caption = "Προβολη"
-        Me.chkView.Properties.ValueChecked = CType(1, Byte)
-        Me.chkView.Properties.ValueUnchecked = CType(0, Byte)
-        Me.chkView.Size = New System.Drawing.Size(266, 20)
-        Me.chkView.StyleController = Me.LayoutControl1
-        Me.chkView.TabIndex = 12
-        Me.chkView.Tag = "[view],0,1,2"
+        Me.LayoutControlItem1.Control = Me.txtFormName
+        Me.LayoutControlItem1.Location = New System.Drawing.Point(658, 1055)
+        Me.LayoutControlItem1.Name = "LayoutControlItem1"
+        Me.LayoutControlItem1.Size = New System.Drawing.Size(657, 36)
+        Me.LayoutControlItem1.Text = "Όνομα Φόρμας"
+        Me.LayoutControlItem1.TextSize = New System.Drawing.Size(110, 19)
         '
-        'LayoutControlItem8
+        'LayoutControlItem5
         '
-        Me.LayoutControlItem8.Control = Me.chkView
-        Me.LayoutControlItem8.Location = New System.Drawing.Point(299, 24)
-        Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(270, 24)
-        Me.LayoutControlItem8.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem8.TextVisible = False
+        Me.LayoutControlItem5.Control = Me.cmdSave
+        Me.LayoutControlItem5.Location = New System.Drawing.Point(1315, 1055)
+        Me.LayoutControlItem5.Name = "LayoutControlItem5"
+        Me.LayoutControlItem5.Size = New System.Drawing.Size(217, 36)
+        Me.LayoutControlItem5.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem5.TextVisible = False
+        '
+        'DMDataSet
+        '
+        Me.DMDataSet.DataSetName = "DMDataSet"
+        Me.DMDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'FORMRIGHTSBindingSource
+        '
+        Me.FORMRIGHTSBindingSource.DataMember = "FORMRIGHTS"
+        Me.FORMRIGHTSBindingSource.DataSource = Me.DMDataSet
+        '
+        'FORMRIGHTSTableAdapter
+        '
+        Me.FORMRIGHTSTableAdapter.ClearBeforeFill = True
         '
         'frmPermissions
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(592, 503)
+        Me.AutoSize = True
+        Me.CancelButton = Me.cmdExit
+        Me.ClientSize = New System.Drawing.Size(1643, 1107)
         Me.Controls.Add(Me.LayoutControl1)
-        Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "frmPermissions"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
-        Me.Text = "Δικαιώματα"
+        Me.Text = "frmPermissions"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
-        CType(Me.chkDelete.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkLstUsers, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkEdit.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkInsert.Properties, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.cboUsers.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtFormName.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridControl1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem7, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.chkView.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem5, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.FORMRIGHTSBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -301,20 +321,24 @@ Partial Class frmPermissions
     Friend WithEvents LayoutControl1 As DevExpress.XtraLayout.LayoutControl
     Friend WithEvents cmdExit As DevExpress.XtraEditors.SimpleButton
     Friend WithEvents cmdSave As DevExpress.XtraEditors.SimpleButton
-    Friend WithEvents cboUsers As DevExpress.XtraEditors.LookUpEdit
     Friend WithEvents Root As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem5 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem6 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents chkDelete As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents chkLstUsers As DevExpress.XtraEditors.CheckedListBoxControl
-    Friend WithEvents chkEdit As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents chkInsert As DevExpress.XtraEditors.CheckEdit
-    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem2 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem3 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
-    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
-    Friend WithEvents chkView As DevExpress.XtraEditors.CheckEdit
+    Friend WithEvents GridControl1 As DevExpress.XtraGrid.GridControl
+    Friend WithEvents GridView1 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents LayoutControlItem8 As DevExpress.XtraLayout.LayoutControlItem
+    'Friend WithEvents FORMRIGHTSTableAdapter As Priamos_NETDataSet3TableAdapters.FORMRIGHTSTableAdapter
+    Friend WithEvents colRealName As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colview As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colinsert As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coledit As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coldelete As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colname As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents EmptySpaceItem1 As DevExpress.XtraLayout.EmptySpaceItem
+    Friend WithEvents txtFormName As DevExpress.XtraEditors.TextEdit
+    Friend WithEvents LayoutControlItem1 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents DMDataSet As DMDataSet
+    Friend WithEvents FORMRIGHTSBindingSource As BindingSource
+    Friend WithEvents FORMRIGHTSTableAdapter As DMDataSetTableAdapters.FORMRIGHTSTableAdapter
 End Class

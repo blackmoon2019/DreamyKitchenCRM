@@ -68,8 +68,6 @@ Public Class frmLogin
                     If sdr.IsDBNull(sdr.GetOrdinal("ssl")) = False Then UserProps.EmailSSL = sdr.GetBoolean(sdr.GetOrdinal("ssl"))
                     sdr.Close()
                     cmd.Dispose()
-                    'General Permissions
-                    UserPermissions.GetUserPermissions()
                     sSQL = "UPDATE USR SET dtLogin = getdate()  where ID = " & toSQLValueS(UserProps.ID.ToString)
                     cmd = New SqlCommand(sSQL, CNDB) : cmd.ExecuteNonQuery()
                     cmd.Dispose()

@@ -743,7 +743,7 @@ Public Class frmCUSOfferOrderKitchen
                 Case 2
                     If txtCUSOfferOrderFilename.EditValue = Nothing Then Exit Sub
                     If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
-                        DBQ.DeleteDataFiles("TRANSH_F", cboTRANSH.EditValue.ToString, sID)
+                        DBQ.DeleteDataFiles("TRANSH_F", cboTRANSH.EditValue.ToString, sID, "EEA48A0A-4171-46FE-BBC5-D02F2712B04C")
                         txtCUSOfferOrderFilename.EditValue = Nothing : txtbenchSalesPrice.EditValue = 0 : txtbenchSalesPrice.ReadOnly = True : cboSup.EditValue = Nothing
                     End If
             End Select
@@ -1024,7 +1024,7 @@ Public Class frmCUSOfferOrderKitchen
     End Sub
 
     Private Sub cmdSaveTransF_Click(sender As Object, e As EventArgs) Handles cmdSaveTransF.Click
-        XtraOpenFileDialog1.Tag = cboTanshFCategory.EditValue.ToString
+        XtraOpenFileDialog2.Tag = cboTanshFCategory.EditValue.ToString
         CusOfferOrderKitchen.SaveRecordF(0)
     End Sub
     Private Sub cboTanshFCategory_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboTanshFCategory.ButtonPressed
@@ -1045,7 +1045,7 @@ Public Class frmCUSOfferOrderKitchen
                 txtFiles.EditValue = sFilename
                 If txtFiles.Text <> "" Then CusOfferOrderKitchen.SaveRecordF(1, sFilename)
                 ScanFile = Nothing
-            Case 1 : FilesSelection(XtraOpenFileDialog1, txtFiles)
+            Case 1 : FilesSelection(XtraOpenFileDialog2, txtFiles, False)
 
             Case 2 : txtFiles.EditValue = Nothing
         End Select

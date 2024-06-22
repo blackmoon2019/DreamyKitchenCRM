@@ -125,8 +125,8 @@ Public Class frmCalendarPersonal
     Private Sub SchedulerControl1_DoubleClick(sender As Object, e As EventArgs) Handles SchedulerControl1.DoubleClick
         Dim form1 As frmPersonalNote = New frmPersonalNote()
         form1.Text = "Προσωπικό Ημερολόγιο"
-        form1.Scroller = frmScroller.GridView1
-        form1.FormScroller = frmScroller
+        'form1.Scroller = frmScroller.GridView1
+        'form1.FormScroller = frmScroller
         'form1.MdiParent = frmMain
         If SchedulerControl1.SelectedAppointments.Count = 0 Then
             form1.Mode = FormMode.NewRecord

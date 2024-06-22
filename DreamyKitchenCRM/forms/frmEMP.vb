@@ -14,6 +14,7 @@ Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class frmEMP
     Private sID As String
+    Private bIsExternalPartner As Boolean = False
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Public Mode As Byte
@@ -31,6 +32,12 @@ Public Class frmEMP
             sID = value
         End Set
     End Property
+    Public WriteOnly Property IsExternalPartner As Boolean
+        Set(value As Boolean)
+            bIsExternalPartner = value
+        End Set
+    End Property
+
     Public WriteOnly Property Scroller As DevExpress.XtraGrid.Views.Grid.GridView
         Set(value As DevExpress.XtraGrid.Views.Grid.GridView)
             Ctrl = value
@@ -551,6 +558,22 @@ Public Class frmEMP
                 My.Computer.FileSystem.CopyFile(ProgProps.ServerViewsPath & "DSGNS\DEF\vw_EMP_F_def.xml", Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml", True)
                 GridView1.RestoreLayoutFromXml(Application.StartupPath & "\DSGNS\DEF\vw_EMP_F_def.xml", OptionsLayoutBase.FullLayout)
             End If
+        End If
+    End Sub
+
+    Private Sub chkExternalPartner_CheckedChanged(sender As Object, e As EventArgs) Handles chkExternalPartner.CheckedChanged
+        If chkExternalPartner.CheckState = CheckState.Checked Then
+            LPercentages.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            Lcontract_salary.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+            LhireDate.Text = "Ημερ/νία Έναρξης Συνεργασίας"
+            Lrecruitment.Text = "Στοιχεία Συνεργασίας"
+            LarProt.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        Else
+            LPercentages.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            Lcontract_salary.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LarProt.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Always
+            LhireDate.Text = "Ημερ/νία Πρόσληψης"
+            Lrecruitment.Text = "Στοιχεία Πρόσληψης"
         End If
     End Sub
 
