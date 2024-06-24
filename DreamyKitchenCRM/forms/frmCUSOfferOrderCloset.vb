@@ -411,7 +411,7 @@ Public Class frmCUSOfferOrderCloset
                     GridView2.SetRowCellValue(GridView2.FocusedRowHandle, "price", GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice"))
                 End If
             End If
-            End If
+        End If
         If grdView.FocusedColumn.FieldName = "QTY" Then
             If CStr(e.Value) = "" Then Exit Sub
             Dim sTot As Decimal = e.Value * GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "defPrice")
@@ -1158,5 +1158,20 @@ Public Class frmCUSOfferOrderCloset
             Case 3 : cboCUS.EditValue = Nothing : cmdCusCollection.Enabled = False
         End Select
     End Sub
-
+    Private Sub GridView3_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView3.ValidateRow
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.Clear()
+            sSQL.AppendLine("UPDATE TRANSH_F	SET FileCatID= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "fileCatID").ToString) & ",")
+            sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+            sSQL.AppendLine("modifiedON = getdate() ")
+            sSQL.AppendLine("WHERE ID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class

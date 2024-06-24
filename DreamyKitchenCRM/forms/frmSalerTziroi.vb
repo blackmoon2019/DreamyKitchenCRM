@@ -149,10 +149,6 @@ Public Class frmSalerTziroi
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "EMP_T", LayoutControl1,,, sID, True)
                         sGuid = sID
                 End Select
-                If FScrollerExist = True Then
-                    Dim form As frmScroller = Frm
-                    form.LoadRecords("vw_EMP_T")
-                End If
 
                 If cboTransH.EditValue IsNot Nothing Then
                     ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών

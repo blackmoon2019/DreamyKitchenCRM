@@ -1,5 +1,4 @@
-﻿Imports System.ComponentModel
-Imports System.Data.SqlClient
+﻿Imports System.Data.SqlClient
 Imports System.Text
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
@@ -8,6 +7,7 @@ Imports DevExpress.XtraScheduler.Drawing
 
 Public Class frmCalendar
     Private Calendar As New InitializeCalendar
+    Private UserPermissions As New CheckPermissions
     Private Sub frmCalendar_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SALERS_AND_COUNTERS' table. You can move, or remove it, as needed.
         Me.Vw_SALERS_AND_COUNTERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SALERS_AND_COUNTERS)
@@ -60,6 +60,7 @@ Public Class frmCalendar
     Private Sub SchedulerControl1_DoubleClick(sender As Object, e As EventArgs) Handles SchedulerControl1.DoubleClick
         Dim form1 As frmCusMov = New frmCusMov()
         form1.Text = "Κινήσεις Πελατών"
+        UserPermissions.GetUserPermissions("Κινήσεις Πελατών")
         ' form1.Scroller = frmScroller.GridView1
         'form1.FormScroller = frmScroller
         form1.FormScrollerExist = False

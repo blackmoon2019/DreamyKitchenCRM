@@ -12,6 +12,7 @@ Public Class frmTransactions
     Private sID As String
     Private sOfferID As String
     Private sIsOrder As Boolean
+    Private sHasAgreement As Boolean
     Private sorderCreated As Boolean = False
     Private sTypeOfProject As Int16
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
@@ -39,6 +40,12 @@ Public Class frmTransactions
             sisOrder = value
         End Set
     End Property
+    Public WriteOnly Property HasAgreement As Boolean
+        Set(value As Boolean)
+            sHasAgreement = value
+        End Set
+    End Property
+
     Public WriteOnly Property OfferID As String
         Set(value As String)
             sOfferID = value
@@ -300,12 +307,16 @@ Public Class frmTransactions
                 oCmd.ExecuteNonQuery()
             End Using
             sSQL = "UPDATE TRANSH	SET extracost=(select sum(amt) from TRANS_EXTRA_CHARGES where transhID =  " & toSQLValueS(sID) & ") where ID = " & toSQLValueS(sID)
+
             'Εκτέλεση QUERY
             Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
                 oCmd.ExecuteNonQuery()
             End Using
+
             txtExtraCost.EditValue = GetExtraCost()
             Projects.CalculateTotAmtAndBal(sID)
+            Projects.SaveEMP_T()
+            Projects.SaveProjectcost()
             Me.Vw_TRANS_EXTRA_CHARGESTableAdapter.FillBytranshID(Me.DM_TRANS.vw_TRANS_EXTRA_CHARGES, System.Guid.Parse(sID))
         End If
     End Sub
@@ -313,22 +324,49 @@ Public Class frmTransactions
         Dim sSQL As New System.Text.StringBuilder
         Try
             sSQL.Clear()
-            If e.RowHandle = GridControl3.NewItemRowHandle Then
-                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "name").ToString = "" Then
-                    e.ErrorText = "Παρακαλώ συμπληρώστε περιγραφή"
-                    e.Valid = False
-                    Exit Sub
-                End If
-                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "amt").ToString = "0" Then
-                    e.ErrorText = "Παρακαλώ συμπληρώστε κόστος"
-                    e.Valid = False
-                    Exit Sub
-                End If
+            Dim cash As Byte
 
-                sSQL.AppendLine("INSERT INTO TRANS_EXTRA_CHARGES (transhID,name,amt,[modifiedBy],[createdby],[createdOn])")
+
+            ' Validation Rules
+            If sHasAgreement = False Then
+                XtraMessageBox.Show("Δεν μπορείτε να καταχωρήσετε Έξτρα Χρέωση όταν δεν υπάρχει συμφωνητικό", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                e.Valid = False
+                Exit Sub
+            End If
+
+            If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "cash") = True And GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "bankID") IsNot DBNull.Value Then
+                XtraMessageBox.Show("Έχετε επιλέξει τρόπο πληρωμής Μετρητά και Τράπεζα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                e.Valid = False
+                Exit Sub
+            End If
+            If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "cash") = False And GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "bankID") Is DBNull.Value Then
+                XtraMessageBox.Show("Δεν έχετε επιλέξει τρόπο πληρωμής", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                e.Valid = False
+                Exit Sub
+            End If
+            If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "name").ToString = "" Then
+                XtraMessageBox.Show("Παρακαλώ συμπληρώστε περιγραφή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                e.Valid = False
+                Exit Sub
+            End If
+            If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "amt").ToString = "0" Then
+                XtraMessageBox.Show("Παρακαλώ συμπληρώστε κόστος", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                e.Valid = False
+                Exit Sub
+            End If
+            If Not IsDBNull(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "cash")) Then
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "cash") = True Then cash = 1 Else cash = 0
+            End If
+
+            If e.RowHandle = GridControl3.NewItemRowHandle Then
+                sSQL.AppendLine("INSERT INTO TRANS_EXTRA_CHARGES (transhID,name,amt,bankID,cash,depositor,[modifiedBy],[createdby],[createdOn])")
                 sSQL.AppendLine("Select " & toSQLValueS(sID) & ",")
                 sSQL.AppendLine(toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "name").ToString) & ",")
                 sSQL.AppendLine(toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "amt"), True) & ",")
+                sSQL.AppendLine(toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "bankID").ToString) & ",")
+                sSQL.AppendLine("cash = " & cash & ",")
+                sSQL.AppendLine(toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "depositor").ToString) & ",")
+
                 sSQL.Append(toSQLValueS(UserProps.ID.ToString) & "," & toSQLValueS(UserProps.ID.ToString) & ", getdate()")
                 'Εκτέλεση QUERY
                 Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
@@ -338,6 +376,9 @@ Public Class frmTransactions
             Else
                 sSQL.AppendLine("UPDATE TRANS_EXTRA_CHARGES	SET name= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "name").ToString) & ",")
                 sSQL.AppendLine("amt= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "amt"), True) & ",")
+                sSQL.AppendLine("bankID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "bankID").ToString) & ",")
+                sSQL.AppendLine("depositor = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "depositor").ToString) & ",")
+                sSQL.AppendLine("cash = " & cash & ",")
                 sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
                 sSQL.AppendLine("modifiedON = getdate() ")
                 sSQL.AppendLine("WHERE ID = " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString))
@@ -355,6 +396,8 @@ Public Class frmTransactions
             End Using
             txtExtraCost.EditValue = GetExtraCost()
             Projects.CalculateTotAmtAndBal(sID)
+            Projects.SaveEMP_T()
+            Projects.SaveProjectcost()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -565,5 +608,22 @@ Public Class frmTransactions
 
     Private Sub RepositoryItemCctTransh_EditValueChanged(sender As Object, e As EventArgs) Handles RepositoryItemCctTransh.EditValueChanged
         Vw_TRANSHTableAdapter.FillByCompAndCus(DM_TRANS.vw_TRANSH, System.Guid.Parse(sID), DirectCast(e, DevExpress.XtraEditors.Controls.ChangingEventArgs).NewValue)
+    End Sub
+
+    Private Sub GridView2_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView2.ValidateRow
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.Clear()
+            sSQL.AppendLine("UPDATE TRANSH_F	SET FileCatID= " & toSQLValueS(GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "fileCatID").ToString) & ",")
+            sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+            sSQL.AppendLine("modifiedON = getdate() ")
+            sSQL.AppendLine("WHERE ID = " & toSQLValueS(GridView2.GetRowCellValue(GridView2.FocusedRowHandle, "ID").ToString))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class

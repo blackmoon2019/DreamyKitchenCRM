@@ -404,15 +404,19 @@ Partial Class frmCUSOfferOrderDoors
         Me.TRANSHFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltranshID1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcode1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colfilename = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcomefrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colextension = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colmodifiedOn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedOn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coltranshID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colfileCatID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepFileCat = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.colownerID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colbelongsTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtFiles = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControlGroup16 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem42 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -770,6 +774,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepFileCat, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFiles.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem42, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -5917,6 +5922,7 @@ Partial Class frmCUSOfferOrderDoors
         Me.GridControl2.MainView = Me.GridView3
         Me.GridControl2.Margin = New System.Windows.Forms.Padding(15)
         Me.GridControl2.Name = "GridControl2"
+        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepFileCat})
         Me.GridControl2.Size = New System.Drawing.Size(1329, 841)
         Me.GridControl2.TabIndex = 66
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
@@ -5928,105 +5934,147 @@ Partial Class frmCUSOfferOrderDoors
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.coltranshID1, Me.colfilename, Me.colcomefrom, Me.colextension, Me.GridColumn8, Me.colmodifiedOn1, Me.colcreatedOn1, Me.GridColumn9})
-        Me.GridView3.DetailHeight = 1565
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.colcode1, Me.colfilename, Me.colcomefrom, Me.colextension, Me.colmodifiedOn1, Me.colcreatedOn1, Me.coltranshID, Me.GridColumn7, Me.GridColumn8, Me.colfileCatID, Me.colownerID, Me.colbelongsTo})
         Me.GridView3.GridControl = Me.GridControl2
         Me.GridView3.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
         Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsBehavior.Editable = False
-        Me.GridView3.OptionsEditForm.PopupEditFormWidth = 2205
+        Me.GridView3.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView3.OptionsEditForm.PopupEditFormWidth = 480
         Me.GridView3.OptionsView.ColumnAutoWidth = False
         Me.GridView3.OptionsView.ShowGroupPanel = False
+        Me.GridView3.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colfilename, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn6
         '
         Me.GridColumn6.FieldName = "ID"
-        Me.GridColumn6.MinWidth = 94
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
-        Me.GridColumn6.Width = 363
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         '
-        'GridColumn7
+        'colcode1
         '
-        Me.GridColumn7.FieldName = "code"
-        Me.GridColumn7.MinWidth = 94
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
-        Me.GridColumn7.Width = 363
-        '
-        'coltranshID1
-        '
-        Me.coltranshID1.FieldName = "transhID"
-        Me.coltranshID1.MinWidth = 94
-        Me.coltranshID1.Name = "coltranshID1"
-        Me.coltranshID1.Visible = True
-        Me.coltranshID1.VisibleIndex = 2
-        Me.coltranshID1.Width = 363
+        Me.colcode1.FieldName = "code"
+        Me.colcode1.Name = "colcode1"
+        Me.colcode1.OptionsColumn.AllowEdit = False
         '
         'colfilename
         '
+        Me.colfilename.Caption = "Όνομα Αρχείου"
         Me.colfilename.FieldName = "filename"
-        Me.colfilename.MinWidth = 94
         Me.colfilename.Name = "colfilename"
+        Me.colfilename.OptionsColumn.AllowEdit = False
         Me.colfilename.Visible = True
-        Me.colfilename.VisibleIndex = 3
-        Me.colfilename.Width = 363
+        Me.colfilename.VisibleIndex = 1
+        Me.colfilename.Width = 468
         '
         'colcomefrom
         '
+        Me.colcomefrom.Caption = "Τοποθεσία"
         Me.colcomefrom.FieldName = "comefrom"
-        Me.colcomefrom.MinWidth = 94
         Me.colcomefrom.Name = "colcomefrom"
+        Me.colcomefrom.OptionsColumn.AllowEdit = False
         Me.colcomefrom.Visible = True
-        Me.colcomefrom.VisibleIndex = 4
-        Me.colcomefrom.Width = 363
+        Me.colcomefrom.VisibleIndex = 2
+        Me.colcomefrom.Width = 213
         '
         'colextension
         '
+        Me.colextension.Caption = "Επέκταση"
         Me.colextension.FieldName = "extension"
-        Me.colextension.MinWidth = 94
         Me.colextension.Name = "colextension"
+        Me.colextension.OptionsColumn.AllowEdit = False
         Me.colextension.Visible = True
-        Me.colextension.VisibleIndex = 5
-        Me.colextension.Width = 363
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.FieldName = "modifiedBy"
-        Me.GridColumn8.MinWidth = 94
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
-        Me.GridColumn8.Width = 363
+        Me.colextension.VisibleIndex = 3
+        Me.colextension.Width = 115
         '
         'colmodifiedOn1
         '
         Me.colmodifiedOn1.FieldName = "modifiedOn"
-        Me.colmodifiedOn1.MinWidth = 94
         Me.colmodifiedOn1.Name = "colmodifiedOn1"
-        Me.colmodifiedOn1.Visible = True
-        Me.colmodifiedOn1.VisibleIndex = 7
-        Me.colmodifiedOn1.Width = 363
+        Me.colmodifiedOn1.OptionsColumn.AllowEdit = False
         '
         'colcreatedOn1
         '
         Me.colcreatedOn1.FieldName = "createdOn"
-        Me.colcreatedOn1.MinWidth = 94
         Me.colcreatedOn1.Name = "colcreatedOn1"
-        Me.colcreatedOn1.Visible = True
-        Me.colcreatedOn1.VisibleIndex = 8
-        Me.colcreatedOn1.Width = 363
+        Me.colcreatedOn1.OptionsColumn.AllowEdit = False
         '
-        'GridColumn9
+        'coltranshID
         '
-        Me.GridColumn9.FieldName = "createdBy"
-        Me.GridColumn9.MinWidth = 94
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
-        Me.GridColumn9.Width = 363
+        Me.coltranshID.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.coltranshID.AppearanceCell.Options.UseBackColor = True
+        Me.coltranshID.Caption = "transhID"
+        Me.coltranshID.FieldName = "transhID"
+        Me.coltranshID.MinWidth = 33
+        Me.coltranshID.Name = "coltranshID"
+        Me.coltranshID.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.GridColumn7.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn7.Caption = "modifiedBy"
+        Me.GridColumn7.FieldName = "modifiedBy"
+        Me.GridColumn7.MinWidth = 33
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.GridColumn8.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn8.Caption = "createdBy"
+        Me.GridColumn8.FieldName = "createdBy"
+        Me.GridColumn8.MinWidth = 33
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        '
+        'colfileCatID
+        '
+        Me.colfileCatID.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colfileCatID.AppearanceCell.Options.UseBackColor = True
+        Me.colfileCatID.Caption = "Κατηγορία"
+        Me.colfileCatID.ColumnEdit = Me.RepFileCat
+        Me.colfileCatID.FieldName = "fileCatID"
+        Me.colfileCatID.MinWidth = 30
+        Me.colfileCatID.Name = "colfileCatID"
+        Me.colfileCatID.Visible = True
+        Me.colfileCatID.VisibleIndex = 0
+        Me.colfileCatID.Width = 112
+        '
+        'RepFileCat
+        '
+        Me.RepFileCat.AutoHeight = False
+        Me.RepFileCat.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepFileCat.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 30, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 46, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Κατηγορία", 52, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 97, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 101, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 90, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 86, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 89, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepFileCat.DataSource = Me.VwFILECATBindingSource
+        Me.RepFileCat.DisplayMember = "name"
+        Me.RepFileCat.Name = "RepFileCat"
+        Me.RepFileCat.NullText = ""
+        Me.RepFileCat.ValueMember = "ID"
+        '
+        'colownerID
+        '
+        Me.colownerID.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colownerID.AppearanceCell.Options.UseBackColor = True
+        Me.colownerID.Caption = "ownerID"
+        Me.colownerID.FieldName = "ownerID"
+        Me.colownerID.MinWidth = 30
+        Me.colownerID.Name = "colownerID"
+        Me.colownerID.OptionsColumn.AllowEdit = False
+        Me.colownerID.Width = 112
+        '
+        'colbelongsTo
+        '
+        Me.colbelongsTo.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colbelongsTo.AppearanceCell.Options.UseBackColor = True
+        Me.colbelongsTo.Caption = "Προέλευση"
+        Me.colbelongsTo.FieldName = "belongsTo"
+        Me.colbelongsTo.MinWidth = 30
+        Me.colbelongsTo.Name = "colbelongsTo"
+        Me.colbelongsTo.OptionsColumn.AllowEdit = False
+        Me.colbelongsTo.Visible = True
+        Me.colbelongsTo.VisibleIndex = 4
+        Me.colbelongsTo.Width = 112
         '
         'txtFiles
         '
@@ -6481,6 +6529,7 @@ Partial Class frmCUSOfferOrderDoors
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepFileCat, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFiles.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem42, System.ComponentModel.ISupportInitialize).EndInit()
@@ -6557,14 +6606,12 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltranshID1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colfilename As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcomefrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colextension As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colmodifiedOn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcreatedOn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LayoutControlGroup16 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem42 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents VwCCTORDERSPHOTOSBindingSource As BindingSource
@@ -6891,4 +6938,10 @@ Partial Class frmCUSOfferOrderDoors
     Friend WithEvents LayoutControlItem38 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem40 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem43 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents colcode1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coltranshID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colfileCatID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colownerID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colbelongsTo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepFileCat As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
 End Class

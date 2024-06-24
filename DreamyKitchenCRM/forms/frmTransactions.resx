@@ -118,16 +118,16 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <metadata name="VwCOMPBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1581, 109</value>
+    <value>1982, 109</value>
   </metadata>
   <metadata name="DM_CCT.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2006, 63</value>
+    <value>2264, 63</value>
   </metadata>
   <metadata name="VwTRANSHCBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>699, 63</value>
+    <value>957, 63</value>
   </metadata>
   <metadata name="DM_TRANS.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 63</value>
+    <value>275, 63</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="LayoutControlItem20.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -209,25 +209,25 @@
 </value>
   </data>
   <metadata name="VwTRANSDDebitBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2734, 109</value>
+    <value>341, 155</value>
   </metadata>
   <metadata name="VwBANKSBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>538, 17</value>
   </metadata>
   <metadata name="VwPAYTYPESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1271, 63</value>
+    <value>1529, 63</value>
   </metadata>
   <metadata name="COMPCCTTRANSHBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>337, 155</value>
+    <value>977, 155</value>
   </metadata>
   <metadata name="VwTRANSHBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1003, 155</value>
+    <value>1643, 155</value>
   </metadata>
   <metadata name="VwTRANSDCreditBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2090, 109</value>
+    <value>2491, 109</value>
   </metadata>
   <metadata name="CCTTRANSHBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1024, 109</value>
+    <value>1425, 109</value>
   </metadata>
   <data name="LayoutControlItem7.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -248,13 +248,16 @@
 </value>
   </data>
   <metadata name="TRANSHFBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2800, 17</value>
+    <value>17, 63</value>
   </metadata>
   <metadata name="VwFILECATBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 109</value>
+    <value>418, 109</value>
   </metadata>
   <metadata name="VwTRANSEXTRACHARGESBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2140, 63</value>
+    <value>2398, 63</value>
+  </metadata>
+  <metadata name="VwBANKSBindingSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>2420, 155</value>
   </metadata>
   <metadata name="VwTRANSDBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>265, 17</value>
@@ -278,19 +281,19 @@
     <value>2542, 17</value>
   </metadata>
   <metadata name="TRANSH_FTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>175, 63</value>
+    <value>433, 63</value>
   </metadata>
   <metadata name="Vw_TRANSDTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>430, 63</value>
+    <value>688, 63</value>
   </metadata>
   <metadata name="Vw_TRANSH_CTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>983, 63</value>
+    <value>1241, 63</value>
   </metadata>
   <metadata name="Vw_PAYTYPESTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1554, 63</value>
+    <value>1812, 63</value>
   </metadata>
   <metadata name="BarManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1834, 63</value>
+    <value>2092, 63</value>
   </metadata>
   <data name="BBInstallations.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -317,36 +320,36 @@
     <value>221</value>
   </metadata>
   <metadata name="WorkspaceManager1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1546, 155</value>
+    <value>2186, 155</value>
   </metadata>
   <metadata name="Vw_TRANS_EXTRA_CHARGESTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2530, 63</value>
+    <value>17, 109</value>
   </metadata>
   <metadata name="Vw_FILE_CATTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>284, 109</value>
+    <value>685, 109</value>
   </metadata>
   <metadata name="VwCCTBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>555, 109</value>
+    <value>956, 109</value>
   </metadata>
   <metadata name="Vw_CCTTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>791, 109</value>
+    <value>1192, 109</value>
   </metadata>
   <metadata name="CCT_TRANSHTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1304, 109</value>
+    <value>1705, 109</value>
   </metadata>
   <metadata name="Vw_COMPTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1837, 109</value>
+    <value>2238, 109</value>
   </metadata>
   <metadata name="Vw_TRANSD_CreditTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>2410, 109</value>
-  </metadata>
-  <metadata name="Vw_TRANSD_DebitTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 155</value>
   </metadata>
+  <metadata name="Vw_TRANSD_DebitTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>657, 155</value>
+  </metadata>
   <metadata name="COMP_CCT_TRANSHTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>668, 155</value>
+    <value>1308, 155</value>
   </metadata>
   <metadata name="Vw_TRANSHTableAdapter.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>1276, 155</value>
+    <value>1916, 155</value>
   </metadata>
 </root>

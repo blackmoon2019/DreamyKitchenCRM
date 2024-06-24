@@ -12,7 +12,7 @@
     <Shape ID="DesignTable:vw_TRANSH" ZOrder="1" X="758" Y="144" Height="531" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:CCT_TRANSH" ZOrder="9" X="66" Y="488" Height="485" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="410" />
     <Shape ID="DesignTable:vw_PAYTYPES" ZOrder="10" X="1121" Y="191" Height="361" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="286" />
-    <Shape ID="DesignTable:vw_TRANS_EXTRA_CHARGES" ZOrder="7" X="1568" Y="390" Height="423" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="348" />
+    <Shape ID="DesignTable:vw_TRANS_EXTRA_CHARGES" ZOrder="7" X="1568" Y="390" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
     <Shape ID="DesignTable:vw_TRANSD_Credit" ZOrder="2" X="1121" Y="732" Height="425" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="358" />
     <Shape ID="DesignTable:vw_TRANSD_Debit" ZOrder="5" X="843" Y="739" Height="398" Width="300" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="331" />
     <Shape ID="DesignTable:COMP_CCT_TRANSH" ZOrder="4" X="2032" Y="282" Height="305" Width="264" AdapterExpanded="true" DataTableExpanded="true" OldAdapterHeight="0" OldDataTableHeight="0" SplitterPosition="254" />

@@ -117,6 +117,7 @@ Public Class Projects
                 ' Debug.Print(Frm.cboCUS.EditValue.ToString)
                 Frm.cboCUS.EditValue = TranshFieldAndValues.Item("cusID").ToString
                 Frm.txtBal.EditValue = TranshFieldAndValues.Item("bal")
+                Frm.HasAgreement = TranshFieldAndValues.Item("HasAgreement")
                 sEMP_T_ID = TranshFieldAndValues.Item("EmpTID").ToString
                 sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
                 Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
@@ -303,12 +304,15 @@ Public Class Projects
                 'oCmd.Parameters.AddWithValue("@offerCusAcceptance", Frm.chkofferCusAcceptance.CheckState)
                 oCmd.Parameters.Add("@bal", SqlDbType.Decimal)
                 oCmd.Parameters.Add("@Totamt", SqlDbType.Decimal)
+                oCmd.Parameters.Add("@amt", SqlDbType.Decimal)
                 oCmd.Parameters("@bal").Direction = ParameterDirection.Output : oCmd.Parameters("@bal").Precision = 18 : oCmd.Parameters("@bal").Scale = 2
                 oCmd.Parameters("@Totamt").Direction = ParameterDirection.Output : oCmd.Parameters("@Totamt").Precision = 18 : oCmd.Parameters("@Totamt").Scale = 2
+                oCmd.Parameters("@amt").Direction = ParameterDirection.Output : oCmd.Parameters("@amt").Precision = 18 : oCmd.Parameters("@amt").Scale = 2
                 oCmd.ExecuteNonQuery()
                 If Frm IsNot Nothing Then
                     Frm.txtBal.EditValue = oCmd.Parameters("@bal").Value : If Frm.txtBal.Text = "" Then Frm.txtBal.EditValue = "0.00"
                     Frm.txtTotAmt.EditValue = oCmd.Parameters("@Totamt").Value : If Frm.txtTotAmt.Text = "" Then Frm.txtTotAmt.EditValue = "0.00"
+                    Frm.txtAmtH.EditValue = oCmd.Parameters("@amt").Value : If Frm.txtAmtH.Text = "" Then Frm.txtAmtH.EditValue = "0.00"
                 End If
             End Using
         Catch ex As Exception
@@ -674,7 +678,7 @@ Public Class Projects
         End Try
     End Function
     'Καταχώρηση Εγγραφής στους Τζίρους ποσοστά
-    Private Sub SaveEMP_T()
+    Public Sub SaveEMP_T()
         Try
             Using oCmd As New SqlCommand("usp_AddOrUpdateEmp_T", CNDB)
                 oCmd.CommandType = CommandType.StoredProcedure
@@ -686,7 +690,7 @@ Public Class Projects
         End Try
     End Sub
     ' Άνοιγμα ανάλυσης έργου αν δεν υπάρχει ή ενημέρωση ποσών
-    Private Sub SaveProjectcost()
+    Public Sub SaveProjectcost()
         Try
             Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
                 oCmd.CommandType = CommandType.StoredProcedure

@@ -3612,6 +3612,14 @@ Partial Public Class DM_TRANS
 
         Private columnRealName As Global.System.Data.DataColumn
 
+        Private columnbankID As Global.System.Data.DataColumn
+
+        Private columncash As Global.System.Data.DataColumn
+
+        Private columndepositor As Global.System.Data.DataColumn
+
+        Private columnBankName As Global.System.Data.DataColumn
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub New()
@@ -3728,6 +3736,38 @@ Partial Public Class DM_TRANS
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property bankIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnbankID
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property cashColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columncash
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property depositorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columndepositor
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property BankNameColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnBankName
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
          Global.System.ComponentModel.Browsable(False)>
         Public ReadOnly Property Count() As Integer
@@ -3764,9 +3804,9 @@ Partial Public Class DM_TRANS
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Overloads Function Addvw_TRANS_EXTRA_CHARGESRow(ByVal ID As System.Guid, ByVal code As Integer, ByVal name As String, ByVal amt As Decimal, ByVal transhID As System.Guid, ByVal modifiedBy As System.Guid, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid, ByVal RealName As String) As vw_TRANS_EXTRA_CHARGESRow
+        Public Overloads Function Addvw_TRANS_EXTRA_CHARGESRow(ByVal ID As System.Guid, ByVal code As Integer, ByVal name As String, ByVal amt As Decimal, ByVal transhID As System.Guid, ByVal modifiedBy As System.Guid, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid, ByVal RealName As String, ByVal bankID As System.Guid, ByVal cash As Boolean, ByVal depositor As String, ByVal BankName As String) As vw_TRANS_EXTRA_CHARGESRow
             Dim rowvw_TRANS_EXTRA_CHARGESRow As vw_TRANS_EXTRA_CHARGESRow = CType(Me.NewRow, vw_TRANS_EXTRA_CHARGESRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, name, amt, transhID, modifiedBy, modifiedOn, createdOn, createdBy, RealName}
+            Dim columnValuesArray() As Object = New Object() {ID, code, name, amt, transhID, modifiedBy, modifiedOn, createdOn, createdBy, RealName, bankID, cash, depositor, BankName}
             rowvw_TRANS_EXTRA_CHARGESRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_TRANS_EXTRA_CHARGESRow)
             Return rowvw_TRANS_EXTRA_CHARGESRow
@@ -3805,6 +3845,10 @@ Partial Public Class DM_TRANS
             Me.columncreatedOn = MyBase.Columns("createdOn")
             Me.columncreatedBy = MyBase.Columns("createdBy")
             Me.columnRealName = MyBase.Columns("RealName")
+            Me.columnbankID = MyBase.Columns("bankID")
+            Me.columncash = MyBase.Columns("cash")
+            Me.columndepositor = MyBase.Columns("depositor")
+            Me.columnBankName = MyBase.Columns("BankName")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -3830,6 +3874,14 @@ Partial Public Class DM_TRANS
             MyBase.Columns.Add(Me.columncreatedBy)
             Me.columnRealName = New Global.System.Data.DataColumn("RealName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnRealName)
+            Me.columnbankID = New Global.System.Data.DataColumn("bankID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnbankID)
+            Me.columncash = New Global.System.Data.DataColumn("cash", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columncash)
+            Me.columndepositor = New Global.System.Data.DataColumn("depositor", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columndepositor)
+            Me.columnBankName = New Global.System.Data.DataColumn("BankName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnBankName)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, True))
             Me.columnID.AllowDBNull = False
             Me.columnID.Unique = True
@@ -3840,6 +3892,10 @@ Partial Public Class DM_TRANS
             Me.columntranshID.AllowDBNull = False
             Me.columnmodifiedBy.AllowDBNull = False
             Me.columnRealName.MaxLength = 200
+            Me.columncash.AllowDBNull = False
+            Me.columncash.DefaultValue = CType(False, Boolean)
+            Me.columndepositor.MaxLength = 100
+            Me.columnBankName.MaxLength = 150
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -8209,6 +8265,62 @@ Partial Public Class DM_TRANS
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property bankID() As System.Guid
+            Get
+                Try
+                    Return CType(Me(Me.tablevw_TRANS_EXTRA_CHARGES.bankIDColumn), Global.System.Guid)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'bankID' in table 'vw_TRANS_EXTRA_CHARGES' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANS_EXTRA_CHARGES.bankIDColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property cash() As Boolean
+            Get
+                Return CType(Me(Me.tablevw_TRANS_EXTRA_CHARGES.cashColumn), Boolean)
+            End Get
+            Set
+                Me(Me.tablevw_TRANS_EXTRA_CHARGES.cashColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property depositor() As String
+            Get
+                Try
+                    Return CType(Me(Me.tablevw_TRANS_EXTRA_CHARGES.depositorColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'depositor' in table 'vw_TRANS_EXTRA_CHARGES' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANS_EXTRA_CHARGES.depositorColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property BankName() As String
+            Get
+                Try
+                    Return CType(Me(Me.tablevw_TRANS_EXTRA_CHARGES.BankNameColumn), String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'BankName' in table 'vw_TRANS_EXTRA_CHARGES' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANS_EXTRA_CHARGES.BankNameColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Function IsmodifiedOnNull() As Boolean
             Return Me.IsNull(Me.tablevw_TRANS_EXTRA_CHARGES.modifiedOnColumn)
         End Function
@@ -8253,6 +8365,42 @@ Partial Public Class DM_TRANS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub SetRealNameNull()
             Me(Me.tablevw_TRANS_EXTRA_CHARGES.RealNameColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IsbankIDNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANS_EXTRA_CHARGES.bankIDColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetbankIDNull()
+            Me(Me.tablevw_TRANS_EXTRA_CHARGES.bankIDColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IsdepositorNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANS_EXTRA_CHARGES.depositorColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetdepositorNull()
+            Me(Me.tablevw_TRANS_EXTRA_CHARGES.depositorColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IsBankNameNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANS_EXTRA_CHARGES.BankNameColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetBankNameNull()
+            Me(Me.tablevw_TRANS_EXTRA_CHARGES.BankNameColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
 
@@ -11296,6 +11444,10 @@ Namespace DM_TRANSTableAdapters
             tableMapping.ColumnMappings.Add("createdOn", "createdOn")
             tableMapping.ColumnMappings.Add("createdBy", "createdBy")
             tableMapping.ColumnMappings.Add("RealName", "RealName")
+            tableMapping.ColumnMappings.Add("bankID", "bankID")
+            tableMapping.ColumnMappings.Add("cash", "cash")
+            tableMapping.ColumnMappings.Add("depositor", "depositor")
+            tableMapping.ColumnMappings.Add("BankName", "BankName")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
 
@@ -11312,8 +11464,7 @@ Namespace DM_TRANSTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT vw_TRANS_EXTRA_CHARGES.*" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANS_EXTRA_CHARGES" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "where transhID=@t" &
-                "ranshID"
+            Me._commandCollection(0).CommandText = "SELECT *" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANS_EXTRA_CHARGES" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (transhID = @transhID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@transhID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "transhID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub

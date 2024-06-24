@@ -21,18 +21,18 @@ Partial Class frmCUSOfferOrderSpecialConstr
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmCUSOfferOrderSpecialConstr))
-        Dim GridFormatRule2 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
-        Dim FormatConditionRuleExpression2 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
-        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim GridFormatRule1 As DevExpress.XtraGrid.GridFormatRule = New DevExpress.XtraGrid.GridFormatRule()
+        Dim FormatConditionRuleExpression1 As DevExpress.XtraEditors.FormatConditionRuleExpression = New DevExpress.XtraEditors.FormatConditionRuleExpression()
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.VwCOMPBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DM_CCT = New DreamyKitchenCRM.DM_CCT()
         Me.VwCCTBindingSource = New System.Windows.Forms.BindingSource(Me.components)
@@ -240,15 +240,20 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.TRANSHFBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.GridColumn6 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.coltranshID1 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colcode1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colfilename = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcomefrom = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colextension = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colmodifiedOn1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedOn1 = New DevExpress.XtraGrid.Columns.GridColumn()
-        Me.GridColumn9 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.coltranshID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn7 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.GridColumn8 = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colfileCatID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.RepFileCat = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
+        Me.VwFILECATBindingSource1 = New System.Windows.Forms.BindingSource(Me.components)
+        Me.colownerID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colbelongsTo = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.txtFiles = New DevExpress.XtraEditors.ButtonEdit()
         Me.LayoutControlGroup16 = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem49 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -436,6 +441,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.RepFileCat, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwFILECATBindingSource1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtFiles.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem49, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2695,14 +2702,14 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.CardView1.CardWidth = 799
         Me.CardView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcolorCatID1, Me.colColorsCatName, Me.colsupID1, Me.colSupFullName, Me.colvalueListItemID1, Me.colValueListItemName, Me.colphoto, Me.colID1, Me.colvalueListItemID, Me.colCustomCode, Me.colcreatedOn, Me.colcreatedBy, Me.colcolorCatID, Me.colmodifiedBy, Me.colmodifiedOn, Me.colsite, Me.colsupID})
         Me.CardView1.DetailHeight = 506
-        GridFormatRule2.ApplyToRow = True
-        GridFormatRule2.Name = "Format0"
-        FormatConditionRuleExpression2.Appearance.BackColor = System.Drawing.Color.White
-        FormatConditionRuleExpression2.Appearance.Options.UseBackColor = True
-        FormatConditionRuleExpression2.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
-        FormatConditionRuleExpression2.PredefinedName = "Red Text"
-        GridFormatRule2.Rule = FormatConditionRuleExpression2
-        Me.CardView1.FormatRules.Add(GridFormatRule2)
+        GridFormatRule1.ApplyToRow = True
+        GridFormatRule1.Name = "Format0"
+        FormatConditionRuleExpression1.Appearance.BackColor = System.Drawing.Color.White
+        FormatConditionRuleExpression1.Appearance.Options.UseBackColor = True
+        FormatConditionRuleExpression1.Expression = "IsNullOrEmpty([dCode]) And [checked] = True"
+        FormatConditionRuleExpression1.PredefinedName = "Red Text"
+        GridFormatRule1.Rule = FormatConditionRuleExpression1
+        Me.CardView1.FormatRules.Add(GridFormatRule1)
         Me.CardView1.GridControl = Me.GridControl1
         Me.CardView1.Name = "CardView1"
         Me.CardView1.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.[False]
@@ -2913,8 +2920,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboSUP1.Name = "cboSUP1"
         Me.cboSUP1.Properties.AllowMouseWheel = False
         Me.cboSUP1.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions3.Image = CType(resources.GetObject("EditorButtonImageOptions3.Image"), System.Drawing.Image)
-        Me.cboSUP1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.cboSUP1.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default])})
         Me.cboSUP1.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 54, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 85, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Επωνυμία", 142, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ttl", "Διακριτικός Τίτλος", 48, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("bal", "bal", 63, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("email", "email", 93, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("site", "site", 67, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
         Me.cboSUP1.Properties.DataSource = Me.VwSUPBindingSource
         Me.cboSUP1.Properties.DisplayMember = "Fullname"
@@ -3067,7 +3074,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.TabNavigationPage3.Margin = New System.Windows.Forms.Padding(4)
         Me.TabNavigationPage3.Name = "TabNavigationPage3"
         Me.TabNavigationPage3.PageText = "ΑΡΧΕΙΑ"
-        Me.TabNavigationPage3.Size = New System.Drawing.Size(1282, 961)
+        Me.TabNavigationPage3.Size = New System.Drawing.Size(1526, 961)
         '
         'LayoutControl4
         '
@@ -3081,19 +3088,19 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControl4.Name = "LayoutControl4"
         Me.LayoutControl4.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(1354, 626, 975, 600)
         Me.LayoutControl4.Root = Me.LayoutControlGroup16
-        Me.LayoutControl4.Size = New System.Drawing.Size(1282, 961)
+        Me.LayoutControl4.Size = New System.Drawing.Size(1526, 961)
         Me.LayoutControl4.TabIndex = 3
         Me.LayoutControl4.Text = "LayoutControl4"
         '
         'cmdSaveTransF
         '
         Me.cmdSaveTransF.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_save_close_24
-        Me.cmdSaveTransF.Location = New System.Drawing.Point(1093, 72)
+        Me.cmdSaveTransF.Location = New System.Drawing.Point(1302, 72)
         Me.cmdSaveTransF.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdSaveTransF.Name = "cmdSaveTransF"
-        Me.cmdSaveTransF.Size = New System.Drawing.Size(177, 32)
+        Me.cmdSaveTransF.Size = New System.Drawing.Size(212, 32)
         Me.cmdSaveTransF.StyleController = Me.LayoutControl4
-        Me.cmdSaveTransF.TabIndex = 69
+        Me.cmdSaveTransF.TabIndex = 3
         Me.cmdSaveTransF.Text = "Αποθήκευση"
         '
         'cboTanshFCategory
@@ -3110,9 +3117,9 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.cboTanshFCategory.Properties.NullText = ""
         Me.cboTanshFCategory.Properties.PopupSizeable = False
         Me.cboTanshFCategory.Properties.ValueMember = "ID"
-        Me.cboTanshFCategory.Size = New System.Drawing.Size(1161, 26)
+        Me.cboTanshFCategory.Size = New System.Drawing.Size(1405, 26)
         Me.cboTanshFCategory.StyleController = Me.LayoutControl4
-        Me.cboTanshFCategory.TabIndex = 68
+        Me.cboTanshFCategory.TabIndex = 2
         Me.cboTanshFCategory.Tag = "fileCatID,0,1,2"
         '
         'VwFILECATBindingSource
@@ -3128,8 +3135,9 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.GridControl2.MainView = Me.GridView3
         Me.GridControl2.Margin = New System.Windows.Forms.Padding(8, 7, 8, 7)
         Me.GridControl2.Name = "GridControl2"
-        Me.GridControl2.Size = New System.Drawing.Size(1258, 841)
-        Me.GridControl2.TabIndex = 66
+        Me.GridControl2.RepositoryItems.AddRange(New DevExpress.XtraEditors.Repository.RepositoryItem() {Me.RepFileCat})
+        Me.GridControl2.Size = New System.Drawing.Size(1502, 841)
+        Me.GridControl2.TabIndex = 4
         Me.GridControl2.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3})
         '
         'TRANSHFBindingSource
@@ -3139,105 +3147,152 @@ Partial Class frmCUSOfferOrderSpecialConstr
         '
         'GridView3
         '
-        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.GridColumn7, Me.coltranshID1, Me.colfilename, Me.colcomefrom, Me.colextension, Me.GridColumn8, Me.colmodifiedOn1, Me.colcreatedOn1, Me.GridColumn9})
-        Me.GridView3.DetailHeight = 894
+        Me.GridView3.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.GridColumn6, Me.colcode1, Me.colfilename, Me.colcomefrom, Me.colextension, Me.colmodifiedOn1, Me.colcreatedOn1, Me.coltranshID, Me.GridColumn7, Me.GridColumn8, Me.colfileCatID, Me.colownerID, Me.colbelongsTo})
         Me.GridView3.GridControl = Me.GridControl2
         Me.GridView3.HorzScrollVisibility = DevExpress.XtraGrid.Views.Base.ScrollVisibility.Always
         Me.GridView3.Name = "GridView3"
-        Me.GridView3.OptionsBehavior.Editable = False
-        Me.GridView3.OptionsEditForm.PopupEditFormWidth = 1260
+        Me.GridView3.OptionsBehavior.AlignGroupSummaryInGroupRow = DevExpress.Utils.DefaultBoolean.[False]
+        Me.GridView3.OptionsEditForm.PopupEditFormWidth = 480
         Me.GridView3.OptionsView.ColumnAutoWidth = False
         Me.GridView3.OptionsView.ShowGroupPanel = False
+        Me.GridView3.SortInfo.AddRange(New DevExpress.XtraGrid.Columns.GridColumnSortInfo() {New DevExpress.XtraGrid.Columns.GridColumnSortInfo(Me.colfilename, DevExpress.Data.ColumnSortOrder.Ascending)})
         '
         'GridColumn6
         '
         Me.GridColumn6.FieldName = "ID"
-        Me.GridColumn6.MinWidth = 54
         Me.GridColumn6.Name = "GridColumn6"
-        Me.GridColumn6.Visible = True
-        Me.GridColumn6.VisibleIndex = 0
-        Me.GridColumn6.Width = 205
+        Me.GridColumn6.OptionsColumn.AllowEdit = False
         '
-        'GridColumn7
+        'colcode1
         '
-        Me.GridColumn7.FieldName = "code"
-        Me.GridColumn7.MinWidth = 54
-        Me.GridColumn7.Name = "GridColumn7"
-        Me.GridColumn7.Visible = True
-        Me.GridColumn7.VisibleIndex = 1
-        Me.GridColumn7.Width = 205
-        '
-        'coltranshID1
-        '
-        Me.coltranshID1.FieldName = "transhID"
-        Me.coltranshID1.MinWidth = 54
-        Me.coltranshID1.Name = "coltranshID1"
-        Me.coltranshID1.Visible = True
-        Me.coltranshID1.VisibleIndex = 2
-        Me.coltranshID1.Width = 205
+        Me.colcode1.FieldName = "code"
+        Me.colcode1.Name = "colcode1"
+        Me.colcode1.OptionsColumn.AllowEdit = False
         '
         'colfilename
         '
+        Me.colfilename.Caption = "Όνομα Αρχείου"
         Me.colfilename.FieldName = "filename"
-        Me.colfilename.MinWidth = 54
         Me.colfilename.Name = "colfilename"
+        Me.colfilename.OptionsColumn.AllowEdit = False
         Me.colfilename.Visible = True
-        Me.colfilename.VisibleIndex = 3
-        Me.colfilename.Width = 205
+        Me.colfilename.VisibleIndex = 1
+        Me.colfilename.Width = 468
         '
         'colcomefrom
         '
+        Me.colcomefrom.Caption = "Τοποθεσία"
         Me.colcomefrom.FieldName = "comefrom"
-        Me.colcomefrom.MinWidth = 54
         Me.colcomefrom.Name = "colcomefrom"
+        Me.colcomefrom.OptionsColumn.AllowEdit = False
         Me.colcomefrom.Visible = True
-        Me.colcomefrom.VisibleIndex = 4
-        Me.colcomefrom.Width = 205
+        Me.colcomefrom.VisibleIndex = 2
+        Me.colcomefrom.Width = 213
         '
         'colextension
         '
+        Me.colextension.Caption = "Επέκταση"
         Me.colextension.FieldName = "extension"
-        Me.colextension.MinWidth = 54
         Me.colextension.Name = "colextension"
+        Me.colextension.OptionsColumn.AllowEdit = False
         Me.colextension.Visible = True
-        Me.colextension.VisibleIndex = 5
-        Me.colextension.Width = 205
-        '
-        'GridColumn8
-        '
-        Me.GridColumn8.FieldName = "modifiedBy"
-        Me.GridColumn8.MinWidth = 54
-        Me.GridColumn8.Name = "GridColumn8"
-        Me.GridColumn8.Visible = True
-        Me.GridColumn8.VisibleIndex = 6
-        Me.GridColumn8.Width = 205
+        Me.colextension.VisibleIndex = 3
+        Me.colextension.Width = 115
         '
         'colmodifiedOn1
         '
         Me.colmodifiedOn1.FieldName = "modifiedOn"
-        Me.colmodifiedOn1.MinWidth = 54
         Me.colmodifiedOn1.Name = "colmodifiedOn1"
-        Me.colmodifiedOn1.Visible = True
-        Me.colmodifiedOn1.VisibleIndex = 7
-        Me.colmodifiedOn1.Width = 205
+        Me.colmodifiedOn1.OptionsColumn.AllowEdit = False
         '
         'colcreatedOn1
         '
         Me.colcreatedOn1.FieldName = "createdOn"
-        Me.colcreatedOn1.MinWidth = 54
         Me.colcreatedOn1.Name = "colcreatedOn1"
-        Me.colcreatedOn1.Visible = True
-        Me.colcreatedOn1.VisibleIndex = 8
-        Me.colcreatedOn1.Width = 205
+        Me.colcreatedOn1.OptionsColumn.AllowEdit = False
         '
-        'GridColumn9
+        'coltranshID
         '
-        Me.GridColumn9.FieldName = "createdBy"
-        Me.GridColumn9.MinWidth = 54
-        Me.GridColumn9.Name = "GridColumn9"
-        Me.GridColumn9.Visible = True
-        Me.GridColumn9.VisibleIndex = 9
-        Me.GridColumn9.Width = 205
+        Me.coltranshID.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.coltranshID.AppearanceCell.Options.UseBackColor = True
+        Me.coltranshID.Caption = "transhID"
+        Me.coltranshID.FieldName = "transhID"
+        Me.coltranshID.MinWidth = 33
+        Me.coltranshID.Name = "coltranshID"
+        Me.coltranshID.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn7
+        '
+        Me.GridColumn7.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.GridColumn7.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn7.Caption = "modifiedBy"
+        Me.GridColumn7.FieldName = "modifiedBy"
+        Me.GridColumn7.MinWidth = 33
+        Me.GridColumn7.Name = "GridColumn7"
+        Me.GridColumn7.OptionsColumn.AllowEdit = False
+        '
+        'GridColumn8
+        '
+        Me.GridColumn8.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.GridColumn8.AppearanceCell.Options.UseBackColor = True
+        Me.GridColumn8.Caption = "createdBy"
+        Me.GridColumn8.FieldName = "createdBy"
+        Me.GridColumn8.MinWidth = 33
+        Me.GridColumn8.Name = "GridColumn8"
+        Me.GridColumn8.OptionsColumn.AllowEdit = False
+        '
+        'colfileCatID
+        '
+        Me.colfileCatID.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colfileCatID.AppearanceCell.Options.UseBackColor = True
+        Me.colfileCatID.Caption = "Κατηγορία"
+        Me.colfileCatID.ColumnEdit = Me.RepFileCat
+        Me.colfileCatID.FieldName = "fileCatID"
+        Me.colfileCatID.MinWidth = 30
+        Me.colfileCatID.Name = "colfileCatID"
+        Me.colfileCatID.Visible = True
+        Me.colfileCatID.VisibleIndex = 0
+        Me.colfileCatID.Width = 112
+        '
+        'RepFileCat
+        '
+        Me.RepFileCat.AutoHeight = False
+        Me.RepFileCat.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
+        Me.RepFileCat.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 30, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("code", "code", 46, DevExpress.Utils.FormatType.Numeric, "", False, DevExpress.Utils.HorzAlignment.Far, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("name", "Κατηγορία", 52, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedBy", "modified By", 97, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("modifiedOn", "modified On", 101, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdOn", "created On", 90, DevExpress.Utils.FormatType.DateTime, "d/M/yyyy", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("createdBy", "created By", 86, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("RealName", "Real Name", 89, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.RepFileCat.DataSource = Me.VwFILECATBindingSource1
+        Me.RepFileCat.DisplayMember = "name"
+        Me.RepFileCat.Name = "RepFileCat"
+        Me.RepFileCat.NullText = ""
+        Me.RepFileCat.ValueMember = "ID"
+        '
+        'VwFILECATBindingSource1
+        '
+        Me.VwFILECATBindingSource1.DataMember = "vw_FILE_CAT"
+        Me.VwFILECATBindingSource1.DataSource = Me.DreamyKitchenDataSet
+        '
+        'colownerID
+        '
+        Me.colownerID.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colownerID.AppearanceCell.Options.UseBackColor = True
+        Me.colownerID.Caption = "ownerID"
+        Me.colownerID.FieldName = "ownerID"
+        Me.colownerID.MinWidth = 30
+        Me.colownerID.Name = "colownerID"
+        Me.colownerID.OptionsColumn.AllowEdit = False
+        Me.colownerID.Width = 112
+        '
+        'colbelongsTo
+        '
+        Me.colbelongsTo.AppearanceCell.BackColor = System.Drawing.Color.Bisque
+        Me.colbelongsTo.AppearanceCell.Options.UseBackColor = True
+        Me.colbelongsTo.Caption = "Προέλευση"
+        Me.colbelongsTo.FieldName = "belongsTo"
+        Me.colbelongsTo.MinWidth = 30
+        Me.colbelongsTo.Name = "colbelongsTo"
+        Me.colbelongsTo.OptionsColumn.AllowEdit = False
+        Me.colbelongsTo.Visible = True
+        Me.colbelongsTo.VisibleIndex = 4
+        Me.colbelongsTo.Width = 112
         '
         'txtFiles
         '
@@ -3245,10 +3300,10 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.txtFiles.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFiles.Name = "txtFiles"
         Me.txtFiles.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions1.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
-        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions2.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
+        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtFiles.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
-        Me.txtFiles.Size = New System.Drawing.Size(1161, 26)
+        Me.txtFiles.Size = New System.Drawing.Size(1405, 26)
         Me.txtFiles.StyleController = Me.LayoutControl4
         Me.txtFiles.TabIndex = 0
         Me.txtFiles.Tag = ""
@@ -3259,7 +3314,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlGroup16.GroupBordersVisible = False
         Me.LayoutControlGroup16.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem49, Me.LayoutControlItem2, Me.LayoutControlItem8, Me.LayoutControlItem12, Me.EmptySpaceItem6})
         Me.LayoutControlGroup16.Name = "Root"
-        Me.LayoutControlGroup16.Size = New System.Drawing.Size(1282, 961)
+        Me.LayoutControlGroup16.Size = New System.Drawing.Size(1526, 961)
         Me.LayoutControlGroup16.TextVisible = False
         '
         'LayoutControlItem49
@@ -3267,7 +3322,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem49.Control = Me.GridControl2
         Me.LayoutControlItem49.Location = New System.Drawing.Point(0, 96)
         Me.LayoutControlItem49.Name = "LayoutControlItem99"
-        Me.LayoutControlItem49.Size = New System.Drawing.Size(1262, 845)
+        Me.LayoutControlItem49.Size = New System.Drawing.Size(1506, 845)
         Me.LayoutControlItem49.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem49.TextVisible = False
         '
@@ -3279,7 +3334,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem2.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
         Me.LayoutControlItem2.Location = New System.Drawing.Point(0, 0)
         Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(1262, 30)
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(1506, 30)
         Me.LayoutControlItem2.Text = "Αρχεία"
         Me.LayoutControlItem2.TextSize = New System.Drawing.Size(85, 19)
         '
@@ -3289,16 +3344,16 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.LayoutControlItem8.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.rsz_11rsz_asterisk
         Me.LayoutControlItem8.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem8.Name = "LayoutControlItem8"
-        Me.LayoutControlItem8.Size = New System.Drawing.Size(1262, 30)
+        Me.LayoutControlItem8.Size = New System.Drawing.Size(1506, 30)
         Me.LayoutControlItem8.Text = "Κατηγορία"
         Me.LayoutControlItem8.TextSize = New System.Drawing.Size(85, 19)
         '
         'LayoutControlItem12
         '
         Me.LayoutControlItem12.Control = Me.cmdSaveTransF
-        Me.LayoutControlItem12.Location = New System.Drawing.Point(1081, 60)
+        Me.LayoutControlItem12.Location = New System.Drawing.Point(1290, 60)
         Me.LayoutControlItem12.Name = "LayoutControlItem12"
-        Me.LayoutControlItem12.Size = New System.Drawing.Size(181, 36)
+        Me.LayoutControlItem12.Size = New System.Drawing.Size(216, 36)
         Me.LayoutControlItem12.Text = "Αποθήκευση"
         Me.LayoutControlItem12.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem12.TextVisible = False
@@ -3308,7 +3363,7 @@ Partial Class frmCUSOfferOrderSpecialConstr
         Me.EmptySpaceItem6.AllowHotTrack = False
         Me.EmptySpaceItem6.Location = New System.Drawing.Point(0, 60)
         Me.EmptySpaceItem6.Name = "EmptySpaceItem6"
-        Me.EmptySpaceItem6.Size = New System.Drawing.Size(1081, 36)
+        Me.EmptySpaceItem6.Size = New System.Drawing.Size(1290, 36)
         Me.EmptySpaceItem6.TextSize = New System.Drawing.Size(0, 0)
         '
         'Vw_CCT_ORDERS_PHOTOSTableAdapter
@@ -3523,6 +3578,8 @@ Partial Class frmCUSOfferOrderSpecialConstr
         CType(Me.GridControl2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.TRANSHFBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.RepFileCat, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwFILECATBindingSource1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtFiles.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem49, System.ComponentModel.ISupportInitialize).EndInit()
@@ -3709,14 +3766,12 @@ Partial Class frmCUSOfferOrderSpecialConstr
     Friend WithEvents GridView3 As DevExpress.XtraGrid.Views.Grid.GridView
     Friend WithEvents GridColumn6 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn7 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents coltranshID1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colfilename As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcomefrom As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colextension As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents GridColumn8 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colmodifiedOn1 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colcreatedOn1 As DevExpress.XtraGrid.Columns.GridColumn
-    Friend WithEvents GridColumn9 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents LayoutControlGroup16 As DevExpress.XtraLayout.LayoutControlGroup
     Friend WithEvents LayoutControlItem49 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents VwCCTORDERSPHOTOSBindingSource As BindingSource
@@ -3764,4 +3819,11 @@ Partial Class frmCUSOfferOrderSpecialConstr
     Friend WithEvents LayoutControlItem4 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem7 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem10 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents colcode1 As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents coltranshID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colfileCatID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colownerID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents colbelongsTo As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents RepFileCat As DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit
+    Friend WithEvents VwFILECATBindingSource1 As BindingSource
 End Class
