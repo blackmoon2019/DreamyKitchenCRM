@@ -817,7 +817,7 @@ Partial Class frmMain
         '
         'BBNotes2
         '
-        Me.BBNotes2.Caption = "Μηνύματα"
+        Me.BBNotes2.Caption = "Σημειώματα"
         Me.BBNotes2.Id = 79
         Me.BBNotes2.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_notes_40
         Me.BBNotes2.Name = "BBNotes2"
@@ -929,7 +929,7 @@ Partial Class frmMain
         '
         'BBEquipment
         '
-        Me.BBEquipment.Caption = "Μηχανισμοι"
+        Me.BBEquipment.Caption = "Εξοπλισμός"
         Me.BBEquipment.Id = 93
         Me.BBEquipment.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_equipment_40
         Me.BBEquipment.Name = "BBEquipment"
@@ -1184,7 +1184,7 @@ Partial Class frmMain
         '
         'BBProjectCheckList
         '
-        Me.BBProjectCheckList.Caption = "CheckList Έργου"
+        Me.BBProjectCheckList.Caption = "CheckList Έργων"
         Me.BBProjectCheckList.Id = 125
         Me.BBProjectCheckList.ImageOptions.SvgImage = CType(resources.GetObject("BBProjectCheckList.ImageOptions.SvgImage"), DevExpress.Utils.Svg.SvgImage)
         Me.BBProjectCheckList.Name = "BBProjectCheckList"

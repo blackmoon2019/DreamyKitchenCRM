@@ -76,6 +76,7 @@ Public Class frmSUPOrders
         Me.Vw_SUPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SUP)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_ORDER_MANAGERS' table. You can move, or remove it, as needed.
         Me.Vw_ORDER_MANAGERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_ORDER_MANAGERS)
+        'UserPermissions.GetUserPermissions("")
         Select Case Mode
             Case FormMode.NewRecord
                 txtCode.Text = DBQ.GetNextId("SUP_ORDERS")

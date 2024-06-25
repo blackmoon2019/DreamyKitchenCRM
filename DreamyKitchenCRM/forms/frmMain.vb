@@ -344,7 +344,7 @@ Public Class frmMain
 
 
     Private Sub ΒΒVALUELISTITEM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles ΒΒvalueListItem.ItemClick
-        Dim form As frmScroller = New frmScroller("Κατηγορία Πόρτας") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Υλικών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_VALUELISTITEM"
         form.MdiParent = Me
         form.Show()
@@ -738,7 +738,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBequipmentCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBequipmentCat.ItemClick
-        Dim form As frmScroller = New frmScroller("Κατηγορίες Εξαρτήμάτων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Εξοπλισμών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_EQUIPMENT_CAT"
         form.MdiParent = Me
         form.Show()
@@ -812,7 +812,7 @@ Public Class frmMain
 
 
     Private Sub bbDimensionsCat_ItemClick(sender As Object, e As ItemClickEventArgs) Handles bbDimensionsCat.ItemClick
-        Dim form As frmScroller = New frmScroller("Κατηγορίες Υλικών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        Dim form As frmScroller = New frmScroller("Κατηγορίες Διαστάσεων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.BarNewRec.Enabled = False
         form.DataTable = "vw_VALUELIST"
         form.MdiParent = Me
@@ -924,7 +924,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBProjectCheckList_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBProjectCheckList.ItemClick
-        Dim form As frmScroller = New frmScroller("CheckList Έργών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        Dim form As frmScroller = New frmScroller("CheckList Έργων") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_PROJECTCHECKLIST"
         form.DataTableWhereCondition = " where GroupName='CHECKLIST'"
         form.MdiParent = Me
