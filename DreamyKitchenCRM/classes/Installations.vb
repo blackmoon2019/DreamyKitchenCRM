@@ -42,19 +42,48 @@ Public Class Installations
         FillCbo.CUS(Frm.cboCUS, sSQL)
         FillCbo.SALERS(Frm.cboSaler)
         ' Μόνο αν ο Χρήστης ΔΕΝ είναι ο Παναγόπουλος
-        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" And UserProps.ID.ToString.ToUpper <> "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Frm.Lcost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never : Frm.LExtracost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
+        'If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" And UserProps.ID.ToString.ToUpper <> "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Frm.Lcost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never : Frm.LExtracost.Visibility = DevExpress.XtraLayout.Utils.LayoutVisibility.Never
         Select Case Mode
             Case FormMode.NewRecord
                 Frm.txtCode.Text = DBQ.GetNextId("INST")
-                FillCbo.FillCheckedListSER(Frm.chkSER, FormMode.NewRecord)
+                FillListSER(0)
             Case FormMode.EditRecord
-                LoadForms.LoadForm(Frm.LayoutControl1, "Select * from vw_INST where id ='" + ID + "'")
-                FillCbo.FillCheckedListSER(Frm.chkSER, FormMode.EditRecord, ID)
+                Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
+                myLayoutControls.Add(Frm.LayoutControl1)
+                myLayoutControls.Add(Frm.LayoutControl3)
+                myLayoutControls.Add(Frm.LayoutControl6)
+                myLayoutControls.Add(Frm.LayoutControl7)
+                myLayoutControls.Add(Frm.LayoutControl8)
+                myLayoutControls.Add(Frm.LayoutControl9)
+                LoadForms.LoadFormNew(myLayoutControls, "Select * from vw_INST where id ='" + ID + "'")
+                FillListSER(0)
                 Frm.cmdInstEllipse.Enabled = True
         End Select
         If CheckIfExistInstEllipse() = True Then Frm.LInstFilename.Enabled = False
         If Frm.txtInstFilename.Text.Length > 0 Then Frm.cmdInstEllipse.Enabled = False
+        Frm.TabNavKitchen.Enabled = Frm.cboTRANSH.GetColumnValue("Iskitchen")
+        Frm.TabNavCloset.Enabled = Frm.cboTRANSH.GetColumnValue("Iscloset")
+        Frm.TabNavDoor.Enabled = Frm.cboTRANSH.GetColumnValue("Isdoor")
+        Frm.TabNavSC.Enabled = Frm.cboTRANSH.GetColumnValue("Issc")
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+    End Sub
+    Public Sub FillListSER(ByVal sCategory As Int16)
+        Select Case Mode
+            Case FormMode.NewRecord
+                Select Case sCategory
+                    Case 0 : FillCbo.FillCheckedListSER(Frm.chkSERK, FormMode.NewRecord)        'ΚΟΥΖΙΝΑ
+                    Case 1 : FillCbo.FillCheckedListSER(Frm.chkSERC, FormMode.NewRecord)        'ΝΤΟΥΛΑΠΑ
+                    Case 2 : FillCbo.FillCheckedListSER(Frm.chkSERD, FormMode.NewRecord)        'ΠΟΡΤΑ
+                    Case 3 : FillCbo.FillCheckedListSER(Frm.chkSERSC, FormMode.NewRecord)       'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+                End Select
+            Case FormMode.EditRecord
+                Select Case sCategory
+                    Case 0 : FillCbo.FillCheckedListSER(Frm.chkSERK, FormMode.EditRecord, ID)   'ΚΟΥΖΙΝΑ
+                    Case 1 : FillCbo.FillCheckedListSER(Frm.chkSERC, FormMode.EditRecord, ID)   'ΝΤΟΥΛΑΠΑ
+                    Case 2 : FillCbo.FillCheckedListSER(Frm.chkSERD, FormMode.EditRecord, ID)   'ΠΟΡΤΑ
+                    Case 3 : FillCbo.FillCheckedListSER(Frm.chkSERSC, FormMode.EditRecord, ID)  'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+                End Select
+        End Select
     End Sub
     Public Sub SaveRecord(ByRef sID As String)
         Dim sResult As Boolean
@@ -64,13 +93,20 @@ Public Class Installations
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 If CheckIfTimeisValid() = False Then Exit Sub
                 If CheckIfInstFExist() = False Then Exit Sub
+                Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
+                myLayoutControls.Add(Frm.LayoutControl1)
+                myLayoutControls.Add(Frm.LayoutControl3)
+                myLayoutControls.Add(Frm.LayoutControl6)
+                myLayoutControls.Add(Frm.LayoutControl7)
+                myLayoutControls.Add(Frm.LayoutControl8)
+                myLayoutControls.Add(Frm.LayoutControl9)
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST", Frm.LayoutControl1,,, sGuid, True)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sGuid, True)
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST", Frm.LayoutControl1,,, sID, True)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sID, True)
                         'sGuid = sID
                 End Select
 
@@ -101,16 +137,55 @@ Public Class Installations
                     End Using
                 End If
 
-                ' Καταχώρηση Συνεργείων
-                For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSER.CheckedItems
-                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn])  
+                If Frm.TabNavKitchen.Enabled = True Then
+                    ' Καταχώρηση Συνεργείων
+                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERK.CheckedItems
+                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],kitchen)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
-                                                        toSQLValueS(UserProps.ID.ToString) & ", getdate() )"
-                    Using oCmd As New SqlCommand(sSQL2, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                Next
-                FillCbo.FillCheckedListSER(Frm.chkSER, FormMode.EditRecord, sID)
+                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                        Using oCmd As New SqlCommand(sSQL2, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    Next
+                    FillListSER(0)
+                End If
+
+                If Frm.TabNavCloset.Enabled = True Then
+                    ' Καταχώρηση Συνεργείων
+                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERC.CheckedItems
+                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],closet)  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                        Using oCmd As New SqlCommand(sSQL2, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    Next
+                    FillListSER(1)
+                End If
+                If Frm.TabNavDoor.Enabled = True Then
+                    ' Καταχώρηση Συνεργείων
+                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERD.CheckedItems
+                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],doors)  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                                                        toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                        Using oCmd As New SqlCommand(sSQL2, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    Next
+                    FillListSER(2)
+                End If
+                If Frm.TabNavSC.Enabled = True Then
+                    ' Καταχώρηση Συνεργείων
+                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERSC.CheckedItems
+                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],sc)  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                        Using oCmd As New SqlCommand(sSQL2, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                    Next
+                    FillListSER(3)
+                End If
             End If
 
         Catch ex As Exception
@@ -161,7 +236,7 @@ Public Class Installations
         End If
     End Sub
     Public Sub TabMail()
-        If Frm.dtDeliverDate.EditValue = Nothing Or Frm.txtTmIN.Text = "00:00" Or Frm.txtTmOUT.EditValue = "00:00" Then Frm.cmdSendApointmentEmail.Enabled = False Else Frm.cmdSendApointmentEmail.Enabled = True
+        If Frm.dtDeliverDateKF.EditValue = Nothing Or Frm.txtTmKIN.Text = "00:00" Or Frm.txtTmKOUT.EditValue = "00:00" Then Frm.cmdSendApointmentEmail.Enabled = False Else Frm.cmdSendApointmentEmail.Enabled = True
         Frm.INST_MAILTableAdapter.FillByinstID(Frm.DMDataSet.INST_MAIL, System.Guid.Parse(ID))
         LoadForms.RestoreLayoutFromXml(Frm.GridView3, "INST_MAIL.xml")
         Prog_Prop.GetProgEmailInst()
@@ -196,8 +271,9 @@ Public Class Installations
 
     End Function
     Private Function CheckIfTimeisValid() As Boolean
-        If Frm.txtTmIN.Text = "00:00" Or Frm.txtTmOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-        Dim Hours As Long = DateDiff(DateInterval.Hour, Frm.txtTmIN.EditValue, Frm.txtTmOUT.EditValue)
+        If Frm.txtTmKIN.Text = "00:00" Or Frm.txtTmKOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+        Frm.txtTmKIN.EditValue = Frm.txtTmKIN.Text : Frm.txtTmKOUT.EditValue = Frm.txtTmKOUT.Text
+        Dim Hours As Long = DateDiff(DateInterval.Hour, Frm.txtTmKIN.EditValue, Frm.txtTmKOUT.EditValue)
         If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
         Return True
     End Function

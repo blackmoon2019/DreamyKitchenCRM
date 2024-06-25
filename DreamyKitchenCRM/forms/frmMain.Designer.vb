@@ -1208,9 +1208,9 @@ Partial Class frmMain
         Me.RibbonPageGroup1.ItemLinks.Add(Me.bbTRANSH)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBProject)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBProjectCosts)
+        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBEllipse)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBProjectJobs)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBTransh_C)
-        Me.RibbonPageGroup1.ItemLinks.Add(Me.BBEllipse)
         Me.RibbonPageGroup1.ItemLinks.Add(Me.BBEpopteiaTrans)
         Me.RibbonPageGroup1.Name = "RibbonPageGroup1"
         Me.RibbonPageGroup1.Text = "Διαχείριση Έργων"

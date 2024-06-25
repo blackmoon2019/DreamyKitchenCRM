@@ -198,4 +198,13 @@ Public Class frmInstallations
         OpenFileFromGrid(GridView5, "TRANSH_F")
     End Sub
 
+    Private Sub TabPane2_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane2.SelectedPageChanged
+        Select Case TabPane2.SelectedPageIndex
+            Case 0 : Installations.FillListSER(0)   'ΚΟΥΖΙΝΑ
+            Case 1 : Installations.FillListSER(1)   'ΝΤΟΥΛΑΠΑ
+            Case 2 : Installations.FillListSER(2)   'ΠΟΡΤΑ
+            Case 3 : Installations.FillListSER(3)   'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+        End Select
+
+    End Sub
 End Class

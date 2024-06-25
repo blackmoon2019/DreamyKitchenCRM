@@ -1993,6 +1993,14 @@ Partial Public Class DM_TRANS
 
         Private columnwaitingForAgreement As Global.System.Data.DataColumn
 
+        Private columnIskitchen As Global.System.Data.DataColumn
+
+        Private columnIscloset As Global.System.Data.DataColumn
+
+        Private columnIsdoor As Global.System.Data.DataColumn
+
+        Private columnIssc As Global.System.Data.DataColumn
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub New()
@@ -2317,6 +2325,38 @@ Partial Public Class DM_TRANS
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property IskitchenColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIskitchen
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property IsclosetColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIscloset
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property IsdoorColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIsdoor
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property IsscColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnIssc
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
          Global.System.ComponentModel.Browsable(False)>
         Public ReadOnly Property Count() As Integer
@@ -2389,9 +2429,13 @@ Partial Public Class DM_TRANS
                     ByVal benchProfit As Decimal,
                     ByVal dtAgreement As Date,
                     ByVal offerCusAcceptance As Boolean,
-                    ByVal waitingForAgreement As Boolean) As vw_TRANSHRow
+                    ByVal waitingForAgreement As Boolean,
+                    ByVal Iskitchen As Boolean,
+                    ByVal Iscloset As Boolean,
+                    ByVal Isdoor As Boolean,
+                    ByVal Issc As Boolean) As vw_TRANSHRow
             Dim rowvw_TRANSHRow As vw_TRANSHRow = CType(Me.NewRow, vw_TRANSHRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurchasePrice, benchProfit, dtAgreement, offerCusAcceptance, waitingForAgreement}
+            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, createdOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, EmpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerProfit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurchasePrice, benchProfit, dtAgreement, offerCusAcceptance, waitingForAgreement, Iskitchen, Iscloset, Isdoor, Issc}
             rowvw_TRANSHRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_TRANSHRow)
             Return rowvw_TRANSHRow
@@ -2450,6 +2494,10 @@ Partial Public Class DM_TRANS
             Me.columndtAgreement = MyBase.Columns("dtAgreement")
             Me.columnofferCusAcceptance = MyBase.Columns("offerCusAcceptance")
             Me.columnwaitingForAgreement = MyBase.Columns("waitingForAgreement")
+            Me.columnIskitchen = MyBase.Columns("Iskitchen")
+            Me.columnIscloset = MyBase.Columns("Iscloset")
+            Me.columnIsdoor = MyBase.Columns("Isdoor")
+            Me.columnIssc = MyBase.Columns("Issc")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -2527,6 +2575,14 @@ Partial Public Class DM_TRANS
             MyBase.Columns.Add(Me.columnofferCusAcceptance)
             Me.columnwaitingForAgreement = New Global.System.Data.DataColumn("waitingForAgreement", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnwaitingForAgreement)
+            Me.columnIskitchen = New Global.System.Data.DataColumn("Iskitchen", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIskitchen)
+            Me.columnIscloset = New Global.System.Data.DataColumn("Iscloset", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIscloset)
+            Me.columnIsdoor = New Global.System.Data.DataColumn("Isdoor", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIsdoor)
+            Me.columnIssc = New Global.System.Data.DataColumn("Issc", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnIssc)
             Me.columnID.AllowDBNull = False
             Me.columncode.AllowDBNull = False
             Me.columncusID.AllowDBNull = False
@@ -2543,6 +2599,14 @@ Partial Public Class DM_TRANS
             Me.columndescription.MaxLength = 2147483647
             Me.columnFullTranshDescription.ReadOnly = True
             Me.columnFullTranshDescription.MaxLength = 2147483647
+            Me.columnIskitchen.ReadOnly = True
+            Me.columnIskitchen.DefaultValue = CType(False, Boolean)
+            Me.columnIscloset.ReadOnly = True
+            Me.columnIscloset.DefaultValue = CType(False, Boolean)
+            Me.columnIsdoor.ReadOnly = True
+            Me.columnIsdoor.DefaultValue = CType(False, Boolean)
+            Me.columnIssc.ReadOnly = True
+            Me.columnIssc.DefaultValue = CType(False, Boolean)
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -7048,6 +7112,66 @@ Partial Public Class DM_TRANS
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property Iskitchen() As Boolean
+            Get
+                Try
+                    Return CType(Me(Me.tablevw_TRANSH.IskitchenColumn), Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Iskitchen' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.IskitchenColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property Iscloset() As Boolean
+            Get
+                Try
+                    Return CType(Me(Me.tablevw_TRANSH.IsclosetColumn), Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Iscloset' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.IsclosetColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property Isdoor() As Boolean
+            Get
+                Try
+                    Return CType(Me(Me.tablevw_TRANSH.IsdoorColumn), Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Isdoor' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.IsdoorColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property Issc() As Boolean
+            Get
+                Try
+                    Return CType(Me(Me.tablevw_TRANSH.IsscColumn), Boolean)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'Issc' in table 'vw_TRANSH' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tablevw_TRANSH.IsscColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Function IsGRMONTHNull() As Boolean
             Return Me.IsNull(Me.tablevw_TRANSH.GRMONTHColumn)
         End Function
@@ -7416,6 +7540,54 @@ Partial Public Class DM_TRANS
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub SetwaitingForAgreementNull()
             Me(Me.tablevw_TRANSH.waitingForAgreementColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IsIskitchenNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.IskitchenColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetIskitchenNull()
+            Me(Me.tablevw_TRANSH.IskitchenColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IsIsclosetNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.IsclosetColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetIsclosetNull()
+            Me(Me.tablevw_TRANSH.IsclosetColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IsIsdoorNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.IsdoorColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetIsdoorNull()
+            Me(Me.tablevw_TRANSH.IsdoorColumn) = Global.System.Convert.DBNull
+        End Sub
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function IsIsscNull() As Boolean
+            Return Me.IsNull(Me.tablevw_TRANSH.IsscColumn)
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Sub SetIsscNull()
+            Me(Me.tablevw_TRANSH.IsscColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
 
@@ -10842,6 +11014,10 @@ Namespace DM_TRANSTableAdapters
             tableMapping.ColumnMappings.Add("dtAgreement", "dtAgreement")
             tableMapping.ColumnMappings.Add("offerCusAcceptance", "offerCusAcceptance")
             tableMapping.ColumnMappings.Add("waitingForAgreement", "waitingForAgreement")
+            tableMapping.ColumnMappings.Add("Iskitchen", "Iskitchen")
+            tableMapping.ColumnMappings.Add("Iscloset", "Iscloset")
+            tableMapping.ColumnMappings.Add("Isdoor", "Isdoor")
+            tableMapping.ColumnMappings.Add("Issc", "Issc")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
 
@@ -10863,29 +11039,30 @@ Namespace DM_TRANSTableAdapters
                 "mpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerP" &
                 "rofit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurcha" &
                 "sePrice, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "           benchProfit, dtAgreement, offerCusAcceptance, waitingForAg" &
-                "reement" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSH" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (cusID = @cusID)"
+                "reement,Iskitchen,Iscloset,Isdoor,Issc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSH" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (cusID = @cusID)" &
+                ""
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cusID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cusID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = "SELECT ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, crea" &
-                "tedOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, E" &
-                "mpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerP" &
-                "rofit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurcha" &
-                "sePrice, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "           benchProfit, dtAgreement, offerCusAcceptance, waitingForAg" &
-                "reement" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSH" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (compTrashID = @compTrashID)  and compID <>cusI" &
-                "D "
+            Me._commandCollection(1).CommandText = "SELECT AdrID, AreaID, CouID, DebitCost, DevicesCost, EmpTID, FullTranshDescriptio" &
+                "n, Fullname, GRMONTH, ID, Iscloset, Isdoor, Iskitchen, Issc, RealName, SalerID, " &
+                "SalerName, Totamt, amt, bal, benchProfit, benchPurchasePrice, benchSalesPrice, c" &
+                "mt, code, createdBy, createdOn, cusID, description, dtAgreement, dtCharge, empID" &
+                ", invType, invTypeDescr, modifiedBy, modifiedOn, offerCusAcceptance, salerProfit" &
+                ", vatamt, waitingForAgreement FROM vw_TRANSH WHERE (compTrashID = @compTrashID) " &
+                "AND (compID <> cusID)"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@compTrashID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "compTrashID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
             Me._commandCollection(2) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(2).Connection = Me.Connection
-            Me._commandCollection(2).CommandText = "SELECT ID, code, cusID, dtCharge, GRMONTH, amt, cmt, modifiedBy, modifiedOn, crea" &
-                "tedOn, createdBy, Fullname, RealName, Totamt, vatamt, bal, SalerName, SalerID, E" &
-                "mpTID, invTypeDescr, description, invType, empID, DebitCost, DevicesCost, salerP" &
-                "rofit, FullTranshDescription, AreaId, adrid, couid, benchSalesPrice, benchPurcha" &
-                "sePrice, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "           benchProfit, dtAgreement, offerCusAcceptance, waitingForAg" &
-                "reement" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_TRANSH" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (compTrashID = @compTrashID) and (cusID = @cusI" &
-                "D)"
+            Me._commandCollection(2).CommandText = "SELECT AdrID, AreaID, CouID, DebitCost, DevicesCost, EmpTID, FullTranshDescriptio" &
+                "n, Fullname, GRMONTH, ID, Iscloset, Isdoor, Iskitchen, Issc, RealName, SalerID, " &
+                "SalerName, Totamt, amt, bal, benchProfit, benchPurchasePrice, benchSalesPrice, c" &
+                "mt, code, createdBy, createdOn, cusID, description, dtAgreement, dtCharge, empID" &
+                ", invType, invTypeDescr, modifiedBy, modifiedOn, offerCusAcceptance, salerProfit" &
+                ", vatamt, waitingForAgreement FROM vw_TRANSH WHERE (compTrashID = @compTrashID) " &
+                "AND (cusID = @cusID)"
             Me._commandCollection(2).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@compTrashID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "compTrashID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
             Me._commandCollection(2).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cusID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "cusID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))

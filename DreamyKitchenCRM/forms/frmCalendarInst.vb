@@ -20,6 +20,7 @@ Imports DevExpress.XtraScheduler.Services
 Public Class frmCalendarInst
     Private Calendar As New InitializeCalendar
     Private LoadForms As New FormLoader
+    Private UserPermissions As New CheckPermissions
     Private Sub frmCalendarInst_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SER' table. You can move, or remove it, as needed.
         Me.Vw_SERTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SER)
@@ -30,14 +31,7 @@ Public Class frmCalendarInst
             SchedulerLocalizer.Active = New MySchedulerLocalizer()
             'sSQL = "SELECT *,vw_INST_ELLIPSE.ID as EllipseID FROM vw_INST " &
             '        "left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID And vw_INST_ELLIPSE.completed=0 and comeFrom = 0  order by vw_INST.code"
-            sSQL = "Select * FROM(
-                select '0' as CalendarType,NULL AS EllipseID ,dtDeliverDate,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST where dtDeliverDate  is NOT null 
-                union
-                Select '1' as CalendarType,IE.ID AS EllipseID ,DateDelivered,cctName,vw_INST.ID,IE.color,IE.SerName,tmINFrom,tmINTo,vw_INST.cmt,vw_INST.code,IE.SerCode,IE.completed,IE.SalerName from vw_INST INNER JOIN vw_INST_ELLIPSE IE ON IE.instID = vw_INST.ID  where comefrom=0 and IE.DateDelivered IS NOT NULL
-                union
-                Select '2' as CalendarType,NULL AS EllipseID ,dtParadosis,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST  where   dtParadosis IS NOT NULL
-                union
-                Select '3' as CalendarType,NULL AS EllipseID , visitDate,cctName,ID,color,SerName,visitTimeF,visitTimeT,cmt,code,SerCode,completed,EmpFullName FROM VW_PROJECT_JOBS) AS Calendars "
+            sSQL = "Select * FROM vw_CalendarINST"
             'Δημιουργία Appointments
             Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, True)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INST' table. You can move, or remove it, as needed.
@@ -69,7 +63,7 @@ Public Class frmCalendarInst
         form1.Text = "Τοποθετήσεις"
         'form1.MdiParent = frmMain
         form1.Mode = FormMode.NewRecord
-        form1.dtDeliverDate.EditValue = SchedulerControl1.SelectedInterval.Start
+        form1.dtDeliverDateKF.EditValue = SchedulerControl1.SelectedInterval.Start
         'frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(form1), New Point(CInt(form1.Parent.ClientRectangle.Width / 2 - form1.Width / 2), CInt(form1.Parent.ClientRectangle.Height / 2 - form1.Height / 2)))
         form1.ShowDialog()
         SetCalendarFilter()
@@ -94,24 +88,25 @@ Public Class frmCalendarInst
     End Sub
     Private Sub SchedulerControl1_DoubleClick(sender As Object, e As EventArgs) Handles SchedulerControl1.DoubleClick
 
-        Dim form1 As frmInstallations = New frmInstallations()
-        form1.Text = "Τοποθετήσεις"
-        '  form1.Scroller = frmScroller.GridView1
-        ' form1.FormScroller = frmScroller
+        Dim form As frmInstallations = New frmInstallations()
+        form.Text = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
+        UserPermissions.GetUserPermissions(form.Text)
+        '  form.Scroller = frmScroller.GridView1
+        ' form.FormScroller = frmScroller
         Dim apt As Appointment
         If SchedulerControl1.SelectedAppointments.Count = 0 Then
-            form1.Mode = FormMode.NewRecord
-            form1.dtDeliverDate.EditValue = SchedulerControl1.SelectedInterval.Start
+            form.Mode = FormMode.NewRecord
+            form.dtDeliverDateKF.EditValue = SchedulerControl1.SelectedInterval.Start
         Else
             For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
                 apt = SchedulerControl1.SelectedAppointments(i)
-                form1.ID = apt.Id
-                form1.Mode = FormMode.EditRecord
+                form.ID = apt.Id
+                form.Mode = FormMode.EditRecord
             Next i
         End If
         If apt IsNot Nothing Then
             If apt.CustomFields.Item("IsInst") = True Or apt.CustomFields.Item("IsDelivery") = True Then
-                form1.ShowDialog()
+                form.ShowDialog()
                 Exit Sub
             End If
             If apt.CustomFields.Item("IsEllipse") = True Then
@@ -122,8 +117,8 @@ Public Class frmCalendarInst
                 frmInstEllipse.Mode = FormMode.EditRecord
                 frmInstEllipse.CalledFromControl = False
                 frmInstEllipse.ShowDialog()
-                form1.Dispose()
-                form1 = Nothing
+                form.Dispose()
+                form = Nothing
             End If
             If apt.CustomFields.Item("IsProjectJob") = True Then
                 Dim frmProjectJobs As frmProjectJobs = New frmProjectJobs()
@@ -132,11 +127,11 @@ Public Class frmCalendarInst
                 frmProjectJobs.Mode = FormMode.EditRecord
                 frmProjectJobs.CalledFromControl = False
                 frmProjectJobs.ShowDialog()
-                form1.Dispose()
-                form1 = Nothing
+                form.Dispose()
+                form = Nothing
             End If
         Else
-            form1.ShowDialog()
+            form.ShowDialog()
         End If
         'SetCalendarFilter()
     End Sub
@@ -154,14 +149,7 @@ Public Class frmCalendarInst
 
         'sSQL = "SELECT *,vw_INST_ELLIPSE.ID as EllipseID FROM vw_INST left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID and vw_INST_ELLIPSE.completed=0  and comeFrom = 0 order by vw_INST.code"
 
-        sSQL = "Select * FROM(
-                select '0' as CalendarType,NULL AS EllipseID ,dtDeliverDate,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST where dtDeliverDate  is NOT null 
-                union
-                Select '1' as CalendarType,IE.ID AS EllipseID ,DateDelivered,cctName,vw_INST.ID,IE.color,IE.SerName,tmINFrom,tmINTo,vw_INST.cmt,vw_INST.code,IE.SerCode,IE.completed,IE.SalerName from vw_INST INNER JOIN vw_INST_ELLIPSE IE ON IE.instID = vw_INST.ID  where comefrom=0 and IE.DateDelivered IS NOT NULL
-                union
-                Select '2' as CalendarType,NULL AS EllipseID ,dtParadosis,cctName,vw_INST.ID,color,SerName,tmIN,tmOUT,vw_INST.cmt,vw_INST.code,SerCode,vw_INST.completed,SalerName  from vw_INST  where   dtParadosis IS NOT NULL
-                union
-                Select '3' as CalendarType,NULL AS EllipseID , visitDate,cctName,ID,color,SerName,visitTimeF,visitTimeT,cmt,code,SerCode,completed,EmpFullName FROM VW_PROJECT_JOBS) AS Calendars "
+        sSQL = "Select * FROM vw_CalendarINST as Calendars "
 
 
 
