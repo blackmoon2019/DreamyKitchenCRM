@@ -207,4 +207,23 @@ Public Class frmInstallations
         End Select
 
     End Sub
+    Private Sub cmdConstInstK_Click(sender As Object, e As EventArgs) Handles cmdConstInstK.Click
+        Installations.OpenCostForm(0)
+    End Sub
+    Private Sub cmdConstInstC_Click(sender As Object, e As EventArgs) Handles cmdConstInstC.Click
+        Installations.OpenCostForm(1)
+    End Sub
+    Private Sub cmdConstInstD_Click(sender As Object, e As EventArgs) Handles cmdConstInstD.Click
+        Installations.OpenCostForm(2)
+    End Sub
+    Private Sub cmdConstInstSC_Click(sender As Object, e As EventArgs) Handles cmdConstInstSC.Click
+        Installations.OpenCostForm(3)
+    End Sub
+
+    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+        TabNavKitchen.Enabled = cboTRANSH.GetColumnValue("Iskitchen") : TabPane2.SelectedPage = TabNavKitchen
+        TabNavCloset.Enabled = cboTRANSH.GetColumnValue("Iscloset") : TabPane2.SelectedPage = TabNavCloset
+        TabNavDoor.Enabled = cboTRANSH.GetColumnValue("Isdoor") : TabPane2.SelectedPage = TabNavDoor
+        TabNavSC.Enabled = cboTRANSH.GetColumnValue("Issc") : TabPane2.SelectedPage = TabNavSC
+    End Sub
 End Class

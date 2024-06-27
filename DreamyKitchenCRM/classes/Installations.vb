@@ -9,11 +9,14 @@ Public Class Installations
     Private ID As String
     Private sEMP_T_ID As String
     Private sTRANSH_ID As String
+    Private bKitchen As Boolean
+    Private bCloset As Boolean
+    Private bDoors As Boolean
+    Private bSC As Boolean
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Public Mode As Byte
     Private Valid As New ValidateControls
     Private FScrollerExist As Boolean = False
-    Private Log As New Transactions
     Private FillCbo As New FillCombos
     Private DBQ As New DBQueries
     Private LoadForms As New FormLoader
@@ -47,6 +50,8 @@ Public Class Installations
             Case FormMode.NewRecord
                 Frm.txtCode.Text = DBQ.GetNextId("INST")
                 FillListSER(0)
+                Frm.cmdConstInstK.Enabled = False : Frm.cmdConstInstC.Enabled = False
+                Frm.cmdConstInstD.Enabled = False : Frm.cmdConstInstSC.Enabled = False
             Case FormMode.EditRecord
                 Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
                 myLayoutControls.Add(Frm.LayoutControl1)
@@ -55,9 +60,14 @@ Public Class Installations
                 myLayoutControls.Add(Frm.LayoutControl7)
                 myLayoutControls.Add(Frm.LayoutControl8)
                 myLayoutControls.Add(Frm.LayoutControl9)
-                LoadForms.LoadFormNew(myLayoutControls, "Select * from vw_INST where id ='" + ID + "'")
+                Dim sFields As New Dictionary(Of String, String)
+                LoadForms.LoadFormNew(myLayoutControls, "Select * from vw_INST where id ='" + ID + "'",, sFields)
                 FillListSER(0)
                 Frm.cmdInstEllipse.Enabled = True
+                bKitchen = sFields("HasKitchen")
+                bCloset = sFields("HasCloset")
+                bDoors = sFields("HasDoors")
+                bSC = sFields("HasSC")
         End Select
         If CheckIfExistInstEllipse() = True Then Frm.LInstFilename.Enabled = False
         If Frm.txtInstFilename.Text.Length > 0 Then Frm.cmdInstEllipse.Enabled = False
@@ -71,17 +81,17 @@ Public Class Installations
         Select Case Mode
             Case FormMode.NewRecord
                 Select Case sCategory
-                    Case 0 : FillCbo.FillCheckedListSER(Frm.chkSERK, FormMode.NewRecord)        'ΚΟΥΖΙΝΑ
-                    Case 1 : FillCbo.FillCheckedListSER(Frm.chkSERC, FormMode.NewRecord)        'ΝΤΟΥΛΑΠΑ
-                    Case 2 : FillCbo.FillCheckedListSER(Frm.chkSERD, FormMode.NewRecord)        'ΠΟΡΤΑ
-                    Case 3 : FillCbo.FillCheckedListSER(Frm.chkSERSC, FormMode.NewRecord)       'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+                    Case 0 : FillCbo.FillCheckedListSER(Frm.chkSERK, FormMode.NewRecord,, 0)        'ΚΟΥΖΙΝΑ
+                    Case 1 : FillCbo.FillCheckedListSER(Frm.chkSERC, FormMode.NewRecord,, 1)        'ΝΤΟΥΛΑΠΑ
+                    Case 2 : FillCbo.FillCheckedListSER(Frm.chkSERD, FormMode.NewRecord,, 2)        'ΠΟΡΤΑ
+                    Case 3 : FillCbo.FillCheckedListSER(Frm.chkSERSC, FormMode.NewRecord,, 3)       'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
                 End Select
             Case FormMode.EditRecord
                 Select Case sCategory
-                    Case 0 : FillCbo.FillCheckedListSER(Frm.chkSERK, FormMode.EditRecord, ID)   'ΚΟΥΖΙΝΑ
-                    Case 1 : FillCbo.FillCheckedListSER(Frm.chkSERC, FormMode.EditRecord, ID)   'ΝΤΟΥΛΑΠΑ
-                    Case 2 : FillCbo.FillCheckedListSER(Frm.chkSERD, FormMode.EditRecord, ID)   'ΠΟΡΤΑ
-                    Case 3 : FillCbo.FillCheckedListSER(Frm.chkSERSC, FormMode.EditRecord, ID)  'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+                    Case 0 : FillCbo.FillCheckedListSER(Frm.chkSERK, FormMode.EditRecord, ID, 0)   'ΚΟΥΖΙΝΑ
+                    Case 1 : FillCbo.FillCheckedListSER(Frm.chkSERC, FormMode.EditRecord, ID, 1)   'ΝΤΟΥΛΑΠΑ
+                    Case 2 : FillCbo.FillCheckedListSER(Frm.chkSERD, FormMode.EditRecord, ID, 2)   'ΠΟΡΤΑ
+                    Case 3 : FillCbo.FillCheckedListSER(Frm.chkSERSC, FormMode.EditRecord, ID, 3)  'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
                 End Select
         End Select
     End Sub
@@ -125,6 +135,8 @@ Public Class Installations
                             oCmd.Parameters.AddWithValue("@transhID", Frm.cboTRANSH.EditValue.ToString)
                             oCmd.ExecuteNonQuery()
                         End Using
+                        Frm.cmdConstInstK.Enabled = True : Frm.cmdConstInstC.Enabled = True
+                        Frm.cmdConstInstD.Enabled = True : Frm.cmdConstInstSC.Enabled = True
                     End If
 
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
@@ -222,6 +234,44 @@ Public Class Installations
             frmInstEllipse.ComeFrom = 1
             frmInstEllipse.ShowDialog()
         End If
+    End Sub
+    Public Sub OpenCostForm(ByVal Category As Int16)
+        Dim frmInstallationsCost As frmInstallationsCost = New frmInstallationsCost()
+        With frmInstallationsCost
+            .InstID = ID
+            Select Case Category
+                Case 0
+                    If bKitchen = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
+                    .Kitchen = True
+                    .dtDeliverDateF.EditValue = Frm.dtDeliverDateKF.EditValue
+                    .dtDeliverDateT.EditValue = Frm.dtDeliverDateKT.EditValue
+                    .txtTmIN.EditValue = Frm.txtTmKIN.EditValue
+                    .txtTmOUT.EditValue = Frm.txtTmKOUT.EditValue
+                Case 1
+                    If bCloset = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
+                    .Closet = True
+                    .dtDeliverDateF.EditValue = Frm.dtDeliverDateCF.EditValue
+                    .dtDeliverDateT.EditValue = Frm.dtDeliverDateCT.EditValue
+                    .txtTmIN.EditValue = Frm.txtTmCIN.EditValue
+                    .txtTmOUT.EditValue = Frm.txtTmCOUT.EditValue
+                    .ShowDialog()
+                Case 2
+                    If bDoors = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
+                    .Doors = True
+                    .dtDeliverDateF.EditValue = Frm.dtDeliverDateDF.EditValue
+                    .dtDeliverDateT.EditValue = Frm.dtDeliverDateDT.EditValue
+                    .txtTmIN.EditValue = Frm.txtTmDIN.EditValue
+                    .txtTmOUT.EditValue = Frm.txtTmDOUT.EditValue
+                Case 3
+                    If bSC = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
+                    .SC = True
+                    .dtDeliverDateF.EditValue = Frm.dtDeliverDateSCF.EditValue
+                    .dtDeliverDateT.EditValue = Frm.dtDeliverDateSCT.EditValue
+                    .txtTmIN.EditValue = Frm.txtTmSCIN.EditValue
+                    .txtTmOUT.EditValue = Frm.txtTmSCOUT.EditValue
+            End Select
+            .ShowDialog()
+        End With
     End Sub
     Public Sub UpdateSaleTziroi()
         If XtraMessageBox.Show("Θέλετε να ενημερώσετε τους Τζίρους-Ποσοστά Έκθεσης?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
