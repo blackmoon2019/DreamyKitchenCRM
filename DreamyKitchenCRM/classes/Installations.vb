@@ -7,8 +7,8 @@ Imports DevExpress.XtraGrid.Views.Grid
 Public Class Installations
     Private Prog_Prop As New ProgProp
     Private ID As String
-    Private sEMP_T_ID As String
-    Private sTRANSH_ID As String
+    Private sEmpTID As String
+    Private sTranshID As String
     Private bKitchen As Boolean
     Private bCloset As Boolean
     Private bDoors As Boolean
@@ -25,12 +25,16 @@ Public Class Installations
     Private CalledFromCtrl As Boolean
     Private UserPermissions As New CheckPermissions
     Private Frm As frmInstallations
-    Public Sub Initialize(ByVal sFrm As frmInstallations, ByVal sInstID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean, ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal EMP_T_ID As String)
+    Private sFields As New Dictionary(Of String, String)
+    Public Sub Initialize(ByVal sFrm As frmInstallations, ByVal sInstID As String, ByVal sMode As Byte, ByVal sCalledFromCtrl As Boolean,
+                          ByVal sCtrlCombo As DevExpress.XtraEditors.LookUpEdit, ByVal EmpTID As String)
         Frm = sFrm
         ID = sInstID
-        sEMP_T_ID = EMP_T_ID
+        sEmpTID = EmpTID
         Mode = sMode
         Frm.Vw_FILE_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_FILE_CAT)
+        Frm.Vw_ExtPartnersTableAdapter.Fill(Frm.DMDataSet.vw_ExtPartners)
+
     End Sub
 
     Public Sub LoadForm()
@@ -60,7 +64,7 @@ Public Class Installations
                 myLayoutControls.Add(Frm.LayoutControl7)
                 myLayoutControls.Add(Frm.LayoutControl8)
                 myLayoutControls.Add(Frm.LayoutControl9)
-                Dim sFields As New Dictionary(Of String, String)
+
                 LoadForms.LoadFormNew(myLayoutControls, "Select * from vw_INST where id ='" + ID + "'",, sFields)
                 FillListSER(0)
                 Frm.cmdInstEllipse.Enabled = True
@@ -89,9 +93,13 @@ Public Class Installations
             Case FormMode.EditRecord
                 Select Case sCategory
                     Case 0 : FillCbo.FillCheckedListSER(Frm.chkSERK, FormMode.EditRecord, ID, 0)   'ΚΟΥΖΙΝΑ
+                        Frm.cboExtPartnerKitchen.EditValue = System.Guid.Parse(sFields("ExtPartnerKitchenID"))
                     Case 1 : FillCbo.FillCheckedListSER(Frm.chkSERC, FormMode.EditRecord, ID, 1)   'ΝΤΟΥΛΑΠΑ
+                        Frm.cboExtPartnerCloset.EditValue = System.Guid.Parse(sFields("ExtPartnerClosetID"))
                     Case 2 : FillCbo.FillCheckedListSER(Frm.chkSERD, FormMode.EditRecord, ID, 2)   'ΠΟΡΤΑ
+                        Frm.cboExtPartnerDoors.EditValue = System.Guid.Parse(sFields("ExtPartnerDoorsID"))
                     Case 3 : FillCbo.FillCheckedListSER(Frm.chkSERSC, FormMode.EditRecord, ID, 3)  'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+                        Frm.cboExtPartnerSC.EditValue = System.Guid.Parse(sFields("ExtPartnerSCID"))
                 End Select
         End Select
     End Sub
@@ -149,7 +157,7 @@ Public Class Installations
                     End Using
                 End If
 
-                If Frm.TabNavKitchen.Enabled = True Then
+                If Frm.cboTRANSH.GetColumnValue("Iskitchen") = True Then
                     ' Καταχώρηση Συνεργείων
                     For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERK.CheckedItems
                         sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],kitchen)  
@@ -159,10 +167,19 @@ Public Class Installations
                             oCmd.ExecuteNonQuery()
                         End Using
                     Next
+                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],kitchen)  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerKitchen.EditValue.ToString()) & "," &
+                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                    Using oCmd As New SqlCommand(sSQL2, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+
                     FillListSER(0)
                 End If
 
-                If Frm.TabNavCloset.Enabled = True Then
+
+
+                If Frm.cboTRANSH.GetColumnValue("Iscloset") = True Then
                     ' Καταχώρηση Συνεργείων
                     For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERC.CheckedItems
                         sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],closet)  
@@ -172,9 +189,15 @@ Public Class Installations
                             oCmd.ExecuteNonQuery()
                         End Using
                     Next
+                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],closet)  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerCloset.EditValue.ToString()) & "," &
+                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                    Using oCmd As New SqlCommand(sSQL2, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
                     FillListSER(1)
                 End If
-                If Frm.TabNavDoor.Enabled = True Then
+                If Frm.cboTRANSH.GetColumnValue("Isdoor") = True Then
                     ' Καταχώρηση Συνεργείων
                     For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERD.CheckedItems
                         sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],doors)  
@@ -184,9 +207,16 @@ Public Class Installations
                             oCmd.ExecuteNonQuery()
                         End Using
                     Next
+                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],doors)  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerDoors.EditValue.ToString()) & "," &
+                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                    Using oCmd As New SqlCommand(sSQL2, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+
                     FillListSER(2)
                 End If
-                If Frm.TabNavSC.Enabled = True Then
+                If Frm.cboTRANSH.GetColumnValue("Issc") = True Then
                     ' Καταχώρηση Συνεργείων
                     For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERSC.CheckedItems
                         sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],sc)  
@@ -196,6 +226,13 @@ Public Class Installations
                             oCmd.ExecuteNonQuery()
                         End Using
                     Next
+                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],sc)  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerSC.EditValue.ToString()) & "," &
+                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                    Using oCmd As New SqlCommand(sSQL2, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+
                     FillListSER(3)
                 End If
             End If
@@ -239,10 +276,12 @@ Public Class Installations
         Dim frmInstallationsCost As frmInstallationsCost = New frmInstallationsCost()
         With frmInstallationsCost
             .InstID = ID
+            .Form = Frm
             Select Case Category
                 Case 0
                     If bKitchen = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
                     .Kitchen = True
+                    .ExtPartner = Frm.cboExtPartnerKitchen.EditValue.ToString
                     .dtDeliverDateF.EditValue = Frm.dtDeliverDateKF.EditValue
                     .dtDeliverDateT.EditValue = Frm.dtDeliverDateKT.EditValue
                     .txtTmIN.EditValue = Frm.txtTmKIN.EditValue
@@ -250,14 +289,15 @@ Public Class Installations
                 Case 1
                     If bCloset = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
                     .Closet = True
+                    .ExtPartner = Frm.cboExtPartnerCloset.EditValue.ToString
                     .dtDeliverDateF.EditValue = Frm.dtDeliverDateCF.EditValue
                     .dtDeliverDateT.EditValue = Frm.dtDeliverDateCT.EditValue
                     .txtTmIN.EditValue = Frm.txtTmCIN.EditValue
                     .txtTmOUT.EditValue = Frm.txtTmCOUT.EditValue
-                    .ShowDialog()
                 Case 2
                     If bDoors = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
                     .Doors = True
+                    .ExtPartner = Frm.cboExtPartnerDoors.EditValue.ToString
                     .dtDeliverDateF.EditValue = Frm.dtDeliverDateDF.EditValue
                     .dtDeliverDateT.EditValue = Frm.dtDeliverDateDT.EditValue
                     .txtTmIN.EditValue = Frm.txtTmDIN.EditValue
@@ -265,6 +305,7 @@ Public Class Installations
                 Case 3
                     If bSC = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
                     .SC = True
+                    .ExtPartner = Frm.cboExtPartnerSC.EditValue.ToString
                     .dtDeliverDateF.EditValue = Frm.dtDeliverDateSCF.EditValue
                     .dtDeliverDateT.EditValue = Frm.dtDeliverDateSCT.EditValue
                     .txtTmIN.EditValue = Frm.txtTmSCIN.EditValue
@@ -276,7 +317,7 @@ Public Class Installations
     Public Sub UpdateSaleTziroi()
         If XtraMessageBox.Show("Θέλετε να ενημερώσετε τους Τζίρους-Ποσοστά Έκθεσης?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             frmSalerTziroi.Text = "Τζίροι-Ποσοστά έκθεσης"
-            frmSalerTziroi.ID = sEMP_T_ID
+            frmSalerTziroi.ID = sEmpTID
             frmSalerTziroi.MdiParent = frmMain
             frmSalerTziroi.Mode = FormMode.EditRecord
             frmSalerTziroi.FormScrollerExist = False

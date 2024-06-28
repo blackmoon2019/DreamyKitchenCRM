@@ -19,6 +19,7 @@ Partial Class frmInstallationsCost
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstallationsCost))
         Me.LayoutControl1 = New DevExpress.XtraLayout.LayoutControl()
         Me.chkHasSC = New DevExpress.XtraEditors.CheckEdit()
@@ -62,6 +63,9 @@ Partial Class frmInstallationsCost
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
+        Me.VwExtPartnersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.Vw_ExtPartnersTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_ExtPartnersTableAdapter()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkHasSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -106,6 +110,8 @@ Partial Class frmInstallationsCost
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.VwExtPartnersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -295,10 +301,13 @@ Partial Class frmInstallationsCost
         Me.cboExternalPartners.Properties.AllowMouseWheel = False
         Me.cboExternalPartners.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
         Me.cboExternalPartners.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Plus), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Search), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Clear)})
+        Me.cboExternalPartners.Properties.Columns.AddRange(New DevExpress.XtraEditors.Controls.LookUpColumnInfo() {New DevExpress.XtraEditors.Controls.LookUpColumnInfo("ID", "ID", 30, DevExpress.Utils.FormatType.None, "", False, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default]), New DevExpress.XtraEditors.Controls.LookUpColumnInfo("Fullname", "Συνεργάτης", 77, DevExpress.Utils.FormatType.None, "", True, DevExpress.Utils.HorzAlignment.Near, DevExpress.Data.ColumnSortOrder.None, DevExpress.Utils.DefaultBoolean.[Default])})
+        Me.cboExternalPartners.Properties.DataSource = Me.VwExtPartnersBindingSource
+        Me.cboExternalPartners.Properties.DisplayMember = "Fullname"
         Me.cboExternalPartners.Properties.NullText = ""
         Me.cboExternalPartners.Properties.PopupSizeable = False
-        Me.cboExternalPartners.Properties.ReadOnly = True
         Me.cboExternalPartners.Properties.UseReadOnlyAppearance = False
+        Me.cboExternalPartners.Properties.ValueMember = "ID"
         Me.cboExternalPartners.Size = New System.Drawing.Size(806, 26)
         Me.cboExternalPartners.StyleController = Me.LayoutControl1
         Me.cboExternalPartners.TabIndex = 6
@@ -674,6 +683,20 @@ Partial Class frmInstallationsCost
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '
+        'DMDataSet
+        '
+        Me.DMDataSet.DataSetName = "DMDataSet"
+        Me.DMDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'VwExtPartnersBindingSource
+        '
+        Me.VwExtPartnersBindingSource.DataMember = "vw_ExtPartners"
+        Me.VwExtPartnersBindingSource.DataSource = Me.DMDataSet
+        '
+        'Vw_ExtPartnersTableAdapter
+        '
+        Me.Vw_ExtPartnersTableAdapter.ClearBeforeFill = True
+        '
         'frmInstallationsCost
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -727,6 +750,8 @@ Partial Class frmInstallationsCost
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.VwExtPartnersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -773,4 +798,7 @@ Partial Class frmInstallationsCost
     Friend WithEvents LayoutControlItem11 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem13 As DevExpress.XtraLayout.LayoutControlItem
     Friend WithEvents LayoutControlItem12 As DevExpress.XtraLayout.LayoutControlItem
+    Friend WithEvents DMDataSet As DMDataSet
+    Friend WithEvents VwExtPartnersBindingSource As BindingSource
+    Friend WithEvents Vw_ExtPartnersTableAdapter As DMDataSetTableAdapters.vw_ExtPartnersTableAdapter
 End Class

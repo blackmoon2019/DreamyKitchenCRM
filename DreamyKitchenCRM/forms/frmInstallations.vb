@@ -199,6 +199,7 @@ Public Class frmInstallations
     End Sub
 
     Private Sub TabPane2_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane2.SelectedPageChanged
+        'If Me.IsActive = False Then Exit Sub
         Select Case TabPane2.SelectedPageIndex
             Case 0 : Installations.FillListSER(0)   'ΚΟΥΖΙΝΑ
             Case 1 : Installations.FillListSER(1)   'ΝΤΟΥΛΑΠΑ

@@ -1,4 +1,4 @@
-﻿Imports System.Windows.Forms.VisualStyles.VisualStyleElement.ToolTip
+﻿
 
 Public Class frmInstallationsCost
     Private InstallationsCost As New InstallationsCost
@@ -6,11 +6,12 @@ Public Class frmInstallationsCost
     Private ManageCbo As New CombosManager
     Private sID As String
     Private sInstID As String
-    Private sTRANSH_ID As String
+    Private sTranshID As String
     Private bKitchen As Boolean
     Private bCloset As Boolean
     Private bDoors As Boolean
     Private bSC As Boolean
+    Private sExtPartner As String
     Public Mode As Byte
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
@@ -24,9 +25,22 @@ Public Class frmInstallationsCost
             sInstID = value
         End Set
     End Property
-    Public WriteOnly Property TRANSH_ID As String
+    Public WriteOnly Property TranshID As String
         Set(value As String)
-            sTRANSH_ID = value
+            sTranshID = value
+        End Set
+    End Property
+    Public WriteOnly Property Form As DevExpress.XtraEditors.XtraForm
+        Set(value As DevExpress.XtraEditors.XtraForm)
+            Frm = value
+        End Set
+    End Property
+    Public Property ExtPartner As String
+        Get
+            Return sExtPartner
+        End Get
+        Set(value As String)
+            sExtPartner = value
         End Set
     End Property
     Public WriteOnly Property Kitchen As Boolean
@@ -51,6 +65,8 @@ Public Class frmInstallationsCost
     End Property
 
     Private Sub frmInstallationsCost_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Vw_ExtPartnersTableAdapter.Fill(DMDataSet.vw_ExtPartners)
+        InstallationsCost.frmInstallations = Frm
         InstallationsCost.Initialize(Me, sID, sInstID, Mode, bKitchen, bCloset, bDoors, bSC)
         InstallationsCost.LoadForm()
         Me.CenterToScreen()

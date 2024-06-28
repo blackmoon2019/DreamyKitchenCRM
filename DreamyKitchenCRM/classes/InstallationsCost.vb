@@ -21,6 +21,7 @@ Public Class InstallationsCost
     Private CalledFromCtrl As Boolean
     Private UserPermissions As New CheckPermissions
     Private Frm As frmInstallationsCost
+    Public frmInstallations As frmInstallations
     Public Sub Initialize(ByVal sFrm As frmInstallationsCost, ByVal sInstCostID As String, ByVal InstID As String, ByVal sMode As Byte,
                           ByVal Kitchen As Boolean, Closet As Boolean, Doors As Boolean, SC As Boolean)
         Frm = sFrm
@@ -31,6 +32,7 @@ Public Class InstallationsCost
         bCloset = Closet
         bDoors = Doors
         bSC = SC
+        Frm.Vw_ExtPartnersTableAdapter.Fill(Frm.DMDataSet.vw_ExtPartners)
         Dim sSQL = New System.Text.StringBuilder
         sSQL.AppendLine("select CCT.id,CCT.Fullname,'00000000-0000-0000-0000-000000000000' as SalerID,phn,AdrID,email,isCompany from CCT INNER JOIN INST ON INST.cusID = CCT.ID Where INST.ID = " & toSQLValueS(InstID))
         FillCbo.CUS(Frm.cboCUS, sSQL)
@@ -55,7 +57,9 @@ Public Class InstallationsCost
             Frm.chkHasSC.CheckState = CheckState.Checked : Frm.chkHasSC.ReadOnly = True
         End If
         FillCbo.EMP(Frm.cboExternalPartners, sSQL)
-
+        Frm.cboCUS.EditValue = frmInstallations.cboCUS.EditValue
+        Frm.cboTRANSH.EditValue = frmInstallations.cboTRANSH.EditValue
+        Frm.cboExternalPartners.EditValue = System.Guid.Parse(Frm.ExtPartner)
     End Sub
     Public Sub LoadForm()
         Select Case Mode

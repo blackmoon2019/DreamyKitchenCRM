@@ -573,7 +573,8 @@ Public Class FillCombos
         Try
             Dim sSQL As String
             If mode = FormMode.NewRecord Then
-                sSQL = "Select id,Fullname,salary,tmIN,tmOUT,isnull(externalPartner,0) as externalPartner from vw_EMP where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
+                sSQL = "Select id,Fullname,salary,tmIN,tmOUT,isnull(externalPartner,0) as externalPartner from vw_EMP where active=1 and isnull(externalPartner,0) = 0 
+                        and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
             Else
                 Dim category As String
                 Select Case sCategory
@@ -586,7 +587,7 @@ Public Class FillCombos
                 sSQL = "Select id,Fullname ,isnull(externalPartner,0) as externalPartner,
                        isnull((select case when INST_SER.id is not null then 1 else 0 end as checked
 		               from INST_SER where instID = '" & sID & "' and INST_SER.empID = M.ID " & category & " ),0) as checked
-                       from vw_EMP M where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
+                       from vw_EMP M where active=1  and isnull(externalPartner,0) = 0 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
             End If
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
