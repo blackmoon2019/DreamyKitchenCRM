@@ -20,18 +20,18 @@ Partial Class frmInstallations
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
-        Dim GridLevelNode2 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
+        Dim GridLevelNode1 As DevExpress.XtraGrid.GridLevelNode = New DevExpress.XtraGrid.GridLevelNode()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmInstallations))
-        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.GridView2 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.grdMain = New DevExpress.XtraGrid.GridControl()
         Me.GridView1 = New DevExpress.XtraGrid.Views.Grid.GridView()
@@ -436,9 +436,9 @@ Partial Class frmInstallations
         '
         Me.grdMain.Cursor = System.Windows.Forms.Cursors.Default
         Me.grdMain.EmbeddedNavigator.Margin = New System.Windows.Forms.Padding(4)
-        GridLevelNode2.LevelTemplate = Me.GridView2
-        GridLevelNode2.RelationName = "Level1"
-        Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode2})
+        GridLevelNode1.LevelTemplate = Me.GridView2
+        GridLevelNode1.RelationName = "Level1"
+        Me.grdMain.LevelTree.Nodes.AddRange(New DevExpress.XtraGrid.GridLevelNode() {GridLevelNode1})
         Me.grdMain.Location = New System.Drawing.Point(12, 12)
         Me.grdMain.MainView = Me.GridView1
         Me.grdMain.Margin = New System.Windows.Forms.Padding(4)
@@ -534,12 +534,17 @@ Partial Class frmInstallations
         '
         'TabPane2
         '
+        Me.TabPane2.AllowHtmlDraw = False
+        Me.TabPane2.AppearanceButton.Hovered.BorderColor = System.Drawing.Color.FromArgb(CType(CType(128, Byte), Integer), CType(CType(255, Byte), Integer), CType(CType(128, Byte), Integer))
+        Me.TabPane2.AppearanceButton.Hovered.Options.UseBorderColor = True
         Me.TabPane2.Controls.Add(Me.TabNavKitchen)
         Me.TabPane2.Controls.Add(Me.TabNavCloset)
         Me.TabPane2.Controls.Add(Me.TabNavDoor)
         Me.TabPane2.Controls.Add(Me.TabNavSC)
         Me.TabPane2.Location = New System.Drawing.Point(12, 372)
         Me.TabPane2.Name = "TabPane2"
+        Me.TabPane2.PageProperties.AppearanceCaption.BorderColor = System.Drawing.Color.Green
+        Me.TabPane2.PageProperties.AppearanceCaption.Options.UseBorderColor = True
         Me.TabPane2.Pages.AddRange(New DevExpress.XtraBars.Navigation.NavigationPageBase() {Me.TabNavKitchen, Me.TabNavCloset, Me.TabNavDoor, Me.TabNavSC})
         Me.TabPane2.RegularSize = New System.Drawing.Size(1480, 727)
         Me.TabPane2.SelectedPage = Me.TabNavKitchen
@@ -552,6 +557,8 @@ Partial Class frmInstallations
         Me.TabNavKitchen.Caption = "Κουζίνα"
         Me.TabNavKitchen.Controls.Add(Me.LayoutControl6)
         Me.TabNavKitchen.Name = "TabNavKitchen"
+        Me.TabNavKitchen.Properties.AppearanceCaption.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
+        Me.TabNavKitchen.Properties.AppearanceCaption.Options.UseFont = True
         Me.TabNavKitchen.Size = New System.Drawing.Size(1480, 678)
         '
         'LayoutControl6
@@ -576,6 +583,7 @@ Partial Class frmInstallations
         '
         'cmdConstInstK
         '
+        Me.cmdConstInstK.Enabled = False
         Me.cmdConstInstK.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_bank_euro_24
         Me.cmdConstInstK.Location = New System.Drawing.Point(1267, 316)
         Me.cmdConstInstK.Margin = New System.Windows.Forms.Padding(4)
@@ -861,6 +869,7 @@ Partial Class frmInstallations
         '
         'cmdConstInstC
         '
+        Me.cmdConstInstC.Enabled = False
         Me.cmdConstInstC.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_bank_euro_24
         Me.cmdConstInstC.Location = New System.Drawing.Point(1277, 316)
         Me.cmdConstInstC.Margin = New System.Windows.Forms.Padding(4)
@@ -1387,7 +1396,7 @@ Partial Class frmInstallations
         Me.TabNavSC.Caption = "Ειδική Κατασκευή"
         Me.TabNavSC.Controls.Add(Me.LayoutControl9)
         Me.TabNavSC.Name = "TabNavSC"
-        Me.TabNavSC.Size = New System.Drawing.Size(1480, 678)
+        Me.TabNavSC.Size = New System.Drawing.Size(1480, 727)
         '
         'LayoutControl9
         '
@@ -1405,14 +1414,14 @@ Partial Class frmInstallations
         Me.LayoutControl9.Name = "LayoutControl9"
         Me.LayoutControl9.OptionsCustomizationForm.DesignTimeCustomizationFormPositionAndSize = New System.Drawing.Rectangle(2548, 146, 755, 600)
         Me.LayoutControl9.Root = Me.LayoutControlGroup8
-        Me.LayoutControl9.Size = New System.Drawing.Size(1480, 678)
+        Me.LayoutControl9.Size = New System.Drawing.Size(1480, 727)
         Me.LayoutControl9.TabIndex = 0
         Me.LayoutControl9.Text = "LayoutControl9"
         '
         'cmdConstInstSC
         '
         Me.cmdConstInstSC.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_bank_euro_24
-        Me.cmdConstInstSC.Location = New System.Drawing.Point(1299, 316)
+        Me.cmdConstInstSC.Location = New System.Drawing.Point(1299, 337)
         Me.cmdConstInstSC.Margin = New System.Windows.Forms.Padding(4)
         Me.cmdConstInstSC.Name = "cmdConstInstSC"
         Me.cmdConstInstSC.Size = New System.Drawing.Size(169, 32)
@@ -1427,7 +1436,7 @@ Partial Class frmInstallations
         Me.chkSERSC.Location = New System.Drawing.Point(332, 42)
         Me.chkSERSC.Margin = New System.Windows.Forms.Padding(4)
         Me.chkSERSC.Name = "chkSERSC"
-        Me.chkSERSC.Size = New System.Drawing.Size(1136, 270)
+        Me.chkSERSC.Size = New System.Drawing.Size(1136, 291)
         Me.chkSERSC.SortOrder = System.Windows.Forms.SortOrder.Ascending
         Me.chkSERSC.StyleController = Me.LayoutControl9
         Me.chkSERSC.TabIndex = 48
@@ -1436,7 +1445,7 @@ Partial Class frmInstallations
         'dtDeliverDateSCF
         '
         Me.dtDeliverDateSCF.EditValue = Nothing
-        Me.dtDeliverDateSCF.Location = New System.Drawing.Point(332, 382)
+        Me.dtDeliverDateSCF.Location = New System.Drawing.Point(332, 403)
         Me.dtDeliverDateSCF.Margin = New System.Windows.Forms.Padding(4)
         Me.dtDeliverDateSCF.Name = "dtDeliverDateSCF"
         Me.dtDeliverDateSCF.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1450,7 +1459,7 @@ Partial Class frmInstallations
         'dtDeliverDateSC
         '
         Me.dtDeliverDateSC.EditValue = Nothing
-        Me.dtDeliverDateSC.Location = New System.Drawing.Point(332, 352)
+        Me.dtDeliverDateSC.Location = New System.Drawing.Point(332, 373)
         Me.dtDeliverDateSC.Margin = New System.Windows.Forms.Padding(4)
         Me.dtDeliverDateSC.Name = "dtDeliverDateSC"
         Me.dtDeliverDateSC.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1464,7 +1473,7 @@ Partial Class frmInstallations
         'txtTmSCIN
         '
         Me.txtTmSCIN.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.txtTmSCIN.Location = New System.Drawing.Point(332, 412)
+        Me.txtTmSCIN.Location = New System.Drawing.Point(332, 433)
         Me.txtTmSCIN.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTmSCIN.Name = "txtTmSCIN"
         Me.txtTmSCIN.Properties.BeepOnError = True
@@ -1480,7 +1489,7 @@ Partial Class frmInstallations
         'txtTmSCOUT
         '
         Me.txtTmSCOUT.EditValue = New Date(2021, 9, 30, 0, 0, 0, 0)
-        Me.txtTmSCOUT.Location = New System.Drawing.Point(1036, 412)
+        Me.txtTmSCOUT.Location = New System.Drawing.Point(1036, 433)
         Me.txtTmSCOUT.Margin = New System.Windows.Forms.Padding(4)
         Me.txtTmSCOUT.Name = "txtTmSCOUT"
         Me.txtTmSCOUT.Properties.BeepOnError = True
@@ -1496,7 +1505,7 @@ Partial Class frmInstallations
         'dtDeliverDateSCT
         '
         Me.dtDeliverDateSCT.EditValue = Nothing
-        Me.dtDeliverDateSCT.Location = New System.Drawing.Point(1036, 382)
+        Me.dtDeliverDateSCT.Location = New System.Drawing.Point(1036, 403)
         Me.dtDeliverDateSCT.Margin = New System.Windows.Forms.Padding(4)
         Me.dtDeliverDateSCT.Name = "dtDeliverDateSCT"
         Me.dtDeliverDateSCT.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)})
@@ -1509,10 +1518,10 @@ Partial Class frmInstallations
         '
         'txtCommentsSC
         '
-        Me.txtCommentsSC.Location = New System.Drawing.Point(12, 464)
+        Me.txtCommentsSC.Location = New System.Drawing.Point(12, 485)
         Me.txtCommentsSC.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCommentsSC.Name = "txtCommentsSC"
-        Me.txtCommentsSC.Size = New System.Drawing.Size(1456, 202)
+        Me.txtCommentsSC.Size = New System.Drawing.Size(1456, 230)
         Me.txtCommentsSC.StyleController = Me.LayoutControl9
         Me.txtCommentsSC.TabIndex = 17
         Me.txtCommentsSC.Tag = "cmtParadosisSC,0,1,2"
@@ -1543,7 +1552,7 @@ Partial Class frmInstallations
         Me.LayoutControlGroup8.GroupBordersVisible = False
         Me.LayoutControlGroup8.Items.AddRange(New DevExpress.XtraLayout.BaseLayoutItem() {Me.LayoutControlItem42, Me.LayoutControlItem43, Me.LayoutControlItem44, Me.LayoutControlItem45, Me.LayoutControlItem46, Me.LayoutControlItem48, Me.LayoutControlItem51, Me.LayoutControlItem54, Me.EmptySpaceItem8, Me.LayoutControlItem58})
         Me.LayoutControlGroup8.Name = "Root"
-        Me.LayoutControlGroup8.Size = New System.Drawing.Size(1480, 678)
+        Me.LayoutControlGroup8.Size = New System.Drawing.Size(1480, 727)
         Me.LayoutControlGroup8.TextVisible = False
         '
         'LayoutControlItem42
@@ -1552,7 +1561,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem42.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem42.CustomizationFormText = "Ημερ/νία Τοποθέτησης"
         Me.LayoutControlItem42.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem42.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem42.Location = New System.Drawing.Point(0, 370)
+        Me.LayoutControlItem42.Location = New System.Drawing.Point(0, 391)
         Me.LayoutControlItem42.Name = "LayoutControlItem42"
         Me.LayoutControlItem42.Size = New System.Drawing.Size(704, 30)
         Me.LayoutControlItem42.Text = "Ημερ/νία Τοποθέτησης(Από)"
@@ -1564,7 +1573,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem43.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem43.CustomizationFormText = "Ημερ/νία Ολοκλήρωσης"
         Me.LayoutControlItem43.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem43.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem43.Location = New System.Drawing.Point(0, 340)
+        Me.LayoutControlItem43.Location = New System.Drawing.Point(0, 361)
         Me.LayoutControlItem43.Name = "LayoutControlItem43"
         Me.LayoutControlItem43.Size = New System.Drawing.Size(1460, 30)
         Me.LayoutControlItem43.Text = "Ημερ/νία Παράδοσης"
@@ -1575,7 +1584,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem44.Control = Me.txtTmSCIN
         Me.LayoutControlItem44.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem44.CustomizationFormText = "Από"
-        Me.LayoutControlItem44.Location = New System.Drawing.Point(0, 400)
+        Me.LayoutControlItem44.Location = New System.Drawing.Point(0, 421)
         Me.LayoutControlItem44.Name = "LayoutControlItem44"
         Me.LayoutControlItem44.Size = New System.Drawing.Size(704, 30)
         Me.LayoutControlItem44.Text = "Από"
@@ -1586,7 +1595,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem45.Control = Me.txtTmSCOUT
         Me.LayoutControlItem45.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem45.CustomizationFormText = "Έως"
-        Me.LayoutControlItem45.Location = New System.Drawing.Point(704, 400)
+        Me.LayoutControlItem45.Location = New System.Drawing.Point(704, 421)
         Me.LayoutControlItem45.Name = "LayoutControlItem45"
         Me.LayoutControlItem45.Size = New System.Drawing.Size(756, 30)
         Me.LayoutControlItem45.Text = "Έως"
@@ -1598,7 +1607,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem46.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem46.CustomizationFormText = "Ημερ/νία Τοποθέτησης"
         Me.LayoutControlItem46.ImageOptions.Image = CType(resources.GetObject("LayoutControlItem46.ImageOptions.Image"), System.Drawing.Image)
-        Me.LayoutControlItem46.Location = New System.Drawing.Point(704, 370)
+        Me.LayoutControlItem46.Location = New System.Drawing.Point(704, 391)
         Me.LayoutControlItem46.Name = "LayoutControlItem46"
         Me.LayoutControlItem46.Size = New System.Drawing.Size(756, 30)
         Me.LayoutControlItem46.Text = "Ημερ/νία Τοποθέτησης(Έως)"
@@ -1609,7 +1618,7 @@ Partial Class frmInstallations
         Me.LayoutControlItem48.Control = Me.chkSERSC
         Me.LayoutControlItem48.Location = New System.Drawing.Point(0, 30)
         Me.LayoutControlItem48.Name = "LayoutControlItem48"
-        Me.LayoutControlItem48.Size = New System.Drawing.Size(1460, 274)
+        Me.LayoutControlItem48.Size = New System.Drawing.Size(1460, 295)
         Me.LayoutControlItem48.Text = "Τοποθέτες"
         Me.LayoutControlItem48.TextSize = New System.Drawing.Size(308, 19)
         '
@@ -1621,9 +1630,9 @@ Partial Class frmInstallations
         Me.LayoutControlItem51.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
         Me.LayoutControlItem51.CustomizationFormText = "Σχόλια"
         Me.LayoutControlItem51.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem51.Location = New System.Drawing.Point(0, 430)
+        Me.LayoutControlItem51.Location = New System.Drawing.Point(0, 451)
         Me.LayoutControlItem51.Name = "LayoutControlItem51"
-        Me.LayoutControlItem51.Size = New System.Drawing.Size(1460, 228)
+        Me.LayoutControlItem51.Size = New System.Drawing.Size(1460, 256)
         Me.LayoutControlItem51.Text = "Παρατηρήσεις Παραδόσεων Τοποθετήσεων"
         Me.LayoutControlItem51.TextLocation = DevExpress.Utils.Locations.Top
         Me.LayoutControlItem51.TextSize = New System.Drawing.Size(308, 19)
@@ -1631,7 +1640,7 @@ Partial Class frmInstallations
         'LayoutControlItem54
         '
         Me.LayoutControlItem54.Control = Me.cmdConstInstSC
-        Me.LayoutControlItem54.Location = New System.Drawing.Point(1287, 304)
+        Me.LayoutControlItem54.Location = New System.Drawing.Point(1287, 325)
         Me.LayoutControlItem54.Name = "LayoutControlItem54"
         Me.LayoutControlItem54.Size = New System.Drawing.Size(173, 36)
         Me.LayoutControlItem54.TextSize = New System.Drawing.Size(0, 0)
@@ -1640,7 +1649,7 @@ Partial Class frmInstallations
         'EmptySpaceItem8
         '
         Me.EmptySpaceItem8.AllowHotTrack = False
-        Me.EmptySpaceItem8.Location = New System.Drawing.Point(0, 304)
+        Me.EmptySpaceItem8.Location = New System.Drawing.Point(0, 325)
         Me.EmptySpaceItem8.Name = "EmptySpaceItem8"
         Me.EmptySpaceItem8.Size = New System.Drawing.Size(1287, 36)
         Me.EmptySpaceItem8.TextSize = New System.Drawing.Size(0, 0)
@@ -1663,8 +1672,8 @@ Partial Class frmInstallations
         Me.txtInstFilename.Margin = New System.Windows.Forms.Padding(4)
         Me.txtInstFilename.Name = "txtInstFilename"
         Me.txtInstFilename.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions3.Image = CType(resources.GetObject("EditorButtonImageOptions3.Image"), System.Drawing.Image)
-        Me.txtInstFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
+        Me.txtInstFilename.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtInstFilename.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtInstFilename.Size = New System.Drawing.Size(982, 26)
         Me.txtInstFilename.StyleController = Me.LayoutControl1
@@ -2513,8 +2522,8 @@ Partial Class frmInstallations
         Me.txtFiles.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFiles.Name = "txtFiles"
         Me.txtFiles.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions1.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
-        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions2.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
+        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtFiles.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtFiles.Size = New System.Drawing.Size(1383, 26)
         Me.txtFiles.StyleController = Me.LayoutControl5

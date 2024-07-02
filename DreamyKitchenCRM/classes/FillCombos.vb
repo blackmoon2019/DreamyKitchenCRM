@@ -737,8 +737,10 @@ Public Class FillCombos
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Προσωπικό"
-            CtrlCombo.Properties.Columns(2).Caption = "Μισθός"
-            CtrlCombo.Properties.Columns(2).Visible = False
+            If sdr.FieldCount > 2 Then
+                CtrlCombo.Properties.Columns(2).Caption = "Μισθός"
+                CtrlCombo.Properties.Columns(2).Visible = False
+            End If
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -2,6 +2,7 @@
 
 Public Class frmInstallationsCost
     Private InstallationsCost As New InstallationsCost
+    Private Installations As New Installations
     Private LoadForms As New FormLoader
     Private ManageCbo As New CombosManager
     Private sID As String
@@ -65,7 +66,6 @@ Public Class frmInstallationsCost
     End Property
 
     Private Sub frmInstallationsCost_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Vw_ExtPartnersTableAdapter.Fill(DMDataSet.vw_ExtPartners)
         InstallationsCost.frmInstallations = Frm
         InstallationsCost.Initialize(Me, sID, sInstID, Mode, bKitchen, bCloset, bDoors, bSC)
         InstallationsCost.LoadForm()
@@ -74,6 +74,12 @@ Public Class frmInstallationsCost
 
     Private Sub cmdSave_Click(sender As Object, e As EventArgs) Handles cmdSave.Click
         InstallationsCost.SaveRecord(sID)
+        If sID <> "" Then
+            If bKitchen = True Then Installations.bHasInstCostKitchen = True
+            If bCloset = True Then Installations.bHasInstCostCloset = True
+            If bDoors = True Then Installations.bHasInstCostDoors = True
+            If bSC = True Then Installations.bHasInstCostSC = True
+        End If
     End Sub
 
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click

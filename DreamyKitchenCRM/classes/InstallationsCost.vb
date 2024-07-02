@@ -6,10 +6,10 @@ Public Class InstallationsCost
     Private ID As String
     Private sInstID As String
     Private sTRANSH_ID As String
-    Private bKitchen As Boolean
-    Private bCloset As Boolean
-    Private bDoors As Boolean
-    Private bSC As Boolean
+    Private IsKitchen As Boolean
+    Private IsCloset As Boolean
+    Private IsDoors As Boolean
+    Private IsSC As Boolean
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Public Mode As Byte
     Private Valid As New ValidateControls
@@ -28,11 +28,11 @@ Public Class InstallationsCost
         ID = sInstCostID
         sInstID = InstID
         Mode = sMode
-        bKitchen = Kitchen
-        bCloset = Closet
-        bDoors = Doors
-        bSC = SC
-        Frm.Vw_ExtPartnersTableAdapter.Fill(Frm.DMDataSet.vw_ExtPartners)
+        IsKitchen = Kitchen
+        IsCloset = Closet
+        IsDoors = Doors
+        IsSC = SC
+        If InstID = Nothing Then Frm.cmdSave.Enabled = False : Exit Sub
         Dim sSQL = New System.Text.StringBuilder
         sSQL.AppendLine("select CCT.id,CCT.Fullname,'00000000-0000-0000-0000-000000000000' as SalerID,phn,AdrID,email,isCompany from CCT INNER JOIN INST ON INST.cusID = CCT.ID Where INST.ID = " & toSQLValueS(InstID))
         FillCbo.CUS(Frm.cboCUS, sSQL)
@@ -40,20 +40,20 @@ Public Class InstallationsCost
         sSQL.AppendLine("select T.id,T.FullTranshDescription from vw_transh T INNER JOIN INST ON INST.transhID = T.ID Where INST.ID = " & toSQLValueS(InstID))
         FillCbo.TRANSH(Frm.cboTRANSH, sSQL)
         sSQL.Clear()
-        If bKitchen = True Then
-            sSQL.AppendLine("select  EMP.ID,Fullname  from EMP inner join INST_SER on INST_SER.empID = EMP.ID where externalPartner = 1 and  kitchen=1  and instID = " & toSQLValueS(InstID))
+        If IsKitchen = True Then
+            sSQL.AppendLine("select  EMP.id,Fullname  from EMP inner join INST_SER on INST_SER.empID = EMP.ID where externalPartner = 1 and  kitchen=1  and instID = " & toSQLValueS(InstID))
             Frm.chkHasKitchen.CheckState = CheckState.Checked : Frm.chkHasKitchen.ReadOnly = True
         End If
-        If bCloset = True Then
-            sSQL.AppendLine("select  EMP.ID,Fullname  from EMP inner join INST_SER on INST_SER.empID = EMP.ID where externalPartner = 1 and  Closet=1  and instID = " & toSQLValueS(InstID))
+        If IsCloset = True Then
+            sSQL.AppendLine("select  EMP.id,Fullname  from EMP inner join INST_SER on INST_SER.empID = EMP.ID where externalPartner = 1 and  Closet=1  and instID = " & toSQLValueS(InstID))
             Frm.chkHasCloset.CheckState = CheckState.Checked : Frm.chkHasCloset.ReadOnly = True
         End If
-        If bDoors = True Then
-            sSQL.AppendLine("select  EMP.ID,Fullname  from EMP inner join INST_SER on INST_SER.empID = EMP.ID where externalPartner = 1 and  doors=1  and instID = " & toSQLValueS(InstID))
+        If IsDoors = True Then
+            sSQL.AppendLine("select  EMP.id,Fullname  from EMP inner join INST_SER on INST_SER.empID = EMP.ID where externalPartner = 1 and  doors=1  and instID = " & toSQLValueS(InstID))
             Frm.chkHasDoors.CheckState = CheckState.Checked : Frm.chkHasDoors.ReadOnly = True
         End If
-        If bSC = True Then
-            sSQL.AppendLine("select  EMP.ID,Fullname  from EMP inner join INST_SER on INST_SER.empID = EMP.ID where externalPartner = 1 and  sc=1  and instID = " & toSQLValueS(InstID))
+        If IsSC = True Then
+            sSQL.AppendLine("select  EMP.id,Fullname  from EMP inner join INST_SER on INST_SER.empID = EMP.ID where externalPartner = 1 and  sc=1  and instID = " & toSQLValueS(InstID))
             Frm.chkHasSC.CheckState = CheckState.Checked : Frm.chkHasSC.ReadOnly = True
         End If
         FillCbo.EMP(Frm.cboExternalPartners, sSQL)
@@ -66,7 +66,12 @@ Public Class InstallationsCost
             Case FormMode.NewRecord
                 Frm.txtCode.Text = DBQ.GetNextId("INST_COST")
             Case FormMode.EditRecord
-                LoadForms.LoadForm(Frm.LayoutControl1, "Select * from INST_COST where id ='" + ID + "'")
+                Dim sFields As New Dictionary(Of String, String)
+                If IsKitchen = True Then LoadForms.LoadForm(Frm.LayoutControl1, "Select * from INST_COST where Kitchen = 1 and instID = " & toSQLValueS(sInstID), sFields)
+                If IsCloset = True Then LoadForms.LoadForm(Frm.LayoutControl1, "Select * from INST_COST where closet = 1 and instID = " & toSQLValueS(sInstID), sFields)
+                If IsDoors = True Then LoadForms.LoadForm(Frm.LayoutControl1, "Select * from INST_COST where doors = 1 and instID = " & toSQLValueS(sInstID), sFields)
+                If IsSC = True Then LoadForms.LoadForm(Frm.LayoutControl1, "Select * from INST_COST where SC = 1 and instID = " & toSQLValueS(sInstID), sFields)
+                ID = sFields("ID")
         End Select
         UserPermissions.GetUserPermissions(Frm.Text)
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -78,16 +83,16 @@ Public Class InstallationsCost
         Dim sGuid As String
         Try
             If Valid.ValidateForm(Frm.LayoutControl1) Then
-                Valid.ID = Frm.cboTRANSH.EditValue.ToString
-                If Valid.ValiDationRules(Frm.Name, Frm) = False Then Exit Sub
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_COST", Frm.LayoutControl1,,, sGuid)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_COST", Frm.LayoutControl1,,, sGuid,, "InstID", toSQLValueS(sInstID))
                         ID = sGuid : sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_COST", Frm.LayoutControl1,,, sID)
-                        ID = sID
+                        Dim FieldsToBeUpdate As New List(Of String)
+                        FieldsToBeUpdate.Add("InstID = " & toSQLValueS(sInstID))
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_COST", Frm.LayoutControl1,,, ID,,, FieldsToBeUpdate)
+                        sID = ID
                 End Select
 
                 XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)

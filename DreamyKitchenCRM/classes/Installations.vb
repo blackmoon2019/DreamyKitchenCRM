@@ -1,5 +1,4 @@
 ﻿Imports System.Data.SqlClient
-Imports DevExpress.Utils
 Imports System.IO
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.Grid
@@ -9,10 +8,10 @@ Public Class Installations
     Private ID As String
     Private sEmpTID As String
     Private sTranshID As String
-    Private bKitchen As Boolean
-    Private bCloset As Boolean
-    Private bDoors As Boolean
-    Private bSC As Boolean
+    Public bHasInstCostKitchen As Boolean
+    Public bHasInstCostCloset As Boolean
+    Public bHasInstCostDoors As Boolean
+    Public bHasInstCostSC As Boolean
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Public Mode As Byte
     Private Valid As New ValidateControls
@@ -34,6 +33,10 @@ Public Class Installations
         Mode = sMode
         Frm.Vw_FILE_CATTableAdapter.Fill(Frm.DreamyKitchenDataSet.vw_FILE_CAT)
         Frm.Vw_ExtPartnersTableAdapter.Fill(Frm.DMDataSet.vw_ExtPartners)
+        Frm.cmdConstInstK.Enabled = False
+        Frm.cmdConstInstC.Enabled = False
+        Frm.cmdConstInstD.Enabled = False
+        Frm.cmdConstInstSC.Enabled = False
 
     End Sub
 
@@ -53,7 +56,6 @@ Public Class Installations
         Select Case Mode
             Case FormMode.NewRecord
                 Frm.txtCode.Text = DBQ.GetNextId("INST")
-                FillListSER(0)
                 Frm.cmdConstInstK.Enabled = False : Frm.cmdConstInstC.Enabled = False
                 Frm.cmdConstInstD.Enabled = False : Frm.cmdConstInstSC.Enabled = False
             Case FormMode.EditRecord
@@ -66,19 +68,36 @@ Public Class Installations
                 myLayoutControls.Add(Frm.LayoutControl9)
 
                 LoadForms.LoadFormNew(myLayoutControls, "Select * from vw_INST where id ='" + ID + "'",, sFields)
-                FillListSER(0)
                 Frm.cmdInstEllipse.Enabled = True
-                bKitchen = sFields("HasKitchen")
-                bCloset = sFields("HasCloset")
-                bDoors = sFields("HasDoors")
-                bSC = sFields("HasSC")
+                bHasInstCostKitchen = sFields("HasInstCostKitchen")
+                bHasInstCostCloset = sFields("HasInstCostCloset")
+                bHasInstCostDoors = sFields("HasInstCostDoors")
+                bHasInstCostSC = sFields("HasInstCostSC")
         End Select
+
+
         If CheckIfExistInstEllipse() = True Then Frm.LInstFilename.Enabled = False
         If Frm.txtInstFilename.Text.Length > 0 Then Frm.cmdInstEllipse.Enabled = False
-        Frm.TabNavKitchen.Enabled = Frm.cboTRANSH.GetColumnValue("Iskitchen")
-        Frm.TabNavCloset.Enabled = Frm.cboTRANSH.GetColumnValue("Iscloset")
-        Frm.TabNavDoor.Enabled = Frm.cboTRANSH.GetColumnValue("Isdoor")
-        Frm.TabNavSC.Enabled = Frm.cboTRANSH.GetColumnValue("Issc")
+        'ΚΟΥΖΙΝΑ
+        If Frm.cboTRANSH.GetColumnValue("Iskitchen") = "True" Then
+            FillListSER(0)
+            Frm.TabNavKitchen.Enabled = Frm.cboTRANSH.GetColumnValue("Iskitchen")
+        End If
+        'ΝΤΟΥΛΑΠΑ
+        If Frm.cboTRANSH.GetColumnValue("Iscloset") = "True" Then
+            FillListSER(1)
+            Frm.TabNavCloset.Enabled = Frm.cboTRANSH.GetColumnValue("Iscloset")
+        End If
+        'ΠΟΡΤΑ
+        If Frm.cboTRANSH.GetColumnValue("Isdoor") = "True" Then
+            FillListSER(2)
+            Frm.TabNavCloset.Enabled = Frm.cboTRANSH.GetColumnValue("Isdoor")
+        End If
+        'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+        If Frm.cboTRANSH.GetColumnValue("Issc") = "True" Then
+            FillListSER(3)
+            Frm.TabNavCloset.Enabled = Frm.cboTRANSH.GetColumnValue("Issc")
+        End If
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
     End Sub
     Public Sub FillListSER(ByVal sCategory As Int16)
@@ -93,13 +112,13 @@ Public Class Installations
             Case FormMode.EditRecord
                 Select Case sCategory
                     Case 0 : FillCbo.FillCheckedListSER(Frm.chkSERK, FormMode.EditRecord, ID, 0)   'ΚΟΥΖΙΝΑ
-                        Frm.cboExtPartnerKitchen.EditValue = System.Guid.Parse(sFields("ExtPartnerKitchenID"))
+                        If sFields("ExtPartnerKitchenID") <> "" Then Frm.cboExtPartnerKitchen.EditValue = System.Guid.Parse(sFields("ExtPartnerKitchenID"))
                     Case 1 : FillCbo.FillCheckedListSER(Frm.chkSERC, FormMode.EditRecord, ID, 1)   'ΝΤΟΥΛΑΠΑ
-                        Frm.cboExtPartnerCloset.EditValue = System.Guid.Parse(sFields("ExtPartnerClosetID"))
+                        If sFields("ExtPartnerClosetID") <> "" Then Frm.cboExtPartnerCloset.EditValue = System.Guid.Parse(sFields("ExtPartnerClosetID"))
                     Case 2 : FillCbo.FillCheckedListSER(Frm.chkSERD, FormMode.EditRecord, ID, 2)   'ΠΟΡΤΑ
-                        Frm.cboExtPartnerDoors.EditValue = System.Guid.Parse(sFields("ExtPartnerDoorsID"))
+                        If sFields("ExtPartnerDoorsID") <> "" Then Frm.cboExtPartnerDoors.EditValue = System.Guid.Parse(sFields("ExtPartnerDoorsID"))
                     Case 3 : FillCbo.FillCheckedListSER(Frm.chkSERSC, FormMode.EditRecord, ID, 3)  'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
-                        Frm.cboExtPartnerSC.EditValue = System.Guid.Parse(sFields("ExtPartnerSCID"))
+                        If sFields("ExtPartnerSCID") <> "" Then Frm.cboExtPartnerSC.EditValue = System.Guid.Parse(sFields("ExtPartnerSCID"))
                 End Select
         End Select
     End Sub
@@ -167,13 +186,15 @@ Public Class Installations
                             oCmd.ExecuteNonQuery()
                         End Using
                     Next
-                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],kitchen)  
+                    If Frm.cboExtPartnerKitchen.EditValue IsNot Nothing Then
+                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],kitchen)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerKitchen.EditValue.ToString()) & "," &
                                                             toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                    Using oCmd As New SqlCommand(sSQL2, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-
+                        Using oCmd As New SqlCommand(sSQL2, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        sFields("ExtPartnerKitchenID") = Frm.cboExtPartnerKitchen.EditValue.ToString()
+                    End If
                     FillListSER(0)
                 End If
 
@@ -189,12 +210,15 @@ Public Class Installations
                             oCmd.ExecuteNonQuery()
                         End Using
                     Next
-                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],closet)  
+                    If Frm.cboExtPartnerCloset.EditValue IsNot Nothing Then
+                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],closet)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerCloset.EditValue.ToString()) & "," &
                                                             toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                    Using oCmd As New SqlCommand(sSQL2, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
+                        Using oCmd As New SqlCommand(sSQL2, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        sFields("ExtPartnerClosetID") = Frm.cboExtPartnerCloset.EditValue.ToString()
+                    End If
                     FillListSER(1)
                 End If
                 If Frm.cboTRANSH.GetColumnValue("Isdoor") = True Then
@@ -207,13 +231,15 @@ Public Class Installations
                             oCmd.ExecuteNonQuery()
                         End Using
                     Next
-                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],doors)  
+                    If Frm.cboExtPartnerDoors.EditValue IsNot Nothing Then
+                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],doors)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerDoors.EditValue.ToString()) & "," &
                                                             toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                    Using oCmd As New SqlCommand(sSQL2, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-
+                        Using oCmd As New SqlCommand(sSQL2, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        sFields("ExtPartnerDoorsID") = Frm.cboExtPartnerDoors.EditValue.ToString()
+                    End If
                     FillListSER(2)
                 End If
                 If Frm.cboTRANSH.GetColumnValue("Issc") = True Then
@@ -226,13 +252,15 @@ Public Class Installations
                             oCmd.ExecuteNonQuery()
                         End Using
                     Next
-                    sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],sc)  
+                    If Frm.cboExtPartnerSC.EditValue IsNot Nothing Then
+                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],sc)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerSC.EditValue.ToString()) & "," &
                                                             toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                    Using oCmd As New SqlCommand(sSQL2, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-
+                        Using oCmd As New SqlCommand(sSQL2, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        sFields("ExtPartnerSCID") = Frm.cboExtPartnerSC.EditValue.ToString()
+                    End If
                     FillListSER(3)
                 End If
             End If
@@ -272,6 +300,18 @@ Public Class Installations
             frmInstEllipse.ShowDialog()
         End If
     End Sub
+    Public Sub SetCostButtonEnabled(ByVal Category As Int16)
+        Select Case Category
+            Case 0 : If Frm.cboExtPartnerKitchen.EditValue Is Nothing Then Exit Sub
+                If sFields("ExtPartnerKitchenID") <> "" And sFields("ExtPartnerKitchenID") = Frm.cboExtPartnerKitchen.EditValue.ToString Then Frm.cmdConstInstK.Enabled = True
+            Case 1 : If Frm.cboExtPartnerCloset.EditValue Is Nothing Then Exit Sub
+                If sFields("ExtPartnerClosetID") <> "" And sFields("ExtPartnerClosetID") = Frm.cboExtPartnerCloset.EditValue.ToString Then Frm.cmdConstInstC.Enabled = True
+            Case 2 : If Frm.cboExtPartnerDoors.EditValue Is Nothing Then Exit Sub
+                If sFields("ExtPartnerDoorsID") <> "" And sFields("ExtPartnerDoorsID") = Frm.cboExtPartnerDoors.EditValue.ToString Then Frm.cmdConstInstD.Enabled = True
+            Case 3 : If Frm.cboExtPartnerSC.EditValue Is Nothing Then Exit Sub
+                If sFields("ExtPartnerSCID") <> "" And sFields("ExtPartnerSCID") = Frm.cboExtPartnerSC.EditValue.ToString Then Frm.cmdConstInstSC.Enabled = True
+        End Select
+    End Sub
     Public Sub OpenCostForm(ByVal Category As Int16)
         Dim frmInstallationsCost As frmInstallationsCost = New frmInstallationsCost()
         With frmInstallationsCost
@@ -279,37 +319,53 @@ Public Class Installations
             .Form = Frm
             Select Case Category
                 Case 0
-                    If bKitchen = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
                     .Kitchen = True
                     .ExtPartner = Frm.cboExtPartnerKitchen.EditValue.ToString
-                    .dtDeliverDateF.EditValue = Frm.dtDeliverDateKF.EditValue
-                    .dtDeliverDateT.EditValue = Frm.dtDeliverDateKT.EditValue
-                    .txtTmIN.EditValue = Frm.txtTmKIN.EditValue
-                    .txtTmOUT.EditValue = Frm.txtTmKOUT.EditValue
+                    If bHasInstCostKitchen = True Then
+                        .Mode = FormMode.EditRecord
+                    Else
+                        .Mode = FormMode.NewRecord
+                        .dtDeliverDateF.EditValue = Frm.dtDeliverDateKF.EditValue
+                        .dtDeliverDateT.EditValue = Frm.dtDeliverDateKT.EditValue
+                        .txtTmIN.EditValue = Frm.txtTmKIN.EditValue
+                        .txtTmOUT.EditValue = Frm.txtTmKOUT.EditValue
+                    End If
                 Case 1
-                    If bCloset = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
                     .Closet = True
                     .ExtPartner = Frm.cboExtPartnerCloset.EditValue.ToString
-                    .dtDeliverDateF.EditValue = Frm.dtDeliverDateCF.EditValue
-                    .dtDeliverDateT.EditValue = Frm.dtDeliverDateCT.EditValue
-                    .txtTmIN.EditValue = Frm.txtTmCIN.EditValue
-                    .txtTmOUT.EditValue = Frm.txtTmCOUT.EditValue
+                    If bHasInstCostCloset = True Then
+                        .Mode = FormMode.EditRecord
+                    Else
+                        .Mode = FormMode.NewRecord
+                        .dtDeliverDateF.EditValue = Frm.dtDeliverDateCF.EditValue
+                        .dtDeliverDateT.EditValue = Frm.dtDeliverDateCT.EditValue
+                        .txtTmIN.EditValue = Frm.txtTmCIN.EditValue
+                        .txtTmOUT.EditValue = Frm.txtTmCOUT.EditValue
+                    End If
                 Case 2
-                    If bDoors = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
                     .Doors = True
                     .ExtPartner = Frm.cboExtPartnerDoors.EditValue.ToString
-                    .dtDeliverDateF.EditValue = Frm.dtDeliverDateDF.EditValue
-                    .dtDeliverDateT.EditValue = Frm.dtDeliverDateDT.EditValue
-                    .txtTmIN.EditValue = Frm.txtTmDIN.EditValue
-                    .txtTmOUT.EditValue = Frm.txtTmDOUT.EditValue
+                    If bHasInstCostDoors = True Then
+                        .Mode = FormMode.EditRecord
+                    Else
+                        .Mode = FormMode.NewRecord
+                        .dtDeliverDateF.EditValue = Frm.dtDeliverDateDF.EditValue
+                        .dtDeliverDateT.EditValue = Frm.dtDeliverDateDT.EditValue
+                        .txtTmIN.EditValue = Frm.txtTmDIN.EditValue
+                        .txtTmOUT.EditValue = Frm.txtTmDOUT.EditValue
+                    End If
                 Case 3
-                    If bSC = True Then .Mode = FormMode.EditRecord Else .Mode = FormMode.NewRecord
                     .SC = True
                     .ExtPartner = Frm.cboExtPartnerSC.EditValue.ToString
-                    .dtDeliverDateF.EditValue = Frm.dtDeliverDateSCF.EditValue
-                    .dtDeliverDateT.EditValue = Frm.dtDeliverDateSCT.EditValue
-                    .txtTmIN.EditValue = Frm.txtTmSCIN.EditValue
-                    .txtTmOUT.EditValue = Frm.txtTmSCOUT.EditValue
+                    If bHasInstCostSC = True Then
+                        .Mode = FormMode.EditRecord
+                    Else
+                        .Mode = FormMode.NewRecord
+                        .dtDeliverDateF.EditValue = Frm.dtDeliverDateSCF.EditValue
+                        .dtDeliverDateT.EditValue = Frm.dtDeliverDateSCT.EditValue
+                        .txtTmIN.EditValue = Frm.txtTmSCIN.EditValue
+                        .txtTmOUT.EditValue = Frm.txtTmSCOUT.EditValue
+                    End If
             End Select
             .ShowDialog()
         End With
