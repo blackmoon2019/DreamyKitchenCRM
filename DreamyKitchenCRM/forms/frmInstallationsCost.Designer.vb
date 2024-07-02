@@ -39,6 +39,7 @@ Partial Class frmInstallationsCost
         Me.txtCost = New DevExpress.XtraEditors.TextEdit()
         Me.dtPayOff = New DevExpress.XtraEditors.DateEdit()
         Me.txtComments = New DevExpress.XtraEditors.MemoEdit()
+        Me.txtExtraCost = New DevExpress.XtraEditors.TextEdit()
         Me.Root = New DevExpress.XtraLayout.LayoutControlGroup()
         Me.LayoutControlItem4 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem6 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -54,14 +55,13 @@ Partial Class frmInstallationsCost
         Me.LayoutControlItem8 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem9 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem1 = New DevExpress.XtraLayout.EmptySpaceItem()
-        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.EmptySpaceItem2 = New DevExpress.XtraLayout.EmptySpaceItem()
         Me.LayoutControlItem12 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem13 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem10 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.txtExtraCost = New DevExpress.XtraEditors.TextEdit()
         Me.LExtracost2 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem2 = New DevExpress.XtraLayout.LayoutControlItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.chkHasSC.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -83,6 +83,7 @@ Partial Class frmInstallationsCost
         CType(Me.dtPayOff.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.dtPayOff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.txtExtraCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -98,14 +99,13 @@ Partial Class frmInstallationsCost
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.txtExtraCost.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LExtracost2, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'LayoutControl1
@@ -304,7 +304,7 @@ Partial Class frmInstallationsCost
         Me.cboExternalPartners.Size = New System.Drawing.Size(806, 26)
         Me.cboExternalPartners.StyleController = Me.LayoutControl1
         Me.cboExternalPartners.TabIndex = 6
-        Me.cboExternalPartners.Tag = "empID,0,1,2"
+        Me.cboExternalPartners.Tag = "extPartnerID,0,1,2"
         '
         'dtDeliverDateF
         '
@@ -419,6 +419,27 @@ Partial Class frmInstallationsCost
         Me.txtComments.StyleController = Me.LayoutControl1
         Me.txtComments.TabIndex = 17
         Me.txtComments.Tag = "cmt,0,1,2"
+        '
+        'txtExtraCost
+        '
+        Me.txtExtraCost.EditValue = "0,00 €"
+        Me.txtExtraCost.Location = New System.Drawing.Point(747, 194)
+        Me.txtExtraCost.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtExtraCost.Name = "txtExtraCost"
+        Me.txtExtraCost.Properties.DisplayFormat.FormatString = "c"
+        Me.txtExtraCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtExtraCost.Properties.EditFormat.FormatString = "n2"
+        Me.txtExtraCost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
+        Me.txtExtraCost.Properties.Mask.UseMaskAsDisplayFormat = True
+        Me.txtExtraCost.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
+        Me.txtExtraCost.Properties.MaskSettings.Set("mask", "c2")
+        Me.txtExtraCost.Properties.Tag = "BenchExtraPrice"
+        Me.txtExtraCost.Properties.UseReadOnlyAppearance = False
+        Me.txtExtraCost.Size = New System.Drawing.Size(299, 26)
+        Me.txtExtraCost.StyleController = Me.LayoutControl1
+        Me.txtExtraCost.TabIndex = 42
+        Me.txtExtraCost.Tag = "extraCost,0,1,2"
+        Me.txtExtraCost.Visible = False
         '
         'Root
         '
@@ -595,16 +616,6 @@ Partial Class frmInstallationsCost
         Me.EmptySpaceItem1.Size = New System.Drawing.Size(731, 32)
         Me.EmptySpaceItem1.TextSize = New System.Drawing.Size(0, 0)
         '
-        'LayoutControlItem2
-        '
-        Me.LayoutControlItem2.Control = Me.chkPaid
-        Me.LayoutControlItem2.Location = New System.Drawing.Point(507, 212)
-        Me.LayoutControlItem2.Name = "LayoutControlItem2"
-        Me.LayoutControlItem2.Size = New System.Drawing.Size(531, 31)
-        Me.LayoutControlItem2.Text = "Εξοφλημένο"
-        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
-        Me.LayoutControlItem2.TextVisible = False
-        '
         'EmptySpaceItem2
         '
         Me.EmptySpaceItem2.AllowHotTrack = False
@@ -654,27 +665,6 @@ Partial Class frmInstallationsCost
         Me.LayoutControlItem10.TextSize = New System.Drawing.Size(0, 0)
         Me.LayoutControlItem10.TextVisible = False
         '
-        'txtExtraCost
-        '
-        Me.txtExtraCost.EditValue = "0,00 €"
-        Me.txtExtraCost.Location = New System.Drawing.Point(747, 194)
-        Me.txtExtraCost.Margin = New System.Windows.Forms.Padding(4)
-        Me.txtExtraCost.Name = "txtExtraCost"
-        Me.txtExtraCost.Properties.DisplayFormat.FormatString = "c"
-        Me.txtExtraCost.Properties.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtExtraCost.Properties.EditFormat.FormatString = "n2"
-        Me.txtExtraCost.Properties.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric
-        Me.txtExtraCost.Properties.Mask.UseMaskAsDisplayFormat = True
-        Me.txtExtraCost.Properties.MaskSettings.Set("MaskManagerType", GetType(DevExpress.Data.Mask.NumericMaskManager))
-        Me.txtExtraCost.Properties.MaskSettings.Set("mask", "c2")
-        Me.txtExtraCost.Properties.Tag = "BenchExtraPrice"
-        Me.txtExtraCost.Properties.UseReadOnlyAppearance = False
-        Me.txtExtraCost.Size = New System.Drawing.Size(299, 26)
-        Me.txtExtraCost.StyleController = Me.LayoutControl1
-        Me.txtExtraCost.TabIndex = 42
-        Me.txtExtraCost.Tag = "extraCost,0,1,2"
-        Me.txtExtraCost.Visible = False
-        '
         'LExtracost2
         '
         Me.LExtracost2.Control = Me.txtExtraCost
@@ -686,6 +676,16 @@ Partial Class frmInstallationsCost
         Me.LExtracost2.Size = New System.Drawing.Size(531, 30)
         Me.LExtracost2.Text = "Έξτρα Κόστος"
         Me.LExtracost2.TextSize = New System.Drawing.Size(216, 19)
+        '
+        'LayoutControlItem2
+        '
+        Me.LayoutControlItem2.Control = Me.chkPaid
+        Me.LayoutControlItem2.Location = New System.Drawing.Point(507, 212)
+        Me.LayoutControlItem2.Name = "LayoutControlItem2"
+        Me.LayoutControlItem2.Size = New System.Drawing.Size(531, 31)
+        Me.LayoutControlItem2.Text = "Εξοφλημένο"
+        Me.LayoutControlItem2.TextSize = New System.Drawing.Size(0, 0)
+        Me.LayoutControlItem2.TextVisible = False
         '
         'frmInstallationsCost
         '
@@ -717,6 +717,7 @@ Partial Class frmInstallationsCost
         CType(Me.dtPayOff.Properties.CalendarTimeProperties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.dtPayOff.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtComments.Properties, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.txtExtraCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.Root, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem6, System.ComponentModel.ISupportInitialize).EndInit()
@@ -732,14 +733,13 @@ Partial Class frmInstallationsCost
         CType(Me.LayoutControlItem8, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem9, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem12, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem13, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem10, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.txtExtraCost.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LExtracost2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub

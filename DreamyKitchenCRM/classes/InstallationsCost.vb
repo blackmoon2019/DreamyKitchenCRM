@@ -94,9 +94,16 @@ Public Class InstallationsCost
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_COST", Frm.LayoutControl1,,, ID,,, FieldsToBeUpdate)
                         sID = ID
                 End Select
-
+                If sResult Then
+                    ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
+                    Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
+                        oCmd.CommandType = CommandType.StoredProcedure
+                        oCmd.Parameters.AddWithValue("@transhID", Frm.cboTRANSH.EditValue.ToString)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
                 XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-            End If
+                End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

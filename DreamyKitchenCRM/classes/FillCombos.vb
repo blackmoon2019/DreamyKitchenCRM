@@ -699,7 +699,36 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub EXTPARTNERS(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
+        Try
+            If sSQL Is Nothing Then
+                sSQL = New System.Text.StringBuilder
+                sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where externalPartner=1 order by Fullname")
+            End If
 
+            Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.DisplayMember = "Fullname"
+            CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
+            CtrlCombo.Properties.ForceInitialize()
+            CtrlCombo.Properties.PopulateColumns()
+            CtrlCombo.Properties.Columns(0).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Συνεργεία"
+            CtrlCombo.Properties.Columns(2).Caption = "Μισθός"
+            CtrlCombo.Properties.Columns(2).Visible = False
+            CtrlCombo.Properties.Columns(3).Caption = "Ώρα Εισόδου"
+            CtrlCombo.Properties.Columns(3).Visible = False
+            CtrlCombo.Properties.Columns(4).Caption = "Ώρα Εξόδου"
+            CtrlCombo.Properties.Columns(4).Visible = False
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 
     Public Sub NOTES_L(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try

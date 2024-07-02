@@ -1169,6 +1169,7 @@
     <None Include="DreamyKitchenDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>DreamyKitchenDataSet2.Designer.vb</LastGenOutput>
     </None>
     <None Include="DreamyKitchenDataSet.xss">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>

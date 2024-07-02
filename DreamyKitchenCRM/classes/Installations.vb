@@ -149,13 +149,6 @@ Public Class Installations
 
                 If sResult = True Then
                     If Frm.cboTRANSH.EditValue IsNot Nothing Then
-                        sSQL.Clear()
-                        sSQL.AppendLine("UPDATE PROJECT_COST SET InstPayroll = (Select sum(ISNULL(I.cost, 0) + ISNULL(I.extracost, 0)) from INST I where I.transhid= " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString) & ")")
-                        sSQL.AppendLine("WHERE TRANSHID = " & toSQLValueS(Frm.cboTRANSH.EditValue.ToString))
-                        'Εκτέλεση QUERY
-                        Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
                         ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
                         Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
                             oCmd.CommandType = CommandType.StoredProcedure
