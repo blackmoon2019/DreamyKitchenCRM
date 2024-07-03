@@ -208,6 +208,7 @@ Partial Class frmTransactions
         Me.colmodifiedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcreatedBy = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colFileCategory = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.colfileCatID = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.RepFileCat = New DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit()
         Me.VwFILECATBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.txtFiles = New DevExpress.XtraEditors.ButtonEdit()
@@ -286,7 +287,7 @@ Partial Class frmTransactions
         Me.COMP_CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.COMP_CCT_TRANSHTableAdapter()
         Me.BarButtonItem6 = New DevExpress.XtraBars.BarButtonItem()
         Me.Vw_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.vw_TRANSHTableAdapter()
-        Me.colfileCatID = New DevExpress.XtraGrid.Columns.GridColumn()
+        Me.BBInstallation = New DevExpress.XtraBars.BarButtonItem()
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.LayoutControl1.SuspendLayout()
         CType(Me.TabPane1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2524,6 +2525,17 @@ Partial Class frmTransactions
         Me.colFileCategory.Name = "colFileCategory"
         Me.colFileCategory.Width = 340
         '
+        'colfileCatID
+        '
+        Me.colfileCatID.Caption = "Κατηγορία"
+        Me.colfileCatID.ColumnEdit = Me.RepFileCat
+        Me.colfileCatID.FieldName = "fileCatID"
+        Me.colfileCatID.MinWidth = 30
+        Me.colfileCatID.Name = "colfileCatID"
+        Me.colfileCatID.Visible = True
+        Me.colfileCatID.VisibleIndex = 0
+        Me.colfileCatID.Width = 112
+        '
         'RepFileCat
         '
         Me.RepFileCat.AutoHeight = False
@@ -2997,8 +3009,8 @@ Partial Class frmTransactions
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbEMP_T, Me.BBProjectCosts, Me.BBInstallations, Me.BBCctOrdersKitchen, Me.BBCctOrdersDoor, Me.BBCctOrdersCloset, Me.BBCctOrdersSC, Me.BBAgreement, Me.BarWorkspaceMenuItem1})
-        Me.BarManager1.MaxItemId = 9
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.bbEMP_T, Me.BBProjectCosts, Me.BBInstallations, Me.BBCctOrdersKitchen, Me.BBCctOrdersDoor, Me.BBCctOrdersCloset, Me.BBCctOrdersSC, Me.BBAgreement, Me.BarWorkspaceMenuItem1, Me.BBInstallation})
+        Me.BarManager1.MaxItemId = 10
         '
         'Bar1
         '
@@ -3007,7 +3019,7 @@ Partial Class frmTransactions
         Me.Bar1.DockRow = 0
         Me.Bar1.DockStyle = DevExpress.XtraBars.BarDockStyle.Left
         Me.Bar1.FloatLocation = New System.Drawing.Point(51, 368)
-        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbEMP_T), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProjectCosts), New DevExpress.XtraBars.LinkPersistInfo(Me.BBInstallations), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersKitchen), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersCloset), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersDoor), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersSC), New DevExpress.XtraBars.LinkPersistInfo(Me.BBAgreement)})
+        Me.Bar1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.bbEMP_T), New DevExpress.XtraBars.LinkPersistInfo(Me.BBProjectCosts), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersKitchen), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersCloset), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersDoor), New DevExpress.XtraBars.LinkPersistInfo(Me.BBCctOrdersSC), New DevExpress.XtraBars.LinkPersistInfo(Me.BBAgreement), New DevExpress.XtraBars.LinkPersistInfo(Me.BBInstallation)})
         Me.Bar1.Offset = 15
         Me.Bar1.Text = "Tools"
         '
@@ -3158,16 +3170,13 @@ Partial Class frmTransactions
         '
         Me.Vw_TRANSHTableAdapter.ClearBeforeFill = True
         '
-        'colfileCatID
+        'BBInstallation
         '
-        Me.colfileCatID.Caption = "Κατηγορία"
-        Me.colfileCatID.ColumnEdit = Me.RepFileCat
-        Me.colfileCatID.FieldName = "fileCatID"
-        Me.colfileCatID.MinWidth = 30
-        Me.colfileCatID.Name = "colfileCatID"
-        Me.colfileCatID.Visible = True
-        Me.colfileCatID.VisibleIndex = 0
-        Me.colfileCatID.Width = 112
+        Me.BBInstallation.Caption = "BarButtonItem1"
+        Me.BBInstallation.Id = 9
+        Me.BBInstallation.ImageOptions.Image = CType(resources.GetObject("BarButtonItem1.ImageOptions.Image"), System.Drawing.Image)
+        Me.BBInstallation.ImageOptions.LargeImage = CType(resources.GetObject("BarButtonItem1.ImageOptions.LargeImage"), System.Drawing.Image)
+        Me.BBInstallation.Name = "BBInstallation"
         '
         'frmTransactions
         '
@@ -3630,4 +3639,5 @@ Partial Class frmTransactions
     Friend WithEvents GridColumn18 As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colFileCategory As DevExpress.XtraGrid.Columns.GridColumn
     Friend WithEvents colfileCatID As DevExpress.XtraGrid.Columns.GridColumn
+    Friend WithEvents BBInstallation As DevExpress.XtraBars.BarButtonItem
 End Class

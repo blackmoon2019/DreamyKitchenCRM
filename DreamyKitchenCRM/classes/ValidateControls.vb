@@ -6,6 +6,7 @@ Public Class ValidateControls
     Public SChanged As Boolean
     Private sID As String
     Private scompTrashID As String
+    Private sTrashID As String
     Public WriteOnly Property ID As String
         Set(value As String)
             sID = value
@@ -16,7 +17,11 @@ Public Class ValidateControls
             scompTrashID = value
         End Set
     End Property
-
+    Public WriteOnly Property TrashID As String
+        Set(value As String)
+            sTrashID = value
+        End Set
+    End Property
     Public Function ValidateForm(ByVal control As DevExpress.XtraLayout.LayoutControl) As Boolean
         For Each item As BaseLayoutItem In control.Items
             If TypeOf item Is LayoutControlItem Then
@@ -281,6 +286,22 @@ Public Class ValidateControls
                             End If
                         End If
                     End If
+                Case "frmInstallations"
+                    Dim sSQL As String
+                    Dim Cmd As SqlCommand
+                    Dim CountInst As Integer
+
+                    sSQL = "SELECT count(ID) as CountInst FROM [INST] WHERE transhID = " & toSQLValueS(sTrashID)
+                    Cmd = New SqlCommand(sSQL, CNDB)
+                    Dim sdr As SqlDataReader = Cmd.ExecuteReader()
+                    If (sdr.Read() = True) Then
+                        If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountInst = sdr.GetInt32(sdr.GetOrdinal("CountInst")) Else CountInst = 0
+                        If CountInst = 1 Then
+                            XtraMessageBox.Show("Υπάρχει ήδη πρόγραμμα τοποθέτησης στο έργο. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
+
                     Return True
 
             End Select

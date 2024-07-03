@@ -208,16 +208,16 @@ Public Class frmInstallations
 
     End Sub
     Private Sub cmdConstInstK_Click(sender As Object, e As EventArgs) Handles cmdConstInstK.Click
-        Installations.OpenCostForm(0)
+        Installations.OpenCostForm(0, sID)
     End Sub
     Private Sub cmdConstInstC_Click(sender As Object, e As EventArgs) Handles cmdConstInstC.Click
-        Installations.OpenCostForm(1)
+        Installations.OpenCostForm(1, sID)
     End Sub
     Private Sub cmdConstInstD_Click(sender As Object, e As EventArgs) Handles cmdConstInstD.Click
-        Installations.OpenCostForm(2)
+        Installations.OpenCostForm(2, sID)
     End Sub
     Private Sub cmdConstInstSC_Click(sender As Object, e As EventArgs) Handles cmdConstInstSC.Click
-        Installations.OpenCostForm(3)
+        Installations.OpenCostForm(3, sID)
     End Sub
 
     Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
@@ -225,6 +225,14 @@ Public Class frmInstallations
         TabNavCloset.Enabled = cboTRANSH.GetColumnValue("Iscloset") : TabPane2.SelectedPage = TabNavCloset
         TabNavDoor.Enabled = cboTRANSH.GetColumnValue("Isdoor") : TabPane2.SelectedPage = TabNavDoor
         TabNavSC.Enabled = cboTRANSH.GetColumnValue("Issc") : TabPane2.SelectedPage = TabNavSC
+        'ΚΟΥΖΙΝΑ
+        If cboTRANSH.GetColumnValue("Iskitchen") = "True" Then Installations.FillListSER(0)
+        'ΝΤΟΥΛΑΠΑ
+        If cboTRANSH.GetColumnValue("Iscloset") = "True" Then Installations.FillListSER(1)
+        'ΠΟΡΤΑ
+        If cboTRANSH.GetColumnValue("Isdoor") = "True" Then Installations.FillListSER(2)
+        'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+        If cboTRANSH.GetColumnValue("Issc") = "True" Then Installations.FillListSER(3)
     End Sub
 
     Private Sub cboExtPartnerKitchen_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboExtPartnerKitchen.ButtonPressed

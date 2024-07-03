@@ -128,6 +128,8 @@ Public Class Installations
         Dim sSQL As New System.Text.StringBuilder
         Try
             If Valid.ValidateForm(Frm.LayoutControl1) Then
+                Valid.TrashID = sTranshID
+                If Valid.ValiDationRules(Frm.Text, Frm) = False Then Exit Sub
                 If CheckIfTimeisValid() = False Then Exit Sub
                 If CheckIfInstFExist() = False Then Exit Sub
                 Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
@@ -158,8 +160,9 @@ Public Class Installations
                         Frm.cmdConstInstK.Enabled = True : Frm.cmdConstInstC.Enabled = True
                         Frm.cmdConstInstD.Enabled = True : Frm.cmdConstInstSC.Enabled = True
                     End If
-
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+                    Frm.Mode = FormMode.EditRecord
+
                 End If
                 Dim sSQL2 As String
                 If Mode = FormMode.EditRecord Then
@@ -294,6 +297,7 @@ Public Class Installations
         End If
     End Sub
     Public Sub SetCostButtonEnabled(ByVal Category As Int16)
+        If Mode = FormMode.NewRecord Then Exit Sub
         Select Case Category
             Case 0 : If Frm.cboExtPartnerKitchen.EditValue Is Nothing Then Exit Sub
                 If sFields("ExtPartnerKitchenID") <> "" And sFields("ExtPartnerKitchenID") = Frm.cboExtPartnerKitchen.EditValue.ToString Then Frm.cmdConstInstK.Enabled = True
@@ -305,10 +309,10 @@ Public Class Installations
                 If sFields("ExtPartnerSCID") <> "" And sFields("ExtPartnerSCID") = Frm.cboExtPartnerSC.EditValue.ToString Then Frm.cmdConstInstSC.Enabled = True
         End Select
     End Sub
-    Public Sub OpenCostForm(ByVal Category As Int16)
+    Public Sub OpenCostForm(ByVal Category As Int16, ByVal instID As String)
         Dim frmInstallationsCost As frmInstallationsCost = New frmInstallationsCost()
         With frmInstallationsCost
-            .InstID = ID
+            .InstID = instID
             .Form = Frm
             Select Case Category
                 Case 0
@@ -411,9 +415,27 @@ Public Class Installations
 
     End Function
     Private Function CheckIfTimeisValid() As Boolean
-        If Frm.txtTmKIN.Text = "00:00" Or Frm.txtTmKOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-        Frm.txtTmKIN.EditValue = Frm.txtTmKIN.Text : Frm.txtTmKOUT.EditValue = Frm.txtTmKOUT.Text
-        Dim Hours As Long = DateDiff(DateInterval.Hour, Frm.txtTmKIN.EditValue, Frm.txtTmKOUT.EditValue)
+        Dim Hours As Long
+        If Frm.TabPane2.SelectedPageIndex = "0" Then
+            If Frm.txtTmKIN.Text = "00:00" Or Frm.txtTmKOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+            Frm.txtTmKIN.EditValue = Frm.txtTmKIN.Text : Frm.txtTmKOUT.EditValue = Frm.txtTmKOUT.Text
+            Hours = DateDiff(DateInterval.Hour, Frm.txtTmKIN.EditValue, Frm.txtTmKOUT.EditValue)
+        End If
+        If Frm.TabPane2.SelectedPageIndex = "1" Then
+            If Frm.txtTmCIN.Text = "00:00" Or Frm.txtTmCOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+            Frm.txtTmCIN.EditValue = Frm.txtTmCIN.Text : Frm.txtTmCOUT.EditValue = Frm.txtTmCOUT.Text
+            Hours = DateDiff(DateInterval.Hour, Frm.txtTmCIN.EditValue, Frm.txtTmCOUT.EditValue)
+        End If
+        If Frm.TabPane2.SelectedPageIndex = "2" Then
+            If Frm.txtTmDIN.Text = "00:00" Or Frm.txtTmDOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+            Frm.txtTmDIN.EditValue = Frm.txtTmDIN.Text : Frm.txtTmDOUT.EditValue = Frm.txtTmDOUT.Text
+            Hours = DateDiff(DateInterval.Hour, Frm.txtTmDIN.EditValue, Frm.txtTmDOUT.EditValue)
+        End If
+        If Frm.TabPane2.SelectedPageIndex = "3" Then
+            If Frm.txtTmSCIN.Text = "00:00" Or Frm.txtTmSCOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+            Frm.txtTmSCIN.EditValue = Frm.txtTmCIN.Text : Frm.txtTmSCOUT.EditValue = Frm.txtTmSCOUT.Text
+            Hours = DateDiff(DateInterval.Hour, Frm.txtTmSCIN.EditValue, Frm.txtTmSCOUT.EditValue)
+        End If
         If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
         Return True
     End Function
