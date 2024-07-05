@@ -1,7 +1,9 @@
 ﻿Imports System.Data.SqlClient
 Imports System.IO
+Imports System.Security.Cryptography
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraScheduler.Outlook.Native
 
 Public Class Installations
     Private Prog_Prop As New ProgProp
@@ -58,6 +60,7 @@ Public Class Installations
                 Frm.txtCode.Text = DBQ.GetNextId("INST")
                 Frm.cmdConstInstK.Enabled = False : Frm.cmdConstInstC.Enabled = False
                 Frm.cmdConstInstD.Enabled = False : Frm.cmdConstInstSC.Enabled = False
+                sTranshID = Frm.cboTRANSH.EditValue.ToString
             Case FormMode.EditRecord
                 Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
                 myLayoutControls.Add(Frm.LayoutControl1)
@@ -73,6 +76,11 @@ Public Class Installations
                 bHasInstCostCloset = sFields("HasInstCostCloset")
                 bHasInstCostDoors = sFields("HasInstCostDoors")
                 bHasInstCostSC = sFields("HasInstCostSC")
+                sTranshID = sFields("transhID")
+                If bHasInstCostKitchen Then Frm.cmdDeleteInstCostK.Enabled = True
+                If bHasInstCostCloset Then Frm.cmdDeleteInstCostC.Enabled = True
+                If bHasInstCostDoors Then Frm.cmdDeleteInstCostD.Enabled = True
+                If bHasInstCostSC Then Frm.cmdDeleteInstCostSC.Enabled = True
         End Select
 
 
@@ -99,6 +107,93 @@ Public Class Installations
             Frm.TabNavCloset.Enabled = Frm.cboTRANSH.GetColumnValue("Issc")
         End If
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+    End Sub
+    Private Sub CheckIfInstCostNotExist()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        Try
+            sSQL = "select HasInstCostCloset,HasInstCostDoors,HasInstCostKitchen,HasInstCostSC,ExtPartnerkitchenID, ExtPartnerClosetID ,ExtPartnerDoorsID ,ExtPartnerSCID
+                from vw_inst
+                where (ExtPartnerkitchenID is not null  or ExtPartnerClosetID is not null or ExtPartnerDoorsID is not null or ExtPartnerSCID is not null ) and ID =  " & toSQLValueS(ID)
+            Cmd = New SqlCommand(sSQL.ToString, CNDB)
+            sdr = Cmd.ExecuteReader()
+            Dim CountEllipse As Integer
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("ExtPartnerkitchenID")) = False Then
+                    If sdr.GetGuid(sdr.GetOrdinal("ExtPartnerkitchenID")).ToString <> "" And sdr.GetBoolean(sdr.GetOrdinal("HasInstCostKitchen")) = "False" Then
+                        XtraMessageBox.Show("Δεν έχει κοστολογηθεί ο τοποθέτης για την κουζίνα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                End If
+                If sdr.IsDBNull(sdr.GetOrdinal("ExtPartnerClosetID")) = False Then
+                    If sdr.GetGuid(sdr.GetOrdinal("ExtPartnerClosetID")).ToString <> "" And sdr.GetBoolean(sdr.GetOrdinal("HasInstCostCloset")) = "False" Then
+                        XtraMessageBox.Show("Δεν έχει κοστολογηθεί ο τοποθέτης για τις ντουλάπες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                End If
+                If sdr.IsDBNull(sdr.GetOrdinal("ExtPartnerDoorsID")) = False Then
+                    If sdr.GetGuid(sdr.GetOrdinal("ExtPartnerDoorsID")).ToString <> "" And sdr.GetBoolean(sdr.GetOrdinal("HasInstCostDoors")) = "False" Then
+                        XtraMessageBox.Show("Δεν έχει κοστολογηθεί ο τοποθέτης για τις πόρτες", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                End If
+                If sdr.IsDBNull(sdr.GetOrdinal("ExtPartnerSCID")) = False Then
+                    If sdr.GetGuid(sdr.GetOrdinal("ExtPartnerSCID")).ToString <> "" And sdr.GetBoolean(sdr.GetOrdinal("HasInstCostSC")) = "False" Then
+                        XtraMessageBox.Show("Δεν έχει κοστολογηθεί ο τοποθέτης για τις ειδ. κατασκευές", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                    End If
+                End If
+
+            End If
+
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub ChangeInstCostPartner()
+        Dim sSQL As String
+        Dim RowsAffected As Integer
+        'ΚΟΥΖΙΝΑ
+        If Frm.cboExtPartnerKitchen.EditValue IsNot Nothing Then
+            If bHasInstCostKitchen = True And sFields("SerName") <> Frm.cboExtPartnerKitchen.EditValue.ToString Then
+                sSQL = "UPDATE INST_COST SET  extPartnerID = " & toSQLValueS(Frm.cboExtPartnerKitchen.EditValue.ToString) &
+                               "where kitchen = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    RowsAffected = oCmd.ExecuteNonQuery()
+                End Using
+                If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για την κουζίνα όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        End If
+        'ΝΤΟΥΛΑΠΑ
+        If Frm.cboExtPartnerCloset.EditValue IsNot Nothing Then
+            If bHasInstCostCloset = True And sFields("SerNameC") <> toSQLValueS(Frm.cboExtPartnerCloset.EditValue.ToString) Then
+                sSQL = "UPDATE INST_COST SET  extPartnerID = " & Frm.cboExtPartnerKitchen.EditValue &
+                               "where closet = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    RowsAffected = oCmd.ExecuteNonQuery()
+                End Using
+                If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις ντουλάπες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        End If
+        'ΠΟΡΤΑ
+        If Frm.cboExtPartnerDoors.EditValue IsNot Nothing Then
+            If bHasInstCostDoors = True And sFields("SerNameD") <> toSQLValueS(Frm.cboExtPartnerDoors.EditValue.ToString) Then
+                sSQL = "UPDATE INST_COST SET  extPartnerID = " & Frm.cboExtPartnerKitchen.EditValue &
+                               "where doors = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    RowsAffected = oCmd.ExecuteNonQuery()
+                End Using
+                If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις πόρτες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        End If
+        'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+        If Frm.cboExtPartnerSC.EditValue IsNot Nothing Then
+            If bHasInstCostSC = True And sFields("SerNameSC") <> toSQLValueS(Frm.cboExtPartnerSC.EditValue.ToString) Then
+                sSQL = "UPDATE INST_COST SET  extPartnerID = " & Frm.cboExtPartnerKitchen.EditValue &
+                               "where SC = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    RowsAffected = oCmd.ExecuteNonQuery()
+                End Using
+                If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις Ειδ. Κατασκευές όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        End If
     End Sub
     Public Sub FillListSER(ByVal sCategory As Int16)
         Select Case Mode
@@ -129,9 +224,7 @@ Public Class Installations
         Try
             If Valid.ValidateForm(Frm.LayoutControl1) Then
                 Valid.TrashID = sTranshID
-                If Valid.ValiDationRules(Frm.Text, Frm) = False Then Exit Sub
-                If CheckIfTimeisValid() = False Then Exit Sub
-                If CheckIfInstFExist() = False Then Exit Sub
+                If Valid.ValiDationRules(Frm.Name, Frm,,, sFields) = False Then Exit Sub
                 Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
                 myLayoutControls.Add(Frm.LayoutControl1)
                 myLayoutControls.Add(Frm.LayoutControl3)
@@ -150,6 +243,7 @@ Public Class Installations
                 End Select
 
                 If sResult = True Then
+                    Frm.Mode = FormMode.EditRecord
                     If Frm.cboTRANSH.EditValue IsNot Nothing Then
                         ' Άνοιγμα έργου αν δεν υπάρχει ή ενημέρωση ποσών
                         Using oCmd As New SqlCommand("usp_AddOrUpdateProjectcost", CNDB)
@@ -161,106 +255,110 @@ Public Class Installations
                         Frm.cmdConstInstD.Enabled = True : Frm.cmdConstInstSC.Enabled = True
                     End If
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                    Frm.Mode = FormMode.EditRecord
 
-                End If
-                Dim sSQL2 As String
-                If Mode = FormMode.EditRecord Then
-                    sSQL2 = "DELETE FROM INST_SER where instID = '" & sID & "'"
-                    Using oCmd As New SqlCommand(sSQL2, CNDB)
-                        oCmd.ExecuteNonQuery()
-                    End Using
-                End If
 
-                If Frm.cboTRANSH.GetColumnValue("Iskitchen") = True Then
-                    ' Καταχώρηση Συνεργείων
-                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERK.CheckedItems
-                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],kitchen)  
-                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
-                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                    Dim sSQL2 As String
+                    If Mode = FormMode.EditRecord Then
+                        'Στην περίπτωση αλλαγής Εξ. Συνεργείου αλλάζει και την κοστλόγηση 
+                        ChangeInstCostPartner()
+                        ' Διαγραφή Συνεργείων
+                        sSQL2 = "DELETE FROM INST_SER where instID = '" & sID & "'"
                         Using oCmd As New SqlCommand(sSQL2, CNDB)
                             oCmd.ExecuteNonQuery()
                         End Using
-                    Next
-                    If Frm.cboExtPartnerKitchen.EditValue IsNot Nothing Then
-                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],kitchen)  
+                    End If
+
+                    If Frm.cboTRANSH.GetColumnValue("Iskitchen") = True Then
+                        ' Καταχώρηση Συνεργείων
+                        For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERK.CheckedItems
+                            sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],kitchen)  
+                                        values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
+                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                            Using oCmd As New SqlCommand(sSQL2, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                        Next
+                        If Frm.cboExtPartnerKitchen.EditValue IsNot Nothing Then
+                            sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],kitchen)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerKitchen.EditValue.ToString()) & "," &
                                                             toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sFields("ExtPartnerKitchenID") = Frm.cboExtPartnerKitchen.EditValue.ToString()
+                            Using oCmd As New SqlCommand(sSQL2, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                            sFields("ExtPartnerKitchenID") = Frm.cboExtPartnerKitchen.EditValue.ToString()
+                        End If
+                        FillListSER(0)
                     End If
-                    FillListSER(0)
-                End If
 
 
 
-                If Frm.cboTRANSH.GetColumnValue("Iscloset") = True Then
-                    ' Καταχώρηση Συνεργείων
-                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERC.CheckedItems
-                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],closet)  
+                    If Frm.cboTRANSH.GetColumnValue("Iscloset") = True Then
+                        ' Καταχώρηση Συνεργείων
+                        For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERC.CheckedItems
+                            sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],closet)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
                                                             toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                    Next
-                    If Frm.cboExtPartnerCloset.EditValue IsNot Nothing Then
-                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],closet)  
+                            Using oCmd As New SqlCommand(sSQL2, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                        Next
+                        If Frm.cboExtPartnerCloset.EditValue IsNot Nothing Then
+                            sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],closet)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerCloset.EditValue.ToString()) & "," &
                                                             toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sFields("ExtPartnerClosetID") = Frm.cboExtPartnerCloset.EditValue.ToString()
+                            Using oCmd As New SqlCommand(sSQL2, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                            sFields("ExtPartnerClosetID") = Frm.cboExtPartnerCloset.EditValue.ToString()
+                        End If
+                        FillListSER(1)
                     End If
-                    FillListSER(1)
-                End If
-                If Frm.cboTRANSH.GetColumnValue("Isdoor") = True Then
-                    ' Καταχώρηση Συνεργείων
-                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERD.CheckedItems
-                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],doors)  
+                    If Frm.cboTRANSH.GetColumnValue("Isdoor") = True Then
+                        ' Καταχώρηση Συνεργείων
+                        For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERD.CheckedItems
+                            sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],doors)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
                                                         toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                    Next
-                    If Frm.cboExtPartnerDoors.EditValue IsNot Nothing Then
-                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],doors)  
+                            Using oCmd As New SqlCommand(sSQL2, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                        Next
+                        If Frm.cboExtPartnerDoors.EditValue IsNot Nothing Then
+                            sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],doors)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerDoors.EditValue.ToString()) & "," &
                                                             toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sFields("ExtPartnerDoorsID") = Frm.cboExtPartnerDoors.EditValue.ToString()
+                            Using oCmd As New SqlCommand(sSQL2, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                            sFields("ExtPartnerDoorsID") = Frm.cboExtPartnerDoors.EditValue.ToString()
+                        End If
+                        FillListSER(2)
                     End If
-                    FillListSER(2)
-                End If
-                If Frm.cboTRANSH.GetColumnValue("Issc") = True Then
-                    ' Καταχώρηση Συνεργείων
-                    For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERSC.CheckedItems
-                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],sc)  
+                    If Frm.cboTRANSH.GetColumnValue("Issc") = True Then
+                        ' Καταχώρηση Συνεργείων
+                        For Each item As DevExpress.XtraEditors.Controls.CheckedListBoxItem In Frm.chkSERSC.CheckedItems
+                            sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],sc)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(item.Tag.ToString()) & "," &
-                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                    Next
-                    If Frm.cboExtPartnerSC.EditValue IsNot Nothing Then
-                        sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],sc)  
+                                                                toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                            Using oCmd As New SqlCommand(sSQL2, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                        Next
+                        If Frm.cboExtPartnerSC.EditValue IsNot Nothing Then
+                            sSQL2 = "INSERT INTO INST_SER (instID,empID,[createdBy],[createdOn],sc)  
                                         values (" & toSQLValueS(sID) & "," & toSQLValueS(Frm.cboExtPartnerSC.EditValue.ToString()) & "," &
-                                                            toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
-                        Using oCmd As New SqlCommand(sSQL2, CNDB)
-                            oCmd.ExecuteNonQuery()
-                        End Using
-                        sFields("ExtPartnerSCID") = Frm.cboExtPartnerSC.EditValue.ToString()
+                                                                toSQLValueS(UserProps.ID.ToString) & ", getdate(),1 )"
+                            Using oCmd As New SqlCommand(sSQL2, CNDB)
+                                oCmd.ExecuteNonQuery()
+                            End Using
+                            sFields("ExtPartnerSCID") = Frm.cboExtPartnerSC.EditValue.ToString()
+                        End If
+                        FillListSER(3)
                     End If
-                    FillListSER(3)
                 End If
             End If
-
+            ' Έλεγχος αν δεν έχει κοστολογήσει
+            CheckIfInstCostNotExist()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
@@ -409,61 +507,12 @@ Public Class Installations
                 Return False
             End If
         Catch ex As Exception
-            Return False
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
         End Try
 
     End Function
-    Private Function CheckIfTimeisValid() As Boolean
-        Dim Hours As Long
-        If Frm.TabPane2.SelectedPageIndex = "0" Then
-            If Frm.txtTmKIN.Text = "00:00" Or Frm.txtTmKOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-            Frm.txtTmKIN.EditValue = Frm.txtTmKIN.Text : Frm.txtTmKOUT.EditValue = Frm.txtTmKOUT.Text
-            Hours = DateDiff(DateInterval.Hour, Frm.txtTmKIN.EditValue, Frm.txtTmKOUT.EditValue)
-        End If
-        If Frm.TabPane2.SelectedPageIndex = "1" Then
-            If Frm.txtTmCIN.Text = "00:00" Or Frm.txtTmCOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-            Frm.txtTmCIN.EditValue = Frm.txtTmCIN.Text : Frm.txtTmCOUT.EditValue = Frm.txtTmCOUT.Text
-            Hours = DateDiff(DateInterval.Hour, Frm.txtTmCIN.EditValue, Frm.txtTmCOUT.EditValue)
-        End If
-        If Frm.TabPane2.SelectedPageIndex = "2" Then
-            If Frm.txtTmDIN.Text = "00:00" Or Frm.txtTmDOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-            Frm.txtTmDIN.EditValue = Frm.txtTmDIN.Text : Frm.txtTmDOUT.EditValue = Frm.txtTmDOUT.Text
-            Hours = DateDiff(DateInterval.Hour, Frm.txtTmDIN.EditValue, Frm.txtTmDOUT.EditValue)
-        End If
-        If Frm.TabPane2.SelectedPageIndex = "3" Then
-            If Frm.txtTmSCIN.Text = "00:00" Or Frm.txtTmSCOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-            Frm.txtTmSCIN.EditValue = Frm.txtTmCIN.Text : Frm.txtTmSCOUT.EditValue = Frm.txtTmSCOUT.Text
-            Hours = DateDiff(DateInterval.Hour, Frm.txtTmSCIN.EditValue, Frm.txtTmSCOUT.EditValue)
-        End If
-        If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-        Return True
-    End Function
-    Public Function CheckIfInstFExist() As Boolean
-        Dim sFilename As String = ""
-        If Frm.chkCompleted.Checked = True Then
-            Dim Cmd As SqlCommand, sdr As SqlDataReader
-            Dim sSQL As String = "SELECT fInstName  FROM INST WHERE ID= " & toSQLValueS(ID)
-            Cmd = New SqlCommand(sSQL.ToString, CNDB)
-            sdr = Cmd.ExecuteReader()
-            If (sdr.Read() = True) Then
-                If sdr.IsDBNull(sdr.GetOrdinal("fInstName")) = False Then sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
-                If sFilename = "" Then
-                    XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                    sdr.Close()
-                    Return False
-                Else
-                    sdr.Close()
-                    Return True
-                End If
-            Else
-                XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                Return False
-            End If
-        Else
-            Return True
-        End If
-    End Function
+
     Public Function CheckIfEllipseHasCompleteDocument() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader
         Dim sSQL As String
@@ -670,6 +719,59 @@ Public Class Installations
         LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_INST_ELLIPSE_INSIDE.xml")
         LoadForms.RestoreLayoutFromXml(Frm.GridView2, "D_INST_ELLIPSE_JOBS_INSIDE.xml")
     End Sub
+    Public Sub DeleteInstCost(ByVal sCategory As Int16)
+        Try
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η κοστολόγηση?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                Dim sSQL As String
+                If CheckIfExistPaidInstCost() = True Then XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε Κοστολόγηση όταν υπάρχει πληρωμή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+                Select Case sCategory
+                    Case 0 : sSQL = "DELETE FROM INST_COST WHERE kitchen =1 and instID =" & toSQLValueS(ID)  'ΚΟΥΖΙΝΑ
+                    Case 1 : sSQL = "DELETE FROM INST_COST WHERE closet =1 and instID =" & toSQLValueS(ID)   'ΝΤΟΥΛΑΠΑ
+                    Case 2 : sSQL = "DELETE FROM INST_COST WHERE doors =1 and instID =" & toSQLValueS(ID)    'ΠΟΡΤΑ
+                    Case 3 : sSQL = "DELETE FROM INST_COST WHERE SC =1 and instID =" & toSQLValueS(ID)       'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+                End Select
+
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+                Select Case sCategory
+                    Case 0 : Frm.cmdDeleteInstCostK.Enabled = False : bHasInstCostKitchen = False
+                    Case 1 : Frm.cmdDeleteInstCostC.Enabled = False : bHasInstCostCloset = False
+                    Case 2 : Frm.cmdDeleteInstCostD.Enabled = False : bHasInstCostDoors = False
+                    Case 3 : Frm.cmdDeleteInstCostSC.Enabled = False : bHasInstCostSC = False
+                End Select
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+    'Έλεγχος αν υπάρχει εκκρεμότητα ανολοκλήρωτη
+    Public Function CheckIfExistPaidInstCost() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim InstMID As String = ""
+        Try
+            Cmd = New SqlCommand("Select TOP 1 ID FROM Inst_M  WHERE instID= " & toSQLValueS(ID), CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                InstMID = sdr.GetGuid(sdr.GetOrdinal("ID")).ToString.ToUpper
+                If InstMID <> "" Then
+                    sdr.Close()
+                    Return True
+                Else
+                    sdr.Close()
+                    Return False
+                End If
+            Else
+                sdr.Close()
+                Return False
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        End Try
+
+    End Function
+
     Public Sub InstEllipseDelete()
         Dim sSQL As String
         If UserProps.AllowDelete = False Then Exit Sub

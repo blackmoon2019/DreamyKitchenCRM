@@ -11486,23 +11486,15 @@ Partial Public Class DreamyKitchenDataSet
 
         Private columncctName As Global.System.Data.DataColumn
 
-        Private columncmt As Global.System.Data.DataColumn
-
         Private columnSalerName As Global.System.Data.DataColumn
 
         Private columnTotalCost As Global.System.Data.DataColumn
-
-        Private columnGRMONTH As Global.System.Data.DataColumn
 
         Private columnYPOL As Global.System.Data.DataColumn
 
         Private columndescription As Global.System.Data.DataColumn
 
         Private columnFullTranshDescription As Global.System.Data.DataColumn
-
-        Private columndtDeliverDateF As Global.System.Data.DataColumn
-
-        Private columndtDeliverDateT As Global.System.Data.DataColumn
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
@@ -11557,14 +11549,6 @@ Partial Public Class DreamyKitchenDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public ReadOnly Property cmtColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columncmt
-            End Get
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public ReadOnly Property SalerNameColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnSalerName
@@ -11576,14 +11560,6 @@ Partial Public Class DreamyKitchenDataSet
         Public ReadOnly Property TotalCostColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnTotalCost
-            End Get
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public ReadOnly Property GRMONTHColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnGRMONTH
             End Get
         End Property
 
@@ -11608,22 +11584,6 @@ Partial Public Class DreamyKitchenDataSet
         Public ReadOnly Property FullTranshDescriptionColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnFullTranshDescription
-            End Get
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public ReadOnly Property dtDeliverDateFColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columndtDeliverDateF
-            End Get
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public ReadOnly Property dtDeliverDateTColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columndtDeliverDateT
             End Get
         End Property
 
@@ -11664,9 +11624,9 @@ Partial Public Class DreamyKitchenDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Overloads Function Addvw_INSTPerSerRow(ByVal ID As System.Guid, ByVal cctName As String, ByVal cmt As String, ByVal SalerName As String, ByVal TotalCost As Decimal, ByVal GRMONTH As String, ByVal YPOL As Decimal, ByVal description As String, ByVal FullTranshDescription As String, ByVal dtDeliverDateF As Date, ByVal dtDeliverDateT As Date) As vw_INSTPerSerRow
+        Public Overloads Function Addvw_INSTPerSerRow(ByVal ID As System.Guid, ByVal cctName As String, ByVal SalerName As String, ByVal TotalCost As Decimal, ByVal YPOL As Decimal, ByVal description As String, ByVal FullTranshDescription As String) As vw_INSTPerSerRow
             Dim rowvw_INSTPerSerRow As vw_INSTPerSerRow = CType(Me.NewRow, vw_INSTPerSerRow)
-            Dim columnValuesArray() As Object = New Object() {ID, cctName, cmt, SalerName, TotalCost, GRMONTH, YPOL, description, FullTranshDescription, dtDeliverDateF, dtDeliverDateT}
+            Dim columnValuesArray() As Object = New Object() {ID, cctName, SalerName, TotalCost, YPOL, description, FullTranshDescription}
             rowvw_INSTPerSerRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_INSTPerSerRow)
             Return rowvw_INSTPerSerRow
@@ -11697,15 +11657,11 @@ Partial Public Class DreamyKitchenDataSet
         Friend Sub InitVars()
             Me.columnID = MyBase.Columns("ID")
             Me.columncctName = MyBase.Columns("cctName")
-            Me.columncmt = MyBase.Columns("cmt")
             Me.columnSalerName = MyBase.Columns("SalerName")
             Me.columnTotalCost = MyBase.Columns("TotalCost")
-            Me.columnGRMONTH = MyBase.Columns("GRMONTH")
             Me.columnYPOL = MyBase.Columns("YPOL")
             Me.columndescription = MyBase.Columns("description")
             Me.columnFullTranshDescription = MyBase.Columns("FullTranshDescription")
-            Me.columndtDeliverDateF = MyBase.Columns("dtDeliverDateF")
-            Me.columndtDeliverDateT = MyBase.Columns("dtDeliverDateT")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -11715,41 +11671,28 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columnID)
             Me.columncctName = New Global.System.Data.DataColumn("cctName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncctName)
-            Me.columncmt = New Global.System.Data.DataColumn("cmt", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncmt)
             Me.columnSalerName = New Global.System.Data.DataColumn("SalerName", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSalerName)
             Me.columnTotalCost = New Global.System.Data.DataColumn("TotalCost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnTotalCost)
-            Me.columnGRMONTH = New Global.System.Data.DataColumn("GRMONTH", GetType(String), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnGRMONTH)
             Me.columnYPOL = New Global.System.Data.DataColumn("YPOL", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnYPOL)
             Me.columndescription = New Global.System.Data.DataColumn("description", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columndescription)
             Me.columnFullTranshDescription = New Global.System.Data.DataColumn("FullTranshDescription", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnFullTranshDescription)
-            Me.columndtDeliverDateF = New Global.System.Data.DataColumn("dtDeliverDateF", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columndtDeliverDateF)
-            Me.columndtDeliverDateT = New Global.System.Data.DataColumn("dtDeliverDateT", GetType(Date), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columndtDeliverDateT)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, True))
             Me.columnID.AllowDBNull = False
             Me.columnID.Unique = True
             Me.columncctName.AllowDBNull = False
             Me.columncctName.MaxLength = 200
-            Me.columncmt.MaxLength = 2147483647
             Me.columnSalerName.AllowDBNull = False
             Me.columnSalerName.MaxLength = 100
             Me.columnTotalCost.ReadOnly = True
-            Me.columnGRMONTH.ReadOnly = True
-            Me.columnGRMONTH.MaxLength = 50
             Me.columnYPOL.ReadOnly = True
             Me.columndescription.MaxLength = 2147483647
             Me.columnFullTranshDescription.ReadOnly = True
             Me.columnFullTranshDescription.MaxLength = 2147483647
-            Me.columndtDeliverDateF.AllowDBNull = False
-            Me.columndtDeliverDateT.AllowDBNull = False
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -26887,21 +26830,6 @@ Partial Public Class DreamyKitchenDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Property cmt() As String
-            Get
-                Try
-                    Return CType(Me(Me.tablevw_INSTPerSer.cmtColumn), String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'cmt' in table 'vw_INSTPerSer' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablevw_INSTPerSer.cmtColumn) = value
-            End Set
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Property SalerName() As String
             Get
                 Return CType(Me(Me.tablevw_INSTPerSer.SalerNameColumn), String)
@@ -26923,21 +26851,6 @@ Partial Public Class DreamyKitchenDataSet
             End Get
             Set
                 Me(Me.tablevw_INSTPerSer.TotalCostColumn) = value
-            End Set
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Property GRMONTH() As String
-            Get
-                Try
-                    Return CType(Me(Me.tablevw_INSTPerSer.GRMONTHColumn), String)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'GRMONTH' in table 'vw_INSTPerSer' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablevw_INSTPerSer.GRMONTHColumn) = value
             End Set
         End Property
 
@@ -26988,40 +26901,6 @@ Partial Public Class DreamyKitchenDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Property dtDeliverDateF() As Date
-            Get
-                Return CType(Me(Me.tablevw_INSTPerSer.dtDeliverDateFColumn), Date)
-            End Get
-            Set
-                Me(Me.tablevw_INSTPerSer.dtDeliverDateFColumn) = value
-            End Set
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Property dtDeliverDateT() As Date
-            Get
-                Return CType(Me(Me.tablevw_INSTPerSer.dtDeliverDateTColumn), Date)
-            End Get
-            Set
-                Me(Me.tablevw_INSTPerSer.dtDeliverDateTColumn) = value
-            End Set
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Function IscmtNull() As Boolean
-            Return Me.IsNull(Me.tablevw_INSTPerSer.cmtColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Sub SetcmtNull()
-            Me(Me.tablevw_INSTPerSer.cmtColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Function IsTotalCostNull() As Boolean
             Return Me.IsNull(Me.tablevw_INSTPerSer.TotalCostColumn)
         End Function
@@ -27030,18 +26909,6 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub SetTotalCostNull()
             Me(Me.tablevw_INSTPerSer.TotalCostColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Function IsGRMONTHNull() As Boolean
-            Return Me.IsNull(Me.tablevw_INSTPerSer.GRMONTHColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Sub SetGRMONTHNull()
-            Me(Me.tablevw_INSTPerSer.GRMONTHColumn) = Global.System.Convert.DBNull
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -39544,15 +39411,11 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.DataSetTable = "vw_INSTPerSer"
             tableMapping.ColumnMappings.Add("ID", "ID")
             tableMapping.ColumnMappings.Add("cctName", "cctName")
-            tableMapping.ColumnMappings.Add("cmt", "cmt")
             tableMapping.ColumnMappings.Add("SalerName", "SalerName")
             tableMapping.ColumnMappings.Add("TotalCost", "TotalCost")
-            tableMapping.ColumnMappings.Add("GRMONTH", "GRMONTH")
             tableMapping.ColumnMappings.Add("YPOL", "YPOL")
             tableMapping.ColumnMappings.Add("description", "description")
             tableMapping.ColumnMappings.Add("FullTranshDescription", "FullTranshDescription")
-            tableMapping.ColumnMappings.Add("dtDeliverDateF", "dtDeliverDateF")
-            tableMapping.ColumnMappings.Add("dtDeliverDateT", "dtDeliverDateT")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
 
@@ -39569,19 +39432,21 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT       vw_INST_COST.instID as ID, cctName, cmt, dtDeliverDateF,dtDeliverDat" &
-                "eT, SalerName, cost + extraCost AS TotalCost, GRMONTH, YPOL, description, FullTr" &
-                "anshDescription" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            vw_INST_COST" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE        (vw_INST_COST.ext" &
-                "PartnerID= @extPartnerID) AND (paid = 0)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "ORDER BY dtDeliverDateF  DESC" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " "
+            Me._commandCollection(0).CommandText = "SELECT       vw_INST_COST.instID as ID, cctName, SalerName, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " sum(cost) +sum (ex" &
+                "traCost) AS TotalCost, sum(YPOL) as YPOL, description, FullTranshDescription" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FR" &
+                "OM            vw_INST_COST" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " WHERE        (vw_INST_COST.extPartnerID= @extPartne" &
+                "rID) AND (paid = 0)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "group by vw_INST_COST.instID ,cctName, SalerName, descripti" &
+                "on, FullTranshDescription" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " "
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@extPartnerID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "extPartnerID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = " SELECT FullTranshDescription, GRMONTH, ID, SalerName, YPOL, cctName, cmt, descri" &
-                "ption, dtDeliverDateF FROM vw_INST_COST WHERE (instID = @ID) ORDER BY dtDeliverD" &
-                "ateF DESC"
+            Me._commandCollection(1).CommandText = " SELECT       vw_INST_COST.instID as ID, cctName, SalerName, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " sum(cost) +sum (e" &
+                "xtraCost) AS TotalCost, sum(YPOL) as YPOL, description, FullTranshDescription" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "F" &
+                "ROM vw_INST_COST WHERE (instID = @ID) " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "group by vw_INST_COST.instID ,cctName, S" &
+                "alerName, description, FullTranshDescription" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " "
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "instID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),

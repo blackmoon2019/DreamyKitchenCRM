@@ -1432,6 +1432,7 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-installation-24.png" />
     <None Include="Resources\icons8-bank-euro-24.png" />
     <None Include="Resources\icons8-partner-40.png" />
     <None Include="Resources\icons8-order-24.png" />

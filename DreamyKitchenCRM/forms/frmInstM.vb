@@ -205,10 +205,10 @@ Public Class frmInstM
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Αν υπάρχει στην μισθοδοσία τοποθετών εγγραφή στο ίδιο έργο και με ίδιο ποσό γίνεται εξοφλημενη
-                    sSQL = "Update INST_COST Set paid=1 
-                             From INST_COST I
+                    sSQL = "Update INST_COST Set paid=1,dtPayOFF = " & toSQLValueS(dtDeliverDate.EditValue.ToString) &
+                            " From INST_COST I
                               inner Join INST_M IM on I.instID=IM.instID 
-                              where I.id= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) & " And (I.cost + I.extraCost) = IM.amt and (I.cost + I.extraCost)<>0 and paid = 0"
+                              where I.instID= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) & " And (I.cost + I.extraCost) = IM.amt and (I.cost + I.extraCost)<>0 and paid = 0"
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using

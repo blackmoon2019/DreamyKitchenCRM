@@ -86,7 +86,8 @@ Public Class ValidateControls
         Next
         Return True
     End Function
-    Public Function ValiDationRules(ByVal FrmName As String, ByVal frm As Form, Optional ByVal ExtraChecks As Boolean = False, Optional ByVal isOrder As Boolean = False) As Boolean
+    Public Function ValiDationRules(ByVal FrmName As String, ByVal frm As Form, Optional ByVal ExtraChecks As Boolean = False,
+                                    Optional ByVal isOrder As Boolean = False, Optional ByVal sFields As Dictionary(Of String, String) = Nothing) As Boolean
         Try
 
             Select Case FrmName
@@ -287,24 +288,134 @@ Public Class ValidateControls
                         End If
                     End If
                 Case "frmInstallations"
+                    Dim f As frmInstallations = frm
                     Dim sSQL As String
                     Dim Cmd As SqlCommand
-                    Dim CountInst As Integer
+                    Dim sdr As SqlDataReader
 
-                    sSQL = "SELECT count(ID) as CountInst FROM [INST] WHERE transhID = " & toSQLValueS(sTrashID)
-                    Cmd = New SqlCommand(sSQL, CNDB)
-                    Dim sdr As SqlDataReader = Cmd.ExecuteReader()
-                    If (sdr.Read() = True) Then
-                        If sdr.IsDBNull(sdr.GetOrdinal("CountClosed")) = False Then CountInst = sdr.GetInt32(sdr.GetOrdinal("CountInst")) Else CountInst = 0
-                        If CountInst = 1 Then
-                            XtraMessageBox.Show("Υπάρχει ήδη πρόγραμμα τοποθέτησης στο έργο. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    '----------------------------------------------------------------------------------------------------
+                    If f.Mode = FormMode.NewRecord Then
+                        Dim CountInst As Integer
+                        sSQL = "SELECT count(ID) as CountInst FROM [INST] WHERE transhID = " & toSQLValueS(sTrashID)
+                        Cmd = New SqlCommand(sSQL, CNDB)
+                        sdr = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("CountInst")) = False Then CountInst = sdr.GetInt32(sdr.GetOrdinal("CountInst")) Else CountInst = 0
+                            If CountInst = 1 Then
+                                XtraMessageBox.Show("Υπάρχει ήδη πρόγραμμα τοποθέτησης στο έργο. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
+                        End If
+                    End If
+                    '----------------------------------------------------------------------------------------------------
+                    Dim Hours As Long
+                    If f.TabPane2.SelectedPageIndex = "0" Then
+                        If f.txtTmKIN.Text = "00:00" Or f.txtTmKOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                        f.txtTmKIN.EditValue = f.txtTmKIN.Text : f.txtTmKOUT.EditValue = f.txtTmKOUT.Text
+                        Hours = DateDiff(DateInterval.Hour, f.txtTmKIN.EditValue, f.txtTmKOUT.EditValue)
+                    End If
+                    If f.TabPane2.SelectedPageIndex = "1" Then
+                        If f.txtTmCIN.Text = "00:00" Or f.txtTmCOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                        f.txtTmCIN.EditValue = f.txtTmCIN.Text : f.txtTmCOUT.EditValue = f.txtTmCOUT.Text
+                        Hours = DateDiff(DateInterval.Hour, f.txtTmCIN.EditValue, f.txtTmCOUT.EditValue)
+                    End If
+                    If f.TabPane2.SelectedPageIndex = "2" Then
+                        If f.txtTmDIN.Text = "00:00" Or f.txtTmDOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                        f.txtTmDIN.EditValue = f.txtTmDIN.Text : f.txtTmDOUT.EditValue = f.txtTmDOUT.Text
+                        Hours = DateDiff(DateInterval.Hour, f.txtTmDIN.EditValue, f.txtTmDOUT.EditValue)
+                    End If
+                    If f.TabPane2.SelectedPageIndex = "3" Then
+                        If f.txtTmSCIN.Text = "00:00" Or f.txtTmSCOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                        f.txtTmSCIN.EditValue = f.txtTmCIN.Text : f.txtTmSCOUT.EditValue = f.txtTmSCOUT.Text
+                        Hours = DateDiff(DateInterval.Hour, f.txtTmSCIN.EditValue, f.txtTmSCOUT.EditValue)
+                    End If
+                    If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                    '----------------------------------------------------------------------------------------------------
+                    Dim sFilename As String = ""
+                    If f.chkCompleted.Checked = True Then
+                        sSQL = "SELECT fInstName  FROM INST WHERE transhID= " & toSQLValueS(sTrashID)
+                        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+                        sdr = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("fInstName")) = False Then sFilename = sdr.GetString(sdr.GetOrdinal("fInstName"))
+                            If sFilename = "" Then
+                                XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                sdr.Close()
+                                Return False
+                            Else
+                                sdr.Close()
+                            End If
+                        Else
+                            XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την Τοποθέτηση χωρίς να επισυνάψετε έντυπο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         End If
                     End If
+                    '------------------------------------------------------------------------------------------------------
+                    Dim ExistCost As Integer
+                    'ΚΟΥΖΙΝΑ
+                    If f.cboExtPartnerKitchen.EditValue IsNot Nothing Then
+                        If sFields("ExtPartnerKitchenID") <> f.cboExtPartnerKitchen.EditValue.ToString Then
+                            sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  kitchen = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
+                            Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
+                            If (sdr.Read() = True) Then
+                                If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
+                                If ExistCost = 1 Then
+                                    XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για την κουζίνα όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    sdr.Close()
+                                    Return False
+                                End If
+                            End If
+                        End If
+                    End If
+                    'ΝΤΟΥΛΑΠΑ
+                    If f.cboExtPartnerCloset.EditValue IsNot Nothing Then
+                        If sFields("ExtPartnerClosetID") <> toSQLValueS(f.cboExtPartnerCloset.EditValue.ToString) Then
+                            sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  closet = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
+                            Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
+                            If (sdr.Read() = True) Then
+                                If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
+                                If ExistCost = 1 Then
+                                    XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις ντουλάπες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    sdr.Close()
+                                    Return False
+                                End If
+                            End If
+                        End If
+                    End If
+                    'ΠΟΡΤΑ
+                    If f.cboExtPartnerDoors.EditValue IsNot Nothing Then
+                        If sFields("ExtPartnerDoorsID") <> toSQLValueS(f.cboExtPartnerDoors.EditValue.ToString) Then
+                            sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  doors = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
+                            Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
+                            If (sdr.Read() = True) Then
+                                If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
+                                If ExistCost = 1 Then
+                                    XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις πόρτες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    sdr.Close()
+                                    Return False
+                                End If
+                            End If
+                        End If
+                    End If
+                    'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+                    If f.cboExtPartnerSC.EditValue IsNot Nothing Then
+                        If sFields("ExtPartnerSCID") <> toSQLValueS(f.cboExtPartnerSC.EditValue.ToString) Then
+                            sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  doors = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
+                            Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
+                            If (sdr.Read() = True) Then
+                                If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
+                                If ExistCost = 1 Then
+                                    XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις Ειδ. Κατασκευές όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                    sdr.Close()
+                                    Return False
+                                End If
+                            End If
+                        End If
+                    End If
 
-                    Return True
 
             End Select
+            Return True
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False

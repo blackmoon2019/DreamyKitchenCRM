@@ -4,6 +4,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DreamyKitchenCRM.DM_TRANSTableAdapters
+Imports System.Data.SqlClient
 
 Public Class frmInstallations
     Private ScanFile As ScanToPDF
@@ -278,5 +279,21 @@ Public Class frmInstallations
 
     Private Sub cboExtPartnerSC_EditValueChanged(sender As Object, e As EventArgs) Handles cboExtPartnerSC.EditValueChanged
         Installations.SetCostButtonEnabled(3)
+    End Sub
+
+    Private Sub cmdDeleteInstCostK_Click(sender As Object, e As EventArgs) Handles cmdDeleteInstCostK.Click
+        Installations.DeleteInstCost(0)
+    End Sub
+
+    Private Sub cmdDeleteInstCostC_Click(sender As Object, e As EventArgs) Handles cmdDeleteInstCostC.Click
+        Installations.DeleteInstCost(1)
+    End Sub
+
+    Private Sub cmdDeleteInstCostD_Click(sender As Object, e As EventArgs) Handles cmdDeleteInstCostD.Click
+        Installations.DeleteInstCost(2)
+    End Sub
+
+    Private Sub cmdDeleteInstCostSC_Click(sender As Object, e As EventArgs) Handles cmdDeleteInstCostSC.Click
+        Installations.DeleteInstCost(3)
     End Sub
 End Class

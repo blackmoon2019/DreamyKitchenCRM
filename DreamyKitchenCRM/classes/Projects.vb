@@ -1,4 +1,5 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports DevExpress.PivotGrid.OLAP
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
@@ -275,6 +276,7 @@ Public Class Projects
         frmProjectCost.Show()
     End Sub
     Public Sub LoadInstallations()
+        If sInstID = "" Then XtraMessageBox.Show("Δεν υπάρχει ανοιγμένο Πρόγραμμα για το έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Dim frmInstallations As New frmInstallations
         frmInstallations.Text = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
         frmInstallations.MdiParent = frmMain
@@ -399,8 +401,6 @@ Public Class Projects
                         SaveEMP_T()
                         ' Ανάλυση έργου 
                         SaveProjectcost()
-                        ' Πρόγραμμα Τοποθετήσεων
-                        SaveINST()
                     End If
                 End If
 
@@ -433,10 +433,11 @@ Public Class Projects
                     If sResult = True Then
                         XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Frm.Vw_TRANSD_CreditTableAdapter.FillByCredit(Frm.DM_TRANS.vw_TRANSD_Credit, System.Guid.Parse(ID))
+                        ' Κλείσιμο
                         If Frm.cboPayType.EditValue.ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" Then
                             If UpdateProjectFields(Frm.dtPay.EditValue.ToString, "0") = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            'Τζίροι ποσοστά - Ανάλυση έργου 
-                            If sisCompany = False Then SaveEMP_T() : SaveProjectcost()
+                            'Τζίροι ποσοστά - Ανάλυση έργου - Πρόγραμμα Τοποθετήσεων
+                            If sisCompany = False Then SaveEMP_T() : SaveProjectcost() : SaveINST()
                             ' Αν η εγγραφή που περνάμε είναι κλείσιμο τότε κάνει και μετατροπή σε παραγγελία
                             'ConvertToOrder()
                         End If
@@ -681,7 +682,10 @@ Public Class Projects
             Using oCmd As New SqlCommand("usp_AddOrUpdateINST", CNDB)
                 oCmd.CommandType = CommandType.StoredProcedure
                 oCmd.Parameters.AddWithValue("@transhID", ID)
+                oCmd.Parameters.Add("@InstID", SqlDbType.UniqueIdentifier)
+                oCmd.Parameters("@InstID").Direction = ParameterDirection.Output
                 oCmd.ExecuteNonQuery()
+                sInstID = oCmd.Parameters("@InstID").Value.ToString
             End Using
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
@@ -922,10 +926,9 @@ Public Class Projects
                     End If
                     sdr.Close()
                 End If
-
             End If
 
-                Return True
+            Return True
 
 
         Catch ex As Exception
