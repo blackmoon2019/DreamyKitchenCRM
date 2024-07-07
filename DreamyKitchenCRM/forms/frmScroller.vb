@@ -250,7 +250,7 @@ Public Class frmScroller
                     Case "vw_VALUELIST" : sSQL = "DELETE FROM DOOR_CAT WHERE ID = " & sID
                     Case "vw_SER" : sSQL = "DELETE FROM SER WHERE ID = " & sID
                     Case "vw_INST" : sSQL = "DELETE FROM INST WHERE ID = " & sID
-                    Case "vw_INST_M" : sSQL = "DELETE FROM INST_M WHERE ID = " & sID
+                    Case "vw_INST_M" : DeleteSucceed = DeleteInstM()
                     Case "vw_BASE_CAT" : sSQL = "DELETE FROM BASE_CAT WHERE ID = " & sID
                     Case "vw_TRANSH_C" : sSQL = "DELETE FROM TRANSH_C WHERE ID = " & sID
                     Case "vw_TRANSH_SMALL" : sSQL = "DELETE FROM TRANSH WHERE ID = " & sID
@@ -400,6 +400,62 @@ Public Class frmScroller
             Return False
         End Try
     End Function
+    ' Διαγραφή Πληρωμής Μισθοδοσίας Τοποθέτη
+    Private Function DeleteInstM() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Try
+            Dim sSQL As String
+            Dim CountInst As Integer
+            sSQL = "SELECT count (id) as CountInst  FROM INST WHERE completed = 1 and ID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            sdr = Cmd.ExecuteReader()
+
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountInst")) = False Then CountInst = sdr.GetInt32(sdr.GetOrdinal("CountInst")) Else CountInst = 0
+                If CountInst > 0 Then
+                    XtraMessageBox.Show("Δεν μπορείτε να διαγράψετε πληρωμή σε Ολοκληρωμένη τοποθέτηση.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    sdr.Close()
+                    Return False
+                End If
+            Else
+                XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                sdr.Close()
+                Return False
+            End If
+            CountInst = 0
+            sSQL = "SELECT count (id) as CountInst  FROM INST_COST WHERE paid = 1 and instID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString)
+            Cmd = New SqlCommand(sSQL, CNDB)
+            sdr = Cmd.ExecuteReader()
+            If (sdr.Read() = True) Then
+                If sdr.IsDBNull(sdr.GetOrdinal("CountInst")) = False Then CountInst = sdr.GetInt32(sdr.GetOrdinal("CountInst")) Else CountInst = 0
+                sdr.Close()
+                If CountInst > 0 Then
+                    sSQL = "UPDATE  INST_COST SET PAID=0 , DTPAYOFF=NULL WHERE instID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString & "'"
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                End If
+            Else
+                XtraMessageBox.Show("Παρουσιάστηκε κάποιο πρόβλημα στην ανάγνωση εγγραφών.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                sdr.Close()
+                Return False
+            End If
+
+
+            sSQL = "DELETE FROM INST_M WHERE ID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
+            Using oCmd As New SqlCommand(sSQL, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+
+            Return True
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            sdr.Close()
+            Return False
+        End Try
+
+    End Function
+
     ' Διαγραφή έλλειψης
     Private Function DeleteInstEllipse() As Boolean
         Dim Cmd As SqlCommand, sdr As SqlDataReader

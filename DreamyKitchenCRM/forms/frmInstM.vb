@@ -71,10 +71,7 @@ Public Class frmInstM
     End Sub
 
     Private Sub frmInstM_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Dim sSQL As New System.Text.StringBuilder
-        'sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D') order by Fullname")
-        sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname")
-        FillCbo.SER(cboSER, sSQL)
+        FillCbo.EXTPARTNERS(cboSER)
 
 
         Select Case Mode
@@ -208,10 +205,16 @@ Public Class frmInstM
                 If sResult = True Then
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Αν υπάρχει στην μισθοδοσία τοποθετών εγγραφή στο ίδιο έργο και με ίδιο ποσό γίνεται εξοφλημενη
-                    sSQL = "Update INST Set paid=1 
-                             From INST I
-                              inner Join INST_M IM on I.ID=IM.instID 
-                              where I.id= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) & " And (I.cost + I.extraCost) = IM.amt and (I.cost + I.extraCost)<>0 and paid = 0"
+
+                    sSQL = "update INST_COST SET PAID=1,dtPayOFF= " & toSQLValueS(CDate(dtDeliverDate.Text.ToString).ToString("yyyyMMdd")) &
+                           "from INST_COST I 
+                            inner join(
+                            SELECT i.instID ,SUM(I.cost + I.extraCost) as InstCostAmt,(SELECT SUM(IM.amt) FROM INST_M im WHERE INSTID=I.INSTID ) as InstMAmt 
+                            From INST_COST I
+                            where I.instID= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) &
+                            "group by i.instID ) AS S on s.instID = i.instID and InstCostAmt = InstMAmt and InstCostAmt <>0 and paid= 0 "
+
+
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using

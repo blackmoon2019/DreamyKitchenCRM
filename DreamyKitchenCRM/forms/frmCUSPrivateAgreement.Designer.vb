@@ -114,8 +114,6 @@ Partial Class frmCUSPrivateAgreement
         Me.LPayInAdvance = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem38 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlGroup3 = New DevExpress.XtraLayout.LayoutControlGroup()
-        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
-        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem11 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem18 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem19 = New DevExpress.XtraLayout.LayoutControlItem()
@@ -126,6 +124,8 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem16 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem37 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem39 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem14 = New DevExpress.XtraLayout.LayoutControlItem()
+        Me.LayoutControlItem15 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem22 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LayoutControlItem27 = New DevExpress.XtraLayout.LayoutControlItem()
         Me.LMsg = New DevExpress.XtraLayout.LayoutControlItem()
@@ -219,8 +219,6 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LPayInAdvance, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -231,6 +229,8 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.LMsg, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -308,7 +308,6 @@ Partial Class frmCUSPrivateAgreement
         Me.LabelControl3.Location = New System.Drawing.Point(12, 446)
         Me.LabelControl3.Name = "LabelControl3"
         Me.LabelControl3.Size = New System.Drawing.Size(164, 19)
-        Me.LabelControl3.StyleController = Me.LayoutControl1
         Me.LabelControl3.TabIndex = 109
         Me.LabelControl3.Text = "Δελτία Παραγγελίας:"
         '
@@ -1549,30 +1548,6 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlGroup3.Size = New System.Drawing.Size(504, 296)
         Me.LayoutControlGroup3.Text = " Ανάλυση Εισπράξεων"
         '
-        'LayoutControlItem15
-        '
-        Me.LayoutControlItem15.Control = Me.txtPayinAdvanceCash
-        Me.LayoutControlItem15.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem15.CustomizationFormText = "Προκαταβολή Μετρητά"
-        Me.LayoutControlItem15.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 120)
-        Me.LayoutControlItem15.Name = "LayoutControlItem15"
-        Me.LayoutControlItem15.Size = New System.Drawing.Size(406, 30)
-        Me.LayoutControlItem15.Text = "Προκαταβολή Μετρητά"
-        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(246, 19)
-        '
-        'LayoutControlItem14
-        '
-        Me.LayoutControlItem14.Control = Me.txtPayinAdvanceBank
-        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
-        Me.LayoutControlItem14.CustomizationFormText = "Προκαταβολή Τράπεζα"
-        Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
-        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 90)
-        Me.LayoutControlItem14.Name = "LayoutControlItem14"
-        Me.LayoutControlItem14.Size = New System.Drawing.Size(409, 30)
-        Me.LayoutControlItem14.Text = "Προκαταβολή Τράπεζα"
-        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(246, 19)
-        '
         'LayoutControlItem11
         '
         Me.LayoutControlItem11.AppearanceItemCaption.Font = New System.Drawing.Font("Tahoma", 8.0!, System.Drawing.FontStyle.Bold)
@@ -1684,6 +1659,30 @@ Partial Class frmCUSPrivateAgreement
         Me.LayoutControlItem39.Size = New System.Drawing.Size(480, 30)
         Me.LayoutControlItem39.Text = "Προκαταβολή Πάγκου"
         Me.LayoutControlItem39.TextSize = New System.Drawing.Size(246, 19)
+        '
+        'LayoutControlItem14
+        '
+        Me.LayoutControlItem14.Control = Me.txtPayinAdvanceBank
+        Me.LayoutControlItem14.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem14.CustomizationFormText = "Προκαταβολή Τράπεζα"
+        Me.LayoutControlItem14.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem14.Location = New System.Drawing.Point(0, 90)
+        Me.LayoutControlItem14.Name = "LayoutControlItem14"
+        Me.LayoutControlItem14.Size = New System.Drawing.Size(409, 30)
+        Me.LayoutControlItem14.Text = "Προκαταβολή Τράπεζα"
+        Me.LayoutControlItem14.TextSize = New System.Drawing.Size(246, 19)
+        '
+        'LayoutControlItem15
+        '
+        Me.LayoutControlItem15.Control = Me.txtPayinAdvanceCash
+        Me.LayoutControlItem15.ControlAlignment = System.Drawing.ContentAlignment.TopLeft
+        Me.LayoutControlItem15.CustomizationFormText = "Προκαταβολή Μετρητά"
+        Me.LayoutControlItem15.HighlightFocusedItem = DevExpress.Utils.DefaultBoolean.[True]
+        Me.LayoutControlItem15.Location = New System.Drawing.Point(0, 120)
+        Me.LayoutControlItem15.Name = "LayoutControlItem15"
+        Me.LayoutControlItem15.Size = New System.Drawing.Size(406, 30)
+        Me.LayoutControlItem15.Text = "Προκαταβολή Μετρητά"
+        Me.LayoutControlItem15.TextSize = New System.Drawing.Size(246, 19)
         '
         'LayoutControlItem22
         '
@@ -1853,8 +1852,6 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LPayInAdvance, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem38, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlGroup3, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem11, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem18, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem19, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1865,6 +1862,8 @@ Partial Class frmCUSPrivateAgreement
         CType(Me.LayoutControlItem16, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem39, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem14, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.LayoutControlItem15, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem22, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LayoutControlItem27, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.LMsg, System.ComponentModel.ISupportInitialize).EndInit()

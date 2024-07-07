@@ -225,7 +225,6 @@ Partial Public Class RepCUSOfferKitchen3ndPage
         'XrTableCell19
         '
         Me.XrTableCell19.BackColor = System.Drawing.Color.FromArgb(CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer), CType(CType(242, Byte), Integer))
-        Me.XrTableCell19.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[PRM].[val]")})
         Me.XrTableCell19.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrTableCell19.ForeColor = System.Drawing.Color.Gray
         Me.XrTableCell19.Multiline = True
@@ -234,7 +233,7 @@ Partial Public Class RepCUSOfferKitchen3ndPage
         Me.XrTableCell19.StylePriority.UseFont = False
         Me.XrTableCell19.StylePriority.UseForeColor = False
         Me.XrTableCell19.StylePriority.UseTextAlignment = False
-        Me.XrTableCell19.Text = "Έκπτωση 30%"
+        Me.XrTableCell19.Text = "Έκπτωση"
         Me.XrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter
         Me.XrTableCell19.TextFormatString = "Έκπτωση {0}%"
         Me.XrTableCell19.Weight = 0.95157520868492274R

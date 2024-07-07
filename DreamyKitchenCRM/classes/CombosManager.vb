@@ -169,15 +169,16 @@ Public Class CombosManager
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
         Frm.Show()
     End Sub
-    Public Sub ManageEMP(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+    Public Sub ManageEMP(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal IsExternalPartner As Boolean = False)
         If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
             Dim Frm As frmEMP = New frmEMP()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
             Frm.Text = "Προσωπικό"
+            Frm.IsExternalPartner = IsExternalPartner
             Frm.CallerControl = CallerControl
             Frm.CalledFromControl = True
             Frm.MdiParent = frmMain
-            If CallerControl.EditValue isnot Nothing Then
+            If CallerControl.EditValue IsNot Nothing Then
                 Frm.ID = CallerControl.EditValue.ToString
                 Frm.Mode = FormMode.EditRecord
             Else
@@ -207,7 +208,7 @@ Public Class CombosManager
     Public Sub ManageINST(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         Dim Frm As frmInstallations = New frmInstallations()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-        Frm.Text = "Μισθοδοσία Τοποθετών"
+        Frm.Text = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain

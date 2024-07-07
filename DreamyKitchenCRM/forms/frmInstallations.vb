@@ -4,10 +4,13 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DreamyKitchenCRM.DM_TRANSTableAdapters
+Imports System.Data.SqlClient
+
 
 Public Class frmInstallations
     Private ScanFile As ScanToPDF
-    Private Installations As New Installations
+    Private UserPermissions As New CheckPermissions
+    Public Installations As New Installations
     Private LoadForms As New FormLoader
     Private ManageCbo As New CombosManager
     Private sID As String
@@ -19,6 +22,7 @@ Public Class frmInstallations
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
+
 
 
     Public WriteOnly Property ID As String
@@ -192,10 +196,107 @@ Public Class frmInstallations
             Case 2 : If cboTanshFCategory.EditValue IsNot Nothing Then ManageCbo.ManageFCategory(cboTanshFCategory, FormMode.EditRecord)
             Case 3 : cboTanshFCategory.EditValue = Nothing
         End Select
-
     End Sub
     Private Sub GridControl2_DoubleClick(sender As Object, e As EventArgs) Handles GridControl2.DoubleClick
         OpenFileFromGrid(GridView5, "TRANSH_F")
     End Sub
 
+    Private Sub TabPane2_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane2.SelectedPageChanged
+        'If Me.IsActive = False Then Exit Sub
+        'Select Case TabPane2.SelectedPageIndex
+        '    Case 0 : Installations.FillListSER(0)   'ΚΟΥΖΙΝΑ
+        '    Case 1 : Installations.FillListSER(1)   'ΝΤΟΥΛΑΠΑ
+        '    Case 2 : Installations.FillListSER(2)   'ΠΟΡΤΑ
+        '    Case 3 : Installations.FillListSER(3)   'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+        'End Select
+
+    End Sub
+    Private Sub cmdConstInstK_Click(sender As Object, e As EventArgs) Handles cmdConstInstK.Click
+        Installations.OpenCostForm(0, sID)
+    End Sub
+    Private Sub cmdConstInstC_Click(sender As Object, e As EventArgs) Handles cmdConstInstC.Click
+        Installations.OpenCostForm(1, sID)
+    End Sub
+    Private Sub cmdConstInstD_Click(sender As Object, e As EventArgs) Handles cmdConstInstD.Click
+        Installations.OpenCostForm(2, sID)
+    End Sub
+    Private Sub cmdConstInstSC_Click(sender As Object, e As EventArgs) Handles cmdConstInstSC.Click
+        Installations.OpenCostForm(3, sID)
+    End Sub
+
+    Private Sub cboTRANSH_EditValueChanged(sender As Object, e As EventArgs) Handles cboTRANSH.EditValueChanged
+        TabNavKitchen.Enabled = cboTRANSH.GetColumnValue("Iskitchen") : TabPane2.SelectedPage = TabNavKitchen
+        TabNavCloset.Enabled = cboTRANSH.GetColumnValue("Iscloset") : TabPane2.SelectedPage = TabNavCloset
+        TabNavDoor.Enabled = cboTRANSH.GetColumnValue("Isdoor") : TabPane2.SelectedPage = TabNavDoor
+        TabNavSC.Enabled = cboTRANSH.GetColumnValue("Issc") : TabPane2.SelectedPage = TabNavSC
+        'ΚΟΥΖΙΝΑ
+        If cboTRANSH.GetColumnValue("Iskitchen") = "True" Then Installations.FillListSER(0)
+        'ΝΤΟΥΛΑΠΑ
+        If cboTRANSH.GetColumnValue("Iscloset") = "True" Then Installations.FillListSER(1)
+        'ΠΟΡΤΑ
+        If cboTRANSH.GetColumnValue("Isdoor") = "True" Then Installations.FillListSER(2)
+        'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+        If cboTRANSH.GetColumnValue("Issc") = "True" Then Installations.FillListSER(3)
+    End Sub
+
+    Private Sub cboExtPartnerKitchen_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboExtPartnerKitchen.ButtonPressed
+        Select Case e.Button.Index
+            Case 1 : cboExtPartnerKitchen.EditValue = Nothing : ManageCbo.ManageEMP(cboExtPartnerKitchen, FormMode.NewRecord, True)
+            Case 2 : If cboExtPartnerKitchen.EditValue IsNot Nothing Then ManageCbo.ManageEMP(cboExtPartnerKitchen, FormMode.EditRecord, True)
+            Case 3 : cboExtPartnerKitchen.EditValue = Nothing : cmdConstInstK.Enabled = False
+        End Select
+    End Sub
+    Private Sub cboExtPartnerCloset_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboExtPartnerCloset.ButtonPressed
+        Select Case e.Button.Index
+            Case 1 : cboExtPartnerCloset.EditValue = Nothing : ManageCbo.ManageEMP(cboExtPartnerCloset, FormMode.NewRecord, True)
+            Case 2 : If cboExtPartnerCloset.EditValue IsNot Nothing Then ManageCbo.ManageEMP(cboExtPartnerCloset, FormMode.EditRecord, True)
+            Case 3 : cboExtPartnerCloset.EditValue = Nothing : cmdConstInstC.Enabled = False
+        End Select
+    End Sub
+    Private Sub cboExtPartnerDoors_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboExtPartnerDoors.ButtonPressed
+        Select Case e.Button.Index
+            Case 1 : cboExtPartnerDoors.EditValue = Nothing : ManageCbo.ManageEMP(cboExtPartnerDoors, FormMode.NewRecord, True)
+            Case 2 : If cboExtPartnerDoors.EditValue IsNot Nothing Then ManageCbo.ManageEMP(cboExtPartnerDoors, FormMode.EditRecord, True)
+            Case 3 : cboExtPartnerDoors.EditValue = Nothing : cmdConstInstD.Enabled = False
+        End Select
+    End Sub
+    Private Sub cboExtPartnerSC_ButtonPressed(sender As Object, e As ButtonPressedEventArgs) Handles cboExtPartnerSC.ButtonPressed
+        Select Case e.Button.Index
+            Case 1 : cboExtPartnerSC.EditValue = Nothing : ManageCbo.ManageEMP(cboExtPartnerSC, FormMode.NewRecord, True)
+            Case 2 : If cboExtPartnerSC.EditValue IsNot Nothing Then ManageCbo.ManageEMP(cboExtPartnerSC, FormMode.EditRecord, True)
+            Case 3 : cboExtPartnerSC.EditValue = Nothing : cmdConstInstSC.Enabled = False
+        End Select
+    End Sub
+
+    Private Sub cboExtPartnerKitchen_EditValueChanged(sender As Object, e As EventArgs) Handles cboExtPartnerKitchen.EditValueChanged
+        Installations.SetCostButtonEnabled(0)
+    End Sub
+
+    Private Sub cboExtPartnerCloset_EditValueChanged(sender As Object, e As EventArgs) Handles cboExtPartnerCloset.EditValueChanged
+        Installations.SetCostButtonEnabled(1)
+    End Sub
+
+    Private Sub cboExtPartnerDoors_EditValueChanged(sender As Object, e As EventArgs) Handles cboExtPartnerDoors.EditValueChanged
+        Installations.SetCostButtonEnabled(2)
+    End Sub
+
+    Private Sub cboExtPartnerSC_EditValueChanged(sender As Object, e As EventArgs) Handles cboExtPartnerSC.EditValueChanged
+        Installations.SetCostButtonEnabled(3)
+    End Sub
+
+    Private Sub cmdDeleteInstCostK_Click(sender As Object, e As EventArgs) Handles cmdDeleteInstCostK.Click
+        Installations.DeleteInstCost(0)
+    End Sub
+
+    Private Sub cmdDeleteInstCostC_Click(sender As Object, e As EventArgs) Handles cmdDeleteInstCostC.Click
+        Installations.DeleteInstCost(1)
+    End Sub
+
+    Private Sub cmdDeleteInstCostD_Click(sender As Object, e As EventArgs) Handles cmdDeleteInstCostD.Click
+        Installations.DeleteInstCost(2)
+    End Sub
+
+    Private Sub cmdDeleteInstCostSC_Click(sender As Object, e As EventArgs) Handles cmdDeleteInstCostSC.Click
+        Installations.DeleteInstCost(3)
+    End Sub
 End Class

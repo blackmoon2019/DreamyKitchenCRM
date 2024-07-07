@@ -569,20 +569,30 @@ Public Class FillCombos
         End Try
 
     End Sub
-    Public Sub FillCheckedListSER(CtrlList As DevExpress.XtraEditors.CheckedListBoxControl, ByVal mode As Byte, Optional ByVal sID As String = "")
+    Public Sub FillCheckedListSER(CtrlList As DevExpress.XtraEditors.CheckedListBoxControl, ByVal mode As Byte, Optional ByVal sID As String = "", Optional ByVal sCategory As Int16 = 0)
         Try
             Dim sSQL As String
             If mode = FormMode.NewRecord Then
-                sSQL = "Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
+                sSQL = "Select id,Fullname,salary,tmIN,tmOUT,isnull(externalPartner,0) as externalPartner from vw_EMP where active=1 and isnull(externalPartner,0) = 0 
+                        and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
             Else
-                sSQL = "Select id,Fullname ,
+                Dim category As String
+                Select Case sCategory
+                    Case 0 : category = " and kitchen = 1"
+                    Case 1 : category = " and closet = 1"
+                    Case 2 : category = " and doors = 1"
+                    Case 3 : category = " and sc = 1"
+                End Select
+
+                sSQL = "Select id,Fullname ,isnull(externalPartner,0) as externalPartner,
                        isnull((select case when INST_SER.id is not null then 1 else 0 end as checked
-		               from INST_SER where instID = '" & sID & "' and INST_SER.empID = M.ID),0) as checked
-                       from vw_EMP M where active=1 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
+		               from INST_SER where instID = '" & sID & "' and INST_SER.empID = M.ID " & category & " ),0) as checked
+                       from vw_EMP M where active=1  and isnull(externalPartner,0) = 0 and jobID IN('A7C491B1-965B-4E86-95CF-C7881935C77D','F1A60661-D448-41B7-8CF0-CE6B9FF6E518') order by Fullname"
             End If
             Dim cmd As SqlCommand = New SqlCommand(sSQL, CNDB)
             Dim sdr As SqlDataReader = cmd.ExecuteReader()
             'chkLstUsers.DataSource = sdr
+            CtrlList.MultiColumn = True
             CtrlList.Items.Clear()
             CtrlList.DisplayMember = "Fullname"
             CtrlList.ValueMember = "id"
@@ -689,7 +699,36 @@ Public Class FillCombos
         End Try
 
     End Sub
+    Public Sub EXTPARTNERS(CtrlCombo As DevExpress.XtraEditors.LookUpEdit, Optional ByVal sSQL As System.Text.StringBuilder = Nothing)
+        Try
+            If sSQL Is Nothing Then
+                sSQL = New System.Text.StringBuilder
+                sSQL.AppendLine("Select id,Fullname,salary,tmIN,tmOUT from vw_EMP where externalPartner=1 order by Fullname")
+            End If
 
+            Dim cmd As SqlCommand = New SqlCommand(sSQL.ToString, CNDB)
+            Dim sdr As SqlDataReader = cmd.ExecuteReader()
+
+            CtrlCombo.Properties.DataSource = sdr
+            CtrlCombo.Properties.DisplayMember = "Fullname"
+            CtrlCombo.Properties.ValueMember = "id"
+            CtrlCombo.Properties.Columns.Clear()
+            CtrlCombo.Properties.ForceInitialize()
+            CtrlCombo.Properties.PopulateColumns()
+            CtrlCombo.Properties.Columns(0).Visible = False
+            CtrlCombo.Properties.Columns(1).Caption = "Συνεργεία"
+            CtrlCombo.Properties.Columns(2).Caption = "Μισθός"
+            CtrlCombo.Properties.Columns(2).Visible = False
+            CtrlCombo.Properties.Columns(3).Caption = "Ώρα Εισόδου"
+            CtrlCombo.Properties.Columns(3).Visible = False
+            CtrlCombo.Properties.Columns(4).Caption = "Ώρα Εξόδου"
+            CtrlCombo.Properties.Columns(4).Visible = False
+            sdr.Close()
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
+    End Sub
 
     Public Sub NOTES_L(CtrlCombo As DevExpress.XtraEditors.LookUpEdit)
         Try
@@ -727,8 +766,10 @@ Public Class FillCombos
             CtrlCombo.Properties.PopulateColumns()
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Προσωπικό"
-            CtrlCombo.Properties.Columns(2).Caption = "Μισθός"
-            CtrlCombo.Properties.Columns(2).Visible = False
+            If sdr.FieldCount > 2 Then
+                CtrlCombo.Properties.Columns(2).Caption = "Μισθός"
+                CtrlCombo.Properties.Columns(2).Visible = False
+            End If
             sdr.Close()
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -1,7 +1,9 @@
-﻿Imports DevExpress.XtraEditors
+﻿Imports DevExpress.PivotGrid.OLAP
+Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraLayout
 Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraRichEdit.Import.Html
 Imports System.Data.SqlClient
 Imports System.Xaml
 
@@ -25,6 +27,7 @@ Public Class Projects
     Private TranshFieldAndValues As Dictionary(Of String, String)
     Private sEMP_T_ID As String = ""
     Private sProjectCostID As String
+    Private sInstID As String
     Public WriteOnly Property isCompany As Boolean
         Set(value As Boolean)
             sisCompany = value
@@ -120,6 +123,7 @@ Public Class Projects
                 Frm.HasAgreement = TranshFieldAndValues.Item("HasAgreement")
                 sEMP_T_ID = TranshFieldAndValues.Item("EmpTID").ToString
                 sProjectCostID = TranshFieldAndValues.Item("ProjectCostID").ToString
+                sInstID = TranshFieldAndValues.Item("InstID").ToString()
                 Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(ID))
                 Frm.Vw_TRANSD_CreditTableAdapter.FillByCredit(Frm.DM_TRANS.vw_TRANSD_Credit, System.Guid.Parse(ID))
                 sisCompany = TranshFieldAndValues.Item("compProject")
@@ -271,20 +275,14 @@ Public Class Projects
         frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(frmProjectCost), New Point(CInt(frmProjectCost.Parent.ClientRectangle.Width / 2 - frmProjectCost.Width / 2), CInt(frmProjectCost.Parent.ClientRectangle.Height / 2 - frmProjectCost.Height / 2)))
         frmProjectCost.Show()
     End Sub
-    Public Sub LoadInstallations(Optional ByVal Ask As Boolean = False)
-        If Ask Then
-            If sEMP_T_ID = "" Then
-                If XtraMessageBox.Show("Θέλετε να περάσετε εγγραφή στην Μισθοδοσία Τοποθετών?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbNo Then Exit Sub
-            Else
-                Exit Sub
-            End If
-        End If
+    Public Sub LoadInstallations()
+        If sInstID = "" Then XtraMessageBox.Show("Δεν υπάρχει ανοιγμένο Πρόγραμμα για το έργο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         Dim frmInstallations As New frmInstallations
-        frmInstallations.Text = "Μισθοδοσία Τοποθετών"
+        frmInstallations.Text = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
         frmInstallations.MdiParent = frmMain
-        frmInstallations.Mode = FormMode.NewRecord
-        frmInstallations.Scroller = Frm.GridView1
+        frmInstallations.Mode = FormMode.EditRecord
         frmInstallations.FormScroller = Frm
+        frmInstallations.ID = sInstID
         frmInstallations.TRANSH_ID = ID
         frmInstallations.EMP_T_ID = sEMP_T_ID
         frmInstallations.CalledFromControl = False
@@ -435,10 +433,11 @@ Public Class Projects
                     If sResult = True Then
                         XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                         Frm.Vw_TRANSD_CreditTableAdapter.FillByCredit(Frm.DM_TRANS.vw_TRANSD_Credit, System.Guid.Parse(ID))
+                        ' Κλείσιμο
                         If Frm.cboPayType.EditValue.ToString.ToUpper = "90A295A1-D2A0-40B7-B260-A532B2C322AC" Then
                             If UpdateProjectFields(Frm.dtPay.EditValue.ToString, "0") = False Then XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα ενημέρωσης της Ημερομηνίας Συμφωνίας του έργου", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            'Τζίροι ποσοστά - Ανάλυση έργου 
-                            If sisCompany = False Then SaveEMP_T() : SaveProjectcost()
+                            'Τζίροι ποσοστά - Ανάλυση έργου - Πρόγραμμα Τοποθετήσεων
+                            If sisCompany = False Then SaveEMP_T() : SaveProjectcost() : SaveINST()
                             ' Αν η εγγραφή που περνάμε είναι κλείσιμο τότε κάνει και μετατροπή σε παραγγελία
                             'ConvertToOrder()
                         End If
@@ -677,6 +676,21 @@ Public Class Projects
             Return False
         End Try
     End Function
+    'Καταχώρηση Εγγραφής στο Πρόγραμμα Τοποθετήσεων
+    Public Sub SaveINST()
+        Try
+            Using oCmd As New SqlCommand("usp_AddOrUpdateINST", CNDB)
+                oCmd.CommandType = CommandType.StoredProcedure
+                oCmd.Parameters.AddWithValue("@transhID", ID)
+                oCmd.Parameters.Add("@InstID", SqlDbType.UniqueIdentifier)
+                oCmd.Parameters("@InstID").Direction = ParameterDirection.Output
+                oCmd.ExecuteNonQuery()
+                sInstID = oCmd.Parameters("@InstID").Value.ToString
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
     'Καταχώρηση Εγγραφής στους Τζίρους ποσοστά
     Public Sub SaveEMP_T()
         Try
@@ -884,7 +898,7 @@ Public Class Projects
                         AmtBank = DbnullToZero(Frm.txtamtD)
                     End If
                 End If
-                    sSQL = "  select   PosoParastatikou as Trapezika,GENTOT - PosoParastatikou as Metrhta,
+                sSQL = "  select   PosoParastatikou as Trapezika,GENTOT - PosoParastatikou as Metrhta,
                          (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =1 and transhID=" & toSQLValueS(ID) & ") as CreditCash,
                          (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =0 and transhID=" & toSQLValueS(ID) & ") as CreditBank
                         FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(ID)
@@ -912,10 +926,9 @@ Public Class Projects
                     End If
                     sdr.Close()
                 End If
-
             End If
 
-                Return True
+            Return True
 
 
         Catch ex As Exception

@@ -228,11 +228,6 @@ Public Class frmTransactions
 
     End Sub
 
-    Private Sub frmTransactions_Closing(sender As Object, e As CancelEventArgs) Handles Me.Closing
-        If ShowCreditOnly = False Then Projects.LoadInstallations(True)
-    End Sub
-
-
     Private Sub GridView2_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView2.PopupMenuShowing
         If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView2, "vw_TRANSH_F_def.xml", "vw_TRANSH_F")
     End Sub
@@ -256,7 +251,7 @@ Public Class frmTransactions
         Projects.LoadProjectCost()
     End Sub
 
-    Private Sub BBInstallations_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBInstallations.ItemClick
+    Private Sub BBInstallation_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles BBInstallation.ItemClick
         Projects.LoadInstallations()
     End Sub
 

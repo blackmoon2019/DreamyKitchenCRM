@@ -236,6 +236,7 @@
     <Compile Include="classes\FormLoader.vb" />
     <Compile Include="classes\InitializeCalendar.vb" />
     <Compile Include="classes\Installations.vb" />
+    <Compile Include="classes\InstallationsCost.vb" />
     <Compile Include="classes\Localization.vb" />
     <Compile Include="classes\Parameters.vb" />
     <Compile Include="classes\ProgProp.vb" />
@@ -446,6 +447,12 @@
       <DependentUpon>frmInstallations.vb</DependentUpon>
     </Compile>
     <Compile Include="forms\frmInstallations.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="forms\frmInstallationsCost.Designer.vb">
+      <DependentUpon>frmInstallationsCost.vb</DependentUpon>
+    </Compile>
+    <Compile Include="forms\frmInstallationsCost.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="forms\frmInstEllipse.Designer.vb">
@@ -930,6 +937,9 @@
     <EmbeddedResource Include="forms\frmInstallations.resx">
       <DependentUpon>frmInstallations.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="forms\frmInstallationsCost.resx">
+      <DependentUpon>frmInstallationsCost.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="forms\frmInstEllipse.resx">
       <DependentUpon>frmInstEllipse.vb</DependentUpon>
     </EmbeddedResource>
@@ -1159,6 +1169,7 @@
     <None Include="DreamyKitchenDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <SubType>Designer</SubType>
+      <LastGenOutput>DreamyKitchenDataSet2.Designer.vb</LastGenOutput>
     </None>
     <None Include="DreamyKitchenDataSet.xss">
       <DependentUpon>DreamyKitchenDataSet.xsd</DependentUpon>
@@ -1421,6 +1432,8 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-installation-24.png" />
+    <None Include="Resources\icons8-bank-euro-24.png" />
     <None Include="Resources\icons8-partner-40.png" />
     <None Include="Resources\icons8-order-24.png" />
     <None Include="Resources\icons8-purchase-order-24.png" />
