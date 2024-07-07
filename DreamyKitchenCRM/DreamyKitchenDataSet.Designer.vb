@@ -8892,15 +8892,9 @@ Partial Public Class DreamyKitchenDataSet
 
         Private columncompleted As Global.System.Data.DataColumn
 
-        Private columncost As Global.System.Data.DataColumn
-
-        Private columnextraCost As Global.System.Data.DataColumn
-
         Private columnSerCode As Global.System.Data.DataColumn
 
         Private columnColor As Global.System.Data.DataColumn
-
-        Private columnSerCode1 As Global.System.Data.DataColumn
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
@@ -9059,22 +9053,6 @@ Partial Public Class DreamyKitchenDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public ReadOnly Property costColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columncost
-            End Get
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public ReadOnly Property extraCostColumn() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnextraCost
-            End Get
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public ReadOnly Property SerCodeColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnSerCode
@@ -9086,14 +9064,6 @@ Partial Public Class DreamyKitchenDataSet
         Public ReadOnly Property ColorColumn() As Global.System.Data.DataColumn
             Get
                 Return Me.columnColor
-            End Get
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public ReadOnly Property SerCode1Column() As Global.System.Data.DataColumn
-            Get
-                Return Me.columnSerCode1
             End Get
         End Property
 
@@ -9150,13 +9120,10 @@ Partial Public Class DreamyKitchenDataSet
                     ByVal RealName As String,
                     ByVal SerName As String,
                     ByVal completed As Boolean,
-                    ByVal cost As Decimal,
-                    ByVal extraCost As Decimal,
                     ByVal SerCode As String,
-                    ByVal Color As Integer,
-                    ByVal SerCode1 As Integer) As vw_INSTRow
+                    ByVal Color As Integer) As vw_INSTRow
             Dim rowvw_INSTRow As vw_INSTRow = CType(Me.NewRow, vw_INSTRow)
-            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtDeliverDate, GRMONTH, cmt, modifiedBy, modifiedOn, createdOn, createdBy, cctName, SalerName, RealName, SerName, completed, cost, extraCost, SerCode, Color, SerCode1}
+            Dim columnValuesArray() As Object = New Object() {ID, code, cusID, dtDeliverDate, GRMONTH, cmt, modifiedBy, modifiedOn, createdOn, createdBy, cctName, SalerName, RealName, SerName, completed, SerCode, Color}
             rowvw_INSTRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_INSTRow)
             Return rowvw_INSTRow
@@ -9200,11 +9167,8 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnRealName = MyBase.Columns("RealName")
             Me.columnSerName = MyBase.Columns("SerName")
             Me.columncompleted = MyBase.Columns("completed")
-            Me.columncost = MyBase.Columns("cost")
-            Me.columnextraCost = MyBase.Columns("extraCost")
             Me.columnSerCode = MyBase.Columns("SerCode")
             Me.columnColor = MyBase.Columns("Color")
-            Me.columnSerCode1 = MyBase.Columns("SerCode1")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -9240,16 +9204,10 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columnSerName)
             Me.columncompleted = New Global.System.Data.DataColumn("completed", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columncompleted)
-            Me.columncost = New Global.System.Data.DataColumn("cost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columncost)
-            Me.columnextraCost = New Global.System.Data.DataColumn("extraCost", GetType(Decimal), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnextraCost)
             Me.columnSerCode = New Global.System.Data.DataColumn("SerCode", GetType(String), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnSerCode)
             Me.columnColor = New Global.System.Data.DataColumn("Color", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnColor)
-            Me.columnSerCode1 = New Global.System.Data.DataColumn("SerCode1", GetType(Integer), Nothing, Global.System.Data.MappingType.Element)
-            MyBase.Columns.Add(Me.columnSerCode1)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, True))
             Me.columnID.AllowDBNull = False
             Me.columnID.Unique = True
@@ -9266,8 +9224,6 @@ Partial Public Class DreamyKitchenDataSet
             Me.columnSerCode.ReadOnly = True
             Me.columnSerCode.MaxLength = 2147483647
             Me.columnColor.ReadOnly = True
-            Me.columnSerCode1.ReadOnly = True
-            Me.columnSerCode1.Caption = "SerCode"
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -25060,36 +25016,6 @@ Partial Public Class DreamyKitchenDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Property cost() As Decimal
-            Get
-                Try
-                    Return CType(Me(Me.tablevw_INST.costColumn), Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'cost' in table 'vw_INST' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablevw_INST.costColumn) = value
-            End Set
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Property extraCost() As Decimal
-            Get
-                Try
-                    Return CType(Me(Me.tablevw_INST.extraCostColumn), Decimal)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'extraCost' in table 'vw_INST' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablevw_INST.extraCostColumn) = value
-            End Set
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Property SerCode() As String
             Get
                 Try
@@ -25115,21 +25041,6 @@ Partial Public Class DreamyKitchenDataSet
             End Get
             Set
                 Me(Me.tablevw_INST.ColorColumn) = value
-            End Set
-        End Property
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Property SerCode1() As Integer
-            Get
-                Try
-                    Return CType(Me(Me.tablevw_INST.SerCode1Column), Integer)
-                Catch e As Global.System.InvalidCastException
-                    Throw New Global.System.Data.StrongTypingException("The value for column 'SerCode1' in table 'vw_INST' is DBNull.", e)
-                End Try
-            End Get
-            Set
-                Me(Me.tablevw_INST.SerCode1Column) = value
             End Set
         End Property
 
@@ -25267,30 +25178,6 @@ Partial Public Class DreamyKitchenDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Function IscostNull() As Boolean
-            Return Me.IsNull(Me.tablevw_INST.costColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Sub SetcostNull()
-            Me(Me.tablevw_INST.costColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Function IsextraCostNull() As Boolean
-            Return Me.IsNull(Me.tablevw_INST.extraCostColumn)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Sub SetextraCostNull()
-            Me(Me.tablevw_INST.extraCostColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Function IsSerCodeNull() As Boolean
             Return Me.IsNull(Me.tablevw_INST.SerCodeColumn)
         End Function
@@ -25311,18 +25198,6 @@ Partial Public Class DreamyKitchenDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub SetColorNull()
             Me(Me.tablevw_INST.ColorColumn) = Global.System.Convert.DBNull
-        End Sub
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Function IsSerCode1Null() As Boolean
-            Return Me.IsNull(Me.tablevw_INST.SerCode1Column)
-        End Function
-
-        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
-         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Sub SetSerCode1Null()
-            Me(Me.tablevw_INST.SerCode1Column) = Global.System.Convert.DBNull
         End Sub
     End Class
 
@@ -38273,10 +38148,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("RealName", "RealName")
             tableMapping.ColumnMappings.Add("SerName", "SerName")
             tableMapping.ColumnMappings.Add("completed", "completed")
-            tableMapping.ColumnMappings.Add("cost", "cost")
-            tableMapping.ColumnMappings.Add("extraCost", "extraCost")
             tableMapping.ColumnMappings.Add("Color", "Color")
-            tableMapping.ColumnMappings.Add("SerCode", "SerCode1")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
 
@@ -38294,8 +38166,8 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, code, cusID, dtDeliverDate, GRMONTH, cmt, modifiedBy, modifiedOn, crea" &
-                "tedOn, createdBy, cctName, SalerName, RealName, SerName, Color, completed, cost," &
-                " extraCost, SerCode" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_INST" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (cctName LIKE '%' + @cctName + '%')"
+                "tedOn, createdBy, cctName, SalerName, RealName, SerName, Color, completed, SerCo" &
+                "de" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_INST" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (cctName LIKE '%' + @cctName + '%')"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@cctName", Global.System.Data.SqlDbType.NVarChar, 200, Global.System.Data.ParameterDirection.Input, 0, 0, "cctName", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub

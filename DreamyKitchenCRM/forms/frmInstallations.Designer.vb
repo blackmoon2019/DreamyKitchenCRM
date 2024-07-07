@@ -2747,7 +2747,7 @@ Partial Class frmInstallations
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmInstallations"
-        Me.Text = "Προγραμματισμός Παραδόσεων - Τοποθετήσεων"
+        Me.Text = "Πρόγραμμα Τοποθετήσεων-Παραδόσεων"
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView1, System.ComponentModel.ISupportInitialize).EndInit()

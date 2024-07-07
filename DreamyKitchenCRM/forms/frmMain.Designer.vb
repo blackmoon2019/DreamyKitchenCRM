@@ -1561,7 +1561,7 @@ Partial Class frmMain
         '
         'BarButtonItem3
         '
-        Me.BarButtonItem3.Caption = "Πρόγραμμα Τοποθετήσεων"
+        Me.BarButtonItem3.Caption = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
         Me.BarButtonItem3.Id = 55
         Me.BarButtonItem3.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_calendar_40
         Me.BarButtonItem3.Name = "BarButtonItem3"

@@ -406,7 +406,7 @@ Public Class frmScroller
         Try
             Dim sSQL As String
             Dim CountInst As Integer
-            sSQL = "SELECT count (id) as CountInst  FROM INST WHERE completed = 0 and ID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString)
+            sSQL = "SELECT count (id) as CountInst  FROM INST WHERE completed = 1 and ID= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString)
             Cmd = New SqlCommand(sSQL, CNDB)
             sdr = Cmd.ExecuteReader()
 

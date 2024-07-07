@@ -6,9 +6,11 @@ Imports DevExpress.XtraGrid.Views.Grid
 Imports DreamyKitchenCRM.DM_TRANSTableAdapters
 Imports System.Data.SqlClient
 
+
 Public Class frmInstallations
     Private ScanFile As ScanToPDF
-    Private Installations As New Installations
+    Private UserPermissions As New CheckPermissions
+    Public Installations As New Installations
     Private LoadForms As New FormLoader
     Private ManageCbo As New CombosManager
     Private sID As String
@@ -20,6 +22,7 @@ Public Class frmInstallations
     Private CtrlCombo As DevExpress.XtraEditors.LookUpEdit
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
+
 
 
     Public WriteOnly Property ID As String

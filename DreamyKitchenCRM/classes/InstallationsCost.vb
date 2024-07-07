@@ -60,6 +60,7 @@ Public Class InstallationsCost
         Frm.cboCUS.EditValue = frmInstallations.cboCUS.EditValue
         Frm.cboTRANSH.EditValue = frmInstallations.cboTRANSH.EditValue
         Frm.cboExternalPartners.EditValue = System.Guid.Parse(Frm.ExtPartner)
+        UserPermissions.GetUserPermissions("Κοστολόγηση Τοποθετήσεων")
     End Sub
     Public Sub LoadForm()
         Select Case Mode
@@ -75,6 +76,7 @@ Public Class InstallationsCost
         End Select
         UserPermissions.GetUserPermissions(Frm.Text)
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
+        If Frm.chkPaid.CheckState = CheckState.Checked Then Frm.cmdSave.Enabled = False
 
 
     End Sub
@@ -101,9 +103,14 @@ Public Class InstallationsCost
                         oCmd.Parameters.AddWithValue("@transhID", Frm.cboTRANSH.EditValue.ToString)
                         oCmd.ExecuteNonQuery()
                     End Using
+                    If IsKitchen = True Then frmInstallations.cmdDeleteInstCostK.Enabled = True : frmInstallations.Installations.bHasInstCostKitchen = True
+                    If IsCloset = True Then frmInstallations.cmdDeleteInstCostC.Enabled = True : frmInstallations.Installations.bHasInstCostCloset = True
+                    If IsDoors = True Then frmInstallations.cmdDeleteInstCostD.Enabled = True : frmInstallations.Installations.bHasInstCostDoors = True
+                    If IsSC = True Then frmInstallations.cmdDeleteInstCostSC.Enabled = True : frmInstallations.Installations.bHasInstCostSC = True
+                    Frm.Mode = FormMode.EditRecord
                 End If
                 XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
-                End If
+            End If
         Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try

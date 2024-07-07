@@ -609,8 +609,8 @@ SELECT NEWID() AS Expr1, 9999 AS Expr2, - 7108269 AS Expr3, NULL AS Expr4</Comma
             <MainSource>
               <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenDEV.dbo.vw_INST" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Fill" GenerateShortCommands="false" GeneratorSourceName="Fill" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
-                  <DbCommand CommandType="Text" ModifiedByUser="true">
-                    <CommandText>SELECT ID, code, cusID, dtDeliverDate, GRMONTH, cmt, modifiedBy, modifiedOn, createdOn, createdBy, cctName, SalerName, RealName, SerName, Color, completed, cost, extraCost, SerCode
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT ID, code, cusID, dtDeliverDate, GRMONTH, cmt, modifiedBy, modifiedOn, createdOn, createdBy, cctName, SalerName, RealName, SerName, Color, completed, SerCode
 FROM   vw_INST
 WHERE (cctName LIKE '%' + @cctName + '%')</CommandText>
                     <Parameters>
@@ -636,10 +636,7 @@ WHERE (cctName LIKE '%' + @cctName + '%')</CommandText>
               <Mapping SourceColumn="RealName" DataSetColumn="RealName" />
               <Mapping SourceColumn="SerName" DataSetColumn="SerName" />
               <Mapping SourceColumn="completed" DataSetColumn="completed" />
-              <Mapping SourceColumn="cost" DataSetColumn="cost" />
-              <Mapping SourceColumn="extraCost" DataSetColumn="extraCost" />
               <Mapping SourceColumn="Color" DataSetColumn="Color" />
-              <Mapping SourceColumn="SerCode" DataSetColumn="SerCode1" />
             </Mappings>
             <Sources />
           </TableAdapter>
@@ -2290,8 +2287,6 @@ FROM   vw_COLORS_CAT</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="completed" msprop:Generator_ColumnPropNameInTable="completedColumn" msprop:Generator_ColumnPropNameInRow="completed" msprop:Generator_UserColumnName="completed" msprop:Generator_ColumnVarNameInTable="columncompleted" type="xs:boolean" />
-              <xs:element name="cost" msprop:Generator_ColumnPropNameInTable="costColumn" msprop:Generator_ColumnPropNameInRow="cost" msprop:Generator_UserColumnName="cost" msprop:Generator_ColumnVarNameInTable="columncost" type="xs:decimal" minOccurs="0" />
-              <xs:element name="extraCost" msprop:Generator_ColumnPropNameInTable="extraCostColumn" msprop:Generator_ColumnPropNameInRow="extraCost" msprop:Generator_UserColumnName="extraCost" msprop:Generator_ColumnVarNameInTable="columnextraCost" type="xs:decimal" minOccurs="0" />
               <xs:element name="SerCode" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="SerCodeColumn" msprop:Generator_ColumnPropNameInRow="SerCode" msprop:Generator_UserColumnName="SerCode" msprop:Generator_ColumnVarNameInTable="columnSerCode" minOccurs="0">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
@@ -2300,7 +2295,6 @@ FROM   vw_COLORS_CAT</CommandText>
                 </xs:simpleType>
               </xs:element>
               <xs:element name="Color" msdata:ReadOnly="true" msprop:Generator_ColumnPropNameInTable="ColorColumn" msprop:Generator_ColumnPropNameInRow="Color" msprop:Generator_UserColumnName="Color" msprop:Generator_ColumnVarNameInTable="columnColor" type="xs:int" minOccurs="0" />
-              <xs:element name="SerCode1" msdata:ReadOnly="true" msdata:Caption="SerCode" msprop:Generator_ColumnPropNameInTable="SerCode1Column" msprop:Generator_ColumnPropNameInRow="SerCode1" msprop:Generator_UserColumnName="SerCode1" msprop:Generator_ColumnVarNameInTable="columnSerCode1" type="xs:int" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

@@ -14,6 +14,10 @@ Public Class Installations
     Public bHasInstCostCloset As Boolean
     Public bHasInstCostDoors As Boolean
     Public bHasInstCostSC As Boolean
+    Public bPaidInstCostKitchen As Boolean
+    Public bPaidInstCostCloset As Boolean
+    Public bPaidInstCostDoors As Boolean
+    Public bPaidInstCostSC As Boolean
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Public Mode As Byte
     Private Valid As New ValidateControls
@@ -39,7 +43,7 @@ Public Class Installations
         Frm.cmdConstInstC.Enabled = False
         Frm.cmdConstInstD.Enabled = False
         Frm.cmdConstInstSC.Enabled = False
-
+        UserPermissions.GetUserPermissions("Πρόγραμμα Παραδόσεων - Τοποθετήσεων")
     End Sub
 
     Public Sub LoadForm()
@@ -60,7 +64,7 @@ Public Class Installations
                 Frm.txtCode.Text = DBQ.GetNextId("INST")
                 Frm.cmdConstInstK.Enabled = False : Frm.cmdConstInstC.Enabled = False
                 Frm.cmdConstInstD.Enabled = False : Frm.cmdConstInstSC.Enabled = False
-                sTranshID = Frm.cboTRANSH.EditValue.ToString
+                If Frm.cboTRANSH.EditValue IsNot Nothing Then sTranshID = Frm.cboTRANSH.EditValue.ToString
             Case FormMode.EditRecord
                 Dim myLayoutControls As New List(Of System.Windows.Forms.Control)
                 myLayoutControls.Add(Frm.LayoutControl1)
@@ -76,11 +80,42 @@ Public Class Installations
                 bHasInstCostCloset = sFields("HasInstCostCloset")
                 bHasInstCostDoors = sFields("HasInstCostDoors")
                 bHasInstCostSC = sFields("HasInstCostSC")
+                bPaidInstCostKitchen = sFields("PaidInstCostKitchen")
+                bPaidInstCostCloset = sFields("PaidInstCostCloset")
+                bPaidInstCostDoors = sFields("PaidInstCostDoors")
+                bPaidInstCostSC = sFields("PaidInstCostSC")
                 sTranshID = sFields("transhID")
-                If bHasInstCostKitchen Then Frm.cmdDeleteInstCostK.Enabled = True
-                If bHasInstCostCloset Then Frm.cmdDeleteInstCostC.Enabled = True
-                If bHasInstCostDoors Then Frm.cmdDeleteInstCostD.Enabled = True
-                If bHasInstCostSC Then Frm.cmdDeleteInstCostSC.Enabled = True
+                If bHasInstCostKitchen Then Frm.cmdDeleteInstCostK.Enabled = True       'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΚΟΥΖΙΝΑ
+                If bHasInstCostCloset Then Frm.cmdDeleteInstCostC.Enabled = True        'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΝΤΟΥΛΑΠΑ
+                If bHasInstCostDoors Then Frm.cmdDeleteInstCostD.Enabled = True         'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΠΟΡΤΑ
+                If bHasInstCostSC Then Frm.cmdDeleteInstCostSC.Enabled = True           'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΕΙΔ. ΚΑΤΑΣΚΕΥΗ
+                ' Εαν έχει εξοφληθεί η τοποθέτηση για ΚΟΥΖΙΝΑ
+                If bPaidInstCostKitchen Then
+                    Frm.dtDeliverDateK.Enabled = False
+                    Frm.dtDeliverDateKF.Enabled = False : Frm.dtDeliverDateKT.Enabled = False
+                    Frm.txtTmKIN.Enabled = False : Frm.txtTmKOUT.Enabled = False : Frm.cmdDeleteInstCostK.Enabled = False
+                End If
+                ' Εαν έχει εξοφληθεί η τοποθέτηση για ΝΤΟΥΛΑΠΑ
+                If bPaidInstCostCloset Then
+                    Frm.dtDeliverDateC.Enabled = False
+                    Frm.dtDeliverDateCF.Enabled = False : Frm.dtDeliverDateCT.Enabled = False
+                    Frm.txtTmCIN.Enabled = False : Frm.txtTmCOUT.Enabled = False : Frm.cmdDeleteInstCostC.Enabled = False
+                End If
+                ' Εαν έχει εξοφληθεί η τοποθέτηση για ΠΟΡΤΑ
+                If bPaidInstCostDoors Then
+                    Frm.dtDeliverDateD.Enabled = False
+                    Frm.dtDeliverDateDF.Enabled = False : Frm.dtDeliverDateDT.Enabled = False
+                    Frm.txtTmDIN.Enabled = False : Frm.txtTmDOUT.Enabled = False : Frm.cmdDeleteInstCostD.Enabled = False
+                End If
+                ' Εαν έχει εξοφληθεί η τοποθέτηση για ΕΙΔ. ΚΑΤΑΣΚΕΥΕΣ
+                If bPaidInstCostSC Then
+                    Frm.dtDeliverDateSC.Enabled = False
+                    Frm.dtDeliverDateSCF.Enabled = False : Frm.dtDeliverDateSCT.Enabled = False
+                    Frm.txtTmSCIN.Enabled = False : Frm.txtTmSCOUT.Enabled = False : Frm.cmdDeleteInstCostSC.Enabled = False
+                End If
+
+
+
         End Select
 
 
@@ -412,6 +447,7 @@ Public Class Installations
         With frmInstallationsCost
             .InstID = instID
             .Form = Frm
+            .Text = "Κοστολόγηση Τοποθετήσεων"
             Select Case Category
                 Case 0
                     .Kitchen = True

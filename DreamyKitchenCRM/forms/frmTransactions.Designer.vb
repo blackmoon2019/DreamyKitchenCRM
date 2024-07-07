@@ -3074,8 +3074,8 @@ Partial Class frmTransactions
         '
         'BBInstallation
         '
-        Me.BBInstallation.Caption = "Πρόγραμμα Παραδόσεων-Τοποθετήσεων"
-        Me.BBInstallation.Hint = "Πρόγραμμα Παραδόσεων-Τοποθετήσεων"
+        Me.BBInstallation.Caption = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
+        Me.BBInstallation.Hint = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
         Me.BBInstallation.Id = 9
         Me.BBInstallation.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_installation_24
         Me.BBInstallation.ImageOptions.LargeImage = CType(resources.GetObject("BBInstallation.ImageOptions.LargeImage"), System.Drawing.Image)

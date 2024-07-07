@@ -208,7 +208,7 @@ Public Class CombosManager
     Public Sub ManageINST(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
         Dim Frm As frmInstallations = New frmInstallations()
         If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
-        Frm.Text = "Μισθοδοσία Τοποθετών"
+        Frm.Text = "Πρόγραμμα Παραδόσεων - Τοποθετήσεων"
         Frm.CallerControl = CallerControl
         Frm.CalledFromControl = True
         Frm.MdiParent = frmMain
