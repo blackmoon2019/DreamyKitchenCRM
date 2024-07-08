@@ -31267,7 +31267,7 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(0) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT ID, Fullname"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_ExtPartners where isActive = 1"
+            Me._commandCollection(0).CommandText = "SELECT ID, Fullname"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   vw_ExtPartners where Active = 1"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
         End Sub
         

@@ -1216,11 +1216,11 @@ FROM   FORM_RIGHTS INNER JOIN
           </TableAdapter>
           <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="vw_ExtPartnersTableAdapter" GeneratorDataComponentClassName="vw_ExtPartnersTableAdapter" Name="vw_ExtPartners" UserDataComponentName="vw_ExtPartnersTableAdapter">
             <MainSource>
-              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchenDEV.dbo.vw_ExtPartners" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+              <DbSource ConnectionRef="DreamyKitchenConnectionStringRemotely (MySettings)" DbObjectName="DreamyKitchen.dbo.vw_ExtPartners" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
                 <SelectCommand>
                   <DbCommand CommandType="Text" ModifiedByUser="true">
                     <CommandText>SELECT ID, Fullname
-FROM   vw_ExtPartners where isActive = 1</CommandText>
+FROM   vw_ExtPartners where Active = 1</CommandText>
                     <Parameters />
                   </DbCommand>
                 </SelectCommand>
@@ -2699,11 +2699,11 @@ FROM   vw_ExtPartners where isActive = 1</CommandText>
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="vw_ExtPartners" msprop:Generator_RowClassName="vw_ExtPartnersRow" msprop:Generator_RowEvHandlerName="vw_ExtPartnersRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_ExtPartnersRowDeleted" msprop:Generator_RowDeletingName="vw_ExtPartnersRowDeleting" msprop:Generator_RowEvArgName="vw_ExtPartnersRowChangeEvent" msprop:Generator_TablePropName="vw_ExtPartners" msprop:Generator_RowChangedName="vw_ExtPartnersRowChanged" msprop:Generator_UserTableName="vw_ExtPartners" msprop:Generator_RowChangingName="vw_ExtPartnersRowChanging" msprop:Generator_TableClassName="vw_ExtPartnersDataTable" msprop:Generator_TableVarName="tablevw_ExtPartners">
+        <xs:element name="vw_ExtPartners" msprop:Generator_RowEvHandlerName="vw_ExtPartnersRowChangeEventHandler" msprop:Generator_RowDeletedName="vw_ExtPartnersRowDeleted" msprop:Generator_RowDeletingName="vw_ExtPartnersRowDeleting" msprop:Generator_RowEvArgName="vw_ExtPartnersRowChangeEvent" msprop:Generator_TablePropName="vw_ExtPartners" msprop:Generator_RowChangedName="vw_ExtPartnersRowChanged" msprop:Generator_UserTableName="vw_ExtPartners" msprop:Generator_RowChangingName="vw_ExtPartnersRowChanging" msprop:Generator_RowClassName="vw_ExtPartnersRow" msprop:Generator_TableClassName="vw_ExtPartnersDataTable" msprop:Generator_TableVarName="tablevw_ExtPartners">
           <xs:complexType>
             <xs:sequence>
-              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" />
-              <xs:element name="Fullname" msprop:Generator_UserColumnName="Fullname" msprop:Generator_ColumnPropNameInTable="FullnameColumn" msprop:Generator_ColumnPropNameInRow="Fullname" msprop:Generator_ColumnVarNameInTable="columnFullname">
+              <xs:element name="ID" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnPropNameInTable="IDColumn" msprop:Generator_ColumnPropNameInRow="ID" msprop:Generator_UserColumnName="ID" msprop:Generator_ColumnVarNameInTable="columnID" type="xs:string" />
+              <xs:element name="Fullname" msprop:Generator_ColumnPropNameInTable="FullnameColumn" msprop:Generator_ColumnPropNameInRow="Fullname" msprop:Generator_UserColumnName="Fullname" msprop:Generator_ColumnVarNameInTable="columnFullname">
                 <xs:simpleType>
                   <xs:restriction base="xs:string">
                     <xs:maxLength value="200" />
@@ -2822,7 +2822,7 @@ FROM   vw_ExtPartners where isActive = 1</CommandText>
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_KANELLOPOULOS_O_KANELLOPOULOS" msdata:parent="KANELLOPOULOS" msdata:child="KANELLOPOULOS_O" msdata:parentkey="ID" msdata:childkey="kanID" msprop:Generator_UserParentTable="KANELLOPOULOS" msprop:Generator_UserChildTable="KANELLOPOULOS_O" msprop:Generator_RelationVarName="relationFK_KANELLOPOULOS_O_KANELLOPOULOS" msprop:Generator_ChildPropName="GetKANELLOPOULOS_ORows" msprop:Generator_UserRelationName="FK_KANELLOPOULOS_O_KANELLOPOULOS" msprop:Generator_ParentPropName="KANELLOPOULOSRow" />
+      <msdata:Relationship name="FK_KANELLOPOULOS_O_KANELLOPOULOS" msdata:parent="KANELLOPOULOS" msdata:child="KANELLOPOULOS_O" msdata:parentkey="ID" msdata:childkey="kanID" msprop:Generator_UserParentTable="KANELLOPOULOS" msprop:Generator_UserChildTable="KANELLOPOULOS_O" msprop:Generator_RelationVarName="relationFK_KANELLOPOULOS_O_KANELLOPOULOS" msprop:Generator_ChildPropName="GetKANELLOPOULOS_ORows" msprop:Generator_ParentPropName="KANELLOPOULOSRow" msprop:Generator_UserRelationName="FK_KANELLOPOULOS_O_KANELLOPOULOS" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>

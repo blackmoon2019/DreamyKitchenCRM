@@ -125,7 +125,7 @@ Public Class InitializeCalendar
                                     If sdr.IsDBNull(sdr.GetOrdinal("ColorD")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("ColorD")))
                                     If sdr.IsDBNull(sdr.GetOrdinal("SerNameD")) = False Then sStatus = "Συνεργείο: " & sdr.GetString(sdr.GetOrdinal("SerNameD"))
                                     sRemValues = ""
-                                    If sdr.IsDBNull(sdr.GetOrdinal("tmIND")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmINCD"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmIND")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmIND"))
                                     If sdr.IsDBNull(sdr.GetOrdinal("tmOUTD")) = False Then TTime = sdr.GetString(sdr.GetOrdinal("tmOUTD"))
                                     If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
                                     If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))
@@ -331,7 +331,12 @@ Public Class InitializeCalendar
                                       )
         Try
             Dim dtFromToDate As String() = AptDate.Split("-")
+            If dtFromToDate.Length = 1 Then
+                AptDate = AptDate & "-" & AptDate
+                dtFromToDate = AptDate.Split("-")
+            End If
             Dim date1 As Date = Date.Parse(dtFromToDate(0))
+
             Dim date2 As Date = Date.Parse(dtFromToDate(1))
             Dim Days As Int16 = DateDiff(DateInterval.Day, date1, date2)
 
