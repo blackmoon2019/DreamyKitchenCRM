@@ -59,7 +59,7 @@ Public Class InstallationsCost
         FillCbo.EMP(Frm.cboExternalPartners, sSQL)
         Frm.cboCUS.EditValue = frmInstallations.cboCUS.EditValue
         Frm.cboTRANSH.EditValue = frmInstallations.cboTRANSH.EditValue
-        Frm.cboExternalPartners.EditValue = System.Guid.Parse(Frm.ExtPartner)
+        If Frm.ExtPartner IsNot Nothing Then Frm.cboExternalPartners.EditValue = System.Guid.Parse(Frm.ExtPartner)
         UserPermissions.GetUserPermissions("Κοστολόγηση Τοποθετήσεων")
     End Sub
     Public Sub LoadForm()

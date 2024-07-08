@@ -85,10 +85,10 @@ Public Class Installations
                 bPaidInstCostDoors = sFields("PaidInstCostDoors")
                 bPaidInstCostSC = sFields("PaidInstCostSC")
                 sTranshID = sFields("transhID")
-                If bHasInstCostKitchen Then Frm.cmdDeleteInstCostK.Enabled = True       'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΚΟΥΖΙΝΑ
-                If bHasInstCostCloset Then Frm.cmdDeleteInstCostC.Enabled = True        'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΝΤΟΥΛΑΠΑ
-                If bHasInstCostDoors Then Frm.cmdDeleteInstCostD.Enabled = True         'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΠΟΡΤΑ
-                If bHasInstCostSC Then Frm.cmdDeleteInstCostSC.Enabled = True           'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΕΙΔ. ΚΑΤΑΣΚΕΥΗ
+                If bHasInstCostKitchen Then Frm.cmdConstInstK.Enabled = True : Frm.cmdDeleteInstCostK.Enabled = True       'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΚΟΥΖΙΝΑ
+                If bHasInstCostCloset Then Frm.cmdConstInstC.Enabled = True : Frm.cmdDeleteInstCostC.Enabled = True        'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΝΤΟΥΛΑΠΑ
+                If bHasInstCostDoors Then Frm.cmdConstInstD.Enabled = True : Frm.cmdDeleteInstCostD.Enabled = True         'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΠΟΡΤΑ
+                If bHasInstCostSC Then Frm.cmdConstInstSC.Enabled = True : Frm.cmdDeleteInstCostSC.Enabled = True           'ΥΠΑΡΧΕΙ ΚΟΣΤΟΛΟΓΗΣΗ ΕΙΔ. ΚΑΤΑΣΚΕΥΗ
                 ' Εαν έχει εξοφληθεί η τοποθέτηση για ΚΟΥΖΙΝΑ
                 If bPaidInstCostKitchen Then
                     Frm.dtDeliverDateK.Enabled = False
@@ -270,10 +270,10 @@ Public Class Installations
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sGuid, True)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sGuid)
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sID, True)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sID)
                         'sGuid = sID
                 End Select
 
@@ -294,7 +294,7 @@ Public Class Installations
 
                     Dim sSQL2 As String
                     If Mode = FormMode.EditRecord Then
-                        'Στην περίπτωση αλλαγής Εξ. Συνεργείου αλλάζει και την κοστλόγηση 
+                        'Στην περίπτωση αλλαγής Εξ. Συνεργείου αλλάζει και την κοστολόγηση 
                         ChangeInstCostPartner()
                         ' Διαγραφή Συνεργείων
                         sSQL2 = "DELETE FROM INST_SER where instID = '" & sID & "'"
@@ -451,7 +451,7 @@ Public Class Installations
             Select Case Category
                 Case 0
                     .Kitchen = True
-                    .ExtPartner = Frm.cboExtPartnerKitchen.EditValue.ToString
+                    If Frm.cboExtPartnerKitchen.EditValue IsNot Nothing Then .ExtPartner = Frm.cboExtPartnerKitchen.EditValue.ToString
                     If bHasInstCostKitchen = True Then
                         .Mode = FormMode.EditRecord
                     Else
@@ -463,7 +463,7 @@ Public Class Installations
                     End If
                 Case 1
                     .Closet = True
-                    .ExtPartner = Frm.cboExtPartnerCloset.EditValue.ToString
+                    If Frm.cboExtPartnerCloset.EditValue IsNot Nothing Then .ExtPartner = Frm.cboExtPartnerCloset.EditValue.ToString
                     If bHasInstCostCloset = True Then
                         .Mode = FormMode.EditRecord
                     Else
@@ -475,7 +475,7 @@ Public Class Installations
                     End If
                 Case 2
                     .Doors = True
-                    .ExtPartner = Frm.cboExtPartnerDoors.EditValue.ToString
+                    If Frm.cboExtPartnerDoors.EditValue IsNot Nothing Then .ExtPartner = Frm.cboExtPartnerDoors.EditValue.ToString
                     If bHasInstCostDoors = True Then
                         .Mode = FormMode.EditRecord
                     Else
@@ -487,7 +487,7 @@ Public Class Installations
                     End If
                 Case 3
                     .SC = True
-                    .ExtPartner = Frm.cboExtPartnerSC.EditValue.ToString
+                    If Frm.cboExtPartnerSC.EditValue IsNot Nothing Then .ExtPartner = Frm.cboExtPartnerSC.EditValue.ToString
                     If bHasInstCostSC = True Then
                         .Mode = FormMode.EditRecord
                     Else

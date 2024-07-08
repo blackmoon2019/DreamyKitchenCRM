@@ -292,15 +292,18 @@ Public Class frmCalendarInst
     Private Sub SchedulerControl1_KeyDown(sender As Object, e As KeyEventArgs) Handles SchedulerControl1.KeyDown
         Dim sSQL As String
         If e.KeyCode = Keys.Delete Then
-            For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
+            If XtraMessageBox.Show("Θέλετε να διαγραφεί η τρέχουσα εγγραφή?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
 
-                Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
-                sSQL = "DELETE FROM inst WHERE ID = " & toSQLValueS(apt.Id)
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    oCmd.ExecuteNonQuery()
-                End Using
-            Next i
-            SetCalendarFilter()
+                For i As Integer = 0 To SchedulerControl1.SelectedAppointments.Count - 1
+
+                    Dim apt As Appointment = SchedulerControl1.SelectedAppointments(i)
+                    sSQL = "DELETE FROM inst WHERE ID = " & toSQLValueS(apt.Id)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+                Next i
+                SetCalendarFilter()
+            End If
         End If
     End Sub
 
