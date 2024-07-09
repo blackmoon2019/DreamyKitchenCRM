@@ -185,50 +185,56 @@ Public Class Installations
     Private Sub ChangeInstCostPartner()
         Dim sSQL As String
         Dim RowsAffected As Integer
-        'ΚΟΥΖΙΝΑ
-        If Frm.cboExtPartnerKitchen.EditValue IsNot Nothing Then
-            If bHasInstCostKitchen = True And sFields("SerName") <> Frm.cboExtPartnerKitchen.EditValue.ToString Then
-                sSQL = "UPDATE INST_COST SET  extPartnerID = " & toSQLValueS(Frm.cboExtPartnerKitchen.EditValue.ToString) &
-                               "where kitchen = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    RowsAffected = oCmd.ExecuteNonQuery()
-                End Using
-                If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για την κουζίνα όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Try
+
+            'ΚΟΥΖΙΝΑ
+            If Frm.cboExtPartnerKitchen.EditValue IsNot Nothing Then
+                If bHasInstCostKitchen = True And sFields("SerName") <> Frm.cboExtPartnerKitchen.Text.ToString Then
+                    sSQL = "UPDATE INST_COST SET  extPartnerID = " & toSQLValueS(Frm.cboExtPartnerKitchen.EditValue.ToString) &
+                               " where kitchen = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        RowsAffected = oCmd.ExecuteNonQuery()
+                    End Using
+                    If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για την κουζίνα όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
-        End If
-        'ΝΤΟΥΛΑΠΑ
-        If Frm.cboExtPartnerCloset.EditValue IsNot Nothing Then
-            If bHasInstCostCloset = True And sFields("SerNameC") <> toSQLValueS(Frm.cboExtPartnerCloset.EditValue.ToString) Then
-                sSQL = "UPDATE INST_COST SET  extPartnerID = " & Frm.cboExtPartnerKitchen.EditValue &
-                               "where closet = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    RowsAffected = oCmd.ExecuteNonQuery()
-                End Using
-                If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις ντουλάπες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'ΝΤΟΥΛΑΠΑ
+            If Frm.cboExtPartnerCloset.EditValue IsNot Nothing Then
+                If bHasInstCostCloset = True And sFields("SerNameC") <> toSQLValueS(Frm.cboExtPartnerCloset.Text.ToString) Then
+                    sSQL = "UPDATE INST_COST SET  extPartnerID = " & toSQLValueS(Frm.cboExtPartnerKitchen.EditValue.ToString) &
+                               " where closet = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        RowsAffected = oCmd.ExecuteNonQuery()
+                    End Using
+                    If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις ντουλάπες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
-        End If
-        'ΠΟΡΤΑ
-        If Frm.cboExtPartnerDoors.EditValue IsNot Nothing Then
-            If bHasInstCostDoors = True And sFields("SerNameD") <> toSQLValueS(Frm.cboExtPartnerDoors.EditValue.ToString) Then
-                sSQL = "UPDATE INST_COST SET  extPartnerID = " & Frm.cboExtPartnerKitchen.EditValue &
-                               "where doors = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    RowsAffected = oCmd.ExecuteNonQuery()
-                End Using
-                If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις πόρτες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'ΠΟΡΤΑ
+            If Frm.cboExtPartnerDoors.EditValue IsNot Nothing Then
+                If bHasInstCostDoors = True And sFields("SerNameD") <> toSQLValueS(Frm.cboExtPartnerDoors.Text.ToString) Then
+                    sSQL = "UPDATE INST_COST SET  extPartnerID = " & toSQLValueS(Frm.cboExtPartnerKitchen.EditValue.ToString) &
+                               " where doors = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        RowsAffected = oCmd.ExecuteNonQuery()
+                    End Using
+                    If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις πόρτες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
-        End If
-        'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
-        If Frm.cboExtPartnerSC.EditValue IsNot Nothing Then
-            If bHasInstCostSC = True And sFields("SerNameSC") <> toSQLValueS(Frm.cboExtPartnerSC.EditValue.ToString) Then
-                sSQL = "UPDATE INST_COST SET  extPartnerID = " & Frm.cboExtPartnerKitchen.EditValue &
-                               "where SC = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
-                Using oCmd As New SqlCommand(sSQL, CNDB)
-                    RowsAffected = oCmd.ExecuteNonQuery()
-                End Using
-                If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις Ειδ. Κατασκευές όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
+            If Frm.cboExtPartnerSC.EditValue IsNot Nothing Then
+                If bHasInstCostSC = True And sFields("SerNameSC") <> toSQLValueS(Frm.cboExtPartnerSC.Text.ToString) Then
+                    sSQL = "UPDATE INST_COST SET  extPartnerID = " & toSQLValueS(Frm.cboExtPartnerKitchen.EditValue.ToString) &
+                                   " where SC = 1 and Paid = 0 and instID = " & toSQLValueS(ID)
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        RowsAffected = oCmd.ExecuteNonQuery()
+                    End Using
+                    If RowsAffected = 0 Then XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις Ειδ. Κατασκευές όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                End If
             End If
-        End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+
     End Sub
     Public Sub FillListSER(ByVal sCategory As Int16)
         Select Case Mode
@@ -267,13 +273,22 @@ Public Class Installations
                 myLayoutControls.Add(Frm.LayoutControl7)
                 myLayoutControls.Add(Frm.LayoutControl8)
                 myLayoutControls.Add(Frm.LayoutControl9)
+                Dim sCategory As String
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sGuid)
+                        If Frm.cboTRANSH.GetColumnValue("Iskitchen") = True Then sCategory = "1" Else sCategory = "0"
+                        If Frm.cboTRANSH.GetColumnValue("Iscloset") = True Then sCategory = sCategory & ",1" Else sCategory = sCategory & ",0"
+                        If Frm.cboTRANSH.GetColumnValue("Isdoor") = True Then sCategory = sCategory & ",1" Else sCategory = sCategory & ",0"
+                        If Frm.cboTRANSH.GetColumnValue("Issc") = True Then sCategory = sCategory & ",1" Else sCategory = sCategory & ",0"
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sGuid,, "kitchen,closet,doors,sc", sCategory)
                         sID = sGuid
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sID)
+                        If Frm.cboTRANSH.GetColumnValue("Iskitchen") = True Then sCategory = "Kitchen=1" Else sCategory = "Kitchen=0"
+                        If Frm.cboTRANSH.GetColumnValue("Iscloset") = True Then sCategory = sCategory & ",closet=1" Else sCategory = sCategory & ",closet=0"
+                        If Frm.cboTRANSH.GetColumnValue("Isdoor") = True Then sCategory = sCategory & ",doors=1" Else sCategory = sCategory & ",doors=0"
+                        If Frm.cboTRANSH.GetColumnValue("Issc") = True Then sCategory = sCategory & ",sc=1" Else sCategory = sCategory & ",sc=0"
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.MultipleLayoutControls, "INST",, myLayoutControls,, sID,,,,, sCategory)
                         'sGuid = sID
                 End Select
 
@@ -321,6 +336,8 @@ Public Class Installations
                                 oCmd.ExecuteNonQuery()
                             End Using
                             sFields("ExtPartnerKitchenID") = Frm.cboExtPartnerKitchen.EditValue.ToString()
+                        Else
+                            sFields("ExtPartnerKitchenID") = ""
                         End If
                         FillListSER(0)
                     End If
@@ -345,6 +362,8 @@ Public Class Installations
                                 oCmd.ExecuteNonQuery()
                             End Using
                             sFields("ExtPartnerClosetID") = Frm.cboExtPartnerCloset.EditValue.ToString()
+                        Else
+                            sFields("ExtPartnerClosetID") = ""
                         End If
                         FillListSER(1)
                     End If
@@ -366,6 +385,8 @@ Public Class Installations
                                 oCmd.ExecuteNonQuery()
                             End Using
                             sFields("ExtPartnerDoorsID") = Frm.cboExtPartnerDoors.EditValue.ToString()
+                        Else
+                            sFields("ExtPartnerDoorsID") = ""
                         End If
                         FillListSER(2)
                     End If
@@ -387,6 +408,8 @@ Public Class Installations
                                 oCmd.ExecuteNonQuery()
                             End Using
                             sFields("ExtPartnerSCID") = Frm.cboExtPartnerSC.EditValue.ToString()
+                        Else
+                            sFields("ExtPartnerSCID") = ""
                         End If
                         FillListSER(3)
                     End If

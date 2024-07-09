@@ -146,7 +146,7 @@ Public Class InitializeCalendar
                                     If sdr.IsDBNull(sdr.GetOrdinal("ColorSC")) = False Then sColor = Color.FromArgb(sdr.GetInt32(sdr.GetOrdinal("ColorSC")))
                                     If sdr.IsDBNull(sdr.GetOrdinal("SerNameSC")) = False Then sStatus = "Συνεργείο: " & sdr.GetString(sdr.GetOrdinal("SerNameSC"))
                                     sRemValues = ""
-                                    If sdr.IsDBNull(sdr.GetOrdinal("tmINSC")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmINCSC"))
+                                    If sdr.IsDBNull(sdr.GetOrdinal("tmINSC")) = False Then FTime = sdr.GetString(sdr.GetOrdinal("tmINSC"))
                                     If sdr.IsDBNull(sdr.GetOrdinal("tmOUTSC")) = False Then TTime = sdr.GetString(sdr.GetOrdinal("tmOUTSC"))
                                     If sdr.IsDBNull(sdr.GetOrdinal("cmt")) = False Then Cmt = sdr.GetString(sdr.GetOrdinal("cmt"))
                                     If sdr.IsDBNull(sdr.GetOrdinal("code")) = False Then SalersCode = sdr.GetInt32(sdr.GetOrdinal("code"))

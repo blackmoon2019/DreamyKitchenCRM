@@ -919,7 +919,7 @@ Public Class Projects
                         sdr.Close()
                         Return False
                     End If
-                    If CreditBank > Trapezika Then
+                    If CreditBank > Trapezika And Trapezika <> 0 Then
                         XtraMessageBox.Show("Το πόσο τραπεζικών είναι μεγαλύτερο από το επιτρεπτό όριο.Το όριο είναι " & Trapezika & "€", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         sdr.Close()
                         Return False

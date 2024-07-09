@@ -31,7 +31,7 @@ Public Class frmCalendarInst
             SchedulerLocalizer.Active = New MySchedulerLocalizer()
             'sSQL = "SELECT *,vw_INST_ELLIPSE.ID as EllipseID FROM vw_INST " &
             '        "left join vw_INST_ELLIPSE on vw_INST.ID = vw_INST_ELLIPSE.instID And vw_INST_ELLIPSE.completed=0 and comeFrom = 0  order by vw_INST.code"
-            sSQL = "Select * FROM vw_CalendarINST"
+            sSQL = "Select * FROM vw_CalendarINST "
             'Δημιουργία Appointments
             Calendar.InitializeInst(SchedulerControl1, SchedulerDataStorage1, sSQL, True)
             'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_INST' table. You can move, or remove it, as needed.

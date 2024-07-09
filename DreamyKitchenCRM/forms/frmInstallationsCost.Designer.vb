@@ -472,6 +472,7 @@ Partial Class frmInstallationsCost
         Me.LayoutControlItem6.Location = New System.Drawing.Point(0, 32)
         Me.LayoutControlItem6.Name = "LayoutControlItem6"
         Me.LayoutControlItem6.Size = New System.Drawing.Size(1038, 30)
+        Me.LayoutControlItem6.Tag = "1"
         Me.LayoutControlItem6.Text = "Πελάτης"
         Me.LayoutControlItem6.TextSize = New System.Drawing.Size(216, 19)
         '
@@ -485,6 +486,7 @@ Partial Class frmInstallationsCost
         Me.LayoutControlItem7.Location = New System.Drawing.Point(0, 62)
         Me.LayoutControlItem7.Name = "LayoutControlItem7"
         Me.LayoutControlItem7.Size = New System.Drawing.Size(1038, 30)
+        Me.LayoutControlItem7.Tag = "1"
         Me.LayoutControlItem7.Text = "Έργο Πελάτη"
         Me.LayoutControlItem7.TextSize = New System.Drawing.Size(216, 19)
         '
@@ -498,6 +500,7 @@ Partial Class frmInstallationsCost
         Me.LayoutControlItem1.Location = New System.Drawing.Point(0, 92)
         Me.LayoutControlItem1.Name = "LayoutControlItem1"
         Me.LayoutControlItem1.Size = New System.Drawing.Size(1038, 30)
+        Me.LayoutControlItem1.Tag = "1"
         Me.LayoutControlItem1.Text = "Συνεργάτης"
         Me.LayoutControlItem1.TextSize = New System.Drawing.Size(216, 19)
         '

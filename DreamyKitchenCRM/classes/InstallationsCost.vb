@@ -107,7 +107,8 @@ Public Class InstallationsCost
                     If IsCloset = True Then frmInstallations.cmdDeleteInstCostC.Enabled = True : frmInstallations.Installations.bHasInstCostCloset = True
                     If IsDoors = True Then frmInstallations.cmdDeleteInstCostD.Enabled = True : frmInstallations.Installations.bHasInstCostDoors = True
                     If IsSC = True Then frmInstallations.cmdDeleteInstCostSC.Enabled = True : frmInstallations.Installations.bHasInstCostSC = True
-                    Frm.Mode = FormMode.EditRecord
+                    Frm.Mode = FormMode.EditRecord : Mode = FormMode.EditRecord
+
                 End If
                 XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
             End If
