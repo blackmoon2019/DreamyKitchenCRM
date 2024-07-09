@@ -354,60 +354,68 @@ Public Class ValidateControls
                     Dim ExistCost As Integer
                     'ΚΟΥΖΙΝΑ
                     If f.cboExtPartnerKitchen.EditValue IsNot Nothing Then
-                        If sFields("ExtPartnerKitchenID") <> f.cboExtPartnerKitchen.EditValue.ToString Then
-                            sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  kitchen = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
-                            Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
-                            If (sdr.Read() = True) Then
-                                If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
-                                If ExistCost = 1 Then
-                                    XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για την κουζίνα όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                    sdr.Close()
-                                    Return False
+                        If sFields.Count > 0 Then
+                            If sFields("ExtPartnerKitchenID") <> f.cboExtPartnerKitchen.EditValue.ToString Then
+                                sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  kitchen = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
+                                Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
+                                If (sdr.Read() = True) Then
+                                    If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
+                                    If ExistCost = 1 Then
+                                        XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για την κουζίνα όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                        sdr.Close()
+                                        Return False
+                                    End If
                                 End If
                             End If
                         End If
                     End If
-                    'ΝΤΟΥΛΑΠΑ
-                    If f.cboExtPartnerCloset.EditValue IsNot Nothing Then
-                        If sFields("ExtPartnerClosetID") <> toSQLValueS(f.cboExtPartnerCloset.EditValue.ToString) Then
-                            sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  closet = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
-                            Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
-                            If (sdr.Read() = True) Then
-                                If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
-                                If ExistCost = 1 Then
-                                    XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις ντουλάπες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                    sdr.Close()
-                                    Return False
+                        'ΝΤΟΥΛΑΠΑ
+                        If f.cboExtPartnerCloset.EditValue IsNot Nothing Then
+                        If sFields.Count > 0 Then
+                            If sFields("ExtPartnerClosetID") <> toSQLValueS(f.cboExtPartnerCloset.EditValue.ToString) Then
+                                sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  closet = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
+                                Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
+                                If (sdr.Read() = True) Then
+                                    If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
+                                    If ExistCost = 1 Then
+                                        XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις ντουλάπες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                        sdr.Close()
+                                        Return False
+                                    End If
                                 End If
                             End If
                         End If
                     End If
-                    'ΠΟΡΤΑ
-                    If f.cboExtPartnerDoors.EditValue IsNot Nothing Then
-                        If sFields("ExtPartnerDoorsID") <> toSQLValueS(f.cboExtPartnerDoors.EditValue.ToString) Then
-                            sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  doors = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
-                            Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
-                            If (sdr.Read() = True) Then
-                                If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
-                                If ExistCost = 1 Then
-                                    XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις πόρτες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                    sdr.Close()
-                                    Return False
+                        'ΠΟΡΤΑ
+                        If f.cboExtPartnerDoors.EditValue IsNot Nothing Then
+                        If sFields.Count > 0 Then
+                            If sFields("ExtPartnerDoorsID") <> toSQLValueS(f.cboExtPartnerDoors.EditValue.ToString) Then
+                                sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  doors = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
+                                Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
+                                If (sdr.Read() = True) Then
+                                    If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
+                                    If ExistCost = 1 Then
+                                        XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις πόρτες όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                        sdr.Close()
+                                        Return False
+                                    End If
                                 End If
                             End If
                         End If
                     End If
                     'ΕΙΔΙΚΗ ΚΑΤΑΣΚΕΥΗ
                     If f.cboExtPartnerSC.EditValue IsNot Nothing Then
-                        If sFields("ExtPartnerSCID") <> toSQLValueS(f.cboExtPartnerSC.EditValue.ToString) Then
-                            sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  doors = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
-                            Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
-                            If (sdr.Read() = True) Then
-                                If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
-                                If ExistCost = 1 Then
-                                    XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις Ειδ. Κατασκευές όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                                    sdr.Close()
-                                    Return False
+                        If sFields.Count > 0 Then
+                            If sFields("ExtPartnerSCID") <> toSQLValueS(f.cboExtPartnerSC.EditValue.ToString) Then
+                                sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  doors = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
+                                Cmd = New SqlCommand(sSQL, CNDB) : sdr = Cmd.ExecuteReader()
+                                If (sdr.Read() = True) Then
+                                    If sdr.IsDBNull(sdr.GetOrdinal("ExistCost")) = False Then ExistCost = sdr.GetInt32(sdr.GetOrdinal("ExistCost")) Else ExistCost = 0
+                                    If ExistCost = 1 Then
+                                        XtraMessageBox.Show("Δεν μπορεί να γίνει αλλαγή Τοποθέτη για τις Ειδ. Κατασκευές όταν υπάρχει εξοφλημένη συναλλαγή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                        sdr.Close()
+                                        Return False
+                                    End If
                                 End If
                             End If
                         End If
