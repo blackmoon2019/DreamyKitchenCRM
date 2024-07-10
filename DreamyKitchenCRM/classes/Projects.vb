@@ -881,7 +881,7 @@ Public Class Projects
                 End If
             End If
 
-            'CheckAmmountsValidation Έλεγχος αν έχει δώσει σωστά τραπεζικά και μετρητά σύμφωνα με το ποσό παραστατικού
+            'CheckAmmountsValidation Έλεγχος αν έχει δώσει σωστά τραπεζικά και μετρητά σύμφωνα με τα ποσά του Συμφωνητικού
             If CheckAmmountsValidation Then
                 Dim AmtCash As Double = 0
                 Dim AmtBank As Double = 0
@@ -898,7 +898,7 @@ Public Class Projects
                         AmtBank = DbnullToZero(Frm.txtamtD)
                     End If
                 End If
-                sSQL = "  select   PosoParastatikou as Trapezika,GENTOT - PosoParastatikou as Metrhta,
+                sSQL = "  select   PosoParastatikou as Trapezika,ProjectTotal - PosoParastatikou as Metrhta,
                          (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =1 and transhID=" & toSQLValueS(ID) & ") as CreditCash,
                          (SELECT isnull(sum(amt),0) as amt FROM TRANSD WHERE cash =0 and transhID=" & toSQLValueS(ID) & ") as CreditBank
                         FROM vw_ANALYSH_KOSTOYS WHERE ID = " & toSQLValueS(ID)

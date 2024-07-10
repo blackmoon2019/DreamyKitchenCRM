@@ -293,6 +293,8 @@ Public Class ValidateControls
                     Dim Cmd As SqlCommand
                     Dim sdr As SqlDataReader
 
+
+
                     '----------------------------------------------------------------------------------------------------
                     If f.Mode = FormMode.NewRecord Then
                         Dim CountInst As Integer
@@ -308,28 +310,56 @@ Public Class ValidateControls
                         End If
                     End If
                     '----------------------------------------------------------------------------------------------------
+
                     Dim Hours As Long
                     If f.TabPane2.SelectedPageIndex = "0" Then
                         If f.txtTmKIN.Text = "00:00" Or f.txtTmKOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
                         f.txtTmKIN.EditValue = f.txtTmKIN.Text : f.txtTmKOUT.EditValue = f.txtTmKOUT.Text
                         Hours = DateDiff(DateInterval.Hour, f.txtTmKIN.EditValue, f.txtTmKOUT.EditValue)
+                        If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+
+                        Dim date1 As Date = Date.Parse(f.dtDeliverDateKF.EditValue.ToString)
+                        Dim date2 As Date = Date.Parse(f.dtDeliverDateKT.EditValue.ToString)
+                        Dim Days As Int16 = DateDiff(DateInterval.Day, date1, date2)
+                        If DateDiff(DateInterval.Day, date1, date2) < 0 Then XtraMessageBox.Show("Δεν μπορεί η ""ΑΠΟ"" ημερομηνία να είναι μεγαλύτερη από την ""ΕΩΣ""", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+
                     End If
                     If f.TabPane2.SelectedPageIndex = "1" Then
                         If f.txtTmCIN.Text = "00:00" Or f.txtTmCOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
                         f.txtTmCIN.EditValue = f.txtTmCIN.Text : f.txtTmCOUT.EditValue = f.txtTmCOUT.Text
                         Hours = DateDiff(DateInterval.Hour, f.txtTmCIN.EditValue, f.txtTmCOUT.EditValue)
+                        If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+
+                        Dim date1 As Date = Date.Parse(f.dtDeliverDateCF.EditValue.ToString)
+                        Dim date2 As Date = Date.Parse(f.dtDeliverDateCT.EditValue.ToString)
+                        Dim Days As Int16 = DateDiff(DateInterval.Day, date1, date2)
+                        If DateDiff(DateInterval.Day, date1, date2) < 0 Then XtraMessageBox.Show("Δεν μπορεί η ""ΑΠΟ"" ημερομηνία να είναι μεγαλύτερη από την ""ΕΩΣ""", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+
                     End If
                     If f.TabPane2.SelectedPageIndex = "2" Then
                         If f.txtTmDIN.Text = "00:00" Or f.txtTmDOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
                         f.txtTmDIN.EditValue = f.txtTmDIN.Text : f.txtTmDOUT.EditValue = f.txtTmDOUT.Text
                         Hours = DateDiff(DateInterval.Hour, f.txtTmDIN.EditValue, f.txtTmDOUT.EditValue)
+                        If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+
+                        Dim date1 As Date = Date.Parse(f.dtDeliverDateDF.EditValue.ToString)
+                        Dim date2 As Date = Date.Parse(f.dtDeliverDateDT.EditValue.ToString)
+                        Dim Days As Int16 = DateDiff(DateInterval.Day, date1, date2)
+                        If DateDiff(DateInterval.Day, date1, date2) < 0 Then XtraMessageBox.Show("Δεν μπορεί η ""ΑΠΟ"" ημερομηνία να είναι μεγαλύτερη από την ""ΕΩΣ""", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+
                     End If
                     If f.TabPane2.SelectedPageIndex = "3" Then
                         If f.txtTmSCIN.Text = "00:00" Or f.txtTmSCOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
                         f.txtTmSCIN.EditValue = f.txtTmCIN.Text : f.txtTmSCOUT.EditValue = f.txtTmSCOUT.Text
                         Hours = DateDiff(DateInterval.Hour, f.txtTmSCIN.EditValue, f.txtTmSCOUT.EditValue)
+                        If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+
+                        Dim date1 As Date = Date.Parse(f.dtDeliverDateCF.EditValue.ToString)
+                        Dim date2 As Date = Date.Parse(f.dtDeliverDateCT.EditValue.ToString)
+                        Dim Days As Int16 = DateDiff(DateInterval.Day, date1, date2)
+                        If DateDiff(DateInterval.Day, date1, date2) < 0 Then XtraMessageBox.Show("Δεν μπορεί η ""ΑΠΟ"" ημερομηνία να είναι μεγαλύτερη από την ""ΕΩΣ""", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+
                     End If
-                    If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
                     '----------------------------------------------------------------------------------------------------
                     Dim sFilename As String = ""
                     If f.chkCompleted.Checked = True Then
