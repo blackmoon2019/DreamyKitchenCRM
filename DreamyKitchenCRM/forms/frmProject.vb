@@ -92,7 +92,7 @@ Public Class frmProject
                 dtCharge.EditValue = DateTime.Now : txtCodeH.Text = Projects.GetNextID
                 If sTransCID <> Nothing Then cboTransC.Properties.GetItems.Item(System.Guid.Parse(sTransCID.ToString)).CheckState = CheckState.Checked
             Case FormMode.EditRecord
-                If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then cmdOpenTransh.Enabled = True
+                if SuperUsers Then cmdOpenTransh.Enabled = True
                 Dim sSQL As New System.Text.StringBuilder
                 If cboCOU.EditValue IsNot Nothing Then sSQL.AppendLine(" where couid = " & toSQLValueS(cboCOU.EditValue.ToString))
                 FillCbo.AREAS(cboAREAS, sSQL)
@@ -180,7 +180,7 @@ Public Class frmProject
         End Select
     End Sub
     Private Sub cmdOpenTransh_Click(sender As Object, e As EventArgs) Handles cmdOpenTransh.Click
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+        if SuperUsers Then
             Dim Frm As frmTransactions = New frmTransactions()
             Frm.Text = "Έργα Πελατών"
             Frm.MdiParent = frmMain

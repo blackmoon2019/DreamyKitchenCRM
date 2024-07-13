@@ -346,7 +346,7 @@ Public Class Projects
                     End If
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     Mode = FormMode.EditRecord
-                    If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Frm2.cmdOpenTransh.Enabled = True
+                    If SuperUsers() Then Frm2.cmdOpenTransh.Enabled = True
                 End If
             End If
         Catch ex As Exception
@@ -907,8 +907,8 @@ Public Class Projects
                 If (sdr.Read() = True) Then
                     Dim Trapezika As Double = sdr.GetDecimal(sdr.GetOrdinal("Trapezika"))
                     Dim Metrhta As Double = sdr.GetDecimal(sdr.GetOrdinal("Metrhta"))
-                    Dim CreditCash As Double = sdr.GetDecimal(sdr.GetOrdinal("CreditCash")) + AmtCash
-                    Dim CreditBank As Double = sdr.GetDecimal(sdr.GetOrdinal("CreditBank")) + AmtBank
+                    Dim CreditCash As Double = sdr.GetDecimal(sdr.GetOrdinal("CreditCash")) + IIf(Mode = FormMode.NewRecord, AmtCash, 0)
+                    Dim CreditBank As Double = sdr.GetDecimal(sdr.GetOrdinal("CreditBank")) + IIf(Mode = FormMode.NewRecord, AmtBank, 0)
                     ' Αυτό σημαίνει ότι δεν έχει φτάσει ακόμα σε Ιδ. Συμφωνητικό
                     If Trapezika = 0 And Metrhta = 0 Then
                         sdr.Close()

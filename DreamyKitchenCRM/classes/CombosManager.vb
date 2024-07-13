@@ -25,7 +25,7 @@ Public Class CombosManager
         Frm.ShowDialog()
     End Sub
     Public Sub ManageTRANSH(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+        if SuperUsers Then
             Dim Frm As frmTransactions = New frmTransactions()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
             Frm.Text = "Έργα Πελατών"
@@ -75,7 +75,7 @@ Public Class CombosManager
     End Sub
 
     Public Sub ManageSup(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+        if SuperUsers Then
             Dim Frm As frmSUP = New frmSUP()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
             Frm.Text = "Προμηθευτές"
@@ -93,7 +93,7 @@ Public Class CombosManager
         End If
     End Sub
     Public Sub ManageBUY_C(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+        if SuperUsers Then
             Dim Frm As frmGen = New frmGen()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
             Frm.Text = "Κατηγορίες Αγορών"
@@ -170,7 +170,7 @@ Public Class CombosManager
         Frm.Show()
     End Sub
     Public Sub ManageEMP(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal IsExternalPartner As Boolean = False)
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+        if SuperUsers Then
             Dim Frm As frmEMP = New frmEMP()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
             Frm.Text = "Προσωπικό"
@@ -189,7 +189,7 @@ Public Class CombosManager
         End If
     End Sub
     Public Sub ManageSaler(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
-        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+        if SuperUsers Then
             Dim Frm As frmEMP = New frmEMP()
             Frm.Text = "Πωλητές"
             Frm.CallerControl = CallerControl

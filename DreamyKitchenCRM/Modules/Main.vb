@@ -117,6 +117,8 @@ Module Main
         Public REPORT_PREMIUM As String
     End Structure
     Public ProgProps As PROG_PROPS
+
+
     Public Function toSQLValue(t As DevExpress.XtraEditors.TextEdit, Optional ByVal isnum As Boolean = False) As String
         If t.Text.Length = 0 Then
             Return "NULL" 'this will pass through any SQL statement without notice  
@@ -133,6 +135,13 @@ Module Main
                 'Return sValue
                 Return Result.ToString.Replace(",", ".")
             End If
+        End If
+    End Function
+    Public Function SuperUsers() As Boolean
+        If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Or UserProps.ID.ToString.ToUpper = "5A61766B-ADD3-4598-A6A1-285B025FD53A" Then
+            Return True
+        Else
+            Return False
         End If
     End Function
     Public Function toSQLValueS(t As String, Optional ByVal isnum As Boolean = False) As String

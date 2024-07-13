@@ -1045,7 +1045,7 @@ Public Class frmCUSOfferOrderKitchen
                 txtFiles.EditValue = sFilename
                 If txtFiles.Text <> "" Then CusOfferOrderKitchen.SaveRecordF(1, sFilename)
                 ScanFile = Nothing
-            Case 1 : FilesSelection(XtraOpenFileDialog2, txtFiles, False)
+            Case 1 : FilesSelection(XtraOpenFileDialog2, txtFiles)
 
             Case 2 : txtFiles.EditValue = Nothing
         End Select

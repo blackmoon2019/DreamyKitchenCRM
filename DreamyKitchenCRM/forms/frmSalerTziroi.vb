@@ -129,8 +129,8 @@ Public Class frmSalerTziroi
 
     Private Sub cboSaler_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboSaler.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  cboSaler.EditValue = Nothing : ManageSaler()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then  If cboSaler.EditValue isnot Nothing Then ManageSaler()
+            Case 1 : if SuperUsers Then  cboSaler.EditValue = Nothing : ManageSaler()
+            Case 2 : if SuperUsers Then  If cboSaler.EditValue isnot Nothing Then ManageSaler()
             Case 3 : cboSaler.EditValue = Nothing
         End Select
     End Sub
@@ -200,8 +200,8 @@ Public Class frmSalerTziroi
 
     Private Sub cboTransH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTransH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   cboTransH.EditValue = Nothing : ManageTRANSH()
-            Case 2 : If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then   If cboTransH.EditValue isnot Nothing Then ManageTRANSH()
+            Case 1 : if SuperUsers Then   cboTransH.EditValue = Nothing : ManageTRANSH()
+            Case 2 : if SuperUsers Then   If cboTransH.EditValue isnot Nothing Then ManageTRANSH()
             Case 3 : cboTransH.EditValue = Nothing
         End Select
     End Sub

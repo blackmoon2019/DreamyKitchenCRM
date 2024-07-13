@@ -25,7 +25,9 @@ Public Class frmMain
         bbVersion.Caption = "Ver:" + My.Application.Info.Version.ToString
         Timer2.Stop()
         LoadCurrentSkin()
-        If UserProps.ID.ToString.ToUpper <> "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" And UserProps.ID.ToString.ToUpper <> "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then
+        If SuperUsers() Then
+            BBProject.Visibility = BarItemVisibility.Never
+        Else
             EmpManage.Visible = False
             ProjectAnalysis.Visible = False
             RibbonPage4.Visible = False
@@ -35,8 +37,7 @@ Public Class frmMain
             bbTRANSH.Visibility = BarItemVisibility.Never
             BBProjectCosts.Visibility = BarItemVisibility.Never
             BBTransh_C.Visibility = BarItemVisibility.Never
-        Else
-            BBProject.Visibility = BarItemVisibility.Never
+
         End If
         ProjectAnalysis.Visible = True
 

@@ -65,7 +65,7 @@ Public Class CheckPermissions
         Dim sdr As SqlDataReader
         Try
             'Blackmoon user
-            If UserProps.ID.ToString.ToUpper = "3F9DC32E-BE5B-4D46-A13C-EA606566CF32" Or UserProps.ID.ToString.ToUpper = "E9CEFD11-47C0-4796-A46B-BC41C4C3606B" Then Return True
+            If SuperUsers() Then Return True
             sSQL = "select [view] from vw_FORMS F
                     inner join vw_FORM_RIGHTS  FR on F.ID = FR.F_ID 
                     inner join vw_RIGHTS R on R.ID=FR.Rid 
