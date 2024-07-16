@@ -188,10 +188,16 @@ Public Class frmInstM
         Dim sSQL As String
         Try
             If Valid.ValidateForm(LayoutControl1) Then
+                Dim sValCategory As String
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "kitchen").ToString = "True" Then sValCategory = ",1" Else sValCategory = ",0"
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "closet").ToString = "True" Then sValCategory = sValCategory & ",1" Else sValCategory = ",0"
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doors").ToString = "True" Then sValCategory = sValCategory & ",1" Else sValCategory = ",0"
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "sc").ToString = "True" Then sValCategory = sValCategory & ",1" Else sValCategory = ",0"
+
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_M", LayoutControl1,,, sGuid, True, "instID", toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString))
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_M", LayoutControl1,,, sGuid, True, "instID,kitchen,closet,doors,sc", toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) & sValCategory)
                     Case FormMode.EditRecord
                         sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_M", LayoutControl1,,, sID, True)
                         sGuid = sID
@@ -206,13 +212,19 @@ Public Class frmInstM
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                     ' Αν υπάρχει στην μισθοδοσία τοποθετών εγγραφή στο ίδιο έργο και με ίδιο ποσό γίνεται εξοφλημενη
 
+                    Dim sCategory As String
+                    If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "kitchen").ToString = "True" Then sCategory = " and Kitchen = 1 "
+                    If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "closet").ToString = "True" Then sCategory = " and closet = 1 "
+                    If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doors").ToString = "True" Then sCategory = " and doors = 1 "
+                    If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "sc").ToString = "True" Then sCategory = " and sc = 1 "
+
                     sSQL = "update INST_COST SET PAID=1,dtPayOFF= " & toSQLValueS(CDate(dtDeliverDate.Text.ToString).ToString("yyyyMMdd")) &
                            "from INST_COST I 
                             inner join(
                             SELECT i.instID ,SUM(I.cost + I.extraCost) as InstCostAmt,(SELECT SUM(IM.amt) FROM INST_M im WHERE INSTID=I.INSTID ) as InstMAmt 
                             From INST_COST I
-                            where I.instID= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) &
-                            "group by i.instID ) AS S on s.instID = i.instID and InstCostAmt = InstMAmt and InstCostAmt <>0 and paid= 0 "
+                            where I.instID= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) & sCategory &
+                            "group by i.instID ) AS S on s.instID = i.instID and InstCostAmt = InstMAmt and InstCostAmt <>0 and paid= 0 " & sCategory
 
 
                     Using oCmd As New SqlCommand(sSQL, CNDB)
