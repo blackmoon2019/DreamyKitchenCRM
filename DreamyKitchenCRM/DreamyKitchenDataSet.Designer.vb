@@ -11460,6 +11460,8 @@ Partial Public Class DreamyKitchenDataSet
 
         Private columnsc As Global.System.Data.DataColumn
 
+        Private columninstID As Global.System.Data.DataColumn
+
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Sub New()
@@ -11584,6 +11586,14 @@ Partial Public Class DreamyKitchenDataSet
         End Property
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public ReadOnly Property instIDColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columninstID
+            End Get
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
          Global.System.ComponentModel.Browsable(False)>
         Public ReadOnly Property Count() As Integer
@@ -11620,12 +11630,18 @@ Partial Public Class DreamyKitchenDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
-        Public Overloads Function Addvw_INSTPerSerRow(ByVal ID As System.Guid, ByVal cctName As String, ByVal SalerName As String, ByVal TotalCost As Decimal, ByVal YPOL As Decimal, ByVal description As String, ByVal FullTranshDescription As String, ByVal kitchen As Boolean, ByVal closet As Boolean, ByVal doors As Boolean, ByVal sc As Boolean) As vw_INSTPerSerRow
+        Public Overloads Function Addvw_INSTPerSerRow(ByVal ID As System.Guid, ByVal cctName As String, ByVal SalerName As String, ByVal TotalCost As Decimal, ByVal YPOL As Decimal, ByVal description As String, ByVal FullTranshDescription As String, ByVal kitchen As Boolean, ByVal closet As Boolean, ByVal doors As Boolean, ByVal sc As Boolean, ByVal instID As System.Guid) As vw_INSTPerSerRow
             Dim rowvw_INSTPerSerRow As vw_INSTPerSerRow = CType(Me.NewRow, vw_INSTPerSerRow)
-            Dim columnValuesArray() As Object = New Object() {ID, cctName, SalerName, TotalCost, YPOL, description, FullTranshDescription, kitchen, closet, doors, sc}
+            Dim columnValuesArray() As Object = New Object() {ID, cctName, SalerName, TotalCost, YPOL, description, FullTranshDescription, kitchen, closet, doors, sc, instID}
             rowvw_INSTPerSerRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowvw_INSTPerSerRow)
             Return rowvw_INSTPerSerRow
+        End Function
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Function FindByID(ByVal ID As System.Guid) As vw_INSTPerSerRow
+            Return CType(Me.Rows.Find(New Object() {ID}), vw_INSTPerSerRow)
         End Function
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -11656,6 +11672,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columncloset = MyBase.Columns("closet")
             Me.columndoors = MyBase.Columns("doors")
             Me.columnsc = MyBase.Columns("sc")
+            Me.columninstID = MyBase.Columns("instID")
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -11683,7 +11700,11 @@ Partial Public Class DreamyKitchenDataSet
             MyBase.Columns.Add(Me.columndoors)
             Me.columnsc = New Global.System.Data.DataColumn("sc", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columnsc)
+            Me.columninstID = New Global.System.Data.DataColumn("instID", GetType(Global.System.Guid), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columninstID)
+            Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, True))
             Me.columnID.AllowDBNull = False
+            Me.columnID.Unique = True
             Me.columncctName.AllowDBNull = False
             Me.columncctName.MaxLength = 200
             Me.columnSalerName.AllowDBNull = False
@@ -11701,6 +11722,7 @@ Partial Public Class DreamyKitchenDataSet
             Me.columndoors.DefaultValue = CType(False, Boolean)
             Me.columnsc.AllowDBNull = False
             Me.columnsc.DefaultValue = CType(False, Boolean)
+            Me.columninstID.AllowDBNull = False
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -26872,6 +26894,17 @@ Partial Public Class DreamyKitchenDataSet
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
+        Public Property instID() As System.Guid
+            Get
+                Return CType(Me(Me.tablevw_INSTPerSer.instIDColumn), Global.System.Guid)
+            End Get
+            Set
+                Me(Me.tablevw_INSTPerSer.instIDColumn) = value
+            End Set
+        End Property
+
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>
         Public Function IsTotalCostNull() As Boolean
             Return Me.IsNull(Me.tablevw_INSTPerSer.TotalCostColumn)
         End Function
@@ -39388,6 +39421,7 @@ Namespace DreamyKitchenDataSetTableAdapters
             tableMapping.ColumnMappings.Add("closet", "closet")
             tableMapping.ColumnMappings.Add("doors", "doors")
             tableMapping.ColumnMappings.Add("sc", "sc")
+            tableMapping.ColumnMappings.Add("instID", "instID")
             Me._adapter.TableMappings.Add(tableMapping)
         End Sub
 
@@ -39404,22 +39438,22 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection = New Global.System.Data.SqlClient.SqlCommand(1) {}
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
-            Me._commandCollection(0).CommandText = "SELECT       vw_INST_COST.instID as ID, cctName, SalerName, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " sum(cost) +sum (ex" &
-                "traCost) AS TotalCost, sum(YPOL) as YPOL, description, FullTranshDescription,kit" &
-                "chen,closet,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            vw_INST_COST" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " WHERE        (vw_INST_COST." &
-                "extPartnerID= @extPartnerID) AND (paid = 0)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "group by vw_INST_COST.instID ,cctNa" &
-                "me, SalerName, description, FullTranshDescription,kitchen,closet,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " "
+            Me._commandCollection(0).CommandText = "SELECT       vw_INST_COST.ID,vw_INST_COST.instID,  cctName, SalerName, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " sum(cos" &
+                "t) +sum (extraCost) AS TotalCost, sum(YPOL) as YPOL, description, FullTranshDesc" &
+                "ription,kitchen,closet,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM            vw_INST_COST" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " WHERE        (vw" &
+                "_INST_COST.extPartnerID= @extPartnerID) AND (paid = 0)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "group by vw_INST_COST.ID" &
+                ",vw_INST_COST.instID , cctName, SalerName, description, FullTranshDescription,ki" &
+                "tchen,closet,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " "
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@extPartnerID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "extPartnerID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
             Me._commandCollection(1) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(1).Connection = Me.Connection
-            Me._commandCollection(1).CommandText = " SELECT       vw_INST_COST.instID as ID, cctName, SalerName, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " sum(cost) +sum (e" &
-                "xtraCost) AS TotalCost, sum(YPOL) as YPOL, description, FullTranshDescription,ki" &
-                "tchen,closet,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM vw_INST_COST WHERE (instMID = @ID) " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "group by vw_INS" &
-                "T_COST.instID ,cctName, SalerName, description, FullTranshDescription,kitchen,cl" &
-                "oset,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " "
+            Me._commandCollection(1).CommandText = "SELECT ID, instID, cctName, SalerName, SUM(cost) + SUM(extraCost) AS TotalCost, S" &
+                "UM(YPOL) AS YPOL, description, FullTranshDescription, kitchen, closet, doors, sc" &
+                "" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM   vw_INST_COST" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "WHERE (InstMID = @ID)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "GROUP BY ID, instID, cctName, Sale" &
+                "rName, description, FullTranshDescription, kitchen, closet, doors, sc"
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "instMID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "InstMID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
