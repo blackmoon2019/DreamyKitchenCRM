@@ -430,7 +430,7 @@ Public Class frmScroller
                 If sdr.IsDBNull(sdr.GetOrdinal("CountInst")) = False Then CountInst = sdr.GetInt32(sdr.GetOrdinal("CountInst")) Else CountInst = 0
                 sdr.Close()
                 If CountInst > 0 Then
-                    sSQL = "UPDATE  INST_COST SET PAID=0 , DTPAYOFF=NULL WHERE instID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "instID").ToString & "'"
+                    sSQL = "UPDATE  INST_COST SET PAID=0 , DTPAYOFF=NULL WHERE instMID = '" & GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "ID").ToString & "'"
                     Using oCmd As New SqlCommand(sSQL, CNDB)
                         oCmd.ExecuteNonQuery()
                     End Using

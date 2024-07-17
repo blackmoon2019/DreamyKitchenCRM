@@ -79,7 +79,7 @@ Public Class frmInstM
                 txtCode.Text = DBQ.GetNextId("INST_M")
             Case FormMode.EditRecord
                 LoadForms.LoadForm(LayoutControl1, "Select * from vw_INST_M where id ='" + sID + "'")
-                Me.Vw_INSTPerSerTableAdapter.FillByID(Me.DreamyKitchenDataSet.vw_INSTPerSer, System.Guid.Parse(sInstID))
+                Me.Vw_INSTPerSerTableAdapter.FillByID(Me.DreamyKitchenDataSet.vw_INSTPerSer, System.Guid.Parse(sID))
         End Select
         Me.CenterToScreen()
         cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -190,16 +190,22 @@ Public Class frmInstM
             If Valid.ValidateForm(LayoutControl1) Then
                 Dim sValCategory As String
                 If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "kitchen").ToString = "True" Then sValCategory = ",1" Else sValCategory = ",0"
-                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "closet").ToString = "True" Then sValCategory = sValCategory & ",1" Else sValCategory = ",0"
-                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doors").ToString = "True" Then sValCategory = sValCategory & ",1" Else sValCategory = ",0"
-                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "sc").ToString = "True" Then sValCategory = sValCategory & ",1" Else sValCategory = ",0"
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "closet").ToString = "True" Then sValCategory = sValCategory & ",1" Else sValCategory = sValCategory & ",0"
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doors").ToString = "True" Then sValCategory = sValCategory & ",1" Else sValCategory = sValCategory & ",0"
+                If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "sc").ToString = "True" Then sValCategory = sValCategory & ",1" Else sValCategory = sValCategory & ",0"
 
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
-                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_M", LayoutControl1,,, sGuid, True, "instID,kitchen,closet,doors,sc", toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) & sValCategory)
+                        sResult = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_M", LayoutControl1,,, sGuid, True, "instID,extPartnerID,kitchen,closet,doors,sc", toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) & "," & toSQLValueS(cboSER.EditValue.ToString) & sValCategory)
                     Case FormMode.EditRecord
-                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_M", LayoutControl1,,, sID, True)
+                        Dim ExtraFieldsAndValues As String
+                        If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "kitchen").ToString = "True" Then ExtraFieldsAndValues = "Kitchen =1" Else ExtraFieldsAndValues = "Kitchen =0"
+                        If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "closet").ToString = "True" Then ExtraFieldsAndValues = ExtraFieldsAndValues & ",closet=1" Else ExtraFieldsAndValues = ExtraFieldsAndValues & ",closet=0"
+                        If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doors").ToString = "True" Then ExtraFieldsAndValues = ExtraFieldsAndValues & ",doors=1" Else ExtraFieldsAndValues = ExtraFieldsAndValues & ",doors=0"
+                        If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "sc").ToString = "True" Then ExtraFieldsAndValues = ExtraFieldsAndValues & ",sc=1" Else ExtraFieldsAndValues = ExtraFieldsAndValues & ",sc=0"
+                        ExtraFieldsAndValues = ExtraFieldsAndValues & ",extPartnerID = " & toSQLValueS(cboSER.EditValue.ToString)
+                        sResult = DBQ.UpdateNewData(DBQueries.InsertMode.OneLayoutControl, "INST_M", LayoutControl1,,, sID, True,,,, ExtraFieldsAndValues)
                         sGuid = sID
                 End Select
                 txtCode.Text = DBQ.GetNextId("INST_M")
@@ -217,6 +223,13 @@ Public Class frmInstM
                     If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "closet").ToString = "True" Then sCategory = " and closet = 1 "
                     If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "doors").ToString = "True" Then sCategory = " and doors = 1 "
                     If GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "sc").ToString = "True" Then sCategory = " and sc = 1 "
+                    sSQL = "update INST_COST SET instMID = " & toSQLValueS(sGuid) &
+                           "from INST_COST I  
+                           where I.instID= " & toSQLValueS(GridView3.GetRowCellValue(GridView3.FocusedRowHandle, "ID").ToString) & sCategory
+                    Using oCmd As New SqlCommand(sSQL, CNDB)
+                        oCmd.ExecuteNonQuery()
+                    End Using
+
 
                     sSQL = "update INST_COST SET PAID=1,dtPayOFF= " & toSQLValueS(CDate(dtDeliverDate.Text.ToString).ToString("yyyyMMdd")) &
                            "from INST_COST I 

@@ -354,8 +354,8 @@ Public Class ValidateControls
                         Hours = DateDiff(DateInterval.Hour, f.txtTmSCIN.EditValue, f.txtTmSCOUT.EditValue)
                         If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
 
-                        Dim date1 As Date = Date.Parse(f.dtDeliverDateCF.EditValue.ToString)
-                        Dim date2 As Date = Date.Parse(f.dtDeliverDateCT.EditValue.ToString)
+                        Dim date1 As Date = Date.Parse(f.dtDeliverDateSCF.EditValue.ToString)
+                        Dim date2 As Date = Date.Parse(f.dtDeliverDateSCT.EditValue.ToString)
                         Dim Days As Int16 = DateDiff(DateInterval.Day, date1, date2)
                         If DateDiff(DateInterval.Day, date1, date2) < 0 Then XtraMessageBox.Show("Δεν μπορεί η ""ΑΠΟ"" ημερομηνία να είναι μεγαλύτερη από την ""ΕΩΣ""", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
 

@@ -39415,11 +39415,11 @@ Namespace DreamyKitchenDataSetTableAdapters
             Me._commandCollection(1).Connection = Me.Connection
             Me._commandCollection(1).CommandText = " SELECT       vw_INST_COST.instID as ID, cctName, SalerName, " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " sum(cost) +sum (e" &
                 "xtraCost) AS TotalCost, sum(YPOL) as YPOL, description, FullTranshDescription,ki" &
-                "tchen,closet,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM vw_INST_COST WHERE (instID = @ID) " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "group by vw_INST" &
-                "_COST.instID ,cctName, SalerName, description, FullTranshDescription,kitchen,clo" &
-                "set,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " "
+                "tchen,closet,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "FROM vw_INST_COST WHERE (instMID = @ID) " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "group by vw_INS" &
+                "T_COST.instID ,cctName, SalerName, description, FullTranshDescription,kitchen,cl" &
+                "oset,doors,sc" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " "
             Me._commandCollection(1).CommandType = Global.System.Data.CommandType.Text
-            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
+            Me._commandCollection(1).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "instMID", Global.System.Data.DataRowVersion.Current, False, Nothing, "", "", ""))
         End Sub
 
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),
@@ -39452,9 +39452,13 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.Fill, False)>
-        Public Overridable Overloads Function FillByID(ByVal dataTable As DreamyKitchenDataSet.vw_INSTPerSerDataTable, ByVal ID As System.Guid) As Integer
+        Public Overridable Overloads Function FillByID(ByVal dataTable As DreamyKitchenDataSet.vw_INSTPerSerDataTable, ByVal ID As Global.System.Nullable(Of Global.System.Guid)) As Integer
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(ID, System.Guid)
+            If (ID.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(ID.Value, System.Guid)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
             If (Me.ClearBeforeFill = True) Then
                 dataTable.Clear
             End If
@@ -39466,9 +39470,13 @@ Namespace DreamyKitchenDataSetTableAdapters
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),
          Global.System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter"),
          Global.System.ComponentModel.DataObjectMethodAttribute(Global.System.ComponentModel.DataObjectMethodType.[Select], False)>
-        Public Overridable Overloads Function GetDataByID(ByVal ID As System.Guid) As DreamyKitchenDataSet.vw_INSTPerSerDataTable
+        Public Overridable Overloads Function GetDataByID(ByVal ID As Global.System.Nullable(Of Global.System.Guid)) As DreamyKitchenDataSet.vw_INSTPerSerDataTable
             Me.Adapter.SelectCommand = Me.CommandCollection(1)
-            Me.Adapter.SelectCommand.Parameters(0).Value = CType(ID, System.Guid)
+            If (ID.HasValue = True) Then
+                Me.Adapter.SelectCommand.Parameters(0).Value = CType(ID.Value, System.Guid)
+            Else
+                Me.Adapter.SelectCommand.Parameters(0).Value = Global.System.DBNull.Value
+            End If
             Dim dataTable As DreamyKitchenDataSet.vw_INSTPerSerDataTable = New DreamyKitchenDataSet.vw_INSTPerSerDataTable()
             Me.Adapter.Fill(dataTable)
             Return dataTable
