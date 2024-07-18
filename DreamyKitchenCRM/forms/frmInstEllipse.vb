@@ -286,6 +286,7 @@ Public Class frmInstEllipse
     Private Function CheckIfTimeisValid() As Boolean
         If dtDateDelivered.EditValue IsNot Nothing Then
             If txtTmINFrom.Text = "00:00" Or txtTmINTo.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+            txtTmINFrom.EditValue = txtTmINFrom.Text : txtTmINTo.EditValue = txtTmINTo.Text
             Dim Hours As Long = DateDiff(DateInterval.Hour, txtTmINFrom.EditValue, txtTmINTo.EditValue)
             If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
         End If
