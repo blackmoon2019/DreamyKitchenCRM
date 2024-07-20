@@ -216,7 +216,7 @@ Public Class FillCombos
             CtrlCombo.Properties.Columns(0).Visible = False
             CtrlCombo.Properties.Columns(1).Caption = "Διευθύνσεις"
             sdr.Close()
-            Catch ex As Exception
+        Catch ex As Exception
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub

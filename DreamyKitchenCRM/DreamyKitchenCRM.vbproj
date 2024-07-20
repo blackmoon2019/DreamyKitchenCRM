@@ -237,10 +237,12 @@
     <Compile Include="classes\InitializeCalendar.vb" />
     <Compile Include="classes\Installations.vb" />
     <Compile Include="classes\InstallationsCost.vb" />
+    <Compile Include="classes\InstM.vb" />
     <Compile Include="classes\Localization.vb" />
     <Compile Include="classes\Parameters.vb" />
     <Compile Include="classes\ProgProp.vb" />
     <Compile Include="classes\ProjectCost.vb" />
+    <Compile Include="classes\ProjectJobs.vb" />
     <Compile Include="classes\Projects.vb" />
     <Compile Include="classes\ScanToPDF.vb" />
     <Compile Include="classes\SendEmail.vb" />
@@ -1432,6 +1434,9 @@
     <Content Include="favicon.ico" />
     <Content Include="logo%281%29.ico" />
     <Content Include="logo.ico" />
+    <None Include="Resources\icons8-schedule-40_constructor.png" />
+    <None Include="Resources\icons8-schedule-40.png" />
+    <None Include="Resources\icons8-money-transfer-40.png" />
     <None Include="Resources\icons8-installation-24.png" />
     <None Include="Resources\icons8-bank-euro-24.png" />
     <None Include="Resources\icons8-partner-40.png" />

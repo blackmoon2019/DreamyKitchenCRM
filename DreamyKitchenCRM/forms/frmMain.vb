@@ -451,7 +451,7 @@ Public Class frmMain
     End Sub
 
     Private Sub BBInstM_ItemClick(sender As Object, e As ItemClickEventArgs) Handles BBInstM.ItemClick
-        Dim form As frmScroller = New frmScroller("Μισθοδοσία Τοποθετών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
+        Dim form As frmScroller = New frmScroller("Πληρωμές Εξωτερικών Τοποθετών") : If UserProps.AllowView = False Then form.Dispose() : Exit Sub
         form.DataTable = "vw_INST_M"
         form.MdiParent = Me
         form.Show()

@@ -511,7 +511,7 @@ Partial Class frmInstM
         Me.IconOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.favicon
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "frmInstM"
-        Me.Text = "Έργα Τοποθετών"
+        Me.Text = "Πληρωμές Εξωτερικών Τοποθετών"
         CType(Me.LayoutControl1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.LayoutControl1.ResumeLayout(False)
         CType(Me.grdInst, System.ComponentModel.ISupportInitialize).EndInit()

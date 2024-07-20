@@ -620,7 +620,7 @@ Partial Class frmMain
         '
         Me.BBInst.Caption = "Πρόγραμμα Εργασιών Τοποθετών"
         Me.BBInst.Id = 54
-        Me.BBInst.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_paper_money_40
+        Me.BBInst.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_schedule_40
         Me.BBInst.Name = "BBInst"
         Me.BBInst.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -698,9 +698,9 @@ Partial Class frmMain
         '
         'BBInstM
         '
-        Me.BBInstM.Caption = "Μισθοδοσία Τοποθετών"
+        Me.BBInstM.Caption = "Πληρωμές Εξωτερικών Τοποθετών"
         Me.BBInstM.Id = 64
-        Me.BBInstM.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_money_prize_40
+        Me.BBInstM.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_money_transfer_40
         Me.BBInstM.Name = "BBInstM"
         Me.BBInstM.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
@@ -748,7 +748,7 @@ Partial Class frmMain
         '
         Me.bbConstr.Caption = "Πρόγραμμα Εργασίας Κατασκευαστικού"
         Me.bbConstr.Id = 70
-        Me.bbConstr.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_paper_money_40
+        Me.bbConstr.ImageOptions.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_schedule_40_constructor
         Me.bbConstr.Name = "bbConstr"
         Me.bbConstr.RibbonStyle = DevExpress.XtraBars.Ribbon.RibbonItemStyles.Large
         '
