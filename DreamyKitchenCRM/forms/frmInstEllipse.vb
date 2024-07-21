@@ -815,7 +815,7 @@ Public Class frmInstEllipse
         sdr = Cmd.ExecuteReader()
         Dim EllipseID As String
         If (sdr.Read() = True) Then
-            If sdr.IsDBNull(sdr.GetOrdinal("EllipseID")) = False Then EllipseID = sdr.GetGuid(sdr.GetOrdinal("EllipseID")).ToString Else EllipseID = ""
+            If sdr.IsDBNull(sdr.GetOrdinal("id")) = False Then EllipseID = sdr.GetGuid(sdr.GetOrdinal("id")).ToString Else EllipseID = ""
             If EllipseID <> "" Then Return True Else Return False
         Else
             Return False

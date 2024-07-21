@@ -394,8 +394,8 @@ Public Class ValidateControls
                             End If
                         End If
                     End If
-                        'ΝΤΟΥΛΑΠΑ
-                        If f.cboExtPartnerCloset.EditValue IsNot Nothing Then
+                    'ΝΤΟΥΛΑΠΑ
+                    If f.cboExtPartnerCloset.EditValue IsNot Nothing Then
                         If sFields.Count > 0 Then
                             If sFields("ExtPartnerClosetID") <> toSQLValueS(f.cboExtPartnerCloset.EditValue.ToString) Then
                                 sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  closet = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
@@ -411,8 +411,8 @@ Public Class ValidateControls
                             End If
                         End If
                     End If
-                        'ΠΟΡΤΑ
-                        If f.cboExtPartnerDoors.EditValue IsNot Nothing Then
+                    'ΠΟΡΤΑ
+                    If f.cboExtPartnerDoors.EditValue IsNot Nothing Then
                         If sFields.Count > 0 Then
                             If sFields("ExtPartnerDoorsID") <> toSQLValueS(f.cboExtPartnerDoors.EditValue.ToString) Then
                                 sSQL = "SELECT count(ID) as ExistCost FROM INST_COST WHERE  doors = 1 and Paid = 1 and instID = " & toSQLValueS(sFields("ID"))
@@ -446,7 +446,50 @@ Public Class ValidateControls
                         End If
                     End If
 
+                Case "frmProjectJobs"
+                    Dim f As frmProjectJobs = frm
+                    If ExtraChecks = False Then
+                        f.GridControl1.ForceInitialize()
+                        If f.dtVisitDate.EditValue IsNot Nothing Then
+                            If f.txtTmIN.Text = "00:00" Or f.txtTmOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                            f.txtTmIN.EditValue = f.txtTmIN.Text : f.txtTmOUT.EditValue = f.txtTmOUT.Text
+                            Dim Hours As Long = DateDiff(DateInterval.Hour, f.txtTmIN.EditValue, f.txtTmOUT.EditValue)
+                            If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                        End If
 
+
+                        If f.dtVisitDate.EditValue IsNot Nothing And f.chkSER.CheckedItemsCount = 0 Then
+                            XtraMessageBox.Show("Έχετε επιλέξει ημερομηνία επίσκεψης χωρίς να επιλέξετε συνεργείο. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                        If f.chkCompleted.CheckState = CheckState.Checked And f.dtVisitDate.EditValue = Nothing Then
+                            XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την εργασία χωρίς ημερομηνία επίσκεψης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                        If CheckIfProjectJobsDAreCompleted() And f.txtfProjectNameComplete.EditValue = Nothing Then
+                            XtraMessageBox.Show("Δεν έχετε ολοκληρώσει όλες τις εργασίες ή δεν έχετε επισυνάψει το έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                        'isOrder = sComeFrom
+                        If isOrder = True And f.cboSUP.EditValue = Nothing Then
+                            XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                        Return True
+                    Else
+                        If f.Mode = FormMode.NewRecord Then
+                            XtraMessageBox.Show("Δεν έχετε αποθηκέυση την εργασία. Παρακαλώ κάντε κλίκ στο  ""Αποθήκευση"".", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                        If CheckIfProjectJobsDAreCompleted() Then
+                            XtraMessageBox.Show("Όλες οι εργασίες είναι ολοκληρωμένες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                        If f.cboSUP.EditValue = Nothing Then
+                            XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                            Return False
+                        End If
+                    End If
             End Select
             Return True
         Catch ex As Exception
@@ -455,6 +498,23 @@ Public Class ValidateControls
         End Try
 
     End Function
+    Private Function CheckIfProjectJobsDAreCompleted() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As String
+        sSQL = "SELECT id as CountJobD  FROM PROJECT_JOBS_D WHERE completed = 0 and projectJobID= " & toSQLValueS(sID)
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim CountJobD As String
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("CountJobD")) = False Then CountJobD = sdr.GetGuid(sdr.GetOrdinal("CountJobD")).ToString Else CountJobD = ""
+            sdr.Close()
+            If CountJobD <> "" Then Return False Else Return True
+        Else
+            sdr.Close()
+            Return True
+        End If
+    End Function
+
     Private Function AgreementExist() As Boolean
         Dim sSQL As String
         Dim Cmd As SqlCommand
