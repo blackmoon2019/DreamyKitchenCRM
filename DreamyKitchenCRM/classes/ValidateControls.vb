@@ -346,7 +346,7 @@ Public Class ValidateControls
                     End If
                     If f.TabPane2.SelectedPageIndex = "3" Then
                         If f.txtTmSCIN.Text = "00:00" Or f.txtTmSCOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-                        f.txtTmSCIN.EditValue = f.txtTmCIN.Text : f.txtTmSCOUT.EditValue = f.txtTmSCOUT.Text
+                        f.txtTmSCIN.EditValue = f.txtTmSCIN.Text : f.txtTmSCOUT.EditValue = f.txtTmSCOUT.Text
                         Hours = DateDiff(DateInterval.Hour, f.txtTmSCIN.EditValue, f.txtTmSCOUT.EditValue)
                         If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
 
