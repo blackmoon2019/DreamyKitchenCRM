@@ -679,6 +679,12 @@
     <Compile Include="Reports\RepCUSProjectJobs.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Reports\RepCUSProjectJobsForSUP.Designer.vb">
+      <DependentUpon>RepCUSProjectJobsForSUP.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\RepCUSProjectJobsForSUP.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\RepTransCostD.Designer.vb">
       <DependentUpon>RepTransCostD.vb</DependentUpon>
     </Compile>
@@ -1060,6 +1066,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepCUSProjectJobs.resx">
       <DependentUpon>RepCUSProjectJobs.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\RepCUSProjectJobsForSUP.resx">
+      <DependentUpon>RepCUSProjectJobsForSUP.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\RepTransCostD.resx">
       <DependentUpon>RepTransCostD.vb</DependentUpon>

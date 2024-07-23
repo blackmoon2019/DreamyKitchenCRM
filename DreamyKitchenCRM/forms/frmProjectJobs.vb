@@ -1,9 +1,8 @@
-﻿Imports System.Data.SqlClient
+﻿Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
-Imports DevExpress.XtraReports.UI
 
 Public Class frmProjectJobs
     Private sID As String
@@ -12,6 +11,7 @@ Public Class frmProjectJobs
     Private sComeFrom As Integer
     Private CalledFromCtrl As Boolean
     Private HasConnectedOrder As Boolean = False
+    Private Prog_Prop As New ProgProp
     Private Valid As New ValidateControls
     Private ProjectJobs As New ProjectJobs
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
@@ -181,5 +181,67 @@ Public Class frmProjectJobs
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
 
         End Try
+    End Sub
+    Private Sub cmdSendApointmentEmail_Click(sender As Object, e As EventArgs) Handles cmdSendApointmentEmail.Click
+        ProjectJobs.ValidateEmail(1)
+    End Sub
+
+    Private Sub cmdSendEmail_Click(sender As Object, e As EventArgs) Handles cmdSendEmail.Click
+        ProjectJobs.ValidateEmail(2)
+    End Sub
+    Private Sub cmdSendEmailComplete_Click(sender As Object, e As EventArgs) Handles cmdSendEmailComplete.Click
+        ProjectJobs.ValidateEmail(3)
+    End Sub
+    Private Sub DefInst_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInst.ItemClick
+        If sComeFrom = 0 Then
+            txtBody.EditValue = ProgProps.InstEllipseInfBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtVisitDate.Text)
+            txtBody.EditValue = ProgProps.InstEllipseInfBody.Replace("{INST_DATE_DELIVERED}", dtInstDeliverDate.EditValue)
+            txtSubject.EditValue = ProgProps.InstEllipseInfSubject
+        Else
+            txtBody.EditValue = ProgProps.InstEllipseInfBodySup.Replace("{CUS}", cboCUS.Text)
+            txtSubject.EditValue = ProgProps.InstEllipseInfSubjectSup
+        End If
+    End Sub
+    Private Sub DefInstComplete_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInstComplete.ItemClick
+        If sComeFrom = 0 Then
+            If dtVisitDate.EditValue IsNot Nothing Then txtBody.EditValue = ProgProps.InstEllipseInfBodyComplete.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtVisitDate.Text)
+            txtSubject.EditValue = ProgProps.InstEllipseInfSubjectComplete
+        End If
+
+    End Sub
+    Private Sub DefInstAppointment_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInstAppointment.ItemClick
+        txtBody.EditValue = ProgProps.InstEllipseInfAppointmentBody
+        txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtVisitDate.Text)
+        txtBody.EditValue = txtBody.EditValue.Replace("{INST_DATE_DELIVERED}", dtInstDeliverDate.EditValue)
+        txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_TIME_FROM}", txtTmIN.Text)
+        txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_TIME_TO}", txtTmOUT.Text)
+        txtSubject.EditValue = ProgProps.InstEllipseInfAppointmentSubject
+    End Sub
+    Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
+        Select Case TabPane1.SelectedPageIndex
+            Case 1
+                Prog_Prop.GetProgEmailInst()
+
+                If sComeFrom = 0 Then
+                    txtSubject.EditValue = ProgProps.InstEllipseInfSubject
+                    txtTo.EditValue = cboCUS.GetColumnValue("email")
+                    If txtfProjectNameComplete.EditValue IsNot Nothing Then
+                        cmdSendEmailComplete.Enabled = True
+                        DefInstComplete.Enabled = True
+                    Else
+                        cmdSendEmailComplete.Enabled = False
+                        DefInstComplete.Enabled = False
+                    End If
+                Else
+                    txtSubject.EditValue = ProgProps.InstEllipseInfSubjectSup
+                    txtTo.EditValue = ProgProps.InstEmailAccountSup
+                    DefInstAppointment.Enabled = False
+                End If
+                If dtVisitDate.EditValue = Nothing Or txtTmIN.EditValue = "00:00" Or txtTmOUT.EditValue = "00:00" Then cmdSendApointmentEmail.Enabled = False Else cmdSendApointmentEmail.Enabled = True
+                Me.INST_MAILTableAdapter.FillByinstEllipseID(Me.DMDataSet.INST_MAIL, System.Guid.Parse(sID))
+                LoadForms.RestoreLayoutFromXml(GridView3, "INST_MAIL_ELLIPSE.xml")
+                'GridView3.Columns("DateOfEmail").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
+                'GridView3.Columns("DateOfEmail").DisplayFormat.FormatString = "dd/MM/yyyy HH:mm tt"
+        End Select
     End Sub
 End Class

@@ -2,6 +2,8 @@
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
+Imports DevExpress.CodeParser
+Imports DevExpress.XtraGrid.Views.Grid
 
 Public Class ProjectJobs
     Dim Frm As frmProjectJobs
@@ -11,6 +13,7 @@ Public Class ProjectJobs
     Private LoadForms As New FormLoader
     Private Cls As New ClearControls
     Private UserPermissions As New CheckPermissions
+    Private emailMode As Int16
     Private ID As String
     Public Mode As Byte
     Private sComeFrom As Integer
@@ -430,7 +433,7 @@ Public Class ProjectJobs
             Dim printTool As New ReportPrintTool(report)
             printTool.ShowRibbonPreview()
         Else
-            Dim report As New RepCUSEllipseForSUP
+            Dim report As New RepCUSProjectJobsForSUP
             report.Parameters.Item(0).Value = ID
             report.CreateDocument()
             Dim printTool As New ReportPrintTool(report)
@@ -482,5 +485,91 @@ Public Class ProjectJobs
         End If
 
     End Sub
+    Public Sub ValidateEmail(ByVal sEmailMode As Int16)
+        emailMode = sEmailMode
+        If Frm.GridView1.RowCount = 0 Then XtraMessageBox.Show("Δεν υπάρχουν εκκρεμότητες προς αποστολή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.txtTo.Text = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+            SendEmailExportReport()
+            'Me.INST_MAILTableAdapter.FillByinstEllipseID(Me.DmDataSet.INST_MAIL, System.Guid.Parse(sID))
+        End If
+    End Sub
+    Private Sub SendEmailExportReport()
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim Emails As New SendEmail
+        Dim statusMsg As String
+        Dim sEmailTo As String
+        Dim sSubject As String
+        Dim sBody As String
+        Dim sFile As String
+        Dim sSQL As String
+        Try
 
+
+            If sComeFrom = 1 Then
+                Dim report As New RepCUSProjectJobsForSUP()
+                report.Parameters.Item(0).Value = ID
+                sEmailTo = Frm.txtTo.EditValue
+                sBody = ProgProps.InstEllipseInfBodySup
+                sSubject = ProgProps.InstEllipseInfSubjectSup
+                sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", Date.Now.Date)
+                sBody = sBody.Replace("{CUS}", Frm.cboCUS.Text)
+                sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εργασιών προμηθευτή.pdf"
+                report.CreateDocument()
+                report.ExportToPdf(sFile)
+                report.Dispose()
+                report = Nothing
+                My.Computer.FileSystem.CopyFile(sFile, ProgProps.ServerPath & Path.GetFileName(sFile), True)
+            Else
+                Dim report As New RepCUSProjectJobs()
+                report.Parameters.Item(0).Value = ID
+                sEmailTo = Frm.txtTo.EditValue
+                sBody = Frm.txtBody.EditValue
+                'sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", Frm.dtDateDelivered.Text)
+                'sBody = sBody.Replace("{INST_DATE_DELIVERED}", frm.cboINST.GetColumnValue("dtDeliverDate").ToString())
+                sBody = sBody.Replace("{INST_ELLIPSE_TIME_FROM}", Frm.txtTmIN.Text)
+                sBody = sBody.Replace("{INST_ELLIPSE_TIME_TO}", Frm.txtTmOUT.Text)
+                sSubject = Frm.txtSubject.EditValue
+                sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εργασιών.pdf"
+                report.CreateDocument()
+                report.ExportToPdf(sFile)
+                report.Dispose()
+                report = Nothing
+                My.Computer.FileSystem.CopyFile(sFile, ProgProps.ServerPath & Path.GetFileName(sFile), True)
+            End If
+
+            'sEmailTo = "dreamykitchen@gmail.com"
+            'sEmailTo = "johnmavroselinos@gmail.com"
+
+            If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com;dreamykitchen@gmail.com"
+
+            If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
+                Select Case emailMode
+                    Case 1 : sSQL = "Update PROJECT_JOBS SET emailApp = 1,DateOfEmailApp=getdate() WHERE ID = " & toSQLValueS(ID)
+                    Case 2 : sSQL = "Update PROJECT_JOBS SET emailInf = 1,DateOfEmailInf=getdate() WHERE ID = " & toSQLValueS(ID)
+                    Case 3 : sSQL = "Update PROJECT_JOBS SET emailInfComplete = 1,DateOfEmailInfComplete=getdate() WHERE ID = " & toSQLValueS(ID)
+                End Select
+
+                Cmd = New SqlCommand(sSQL, CNDB) : Cmd.ExecuteNonQuery()
+
+                ' Εισαγωγή ιστορικού email
+                sSQL = "INSERT INTO [PROJECT_JOBS_MAIL] (projectjobID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment)  
+                        Select " & toSQLValueS(ID) & "," & toSQLValueS(ProgProps.InstEmailAccount.ToString) & "," &
+                                    toSQLValue(Frm.txtTo) & "," & toSQLValue(Frm.txtSubject) & "," & toSQLValue(Frm.txtBody) & ",getdate(), " &
+                                    toSQLValueS(UserProps.ID.ToString) & ", getdate(), " & sComeFrom & "," & emailMode & ",  * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F;"
+                Using oCmd As New SqlCommand(sSQL, CNDB)
+                    oCmd.ExecuteNonQuery()
+                End Using
+
+
+                XtraMessageBox.Show("Το email στάλθηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Else
+                XtraMessageBox.Show("Παρουσιάστηκε πρόβλημα με σφάλμα " & statusMsg, ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            End If
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
 End Class
