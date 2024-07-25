@@ -20,17 +20,17 @@ Partial Class frmProjectJobs
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim EditorButtonImageOptions3 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
+        Dim SerializableAppearanceObject9 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject10 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject11 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
+        Dim SerializableAppearanceObject12 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmProjectJobs))
         Dim EditorButtonImageOptions1 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
         Dim SerializableAppearanceObject1 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject2 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject3 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Dim SerializableAppearanceObject4 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim EditorButtonImageOptions2 As DevExpress.XtraEditors.Controls.EditorButtonImageOptions = New DevExpress.XtraEditors.Controls.EditorButtonImageOptions()
-        Dim SerializableAppearanceObject5 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject6 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject7 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
-        Dim SerializableAppearanceObject8 As DevExpress.Utils.SerializableAppearanceObject = New DevExpress.Utils.SerializableAppearanceObject()
         Me.VwPROJECTJOBSDBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.DMDataSet = New DreamyKitchenCRM.DMDataSet()
         Me.Vw_PROJECT_JOBS_DTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.vw_PROJECT_JOBS_DTableAdapter()
@@ -102,9 +102,9 @@ Partial Class frmProjectJobs
         Me.cmdSendEmailComplete = New DevExpress.XtraEditors.SimpleButton()
         Me.cmdDefEmail = New DevExpress.XtraEditors.DropDownButton()
         Me.PopupMenu1 = New DevExpress.XtraBars.PopupMenu(Me.components)
-        Me.DefInst = New DevExpress.XtraBars.BarButtonItem()
-        Me.DefInstAppointment = New DevExpress.XtraBars.BarButtonItem()
-        Me.DefInstComplete = New DevExpress.XtraBars.BarButtonItem()
+        Me.DefProj = New DevExpress.XtraBars.BarButtonItem()
+        Me.DefProjAppointment = New DevExpress.XtraBars.BarButtonItem()
+        Me.DefProjComplete = New DevExpress.XtraBars.BarButtonItem()
         Me.BarManager1 = New DevExpress.XtraBars.BarManager(Me.components)
         Me.barDockControlTop = New DevExpress.XtraBars.BarDockControl()
         Me.barDockControlBottom = New DevExpress.XtraBars.BarDockControl()
@@ -116,6 +116,7 @@ Partial Class frmProjectJobs
         Me.txtBody = New DevExpress.XtraEditors.MemoEdit()
         Me.txtTo = New DevExpress.XtraEditors.TextEdit()
         Me.grdMain = New DevExpress.XtraGrid.GridControl()
+        Me.PROJECTJOBSMAILBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.GridView3 = New DevExpress.XtraGrid.Views.Grid.GridView()
         Me.colID1 = New DevExpress.XtraGrid.Columns.GridColumn()
         Me.colcode1 = New DevExpress.XtraGrid.Columns.GridColumn()
@@ -174,7 +175,6 @@ Partial Class frmProjectJobs
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
         Me.XtraOpenFileDialog1 = New DevExpress.XtraEditors.XtraOpenFileDialog(Me.components)
         Me.BehaviorManager1 = New DevExpress.Utils.Behaviors.BehaviorManager(Me.components)
-        Me.PROJECTJOBSMAILBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.PROJECT_JOBS_MAILTableAdapter = New DreamyKitchenCRM.DMDataSetTableAdapters.PROJECT_JOBS_MAILTableAdapter()
         CType(Me.VwPROJECTJOBSDBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DMDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -240,6 +240,7 @@ Partial Class frmProjectJobs
         CType(Me.txtBody.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtTo.Properties, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PROJECTJOBSMAILBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.txtImageAttachment, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -269,7 +270,6 @@ Partial Class frmProjectJobs
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.PROJECTJOBSMAILBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'VwPROJECTJOBSDBindingSource
@@ -753,8 +753,8 @@ Partial Class frmProjectJobs
         Me.txtfProjectNameComplete.Margin = New System.Windows.Forms.Padding(4)
         Me.txtfProjectNameComplete.Name = "txtfProjectNameComplete"
         Me.txtfProjectNameComplete.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions1.Image = CType(resources.GetObject("EditorButtonImageOptions1.Image"), System.Drawing.Image)
-        Me.txtfProjectNameComplete.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions3.Image = CType(resources.GetObject("EditorButtonImageOptions3.Image"), System.Drawing.Image)
+        Me.txtfProjectNameComplete.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions3, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject9, SerializableAppearanceObject10, SerializableAppearanceObject11, SerializableAppearanceObject12, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtfProjectNameComplete.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtfProjectNameComplete.Size = New System.Drawing.Size(961, 26)
         Me.txtfProjectNameComplete.StyleController = Me.LayoutControl1
@@ -1068,7 +1068,7 @@ Partial Class frmProjectJobs
         Me.cmdSendEmailComplete.Size = New System.Drawing.Size(483, 36)
         Me.cmdSendEmailComplete.StyleController = Me.LayoutControl2
         Me.cmdSendEmailComplete.TabIndex = 5
-        Me.cmdSendEmailComplete.Text = "Αποστολή Email Ολοκλήρωσης Ενημέρωσης Εκκρεμοτήτων"
+        Me.cmdSendEmailComplete.Text = "Αποστολή Email Ολοκλήρωσης Ενημέρωσης Εργασιών"
         '
         'cmdDefEmail
         '
@@ -1084,27 +1084,27 @@ Partial Class frmProjectJobs
         '
         'PopupMenu1
         '
-        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.DefInst), New DevExpress.XtraBars.LinkPersistInfo(Me.DefInstAppointment), New DevExpress.XtraBars.LinkPersistInfo(Me.DefInstComplete)})
+        Me.PopupMenu1.LinksPersistInfo.AddRange(New DevExpress.XtraBars.LinkPersistInfo() {New DevExpress.XtraBars.LinkPersistInfo(Me.DefProj), New DevExpress.XtraBars.LinkPersistInfo(Me.DefProjAppointment), New DevExpress.XtraBars.LinkPersistInfo(Me.DefProjComplete)})
         Me.PopupMenu1.Manager = Me.BarManager1
         Me.PopupMenu1.Name = "PopupMenu1"
         '
-        'DefInst
+        'DefProj
         '
-        Me.DefInst.Caption = "Ενημέρωσης Εργασιών"
-        Me.DefInst.Id = 0
-        Me.DefInst.Name = "DefInst"
+        Me.DefProj.Caption = "Ενημέρωσης Εργασιών"
+        Me.DefProj.Id = 0
+        Me.DefProj.Name = "DefProj"
         '
-        'DefInstAppointment
+        'DefProjAppointment
         '
-        Me.DefInstAppointment.Caption = "Ενημέρωσης Προγραμματισμένου Ραντεβού"
-        Me.DefInstAppointment.Id = 1
-        Me.DefInstAppointment.Name = "DefInstAppointment"
+        Me.DefProjAppointment.Caption = "Ενημέρωσης Προγραμματισμένου Ραντεβού"
+        Me.DefProjAppointment.Id = 1
+        Me.DefProjAppointment.Name = "DefProjAppointment"
         '
-        'DefInstComplete
+        'DefProjComplete
         '
-        Me.DefInstComplete.Caption = "Ενημέρωσης Ολοκλήρωσης Εργασιών"
-        Me.DefInstComplete.Id = 2
-        Me.DefInstComplete.Name = "DefInstComplete"
+        Me.DefProjComplete.Caption = "Ενημέρωσης Ολοκλήρωσης Εργασιών"
+        Me.DefProjComplete.Id = 2
+        Me.DefProjComplete.Name = "DefProjComplete"
         '
         'BarManager1
         '
@@ -1113,7 +1113,7 @@ Partial Class frmProjectJobs
         Me.BarManager1.DockControls.Add(Me.barDockControlLeft)
         Me.BarManager1.DockControls.Add(Me.barDockControlRight)
         Me.BarManager1.Form = Me
-        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.DefInst, Me.DefInstAppointment, Me.DefInstComplete})
+        Me.BarManager1.Items.AddRange(New DevExpress.XtraBars.BarItem() {Me.DefProj, Me.DefProjAppointment, Me.DefProjComplete})
         Me.BarManager1.MaxItemId = 3
         '
         'barDockControlTop
@@ -1183,7 +1183,7 @@ Partial Class frmProjectJobs
         Me.cmdSendEmail.Size = New System.Drawing.Size(377, 36)
         Me.cmdSendEmail.StyleController = Me.LayoutControl2
         Me.cmdSendEmail.TabIndex = 6
-        Me.cmdSendEmail.Text = "Αποστολή Email Ενημέρωσης Εκκρεμοτήτων"
+        Me.cmdSendEmail.Text = "Αποστολή Email Ενημέρωσης Εργασιών"
         '
         'txtBody
         '
@@ -1215,6 +1215,11 @@ Partial Class frmProjectJobs
         Me.grdMain.TabIndex = 8
         Me.grdMain.UseEmbeddedNavigator = True
         Me.grdMain.ViewCollection.AddRange(New DevExpress.XtraGrid.Views.Base.BaseView() {Me.GridView3, Me.GridView2})
+        '
+        'PROJECTJOBSMAILBindingSource
+        '
+        Me.PROJECTJOBSMAILBindingSource.DataMember = "PROJECT_JOBS_MAIL"
+        Me.PROJECTJOBSMAILBindingSource.DataSource = Me.DMDataSet
         '
         'GridView3
         '
@@ -1689,8 +1694,8 @@ Partial Class frmProjectJobs
         Me.txtFiles.Margin = New System.Windows.Forms.Padding(4)
         Me.txtFiles.Name = "txtFiles"
         Me.txtFiles.Properties.AllowNullInput = DevExpress.Utils.DefaultBoolean.[True]
-        EditorButtonImageOptions2.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
-        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions2, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject5, SerializableAppearanceObject6, SerializableAppearanceObject7, SerializableAppearanceObject8, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
+        EditorButtonImageOptions1.Image = Global.DreamyKitchenCRM.My.Resources.Resources.icons8_scanner_16
+        Me.txtFiles.Properties.Buttons.AddRange(New DevExpress.XtraEditors.Controls.EditorButton() {New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Glyph, "", -1, True, True, False, EditorButtonImageOptions1, New DevExpress.Utils.KeyShortcut(System.Windows.Forms.Keys.None), SerializableAppearanceObject1, SerializableAppearanceObject2, SerializableAppearanceObject3, SerializableAppearanceObject4, "", Nothing, Nothing, DevExpress.Utils.ToolTipAnchor.[Default]), New DevExpress.XtraEditors.Controls.EditorButton(), New DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Delete)})
         Me.txtFiles.Properties.TextEditStyle = DevExpress.XtraEditors.Controls.TextEditStyles.DisableTextEditor
         Me.txtFiles.Size = New System.Drawing.Size(1363, 26)
         Me.txtFiles.StyleController = Me.LayoutControl4
@@ -1771,11 +1776,6 @@ Partial Class frmProjectJobs
         '
         Me.XtraOpenFileDialog1.Multiselect = True
         Me.XtraOpenFileDialog1.Title = "Επιλογή αρχείων"
-        '
-        'PROJECTJOBSMAILBindingSource
-        '
-        Me.PROJECTJOBSMAILBindingSource.DataMember = "PROJECT_JOBS_MAIL"
-        Me.PROJECTJOBSMAILBindingSource.DataSource = Me.DMDataSet
         '
         'PROJECT_JOBS_MAILTableAdapter
         '
@@ -1859,6 +1859,7 @@ Partial Class frmProjectJobs
         CType(Me.txtBody.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtTo.Properties, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.grdMain, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PROJECTJOBSMAILBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.txtImageAttachment, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.GridView2, System.ComponentModel.ISupportInitialize).EndInit()
@@ -1888,7 +1889,6 @@ Partial Class frmProjectJobs
         CType(Me.LayoutControlItem37, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.EmptySpaceItem4, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.BehaviorManager1, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.PROJECTJOBSMAILBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2028,9 +2028,9 @@ Partial Class frmProjectJobs
     Friend WithEvents XtraOpenFileDialog1 As DevExpress.XtraEditors.XtraOpenFileDialog
     Friend WithEvents BehaviorManager1 As DevExpress.Utils.Behaviors.BehaviorManager
     Friend WithEvents PopupMenu1 As DevExpress.XtraBars.PopupMenu
-    Friend WithEvents DefInst As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents DefInstAppointment As DevExpress.XtraBars.BarButtonItem
-    Friend WithEvents DefInstComplete As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents DefProj As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents DefProjAppointment As DevExpress.XtraBars.BarButtonItem
+    Friend WithEvents DefProjComplete As DevExpress.XtraBars.BarButtonItem
     Friend WithEvents BarManager1 As DevExpress.XtraBars.BarManager
     Friend WithEvents barDockControlTop As DevExpress.XtraBars.BarDockControl
     Friend WithEvents barDockControlBottom As DevExpress.XtraBars.BarDockControl

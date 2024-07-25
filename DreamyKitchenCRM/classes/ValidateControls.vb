@@ -450,28 +450,31 @@ Public Class ValidateControls
                     Dim f As frmProjectJobs = frm
                     If ExtraChecks = False Then
                         f.GridControl1.ForceInitialize()
-                        If f.dtVisitDate.EditValue IsNot Nothing Then
-                            If f.txtTmIN.Text = "00:00" Or f.txtTmOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-                            f.txtTmIN.EditValue = f.txtTmIN.Text : f.txtTmOUT.EditValue = f.txtTmOUT.Text
-                            Dim Hours As Long = DateDiff(DateInterval.Hour, f.txtTmIN.EditValue, f.txtTmOUT.EditValue)
-                            If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
-                        End If
+                        If f.ComeFrom = 0 Then
+                            If f.dtVisitDate.EditValue IsNot Nothing Then
+                                If f.txtTmIN.Text = "00:00" Or f.txtTmOUT.Text = "00:00" Then XtraMessageBox.Show("Η ώρα δεν μπορεί να είναι 00:00", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                                f.txtTmIN.EditValue = f.txtTmIN.Text : f.txtTmOUT.EditValue = f.txtTmOUT.Text
+                                Dim Hours As Long = DateDiff(DateInterval.Hour, f.txtTmIN.EditValue, f.txtTmOUT.EditValue)
+                                If Hours < 0 Then XtraMessageBox.Show("Η ώρα ΑΠΟ δεν μπορεί να είναι μικρότερη από την ΕΩΣ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Return False
+                            End If
 
+                            If f.dtVisitDate.EditValue IsNot Nothing And f.chkSER.CheckedItemsCount = 0 Then
+                                XtraMessageBox.Show("Έχετε επιλέξει ημερομηνία επίσκεψης χωρίς να επιλέξετε συνεργείο. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
 
-                        If f.dtVisitDate.EditValue IsNot Nothing And f.chkSER.CheckedItemsCount = 0 Then
-                            XtraMessageBox.Show("Έχετε επιλέξει ημερομηνία επίσκεψης χωρίς να επιλέξετε συνεργείο. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
-                        If f.chkCompleted.CheckState = CheckState.Checked And f.dtVisitDate.EditValue = Nothing Then
-                            XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την εργασία χωρίς ημερομηνία επίσκεψης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
-                        End If
-                        If CheckIfProjectJobsDAreCompleted() And f.txtfProjectNameComplete.EditValue = Nothing Then
-                            XtraMessageBox.Show("Δεν έχετε ολοκληρώσει όλες τις εργασίες ή δεν έχετε επισυνάψει το έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
-                            Return False
+                            If f.chkCompleted.CheckState = CheckState.Checked And f.dtVisitDate.EditValue = Nothing Then
+                                XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την εργασία χωρίς ημερομηνία επίσκεψης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
+
+                            If CheckIfProjectJobsDAreCompleted() And f.txtfProjectNameComplete.EditValue = Nothing Then
+                                XtraMessageBox.Show("Δεν έχετε ολοκληρώσει όλες τις εργασίες ή δεν έχετε επισυνάψει το έντυπο ολοκλήρωσης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                                Return False
+                            End If
                         End If
                         'isOrder = sComeFrom
-                        If isOrder = True And f.cboSUP.EditValue = Nothing Then
+                        If f.ComeFrom = 1 And f.cboSUP.EditValue = Nothing Then
                             XtraMessageBox.Show("Δεν έχετε επιλέξει Προμηθευτή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                             Return False
                         End If

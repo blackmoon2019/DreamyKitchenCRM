@@ -83,11 +83,13 @@ Public Class frmLogin
                         If Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\DreamyKitchenDEV") Is Nothing Then My.Computer.Registry.CurrentUser.CreateSubKey("SOFTWARE\\DreamyKitchenDEV")
                         ProgProps.ServerViewsPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchenDEV", "SERVERVIEWS", "")
                         ProgProps.ServerPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchenDEV", "SERVER_PATH", "")
+                        ProgProps.UpdatesPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchenDEV", "UPDATES_PATH", "")
                         ProgProps.Records = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchenDEV", "Records", 0)
                         UserProps.UNSave = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchenDEV", "UNSave", "2")
 
                         If ProgProps.ServerPath = "" Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchenDEV", "SERVER_PATH", "\\10.10.5.7\TempCrm\")
                         If ProgProps.ServerViewsPath = "" Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchenDEV", "SERVERVIEWS", "\\10.10.5.7\CrmViews\DEV\")
+                        If ProgProps.UpdatesPath = "" Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchenDEV", "UPDATES_PATH", "\\10.10.5.5\crm\DKCRM\DEV\Updates\")
                         If ProgProps.Records = 0 Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchenDEV", "Records", "1000")
                         If chkRememberUN.CheckState = CheckState.Checked Then
                             My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchenDEV", "UNSave", "1")
@@ -101,11 +103,13 @@ Public Class frmLogin
                         If Microsoft.Win32.Registry.CurrentUser.OpenSubKey("SOFTWARE\\DreamyKitchen") Is Nothing Then My.Computer.Registry.CurrentUser.CreateSubKey("SOFTWARE\\DreamyKitchen")
                         ProgProps.ServerViewsPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "SERVERVIEWS", "")
                         ProgProps.ServerPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "SERVER_PATH", "")
+                        ProgProps.UpdatesPath = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "UPDATES_PATH", "")
                         ProgProps.Records = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "Records", 0)
                         UserProps.UNSave = My.Computer.Registry.GetValue("HKEY_CURRENT_USER\Software\DreamyKitchen", "UNSave", "2")
 
                         If ProgProps.ServerPath = "" Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "SERVER_PATH", "\\10.10.5.7\TempCrm\")
                         If ProgProps.ServerViewsPath = "" Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "SERVERVIEWS", "\\10.10.5.7\CrmViews\")
+                        If ProgProps.UpdatesPath = "" Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "UPDATES_PATH", "\\10.10.5.5\crm\DKCRM\Updates\")
                         If ProgProps.Records = 0 Then My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "Records", "1000")
                         If chkRememberUN.CheckState = CheckState.Checked Then
                             My.Computer.Registry.SetValue("HKEY_CURRENT_USER\SOFTWARE\DreamyKitchen", "UNSave", "1")

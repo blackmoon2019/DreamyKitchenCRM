@@ -89,6 +89,7 @@ Public Class frmParameters
                 Parameters.LoadDefaultClosetEquipment()
                 Parameters.LoadDefaultOrder()
             Case 3 : Parameters.LoadDefaultEmailInst()
+            Case 4 : Parameters.LoadDefaultEmailPJ()
             Case Else
         End Select
     End Sub
@@ -120,7 +121,7 @@ Public Class frmParameters
         Me.Close()
     End Sub
 
-    Private Sub cmdSaveInstEmail_Click(sender As Object, e As EventArgs) Handles cmdSaveEmail.Click
+    Private Sub cmdSaveInstEmail_Click(sender As Object, e As EventArgs) Handles cmdSaveEmailInst.Click
         Parameters.SaveDefaultInstEmail()
     End Sub
 
@@ -156,4 +157,9 @@ Public Class frmParameters
             Case 3 : CLOSET_BOX_COLOR.EditValue = Nothing
         End Select
     End Sub
+
+    Private Sub cmdSaveEmailProjectJobs_Click(sender As Object, e As EventArgs) Handles cmdSaveEmailProjectJobs.Click
+        Parameters.SaveDefaultProjectJobsEmail()
+    End Sub
+
 End Class

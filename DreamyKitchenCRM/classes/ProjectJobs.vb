@@ -16,10 +16,17 @@ Public Class ProjectJobs
     Private emailMode As Int16
     Private ID As String
     Public Mode As Byte
-    Private sComeFrom As Integer
+    Private sComeFrom As Int16
     Private HasConnectedOrder As Boolean = False
     Private ConnectedOrderID As String = ""
-
+    Public Property ComeFrom() As Int16
+        Get
+            Return sComeFrom
+        End Get
+        Set(value As Int16)
+            sComeFrom = value
+        End Set
+    End Property
     Public Sub New()
 
     End Sub
@@ -53,16 +60,18 @@ Public Class ProjectJobs
                 Frm.GridControl1.ForceInitialize()
                 If Frm.GridView1.DataRowCount = 0 Then Frm.cmdSendEmail.Enabled = False : Frm.cmdPrintAll.Enabled = False : Frm.cmdSendApointmentEmail.Enabled = False : Frm.cmdDefEmail.Enabled = False
         End Select
-        LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_PROJECT_JOBS_D.xml")
+
         If sComeFrom = 1 Then
+            LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_PROJECT_JOBS_D_SUP.xml")
             Frm.LayoutControlGroup1.Text = "Αφορά Προμηθευτή"
             Frm.chkSER.Enabled = False : Frm.LTmINFrom.Enabled = False : Frm.LTmINTo.Enabled = False
             Frm.cmdNewProjectJob.Enabled = False
+            Frm.dtVisitDate.Enabled = False
             DisabletxtProjectJobFilenameComplete()
-            Frm.GridView1.OptionsBehavior.Editable = False
-            Frm.cmdViewOrder.Enabled = False : Frm.cmdConvertToOrder.Enabled = False
+            Frm.GridView1.OptionsBehavior.Editable = True : Frm.cmdViewOrder.Enabled = False : Frm.cmdConvertToOrder.Enabled = False
         Else
             Frm.LayoutControlGroup1.Text = "Αφορά Πελάτη"
+            LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_PROJECT_JOBS_D.xml")
         End If
 
         Frm.cmdSave.Enabled = IIf(Mode = FormMode.NewRecord, UserProps.AllowInsert, UserProps.AllowEdit)
@@ -82,8 +91,13 @@ Public Class ProjectJobs
                 navigator.Buttons.Append.Enabled = False
                 navigator.Buttons.Remove.Enabled = False
             Else
-                navigator.Buttons.Append.Enabled = True
-                navigator.Buttons.Remove.Enabled = True
+                If sComeFrom = 0 Then
+                    navigator.Buttons.Append.Enabled = False
+                    navigator.Buttons.Remove.Enabled = False
+                Else
+                    navigator.Buttons.Append.Enabled = True
+                    navigator.Buttons.Remove.Enabled = True
+                End If
             End If
         Finally
             navigator.Buttons.EndUpdate()
@@ -95,7 +109,7 @@ Public Class ProjectJobs
         Dim sGuid As String
         Try
             If Valid.ValidateForm(Frm.LayoutControl1) Then
-                If Valid.ValiDationRules(Frm.Name, Frm, False, IIf(sComeFrom = 0, False, True)) = False Then Exit Sub
+                If Valid.ValiDationRules(Frm.Name, Frm, False) = False Then Exit Sub
                 Select Case Mode
                     Case FormMode.NewRecord
                         sGuid = System.Guid.NewGuid.ToString
@@ -487,13 +501,13 @@ Public Class ProjectJobs
     End Sub
     Public Sub ValidateEmail(ByVal sEmailMode As Int16)
         emailMode = sEmailMode
-        If Frm.GridView1.RowCount = 0 Then XtraMessageBox.Show("Δεν υπάρχουν εκκρεμότητες προς αποστολή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.GridView1.RowCount = 0 Then XtraMessageBox.Show("Δεν υπάρχουν εργασίες προς αποστολή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If Frm.txtTo.Text = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.txtTo.Text = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον " & IIf(sComeFrom = 0, " πελάτη.", " προμηθευτή."), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             SendEmailExportReport()
-            'Me.INST_MAILTableAdapter.FillByinstEllipseID(Me.DmDataSet.INST_MAIL, System.Guid.Parse(sID))
+            Frm.PROJECT_JOBS_MAILTableAdapter.FillByProjectJobID(Frm.DMDataSet.PROJECT_JOBS_MAIL, System.Guid.Parse(ID))
         End If
     End Sub
     Private Sub SendEmailExportReport()
@@ -514,7 +528,7 @@ Public Class ProjectJobs
                 sEmailTo = Frm.txtTo.EditValue
                 sBody = ProgProps.InstEllipseInfBodySup
                 sSubject = ProgProps.InstEllipseInfSubjectSup
-                sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", Date.Now.Date)
+                sBody = sBody.Replace("{PJ_VISIT_DATE}", Date.Now.Date)
                 sBody = sBody.Replace("{CUS}", Frm.cboCUS.Text)
                 sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εργασιών προμηθευτή.pdf"
                 report.CreateDocument()
@@ -527,10 +541,8 @@ Public Class ProjectJobs
                 report.Parameters.Item(0).Value = ID
                 sEmailTo = Frm.txtTo.EditValue
                 sBody = Frm.txtBody.EditValue
-                'sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", Frm.dtDateDelivered.Text)
-                'sBody = sBody.Replace("{INST_DATE_DELIVERED}", frm.cboINST.GetColumnValue("dtDeliverDate").ToString())
-                sBody = sBody.Replace("{INST_ELLIPSE_TIME_FROM}", Frm.txtTmIN.Text)
-                sBody = sBody.Replace("{INST_ELLIPSE_TIME_TO}", Frm.txtTmOUT.Text)
+                sBody = sBody.Replace("{PJ_TIME_FROM}", Frm.txtTmIN.Text)
+                sBody = sBody.Replace("{PJ_TIME_TO}", Frm.txtTmOUT.Text)
                 sSubject = Frm.txtSubject.EditValue
                 sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εργασιών.pdf"
                 report.CreateDocument()
@@ -545,7 +557,7 @@ Public Class ProjectJobs
 
             If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com;dreamykitchen@gmail.com"
 
-            If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
+            If Emails.SendEmail(ProgProps.PJEmailSupFrom, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
                 Select Case emailMode
                     Case 1 : sSQL = "Update PROJECT_JOBS SET emailApp = 1,DateOfEmailApp=getdate() WHERE ID = " & toSQLValueS(ID)
                     Case 2 : sSQL = "Update PROJECT_JOBS SET emailInf = 1,DateOfEmailInf=getdate() WHERE ID = " & toSQLValueS(ID)

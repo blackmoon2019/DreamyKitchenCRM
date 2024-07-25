@@ -2,6 +2,7 @@
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
+Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 
 Public Class frmProjectJobs
@@ -14,6 +15,7 @@ Public Class frmProjectJobs
     Private Prog_Prop As New ProgProp
     Private Valid As New ValidateControls
     Private ProjectJobs As New ProjectJobs
+    Private LoadForms As New FormLoader
     Private Ctrl As DevExpress.XtraGrid.Views.Grid.GridView
     Private Frm As DevExpress.XtraEditors.XtraForm
     Private ManageCbo As New CombosManager
@@ -49,8 +51,11 @@ Public Class frmProjectJobs
             FScrollerExist = value
         End Set
     End Property
-    Public WriteOnly Property ComeFrom As Integer
-        Set(value As Integer)
+    Public Property ComeFrom() As Int16
+        Get
+            Return sComeFrom
+        End Get
+        Set(value As Int16)
             sComeFrom = value
         End Set
     End Property
@@ -62,6 +67,7 @@ Public Class frmProjectJobs
     Private Sub frmProjectJobs_Load(sender As Object, e As EventArgs) Handles Me.Load
         ProjectJobs.Initialize(Me, sID, Mode)
         ProjectJobs.LoadForm()
+        ComeFrom = ProjectJobs.ComeFrom
         AddHandler GridControl1.EmbeddedNavigator.ButtonClick, AddressOf Grid_EmbeddedNavigator_ButtonClick
         Me.CenterToScreen()
     End Sub
@@ -111,7 +117,7 @@ Public Class frmProjectJobs
     End Sub
     Private Sub GridView1_KeyDown(sender As Object, e As KeyEventArgs) Handles GridView1.KeyDown
         If e.KeyCode = Keys.Delete And UserProps.AllowDelete = True Then ProjectJobs.DeleteRecord()
-        If e.KeyCode = Keys.Down And UserProps.AllowInsert Then
+        If e.KeyCode = Keys.Down And UserProps.AllowInsert And sComeFrom = 0 Then
             If sender.FocusedRowHandle < 0 Then Exit Sub
             Dim viewInfo As GridViewInfo = TryCast(sender.GetViewInfo(), GridViewInfo)
             If sender.FocusedRowHandle = viewInfo.RowsInfo.Last().RowHandle Then
@@ -122,15 +128,23 @@ Public Class frmProjectJobs
 
     Private Sub GridView1_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView1.ValidateRow
         If e.RowHandle = GridControl1.NewItemRowHandle Then
-            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "description").ToString = "" Then
+            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "description").ToString = "" And sComeFrom = 0 Then
                 e.ErrorText = "Παρακαλώ συμπληρώστε την εργασία"
                 e.Valid = False
                 Exit Sub
             End If
             ProjectJobs.SaveRecordProjectD(True)
         Else
-            ProjectJobs.SaveRecordProjectD(False)
+            If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "descriptionSup").ToString = "" And sComeFrom = 1 Then
+                e.ErrorText = "Παρακαλώ συμπληρώστε την εργασία"
+                e.Valid = False
+                Exit Sub
+            Else
+                If GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "descriptionSup").ToString <> "" And sComeFrom = 1 Then
+                    ProjectJobs.SaveRecordProjectD(False)
+                End If
             End If
+        End If
     End Sub
 
     Private Sub GridView1_CellValueChanging(sender As Object, e As CellValueChangedEventArgs) Handles GridView1.CellValueChanging
@@ -192,56 +206,66 @@ Public Class frmProjectJobs
     Private Sub cmdSendEmailComplete_Click(sender As Object, e As EventArgs) Handles cmdSendEmailComplete.Click
         ProjectJobs.ValidateEmail(3)
     End Sub
-    Private Sub DefInst_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInst.ItemClick
+    Private Sub DefProj_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefProj.ItemClick
         If sComeFrom = 0 Then
-            txtBody.EditValue = ProgProps.InstEllipseInfBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtVisitDate.Text)
-            txtBody.EditValue = ProgProps.InstEllipseInfBody.Replace("{INST_DATE_DELIVERED}", dtInstDeliverDate.EditValue)
-            txtSubject.EditValue = ProgProps.InstEllipseInfSubject
+            txtBody.EditValue = ProgProps.PJInfBody.Replace("{PJ_VISIT_DATE}", dtVisitDate.Text)
+            txtSubject.EditValue = ProgProps.PJInfSubject
         Else
-            txtBody.EditValue = ProgProps.InstEllipseInfBodySup.Replace("{CUS}", cboCUS.Text)
-            txtSubject.EditValue = ProgProps.InstEllipseInfSubjectSup
+            txtBody.EditValue = ProgProps.PJInfBodySup.Replace("{CUS}", cboCUS.Text)
+            txtSubject.EditValue = ProgProps.PJInfSubjectSup
         End If
     End Sub
-    Private Sub DefInstComplete_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInstComplete.ItemClick
+    Private Sub DefProjComplete_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefProjComplete.ItemClick
         If sComeFrom = 0 Then
-            If dtVisitDate.EditValue IsNot Nothing Then txtBody.EditValue = ProgProps.InstEllipseInfBodyComplete.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtVisitDate.Text)
-            txtSubject.EditValue = ProgProps.InstEllipseInfSubjectComplete
+            If dtVisitDate.EditValue IsNot Nothing Then txtBody.EditValue = ProgProps.PJInfBodyComplete.Replace("{PJ_VISIT_DATE}", dtVisitDate.Text)
+            txtSubject.EditValue = ProgProps.PJInfSubjectComplete
         End If
 
     End Sub
-    Private Sub DefInstAppointment_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefInstAppointment.ItemClick
-        txtBody.EditValue = ProgProps.InstEllipseInfAppointmentBody
-        txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_DATE_DELIVERED}", dtVisitDate.Text)
-        txtBody.EditValue = txtBody.EditValue.Replace("{INST_DATE_DELIVERED}", dtInstDeliverDate.EditValue)
-        txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_TIME_FROM}", txtTmIN.Text)
-        txtBody.EditValue = txtBody.EditValue.Replace("{INST_ELLIPSE_TIME_TO}", txtTmOUT.Text)
-        txtSubject.EditValue = ProgProps.InstEllipseInfAppointmentSubject
+    Private Sub DefProjAppointment_ItemClick(sender As Object, e As DevExpress.XtraBars.ItemClickEventArgs) Handles DefProjAppointment.ItemClick
+        txtBody.EditValue = ProgProps.PJInfAppointmentBody
+        txtBody.EditValue = txtBody.EditValue.Replace("{PJ_VISIT_DATE}", dtVisitDate.Text)
+        txtBody.EditValue = txtBody.EditValue.Replace("{PJ_TIME_FROM}", txtTmIN.Text)
+        txtBody.EditValue = txtBody.EditValue.Replace("{PJ_TIME_TO}", txtTmOUT.Text)
+        txtSubject.EditValue = ProgProps.PJInfAppointmentSubject
     End Sub
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
             Case 1
-                Prog_Prop.GetProgEmailInst()
+                Prog_Prop.GetProgEmailPJ()
 
                 If sComeFrom = 0 Then
-                    txtSubject.EditValue = ProgProps.InstEllipseInfSubject
+                    txtSubject.EditValue = ProgProps.PJInfSubject
                     txtTo.EditValue = cboCUS.GetColumnValue("email")
                     If txtfProjectNameComplete.EditValue IsNot Nothing Then
                         cmdSendEmailComplete.Enabled = True
-                        DefInstComplete.Enabled = True
+                        DefProjComplete.Enabled = True
                     Else
                         cmdSendEmailComplete.Enabled = False
-                        DefInstComplete.Enabled = False
+                        DefProjComplete.Enabled = False
                     End If
                 Else
-                    txtSubject.EditValue = ProgProps.InstEllipseInfSubjectSup
-                    txtTo.EditValue = ProgProps.InstEmailAccountSup
-                    DefInstAppointment.Enabled = False
+                    txtSubject.EditValue = ProgProps.PJInfSubjectSup
+                    txtTo.EditValue = ProgProps.PJEmailSupTo
+                    DefProjAppointment.Enabled = False
                 End If
                 If dtVisitDate.EditValue = Nothing Or txtTmIN.EditValue = "00:00" Or txtTmOUT.EditValue = "00:00" Then cmdSendApointmentEmail.Enabled = False Else cmdSendApointmentEmail.Enabled = True
-                Me.INST_MAILTableAdapter.FillByinstEllipseID(Me.DMDataSet.INST_MAIL, System.Guid.Parse(sID))
-                LoadForms.RestoreLayoutFromXml(GridView3, "INST_MAIL_ELLIPSE.xml")
-                'GridView3.Columns("DateOfEmail").DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime
-                'GridView3.Columns("DateOfEmail").DisplayFormat.FormatString = "dd/MM/yyyy HH:mm tt"
+                Me.PROJECT_JOBS_MAILTableAdapter.FillByProjectJobID(Me.DMDataSet.PROJECT_JOBS_MAIL, System.Guid.Parse(sID))
+                LoadForms.RestoreLayoutFromXml(GridView3, "PROJECT_JOBS_MAIL.xml")
         End Select
+    End Sub
+
+    Private Sub GridView1_PopupMenuShowing(sender As Object, e As DevExpress.XtraGrid.Views.Grid.PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then
+            If sComeFrom = 1 Then
+                LoadForms.PopupMenuShow(e, GridView1, "vw_PROJECT_JOBS_D_SUP.xml", "vw_PROJECT_JOBS_D")
+            Else
+                LoadForms.PopupMenuShow(e, GridView1, "vw_PROJECT_JOBS_D.xml", "vw_PROJECT_JOBS_D")
+            End If
+        End If
+    End Sub
+
+    Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
+        LoadForms.PopupMenuShow(e, GridView3, "PROJECT_JOBS_MAIL.xml", "vw_PROJECT_JOBS_MAIL")
     End Sub
 End Class

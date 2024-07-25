@@ -41,6 +41,7 @@ Module Main
     Public UserProps As USER_PROPS
     Public Structure PROG_PROPS
         Public ServerViewsPath As String
+        Public UpdatesPath As String
         Public ServerPath As String
         Public Records As Integer
         Public TempFolderPath As String
@@ -50,12 +51,20 @@ Module Main
         Public AlternateVAT As Double
         Public Decimals As Integer
         Public EmailOrders As String
+        Public PJEmailOrders As String
         Public SupportEmail As String
         Public InstEllipseInfBody As String
         Public InstEllipseInfAppointmentBody As String
         Public InstEllipseInfSubject As String
         Public InstEllipseInfBodySup As String
         Public InstEllipseInfSubjectSup As String
+        Public PJInfBody As String
+        Public PJInfAppointmentBody As String
+        Public PJInfSubject As String
+        Public PJInfBodySup As String
+        Public PJInfSubjectSup As String
+        Public PJEmailSupFrom As String
+        Public PJEmailSupTo As String
         Public InstEmailAccount As String
         Public InstEmailAccountSup As String
         Public InstInfSubject As String
@@ -63,6 +72,9 @@ Module Main
         Public InstEllipseInfAppointmentSubject As String
         Public InstEllipseInfSubjectComplete As String
         Public InstEllipseInfBodyComplete As String
+        Public PJInfAppointmentSubject As String
+        Public PJInfSubjectComplete As String
+        Public PJInfBodyComplete As String
         Public KitchenTransp As Decimal
         Public ClosetTransp As Decimal
         Public DoorTransp As Decimal
