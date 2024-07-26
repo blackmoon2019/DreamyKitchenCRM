@@ -153,6 +153,7 @@ Partial Class frmInstEllipse
         Me.Vw_SUPTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_SUPTableAdapter()
         Me.Vw_ORDER_MANAGERSTableAdapter = New DreamyKitchenCRM.DreamyKitchenDataSetTableAdapters.vw_ORDER_MANAGERSTableAdapter()
         Me.CCT_TRANSHTableAdapter = New DreamyKitchenCRM.DM_TRANSTableAdapters.CCT_TRANSHTableAdapter()
+        Me.colnameSup = New DevExpress.XtraGrid.Columns.GridColumn()
         CType(Me.INSTELLIPSEJOBSBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DmDataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.CCTTRANSHBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -455,7 +456,7 @@ Partial Class frmInstEllipse
         '
         'GridView1
         '
-        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcode, Me.colname, Me.colID, Me.colcompleted, Me.coldtCompleted, Me.colcmt})
+        Me.GridView1.Columns.AddRange(New DevExpress.XtraGrid.Columns.GridColumn() {Me.colcode, Me.colname, Me.colnameSup, Me.colID, Me.colcompleted, Me.coldtCompleted, Me.colcmt})
         Me.GridView1.DetailHeight = 289
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
@@ -1503,6 +1504,16 @@ Partial Class frmInstEllipse
         '
         Me.CCT_TRANSHTableAdapter.ClearBeforeFill = True
         '
+        'colnameSup
+        '
+        Me.colnameSup.Caption = "Περιγραφή(Αφορά Προμηθευτή)"
+        Me.colnameSup.FieldName = "nameSup"
+        Me.colnameSup.MinWidth = 30
+        Me.colnameSup.Name = "colnameSup"
+        Me.colnameSup.Visible = True
+        Me.colnameSup.VisibleIndex = 4
+        Me.colnameSup.Width = 112
+        '
         'frmInstEllipse
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(9.0!, 19.0!)
@@ -1726,4 +1737,5 @@ Partial Class frmInstEllipse
     Friend WithEvents Vw_ORDER_MANAGERSTableAdapter As DreamyKitchenDataSetTableAdapters.vw_ORDER_MANAGERSTableAdapter
     Friend WithEvents DM_TRANS As DM_TRANS
     Friend WithEvents CCT_TRANSHTableAdapter As DM_TRANSTableAdapters.CCT_TRANSHTableAdapter
+    Friend WithEvents colnameSup As DevExpress.XtraGrid.Columns.GridColumn
 End Class

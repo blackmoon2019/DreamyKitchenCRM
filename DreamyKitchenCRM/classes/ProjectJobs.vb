@@ -2,8 +2,7 @@
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraReports.UI
 Imports System.Data.SqlClient
-Imports DevExpress.CodeParser
-Imports DevExpress.XtraGrid.Views.Grid
+Imports DevExpress.XtraBars.Navigation
 
 Public Class ProjectJobs
     Dim Frm As frmProjectJobs
@@ -47,6 +46,7 @@ Public Class ProjectJobs
             Case FormMode.NewRecord
                 Frm.txtCode.Text = DBQ.GetNextId("PROJECT_JOBS")
                 FillCbo.FillCheckedListPROJECT_JOBS_SER(Frm.chkSER, FormMode.NewRecord)
+                Frm.TabNavigationPage2.Enabled = False : Frm.TabNavigationPage3.Enabled = False
             Case FormMode.EditRecord
                 Dim sFields As New Dictionary(Of String, String)
                 LoadForms.LoadForm(Frm.LayoutControl1, "Select * from PROJECT_JOBS where id ='" + ID + "'", sFields)
@@ -69,6 +69,7 @@ Public Class ProjectJobs
             Frm.dtVisitDate.Enabled = False
             DisabletxtProjectJobFilenameComplete()
             Frm.GridView1.OptionsBehavior.Editable = True : Frm.cmdViewOrder.Enabled = False : Frm.cmdConvertToOrder.Enabled = False
+
         Else
             Frm.LayoutControlGroup1.Text = "Αφορά Πελάτη"
             LoadForms.RestoreLayoutFromXml(Frm.GridView1, "vw_PROJECT_JOBS_D.xml")
@@ -138,6 +139,7 @@ Public Class ProjectJobs
                     Next
                     FillCbo.FillCheckedListPROJECT_JOBS_SER(Frm.chkSER, FormMode.EditRecord, sID)
                     Mode = FormMode.EditRecord : Frm.Mode = Mode
+                    Frm.TabNavigationPage2.Enabled = True : Frm.TabNavigationPage3.Enabled = True
                     HandleGridEmbeddedNavigatorButtons()
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
@@ -504,7 +506,7 @@ Public Class ProjectJobs
         If Frm.GridView1.RowCount = 0 Then XtraMessageBox.Show("Δεν υπάρχουν εργασίες προς αποστολή", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtBody.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε κείμενο", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If Frm.txtSubject.Text = "" Then XtraMessageBox.Show("Παρακαλώ συμπληρώστε το θέμα", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
-        If Frm.txtTo.Text = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον " & IIf(sComeFrom = 0, " πελάτη.", " προμηθευτή."), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.txtTo.Text.Trim = "" Then XtraMessageBox.Show("Δεν υπάρχει καταχωρήμενο email στον " & IIf(sComeFrom = 0, " πελάτη.", " προμηθευτή."), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
         If XtraMessageBox.Show("Θέλετε να αποσταλεί το Email?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
             SendEmailExportReport()
             Frm.PROJECT_JOBS_MAILTableAdapter.FillByProjectJobID(Frm.DMDataSet.PROJECT_JOBS_MAIL, System.Guid.Parse(ID))
@@ -526,8 +528,8 @@ Public Class ProjectJobs
                 Dim report As New RepCUSProjectJobsForSUP()
                 report.Parameters.Item(0).Value = ID
                 sEmailTo = Frm.txtTo.EditValue
-                sBody = ProgProps.InstEllipseInfBodySup
-                sSubject = ProgProps.InstEllipseInfSubjectSup
+                sBody = Frm.txtBody.EditValue
+                sSubject = Frm.txtSubject.EditValue
                 sBody = sBody.Replace("{PJ_VISIT_DATE}", Date.Now.Date)
                 sBody = sBody.Replace("{CUS}", Frm.cboCUS.Text)
                 sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εργασιών προμηθευτή.pdf"
@@ -568,7 +570,7 @@ Public Class ProjectJobs
 
                 ' Εισαγωγή ιστορικού email
                 sSQL = "INSERT INTO [PROJECT_JOBS_MAIL] (projectjobID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment)  
-                        Select " & toSQLValueS(ID) & "," & toSQLValueS(ProgProps.InstEmailAccount.ToString) & "," &
+                        Select " & toSQLValueS(ID) & "," & toSQLValueS(ProgProps.PJEmailSupFrom) & "," &
                                     toSQLValue(Frm.txtTo) & "," & toSQLValue(Frm.txtSubject) & "," & toSQLValue(Frm.txtBody) & ",getdate(), " &
                                     toSQLValueS(UserProps.ID.ToString) & ", getdate(), " & sComeFrom & "," & emailMode & ",  * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F;"
                 Using oCmd As New SqlCommand(sSQL, CNDB)
@@ -584,4 +586,18 @@ Public Class ProjectJobs
             XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
         End Try
     End Sub
+    Public Sub SaveRecordF(ByVal sMode As Integer, Optional ByVal sFilename As String = "")
+        Dim sResultF As Boolean
+        If Frm.cboTanshFCategory.EditValue = Nothing Then XtraMessageBox.Show("Δεν έχετε επιλέξει Κατηγορία.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        If Frm.txtFiles.Text = "" Then XtraMessageBox.Show("Δεν έχετε επιλέξει Αρχείο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error) : Exit Sub
+        Select Case sMode
+            Case 0 : sResultF = DBQ.InsertDataFiles(Frm.XtraOpenFileDialog2, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", ID, "Αρχεία Εργασιών")
+            Case 1 : sResultF = DBQ.InsertDataFilesFromScanner(sFilename, Frm.cboTRANSH.EditValue.ToString, "TRANSH_F", Frm.cboTanshFCategory.EditValue.ToString, ID, "Αρχεία Εργασιών")
+        End Select
+        Frm.txtFiles.EditValue = Nothing
+        Frm.TRANSH_FTableAdapter.FillByTranshID(Frm.DM_TRANS.TRANSH_F, System.Guid.Parse(Frm.cboTRANSH.EditValue.ToString))
+
+
+    End Sub
+
 End Class

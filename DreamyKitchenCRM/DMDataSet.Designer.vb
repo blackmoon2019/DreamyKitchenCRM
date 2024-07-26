@@ -4070,6 +4070,8 @@ Partial Public Class DMDataSet
         
         Private columntoOrder As Global.System.Data.DataColumn
         
+        Private columnnameSup As Global.System.Data.DataColumn
+        
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub New()
@@ -4226,6 +4228,14 @@ Partial Public Class DMDataSet
         End Property
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public ReadOnly Property nameSupColumn() As Global.System.Data.DataColumn
+            Get
+                Return Me.columnnameSup
+            End Get
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0"),  _
          Global.System.ComponentModel.Browsable(false)>  _
         Public ReadOnly Property Count() As Integer
@@ -4262,9 +4272,9 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
-        Public Overloads Function AddINST_ELLIPSE_JOBSRow(ByVal ID As System.Guid, ByVal instEllipseID As System.Guid, ByVal name As String, ByVal cmt As String, ByVal completed As Boolean, ByVal dtCompleted As Date, ByVal modifiedBy As System.Guid, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid, ByVal missing As Boolean, ByVal replacement As Boolean, ByVal orderError As Boolean, ByVal toOrder As Boolean) As INST_ELLIPSE_JOBSRow
+        Public Overloads Function AddINST_ELLIPSE_JOBSRow(ByVal ID As System.Guid, ByVal instEllipseID As System.Guid, ByVal name As String, ByVal cmt As String, ByVal completed As Boolean, ByVal dtCompleted As Date, ByVal modifiedBy As System.Guid, ByVal modifiedOn As Date, ByVal createdOn As Date, ByVal createdBy As System.Guid, ByVal missing As Boolean, ByVal replacement As Boolean, ByVal orderError As Boolean, ByVal toOrder As Boolean, ByVal nameSup As String) As INST_ELLIPSE_JOBSRow
             Dim rowINST_ELLIPSE_JOBSRow As INST_ELLIPSE_JOBSRow = CType(Me.NewRow,INST_ELLIPSE_JOBSRow)
-            Dim columnValuesArray() As Object = New Object() {ID, Nothing, instEllipseID, name, cmt, completed, dtCompleted, modifiedBy, modifiedOn, createdOn, createdBy, missing, replacement, orderError, toOrder}
+            Dim columnValuesArray() As Object = New Object() {ID, Nothing, instEllipseID, name, cmt, completed, dtCompleted, modifiedBy, modifiedOn, createdOn, createdBy, missing, replacement, orderError, toOrder, nameSup}
             rowINST_ELLIPSE_JOBSRow.ItemArray = columnValuesArray
             Me.Rows.Add(rowINST_ELLIPSE_JOBSRow)
             Return rowINST_ELLIPSE_JOBSRow
@@ -4308,6 +4318,7 @@ Partial Public Class DMDataSet
             Me.columnreplacement = MyBase.Columns("replacement")
             Me.columnorderError = MyBase.Columns("orderError")
             Me.columntoOrder = MyBase.Columns("toOrder")
+            Me.columnnameSup = MyBase.Columns("nameSup")
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -4343,6 +4354,8 @@ Partial Public Class DMDataSet
             MyBase.Columns.Add(Me.columnorderError)
             Me.columntoOrder = New Global.System.Data.DataColumn("toOrder", GetType(Boolean), Nothing, Global.System.Data.MappingType.Element)
             MyBase.Columns.Add(Me.columntoOrder)
+            Me.columnnameSup = New Global.System.Data.DataColumn("nameSup", GetType(String), Nothing, Global.System.Data.MappingType.Element)
+            MyBase.Columns.Add(Me.columnnameSup)
             Me.Constraints.Add(New Global.System.Data.UniqueConstraint("Constraint1", New Global.System.Data.DataColumn() {Me.columnID}, true))
             Me.columnID.AllowDBNull = false
             Me.columnID.Unique = true
@@ -4356,6 +4369,7 @@ Partial Public Class DMDataSet
             Me.columnname.MaxLength = 200
             Me.columncmt.MaxLength = 2147483647
             Me.columncompleted.AllowDBNull = false
+            Me.columnnameSup.MaxLength = 200
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -17070,6 +17084,21 @@ Partial Public Class DMDataSet
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Property nameSup() As String
+            Get
+                Try 
+                    Return CType(Me(Me.tableINST_ELLIPSE_JOBS.nameSupColumn),String)
+                Catch e As Global.System.InvalidCastException
+                    Throw New Global.System.Data.StrongTypingException("The value for column 'nameSup' in table 'INST_ELLIPSE_JOBS' is DBNull.", e)
+                End Try
+            End Get
+            Set
+                Me(Me.tableINST_ELLIPSE_JOBS.nameSupColumn) = value
+            End Set
+        End Property
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Function IscmtNull() As Boolean
             Return Me.IsNull(Me.tableINST_ELLIPSE_JOBS.cmtColumn)
         End Function
@@ -17186,6 +17215,18 @@ Partial Public Class DMDataSet
          Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
         Public Sub SettoOrderNull()
             Me(Me.tableINST_ELLIPSE_JOBS.toOrderColumn) = Global.System.Convert.DBNull
+        End Sub
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Function IsnameSupNull() As Boolean
+            Return Me.IsNull(Me.tableINST_ELLIPSE_JOBS.nameSupColumn)
+        End Function
+        
+        <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")>  _
+        Public Sub SetnameSupNull()
+            Me(Me.tableINST_ELLIPSE_JOBS.nameSupColumn) = Global.System.Convert.DBNull
         End Sub
     End Class
     
@@ -29503,6 +29544,7 @@ Namespace DMDataSetTableAdapters
             tableMapping.ColumnMappings.Add("replacement", "replacement")
             tableMapping.ColumnMappings.Add("orderError", "orderError")
             tableMapping.ColumnMappings.Add("toOrder", "toOrder")
+            tableMapping.ColumnMappings.Add("nameSup", "nameSup")
             Me._adapter.TableMappings.Add(tableMapping)
             Me._adapter.DeleteCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.DeleteCommand.Connection = Me.Connection
@@ -29519,7 +29561,8 @@ Namespace DMDataSetTableAdapters
                 "= 1 AND [replacement] IS NULL) OR ([replacement] = @Original_replacement)) AND ("& _ 
                 "(@IsNull_orderError = 1 AND [orderError] IS NULL) OR ([orderError] = @Original_o"& _ 
                 "rderError)) AND ((@IsNull_toOrder = 1 AND [toOrder] IS NULL) OR ([toOrder] = @Or"& _ 
-                "iginal_toOrder)))"
+                "iginal_toOrder)) AND ((@IsNull_nameSup = 1 AND [nameSup] IS NULL) OR ([nameSup] "& _ 
+                "= @Original_nameSup)))"
             Me._adapter.DeleteCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_code", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "code", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -29544,16 +29587,18 @@ Namespace DMDataSetTableAdapters
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_orderError", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "orderError", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_toOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "toOrder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_toOrder", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "toOrder", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_nameSup", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nameSup", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.DeleteCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_nameSup", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nameSup", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.InsertCommand.Connection = Me.Connection
             Me._adapter.InsertCommand.CommandText = "INSERT INTO [INST_ELLIPSE_JOBS] ([ID], [instEllipseID], [name], [cmt], [completed"& _ 
                 "], [dtCompleted], [modifiedBy], [modifiedOn], [createdOn], [createdBy], [missing"& _ 
-                "], [replacement], [orderError], [toOrder]) VALUES (@ID, @instEllipseID, @name, @"& _ 
-                "cmt, @completed, @dtCompleted, @modifiedBy, @modifiedOn, @createdOn, @createdBy,"& _ 
-                " @missing, @replacement, @orderError, @toOrder);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, code, instEllipseID"& _ 
-                ", name, cmt, completed, dtCompleted, modifiedBy, modifiedOn, createdOn, createdB"& _ 
-                "y, missing, replacement, orderError, toOrder FROM INST_ELLIPSE_JOBS WHERE (ID = "& _ 
-                "@ID)"
+                "], [replacement], [orderError], [toOrder], [nameSup]) VALUES (@ID, @instEllipseI"& _ 
+                "D, @name, @cmt, @completed, @dtCompleted, @modifiedBy, @modifiedOn, @createdOn, "& _ 
+                "@createdBy, @missing, @replacement, @orderError, @toOrder, @nameSup);"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID"& _ 
+                ", code, instEllipseID, name, cmt, completed, dtCompleted, modifiedBy, modifiedOn"& _ 
+                ", createdOn, createdBy, missing, replacement, orderError, toOrder, nameSup FROM "& _ 
+                "INST_ELLIPSE_JOBS WHERE (ID = @ID)"
             Me._adapter.InsertCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@instEllipseID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "instEllipseID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -29569,28 +29614,31 @@ Namespace DMDataSetTableAdapters
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@replacement", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "replacement", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@orderError", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "orderError", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@toOrder", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "toOrder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.InsertCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@nameSup", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nameSup", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand = New Global.System.Data.SqlClient.SqlCommand()
             Me._adapter.UpdateCommand.Connection = Me.Connection
             Me._adapter.UpdateCommand.CommandText = "UPDATE [INST_ELLIPSE_JOBS] SET [ID] = @ID, [instEllipseID] = @instEllipseID, [nam"& _ 
                 "e] = @name, [cmt] = @cmt, [completed] = @completed, [dtCompleted] = @dtCompleted"& _ 
                 ", [modifiedBy] = @modifiedBy, [modifiedOn] = @modifiedOn, [createdOn] = @created"& _ 
                 "On, [createdBy] = @createdBy, [missing] = @missing, [replacement] = @replacement"& _ 
-                ", [orderError] = @orderError, [toOrder] = @toOrder WHERE (([ID] = @Original_ID) "& _ 
-                "AND ([code] = @Original_code) AND ([instEllipseID] = @Original_instEllipseID) AN"& _ 
-                "D ([name] = @Original_name) AND ([completed] = @Original_completed) AND ((@IsNul"& _ 
-                "l_dtCompleted = 1 AND [dtCompleted] IS NULL) OR ([dtCompleted] = @Original_dtCom"& _ 
-                "pleted)) AND ((@IsNull_modifiedBy = 1 AND [modifiedBy] IS NULL) OR ([modifiedBy]"& _ 
-                " = @Original_modifiedBy)) AND ((@IsNull_modifiedOn = 1 AND [modifiedOn] IS NULL)"& _ 
-                " OR ([modifiedOn] = @Original_modifiedOn)) AND ((@IsNull_createdOn = 1 AND [crea"& _ 
-                "tedOn] IS NULL) OR ([createdOn] = @Original_createdOn)) AND ((@IsNull_createdBy "& _ 
-                "= 1 AND [createdBy] IS NULL) OR ([createdBy] = @Original_createdBy)) AND ((@IsNu"& _ 
-                "ll_missing = 1 AND [missing] IS NULL) OR ([missing] = @Original_missing)) AND (("& _ 
-                "@IsNull_replacement = 1 AND [replacement] IS NULL) OR ([replacement] = @Original"& _ 
-                "_replacement)) AND ((@IsNull_orderError = 1 AND [orderError] IS NULL) OR ([order"& _ 
-                "Error] = @Original_orderError)) AND ((@IsNull_toOrder = 1 AND [toOrder] IS NULL)"& _ 
-                " OR ([toOrder] = @Original_toOrder)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, code, instEllipseID, name, cm"& _ 
-                "t, completed, dtCompleted, modifiedBy, modifiedOn, createdOn, createdBy, missing"& _ 
-                ", replacement, orderError, toOrder FROM INST_ELLIPSE_JOBS WHERE (ID = @ID)"
+                ", [orderError] = @orderError, [toOrder] = @toOrder, [nameSup] = @nameSup WHERE ("& _ 
+                "([ID] = @Original_ID) AND ([code] = @Original_code) AND ([instEllipseID] = @Orig"& _ 
+                "inal_instEllipseID) AND ([name] = @Original_name) AND ([completed] = @Original_c"& _ 
+                "ompleted) AND ((@IsNull_dtCompleted = 1 AND [dtCompleted] IS NULL) OR ([dtComple"& _ 
+                "ted] = @Original_dtCompleted)) AND ((@IsNull_modifiedBy = 1 AND [modifiedBy] IS "& _ 
+                "NULL) OR ([modifiedBy] = @Original_modifiedBy)) AND ((@IsNull_modifiedOn = 1 AND"& _ 
+                " [modifiedOn] IS NULL) OR ([modifiedOn] = @Original_modifiedOn)) AND ((@IsNull_c"& _ 
+                "reatedOn = 1 AND [createdOn] IS NULL) OR ([createdOn] = @Original_createdOn)) AN"& _ 
+                "D ((@IsNull_createdBy = 1 AND [createdBy] IS NULL) OR ([createdBy] = @Original_c"& _ 
+                "reatedBy)) AND ((@IsNull_missing = 1 AND [missing] IS NULL) OR ([missing] = @Ori"& _ 
+                "ginal_missing)) AND ((@IsNull_replacement = 1 AND [replacement] IS NULL) OR ([re"& _ 
+                "placement] = @Original_replacement)) AND ((@IsNull_orderError = 1 AND [orderErro"& _ 
+                "r] IS NULL) OR ([orderError] = @Original_orderError)) AND ((@IsNull_toOrder = 1 "& _ 
+                "AND [toOrder] IS NULL) OR ([toOrder] = @Original_toOrder)) AND ((@IsNull_nameSup"& _ 
+                " = 1 AND [nameSup] IS NULL) OR ([nameSup] = @Original_nameSup)));"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"SELECT ID, co"& _ 
+                "de, instEllipseID, name, cmt, completed, dtCompleted, modifiedBy, modifiedOn, cr"& _ 
+                "eatedOn, createdBy, missing, replacement, orderError, toOrder, nameSup FROM INST"& _ 
+                "_ELLIPSE_JOBS WHERE (ID = @ID)"
             Me._adapter.UpdateCommand.CommandType = Global.System.Data.CommandType.Text
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@instEllipseID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "instEllipseID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
@@ -29606,6 +29654,7 @@ Namespace DMDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@replacement", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "replacement", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@orderError", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "orderError", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@toOrder", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "toOrder", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@nameSup", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nameSup", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_ID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "ID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_code", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "code", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_instEllipseID", Global.System.Data.SqlDbType.UniqueIdentifier, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "instEllipseID", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
@@ -29629,6 +29678,8 @@ Namespace DMDataSetTableAdapters
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_orderError", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "orderError", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_toOrder", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "toOrder", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
             Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_toOrder", Global.System.Data.SqlDbType.Bit, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "toOrder", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@IsNull_nameSup", Global.System.Data.SqlDbType.Int, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nameSup", Global.System.Data.DataRowVersion.Original, true, Nothing, "", "", ""))
+            Me._adapter.UpdateCommand.Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@Original_nameSup", Global.System.Data.SqlDbType.NVarChar, 0, Global.System.Data.ParameterDirection.Input, 0, 0, "nameSup", Global.System.Data.DataRowVersion.Original, false, Nothing, "", "", ""))
         End Sub
         
         <Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
@@ -29645,8 +29696,8 @@ Namespace DMDataSetTableAdapters
             Me._commandCollection(0) = New Global.System.Data.SqlClient.SqlCommand()
             Me._commandCollection(0).Connection = Me.Connection
             Me._commandCollection(0).CommandText = "SELECT ID, code, instEllipseID, name, cmt, completed, dtCompleted, modifiedBy, mo"& _ 
-                "difiedOn, createdOn, createdBy, missing, replacement, orderError, toOrder"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM "& _ 
-                "  INST_ELLIPSE_JOBS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (instEllipseID = @instEllipseID)"
+                "difiedOn, createdOn, createdBy, missing, replacement, orderError, toOrder, nameS"& _ 
+                "up"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"FROM   INST_ELLIPSE_JOBS"&Global.Microsoft.VisualBasic.ChrW(13)&Global.Microsoft.VisualBasic.ChrW(10)&"WHERE (instEllipseID = @instEllipseID)"
             Me._commandCollection(0).CommandType = Global.System.Data.CommandType.Text
             Me._commandCollection(0).Parameters.Add(New Global.System.Data.SqlClient.SqlParameter("@instEllipseID", Global.System.Data.SqlDbType.UniqueIdentifier, 16, Global.System.Data.ParameterDirection.Input, 0, 0, "instEllipseID", Global.System.Data.DataRowVersion.Current, false, Nothing, "", "", ""))
         End Sub

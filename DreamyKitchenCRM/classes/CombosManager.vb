@@ -25,7 +25,7 @@ Public Class CombosManager
         End If
         Frm.ShowDialog()
     End Sub
-    Public Sub ManageTRANSH(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte)
+    Public Sub ManageTRANSH(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, Optional ByVal CusID As Guid = Nothing)
         If SuperUsers() Then
             Dim Frm As frmTransactions = New frmTransactions()
             If FrmMode = FormMode.NewRecord Then CallerControl.EditValue = Nothing
@@ -42,6 +42,8 @@ Public Class CombosManager
 
             frmMain.XtraTabbedMdiManager1.Float(frmMain.XtraTabbedMdiManager1.Pages(Frm), New Point(CInt(Frm.Parent.ClientRectangle.Width / 2 - Frm.Width / 2), CInt(Frm.Parent.ClientRectangle.Height / 2 - Frm.Height / 2)))
             Frm.Show()
+        Else
+            ManageTRANSHSmall(CallerControl, FrmMode, CusID)
         End If
     End Sub
     Public Sub ManageTRANSHSmall(ByVal CallerControl As LookUpEdit, ByVal FrmMode As Byte, ByVal CusID As Guid, Optional ByVal HideCompany As Boolean = False,

@@ -4,6 +4,7 @@ Imports DevExpress.XtraEditors.Controls
 Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
+Imports System.Data.SqlClient
 
 Public Class frmProjectJobs
     Private sID As String
@@ -12,6 +13,7 @@ Public Class frmProjectJobs
     Private sComeFrom As Integer
     Private CalledFromCtrl As Boolean
     Private HasConnectedOrder As Boolean = False
+    Private ScanFile As ScanToPDF
     Private Prog_Prop As New ProgProp
     Private Valid As New ValidateControls
     Private ProjectJobs As New ProjectJobs
@@ -65,6 +67,8 @@ Public Class frmProjectJobs
     End Sub
 
     Private Sub frmProjectJobs_Load(sender As Object, e As EventArgs) Handles Me.Load
+        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_FILE_CAT' table. You can move, or remove it, as needed.
+        Me.Vw_FILE_CATTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_FILE_CAT)
         ProjectJobs.Initialize(Me, sID, Mode)
         ProjectJobs.LoadForm()
         ComeFrom = ProjectJobs.ComeFrom
@@ -95,8 +99,8 @@ Public Class frmProjectJobs
     End Sub
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue)
+            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub
@@ -246,12 +250,19 @@ Public Class frmProjectJobs
                     End If
                 Else
                     txtSubject.EditValue = ProgProps.PJInfSubjectSup
-                    txtTo.EditValue = ProgProps.PJEmailSupTo
+                    txtTo.EditValue = cboSUP.GetColumnValue("email")
                     DefProjAppointment.Enabled = False
+                    DefProjComplete.Enabled = False
+                    cmdSendEmailComplete.Enabled = False
+                    txtBody.EditValue = ProgProps.PJInfBodySup.Replace("{CUS}", cboCUS.Text)
+                    txtSubject.EditValue = ProgProps.PJInfSubjectSup
                 End If
                 If dtVisitDate.EditValue = Nothing Or txtTmIN.EditValue = "00:00" Or txtTmOUT.EditValue = "00:00" Then cmdSendApointmentEmail.Enabled = False Else cmdSendApointmentEmail.Enabled = True
                 Me.PROJECT_JOBS_MAILTableAdapter.FillByProjectJobID(Me.DMDataSet.PROJECT_JOBS_MAIL, System.Guid.Parse(sID))
                 LoadForms.RestoreLayoutFromXml(GridView3, "PROJECT_JOBS_MAIL.xml")
+            Case 2
+                LoadForms.RestoreLayoutFromXml(GridView4, "vw_TRANSH_F_PROJECT_JOBS_def.xml")
+                TRANSH_FTableAdapter.FillByTranshID(DM_TRANS.TRANSH_F, System.Guid.Parse(cboTRANSH.EditValue.ToString))
         End Select
     End Sub
 
@@ -267,5 +278,44 @@ Public Class frmProjectJobs
 
     Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
         LoadForms.PopupMenuShow(e, GridView3, "PROJECT_JOBS_MAIL.xml", "vw_PROJECT_JOBS_MAIL")
+    End Sub
+    Private Sub txtFiles_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtFiles.ButtonClick
+        Dim sFilename As String
+        Select Case e.Button.Index
+            Case 0
+                Dim result = XtraInputBox.Show("Πληκτρολογήστε το πλήθος σελίδων που θα σκανάρετε", "Όνομα Αρχείου", "1")
+                ScanFile = New ScanToPDF
+                If ScanFile.Scan(sFilename, Me.VwSCANFILENAMESBindingSource, result) = False Then Exit Sub
+                txtFiles.EditValue = sFilename
+                If txtFiles.Text <> "" Then ProjectJobs.SaveRecordF(1, sFilename)
+                ScanFile = Nothing
+            Case 1 : FilesSelection(XtraOpenFileDialog2, txtFiles)
+
+            Case 2 : txtFiles.EditValue = Nothing
+        End Select
+    End Sub
+
+    Private Sub cmdSaveTransF_Click(sender As Object, e As EventArgs) Handles cmdSaveTransF.Click
+        XtraOpenFileDialog2.Tag = cboTanshFCategory.EditValue.ToString
+        ProjectJobs.SaveRecordF(0)
+    End Sub
+    Private Sub GridView4_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView4.PopupMenuShowing
+        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView4, "vw_TRANSH_F_PROJECT_JOBS_def.xml", "vw_TRANSH_F")
+    End Sub
+    Private Sub GridView4_ValidateRow(sender As Object, e As ValidateRowEventArgs) Handles GridView4.ValidateRow
+        Dim sSQL As New System.Text.StringBuilder
+        Try
+            sSQL.Clear()
+            sSQL.AppendLine("UPDATE TRANSH_F	SET FileCatID= " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "fileCatID").ToString) & ",")
+            sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
+            sSQL.AppendLine("modifiedON = getdate() ")
+            sSQL.AppendLine("WHERE ID = " & toSQLValueS(GridView4.GetRowCellValue(GridView4.FocusedRowHandle, "ID").ToString))
+            'Εκτέλεση QUERY
+            Using oCmd As New SqlCommand(sSQL.ToString, CNDB)
+                oCmd.ExecuteNonQuery()
+            End Using
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
     End Sub
 End Class

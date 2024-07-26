@@ -80,9 +80,6 @@ Public Class frmInstEllipse
     End Sub
 
     Private Sub frmInstEllipse_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'TODO: This line of code loads data into the 'DM_TRANS.CCT_TRANSH' table. You can move, or remove it, as needed.
-        Me.CCT_TRANSHTableAdapter.Fill(Me.DM_TRANS.CCT_TRANSH)
-        'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_ORDER_MANAGERS' table. You can move, or remove it, as needed.
         Me.Vw_ORDER_MANAGERSTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_ORDER_MANAGERS)
         'TODO: This line of code loads data into the 'DreamyKitchenDataSet.vw_SUP' table. You can move, or remove it, as needed.
         Me.Vw_SUPTableAdapter.Fill(Me.DreamyKitchenDataSet.vw_SUP)
@@ -91,7 +88,9 @@ Public Class frmInstEllipse
 
         FillCbo.INST(cboINST)
         Select Case Mode
-            Case FormMode.NewRecord : If sComeFrom = 0 Then NewRecord() : cmdViewOrder.Enabled = False
+            Case FormMode.NewRecord
+                If sComeFrom = 0 Then NewRecord() : cmdViewOrder.Enabled = False
+                TabNavigationPage2.Enabled = False
             Case FormMode.EditRecord
                 SaveButtonPressed = True
                 Dim sFields As New Dictionary(Of String, String)
@@ -112,7 +111,6 @@ Public Class frmInstEllipse
                 GridControl1.ForceInitialize()
                 If GridView1.DataRowCount = 0 Then cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False : cmdSendApointmentEmail.Enabled = False : cmdDefEmail.Enabled = False
         End Select
-        LoadForms.RestoreLayoutFromXml(GridView1, "INST_ELLIPSE_JOBS_def.xml")
         LInst.Enabled = False
         If sComeFrom = 1 Then
             LayoutControlGroup1.Text = "Αφορά Προμηθευτή"
@@ -121,12 +119,13 @@ Public Class frmInstEllipse
             cmdNewInstEllipse.Enabled = False
             'txtInstellipseFilename.Enabled = False : txtInstellipseFilenameComplete.Enabled = False
             DisabletxtInstellipseFilename() : DisabletxtInstellipseFilenameComplete()
-            GridView1.OptionsBehavior.Editable = False
-            cmdViewOrder.Enabled = False : cmdConvertToOrder.Enabled = False
+            GridView1.OptionsBehavior.Editable = True : cmdViewOrder.Enabled = False : cmdConvertToOrder.Enabled = False
+            LoadForms.RestoreLayoutFromXml(GridView1, "INST_ELLIPSE_JOBS_def_SUP.xml")
         Else
             LayoutControlGroup1.Text = "Αφορά Πελάτη"
             LCus.Enabled = False : LTransh.Enabled = False
             If dtDateDelivered.EditValue IsNot Nothing And txtInstellipseFilename.EditValue IsNot Nothing Then DisabletxtInstellipseFilename() 'txtInstellipseFilename.Enabled = False
+            LoadForms.RestoreLayoutFromXml(GridView1, "INST_ELLIPSE_JOBS_def.xml")
         End If
 
         Me.CenterToScreen()
@@ -245,7 +244,7 @@ Public Class frmInstEllipse
                         End Using
                     Next
                     FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.EditRecord, sID)
-                    SaveButtonPressed = True : cmdNewInstEllipse.Enabled = True
+                    SaveButtonPressed = True : cmdNewInstEllipse.Enabled = True : TabNavigationPage2.Enabled = True
                     XtraMessageBox.Show("Η εγγραφή αποθηκέυτηκε με επιτυχία", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Information)
                 End If
             End If
@@ -375,10 +374,11 @@ Public Class frmInstEllipse
                     e.Valid = False
                     Exit Sub
                 End If
-                sSQL.AppendLine("INSERT INTO INST_ELLIPSE_JOBS (instEllipseID,instID,name,cmt,completed,missing,replacement,orderError,toOrder,dtCompleted,[modifiedBy],[createdby],[createdOn])")
+                sSQL.AppendLine("INSERT INTO INST_ELLIPSE_JOBS (instEllipseID,instID,name,nameSup,cmt,completed,missing,replacement,orderError,toOrder,dtCompleted,[modifiedBy],[createdby],[createdOn])")
                 sSQL.AppendLine("Select " & toSQLValueS(sID) & ",")
                 sSQL.AppendLine(toSQLValueS(sINST_ID) & ",")
                 sSQL.AppendLine(toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "name").ToString) & ",")
+                sSQL.AppendLine(toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "nameSup").ToString) & ",")
                 sSQL.AppendLine(toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt").ToString) & ",")
                 CompletedCell = GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "completed").ToString : If CompletedCell = "" Then CompletedCell = "0"
                 sSQL.AppendLine("completed = " & toSQLValueS(CompletedCell) & ",")
@@ -401,6 +401,7 @@ Public Class frmInstEllipse
                 Me.INST_ELLIPSE_JOBSTableAdapter.FillBYinstEllipseID(Me.DmDataSet.INST_ELLIPSE_JOBS, System.Guid.Parse(sID))
             Else
                 sSQL.AppendLine("UPDATE INST_ELLIPSE_JOBS	SET name= " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "name").ToString) & ",")
+                sSQL.AppendLine("nameSup = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "nameSup").ToString) & ",")
                 sSQL.AppendLine("instID = " & toSQLValueS(sINST_ID) & ",")
                 sSQL.AppendLine("modifiedBY = " & toSQLValueS(UserProps.ID.ToString) & ",")
                 sSQL.AppendLine("cmt = " & toSQLValueS(GridView1.GetRowCellValue(GridView1.FocusedRowHandle, "cmt").ToString) & ",")
@@ -571,8 +572,8 @@ Public Class frmInstEllipse
                 Dim report As New RepCUSEllipseForSUP()
                 report.Parameters.Item(0).Value = sID
                 sEmailTo = txtTo.EditValue
-                sBody = ProgProps.InstEllipseInfBodySup
-                sSubject = ProgProps.InstEllipseInfSubjectSup
+                sBody = txtBody.EditValue
+                sSubject = txtSubject.EditValue
                 sBody = sBody.Replace("{INST_ELLIPSE_DATE_DELIVERED}", Date.Now.Date)
                 sBody = sBody.Replace("{CUS}", cboCUS.Text)
                 sFile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) & "\Downloads\Ενημερώτικό έντυπο εκκρεμοτήτων προμηθευτή.pdf"
@@ -601,6 +602,7 @@ Public Class frmInstEllipse
 
             'sEmailTo = "dreamykitchen@gmail.com"
             'sEmailTo = "johnmavroselinos@gmail.com"
+            If CNDB.Database <> "DreamyKitchen" Or Debugger.IsAttached = True Then sEmailTo = "johnmavroselinos@gmail.com;dreamykitchen@gmail.com"
 
 
             If Emails.SendEmail(ProgProps.InstEmailAccount, sSubject, sBody, sEmailTo, sFile, statusMsg) = True Then
@@ -614,7 +616,7 @@ Public Class frmInstEllipse
 
                 ' Εισαγωγή ιστορικού email
                 sSQL = "INSERT INTO INST_MAIL (instID,instEllipseID,emailFrom,emailTo,emailSubject,emailBody,DateofEmail,[createdBy],[createdOn],ComeFrom,emailMode,Attachment)  
-                        Select " & toSQLValueS(sINST_ID) & "," & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.InstEmailAccount.ToString) & "," &
+                        Select " & toSQLValueS(sINST_ID) & "," & toSQLValueS(sID) & "," & toSQLValueS(ProgProps.InstEmailAccount) & "," &
                                     toSQLValue(txtTo) & "," & toSQLValue(txtSubject) & "," &
                                     toSQLValue(txtBody) & ",getdate(), " &
                                     toSQLValueS(UserProps.ID.ToString) & ", getdate(), " & sComeFrom & "," & emailMode & ",  * FROM  Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(sFile)) & ", Single_Blob) as F;"
@@ -683,8 +685,13 @@ Public Class frmInstEllipse
                     End If
                 Else
                     txtSubject.EditValue = ProgProps.InstEllipseInfSubjectSup
-                    txtTo.EditValue = ProgProps.InstEmailAccountSup
+                    txtTo.EditValue = cboSUP.GetColumnValue("email")
                     DefInstAppointment.Enabled = False
+                    txtBody.EditValue = ProgProps.PJInfBodySup.Replace("{CUS}", cboCUS.Text)
+                    txtSubject.EditValue = ProgProps.PJInfSubjectSup
+                    DefInstAppointment.Enabled = False
+                    DefInstComplete.Enabled = False
+                    cmdSendEmailComplete.Enabled = False
                 End If
                 If dtDateDelivered.EditValue = Nothing Or txtTmINFrom.EditValue = "00:00" Or txtTmINTo.EditValue = "00:00" Then cmdSendApointmentEmail.Enabled = False Else cmdSendApointmentEmail.Enabled = True
                 Me.INST_MAILTableAdapter.FillByinstEllipseID(Me.DmDataSet.INST_MAIL, System.Guid.Parse(sID))
@@ -962,7 +969,13 @@ Public Class frmInstEllipse
 
     End Sub
     Private Sub GridView1_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView1.PopupMenuShowing
-        If e.MenuType = GridMenuType.Column Then LoadForms.PopupMenuShow(e, GridView1, "INST_ELLIPSE_JOBS_def.xml", "INST_ELLIPSE_JOBS")
+        If e.MenuType = GridMenuType.Column Then
+            If sComeFrom = 1 Then
+                LoadForms.PopupMenuShow(e, GridView1, "INST_ELLIPSE_JOBS_def_SUP.xml", "INST_ELLIPSE_JOBS")
+            Else
+                LoadForms.PopupMenuShow(e, GridView1, "INST_ELLIPSE_JOBS_def.xml", "INST_ELLIPSE_JOBS")
+            End If
+        End If
     End Sub
 
     Private Sub GridView3_PopupMenuShowing(sender As Object, e As PopupMenuShowingEventArgs) Handles GridView3.PopupMenuShowing
@@ -1075,8 +1088,8 @@ Public Class frmInstEllipse
 
     Private Sub cboTRANSH_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles cboTRANSH.ButtonClick
         Select Case e.Button.Index
-            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord)
-            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord)
+            Case 1 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.NewRecord, cboCUS.EditValue)
+            Case 2 : ManageCbo.ManageTRANSH(cboTRANSH, FormMode.EditRecord, cboCUS.EditValue)
             Case 3 : cboTRANSH.EditValue = Nothing
         End Select
     End Sub

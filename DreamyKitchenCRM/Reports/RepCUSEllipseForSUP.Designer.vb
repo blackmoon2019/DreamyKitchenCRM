@@ -194,7 +194,7 @@ Partial Public Class RepCUSEllipseForSUP
         Me.XrTableCell2.Borders = CType((((DevExpress.XtraPrinting.BorderSide.Left Or DevExpress.XtraPrinting.BorderSide.Top) _
             Or DevExpress.XtraPrinting.BorderSide.Right) _
             Or DevExpress.XtraPrinting.BorderSide.Bottom), DevExpress.XtraPrinting.BorderSide)
-        Me.XrTableCell2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[name]")})
+        Me.XrTableCell2.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "isnull([nameSup],[name])")})
         Me.XrTableCell2.Multiline = True
         Me.XrTableCell2.Name = "XrTableCell2"
         Me.XrTableCell2.StylePriority.UseBorders = False
@@ -305,7 +305,7 @@ Partial Public Class RepCUSEllipseForSUP
         '
         'XrTableCell16
         '
-        Me.XrTableCell16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[vw_INST_ELLIPSE].[DateOfEmailInf]")})
+        Me.XrTableCell16.ExpressionBindings.AddRange(New DevExpress.XtraReports.UI.ExpressionBinding() {New DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "isnull([vw_INST_ELLIPSE].[DateOfEmailInf],Now())")})
         Me.XrTableCell16.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 10.0!, DevExpress.Drawing.DXFontStyle.Bold)
         Me.XrTableCell16.ForeColor = System.Drawing.Color.FromArgb(CType(CType(117, Byte), Integer), CType(CType(113, Byte), Integer), CType(CType(113, Byte), Integer))
         Me.XrTableCell16.Name = "XrTableCell16"
@@ -518,13 +518,13 @@ Partial Public Class RepCUSEllipseForSUP
         Me.DataMember = "INST_ELLIPSE_JOBS"
         Me.DataSource = Me.SqlDataSource1
         Me.Font = New DevExpress.Drawing.DXFont("Zona Pro Regular", 9.0!)
-        Me.Margins = New DevExpress.Drawing.DXMargins(100, 100, 50, 100)
+        Me.Margins = New DevExpress.Drawing.DXMargins(100.0!, 100.0!, 50.0!, 100.0!)
         Me.PageHeight = 1169
         Me.PageWidth = 827
         Me.PaperKind = DevExpress.Drawing.Printing.DXPaperKind.A4
         Me.Parameters.AddRange(New DevExpress.XtraReports.Parameters.Parameter() {Me.ID})
         Me.ScriptLanguage = DevExpress.XtraReports.ScriptLanguage.VisualBasic
-        Me.Version = "21.2"
+        Me.Version = "23.2"
         CType(Me.XrTable1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable3, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.XrTable2, System.ComponentModel.ISupportInitialize).EndInit()
