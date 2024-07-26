@@ -461,6 +461,7 @@ Partial Class frmInstEllipse
         Me.GridView1.GridControl = Me.GridControl1
         Me.GridView1.Name = "GridView1"
         Me.GridView1.OptionsEditForm.PopupEditFormWidth = 720
+        Me.GridView1.OptionsView.ShowAutoFilterRow = True
         Me.GridView1.OptionsView.ShowGroupPanel = False
         '
         'colcode

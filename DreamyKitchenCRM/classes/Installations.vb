@@ -453,6 +453,8 @@ Public Class Installations
         If NewRecord Then
             frmInstEllipse.Mode = FormMode.NewRecord
             frmInstEllipse.INST_ID = ID
+            frmInstEllipse.cboCUS.EditValue = Frm.cboCUS.EditValue
+            frmInstEllipse.cboTRANSH.EditValue = Frm.cboTRANSH.EditValue
             frmInstEllipse.ComeFrom = 0
             frmInstEllipse.Show()
         Else

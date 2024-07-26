@@ -115,9 +115,7 @@ Public Class frmInstEllipse
         If sComeFrom = 1 Then
             LayoutControlGroup1.Text = "Αφορά Προμηθευτή"
             chkSER.Enabled = False : LdtDateDelivered.Enabled = False : LTmINFrom.Enabled = False : LTmINTo.Enabled = False
-            '  cboINST.EditValue = System.Guid.Parse("00000001-0001-0001-0001-000000000001")
             cmdNewInstEllipse.Enabled = False
-            'txtInstellipseFilename.Enabled = False : txtInstellipseFilenameComplete.Enabled = False
             DisabletxtInstellipseFilename() : DisabletxtInstellipseFilenameComplete()
             GridView1.OptionsBehavior.Editable = True : cmdViewOrder.Enabled = False : cmdConvertToOrder.Enabled = False
             LoadForms.RestoreLayoutFromXml(GridView1, "INST_ELLIPSE_JOBS_def_SUP.xml")
