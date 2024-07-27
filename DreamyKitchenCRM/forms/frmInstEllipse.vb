@@ -2,6 +2,7 @@
 Imports System.ComponentModel
 Imports System.Data.SqlClient
 Imports System.IO
+Imports DevExpress.DataProcessing.InMemoryDataProcessor
 Imports DevExpress.XtraBars.Navigation
 Imports DevExpress.XtraEditors
 Imports DevExpress.XtraEditors.Controls
@@ -9,6 +10,8 @@ Imports DevExpress.XtraGrid.Views.Base
 Imports DevExpress.XtraGrid.Views.Grid
 Imports DevExpress.XtraGrid.Views.Grid.ViewInfo
 Imports DevExpress.XtraReports.UI
+Imports DevExpress.XtraSpreadsheet.Forms
+Imports DevExpress.XtraSpreadsheet.Import.OpenXml
 
 Public Class frmInstEllipse
 
@@ -76,6 +79,9 @@ Public Class frmInstEllipse
         End Set
     End Property
     Private Sub cmdExit_Click(sender As Object, e As EventArgs) Handles cmdExit.Click
+        If CheckForInstName() = False Then Exit Sub
+        If HasConnectedOrder = False Then If CheckIfHasRecordsForOrder() = True Then Exit Sub
+        If sComeFrom = 0 And CheckIfHasSendInfEmail() = False Then Exit Sub
         Me.Close()
     End Sub
 
@@ -106,8 +112,10 @@ Public Class frmInstEllipse
                 Else
                     ConnectedOrderID = sID
                 End If
-                'txtInstellipseFilename.Enabled = True
                 txtInstellipseFilename.ReadOnly = False
+                txtInstellipseFilenameD.ReadOnly = False
+                txtInstellipseFilenameC.ReadOnly = False
+                txtInstellipseFilenameSC.ReadOnly = False
                 GridControl1.ForceInitialize()
                 If GridView1.DataRowCount = 0 Then cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False : cmdSendApointmentEmail.Enabled = False : cmdDefEmail.Enabled = False
         End Select
@@ -122,7 +130,9 @@ Public Class frmInstEllipse
         Else
             LayoutControlGroup1.Text = "Αφορά Πελάτη"
             LCus.Enabled = False : LTransh.Enabled = False
-            If dtDateDelivered.EditValue IsNot Nothing And txtInstellipseFilename.EditValue IsNot Nothing Then DisabletxtInstellipseFilename() 'txtInstellipseFilename.Enabled = False
+            If dtDateDelivered.EditValue IsNot Nothing And
+                (txtInstellipseFilename.EditValue IsNot Nothing Or txtInstellipseFilenameD.EditValue IsNot Nothing Or
+                txtInstellipseFilenameC.EditValue IsNot Nothing Or txtInstellipseFilenameSC.EditValue IsNot Nothing) Then DisabletxtInstellipseFilename()
             LoadForms.RestoreLayoutFromXml(GridView1, "INST_ELLIPSE_JOBS_def.xml")
         End If
 
@@ -135,6 +145,22 @@ Public Class frmInstEllipse
         txtInstellipseFilename.Properties.Buttons.Item(0).Enabled = False
         txtInstellipseFilename.Properties.Buttons.Item(1).Enabled = True
         txtInstellipseFilename.Properties.Buttons.Item(2).Enabled = False
+
+        txtInstellipseFilenameD.ReadOnly = True
+        txtInstellipseFilenameD.Properties.Buttons.Item(0).Enabled = False
+        txtInstellipseFilenameD.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilenameD.Properties.Buttons.Item(2).Enabled = False
+
+        txtInstellipseFilenameC.ReadOnly = True
+        txtInstellipseFilenameC.Properties.Buttons.Item(0).Enabled = False
+        txtInstellipseFilenameC.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilenameC.Properties.Buttons.Item(2).Enabled = False
+
+        txtInstellipseFilenameSC.ReadOnly = True
+        txtInstellipseFilenameSC.Properties.Buttons.Item(0).Enabled = False
+        txtInstellipseFilenameSC.Properties.Buttons.Item(1).Enabled = True
+        txtInstellipseFilenameSC.Properties.Buttons.Item(2).Enabled = False
+
     End Sub
     Private Sub DisabletxtInstellipseFilenameComplete()
         txtInstellipseFilenameComplete.ReadOnly = True
@@ -181,12 +207,60 @@ Public Class frmInstEllipse
         Return False
 
     End Function
+    Private Function CheckIfHasRecordsForOrder() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("SELECT count (id) as CountEllipse  FROM INST_ELLIPSE_JOBS 
+                         WHERE instEllipseID= " & toSQLValueS(sID) & " and toOrder = 1 and " & toSQLValueS(sID) &
+                         " Not In (Select Top 1 ID from INST_ELLIPSE  where connectedEllipseID = " & toSQLValueS(sID) & ")")
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim CountEllipse As Integer
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
+            sdr.Close()
+            If CountEllipse > 0 Then
+                XtraMessageBox.Show("Υπάρχουν εκκρεμότητες προς παραγγελία. Παρακαλώ δημιουργήστε παραγγελία πριν την έξοδο.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return True
+            Else
+                Return False
+            End If
+        End If
+        Return False
+
+    End Function
+    Private Function CheckIfHasSendInfEmail() As Boolean
+        Dim Cmd As SqlCommand, sdr As SqlDataReader
+        Dim sSQL As New System.Text.StringBuilder
+        sSQL.AppendLine("SELECT count (IE.id) as CountEllipse  
+                        FROM INST_ELLIPSE_JOBS  IEJ
+                        inner join INST_ELLIPSE  IE ON IE.ID = IEJ.instEllipseID 
+                        WHERE instEllipseID= " & toSQLValueS(sID) & "  AND emailInf IS NOT NULL")
+        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+        sdr = Cmd.ExecuteReader()
+        Dim CountEllipse As Integer
+        If (sdr.Read() = True) Then
+            If sdr.IsDBNull(sdr.GetOrdinal("CountEllipse")) = False Then CountEllipse = sdr.GetInt32(sdr.GetOrdinal("CountEllipse")) Else CountEllipse = 0
+            sdr.Close()
+            If CountEllipse = 0 Then
+                XtraMessageBox.Show("Παρακαλώ πολύ πρέπει να στείλετε eMail Ενημέρωσης στον πελάτη.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                Return False
+            Else
+                Return True
+            End If
+        End If
+        Return False
+
+    End Function
+
     Private Sub AddRecord()
         cmdNewInstEllipse.Enabled = False
         txtCode.Text = DBQ.GetNextId("INST_ELLIPSE")
         If sINST_ID IsNot Nothing Then cboINST.EditValue = System.Guid.Parse(sINST_ID)
         FillCbo.FillCheckedListINST_ELLIPSE_SER(chkSER, FormMode.NewRecord)
-        cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False : cmdSendApointmentEmail.Enabled = False : cmdDefEmail.Enabled = False : txtInstellipseFilename.ReadOnly = False ' txtInstellipseFilename.Enabled = True
+        cmdSendEmail.Enabled = False : cmdPrintAll.Enabled = False : cmdSendApointmentEmail.Enabled = False : cmdDefEmail.Enabled = False
+        txtInstellipseFilename.ReadOnly = False : txtInstellipseFilenameD.ReadOnly = False
+        txtInstellipseFilenameC.ReadOnly = False : txtInstellipseFilenameSC.ReadOnly = False
 
         '΅Εισαγωγή εγγραφής απευθείας στην βάση
         Dim sResult As Boolean = DBQ.InsertNewData(DBQueries.InsertMode.OneLayoutControl, "INST_ELLIPSE", LayoutControl1,,, sID, True, "comefrom", sComeFrom)
@@ -258,7 +332,7 @@ Public Class frmInstEllipse
             XtraMessageBox.Show("Δεν έχετε καταχωρήσει εκκρεμότητες. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
-        If txtInstellipseFilename.EditValue = Nothing Then
+        If txtInstellipseFilename.EditValue = Nothing And txtInstellipseFilenameD.EditValue = Nothing And txtInstellipseFilenameC.EditValue = Nothing And txtInstellipseFilenameSC.EditValue = Nothing Then
             XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
@@ -267,7 +341,7 @@ Public Class frmInstEllipse
             Return False
         End If
         If chkCompleted.CheckState = CheckState.Checked And dtDateDelivered.EditValue = Nothing Then
-            XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την εκκρεμότητα χωρίς ημερομηνία τοποθέτησης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            XtraMessageBox.Show("Δεν μπορείτε να ολοκληρώσετε την εκκρεμότητα χωρίς ημερομηνία επίσκεψης. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
             Return False
         End If
         If CheckIfInstJobsAreCompleted() And txtInstellipseFilenameComplete.EditValue = Nothing Then
@@ -330,7 +404,7 @@ Public Class frmInstEllipse
         Select Case e.Button.ButtonType
             Case e.Button.ButtonType.Remove : DeleteRecord() : e.Handled = True
             Case e.Button.ButtonType.Append
-                If txtInstellipseFilename.EditValue = Nothing Then
+                If txtInstellipseFilename.EditValue = Nothing And txtInstellipseFilenameD.EditValue = Nothing And txtInstellipseFilenameC.EditValue = Nothing And txtInstellipseFilenameSC.EditValue = Nothing Then
                     XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     e.Handled = True
                 End If
@@ -342,7 +416,7 @@ Public Class frmInstEllipse
             If sender.FocusedRowHandle < 0 Then Exit Sub
             Dim viewInfo As GridViewInfo = TryCast(sender.GetViewInfo(), GridViewInfo)
             If sender.FocusedRowHandle = viewInfo.RowsInfo.Last().RowHandle Then
-                If txtInstellipseFilename.EditValue = Nothing Then
+                If txtInstellipseFilename.EditValue = Nothing And txtInstellipseFilenameD.EditValue = Nothing And txtInstellipseFilenameC.EditValue = Nothing And txtInstellipseFilenameSC.EditValue = Nothing Then
                     XtraMessageBox.Show("Δεν έχετε επισυνάψει έντυπο εκκρεμοτήτων. Δεν μπορεί να αποθηκευθεί η εγγραφή.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                     Exit Sub
                 End If
@@ -464,6 +538,15 @@ Public Class frmInstEllipse
                         txtInstellipseFilename.EditValue = XtraOpenFileDialog1.FileName
                         sSQL = "UPDATE INST_ELLIPSE SET  fInstEllipseName =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ", fInstEllipse =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstEllipseF where ID = " & toSQLValueS(sID)
                     Case 1
+                        txtInstellipseFilenameD.EditValue = XtraOpenFileDialog1.FileName
+                        sSQL = "UPDATE INST_ELLIPSE SET  fInstEllipseNameD =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ", fInstEllipseD =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstEllipseF where ID = " & toSQLValueS(sID)
+                    Case 2
+                        txtInstellipseFilenameC.EditValue = XtraOpenFileDialog1.FileName
+                        sSQL = "UPDATE INST_ELLIPSE SET  fInstEllipseNameC =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ", fInstEllipseC =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstEllipseF where ID = " & toSQLValueS(sID)
+                    Case 3
+                        txtInstellipseFilenameSC.EditValue = XtraOpenFileDialog1.FileName
+                        sSQL = "UPDATE INST_ELLIPSE SET  fInstEllipseNameSC =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ", fInstEllipseSC =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstEllipseF where ID = " & toSQLValueS(sID)
+                    Case 4
                         txtInstellipseFilenameComplete.EditValue = XtraOpenFileDialog1.FileName
                         sSQL = "UPDATE INST_ELLIPSE SET completed = 1 ,fInstEllipseNameComplete =  " & toSQLValueS(Path.GetFileName(XtraOpenFileDialog1.FileName).ToString) & ", fInstEllipseComplete =  BulkColumn from Openrowset( Bulk " & toSQLValueS(ProgProps.ServerPath & Path.GetFileName(XtraOpenFileDialog1.FileName)) & ", Single_Blob) as InstEllipseF where ID = " & toSQLValueS(sID)
                 End Select
@@ -528,6 +611,142 @@ Public Class frmInstEllipse
         End Try
 
     End Sub
+    Private Sub txtInstellipseFilenameD_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtInstellipseFilenameD.ButtonClick
+        Try
+            Select Case e.Button.Index
+                Case 0 : FileSelect(1)
+                Case 1
+                    Try
+                        Dim Cmd As SqlCommand, sdr As SqlDataReader
+                        Dim sSQL As String = "SELECT fInstEllipseD,fInstEllipseNameD  FROM INST_ELLIPSE WHERE comefrom=0 and ID= " & toSQLValueS(sID)
+                        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+                        sdr = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("fInstEllipseNameD")) = False Then
+                                Dim sFilename = Path.GetFileName(sdr.GetString(sdr.GetOrdinal("fInstEllipseNameD")))
+                                Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                                Dim b As Byte()
+                                b = DirectCast(sdr("fInstEllipseD"), Byte())
+                                fs.Write(b, 0, b.Length)
+                                fs.Close()
+                                ShellExecute(ProgProps.TempFolderPath & sFilename)
+                            End If
+                        End If
+                        sdr.Close()
+                    Catch exfs As Exception
+                        XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Finally
+
+                    End Try
+                Case 2
+                    If txtInstellipseFilenameD.EditValue = Nothing Then Exit Sub
+                    If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                        Dim sSQL As String
+                        sSQL = "UPDATE INST_ELLIPSE SET fInstEllipseNameD =  NULL ,fInstEllipseD =  NULL where ID = " & toSQLValueS(sID)
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        txtInstellipseFilenameD.EditValue = Nothing
+                    End If
+            End Select
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+    End Sub
+    Private Sub txtInstellipseFilenameC_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtInstellipseFilenameC.ButtonClick
+        Try
+            Select Case e.Button.Index
+                Case 0 : FileSelect(2)
+                Case 1
+                    Try
+                        Dim Cmd As SqlCommand, sdr As SqlDataReader
+                        Dim sSQL As String = "SELECT fInstEllipseC,fInstEllipseNameC  FROM INST_ELLIPSE WHERE comefrom=0 and ID= " & toSQLValueS(sID)
+                        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+                        sdr = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("fInstEllipseNameC")) = False Then
+                                Dim sFilename = Path.GetFileName(sdr.GetString(sdr.GetOrdinal("fInstEllipseNameC")))
+                                Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                                Dim b As Byte()
+                                b = DirectCast(sdr("fInstEllipseC"), Byte())
+                                fs.Write(b, 0, b.Length)
+                                fs.Close()
+                                ShellExecute(ProgProps.TempFolderPath & sFilename)
+                            End If
+                        End If
+                        sdr.Close()
+                    Catch exfs As Exception
+                        XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Finally
+
+                    End Try
+                Case 2
+                    If txtInstellipseFilenameC.EditValue = Nothing Then Exit Sub
+                    If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                        Dim sSQL As String
+                        sSQL = "UPDATE INST_ELLIPSE SET fInstEllipseNameC =  NULL ,fInstEllipseC =  NULL where ID = " & toSQLValueS(sID)
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        txtInstellipseFilenameC.EditValue = Nothing
+                    End If
+            End Select
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+    End Sub
+    Private Sub txtInstellipseFilenameSC_ButtonClick(sender As Object, e As ButtonPressedEventArgs) Handles txtInstellipseFilenameSC.ButtonClick
+        Try
+            Select Case e.Button.Index
+                Case 0 : FileSelect(3)
+                Case 1
+                    Try
+                        Dim Cmd As SqlCommand, sdr As SqlDataReader
+                        Dim sSQL As String = "SELECT fInstEllipseSC,fInstEllipseNameSC  FROM INST_ELLIPSE WHERE comefrom=0 and ID= " & toSQLValueS(sID)
+                        Cmd = New SqlCommand(sSQL.ToString, CNDB)
+                        sdr = Cmd.ExecuteReader()
+                        If (sdr.Read() = True) Then
+                            If sdr.IsDBNull(sdr.GetOrdinal("fInstEllipseNameSC")) = False Then
+                                Dim sFilename = Path.GetFileName(sdr.GetString(sdr.GetOrdinal("fInstEllipseNameSC")))
+                                Dim fs As IO.FileStream = New IO.FileStream(ProgProps.TempFolderPath & sFilename, IO.FileMode.Create)
+                                Dim b As Byte()
+                                b = DirectCast(sdr("fInstEllipseSC"), Byte())
+                                fs.Write(b, 0, b.Length)
+                                fs.Close()
+                                ShellExecute(ProgProps.TempFolderPath & sFilename)
+                            End If
+                        End If
+                        sdr.Close()
+                    Catch exfs As Exception
+                        XtraMessageBox.Show(String.Format("Error: {0}", exfs.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+                    Finally
+
+                    End Try
+                Case 2
+                    If txtInstellipseFilenameSC.EditValue = Nothing Then Exit Sub
+                    If XtraMessageBox.Show("Θέλετε να διαγραφεί το αρχείο?", ProgProps.ProgTitle, MessageBoxButtons.YesNo, MessageBoxIcon.Question) = vbYes Then
+                        Dim sSQL As String
+                        sSQL = "UPDATE INST_ELLIPSE SET fInstEllipseNameSC =  NULL ,fInstEllipseSC =  NULL where ID = " & toSQLValueS(sID)
+                        'Εκτέλεση QUERY
+                        Using oCmd As New SqlCommand(sSQL, CNDB)
+                            oCmd.ExecuteNonQuery()
+                        End Using
+                        txtInstellipseFilenameSC.EditValue = Nothing
+                    End If
+            End Select
+        Catch ex As Exception
+            XtraMessageBox.Show(String.Format("Error: {0}", ex.Message), ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+
+        End Try
+
+    End Sub
+
     Private Sub ShellExecute(ByVal File As String)
         Dim myProcess As New Process
         myProcess.StartInfo.FileName = File
@@ -664,8 +883,20 @@ Public Class frmInstEllipse
                 End Using
             End If
         End If
+        If CheckForInstName() = False Then e.Cancel = True : Exit Sub
+        If HasConnectedOrder = False Then If CheckIfHasRecordsForOrder() = True Then e.Cancel = True : Exit Sub
+        If sComeFrom = 0 And CheckIfHasSendInfEmail() = False Then e.Cancel = True : Exit Sub
     End Sub
-
+    Private Function CheckForInstName() As Boolean
+        If GridView1.DataRowCount > 0 And
+            txtInstellipseFilename.EditValue Is Nothing And txtInstellipseFilenameD.EditValue Is Nothing And
+            txtInstellipseFilenameC.EditValue Is Nothing And txtInstellipseFilenameSC.EditValue Is Nothing Then
+            XtraMessageBox.Show("Έχετε καταχωρήσει εκκρεμότητες χωρίς να έχετε επισυνάψει έντυπο ολοκλήρωσης. ", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
+            Return False
+        Else
+            Return True
+        End If
+    End Function
     Private Sub TabPane1_SelectedPageChanged(sender As Object, e As SelectedPageChangedEventArgs) Handles TabPane1.SelectedPageChanged
         Select Case TabPane1.SelectedPageIndex
             Case 1
@@ -877,8 +1108,8 @@ Public Class frmInstEllipse
                 oCmd.ExecuteNonQuery()
             End Using
             Me.INST_ELLIPSE_JOBSTableAdapter.FillBYinstEllipseID(Me.DmDataSet.INST_ELLIPSE_JOBS, System.Guid.Parse(sID))
-            'txtInstellipseFilename.Enabled = True
-            txtInstellipseFilename.ReadOnly = False
+            txtInstellipseFilename.ReadOnly = False : txtInstellipseFilenameD.ReadOnly = False
+            txtInstellipseFilenameC.ReadOnly = False : txtInstellipseFilenameSC.ReadOnly = False
             GridView1.OptionsBehavior.Editable = True
             Mode = FormMode.EditRecord
         Catch ex As Exception
@@ -900,7 +1131,9 @@ Public Class frmInstEllipse
         'Καταχώρηση συνεργείων και εκκρεμοτήτων που έμειναν ανολοκλήρωτες στην νέα έλλειψη
         Insert_EllipseSer_EllipseJobs_InstEllipse()
         dtDateDelivered.EditValue = Nothing : txtTmINFrom.EditValue = "00:00" : txtTmINTo.EditValue = "00:00" : dtReceipt.EditValue = Nothing : chkCompleted.CheckState = CheckState.Unchecked
-        txtComments.EditValue = Nothing : txtInstellipseFilename.EditValue = Nothing : cmdConvertToOrder.Enabled = False : cmdViewOrder.Enabled = False
+        txtComments.EditValue = Nothing : cmdConvertToOrder.Enabled = False : cmdViewOrder.Enabled = False
+        txtInstellipseFilename.EditValue = Nothing : txtInstellipseFilenameD.EditValue = Nothing
+        txtInstellipseFilenameC.EditValue = Nothing : txtInstellipseFilenameSC.EditValue = Nothing
         AddRecord()
     End Sub
 
@@ -914,7 +1147,7 @@ Public Class frmInstEllipse
                         XtraMessageBox.Show("Δεν μπορείτε επισυνάψετε έντυπο ολοκλήρωσης όταν υπάρχει έστω και μια μη ολοκληρωμένη εκκρεμότητα.", ProgProps.ProgTitle, MessageBoxButtons.OK, MessageBoxIcon.Error)
                         Exit Sub
                     Else
-                        FileSelect(1)
+                        FileSelect(4)
                     End If
                 Case 1
                     Try
@@ -956,7 +1189,9 @@ Public Class frmInstEllipse
                         chkCompleted.CheckState = CheckState.Unchecked
                         GridView1.OptionsBehavior.Editable = True
                         txtInstellipseFilenameComplete.EditValue = Nothing
-                        cmdNewInstEllipse.Enabled = True : txtInstellipseFilename.ReadOnly = False ' txtInstellipseFilename.Enabled = True
+                        cmdNewInstEllipse.Enabled = True : txtInstellipseFilename.ReadOnly = False
+                        txtInstellipseFilenameD.ReadOnly = False : txtInstellipseFilenameC.ReadOnly = False
+                        txtInstellipseFilenameSC.ReadOnly = False
                     End If
             End Select
         Catch ex As Exception
